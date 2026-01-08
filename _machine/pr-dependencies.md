@@ -8,6 +8,35 @@ Track cross-repository PR dependencies between Hazina and client-manager.
 |---------------|---------------------|--------|-------|
 | [client-manager#35](https://github.com/martiendejong/client-manager/pull/35) | [Hazina#9](https://github.com/martiendejong/Hazina/pull/9) | ⏳ Waiting | SemanticCache adapters need GenerateEmbeddingAsync |
 
+## PRs Requiring Base Branch Fix
+
+⚠️ **These PRs target `main` instead of `develop` - fix before merging!**
+
+| PR | Title | Current Base | Fix Command |
+|---|---|---|---|
+| [#54](https://github.com/martiendejong/client-manager/pull/54) | Multi-Client Switcher | main | `gh pr edit 54 --base develop` |
+| [#55](https://github.com/martiendejong/client-manager/pull/55) | Smart Scheduling | main | `gh pr edit 55 --base develop` |
+| [#56](https://github.com/martiendejong/client-manager/pull/56) | Approval Workflows | main | `gh pr edit 56 --base develop` |
+| [#57](https://github.com/martiendejong/client-manager/pull/57) | ROI Calculator | main | `gh pr edit 57 --base develop` |
+
+## Client-Manager Stabilization Status
+
+**Current State (2026-01-08):**
+- ❌ Application starts but many functions broken
+- 🔄 Stabilization in progress (another agent working on fixes)
+- ⏸️ 12 PRs queued, waiting for stable base before merge
+
+**Merge Order (after stabilization):**
+1. #50 (Translation) - 260 lines
+2. #52 (Cross-Post) - 586 lines
+3. #47 (Quality Score) - 1008 lines
+4. #53 (Content Calendar) - 1112 lines
+5. #49 (Alt Text) - 1259 lines
+6. #46 (Test Infrastructure) - 1639 lines
+7. #51 (Content Templates) - 2078 lines
+8. #48 (Performance) - 4147 lines
+9. #54-57 (after base branch fix)
+
 ## Legend
 
 - **Downstream PR**: The PR that requires changes from another repo
@@ -40,6 +69,11 @@ Track cross-repository PR dependencies between Hazina and client-manager.
 ---
 
 ## History
+
+### 2026-01-08 (evening)
+- Added PRs Requiring Base Branch Fix section (PRs #54-57 target main instead of develop)
+- Added Client-Manager Stabilization Status section
+- Added recommended merge order for 12 queued PRs
 
 ### 2026-01-08
 - File created for tracking cross-repo dependencies

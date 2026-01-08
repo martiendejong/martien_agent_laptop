@@ -1,5 +1,183 @@
 # reflection.log.md
 
+## 2026-01-08 23:45 - Cross-Repo NU1105 Errors Due to Wrong Branch
+
+**Session Summary:** Fixed mastermindgroupAI build errors caused by hazina being on wrong branch.
+
+### Problem
+User reported 16 NU1105 errors in Visual Studio:
+```
+NU1105: Unable to find project information for 'C:\Projects\hazina\src\...'
+```
+
+All errors pointed to hazina project paths that DID exist on disk.
+
+### Root Cause Analysis
+1. mastermindgroupAI references hazina projects via relative paths in csproj
+2. hazina repo was on `fix/chat-llm-config-loading` branch instead of `develop`
+3. NuGet couldn't resolve project info because the referenced projects may have different state/dependencies on the feature branch
+4. Per HARD STOP RULE 3B: `C:\Projects\<repo>` MUST stay on develop!
+
+### Solution
+```powershell
+# 1. Stash any changes on hazina
+cd C:\Projects\hazina
+git stash push -m "Stashed during branch switch"
+
+# 2. Switch to develop
+git checkout develop
+git pull origin develop
+
+# 3. Restore hazina first
+dotnet restore Hazina.sln
+
+# 4. Restore dependent project
+cd C:\Projects\mastermindgroupAI
+dotnet restore MastermindGroup.local.sln
+```
+
+### Additional Fix
+After resolving NU1105, discovered missing `Swashbuckle.AspNetCore` package:
+```bash
+dotnet add "...\MastermindGroup.Api.csproj" package Swashbuckle.AspNetCore
+```
+
+### Key Learnings
+
+1. **NU1105 ≠ Missing Project**: The error says "unable to find project information" but the projects existed. The issue was branch state, not missing files.
+
+2. **Cross-Repo Dependencies Are Fragile**: When Project A references Project B via relative paths, Project B MUST be in a consistent state (on develop).
+
+3. **RULE REINFORCEMENT**: HARD STOP RULE 3B exists for exactly this reason - `C:\Projects\<repo>` must ALWAYS be on develop to serve as stable base for:
+   - Other projects that reference it
+   - Creating new worktrees
+   - Visual Studio debugging
+
+4. **Diagnostic Steps for NU1105**:
+   ```powershell
+   # Check if referenced repo is on develop
+   git -C C:\Projects\<referenced-repo> branch --show-current
+
+   # If not develop:
+   git -C C:\Projects\<referenced-repo> checkout develop
+   git -C C:\Projects\<referenced-repo> pull origin develop
+
+   # Then restore
+   dotnet restore
+   ```
+
+### Pattern Added
+Added Pattern 23 to claude_info.txt: "NU1105 Cross-Repo Branch Mismatch"
+
+---
+
+## 2026-01-08 23:30 - Client-Manager Task Analysis & Stabilization Strategy
+
+**Session Summary:** Comprehensive analysis of client-manager repository to identify tasks prioritized by effort vs value ratio.
+
+### Key Findings
+
+**12 Open PRs Ready to Merge:**
+| PR | Feature | Lines | Status |
+|---|---|---|---|
+| #50 | Translation settings | +260 | ✅ Ready (develop) |
+| #47 | Quality Score Preview | +1008 | ✅ Ready (develop) |
+| #49 | Alt Text Generator | +1259 | ✅ Ready (develop) |
+| #52 | Cross-Post Optimizer | +586 | ✅ Ready (develop) |
+| #53 | Content Calendar | +1112 | ✅ Ready (develop) |
+| #51 | Content Templates | +2078 | ✅ Ready (develop) |
+| #46 | Test Infrastructure | +1639 | ✅ Ready (develop) |
+| #48 | Performance Optimization | +4147 | ✅ Ready (develop) |
+| #54 | Multi-Client Switcher | +2580 | ⚠️ Wrong base: main→develop |
+| #55 | Smart Scheduling | +2866 | ⚠️ Wrong base: main→develop |
+| #56 | Approval Workflows | +3459 | ⚠️ Wrong base: main→develop |
+| #57 | ROI Calculator | +2837 | ⚠️ Wrong base: main→develop |
+
+**Critical Issue:** PRs #54-57 target `main` instead of `develop` - violates git-flow.
+
+**Fix:** `gh pr edit <num> --base develop` for each before merging.
+
+### Stabilization-First Strategy
+
+**Current State:**
+- Application starts but many functions broken
+- Another agent working on stabilization fixes
+- User correctly decided NOT to merge PRs until stable
+
+**Lesson Learned:**
+- Don't merge feature PRs into an unstable codebase
+- Stabilization before feature accumulation reduces debugging complexity
+- PRs sitting idle = weeks of work not delivering value, but merging prematurely = more problems
+
+### Post-Stabilization Priority (Least Effort → Most Value)
+
+**Phase 1 - Quick Wins (< 1 day each):**
+1. Pause All Campaigns button (2 hrs) - Crisis protection
+2. Interview Agent integration (3 hrs) - Feature already built, just needs wiring
+3. Character counter with platform limits (2 hrs) - Frontend only
+4. UTM Link Builder (2 hrs) - String manipulation
+5. Platform Connector Status indicators (3 hrs) - Health checks
+
+**Phase 2 - High-Value Medium Effort (1-3 days each):**
+1. Dependency Validation before generation (ROI 3.00)
+2. Slot Source Preservation on regenerate (ROI 2.67)
+3. Dependency Change Notifications (ROI 2.33)
+4. Smart Default Fragment Generation (ROI 2.25)
+5. Batch Fragment Generation (ROI 2.00)
+
+**Phase 3 - Strategic (1-2 weeks):**
+- Fragment Templates Library
+- Fragment Version History
+- LLM Response Caching
+- Automated Test Coverage
+
+### Code TODOs Found
+
+| File | Line | TODO |
+|---|---|---|
+| `ContentCalendar.tsx` | 729 | Holiday content pre-fill |
+| `ProductList.tsx` | 29,42 | ProjectId from context |
+| `IntegrationSetup.tsx` | 35,60 | ProjectId from context |
+| `Subscriptions.tsx` | 207 | Subscription purchase flow |
+| `SocialImportController.cs` | 224 | Content type split |
+| `FeatureFlagService.cs` | 54 | Persist flag changes |
+| `Program.cs` | 322 | Model routing config file |
+| `ProgressiveRefinementService.cs` | 435 | User preference storage |
+
+### Process Improvements
+
+**Pattern 23: Stabilization-First Merging**
+When application is partially broken:
+1. Do NOT merge pending PRs - increases complexity
+2. Create dedicated stabilization branch/PR
+3. Fix broken functions first
+4. Validate application works end-to-end
+5. THEN merge pending PRs in order of risk (smallest first)
+6. Test after each merge
+
+**Pattern 24: PR Base Branch Validation**
+Before creating PR:
+```bash
+# Verify target branch
+gh pr create --base develop  # ALWAYS develop for features
+# NEVER target main directly from feature branches
+```
+
+If PR has wrong base:
+```bash
+gh pr edit <number> --base develop
+```
+
+**Pattern 25: Task Prioritization by ROI**
+When analyzing backlog:
+1. Calculate Value (1-10) × Effort (1-10) = ROI
+2. Sort by ROI descending
+3. Consider dependencies (blocked tasks rank lower)
+4. Consider risk (high-risk tasks need stable base)
+5. Quick wins (ROI > 2.0) should be done first
+
+---
+
 ## 2026-01-08 18:30 - Client-Manager Startup Errors & Database Migration Fixes
 
 **Session Summary:** Fixed multiple cascading errors preventing client-manager from starting.

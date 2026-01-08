@@ -356,3 +356,115 @@ For compliance/audit trails:
 - Audit: Approvals, permissions, sensitive access, config changes
 - Don't audit: Read-only views, normal CRUD, high-frequency actions
 - **Benefits:** SOC2/GDPR compliance, forensics, legal protection
+
+### Pattern 23: Stabilization-First Merging
+When application is partially broken:
+1. Do NOT merge pending PRs - increases debugging complexity
+2. Create dedicated stabilization branch/PR
+3. Fix broken functions first
+4. Validate application works end-to-end
+5. THEN merge pending PRs in order of risk (smallest first)
+6. Test after each merge
+- **Benefits:** Isolated debugging, predictable state, easier rollback
+
+### Pattern 24: PR Base Branch Validation
+Before creating PR:
+```bash
+gh pr create --base develop  # ALWAYS develop for features
+# NEVER target main directly from feature branches
+```
+If PR has wrong base:
+```bash
+gh pr edit <number> --base develop
+```
+- **Check existing PRs:** `gh pr list --json number,baseRefName`
+
+### Pattern 25: Task Prioritization by ROI
+When analyzing backlog:
+1. Calculate: ROI = Value (1-10) ÷ Effort (1-10)
+2. Sort by ROI descending (quick wins first)
+3. Consider dependencies (blocked tasks rank lower)
+4. Consider risk (high-risk tasks need stable base)
+5. Quick wins (ROI > 2.0) should be done first
+- **Categories:**
+  - ROI > 2.0 = Quick Win (do immediately)
+  - ROI 1.0-2.0 = Medium priority
+  - ROI < 1.0 = Strategic investment (plan carefully)
+
+### Pattern 26: Client-Manager PR Merge Order
+When merging accumulated PRs after stabilization:
+1. **Smallest first** - #50 (260 lines), #52 (586 lines)
+2. **Foundation next** - #46 (Test Infrastructure)
+3. **Features last** - #51, #53, #47, #49, #48
+4. **Fix base branches first** - PRs #54-57 need `--base develop`
+5. **Test after each merge** before proceeding
+
+### Pattern 27: VS Error List Shows Stale Errors (NU1105, CS1061)
+**Symptom:** VS Error List shows NU1105 or CS1061 errors, but `dotnet build` from CLI succeeds.
+**Root Cause:** Visual Studio's IntelliSense/Error List is out of sync with actual build state.
+**Verification:**
+```bash
+dotnet build "C:\Projects\<solution-or-project>" 2>&1 | tail -10
+# If "0 Error(s)" → VS is stale
+```
+**Solutions (in order of speed):**
+1. Build → Clean Solution → Rebuild Solution
+2. Close/reopen Visual Studio
+3. Delete `obj` and `bin` folders, then rebuild
+4. `dotnet clean` then `dotnet restore` then rebuild
+**Lesson:** ALWAYS verify with CLI build before debugging VS errors.
+
+### Pattern 28: Cross-Repo Project References (NU1105)
+**Error:** `Unable to find project information for 'C:\Projects\other-repo\...'`
+**Context:** Project A references projects in Project B via relative paths.
+**Cause:** VS doesn't have both repos loaded in same solution OR restore not run.
+**Solutions:**
+1. **Quick:** Run `dotnet restore` from CLI - often resolves
+2. **Verify paths:** `ls "C:\Projects\hazina\src\..."` to confirm projects exist
+3. **Clean:** Create combined solution including both repos
+4. **Production:** Publish shared projects as NuGet packages
+**Example (MastermindGroupAI → Hazina):**
+```xml
+<ProjectReference Include="..\..\..\hazina\src\Core\Security\Hazina.Security.Core\..." />
+```
+**These are Debug-only refs:** `Condition="'$(Configuration)' == 'Debug'"`
+
+### Pattern 29: NU1608 Package Version Constraint Warnings
+**Warning:** `Detected package version outside of dependency constraint`
+**Example:** `Microsoft.SemanticKernel.Connectors.OpenAI 1.31.0 requires OpenAI (= 2.1.0-beta.2) but version OpenAI 2.6.0 was resolved`
+**Impact:** WARNING only - does NOT block build
+**Cause:** Transitive dependency pinned to specific version, but newer version resolved
+**Action:** Usually safe to ignore unless runtime errors occur
+**Fix (if needed):** Update the constraining package to newer version
+
+### Pattern 30: Swashbuckle.AspNetCore Versioning
+**Current:** Swashbuckle.AspNetCore has versions up to 10.x+ (as of 2026)
+**Common issue:** Using old version (6.x) with new ASP.NET features
+**Required for .NET 9:** Version 8.x or higher recommended
+```xml
+<PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.0" />
+```
+**Note:** Version 10.1.0 is valid and exists in NuGet
+
+## 📁 Additional Projects
+
+### MastermindGroupAI
+- **Location:** C:\Projects\mastermindgroupAI
+- **Type:** .NET 9 Web API with AI integration
+- **Dependencies:** References Hazina framework via project refs (Debug only)
+- **Structure:**
+  - `src\MastermindGroup.Api` - Web API
+  - `src\MastermindGroup.Core` - Business logic
+  - `src\MastermindGroup.Infrastructure` - Data access
+  - `tests\MastermindGroup.Tests` - Unit tests
+- **Note:** Hazina refs are conditional (Debug only) for local dev
+
+### Art Revisionist (WordPress)
+- **Theme:** C:\xampp\htdocs\wp-content\themes\artrevisionist-wp-theme
+  - Child theme of Hello Elementor
+  - CSS design tokens in assets/css/tokens.css
+- **Plugin:** C:\xampp\htdocs\wp-content\plugins\artrevisionist-wordpress
+  - REST API at `/wp-json/b2b-knowledge/v1/`
+  - CPTs: b2bk_topic, b2bk_topic_page, b2bk_detail, b2bk_evidence
+  - Has `main` and `master` branches (NO develop yet)
+- **Project:** C:\Projects\artrevisionist (separate codebase - analyze later)
