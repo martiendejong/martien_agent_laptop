@@ -15,7 +15,7 @@ Seat states:
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | BUSY | client-manager | agent-005-documentation-improvements | 2026-01-08T19:45:00Z | Adding 25 documentation files (ADRs, guides, best practices) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | hazina | develop | 2026-01-08T12:10:00Z | ✅ Fixed PR #14 CI - added security-events permission for SARIF upload |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | client-manager | agent-007-phase1-test-infrastructure | 2026-01-08T22:18:00Z | ✅ Fixed PR #46 frontend test CI - package-lock, ESLint, TS non-blocking, coverage v8, actions v4 |
-| agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | client-manager | featuress | 2026-01-08T23:45:00Z | ✅ Resolved PR #50 merge conflicts (Translation settings menu) |
+| agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | client-manager | feature/content-templates | 2026-01-08T22:25:00Z | ✅ Resolved PR #51 conflicts - merged develop, combined TemplateSelector + QualityScorePanel |
 
 Provisioning rule:
 1) Pick a FREE seat.
