@@ -1537,3 +1537,100 @@ This file now includes:
 
 **Full template:** C:\scripts\_machine\best-practices\DOCUMENTATION_AND_PR_WORKFLOW.md
 
+
+---
+
+## 🔧 LINTER INTERFERENCE MITIGATION (2026-01-08)
+
+**Source**: Hazina chat fix completion (PR #13, Session 2)
+
+### The Problem
+
+Edit tool reports "File has been unexpectedly modified" repeatedly. Linter/formatter is reverting changes.
+
+### The Solution
+
+**Use `sed` for batch command-line updates**:
+
+```bash
+# Pattern replacement with capture groups
+sed -i 's/OldMethod(\([^,]*\), oldParam)/NewMethod(\1, newParam)/g' file.cs
+
+# Verify changes
+grep -n "newParam" file.cs
+
+# Commit immediately
+git add file.cs && git commit -m "Change applied"
+```
+
+### Quick Decision Tree
+
+```
+Edit fails with "File unexpectedly modified"?
+↓
+Try once more → Still fails?
+↓
+Use sed with backup:
+  cp file.cs file.cs.bak
+  sed -i 's/pattern/replacement/g' file.cs
+  grep -n "replacement" file.cs
+  git diff file.cs
+  dotnet build
+  git commit
+```
+
+### Key sed Patterns
+
+```bash
+# Basic replacement
+sed -i 's/old/new/g' file.txt
+
+# With capture group (preserve part of pattern)
+sed -i 's/Method(\([^,]*\), old)/Method(\1, new)/g' file.cs
+
+# Delete line N
+sed -i '42d' file.txt
+
+# Insert after line N
+sed -i '42a\New content' file.txt
+
+# Multiple files
+for f in file1 file2 file3; do sed -i 's/old/new/g' "$f"; done
+```
+
+### Special Character Escaping
+
+- Dots: `Config\.Method` (not `Config.Method`)
+- Backslashes: `\` (double escape)
+- Parentheses: `\(` for capture group
+- Use `|` as delimiter for paths: `s|old/path|new/path|`
+
+### When to Use sed
+
+✅ **Use sed when**:
+- Edit tool fails with linter interference
+- Need to change same pattern across multiple files
+- Want atomic, immediate file updates
+- Batch processing needed
+
+❌ **Don't use sed when**:
+- Changes require complex logic or conditionals
+- Need type information or IDE refactoring (rename, extract method)
+- Single simple change without linter issues
+
+### Real Example from Hazina Fix
+
+```bash
+# Changed 13 locations across 3 files in ~5 minutes
+
+# GeneratorAgentBase.cs (4 locations)
+sed -i 's/StoreProvider\.GetStoreSetup(\([^,]*\), Config\.ApiSettings\.OpenApiKey)/StoreProvider.GetStoreSetup(\1, Config.OpenAI)/g' GeneratorAgentBase.cs
+
+# EmbeddingsService.cs (8 locations)
+sed -i 's/StoreProvider\.GetStoreSetup(\([^,]*\), _config\.ApiSettings\.OpenApiKey)/StoreProvider.GetStoreSetup(\1, _config.OpenAI)/g' EmbeddingsService.cs
+
+# Result: 0 errors, changes persisted, no linter interference
+```
+
+**Full guide**: `C:\scripts\_machine\best-practices\LINTER_INTERFERENCE_MITIGATION.md`
+

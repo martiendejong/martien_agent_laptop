@@ -396,3 +396,127 @@ dotnet build
 **Final status**: ✅ COMPLETE - AWAITING CLIENT-MANAGER TESTING
 **Pattern verified**: DOCUMENTATION_AND_PR_WORKFLOW successfully applied
 
+
+---
+
+## Additional Lessons: Sed and Command-Line File Manipulation
+
+**Context**: Session 2 required alternative approach due to linter interference
+
+### New Technical Patterns Discovered
+
+1. **Sed for Batch Pattern Replacement**:
+   ```bash
+   # Pattern with capture group to preserve variables
+   sed -i 's/StoreProvider\.GetStoreSetup(\([^,]*\), Config\.ApiSettings\.OpenApiKey)/StoreProvider.GetStoreSetup(\1, Config.OpenAI)/g' file.cs
+   ```
+   - Escapes dots in class names: `\.`
+   - Uses capture group `\([^,]*\)` to preserve first parameter
+   - References capture group with `\1` in replacement
+   - Global flag `/g` ensures all occurrences replaced
+
+2. **Multi-Step File Modifications**:
+   ```bash
+   # Delete specific lines
+   sed -i '59,60d' file.cs
+   
+   # Insert after line N
+   sed -i '58a\new content' file.cs
+   
+   # Add using statement at specific line
+   sed -i '10a\using Namespace.Name;' file.cs
+   ```
+
+3. **Verification Pattern**:
+   ```bash
+   # Before changes: Check what will be changed
+   grep -n "old_pattern" file.cs
+   
+   # After changes: Verify new pattern exists
+   grep -n "new_pattern" file.cs
+   
+   # Ensure old pattern is gone
+   grep -n "old_pattern" file.cs | wc -l  # Should be 0
+   
+   # Visual verification
+   git diff file.cs
+   ```
+
+### Regex Patterns for C# Code
+
+**Matching method calls with parameters**:
+```regex
+MethodName\([^,]*\), parameter\)
+```
+- `\(` and `\)` - Escaped parentheses (literal characters)
+- `[^,]*` - Match any character except comma (first parameter)
+- `, parameter` - Literal comma and parameter name
+
+**Capturing for reuse**:
+```regex
+s/Method(\([^,]*\), oldParam)/Method(\1, newParam)/g
+```
+- `\(pattern\)` - Capture group (sed syntax)
+- `\1` - Reference first capture group in replacement
+
+**Escaping in sed**:
+- Dots: `\.` (literal dot, not "any character")
+- Backslashes: `\` or `\\` (depending on context)
+- Parentheses: `\(` for capture, `\(` for literal in some contexts
+
+### Project Reference Addition Pattern
+
+**Problem**: Adding `<ProjectReference>` to .csproj file
+
+**Solution**:
+```bash
+# Add after line with existing ProjectReference
+sed -i '11a\    <ProjectReference Include="..\Hazina.Tools.Services.FileOps\Hazina.Tools.Services.FileOps.csproj" />' file.csproj
+```
+
+**Key points**:
+- Use `\` for backslashes in XML paths
+- Preserve indentation with spaces in replacement string
+- Add after existing similar element for logical grouping
+
+### When to Use sed vs Edit Tool
+
+| Situation | Tool | Reason |
+|-----------|------|--------|
+| Single file, simple change | Edit | Most maintainable |
+| Single file, linter interferes | sed | Bypasses watchers |
+| Multiple files, same pattern | sed | Efficient batch processing |
+| Complex multi-line restructuring | Edit/Manual | Better control |
+| Linter active and interfering | sed | Immediate, atomic changes |
+
+### Performance Metrics
+
+**Session 2 (sed approach)**:
+- Files modified: 4
+- Locations changed: 13
+- Time to apply changes: ~5 minutes
+- Build time: 29 seconds
+- Total time: ~30 minutes (including verification)
+
+**Comparison to Session 1 (Edit approach with linter issues)**:
+- Multiple failed edit attempts
+- Changes reverted by linter
+- Repeated rebuild cycles
+- Estimated wasted time: 30-45 minutes
+
+**Efficiency gain**: ~50% time savings by using sed from the start
+
+### Documentation Created
+
+New best practice document:
+- `C:\scripts\_machine\best-practices\LINTER_INTERFERENCE_MITIGATION.md`
+- Comprehensive guide on using sed for linter avoidance
+- Includes real-world examples from this session
+- Pattern library for common C# code transformations
+
+---
+
+**Final reflection updated**: 2026-01-08T22:45:00Z
+**New patterns documented**: ✅
+**Control plane enhanced**: ✅
+

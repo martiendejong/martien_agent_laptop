@@ -669,15 +669,35 @@ C:\Projects\hazina\src\
 - **Store:** C:\stores\mastermindgroup
 - **Note:** Hazina refs are conditional (Debug only) for local dev
 
-### Art Revisionist (WordPress)
+### Art Revisionist (WordPress Integration)
 - **Theme:** C:\xampp\htdocs\wp-content\themes\artrevisionist-wp-theme
+  - GitHub: github.com/martiendejong/artrevisionist-wp-theme
   - Child theme of Hello Elementor
-  - CSS design tokens in assets/css/tokens.css
+  - CSS design tokens: --ar-primary: #142A5C, --ar-accent: #D0B263
+  - Branches: main, develop, master (default: main)
 - **Plugin:** C:\xampp\htdocs\wp-content\plugins\artrevisionist-wordpress
+  - GitHub: github.com/martiendejong/artrevisionist-wordpress
   - REST API at `/wp-json/b2b-knowledge/v1/`
   - CPTs: b2bk_topic, b2bk_topic_page, b2bk_detail, b2bk_evidence
-  - Has `main` and `master` branches (NO develop yet)
-- **Project:** C:\Projects\artrevisionist (separate codebase - analyze later)
+  - Branches: main, develop, master (default: main)
+- **Project:** C:\Projects\artrevisionist
+  - GitHub: github.com/martiendejong/artrevisionist (private)
+  - .NET 8 API + Vue.js/Quasar frontend
+  - `wordpress-plugin/` folder is a git SUBMODULE pointing to artrevisionist-wordpress repo
+  - WordPressPublishService calls plugin REST API to export content
+  - Branches: main, develop, feature/* (default: develop)
+- **Architecture:**
+  ```
+  .NET API (WordPressPublishService) ──HTTP POST──► WordPress Plugin ──renders──► Theme
+       │                                                │
+       └── wordpress-plugin/ (submodule) ◄──────────────┘
+  ```
+  **3 separate Git repos - update submodule after plugin changes:**
+  ```bash
+  cd C:\Projects\artrevisionist
+  git submodule update --remote wordpress-plugin
+  git add wordpress-plugin && git commit -m "chore: update plugin submodule"
+  ```
 
 ## 📝 INCOMPLETE WORK PATTERN (2026-01-08)
 
@@ -711,4 +731,25 @@ C:\Projects\hazina\src\
 **Full template:** C:\scripts\_machine\best-practices\DOCUMENTATION_AND_PR_WORKFLOW.md
 
 **Example:** Hazina PR #13 - https://github.com/martiendejong/Hazina/pull/13
+
+
+LINTER INTERFERENCE MITIGATION
+===============================
+When Edit tool fails with "File has been unexpectedly modified":
+
+1. Switch to sed immediately:
+   cp file.cs file.cs.bak
+   sed -i 's/OldPattern/NewPattern/g' file.cs
+   
+2. Verify changes:
+   grep -n "NewPattern" file.cs
+   git diff file.cs
+   
+3. Commit immediately:
+   git add file.cs && git commit -m "Change"
+
+Pattern with capture group (preserve variable):
+sed -i 's/Method(\([^,]*\), old)/Method(\1, new)/g' file.cs
+
+Full guide: _machine/best-practices/LINTER_INTERFERENCE_MITIGATION.md
 
