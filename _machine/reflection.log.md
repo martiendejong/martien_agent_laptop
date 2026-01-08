@@ -2646,3 +2646,62 @@ catch (Exception ex) when (ex is FormatException or OverflowException or IndexOu
 
 **This session demonstrates systematic approach to security audit remediation - prioritize warnings, group similar issues, apply consistent patterns, document thoroughly.**
 
+
+## 2026-01-09 05:00 - IAnalysisFieldService Complex DI Registration (Cascading Dependencies)
+
+**Achievement:** Resolved complex DI resolution error with multiple cascading dependencies.
+
+### Error:
+```
+System.InvalidOperationException: Unable to resolve service for type
+'Hazina.Tools.Services.DataGathering.Abstractions.IAnalysisFieldService'
+while attempting to activate 'ClientManagerAPI.Services.OfficeDocumentService'
+```
+
+### Root Cause:
+- `OfficeDocumentService` depends on `IAnalysisFieldService`
+- `IAnalysisFieldService` was not registered
+- `IAnalysisFieldService` has complex dependencies requiring manual registration
+
+### Dependency Chain:
+```
+OfficeDocumentService
+  └── IAnalysisFieldService
+       ├── ProjectsRepository (registered ✅)
+       ├── IAnalysisFieldsProvider (NOT registered ❌)
+       │    └── Implemented by: FileSystemAnalysisFieldsProvider
+       ├── IAnalysisFieldNotifier (already registered ✅)
+       ├── Func<ILLMClient> (need to create from ILLMProviderFactory ✅)
+       ├── ILogger (auto-registered ✅)
+       ├── string? promptsRoot (optional)
+       ├── ProjectFileLocator (registered ✅)
+       ├── IConfiguration (registered ✅)
+       └── Func<GeneratorAgentBase>? (optional)
+```
+
+### Solution:
+Manually registered both `IAnalysisFieldsProvider` and `IAnalysisFieldService` with all dependencies.
+
+### Key Learnings:
+
+1. **Cascading DI Dependencies:**
+   - When service A depends on B which depends on C, must register C first
+   - Work backwards from error: OfficeDocumentService → IAnalysisFieldService → IAnalysisFieldsProvider
+
+2. **Complex Constructor Patterns:**
+   - Some services have 9+ constructor parameters (4 required, 5 optional)
+   - Must match exact parameter order when calling constructor manually
+   - Func<T> parameters require lambda: `() => factory.Create()`
+
+3. **Finding Implementations:**
+   - Interface: `IAnalysisFieldsProvider` in DataGathering.Abstractions
+   - Implementation: `FileSystemAnalysisFieldsProvider` in Services.Store
+   - Different namespaces - must grep entire codebase
+
+### Metrics:
+- **Fix Time:** 15 minutes
+- **Lines Added:** 33 (DI registrations)
+- **Build Status:** ✅ 0 errors
+- **Commits:** 94daed2, 5f8f908
+
+---
