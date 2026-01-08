@@ -263,3 +263,47 @@ Commands (POST /command with JSON):
 Notes:
 - If "projectName" is provided on start, it sets the startup project.
 - All responses return { ok, message, snapshot } on /command. Errors return ok=false and HTTP 400/500.
+
+### Pattern 13: Namespace Reorganization After Framework Update
+Error: `The type or namespace name 'Foo' could not be found`
+- Framework updated, namespace changed (e.g., `SomeLib` → `SomeLib.Core`)
+- Using statements point to old namespace
+- Solution:
+  1. Search for class definition: `grep "class Foo" C:\Projects\framework`
+  2. Find new namespace: `grep "^namespace" <file>`
+  3. Update all using statements in consumers
+- Example: After Hazina update, `OpenAIConfig` moved to `Hazina.LLMs.OpenAI`
+
+### Pattern 14: Missing Interface Methods After Framework Update
+Error: `CS0535: 'MyClass' does not implement interface member 'IFoo.NewMethod'`
+- Framework added new methods to interface
+- Implementation outdated
+- Solution:
+  1. Search interface: `grep "interface IFoo" C:\Projects\framework`
+  2. Identify new methods (compare with local implementation)
+  3. Implement missing methods in all implementations
+- Example: `IProjectChatNotifier.NotifyItemGenerated` added in Hazina
+- Pattern: Always implement ALL interface methods, even if stub
+
+### Pattern 15: Multi-Phase PR Dependencies
+When creating multiple related PRs:
+```markdown
+## Dependencies
+⚠️ **This PR depends on [PR #N](link)** - Must be merged first.
+📋 **See [PR #M](link)** for related documentation/roadmap.
+```
+- Use ⚠️ for BLOCKING dependencies (code required)
+- Use 📋 for REFERENCE dependencies (documentation/context)
+- Always link to specific PR numbers
+- Explain WHY dependency exists
+
+### Pattern 16: Roadmap PRs for Complex Features
+For large/complex features that need planning:
+- Create branch with placeholder + comprehensive roadmap
+- Include: Goals, tasks, code examples, benefits, effort estimate
+- Link from other PRs for context
+- Benefits:
+  - Merge critical fixes immediately
+  - Plan complex features thoroughly
+  - Prioritize based on business value
+  - Documentation exists even if not implemented yet
