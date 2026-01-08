@@ -136,7 +136,29 @@ gh pr view <num> --json mergeable,mergeStateStatus
 Error: "branch is already used by worktree at path"
 - Reuse existing agent's worktree OR create new agent OR wait for release
 
+### Pattern 8: Docker Tag Invalid Format
+Error: `invalid tag "...:branch/-sha"` or tag starting with `-`
+- Branch names with `/` (e.g., `fix/feature`) break `prefix={{branch}}-`
+- Fix: Use static prefix `type=sha,prefix=sha-` instead
+- In docker-metadata-action, never use `{{branch}}` in prefix for feature branches
+
+### Pattern 9: docker-compose Exit 127 (Command Not Found)
+Error: `Process completed with exit code 127`
+- GitHub Actions ubuntu-latest uses Docker Compose V2 (plugin)
+- Use `docker compose` (space) NOT `docker-compose` (hyphen)
+- The standalone Python-based docker-compose is not pre-installed
+
 **Full details:** C:\scripts\CLAUDE.md § BATCH PR BUILD FIX WORKFLOW
+
+## 🚨 END-OF-TASK SELF-UPDATE (MANDATORY) 🚨
+
+At the END of every task, BEFORE responding to user:
+1. Update C:\scripts\_machine\reflection.log.md with learnings
+2. Update C:\scripts\claude_info.txt if new patterns discovered
+3. Update C:\scripts\CLAUDE.md if new workflows added
+4. git add -A && git commit -m "docs: ..." && git push origin main
+
+**This is NOT optional. See CLAUDE.md § END-OF-TASK SELF-UPDATE PROTOCOL**
 
 ## 🔧 Debug config files:
 Copy appsettings.json, .env, secrets from C:\Projects\<repo> to worktree before debugging.

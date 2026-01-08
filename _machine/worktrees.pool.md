@@ -13,9 +13,9 @@ Seat states:
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | client-manager | improvement/CM-054-quality-scoring | 2026-01-08T20:30:00Z | Resolved PR #31 merge conflicts - Quality Scoring Model (TASK-006) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | BUSY | scp | agent-004-revolutionary-transformation | 2026-01-08T11:00:00Z | Transforming SCP into multi-agent superintelligence system |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | BUSY | client-manager | agent-005-documentation-improvements | 2026-01-08T19:45:00Z | Adding 25 documentation files (ADRs, guides, best practices) |
-| agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | BUSY | client-manager | agent-006-fix-develop-errors | 2026-01-08T23:50:00Z | Fixing develop branch compile errors |
-| agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | hazina | hazina-pr4 | 2026-01-08T22:45:00Z | Canceled - branch already in use by agent-002 |
-| agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | Hazina | agent-006-deduplication | 2026-01-09T00:00:00Z | Completed: PR #6 package version conflicts fixed |
+| agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | BUSY | client-manager | fix/merge-conflicts-comprehensive | 2026-01-09T03:30:00Z | Comprehensive fix for all merge conflict issues |
+| agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | client-manager | fix/semantic-cache-llm-factory | 2026-01-09T03:15:00Z | ✅ PR #41: Fixed SemanticCache DI + removed stale Redis files |
+| agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | Hazina | fix/api-compatibility-client-manager | 2026-01-09T02:45:00Z | ✅ Fixed Docker workflow for PR #10 |
 
 Provisioning rule:
 1) Pick a FREE seat.

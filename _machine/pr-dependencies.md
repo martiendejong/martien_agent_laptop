@@ -6,7 +6,7 @@ Track cross-repository PR dependencies between Hazina and client-manager.
 
 | Downstream PR | Depends On (Hazina) | Status | Notes |
 |---------------|---------------------|--------|-------|
-| *No active dependencies tracked* | | | |
+| [client-manager#35](https://github.com/martiendejong/client-manager/pull/35) | [Hazina#9](https://github.com/martiendejong/Hazina/pull/9) | ⏳ Waiting | SemanticCache adapters need GenerateEmbeddingAsync |
 
 ## Legend
 

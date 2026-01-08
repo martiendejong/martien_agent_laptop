@@ -612,3 +612,232 @@ Maintain a live tracking file:
 1. Check pr-dependencies.md for dependent client-manager PRs
 2. Notify user about merge order
 3. Update tracking after merge
+
+## 🔄 SYNC RULE: PULL AFTER PUSH TO C:\Projects
+
+**CRITICAL: After pushing changes from worktrees, ALWAYS pull to C:\Projects\<repo>**
+
+### Why This Matters
+- C:\Projects\<repo> is the BASE repository used for reading, debugging, and creating new worktrees
+- If you push changes from a worktree but don't pull to C:\Projects, the base is out of sync
+- Next worktree created from C:\Projects will be missing your changes
+- Builds in Visual Studio (which uses C:\Projects) will have stale code
+
+### Mandatory Workflow
+
+```powershell
+# After pushing from worktree:
+cd C:\Projects\worker-agents\agent-XXX\<repo>
+git push origin <branch>
+
+# IMMEDIATELY pull to base repo:
+cd C:\Projects\<repo>
+git pull origin develop   # If pushed to develop
+# OR
+git fetch origin          # If pushed to feature branch (for PR)
+```
+
+### When to Pull to C:\Projects
+
+| Scenario | Action |
+|----------|--------|
+| Pushed to develop branch | `git pull origin develop` in C:\Projects\<repo> |
+| Pushed feature branch (for PR) | `git fetch origin` (updates remote refs) |
+| PR was merged to develop | `git pull origin develop` in C:\Projects\<repo> |
+| Multiple PRs merged | Pull after EACH merge to keep base current |
+
+### Examples
+
+```bash
+# After pushing build fixes to client-manager develop:
+cd /c/Projects/client-manager
+git pull origin develop
+
+# After pushing CI fix to hazina develop:
+cd /c/Projects/hazina
+git pull origin develop
+```
+
+**ENFORCEMENT:** If you see stale code errors or "file not found" in C:\Projects, you forgot to pull!
+
+## 📋 GIT-FLOW WORKFLOW RULES
+
+**Branch strategy (MANDATORY):**
+
+```
+main ← develop ← feature branches
+```
+
+### PR Target Rules
+
+| Source Branch | Target Branch |
+|---------------|---------------|
+| feature/* | develop |
+| agent-*-feature | develop |
+| improvement/* | develop |
+| fix/* | develop |
+| develop | main |
+
+**NEVER create PRs from feature branches directly to main!**
+
+### Correcting Wrong PR Base
+
+If a PR was created with wrong base:
+```bash
+gh pr edit <number> --base develop
+```
+
+### Checking All Open PRs
+
+```bash
+# List all open PRs with their base branches:
+gh pr list --state open --json number,headRefName,baseRefName \
+  --jq '.[] | "\(.number): \(.headRefName) -> \(.baseRefName)"'
+```
+
+## 🔧 NAMESPACE MIGRATION PATTERNS
+
+**When Hazina namespaces change, client-manager needs updates:**
+
+### Common Namespace Issues
+
+| Old Usage | New Usage | Fix |
+|-----------|-----------|-----|
+| `new OpenAIConfig(...)` | Needs `using Hazina.LLMs.OpenAI;` | Add using statement |
+| `new OllamaConfig(endpoint: ...)` | Constructor changed | Use object initializer |
+| `interface.MethodName()` | Method doesn't exist | Add extension method or fix call |
+
+### Extension Method Pattern
+
+When Hazina interface lacks a method client-manager needs:
+
+```csharp
+// Create in ClientManagerAPI/Extensions/
+public static class InterfaceExtensions
+{
+    public static async Task<T> MissingMethodAsync<T>(
+        this IInterface client,
+        string param)
+    {
+        // Implement using existing interface methods
+        return await client.ExistingMethod(...);
+    }
+}
+```
+
+### Build Error Triage
+
+1. **CS0246 (type not found)** → Missing using statement or namespace changed
+2. **CS1061 (method not found)** → Interface changed, add extension or fix call
+3. **CS0101 (duplicate type)** → Same class in multiple files, remove one
+4. **CS1501 (wrong arguments)** → Method signature changed, update call
+
+## 🏗️ INCOMPLETE FEATURE CODE PATTERNS
+
+**When encountering build errors from incomplete feature code:**
+
+### Pattern 1: Method Calls Non-Existent Interface Methods
+
+```csharp
+// Code calls:
+var result = await service.GetAnalysisFieldsAsync(projectId);
+
+// But interface only has:
+Task<IReadOnlyList<FieldInfo>> GetFieldsAsync(string projectId);
+```
+
+**Fix Options:**
+1. Simplify method to return null/default (defer implementation)
+2. Create the missing interface method
+3. Refactor to use existing methods
+
+### Pattern 2: Property Access on Wrong Type
+
+```csharp
+// Code expects:
+result.BrandDocument.Fragments
+
+// But actual type is:
+IReadOnlyList<FieldInfo>  // No BrandDocument property
+```
+
+**Fix:** Simplify to skip that code path until properly implemented
+
+### Pattern 3: Convenience Property Wrappers
+
+Add wrapper properties to avoid deep changes:
+
+```csharp
+public class Result
+{
+    public Score Score { get; set; }
+
+    // Convenience - forward to nested object
+    public double OverallScore => Score?.OverallScore ?? 0;
+}
+```
+
+---
+
+## 🚨🚨🚨 MANDATORY: END-OF-TASK SELF-UPDATE PROTOCOL 🚨🚨🚨
+
+**USER MANDATE (2026-01-09):** "update the files in c:\scripts... do this at the end of every task/response"
+
+### WHEN TO EXECUTE: At the END of EVERY task where you:
+- Learned something new
+- Fixed an error
+- Discovered a pattern
+- Received user feedback
+- Completed a complex task
+
+### WHAT TO UPDATE:
+
+```
+STEP 1: Update C:\scripts\_machine\reflection.log.md
+  - Add new entry with date/time
+  - Document patterns discovered
+  - Document errors and fixes
+  - Document process improvements
+
+STEP 2: Update C:\scripts\claude_info.txt (if applicable)
+  - Add new patterns to "Common CI/PR Fix Patterns"
+  - Add new critical reminders
+
+STEP 3: Update C:\scripts\CLAUDE.md (if applicable)
+  - Add new workflow sections
+  - Add new process improvements
+
+STEP 4: Commit and push to machine_agents repo
+  cd C:\scripts
+  git add -A
+  git commit -m "docs: update learnings from [task description]"
+  git push origin main
+```
+
+### CRITICAL RULES:
+
+1. **DO NOT SKIP THIS** - It's how the system improves over time
+2. **DO NOT DELAY** - Update immediately after completing the task
+3. **DO NOT FORGET THE PUSH** - Changes must be committed to git
+4. **ALWAYS INCLUDE DATE** - Use format: ## YYYY-MM-DD HH:MM - [Title]
+
+### EXAMPLE REFLECTION ENTRY:
+
+```markdown
+## 2026-01-09 15:30 - Fixed Docker CI Pipeline
+
+**Problem:** Invalid Docker tag format
+**Root Cause:** Branch names with `/` break `prefix={{branch}}-`
+**Fix:** Changed to `type=sha,prefix=sha-`
+**Pattern Added:** Pattern 8 in claude_info.txt
+```
+
+### SUCCESS CRITERIA:
+
+✅ reflection.log.md has new entry for this session
+✅ claude_info.txt updated if new patterns discovered
+✅ CLAUDE.md updated if new workflows added
+✅ Changes committed and pushed to machine_agents repo
+✅ Next session will benefit from these learnings
+
+**This protocol ensures continuous improvement across sessions.**
