@@ -10,14 +10,14 @@ Track cross-repository PR dependencies between Hazina and client-manager.
 
 ## PRs Requiring Base Branch Fix
 
-⚠️ **These PRs target `main` instead of `develop` - fix before merging!**
+✅ **All base branches fixed on 2026-01-09**
 
-| PR | Title | Current Base | Fix Command |
+| PR | Title | Base | Status |
 |---|---|---|---|
-| [#54](https://github.com/martiendejong/client-manager/pull/54) | Multi-Client Switcher | main | `gh pr edit 54 --base develop` |
-| [#55](https://github.com/martiendejong/client-manager/pull/55) | Smart Scheduling | main | `gh pr edit 55 --base develop` |
-| [#56](https://github.com/martiendejong/client-manager/pull/56) | Approval Workflows | main | `gh pr edit 56 --base develop` |
-| [#57](https://github.com/martiendejong/client-manager/pull/57) | ROI Calculator | main | `gh pr edit 57 --base develop` |
+| [#54](https://github.com/martiendejong/client-manager/pull/54) | Multi-Client Switcher | develop | ✅ Fixed |
+| [#55](https://github.com/martiendejong/client-manager/pull/55) | Smart Scheduling | develop | ✅ Fixed |
+| [#56](https://github.com/martiendejong/client-manager/pull/56) | Approval Workflows | develop | ✅ Fixed |
+| [#57](https://github.com/martiendejong/client-manager/pull/57) | ROI Calculator | develop | ✅ Fixed |
 
 ## Client-Manager Stabilization Status
 
@@ -72,7 +72,14 @@ Track cross-repository PR dependencies between Hazina and client-manager.
 
 ## History
 
-### 2026-01-09
+### 2026-01-09 (12:30 UTC)
+- ✅ Fixed PR #52 (Cross-Post Optimizer) build failure:
+  - Removed directory-based feature chunks from vite.config.ts
+  - Merged latest develop to get @radix-ui/react-dropdown-menu dependency
+  - Build now succeeds
+- ✅ Fixed base branches for PRs #54-57 (all changed from main → develop)
+
+### 2026-01-09 (earlier)
 - ✅ Merged critical fix PRs:
   - Hazina #13 (Chat LLM config fix)
   - Client-Manager #58 (DI refactoring)
