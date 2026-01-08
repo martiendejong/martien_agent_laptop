@@ -624,6 +624,75 @@ C:\Projects\hazina\src\
 ```
 **Key insight:** No `Tools.Store.*` or `Tools.Security.*` paths exist. Use `Core\Storage\` and `Core\Security\` instead.
 
+### Pattern 33: Worktree Branch Conflict Resolution
+When branch is already checked out in main repo:
+```bash
+# This fails:
+git worktree add /path/to/worktree fix/branch-name
+# Error: 'fix/branch-name' is already used by worktree at '/main/repo'
+
+# Solution: Create new branch from the existing branch
+git branch agent-XXX-complete-fix fix/branch-name
+git worktree add /path/to/worktree agent-XXX-complete-fix
+# Work, then merge back or push to original branch
+```
+
+### Pattern 34: Windows Process Locking DLL Files
+**Error:** `MSB3027: Could not copy "*.dll". The file is locked by: "Process (PID)"`
+**Cause:** Running application locks DLL files, preventing rebuild
+**Fix:**
+```bash
+# Find process
+tasklist | grep -i "ProcessName"
+# Kill it (Windows Git Bash)
+taskkill //F //PID <pid>
+# Then rebuild
+dotnet build
+```
+**Prevention:** Stop application before rebuilding
+
+### Pattern 35: Check If Fixes Are Already Complete
+Before starting fix work, always verify current state:
+```bash
+# Check recent commits
+git log --oneline -5
+# Look for "complete", "fixed", "done" in messages
+
+# Verify with grep (should return empty if fixed)
+grep -rn "StoreProvider.GetStoreSetup.*ApiSettings.OpenApiKey" src/ --include="*.cs"
+
+# Check fixes are applied
+grep -n "Config.OpenAI" src/Tools/Foundation/Hazina.Tools.AI.Agents/Agents/GeneratorAgentBase.cs
+```
+**Key:** Don't assume work is needed - verify first!
+
+### Pattern 36: Hazina OpenAI Config Migration
+**Problem:** `System.ArgumentException: Value cannot be an empty string. (Parameter 'model')`
+**Root Cause:** Legacy `StoreProvider.GetStoreSetup(folder, apiKey)` creates OpenAIConfig with empty Model
+**Solution:** Use full OpenAIConfig:
+```csharp
+// OLD (broken):
+var setup = StoreProvider.GetStoreSetup(folder, Config.ApiSettings.OpenApiKey);
+
+// NEW (correct):
+var setup = StoreProvider.GetStoreSetup(folder, Config.OpenAI);
+```
+**Files typically affected:**
+- GeneratorAgentBase.cs (4 locations)
+- EmbeddingsService.cs (7+ locations)
+- BigQueryService.cs (1 location)
+
+### Pattern 37: Fix Branch Merge Workflow
+Complete workflow for merging fix branches:
+1. **Identify fix branches:** `git branch -a | grep fix/`
+2. **Check PR status:** `gh pr list --head fix/branch-name`
+3. **Verify fixes complete:** grep for legacy patterns
+4. **Fix PR base if needed:** `gh pr edit <num> --base develop`
+5. **Merge:** `gh pr merge <num> --squash --delete-branch`
+6. **Update local:** `git checkout develop && git pull origin develop`
+7. **Rebuild:** `dotnet build`
+8. **Test application**
+
 ## 📁 Additional Projects
 
 ### CorinaAI

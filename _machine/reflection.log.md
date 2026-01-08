@@ -1,5 +1,85 @@
 # reflection.log.md
 
+## 2026-01-09 02:40 - Fix Branch Merging & Stabilization Workflow
+
+**Session Summary:** Merged critical fix branches for Hazina and client-manager to stabilize the application.
+
+### PRs Merged
+
+| Repo | PR | Branch | Fix |
+|------|-----|--------|-----|
+| Hazina | [#13](https://github.com/martiendejong/Hazina/pull/13) | fix/chat-llm-config-loading | Chat LLM "empty model" error |
+| Client-Manager | [#58](https://github.com/martiendejong/client-manager/pull/58) | fix/develop-issues-systematic | DI refactoring for HazinaStoreController |
+
+### Key Learnings
+
+**1. Check If Fixes Are Already Complete Before Starting**
+- The fix/chat-llm-config-loading branch had commit "mark all fixes as complete"
+- Always check recent commit messages before assuming work is needed
+- Verify with grep: `grep -rn "legacy pattern" src/ --include="*.cs"`
+
+**2. Worktree Branch Conflict Resolution**
+When a branch is already checked out in main repo, you cannot create a worktree for it:
+```bash
+# This fails:
+git worktree add /path/to/worktree fix/branch-name
+# Error: 'fix/branch-name' is already used by worktree at '/main/repo'
+
+# Solution: Create new branch from the fix branch
+git branch agent-XXX-complete-fix fix/branch-name
+git worktree add /path/to/worktree agent-XXX-complete-fix
+```
+
+**3. Process Locking DLL Files During Build**
+Windows locks DLL files when application is running:
+```
+error MSB3027: Could not copy "*.dll" to "bin\Debug\*.dll"
+The file is locked by: "ClientManagerAPI.local (PID)"
+```
+**Fix:** Kill the process before rebuilding:
+```bash
+taskkill //F //PID <pid>
+# Then rebuild
+dotnet build
+```
+
+**4. PR Base Branch Fixing**
+When PR targets wrong branch (main instead of develop):
+```bash
+gh pr edit <number> --base develop
+```
+
+**5. Stabilization-First Workflow (Validated)**
+This session confirmed the pattern:
+1. Identify fix branches that are blocking
+2. Complete any incomplete fixes
+3. Fix PR base branches if needed
+4. Merge fix PRs first
+5. Update local repos (`git pull origin develop`)
+6. Build and verify before testing
+7. THEN consider merging feature PRs
+
+### Files Changed in Hazina PR #13
+| File | Change |
+|------|--------|
+| GeneratorAgentBase.cs | 4 locations: `Config.ApiSettings.OpenApiKey` → `Config.OpenAI` |
+| EmbeddingsService.cs | 8 locations: same pattern |
+| BigQueryService.cs | 1 location: same pattern |
+| HazinaStoreConfig.cs | Added `OpenAI` property |
+| HazinaStoreConfigLoader.cs | Loads OpenAI config with reference resolution |
+| StoreProvider.cs | Added `GetStoreSetup(folder, OpenAIConfig)` overload |
+
+### Verification Commands Used
+```bash
+# Check for legacy API calls (should return nothing after fix)
+grep -rn "StoreProvider.GetStoreSetup.*ApiSettings.OpenApiKey" src/ --include="*.cs"
+
+# Check fixes are applied
+grep -n "Config.OpenAI" src/Tools/Foundation/Hazina.Tools.AI.Agents/Agents/GeneratorAgentBase.cs
+```
+
+---
+
 ## 2026-01-09 02:00 - Art Revisionist WordPress Integration Full Fix
 
 **Session Summary:** Fixed multi-repo WordPress integration issues and security hardening.
