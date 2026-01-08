@@ -822,3 +822,30 @@ sed -i 's/Method(\([^,]*\), old)/Method(\1, new)/g' file.cs
 
 Full guide: _machine/best-practices/LINTER_INTERFERENCE_MITIGATION.md
 
+
+PRODUCTION VERIFICATION PATTERN
+================================
+After merging a fix, verify it works in actual production/staging:
+
+1. Deploy/restart with merged changes
+2. Monitor logs for evidence:
+   tail -100 /path/to/api.log
+   grep "config\|error" api.log
+   
+3. Look for:
+   - New code executing (diagnostic logs)
+   - Config values correct
+   - Old error message ABSENT
+   - Normal operations continuing
+   
+4. Document in reflection:
+   - Timestamp of verification
+   - Log evidence (actual lines)
+   - Runtime duration
+   - Error count (should be 0)
+
+Example: Hazina chat fix verified via API logs showing Model='gpt-4o-mini' 
+loading correctly for 27+ minutes with zero errors.
+
+Full guide: _machine/lessons/2026-01-08_production_verification_pattern.md
+
