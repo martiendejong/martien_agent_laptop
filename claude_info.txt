@@ -164,6 +164,15 @@ Error: `The type or namespace name 'IFoo' could not be found`
 - Example: `Services` → `Services.SemanticCache`
 - Build after updating to catch additional files needing fix
 
+### Pattern 12: InvalidOperationException - Unable to Resolve DI Service
+Error: `Unable to resolve service for type 'IFoo' while attempting to activate 'BarService'`
+- Service constructor injects IFoo directly
+- IFoo not registered in DI container (Program.cs)
+- Compiles fine (interface exists) but fails at runtime
+- Solution: Check if there's a factory pattern (e.g., IFooFactory)
+- Update service constructor to inject factory, not interface directly
+- Example: `ILLMProvider` → inject `ILLMProviderFactory` and call `CreateProviderForModelRouting()`
+
 **Full details:** C:\scripts\CLAUDE.md § BATCH PR BUILD FIX WORKFLOW
 
 ## 🚨 END-OF-TASK SELF-UPDATE (MANDATORY) 🚨

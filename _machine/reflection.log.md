@@ -1669,6 +1669,100 @@ Merge conflicts from parallel feature development require careful analysis beyon
 
 ---
 
+## 2026-01-09 04:30 - ProductAIService DI Resolution Error (ILLMProvider)
+
+**Achievement:** Quick fix for runtime DI error after PR #42 merge.
+
+### Error:
+```
+System.InvalidOperationException: Unable to resolve service for type
+'ClientManagerAPI.Services.ModelRouting.Providers.ILLMProvider'
+while attempting to activate 'ClientManagerAPI.Services.ProductCatalog.ProductAIService'
+```
+
+### Root Cause:
+- `ProductAIService` constructor injected `ILLMProvider` directly
+- `ILLMProvider` was never registered in DI container (Program.cs)
+- Runtime activation failed when trying to create ProductAIService instance
+
+### Why This Happened:
+- ProductCatalog feature added in separate PR
+- Did not follow same DI pattern as other services
+- Other services (ProgressiveRefinementService, SemanticCacheService) correctly use `ILLMProviderFactory`
+- No compile-time error (interface exists) but runtime error (not in DI)
+
+### Solution:
+Changed ProductAIService to follow same pattern as other services:
+
+```csharp
+// BEFORE (broken):
+public ProductAIService(ILLMProvider llmProvider, IdentityDbContext dbContext)
+{
+    _llmProvider = llmProvider;
+    _dbContext = dbContext;
+}
+
+// AFTER (fixed):
+private const string DefaultProvider = "openai";
+
+public ProductAIService(ILLMProviderFactory llmFactory, IdentityDbContext dbContext)
+{
+    _llmProvider = llmFactory.CreateProviderForModelRouting(DefaultProvider);
+    _dbContext = dbContext;
+}
+```
+
+### Key Learnings:
+
+1. **DI Factory Pattern Consistency:**
+   - When multiple services need similar dependencies, use same DI pattern
+   - `ILLMProviderFactory` is the registered factory, not `ILLMProvider` instances
+   - Call `CreateProviderForModelRouting()` to get provider instances
+
+2. **Runtime vs Compile-Time Errors:**
+   - Interface exists = compiles fine
+   - Interface not registered = runtime InvalidOperationException
+   - Always test DI resolution (run app) after adding new services
+
+3. **Code Review Pattern Checking:**
+   - When adding new services, check how existing services handle same dependencies
+   - Grep for similar patterns: `grep "ILLMProviderFactory" Services/*.cs`
+   - Copy-paste constructor patterns from proven working services
+
+4. **User Authorization for Direct Edits:**
+   - User explicitly authorized working in C:\Projects for quick fix
+   - Appropriate for small hotfixes on develop branch
+   - Still followed: commit, push, document learnings
+
+### Prevention Checklist:
+
+**When Adding New Services with LLM Dependencies:**
+- [ ] Check existing services for DI pattern
+- [ ] Use `ILLMProviderFactory` not `ILLMProvider` directly
+- [ ] Test app startup after adding service
+- [ ] Verify no DI resolution errors
+
+**When Adding Any New DI Service:**
+- [ ] Ensure all constructor dependencies are registered
+- [ ] Run app and trigger service activation
+- [ ] Check for InvalidOperationException in logs
+
+### Metrics:
+- **Fix Time:** 5 minutes
+- **Files Changed:** 1 (ProductAIService.cs)
+- **Lines Changed:** 3
+- **Build Status:** ✅ 0 errors
+- **Commit:** 120a818
+
+### Pattern:
+**DI Resolution Error:** "Unable to resolve service for type 'IFoo'"
+1. Check if IFoo is registered in Program.cs
+2. If not, check if there's a factory pattern for IFoo
+3. Update service to use factory instead of direct injection
+4. Build and test
+
+---
+
 ## 2026-01-09 01:30 - Massive Cross-Repo API Compatibility Fix Session (70+ Errors)
 
 **Achievement:** Successfully resolved 70+ compile errors in client-manager develop branch caused by Hazina API evolution.
