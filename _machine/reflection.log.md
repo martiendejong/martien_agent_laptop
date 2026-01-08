@@ -2474,3 +2474,175 @@ When fixing generic catch clauses in WPF applications:
 3. Always check context to understand what exceptions method can throw
 4. Use specific exception types to allow unexpected exceptions to propagate for debugging
 
+
+---
+
+## 2026-01-09 06:00 - Complete GitHub Code Scanning Security Audit & Remediation
+
+**Achievement:** Successfully resolved ALL 30 GitHub Code Scanning security alerts in Hazina repository in a single comprehensive PR.
+
+### Security Issues Resolved:
+
+**Critical Warnings (3):**
+1. **Virtual call in constructor** (LLMProviderBase.cs:42)
+   - **Risk:** Virtual method CreateHttpClient() called from constructor
+   - **Impact:** Derived classes could have methods invoked before their constructor completes
+   - **Fix:** Created private CreateHttpClientInternal() method, called instead of virtual method
+   - **Pattern:** Never call virtual/override methods from constructors
+
+2. **Missing Dispose call** (LLMProviderBase.cs:79)
+   - **Risk:** StringContent not disposed in PostJsonAsync()
+   - **Impact:** Potential memory leaks from undisposed IDisposable objects
+   - **Fix:** Added `using var content = new StringContent(...)`
+   
+3. **Missing Dispose call** (LLMProviderBase.cs:98)
+   - **Risk:** HttpRequestMessage not disposed in PostStreamAsync()
+   - **Impact:** Potential memory leaks
+   - **Fix:** Added `using var httpRequest = new HttpRequestMessage(...)`
+
+**Generic Catch Clauses (25):**
+All bare `catch` and `catch (Exception ex)` blocks replaced with specific exception filters using `when` clause:
+
+**Exception Type Categories Applied:**
+- **File I/O operations:** `IOException or UnauthorizedAccessException`
+- **JSON operations:** `JsonException or InvalidOperationException`
+- **HTTP operations:** `HttpRequestException`
+- **Retry logic:** `when (ex is not OperationCanceledException)` - exclude from retry
+- **Validation:** `HandlebarsException or ArgumentException`
+- **Parsing:** `FormatException or IndexOutOfRangeException or OverflowException`
+
+**Files Modified (12):**
+1. LLMProviderBase.cs - Core HTTP client base class (3 warnings + 1 note)
+2. EmbeddingsService.cs - OpenAI embedding generation
+3. HazinaServiceBase.cs - Base service with retry logic
+4. HandlebarsTemplateEngine.cs - Template compilation
+5. PromptRewriter.cs - Prompt semantic analysis
+6. ReflectionEngine.cs - Suggested changes parsing
+7. AccuracyRubric.cs - LLM evaluation scoring (3 catches)
+8. EvaluationPipeline.cs - Test case execution + cron parsing
+9. ChatWindow.xaml.cs - Chat UI error handling
+10. MainWindow.xaml.cs - Desktop app main window (9 catches + 1 note)
+11. SettingsWindow.xaml.cs - Settings dialog (2 catches)
+12. FlowsCardsWindow.xaml.cs - Flow cards UI (1 note)
+
+**Code Quality (2):**
+- MainWindow.xaml.cs:70 - if/else → ternary for appConfig initialization
+- FlowsCardsWindow.xaml.cs:335 - if/else → ternary for FindParent<T>()
+
+### Key Learnings:
+
+1. **Virtual Calls in Constructors**
+   - Problem: Base class constructor calls virtual method → derived class override can run before derived constructor
+   - Solution: Use private non-virtual method for initialization, mark virtual method as Obsolete with explanation
+   - Pattern: `CreateHttpClientInternal()` (private) instead of `CreateHttpClient()` (virtual)
+
+2. **IDisposable Best Practices**
+   - Always use `using` or `using var` for IDisposable local variables
+   - HttpContent, HttpRequestMessage, Stream all need disposal
+   - In async methods: `using var` is cleaner than try/finally
+
+3. **Exception Filter Patterns**
+   - **Generic catch is anti-pattern** - masks bugs, catches critical exceptions unintentionally
+   - **Use `when` clause** for specific exception types
+   - **Common patterns:**
+     - File I/O: `when (ex is IOException or UnauthorizedAccessException)`
+     - JSON: `when (ex is JsonException or InvalidOperationException)`
+     - HTTP: `when (ex is HttpRequestException or OperationCanceledException)`
+     - Retry: `when (ex is not OperationCanceledException)` - never retry cancellation
+     - Validation: `when (ex is ArgumentException or FormatException)`
+
+4. **Exception Handling for UI**
+   - WPF apps: Catch specific exceptions, show user-friendly messages
+   - Don't let generic catch hide configuration/setup issues
+   - File operations in UI: IOException, UnauthorizedAccessException, JsonException
+
+5. **Retry Logic Pattern**
+   - **Exclude** OperationCanceledException from retry loops
+   - Use `when (ex is not OperationCanceledException)` to let cancellation propagate
+   - Only retry transient errors (network, rate limits), not logic errors
+
+6. **Template Engine Exception Handling**
+   - Handlebars compilation: `HandlebarsException or ArgumentException`
+   - Validation methods can use catch for boolean return (true/false)
+   - Rendering should re-throw with InvalidOperationException wrapper
+
+7. **JSON Parsing Resilience**
+   - Parse LLM responses: `JsonException or InvalidOperationException`
+   - Missing keys: Include `KeyNotFoundException` in filter
+   - Fallback values when parsing fails (don't crash)
+
+8. **Process for Large-Scale Security Audits**
+   - Group issues by type (warnings > notes)
+   - Fix critical warnings first (Dispose, virtual calls)
+   - Batch similar fixes (all file I/O, all JSON parsing)
+   - Use consistent exception filter patterns across codebase
+   - Document each fix type in commit message
+
+### Metrics:
+
+**Issues Resolved:** 30 total
+- 3 warnings (critical)
+- 25 notes (generic catch)
+- 2 notes (code quality)
+
+**Files Modified:** 12
+**Lines Changed:** 79 (45 insertions, 34 deletions)
+**Time:** ~1.5 hours
+**PR:** #11 - https://github.com/martiendejong/Hazina/pull/11
+
+### Exception Filter Reference (for future use):
+
+```csharp
+// File I/O
+catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+
+// JSON parsing
+catch (Exception ex) when (ex is JsonException or InvalidOperationException)
+
+// HTTP operations
+catch (Exception ex) when (ex is HttpRequestException or OperationCanceledException)
+
+// Retry logic (exclude cancellation)
+catch (Exception ex) when (ex is not OperationCanceledException)
+
+// User input validation
+catch (Exception ex) when (ex is ArgumentException or FormatException)
+
+// Dictionary/collection access
+catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+
+// Template compilation
+catch (Exception ex) when (ex is HandlebarsException or ArgumentException)
+
+// Numeric parsing
+catch (Exception ex) when (ex is FormatException or OverflowException or IndexOutOfRangeException)
+```
+
+### Future Prevention:
+
+**Pre-commit checklist:**
+- [ ] No bare `catch` blocks
+- [ ] No `catch (Exception)` without `when` clause
+- [ ] All IDisposable locals use `using` or `using var`
+- [ ] No virtual method calls in constructors
+- [ ] OperationCanceledException excluded from retry logic
+
+**Code review focus:**
+- Look for generic catch blocks → require specific exception types
+- Check IDisposable usage → require using statements
+- Constructor inspection → no virtual calls
+
+**Automation opportunity:**
+- Create Roslyn analyzer to flag generic catch clauses
+- Create code fix provider to suggest exception types based on context
+
+### Impact:
+
+✅ **Security:** Reduced risk of hiding critical exceptions
+✅ **Debugging:** Specific exception types easier to trace
+✅ **Memory:** Proper disposal prevents leaks
+✅ **Reliability:** Constructor pattern prevents initialization bugs
+✅ **Maintainability:** Clear exception handling intent
+
+**This session demonstrates systematic approach to security audit remediation - prioritize warnings, group similar issues, apply consistent patterns, document thoroughly.**
+
