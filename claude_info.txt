@@ -693,6 +693,22 @@ Complete workflow for merging fix branches:
 7. **Rebuild:** `dotnet build`
 8. **Test application**
 
+### Pattern 38: GitHub Actions SARIF Upload Permissions
+**Error:** `Resource not accessible by integration` when uploading SARIF
+**Context:** CodeQL, Trivy, or other security scanners using `upload-sarif` action
+**Root Cause:** Workflow lacks `security-events: write` permission
+**Fix:** Add top-level permissions block to workflow:
+```yaml
+permissions:
+  contents: read
+  security-events: write
+```
+**Key Points:**
+- Add at workflow level (top-level), not job level
+- Required for any action that uploads to GitHub Security tab
+- Especially important for PR workflows from forks
+- `contents: read` also needed for checkout action
+
 ## 📁 Additional Projects
 
 ### CorinaAI

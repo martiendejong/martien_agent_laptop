@@ -1,5 +1,44 @@
 # reflection.log.md
 
+## 2026-01-08 22:10 - GitHub Actions SARIF Upload Permissions Fix
+
+**Session Summary:** Fixed PR #14 CI failure in Hazina caused by missing permissions for CodeQL SARIF upload.
+
+### Problem
+The `security-scan` job was failing with:
+```
+Resource not accessible by integration - https://docs.github.com/rest
+```
+
+This occurred when `github/codeql-action/upload-sarif@v3` tried to upload Trivy vulnerability scan results to GitHub Security tab.
+
+### Root Cause
+The workflow lacked the `security-events: write` permission required for uploading SARIF results. When workflows run from PRs (especially from forks), GitHub restricts access to security APIs unless explicitly permitted.
+
+### Solution
+Added top-level permissions block to `.github/workflows/build-and-test.yml`:
+```yaml
+# Required for uploading SARIF results to GitHub Security tab
+permissions:
+  contents: read
+  security-events: write
+```
+
+### Key Learning
+**Pattern 38: GitHub Actions SARIF Upload Permissions**
+- `upload-sarif` actions (CodeQL, Trivy, etc.) require `security-events: write`
+- Add permissions at workflow level (top-level) not job level
+- `contents: read` is also needed for checkout
+- This is especially important for PR workflows from forks
+
+### Commit
+`9f48473` - "ci: Add security-events permission for SARIF upload"
+
+### PR Fixed
+https://github.com/martiendejong/Hazina/pull/14
+
+---
+
 ## 2026-01-09 02:40 - Fix Branch Merging & Stabilization Workflow
 
 **Session Summary:** Merged critical fix branches for Hazina and client-manager to stabilize the application.
