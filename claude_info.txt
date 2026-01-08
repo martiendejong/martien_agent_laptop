@@ -762,6 +762,58 @@ permissions:
 - Especially important for PR workflows from forks
 - `contents: read` also needed for checkout action
 
+### Pattern 46: Entity ID Type Alignment (CS1929)
+**Error:** `'IEnumerable<AnonymousType#1>' does not contain a definition for 'Concat'`
+**Context:** LINQ Concat/Union of different entity projections
+**Root Cause:** Anonymous types have different property types (e.g., int Id vs string Id)
+**Fix:** Align entity ID types to match:
+```csharp
+// If SocialMediaPost.Id is string:
+public class BlogPost {
+    public string Id { get; set; } = Guid.NewGuid().ToString();  // Match pattern
+}
+```
+**Key:** Anonymous types must have exact same property names AND types for set operations
+
+### Pattern 47: Interface Method Name Disambiguation (CS1503)
+**Error:** `Cannot convert from 'IFoo' to 'IBar'`
+**Context:** Factory method returns wrong interface type
+**Root Cause:** Interface has multiple similar methods returning different types
+**Fix:** Use semantically correct method name:
+```csharp
+// WRONG:
+var provider = _factory.CreateProvider("openai");  // Returns ILLMClient
+
+// RIGHT:
+var provider = _factory.CreateProviderForModelRouting("openai");  // Returns ILLMProvider
+```
+
+### Pattern 48: Named Parameter Mismatch (CS1739)
+**Error:** `The best overload for 'Method' does not have a parameter named 'cancellationToken'`
+**Context:** Interface parameter named differently than caller expects
+**Fix:** Use actual parameter name from interface definition:
+```csharp
+// WRONG (interface uses 'ct'):
+await provider.GenerateAsync(model, prompt, cancellationToken: token);
+
+// RIGHT:
+await provider.GenerateAsync(model, prompt, ct: token);
+```
+
+### Pattern 49: Multi-PR Quick-Win Batch Workflow
+**When:** Implementing multiple small improvements efficiently
+**Methodology:**
+1. Calculate ROI = Value ÷ (Effort + Risk) for each task
+2. Select tasks with ROI > 1.4 (quick wins)
+3. Sequential PRs in same worktree (branch from develop each time)
+4. Complete each PR fully before starting next
+5. Release worktree after all PRs pushed
+**Benefits:**
+- Avoids merge conflicts between PRs
+- Each PR independently reviewable
+- Clear progress tracking
+- Efficient worktree usage
+
 ## 📁 Additional Projects
 
 ### CorinaAI
