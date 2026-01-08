@@ -223,11 +223,116 @@ use the browser mcp server for debugging of frontend applications.
 projects: 
 
 client-manager / brand2boost:
-promotion and brand development saas software that 
-code frontend and api code: c:\projects\client-manager
-hazina framework: c:\projects\hazine
-store config + data: c:\stores\brand2boost
-admin user: wreckingball pw: Th1s1sSp4rt4!
+promotion and brand development saas software that helps businesses develop their brand identity.
+
+### Architecture Overview
+- **Frontend:** React + Vite + TypeScript (port 5173)
+- **Backend:** .NET 9 Web API (port 54501)
+- **Framework:** Hazina (C:\Projects\hazina) - LLM orchestration framework
+- **Store:** C:\stores\brand2boost - Project data, prompts, config files
+- **Admin:** wreckingball / Th1s1sSp4rt4!
+
+### Key Directories
+```
+C:\Projects\client-manager\
+├── ClientManagerAPI\          # .NET 9 Web API
+│   ├── Controllers\           # API endpoints
+│   ├── Services\              # Business logic
+│   ├── Program.cs             # DI registration, middleware
+│   └── appsettings.json       # Configuration (gitignored)
+├── ClientManagerFrontend\     # React frontend
+│   ├── src\
+│   │   ├── components\        # React components
+│   │   │   ├── containers\    # ChatWindow, Generated, etc.
+│   │   │   └── view\          # Sidebar, MessagesPane, etc.
+│   │   ├── i18n\              # Internationalization
+│   │   │   └── locales\       # en.json, nl.json, de.json, es.json, fr.json
+│   │   └── services\          # API clients (chat.ts, users.ts, etc.)
+│   └── public\
+└── docs\                      # Documentation
+```
+
+### i18n (Internationalization)
+**Languages Supported:** English, Dutch, German, Spanish, French
+**Translation Files:** `ClientManagerFrontend\src\i18n\locales\{lang}.json`
+**Usage:**
+```typescript
+import { useI18n } from '../i18n/I18nContext'
+const { t } = useI18n()
+// Use: t('chat.typeMessage'), t('analysis.brandProfile')
+```
+**Sections:**
+- `common.*` - Save, Cancel, Delete, Loading, etc.
+- `auth.*` - Login, Register, Password
+- `settings.*` - Appearance, Notifications, Account
+- `sidebar.*` - Chats, Documents, Profile
+- `chat.*` - Type message, Send, Generating, Thinking, aiThinking, typingMessage
+- `analysis.*` - Brand Profile, Narrative, Mission Statement, etc.
+
+### User Roles System
+**Roles:** ADMIN, STAFF, REGULAR
+**Backend Authorization:**
+```csharp
+[Authorize(Roles = "ADMIN")]           // Admin only
+[Authorize(Roles = "ADMIN,STAFF")]     // Admin or Staff
+[Authorize(Roles = "ADMIN,STAFF,REGULAR")] // All authenticated
+```
+**Endpoints:**
+- `POST /api/user/{userId}/role` - Update role (Admin only)
+- `GET /api/user/roles` - Get available roles
+
+### Key API Endpoints
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/auth/login` | POST | User login |
+| `/api/auth/register` | POST | User registration |
+| `/api/project` | GET/POST | List/Create projects |
+| `/api/project/{id}/chat` | POST | Send chat message |
+| `/api/onboarding/check/{projectId}` | GET | Check if new project needs onboarding |
+| `/api/user/{userId}/role` | POST | Update user role (Admin) |
+| `/api/admin/cache/metrics` | GET | Semantic cache stats |
+
+### Onboarding Flow
+New projects trigger proactive onboarding when:
+- `gatheredDataCount < 3` AND `analysisFieldsWithContent < 2`
+The AI shows a welcome message in the user's language prompting interview to gather brand info.
+
+### Analysis Fields (Brand Profile)
+brand-profile, narrative, mission-statement, tone-of-voice, core-values,
+unique-selling-points, color-scheme, logo, target-audience, tagline,
+typography, brand-story, business-plan, business-description
+
+### Semantic Cache Config
+```json
+"SemanticCache": {
+  "Provider": "Sqlite",  // or Redis, None
+  "TtlDays": 7,
+  "Sqlite": { "DatabasePath": "c:\\stores\\brand2boost\\semantic-cache.db" }
+}
+```
+Admin: GET /api/admin/cache/metrics, DELETE /api/admin/cache/clear
+
+### OAuth Social Import
+Platforms: LinkedIn, Facebook, TikTok, Twitter, Pinterest, Reddit, Medium, Snapchat, Tumblr
+Status: Code ready, requires OAuth credentials in appsettings.json
+
+### SignalR Real-Time Chat
+Hub: `/chathub` - Events: ReceiveMessage, ReceiveGeneratedContent, ReceiveError
+
+### Common Issues
+1. **Chat 500 error** - Missing OpenAI API key in appsettings.json
+2. **i18n not updating** - Store language in localStorage, use useI18n hook
+3. **Onboarding not showing** - Project has data already (check counts)
+
+### Stripe Token Packages (EUR)
+| Package | Tokens | Price |
+|---------|--------|-------|
+| Starter | 100,000 | €10 |
+| Professional | 500,000 | €40 |
+| Enterprise | 2,000,000 | €120 |
+
+### LLM Configuration
+Model: gpt-4o-mini, Embedding: text-embedding-3-small, Image: gpt-image, TTS: tts-1
 
 do not run the client manager frontend or backend yourself from the command like, let me do it from visual studio and in my npm.
 
@@ -573,3 +678,37 @@ C:\Projects\hazina\src\
   - CPTs: b2bk_topic, b2bk_topic_page, b2bk_detail, b2bk_evidence
   - Has `main` and `master` branches (NO develop yet)
 - **Project:** C:\Projects\artrevisionist (separate codebase - analyze later)
+
+## 📝 INCOMPLETE WORK PATTERN (2026-01-08)
+
+**When complex work is incomplete (token limits, time constraints, linter issues):**
+
+1. **Create documentation FIRST:**
+   - PROBLEM_FIX_SUMMARY.md (technical specs, all files/lines)
+   - REMAINING_WORK.md (action items, verification commands)
+
+2. **Commit docs:** 
+   ```bash
+   git add *.md && git commit -m "Add docs [datetime signature]"
+   ```
+
+3. **Create PR:**
+   - Reference both MD files
+   - Clear about what's done vs. incomplete
+   - Include datetime signature
+
+4. **Update control plane:**
+   - Add to reflection.log.md
+   - Create pattern in _machine/best-practices/ if new
+
+**DateTime signatures mandatory:**
+- Format: ISO 8601 (2026-01-08T21:15:00Z)
+- In: MD headers, commits, PRs, todos
+
+**Status markers:**
+- ✅ Completed | ❌ Incomplete | ⏳ Pending | ⚠️ Warning
+
+**Full template:** C:\scripts\_machine\best-practices\DOCUMENTATION_AND_PR_WORKFLOW.md
+
+**Example:** Hazina PR #13 - https://github.com/martiendejong/Hazina/pull/13
+
