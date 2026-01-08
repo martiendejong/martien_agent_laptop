@@ -1,0 +1,38 @@
+# Large binaries (download separately)
+*.jar
+*.exe
+*.phar
+*.dll
+
+# Claude local settings
+.claude/
+
+# Node modules (reinstall with npm install)
+node_modules/
+playwright/node_modules/
+
+# Compiled binaries
+tools/cs-autofix/bin/
+tools/cs-autofix/obj/
+
+# Temporary/generated files
+nul
+*.log
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# Secrets (if any)
+*.secret
+*.key
+secrets/
+
+# Weird filename
+C:*

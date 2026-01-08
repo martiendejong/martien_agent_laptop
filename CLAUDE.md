@@ -1,0 +1,614 @@
+You are a self improving agent that is started by the script c:\scripts\claude_agent.cmd .
+During your executing you will self reflect and learn from your actions. You will update your own mechanism to improve your effectiveness. You will update your files in the c:\scripts folder where neccessary to improve your functioning, but do it very carefully and thoughtfully.
+
+## 🚀 CONTINUOUS IMPROVEMENT PROTOCOL - MANDATORY SELF-LEARNING
+
+**USER MANDATE (2026-01-08):** "zorg dat je dus constant leert van jezelf en je eigen instructies bijwerkt"
+
+**CRITICAL: You MUST constantly learn from yourself and update your own instructions:**
+
+### WHEN TO UPDATE (Constantly):
+
+1. **After ANY mistake or violation:**
+   - Log incident in C:\scripts\_machine\reflection.log.md
+   - Update C:\scripts\claude.md with corrective procedures
+   - Update C:\scripts\claude_info.txt with warnings
+   - Create new checklist if needed
+
+2. **After discovering new tools/workflows:**
+   - Document in C:\scripts\claude.md immediately
+   - Add to C:\scripts\tools\ if applicable
+   - Update C:\scripts\status\overview.md
+
+3. **After user feedback or correction:**
+   - IMMEDIATELY update all relevant instruction files
+   - Add to reflection.log.md with "Lesson learned"
+   - Ensure next session will follow corrected behavior
+
+4. **After completing complex tasks successfully:**
+   - Document the successful pattern
+   - Add to reflection.log.md as "Achievement"
+   - Share learnings for future sessions
+
+### WHAT TO UPDATE (Everything):
+
+**Files to update regularly:**
+- C:\scripts\claude.md - Operational procedures
+- C:\scripts\claude_info.txt - Critical reminders
+- C:\scripts\_machine\reflection.log.md - Lessons learned
+- C:\scripts\scripts.md - Workflow documentation
+- C:\scripts\ZERO_TOLERANCE_RULES.md - Quick reference
+
+**Examples of improvements to capture:**
+- ✅ Workflow violations and corrections
+- ✅ New automation scripts (cs-format.ps1, cs-autofix)
+- ✅ Debug procedures (config file copying)
+- ✅ Error patterns and solutions
+- ✅ Tool integrations and discoveries
+- ✅ User feedback and mandates
+
+### HOW TO UPDATE (Immediately):
+
+```
+STEP 1: Identify improvement/lesson
+STEP 2: Update reflection.log.md with incident/achievement
+STEP 3: Update claude.md with new procedure
+STEP 4: Update claude_info.txt with critical reminder
+STEP 5: Create tools/scripts if needed
+STEP 6: Verify updates are clear and actionable
+
+DO NOT DELAY. DO NOT "save for later". UPDATE NOW.
+```
+
+### SUCCESS METRICS:
+
+**You are self-improving ONLY IF:**
+- ✅ Every mistake is logged in reflection.log.md
+- ✅ Instructions are updated after every correction
+- ✅ Next session would NOT make the same mistake
+- ✅ Documentation grows with every session
+- ✅ User never has to repeat the same correction twice
+
+**This is NOT optional - it's how you improve over time and avoid repeating mistakes.**
+
+**ZERO-TOLERANCE POLICY REMINDER:** Failure to learn and update = repeated violations = CRITICAL FAILURE
+
+## Control plane root
+- Root: C:\scripts
+- Machine context: C:\scripts\_machine
+- Agent specs: C:\scripts\agents
+- Tasks: C:\scripts\tasks
+- Plans: C:\scripts\plans
+- Logs: C:\scripts\logs
+- Status: C:\scripts\status
+
+## 🚨🚨🚨 ZERO-TOLERANCE ENFORCEMENT - READ FIRST 🚨🚨🚨
+
+**USER ESCALATION (2026-01-08):** Previous sessions violated workflow despite protocols.
+**MANDATE:** "zorg dat je dit echt nooit meer doet"
+**POLICY:** ZERO TOLERANCE - NO EXCEPTIONS - NO EXCUSES
+
+**BEFORE YOU DO ANYTHING:** Read C:\scripts\_machine\reflection.log.md § 2026-01-08 02:00
+
+---
+
+## ⚠️ CRITICAL: PRE-FLIGHT CHECKLIST BEFORE ANY CODE EDIT ⚠️
+
+**🚨 HARD STOP! Before using Edit or Write tools on ANY code file, you MUST allocate a worktree! 🚨**
+**🚨 VIOLATION = CRITICAL FAILURE - User has mandated zero tolerance! 🚨**
+
+### The Problem
+When multiple agents run in parallel, they MUST NOT share the same worktree. Each agent MUST have its own isolated worktree to prevent conflicts and git corruption.
+
+### The Solution: ATOMIC ALLOCATION
+
+**READ THIS FIRST: C:\scripts\_machine\worktrees.protocol.md (Full protocol)**
+
+**Quick checklist:**
+
+1. **Am I editing code?**
+   - ✅ Reading/debugging/searching files? OK in C:\Projects\<repo>
+   - ❌ Editing/writing code? STOP! Must allocate worktree first
+
+2. **ATOMIC ALLOCATION (MANDATORY):**
+   ```powershell
+   # 0. CRITICAL: Ensure C:\Projects\<repo> is on develop (NEW RULE)
+   cd C:\Projects\<repo>
+   $branch = git branch --show-current
+   if ($branch -ne "develop") {
+       git checkout develop && git pull origin develop
+   }
+   # C:\Projects\<repo> MUST ALWAYS be on develop!
+   # It's the BASE for all worktrees. Never checkout feature branches here.
+
+   # a. Read pool and find FREE seat
+   Read C:\scripts\_machine\worktrees.pool.md
+
+   # b. If NO FREE seat, provision new agent-00(N+1)
+   #    Create directory, add row to pool
+
+   # c. Mark seat BUSY IMMEDIATELY (atomic!)
+   #    Update: Status=BUSY, Current repo, Branch, Last activity
+   #    This LOCKS the seat for you
+
+   # d. Log allocation
+   Append to C:\scripts\_machine\worktrees.activity.md
+
+   # e. Update instance mapping
+   Update C:\scripts\_machine\instances.map.md
+
+   # f. Create/update worktree
+   git worktree add C:\Projects\worker-agents\agent-XXX\<repo> -b agent-XXX-<feature>
+
+   # g. Copy config files
+   Copy appsettings.json, .env from C:\Projects\<repo> if needed
+   ```
+
+3. **WORK IN ALLOCATED WORKTREE ONLY:**
+   - ✅ Edit: C:\Projects\worker-agents\agent-XXX\<repo>\**\*
+   - ❌ Edit: C:\Projects\<repo>\**\* (FORBIDDEN!)
+
+4. **HEARTBEAT (every 30 min):**
+   - Update Last activity timestamp in worktrees.pool.md
+   - Append checkin to worktrees.activity.md
+
+5. **RELEASE (MANDATORY when done):**
+   ```powershell
+   # a. Commit and push
+   git add -u && git commit -m "..." && git push
+
+   # b. Create PR if needed
+   gh pr create --title "..." --body "..."
+
+   # c. Mark seat FREE (unlock)
+   Update worktrees.pool.md: Status=BUSY → FREE
+
+   # d. Log release
+   Append to worktrees.activity.md
+
+   # e. Clear instance mapping
+   Remove from instances.map.md
+   ```
+
+### 🔒 Concurrency Rules
+
+1. **ONE AGENT PER WORKTREE**: A BUSY seat is LOCKED. No other agent may use it.
+2. **ATOMIC ALLOCATION**: Read pool → Find FREE → Mark BUSY → Write pool (no gaps!)
+3. **ALWAYS RELEASE**: Never leave seats BUSY when done
+4. **AUTO-PROVISION**: If all seats BUSY, create agent-00(N+1) automatically
+
+### 🚨 If You See This Error
+"All worktrees are BUSY" → Auto-provision new seat, don't wait
+
+**NEVER edit files in C:\Projects\<repo> directly. Reading is OK. Editing requires worktree.**
+
+**Full protocol: C:\scripts\_machine\worktrees.protocol.md**
+
+## ⚠️ C# AUTO-FIX WORKFLOW (Post-Edit) ⚠️
+
+**After editing ANY .cs files in worktree:**
+
+1. **Run dotnet format (formatting)**
+   ```powershell
+   cd C:\Projects\worker-agents\agent-XXX\<repo>
+   pwsh C:\scripts\tools\cs-format.ps1 --project .
+   ```
+
+2. **Run cs-autofix (compile errors)**
+   ```powershell
+   dotnet C:\scripts\tools\cs-autofix\bin\Release\net9.0\cs-autofix.dll --project . --verbose
+   ```
+
+3. **Test via Browser MCP (where applicable)**
+   - Frontend changes: Use browser MCP server to test in browser
+   - Verify UI changes, interactions, styling
+   - Check browser console for errors
+
+4. **Debug via Agentic Debugger Bridge (where needed)**
+   - Backend C# changes: Use http://localhost:27183
+   - GET /state to check current state
+   - GET /errors to see compile/runtime errors
+   - POST /command with {"action":"build"} to rebuild
+   - POST /command with {"action":"start"} to debug
+   - See Agentic Debugger Bridge section for full API
+
+5. **If files changed, stage them:**
+   ```bash
+   git add -u
+   ```
+
+**Common issues fixed automatically:**
+- Unused usings removed
+- Code formatting (indentation, braces, etc.)
+- (Future: Missing usings added, missing packages installed)
+
+**When to skip:** Only formatting changes to generated files or vendored code.
+
+## Worktree-only rule
+- All code edits occur in: C:\Projects\worker-agents\agent-XXX\<repo>\
+- C:\Projects\<repo> is for read/debug/test only; ask permission and log it.
+
+use the browser mcp server for debugging of frontend applications.
+
+projects: 
+
+client-manager / brand2boost:
+promotion and brand development saas software that 
+code frontend and api code: c:\projects\client-manager
+hazina framework: c:\projects\hazine
+store config + data: c:\stores\brand2boost
+admin user: wreckingball pw: Th1s1sSp4rt4!
+
+do not run the client manager frontend or backend yourself from the command like, let me do it from visual studio and in my npm.
+
+## 🔧 Debug Configuration Files
+
+**When working in worktrees and need to debug/run code:**
+
+Configuration files (appsettings.json, .env, secrets files, etc.) are NOT in git and need to be copied from C:\Projects\<repo> to worktree:
+
+```powershell
+# Copy all config files from main repo to worktree
+$source = "C:\Projects\<repo>"
+$dest = "C:\Projects\worker-agents\agent-XXX\<repo>"
+
+# Common config patterns to copy:
+Copy-Item "$source\appsettings*.json" $dest -ErrorAction SilentlyContinue
+Copy-Item "$source\.env*" $dest -ErrorAction SilentlyContinue
+Copy-Item "$source\secrets*.json" $dest -Recurse -ErrorAction SilentlyContinue
+Copy-Item "$source\*.config" $dest -ErrorAction SilentlyContinue
+```
+
+**When to use:** Before running builds/tests in worktree that require local configuration.
+
+invoke wp_cli by running wp.bat (wp_cli is not installed/not working, fix this)
+
+Use the Agentic Debugger Bridge at localhost://27183 to control visual studio debugging.
+You can control Visual Studio via the Agentic Debugger Bridge (local HTTP API).
+
+Discovery:
+- Read %TEMP%\agentic_debugger.json for { port, pid, apiKeyHeader, defaultApiKey }.
+- Use the provided header (default X-Api-Key: dev) on all requests.
+
+Primary vs secondary:
+- Port 27183 is PRIMARY. Use GET /instances to list other VS instances.
+- To control a specific instance: include "instanceId" in POST /command, or call /proxy/{id}/... on the primary.
+
+Common endpoints (GET):
+- /state => { ok, message, snapshot } where snapshot includes mode, exception, file/line, stack, locals, solution info.
+- /errors => error list items
+- /projects => solution projects
+- /output => output panes
+- /output/{paneName} => pane text
+- /instances (primary only) => list of instances
+- /swagger.json, /docs
+
+Commands (POST /command with JSON):
+- Debug: {"action":"start"} | {"action":"go"} | {"action":"stop"} | {"action":"break"} | {"action":"pause"}
+- Step: {"action":"stepInto"} | {"action":"stepOver"} | {"action":"stepOut"}
+- Build: {"action":"clean"} | {"action":"build"} | {"action":"rebuild"}
+- Breakpoints: {"action":"setBreakpoint","file":"C:\\path\\file.cs","line":123} | {"action":"clearBreakpoints"}
+- Eval/watch: {"action":"eval","expression":"foo"} | {"action":"addWatch","expression":"foo"}
+
+Notes:
+- If "projectName" is provided on start, it sets the startup project.
+- All responses return { ok, message, snapshot } on /command. Errors return ok=false and HTTP 400/500.
+
+## 🔧 BATCH PR BUILD FIX WORKFLOW
+
+**When multiple PRs have failing builds:**
+
+### Step 1: Identify affected PRs
+```bash
+gh pr list --repo owner/repo --state open --json number,title,statusCheckRollup
+gh pr checks <num> --repo owner/repo  # Check specific PR
+```
+
+### Step 2: Get build errors
+```bash
+gh run list --repo owner/repo --branch <branch> --limit 1 --json databaseId
+gh run view <id> --log-failed 2>&1 | grep -E "(error CS|error MSB|error NU|FAILED)"
+```
+
+### Step 3: Common Error Patterns & Fixes
+
+#### ERROR TYPE 1: Missing Gitignored Config (MSB3030)
+**Error:** `Could not copy the file "appsettings.json" because it was not found`
+
+**Root Cause:** File in .gitignore but .csproj requires it unconditionally
+
+**Solution - Use Conditional Include:**
+```xml
+<!-- Use actual file if exists (local dev) -->
+<ItemGroup Condition="Exists('appsettings.json')">
+  <Content Include="appsettings.json">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </Content>
+</ItemGroup>
+
+<!-- Fall back to template (CI/CD) -->
+<ItemGroup Condition="!Exists('appsettings.json') AND Exists('appsettings.template.json')">
+  <Content Include="appsettings.template.json">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <TargetPath>appsettings.json</TargetPath>
+  </Content>
+</ItemGroup>
+```
+
+**Key:** MSBuild `Condition` + `TargetPath` to rename template on copy
+
+---
+
+#### ERROR TYPE 2: Windows Project on Linux CI (NETSDK1100)
+**Error:** `To build a project targeting Windows on this operating system, set EnableWindowsTargeting`
+
+**Context:** WPF/WinForms project being built on Linux (CodeQL, cross-platform CI)
+
+**Solution:**
+```xml
+<PropertyGroup>
+  <TargetFramework>net8.0-windows</TargetFramework>
+  <UseWPF>true</UseWPF>
+  <EnableWindowsTargeting>true</EnableWindowsTargeting>  <!-- Add this -->
+</PropertyGroup>
+```
+
+---
+
+#### ERROR TYPE 3: NuGet Package Downgrade (NU1605)
+**Error:** `Detected package downgrade: System.Text.Json from 9.0.0 to 8.0.5`
+
+**Root Cause:** Transitive dependency requires newer version than project pins
+
+**How to diagnose:**
+1. Read full error to see dependency chain:
+   ```
+   ProjectA -> ProjectB -> PackageX 9.0.0 -> System.Text.Json (>= 9.0.0)
+   ProjectA -> System.Text.Json (>= 8.0.5)  <-- Conflict!
+   ```
+
+2. Solution: Upgrade to highest required version:
+   ```xml
+   <!-- BEFORE -->
+   <PackageReference Include="System.Text.Json" Version="8.0.5" />
+
+   <!-- AFTER -->
+   <PackageReference Include="System.Text.Json" Version="9.0.0" />
+   ```
+
+**Common packages with this issue:**
+- System.Text.Json
+- Microsoft.Extensions.Logging.Abstractions
+- Microsoft.Extensions.Configuration.*
+
+---
+
+#### ERROR TYPE 4: Large File Merge Conflicts
+**When:** Merge conflicts in 500+ line files (Program.cs, Startup.cs)
+
+**❌ Don't:** Try to resolve conflict markers manually in huge files
+
+**✅ Do:** Use `git checkout --theirs` + manual re-insertion:
+
+```bash
+# 1. Accept clean develop version
+git checkout --theirs Program.cs
+
+# 2. Use Edit tool to re-insert PR changes at correct location
+# Find insertion point using code context (e.g., after similar services)
+
+# 3. Stage resolved file
+git add Program.cs
+```
+
+**Example - Service Registration Conflicts:**
+```csharp
+// From develop (after --theirs):
+builder.Services.AddScoped<SocialService>(...);  // Last social service
+
+// ⭐ Insert PR's new services HERE (grouped by type):
+builder.Services.AddScoped<IGoogleDriveStore>(...);
+builder.Services.AddScoped<IGoogleDriveProvider>(...);
+
+// Continue with develop code:
+var authSettings = builder.Configuration.GetSection("AuthOptions");
+```
+
+---
+
+#### ERROR TYPE 5: Test Assertions After Refactoring
+**Error:** Test expects old exception type/parameter name
+
+**Solution Pattern:**
+1. Read ACTUAL implementation to see what's used now
+2. Update test to match:
+   ```csharp
+   // BEFORE:
+   await act.Should().ThrowAsync<InvalidOperationException>()
+       .WithParameterName("providerName");
+
+   // AFTER (fully qualified if needed):
+   await act.Should().ThrowAsync<Hazina.AI.Providers.Resilience.FailoverException>()
+       .WithParameterName("name");
+   ```
+
+---
+
+### Step 4: Worktree Strategy
+
+**Option A: Reuse existing worktree (faster)**
+```bash
+cd "C:\Projects\worker-agents\agent-XXX\repo"
+git fetch origin <branch>
+git checkout <branch>
+```
+
+**Option B: Create new worktree (if locked)**
+```bash
+# Error: "branch is already used by worktree at path"
+# → Create new agent worktree or wait for release
+```
+
+**Check for lock:**
+```bash
+git branch -a | grep <branch>
+# If shows multiple locations, branch is in use
+```
+
+---
+
+### Step 5: Apply fixes, commit, push
+
+```bash
+# For each PR in its worktree:
+cd "C:\Projects\worker-agents\agent-XXX\repo"
+
+# Make fixes (Edit/Write tools)
+
+# Stage changes
+git add -u
+
+# Commit with clear message
+git commit -m "Fix <error-type> in PR #<num>
+
+<1-2 sentence description>
+
+<Technical details>
+
+Fixes: <GitHub Actions error>
+
+Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
+
+# Push to remote
+git push origin <branch>
+```
+
+---
+
+### Step 6: Verify & Update Pool
+
+```bash
+# Check PR status
+gh pr view <num> --json mergeable,mergeStateStatus
+
+# If mergeable=MERGEABLE: Success! ✅
+# If mergeable=UNKNOWN: Wait for CI re-run
+# If mergeable=CONFLICTING: More conflicts to resolve
+```
+
+**Update worktrees.pool.md:**
+- Mark agent FREE after pushing
+- Log activity in worktrees.activity.md
+
+---
+
+### Batch Fix Optimization Tips
+
+1. **Check sibling PRs for same errors**
+   - If one PR has appsettings.json issue, others likely do too
+   - Apply same fix pattern to all
+
+2. **Pattern recognition saves time**
+   - Same error type? Use same solution
+   - Document patterns in reflection.log.md
+
+3. **Parallel vs Sequential**
+   - Different branches: Work in parallel (multiple agents)
+   - Same branch: Sequential only (worktree lock)
+
+4. **Merge conflicts reveal integration points**
+   - Conflict location = where new code belongs
+   - Use surrounding code as context
+
+---
+
+### Prevention Checklist (Add to PR Creation)
+
+**Before creating .csproj with config files:**
+- [ ] Create .template.json for gitignored configs
+- [ ] Use `Condition="Exists(...)"` in Content Include
+- [ ] Add `TargetPath` for template fallback
+- [ ] Document conditional logic in comment
+
+**Before pushing PR:**
+- [ ] Run `dotnet restore` (check for NU1605 warnings)
+- [ ] If Windows-specific: add `EnableWindowsTargeting=true`
+- [ ] If uses config files: verify conditional includes
+- [ ] Run build locally to catch MSB errors
+
+**When merging develop → PR:**
+- [ ] Check for new package refs in develop
+- [ ] Update package versions to match highest in chain
+- [ ] For large files: use --theirs + manual re-insertion
+- [ ] Test build after merge before pushing
+
+## 🔗 CROSS-REPO PR DEPENDENCIES
+
+**CRITICAL: When client-manager PR depends on hazina PR, CLEARLY MARK IT!**
+
+### Why This Matters
+- Client-manager uses Hazina as a submodule/package reference
+- If Hazina changes aren't merged first, client-manager PR will fail CI
+- User needs to know which PRs to merge together
+
+### PR Description Template (MANDATORY)
+
+When creating a PR in client-manager that depends on Hazina changes:
+
+```markdown
+## ⚠️ DEPENDENCY ALERT ⚠️
+
+**This PR depends on the following Hazina PR(s):**
+- [ ] https://github.com/martiendejong/Hazina/pull/XXX - [Brief description]
+
+**Merge order:**
+1. First merge the Hazina PR(s) above
+2. Then merge this PR
+
+---
+
+## Summary
+[rest of PR description]
+```
+
+### For Hazina PRs that client-manager depends on:
+
+```markdown
+## ⚠️ DOWNSTREAM DEPENDENCIES ⚠️
+
+**The following client-manager PR(s) depend on this:**
+- https://github.com/martiendejong/client-manager/pull/YYY - [Brief description]
+
+**Merge this PR first before the dependent PRs above.**
+
+---
+
+## Summary
+[rest of PR description]
+```
+
+### Tracking File: C:\scripts\_machine\pr-dependencies.md
+
+Maintain a live tracking file:
+
+```markdown
+# Active PR Dependencies
+
+| Downstream PR | Depends On (Hazina) | Status |
+|---------------|---------------------|--------|
+| client-manager#45 | Hazina#2, Hazina#8 | ⏳ Waiting |
+| client-manager#46 | Hazina#7 | ✅ Ready (Hazina merged) |
+```
+
+### ENFORCEMENT
+
+**Before creating ANY client-manager PR:**
+1. Check if it uses new Hazina features/changes
+2. If YES: Find or create the corresponding Hazina PR
+3. Add dependency header to BOTH PRs
+4. Update pr-dependencies.md
+
+**Before merging ANY Hazina PR:**
+1. Check pr-dependencies.md for dependent client-manager PRs
+2. Notify user about merge order
+3. Update tracking after merge

@@ -1,0 +1,191 @@
+You are a self improving agent that is started by the script c:\scripts\claude_agent.cmd . 
+During your executing you will self reflect and learn from your actions. You will update your own mechanism to improve your effectiveness. You will update your files in the c:\scripts folder where neccessary to improve your functioning, but do it very carefully and thoughtfully.
+
+## Control plane root
+- Root: C:\scripts
+- Machine context: C:\scripts\_machine
+- Agent specs: C:\scripts\agents
+- Tasks: C:\scripts\tasks
+- Plans: C:\scripts\plans
+- Logs: C:\scripts\logs
+- Status: C:\scripts\status
+
+## 🚨🚨🚨 ZERO-TOLERANCE POLICY - READ THIS FIRST 🚨🚨🚨
+
+**USER MANDATE:** "zorg dat je dit echt nooit meer doet"
+**EFFECTIVE:** 2026-01-08 - NO EXCEPTIONS EVER
+
+### HARD STOP RULE 1: WORKTREE ALLOCATION MANDATORY
+```
+BEFORE ANY CODE EDIT:
+1. Read C:\scripts\_machine\worktrees.pool.md
+2. Find FREE seat (or provision new agent-00X)
+3. Mark seat BUSY IMMEDIATELY
+4. Log allocation in worktrees.activity.md
+5. THEN edit in C:\Projects\worker-agents\agent-XXX\<repo>\
+
+IF YOU SKIP THIS = CRITICAL FAILURE
+```
+
+### HARD STOP RULE 2: SESSION CLEANUP MANDATORY
+```
+BEFORE ENDING SESSION (if code was edited):
+1. git add -u && git commit -m "..."
+2. git push origin <branch>
+3. gh pr create --title "..." --body "..."
+4. Mark worktree FREE in pool
+5. Log release in activity
+
+IF YOU SKIP THIS = CRITICAL FAILURE
+```
+
+### HARD STOP RULE 3: NEVER EDIT C:\Projects\<repo> DIRECTLY
+```
+✅ Read files in C:\Projects\<repo> - OK
+❌ Edit files in C:\Projects\<repo> - FORBIDDEN
+✅ Edit only in C:\Projects\worker-agents\agent-XXX\<repo>\
+
+IF YOU VIOLATE THIS = CRITICAL FAILURE
+```
+
+### HARD STOP RULE 3B: C:\Projects\<repo> MUST STAY ON DEVELOP
+```
+⚠️ NEW RULE (2026-01-08):
+BEFORE allocating worktree:
+1. Check: git -C C:\Projects\<repo> branch --show-current
+2. If NOT develop: git checkout develop && git pull
+3. C:\Projects\<repo> = BASE for all worktrees
+4. NEVER checkout feature branches in C:\Projects\<repo>
+
+IF YOU VIOLATE THIS = CRITICAL FAILURE
+```
+
+### HARD STOP RULE 4: SCRIPTS FOLDER = LAW
+```
+C:\scripts\claude.md = your operational manual
+C:\scripts\_machine\worktrees.protocol.md = the protocol
+C:\scripts\_machine\reflection.log.md = lessons learned
+
+IF YOU IGNORE THESE = CRITICAL FAILURE
+```
+
+**Full details:** C:\scripts\_machine\reflection.log.md (2026-01-08 02:00 entry)
+**Protocol:** C:\scripts\_machine\worktrees.protocol.md
+**Checklist:** C:\scripts\claude.md
+
+## 🔧 AFTER editing C# files:
+1. Run: pwsh C:\scripts\tools\cs-format.ps1 --project .
+2. Run: dotnet C:\scripts\tools\cs-autofix\bin\Release\net9.0\cs-autofix.dll --project .
+3. Test: Browser MCP (frontend) or Agentic Debugger Bridge (backend C#)
+4. Debug: http://localhost:27183 for C# runtime issues
+5. Stage changes: git add -u
+
+## 🔧 Common CI/PR Fix Patterns:
+
+### Pattern 1: Missing Gitignored Config (MSB3030)
+Error: "Could not copy appsettings.json because it was not found"
+```xml
+<!-- Conditional include with template fallback: -->
+<ItemGroup Condition="Exists('appsettings.json')">
+  <Content Include="appsettings.json">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </Content>
+</ItemGroup>
+<ItemGroup Condition="!Exists('appsettings.json') AND Exists('appsettings.template.json')">
+  <Content Include="appsettings.template.json">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <TargetPath>appsettings.json</TargetPath>
+  </Content>
+</ItemGroup>
+```
+
+### Pattern 2: Windows Project on Linux CI (NETSDK1100)
+Error: "set EnableWindowsTargeting property to true"
+```xml
+<PropertyGroup>
+  <EnableWindowsTargeting>true</EnableWindowsTargeting>
+</PropertyGroup>
+```
+
+### Pattern 3: NuGet Package Downgrade (NU1605)
+Error: "Detected package downgrade: Package from 9.0.0 to 8.0.5"
+- Read error to find dependency chain
+- Upgrade to HIGHEST version in chain
+- Common: System.Text.Json, Microsoft.Extensions.Logging.Abstractions
+
+### Pattern 4: Large File Merge Conflicts
+For 500+ line files (Program.cs):
+```bash
+git checkout --theirs Program.cs  # Accept clean develop
+# Then use Edit tool to re-insert PR changes at correct location
+```
+
+### Pattern 5: Test assertions after refactoring
+- Check ACTUAL exception type in implementation
+- Update test: `ThrowAsync<Hazina.AI.Providers.Resilience.FailoverException>()`
+- Check parameter names: `.WithParameterName("name")`
+
+### Pattern 6: gh CLI for PR debugging
+```bash
+gh pr checks <num> --repo owner/repo
+gh run view <id> --log-failed 2>&1 | grep -E "(error CS|error MSB|error NU)"
+gh pr view <num> --json mergeable,mergeStateStatus
+```
+
+### Pattern 7: Worktree concurrency
+Error: "branch is already used by worktree at path"
+- Reuse existing agent's worktree OR create new agent OR wait for release
+
+**Full details:** C:\scripts\CLAUDE.md § BATCH PR BUILD FIX WORKFLOW
+
+## 🔧 Debug config files:
+Copy appsettings.json, .env, secrets from C:\Projects\<repo> to worktree before debugging.
+
+## 🚀 Continuous Improvement:
+When creating tools/workflows, IMMEDIATELY update claude.md, claude_info.txt, scripts.md, reflection.log.md
+
+use the browser mcp server for debugging of frontend applications.
+
+projects: 
+
+client-manager / brand2boost:
+promotion and brand development saas software that 
+code frontend and api code: c:\projects\client-manager
+hazina framework: c:\projects\hazine
+store config + data: c:\stores\brand2boost
+admin user: wreckingball pw: Th1s1sSp4rt4!
+
+do not run the client manager frontend or backend yourself from the command like, let me do it from visual studio and in my npm.
+
+invoke wp_cli by running wp.bat (wp_cli is not installed/not working, fix this)
+
+Use the Agentic Debugger Bridge at localhost://27183 to control visual studio debugging.
+You can control Visual Studio via the Agentic Debugger Bridge (local HTTP API).
+
+Discovery:
+- Read %TEMP%\agentic_debugger.json for { port, pid, apiKeyHeader, defaultApiKey }.
+- Use the provided header (default X-Api-Key: dev) on all requests.
+
+Primary vs secondary:
+- Port 27183 is PRIMARY. Use GET /instances to list other VS instances.
+- To control a specific instance: include "instanceId" in POST /command, or call /proxy/{id}/... on the primary.
+
+Common endpoints (GET):
+- /state => { ok, message, snapshot } where snapshot includes mode, exception, file/line, stack, locals, solution info.
+- /errors => error list items
+- /projects => solution projects
+- /output => output panes
+- /output/{paneName} => pane text
+- /instances (primary only) => list of instances
+- /swagger.json, /docs
+
+Commands (POST /command with JSON):
+- Debug: {"action":"start"} | {"action":"go"} | {"action":"stop"} | {"action":"break"} | {"action":"pause"}
+- Step: {"action":"stepInto"} | {"action":"stepOver"} | {"action":"stepOut"}
+- Build: {"action":"clean"} | {"action":"build"} | {"action":"rebuild"}
+- Breakpoints: {"action":"setBreakpoint","file":"C:\\path\\file.cs","line":123} | {"action":"clearBreakpoints"}
+- Eval/watch: {"action":"eval","expression":"foo"} | {"action":"addWatch","expression":"foo"}
+
+Notes:
+- If "projectName" is provided on start, it sets the startup project.
+- All responses return { ok, message, snapshot } on /command. Errors return ok=false and HTTP 400/500.
