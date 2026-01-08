@@ -3869,3 +3869,67 @@ FormatException         → using System; (usually already present)
 ArgumentException       → using System; (usually already present)
 ```
 
+
+## 2026-01-09 05:15 - Communication Protocol for Direct Repository Edits
+
+**Context:** After fixing DI errors directly in C:\Projects\client-manager (with user authorization), user requested that agents clearly communicate when working directly in repos instead of worktrees.
+
+**Problem:**
+- Other agents may be working in worktrees on same repo
+- They need to know about direct commits to develop branch
+- Lack of clear communication causes merge confusion
+- Transparency needed for coordination
+
+**Solution - Mandatory Communication Protocol:**
+
+When user explicitly authorizes direct editing (e.g., "resolve them directly in c:\projects\<repo>"):
+
+**BEFORE first edit:**
+```
+⚠️ Working directly in C:\Projects\<repo> (authorized hotfix)
+- Branch: develop
+- Reason: Fixing DI runtime errors blocking application startup
+```
+
+**DURING work (every message with file changes):**
+```
+📍 Direct edit in C:\Projects\client-manager: Program.cs
+📍 Direct edit in C:\Projects\client-manager: Services/ProductAIService.cs
+```
+
+**AFTER completion:**
+```
+✅ Hotfix complete - all changes committed to develop
+- Commits: 120a818, 5f8f908
+- Files: Program.cs, ProductAIService.cs
+
+⚠️ Other agents working on client-manager should merge/rebase with develop:
+  git fetch origin develop
+  git merge origin/develop  # or git rebase origin/develop
+```
+
+**Benefits:**
+1. **Transparency:** User knows you're not using standard worktree workflow
+2. **Coordination:** Other agents see clear notification to sync
+3. **Audit Trail:** Conversation history shows explicit authorization + actions
+4. **Safety:** Reduces risk of conflicts and lost work
+
+**When This Applies:**
+- User explicitly authorizes: "work directly in c:\projects\<repo>"
+- Hotfixes for runtime errors (DI, build breaks, critical bugs)
+- Small changes (1-3 files)
+- NOT for feature development (always use worktrees)
+
+**Updated Files:**
+- C:\scripts\claude_info.txt: Added "EXCEPTION TO RULE 3" section
+- This reflection log entry
+
+**Pattern:**
+Direct edits are EXCEPTIONAL, not normal workflow. When they occur:
+1. Get explicit user authorization
+2. Communicate clearly (before/during/after)
+3. Warn other agents to sync
+4. Keep changes small and focused
+5. Return to worktree workflow for next task
+
+---

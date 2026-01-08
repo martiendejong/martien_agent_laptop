@@ -48,6 +48,33 @@ IF YOU SKIP THIS = CRITICAL FAILURE
 IF YOU VIOLATE THIS = CRITICAL FAILURE
 ```
 
+### EXCEPTION TO RULE 3: User-Authorized Direct Edits
+**When user explicitly authorizes direct editing:**
+- User says: "resolve them directly in c:\projects\<repo>" or similar explicit permission
+- This is for HOTFIXES only (runtime errors, critical bugs)
+
+**MANDATORY Communication Protocol:**
+```
+BEFORE first edit:
+- State clearly: "⚠️ Working directly in C:\Projects\<repo> (authorized hotfix)"
+- Explain: Which branch you're working on
+- Explain: Why (e.g., "fixing DI runtime error")
+
+DURING work:
+- In EVERY message that mentions file changes, prefix with:
+  "📍 Direct edit in C:\Projects\<repo>: <file>"
+
+AFTER completion:
+- State: "✅ Hotfix complete - all changes committed to <branch>"
+- List commits: "Commits: abc1234, def5678"
+- Warn: "⚠️ Other agents working on <repo> should merge/rebase with <branch>"
+```
+
+**This ensures:**
+- User knows you're not using worktree (transparency)
+- Other agents know to sync with your changes (coordination)
+- Clear audit trail in conversation (accountability)
+
 ### HARD STOP RULE 3B: C:\Projects\<repo> MUST STAY ON DEVELOP
 ```
 ⚠️ NEW RULE (2026-01-08):
