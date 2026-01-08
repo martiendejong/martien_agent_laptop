@@ -2705,3 +2705,38 @@ Manually registered both `IAnalysisFieldsProvider` and `IAnalysisFieldService` w
 - **Commits:** 94daed2, 5f8f908
 
 ---
+
+---
+
+## 2026-01-09 06:15 - PR #11 Build Fix: Missing Using Statements
+
+**Issue:** PR #11 failed CI build with compilation errors
+
+**Errors Found:**
+- CS0103: The name 'HttpRequestException' does not exist in the current context
+- CS0103: The name 'JsonException' does not exist in the current context
+
+**Root Cause:**
+Added exception type names in `when` clauses but forgot to add corresponding `using` statements:
+- `System.Net.Http` for HttpRequestException
+- `System.Text.Json` for JsonException
+
+**Files Fixed (3):**
+1. ChatWindow.xaml.cs
+2. EvaluationPipeline.cs
+3. EmbeddingsService.cs
+
+**Lesson Learned:**
+When adding exception filters with specific exception types, ALWAYS add the required using statements:
+- HttpRequestException → `using System.Net.Http;`
+- JsonException → `using System.Text.Json;`
+- IOException → `using System.IO;` (usually already present)
+- UnauthorizedAccessException → `using System;` (already present)
+
+**Prevention:**
+Add to pre-commit checklist:
+- [ ] All exception types in `when` clauses have corresponding using statements
+- [ ] Build locally before pushing
+
+**Status:** ✅ Fixed in commit 5ef63fd, pushed to PR #11
+
