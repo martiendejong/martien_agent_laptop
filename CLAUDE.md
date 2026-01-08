@@ -1287,3 +1287,253 @@ This file now includes:
 - ✅ Audit Logging for Enterprise
 
 **Add more as discovered!**
+
+---
+
+## 📝 INCOMPLETE WORK DOCUMENTATION PATTERN (2026-01-08)
+
+**Learned from:** Hazina PR #13 - Chat LLM Configuration Fix
+**Pattern file:** C:\scripts\_machine\best-practices\DOCUMENTATION_AND_PR_WORKFLOW.md
+**Status:** ACTIVE PATTERN for all complex incomplete work
+
+### When to Use This Pattern
+
+✅ **Use when:**
+- Work session running long (token limits, time constraints)
+- Fix spans multiple files (>5 locations)
+- Testing reveals fix is incomplete
+- Linter or external factors interfere
+- Need to preserve context before losing it
+
+❌ **Do NOT use for:**
+- Simple single-file fixes
+- Quick bugs fixable in <30 minutes
+- Fully tested and working changes
+- Minor refactoring
+
+### The Workflow
+
+#### 1. Create Documentation FIRST (before PR)
+
+**Create two files:**
+
+**A. PROBLEM_FIX_SUMMARY.md** - Complete technical specification
+```markdown
+# Problem Fix - Summary
+**Date**: 2026-01-08
+**Time**: HH:MM:SS UTC
+**Signed by**: Claude Opus 4.5 (model-id)
+
+## Problem
+[Clear description]
+
+## Root Cause
+[Technical analysis]
+
+## Solution Overview
+[High-level approach]
+
+## Changes Made
+- ✅ Completed item
+- ❌ Incomplete item
+
+## Implementation Details
+[Every file, every line number, exact code snippets]
+
+## Testing Checklist
+[Verification commands]
+```
+
+**B. REMAINING_WORK.md** - Action-oriented task list
+```markdown
+# Remaining Work: Feature Name
+**Date**: 2026-01-08
+**Time**: HH:MM:SS UTC
+**Signed by**: Claude Opus 4.5
+**PR**: [PR URL]
+**Branch**: [branch-name]
+
+## Status Overview
+### ✅ Completed
+### ❌ Incomplete
+
+## Required Changes
+### 1. Component (PRIORITY)
+**File**: path
+**Line**: X
+[Exact code change needed]
+**Impact**: [What breaks]
+
+## Verification Commands
+[Bash commands to verify]
+
+## Testing Checklist
+[Step-by-step testing]
+
+## Rollback Plan
+[How to undo]
+
+## Next Steps
+[Action items with time estimates]
+```
+
+#### 2. Commit Documentation
+
+```bash
+git add SUMMARY.md REMAINING_WORK.md
+git commit -m "Add comprehensive documentation
+
+Date: 2026-01-08THH:MM:SSZ
+Signed-off-by: Claude Opus 4.5 <noreply@anthropic.com>"
+git push
+```
+
+#### 3. Create PR with Comprehensive Body
+
+```bash
+gh pr create --title "[Type]: Clear description" --body "$(cat <<'EOFPR'
+## Problem
+[Brief]
+
+## Root Cause
+[Brief technical]
+
+## Changes Made (Partial Fix)
+1. ✅ Change 1
+2. ✅ Change 2
+
+## Remaining Work ⚠️
+**See REMAINING_WORK.md for details**
+- [ ] Component 1
+- [ ] Component 2
+
+## Testing Status
+- ✅ Builds
+- ❌ Feature still fails
+- ⏳ Needs completion
+
+## Files Changed
+[List]
+
+---
+**Signed**: 2026-01-08THH:MM:SSZ
+**Docs**: SUMMARY.md, REMAINING_WORK.md
+EOFPR
+)"
+```
+
+### DateTime Signature Standards
+
+**Always include in:**
+- MD file headers
+- Git commit messages
+- PR descriptions
+- Todo updates
+
+**Format:** ISO 8601 `2026-01-08T21:15:00Z`
+
+**In files:**
+```markdown
+**Date**: 2026-01-08
+**Time**: 21:15:00 UTC
+**Signed by**: Claude Opus 4.5 (claude-sonnet-4-5-20250929)
+```
+
+**In commits:**
+```
+Date: 2026-01-08T21:15:00Z
+Signed-off-by: Claude Opus 4.5 <noreply@anthropic.com>
+```
+
+### Status Markers (Use Consistently)
+
+- ✅ Completed
+- ❌ Incomplete/Failing
+- ⏳ Pending/In Progress
+- ⚠️ Warning/Attention Needed
+- 📝 Documentation
+- 🔧 Configuration
+- 🐛 Bug Fix
+- ✨ New Feature
+
+### Priority Levels
+
+- **HIGH**: Blocks core functionality
+- **MEDIUM**: Affects secondary features
+- **LOW**: Nice to have, no user impact
+
+### Verification Pattern
+
+Always include bash commands:
+```bash
+# Build verification
+cd /path/to/project
+dotnet build
+# Expected: 0 errors
+
+# Completeness check
+grep -rn "OldPattern" src/ --include="*.cs"
+# Expected: 0 results
+
+# Runtime test
+curl -X POST https://localhost:5001/api/test
+# Expected: 200 OK
+```
+
+### Benefits
+
+✅ **Continuity**: Anyone can continue work
+✅ **Clarity**: Exact status known
+✅ **Searchability**: Easy to find
+✅ **Accountability**: Datetime tracking
+✅ **Quality**: Prevents mistakes
+✅ **Efficiency**: No wasted time
+✅ **Communication**: Clear for reviewers
+
+### Common Pitfalls to Avoid
+
+❌ **Do NOT:**
+- Create PR with vague "WIP" title
+- Commit without documentation
+- List todos in PR comments (use MD files)
+- Forget datetime signatures
+- Skip verification commands
+- Assume context is obvious
+
+✅ **DO:**
+- Be exhaustively specific
+- Include every file and line number
+- Write for zero-context reader
+- Sign and date everything
+- Make docs self-contained
+- Test your own documentation
+
+### Integration with Control Plane
+
+**File locations:**
+- Project repo: `PROJECT_ROOT/FEATURE_SUMMARY.md`
+- Project repo: `PROJECT_ROOT/REMAINING_WORK.md`
+- Control plane: `C:\scripts\_machine\best-practices\PATTERN.md`
+- Reflection: `C:\scripts\_machine\reflection.log.md`
+
+### Real-World Example
+
+**See:** 
+- PR: https://github.com/martiendejong/Hazina/pull/13
+- Summary: C:\Projects\hazina\CHAT_FIX_SUMMARY.md
+- Remaining: C:\Projects\hazina\REMAINING_WORK.md
+- Pattern: C:\scripts\_machine\best-practices\DOCUMENTATION_AND_PR_WORKFLOW.md
+
+### Pattern Library Updated
+
+This file now includes:
+- ✅ Session Compaction Recovery
+- ✅ Complete Feature Implementation
+- ✅ Multi-Feature Discipline
+- ✅ Industry Research Integration
+- ✅ Multi-Tenant Architecture
+- ✅ Audit Logging for Enterprise
+- ✅ **Incomplete Work Documentation** ← NEW (2026-01-08)
+
+**Full template:** C:\scripts\_machine\best-practices\DOCUMENTATION_AND_PR_WORKFLOW.md
+

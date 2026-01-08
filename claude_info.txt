@@ -462,17 +462,106 @@ git -C C:\Projects\hazina branch --show-current
 ```
 **Note:** Version 10.1.0 is valid and exists in NuGet
 
+### Pattern 31: NETSDK1022 Duplicate Content Items
+**Error:** `Duplicate 'Content' items were included. The .NET SDK includes 'Content' items from your project directory by default.`
+**Root Cause:** SDK auto-includes content files, explicit `<Content Include="...">` duplicates them
+**Fix:** Use `Update` instead of `Include`:
+```xml
+<!-- WRONG (causes NETSDK1022): -->
+<Content Include="appsettings.template.json">
+  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+</Content>
+
+<!-- CORRECT (modifies auto-included item): -->
+<Content Update="appsettings.template.json">
+  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+</Content>
+```
+**When to use:**
+- `Include` = Add NEW item to build
+- `Update` = Modify EXISTING auto-included item
+- `Remove` = Remove auto-included item
+
+### Pattern 32: Hazina Project Structure Reference
+**Actual Hazina project paths (as of 2026-01-08):**
+```
+C:\Projects\hazina\src\
+├── Core\
+│   ├── AI\
+│   │   ├── Hazina.AI.Agents\         ← Multi-agent orchestration
+│   │   ├── Hazina.AI.Orchestration\  ← Agent orchestration
+│   │   ├── Hazina.AI.RAG\            ← RAG engine
+│   │   └── Hazina.AI.Providers\      ← Provider abstractions
+│   ├── LLMs.Providers\
+│   │   ├── Hazina.LLMs.Anthropic\    ← Claude integration
+│   │   ├── Hazina.LLMs.OpenAI\       ← OpenAI integration
+│   │   ├── Hazina.LLMs.Ollama\       ← Local LLM support
+│   │   └── Hazina.LLMs.Gemini\       ← Google Gemini
+│   ├── Security\
+│   │   ├── Hazina.Security.Core\     ← Encryption utilities
+│   │   └── Hazina.Security.AspNetCore\ ← ASP.NET security
+│   └── Storage\
+│       ├── Hazina.Store.Sqlite\      ← SQLite provider
+│       └── Hazina.Store.DocumentStore\ ← Document storage
+├── Tools\
+│   ├── Common\
+│   │   ├── Hazina.Tools.Common.Infrastructure.AspNetCore\
+│   │   └── Hazina.Tools.Common.Models\
+│   ├── Foundation\
+│   │   ├── Hazina.Tools.AI.Agents\   ← Agent abstractions
+│   │   ├── Hazina.Tools.Core\        ← Core utilities
+│   │   ├── Hazina.Tools.Models\      ← Model definitions
+│   │   └── Hazina.Tools.Data\        ← Data patterns
+│   └── Services\
+│       ├── Hazina.Tools.Services.Store\
+│       ├── Hazina.Tools.Services.Chat\
+│       └── Hazina.Tools.Services.Database\
+```
+**Key insight:** No `Tools.Store.*` or `Tools.Security.*` paths exist. Use `Core\Storage\` and `Core\Security\` instead.
+
 ## 📁 Additional Projects
+
+### CorinaAI
+- **Location:** C:\Projects\corinaAI
+- **Type:** AI-Assisted Digital Support Platform (Mental Health)
+- **Dependencies:** References Hazina framework via project refs (Debug only)
+- **Structure:**
+  - `src\CorinaAI.Api` - Web API
+  - `src\CorinaAI.Core` - Domain entities
+  - `src\CorinaAI.Infrastructure` - Data access, encryption
+  - `tests\CorinaAI.Tests` - Unit tests
+- **Key Features:**
+  - RAT-style case management + AI chat
+  - Human helper takeover capability
+  - AES-256-GCM field-level encryption
+  - Role-based access (Coordinator, Helper, Client)
+- **Store:** C:\stores\corinaai
 
 ### MastermindGroupAI
 - **Location:** C:\Projects\mastermindgroupAI
-- **Type:** .NET 9 Web API with AI integration
+- **Type:** Personal Coaching Platform (9 AI Mastermind Advisors)
 - **Dependencies:** References Hazina framework via project refs (Debug only)
 - **Structure:**
   - `src\MastermindGroup.Api` - Web API
   - `src\MastermindGroup.Core` - Business logic
   - `src\MastermindGroup.Infrastructure` - Data access
   - `tests\MastermindGroup.Tests` - Unit tests
+- **Key Features:**
+  - Interview-based user profiling
+  - 9 AI advisors respond in parallel
+  - Synthesis agent combines responses
+  - Encrypted user profiles
+- **The 9 Mastermind Roles:**
+  1. Strategist (life direction)
+  2. Mentor (career)
+  3. Healer (wellness)
+  4. Pragmatist (practical)
+  5. Motivator (energy)
+  6. Challenger (growth)
+  7. Connector (relationships)
+  8. Creative (innovation)
+  9. Sage (wisdom)
+- **Store:** C:\stores\mastermindgroup
 - **Note:** Hazina refs are conditional (Debug only) for local dev
 
 ### Art Revisionist (WordPress)
