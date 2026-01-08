@@ -779,6 +779,80 @@ public class Result
 
 ---
 
+## 🔧 RUNTIME ERROR PATTERNS & FIXES
+
+### Swashbuckle 8.x [FromForm] + IFormFile Error
+
+**Error:** `SwaggerGeneratorException: Error reading parameter(s) for action ... as [FromForm] attribute used with IFormFile`
+
+**Root Cause:** Swashbuckle 8.x throws errors when `[FromForm]` is combined with `IFormFile`. Error occurs during parameter generation BEFORE operation filters run.
+
+**CRITICAL:** Search for ALL occurrences before fixing - errors appear sequentially!
+
+**Fix:** Remove `[FromForm]` from `IFormFile` parameters only:
+```csharp
+// BEFORE (error):
+public async Task<IActionResult> Upload([FromForm] IFormFile file, [FromForm] string projectId)
+
+// AFTER (works):
+public async Task<IActionResult> Upload(IFormFile file, [FromForm] string projectId)
+```
+
+**Search command:**
+```bash
+grep -rn "\[FromForm\].*IFormFile" C:\Projects\client-manager\ClientManagerAPI
+```
+
+---
+
+### Missing npm Packages (Vite Import Error)
+
+**Error:** `Failed to resolve import "package-name" from "src/..."`
+
+**Fix:** Install the missing package:
+```bash
+cd /c/Projects/client-manager/ClientManagerFrontend && npm install <package-name>
+```
+
+---
+
+### Missing TypeScript Modules
+
+**Error:** `Failed to resolve import "../../lib/api" from "src/..."`
+
+**Diagnosis:** Check if module exists, or if existing service can be used.
+
+**Fix Options:**
+1. Create the missing module
+2. Update import to use existing service (e.g., `axiosConfig.ts`)
+
+---
+
+### SQLite Missing Columns (Migration Not Applied)
+
+**Error:** `SQLite Error 1: 'no such column: u.ColumnName'`
+
+**Root Cause:** EF Core migration exists but wasn't applied.
+
+**Quick Fix via Python:**
+```bash
+python3 -c "import sqlite3; conn = sqlite3.connect('c:/stores/brand2boost/identity.db'); conn.execute('ALTER TABLE TableName ADD COLUMN ColumnName TYPE DEFAULT value'); conn.commit()"
+```
+
+**List tables:**
+```bash
+python3 -c "import sqlite3; conn = sqlite3.connect('c:/stores/brand2boost/identity.db'); print([r[0] for r in conn.execute(\"SELECT name FROM sqlite_master WHERE type='table'\")])"
+```
+
+**Check columns:**
+```bash
+python3 -c "import sqlite3; conn = sqlite3.connect('c:/stores/brand2boost/identity.db'); [print(r[1], r[2]) for r in conn.execute('PRAGMA table_info(TableName)')]"
+```
+
+**Note:** Table names may be singular (`UserTokenBalance`) not plural (`UserTokenBalances`).
+
+---
+
 ## 🚨🚨🚨 MANDATORY: END-OF-TASK SELF-UPDATE PROTOCOL 🚨🚨🚨
 
 **USER MANDATE (2026-01-09):** "update the files in c:\scripts... do this at the end of every task/response"

@@ -1,5 +1,106 @@
 # reflection.log.md
 
+## 2026-01-08 18:30 - Client-Manager Startup Errors & Database Migration Fixes
+
+**Session Summary:** Fixed multiple cascading errors preventing client-manager from starting.
+
+### Problem 1: Swashbuckle 8.x [FromForm] + IFormFile Error
+**Error:** `SwaggerGeneratorException: Error reading parameter(s) for action ... as [FromForm] attribute used with IFormFile`
+
+**Root Cause:** Swashbuckle 8.x has strict validation that throws errors when `[FromForm]` is combined with `IFormFile`. The error occurs during parameter generation BEFORE operation filters run.
+
+**Key Insight:** I initially fixed only one controller (`ChatController`), but there were **8 endpoints across 4 controllers** with this issue. Errors appear sequentially - fix one, the next shows up.
+
+**Fix:** Remove `[FromForm]` from `IFormFile` parameters only (keep on string params). `IFormFile` automatically binds from form data.
+
+```csharp
+// BEFORE (causes error):
+public async Task<IActionResult> Upload([FromForm] IFormFile file, [FromForm] string projectId)
+
+// AFTER (works):
+public async Task<IActionResult> Upload(IFormFile file, [FromForm] string projectId)
+```
+
+**Controllers Fixed:**
+- `CompanyDocumentsController.cs:41`
+- `ContentController.cs:847`
+- `UploadController.cs` (5 methods: lines 44, 48, 55, 59, 63)
+- `UploadedDocumentsController.cs:165`
+
+**Lesson:** When fixing pattern-based errors, ALWAYS search for ALL occurrences first before fixing one.
+
+---
+
+### Problem 2: Missing npm Package (react-virtuoso)
+**Error:** `Failed to resolve import "react-virtuoso" from "src/components/containers/MessagesPane.tsx"`
+
+**Fix:** `npm install react-virtuoso`
+
+**Lesson:** Missing npm packages show as Vite import resolution errors.
+
+---
+
+### Problem 3: Missing TypeScript Module (lib/api.ts)
+**Error:** `Failed to resolve import "../../lib/api" from "src/components/demo/DemoConvert.tsx"`
+
+**Root Cause:** The `lib/api.ts` file was never created but was being imported by demo components.
+
+**Fix:** Created `src/lib/api.ts` that wraps the existing axios config:
+```typescript
+import axios from '../services/axiosConfig';
+
+export async function apiRequest<T = any>(url: string, options: ApiRequestOptions = {}): Promise<T> {
+  const { method = 'GET', body, headers = {} } = options;
+  const response = await axios.request<T>({ url, method, data: body ? JSON.parse(body) : undefined, headers });
+  return response.data;
+}
+```
+
+**Lesson:** When frontend imports fail, check if the module exists or if it's using an existing service under a different path.
+
+---
+
+### Problem 4: SQLite Missing Columns (EF Migration Not Applied)
+**Error:** `SQLite Error 1: 'no such column: u.ActiveUnlimitedSubscriptionId'`
+
+**Root Cause:** Migration `20260108000000_AddFairUseUnlimitedPlan.cs` exists but wasn't applied to the database.
+
+**Key Discovery:** Table name is `UserTokenBalance` (singular), not `UserTokenBalances` (plural).
+
+**Fix:** Used Python to add columns directly:
+```python
+import sqlite3
+conn = sqlite3.connect('c:/stores/brand2boost/identity.db')
+conn.execute('ALTER TABLE UserTokenBalance ADD COLUMN ActiveUnlimitedSubscriptionId INTEGER NULL')
+conn.execute('ALTER TABLE UserTokenBalance ADD COLUMN MonthlyUsage INTEGER DEFAULT 0')
+conn.execute('ALTER TABLE UserTokenBalance ADD COLUMN UsageResetDate TEXT')
+conn.commit()
+conn.close()
+```
+
+**Lesson:** When EF migrations can't run (build errors), manually add columns via Python sqlite3.
+
+---
+
+### Process Improvements
+
+1. **Analysis Before Action:** When user reports an error, do thorough analysis FIRST:
+   - Search for ALL occurrences of the pattern
+   - Understand the root cause before fixing
+   - Don't fix one instance and assume done
+
+2. **SQLite Quick Fix via Python:**
+   ```bash
+   python3 -c "import sqlite3; conn = sqlite3.connect('path/to/db'); conn.execute('ALTER TABLE...'); conn.commit()"
+   ```
+
+3. **Check table names:** SQLite table names may be singular or plural - verify with:
+   ```python
+   cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+   ```
+
+---
+
 ## 2026-01-07 - Worktree-First Workflow Violation
 
 **Incident:** Made code changes directly to `C:\Projects\client-manager` instead of using a worktree under `C:\Projects\worker-agents\agent-XXX\`.
