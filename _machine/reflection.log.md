@@ -2258,3 +2258,36 @@ At the END of every task/response where I learned something new:
 - Enable rollback if needed
 - Share learnings across sessions
 
+
+## 2026-01-08 23:45 - Fixed 12 Generic Catch Clauses in Hazina MainWindow.xaml.cs
+
+**Task:** Replace all 12 generic catch clauses in `C:\Projects\worker-agents\agent-008\hazina\apps\Desktop\Hazina.App.Windows\MainWindow.xaml.cs` with specific exception filters using `when` clauses.
+
+**Approach:**
+1. Identified all catch clauses (9 requested + 3 additional)
+2. Analyzed context for each catch to determine appropriate exception types
+3. Applied specific fixes:
+   - File I/O operations (8 catches): IOException, JsonException, UnauthorizedAccessException
+   - Configuration loading (1 catch): InvalidOperationException, UnauthorizedAccessException
+   - API operations (1 catch): InvalidOperationException, HttpRequestException
+   - Tool creation (2 catches): InvalidOperationException, ArgumentException
+
+**Execution Method:**
+- Used PowerShell with line-by-line replacement by index
+- Regex patterns with exception type matching
+- Verified fixes with `grep` to show all 12 catches have `when` clauses
+
+**Results:**
+- ✅ All 12 catch clauses fixed with appropriate exception filters
+- ✅ Code compiles without MainWindow errors
+- ✅ Commit created and pushed to remote
+- ✅ Branch: security/fix-all-code-scanning-alerts
+- ✅ Commit: db956d8
+
+**Pattern Learned:**
+When fixing generic catch clauses in WPF applications:
+1. File operations → Check for IOException, JsonException, UnauthorizedAccessException
+2. Config/API operations → Check for InvalidOperationException, HttpRequestException
+3. Always check context to understand what exceptions method can throw
+4. Use specific exception types to allow unexpected exceptions to propagate for debugging
+
