@@ -5227,3 +5227,181 @@ To complete this fix:
 **Pattern applied**: DOCUMENTATION_AND_PR_WORKFLOW
 **Control plane updated**: ✅
 **Continuity enabled**: ✅
+
+---
+
+## 2026-01-08 - CorinaAI & MastermindGroupAI Repository Setup + Error Patterns
+
+**Achievement:** Created two new AI platform repositories with complete project structure and learned critical .NET/Hazina error patterns.
+
+**Context:**
+User requested creation of two new AI platforms:
+1. **CorinaAI** - AI-assisted digital support platform with caregiver communication
+2. **MastermindGroupAI** - Personal coaching platform with 9 AI mastermind advisors
+
+### Repositories Created
+
+**CorinaAI** (`C:\Projects\corinaai`):
+- AI assistant for personal support, medication/appointment management
+- Support for caregiver interaction and progress notes
+- Hazina framework integration with AES-256-GCM encryption
+
+**MastermindGroupAI** (`C:\Projects\mastermindgroupAI`):
+- 9 AI advisors: Strategist, Mentor, Healer, Pragmatist, Motivator, Challenger, Connector, Creative, Sage
+- Parallel orchestration - all 9 advisors respond simultaneously
+- Synthesis agent combines responses into unified insight
+
+### Files Created Per Repository
+
+Both repositories received:
+- `docs/HAZINA_INTEGRATION.md` - Hazina integration guide with correct paths
+- `docs/ARCHITECTURE.md` - System architecture and design patterns
+- `docs/SECURITY_AND_ENCRYPTION.md` - AES-256-GCM encryption specification
+- `docs/GITHUB_SETUP.md` - CI/CD configuration guide
+- `docs/FRONTEND_UX_SPEC.md` - Frontend UX specifications
+- `docs/LOVABLE_FRONTEND_PROMPT.txt` - Frontend generation prompt
+- `TASKS_TODO.md` - Implementation tasks (95 items for MastermindGroupAI)
+- `SETUP_COMMANDS.md` - Setup instructions
+- `README.md` - Project overview
+- `.gitignore` - Standard .NET gitignore
+- `<Project>.local.sln` - Local solution with Hazina references
+- `src/<Project>.Api/<Project>.Api.csproj` - API project
+- `src/<Project>.Core/<Project>.Core.csproj` - Core/domain project
+- `src/<Project>.Infrastructure/<Project>.Infrastructure.csproj` - Infrastructure project
+- `tests/<Project>.Tests/<Project>.Tests.csproj` - Test project
+- `src/<Project>.Api/appsettings.template.json` - Configuration template
+- `src/<Project>.Api/Program.cs` - Application entry point
+- `src/<Project>.Api/Controllers/HealthController.cs` - Health check endpoint
+- `.github/workflows/build.yml` - GitHub Actions build workflow
+
+### Critical Errors Encountered & Fixed
+
+#### Error 1: NU1104 - Unable to find Hazina projects
+
+**Symptoms:**
+```
+Error NU1104: Unable to find project '..\..\..\hazina\src\Tools\Store\Hazina.Store.Sqlite\...'
+```
+
+**Root Cause:** Assumed Hazina project paths that don't exist:
+- ❌ `Tools\Store\*` - Does not exist
+- ❌ `Tools\Security\*` - Does not exist
+- ❌ `Tools\Foundation\Hazina.LLMs.*` - Does not exist
+
+**Correct Hazina Project Structure:**
+```
+hazina/src/
+├── Core/
+│   ├── AI/
+│   │   ├── Hazina.AI.Agents/
+│   │   └── Hazina.AI.Orchestration/
+│   ├── LLMs.Providers/
+│   │   ├── Hazina.LLMs.Anthropic/
+│   │   ├── Hazina.LLMs.OpenAI/
+│   │   └── Hazina.LLMs.Ollama/
+│   ├── Security/
+│   │   ├── Hazina.Security.Core/
+│   │   └── Hazina.Security.AspNetCore/
+│   └── Storage/
+│       └── Hazina.Store.Sqlite/
+├── Tools/
+│   ├── Common/
+│   │   ├── Hazina.Tools.Common.Infrastructure.AspNetCore/
+│   │   └── Hazina.Tools.Common.Models/
+│   ├── Foundation/
+│   │   ├── Hazina.Tools.AI.Agents/
+│   │   ├── Hazina.Tools.Core/
+│   │   ├── Hazina.Tools.Models/
+│   │   └── Hazina.Tools.Data/
+│   └── Services/
+│       ├── Hazina.Tools.Services.Store/
+│       └── Hazina.Tools.Services.Chat/
+```
+
+**Fix:** Updated all .csproj files with correct relative paths.
+
+#### Error 2: NETSDK1022 - Duplicate Content Items
+
+**Symptoms:**
+```
+Error NETSDK1022: Duplicate 'Content' items were included.
+The .NET SDK includes 'Content' items from your project directory by default.
+```
+
+**Root Cause:** .NET SDK auto-includes content files. Using `<Content Include="appsettings.json">` creates duplicates.
+
+**Fix:** Change `Include` to `Update`:
+```xml
+<!-- WRONG -->
+<Content Include="appsettings.json">
+
+<!-- CORRECT -->
+<Content Update="appsettings.json">
+```
+
+This modifies the auto-included item's properties instead of adding a duplicate.
+
+### Patterns Added to claude_info.txt
+
+**Pattern 31: NETSDK1022 Duplicate Content Items**
+- Use `Update` instead of `Include` for SDK auto-included content
+
+**Pattern 32: Hazina Project Structure Reference**
+- Complete path reference for all Hazina projects
+- Core vs Tools vs Services organization
+
+### Control Plane Updates
+
+**Files Updated:**
+1. `C:\scripts\_machine\PROJECTS_INDEX.md` - Added CorinaAI (#2) and MastermindGroupAI (#3) as primary projects
+2. `C:\scripts\claude_info.txt` - Added Patterns 31-32, added projects to Additional Projects section
+3. `C:\scripts\_machine\reflection.log.md` - This entry
+4. `C:\scripts\_machine\stores.index.md` - Updated with existing stores
+
+### Metrics
+
+- **Repositories Created:** 2
+- **Files Created:** ~40 total (20 per repo)
+- **Lines of Documentation:** ~3,000
+- **Errors Fixed:** 2 distinct patterns
+- **Patterns Documented:** 2 new patterns
+
+### Key Learnings
+
+1. **Always verify Hazina paths before creating .csproj files**
+   - Use Glob to discover actual structure
+   - Document correct paths in claude_info.txt
+
+2. **NETSDK1022 is common with .NET 6+ SDK-style projects**
+   - SDK auto-includes many file types
+   - Use `Update` to modify properties, not `Include`
+
+3. **Multi-repo setup benefits from templates**
+   - Both repos share similar structure
+   - Could create a template for future projects
+
+4. **9-agent parallel orchestration is architecturally interesting**
+   - Each advisor has unique personality/perspective
+   - Synthesis agent combines insights
+   - SignalR enables real-time streaming
+
+### Future Improvements
+
+1. **Create Hazina project template**
+   - Standard .csproj with correct references
+   - Reduces errors on new project setup
+
+2. **Add NETSDK1022 check to cs-autofix tool**
+   - Detect Include vs Update issues
+   - Auto-fix where possible
+
+3. **Create stores for new projects**
+   - `C:\stores\corinaai` - CorinaAI data store
+   - `C:\stores\mastermindgroup` - MastermindGroupAI data store
+
+---
+
+**Session logged**: 2026-01-08
+**Projects created**: CorinaAI, MastermindGroupAI
+**Errors documented**: NU1104, NETSDK1022
+**Control plane updated**: ✅

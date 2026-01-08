@@ -16,8 +16,35 @@ Format:
   notes: <optional>
 
 ## Stores
-- store: <fill>
-  path: C:\stores\<fill>
-  used_by: [<fill>]
-  contains: [data, config]
-  notes: <fill>
+
+- store: brand2boost
+  path: C:\stores\brand2boost
+  used_by: [client-manager]
+  contains: [data, config, identity.db]
+  notes: Main store for Brand2Boost/Client Manager SaaS application
+
+- store: artrevisionist.b
+  path: C:\stores\artrevisionist.b
+  used_by: [client-manager]
+  contains: [prompts, chats, uploads, data]
+  notes: Project data store with conversation history and uploaded documents
+
+- store: branddesigner
+  path: C:\stores\branddesigner
+  used_by: [client-manager]
+  contains: [role.prompts, config]
+  notes: Brand designer role prompts and configuration
+
+## Planned Stores (Not Yet Created)
+
+- store: corinaai
+  path: C:\stores\corinaai
+  used_by: [corinaai]
+  contains: [data, config, identity.db]
+  notes: PLANNED - CorinaAI digital support platform data store
+
+- store: mastermindgroup
+  path: C:\stores\mastermindgroup
+  used_by: [mastermindgroupai]
+  contains: [data, config, identity.db]
+  notes: PLANNED - MastermindGroupAI coaching platform data store
