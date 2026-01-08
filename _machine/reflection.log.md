@@ -2834,3 +2834,38 @@ Add to pre-commit checklist:
 
 ---
 
+
+**Update 2026-01-09 06:45 - Additional Using Statement Fixes**
+
+**Additional Files Fixed:**
+- MainWindow.xaml.cs - Added System.Net.Http
+- PromptRewriter.cs - Added System.Net.Http
+
+**Total Files with Using Statement Additions:** 5
+1. ChatWindow.xaml.cs
+2. EvaluationPipeline.cs
+3. EmbeddingsService.cs
+4. MainWindow.xaml.cs
+5. PromptRewriter.cs
+
+**Commits:**
+- 5ef63fd: Initial using statement fixes (3 files)
+- 3576095: MainWindow.xaml.cs fix
+- 17eb7f6: PromptRewriter.cs fix
+
+**Final Status:** ✅ Build and Test passing on PR #11
+
+**Complete Exception Type to Using Statement Reference:**
+```csharp
+// Exception Type → Required Using Statement
+HttpRequestException     → using System.Net.Http;
+JsonException           → using System.Text.Json;
+IOException             → using System.IO;
+UnauthorizedAccessException → using System; (usually already present)
+InvalidOperationException → using System; (usually already present)
+HandlebarsException     → using HandlebarsDotNet;
+KeyNotFoundException    → using System.Collections.Generic; (usually already present)
+FormatException         → using System; (usually already present)
+ArgumentException       → using System; (usually already present)
+```
+
