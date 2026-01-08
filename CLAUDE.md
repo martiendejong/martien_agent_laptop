@@ -112,13 +112,15 @@ When multiple agents run in parallel, they MUST NOT share the same worktree. Eac
 
 2. **ATOMIC ALLOCATION (MANDATORY):**
    ```powershell
-   # 0. CRITICAL: Ensure C:\Projects\<repo> is on develop (NEW RULE)
+   # 0. CRITICAL: Ensure C:\Projects\<repo> is on develop AND up-to-date
    cd C:\Projects\<repo>
+   git fetch origin --prune  # ← ALWAYS fetch first to get latest refs!
    $branch = git branch --show-current
    if ($branch -ne "develop") {
-       git checkout develop && git pull origin develop
+       git checkout develop
    }
-   # C:\Projects\<repo> MUST ALWAYS be on develop!
+   git pull origin develop   # ← ALWAYS pull to get latest code!
+   # C:\Projects\<repo> MUST ALWAYS be on develop with latest changes!
    # It's the BASE for all worktrees. Never checkout feature branches here.
 
    # a. Read pool and find FREE seat
@@ -693,6 +695,86 @@ gh pr edit <number> --base develop
 # List all open PRs with their base branches:
 gh pr list --state open --json number,headRefName,baseRefName \
   --jq '.[] | "\(.number): \(.headRefName) -> \(.baseRefName)"'
+```
+
+### Branch Cleanup After Merge (MANDATORY)
+
+**RULE: Only `develop` and `main` branches are persistent. All others are temporary.**
+
+**When merging PRs - ALWAYS delete the branch:**
+```bash
+# Option 1: Delete during merge (PREFERRED)
+gh pr merge <number> --squash --delete-branch
+
+# Option 2: Delete manually after merge
+git push origin --delete <branch-name>
+
+# Option 3: Clean up stale branches periodically
+git fetch --prune  # Remove deleted remote refs locally
+```
+
+**Finding stale branches (merged but not deleted):**
+```bash
+# List remote branches not merged with develop
+git branch -r --no-merged origin/develop | grep -v HEAD
+
+# Check if branch has merged PR
+gh pr list --state all --head <branch-name> --json number,state
+# If state=MERGED → delete the branch
+```
+
+**Cleanup command for stale branches:**
+```bash
+# After confirming PR is merged:
+git push origin --delete <branch-name>
+```
+
+### Stable Release Tagging (MANDATORY)
+
+**RULE: After stabilizing main (critical fixes merged, tests pass), tag BOTH repos with same identifier.**
+
+**Tag format:** `v{YYYY}.{MM}.{DD}-stable`
+
+**Tagging workflow:**
+```bash
+# Tag Hazina
+cd /c/Projects/hazina && git checkout main && git pull origin main
+git tag -a "vYYYY.MM.DD-stable" -m "Stable release checkpoint - YYYY-MM-DD
+
+Summary of changes:
+- PR #X: Description
+- PR #Y: Description
+
+Signed-off-by: Claude <noreply@anthropic.com>"
+git push origin vYYYY.MM.DD-stable
+
+# Tag Client-Manager (SAME tag name!)
+cd /c/Projects/client-manager && git checkout main && git pull origin main
+git tag -a "vYYYY.MM.DD-stable" -m "Stable release checkpoint - YYYY-MM-DD
+
+Summary of changes:
+- PR #X: Description
+- PR #Y: Description
+
+Signed-off-by: Claude <noreply@anthropic.com>"
+git push origin vYYYY.MM.DD-stable
+
+# Return to develop
+cd /c/Projects/hazina && git checkout develop
+cd /c/Projects/client-manager && git checkout develop
+```
+
+**When to tag:**
+- After merging critical bug fixes to main
+- After completing a milestone/sprint
+- Before major refactoring
+- When user requests a checkpoint
+
+**Current stable tag:** `v2026.01.08-stable` (both repos)
+
+**Listing tags:**
+```bash
+git tag -l "v*-stable" --sort=-creatordate | head -5
 ```
 
 ## 🔧 NAMESPACE MIGRATION PATTERNS

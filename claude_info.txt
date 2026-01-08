@@ -87,6 +87,25 @@ BEFORE allocating worktree:
 IF YOU VIOLATE THIS = CRITICAL FAILURE
 ```
 
+### HARD STOP RULE 3C: ALWAYS FETCH & PULL BEFORE BRANCHING
+```
+⚠️ NEW RULE (2026-01-08):
+BEFORE creating any new branch or worktree:
+1. git fetch origin --prune
+2. git pull origin develop (or current branch)
+3. THEN create branch/worktree from updated base
+
+This ensures you ALWAYS work from the latest version!
+
+Commands:
+cd /c/Projects/<repo>
+git fetch origin --prune
+git checkout develop && git pull origin develop
+git worktree add /path/to/worktree -b new-branch
+
+IF YOU SKIP FETCH/PULL = WORKING ON STALE CODE = MERGE CONFLICTS
+```
+
 ### HARD STOP RULE 4: SCRIPTS FOLDER = LAW
 ```
 C:\scripts\claude.md = your operational manual
@@ -94,6 +113,40 @@ C:\scripts\_machine\worktrees.protocol.md = the protocol
 C:\scripts\_machine\reflection.log.md = lessons learned
 
 IF YOU IGNORE THESE = CRITICAL FAILURE
+```
+
+### HARD STOP RULE 5: DELETE BRANCHES AFTER MERGING
+```
+⚠️ NEW RULE (2026-01-08):
+AFTER merging any PR:
+1. Use --delete-branch flag: gh pr merge <num> --squash --delete-branch
+2. Or manually delete: git push origin --delete <branch-name>
+3. Clean local refs: git fetch --prune
+
+PERSISTENT BRANCHES ONLY: develop, main
+ALL OTHER BRANCHES = TEMPORARY (delete after merge)
+
+IF YOU LEAVE STALE BRANCHES = VIOLATION
+```
+
+### HARD STOP RULE 6: TAG STABLE RELEASES REGULARLY
+```
+⚠️ NEW RULE (2026-01-08):
+AFTER stabilizing main branch (critical fixes merged, tests pass):
+1. Tag BOTH repos with SAME identifier
+2. Format: v{YYYY}.{MM}.{DD}-stable
+3. Include summary in tag message
+
+Commands:
+cd /c/Projects/hazina && git checkout main && git pull origin main
+git tag -a "vYYYY.MM.DD-stable" -m "Stable release checkpoint - description"
+git push origin vYYYY.MM.DD-stable
+
+cd /c/Projects/client-manager && git checkout main && git pull origin main
+git tag -a "vYYYY.MM.DD-stable" -m "Stable release checkpoint - description"
+git push origin vYYYY.MM.DD-stable
+
+CURRENT STABLE TAG: v2026.01.08-stable (both repos)
 ```
 
 **Full details:** C:\scripts\_machine\reflection.log.md (2026-01-08 02:00 entry)

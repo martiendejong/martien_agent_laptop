@@ -1,5 +1,55 @@
 # reflection.log.md
 
+## 2026-01-08 23:30 - Branch Hygiene & Stable Tagging Rules Added
+
+**Session Summary:** Added mandatory rules for branch cleanup after PR merge and stable release tagging.
+
+### Actions Taken
+
+1. **Created stable tags on both repos:**
+   - `v2026.01.08-stable` on hazina main
+   - `v2026.01.08-stable` on client-manager main
+
+2. **Deleted 4 stale branches (PRs merged but branches not deleted):**
+   - client-manager: `docs/team-updates-guide` (PR #43 merged)
+   - client-manager: `featuress` (PR #50 merged)
+   - hazina: `agent-007-documentation-updates` (PR #12 merged)
+   - hazina: `security/fix-all-code-scanning-alerts` (PR #11 merged)
+
+3. **Added new HARD STOP rules to claude_info.txt:**
+   - Rule 3C: ALWAYS FETCH & PULL BEFORE BRANCHING
+   - Rule 5: DELETE BRANCHES AFTER MERGING
+   - Rule 6: TAG STABLE RELEASES REGULARLY
+
+4. **Updated claude.md with detailed workflows:**
+   - Branch Cleanup After Merge section
+   - Stable Release Tagging section
+   - Updated ATOMIC ALLOCATION to include fetch/pull
+
+### Key Learnings
+
+**Pattern: Branch Hygiene**
+- Only `develop` and `main` are persistent branches
+- All feature/fix branches are temporary
+- Use `--delete-branch` flag when merging: `gh pr merge <num> --squash --delete-branch`
+- Run `git fetch --prune` regularly to clean local refs
+
+**Pattern: Stable Release Tagging**
+- Tag format: `v{YYYY}.{MM}.{DD}-stable`
+- BOTH repos get SAME tag identifier for traceability
+- Tag after critical fixes merged and tests pass
+
+**Pattern: Fresh Base Before Branching**
+- ALWAYS `git fetch origin --prune` before any branch operation
+- ALWAYS `git pull origin develop` before creating worktree
+- Prevents merge conflicts from stale code
+
+### Files Updated
+- C:\scripts\claude_info.txt - Added rules 3C, 5, 6
+- C:\scripts\claude.md - Added branch cleanup and tagging workflows
+
+---
+
 ## 2026-01-08 22:10 - GitHub Actions SARIF Upload Permissions Fix
 
 **Session Summary:** Fixed PR #14 CI failure in Hazina caused by missing permissions for CodeQL SARIF upload.
