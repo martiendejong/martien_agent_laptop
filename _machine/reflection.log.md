@@ -1503,6 +1503,172 @@ Condition="!Exists('a') AND Exists('b')"        # Logical operators
 
 ---
 
+## 2026-01-09 04:00 - Semantic Cache Merge Conflict Resolution (CS0111, CS0246)
+
+**Achievement:** Successfully resolved merge conflict artifacts in client-manager develop branch after multiple PR merges (PR #35, #40, #41).
+
+### Context:
+User reported compilation errors after merging develop back and forth with main:
+- CS0111: Duplicate method definition in ILLMProviderFactory
+- CS0246: ISemanticCacheService namespace not found in CacheAdminController
+
+### Root Cause Analysis:
+
+**Error 1: CS0111 Duplicate Method**
+```
+error CS0111: Type 'ILLMProviderFactory' already defines a member called 'CreateProvider'
+with the same parameter types
+```
+
+**Root Cause:**
+- PR #35 (SemanticCache refactor): Had `ILLMClient CreateProvider(string providerName)` at line 28
+- PR #40 (ModelRouting): Added `ILLMProvider CreateProvider(string providerName)` at line 41
+- Merge conflict resulted in BOTH methods existing with same signature
+- C# does NOT support method overloading by return type only
+
+**Why This Happened:**
+- Both PRs independently added methods to same interface
+- Different feature branches evolved in parallel
+- Merge conflict was "resolved" but left invalid C# code
+
+**Error 2: CS0246 Namespace Not Found**
+```
+error CS0246: The type or namespace name 'ISemanticCacheService' could not be found
+(are you missing a using directive or an assembly reference?)
+```
+
+**Root Cause:**
+- PR #35 moved SemanticCache classes to subfolder: `Services/` → `Services/SemanticCache/`
+- CacheAdminController had `using ClientManagerAPI.Services;`
+- After refactor, needed `using ClientManagerAPI.Services.SemanticCache;`
+- Merge conflict resolution picked wrong using statement
+
+### Solution Applied:
+
+**Fix 1: Renamed Duplicate Method**
+```csharp
+// BEFORE (broken):
+public interface ILLMProviderFactory
+{
+    ILLMClient CreateProvider(string providerName);       // Line 28
+    ILLMProvider CreateProvider(string providerName);     // Line 41 - DUPLICATE!
+}
+
+// AFTER (fixed):
+public interface ILLMProviderFactory
+{
+    ILLMClient CreateProvider(string providerName);       // Line 28 - Original
+    ILLMProvider CreateProviderForModelRouting(string providerName); // Line 41 - RENAMED
+}
+```
+
+**Rationale for naming:**
+- `CreateProviderForModelRouting` clearly indicates purpose
+- Used by ProgressiveRefinementService for model routing
+- Distinguishes from CreateProvider which returns ILLMClient
+
+**Fix 2: Updated Namespace**
+```csharp
+// BEFORE (broken):
+using ClientManagerAPI.Services;
+
+// AFTER (fixed):
+using ClientManagerAPI.Services.SemanticCache;
+```
+
+**Fix 3: Updated Call Sites**
+Updated 3 call sites in ProgressiveRefinementService.cs:
+```csharp
+// BEFORE:
+var stage1Provider = _llmFactory.CreateProvider(_config.Models.Stage1.Provider);
+
+// AFTER:
+var stage1Provider = _llmFactory.CreateProviderForModelRouting(_config.Models.Stage1.Provider);
+```
+
+### PR Created:
+- **PR #42:** https://github.com/martiendejong/client-manager/pull/42
+- **Title:** fix: Resolve merge conflict artifacts (CS0111 + CS0246)
+- **Files Changed:** 4 (LLMProviderFactory.cs, ProgressiveRefinementService.cs, CacheAdminController.cs)
+- **Lines Changed:** ~20
+
+### Key Learnings:
+
+1. **Method Overloading Limitation in C#:**
+   - Cannot overload methods by return type only
+   - Must differ in parameter types/count
+   - Common trap when merging parallel feature branches
+
+2. **Merge Conflict Resolution Patterns:**
+   - **Duplicate methods:** Check if both are needed; if yes, rename one
+   - **Namespace changes:** Update ALL consumers, not just implementation
+   - **Call site updates:** Search for all usages when renaming methods
+
+3. **Multiple PR Merge Strategy:**
+   - When PRs touch same files, expect conflicts
+   - Don't blindly accept HEAD or incoming
+   - Verify code compiles after conflict resolution
+   - Git can merge successfully but produce invalid C# code
+
+4. **Incremental Build Verification:**
+   - After resolving conflicts: `dotnet restore`
+   - Then: `dotnet build` to catch logical errors
+   - Fix build errors before pushing
+   - Verify all call sites updated
+
+5. **Semantic Naming Prevents Confusion:**
+   - `CreateProvider` vs `CreateProviderForModelRouting`
+   - Clear names reduce future conflicts
+   - Document purpose in XML comments
+
+### Prevention Checklist:
+
+**Before Merging Multiple PRs:**
+- [ ] Check if PRs touch same files
+- [ ] Review interface/class signatures for potential conflicts
+- [ ] Plan merge order (base features before dependent features)
+
+**After Resolving Merge Conflicts:**
+- [ ] Run `dotnet restore && dotnet build`
+- [ ] Check for CS0111 (duplicate methods)
+- [ ] Check for CS0246 (missing namespaces)
+- [ ] Search for all call sites of renamed methods
+- [ ] Verify no TODO/FIXME markers left
+
+**When Renaming Methods:**
+- [ ] Use semantic, descriptive names
+- [ ] Update XML documentation
+- [ ] Search entire solution for usages
+- [ ] Update tests if applicable
+
+### Metrics:
+- **Errors Fixed:** 2 (CS0111, CS0246)
+- **Files Modified:** 4
+- **Call Sites Updated:** 3
+- **Time to Fix:** ~20 minutes
+- **Build Status:** ✅ Clean build after fix
+
+### Future Pattern:
+
+**When CS0111 "Duplicate Method" occurs:**
+1. Identify both method definitions and their purposes
+2. Check if both are legitimately needed
+3. If yes: Rename one with semantic name indicating purpose
+4. Update all call sites (use Find All References)
+5. Build and verify
+
+**When CS0246 "Namespace Not Found" occurs after refactor:**
+1. Identify where class moved to
+2. Update using statements in all consumers
+3. Build and verify
+4. Check if other files need same fix (batch update)
+
+### Conclusion:
+
+Merge conflicts from parallel feature development require careful analysis beyond git's automatic conflict resolution. The compiler (dotnet build) is your final verification that merge conflicts were resolved correctly. This session reinforced the importance of semantic method naming and comprehensive call site updates when resolving interface-level conflicts.
+
+---
+
 ## 2026-01-09 01:30 - Massive Cross-Repo API Compatibility Fix Session (70+ Errors)
 
 **Achievement:** Successfully resolved 70+ compile errors in client-manager develop branch caused by Hazina API evolution.

@@ -148,6 +148,22 @@ Error: `Process completed with exit code 127`
 - Use `docker compose` (space) NOT `docker-compose` (hyphen)
 - The standalone Python-based docker-compose is not pre-installed
 
+### Pattern 10: CS0111 Duplicate Method (Merge Conflict Artifact)
+Error: `Type 'IFoo' already defines a member called 'Method' with the same parameter types`
+- Git successfully merges but creates invalid C# (duplicate methods)
+- C# does NOT support method overloading by return type only
+- Solution: Rename one method with semantic name indicating purpose
+- Update ALL call sites (use Find All References in IDE)
+- Example: `CreateProvider` vs `CreateProviderForModelRouting`
+
+### Pattern 11: CS0246 Namespace Not Found (After Refactor)
+Error: `The type or namespace name 'IFoo' could not be found`
+- Class/interface moved to subfolder during refactor
+- Using statements point to old namespace
+- Solution: Update using statements in ALL consumers
+- Example: `Services` → `Services.SemanticCache`
+- Build after updating to catch additional files needing fix
+
 **Full details:** C:\scripts\CLAUDE.md § BATCH PR BUILD FIX WORKFLOW
 
 ## 🚨 END-OF-TASK SELF-UPDATE (MANDATORY) 🚨
