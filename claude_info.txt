@@ -307,3 +307,52 @@ For large/complex features that need planning:
   - Plan complex features thoroughly
   - Prioritize based on business value
   - Documentation exists even if not implemented yet
+
+### Pattern 17: Session Compaction Recovery
+After conversation compaction, ALWAYS verify actual state:
+- `git branch --show-current` - Check current branch
+- `git status` - Check working state
+- `gh pr list --head <branch>` - Verify PR existence
+- `ls -R <dirs>` - Verify what files exist
+- Compare against summary - Identify gaps
+- **Lesson:** Summaries compress info - trust but verify file system
+
+### Pattern 18: Complete Feature Implementation (3 Parts)
+Every substantial feature MUST have:
+1. **Backend**: Models, Services, Controllers, Migrations, DI registration
+2. **Frontend**: TypeScript service + 2 React components (Full + Widget)
+3. **Documentation**: Comprehensive .md in docs/features/
+- Full component: Complete feature view (e.g., ROIDashboard.tsx)
+- Widget component: Compact at-a-glance (e.g., ROIWidget.tsx)
+- NEVER mark complete until all three parts exist
+
+### Pattern 19: Multi-Feature Implementation Discipline
+When implementing multiple features:
+- Use TodoWrite to track each feature's backend, frontend, docs
+- Mark completed IMMEDIATELY after finishing each part
+- Feature-by-feature: Backend → Frontend → Docs → PR (not batch)
+- Leave clear todo state if session ends mid-feature
+- **Benefits:** Progress visibility, no lost tasks, context preservation
+
+### Pattern 20: Industry Research Integration
+For features with benchmarks/best practices:
+- Include in service layer as static dictionaries with comments
+- Document research sources in .md files with tables
+- Example: ROI engagement values, Smart Scheduling best times
+- **Benefits:** Credibility, transparency, customizability
+
+### Pattern 21: Multi-Tenant Architecture
+For SaaS with multiple clients:
+- Hierarchy: Client (1) → Projects (*) → Content (*)
+- UserClient junction table for access control
+- ALWAYS filter queries by ClientId or ProjectId
+- Verify user access before returning data
+- Support both project-level and client-level aggregation
+
+### Pattern 22: Audit Logging for Enterprise
+For compliance/audit trails:
+- Add IPAddress, UserAgent, Reason fields to action models
+- Capture from HttpContext in controllers
+- Audit: Approvals, permissions, sensitive access, config changes
+- Don't audit: Read-only views, normal CRUD, high-frequency actions
+- **Benefits:** SOC2/GDPR compliance, forensics, legal protection
