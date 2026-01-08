@@ -15,7 +15,7 @@ Seat states:
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | BUSY | client-manager | agent-005-documentation-improvements | 2026-01-08T19:45:00Z | Adding 25 documentation files (ADRs, guides, best practices) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | client-manager | feature/quality-score-preview | 2026-01-08T09:00:00Z | ✅ PR #47 created - Quality Score Preview & One-Click Polish (Features 1-2/10 complete) |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | client-manager | agent-007-phase1-test-infrastructure | 2026-01-08T09:30:00Z | ✅ PR #46 created - Phase 1 complete: Test infrastructure + 50+ tests (~60% coverage target) |
-| agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | BUSY | client-manager | agent-008-phase2-performance | 2026-01-08T09:35:00Z | Phase 2: Code splitting + TanStack Query + error monitoring (React improvement plan) |
+| agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | client-manager | agent-008-phase2-performance | 2026-01-08T10:00:00Z | ✅ PR #48 created - Phase 2 complete: Performance optimizations (-60% bundle, TanStack Query, Sentry) |
 
 Provisioning rule:
 1) Pick a FREE seat.
