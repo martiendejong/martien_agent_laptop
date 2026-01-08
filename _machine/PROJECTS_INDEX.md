@@ -72,7 +72,102 @@ C:\
 
 ---
 
-### 2. Hazina AI Framework
+### 2. CorinaAI
+**Path:** `C:\Projects\corinaAI`
+**GitHub:** https://github.com/<org>/corina-ai
+**Type:** AI-Assisted Digital Support Platform
+**Status:** 🆕 New - Initial Structure Created (2026-01-08)
+
+**Description:**
+RAT-style case management + AI chat application for mental health guidance. Combines conversational AI with structured dossier management, enabling both AI and human helpers to support clients.
+
+**Technology Stack:**
+- **Backend:** .NET 9.0 Web API (C#)
+- **Frontend:** Lovable (React/TypeScript)
+- **Framework:** Hazina (local references)
+- **Database:** SQLite (dev) / PostgreSQL (prod)
+- **Real-time:** SignalR
+- **AI:** Anthropic Claude / OpenAI / Ollama
+- **Encryption:** AES-256-GCM (field-level)
+
+**Key Features:**
+- AI-assisted chat with human helper takeover
+- Encrypted client dossiers
+- Risk detection and flagging
+- Role-based access (Coordinator, Helper, Client)
+- Audit logging for sensitive operations
+
+**Solution Files:**
+- `CorinaAI.local.sln` - Local development (Hazina project refs)
+- `CorinaAI.sln` - CI/CD (NuGet packages)
+
+**Store:** `C:\stores\corinaai`
+
+**Key Documentation:**
+- `docs/ARCHITECTURE.md` - System design and domain model
+- `docs/SECURITY_AND_ENCRYPTION.md` - Encryption strategy
+- `docs/HAZINA_INTEGRATION.md` - Framework integration
+- `TASKS_TODO.md` - Implementation backlog
+
+**Dependencies:**
+- Hazina framework (local: `C:\Projects\hazina`)
+
+---
+
+### 3. MastermindGroupAI
+**Path:** `C:\Projects\mastermindgroupAI`
+**GitHub:** https://github.com/<org>/mastermind-group-ai
+**Type:** Personal Coaching Platform with AI Mastermind Group
+**Status:** 🆕 New - Initial Structure Created (2026-01-08)
+
+**Description:**
+Personal coaching platform that creates a virtual "mastermind group" of 9 AI advisors. After an onboarding interview about life goals/challenges, generates 9 personalized advisor personas. All 9 advisors respond simultaneously to user questions, each from their unique perspective.
+
+**Technology Stack:**
+- **Backend:** .NET 9.0 Web API (C#)
+- **Frontend:** Lovable (React/TypeScript)
+- **Framework:** Hazina (local references)
+- **Database:** SQLite (dev) / PostgreSQL (prod)
+- **Real-time:** SignalR
+- **AI:** Anthropic Claude / OpenAI / Ollama
+- **Encryption:** AES-256-GCM (field-level)
+
+**Key Features:**
+- Interview-based user profiling
+- 9 AI Mastermind Advisor personas:
+  1. **The Strategist** - Life direction, long-term planning
+  2. **The Mentor** - Career & professional growth
+  3. **The Healer** - Mental wellness, self-care
+  4. **The Pragmatist** - Practical matters, finance
+  5. **The Motivator** - Energy, inspiration
+  6. **The Challenger** - Growth mindset, comfort zones
+  7. **The Connector** - Relationships, networking
+  8. **The Creative** - Innovation, new perspectives
+  9. **The Sage** - Wisdom, philosophical insights
+- Parallel agent responses (all 9 respond simultaneously)
+- Synthesis agent combining responses
+- Encrypted user profiles
+
+**Solution Files:**
+- `MastermindGroup.local.sln` - Local development (Hazina project refs)
+
+**Store:** `C:\stores\mastermindgroup`
+
+**Key Documentation:**
+- `docs/ARCHITECTURE.md` - 9-agent orchestration design
+- `docs/NAMING_DECISIONS.md` - 9 mastermind roles defined
+- `docs/SECURITY_AND_ENCRYPTION.md` - Encryption strategy
+- `docs/HAZINA_INTEGRATION.md` - Framework integration
+- `docs/FRONTEND_UX_SPEC.md` - Chat UI with advisor panel
+- `docs/LOVABLE_FRONTEND_PROMPT.txt` - Frontend generation prompt
+- `TASKS_TODO.md` - 95 implementation tasks
+
+**Dependencies:**
+- Hazina framework (local: `C:\Projects\hazina`)
+
+---
+
+### 4. Hazina AI Framework
 **Path:** `C:\Projects\hazina`
 **Type:** .NET AI Infrastructure Framework
 **Status:** ✅ Active Development (Rebrand from DevGPT)
@@ -120,7 +215,7 @@ Production-ready AI infrastructure for .NET that scales from prototype to produc
 
 ---
 
-### 3. Worker Agents (Worktree Pool)
+### 5. Worker Agents (Worktree Pool)
 **Path:** `C:\Projects\worker-agents\`
 **Type:** Git worktree allocation pool
 **Status:** ✅ Active (Concurrency management)
@@ -380,8 +475,8 @@ See [SCRIPTS_INDEX.md](./SCRIPTS_INDEX.md) for full documentation.
 
 ## 📈 STATISTICS
 
-**Total Projects:** 110+
-**Active Primary Projects:** 3 (Client Manager, Hazina, Worker Agents)
+**Total Projects:** 112+
+**Active Primary Projects:** 5 (Client Manager, CorinaAI, MastermindGroupAI, Hazina, Worker Agents)
 **Data Stores:** 7
 **Git Worktrees:** 4 (agent-001 to agent-004)
 **Solution Files:** 20+ (.sln)

@@ -417,17 +417,33 @@ dotnet build "C:\Projects\<solution-or-project>" 2>&1 | tail -10
 ### Pattern 28: Cross-Repo Project References (NU1105)
 **Error:** `Unable to find project information for 'C:\Projects\other-repo\...'`
 **Context:** Project A references projects in Project B via relative paths.
-**Cause:** VS doesn't have both repos loaded in same solution OR restore not run.
+**Causes (check in order):**
+1. **🚨 BRANCH MISMATCH:** Referenced repo not on `develop` branch (MOST COMMON!)
+2. VS doesn't have both repos loaded in same solution
+3. Restore not run on referenced repo first
+**Diagnostic:**
+```powershell
+# FIRST: Check branch of referenced repo
+git -C C:\Projects\hazina branch --show-current
+# If NOT "develop" → that's likely the problem!
+```
 **Solutions:**
-1. **Quick:** Run `dotnet restore` from CLI - often resolves
-2. **Verify paths:** `ls "C:\Projects\hazina\src\..."` to confirm projects exist
-3. **Clean:** Create combined solution including both repos
+1. **Branch fix (most likely):**
+   ```powershell
+   cd C:\Projects\<referenced-repo>
+   git stash push -m "Stashed for branch switch"
+   git checkout develop && git pull origin develop
+   dotnet restore <solution>.sln
+   ```
+2. **Restore chain:** Restore referenced repo FIRST, then dependent project
+3. **Verify paths:** `ls "C:\Projects\hazina\src\..."` to confirm projects exist
 4. **Production:** Publish shared projects as NuGet packages
 **Example (MastermindGroupAI → Hazina):**
 ```xml
 <ProjectReference Include="..\..\..\hazina\src\Core\Security\Hazina.Security.Core\..." />
 ```
 **These are Debug-only refs:** `Condition="'$(Configuration)' == 'Debug'"`
+**Key insight:** Projects can EXIST on disk but NuGet fails if branch has different dependencies
 
 ### Pattern 29: NU1608 Package Version Constraint Warnings
 **Warning:** `Detected package version outside of dependency constraint`
