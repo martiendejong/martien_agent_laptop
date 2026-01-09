@@ -8,3 +8,4 @@ Maps LLM instances (e.g., Claude session names) to worktree seats and active tas
 | claude-code-improvement-implementation | agent-003 | client-manager | improvement/CM-011-query-optimization | TASK-001 | 2026-01-08T09:30:00Z | 2026-01-08T09:30:00Z |
 | claude-code-revolutionary-scp | agent-004 | scp | agent-004-revolutionary-transformation | SCP-REV-001 | 2026-01-08T11:00:00Z | 2026-01-08T11:00:00Z |
 | claude-code-google-drive | agent-005 | hazina+client-manager | agent-005-google-drive-hazina | GDRIVE-002 | 2026-01-08T13:30:00Z | 2026-01-08T13:30:00Z |
+| codex-cli-pr63 | agent-011 | client-manager | agent-008-license-back-button | PR-63 | 2026-01-09T12:31:56Z | 2026-01-09T12:31:56Z |

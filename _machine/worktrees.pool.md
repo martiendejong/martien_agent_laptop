@@ -18,7 +18,8 @@ Seat states:
 | agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | BUSY | client-manager | agent-008-tier1-features | 2026-01-10T00:30:00Z | Comprehensive analysis: 20 missing features identified, Tier 1-4 system created, implementation plans documented |
 | agent-009 | agent009 | C:\Projects | C:\Projects\worker-agents\agent-009 | BUSY | client-manager | test/integration-test-environment | 2026-01-10T06:20:00Z | Adding database mocking to fix remaining test failures |
 | agent-010 | agent010 | C:\Projects | C:\Projects\worker-agents\agent-010 | BUSY | client-manager | feature/auth-integration-tests | 2026-01-09T12:10:00Z | Fixing build errors for PR #68 |
-| agent-011 | agent011 | C:\Projects | C:\Projects\worker-agents\agent-011 | FREE | client-manager | fix/token-adjustment-null-error | 2026-01-09T16:30:00Z | ✅ Fixed NULL PasswordHash error in AdminGetAllUsers - PR #72 |
+| agent-011 | agent011 | C:\Projects | C:\Projects\worker-agents\agent-011 | BUSY | client-manager | agent-008-license-back-button | 2026-01-09T12:31:56Z | Resolve PR #63 conflicts and build errors |
+| agent-012 | agent012 | C:\Projects | C:\Projects\worker-agents\agent-012 | FREE | Hazina | agent-008-content-hooks-generation | 2026-01-09T17:00:00Z | ✅ Hazina PR #24 merged - No conflicts, content hooks integrated |
 
 Provisioning rule:
 1) Pick a FREE seat.
