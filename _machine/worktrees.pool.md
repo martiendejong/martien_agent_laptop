@@ -13,9 +13,9 @@ Seat states:
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | client-manager | improvement/CM-054-quality-scoring | 2026-01-08T20:30:00Z | Resolved PR #31 merge conflicts - Quality Scoring Model (TASK-006) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | BUSY | scp | agent-004-revolutionary-transformation | 2026-01-08T11:00:00Z | Transforming SCP into multi-agent superintelligence system |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | BUSY | client-manager | agent-005-documentation-improvements | 2026-01-08T19:45:00Z | Adding 25 documentation files (ADRs, guides, best practices) |
-| agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | hazina | feature/tool-executor-completion | 2026-01-09T11:30:00Z | ✅ Completed 5 quick-win PRs: #15 (config), #16 (quickstart), #17 (CI/CD), #18 (XML docs), #19 (ToolExecutor) |
+| agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | BUSY | client-manager | bugfix/chat-issues | 2026-01-09T13:20:00Z | Documented 8 chat issues + worktree workflow (PR #60) |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | client-manager | feature/cross-post-optimizer | 2026-01-09T12:30:00Z | ✅ Fixed PR #52 build - removed directory-based feature chunks from vite.config.ts |
-| agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | client-manager | feature/content-templates | 2026-01-09T13:00:00Z | Available for next task |
+| agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | BUSY | client-manager | agent-008-security-hardening | 2026-01-09T14:45:00Z | Executing top-5 ROI security improvements |
 
 Provisioning rule:
 1) Pick a FREE seat.
