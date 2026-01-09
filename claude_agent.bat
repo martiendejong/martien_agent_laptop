@@ -30,6 +30,6 @@ echo.
 claude ^
   --dangerously-skip-permissions ^
   --append-system-prompt "%SYSTEMPROMPT%" ^
-  --model Sonnet
+  --model sonnet
 
 pause
