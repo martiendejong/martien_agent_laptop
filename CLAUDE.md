@@ -156,21 +156,35 @@ When multiple agents run in parallel, they MUST NOT share the same worktree. Eac
 
 5. **RELEASE (MANDATORY when done):**
    ```powershell
-   # a. Commit and push
-   git add -u && git commit -m "..." && git push
+   # a. Commit all work
+   git add -u && git commit -m "..."
 
-   # b. Create PR if needed
+   # b. CRITICAL: Merge develop before creating PR (Pattern 52)
+   git fetch origin
+   git merge origin/develop
+   # Resolve any conflicts, re-run tests, commit merge if needed
+
+   # c. Push to remote
+   git push -u origin <branch-name>
+
+   # d. Create PR
    gh pr create --title "..." --body "..."
 
-   # c. Mark seat FREE (unlock)
+   # e. Mark seat FREE (unlock)
    Update worktrees.pool.md: Status=BUSY → FREE
 
-   # d. Log release
+   # f. Log release
    Append to worktrees.activity.md
 
-   # e. Clear instance mapping
+   # g. Clear instance mapping
    Remove from instances.map.md
    ```
+
+   **⚠️ CRITICAL RULE (Pattern 52):** ALWAYS merge origin/develop into feature branch BEFORE creating PR. This ensures:
+   - Code is up-to-date with latest changes
+   - Conflicts resolved locally, not in GitHub
+   - Tests run against current codebase
+   - PR is clean and easy to review
 
 ### 🔒 Concurrency Rules
 
