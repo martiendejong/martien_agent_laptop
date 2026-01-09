@@ -14,8 +14,10 @@ Seat states:
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | BUSY | scp | agent-004-revolutionary-transformation | 2026-01-08T11:00:00Z | Transforming SCP into multi-agent superintelligence system |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | BUSY | client-manager | agent-005-documentation-improvements | 2026-01-08T19:45:00Z | Adding 25 documentation files (ADRs, guides, best practices) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | BUSY | client-manager | bugfix/chat-issues | 2026-01-09T13:20:00Z | Documented 8 chat issues + worktree workflow (PR #60) |
-| agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | BUSY | client-manager | agent-007-fix-pr-failures | 2026-01-09T23:00:00Z | Fixing TypeScript and CI failures in PRs #63 and #61 |
-| agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | BUSY | client-manager | agent-008-security-hardening | 2026-01-09T23:30:00Z | Fixing remaining CI errors in PR #61 (frontend TS, CodeQL, Detect Secrets) |
+| agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | BUSY | client-manager | agent-007-typescript-cleanup | 2026-01-10T03:00:00Z | Fixing 326 TypeScript errors (138 unused vars, 188 type errors) |
+| agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | BUSY | client-manager | agent-008-build-fixes | 2026-01-09T11:15:00Z | Fixing build errors for PR #61 |
+| agent-009 | agent009 | C:\Projects | C:\Projects\worker-agents\agent-009 | BUSY | client-manager | refactor/program-cs-for-testing | 2026-01-10T04:55:00Z | Refactoring Program.cs to enable integration tests |
+| agent-010 | agent010 | C:\Projects | C:\Projects\worker-agents\agent-010 | FREE | client-manager | feature/auth-integration-tests | 2026-01-10T04:50:00Z | ✅ Comprehensive auth tests complete - PR created |
 
 Provisioning rule:
 1) Pick a FREE seat.
