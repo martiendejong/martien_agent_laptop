@@ -15,7 +15,7 @@ Seat states:
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | BUSY | client-manager | agent-005-documentation-improvements | 2026-01-08T19:45:00Z | Adding 25 documentation files (ADRs, guides, best practices) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | BUSY | client-manager | bugfix/chat-issues | 2026-01-09T13:20:00Z | Documented 8 chat issues + worktree workflow (PR #60) |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | client-manager | feature/cross-post-optimizer | 2026-01-09T12:30:00Z | ✅ Fixed PR #52 build - removed directory-based feature chunks from vite.config.ts |
-| agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | BUSY | client-manager | agent-008-security-hardening | 2026-01-09T14:45:00Z | Executing top-5 ROI security improvements |
+| agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | client-manager | agent-008-security-hardening | 2026-01-09T15:30:00Z | ✅ Completed security hardening - PR #61 (5 steps, ROI: 24.25) |
 
 Provisioning rule:
 1) Pick a FREE seat.

@@ -814,6 +814,34 @@ await provider.GenerateAsync(model, prompt, ct: token);
 - Clear progress tracking
 - Efficient worktree usage
 
+
+### Pattern 50: Trivy Template File False Positives
+**Error:** Trivy security scanner flags template/config files as containing real secrets (CRITICAL severity)
+**Example:** `googleaccount.template.json` detected as real GCP service account key
+**Context:** Template files with realistic placeholders trigger secret detection patterns
+**Root Cause:** Security scanners use pattern matching, not semantic analysis
+**Fix:** Modify template placeholders to break pattern detection while remaining clear:
+```json
+// BEFORE (triggers Trivy):
+{
+  "type": "service_account",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY_HERE\n-----END PRIVATE KEY-----\n"
+}
+
+// AFTER (passes Trivy):
+{
+  "type": "service_account_PLACEHOLDER",
+  "private_key": "PASTE_YOUR_PRIVATE_KEY_HERE_FROM_DOWNLOADED_JSON"
+}
+```
+**Strategies:**
+1. Add `_PLACEHOLDER`, `_TEMPLATE`, or `_EXAMPLE` suffix to fields that match secret patterns
+2. Replace realistic formatting (e.g., `-----BEGIN PRIVATE KEY-----`) with obvious placeholders
+3. Document in instructions that suffixes must be removed when using real values
+4. Keep templates useful - don't obscure the expected format
+**Prevention:** When creating template files for gitignored secrets, check if placeholders match common secret patterns
+**Verification:** Run `trivy fs --severity CRITICAL .` locally before pushing
+
 ## 📁 Additional Projects
 
 ### CorinaAI
