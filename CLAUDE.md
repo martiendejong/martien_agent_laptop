@@ -167,8 +167,12 @@ When multiple agents run in parallel, they MUST NOT share the same worktree. Eac
    # c. Push to remote
    git push -u origin <branch-name>
 
-   # d. Create PR
-   gh pr create --title "..." --body "..."
+   # d. Create PR (ALWAYS specify --base develop!)
+   gh pr create --base develop --title "..." --body "..."
+
+   # d.1 VERIFY base branch immediately (Pattern 56)
+   gh pr view <number> --json baseRefName
+   # Must show: "baseRefName": "develop"
 
    # e. Mark seat FREE (unlock)
    Update worktrees.pool.md: Status=BUSY → FREE
@@ -180,11 +184,16 @@ When multiple agents run in parallel, they MUST NOT share the same worktree. Eac
    Remove from instances.map.md
    ```
 
-   **⚠️ CRITICAL RULE (Pattern 52):** ALWAYS merge origin/develop into feature branch BEFORE creating PR. This ensures:
-   - Code is up-to-date with latest changes
-   - Conflicts resolved locally, not in GitHub
-   - Tests run against current codebase
-   - PR is clean and easy to review
+   **⚠️ CRITICAL RULES:**
+   - **Pattern 52:** ALWAYS merge origin/develop into feature branch BEFORE creating PR. This ensures:
+     - Code is up-to-date with latest changes
+     - Conflicts resolved locally, not in GitHub
+     - Tests run against current codebase
+     - PR is clean and easy to review
+
+   - **Pattern 56:** ALWAYS specify `--base develop` when creating PR. gh CLI defaults to main if not specified!
+     - Verify immediately after creation: `gh pr view <number> --json baseRefName`
+     - Wrong base = false conflicts + wrong merge target
 
 ### 🔒 Concurrency Rules
 
