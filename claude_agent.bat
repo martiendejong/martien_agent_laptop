@@ -29,6 +29,7 @@ echo.
 
 claude ^
   --dangerously-skip-permissions ^
-  --append-system-prompt "%SYSTEMPROMPT%"
+  --append-system-prompt "%SYSTEMPROMPT%" ^
+  --model claude-3-sonnet-latest
 
 pause
