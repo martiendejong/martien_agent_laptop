@@ -1,3 +1,86 @@
+## 2026-01-09 - WSL Ruby PATH Issue: mise Version Manager Integration
+
+**Session Summary:** Fixed Ruby accessibility from Windows commands. Ruby 3.4.8 worked in interactive WSL but failed from `wsl ruby --version`.
+
+**Problem:**
+- User showed `ruby --version` working in interactive WSL session
+- Same command failed when called as `wsl ruby --version` from Windows
+- Error: "ruby: command not found"
+
+**Investigation:**
+- Ruby not installed via apt, rbenv, rvm, or asdf
+- Found `eval "$(~/.local/bin/mise activate bash)"` at end of `~/.bashrc`
+- **mise** (modern version manager, formerly rtx) manages Ruby and other runtimes
+- Ruby installed at: `~/.local/share/mise/installs/ruby/3.4.8/bin/ruby`
+- mise version: 2026.1.1 linux-x64
+
+**Root Cause:**
+- mise activation only happens in **interactive shells** (via .bashrc)
+- `wsl command` uses non-interactive, non-login shell
+- No .bashrc sourcing = No mise activation = Ruby not in PATH
+
+**Solutions Implemented:**
+
+1. **Added mise to ~/.profile:**
+   ```bash
+   # Initialize mise for all shell types
+   eval "$($HOME/.local/bin/mise activate bash)"
+   ```
+   - Enables Ruby in login shells: `wsl bash -lc 'ruby --version'`
+
+2. **Created Windows wrapper: C:\scripts\ruby.bat**
+   ```batch
+   @echo off
+   wsl bash -lc "ruby %*"
+   ```
+   - Works from CMD/PowerShell system-wide
+   - C:\scripts already in Windows PATH
+   - Passes all arguments through to WSL Ruby
+
+**Verification:**
+```powershell
+# From PowerShell/CMD (✅ works):
+PS> ruby --version
+ruby 3.4.8 (2025-12-17 revision 995b59f666) +PRISM [x86_64-linux]
+
+# From WSL login shell (✅ works):
+PS> wsl bash -lc 'ruby --version'
+ruby 3.4.8 (2025-12-17 revision 995b59f666) +PRISM [x86_64-linux]
+```
+
+**Pattern Discovered (Pattern 55): mise Version Manager WSL Integration**
+
+**Problem Pattern:**
+- Modern version managers (mise, asdf) use shell eval activation
+- Activation only happens in interactive/login shells
+- Windows → WSL direct commands use non-interactive shells
+- Tools become "invisible" from Windows commands
+
+**Solution Pattern:**
+1. Add activation to both `.bashrc` (interactive) AND `.profile` (login)
+2. Create Windows wrapper scripts in directory on Windows PATH (e.g., C:\scripts)
+3. Wrapper uses `wsl bash -lc 'command "$@"'` to force login shell
+4. Enables seamless Windows → WSL tool invocation
+
+**Applies to:**
+- mise (Ruby, Node, Python, etc.)
+- asdf (similar eval activation model)
+- rbenv, pyenv, nvm (shell-based version managers)
+- Any tool requiring shell initialization
+
+**Files Modified:**
+- ~/.profile (WSL) - Added mise activation
+- C:\scripts\ruby.bat - Created Windows wrapper
+
+**Similar Tools to Watch:**
+- mise also manages: Node.js, Python, Go, Java, etc.
+- If user reports "command not found" for dev tools from Windows, check for mise
+
+**Worktree:** N/A (system configuration, not repo work)
+**Status:** ✅ Complete - Ruby accessible from Windows commands
+
+---
+
 ## 2026-01-10 08:00 - TypeScript Phase 3 Complete: Critical Fixes & Secondary Type Errors (Client-Manager)
 
 **Session Summary:** Successfully completed Phase 3 of TypeScript cleanup. Fixed 58 errors by restoring critical code removed in Phase 2 and resolving secondary type issues. Total progress: 327→224 errors (31% reduction across all 3 phases).
