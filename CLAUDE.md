@@ -1170,16 +1170,108 @@ When session resumes after compaction:
 5. ✅ Compare against summary - Identify gaps
 6. ✅ Complete missing pieces - Don't assume summary is 100% accurate
 
+### Verification Hierarchy (2026-01-09)
+
+**Verify in priority order to catch critical issues first:**
+
+**Tier 1 - CRITICAL (Can break everything):**
+- ⚠️ **Base repo branches** (C:\Projects\<repo> MUST be on develop)
+- ⚠️ **Worktree pool allocations** (check for conflicts/locks)
+- ⚠️ **Uncommitted changes in worktrees** (risk of data loss)
+
+**Tier 2 - Important (Affects current work):**
+- PR states and CI status (may have advanced since summary)
+- Documentation commit status
+- Current branch in worktrees
+
+**Tier 3 - Informational (Good to know):**
+- Recent commits
+- Open issues
+- Test results
+
+### Automated Verification Script
+
+**Run this IMMEDIATELY after session resumes:**
+
+```bash
+#!/bin/bash
+# Post-Compaction Verification Protocol
+
+echo "=== TIER 1: CRITICAL CHECKS ==="
+
+# Check base repos are on develop (HIGHEST PRIORITY)
+echo "Checking base repo branches..."
+for repo in client-manager hazina; do
+  cd "/c/Projects/$repo"
+  branch=$(git branch --show-current)
+  if [[ "$branch" != "develop" ]]; then
+    echo "❌ VIOLATION: $repo on '$branch' (should be 'develop')"
+    echo "   Fix: cd /c/Projects/$repo && git checkout develop"
+  else
+    echo "✅ $repo on develop"
+  fi
+done
+
+# Check for uncommitted changes in base repos
+echo ""
+echo "Checking for uncommitted changes..."
+for repo in client-manager hazina; do
+  cd "/c/Projects/$repo"
+  if [[ -n $(git status --porcelain) ]]; then
+    echo "⚠️ $repo has uncommitted changes:"
+    git status --short
+  else
+    echo "✅ $repo clean"
+  fi
+done
+
+echo ""
+echo "=== TIER 2: WORK STATUS CHECKS ==="
+
+# Check PR states
+echo "Checking recent PR activity..."
+cd "/c/Projects/client-manager"
+gh pr list --state all --limit 5 --json number,title,state,mergeable | jq -r '.[] | "\(.number): \(.title) - \(.state) (\(.mergeable))"'
+
+# Check documentation commits
+echo ""
+echo "Checking recent documentation updates..."
+cd /c/scripts
+git log --oneline -5
+
+echo ""
+echo "=== TIER 3: INFORMATIONAL ==="
+echo "Worktree pool status:"
+cat /c/scripts/_machine/worktrees.pool.md | grep -E "agent-00[0-9]|FREE|BUSY"
+
+echo ""
+echo "✅ Verification complete"
+```
+
+**Why This Matters:**
+- Base repo on wrong branch = Future worktrees start from wrong code (cascading failure)
+- Unknown PR merges = May duplicate work or miss integration points
+- Uncommitted changes = Risk of data loss on checkout
+
+**Time Investment:** 5 minutes of verification saves hours debugging wrong-branch worktrees.
+
 ### Pattern: Trust but Verify
 
 ```
 Summary says:        → Verify:              → Reality:
 "Backend complete"   → Check git log        → 2 commits, migration + service
-"PR created"         → gh pr list           → PR #57 exists, OPEN
+"PR created"         → gh pr list           → PR #57 exists, OPEN → MERGED!
 "Feature done"       → ls Frontend/src      → Frontend missing! ❌
+"Repo on develop"    → git branch --show    → On payment-models! ❌❌
 ```
 
 **Lesson:** Summaries compress information. Always verify file system state when continuing work.
+
+**Real Example (2026-01-09):**
+- Summary: "PR #66 and #61 MERGEABLE"
+- Reality: Both PRs actually **MERGED** (better than expected)
+- Also Found: Base repos on wrong branches (critical violation)
+- Action: Restored repos to develop, prevented future worktree issues
 
 ---
 

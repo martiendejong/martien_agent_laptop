@@ -14,12 +14,12 @@ Seat states:
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | BUSY | scp | agent-004-revolutionary-transformation | 2026-01-08T11:00:00Z | Transforming SCP into multi-agent superintelligence system |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | BUSY | client-manager | agent-005-documentation-improvements | 2026-01-08T19:45:00Z | Adding 25 documentation files (ADRs, guides, best practices) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | BUSY | client-manager | bugfix/chat-issues | 2026-01-09T13:20:00Z | Documented 8 chat issues + worktree workflow (PR #60) |
-| agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | BUSY | client-manager | payment-models | 2026-01-09T15:00:00Z | Implementing new payment model structure for token subscriptions and packages |
+| agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-01-10T15:30:00Z | ✅ Cleaned up: Security hardening (PR #61) and payment-models work completed and merged |
 | agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | - | - | 2026-01-10T14:30:00Z | ✅ Cleaned up: Deleted obsolete branch agent-008-tier1-features (planning doc only), Hazina content-hooks branch merged as PR #24 |
 | agent-009 | agent009 | C:\Projects | C:\Projects\worker-agents\agent-009 | FREE | - | - | 2026-01-10T14:30:00Z | ✅ Cleaned up: Deleted obsolete branch test/integration-test-environment (PR #73 already merged) |
-| agent-010 | agent010 | C:\Projects | C:\Projects\worker-agents\agent-010 | FREE | client-manager | agent-008-license-back-button | 2026-01-10T13:00:00Z | ✅ PR #63 complete: Fixed frontend tests (11), backend build error (SignalRGatheredDataNotifier), merged develop |
+| agent-010 | agent010 | C:\Projects | C:\Projects\worker-agents\agent-010 | FREE | - | - | 2026-01-10T15:30:00Z | ✅ Cleaned up: Deleted agent-008-license-back-button branch (obsolete) |
 | agent-011 | agent011 | C:\Projects | C:\Projects\worker-agents\agent-011 | FREE | client-manager | feature/license-manager-back-button | 2026-01-10T14:00:00Z | ✅ PR #79 ready: Fixed PR base (main→develop), now MERGEABLE with 1 file changed |
-| agent-012 | agent012 | C:\Projects | C:\Projects\worker-agents\agent-012 | FREE | client-manager | agent-012-tier1-implementation | 2026-01-10T08:00:00Z | ✅ PR #77: Tier 1 Quick Wins complete - 4 features integrated (Quality Score, Alt Text, Templates, Multi-Platform) |
+| agent-012 | agent012 | C:\Projects | C:\Projects\worker-agents\agent-012 | FREE | - | - | 2026-01-10T15:30:00Z | ✅ Cleaned up: Deleted agent-012-tier1-implementation (PR #77 already merged on 2026-01-09) |
 
 Provisioning rule:
 1) Pick a FREE seat.

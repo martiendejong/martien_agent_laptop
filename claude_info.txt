@@ -1213,12 +1213,83 @@ npm run test 2>&1 | grep "not a function\|Cannot read properties"
 
 ---
 
+### Pattern 59: Post-Compaction Verification (Session Continuation)
+
+**Problem:** Session resumes after conversation compaction. Summary may be incomplete or outdated.
+
+**Risk:** Proceeding without verification can lead to:
+- Working from wrong branch (cascading failure)
+- Duplicating already-merged work
+- Losing uncommitted changes
+- Creating worktrees from stale code
+
+**Solution: Tiered Verification Protocol**
+
+Run IMMEDIATELY when session resumes after compaction:
+
+**Tier 1 - CRITICAL (Can break everything):**
+```bash
+# Check base repos are on develop (MANDATORY per RULE 3B)
+cd /c/Projects/client-manager && git branch --show-current
+cd /c/Projects/hazina && git branch --show-current
+# Both MUST show: develop
+
+# If not, immediately fix:
+git checkout develop && git pull origin develop
+
+# Check for uncommitted changes
+cd /c/Projects/client-manager && git status --porcelain
+cd /c/Projects/hazina && git status --porcelain
+# Both SHOULD be empty
+```
+
+**Tier 2 - Important (Affects current work):**
+```bash
+# Check PR states (may have advanced since summary)
+gh pr list --state all --limit 5 --json number,title,state,mergeable
+
+# Check documentation commits
+cd /c/scripts && git log --oneline -5
+
+# Verify patterns/updates exist
+grep -n "Pattern 56:" /c/scripts/claude_info.txt
+```
+
+**Tier 3 - Informational:**
+```bash
+# Check worktree pool
+cat /c/scripts/_machine/worktrees.pool.md | grep -E "FREE|BUSY"
+
+# Check recent commits
+cd /c/Projects/client-manager && git log --oneline -10
+```
+
+**Real Example (2026-01-09):**
+- Summary: "PR #66, #61 MERGEABLE, documentation updated"
+- Tier 1 Check: Found base repos on wrong branches! ❌
+  - client-manager: On `payment-models` (should be develop)
+  - hazina: On `main` (should be develop)
+- Tier 2 Check: PRs actually **MERGED** (not just mergeable)
+- Action: Restored repos to develop, prevented future worktree corruption
+
+**When to Use:**
+- ✅ EVERY time session resumes after compaction
+- ✅ Before allocating any new worktrees
+- ✅ Before starting any new tasks
+
+**Time Investment:** 5 minutes saves hours debugging wrong-branch worktrees
+
+**Automation:** Full verification script in CLAUDE.md § "SESSION COMPACTION RECOVERY PATTERN"
+
+---
+
 ## Common CI/PR Fix Patterns Summary
 
 Quick reference for the most common patterns:
 
 | Pattern | Use When | Quick Fix |
 |---------|----------|-----------|
+| 59 | Session resumes after compaction | Run 3-tier verification (base repos, PRs, docs) |
 | 56 | Pre-existing test infrastructure issues | Add `continue-on-error: true` |
 | 57 | Multiple conflicts, develop has fixes | `git checkout --theirs <files>` |
 | 58 | Frontend tests fail on mocks | Add interceptors, use explicit mock vars |
