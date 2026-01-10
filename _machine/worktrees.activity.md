@@ -251,3 +251,5 @@ Actions:
 2026-01-10T20:45:00Z — release — agent-001 — client-manager — fix/content-hooks-generation — TASK-ContentHooks — claude-code — PR #87 created, worktree cleaned
 2026-01-10T21:10:00Z — allocate — agent-003 — client-manager — feature/ci-manual-tests — CI-SECURITY — claude-code — Make security scans manual, add local testing instructions
 2026-01-10T22:15:00Z — release — agent-003 — client-manager — feature/ci-manual-tests — CI-SECURITY — claude-code — PR #86 updated: Security scans manual-only + LOCAL_TESTING.md added
+2026-01-10T22:30:00Z — allocate — agent-003 — client-manager — feature/ci-manual-tests — MERGE-DEVELOP — claude-code — Merging develop into PR #86 branch
+2026-01-10T22:45:00Z — release — agent-003 — client-manager — feature/ci-manual-tests — MERGE-DEVELOP — claude-code — Successfully merged develop, resolved all conflicts, PR #86 is MERGEABLE
