@@ -270,3 +270,5 @@ Actions:
 2026-01-11T08:00:00Z — release — agent-001 — client-manager — fix/chat-layout-token-left — — claude-code — Fixed horizontal scrollbar in chat and moved token indicator to left, client-manager PR #99 created
 21-za-10-01-2026T39:56:25Z — allocate — agent-001 — client-manager+hazina — fix/horizontal-scrollbar-vw — — claude-code — Fix horizontal scrollbar caused by viewport width units 
 2026-01-11T08:30:00Z — release — agent-001 — client-manager — fix/horizontal-scrollbar-vw — — claude-code — Fixed horizontal scrollbar caused by viewport width units in PromptsView, client-manager PR #100 created
+22-za-10-01-2026T05:53:96Z — allocate — agent-001 — client-manager+hazina — fix/remove-virtuoso-pr-padding — — claude-code — Remove md:pr-24 causing horizontal scroll 
+2026-01-11T08:45:00Z — release — agent-001 — client-manager — fix/remove-virtuoso-pr-padding — — claude-code — Removed md:pr-24 from MessagesPane Virtuoso scroller, client-manager PR #101 created
