@@ -1,15 +1,11 @@
-
 # worktrees.pool.md (machine-wide)
-
 Allocation pool for worktree "seats". If all seats are BUSY, provision a new one.
-
 Seat states:
 - FREE / BUSY / STALE / BROKEN
-
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-01-10T23:50:00Z | ✅ Fixed critical ImageSet/component rendering bug (PR #90), worktree released |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | hazina | fix/content-hooks-use-analysis-provider | 2026-01-10T23:15:00Z | Refactoring ContentHooksRegenerator to use IAnalysisFieldsProvider |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-01-11T01:30:00Z | ✅ Script testing complete, worktree released |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-01-11T01:15:00Z | ✅ Refactored ContentHooksRegenerator to use IAnalysisFieldsProvider (Hazina PR #34 + client-manager PR #87 updated) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-10T22:45:00Z | ✅ Merged develop into PR #86, resolved conflicts, PR ready to merge |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-11T00:40:00Z | ✅ Fixed scrollbar styling + horizontal scroll (PR #91 created) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | BUSY | client-manager | feature/context-compression | 2026-01-11T00:15:00Z | Implementing context compression for LLM calls (cross-repo: Hazina + client-manager) |
@@ -20,7 +16,6 @@ Seat states:
 | agent-010 | agent010 | C:\Projects | C:\Projects\worker-agents\agent-010 | FREE | - | - | 2026-01-10T15:30:00Z | ✅ Cleaned up: Deleted agent-008-license-back-button branch (obsolete) |
 | agent-011 | agent011 | C:\Projects | C:\Projects\worker-agents\agent-011 | FREE | - | - | 2026-01-10T16:00:00Z | ✅ Cleaned up: License back button (PR #79 MERGED), worktree released |
 | agent-012 | agent012 | C:\Projects | C:\Projects\worker-agents\agent-012 | FREE | - | - | 2026-01-10T15:30:00Z | ✅ Cleaned up: Deleted agent-012-tier1-implementation (PR #77 already merged on 2026-01-09) |
-
 Provisioning rule:
 1) Pick a FREE seat.
 2) If none exist, append a new seat with next number and mark it FREE; log provision-seat.

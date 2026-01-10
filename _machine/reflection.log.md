@@ -1,3 +1,41 @@
+## 2026-01-11 01:30 - Tested Worktree Automation Scripts (Partial Success)
+
+**Session Type:** Testing and validation  
+**Test Branch:** test/script-validation  
+**Agent Used:** agent-001  
+**Commits:** 615c5b4, 1793f45
+
+**Test Results:**
+
+**✅ SUCCESSFUL (Core Functionality Works):**
+1. Agent Selection - Correctly found agent-001 as FREE agent
+2. Base Repo Management - Switched to develop, fetched, pulled latest
+3. Worktree Creation - Both worktrees created successfully
+4. Config Copy - Copied appsettings.json and .env files
+5. User Experience - Clear output and next steps
+
+**❌ FAILED (Pool Update Logic):**
+- CMD batch pipe escaping issues in pool file update
+- 14x "The syntax of the command is incorrect" errors
+- Worktrees created successfully but pool not marked BUSY
+
+**Bug Fix:**
+- Fixed agent selection: tokens=2 → tokens=1,5 with validation
+- Now properly filters for "agent-XXX" entries and skips headers
+
+**Pattern 66: Use PowerShell/Python for Complex File Updates**
+- CMD batch struggles with pipe character escaping
+- Recommendation: Rewrite in PowerShell for better string handling
+- Alternative: Python helper script for pool management
+
+**Value:**
+- Core workflow validated (80% functional)
+- Clear path to solution identified
+- Scripts work for worktree creation (main goal)
+- Only pool update needs rewrite
+
+---
+
 ## 2026-01-11 00:45 - Created Worktree Management Automation Scripts
 
 **Session Type:** Infrastructure improvement
@@ -9174,4 +9212,75 @@ When asked to "make tests manual":
 6. Verify PR is mergeable after changes
 
 ---
+
+
+## 2026-01-11 01:15 - Completed Content Hooks Analysis Fields Refactoring
+
+**Session Type:** Cross-repo refactoring (Hazina + client-manager)
+**Context:** Content hooks generation failing - ContentHooksRegenerator looking for non-existent `analysis` folder
+
+**PRs Created:**
+- Hazina PR #34: Refactor ContentHooksRegenerator to use IAnalysisFieldsProvider  
+- client-manager PR #87: Updated with IAnalysisFieldsProvider integration
+
+**Problem Root Cause:**
+`ContentHooksRegenerator` at line 201 hardcoded path to `analysis` folder:
+```csharp
+var analysisPath = Path.Combine(projectPath, "analysis");
+```
+
+But actual analysis fields stored in project root as individual files (brand-profile.json, mission.json, etc.) per `analysis-fields.config.json` configuration.
+
+**Solution Implemented:**
+
+**Phase 1 - Storage Format Migration (Mixed .txt / .json)**
+- Updated `analysis-fields.config.json`: Changed 11 text-only fields from `.json` → `.txt`
+- Text fields: brand-name, brand-profile, mission, vision, target-audience, business-goals, narrative, location, schemes-of-work, business-description, brand-story
+- Structured fields kept as `.json`: core-values (ItemsList), tone-of-voice (TagsList), color-scheme (ColorScheme), typography (Typography), logo (ImageSet), business-plan (OfficeDocument)
+- Created migration script `migrate-analysis-fields-to-txt.ps1` - successfully migrated 9 files
+- Updated `FileSystemAnalysisFieldsProvider.SaveFieldAsync()` to unwrap JSON when saving to .txt files (backwards compatibility)
+
+**Phase 2 - Refactor ContentHooksRegenerator**
+- Added `IAnalysisFieldsProvider` constructor parameter
+- Refactored `BuildProjectContextAsync()`:
+  - Use `_analysisFieldsProvider.GetFieldsAsync(projectId)` 
+  - Load files from project root using `field.File` path
+  - Handle both .txt (plain text) and .json (parse for string or keep as-is) files
+  - First 15 fields used for context building
+
+**Phase 3 - Update HazinaStoreIntakeWorker**
+- Added `IAnalysisFieldsProvider` to constructor signature
+- Pass provider to `ContentHooksRegenerator` constructor
+
+**Phase 4 - Update client-manager**
+- `ContentHookController.cs`: Updated 3 instantiation points to pass `_analysisFieldsProvider`:
+  - GetT() - line 65
+  - Generate() - line 128
+  - Regenerate() - line 259
+- Added PR dependency comment on client-manager PR #87 noting Hazina PR #34 must merge first
+
+**Key Learnings:**
+
+✅ **Config-driven storage** - Using `fileName` property in config allows flexible .txt/.json mixed storage  
+✅ **Backwards compatibility** - Unwrapping JSON strings when writing to .txt handles migration gracefully  
+✅ **Cross-repo coordination** - Clear PR dependency documentation prevents merge order issues  
+✅ **Building with project references** - Worktrees need sibling Hazina/client-manager structure for .local.sln builds
+
+**Testing:**
+- Hazina Intake service built successfully (0 errors, only XML doc warnings)
+- client-manager update committed and pushed
+- User will test end-to-end after both PRs ready
+
+**Files Changed:**
+- `C:\stores\brand2boost\analysis-fields.config.json` - Updated fileName extensions
+- `C:\Projects\worker-agents\agent-002\hazina\src\Tools\Services\Hazina.Tools.Services.Store\Analysis\FileSystemAnalysisFieldsProvider.cs` - Added .txt unwrapping
+- `C:\Projects\worker-agents\agent-002\hazina\src\Tools\Services\Hazina.Tools.Services.Intake\ContentHooksRegenerator.cs` - Refactored to use IAnalysisFieldsProvider
+- `C:\Projects\worker-agents\agent-002\hazina\src\Tools\Services\Hazina.Tools.Services.Intake\HazinaStoreIntakeWorker.cs` - Updated constructor
+- `C:\Projects\client-manager\ClientManagerAPI\Controllers\ContentHookController.cs` - Pass IAnalysisFieldsProvider
+
+**Outcome:**
+✅ Hazina PR #34 created and ready for review
+✅ client-manager PR #87 updated with dependency note
+✅ Worktrees released (agent-002 marked FREE)
+✅ Mixed storage format enables proper text/structured data separation
 
