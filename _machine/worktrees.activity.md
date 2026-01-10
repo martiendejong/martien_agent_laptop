@@ -266,3 +266,5 @@ Actions:
 2026-01-11T06:10:00Z — release — agent-001 — artrevisionist — fix/jwt-token-property — — claude-code — PR #8 created, worktree cleaned
 19-za-10-01-2026T41:39:23Z — allocate — agent-001 — client-manager+hazina — fix/web-search-null-logpath — — claude-code — Fix null LogPath crash in web search 
 2026-01-11T07:30:00Z — release — agent-001 — hazina — fix/web-search-null-logpath — — claude-code — Fixed null LogPath crash in web search, Hazina PR #39 created, worktree cleaned
+20-za-10-01-2026T50:24:49Z — allocate — agent-001 — client-manager+hazina — fix/chat-layout-token-left — — claude-code — Fix chat horizontal scroll and move token indicator to left 
+2026-01-11T08:00:00Z — release — agent-001 — client-manager — fix/chat-layout-token-left — — claude-code — Fixed horizontal scrollbar in chat and moved token indicator to left, client-manager PR #99 created

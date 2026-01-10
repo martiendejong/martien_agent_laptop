@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-01-11T07:30:00Z | ✅ Fixed null LogPath crash in web search (Hazina PR #39 created) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-01-11T08:00:00Z | ✅ Fixed horizontal scrollbar and moved token indicator to left (client-manager PR #99) |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-01-11T05:00:00Z | ✅ Created auto-tag workflow (client-manager PR #95, Hazina PR #36) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-11T00:40:00Z | ✅ Fixed scrollbar styling + horizontal scroll (PR #91 created) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-10T23:30:00Z | ✅ Web search refactoring complete: Hazina PR #38, client-manager PR #97, artrevisionist PR #6 created (~618 lines eliminated) |
