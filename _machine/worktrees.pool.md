@@ -4,11 +4,11 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-01-11T01:30:00Z | ✅ Script testing complete, worktree released |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-01-11T01:15:00Z | ✅ Refactored ContentHooksRegenerator to use IAnalysisFieldsProvider (Hazina PR #34 + client-manager PR #87 updated) |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-10T22:45:00Z | ✅ Merged develop into PR #86, resolved conflicts, PR ready to merge |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-01-11T07:30:00Z | ✅ Fixed web search + ALL OpenAI calls (Pattern 68 in 11+ locations, PR #98) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-01-11T05:00:00Z | ✅ Created auto-tag workflow (client-manager PR #95, Hazina PR #36) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-11T00:40:00Z | ✅ Fixed scrollbar styling + horizontal scroll (PR #91 created) |
-| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | BUSY | client-manager | feature/context-compression | 2026-01-11T00:15:00Z | Implementing context compression for LLM calls (cross-repo: Hazina + client-manager) |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-10T23:30:00Z | ✅ Web search refactoring complete: Hazina PR #38, client-manager PR #97, artrevisionist PR #6 created (~618 lines eliminated) |
+| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-11T03:00:00Z | ✅ Context compression implemented (Hazina PR #35 + client-manager PR #93 created) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-01-10T16:00:00Z | ✅ Cleaned up: Chat issues docs (PR #60/#80 MERGED) + Config templates (Hazina PR #33 MERGED), worktree released |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-01-10T15:30:00Z | ✅ Cleaned up: Security hardening (PR #61) and payment-models work completed and merged |
 | agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | - | - | 2026-01-09T23:30:00Z | ✅ Fixed content hooks generation - pushed to client-manager payment-models branch (PR #82) |

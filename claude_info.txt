@@ -1798,3 +1798,77 @@ echo "2026-01-10T16:00:00Z — release — agent-001 — client-manager — feat
 
 ---
 
+
+### Pattern 67: Cross-Repo Transitive Dependency Completeness (NU1105)
+
+**Problem:** NU1105 errors when building solution A that references projects from repo B
+**Symptom:** "Unable to find project information for 'C:\Path\RepoB\Project.csproj'"
+**Error Count:** Often hundreds (cascading failures)
+
+**Root Cause:**
+- Solution includes Project X from external repo
+- Project X has ProjectReferences to Y, Z (same external repo)
+- Y and Z are NOT in the solution
+- MSBuild can't find metadata (DLLs) for Y, Z
+- Cascading NU1105 errors result
+
+**Why "Build Other Repo First" Seems to Fix It:**
+- Building external repo generates all DLLs
+- MSBuild finds those DLLs and uses them
+- **This masks the incomplete dependency graph**
+- Solution still broken, just hidden by workaround
+
+**Proper Solution - Systematic Verification:**
+
+```bash
+# 1. Extract projects currently in solution
+grep "Project.*externalrepo" MySolution.sln | \
+  grep -o 'ProjectName\.[A-Za-z.]*' | sort -u > in-solution.txt
+
+# 2. For each project, find its dependencies
+while read proj; do
+  find ../externalrepo -name "${proj}.csproj" -exec \
+    grep "ProjectReference.*ProjectName" {} \; | \
+    grep -o 'ProjectName\.[A-Za-z.]*' >> all-deps.txt
+done < in-solution.txt
+sort all-deps.txt | uniq > unique-deps.txt
+
+# 3. Find missing dependencies
+comm -23 unique-deps.txt in-solution.txt > missing.txt
+
+# 4. Add missing projects
+while read proj; do
+  dotnet sln add $(find ../externalrepo -name "${proj}.csproj")
+done < missing.txt
+
+# 5. Verify (repeat 1-3 until missing.txt is empty)
+```
+
+**Example (client-manager + Hazina):**
+- Started with: 27 Hazina projects in solution
+- After verification: 39 Hazina projects needed
+- Missing: 12 transitive dependencies
+- Result: Build works regardless of build order
+
+**Key Insights:**
+- VS does NOT auto-add transitive ProjectReferences
+- Different from NuGet (which resolves transitively)
+- Must manually include ALL transitive deps
+- Verification must be systematic, not ad-hoc
+
+**Prevention:**
+- When adding cross-repo ProjectReference, run verification script
+- Document: "Added X and its Y transitive dependencies"
+- CI check: Verify dependency completeness
+
+**Diagnostic:**
+```bash
+# Quick check for incomplete deps
+dotnet build 2>&1 | grep -c NU1105
+# If > 0, run systematic verification above
+```
+
+**Related Patterns:**
+- Pattern 27: VS Stale Errors (symptom, not cause)
+- Pattern 28: Cross-Repo Branch Mismatch (different issue, same error)
+
