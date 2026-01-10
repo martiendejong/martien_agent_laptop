@@ -10,6 +10,188 @@ During your executing you will self reflect and learn from your actions. You wil
 - Logs: C:\scripts\logs
 - Status: C:\scripts\status
 
+## 🔧 Worktree Management Scripts
+
+**Location:** C:\scripts\
+
+Two CMD scripts automate the worktree allocation and release workflow:
+
+### 1. claim-worktree.cmd - Allocate and Setup Worktree
+
+**Purpose:** Claims a FREE agent, sets up git worktrees for both client-manager and hazina
+
+**Usage:**
+```cmd
+claim-worktree.cmd <branch-name> [task-description]
+```
+
+**Example:**
+```cmd
+claim-worktree.cmd feature/new-feature "Implementing new feature X"
+```
+
+**What it does:**
+1. Finds first FREE agent in worktrees.pool.md
+2. Ensures base repos (C:\Projects\client-manager, C:\Projects\hazina) are on develop
+3. Fetches and pulls latest changes (Pattern 3C - always fetch/pull first)
+4. Creates git worktrees for BOTH repos in C:\Projects\worker-agents\agent-XXX\
+5. Copies config files (appsettings.json, .env) to worktrees
+6. Marks agent as BUSY in pool with timestamp and task description
+7. Logs allocation in worktrees.activity.md
+8. Displays next steps and worktree paths
+
+**Output:**
+- Agent seat name (e.g., agent-001)
+- Worktree paths for both repos
+- Next steps instructions
+- Warning to release when done
+
+**Error Handling:**
+- No FREE agents → Suggests checking pool or provisioning new agent
+- Base repo not on develop → Automatically switches and pulls
+- Branch already exists → Clear error message with debugging hint
+- Config files missing → Skips with warning (not critical)
+
+---
+
+### 2. release-worktree.cmd - Commit, Push, PR, Release
+
+**Purpose:** Commits all changes, pushes to origin, creates PRs, cleans up worktrees, releases agent
+
+**Usage:**
+```cmd
+release-worktree.cmd <agent-seat> <pr-title> [pr-description]
+```
+
+**Example:**
+```cmd
+release-worktree.cmd agent-001 "feat: Add new feature" "Implements feature X with Y and Z"
+```
+
+**What it does:**
+1. Gets branch name from pool file for the specified agent
+2. Commits all changes in client-manager worktree (if any)
+3. Commits all changes in hazina worktree (if any)
+4. Pushes both branches to origin
+5. Creates PRs for both repos targeting develop branch
+6. Adds dependency headers to PRs (cross-repo coordination)
+7. Removes git worktrees from both base repos
+8. Deletes agent directory
+9. Marks agent as FREE in pool
+10. Logs release in worktrees.activity.md
+11. Displays PR URLs and confirmation
+
+**PR Dependency Handling:**
+- If BOTH repos have commits → Adds dependency alert to client-manager PR
+- Hazina PR gets "DOWNSTREAM DEPENDENCIES" warning
+- client-manager PR gets "DEPENDENCY ALERT" with merge order
+- Ensures user knows to merge Hazina PR first
+
+**Output:**
+- Commit summaries for both repos
+- PR URLs for created PRs
+- Agent release confirmation
+- Clear indication agent is now FREE
+
+**Error Handling:**
+- Agent not found → Clear error with path
+- No changes to commit → Skips that repo gracefully
+- Push fails → Stops before PR creation
+- PR creation fails → Warns but continues cleanup
+- Worktree removal fails → Warns but continues
+
+---
+
+### Integration with Existing Workflow
+
+**Before using scripts:**
+```powershell
+# Manual workflow (error-prone):
+Read C:\scripts\_machine\worktrees.pool.md
+# Find FREE agent manually
+# Switch base repos to develop
+git fetch && git pull
+git worktree add ... -b ...
+# Update pool file manually (risk of conflicts)
+# Update activity log manually
+# Copy config files manually
+```
+
+**With scripts:**
+```cmd
+# One command does everything:
+claim-worktree.cmd feature/new-feature "My task description"
+
+# Work on your changes...
+
+# One command to finish:
+release-worktree.cmd agent-001 "feat: My changes" "Description here"
+```
+
+**Benefits:**
+✅ **Atomic allocation** - No race conditions with other agents
+✅ **Enforces rules** - Always fetch/pull, always on develop
+✅ **Prevents mistakes** - Can't forget to update pool or activity log
+✅ **Cross-repo coordination** - Handles both repos automatically
+✅ **PR dependencies** - Adds correct dependency headers
+✅ **Complete cleanup** - Never leaves stale worktrees
+
+---
+
+### When to Use Scripts vs Manual
+
+**Use Scripts (Recommended):**
+- ✅ Standard feature work across both repos
+- ✅ Quick bug fixes that need proper tracking
+- ✅ Any work requiring PR creation
+- ✅ When you want automated pool management
+
+**Manual Workflow (Rare Cases):**
+- ❌ Only reading code (no allocation needed)
+- ❌ Authorized hotfixes in C:\Projects\<repo> directly (user permission)
+- ❌ Complex multi-agent coordination (manual control needed)
+- ❌ Debugging worktree issues (manual intervention required)
+
+---
+
+### Script Locations and Maintenance
+
+**Files:**
+- C:\scripts\claim-worktree.cmd
+- C:\scripts\release-worktree.cmd
+
+**Dependencies:**
+- C:\scripts\_machine\worktrees.pool.md (pool state)
+- C:\scripts\_machine\worktrees.activity.md (activity log)
+- git CLI (worktree commands)
+- gh CLI (PR creation)
+
+**Maintenance:**
+- Scripts are part of machine_agents repo (C:\scripts)
+- Update scripts if worktree protocol changes
+- Test scripts after modifying pool file format
+- Document any script changes in reflection.log.md
+
+**Testing:**
+```cmd
+# Test allocation
+claim-worktree.cmd test/script-test "Testing claim script"
+
+# Verify pool updated
+type C:\scripts\_machine\worktrees.pool.md | findstr BUSY
+
+# Make trivial change
+echo test > C:\Projects\worker-agents\agent-XXX\client-manager\TEST.txt
+
+# Test release
+release-worktree.cmd agent-XXX "test: Script test" "Testing release script"
+
+# Verify agent FREE
+type C:\scripts\_machine\worktrees.pool.md | findstr agent-XXX
+```
+
+---
+
 ## 🚨🚨🚨 ZERO-TOLERANCE POLICY - READ THIS FIRST 🚨🚨🚨
 
 **USER MANDATE:** "zorg dat je dit echt nooit meer doet"
