@@ -2099,3 +2099,100 @@ Results appear in:
 
 ---
 
+
+## 🚨 MANDATORY: WORKTREE RELEASE PROTOCOL
+
+**CRITICAL RULE (2026-01-11):** After creating ANY PR, you MUST immediately release the worktree and switch base repos to develop BEFORE presenting the PR to the user.
+
+### The Problem
+**Mistake Pattern:** Creating PR → Presenting to user → Leaving worktree allocated and branch checked out
+**Result:** Worktree remains locked, branch conflicts, messy state management
+
+### The Mandatory Protocol
+
+**AFTER CREATING PR (gh pr create):**
+```bash
+# 1. IMMEDIATELY clean worktree directory
+rm -rf C:/Projects/worker-agents/agent-001/*
+
+# 2. Update worktree pool status
+# Edit C:\scripts\_machine\worktrees.pool.md
+# Change status from BUSY to FREE
+# Update last activity timestamp
+# Update notes with PR number
+
+# 3. Log the release
+echo "YYYY-MM-DDTHH:MM:SSZ — release — agent-001 — repo — branch — — claude-code — Description, PR #XX created" >> C:/scripts/_machine/worktrees.activity.md
+
+# 4. Commit tracking updates
+cd C:/scripts
+git add _machine/worktrees.pool.md _machine/worktrees.activity.md
+git commit -m "docs: Release agent-001 after PR #XX"
+git push origin main
+
+# 5. Switch base repos to develop
+git -C C:/Projects/client-manager checkout develop
+git -C C:/Projects/hazina checkout develop
+git -C C:/Projects/client-manager pull origin develop  
+git -C C:/Projects/hazina pull origin develop
+
+# 6. Prune stale worktree references
+git -C C:/Projects/client-manager worktree prune
+git -C C:/Projects/hazina worktree prune
+```
+
+**ONLY THEN:** Present PR to user
+
+### Why This Matters
+
+1. **Clean State:** User expects clean environment after PR presentation
+2. **No Conflicts:** Prevents "branch already in use" errors
+3. **Pool Management:** Keeps agent worktrees available for next task
+4. **Discipline:** Maintains separation between active work and completed PRs
+
+### Checklist (Run Every Time)
+
+After running `gh pr create`:
+- [ ] Clean worktree directory (`rm -rf`)
+- [ ] Update pool.md (BUSY → FREE)
+- [ ] Log in activity.md
+- [ ] Commit and push tracking files
+- [ ] Switch base repos to develop
+- [ ] Prune worktree references
+- [ ] THEN present PR to user
+
+**ZERO TOLERANCE:** Skipping this protocol = Critical workflow violation
+
+### Example (Good)
+
+```
+✅ Step 1: Create PR
+$ gh pr create --title "..." --body "..."
+https://github.com/.../pull/101
+
+✅ Step 2: Release worktree (DO THIS IMMEDIATELY)
+$ rm -rf C:/Projects/worker-agents/agent-001/*
+$ edit pool.md, activity.md
+$ git commit, git push
+$ git checkout develop (both repos)
+$ git worktree prune (both repos)
+
+✅ Step 3: Present to user
+"PR #101 created: https://github.com/.../pull/101"
+```
+
+### Example (Bad - DO NOT DO THIS)
+
+```
+❌ Step 1: Create PR
+$ gh pr create
+https://github.com/.../pull/101
+
+❌ Step 2: Immediately present to user (WRONG!)
+"PR #101 created: https://github.com/.../pull/101"
+
+❌ Result: Worktree still allocated, branch still checked out, user confused
+```
+
+**Remember:** The worktree release is part of the PR creation process, not a separate optional step.
+
