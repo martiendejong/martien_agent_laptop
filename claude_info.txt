@@ -1289,6 +1289,10 @@ Quick reference for the most common patterns:
 
 | Pattern | Use When | Quick Fix |
 |---------|----------|-----------|
+| 63 | Agent marked BUSY but PR merged | Run 4-step release protocol: verify PR, clean worktree, update pool, log release |
+| 64 | Detecting stale agents (>2hr BUSY) | Check pool vs filesystem, verify PR status, release if stale |
+| 65 | Pool file out of sync with reality | Run daily sync: grep BUSY agents, verify git repos exist, check PR status |
+| 66 | Worktree lifecycle unclear | Follow FREE → allocate → BUSY → work → PR merged → CLEANUP → release → FREE |
 | 59 | Session resumes after compaction | Run 3-tier verification (base repos, PRs, docs) |
 | 56 | Pre-existing test infrastructure issues | Add `continue-on-error: true` |
 | 57 | Multiple conflicts, develop has fixes | `git checkout --theirs <files>` |
@@ -1296,4 +1300,319 @@ Quick reference for the most common patterns:
 | 53 | Workflow tests wrong project | Update `dotnet test` to test actual test projects |
 | 54 | False positive secret detection | Update `.secrets.baseline` or add to excludes |
 | 55 | CodeQL blocking on old code | Add `continue-on-error: true` to analysis step |
+
+---
+
+### Pattern 63: Agent Release Protocol is MANDATORY (Not Optional)
+
+**Problem:** Agents marked BUSY after PR merged = resource leak. Discovered 6/12 agents (50% capacity) locked with completed work.
+
+**Root Cause:**
+- Release treated as "cleanup" rather than critical protocol
+- No enforcement of post-PR worktree cleanup
+- Pool file drifts from filesystem reality
+
+**Solution - Four-Step Release Protocol (MANDATORY):**
+
+```bash
+# Step 1: Commit + Push + PR
+git add . && git commit -m "feat: ..." && git push
+gh pr create --base develop --title "..." --body "..."
+
+# Step 2: Verify PR Status (MANDATORY before release)
+gh pr view <number> --json state,mergeable
+# Must be: OPEN+MERGEABLE or MERGED
+
+# Step 3: Clean Worktree (MANDATORY)
+cd C:/Projects/worker-agents/agent-XXX
+rm -rf *  # Delete all worktree contents
+
+# Step 4: Update Tracking (MANDATORY)
+# Edit worktrees.pool.md:
+#   - Change: | agent-XXX | ... | BUSY | repo | branch | ... |
+#   - To:     | agent-XXX | ... | FREE | - | - | 2026-XX-XXT... | ✅ Cleaned up: ... |
+#
+# Append to worktrees.activity.md:
+# 2026-XX-XXT...:..Z — release — agent-XXX — repo — branch — — claude-code — PR #XX merged, worktree cleaned
+```
+
+**HARD STOP RULE: Session NOT Complete Until:**
+1. ✅ Code committed + pushed
+2. ✅ PR created and verified (MERGEABLE or MERGED)
+3. ✅ Worktree cleaned (empty directory)
+4. ✅ Pool file updated (BUSY → FREE)
+5. ✅ Activity log updated (release entry)
+
+**When to Use:**
+- ✅ After EVERY PR creation (immediate cleanup if mergeable)
+- ✅ After EVERY PR merge (immediate release)
+- ✅ End of EVERY work session where agent was used
+
+**Real Example (2026-01-10):**
+- Found: 6 agents BUSY, all PRs merged 1-3 days ago
+- Impact: 50% capacity loss (6 of 12 seats locked)
+- Action: Mass release → 12 FREE seats (100% available)
+- Time: 18 minutes to recover 50% capacity
+
+**Time Investment:** 2 minutes per release prevents hours of debugging resource exhaustion.
+
+---
+
+### Pattern 64: Stale Agent Detection Criteria
+
+**Problem:** How to identify agents needing release?
+
+**An Agent is STALE if ANY of these conditions are met:**
+
+**1. PR Merged But Still BUSY**
+```bash
+# Check PR status
+gh pr view <number> --json state
+# Output: "state": "MERGED"
+
+# Check pool
+grep "agent-XXX" C:/scripts/_machine/worktrees.pool.md
+# Shows: | agent-XXX | ... | BUSY | ...
+
+# Action: Immediate release (work is done, just not cleaned up)
+```
+
+**2. No Activity > 2 Hours While BUSY**
+```bash
+# Check pool timestamp
+grep "agent-XXX" C:/scripts/_machine/worktrees.pool.md
+# Shows: Last activity: 2026-01-10T08:00:00Z
+# Current time: 2026-01-10T14:00:00Z = 6 hours ago
+
+# Check for recent commits
+cd C:/Projects/worker-agents/agent-XXX/repo
+git log -1 --format=%ci
+# Shows: 2026-01-10 08:05 (6 hours ago, matches pool)
+
+# Action: Investigate → likely abandoned work → release if PR merged or no valuable uncommitted changes
+```
+
+**3. Empty Worktree But Marked BUSY**
+```bash
+# Check worktree contents
+ls C:/Projects/worker-agents/agent-XXX/
+# Output: (empty)
+
+# Check pool
+grep "agent-XXX" C:/scripts/_machine/worktrees.pool.md
+# Shows: | agent-XXX | ... | BUSY | repo | branch | ...
+
+# Action: Immediate release (already cleaned, just pool not updated)
+```
+
+**4. Upstream Branch Deleted (PR Merged)**
+```bash
+# Check git status in worktree
+cd C:/Projects/worker-agents/agent-XXX/repo
+git status
+# Output: "Your branch is based on 'origin/feature-branch', but the upstream is gone."
+
+# Means: PR was merged and branch was deleted
+# Action: Immediate release
+```
+
+**Detection Script (Add to C:/scripts/tools/check-stale-agents.sh):**
+```bash
+#!/bin/bash
+echo "=== Stale Agent Detection ==="
+for agent in $(grep "BUSY" C:/scripts/_machine/worktrees.pool.md | cut -f2 -d'|' | tr -d ' '); do
+  echo "Checking $agent..."
+
+  # Check 1: Empty worktree
+  if [ -z "$(ls -A C:/Projects/worker-agents/$agent/)" ]; then
+    echo "⚠️  $agent: BUSY but empty worktree"
+  fi
+
+  # Check 2: Time since last activity
+  last=$(grep "$agent" C:/scripts/_machine/worktrees.pool.md | grep -oP '\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z')
+  # TODO: Calculate hours since $last
+
+  # Check 3: PR status
+  branch=$(grep "$agent" C:/scripts/_machine/worktrees.pool.md | cut -f7 -d'|' | tr -d ' ')
+  if [ -n "$branch" ]; then
+    pr_state=$(gh pr list --head "$branch" --json state --jq '.[0].state')
+    if [ "$pr_state" = "MERGED" ]; then
+      echo "⚠️  $agent: PR merged but still BUSY"
+    fi
+  fi
+done
+```
+
+---
+
+### Pattern 65: Pool Synchronization Protocol
+
+**Problem:** Pool file shows state, but filesystem may differ. Need verification.
+
+**Daily Sync Check (Run at session start):**
+
+```bash
+# 1. List all BUSY agents
+echo "=== BUSY Agents ==="
+grep "BUSY" C:/scripts/_machine/worktrees.pool.md
+
+# 2. Verify each BUSY agent
+for agent in agent-001 agent-002 agent-003 agent-004 agent-005 agent-006 agent-007 agent-008 agent-009 agent-010 agent-011 agent-012; do
+  status=$(grep "| $agent |" C:/scripts/_machine/worktrees.pool.md | cut -f5 -d'|' | tr -d ' ')
+
+  if [ "$status" = "BUSY" ]; then
+    echo "--- Verifying $agent (BUSY) ---"
+
+    # Check worktree exists
+    if [ ! -d "C:/Projects/worker-agents/$agent" ]; then
+      echo "❌ Directory missing!"
+      continue
+    fi
+
+    # Check if has git repo
+    repo=$(grep "| $agent |" C:/scripts/_machine/worktrees.pool.md | cut -f6 -d'|' | tr -d ' ')
+    if [ -n "$repo" ] && [ ! -d "C:/Projects/worker-agents/$agent/$repo/.git" ]; then
+      echo "⚠️  No git repo in $repo subdirectory"
+    fi
+
+    # Check last commit time
+    if [ -d "C:/Projects/worker-agents/$agent/$repo" ]; then
+      cd "C:/Projects/worker-agents/$agent/$repo"
+      last_commit=$(git log -1 --format="%ci" 2>/dev/null)
+      echo "Last commit: $last_commit"
+    fi
+
+    # Check PR status
+    branch=$(grep "| $agent |" C:/scripts/_machine/worktrees.pool.md | cut -f7 -d'|' | tr -d ' ')
+    if [ -n "$branch" ] && [ "$branch" != "-" ]; then
+      echo "Branch: $branch"
+      # Check PR status (requires being in repo directory)
+      cd "C:/Projects/$repo"
+      gh pr list --head "$branch" --json number,state,mergeable 2>/dev/null || echo "No PR found"
+    fi
+    echo ""
+  fi
+done
+```
+
+**When to Run:**
+- ✅ Start of every session (before allocating agents)
+- ✅ After mass PR merges
+- ✅ When user reports "all agents busy" but activity seems low
+
+**Expected Output:**
+- All BUSY agents should have:
+  - Existing git repo in worktree
+  - Recent commits (< 2 hours)
+  - Open PRs (or actively being worked on)
+
+**Corrective Actions:**
+- BUSY + merged PR → Release agent (Pattern 63)
+- BUSY + empty worktree → Update pool to FREE
+- BUSY + >2hr no activity → Investigate, likely release
+
+---
+
+### Pattern 66: Worktree Lifecycle State Machine
+
+**Problem:** Unclear when to transition between states.
+
+**State Machine:**
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    Agent Lifecycle                       │
+└─────────────────────────────────────────────────────────┘
+
+┌─────────┐
+│  FREE   │ ← Initial state: Empty worktree, ready for work
+└────┬────┘
+     │ Action: allocate (user request or autonomous)
+     │ Updates: Mark BUSY in pool, set repo + branch
+     ▼
+┌─────────┐
+│  BUSY   │ ← Active work: commits, builds, tests, PR creation
+└────┬────┘
+     │ Trigger: PR merged OR work abandoned
+     │ Must: Verify no valuable uncommitted changes
+     ▼
+┌─────────┐
+│ CLEANUP │ ← Transient: Worktree emptied, pool not yet updated
+└────┬────┘   (Should be < 1 minute in this state)
+     │ Actions: rm -rf *, update pool, log release
+     ▼
+┌─────────┐
+│  FREE   │ ← Ready for next allocation
+└─────────┘
+
+┌─────────┐
+│  STALE  │ ← Error state: BUSY but meets staleness criteria
+└────┬────┘   - PR merged, or
+     │         - >2hr no activity, or
+     │         - Empty worktree, or
+     ▼         - Upstream branch deleted
+  Release
+  Protocol    Action: Investigate → Release if safe
+     │
+     ▼
+┌─────────┐
+│  FREE   │
+└─────────┘
+```
+
+**State Definitions:**
+
+**FREE:**
+- Worktree: Empty directory (no git repo)
+- Pool: `| agent-XXX | ... | FREE | - | - | timestamp | notes |`
+- Meaning: Available for allocation
+- Duration: Indefinite (until allocated)
+
+**BUSY:**
+- Worktree: Contains git repo clone, may have uncommitted changes
+- Pool: `| agent-XXX | ... | BUSY | repo | branch | timestamp | work description |`
+- Meaning: Actively working or work in progress
+- Duration: Hours (typical work session)
+- Exit: When PR merged or work completed
+
+**CLEANUP (Transient):**
+- Worktree: Empty (contents deleted)
+- Pool: Still shows BUSY (not yet updated)
+- Meaning: Waiting for pool update
+- Duration: < 1 minute (immediate update)
+- Exit: After pool + activity log updated → FREE
+
+**STALE (Error State):**
+- Not a formal state in pool
+- Detection: Pattern 64 criteria met
+- Meaning: Stuck in BUSY when should be FREE
+- Action: Run release protocol → FREE
+
+**State Transitions:**
+
+```bash
+# FREE → BUSY (Allocation)
+echo "2026-01-10T14:00:00Z — allocate — agent-001 — client-manager — feature/new-feature — TASK-123 — claude-code — Implementing feature X" >> worktrees.activity.md
+# Update pool: BUSY | client-manager | feature/new-feature | 2026-01-10T14:00:00Z | Implementing feature X
+
+# BUSY → CLEANUP → FREE (Release)
+# 1. Delete worktree contents
+rm -rf C:/Projects/worker-agents/agent-001/*
+
+# 2. Update pool
+# Change: | agent-001 | ... | BUSY | client-manager | feature/new-feature | ... |
+# To:     | agent-001 | ... | FREE | - | - | 2026-01-10T16:00:00Z | ✅ Completed: Feature X (PR #123 MERGED) |
+
+# 3. Log release
+echo "2026-01-10T16:00:00Z — release — agent-001 — client-manager — feature/new-feature — TASK-123 — claude-code — PR #123 merged, worktree cleaned" >> worktrees.activity.md
+```
+
+**When to Use:**
+- ✅ Reference this when unsure about agent state
+- ✅ Follow lifecycle when allocating/releasing agents
+- ✅ Use to identify stuck agents (BUSY too long = likely STALE)
+
+**Time Investment:** Understanding lifecycle prevents improper releases (data loss) and missed releases (resource leaks).
+
+---
 

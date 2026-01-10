@@ -243,3 +243,8 @@ Actions:
 2026-01-10T16:00:00Z — release — agent-005 — client-manager — agent-005-documentation-improvements — — claude-code — Released stale agent: PR #29 merged, worktree cleaned
 2026-01-10T16:00:00Z — release — agent-006 — client-manager+hazina — bugfix/chat-issues,feature/config-templates — — claude-code — Released stale agent: PRs #60/#80/#33 merged, worktrees cleaned
 2026-01-10T16:00:00Z — release — agent-011 — client-manager — feature/license-manager-back-button — — claude-code — Cleaned lingering worktree: PR #79 merged
+2026-01-10T19:00:00Z — allocate — agent-001 — client-manager — agent-001-token-purchase-ui — TASK-TOKEN-UI — claude-code — Implementing token purchase UI with subscription and single payment options
+2026-01-10T20:00:00Z — release — agent-001 — client-manager — agent-001-token-purchase-ui — TASK-TOKEN-UI — claude-code — SUCCESS: Token purchase UI with subscriptions implemented, PR #85 created
+2026-01-10T20:15:00Z — allocate — agent-001 — client-manager — fix/content-hooks-generation — TASK-ContentHooks — claude-code — Fix content hooks generation/retrieval bug
+2026-01-10T20:30:00Z — allocate — agent-002 — client-manager — feature/ci-manual-tests — CI-CONFIG — claude-code — Configure GitHub Actions to build by default, tests on manual trigger only
+2026-01-10T21:00:00Z — release — agent-002 — client-manager — feature/ci-manual-tests — CI-CONFIG — claude-code — PR #86 created: Build by default, tests manual-only
