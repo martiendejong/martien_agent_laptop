@@ -1934,3 +1934,107 @@ sed -i 's/StoreProvider\.GetStoreSetup(\([^,]*\), _config\.ApiSettings\.OpenApiK
 
 **Full guide**: `C:\scripts\_machine\best-practices\LINTER_INTERFERENCE_MITIGATION.md`
 
+
+---
+
+## 🧪 LOCAL TESTING & SECURITY SCAN PATTERN (2026-01-10)
+
+**Context:** CI/CD configured for build-only by default, tests and security scans are manual-only in GitHub Actions.
+
+### Testing Strategy
+
+**GitHub Actions (CI/CD):**
+- ✅ **Build workflows** - Run automatically on push/PR (compilation verification only)
+- 🔄 **Test workflows** - Manual trigger only (workflow_dispatch)
+- 🔒 **Security scans** - Manual trigger + weekly scheduled runs
+
+**Local Development:**
+- Developers run tests locally before pushing
+- Security scans run locally as part of comprehensive pre-push checklist
+- See `docs/LOCAL_TESTING.md` for complete local testing guide
+
+### Local Test Commands Quick Reference
+
+**Backend Tests:**
+```bash
+dotnet test ClientManagerAPI/ClientManagerAPI.local.csproj
+dotnet test --collect:"XPlat Code Coverage"
+```
+
+**Frontend Tests:**
+```bash
+npm test                    # All tests
+npm run test:coverage       # With coverage
+npm test -- --watch         # Watch mode
+```
+
+**Security Scans:**
+```bash
+npm audit                                    # Frontend dependencies
+dotnet list package --vulnerable             # Backend dependencies
+gitleaks detect --source .                   # Secret scanning
+detect-secrets scan --baseline .secrets.baseline   # Secret scanning
+```
+
+**Pre-Push Checklist:**
+1. Build both frontend and backend
+2. Run all tests locally
+3. Run at least one security scan (npm audit or gitleaks)
+4. Commit and push
+
+### How to Trigger Manual CI Workflows
+
+1. Go to repository → **Actions** tab
+2. Select workflow (e.g., "Backend Tests (Manual)" or "CodeQL Security Analysis (Manual)")
+3. Click **"Run workflow"**
+4. Select branch and any input options
+5. Click **"Run workflow"**
+
+### Weekly Automated Security Scans
+
+Scheduled runs (no manual trigger needed):
+- **Monday 00:00 UTC**: CodeQL Security Analysis
+- **Tuesday 00:00 UTC**: Dependency Security Scan
+- **Wednesday 00:00 UTC**: Secret Scanning
+
+Results appear in:
+- **Security** tab (CodeQL, secret scanning)
+- **Actions** tab (all workflow runs)
+- Email notifications (if enabled)
+
+### Documentation Locations
+
+**Project Documentation:**
+- `docs/LOCAL_TESTING.md` - Complete local testing guide
+- `docs/SECURITY.md` - Security best practices
+- `.github/workflows/` - All workflow definitions
+
+**Control Plane:**
+- This file (`claude.md`) - Testing patterns and strategy
+- `claude_info.txt` - Quick reference for common patterns
+
+### Benefits of Manual Test Execution
+
+✅ **Faster feedback** - Build errors detected in ~2 minutes vs 10+ with tests
+✅ **Resource efficiency** - Tests only run when needed
+✅ **Developer control** - Choose when to run comprehensive test suites
+✅ **Local-first** - Encourages testing before push
+✅ **Security visibility** - Weekly automated scans + manual on-demand
+
+### When to Run Manual Workflows
+
+**Before merging PR:**
+- Run full test suite manually via Actions tab
+- Review security scan results
+
+**After major changes:**
+- Run CodeQL after refactoring or adding new features
+- Run dependency scans after package updates
+
+**Before releases:**
+- Run all security scans
+- Verify all test workflows pass
+- Check Security tab for any issues
+
+---
+
