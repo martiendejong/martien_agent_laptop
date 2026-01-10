@@ -60,6 +60,7 @@ REM === GET BRANCH NAME FROM POOL ===
 echo.
 echo === Getting branch name from pool ===
 set BRANCH_NAME=
+REM Pool columns: 1=Seat, 2=Agent start branch, 3=Base repo, 4=Worktree root, 5=Status, 6=Current repo, 7=Branch
 for /f "tokens=7 delims=|" %%a in ('findstr /c:"| %AGENT_SEAT% |" "%POOL_FILE%"') do (
     set "BRANCH_NAME=%%a"
     set "BRANCH_NAME=!BRANCH_NAME: =!"

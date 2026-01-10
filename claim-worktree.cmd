@@ -48,10 +48,19 @@ REM === STEP 1: FIND FREE AGENT ===
 echo.
 echo === STEP 1: Finding FREE agent ===
 set AGENT_SEAT=
-for /f "tokens=2 delims=|" %%a in ('findstr /i "| FREE |" "%POOL_FILE%"') do (
-    set "AGENT_SEAT=%%a"
-    set "AGENT_SEAT=!AGENT_SEAT: =!"
-    goto :found_agent
+for /f "tokens=1,5 delims=|" %%a in ('type "%POOL_FILE%"') do (
+    set "SEAT=%%a"
+    set "SEAT=!SEAT: =!"
+    set "STATUS=%%b"
+    set "STATUS=!STATUS: =!"
+    REM Check if this is a valid agent line (starts with agent-) and is FREE
+    echo !SEAT! | findstr /r "^agent-" >nul 2>&1
+    if !errorlevel! equ 0 (
+        if "!STATUS!"=="FREE" (
+            set "AGENT_SEAT=!SEAT!"
+            goto :found_agent
+        )
+    )
 )
 
 :found_agent
