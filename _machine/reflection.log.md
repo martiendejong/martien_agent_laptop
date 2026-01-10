@@ -1,3 +1,94 @@
+## 2026-01-10 23:50 - Critical Bug Fix: TypeScript Cleanup Broke All Custom Analysis Components
+
+**Session Type:** Emergency bug fix
+**Context:** User reported logo field showing raw JSON in textarea instead of ImageSet component
+**Branch:** fix/logo-generation-controls (agent-001)
+**Commits:** f8d3b1d, ab194ab
+**PR:** #90 - https://github.com/martiendejong/client-manager/pull/90
+
+**The Bug:**
+User reported: "Its still going wrong on develop, have you created a branch for changes to logo generatiion and checked it out in a worktree agent? I want to see a branch that is made to address this that will get a pr when the changes are done. this is how logo now looks for me, I'm expecting an imageset control here: {"images":[null,null,null,null],"selectedIndex":null,"feedback":null,"key":"logo"} in a textarea input"
+
+**Root Cause:**
+Commit 5136820 ("WIP: TypeScript cleanup - Fixed 97 unused variable errors") accidentally deleted ONE critical line from AnalysisEditor.tsx:
+
+**DELETED LINE:**
+```typescript
+const cfg = config.find((f: AnalysisField) => f.key === fieldKey)
+```
+
+**Impact:**
+- `cfg` was undefined
+- `setFieldConfig(cfg || null)` set fieldConfig to null for ALL fields
+- `renderEditor()` checks `fieldConfig?.componentName` and fell back to textarea
+- ALL custom components broke:
+  - ImageSet (logo) - 4-logo grid → raw JSON textarea ❌
+  - ColorScheme - color palette UI → raw JSON textarea ❌
+  - Typography - typography UI → raw JSON textarea ❌
+  - ItemsList (core-values) - items list → raw JSON textarea ❌
+  - TagsList (tone-of-voice) - tags UI → raw JSON textarea ❌
+
+**The Fix:**
+Restored the missing line at AnalysisEditor.tsx:71:
+```typescript
+const cfg = _config.find((f: AnalysisField) => f.key === fieldKey)
+```
+
+**Investigation Process:**
+1. Created branch fix/logo-generation-controls in worktree agent-001
+2. Read ImageSet component (940 lines) - fully functional ✅
+3. Checked backend AnalysisFieldInitializer.cs - ComponentName = "ImageSet" ✅
+4. Checked backend AnalysisController DEFAULT_FIELDS - ComponentName = "ImageSet" ✅
+5. Checked project config C:\stores\brand2boost\analysis-fields.config.json - componentName = "ImageSet" ✅
+6. Checked frontend import in AnalysisEditor.tsx - ImageSet imported ✅
+7. Checked renderEditor() logic - if (component === 'ImageSet') exists ✅
+8. Found the bug: Promise.all([_config, data]) but using undefined `cfg` variable
+9. Used git blame to trace to commit 5136820
+10. Compared with parent commit to see what was deleted
+11. Restored the missing line
+
+**Pattern 64: TypeScript Cleanup Can Break Runtime Logic**
+
+**The Problem:**
+Automated TypeScript cleanup (removing "unused" variables) can break runtime behavior when:
+- Variable appears unused to TypeScript compiler
+- But is actually used in string comparisons, property lookups, or dynamic logic
+- Cleanup doesn't run tests or verify runtime behavior
+
+**The Learning:**
+When doing TypeScript cleanup:
+1. ✅ **Run All Tests** - Not just type checking
+2. ✅ **Test Critical User Flows** - Logo generation, color schemes, etc.
+3. ✅ **Check for Dynamic Property Access** - componentName, genericType lookups
+4. ✅ **Review Context of "Unused" Variables** - May be used indirectly
+5. ✅ **Incremental Commits** - Don't bundle 97 fixes in one commit
+6. ✅ **Git Blame Before Deleting** - Check why variable was added
+
+**Prevention:**
+- Add E2E tests for custom component rendering
+- Add unit tests for field config lookup logic
+- Require manual review of any commit touching component rendering
+- Add comment explaining why cfg variable is needed
+
+**Documentation:**
+Created comprehensive analysis document: ANALYSIS_LOGO_ISSUE.md
+- Full investigation process
+- Root cause analysis
+- All affected components
+- How the system works
+- Verification steps
+- Solution options
+
+**Outcome:**
+✅ Bug fixed in 1 line change
+✅ All custom components restored
+✅ Comprehensive documentation created
+✅ Committed and pushed
+✅ PR ready for review
+✅ Worktree released
+
+---
+
 ## 2026-01-10 16:00 - Mass Agent Release: Recovering 50% Pool Capacity from Stale Allocations
 
 **Session Type:** Proactive cleanup and resource recovery

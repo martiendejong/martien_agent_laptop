@@ -253,3 +253,6 @@ Actions:
 2026-01-10T22:15:00Z — release — agent-003 — client-manager — feature/ci-manual-tests — CI-SECURITY — claude-code — PR #86 updated: Security scans manual-only + LOCAL_TESTING.md added
 2026-01-10T22:30:00Z — allocate — agent-003 — client-manager — feature/ci-manual-tests — MERGE-DEVELOP — claude-code — Merging develop into PR #86 branch
 2026-01-10T22:45:00Z — release — agent-003 — client-manager — feature/ci-manual-tests — MERGE-DEVELOP — claude-code — Successfully merged develop, resolved all conflicts, PR #86 is MERGEABLE
+2026-01-10T23:15:00Z — allocate — agent-002 — hazina — fix/content-hooks-use-analysis-provider — TASK-ContentHooksProvider — claude-code — Refactor to use IAnalysisFieldsProvider
+2026-01-10T23:30:00Z — allocate — agent-004 — client-manager — fix/scrollbar-styling — UI-FIX — claude-code — Fix scrollbar transparency/size + remove horizontal scroll from chat
+2026-01-11T00:40:00Z — release — agent-004 — client-manager — fix/scrollbar-styling — UI-FIX — claude-code — PR #91 created: Scrollbar improvements + horizontal scroll fix
