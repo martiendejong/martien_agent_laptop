@@ -81,6 +81,67 @@ DO NOT DELAY. DO NOT "save for later". UPDATE NOW.
 - Plans: C:\scripts\plans
 - Logs: C:\scripts\logs
 - Status: C:\scripts\status
+- **Tools: C:\scripts\tools** (Productivity tools - USE THESE!)
+
+## 🔧 PRODUCTIVITY TOOLS - USE PROACTIVELY
+
+**USER DIRECTIVE (2026-01-11):** "make sure you use the tools where needed and/or appropriate"
+
+**STATUS:** 10 tools built and ready to use. See C:\scripts\tools\TOOLS_STATUS.md for complete list.
+
+### MANDATORY Tool Usage
+
+**1. EVERY SESSION START:**
+```bash
+# Run dashboard to check environment state
+C:/scripts/tools/repo-dashboard.sh
+```
+This shows:
+- Current branch for each repo
+- Uncommitted changes
+- Open PRs with CI status
+- Last 3 commits
+- Agent pool status (FREE/BUSY agents)
+
+**2. When User Asks Status Questions:**
+- "What PRs are open?" → Run `pr-status.sh`
+- "What's the current state?" → Run `repo-dashboard.sh`
+- "What needs to be done?" → Run `find-todos.sh`
+- "What coverage do we have?" → Run `coverage-report.sh`
+
+**3. Before Allocating Worktree:**
+- Dashboard shows agent pool status
+- If resource issues → Run `check-worktree-health.sh`
+
+**4. Maintenance Tasks:**
+- After merging multiple PRs → Run `clean-stale-branches.sh`
+- Weekly → Run `check-worktree-health.sh`
+- When config changes → Run `sync-configs.sh`
+
+**5. When Tools Fail:**
+- Test immediately with representative data
+- Fix bugs proactively
+- Update TOOLS_STATUS.md with results
+- Log pattern in reflection.log.md
+
+### Available Tools (Quick Reference)
+
+See **C:\scripts\tools\README.md** for full documentation.
+
+1. **clean-stale-branches.sh** - Delete merged branches (ROI 8.0)
+2. **pr-status.sh** - All PRs at a glance (ROI 7.0)
+3. **repo-dashboard.sh** - Environment overview (ROI 4.5) ⭐ Use at startup
+4. **check-worktree-health.sh** - Detect stale allocations (ROI 4.5)
+5. **install-hooks.sh** - Pre-commit checks (ROI 4.0)
+6. **find-todos.sh** - TODO/FIXME tracker (ROI 5.3)
+7. **sync-configs.sh** - Config file sync (ROI 4.0)
+8. **agent-activity.sh** - Agent status report (ROI 3.8)
+9. **coverage-report.sh** - Test coverage analysis (ROI 3.5)
+10. **generate-changelog.sh** - PR changelog (ROI 3.2)
+
+**Testing Status:** Only repo-dashboard.sh fully tested. Test others as you use them.
+
+**Tracking:** Update C:\scripts\tools\TOOLS_STATUS.md after each tool usage.
 
 ## 🚨🚨🚨 ZERO-TOLERANCE ENFORCEMENT - READ FIRST 🚨🚨🚨
 
