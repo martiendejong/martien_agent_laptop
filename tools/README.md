@@ -192,5 +192,101 @@ choco install jq
 
 ---
 
+## 🎯 Tools 6-10 (Next Batch)
+
+### Tool 6: TODO Tracker
+**Find all TODO/FIXME/HACK comments**
+
+```bash
+# Find all TODOs
+./find-todos.sh
+
+# Export to markdown
+./find-todos.sh --export
+
+# Specific repo
+./find-todos.sh client-manager
+```
+
+**Output:** Grouped by file, color-coded by type, line numbers included
+
+---
+
+### Tool 7: Config Sync
+**Sync configs from base repos to worktrees**
+
+```bash
+# Sync all BUSY agents
+./sync-configs.sh
+
+# Specific agent
+./sync-configs.sh agent-001
+
+# Dry run
+./sync-configs.sh --dry-run
+```
+
+**Syncs:** appsettings.json, .env, secrets.json
+
+---
+
+### Tool 8: Agent Activity Report
+**See what each agent is doing**
+
+```bash
+./agent-activity.sh
+```
+
+**Shows:** Time allocated, last commit, PR status, inactive warnings
+
+---
+
+### Tool 9: Test Coverage Reporter
+**Generate coverage reports**
+
+```bash
+# Run coverage
+./coverage-report.sh
+
+# Generate HTML
+./coverage-report.sh --html
+
+# Specific repo
+./coverage-report.sh client-manager
+```
+
+**Output:** Backend + frontend coverage, low-coverage files highlighted
+
+---
+
+### Tool 10: Changelog Generator
+**Generate changelog from merged PRs**
+
+```bash
+# All merged PRs
+./generate-changelog.sh
+
+# Since specific tag
+./generate-changelog.sh --since-tag v2026.01.08-stable
+
+# Specific repo
+./generate-changelog.sh client-manager
+```
+
+**Format:** Keep a Changelog standard, categorized by type
+
+---
+
+## 💡 Improvement Suggestions
+
+**Have an idea for a new tool?** Add it to `FUTURE_TOOLS.md`
+
+**Found a bug?** Tools will auto-fix issues when possible, or report clear errors
+
+**Want to contribute?** All tools are in `C:\scripts\tools\` - feel free to enhance!
+
+---
+
 **Created:** 2026-01-11
-**Next 5 tools:** See TOOLS_INVENTORY.md for full list
+**Last Updated:** 2026-01-11 04:45
+**Tools Available:** 10 of 50 planned

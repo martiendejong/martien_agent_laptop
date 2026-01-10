@@ -39,13 +39,24 @@ for repo in "${REPOS[@]}"; do
   # Open PRs
   echo ""
   echo "🔀 Open PRs:"
-  pr_summary=$(gh pr list --limit 5 --json number,title,statusCheckRollup 2>/dev/null | \
-    jq -r '.[] | "   #\(.number): \(.title) [\(.statusCheckRollup[0].state // "PENDING")]"')
 
-  if [ -z "$pr_summary" ]; then
-    echo "   (none)"
+  if command -v jq &> /dev/null; then
+    pr_summary=$(gh pr list --limit 5 --json number,title,statusCheckRollup 2>/dev/null | \
+      jq -r '.[] | "   #\(.number): \(.title) [\(.statusCheckRollup[0].state // "PENDING")]"')
+
+    if [ -z "$pr_summary" ]; then
+      echo "   (none)"
+    else
+      echo "$pr_summary"
+    fi
   else
-    echo "$pr_summary"
+    # Fallback without jq
+    pr_count=$(gh pr list --limit 5 2>/dev/null | wc -l)
+    if [ $pr_count -gt 0 ]; then
+      gh pr list --limit 5 2>/dev/null | sed 's/^/   /'
+    else
+      echo "   (none)"
+    fi
   fi
 
   # Last 3 commits
@@ -63,15 +74,15 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 
 pool_file="/c/scripts/_machine/worktrees.pool.md"
 if [ -f "$pool_file" ]; then
-  free_count=$(grep -c "| FREE |" "$pool_file" || echo "0")
-  busy_count=$(grep -c "| BUSY |" "$pool_file" || echo "0")
+  free_count=$(grep "| FREE |" "$pool_file" | wc -l)
+  busy_count=$(grep "| BUSY |" "$pool_file" | wc -l)
   total=$((free_count + busy_count))
 
   echo "🟢 FREE: $free_count agents"
   echo "🔴 BUSY: $busy_count agents"
   echo "📊 Total: $total agents"
 
-  if [ $busy_count -gt 0 ]; then
+  if [ "$busy_count" -gt 0 ]; then
     echo ""
     echo "Active agents:"
     grep "| BUSY |" "$pool_file" | while IFS='|' read -r _ seat _ _ _ _ repo branch _ notes; do
