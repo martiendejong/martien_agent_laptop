@@ -8720,3 +8720,31 @@ const mockGetCurrentUser = vi.fn()
 
 **Total:** 686 insertions, 1 deletion
 
+
+## 2026-01-10 20:45 - Fixed Content Hooks Generation Validation Bug
+
+**Problem:** POST /api/contenthook/generate/{id} returned 200 "Content hooks generated" even when generation failed, leading to empty array on GET.
+
+**Root Cause:** 
+- ContentHooksRegenerator.RegenerateAll() has multiple early-exit paths that create empty files on failure (no API key, insufficient context, AI errors, etc.)
+- Controller was not validating if generation actually succeeded before returning 200
+- Misleading success response confused users
+
+**Solution:**
+- Added post-generation validation in controller
+- Load the generated file and check if it has content hooks
+- Return 500 with clear error message if generation failed
+- Return the actual generated hooks in success response
+- Added GET /api/contenthook/generate/{id} for convenience (can GET where you POST)
+
+**Impact:**
+- Users now get clear error feedback when generation fails
+- API is more RESTful (GET to same URL as POST)
+- Easier debugging (errors surfaced, not hidden)
+
+**Pattern Added:** Validate async operations before returning success
+**PR:** #87
+**Files Changed:** ClientManagerAPI/Controllers/ContentHookController.cs
+
+**Key Lesson:** Always validate that async operations with multiple failure paths actually succeeded before returning success status to the user. Silent failures are confusing and hard to debug.
+

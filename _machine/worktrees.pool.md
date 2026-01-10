@@ -8,7 +8,7 @@ Seat states:
 
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager | fix/content-hooks-generation | 2026-01-10T20:15:00Z | Fixing content hooks generation issue |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-01-10T20:45:00Z | ✅ Fixed content hooks generation validation (PR #87 created), worktree released |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-01-10T21:00:00Z | ✅ Completed: CI manual tests configuration (PR #86 created) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-10T16:00:00Z | ✅ Cleaned up: Quality Scoring Model (PR #31 MERGED), worktree released |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-10T16:00:00Z | ✅ Cleaned up: SCP Revolutionary Transformation (PR #1 MERGED), worktree released |

@@ -248,3 +248,4 @@ Actions:
 2026-01-10T20:15:00Z — allocate — agent-001 — client-manager — fix/content-hooks-generation — TASK-ContentHooks — claude-code — Fix content hooks generation/retrieval bug
 2026-01-10T20:30:00Z — allocate — agent-002 — client-manager — feature/ci-manual-tests — CI-CONFIG — claude-code — Configure GitHub Actions to build by default, tests on manual trigger only
 2026-01-10T21:00:00Z — release — agent-002 — client-manager — feature/ci-manual-tests — CI-CONFIG — claude-code — PR #86 created: Build by default, tests manual-only
+2026-01-10T20:45:00Z — release — agent-001 — client-manager — fix/content-hooks-generation — TASK-ContentHooks — claude-code — PR #87 created, worktree cleaned
