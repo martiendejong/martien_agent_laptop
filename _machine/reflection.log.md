@@ -11342,3 +11342,187 @@ dotnet restore ClientManagerAPI.Tests/ClientManagerAPI.Tests.csproj
 ---
 
 **Key Takeaway:** Framework targeting is a hard constraint. Test projects must target the same framework (or broader) than the projects they reference. Cross-platform projects cannot reference Windows-specific projects, period. When you see NU1201, align the frameworks or refactor the code.
+
+## 2026-01-11 09:00 - Session: Horizontal Scrollbar Deep Investigation
+
+### Context
+User reported persistent horizontal scrollbar in chat window that remained despite multiple fix attempts (PR #99, PR #100). Required comprehensive root cause analysis.
+
+### Key Learnings
+
+#### 1. **CRITICAL: Worktree Discipline - ALWAYS Release Before Presenting PR**
+**Mistake:** After creating PR #100 and PR #101, I left the worktree allocated and branch checked out instead of releasing and switching to develop.
+
+**Rule Violation:** Failed to follow the established protocol:
+- ✅ DO: After creating PR → Release worktree → Switch base repos to develop
+- ❌ DON'T: Leave worktree busy and branch checked out after PR creation
+
+**Impact:** Worktree remained locked, preventing clean state management.
+
+**New Protocol (MANDATORY):**
+```
+1. Create PR
+2. IMMEDIATELY release worktree (clean directory, mark FREE)
+3. IMMEDIATELY switch base repos to develop
+4. THEN present PR to user
+```
+
+**Why This Matters:**
+- Keeps worktree pool clean and available
+- Prevents branch conflicts
+- Maintains clear separation between active work and completed PRs
+- User expects clean state after PR presentation
+
+#### 2. **User Debugging is Often More Effective Than Agent Analysis**
+**What Happened:**
+- I created comprehensive analysis with "10 expert team" approach
+- Found viewport unit issue (100vw) in PromptsView.tsx - created PR #100
+- User tested the fix - **still had horizontal scrollbar**
+- User inspected DOM directly, tested `padding: 0` on virtuoso-scroller
+- **User found the real cause:** `md:pr-24` in MessagesPane.tsx line 639
+
+**Lesson:** 
+- Agent analysis can miss the mark even with thorough investigation
+- User's direct DOM inspection and testing revealed the actual culprit
+- **Always trust user debugging findings** - they see the live behavior
+- Don't be overconfident in "comprehensive analysis" results
+
+**Better Approach:**
+- When user reports "still not fixed", immediately ask them to:
+  1. Open browser DevTools
+  2. Inspect the overflowing element
+  3. Report what they find
+- This is faster and more accurate than agent speculation
+
+#### 3. **The Horizontal Scrollbar Root Cause Chain**
+
+**Attempt 1 (PR #99):** Changed `width: 100vw` → `width: 100%` in index.css
+- **Result:** Not fixed
+- **Why:** This wasn't the cause
+
+**Attempt 2 (PR #100):** Fixed `calc(100vw-4rem)` in PromptsView.tsx + added `max-w-full` to MainLayout
+- **Result:** Not fixed
+- **Why:** PromptsView wasn't the primary overflow source
+
+**Attempt 3 (PR #101 - THE FIX):** Removed `md:pr-24` from Virtuoso scroller in MessagesPane.tsx
+- **Result:** ✅ Fixed!
+- **Why:** 96px extra right padding exceeded container width
+
+**The Actual Problem:**
+```tsx
+// MessagesPane.tsx line 639
+className="h-full px-4 py-6 md:px-8 md:py-8 md:pr-24"
+//                                            ^^^^^^^^ THIS!
+
+// Layout math:
+// Left:  32px (md:px-8)
+// Right: 32px + 96px = 128px (md:px-8 + md:pr-24)
+// Total: 160px padding → Exceeded container width → Horizontal scroll
+```
+
+**Why the padding was there:**
+- Originally added to make room for TokenBadge
+- **BUT:** TokenBadge is absolutely positioned (`absolute bottom-4 right-4 z-10`)
+- Absolute elements don't need padding - they float on top
+- The padding was unnecessary and caused the overflow
+
+#### 4. **CSS Debugging Patterns**
+
+**Viewport Units (vw) Problem:**
+- `100vw` includes scrollbar width (~15-17px)
+- Parent containers using `width: 100%` exclude scrollbar width
+- This creates mismatch when mixing vw and % units
+- **Fix:** Use `%` for container-relative widths, not `vw`
+
+**Asymmetric Padding Anti-Pattern:**
+```css
+/* BAD - Causes layout issues */
+px-8 pr-24  /* Left: 32px, Right: 32px + 96px = asymmetric */
+
+/* GOOD - Symmetric and predictable */
+px-8        /* Left: 32px, Right: 32px = symmetric */
+```
+
+**Absolute Positioning Rule:**
+- If element is `position: absolute` with `z-index`, it doesn't need padding in parent
+- It floats on top - padding just wastes space and can cause overflow
+
+#### 5. **Iterative Fix Approach vs. Root Cause First**
+
+**What I Did:** Made incremental fixes based on analysis
+1. Fix viewport units in global CSS
+2. Fix viewport calc in PromptsView
+3. Add max-width constraints
+4. **Finally:** Fix the actual cause in MessagesPane
+
+**What I Should Have Done:**
+1. Ask user to inspect overflowing element first
+2. Use browser DevTools to identify exact source
+3. Fix the root cause directly
+4. Then look for similar patterns elsewhere
+
+**Lesson:** Start with empirical testing, not theoretical analysis.
+
+#### 6. **Agent Analysis Limitations**
+
+**Comprehensive Analysis Findings:**
+- ✅ Correctly identified PromptsView `calc(100vw-4rem)` as problematic
+- ✅ Correctly explained viewport unit issue
+- ✅ Good documentation and explanation
+- ❌ Missed the **actual primary cause** (MessagesPane padding)
+- ❌ User had to debug manually to find real issue
+
+**Why Analysis Failed:**
+- Grepped for viewport units - found PromptsView
+- Assumed that was the main cause
+- Didn't check for **excessive padding** patterns
+- Didn't look for asymmetric padding (e.g., `pr-24` without matching `pl-24`)
+
+**Better Search Patterns:**
+```bash
+# Should have searched for:
+grep "pr-16\|pr-20\|pr-24\|pr-28\|pr-32" *.tsx  # Excessive right padding
+grep "pl-16\|pl-20\|pl-24\|pl-28\|pl-32" *.tsx  # Check if symmetric
+
+# If right padding > left padding → potential overflow cause
+```
+
+### Action Items
+
+1. **[MANDATORY] Update claim-worktree workflow:**
+   - Add reminder at end: "REMEMBER: Release worktree after creating PR!"
+   - Add automatic check: Warn if worktree not released within 5 minutes of PR creation
+
+2. **[PROTOCOL] Update reflection.log.md:**
+   - Add rule: "When user says 'still not fixed', ask them to inspect DOM"
+   - Add checklist: Horizontal scroll debugging steps
+
+3. **[SEARCH PATTERN] Create reusable grep patterns:**
+   - Asymmetric padding detection
+   - Viewport unit usage
+   - Absolute positioning without z-index
+
+4. **[DOCUMENTATION] Update claude.md:**
+   - Add section: "Worktree Release Protocol"
+   - Add section: "When Analysis Fails - Trust User Debugging"
+
+### Summary
+
+**What Worked:**
+- Good documentation in PRs
+- Comprehensive technical explanations
+- Systematic search through codebase
+
+**What Failed:**
+- Didn't release worktree after PR creation (protocol violation)
+- Analysis missed actual root cause (user found it)
+- Too confident in "comprehensive analysis" results
+
+**Key Takeaway:**
+> "Always release worktrees immediately after PR creation, and always trust user debugging findings over agent analysis when they report 'still not fixed'."
+
+**Success Metric:**
+- PR #101 (based on user's debugging) finally fixed the issue
+- User's `padding: 0` test directly identified the root cause
+- Demonstrates value of empirical testing over theoretical analysis
+
