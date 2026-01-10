@@ -142,6 +142,36 @@ count=$(grep "pattern" file | wc -l)
 3. Create aliases for most-used tools in user's .bashrc
 4. Set up daily cron job for worktree health checker
 
+**User Directive (2026-01-11 04:50):**
+- Leave tool development for now (don't build more)
+- Keep track in documentation of state of each tool
+- **CRITICAL:** Use tools where needed/appropriate proactively
+- Created TOOLS_STATUS.md to track which tools to use when
+
+**Pattern 69: Proactive Tool Usage**
+
+**The Directive:**
+User emphasized: "make sure you use the tools where needed and/or appropriate"
+
+**Implementation:**
+1. **EVERY session start:** Run repo-dashboard.sh automatically
+2. **Before worktree allocation:** Check agent pool status via dashboard
+3. **Status questions:** Use pr-status.sh, find-todos.sh automatically
+4. **Maintenance tasks:** Use clean-stale-branches.sh, check-worktree-health.sh
+5. **When tools fail:** Test immediately, fix proactively, document
+
+**Key Insight:**
+Tools are worthless if not used. Build habits:
+- Dashboard at startup (non-negotiable)
+- PR status when user asks about PRs
+- Health check when resource issues occur
+- Branch cleanup after merge sprees
+
+**Tracking:**
+- TOOLS_STATUS.md documents when to use each tool
+- Update after each tool usage in production
+- Log bugs and fixes immediately
+
 ---
 
 ## 2026-01-11 01:30 - Tested Worktree Automation Scripts (Partial Success)
