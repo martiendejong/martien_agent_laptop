@@ -262,3 +262,7 @@ Actions:
 2026-01-11T04:00:00Z — allocate — agent-002 — client-manager+hazina — feature/auto-stable-tagging — AUTO-TAG — claude-code — Creating GitHub Actions workflow for automatic stable tagging on PR merge to main
 14-za-10-01-2026T32:10:98Z — allocate — agent-003 — client-manager+hazina — feature/web-search-hazina-core — — claude-code — Move web search to Hazina core library 
 2026-01-11T05:00:00Z — release — agent-002 — client-manager+hazina — feature/auto-stable-tagging — AUTO-TAG — claude-code — PRs created: client-manager #95, Hazina #36. Automatic stable tagging workflow implemented.
+2026-01-10T17:15:00Z — release — agent-001 — artrevisionist — agent001-fix-intake-constructor — — claude-code — PR #7 created, worktree cleaned. Fixed IAnalysisFieldsProvider parameter in IntakeController.
+2026-01-11T06:10:00Z — release — agent-001 — artrevisionist — fix/jwt-token-property — — claude-code — PR #8 created, worktree cleaned
+19-za-10-01-2026T41:39:23Z — allocate — agent-001 — client-manager+hazina — fix/web-search-null-logpath — — claude-code — Fix null LogPath crash in web search 
+2026-01-11T07:30:00Z — release — agent-001 — hazina — fix/web-search-null-logpath — — claude-code — Fixed null LogPath crash in web search, Hazina PR #39 created, worktree cleaned
