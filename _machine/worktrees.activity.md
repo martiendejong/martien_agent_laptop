@@ -250,3 +250,4 @@ Actions:
 2026-01-10T21:00:00Z — release — agent-002 — client-manager — feature/ci-manual-tests — CI-CONFIG — claude-code — PR #86 created: Build by default, tests manual-only
 2026-01-10T20:45:00Z — release — agent-001 — client-manager — fix/content-hooks-generation — TASK-ContentHooks — claude-code — PR #87 created, worktree cleaned
 2026-01-10T21:10:00Z — allocate — agent-003 — client-manager — feature/ci-manual-tests — CI-SECURITY — claude-code — Make security scans manual, add local testing instructions
+2026-01-10T22:15:00Z — release — agent-003 — client-manager — feature/ci-manual-tests — CI-SECURITY — claude-code — PR #86 updated: Security scans manual-only + LOCAL_TESTING.md added

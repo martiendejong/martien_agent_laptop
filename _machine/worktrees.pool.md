@@ -8,9 +8,9 @@ Seat states:
 
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager | agent-001-token-purchase-ui | 2026-01-10T21:30:00Z | Updating token packages to correct pricing |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-01-10T22:00:00Z | ✅ Updated token package pricing in config (PR #85), worktree released |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-01-10T21:45:00Z | ✅ Made CI workflows manual-only (PR #88 created), worktree released |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | client-manager | feature/ci-manual-tests | 2026-01-10T21:10:00Z | Making security scans manual + adding local test instructions |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-10T22:15:00Z | ✅ Made security scans manual + added local testing guide (PR #86 updated) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-10T16:00:00Z | ✅ Cleaned up: SCP Revolutionary Transformation (PR #1 MERGED), worktree released |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-10T16:00:00Z | ✅ Cleaned up: Documentation improvements (PR #29 MERGED), worktree released |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-01-10T16:00:00Z | ✅ Cleaned up: Chat issues docs (PR #60/#80 MERGED) + Config templates (Hazina PR #33 MERGED), worktree released |
