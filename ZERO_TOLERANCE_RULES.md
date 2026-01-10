@@ -19,16 +19,22 @@ BEFORE Edit or Write on ANY code file:
 ❌ VIOLATION = CRITICAL FAILURE
 ```
 
-### ✋ RULE 2: COMPLETE WORKFLOW BEFORE SESSION END
+### ✋ RULE 2: COMPLETE WORKFLOW + RELEASE BEFORE PRESENTING PR
 ```
-BEFORE saying "done" (if code edited):
+AFTER creating PR (gh pr create):
 □ git add -u && git commit -m "..."
 □ git push origin <branch>
 □ gh pr create --title "..." --body "..."
-□ Mark worktree FREE
-□ Log release in activity
+□ IMMEDIATELY: rm -rf C:\Projects\worker-agents\agent-XXX/*
+□ Mark worktree FREE in pool.md
+□ Log release in activity.md
+□ git commit + push tracking files
+□ Switch base repos to develop (both repos)
+□ git worktree prune (both repos)
+□ THEN present PR to user
 
 ❌ VIOLATION = CRITICAL FAILURE
+❌ Presenting PR before releasing worktree = VIOLATION
 ```
 
 ### ✋ RULE 3: NEVER EDIT IN C:\Projects\<repo>
@@ -78,17 +84,18 @@ IF ANY ☐ = NO → STOP! ALLOCATE FIRST!
 
 ---
 
-## SESSION-END CHECKLIST (Print mentally)
+## PR-CREATION CHECKLIST (Print mentally)
 
-**BEFORE SAYING "I'm done":**
+**AFTER gh pr create, BEFORE presenting to user:**
 ```
-□ Committed? (git commit)
-□ Pushed? (git push)
-□ PR created? (gh pr create)
-□ Worktree freed? (mark FREE in pool)
-□ Released logged? (worktrees.activity.md)
+□ Worktree cleaned? (rm -rf agent-XXX/*)
+□ Pool updated? (BUSY → FREE in pool.md)
+□ Release logged? (worktrees.activity.md)
+□ Tracking committed? (git commit + push)
+□ Base repos on develop? (git checkout develop, both repos)
+□ Worktrees pruned? (git worktree prune, both repos)
 
-IF ANY ☐ = NO → NOT DONE! FINISH WORKFLOW!
+IF ANY ☐ = NO → DON'T PRESENT PR YET! RELEASE FIRST!
 ```
 
 ---
