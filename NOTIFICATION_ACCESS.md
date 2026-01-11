@@ -1,5 +1,7 @@
 # Quick Access to Notifications Dashboard
 
+**See also:** `QUICK_LAUNCHERS.md` for all available quick launch commands (Claude Agent, frontends, etc.)
+
 ## File Location
 `C:\Users\HP\notifications.html`
 

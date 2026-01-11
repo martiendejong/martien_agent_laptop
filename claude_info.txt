@@ -442,6 +442,13 @@ Error: `Unable to resolve service for type 'IFoo' while attempting to activate '
 **Location:** C:\Users\HP\notifications.html
 **Quick Access:** CTRL+R → n.bat (or just "n" if C:\scripts in PATH)
 
+**Other Quick Launchers (CTRL+R):**
+- c.bat → Claude Agent
+- cm.bat → Client Manager frontend
+- ar.bat → ArtRevisionist frontend
+- bi.bat → Bugatti Insights frontend
+See C:\scripts\QUICK_LAUNCHERS.md for full list
+
 **MANDATORY - Add notification when:**
 - Creating any PR (PR URL, title, description)
 - Completing significant job

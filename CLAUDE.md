@@ -187,7 +187,11 @@ When approaching limit:
 - **CTRL+R → `C:\scripts\n.bat`** (works now)
 - **CTRL+R → `C:\Users\HP\notifications.html`** (direct)
 
-See `C:\scripts\NOTIFICATION_ACCESS.md` for setup details.
+**Other Quick Launchers:** See `C:\scripts\QUICK_LAUNCHERS.md` for all CTRL+R commands:
+- `c` - Claude Agent
+- `cm` - Client Manager frontend (npm run dev)
+- `ar` - ArtRevisionist frontend (npm run dev)
+- `bi` - Bugatti Insights frontend (npm run dev)
 
 **File Format:**
 ```html
