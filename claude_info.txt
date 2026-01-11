@@ -15,8 +15,9 @@ bash C:/scripts/tools/repo-dashboard.sh          # 📊 Check environment state 
 
 ### Before Allocating Worktree (MANDATORY)
 ```bash
-bash C:/scripts/tools/check-base-repos.sh        # ✅ RULE 3B enforcement - base repos MUST be on develop
-bash C:/scripts/tools/check-worktree-health.sh   # 🔍 Detect stale allocations
+bash C:/scripts/tools/check-base-repos.sh                    # ✅ RULE 3B enforcement - base repos MUST be on develop
+bash C:/scripts/tools/check-branch-conflicts.sh <repo> <branch>  # 🚨 CRITICAL: Multi-agent conflict detection
+bash C:/scripts/tools/check-worktree-health.sh               # 🔍 Detect stale allocations
 ```
 
 ### After Completing Work (MANDATORY)
@@ -2247,6 +2248,85 @@ git pull origin develop
 
 **Integration:** Part of Pattern 59 (Post-Compaction Verification) Tier 1 checks
 
+---
+
+### Pattern 81: Multi-Agent Conflict Detection (2026-01-11)
+
+**Problem:** Multiple agents allocate same worktree/branch simultaneously
+**Impact:** CRITICAL - Git conflicts, duplicate work, potential data loss
+**User Mandate:** "when this happens again both of you should be able to notify each other and then one of the agents should say 'there is already another agent working in this branch'"
+
+**Root Cause:**
+- Pool status checks SEATS (agent-XXX directories) not BRANCHES
+- Two agents can mark different seats BUSY for SAME branch
+- Results in both agents working on same code simultaneously
+
+**Mandatory Pre-Allocation Checks:**
+```bash
+# Step 0a: CONFLICT DETECTION (before pool check!)
+bash C:/scripts/tools/check-branch-conflicts.sh <repo> <branch>
+
+# Or manual check:
+# 1. Check git worktrees
+git -C C:/Projects/<repo> worktree list | grep <branch>
+# If found → STOP
+
+# 2. Check instances.map.md
+grep "<branch>" C:/scripts/_machine/instances.map.md
+# If found → STOP
+
+# 3. If ANY conflict detected, output:
+# 🚨 CONFLICT DETECTED 🚨
+# There is already another agent working in this branch.
+# I will NOT proceed with allocation to avoid conflicts.
+```
+
+**Conflict Message (MANDATORY):**
+```
+🚨 CONFLICT DETECTED 🚨
+
+There is already another agent working in this branch.
+
+Branch: <branch-name>
+Repository: <repo-name>
+
+Details:
+<worktree list output or instances.map entry>
+
+I will NOT proceed with allocation to avoid conflicts.
+
+Recommended actions:
+1. Choose a different branch name
+2. Wait for the other agent to complete and release
+3. Check with user if one of the agents should take over
+```
+
+**When to Check:**
+- ✅ BEFORE EVERY worktree allocation (step 0a in ATOMIC ALLOCATION)
+- ✅ Before marking any seat BUSY
+- ✅ Before creating any git worktree
+
+**Helper Script:**
+```bash
+# Returns exit code 0 if safe, 1 if conflict detected
+bash C:/scripts/tools/check-branch-conflicts.sh hazina feature/new-feature
+```
+
+**What it checks:**
+1. Git worktree list (actual filesystem state)
+2. instances.map.md (active agent sessions)
+3. Pool status (mentions of branch)
+4. Recent activity log (last 50 entries)
+
+**Zero Tolerance:** Violating this protocol = CRITICAL FAILURE
+
+**Full Protocol:** C:\scripts\_machine\MULTI_AGENT_CONFLICT_DETECTION.md
+
+**Related:**
+- reflection.log.md § 2026-01-11 21:15 (incident report)
+- CLAUDE.md § ATOMIC ALLOCATION (step 0a)
+- Pattern 63: Agent Release Protocol
+- Pattern 66: Worktree Lifecycle State Machine
 
 ---
 
