@@ -420,6 +420,13 @@ When multiple agents run in parallel, they MUST NOT share the same worktree. Eac
 
 2. **ATOMIC ALLOCATION (MANDATORY):**
    ```powershell
+   # 0a. 🚨 MULTI-AGENT CONFLICT CHECK (NEW - MANDATORY!) 🚨
+   # Check if another agent is already working on this branch
+   bash /c/scripts/tools/check-branch-conflicts.sh <repo> <branch-name>
+   # If script exits with error → STOP IMMEDIATELY
+   # Output: "There is already another agent working in this branch"
+   # See: C:\scripts\_machine\MULTI_AGENT_CONFLICT_DETECTION.md
+
    # 0. CRITICAL: Ensure C:\Projects\<repo> is on develop AND up-to-date
    cd C:\Projects\<repo>
    git fetch origin --prune  # ← ALWAYS fetch first to get latest refs!
