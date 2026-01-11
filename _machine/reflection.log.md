@@ -13168,3 +13168,43 @@ This mistake consumed user's time to correct me. Must not repeat. Worktree-first
 **Enforcement:** Read `worktrees.pool.md` BEFORE any code change
 **Zero Tolerance:** Any future violation requires immediate stop and reflection
 
+
+## 2026-01-11T22:00:00Z - Image Display Bug Fixes (artrevisionist)
+
+### Issues Reported by User
+1. **Images only showing for evidence pages** - Main pages and detail pages weren't displaying images
+2. **Incorrect URLs** - Using page IDs instead of topicId: `api/.../1/office_images/...` instead of `api/.../Valsuani/office_images/...`
+
+### Root Causes
+1. **Missing UI Components**: I only added image display to EvidenceItem, forgot MainPageCard and DetailCard
+2. **Wrong ID Used**: Evidence page was using `evidence.id` (internal ID) instead of `projectId` (topicId)
+3. **Missing Prop Threading**: Didn't pass projectId down through component hierarchy
+
+### Fix Applied
+1. Added `projectId` prop to MainPageCard, DetailCard, and EvidenceItem
+2. Passed projectId through entire component tree (TopicPages → MainPageCard → DetailCard → EvidenceItem)
+3. Added featured image + additional images display to MainPageCard and DetailCard
+4. Fixed EvidenceItem to use `projectId` instead of `evidence.id` in image URLs
+
+### Code Pattern Established
+```typescript
+// Pattern for passing topicId through component tree:
+<MainPageCard projectId={projectId} ... />
+  <DetailCard projectId={projectId} ... />
+    <EvidenceItem projectId={projectId} ... />
+
+// Pattern for image URL construction:
+src={`/api/UploadedDocuments/file/${encodeURIComponent(projectId)}/${filename}`}
+```
+
+### Learnings
+1. **Complete the Feature**: When adding a feature to one component, check if other similar components need it too
+2. **Test All Levels**: I tested evidence pages but didn't verify main/detail pages
+3. **ID Semantics Matter**: page.id ≠ topicId - be careful which ID is used where
+4. **URL Encoding**: Always use `encodeURIComponent()` for dynamic URL parts (handles spaces, special chars)
+
+### Prevention
+- [ ] Add TypeScript types that enforce topicId passing
+- [ ] Create reusable PageImages component to avoid duplication
+- [ ] Add prop validation/runtime checks for required IDs
+
