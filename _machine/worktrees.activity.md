@@ -299,3 +299,4 @@ Actions:
 2026-01-11T18:30:00Z — allocate — agent-001 — hazina — feature/chunk-set-summaries — — claude-code — Implementing Phase 1: Chunk-Set Summaries (proposal doc created)
 2026-01-11T18:56:00Z — allocate — agent-002 — artrevisionist — agent-002-page-regeneration-features — — claude-code — Fixing CS1061 compilation error in PageRegenerationService.cs (AskAsync method not found)
 2026-01-11T18:57:00Z — release — agent-002 — artrevisionist — agent-002-page-regeneration-features — — claude-code — Fixed compilation error: Replaced AskAsync with GetGenerator+GetResponse. Committed (9d22fd3) and pushed to PR #21.
+2026-01-11T19:30:00Z — release — agent-001 — hazina — feature/chunk-set-summaries — — claude-code — Phase 1 chunk-set summaries complete, PR #50 created, worktree cleaned
