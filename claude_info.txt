@@ -2122,3 +2122,87 @@ When facing WordPress 404 errors on custom URLs:
 - Full session details: reflection.log.md (2026-01-11 14:30 entry)
 - Code changes: artrevisionist-wordpress commits 29290b1, 6ad0d1b
 - Diagnostic tool: artrevisionist-wordpress/check-posts.php
+
+### Pattern 79: Two-Phase Release Verification (2026-01-11)
+
+**Problem:** Pool shows agent FREE but worktree still locked
+**Symptom:** "branch is already used by worktree" error despite FREE status
+
+**Root Cause:** Incomplete release - pool updated but filesystem not cleaned
+
+**Solution: Two-Phase Verification**
+
+**Phase 1: Tracking Verification**
+```bash
+grep "agent-XXX" C:/scripts/_machine/worktrees.pool.md
+# Should show: FREE
+```
+
+**Phase 2: Filesystem Verification**
+```bash
+# Check directory (should be empty)
+ls C:/Projects/worker-agents/agent-XXX/
+
+# Check git references (should NOT list agent-XXX)
+git -C C:/Projects/<repo> worktree list
+```
+
+**If mismatch detected:**
+- Pool FREE + filesystem has content = Incomplete release
+- Fix: `rm -rf agent-XXX/* && git worktree prune` (all repos)
+- Update activity.md with repair action
+
+**When to use:**
+- Before allocating any agent (verify actually FREE)
+- User reports "worktree in use" despite FREE status
+- After session crashes or interruptions
+
+**Prevention:** Complete Pattern 63 (Agent Release Protocol) fully before ending session
+
+---
+
+### Pattern 80: Mandatory Base Repo Verification (2026-01-11)
+
+**Problem:** Base repo C:\Projects\<repo> on feature branch instead of develop
+**Impact:** CRITICAL - All future worktrees start from wrong code (cascading failures)
+**Rule:** RULE 3B - Base repos MUST ALWAYS be on develop
+
+**Detection:**
+```bash
+# Check all base repos
+for repo in client-manager hazina artrevisionist; do
+  branch=$(git -C C:/Projects/$repo branch --show-current)
+  if [ "$branch" != "develop" ]; then
+    echo "❌ VIOLATION: $repo on $branch (should be develop)"
+  fi
+done
+```
+
+**Fix:**
+```bash
+cd C:/Projects/<repo>
+git status --porcelain  # Verify clean
+git checkout develop
+git pull origin develop
+```
+
+**When to check (MANDATORY):**
+- ✅ Every session start (Pattern 59 Tier 1)
+- ✅ Before allocating ANY worktree
+- ✅ After session interruptions/crashes
+- ✅ After manual work in base repos
+
+**Why critical:**
+- Base repos are SOURCE for all worktree creation
+- Wrong base = all new worktrees start from wrong code
+- Causes: merge conflicts, stale PRs, phantom bugs
+- Hours wasted debugging issues that don't exist
+
+**Real Example (2026-01-11):**
+- client-manager was on `agent-001-logo-variation-enhancement`
+- Discovered during agent-002 release investigation
+- Would have corrupted all future worktree allocations
+- Fixed in 5 minutes, prevented hours of debugging
+
+**Integration:** Part of Pattern 59 (Post-Compaction Verification) Tier 1 checks
+
