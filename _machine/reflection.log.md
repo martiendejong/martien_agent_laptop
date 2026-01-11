@@ -1,3 +1,96 @@
+## 2026-01-11 22:30 - Dynamic Window Title Feature - Prevent Wrong-Agent Errors
+
+**Session Type:** User experience improvement - Multi-session management
+**Context:** User reported accidentally sending commands to wrong agent session
+**Outcome:** ✅ Dynamic window titles implemented showing branch name in ALL-CAPS
+
+### Problem Statement
+
+**User Request:** "sometimes i accidentally send things to the wrong agent. can you make it so that the title of the window is when possible the branch name and otherwise a two word description of the current state in all-caps"
+
+### Root Cause
+
+When running multiple Claude Agent sessions simultaneously (e.g., on different branches or projects), all windows had identical titles making it difficult to distinguish between them in the taskbar.
+
+### Solution Implemented
+
+**Modified File:** `C:\scripts\claude_agent.bat`
+
+**Implementation:**
+```batch
+@echo off
+setlocal enabledelayedexpansion
+
+REM --- Set dynamic window title ---
+for /f "tokens=*" %%i in ('git branch --show-current 2^>nul') do set BRANCH=%%i
+if defined BRANCH (
+    for /f "tokens=*" %%a in ('powershell -Command "\"!BRANCH!\".ToUpper()"') do set BRANCH_UPPER=%%a
+    title !BRANCH_UPPER!
+) else (
+    title CLAUDE AGENT
+)
+```
+
+**Behavior:**
+1. **Priority 1:** If in git repository → Show current branch name in ALL-CAPS
+2. **Priority 2:** If not in git repository → Show "CLAUDE AGENT" as fallback
+
+### Benefits
+
+✅ **Prevents mistakes** - Clear visual distinction between agent sessions
+✅ **Multi-session support** - Run multiple agents on different branches simultaneously
+✅ **Highly visible** - All-caps branch names stand out in taskbar
+✅ **Zero configuration** - Works automatically on every agent launch
+✅ **Context awareness** - Title shows exactly what branch you're working on
+
+### Examples
+
+```
+Session 1 (on main branch):
+  Window title: "MAIN"
+
+Session 2 (on feature branch):
+  Window title: "AGENT-002-ADD-PAGE-IMAGES"
+
+Session 3 (outside git repo):
+  Window title: "CLAUDE AGENT"
+```
+
+### Documentation Updates
+
+**Files updated:**
+1. ✅ `C:\scripts\claude_agent.bat` - Implementation
+2. ✅ `C:\scripts\QUICK_LAUNCHERS.md` - Added § Dynamic Window Titles (New Feature - 2026-01-11)
+3. ✅ `C:\scripts\claude.md` - Added § SESSION MANAGEMENT - DYNAMIC WINDOW TITLES
+4. ✅ `C:\scripts\_machine\reflection.log.md` - This entry
+
+### Pattern Learned
+
+**Pattern 78: Dynamic Window Titles for Multi-Session Management**
+
+**Rule:** Window titles should dynamically reflect the current working context to prevent user errors when managing multiple sessions.
+
+**Implementation Strategy:**
+- Use `git branch --show-current` to detect current branch
+- Convert to uppercase for high visibility
+- Provide meaningful fallback when context unavailable
+- Apply at script startup before any other operations
+
+**Benefits:**
+- Reduces cognitive load on user
+- Prevents costly mistakes (sending commands to wrong session)
+- Supports advanced workflows (parallel agent execution)
+- Zero maintenance burden (fully automatic)
+
+### Commits
+
+**Code commit:** `393e265` - feat: Add dynamic window title showing branch name in all-caps
+**Documentation commit:** (pending) - docs: Update documentation with dynamic window title insights
+
+**Repository:** machine_agents (C:\scripts)
+
+---
+
 ## 2026-01-11 20:00 - ZERO_TOLERANCE_RULES.md Enforcement in Startup Protocol
 
 **Session Type:** Safety mechanism enhancement
@@ -13251,3 +13344,63 @@ When relying on async events (SignalR, WebSocket, SSE) to clear loading states:
 ✅ Manual Stop button provides immediate user control
 ✅ SignalR completion still works as primary mechanism
 ✅ No memory leaks from uncleaned timeouts
+
+## 2026-01-11T23:30:00Z - Complete Image URL Prefix Fix (artrevisionist)
+
+### Problem Reported
+All image and attachment URLs were missing the backend server prefix (e.g., `https://localhost:54601`).
+URLs like `/api/UploadedDocuments/file/Valsuani/...` were being loaded from the frontend domain instead of backend API.
+
+### Root Cause
+Frontend was using relative URLs without the backend API server prefix. The backend was returning relative URLs in the API responses.
+
+### Solution Implemented
+Created a comprehensive frontend fix across 2 PRs:
+
+**PR #18 - Featured Images:**
+- Added `const API_BASE_URL = window.__CONFIG__.API_URL`
+- Fixed featured image src for all page types (Main, Detail, Evidence)
+
+**PR #20 - Additional Images & Attachments:**
+- Created `ensureApiUrl()` helper function with smart URL handling:
+  - Returns absolute URLs (http://, https://) unchanged
+  - Replaces /api/ prefix with full API_BASE_URL
+  - Prepends API_BASE_URL to other relative paths
+- Applied to all additional images (`img.url` from backend)
+- Applied to all evidence attachments (`att.url` from backend)
+
+### Code Pattern
+```typescript
+const ensureApiUrl = (url: string | undefined): string => {
+  if (!url) return "";
+  if (url.startsWith("http://") || url.startsWith("https://")) return url;
+  if (url.startsWith("/api/")) return url.replace("/api/", API_BASE_URL);
+  return API_BASE_URL + url;
+};
+
+// Usage
+<img src={ensureApiUrl(img.url)} />
+<a href={ensureApiUrl(att.url)}>...</a>
+```
+
+### Coverage Matrix
+| Component | Featured Image | Additional Images | Attachments |
+|-----------|----------------|-------------------|-------------|
+| MainPage | ✅ | ✅ | N/A |
+| DetailPage | ✅ | ✅ | N/A |
+| EvidencePage | ✅ | ✅ | ✅ |
+
+### Alternative Approach Not Taken
+There was a backend fix on branch `agent-002-add-page-images` that modified C# services to return full URLs.
+Chose frontend fix instead because:
+- Simpler - no backend changes needed
+- Works with current API responses
+- Future-proof - handles both relative and absolute URLs
+- Faster to implement and test
+
+### Learnings
+1. **URL Handling**: Always check if URLs from API responses need prefixing
+2. **Helper Functions**: Creating `ensureApiUrl()` made it easy to apply consistently everywhere
+3. **Future-Proofing**: Function handles both current (relative) and potential future (absolute) URLs
+4. **Complete Coverage**: Need to check ALL places URLs are used (img src, a href, etc.)
+

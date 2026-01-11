@@ -84,6 +84,67 @@ DO NOT DELAY. DO NOT "save for later". UPDATE NOW.
 - Status: C:\scripts\status
 - **Tools: C:\scripts\tools** (Productivity tools - USE THESE!)
 
+## 🪟 SESSION MANAGEMENT - DYNAMIC WINDOW TITLES
+
+**Feature Added: 2026-01-11**
+**User Request:** "make it so that the title of the window is when possible the branch name and otherwise a two word description of the current state in all-caps"
+
+### Dynamic Window Title Behavior
+
+When `claude_agent.bat` launches, it automatically sets the window title based on context:
+
+**Priority 1: Git Branch Name (ALL-CAPS)**
+- If running in a git repository, shows current branch name in uppercase
+- Examples: `MAIN`, `DEVELOP`, `AGENT-002-ADD-PAGE-IMAGES`, `FEATURE/NEW-FEATURE`
+- **Benefit:** Instantly identify which branch/worktree you're working in
+
+**Priority 2: Fallback State (ALL-CAPS)**
+- If not in a git repository, shows: `CLAUDE AGENT`
+- Ensures window always has a clear, visible title
+
+### Implementation Details
+
+Located in `C:\scripts\claude_agent.bat`:
+```batch
+@echo off
+setlocal enabledelayedexpansion
+
+REM --- Set dynamic window title ---
+for /f "tokens=*" %%i in ('git branch --show-current 2^>nul') do set BRANCH=%%i
+if defined BRANCH (
+    for /f "tokens=*" %%a in ('powershell -Command "\"!BRANCH!\".ToUpper()"') do set BRANCH_UPPER=%%a
+    title !BRANCH_UPPER!
+) else (
+    title CLAUDE AGENT
+)
+```
+
+### Use Cases
+
+**Multi-Agent Sessions:**
+```
+Terminal 1: Working on main
+  → Window title: "MAIN"
+
+Terminal 2: Working on feature branch
+  → Window title: "AGENT-003-SMART-SCHEDULING"
+
+Terminal 3: Testing in artrevisionist
+  → Window title: "AGENT-002-ADD-PAGE-IMAGES"
+```
+
+**Benefits:**
+✅ Prevents accidentally sending commands to wrong agent session
+✅ Clear visual distinction in taskbar
+✅ Supports multiple simultaneous agent sessions
+✅ All-caps makes titles highly visible
+✅ No manual intervention required
+
+### Related Documentation
+
+- Quick launcher details: `C:\scripts\QUICK_LAUNCHERS.md`
+- Window title implementation: `C:\scripts\claude_agent.bat`
+
 ## 🔧 PRODUCTIVITY TOOLS - USE PROACTIVELY
 
 **USER DIRECTIVE (2026-01-11):** "make sure you use the tools where needed and/or appropriate"

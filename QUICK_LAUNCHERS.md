@@ -74,10 +74,13 @@ echo %PATH% | findstr scripts
 - Auto-refreshes every 30 seconds
 
 ### `c` - Claude Agent
-- Opens new CMD window
+- Opens new CMD window with **dynamic title**
+- **Window title shows current git branch in ALL-CAPS** (e.g., "MAIN", "AGENT-002-ADD-PAGE-IMAGES")
+- Falls back to "CLAUDE AGENT" if not in a git repository
 - Navigates to `C:\scripts`
 - Runs `claude_agent.bat`
 - Starts the autonomous agent control plane
+- **Benefit:** Prevents accidentally sending commands to wrong agent session
 
 ### `cm` - Client Manager Frontend
 - Opens new CMD window titled "Client Manager Frontend"
@@ -96,6 +99,44 @@ echo %PATH% | findstr scripts
 - Navigates to `C:\Projects\bugattiinsights\sourcecode\frontend`
 - Runs `npm run dev`
 - Starts frontend dev server
+
+---
+
+## 🪟 Dynamic Window Titles (New Feature - 2026-01-11)
+
+**Claude Agent sessions now show their current branch name in the window title!**
+
+### How It Works
+
+When you run `claude_agent.bat` (via `c` command), the window title automatically updates to:
+
+- **In a git repository:** Current branch name in **ALL-CAPS**
+  - Examples: `MAIN`, `DEVELOP`, `AGENT-002-ADD-PAGE-IMAGES`, `FEATURE/NEW-FEATURE`
+
+- **Outside git repository:** Falls back to `CLAUDE AGENT`
+
+### Why This Matters
+
+✅ **Prevents mistakes** - Easily identify which agent session you're working in
+✅ **Visual distinction** - All-caps branch names stand out in the taskbar
+✅ **Multi-session support** - Run multiple agents on different branches simultaneously
+✅ **No more wrong-agent errors** - Window title shows exactly what branch you're on
+
+### Example Workflow
+
+```
+# Session 1: Working on main branch
+CTRL+R → c
+Window title: "MAIN"
+
+# Session 2: Working on feature branch (in another terminal)
+cd C:\Projects\client-manager
+git checkout agent-003-new-feature
+CTRL+R → c
+Window title: "AGENT-003-NEW-FEATURE"
+```
+
+Now you can easily tell your sessions apart and never send commands to the wrong agent!
 
 ---
 
