@@ -1,3 +1,179 @@
+## 2026-01-11 16:00 - GraphRAG Phase 4 Critical Fixes: Reverse Indexes and Dependency Injection
+
+**Session Type:** Critical bug fixing and architecture correction
+**Context:** Code review identified 2 critical issues preventing Phase 4 hybrid retrieval from working
+**Outcome:** Both issues fixed, bonus pre-existing bug discovered and fixed, PR #45 now production-ready
+
+### Core Problem Pattern: Missing Reverse Indexes and Wrong Dependencies
+
+**Issue 1 - Entity-Document Mapping:** The `FindEntitiesInDocument()` method returned empty list because there was no efficient way to find entities by document ID.
+
+**Root Cause:** Database has forward index (entity → documents) in `entity_source_documents` table, but no query method existed to search backwards (document → entities).
+
+**Solution Pattern - Reverse Index Query:**
+```csharp
+// Added to IGraphStore interface
+Task<List<GraphEntity>> GetEntitiesByDocumentAsync(string documentId, ...);
+
+// SQLiteGraphStore implementation - JOIN on reverse direction
+SELECT e.*
+FROM graph_entities e
+INNER JOIN entity_source_documents esd ON e.id = esd.entity_id
+WHERE esd.document_id = @documentId
+ORDER BY e.mention_count DESC, e.confidence DESC
+```
+
+**Key Insight:** When you have a many-to-many relationship with a junction table, ALWAYS provide query methods in BOTH directions:
+- Forward: entity → documents (AddEntityAsync stores this)
+- Reverse: document → entities (GetEntitiesByDocumentAsync queries this)
+
+Don't just assume the forward index is enough - hybrid retrieval and graph traversal need both directions.
+
+---
+
+**Issue 2 - Wrong Dependency Type:** `HybridRetrievalService` depended on `IVectorSearchStore` which:
+1. Doesn't have `SearchAsync()` method (non-existent API)
+2. Even if it did, wouldn't provide document TEXT (only similarity scores)
+3. Was optional (`IVectorSearchStore?`) leading to null reference risks
+
+**Root Cause:** Misunderstanding of what hybrid retrieval needs. Hybrid RAG fundamentally requires:
+- Vector embeddings (for similarity search)
+- Graph structure (for entity traversal)
+- **Document text** (for returning actual content to user)
+
+`IVectorSearchStore` only provides #1. `IDocumentStore` provides all three.
+
+**Solution Pattern - Correct Dependency Injection:**
+```csharp
+// BEFORE (wrong)
+public HybridRetrievalService(
+    IVectorSearchStore vectorStore,  // ❌ Wrong - no text access
+    IGraphStore graphStore,
+    IDocumentStore? documentStore = null)  // ❌ Optional leads to nulls
+
+// AFTER (correct)
+public HybridRetrievalService(
+    IDocumentStore documentStore,  // ✅ Required - provides embeddings + text
+    IGraphStore graphStore,
+    ...)
+```
+
+**Key Insight:** When choosing dependencies for a service, think about what the service's OUTPUT needs to be, not just what its INPUTS are:
+- Input: Query embedding (float[])
+- Output: **Documents with TEXT** + similarity scores + graph paths
+- Therefore: Must depend on something that provides TEXT → IDocumentStore
+
+---
+
+### Pattern 71: Reverse Index Pattern for Graph/Document Relationships
+
+**When to Use:**
+- Many-to-many relationships (entities ↔ documents)
+- Graph traversal that needs to "work backwards"
+- Lookup operations in both directions of a relationship
+
+**Implementation:**
+1. Store relationship in junction table (entity_source_documents)
+2. Provide interface methods for BOTH directions:
+   ```csharp
+   Task<List<GraphEntity>> GetEntitiesByDocumentAsync(string documentId);  // Reverse
+   Task<List<string>> GetDocumentsByEntityAsync(string entityId);  // Forward
+   ```
+3. Index both foreign keys for performance:
+   ```sql
+   CREATE INDEX idx_entity_doc_entity ON entity_source_documents(entity_id);
+   CREATE INDEX idx_entity_doc_document ON entity_source_documents(document_id);
+   ```
+
+**Anti-Pattern to Avoid:**
+```csharp
+// ❌ DON'T: Return empty list with TODO comment
+private async Task<List<GraphEntity>> FindEntitiesInDocument(...)
+{
+    // TODO: Implement reverse index
+    return new List<GraphEntity>();  // BREAKS FUNCTIONALITY
+}
+```
+
+If you can't implement it immediately, THROW an exception so callers know it's not working:
+```csharp
+throw new NotImplementedException("Reverse index not yet implemented");
+```
+
+---
+
+### Pattern 72: Document Text is Non-Negotiable in Retrieval Systems
+
+**Problem:** Easy to focus on similarity scores and forget about retrieving actual text.
+
+**Key Insight:** Users don't care about cosine similarity scores. They care about **reading the relevant documents**. Your retrieval system must return TEXT, not just IDs and scores.
+
+**Correct Architecture:**
+```
+Hybrid Retrieval Service
+├─ Inputs: Query embedding
+├─ Dependencies:
+│  ├─ IDocumentStore (provides: embeddings + TEXT + metadata)
+│  └─ IGraphStore (provides: entity relationships)
+└─ Output: List<HybridRetrievalResult>
+   ├─ DocumentId
+   ├─ ChunkId
+   ├─ Text ← CRITICAL: Actual readable content
+   ├─ Score
+   └─ GraphPath
+```
+
+**Validation Checklist:**
+- ✅ Can user read the document content?
+- ✅ Does the service REQUIRE (not just optionally accept) a text source?
+- ✅ Is there error handling if text retrieval fails?
+- ✅ Is there a fallback (placeholder text) for graceful degradation?
+
+---
+
+### Bonus Learning: Pre-existing Bugs Hidden by TODO Comments
+
+While fixing the issues, discovered `PerformVectorSearchAsync` was calling `IVectorSearchStore.SearchAsync()` which doesn't exist.
+
+**Anti-Pattern:**
+```csharp
+// Code assumes API exists but it doesn't
+var results = await _vectorStore.SearchAsync(...);  // CS1061 error
+```
+
+**How it went unnoticed:** The original implementation must have never been tested because it wouldn't compile.
+
+**Key Insight:** TODO comments that say "use X when available" often hide the fact that X was never actually available. When you see:
+```csharp
+// TODO: Fetch document text from document store
+Text = $"[Document {docId} - related via entity {relatedEntity.Name}]"
+```
+
+This is a RED FLAG that the feature is incomplete. Either:
+1. Implement it now (if critical)
+2. Throw NotImplementedException (if not yet needed)
+3. Add integration test that will fail when feature is needed
+
+**Don't ship TODO placeholders in critical paths.**
+
+---
+
+### Files Modified
+- `Graph/Storage/IGraphStore.cs` - Added GetEntitiesByDocumentAsync interface
+- `Graph/Storage/SQLiteGraphStore.cs` - Implemented reverse index query
+- `Graph/Storage/InMemoryGraphStore.cs` - Implemented in-memory reverse lookup
+- `Graph/Retrieval/HybridRetrievalService.cs` - Fixed dependencies + text retrieval
+
+### Commit
+`11b6779` - "fix(graphrag): Fix Phase 4 critical issues - entity-document mapping and document retrieval"
+
+### Impact
+- Phase 4 now production-ready (was completely broken before)
+- All 6 GraphRAG phases ready for merge
+- Learned critical patterns for graph/document integration
+
+---
+
 ## 2026-01-11 11:50 - ArtRevisionist Bug Fix Session: Frontend/Backend Integration Gaps
 
 **Session Type:** Rapid bug fixing and integration debugging
