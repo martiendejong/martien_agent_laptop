@@ -1,3 +1,316 @@
+## 2026-01-11 11:50 - ArtRevisionist Bug Fix Session: Frontend/Backend Integration Gaps
+
+**Session Type:** Rapid bug fixing and integration debugging
+**Context:** User reported 5 distinct issues in artrevisionist application
+**Outcome:** 5 PRs created and merged in ~2 hours, all issues resolved
+
+### Core Problem Pattern: Frontend/Backend Integration Gaps
+
+**Observation:** All 5 bugs shared a common root cause - **frontend assumptions not matching backend reality**:
+
+1. Frontend assumed token refresh didn't exist (it did - just wasn't used)
+2. Frontend assumed short operation timeouts were sufficient (they weren't)
+3. Frontend assumed wrong API endpoint structure (outdated knowledge)
+4. Backend assumed OpenAI config would be fully initialized (it wasn't)
+5. Backend assumed HttpContext would be available in background tasks (it wasn't)
+
+**Key Insight:** In full-stack applications, **bugs cluster at integration boundaries** where frontend and backend make different assumptions about:
+- Lifetimes and scopes (HttpContext, tokens, sessions)
+- Operation duration (sync vs async, timeouts)
+- API contracts (endpoint URLs, parameter requirements)
+- State management (what's stored, where, for how long)
+
+### Pattern 70: Frontend Timeout Mismatch for Long Operations
+
+**Problem:**
+```typescript
+// Global axios timeout
+timeout: 25000  // 25 seconds
+
+// Long-running operations
+- WordPress publish: 5-10 minutes (100+ API calls)
+- Page generation: 15-30 minutes (background task)
+- Token expiration: 15 minutes (automatic refresh needed)
+```
+
+**Symptoms:**
+- User sees timeout error but backend keeps running
+- Operation may complete successfully but user thinks it failed
+- "False negative" UX - operation succeeds but shows error
+
+**Solution Pattern:**
+```typescript
+// Override global timeout for specific long operations
+axios.post(url, data, { timeout: 600000 })  // 10 minutes
+
+// Or use background task + polling pattern
+POST /api/pages/generate -> returns immediately
+GET /api/pages/status/{id} -> poll for completion
+```
+
+**Rule:** Any operation taking >30 seconds should either:
+1. Use custom timeout (if synchronous)
+2. Use background task + status polling (preferred for >1 minute)
+
+**Affected Issues:** WordPress publish timeout, token refresh
+
+### Pattern 71: Backend Capabilities Exist But Frontend Doesn't Use Them
+
+**Problem:**
+Backend implements full feature (e.g., refresh tokens), but frontend only uses partial implementation:
+
+```csharp
+// Backend: Full refresh token system
+POST /auth/login -> returns { accessToken, refreshToken }
+POST /auth/refresh -> returns { newAccessToken, newRefreshToken }
+
+// Frontend: Only uses access token
+localStorage.setItem("token", accessToken);
+// refreshToken ignored!
+```
+
+**Detection:**
+- User reports behavior that should work (tokens expiring)
+- Backend logs show endpoint exists but is never called
+- Response DTO has fields that frontend doesn't store
+
+**Solution:**
+1. Check API response in browser DevTools
+2. Verify what frontend actually stores vs. what backend returns
+3. Implement missing frontend integration
+
+**Prevention:**
+- Document all response fields in API
+- Frontend should validate it's using all returned data
+- Integration tests should verify full flow (not just happy path)
+
+**Affected Issues:** Token refresh not implemented
+
+### Pattern 72: HttpContext Lifetime Violations in Background Tasks
+
+**ASP.NET Core Classic:** Accessing request-scoped objects after HTTP request completes
+
+**Problem:**
+```csharp
+[HttpPost]
+public IActionResult StartBackgroundWork() {
+    _ = Task.Run(async () => {
+        // HTTP request completes here
+        // HttpContext disposed
+
+        await _service.DoWork(Agent);  // Agent property uses HttpContext
+        // Exception: IFeatureCollection has been disposed
+    });
+
+    return Accepted();
+}
+```
+
+**Root Cause:** Controller properties (like Agent) may depend on:
+- HttpContext
+- User claims
+- Request headers
+- Scoped services
+
+All of these are disposed when the HTTP request completes.
+
+**Solution:**
+```csharp
+[HttpPost]
+public IActionResult StartBackgroundWork() {
+    var agent = Agent;  // Capture while HttpContext alive
+
+    _ = Task.Run(async () => {
+        await _service.DoWork(agent);  // Uses captured local variable
+    });
+
+    return Accepted();
+}
+```
+
+**Rule:** ALWAYS capture request-scoped dependencies BEFORE Task.Run
+
+**Detection Keywords:**
+- "IFeatureCollection has been disposed"
+- "Object name: 'Collection'"
+- Background task error after request completes
+
+**Affected Issues:** Page generation stopping midway (HttpContext disposal)
+
+### Pattern 73: API Endpoint Evolution and Frontend Staleness
+
+**Problem:** Backend refactors endpoints but frontend still calls old URLs
+
+**Example:**
+```typescript
+// Frontend (stale)
+GET /api/intake/{id}/{field}  // Doesn't exist!
+
+// Backend (current)
+GET /api/analysis/{id}/{fieldName}  // Moved to AnalysisController
+```
+
+**Why This Happens:**
+1. Backend refactoring (IntakeController → AnalysisController)
+2. Old frontend code references old endpoint
+3. Returns 404 but error is swallowed in try/catch
+4. Silent failure - counter stays at 0
+
+**Detection:**
+- Feature seems broken but no obvious errors
+- Network tab shows 404s being caught
+- Backend has endpoint that should work
+
+**Prevention:**
+- Keep API endpoint inventory/documentation
+- Use TypeScript API client generation (OpenAPI/Swagger)
+- E2E tests that verify frontend calls correct endpoints
+
+**Affected Issues:** Analysis counter showing 0/11
+
+### Pattern 74: SDK Constructor Overloads with Hidden Defaults
+
+**Problem:**
+```csharp
+// Constructor 1: Only API key
+public OpenAIConfig(string apiKey) {
+    ApiKey = apiKey;
+    // Model NOT set! (empty string)
+}
+
+// Constructor 2: Full config
+public OpenAIConfig() {
+    Model = "gpt-4o-mini";  // Has default
+}
+
+// Legacy code uses Constructor 1
+var config = new OpenAIConfig(apiKey);  // Model = ""
+```
+
+**SDK throws:**
+```
+ArgumentException: Value cannot be an empty string. (Parameter 'model')
+```
+
+**Root Cause:** Constructor overload doesn't initialize all required fields
+
+**Solution:**
+```csharp
+// Use object initializer
+var config = new OpenAIConfig {
+    ApiKey = apiKey,
+    Model = "gpt-4o-mini"
+};
+```
+
+**Prevention:**
+- Prefer object initializers over constructors
+- Make required fields non-nullable with required keyword
+- Add validation in constructor
+
+**Affected Issues:** DOCX upload ArgumentException
+
+### Meta-Learning: Rapid Diagnosis Workflow
+
+**What Worked Well This Session:**
+
+1. **Read error message literally** - "IFeatureCollection disposed" → immediately knew HttpContext issue
+2. **Check backend first** - Found refresh token infrastructure existed, just unused
+3. **Network tab is truth** - Saw 404s to /api/intake when should be /api/analysis
+4. **Follow the data flow** - Traced token from login response → localStorage → nowhere
+5. **Search for patterns** - Found all OpenAIConfig(apiKey) uses, fixed them all
+
+**Efficiency Gains:**
+- 5 bugs fixed in 2 hours
+- Each PR focused on single issue
+- All PRs merged immediately (clear problem/solution)
+- No back-and-forth debugging cycles
+
+**Success Metrics:**
+- All 5 PRs merged: 100% success rate
+- Clear commit messages: User can understand each fix
+- No regression introduced: Each fix is isolated
+- Documentation in PR: Future devs can learn from it
+
+### Lessons for Future Sessions
+
+**1. Frontend/Backend Integration Debugging Checklist:**
+- Check Network tab - what's actually being called?
+- Check response payloads - what's being returned vs. used?
+- Check timeouts - operation duration vs. configured timeout?
+- Check scoping - request-scoped objects in background tasks?
+- Check API versioning - endpoints moved/renamed?
+
+**2. Common Integration Bug Patterns:**
+- Timeout too short for operation duration
+- Backend returns data, frontend ignores it
+- Request-scoped objects accessed after request completes
+- API endpoint moved but frontend still calls old URL
+- SDK requires fields that constructor doesn't initialize
+
+**3. Quick Win Indicators:**
+- Error message is very specific (IFeatureCollection, ArgumentException with parameter name)
+- Backend has the feature but frontend doesn't use it
+- Network tab shows 404s or timeouts
+- Only one file needs changing (usually frontend)
+
+**4. Red Flags for Deeper Issues:**
+- Error messages are vague
+- Multiple layers involved (DB, cache, queue)
+- Intermittent failures (race conditions, timing)
+- No error but wrong behavior (logic bugs)
+
+### New Patterns Added
+
+- **Pattern 70:** Frontend timeout mismatch for long operations
+- **Pattern 71:** Backend capabilities exist but frontend doesn't use them
+- **Pattern 72:** HttpContext lifetime violations in background tasks
+- **Pattern 73:** API endpoint evolution and frontend staleness
+- **Pattern 74:** SDK constructor overloads with hidden defaults
+
+### Tools/Techniques Reinforced
+
+**Browser DevTools Network Tab:**
+- Shows actual API calls being made
+- Reveals timeouts, 404s, response payloads
+- Ground truth for frontend/backend communication
+
+**Git Log Analysis:**
+- `git log --oneline --graph` shows merge history
+- Can see if PRs were merged or just created
+- Reveals API evolution over time
+
+**Grep for Patterns:**
+- Find all uses of problematic pattern (e.g., `new OpenAIConfig(apiKey)`)
+- Fix them all at once (prevent future similar bugs)
+- Verify no instances remain after fix
+
+### Success Story: All Issues Resolved
+
+**Starting State:**
+1. DOCX uploads failing with cryptic error
+2. Users forced to re-login during long operations
+3. Page generation stopping halfway through
+4. Dashboard showing 0/11 even when complete
+5. WordPress publish timing out after 25 seconds
+
+**Ending State:**
+1. ✅ DOCX uploads work (OpenAI model set)
+2. ✅ Tokens auto-refresh (seamless 15min+ sessions)
+3. ✅ Page generation completes (HttpContext captured)
+4. ✅ Dashboard shows accurate counts (correct endpoint)
+5. ✅ WordPress publish completes (10min timeout)
+
+**Impact:**
+- User can complete full workflow without interruption
+- All features work as designed
+- No workarounds needed
+- Professional, polished UX
+
+---
+**Key Takeaway:** Full-stack bugs often reveal **integration gaps** where frontend and backend make incompatible assumptions. The fix is usually simple (one line!) once you identify the mismatch. Browser DevTools Network tab is the single most valuable debugging tool for these issues.
+
+---
 
 ## 2026-01-11 05:00 - Meta-Learning: From Tool Building to Tool Adoption
 
