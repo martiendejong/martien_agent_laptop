@@ -4,8 +4,8 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | hazina | agent-001-parallel-execution | 2026-01-11T18:45:00Z | 🚧 Adding parallel execution enhancement to long-context orchestrator |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-01-11T17:30:00Z | ✅ Image assignment feature complete (artrevisionist PR #15 - 7 files, +630 lines) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-01-11T19:30:00Z | ✅ Parallel execution complete (Hazina PR #49 - 3-5x speedup, +260 lines) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | artrevisionist | agent-002-anti-hallucination-validation | 2026-01-11T19:15:00Z | 🚧 Implementing post-generation validation & anti-hallucination prompts |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-11T00:40:00Z | ✅ Fixed scrollbar styling + horizontal scroll (PR #91 created) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-11T11:45:00Z | ✅ Fixed WordPress publish timeout (PR #14 created) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-11T03:00:00Z | ✅ Context compression implemented (Hazina PR #35 + client-manager PR #93 created) |
