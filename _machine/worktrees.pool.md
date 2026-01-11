@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | hazina | graphrag-integration | 2026-01-11T11:35:00Z | Implementing GraphRAG Knowledge Graph integration |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-01-11T12:30:00Z | ✅ GraphRAG Phase 1 complete (PR #41 created) |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | hazina | agent-002-hazina-brain | 2026-01-11T12:10:00Z | Implementing Hazina.Brain persistent memory module |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-11T00:40:00Z | ✅ Fixed scrollbar styling + horizontal scroll (PR #91 created) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-11T11:45:00Z | ✅ Fixed WordPress publish timeout (PR #14 created) |
