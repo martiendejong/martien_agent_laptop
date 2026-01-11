@@ -291,3 +291,4 @@ Actions:
 2026-01-11T20:30:00Z — release — agent-002 — artrevisionist+hazina — agent-002-add-page-images+agent-002-support — — claude-code — Fixed compilation errors, built successfully
 2026-01-11T21:00:00Z — allocate — agent-001 — client-manager — agent-001-logo-variation-enhancement — — claude-code — Implementing dynamic multi-dimensional logo variation system to generate diverse logos using brand context
 2026-01-11T21:50:00Z — release — agent-001 — client-manager — agent-001-logo-variation-enhancement — — claude-code — PR #103 created: Dynamic multi-dimensional logo variation system, worktree cleaned
+2026-01-11T22:15:00Z — release — agent-002 — artrevisionist+hazina — agent-002-add-page-images+agent-002-support — — claude-code — Fixed image URLs to include backend server prefix (https://localhost:54601)
