@@ -1,5 +1,46 @@
-You are a self improving agent that is started by the script c:\scripts\claude_agent.bat . 
+You are a self improving agent that is started by the script c:\scripts\claude_agent.bat .
 During your executing you will self reflect and learn from your actions. You will update your own mechanism to improve your effectiveness. You will update your files in the c:\scripts folder where neccessary to improve your functioning, but do it very carefully and thoughtfully.
+
+## 🚀 CRITICAL: AUTOMATION TOOLS QUICK REFERENCE
+
+**Location:** C:\scripts\tools\
+
+**⚠️ USE THESE PROACTIVELY - Don't manually do what tools can do!**
+
+### Session Start (MANDATORY)
+```bash
+bash C:/scripts/tools/check-base-repos.sh        # ✅ Verify all base repos on develop (Pattern 80)
+bash C:/scripts/tools/repo-dashboard.sh          # 📊 Check environment state (repos, PRs, CI status)
+```
+
+### Before Allocating Worktree (MANDATORY)
+```bash
+bash C:/scripts/tools/check-base-repos.sh        # ✅ RULE 3B enforcement - base repos MUST be on develop
+bash C:/scripts/tools/check-worktree-health.sh   # 🔍 Detect stale allocations
+```
+
+### After Completing Work (MANDATORY)
+```bash
+bash C:/scripts/tools/complete-release.sh agent-XXX   # 🧹 Full release: clean dir + prune refs + verify
+```
+
+### Status & Monitoring
+```bash
+bash C:/scripts/tools/pr-status.sh               # 📋 All open PRs with CI status
+bash C:/scripts/tools/agent-activity.sh          # 📊 Recent agent activity
+bash C:/scripts/tools/find-todos.sh              # 🔍 All TODO/FIXME comments
+```
+
+### Maintenance
+```bash
+bash C:/scripts/tools/clean-stale-branches.sh    # 🗑️ Delete merged branches
+bash C:/scripts/tools/sync-configs.sh            # 🔄 Sync config files across repos
+```
+
+### Full Tool List
+See: C:\scripts\tools\README.md (10 tools, ROI scores, usage examples)
+
+---
 
 ## Control plane root
 - Root: C:\scripts
@@ -2205,4 +2246,131 @@ git pull origin develop
 - Fixed in 5 minutes, prevented hours of debugging
 
 **Integration:** Part of Pattern 59 (Post-Compaction Verification) Tier 1 checks
+
+
+---
+
+## 🆕 NEW AUTOMATION SCRIPTS (2026-01-11)
+
+### complete-release.sh - Comprehensive Worktree Release
+
+**Created:** 2026-01-11 (Pattern 79 implementation)
+**Purpose:** Fully release a worktree with verification to prevent incomplete releases
+
+**Problem it solves:**
+- Pool shows FREE but worktree directory still has content
+- Git still has worktree references (causes "branch already in use" errors)
+- Manual cleanup is error-prone and incomplete
+
+**Usage:**
+```bash
+bash C:/scripts/tools/complete-release.sh agent-XXX
+```
+
+**What it does:**
+1. ✅ Cleans worktree directory (`rm -rf agent-XXX/*`)
+2. ✅ Prunes git worktree references from ALL repos (client-manager, hazina, artrevisionist)
+3. ✅ Verifies directory is empty
+4. ✅ Checks pool status (warns if not FREE)
+5. ✅ Displays next steps reminder
+
+**When to use:**
+- After creating PR (as part of release protocol)
+- When fixing incomplete releases (pool says FREE but directory has content)
+- When user reports "branch already in use by worktree" error
+
+**Exit codes:**
+- 0: Success, directory empty and references pruned
+- 1: Error during cleanup or verification failed
+
+**Example output:**
+```
+=== Completing release for agent-002 ===
+Step 1: Cleaning worktree directory...
+✅ Directory cleaned
+Step 2: Pruning git worktree references...
+  Pruning client-manager...
+  Pruning hazina...
+  Pruning artrevisionist...
+✅ Git references pruned
+Step 3: Verification...
+✅ Directory is empty
+Step 4: Checking pool status...
+  Pool status: FREE
+✅ Release complete for agent-002
+```
+
+**Related:**
+- Pattern 79: Two-Phase Release Verification
+- Pattern 63: Agent Release Protocol
+
+---
+
+### check-base-repos.sh - Base Repository Health Check
+
+**Created:** 2026-01-11 (Pattern 80 implementation)
+**Purpose:** Verify all base repos are on develop branch (RULE 3B enforcement)
+
+**Problem it solves:**
+- Base repo on wrong branch = all future worktrees start from wrong code
+- Cascading failures from stale base repositories
+- Silent corruption of development workflow
+
+**Usage:**
+```bash
+bash C:/scripts/tools/check-base-repos.sh
+```
+
+**What it does:**
+1. ✅ Checks client-manager, hazina, artrevisionist branches
+2. ✅ Verifies each is on `develop`
+3. ✅ Checks for uncommitted changes (warns if can't auto-fix)
+4. ✅ Provides auto-fix command if repos are clean
+
+**When to use (MANDATORY):**
+- Every session start (part of startup protocol)
+- Before allocating ANY worktree
+- After session interruptions/crashes
+- After manual work in base repos
+
+**Exit codes:**
+- 0: All repos on develop (healthy)
+- 1: One or more repos on wrong branch (needs fixing)
+
+**Example output:**
+```
+=== Base Repo Health Check ===
+
+✅ client-manager on develop
+✅ hazina on develop
+✅ artrevisionist on develop
+
+✅ All base repos are healthy
+```
+
+**Example with violation:**
+```
+=== Base Repo Health Check ===
+
+❌ client-manager on 'agent-001-feature' (should be develop)
+   ✅ No uncommitted changes - safe to fix
+   Fix: git -C client-manager checkout develop && git -C client-manager pull origin develop
+✅ hazina on develop
+✅ artrevisionist on develop
+
+❌ Fix required: Restore affected repos to develop branch
+
+Auto-fix command (for clean repos only):
+  for repo in client-manager hazina artrevisionist; do
+    git -C C:/Projects/$repo checkout develop
+    git -C C:/Projects/$repo pull origin develop
+  done
+```
+
+**Related:**
+- Pattern 80: Mandatory Base Repo Verification
+- RULE 3B: Base repos MUST ALWAYS be on develop
+- Pattern 59: Post-Compaction Verification (Tier 1 checks)
+
+**Critical:** This script prevented hours of debugging in 2026-01-11 session by catching client-manager on wrong branch before worktree allocation.
 
