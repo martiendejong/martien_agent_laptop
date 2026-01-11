@@ -283,3 +283,5 @@ Actions:
 2026-01-11T12:45:00Z — release — agent-002 — hazina — agent-002-hazina-brain — BRAIN-001 — claude-code — Hazina.Brain complete: PR #42 created with 1680 lines across 21 files implementing persistent episodic memory and fact distillation
 2026-01-11T13:10:00Z — allocate — agent-001 — hazina — graphrag-phase2 — TASK-GRAPHRAG-P2 — claude-code — Implementing GraphRAG Phases 2-6
 2026-01-11T14:30:00Z — release — agent-001 — hazina — graphrag-phase6 — TASK-GRAPHRAG — claude-code — All 6 GraphRAG phases implemented (PRs #43-#47)
+2026-01-11T15:00:00Z — allocate — agent-001 — hazina — graphrag-phase4 — TASK-GRAPHRAG-FIX — claude-code — Fixing Phase 4 critical issues: entity-document mapping + IDocumentStore integration
+2026-01-11T16:00:00Z — release — agent-001 — hazina — graphrag-phase4 — TASK-GRAPHRAG-FIX — claude-code — Fixed Phase 4 critical issues: entity-document mapping + document text retrieval (commit 11b6779, PR #45 updated)
