@@ -122,6 +122,31 @@ User feedback - Desktop not often used, prefers CTRL+R workflow.
 **Recommended Setup:**
 - Add C:\scripts to PATH → CTRL+R → `n` (single letter!)
 
+**Further Enhancement (Same Session):**
+User requested quick launchers for frequently-used commands.
+
+**Additional Launchers Created:**
+1. **`c.bat`** - Claude Agent (`C:\scripts\claude_agent.bat`)
+2. **`cm.bat`** - Client Manager frontend (npm run dev)
+3. **`ar.bat`** - ArtRevisionist frontend (npm run dev)
+4. **`bi.bat`** - Bugatti Insights frontend (npm run dev)
+
+**Key Features:**
+- Each opens new CMD window with descriptive title
+- Automatically navigates to correct project directory
+- Runs appropriate command (npm run dev, agent startup, etc.)
+- Works immediately with CTRL+R + full path
+- Works with short name after adding C:\scripts to PATH
+
+**Documentation:**
+- Created `QUICK_LAUNCHERS.md` - Comprehensive guide for all launchers
+- Updated `CLAUDE.md`, `claude_info.txt`, `NOTIFICATION_ACCESS.md`
+
+**Project Paths Documented:**
+- Client Manager: `C:\Projects\client-manager\ClientManagerFrontend`
+- ArtRevisionist: `C:\Projects\artrevisionist\artrevisionist`
+- Bugatti Insights: `C:\Projects\bugattiinsights\sourcecode\frontend`
+
 **Next Steps:**
 - Use this system for all future PRs and significant jobs
 - Update after every PR creation/merge
