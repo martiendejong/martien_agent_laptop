@@ -668,8 +668,21 @@ gh api repos/owner/repo/contents/path/file?ref=branch --jq '.name'
 ```
 
 ## Worktree-only rule
+
+**Standard workflow:**
 - All code edits occur in: C:\Projects\worker-agents\agent-XXX\<repo>\
-- C:\Projects\<repo> is for read/debug/test only; ask permission and log it.
+- C:\Projects\<repo> is for read/debug/test only
+
+**Exception - When user posts build errors (2026-01-11):**
+- User posting compilation errors means they are debugging in C:\Projects\<repo>
+- You are ALLOWED to work directly in C:\Projects\<repo> to fix build errors
+- The git branch in C:\Projects\<repo> does NOT need to be reset to develop
+- Work on the feature branch directly in C:\Projects\<repo> when fixing build errors
+
+**Branch strategy update (2026-01-11):**
+- New feature branches can now be branched from **develop** instead of main
+- develop → feature/* (correct)
+- main → feature/* (old pattern, no longer required)
 
 use the browser mcp server for debugging of frontend applications.
 
