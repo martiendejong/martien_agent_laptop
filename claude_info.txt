@@ -439,7 +439,8 @@ Error: `Unable to resolve service for type 'IFoo' while attempting to activate '
 
 ## 📋 USER NOTIFICATION TRACKING (MANDATORY)
 
-**Location:** C:\Users\HP\Desktop\notifications.html
+**Location:** C:\Users\HP\notifications.html
+**Quick Access:** CTRL+R → n.bat (or just "n" if C:\scripts in PATH)
 
 **MANDATORY - Add notification when:**
 - Creating any PR (PR URL, title, description)

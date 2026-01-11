@@ -180,7 +180,14 @@ When approaching limit:
 
 ### HTML File Structure
 
-**Location:** `C:\Users\HP\Desktop\notifications.html`
+**Location:** `C:\Users\HP\notifications.html`
+
+**Quick Access Methods:**
+- **CTRL+R → `n`** (if C:\scripts in PATH) ← Fastest
+- **CTRL+R → `C:\scripts\n.bat`** (works now)
+- **CTRL+R → `C:\Users\HP\notifications.html`** (direct)
+
+See `C:\scripts\NOTIFICATION_ACCESS.md` for setup details.
 
 **File Format:**
 ```html
