@@ -1,3 +1,60 @@
+## 2026-01-11 20:00 - ZERO_TOLERANCE_RULES.md Enforcement in Startup Protocol
+
+**Session Type:** Safety mechanism enhancement
+**Context:** User directive to enforce reading ZERO_TOLERANCE_RULES.md before agent execution
+**Outcome:** ✅ Batch file updated, ZERO_TOLERANCE_RULES.md now mandatory first read
+
+### Problem Statement
+
+After Pattern 76 violation (editing in main project instead of worktree), user requested stronger enforcement mechanism to ensure ZERO_TOLERANCE_RULES.md is read before ANY agent action.
+
+**User's Request:** "can you update the claude_agent.bat and c.bat to make sure that before doing anything you will read C:\scripts\ZERO_TOLERANCE_RULES.md"
+
+### Solution
+
+**Modified File:** `C:\scripts\claude_agent.bat` (line 17)
+
+**Change Applied:**
+Updated SYSTEMPROMPT to add step 0 in STARTUP PROTOCOL:
+```
+=== STARTUP PROTOCOL (MANDATORY) ===
+IMMEDIATELY upon starting, execute this sequence:
+0. Read C:\scripts\ZERO_TOLERANCE_RULES.md - HARD STOP RULES (READ FIRST - NON-NEGOTIABLE)
+1. Read C:\scripts\claude_info.txt - Critical operational parameters
+2. Read C:\scripts\claude.md - Full operational manual
+... (rest of protocol)
+```
+
+**c.bat Status:** No changes needed - it already launches `claude_agent.bat` which now includes the updated prompt.
+
+### Effectiveness
+
+This ensures that EVERY agent session begins by reading the 4 HARD STOP RULES:
+1. ✋ RULE 1: ALLOCATE WORKTREE BEFORE CODE EDIT
+2. ✋ RULE 2: COMPLETE WORKFLOW + RELEASE BEFORE PRESENTING PR
+3. ✋ RULE 3: NEVER EDIT IN C:\Projects\<repo>
+4. ✋ RULE 4: SCRIPTS FOLDER = LAW
+
+### Pattern Learned
+
+**Pattern 77: ZERO TOLERANCE ENFORCEMENT - Startup Protocol Priority**
+
+**Rule:** ZERO_TOLERANCE_RULES.md must be read FIRST, before any other documentation or operational file.
+
+**Rationale:**
+- Hard-stop rules override all other instructions
+- Reading them first establishes mental framework for entire session
+- Prevents workflow violations before they occur
+
+**Implementation:**
+- Added as step 0 (not step 1) to emphasize absolute priority
+- Labeled "READ FIRST - NON-NEGOTIABLE" for clarity
+- All other startup steps renumbered accordingly
+
+**Commit:** This change committed to machine_agents repository
+
+---
+
 ## 2026-01-11 14:30 - HTML Notification Dashboard System Implemented
 
 **Session Type:** New feature implementation - User notification tracking
