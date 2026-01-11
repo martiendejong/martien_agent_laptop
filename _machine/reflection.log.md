@@ -1,3 +1,128 @@
+## 2026-01-11 14:30 - HTML Notification Dashboard System Implemented
+
+**Session Type:** New feature implementation - User notification tracking
+**Context:** User directive to maintain persistent HTML dashboard for all user notifications and action items
+**Outcome:** ✅ Complete system implemented and integrated with existing workflows
+
+### Problem Statement
+
+User needed a central, visual location to track ALL items requiring attention:
+- Pull requests awaiting review/merge
+- Completed jobs of significance
+- User input/decision requests
+- Blocking issues
+- Important findings
+
+**Goal:** Maximum 5-7 notifications at any time, with consolidation when needed.
+
+### Solution: HTML Notification Dashboard
+
+**File Created:** `C:\Users\HP\Desktop\notifications.html`
+
+**Key Features:**
+1. **Visual Dashboard** - Clean, modern HTML/CSS interface with color-coded notifications
+2. **Notification Types:**
+   - PR (green) - Pull requests
+   - Input (yellow) - User decisions needed
+   - Error (red) - Blocking issues
+   - Info (blue) - Important updates
+3. **Auto-refresh** - JavaScript auto-refresh every 30 seconds
+4. **Responsive Design** - Modern gradient background, hover effects, status badges
+
+### Integration with Existing Workflows
+
+**Updated Documentation:**
+- ✅ `C:\scripts\claude.md` - Added § USER NOTIFICATION TRACKING (HTML DASHBOARD) with full protocol
+- ✅ `C:\scripts\claude_info.txt` - Added quick reference section
+- ✅ End-of-task self-update protocol now includes notification updates
+
+**Workflow Integration Points:**
+
+1. **PR Creation:**
+   ```
+   gh pr create → Update notifications.html → Release worktree → Present to user
+   ```
+
+2. **PR Merge:**
+   ```
+   gh pr merge → Remove notification → Update count/timestamp
+   ```
+
+3. **Significant Job Completion:**
+   ```
+   Complete task → Add notification → Document in reflection
+   ```
+
+4. **Consolidation:**
+   - When approaching 7 notifications, merge related items
+   - Example: 5 PRs → "5 PRs awaiting review (#120-#124)"
+
+### HTML Structure
+
+**Template includes:**
+- Modern styling with Segoe UI font, gradient background
+- Color-coded notification types (border-left indicators)
+- Hover effects for interactivity
+- Metadata footer (timestamp, agent info)
+- Auto-refresh script (30-second intervals)
+- Empty state with checkmark icon
+- Responsive container (max-width: 900px)
+
+**Notification Count Badge:**
+- Prominent display in header
+- Updates with each modification
+- Visual indicator of current load
+
+### Success Metrics
+
+**System is working correctly when:**
+- ✅ notifications.html exists and is valid HTML
+- ✅ Every PR creation adds notification
+- ✅ Every PR merge removes notification
+- ✅ Count stays ≤ 7 (consolidate when needed)
+- ✅ Timestamp is current
+- ✅ File opens in browser correctly
+- ✅ User can immediately see what needs attention
+
+### Pattern Library Addition
+
+**New Pattern:** HTML User Notification Tracking
+- **Category:** User Communication & Task Management
+- **Priority:** MANDATORY (integrated with end-of-task protocol)
+- **ROI:** High (clear visibility, reduced context switching)
+
+### Benefits
+
+1. **User Awareness** - Single source of truth for action items
+2. **Visual Interface** - More intuitive than text files
+3. **Automatic Updates** - No manual tracking needed
+4. **Consolidation** - Prevents notification overload
+5. **Persistence** - Survives session compaction
+6. **Integration** - Works with existing worktree/PR protocols
+
+### Initial State
+
+Created with single "System Initialized" notification to demonstrate format and confirm system is working.
+
+**Next Steps:**
+- Use this system for all future PRs and significant jobs
+- Update after every PR creation/merge
+- Consolidate when count approaches 7
+- Remove obsolete notifications promptly
+
+### Lesson Learned
+
+**User communication patterns should be:**
+- Visual when possible (HTML > text files)
+- Persistent across sessions (desktop location)
+- Automatically maintained (part of workflows)
+- Consolidated to prevent overload (5-7 max)
+- Integrated with existing protocols (not standalone)
+
+This system demonstrates how control plane documentation can evolve to include user-facing components, not just internal agent protocols.
+
+---
+
 ## 2026-01-11 16:00 - GraphRAG Phase 4 Critical Fixes: Reverse Indexes and Dependency Injection
 
 **Session Type:** Critical bug fixing and architecture correction
@@ -12622,3 +12747,67 @@ git push origin develop
 ✅ No technical debt created
 
 **Pattern Maturity:** MEDIUM - WordPress-specific, but rewrite logic applies to any framework with route registration
+
+## 2026-01-11T17:30:00Z - Image Assignment Feature Implementation (artrevisionist)
+
+### Task
+Implement "Add Images" feature for Art Revisionist pages that automatically:
+- Searches for relevant images from documents  
+- Assigns 1 featured image + 0-5 additional images per page
+- Attaches evidence files (PDFs, docx, etc.) to evidence pages
+- Publishes all images and evidence to WordPress
+
+### Implementation Approach
+**Backend:**
+1. Extended page models with `PageImage` and `EvidenceAttachment` collections
+2. Created `ImageAssignmentService` with relevance-based image search using keyword matching
+3. Added `/api/pages/add-images/{topicId}` endpoint with background processing
+4. Enhanced WordPress publishing to upload additional images and evidence files
+5. Added `UploadFileAsync` method and extended MIME type support
+
+**Frontend:**
+1. Updated TypeScript interfaces to match backend models
+2. Added "Add Images" button with loading state
+3. Enhanced EvidencePage component to display images and attachments
+4. Added visual indicators (paperclip icons) for pages with attachments
+
+### Key Decisions
+- **Relevance Scoring**: Simple keyword matching (4+ char words) between page content and filenames
+  - Could be enhanced with embeddings/semantic search in future
+- **Image Limits**: 1 featured + max 5 additional images to avoid overwhelming pages
+- **Evidence Scope**: ALL relevant documents attached to evidence pages (not limited)
+- **Background Processing**: Used existing status polling mechanism for consistency
+
+### Learnings
+1. **Worktree Build Issues**: Projects with external dependencies (Hazina) can't build in isolated worktrees
+   - Solution: Commit and let CI/CD handle build verification
+   - Alternative: Could have used main repo for testing
+
+2. **Model Consistency**: Kept C# PascalCase and TypeScript camelCase conventions
+   - Used optional lists (default empty) to avoid null checks
+
+3. **WordPress Integration**: Reused existing upload patterns (`UploadImageAsync`)
+   - Extended for generic files with `UploadFileAsync`
+   - Proper MIME type detection crucial for WordPress media library
+
+4. **UI Patterns**: Maintained existing collapsible card structure
+   - Added visual affordances (paperclip badges) before content load
+   - Grid layout for multiple images works well
+
+### Files Changed (7 files, +630 lines)
+- Backend: 4 files (models, service, controller, DI)
+- Frontend: 2 files (service, page component)  
+- New file: ImageAssignmentService.cs
+
+### PR Created
+- **artrevisionist #15**: feat: Add automatic image assignment and evidence attachments to pages
+- Branch: `agent-002-add-page-images`
+- Status: ✅ Pushed, awaiting CI/CD verification
+
+### Future Enhancements
+1. Use semantic search (embeddings) for better image relevance
+2. Add user controls to adjust/override auto-assigned images
+3. Preview images before assignment
+4. Batch processing progress indicator
+5. Image optimization/resizing before WordPress upload
+

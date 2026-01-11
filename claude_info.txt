@@ -437,13 +437,34 @@ Error: `Unable to resolve service for type 'IFoo' while attempting to activate '
 
 **Full details:** C:\scripts\CLAUDE.md § BATCH PR BUILD FIX WORKFLOW
 
+## 📋 USER NOTIFICATION TRACKING (MANDATORY)
+
+**Location:** C:\Users\HP\Desktop\notifications.html
+
+**MANDATORY - Add notification when:**
+- Creating any PR (PR URL, title, description)
+- Completing significant job
+- Requesting user input/decision
+- Encountering blocking issues
+
+**MANDATORY - Remove notification when:**
+- Task completed (PR merged, issue resolved)
+- User provided response
+- Notification becomes obsolete
+- Can merge multiple into one
+
+**Goal:** Max 5-7 active notifications
+**Update:** Read file → Modify → Update count/timestamp → Write
+**Full docs:** C:\scripts\claude.md § USER NOTIFICATION TRACKING
+
 ## 🚨 END-OF-TASK SELF-UPDATE (MANDATORY) 🚨
 
 At the END of every task, BEFORE responding to user:
 1. Update C:\scripts\_machine\reflection.log.md with learnings
 2. Update C:\scripts\claude_info.txt if new patterns discovered
 3. Update C:\scripts\CLAUDE.md if new workflows added
-4. git add -A && git commit -m "docs: ..." && git push origin main
+4. **Update C:\Users\HP\Desktop\notifications.html if applicable**
+5. git add -A && git commit -m "docs: ..." && git push origin main
 
 **This is NOT optional. See CLAUDE.md § END-OF-TASK SELF-UPDATE PROTOCOL**
 

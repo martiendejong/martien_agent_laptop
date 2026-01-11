@@ -143,6 +143,180 @@ See **C:\scripts\tools\README.md** for full documentation.
 
 **Tracking:** Update C:\scripts\tools\TOOLS_STATUS.md after each tool usage.
 
+## 📋 USER NOTIFICATION TRACKING (HTML DASHBOARD)
+
+**USER DIRECTIVE (2026-01-11):** "maintain a HTML document with all user notifications/input requested"
+
+### Purpose
+
+Maintain a persistent, visual notification dashboard at `C:\Users\HP\Desktop\notifications.html` that tracks ALL items requiring user attention, review, or action.
+
+### When to Add Notifications
+
+**MANDATORY - Add notification when:**
+- ✅ Creating any PR (include PR URL, title, description)
+- ✅ Completing a significant job (deployment, major fix, feature completion)
+- ✅ Requesting user input or decision
+- ✅ Encountering blocking issues requiring user intervention
+- ✅ Discovering important findings that need user review
+- ✅ System state changes requiring awareness (agent pool full, errors, etc.)
+
+### When to Remove Notifications
+
+**MANDATORY - Remove notification when:**
+- ✅ Task is completed (PR merged, issue resolved)
+- ✅ User has provided response or made decision
+- ✅ Notification becomes obsolete or irrelevant
+- ✅ Multiple related notifications can be merged into one
+
+### Notification Consolidation
+
+**Goal: Maximum 5-7 active notifications**
+
+When approaching limit:
+1. Merge related notifications (e.g., multiple PRs → "3 PRs awaiting review")
+2. Remove completed/obsolete items
+3. Prioritize by urgency and importance
+
+### HTML File Structure
+
+**Location:** `C:\Users\HP\Desktop\notifications.html`
+
+**File Format:**
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Agent Notifications</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        .notification { border-left: 4px solid #3498db; padding: 15px; margin: 15px 0; background: #f8f9fa; border-radius: 4px; }
+        .notification.pr { border-left-color: #28a745; }
+        .notification.input { border-left-color: #ffc107; }
+        .notification.error { border-left-color: #dc3545; }
+        .notification.info { border-left-color: #17a2b8; }
+        .notification h3 { margin: 0 0 10px 0; color: #2c3e50; }
+        .notification p { margin: 5px 0; color: #666; }
+        .notification .meta { font-size: 0.85em; color: #999; margin-top: 10px; }
+        .count { background: #3498db; color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.9em; }
+        .empty { text-align: center; color: #999; padding: 40px; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔔 Claude Agent Notifications <span class="count" id="count">0</span></h1>
+        <p style="color: #666; margin-bottom: 20px;">Last updated: <span id="timestamp">Never</span></p>
+        <div id="notifications">
+            <!-- Notifications will be inserted here -->
+        </div>
+    </div>
+</body>
+</html>
+```
+
+### Notification Types and CSS Classes
+
+| Type | CSS Class | Use For |
+|------|-----------|---------|
+| PR Created | `pr` | Pull requests awaiting review/merge |
+| Input Requested | `input` | User decisions or input needed |
+| Error/Blocking | `error` | Critical issues requiring intervention |
+| Information | `info` | Important findings or status updates |
+
+### Workflow Pattern
+
+**After creating PR:**
+```bash
+# 1. Create PR
+gh pr create --title "..." --body "..."
+
+# 2. IMMEDIATELY update notifications.html
+# Add new notification with:
+# - Title: PR title
+# - Description: What it does
+# - URL: PR link
+# - Timestamp: Current datetime
+
+# 3. Release worktree (existing protocol)
+# ...
+```
+
+**After user responds or task completes:**
+```bash
+# 1. Complete task (merge PR, resolve issue, etc.)
+
+# 2. IMMEDIATELY update notifications.html
+# Remove the corresponding notification
+
+# 3. Update reflection.log.md if significant
+```
+
+### Update Protocol
+
+**MANDATORY steps when updating notifications.html:**
+
+1. **Read current file** to preserve existing notifications
+2. **Modify content** (add/remove/merge notifications)
+3. **Update count** in `<span id="count">`
+4. **Update timestamp** in `<span id="timestamp">`
+5. **Write file** with new content
+6. **Verify** file is valid HTML (can open in browser)
+
+### Example Notification HTML
+
+```html
+<div class="notification pr">
+    <h3>🔀 PR #123: Add ROI Calculator Feature</h3>
+    <p><strong>Repo:</strong> client-manager</p>
+    <p><strong>Description:</strong> Implements comprehensive ROI calculation with industry benchmarks, backend API, frontend components, and documentation.</p>
+    <p><strong>Status:</strong> Awaiting review and merge</p>
+    <p><strong>URL:</strong> <a href="https://github.com/user/repo/pull/123" target="_blank">View PR</a></p>
+    <div class="meta">Created: 2026-01-11 14:30:00 UTC | Agent: agent-001</div>
+</div>
+```
+
+### Consolidation Example
+
+**Before (6 notifications):**
+- PR #120: Fix auth bug
+- PR #121: Update dependencies
+- PR #122: Add logging
+- PR #123: ROI feature
+- PR #124: Smart scheduling
+- Input: Choose deployment schedule
+
+**After consolidation (3 notifications):**
+- 5 PRs awaiting review (#120-#124) - [View All](link)
+- Input: Choose deployment schedule
+- (Merged related PRs into one notification)
+
+### Integration with Existing Protocols
+
+**This HTML notification tracking integrates with:**
+- ✅ Worktree release protocol (add PR notification BEFORE release)
+- ✅ End-of-task self-update (update notifications.html as part of cleanup)
+- ✅ Reflection logging (document significant notifications in reflection.log.md)
+- ✅ TodoWrite tracking (todos for implementation, notifications for user awareness)
+
+### Success Criteria
+
+**You are maintaining notifications correctly ONLY IF:**
+- ✅ notifications.html exists and is up-to-date
+- ✅ Every PR creation adds a notification
+- ✅ Every PR merge removes the notification
+- ✅ Active notifications count is ≤ 7
+- ✅ Timestamp is current
+- ✅ HTML is valid and renders correctly
+- ✅ User can open file and immediately see what needs attention
+
+**File location:** `C:\Users\HP\Desktop\notifications.html`
+
+---
+
 ## 🚨🚨🚨 ZERO-TOLERANCE ENFORCEMENT - READ FIRST 🚨🚨🚨
 
 **USER ESCALATION (2026-01-08):** Previous sessions violated workflow despite protocols.
