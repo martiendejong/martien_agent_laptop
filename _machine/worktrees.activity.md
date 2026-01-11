@@ -288,3 +288,4 @@ Actions:
 2026-01-11T15:30:00Z — allocate — agent-002 — artrevisionist — agent-002-add-page-images — — claude-code — Implementing add images feature for Art Revisionist pages with evidence attachments
 2026-01-11T17:00:00Z — allocate — agent-001 — hazina — agent-001-long-context-orchestrator — LONGCONTEXT-IMPL — claude-code — Implementing recursive long-context orchestrator (query decomposition, shard-based retrieval, result synthesis)
 2026-01-11T18:30:00Z — release — agent-001 — hazina — agent-001-long-context-orchestrator — LONGCONTEXT-COMPLETE — claude-code — Completed all phases: core abstractions, simple implementations, recursive planner, recursive strategy. PR #48 ready for review.
+2026-01-11T20:30:00Z — release — agent-002 — artrevisionist+hazina — agent-002-add-page-images+agent-002-support — — claude-code — Fixed compilation errors, built successfully
