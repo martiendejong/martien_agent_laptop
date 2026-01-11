@@ -13208,3 +13208,46 @@ src={`/api/UploadedDocuments/file/${encodeURIComponent(projectId)}/${filename}`}
 - [ ] Create reusable PageImages component to avoid duplication
 - [ ] Add prop validation/runtime checks for required IDs
 
+
+## 2026-01-11 23:05 - Fixed ArtRevisionist Story Generation Infinite Loop
+
+**Problem:** User reported that story generation in ArtRevisionist never stops until page refresh.
+
+**Root Cause:** 
+- `isGenerating` state set to `true` when starting generation
+- Only cleared by SignalR event with status "completed" or "error"
+- If SignalR event fails/lost → infinite loading spinner
+
+**Solution Implemented:**
+1. **5-minute safety timeout** - Automatically stops spinner after 300 seconds
+2. **Manual stop button** - Red "Stop" button for user control  
+3. **Timeout cleanup** - Clear timeout when SignalR completes successfully
+4. **Error handling** - All error paths call `stopGeneration()` for cleanup
+5. **Component unmount** - Clear timeout on unmount to prevent leaks
+
+**Technical Details:**
+- Added `generationTimeoutRef` to track timeout
+- Added `startGenerationTimeout()` to start 5-min countdown
+- Added `stopGeneration()` to clean up state
+- Modified SignalR handlers to clear timeout on completion/error
+- Modified UI to show Stop button while generating
+
+**Pattern: Frontend Loading State Safety**
+When relying on async events (SignalR, WebSocket, SSE) to clear loading states:
+- ALWAYS add a safety timeout to prevent infinite loading
+- ALWAYS provide manual stop/cancel button
+- ALWAYS clean up timeouts on success/error/unmount
+- ALWAYS show meaningful timeout message to user
+
+**Files Changed:**
+- `artrevisionist/src/pages/TopicStory.tsx` - 82 insertions, 31 deletions
+
+**PR:** https://github.com/martiendejong/artrevisionist/pull/19
+
+**Time Investment:** 15 minutes analysis + 10 minutes implementation + 5 minutes testing/PR = 30 minutes total
+
+**Success Criteria:**
+✅ Timeout automatically stops spinner after 5 minutes
+✅ Manual Stop button provides immediate user control
+✅ SignalR completion still works as primary mechanism
+✅ No memory leaks from uncleaned timeouts
