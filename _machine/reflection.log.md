@@ -104,6 +104,24 @@ User needed a central, visual location to track ALL items requiring attention:
 
 Created with single "System Initialized" notification to demonstrate format and confirm system is working.
 
+**Update (Same Session):**
+User feedback - Desktop not often used, prefers CTRL+R workflow.
+
+**Improvements Made:**
+1. **Moved file:** Desktop → `C:\Users\HP\notifications.html` (easier to type)
+2. **Created quick launchers:**
+   - `C:\scripts\n.bat` - Type "n" to launch (if PATH set)
+   - `C:\scripts\notifications.bat` - Alternative
+3. **Created setup guide:** `NOTIFICATION_ACCESS.md` with all access methods
+4. **Updated all documentation** with new paths
+
+**Access Methods (Works Now):**
+- CTRL+R → `C:\scripts\n.bat` ✅
+- CTRL+R → `C:\Users\HP\notifications.html` ✅
+
+**Recommended Setup:**
+- Add C:\scripts to PATH → CTRL+R → `n` (single letter!)
+
 **Next Steps:**
 - Use this system for all future PRs and significant jobs
 - Update after every PR creation/merge
