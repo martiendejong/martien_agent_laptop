@@ -285,3 +285,5 @@ Actions:
 2026-01-11T14:30:00Z — release — agent-001 — hazina — graphrag-phase6 — TASK-GRAPHRAG — claude-code — All 6 GraphRAG phases implemented (PRs #43-#47)
 2026-01-11T15:00:00Z — allocate — agent-001 — hazina — graphrag-phase4 — TASK-GRAPHRAG-FIX — claude-code — Fixing Phase 4 critical issues: entity-document mapping + IDocumentStore integration
 2026-01-11T16:00:00Z — release — agent-001 — hazina — graphrag-phase4 — TASK-GRAPHRAG-FIX — claude-code — Fixed Phase 4 critical issues: entity-document mapping + document text retrieval (commit 11b6779, PR #45 updated)
+2026-01-11T15:30:00Z — allocate — agent-002 — artrevisionist — agent-002-add-page-images — — claude-code — Implementing add images feature for Art Revisionist pages with evidence attachments
+2026-01-11T17:00:00Z — allocate — agent-001 — hazina — agent-001-long-context-orchestrator — LONGCONTEXT-IMPL — claude-code — Implementing recursive long-context orchestrator (query decomposition, shard-based retrieval, result synthesis)
