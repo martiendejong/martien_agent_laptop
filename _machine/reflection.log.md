@@ -12140,3 +12140,309 @@ Embedding = embedding.Select(x => (float)x).ToArray()
 
 **Pattern Maturity:** HIGH - This verification approach is immediately reusable for any future module implementation.
 
+
+---
+
+## 2026-01-11 14:30 - WordPress Custom Rewrite Rules: Init Hook vs Activation Hook
+
+**Session Type:** WordPress plugin debugging - hierarchical URL 404 errors
+**Context:** User unable to access published WordPress pages (artrevisionist.com)
+**Outcome:** Fixed plugin, documented WordPress rewrite rules best practices
+
+### Core Problem: Rewrite Rules Only Registered on Plugin Activation
+
+**User Report:**
+- Topic archive works: `https://artrevisionist.com/topics/` ✓
+- Topic page shows 5 pages ✓
+- Single topic URL fails: `https://artrevisionist.com/topic/valsuani/` ✗ (404)
+- Nested page URL fails: `https://artrevisionist.com/topic/valsuani/debunking-marcello-valsuani/` ✗ (404)
+
+**Root Cause Analysis:**
+
+1. **Activation-only registration:**
+```php
+// b2b-knowledge.php (WRONG)
+register_activation_hook(__FILE__, function () {
+    B2BK_Rewrites::register();  // Only runs ONCE on plugin activation
+    flush_rewrite_rules();
+});
+
+// Missing from init hook!
+add_action('init', ['B2BK_CPT','register']);
+add_action('init', ['B2BK_Slugs','register']);
+// B2BK_Rewrites NOT added! ❌
+```
+
+2. **CPT slug vs custom rewrite conflict:**
+```php
+// CPT registered with /topics/ (plural)
+register_post_type('b2bk_topic', [
+    'rewrite' => ['slug' => 'topics']  // Archive: /topics/ ✓
+]);
+
+// Permalink class generates /topic/ (singular)
+return home_url('/topic/'.$post->post_name.'/');  // Single: /topic/valsuani/
+
+// Custom rewrites use /topic/ (singular)
+add_rewrite_rule('^topic/([^/]+)/?$', 'index.php?post_type=b2bk_topic&name=$matches[1]', 'top');
+
+// Result: WordPress creates default /topics/valsuani/ rules
+// But custom permalinks generate /topic/valsuani/ links
+// Mismatch = 404!
+```
+
+### Pattern 73: WordPress Rewrite Rules Lifecycle
+
+**Problem:** Rewrite rules not persisted across WordPress loads
+
+**Why Activation Hooks Don't Work:**
+- `register_activation_hook()` runs ONCE when plugin activated
+- WordPress saves rewrite rules to database
+- But if another plugin flushes rewrites, your rules disappear
+- Next page load: your rewrites are gone, 404 errors occur
+
+**Correct Pattern:**
+```php
+// ALWAYS register rewrites on init hook
+add_action('init', ['MyClass', 'register_rewrites']);
+
+// Flush only on activation/deactivation
+register_activation_hook(__FILE__, function() {
+    MyClass::register_rewrites();  // Register first
+    flush_rewrite_rules();         // Then flush
+});
+
+register_deactivation_hook(__FILE__, function() {
+    flush_rewrite_rules();  // Clean up
+});
+```
+
+**Why This Works:**
+- Init hook runs on EVERY page load
+- WordPress checks if rewrites need updating
+- Your rules always present in rule array
+- Immune to other plugins flushing rewrites
+
+### Pattern 74: Custom Post Type Rewrite Conflicts
+
+**Problem:** CPT auto-rewrites conflict with custom hierarchical rewrites
+
+**Scenario:**
+- Topic (CPT) has children (Topic Pages, Details, Evidence)
+- Want hierarchical URLs: `/topic/parent/child/grandchild/`
+- WordPress CPT rewrites create: `/topics/post-name/`
+- Custom rewrites create: `/topic/parent/child/`
+- Both exist = unpredictable behavior
+
+**Solution: Disable CPT Auto-Rewrites for Children**
+```php
+// Parent: Keep auto-rewrites for archive
+register_post_type('topic', [
+    'has_archive' => true,
+    'rewrite' => ['slug' => 'topics', 'with_front' => false]
+]);
+
+// Children: Disable auto-rewrites (custom only)
+register_post_type('topic_page', [
+    'rewrite' => false  // ← No automatic rewrites
+]);
+register_post_type('detail', [
+    'rewrite' => false
+]);
+register_post_type('evidence', [
+    'rewrite' => false
+]);
+
+// Then use custom rewrites for hierarchy
+add_rewrite_rule('^topic/([^/]+)/?$', 'index.php?post_type=topic&name=$matches[1]', 'top');
+add_rewrite_rule('^topic/([^/]+)/([^/]+)/?$', 'index.php?post_type=topic_page&name=$matches[2]', 'top');
+// etc.
+```
+
+**Key Insight:** For hierarchical structures, disable CPT rewrites and use custom rules exclusively
+
+### Pattern 75: WordPress Permalink Flush Requirements
+
+**When to Flush:**
+1. Plugin activation
+2. Plugin deactivation
+3. After changing rewrite rules
+4. After changing CPT slugs
+5. After adding/removing custom rewrites
+
+**How to Flush:**
+- **Admin UI:** Settings → Permalinks → Save Changes
+- **Code:** `flush_rewrite_rules()` (expensive, avoid in production)
+- **WP-CLI:** `wp rewrite flush`
+
+**Critical Rule:** Always flush after changing rewrites, or users see 404s
+
+### Diagnostic Pattern: Rewrite Rule Verification
+
+**Created diagnostic script:** `check-posts.php`
+
+**Checks:**
+1. ✓ Rewrite rules exist in database
+2. ✓ Posts exist and are published
+3. ✓ Parent-child relationships set correctly
+4. ✓ Permalink generation matches rewrites
+5. ✓ One-click flush button
+
+**Script Sections:**
+- Rewrite rules table (shows all topic-related rules)
+- Topic verification (exists, published, has children)
+- Page verification (exists, published, has parent)
+- Recommended actions (what to fix)
+- Quick fix button (flush permalinks)
+
+**Usage:** `https://domain.com/wp-content/plugins/plugin-name/check-posts.php`
+
+**Value:** Instant diagnosis without SSH/database access
+
+### Code Changes Made
+
+**File 1: b2b-knowledge.php**
+```php
+// BEFORE
+add_action('init', ['B2BK_CPT','register']);
+add_action('init', ['B2BK_Slugs','register']);
+add_action('init', ['B2BK_Templates','register']);
+
+// AFTER
+add_action('init', ['B2BK_CPT','register']);
+add_action('init', ['B2BK_Slugs','register']);
+add_action('init', ['B2BK_Rewrites','register']);  // ← Added
+add_action('init', ['B2BK_Templates','register']);
+```
+
+**File 2: includes/class-b2bk-cpt.php**
+```php
+// BEFORE
+register_post_type('b2bk_topic_page', ['label'=>'Topic Pages']);
+register_post_type('b2bk_detail', ['label'=>'Details']);
+register_post_type('b2bk_evidence', ['label'=>'Evidence']);
+
+// AFTER
+register_post_type('b2bk_topic_page', [
+    'label'=>'Topic Pages',
+    'rewrite'=>false  // ← Disabled auto-rewrites
+]);
+register_post_type('b2bk_detail', [
+    'label'=>'Details',
+    'rewrite'=>false  // ← Disabled auto-rewrites
+]);
+register_post_type('b2bk_evidence', [
+    'label'=>'Evidence',
+    'rewrite'=>false  // ← Disabled auto-rewrites
+]);
+```
+
+**File 3: check-posts.php** (233 lines, new diagnostic tool)
+
+### Git Workflow Pattern: WordPress Plugin as Submodule
+
+**Repository Structure:**
+```
+artrevisionist/                    (main project)
+├── wordpress-plugin/              (git submodule)
+│   ├── .git -> artrevisionist-wordpress repo
+│   └── ... plugin files
+
+artrevisionist-wordpress/          (separate repo)
+└── ... plugin files
+
+/xampp/htdocs/wp-content/plugins/artrevisionist-wordpress/
+└── ... working WordPress installation
+```
+
+**Update Workflow:**
+```bash
+# 1. Edit in WordPress installation
+cd /c/xampp/htdocs/wp-content/plugins/artrevisionist-wordpress
+# ... make changes ...
+git add . && git commit -m "fix: ..."
+git push origin develop
+
+# 2. Pull to standalone repo
+cd /c/Projects/artrevisionist-wordpress
+git checkout develop && git pull origin develop
+
+# 3. Update submodule in main project
+cd /c/Projects/artrevisionist
+git submodule update --remote wordpress-plugin
+git add wordpress-plugin
+git commit -m "chore: update wordpress-plugin submodule"
+git push origin develop
+```
+
+**Key Insight:** Submodule updates require explicit commit in parent repo
+
+### Debugging Approach That Worked
+
+**Step 1: Gather Symptoms**
+- Archive works, single page doesn't → rewrite rule issue
+- Topic shows in list but link 404s → post exists, routing broken
+
+**Step 2: Read Code (Sequential Analysis)**
+1. Main plugin file → sees activation hook only
+2. Rewrite class → sees singular `/topic/` pattern
+3. CPT registration → sees plural `/topics/` slug
+4. Permalink class → sees singular `/topic/` generation
+5. **Identified mismatch + missing init hook**
+
+**Step 3: Explain to User**
+- Used analogy: "Routes map URLs to handlers, but routes only registered once"
+- Showed conflict: "Archive uses /topics/, custom uses /topic/"
+
+**Step 4: Fix + Diagnostic Tool**
+- Minimal fix (2 files, 4 lines changed)
+- Comprehensive diagnostic (233 lines, instant feedback)
+
+**Step 5: Git Hygiene**
+- Descriptive commit message
+- Submodule update in parent
+- Both repos updated
+
+**Time Investment:**
+- Analysis: 10 minutes
+- Fix: 5 minutes
+- Diagnostic tool: 15 minutes
+- Git workflow: 5 minutes
+- Total: 35 minutes
+
+**Result:** User confirmed working immediately after permalink flush
+
+### Key Takeaways
+
+**WordPress-Specific:**
+1. ✅ Rewrites MUST be on `init` hook, not just activation
+2. ✅ Disable CPT auto-rewrites when using custom hierarchical rewrites
+3. ✅ Always flush permalinks after rewrite changes
+4. ✅ Diagnostic scripts provide instant user feedback
+
+**General Debugging:**
+1. ✅ Symptoms guide where to look (archive works → single doesn't = routing)
+2. ✅ Code reading beats guessing (5 files, 10 minutes, found exact issue)
+3. ✅ Minimal fix + comprehensive diagnostic = best combo
+4. ✅ Submodule workflows need explicit parent commits
+
+**Pattern Naming:**
+- Pattern 73: WordPress Rewrite Rules Lifecycle
+- Pattern 74: Custom Post Type Rewrite Conflicts
+- Pattern 75: WordPress Permalink Flush Requirements
+
+**Documentation Location:**
+- This reflection entry
+- Pattern added to claude_info.txt (if space permits)
+- Diagnostic tool: `artrevisionist-wordpress/check-posts.php`
+
+### Success Metrics
+
+✅ Issue resolved in 35 minutes (investigation to deployment)
+✅ User confirmed fix works immediately
+✅ Diagnostic tool created for future issues
+✅ All changes committed and pushed (3 repos updated)
+✅ Patterns documented for future WordPress work
+✅ No technical debt created
+
+**Pattern Maturity:** MEDIUM - WordPress-specific, but rewrite logic applies to any framework with route registration

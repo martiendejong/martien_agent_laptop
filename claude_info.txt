@@ -1872,3 +1872,224 @@ dotnet build 2>&1 | grep -c NU1105
 - Pattern 27: VS Stale Errors (symptom, not cause)
 - Pattern 28: Cross-Repo Branch Mismatch (different issue, same error)
 
+
+
+### Pattern 73: WordPress Rewrite Rules Lifecycle (Init Hook Required)
+
+**Problem:** Custom rewrite rules registered only on plugin activation, not on every page load
+**Symptom:** URLs work after plugin activation, then break later (404 errors)
+**Root Cause:** Other plugins flush rewrites, WordPress loses your rules
+
+**Why Activation Hooks Fail:**
+- `register_activation_hook()` runs ONCE when plugin activated
+- WordPress saves rewrite rules to database
+- If another plugin calls `flush_rewrite_rules()`, your rules disappear
+- Next page load: your rewrites are gone → 404 errors
+
+**Correct Pattern:**
+```php
+// ✅ CORRECT - Register on init hook (runs every page load)
+add_action('init', ['MyClass', 'register_rewrites']);
+
+// Flush only on activation/deactivation
+register_activation_hook(__FILE__, function() {
+    MyClass::register_rewrites();  // Register first
+    flush_rewrite_rules();         // Then flush
+});
+
+register_deactivation_hook(__FILE__, function() {
+    flush_rewrite_rules();  // Clean up
+});
+```
+
+**❌ WRONG Pattern:**
+```php
+// Only in activation hook - breaks when other plugins flush
+register_activation_hook(__FILE__, function() {
+    add_rewrite_rule(...);  // ❌ Not persistent!
+    flush_rewrite_rules();
+});
+```
+
+**When to Use:**
+- All custom WordPress rewrite rules
+- Custom post type hierarchical URLs
+- Any plugin that modifies URL structure
+
+**Detection:**
+- Archive page works, single page doesn't
+- URLs work after plugin activation, break later
+- Flushing permalinks temporarily fixes issue
+
+**Time Investment:** 2 minutes to add init hook vs hours debugging intermittent 404s
+
+---
+
+### Pattern 74: Custom Post Type Rewrite Conflicts (Disable Auto-Rewrites)
+
+**Problem:** WordPress CPT auto-rewrites conflict with custom hierarchical rewrites
+**Symptom:** Unpredictable routing, some URLs work, others don't
+**Context:** Hierarchical post types (parent/child/grandchild URLs)
+
+**Conflict Example:**
+```php
+// CPT creates: /topics/post-name/
+register_post_type('topic', [
+    'rewrite' => ['slug' => 'topics']  // Auto-rewrite enabled
+]);
+
+// Custom permalink generates: /topic/parent/child/
+return home_url('/topic/'.$parent.'/'.$child.'/');
+
+// Custom rewrite expects: /topic/parent/child/
+add_rewrite_rule('^topic/([^/]+)/([^/]+)/?$', ...);
+
+// Result: Both /topics/ and /topic/ rules exist → conflict!
+```
+
+**Solution: Disable Auto-Rewrites for Hierarchical Types**
+```php
+// Parent: Keep auto-rewrites for archive
+register_post_type('topic', [
+    'has_archive' => true,
+    'rewrite' => ['slug' => 'topics', 'with_front' => false]
+]);
+
+// Children: Disable auto-rewrites (custom only)
+register_post_type('topic_page', [
+    'rewrite' => false  // ✅ No automatic rewrites
+]);
+register_post_type('detail', [
+    'rewrite' => false  // ✅ Use custom rewrites only
+]);
+
+// Then define custom hierarchical rewrites
+add_rewrite_rule('^topic/([^/]+)/?$',
+    'index.php?post_type=topic&name=$matches[1]', 'top');
+add_rewrite_rule('^topic/([^/]+)/([^/]+)/?$',
+    'index.php?post_type=topic_page&name=$matches[2]', 'top');
+```
+
+**When to Use:**
+- Hierarchical URL structures (parent/child/grandchild)
+- Custom permalink generation that differs from CPT slug
+- Complex multi-level taxonomies
+
+**Key Insight:** For hierarchical structures, disable CPT rewrites and use custom rules exclusively
+
+**Time Investment:** 5 minutes vs days debugging routing conflicts
+
+---
+
+### Pattern 75: WordPress Permalink Flush Requirements (When & How)
+
+**Problem:** Changed rewrite rules don't take effect without flushing permalinks
+**Symptom:** New URLs return 404, old structure still works
+
+**When to Flush Permalinks:**
+1. ✅ After plugin activation
+2. ✅ After plugin deactivation
+3. ✅ After changing rewrite rules in code
+4. ✅ After changing CPT slugs
+5. ✅ After adding/removing custom rewrites
+6. ✅ After changing permalink structure in Settings
+
+**How to Flush (in order of preference):**
+
+**Option 1: Admin UI** (safest for production)
+1. Go to Settings → Permalinks
+2. Click "Save Changes" (don't change anything)
+3. WordPress regenerates all rewrite rules
+
+**Option 2: WP-CLI** (for deployment scripts)
+```bash
+wp rewrite flush
+```
+
+**Option 3: Code** (expensive, avoid in production)
+```php
+flush_rewrite_rules();  // Use only in activation hooks!
+```
+
+**❌ NEVER do this:**
+```php
+// In init hook or on every page load
+add_action('init', function() {
+    flush_rewrite_rules();  // ❌ KILLS PERFORMANCE!
+});
+```
+
+**Diagnostic Pattern:**
+```php
+// Check if rewrites exist (diagnostic script)
+$rules = get_option('rewrite_rules');
+foreach ($rules as $pattern => $rewrite) {
+    if (strpos($pattern, 'topic') !== false) {
+        echo "$pattern → $rewrite\n";
+    }
+}
+```
+
+**When to Use:**
+- Deploying plugin updates with rewrite changes
+- Troubleshooting 404 errors on custom URLs
+- After modifying CPT registration
+
+**Critical Rule:** ALWAYS flush after changing rewrites, or users see 404s
+
+**Time Investment:** 30 seconds to flush vs hours debugging why URLs don't work
+
+---
+
+### WordPress Debugging Checklist (Patterns 73-75)
+
+When facing WordPress 404 errors on custom URLs:
+
+1. ✅ **Verify rewrites registered on init hook** (Pattern 73)
+   ```bash
+   grep "add_action('init'" plugin-main-file.php
+   ```
+
+2. ✅ **Check for CPT rewrite conflicts** (Pattern 74)
+   ```bash
+   grep -A5 "register_post_type" includes/*.php | grep "rewrite"
+   ```
+
+3. ✅ **Flush permalinks** (Pattern 75)
+   - Settings → Permalinks → Save Changes
+
+4. ✅ **Verify posts are published**
+   ```sql
+   SELECT post_type, post_status, COUNT(*)
+   FROM wp_posts
+   WHERE post_type LIKE 'b2bk_%'
+   GROUP BY post_type, post_status;
+   ```
+
+5. ✅ **Check parent-child relationships**
+   ```sql
+   SELECT post_id, meta_key, meta_value
+   FROM wp_postmeta
+   WHERE meta_key LIKE 'b2bk_parent_%';
+   ```
+
+**Diagnostic Tool Template:** Create `check-posts.php` in plugin root:
+- Display all rewrite rules matching plugin pattern
+- Verify posts exist and are published
+- Check parent-child meta relationships
+- Show permalink generation vs. rewrite patterns
+- One-click permalink flush button
+
+**Real Example:** artrevisionist-wordpress/check-posts.php (233 lines)
+
+**Success Pattern:**
+- Analysis: 10 minutes (read 5 files)
+- Fix: 5 minutes (add init hook, disable auto-rewrites)
+- Diagnostic: 15 minutes (create check script)
+- Deployment: 5 minutes (git commit, flush permalinks)
+- Total: 35 minutes end-to-end
+
+**References:**
+- Full session details: reflection.log.md (2026-01-11 14:30 entry)
+- Code changes: artrevisionist-wordpress commits 29290b1, 6ad0d1b
+- Diagnostic tool: artrevisionist-wordpress/check-posts.php
