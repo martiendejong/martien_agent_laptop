@@ -42,6 +42,101 @@ This documentation has been split into focused, manageable files for better clar
 - **Logs:** `C:\scripts\logs`
 - **Status:** `C:\scripts\status`
 - **Tools:** `C:\scripts\tools` (Productivity tools - USE THESE!)
+- **Skills:** `C:\scripts\.claude\skills` (Auto-discoverable Claude Skills)
+
+---
+
+## 🎓 Claude Skills - Auto-Discoverable Workflows
+
+**New in 2026-01-12:** This system now includes Claude Skills - auto-discoverable markdown-based knowledge that Claude loads based on context.
+
+### What Are Skills?
+
+**Skills are:**
+- Markdown files in `.claude/skills/<skill-name>/SKILL.md`
+- Automatically discovered by Claude Code at startup
+- Activated when your task matches the skill's description
+- Self-contained workflow guides with optional supporting files
+
+**Skills vs Other Documentation:**
+- **CLAUDE.md** - Always active, operational manual
+- **Skills** - Contextually activated, specialized workflows
+- **Tools** - Scripts you run manually
+- **Docs (.md files)** - Reference material
+
+### Available Skills
+
+#### 🏗️ Worktree Management
+- **`allocate-worktree`** - Allocate worker agent worktree with zero-tolerance enforcement and multi-agent conflict detection
+- **`release-worktree`** - Release worktree after PR creation with complete cleanup protocol
+- **`worktree-status`** - Check pool status, available seats, and system health
+
+#### 🔀 GitHub Workflows
+- **`github-workflow`** - PR creation, code reviews, merging, and lifecycle management
+- **`pr-dependencies`** - Cross-repo dependency tracking between Hazina and client-manager
+
+#### 🛠️ Development Patterns
+- **`api-patterns`** - Common API pitfalls: OpenAIConfig initialization, response enrichment, URL duplication, LLM integration
+- **`terminology-migration`** - Comprehensive codebase-wide refactoring patterns (e.g., daily → monthly)
+- **`multi-agent-conflict`** - MANDATORY pre-allocation conflict detection when multiple agents run simultaneously
+
+#### 📝 Continuous Improvement
+- **`session-reflection`** - Update reflection.log.md with session learnings
+- **`self-improvement`** - Update CLAUDE.md and documentation with new patterns
+
+### How Skills Work
+
+1. **Discovery** - Claude loads skill names and descriptions at startup
+2. **Activation** - When your task matches a skill's description, Claude uses it
+3. **Execution** - Claude follows the skill's markdown instructions
+
+**You don't need to explicitly invoke Skills** - Claude discovers and applies them automatically based on context.
+
+### When Skills Are Used
+
+**Example scenarios:**
+
+```
+You: "I need to allocate a worktree for a new feature"
+→ Claude activates: allocate-worktree Skill
+→ Runs conflict detection, checks pool, allocates properly
+
+You: "Create a PR for this feature"
+→ Claude activates: github-workflow Skill
+→ Follows PR creation format, adds dependency alerts if needed
+
+You: "We need to rename 'daily' to 'monthly' across the codebase"
+→ Claude activates: terminology-migration Skill
+→ Uses systematic grep → TodoWrite → sed → build pattern
+
+You: "Document what we learned today"
+→ Claude activates: session-reflection Skill
+→ Updates reflection.log.md with proper format
+```
+
+### Skill File Structure
+
+```
+C:\scripts\.claude\skills\
+├── allocate-worktree/
+│   ├── SKILL.md (required - workflow guide)
+│   └── scripts/ (optional - helper scripts)
+├── release-worktree/
+│   └── SKILL.md
+├── github-workflow/
+│   └── SKILL.md
+└── ...
+```
+
+### Creating New Skills
+
+**Create a Skill when:**
+- Workflow is complex with multiple mandatory steps
+- Pattern is used frequently across sessions
+- Auto-discovery would help future sessions
+- New agents would benefit from guided workflow
+
+**See:** `self-improvement` Skill for creation process
 
 ---
 
@@ -74,21 +169,26 @@ This documentation has been split into focused, manageable files for better clar
 
 ## 📋 Common Workflows Quick Reference
 
-| Task | See Documentation |
-|------|-------------------|
-| Allocate worktree for code editing | `worktree-workflow.md` § Atomic Allocation |
-| Release worktree after PR | `worktree-workflow.md` § Release Protocol |
-| Manage window colors (RUNNING/COMPLETE/BLOCKED) | `session-management.md` § Dynamic Window Colors |
-| Update HTML notifications dashboard | `session-management.md` § User Notification Tracking |
-| Run productivity tools | `tools-and-productivity.md` § MANDATORY Tool Usage |
-| Fix C# build errors | `tools-and-productivity.md` § C# Auto-Fix Workflow |
-| Debug frontend CI failures | `ci-cd-troubleshooting.md` § Frontend CI Troubleshooting |
-| Batch fix multiple PR builds | `ci-cd-troubleshooting.md` § Batch PR Build Fix |
-| Create cross-repo dependent PRs | `git-workflow.md` § Cross-Repo PR Dependencies |
-| Follow git-flow branch strategy | `git-workflow.md` § Git-Flow Workflow Rules |
-| Implement complete feature (backend+frontend+docs) | `development-patterns.md` § Complete Feature Implementation |
-| Migrate terminology across codebase | `development-patterns.md` § Comprehensive Terminology Migration |
-| Document incomplete work | `development-patterns.md` § Incomplete Work Documentation |
+| Task | See Documentation | Auto-Discoverable Skill |
+|------|-------------------|------------------------|
+| Allocate worktree for code editing | `worktree-workflow.md` § Atomic Allocation | ✅ `allocate-worktree` |
+| Release worktree after PR | `worktree-workflow.md` § Release Protocol | ✅ `release-worktree` |
+| Check worktree pool status | `worktree-workflow.md` § Pool Management | ✅ `worktree-status` |
+| Detect multi-agent conflicts | `_machine/MULTI_AGENT_CONFLICT_DETECTION.md` | ✅ `multi-agent-conflict` |
+| Create/review/merge PRs | `git-workflow.md` § GitHub Workflows | ✅ `github-workflow` |
+| Track cross-repo PR dependencies | `git-workflow.md` § Cross-Repo Dependencies | ✅ `pr-dependencies` |
+| Avoid API development pitfalls | Reflection log patterns | ✅ `api-patterns` |
+| Migrate terminology across codebase | `development-patterns.md` § Terminology Migration | ✅ `terminology-migration` |
+| Update reflection.log.md | `continuous-improvement.md` § Reflection Protocol | ✅ `session-reflection` |
+| Update documentation with learnings | `continuous-improvement.md` § Self-Improvement | ✅ `self-improvement` |
+| Manage window colors (RUNNING/COMPLETE/BLOCKED) | `session-management.md` § Dynamic Window Colors | - |
+| Update HTML notifications dashboard | `session-management.md` § User Notification Tracking | - |
+| Run productivity tools | `tools-and-productivity.md` § MANDATORY Tool Usage | - |
+| Fix C# build errors | `tools-and-productivity.md` § C# Auto-Fix Workflow | - |
+| Debug frontend CI failures | `ci-cd-troubleshooting.md` § Frontend CI Troubleshooting | - |
+| Batch fix multiple PR builds | `ci-cd-troubleshooting.md` § Batch PR Build Fix | - |
+| Implement complete feature (backend+frontend+docs) | `development-patterns.md` § Complete Feature Implementation | - |
+| Document incomplete work | `development-patterns.md` § Incomplete Work Documentation | - |
 
 ---
 
