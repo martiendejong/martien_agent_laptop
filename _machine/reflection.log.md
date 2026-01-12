@@ -4,6 +4,190 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-12 21:00 - Brand2Boost Store: Vibe Analysis Field Addition
+
+**Session Type:** Configuration enhancement - Store analysis field addition
+**Context:** User requested adding a "vibe" analysis field to capture environment and atmosphere in a fairytale-like narrative style
+**Outcome:** ✅ SUCCESS - New field added, prompt template created, committed and pushed to brand2boost repo
+
+### Task Overview
+
+Added a new analysis field to the brand2boost store configuration that captures the intangible atmosphere and emotional climate of a brand using evocative, fairytale-style narrative descriptions.
+
+### Technical Implementation
+
+**Files Modified:**
+
+1. **C:\stores\brand2boost\analysis-fields.config.json**
+   - Added new field entry after "brand-story" field
+   - Configuration:
+     ```json
+     {
+       "key": "vibe",
+       "fileName": "vibe.txt",
+       "displayName": "Vibe",
+       "configFileName": "vibe.prompt.txt"
+     }
+     ```
+
+2. **C:\stores\brand2boost\vibe.prompt.txt** (NEW)
+   - Created LLM prompt template with fairytale narrative style instructions
+   - Output: 150-250 word evocative descriptions
+   - Style: Present tense, sensory details, metaphorical language
+   - Approach: Treat brand as a magical realm or enchanted place
+   - Example provided showing atmosphere of artisan leather workshop
+   - Guidelines for balance between poetic language and authenticity
+
+### Key Insights
+
+**Pattern 56: Store Configuration vs Code Changes**
+
+**When working with stores (`C:\stores\<project>/`):**
+- ✅ Direct editing is ALLOWED (no worktree allocation needed)
+- ✅ These are configuration/data files, not application code
+- ✅ Store repos have their own git repositories
+- ✅ Commit and push directly to store repo after changes
+
+**Distinction from C:\Projects\ worktree rules:**
+- ❌ `C:\Projects\<repo>` = application code → REQUIRES worktree allocation
+- ✅ `C:\stores\<repo>` = configuration/data → direct editing allowed
+
+**Store Structure Pattern (brand2boost):**
+- `analysis-fields.config.json` defines all available analysis fields
+- Each field has:
+  - `key` - internal identifier (e.g., "vibe")
+  - `fileName` - output file name (e.g., "vibe.txt")
+  - `displayName` - UI label (e.g., "Vibe")
+  - `configFileName` - LLM prompt template (e.g., "vibe.prompt.txt")
+  - Optional: `genericType`, `componentName` for special UI components
+
+**Adding new analysis fields:**
+1. Add entry to `analysis-fields.config.json`
+2. Create corresponding `.prompt.txt` file with LLM instructions
+3. System will automatically:
+   - Show field in UI
+   - Use prompt template for LLM generation
+   - Save output to specified fileName
+
+### LLM Prompt Template Design
+
+**Effective prompt structure for analysis fields:**
+
+1. **Purpose statement** - What this field captures
+2. **Output format** - Word count, style, structure
+3. **Approach** - How to think about generating this content
+4. **Example** - Concrete illustration of desired output
+5. **Guidelines** - Dos and don'ts for quality
+
+**Fairytale/narrative style prompts:**
+- Use sensory language (sight, sound, smell, touch, taste)
+- Present tense for immediacy
+- Metaphors and similes for vividness
+- Balance poetry with authenticity (avoid being overly flowery)
+- Create immersive experience for reader
+
+### Workflow Notes
+
+**Correctly identified this as configuration work:**
+- No worktree allocation needed
+- No PR required (store changes go direct to main)
+- Faster turnaround for configuration changes
+- Store repos are separate from application code repos
+
+**Git workflow for stores:**
+- `cd C:\stores\brand2boost`
+- `git add <files>`
+- `git commit` with descriptive message
+- `git push origin main`
+
+### Commit Details
+
+**Repo:** brand2boost (store)
+**Branch:** main
+**Commit:** 53c93d4
+
+```
+feat: Add 'vibe' analysis field for fairytale-style atmosphere descriptions
+
+- Added vibe field entry to analysis-fields.config.json
+- Created vibe.prompt.txt with instructions for generating evocative,
+  fairytale-style descriptions of brand atmosphere and environment
+- Output captures the intangible feeling and emotional climate of the brand
+- Uses sensory details and metaphorical language to create immersive descriptions
+```
+
+### Success Criteria Achieved
+
+- ✅ New field appears in analysis-fields.config.json (position: after "brand-story")
+- ✅ Prompt template created with clear instructions and example
+- ✅ Changes committed and pushed to brand2boost repo
+- ✅ Correctly identified as configuration work (no worktree needed)
+- ✅ Maintained existing field order and structure
+
+### Pattern Added to Knowledge Base
+
+**Store Configuration Extension Pattern:**
+
+**When:** User requests new analysis field, interview question, or store configuration element
+
+**Steps:**
+1. Identify file type: Configuration (C:\stores\) vs Code (C:\Projects\)
+2. For store configs: Work directly in C:\stores\<project>/
+3. Read existing config to understand structure
+4. Add new entry following established patterns
+5. Create supporting files (prompts, templates) as needed
+6. Commit and push to store repo
+7. NO worktree allocation, NO PR needed
+
+**Benefits:**
+- Fast iteration on configuration changes
+- No overhead of worktree management for config files
+- Direct main branch commits for configuration
+- Clear separation of code vs configuration workflows
+
+### Lessons Learned
+
+**✅ What Worked Well:**
+
+1. **Pattern recognition** - Identified this as store configuration (not code) immediately
+2. **Context gathering** - Read existing fields to match style and structure
+3. **Example-driven design** - Provided concrete example in prompt template
+4. **TodoWrite usage** - Tracked 3-step process for visibility
+
+**🔑 Key Insights:**
+
+1. **Configuration vs Code distinction matters:**
+   - Worktree rules apply to code repos
+   - Store repos follow standard git workflow
+   - Recognizing the difference saves time
+
+2. **Prompt template quality determines LLM output:**
+   - Clear examples produce better results
+   - Balance between creative freedom and constraints
+   - Sensory language prompts produce evocative content
+
+3. **Store extensibility:**
+   - brand2boost uses dynamic field configuration
+   - Adding new fields requires no code changes
+   - LLM-driven content generation via prompt templates
+
+### Future Applications
+
+**This pattern applies to:**
+- Adding interview questions (`opening-questions.json`)
+- Creating new prompt templates for existing fields
+- Modifying LLM instructions for content generation
+- Extending store schemas with new data types
+- Adding new tool configurations (`tools.config.json`)
+
+**Next time a similar request comes:**
+1. Check if target is in `C:\stores\` → direct edit
+2. Check if target is in `C:\Projects\` → worktree allocation required
+3. For stores: commit directly to main after changes
+4. For code: follow full worktree protocol with PR
+
+---
+
 ## 2026-01-12 18:35 - Dynamic Window Color Icon Enhancement
 
 **Session Type:** Feature enhancement - User experience improvement
