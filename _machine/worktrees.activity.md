@@ -309,3 +309,5 @@ Actions:
 2026-01-12T04:05:00Z — release — agent-002 — artrevisionist — agent-002-manage-additional-images — — claude-code — Image management feature complete, PR #23 created
 2026-01-12T09:00:00Z — alloc — agent-001 — client-manager — feature/contextual-file-tagging — — claude-code — Frontend integration for contextual file tagging
 2026-01-12T09:30:00Z — release — agent-001 — client-manager — feature/contextual-file-tagging — — claude-code — Frontend integration complete, 2 commits pushed
+2026-01-12T18:00:00Z — allocate — agent-001 — hazina — agent-001-firecrawl-integration — — claude-code — Implementing FireCrawl MCP integration for web scraping and branding extraction
+2026-01-12T19:00:00Z — release — agent-001 — hazina — agent-001-firecrawl-integration — — claude-code — FireCrawl integration complete, PR #69 created
