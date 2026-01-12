@@ -1,15 +1,20 @@
 @echo off
 setlocal enabledelayedexpansion
 
+REM --- Enable ANSI escape sequences for color support ---
+REM Modern Windows 10+ supports ANSI codes by default
+REM Set initial terminal color to IDLE state (black background)
+powershell -NoProfile -ExecutionPolicy Bypass -File "C:\scripts\set-state-color.ps1" -State idle 2>nul
+
 REM --- Set dynamic window title ---
 REM Try to get current branch name, otherwise use default
 for /f "tokens=*" %%i in ('git branch --show-current 2^>nul') do set BRANCH=%%i
 if defined BRANCH (
     REM Convert branch name to uppercase for visibility
     for /f "tokens=*" %%a in ('powershell -Command "\"!BRANCH!\".ToUpper()"') do set BRANCH_UPPER=%%a
-    title !BRANCH_UPPER!
+    title ⚪ IDLE - !BRANCH_UPPER!
 ) else (
-    title CLAUDE AGENT
+    title ⚪ CLAUDE AGENT - IDLE
 )
 
 REM --- Git checkpoint ---

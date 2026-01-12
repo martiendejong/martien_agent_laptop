@@ -145,6 +145,147 @@ Terminal 3: Testing in artrevisionist
 - Quick launcher details: `C:\scripts\QUICK_LAUNCHERS.md`
 - Window title implementation: `C:\scripts\claude_agent.bat`
 
+## 🎨 DYNAMIC WINDOW COLORS - STATE-BASED VISUAL FEEDBACK
+
+**Feature Added: 2026-01-12**
+**User Request:** "claude code determines the color of the window based on the kind of thing you are doing"
+
+### Color States
+
+The terminal background color changes dynamically to reflect Claude Code's execution state:
+
+| State | Color | When to Use | Emoji |
+|-------|-------|-------------|-------|
+| **RUNNING** | 🔵 Blue | Actively working on a task | 🔵 |
+| **COMPLETE** | 🟢 Green | Task finished successfully | 🟢 |
+| **BLOCKED** | 🔴 Red | Waiting for user input/decision | 🔴 |
+| **IDLE** | ⚪ Black | Ready for next task | ⚪ |
+
+### When to Change Colors (MANDATORY for Claude)
+
+**As Claude Code, you MUST trigger color changes at these points:**
+
+```bash
+# 1. When starting ANY task (allocating worktree, creating PR, etc.)
+C:\scripts\color-running.bat
+
+# 2. When task completes successfully
+C:\scripts\color-complete.bat
+
+# 3. When using AskUserQuestion tool (blocking on user)
+C:\scripts\color-blocked.bat
+
+# 4. After user answers question, resuming work
+C:\scripts\color-running.bat
+
+# 5. When completely idle (no active work)
+C:\scripts\color-idle.bat
+```
+
+### Integration Protocol
+
+**CRITICAL: You (Claude Code) should call these color scripts at state transitions:**
+
+#### Before Starting Work
+```bash
+# User gives you a task
+# IMMEDIATELY call:
+C:\scripts\color-running.bat
+```
+
+#### During AskUserQuestion
+```bash
+# BEFORE calling AskUserQuestion tool:
+C:\scripts\color-blocked.bat
+
+# Tool call: AskUserQuestion(...)
+
+# AFTER user responds:
+C:\scripts\color-running.bat
+```
+
+#### After Completing Work
+```bash
+# Created PR, released worktree, ready to present results
+# BEFORE presenting results to user:
+C:\scripts\color-complete.bat
+
+# Present results...
+
+# After user acknowledges, if no new task:
+C:\scripts\color-idle.bat
+```
+
+### Example Session Flow
+
+```
+SESSION START
+→ color-idle.bat (⚪ Black - "IDLE")
+
+USER: "Create a new feature for ROI tracking"
+→ color-running.bat (🔵 Blue - "RUNNING")
+
+CLAUDE: Working... allocating worktree, coding backend...
+→ (stays Blue)
+
+CLAUDE: Needs decision on API design
+→ color-blocked.bat (🔴 Red - "BLOCKED")
+→ AskUserQuestion: "Should API return daily or monthly data?"
+
+USER: "Monthly data"
+→ color-running.bat (🔵 Blue - "RUNNING")
+
+CLAUDE: Completes implementation, creates PR
+→ color-complete.bat (🟢 Green - "COMPLETE")
+
+CLAUDE: "PR #123 created: [URL]"
+
+USER: "Thanks!"
+→ color-idle.bat (⚪ Black - "IDLE")
+```
+
+### Technical Implementation
+
+**Core Script:** `C:\scripts\set-state-color.ps1`
+- Uses ANSI escape sequences for color changes
+- Updates window title with state emoji
+- Logs state transitions to `C:\scripts\logs\color-state.log`
+
+**Quick Access Scripts:**
+- `color-running.bat` - Blue background
+- `color-complete.bat` - Green background
+- `color-blocked.bat` - Red background
+- `color-idle.bat` - Black background
+
+**Testing:** Run `C:\scripts\test-colors.bat` to see all color states
+
+### Customization
+
+See `C:\scripts\DYNAMIC_WINDOW_COLORS.md` for:
+- Changing color schemes
+- Adding new states
+- Windows Terminal integration
+- Troubleshooting
+
+### Benefits
+
+✅ **Visual state awareness** - User knows Claude's status at a glance
+✅ **Multi-window management** - Differentiate multiple Claude sessions by color
+✅ **Attention management** - Red (blocked) draws immediate attention
+✅ **Progress tracking** - Green confirms successful completion
+✅ **Professional polish** - Visual feedback like modern IDEs
+
+### Success Criteria
+
+**You are using colors correctly ONLY IF:**
+- ✅ Window is BLUE whenever actively working
+- ✅ Window is RED whenever blocked on user input
+- ✅ Window is GREEN after successful task completion
+- ✅ Window is BLACK when idle/ready
+- ✅ Color changes happen IMMEDIATELY at state transitions (not delayed)
+
+**Full documentation:** `C:\scripts\DYNAMIC_WINDOW_COLORS.md`
+
 ## 🔧 PRODUCTIVITY TOOLS - USE PROACTIVELY
 
 **USER DIRECTIVE (2026-01-11):** "make sure you use the tools where needed and/or appropriate"
