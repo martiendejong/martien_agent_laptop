@@ -313,3 +313,4 @@ Actions:
 2026-01-12T19:00:00Z — release — agent-001 — hazina — agent-001-firecrawl-integration — — claude-code — FireCrawl integration complete, PR #69 created
 2026-01-12T19:30:00Z — allocate — agent-002 — client-manager — agent-002-firecrawl-integration — — claude-code — FireCrawl integration for competitive intelligence (frontend + backend)
 2026-01-12T20:30:00Z — release — agent-002 — client-manager — agent-002-firecrawl-integration — — claude-code — FireCrawl integration complete (PR #120), 16 files, frontend + backend
+2026-01-12T21:00:00Z — allocate — agent-001 — client-manager — agent-001-user-cost-tracking — — claude-code — Per-user cost tracking with admin view in user management
