@@ -1393,3 +1393,80 @@ refactor: Complete migration from daily to monthly token terminology
 - TodoWrite discipline for complex tasks
 - Understanding of client-manager subscription model
 
+
+---
+
+## 2026-01-12 20:10 - API Path Duplication Fix
+
+**Session Type:** Bug fix - Frontend API configuration
+**Context:** User reported 404 errors on company documents endpoints due to duplicate `/api/` in URL
+**Outcome:** ✅ SUCCESS - Fixed in 10 minutes with proper worktree workflow
+
+### Problem
+
+API calls failing with 404:
+```
+❌ https://localhost:54501/api/api/v1/projects/{projectId}/company-documents
+```
+
+The `/api/` prefix was appearing twice in the URL.
+
+### Root Cause
+
+**Incorrect URL concatenation in frontend service:**
+- `axiosConfig.ts` sets `baseURL: 'https://localhost:54501/api/'` (includes `/api/`)
+- `companyDocuments.ts` had `API_BASE = '/api/v1/projects'` (also includes `/api/`)
+- When axios combines `baseURL + endpoint`, it results in `/api/api/v1/...`
+
+### Solution
+
+Changed `companyDocuments.ts`:
+```diff
+- const API_BASE = '/api/v1/projects'
++ const API_BASE = '/v1/projects'
+```
+
+Since `baseURL` already includes `/api/`, the service-specific base path should start with `/v1/`.
+
+### Pattern Learned
+
+**Frontend API Service Configuration:**
+- ✅ **Check:** When creating new API services, verify that endpoint paths don't duplicate the baseURL prefix
+- ✅ **Pattern:** If `axiosConfig.ts` has `baseURL: 'https://host/api/'`, then service files should use `/v1/resource`, NOT `/api/v1/resource`
+- ✅ **Grep check:** Search for `const API_BASE = '/api/` to find potential duplications
+- ⚠️ **Watch for:** This can happen when copying service files or when baseURL changes
+
+**Verification checklist for new API services:**
+1. Read `axiosConfig.ts` to see current `baseURL`
+2. Ensure service `API_BASE` doesn't repeat any part of `baseURL`
+3. Test actual URL construction in browser dev tools
+
+### Files Modified
+
+- `ClientManagerFrontend/src/services/companyDocuments.ts` - One line change (line 4)
+
+### Commit & PR
+
+- **Commit:** 1fe6c98
+- **PR:** #121 → develop
+- **Branch:** agent-002-api-path-fix
+- **Impact:** Fixes all 7 company documents endpoints
+
+### Worktree Workflow
+
+✅ Perfect execution:
+1. Read ZERO_TOLERANCE_RULES.md
+2. Allocated agent-002 worktree
+3. Updated pool.md (BUSY)
+4. Logged allocation in activity.md
+5. Made fix in worktree (NOT base repo)
+6. Committed with detailed message
+7. Pushed and created PR #121
+8. Cleaned worktree (`rm -rf`)
+9. Marked FREE in pool.md
+10. Logged release in activity.md
+11. Pruned worktrees
+12. Committed and pushed tracking files
+
+**Zero violations. Protocol followed perfectly.**
+
