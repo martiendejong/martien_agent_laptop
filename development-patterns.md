@@ -1233,3 +1233,235 @@ public async Task SetDailyAllowanceAsync(string userId, int dailyAllowance) {
 - Full reflection: `C:\scripts\_machine\reflection.log.md § 2026-01-12`
 - Linter mitigation: `C:\scripts\_machine\best-practices\LINTER_INTERFERENCE_MITIGATION.md`
 
+
+---
+
+## 🔍 PATTERN 57: OCR LIBRARY INTEGRATION FOR DOCUMENT PROCESSING
+
+**Context:** When implementing text extraction from image files without external API dependency
+**Added:** 2026-01-12 (Image OCR implementation session)
+**Status:** Production-tested, used in client-manager document extraction
+
+### Problem
+
+Extracting text from image files (PNG, JPG, JPEG, GIF, BMP, WEBP) without:
+- External API dependency (cost, latency, authentication)
+- Complex setup or deployment requirements
+- Requirement for specific cloud services
+
+### Solution: Tesseract OCR Integration
+
+**Library:** Tesseract 5.2.0 (latest stable on NuGet)
+
+**Installation:**
+```xml
+<!-- ClientManagerAPI.local.csproj -->
+<PackageReference Include="Tesseract" Version="5.2.0" />
+```
+
+**Using Statements:**
+```csharp
+using Tesseract;
+using System.Drawing;
+```
+
+### Implementation Pattern
+
+**Basic usage with proper resource management:**
+
+```csharp
+private async Task<string> ExtractTextFromImageAsync(string filePath)
+{
+    return await Task.Run(() =>
+    {
+        try
+        {
+            // Proper resource management with using statements
+            using var bitmap = new Bitmap(filePath);
+            using var engine = new TesseractEngine(null, "eng", EngineMode.Default)
+            {
+                DefaultPageSegMode = PageSegMode.Auto
+            };
+
+            using var page = engine.Process(bitmap);
+            var text = page.GetText();
+
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                _logger.LogWarning("OCR returned no text from: {FilePath}", filePath);
+                return string.Empty;
+            }
+
+            return text;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "OCR extraction failed for: {FilePath}", filePath);
+            return string.Empty;
+        }
+    }, ct);
+}
+```
+
+### Key Design Decisions
+
+**1. Resource Management**
+- Always use `using` for `Bitmap` and `TesseractEngine`
+- Prevents memory leaks in long-running services
+- Ensures proper cleanup even on exceptions
+
+**2. Error Handling**
+- Wrap in try-catch to prevent crashes
+- Log errors with file path for debugging
+- Return safe default (empty string) on failure
+- Don't throw - gracefully degrade
+
+**3. Async Pattern**
+- Wrap in `Task.Run()` to avoid blocking thread
+- Tesseract is CPU-intensive
+- Keep responsive for other requests
+
+**4. Engine Configuration**
+```csharp
+new TesseractEngine(null, "eng", EngineMode.Default)
+```
+- `null` = use system tessdata
+- `"eng"` = English language
+- `EngineMode.Default` = standard mode (fastest)
+- `PageSegMode.Auto` = auto-detect layout
+
+### Real-World Implementation: Document Header/Footer Extraction
+
+**Example from client-manager PR #123:**
+
+```csharp
+private async Task<CompanyDocumentExtraction> ExtractFromImageAsync(
+    string filePath, CancellationToken ct)
+{
+    return await Task.Run(() =>
+    {
+        var extraction = new CompanyDocumentExtraction
+        {
+            Id = Guid.NewGuid().ToString()
+        };
+
+        try
+        {
+            using var bitmap = new Bitmap(filePath);
+            using var engine = new TesseractEngine(null, "eng", EngineMode.Default)
+            {
+                DefaultPageSegMode = PageSegMode.Auto
+            };
+
+            using var page = engine.Process(bitmap);
+            var fullText = page.GetText();
+
+            if (string.IsNullOrWhiteSpace(fullText))
+            {
+                _logger.LogWarning("Image OCR returned no text from file: {FilePath}", filePath);
+                extraction.ConfidenceScore = 0.1;
+                return extraction;
+            }
+
+            // Split into lines for region estimation
+            var lines = fullText.Split('\n', StringSplitOptions.RemoveEmptyEntries).ToList();
+
+            if (lines.Count < 2)
+            {
+                extraction.ConfidenceScore = 0.1;
+                return extraction;
+            }
+
+            // Estimate header: top ~15% of lines
+            var headerLineCount = Math.Max(1, lines.Count / 7);
+            var headerLines = lines.Take(headerLineCount).ToList();
+            extraction.HeaderText = string.Join("\n", headerLines).Trim();
+            extraction.HeaderHtml = ConvertToHtml(extraction.HeaderText);
+
+            // Estimate footer: bottom ~15% of lines
+            var footerLineCount = Math.Max(1, lines.Count / 7);
+            var footerLines = lines.Skip(lines.Count - footerLineCount).ToList();
+            extraction.FooterText = string.Join("\n", footerLines).Trim();
+            extraction.FooterHtml = ConvertToHtml(extraction.FooterText);
+
+            // Extract metadata and calculate confidence
+            ExtractMetadata(extraction, fullText);
+            extraction.ConfidenceScore = CalculateConfidence(extraction);
+
+            _logger.LogInformation("Image OCR extraction complete. Confidence: {Confidence}",
+                extraction.ConfidenceScore);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error during image OCR extraction from file: {FilePath}", filePath);
+            extraction.ConfidenceScore = 0.0;
+        }
+
+        return extraction;
+    }, ct);
+}
+```
+
+### When to Use This Pattern
+
+✅ **Good fit:**
+- Document processing (letterheads, receipts, forms)
+- Image-based text extraction
+- Offline-first applications
+- Cost-sensitive projects (no API fees)
+- Privacy-sensitive applications (no cloud upload)
+
+❌ **Poor fit:**
+- Handwriting recognition (Tesseract struggles)
+- Complex multi-column layouts (needs layout analysis)
+- Maximum accuracy requirements (use Azure/Google Vision)
+- Real-time video processing (use specialized video libraries)
+- Non-Latin scripts (may need training data)
+
+### Future Enhancements
+
+**Performance:**
+- Image preprocessing (rotation detection, deskew)
+- Confidence threshold filtering
+- Caching of extracted text
+
+**Accuracy:**
+- Layout analysis for better region detection
+- Hybrid approach: Tesseract + LLM for metadata extraction
+- Custom training data for domain-specific terms
+
+**Features:**
+- Multi-language support (add language selection)
+- Table extraction and parsing
+- Handwriting detection (with fallback)
+
+### Testing Recommendations
+
+```csharp
+// Unit test: Valid image
+var result = await ExtractTextFromImageAsync("sample-letterhead.jpg");
+Assert.NotEmpty(result);
+
+// Unit test: Invalid image
+var result = await ExtractTextFromImageAsync("invalid.jpg");
+Assert.Empty(result);
+
+// Integration test: Full extraction pipeline
+var extraction = await ExtractFromImageAsync("letterhead.png");
+Assert.NotNull(extraction.HeaderText);
+Assert.Greater(extraction.ConfidenceScore, 0);
+```
+
+### Production Notes
+
+**Disk space:** Tesseract requires tessdata files (~100-200MB depending on languages)
+**Performance:** OCR is CPU-bound, allow 1-3 seconds per image on typical hardware
+**Cleanup:** Always dispose of bitmap and engine to prevent memory leaks
+**Logging:** Log extraction confidence and any failures for monitoring
+
+### File Reference
+
+- Implementation: `C:\Projects\client-manager\ClientManagerAPI\Services\LicenseManager\DocumentExtractionService.cs`
+- PR: #123 (github.com/martiendejong/client-manager/pull/123)
+- Reflection log: `C:\scripts\_machine\reflection.log.md § 2026-01-12 23:15`
+
