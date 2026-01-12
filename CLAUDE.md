@@ -205,6 +205,42 @@ C:\scripts\.claude\skills\
 
 ---
 
+## 🎯 Feature Request Management
+
+**Capability:** Agents can autonomously submit feature requests to the Claude Code repository using `gh` CLI.
+
+### Feature Request Process
+
+1. **Research Phase**
+   - Search existing issues: `gh issue list --repo anthropics/claude-code --search "<keyword>"`
+   - Check for duplicates and related issues
+   - Read related issues for context
+
+2. **Request Crafting**
+   - Provide clear problem statement
+   - Propose multiple implementation options when applicable
+   - Frame request from your use case perspective (agents vs users)
+   - Link to related issues
+   - Emphasize business impact and production requirements
+
+3. **Submission**
+   - Use `gh issue create --repo anthropics/claude-code --title "<title>" --body "<body>"`
+   - Document the issue number in reflection.log.md
+
+### Important Precedent: Issue #17772
+
+**Issue:** "[FEATURE] Programmatic Model Switching for Autonomous Agents"
+**Status:** Open and awaiting implementation
+**Impact:** Critical for production agent cost optimization and intelligent resource allocation
+
+When implemented, this will enable agents to:
+- Use Opus for complex planning and architecture
+- Use Sonnet for medium-complexity reviews and refactoring
+- Use Haiku for routine edits and cost optimization
+- Switch models without persisting to user settings
+
+---
+
 ## 🔗 External Documentation
 
 - **Project-Specific:**

@@ -334,3 +334,4 @@ Actions:
 - Regenerate all: clear + find 0-3 DIFFERENT images
 - Works for all page types + topic-level featured image
 
+2026-01-12T22:30:00Z — allocate — agent-002 — client-manager — agent-002-firecrawl-integration — — claude-code — Completing FireCrawl UI integration: adding routing and navigation for CompetitorDashboard (PR #120)
