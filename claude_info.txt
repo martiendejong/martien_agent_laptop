@@ -477,6 +477,28 @@ Error: `Unable to resolve service for type 'IFoo' while attempting to activate '
 - Update service constructor to inject factory, not interface directly
 - Example: `ILLMProvider` → inject `ILLMProviderFactory` and call `CreateProviderForModelRouting()`
 
+### Pattern 13: ArgumentException - Empty Model Parameter in OpenAIConfig
+Error: `System.ArgumentException: Value cannot be an empty string. (Parameter 'model')`
+- **Root Cause:** `new OpenAIConfig(apiKey)` only sets ApiKey, leaves Model empty
+- OpenAI SDK throws ArgumentException when Model is empty string
+- Runtime error (not compile-time), occurs when LLM client is used
+```csharp
+// ❌ WRONG - Model will be empty string:
+var config = new OpenAIConfig(Config.ApiSettings.OpenApiKey);
+ILLMClient llm = new OpenAIClientWrapper(config);
+
+// ✅ CORRECT - Explicitly set Model:
+var config = new OpenAIConfig(Config.ApiSettings.OpenApiKey);
+config.Model = "gpt-4o-mini"; // Required: Set chat model
+ILLMClient llm = new OpenAIClientWrapper(config);
+
+// ✅ ALTERNATIVE - Use full constructor:
+var config = new OpenAIConfig(apiKey, embeddingModel, model, imageModel, logPath, ttsModel);
+```
+- **When to check:** Any controller/service creating OpenAIConfig directly
+- **Common locations:** UploadedDocumentsController, WebsiteController, IntakeController
+- **Full details:** C:\scripts\_machine\reflection.log.md § 2026-01-12 23:45
+
 **Full details:** C:\scripts\CLAUDE.md § BATCH PR BUILD FIX WORKFLOW
 
 ## 📋 USER NOTIFICATION TRACKING (MANDATORY)

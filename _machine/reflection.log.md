@@ -4,6 +4,132 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-12 23:45 - Contextual File Tagging Integration Fixes
+
+**Session Type:** Bug fixes - Compilation and runtime errors after feature merge
+**Context:** User merged feature/contextual-file-tagging to develop and encountered multiple errors
+**Outcome:** ✅ SUCCESS - Fixed 3 distinct issues: compilation errors, runtime ArgumentException, missing API response fields
+
+### Problem 1: Compilation Errors in LLM Client Usage
+
+**Errors:**
+- CS1501: No overload for method 'CreateClient' takes 1 arguments (Program.cs:357)
+- CS1061: 'ILLMClient' does not contain definition for 'CreateChatCompletionAsync' (ContextualFileTaggingService.cs:278)
+
+**Root Cause:**
+- Incorrect API usage after integrating with Hazina LLM framework
+- `CreateClient("haiku")` attempted to pass model name, but method takes no parameters
+- Used non-existent `CreateChatCompletionAsync()` method instead of `GetResponse()`
+
+**Fix:**
+1. Changed `llmFactory.CreateClient("haiku")` to `llmFactory.CreateClient()`
+2. Replaced CreateChatCompletionAsync with proper ILLMClient.GetResponse() call
+3. Updated message format to use HazinaChatMessage, HazinaMessageRole, HazinaChatResponseFormat
+4. Added `using System.Threading;` for CancellationToken
+
+**Commit:** e070153
+
+### Problem 2: Runtime ArgumentException - Empty Model Parameter
+
+**Error:**
+```
+System.ArgumentException: Value cannot be an empty string. (Parameter 'model')
+at OpenAI.Chat.ChatClient.ChatClient(ClientPipeline pipeline, string model, ...)
+```
+
+**Root Cause:**
+OpenAIConfig has multiple constructors:
+- `OpenAIConfig()` - sets Model = string.Empty
+- `OpenAIConfig(string apiKey)` - only sets ApiKey, Model remains empty
+- `OpenAIConfig(string apiKey, string embeddingModel, string model, ...)` - sets all properties
+
+Controllers were using the single-parameter constructor, leaving Model empty. OpenAI SDK throws ArgumentException when receiving empty model parameter.
+
+**Fix:**
+After creating `new OpenAIConfig(apiKey)`, explicitly set `config.Model = "gpt-4o-mini"`
+
+**Files Fixed:**
+- UploadedDocumentsController.cs (line 85)
+- WebsiteController.cs (line 53)
+- IntakeController.cs (line 87)
+- SocialMediaGenerationService.cs (line 157)
+
+**Commit:** 3158a7e
+
+### Problem 3: Generated Images Not Appearing in Chat
+
+**User Report (Dutch):** "ik heb nu alles gemerged met develop. als ik nu een afbeelding genereer krijg ik de afbeelding niet te zien en verschijnt die ook niet in de chat"
+**Clarification:** "overigens is de afbeelding wel gegenereerd een hij staat wel onder documenten"
+
+**Root Cause:**
+Upload endpoint was:
+1. ✅ Generating tags/description via ContextualFileTaggingService
+2. ✅ Saving tags/description to uploadedFiles.json
+3. ❌ NOT returning tags/description in API response
+
+Frontend couldn't display metadata it never received.
+
+**Fix:**
+Added to upload response object (UploadedDocumentsController.cs lines 310-312):
+```csharp
+// Contextual tagging fields
+tags = uploadedFile?.Tags ?? new List<string>(),
+description = uploadedFile?.Description
+```
+
+**Commit:** 6ce47b4
+
+### Key Learnings
+
+**Pattern 1: OpenAIConfig Initialization Trap**
+- NEVER use `new OpenAIConfig(apiKey)` without setting Model property
+- Either use full constructor OR set Model explicitly after construction
+- Default value (empty string) causes runtime crash, not compile-time error
+- **Added to claude_info.txt** for future reference
+
+**Pattern 2: API Response Completeness**
+- When backend saves data to storage, ALWAYS return it in API response
+- Frontend can't access data not included in response, even if stored
+- Check that response DTO matches what frontend expects
+- SignalR and async operations don't change this requirement
+
+**Pattern 3: Hazina LLM Framework API**
+- CreateClient() takes no parameters - model selection via config
+- GetResponse() is the correct method for chat completions
+- Message types (HazinaChatMessage, HazinaMessageRole) are in global namespace
+- Always include CancellationToken parameter (use CancellationToken.None)
+
+### Files Modified
+
+**Backend:**
+- ClientManagerAPI/Program.cs (LLM client registration)
+- ClientManagerAPI/Services/ContextualFileTaggingService.cs (API usage)
+- ClientManagerAPI/Controllers/UploadedDocumentsController.cs (model param + response)
+- ClientManagerAPI/Controllers/WebsiteController.cs (model param)
+- ClientManagerAPI/Controllers/IntakeController.cs (model param)
+- ClientManagerAPI/Services/SocialMediaGenerationService.cs (model param)
+
+### Testing Recommendations
+
+For future LLM integration work:
+1. ✅ Verify OpenAIConfig initialization includes Model parameter
+2. ✅ Check ILLMClient interface for correct method signatures
+3. ✅ Test file upload → check frontend receives all metadata
+4. ✅ Verify API responses match frontend TypeScript interfaces
+5. ✅ Test image generation → check chat display rendering
+
+### Next Session Actions
+
+**If similar errors occur:**
+1. Check OpenAIConfig initialization pattern across all controllers
+2. Verify ILLMClient method signatures match Hazina interface
+3. Compare API response with frontend expectations
+4. Test end-to-end flow after backend changes
+
+**Pattern successfully documented for reuse.**
+
+---
+
 ## 2026-01-12 17:30 - Dynamic Window Colors Implementation
 
 **Session Type:** Feature implementation - Visual state feedback system
