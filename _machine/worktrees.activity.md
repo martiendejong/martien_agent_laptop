@@ -311,3 +311,5 @@ Actions:
 2026-01-12T09:30:00Z — release — agent-001 — client-manager — feature/contextual-file-tagging — — claude-code — Frontend integration complete, 2 commits pushed
 2026-01-12T18:00:00Z — allocate — agent-001 — hazina — agent-001-firecrawl-integration — — claude-code — Implementing FireCrawl MCP integration for web scraping and branding extraction
 2026-01-12T19:00:00Z — release — agent-001 — hazina — agent-001-firecrawl-integration — — claude-code — FireCrawl integration complete, PR #69 created
+2026-01-12T19:30:00Z — allocate — agent-002 — client-manager — agent-002-firecrawl-integration — — claude-code — FireCrawl integration for competitive intelligence (frontend + backend)
+2026-01-12T20:30:00Z — release — agent-002 — client-manager — agent-002-firecrawl-integration — — claude-code — FireCrawl integration complete (PR #120), 16 files, frontend + backend
