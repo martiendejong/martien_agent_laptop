@@ -316,3 +316,4 @@ Actions:
 2026-01-12T21:00:00Z — allocate — agent-001 — client-manager — agent-001-user-cost-tracking — — claude-code — Per-user cost tracking with admin view in user management
 2026-01-12T19:55:00Z — allocate — agent-002 — client-manager — agent-002-api-path-fix — — claude-code — Fixing double /api/ prefix in company documents API path (404 error)
 2026-01-12T20:05:00Z — release — agent-002 — client-manager — agent-002-api-path-fix — — claude-code — Completed: Fixed 404 error by removing duplicate /api/ prefix. PR #121→develop. Commit: 1fe6c98
+2026-01-12T20:35:00Z — release — agent-001 — client-manager — agent-001-user-cost-tracking — — claude-code — Per-user AI cost tracking with admin view, PR #122 created
