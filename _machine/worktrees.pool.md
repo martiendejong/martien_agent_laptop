@@ -5,7 +5,7 @@ Seat states:
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | artrevisionist | feature/enhanced-image-management | 2026-01-12T21:00:00Z | 🔄 Enhanced image management with feedback-driven search |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | client-manager | agent-002-firecrawl-integration | 2026-01-12T22:30:00Z | 🔄 Completing FireCrawl integration - adding UI routing (PR #120) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-01-12T23:00:00Z | ✅ Completed FireCrawl UI integration (PR #120) - routing and navigation added |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-11T00:40:00Z | ✅ Fixed scrollbar styling + horizontal scroll (PR #91 created) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-11T11:45:00Z | ✅ Fixed WordPress publish timeout (PR #14 created) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-11T03:00:00Z | ✅ Context compression implemented (Hazina PR #35 + client-manager PR #93 created) |
