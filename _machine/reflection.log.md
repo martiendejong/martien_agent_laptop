@@ -157,6 +157,41 @@ description = uploadedFile?.Description
 
 **Commit:** 6ce47b4
 
+### Problem 4: Generated Images Not Displaying in Chat (Markdown Extraction)
+
+**User Report:** "genereer de afbeelding nog eens" - Image IS generated, text appears, but image doesn't render
+
+**Browser Console Evidence:**
+- LLM response: "Hier is de opnieuw gegenereerde afbeelding van een eenvoudig huis: ![Eenvoudig huis](https://localh..."
+- Text displayed correctly
+- Image markdown present but not rendering
+- Message appeared twice (duplication)
+
+**Root Cause:**
+When user requests image generation via natural language (not `/image` command):
+1. LLM calls `generate_image` tool
+2. Tool generates markdown: `![Generated Image](url)` and returns JSON to LLM
+3. LLM wraps tool result in conversational response: "Hier is de afbeelding: ![Eenvoudig huis](url)"
+4. **LLM changes alt text** from "Generated Image" → contextual alt text
+5. `ChatController.ExtractImageUrl()` regex: `@"!\[Generated Image\]\((.*?)\)"` only matched specific alt text
+6. Extraction failed → no SignalR "ImageGenerationProgress" sent → frontend never received image URL
+
+**Fix (ChatController.cs line 2061):**
+```csharp
+// BEFORE (too specific):
+var match = Regex.Match(text, @"!\[Generated Image\]\((.*?)\)");
+
+// AFTER (flexible):
+var match = Regex.Match(text, @"!\[.*?\]\((.*?)\)");
+```
+
+**Explanation:**
+- Changed regex to match ANY markdown image format: `![anything](url)`
+- Allows LLM to customize alt text while still extracting URL
+- Works with both direct `/image` commands and natural language requests
+
+**Commit:** ddc8447
+
 ### Key Learnings
 
 **Pattern 1: OpenAIConfig Initialization Trap**
@@ -177,6 +212,14 @@ description = uploadedFile?.Description
 - Message types (HazinaChatMessage, HazinaMessageRole) are in global namespace
 - Always include CancellationToken parameter (use CancellationToken.None)
 
+**Pattern 4: LLM Response Customization - Flexible Extraction**
+- When LLM calls tools, it often wraps results in conversational responses
+- LLM may modify structured output (markdown, formatting) to match context
+- Extraction regexes must be FLEXIBLE, not hardcoded to specific text
+- Example: `![Generated Image](url)` → LLM changes to `![Eenvoudig huis](url)`
+- Use capture groups that match patterns, not literal strings
+- **Guideline:** `@"!\[.*?\]\((.*?)\)"` > `@"!\[Generated Image\]\((.*?)\)"`
+
 ### Files Modified
 
 **Backend:**
@@ -186,6 +229,7 @@ description = uploadedFile?.Description
 - ClientManagerAPI/Controllers/WebsiteController.cs (model param)
 - ClientManagerAPI/Controllers/IntakeController.cs (model param)
 - ClientManagerAPI/Services/SocialMediaGenerationService.cs (model param)
+- ClientManagerAPI/Controllers/ChatController.cs (image URL extraction regex)
 
 ### Testing Recommendations
 
@@ -194,7 +238,9 @@ For future LLM integration work:
 2. ✅ Check ILLMClient interface for correct method signatures
 3. ✅ Test file upload → check frontend receives all metadata
 4. ✅ Verify API responses match frontend TypeScript interfaces
-5. ✅ Test image generation → check chat display rendering
+5. ✅ Test image generation (both `/image` and natural language) → verify image displays in chat
+6. ✅ Check browser console for SignalR "ImageGenerationProgress" notifications
+7. ✅ Test extraction regexes with LLM-customized output, not just hardcoded formats
 
 ### Next Session Actions
 
