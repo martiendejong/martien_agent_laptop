@@ -2463,3 +2463,302 @@ https://github.com/.../pull/101
 
 **Remember:** The worktree release is part of the PR creation process, not a separate optional step.
 
+
+
+---
+
+## 🔄 COMPREHENSIVE TERMINOLOGY MIGRATION PATTERN (2026-01-12)
+
+**Source:** client-manager token refactor session (daily → monthly)
+**Files affected:** 95 files across backend + frontend
+**Status:** ACTIVE PATTERN for large-scale naming refactors
+
+### When to Use This Pattern
+
+✅ **Use when:**
+- Discover misleading field/property/method names throughout codebase
+- Database models use one terminology, API/UI uses another
+- User confusion about what data actually represents
+- Technical debt from naming inconsistencies
+- Need to refactor 10+ files with consistent pattern
+
+❌ **Don't use for:**
+- Single file renames (use standard Edit tool)
+- Breaking API changes without version strategy
+- Unclear what the "correct" terminology should be
+
+### The Problem Pattern
+
+**Example from client-manager:**
+```
+Database:     MonthlyAllowance, MonthlyUsage, NextResetDate  ✅ Correct
+API Response: dailyAllowance, dailyUsed, dailyRemaining     ❌ Misleading!
+UI Labels:    "Daily Allowance", "Tokens Used Today"        ❌ Wrong!
+User sees:    "You have 500 tokens daily"                    ❌ Actually monthly!
+```
+
+**Impact:**
+- User confusion and loss of trust
+- Developers use wrong terminology in new code
+- Documentation becomes inconsistent
+- Future refactors become harder
+
+### Implementation Workflow
+
+#### **Phase 1: Comprehensive Audit**
+
+```bash
+# Find ALL occurrences (backend)
+Grep pattern="dailyAllowance|dailyUsed|DailyAllowance|daily[A-Z]"
+     path="C:\Projects\<repo>\Backend"
+     output_mode="files_with_matches"
+
+# Find ALL occurrences (frontend)
+Grep pattern="dailyAllowance|dailyUsed|'Daily Allowance'"
+     path="C:\Projects\<repo>\Frontend\src"
+     output_mode="files_with_matches"
+```
+
+**Create TodoWrite checklist:**
+```
+1. [ ] Audit backend occurrences
+2. [ ] Audit frontend occurrences
+3. [ ] Fix backend models/interfaces
+4. [ ] Fix backend services/controllers
+5. [ ] Fix frontend types/interfaces
+6. [ ] Fix frontend components
+7. [ ] Build and verify
+```
+
+#### **Phase 2: Backend Migration (Bottom-Up)**
+
+**Order matters - fix from data layer to API layer:**
+
+```
+1. Models/DTOs (data structures)
+   ↓
+2. Service interfaces (contracts)
+   ↓
+3. Service implementations (logic)
+   ↓
+4. Controllers (API endpoints)
+   ↓
+5. Request/Response classes
+```
+
+**Example:**
+```csharp
+// 1. Update model
+public class TokenStatistics {
+    public int MonthlyAllowance { get; set; }      // was DailyAllowance
+    public int TokensUsedThisMonth { get; set; }   // was TokensUsedToday
+}
+
+// 2. Update interface
+public interface ITokenService {
+    Task SetMonthlyAllowanceAsync(string userId, int monthlyAllowance);
+    // Mark old method obsolete
+    [Obsolete("Use SetMonthlyAllowanceAsync")]
+    Task SetDailyAllowanceAsync(string userId, int dailyAllowance);
+}
+
+// 3. Update implementation
+public async Task SetMonthlyAllowanceAsync(string userId, int monthlyAllowance) {
+    var balance = await GetBalance(userId);
+    balance.MonthlyAllowance = monthlyAllowance;
+    await SaveChanges();
+}
+
+// 4. Update controller
+[HttpPost("admin/set-allowance")]
+public async Task<IActionResult> AdminSetMonthlyAllowance(
+    [FromBody] SetMonthlyAllowanceRequest request) {
+    await _service.SetMonthlyAllowanceAsync(request.UserId, request.MonthlyAllowance);
+    return Ok(new {
+        monthlyAllowance = request.MonthlyAllowance  // API response field
+    });
+}
+```
+
+**Build after Phase 2:**
+```bash
+dotnet build Solution.sln --no-restore
+# Must pass before proceeding to frontend
+```
+
+#### **Phase 3: Frontend Migration (Interfaces First)**
+
+**Order:**
+```
+1. Service interfaces (TypeScript types)
+   ↓
+2. API client code (property access)
+   ↓
+3. Components (UI logic)
+   ↓
+4. Text labels (user-facing strings)
+```
+
+**Example:**
+```typescript
+// 1. Update interface
+export interface TokenBalance {
+  monthlyAllowance: number;       // was dailyAllowance
+  monthlyUsed: number;            // was dailyUsed
+  monthlyRemaining: number;       // was dailyRemaining
+}
+
+// 2. Property access - USE sed FOR BATCH UPDATES
+// sed -i 's/\.dailyAllowance/.monthlyAllowance/g' src/**/*.{ts,tsx}
+
+// 3. Component logic
+const { monthlyAllowance, monthlyUsed } = balanceData;
+
+// 4. Text labels
+<span>Monthly Allowance</span>   {/* was "Daily Allowance" */}
+```
+
+**Build after Phase 3:**
+```bash
+npm run build
+# Must complete successfully
+```
+
+#### **Phase 4: Verification & Cleanup**
+
+```bash
+# 1. Search for any remaining old terminology
+grep -r "dailyAllowance" src/ --include="*.{ts,tsx,cs}"
+# Should return 0 results (or only in comments/docs)
+
+# 2. Test API responses
+curl http://localhost:5000/api/token/balance
+# Verify response uses new field names
+
+# 3. Remove temp files before commit
+git reset HEAD tmpclaude-*
+
+# 4. Commit with comprehensive message
+git commit -m "refactor: Complete migration from daily to monthly terminology
+
+Backend: 12 files updated (models, services, controllers)
+Frontend: 83 files updated (types, components, labels)
+Builds: ✓ Backend 0 errors, ✓ Frontend success
+..."
+```
+
+### Tool Selection Guide
+
+**When to use Edit tool:**
+- Single file or 2-3 files
+- Complex logic changes
+- Need to see surrounding context
+- Different changes per file
+
+**When to use sed (batch):**
+- Same pattern across 10+ files
+- Simple find/replace (property names, field names)
+- Linter interference with Edit tool
+- All changes are identical
+
+**sed examples:**
+```bash
+# Basic replacement
+sed -i 's/oldName/newName/g' file.cs
+
+# Property access pattern
+sed -i 's/\.dailyAllowance/.monthlyAllowance/g' *.tsx
+
+# Multiple files
+find . -name "*.cs" -exec sed -i 's/old/new/g' {} \;
+
+# Frontend batch (all TS/TSX)
+cd src && find . -type f \( -name "*.ts" -o -name "*.tsx" \) \
+  -exec sed -i 's/\.dailyUsed/.monthlyUsed/g' {} \;
+```
+
+### Legacy Code Handling
+
+**Don't delete old methods immediately - use deprecation:**
+
+```csharp
+public interface ITokenService {
+    // NEW method (preferred)
+    Task SetMonthlyAllowanceAsync(string userId, int monthlyAllowance);
+
+    // OLD method (deprecated but not deleted)
+    [Obsolete("Use SetMonthlyAllowanceAsync for proper monthly token allocation")]
+    Task SetDailyAllowanceAsync(string userId, int dailyAllowance);
+}
+```
+
+**Benefits:**
+- ✅ Existing code continues to work
+- ✅ Compiler warnings guide developers to new method
+- ✅ Clear migration path documented in attribute
+- ✅ Can remove in next major version
+
+**Implementation (keep both working):**
+```csharp
+public async Task SetMonthlyAllowanceAsync(string userId, int monthlyAllowance) {
+    // New implementation
+}
+
+[Obsolete("Use SetMonthlyAllowanceAsync")]
+public async Task SetDailyAllowanceAsync(string userId, int dailyAllowance) {
+    // Redirect to new method
+    await SetMonthlyAllowanceAsync(userId, dailyAllowance);
+}
+```
+
+### Common Pitfalls to Avoid
+
+❌ **DON'T:**
+- Start frontend before backend is working
+- Mix terminology (some files old, some new)
+- Forget to update text labels/UI strings
+- Skip verification builds
+- Commit without testing
+- Delete old methods without [Obsolete] first
+
+✅ **DO:**
+- Audit comprehensively before starting
+- Fix backend completely, then frontend
+- Use TodoWrite to track 5+ file changes
+- Build after each phase
+- Test API responses manually
+- Update all layers (data → API → UI)
+
+### Real-World Example Stats
+
+**client-manager token refactor (2026-01-12):**
+- Files changed: 95 (12 backend, 83 frontend)
+- Patterns replaced: 8 (dailyAllowance, dailyUsed, tokensUsedToday, etc.)
+- Commits: 2 (initial fix 4 files, comprehensive 95 files)
+- Build result: ✅ Backend 0 errors, ✅ Frontend success
+- Time investment: ~45 minutes (including documentation)
+- Impact: Eliminated all user confusion about daily vs monthly
+
+### Success Criteria
+
+**A terminology migration is successful ONLY IF:**
+- ✅ ALL files using old terminology are updated
+- ✅ Backend builds with 0 new errors
+- ✅ Frontend builds with 0 new errors
+- ✅ API responses use new field names
+- ✅ UI labels show new terminology
+- ✅ No mix of old/new terminology
+- ✅ Legacy methods deprecated gracefully
+- ✅ Documentation updated
+
+### Integration with Other Patterns
+
+**Combines well with:**
+- ✅ Linter Interference Mitigation (sed for batch updates)
+- ✅ Multi-Feature Implementation Discipline (TodoWrite tracking)
+- ✅ Incomplete Work Documentation (if migration spans multiple sessions)
+
+**File references:**
+- Full reflection: `C:\scripts\_machine\reflection.log.md § 2026-01-12`
+- Linter mitigation: `C:\scripts\_machine\best-practices\LINTER_INTERFERENCE_MITIGATION.md`
+
