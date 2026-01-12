@@ -317,6 +317,21 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
 
 **This implementation transforms the autonomous agent system from static documentation to dynamic, context-aware workflow guidance.**
 
+### Follow-Up: Continuous Improvement Documentation Update
+
+**Files updated after initial Skills commit:**
+- `C:\scripts\continuous-improvement.md` - Enhanced with Skills integration guidance
+  - Added `.claude/skills/**\SKILL.md` to files to update regularly
+  - Added "Reusable patterns that should become Skills" to improvement examples
+  - Enhanced HOW TO UPDATE with STEP 6: Evaluate if pattern should become a Skill
+  - Added § CLAUDE SKILLS INTEGRATION with Skills creation pipeline
+  - Updated SUCCESS METRICS to include Skills criteria
+  - Enhanced END-OF-TASK protocol with STEP 4: Skill evaluation
+
+**Purpose:** Ensure future sessions understand Skills are part of the continuous improvement workflow, not just a one-time addition.
+
+**Commit:** (pending)
+
 ---
 
 ## 2026-01-12 21:00 - Brand2Boost Store: Vibe Analysis Field Addition

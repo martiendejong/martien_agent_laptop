@@ -35,6 +35,7 @@
 - C:\scripts\_machine\reflection.log.md - Lessons learned
 - C:\scripts\scripts.md - Workflow documentation
 - C:\scripts\ZERO_TOLERANCE_RULES.md - Quick reference
+- C:\scripts\.claude\skills\**\SKILL.md - Auto-discoverable workflow guides (NEW: 2026-01-12)
 
 **Examples of improvements to capture:**
 - ✅ Workflow violations and corrections
@@ -43,6 +44,7 @@
 - ✅ Error patterns and solutions
 - ✅ Tool integrations and discoveries
 - ✅ User feedback and mandates
+- ✅ **NEW:** Reusable patterns that should become Skills
 
 ### HOW TO UPDATE (Immediately):
 
@@ -52,10 +54,48 @@ STEP 2: Update reflection.log.md with incident/achievement
 STEP 3: Update claude.md with new procedure
 STEP 4: Update claude_info.txt with critical reminder
 STEP 5: Create tools/scripts if needed
-STEP 6: Verify updates are clear and actionable
+STEP 6: Evaluate if pattern should become a Skill (NEW: 2026-01-12)
+        - Is workflow complex with multiple mandatory steps?
+        - Is pattern used frequently across sessions?
+        - Would auto-discovery help future sessions?
+        → If YES: Create new Skill in .claude/skills/
+STEP 7: Verify updates are clear and actionable
 
 DO NOT DELAY. DO NOT "save for later". UPDATE NOW.
 ```
+
+### CLAUDE SKILLS INTEGRATION (NEW: 2026-01-12):
+
+**When to create a new Skill:**
+- ✅ Workflow has multiple mandatory steps (e.g., worktree allocation, PR release)
+- ✅ Pattern is frequently used across sessions (e.g., API pitfalls, terminology migration)
+- ✅ Mistakes are costly (e.g., multi-agent conflicts, cross-repo dependencies)
+- ✅ New agents benefit from guided workflow (e.g., GitHub workflows, session reflection)
+- ❌ Simple one-step operations (use Tools instead)
+- ❌ One-time tasks (document in reflection.log.md only)
+
+**Skills creation pipeline:**
+```
+Problem/Pattern discovered
+    ↓
+reflection.log.md entry (Pattern N)
+    ↓
+Evaluate: Complex + Reusable?
+    ↓ YES
+Create Skill in .claude/skills/<skill-name>/SKILL.md
+    ↓
+Update CLAUDE.md with Skill reference
+    ↓
+Commit and push
+```
+
+**Existing Skills (as of 2026-01-12):**
+- Worktree management: allocate-worktree, release-worktree, worktree-status
+- GitHub workflows: github-workflow, pr-dependencies
+- Development patterns: api-patterns, terminology-migration, multi-agent-conflict
+- Continuous improvement: session-reflection, self-improvement
+
+**See:** `self-improvement` Skill for detailed Skill creation process
 
 ### SUCCESS METRICS:
 
@@ -65,6 +105,8 @@ DO NOT DELAY. DO NOT "save for later". UPDATE NOW.
 - ✅ Next session would NOT make the same mistake
 - ✅ Documentation grows with every session
 - ✅ User never has to repeat the same correction twice
+- ✅ **NEW:** Complex patterns become auto-discoverable Skills
+- ✅ **NEW:** Skills guide future sessions automatically
 
 **This is NOT optional - it's how you improve over time and avoid repeating mistakes.**
 
@@ -99,7 +141,14 @@ STEP 3: Update C:\scripts\CLAUDE.md (if applicable)
   - Add new workflow sections
   - Add new process improvements
 
-STEP 4: Commit and push to machine_agents repo
+STEP 4: Evaluate if pattern should become a Skill (NEW: 2026-01-12)
+  - Complex workflow with multiple steps?
+  - Frequently used pattern?
+  - Would auto-discovery help future sessions?
+  → If YES: Create Skill in .claude/skills/
+  → Update CLAUDE.md with Skill reference
+
+STEP 5: Commit and push to machine_agents repo
   cd C:\scripts
   git add -A
   git commit -m "docs: update learnings from [task description]"
