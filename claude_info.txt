@@ -2454,3 +2454,159 @@ Auto-fix command (for clean repos only):
 
 **Critical:** This script prevented hours of debugging in 2026-01-11 session by catching client-manager on wrong branch before worktree allocation.
 
+
+---
+
+## 🔧 Linter Interference & Code Application Patterns (2026-01-12)
+
+### Pattern 54: Linter-Resistant Code Application
+
+**Problem:** Edit tool fails repeatedly with "File has been unexpectedly modified"
+
+**Effective Solutions (ranked):**
+
+1. **BEST - Reference File Method:**
+   ```bash
+   # Create comprehensive reference file
+   cat > C:/Projects/<repo>/FEATURE_CODE_REFERENCE.txt << 'EOF'
+   ================================================================================
+   CODE TO ADD TO <File.cs>
+   ================================================================================
+   
+   LOCATION: After line XXX
+   
+   [Complete code block]
+   
+   INSTRUCTIONS:
+   1. Open file in Visual Studio
+   2. Navigate to line XXX
+   3. Insert the code above
+   EOF
+   ```
+   **When:** Complex multi-line additions, user has IDE open
+   **Why:** User's IDE respects linter, automated tools don't
+
+2. **GOOD - sed for single-line:**
+   ```bash
+   sed -i 's/OldPattern/NewPattern/g' file.cs
+   ```
+   **When:** Simple single-line replacements
+   **Why:** Fast, minimal linter interference
+
+3. **ACCEPTABLE - Python with care:**
+   ```python
+   with open('file.cs', 'r') as f:
+       lines = f.readlines()
+   # Modify lines carefully
+   with open('file.cs', 'w') as f:
+       f.writelines(lines)
+   ```
+   **When:** Line-by-line edits needed
+   **Why:** Works but requires careful line-ending handling
+
+4. **AVOID - Edit tool on active files:**
+   **When:** File is open in IDE or linter is watching
+   **Why:** Will fail repeatedly
+
+### Pattern 55: C# String Interpolation Gotchas
+
+**WRONG (causes compilation error):**
+```csharp
+return $"{count} items found:
+{list}";  // ❌ CS1010: Newline in constant
+```
+
+**CORRECT Options:**
+```csharp
+// Option 1: Escape sequence (PREFERRED for automated generation)
+return $"{count} items found:\n{list}";  // ✅
+
+// Option 2: Verbatim string
+return $@"{count} items found:
+{list}";  // ✅
+
+// Option 3: String concatenation
+return $"{count} items found:" + "\n" + list;  // ✅
+```
+
+**Rule:** When generating C# code programmatically, ALWAYS use `\n` not actual newlines
+
+### Pattern 56: Metadata Store Debugging (Project-Specific)
+
+**Structure:**
+```
+C:\stores\<project>\
+  ├── _metadata\           # Global metadata (chats only)
+  └── <topicId>\
+      ├── metadata\        # ⚠️ PROJECT-SPECIFIC metadata (uploaded documents)
+      │   ├── file1.pdf.metadata.json
+      │   └── image1.png.metadata.json
+      └── Uploads\
+```
+
+**Check if metadata exists:**
+```bash
+# Project-specific (uploaded documents)
+ls "C:/stores/<project>/<topicId>/metadata/"
+cat "C:/stores/<project>/<topicId>/metadata/<filename>.metadata.json"
+
+# Global (chats)
+ls "C:/stores/<project>/_metadata/"
+```
+
+**Verify metadata content:**
+```json
+{
+  "Id": "image.png",
+  "MimeType": "image/png",
+  "Summary": "Should be LLM description, not just filename",
+  "Tags": ["image", "uploaded"],
+  "ProcessedAt": "2026-01-11T..." // ⚠️ Check if processing completed
+}
+```
+
+**Key fields:**
+- `Summary`: Should contain LLM-generated description (not filename)
+- `MimeType`: Verify correct type (image/png, image/jpeg, application/pdf)
+- `ProcessedAt`: Non-null means processing completed
+- `Tags`: Should include semantic tags
+
+**Common issue:** Summary field contains only filename → automatic processing not generating descriptions
+
+### Pattern 57: Merge Conflict DI Resolution
+
+**When:** develop adds infrastructure, feature branch adds services
+
+**Correct Strategy:**
+```bash
+# 1. Accept develop's authoritative version
+git checkout --theirs Program.cs
+
+# 2. Identify feature's additions
+git show <feature-commit-hash> -- Program.cs | grep "Services.Add"
+
+# 3. Re-add feature's service registrations
+# Use sed or Edit tool to add:
+#   - using statements
+#   - service registrations (AddScoped, AddSingleton)
+
+# 4. Verify build
+dotnet build
+```
+
+**Why this works:**
+- develop has authoritative infrastructure
+- Feature's services are isolated additions
+- No risk of losing develop's improvements
+
+**Example:**
+```csharp
+// develop had these (keep):
+using Microsoft.Extensions.DependencyInjection;
+builder.Services.AddHazinaAI(config);
+
+// Feature added these (re-add after checkout --theirs):
+using ArtRevisionistAPI.Services.Processing;
+builder.Services.AddScoped<IImageDescriptionService, ImageDescriptionService>();
+```
+
