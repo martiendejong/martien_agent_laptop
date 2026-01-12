@@ -4,6 +4,173 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-12 23:00 - FireCrawl UI Integration Completion (PR #120)
+
+**Session Type:** Feature integration + worktree completion
+**Context:** PR #120 had complete backend + all frontend components but missing UI routing and navigation
+**Outcome:** ✅ SUCCESS - Full integration completed with proper worktree workflow. Feature now accessible to users.
+**PR:** #120 (https://github.com/martiendejong/client-manager/pull/120)
+
+### Problem Analysis
+
+PR #120 (FireCrawl competitive intelligence) had a critical gap:
+
+**What was complete:**
+- ✅ Backend: CompetitorBrand, BrandSnapshot, BrandingData models
+- ✅ Backend: BrandImportService with full logic
+- ✅ Backend: WebScrapingController with 4 API endpoints
+- ✅ Frontend: BrandImportWizard, CompetitorDashboard, CompetitorCard, BrandPreview components
+- ✅ Frontend: webScrapingApi.ts service + branding.ts types
+
+**What was missing:**
+- ❌ No route in App.tsx (components unreachable)
+- ❌ No navigation menu item in Sidebar.tsx
+- ❌ No way for users to access the feature
+
+**Impact:** Feature was complete but invisible to end users - classic "works in PR, not in app" scenario.
+
+### Solution Implemented
+
+**Phase 1: Routing (App.tsx)**
+- Added import: `import CompetitorDashboard from './components/branding/CompetitorDashboard'`
+- Added two routes with proper ProtectedRoute pattern:
+  - `/:projectId/competitors` (project-specific)
+  - `/competitors` (with requireProject protection)
+- Both use MainLayout with fullPageContent pattern (matches existing features like /products, /license-manager)
+
+**Phase 2: Navigation (Sidebar.tsx)**
+- Added Eye icon import to icon imports from lucide-react
+- Added "Competitor Brands" menu item in Content section (after Products)
+- Styled with pink Eye icon (visual distinction from other features)
+- Simple button: `onClick={() => navigate('/competitors')}`
+
+**Phase 3: Worktree & Commit Protocol**
+- Allocated agent-002 worktree from pool
+- Marked BUSY in worktrees.pool.md
+- Logged allocation in worktrees.activity.md
+- Made changes in isolated worktree (NOT in C:\Projects\client-manager)
+- Committed with clear message referencing PR #120
+- Pushed to origin/agent-002-firecrawl-integration
+- Released worktree (marked FREE, cleaned directory)
+- Updated tracking files and committed to machine_agents repo
+
+### Key Learnings
+
+**Pattern 1: Unfinished Feature Completion**
+
+**Trigger:** PR has code but feature is unused in app
+
+**Detection:**
+- Check routes in App.tsx for component usage
+- Check Sidebar/navigation for entry point
+- Verify components are actually accessible via URL
+
+**Prevention:**
+- Checklist for feature PRs should include:
+  - [ ] Route exists for component
+  - [ ] Navigation button exists
+  - [ ] Both projectId and non-projectId variants (if applicable)
+  - [ ] Tested by navigating to /feature URL
+
+**How to fix:**
+1. Add import statement near other full-page components
+2. Create routes following existing pattern (see /products, /blog, /templates)
+3. Add navigation button in Sidebar (same section as similar features)
+4. Follow worktree protocol for edits
+
+**Example (what I did):**
+```tsx
+// 1. Import
+import CompetitorDashboard from './components/branding/CompetitorDashboard'
+
+// 2. Routes (two variants)
+<Route path="/:projectId/competitors" element={
+  <ProtectedRoute>
+    <ProjectRouteWrapper>
+      <MainLayout fullPageContent={<CompetitorDashboard />} {...otherProps} />
+    </ProjectRouteWrapper>
+  </ProtectedRoute>
+} />
+
+// 3. Navigation
+<button onClick={() => navigate('/competitors')}>
+  <Eye className="w-4 h-4 text-pink-500" />
+  <span>Competitor Brands</span>
+</button>
+```
+
+**When to use:**
+- Anytime components exist but routes are missing
+- During feature PR reviews as validation step
+- When user reports "can't find the feature"
+
+**Pattern 2: Worktree Discipline for Backend Repo Changes**
+
+**Importance:** CRITICAL - User mandated zero-tolerance on direct C:\Projects edits
+
+**What worked this session:**
+1. ✅ Read worktrees.pool.md to find FREE seat (agent-002)
+2. ✅ Created worktree in isolated directory: C:\Projects\worker-agents\agent-002\client-manager
+3. ✅ Made all changes in worktree (NOT in C:\Projects\client-manager)
+4. ✅ Committed locally, pushed to origin
+5. ✅ Deleted worktree directory after push
+6. ✅ Marked worktree FREE in pool
+7. ✅ Logged release in activity log
+8. ✅ Committed tracking updates to machine_agents repo
+
+**Why this matters:**
+- Base repo (C:\Projects\<repo>) stays clean on develop
+- Multiple agents can work simultaneously without conflicts
+- Clear audit trail (worktree pool + activity log)
+- Zero violations of worktree protocol
+
+**Files Modified:**
+- `ClientManagerFrontend/src/App.tsx` - Added import + 2 routes
+- `ClientManagerFrontend/src/components/view/Sidebar.tsx` - Added Eye icon + menu item
+
+**Commit:** 47857e8
+**PR:** #120
+
+**Tracking Updated:**
+- `C:\scripts\_machine\worktrees.pool.md` - agent-002 marked BUSY then FREE
+- `C:\scripts\_machine\worktrees.activity.md` - Logged allocation and release
+- Both committed to machine_agents repo
+
+### Success Criteria
+
+✅ **Verified complete:**
+1. CompetitorDashboard imported in App.tsx
+2. Two routes created (/:projectId/competitors and /competitors)
+3. Both use MainLayout with fullPageContent pattern
+4. Eye icon imported in Sidebar.tsx
+5. Competitor Brands button added to menu
+6. Feature accessible via /competitors URL
+7. Worktree allocated, used, and released properly
+8. All commits pushed to correct branches
+9. Tracking files updated
+10. Zero violations of zero-tolerance rules
+
+### Lessons for Future Sessions
+
+**DO:**
+- ✅ Always check if components need routing when reviewing PRs
+- ✅ Use worktree for ANY edit to backend code
+- ✅ Follow the two-route pattern (/:projectId/feature and /feature)
+- ✅ Copy existing route/navigation structures as templates
+- ✅ Release worktree BEFORE presenting result to user
+- ✅ Log all allocations/releases in activity.md
+
+**DON'T:**
+- ❌ Skip worktree allocation for "quick edits"
+- ❌ Edit C:\Projects\<repo> directly (use worktree)
+- ❌ Create single route variant (need both with/without projectId)
+- ❌ Present PR before releasing worktree
+- ❌ Forget to mark worktree FREE in pool
+
+**Key insight:** Features are invisible until routed + navigated. Complete backend work must include complete UI integration, not just components.
+
+---
+
 ## 2026-01-12 22:15 - Autonomous Feature Request Submission to Claude Code Repository
 
 **Session Type:** Feature request submission + research
