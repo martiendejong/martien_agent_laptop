@@ -318,3 +318,19 @@ Actions:
 2026-01-12T20:05:00Z — release — agent-002 — client-manager — agent-002-api-path-fix — — claude-code — Completed: Fixed 404 error by removing duplicate /api/ prefix. PR #121→develop. Commit: 1fe6c98
 2026-01-12T20:35:00Z — release — agent-001 — client-manager — agent-001-user-cost-tracking — — claude-code — Per-user AI cost tracking with admin view, PR #122 created
 2026-01-12T21:20:00Z — release — agent-001 — client-manager — agent-001-user-cost-tracking — — claude-code — Fixed critical issues #1-4 from code review (nullable dates, null checks, logging, cache sanitization). Commit ac8a2cf pushed to PR #122
+
+## 2026-01-12 21:00:00 UTC - Allocation: agent-001
+
+**Action:** ALLOCATE
+**Repository:** artrevisionist
+**Branch:** feature/enhanced-image-management
+**Worktree Path:** C:\Projects\worker-agents\agent-001\artrevisionist
+**Purpose:** Enhanced image management with feedback-driven semantic search
+**Features:**
+- Smaller image displays (featured ~200px, thumbnails ~100px)
+- Feedback popup for image regeneration
+- Search existing images from uploaded documents, PDFs, Office files
+- Non-destructive delete (removes from page only)
+- Regenerate all: clear + find 0-3 DIFFERENT images
+- Works for all page types + topic-level featured image
+
