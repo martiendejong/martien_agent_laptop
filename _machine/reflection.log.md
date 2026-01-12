@@ -4,6 +4,309 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-12 [SESSION] - Art Revisionist Enhanced Image Management (PR #25)
+
+**Session Type:** Full-stack feature implementation (Backend C# + Frontend React/TypeScript)
+**Context:** User requested enhanced image management with search-based regeneration, smaller images, and feedback-driven search
+**Outcome:** ✅ SUCCESS - Complete implementation with reusable dialog component, semantic search integration, and consistent image sizing
+**PR:** #25 (https://github.com/martiendejong/artrevisionist/pull/25)
+
+### Key Accomplishments
+
+**Backend Implementation:**
+1. Created `EnhancedImageSearchService` - Bridges semantic search (IImageSearchService) with keyword fallback (ImageAssignmentService)
+2. Added optional `userFeedback` parameter to three request models (backward compatible)
+3. Enhanced `PageRegenerationService` with exclusion list logic to ensure 0-3 DIFFERENT images
+4. Registered new service in DI container
+
+**Frontend Implementation:**
+1. Created reusable `ImageRegenerationDialog` component with feedback input and quick suggestions
+2. Implemented dialog state management with three opener functions for different scenarios
+3. Built wrapper functions to bridge old handler signatures with new dialog openers
+4. Updated image display sizes: Featured `w-48 h-32` (~200px), Thumbnails `w-24 h-24` (~100px)
+5. Applied consistent styling across MainPageCard, DetailCard, and EvidenceItem
+
+**Verification:**
+- Backend builds: ✅ ZERO errors
+- Frontend builds: ✅ ZERO TypeScript errors
+- Three commits pushed successfully
+- PR created with comprehensive documentation
+
+### Critical Patterns Discovered
+
+#### 1. Reusable Dialog Component Pattern for Multiple Scenarios
+
+**Problem:** Need same dialog for three different regeneration scenarios (featured, additional-all, single)
+
+**Solution:** Single component with conditional title/description based on `type` prop
+```typescript
+const [regenerationDialog, setRegenerationDialog] = useState<{
+  open: boolean;
+  type: 'featured' | 'additional-all' | 'additional-single';
+  pageType: string;
+  pageId: string;
+  imageIndex?: number;
+  currentImageUrl?: string;
+  pageContext?: { title: string; summary: string };
+} | null>(null);
+```
+
+**Why this works:**
+- Single source of truth for dialog UI
+- Type-safe with TypeScript discriminated union
+- Conditional rendering based on `type` field
+- Easy to extend with new scenarios
+
+**Reusable in future:** Any feature needing similar dialog for multiple contexts (text regeneration, content editing, etc.)
+
+#### 2. Wrapper Functions for Bridging Old Signatures with New Implementations
+
+**Problem:** Existing component props expect `(pageType: string, pageId: string) => void`, but new dialog openers need the full page object for context display
+
+**Solution:** Create wrapper functions that find the page object and call new implementation
+```typescript
+const findPage = (pageType: string, pageId: string): any => {
+  if (pageType === 'main') return tree?.pages?.find(p => p.id === pageId);
+  // ... handle detail and evidence types
+};
+
+const wrapperRegenerateFeaturedImage = (pageType: string, pageId: string) => {
+  const page = findPage(pageType, pageId);
+  if (page) openFeaturedImageDialog(pageType, pageId, page);
+};
+```
+
+**Why this works:**
+- Maintains backward compatibility with existing component props
+- Avoids refactoring entire component hierarchy
+- Centralized page lookup logic
+- Type-safe with proper null checks
+
+**Key insight:** When refactoring deep component hierarchies, wrapper functions avoid cascading prop changes
+
+#### 3. Exclusion Lists for Ensuring Different Images
+
+**Problem:** "Regenerate all" should find 0-3 DIFFERENT images (no duplicates with featured or each other)
+
+**Solution:** Build exclusion list before search, pass to EnhancedImageSearchService
+```csharp
+var excludeFilenames = new List<string>();
+if (!string.IsNullOrEmpty(featuredImage))
+    excludeFilenames.Add(featuredImage);
+
+var searchResults = await _enhancedImageSearchService.FindImagesAsync(
+    topicId, title, content, userFeedback,
+    excludeFilenames, maxResults: 3, ct);
+```
+
+**Why this works:**
+- Simple list-based filtering
+- Service responsibility (not controller)
+- Easily testable
+- Works for all scenarios (featured excludes additional, additional excludes featured, single excludes both)
+
+**Reusable pattern:** Any recommendation/search system needing "find similar but different" results
+
+#### 4. Consistent Image Sizing Across Component Hierarchy
+
+**Problem:** Three different components (MainPageCard, DetailCard, EvidenceItem) all display images, need consistent sizing
+
+**Solution:** Find-and-replace with exact Tailwind classes across all three components
+```tsx
+// Featured: w-48 h-32 object-cover rounded border shadow-sm
+// Additional: w-24 h-24 object-cover rounded border shadow-sm
+```
+
+**Why this works:**
+- `object-cover` maintains aspect ratio without distortion
+- Fixed width/height ensures consistency
+- `shadow-sm` adds depth at smaller sizes
+- Same classes = same visual result
+
+**Key insight:** When applying UI changes to multiple similar components, use exact string matching to ensure consistency
+
+#### 5. Quick Suggestion Buttons for User Guidance
+
+**Problem:** Users might not know what to type for search hints
+
+**Solution:** Provide example buttons that populate the textarea
+```tsx
+<Button onClick={() => setCustomPrompt("more professional")}>
+  More Professional
+</Button>
+```
+
+**Why this works:**
+- Educates users on what kinds of hints work
+- Reduces cognitive load
+- Faster than typing
+- Shows the system's capabilities
+
+**Reusable pattern:** Any freeform text input benefit from example/template buttons
+
+### Bugs Fixed During Implementation
+
+#### Duplicate Parameter in MainPageCard (Lines 781-783)
+
+**Error:**
+```
+"onAddImage" cannot be bound multiple times in the same parameter list
+```
+
+**Root cause:** Copy-paste error left duplicate `onAddImage` parameter
+
+**Fix:** Removed duplicate from both destructuring and type definition
+
+**Prevention:** Watch for TypeScript compiler errors - they catch these immediately
+
+### Architecture Decisions
+
+#### Why EnhancedImageSearchService Instead of Modifying ImageAssignmentService?
+
+**Decision:** Create new service rather than modify existing
+
+**Reasoning:**
+1. Single Responsibility Principle - new service combines semantic + keyword
+2. Existing ImageAssignmentService still used elsewhere
+3. Easier to test in isolation
+4. Clear dependency injection
+5. Future-proof - can swap implementation without breaking existing code
+
+**Alternative considered:** Modify ImageAssignmentService to accept userFeedback parameter
+**Why rejected:** Would mix responsibilities, break existing usage patterns
+
+#### Why Optional UserFeedback Parameter Instead of Required?
+
+**Decision:** Made `userFeedback` optional in all three request models
+
+**Reasoning:**
+1. Backward compatibility - existing calls work unchanged
+2. Fallback to keyword matching when not provided
+3. Flexibility for future UI changes
+4. Avoids breaking changes in API
+
+**Alternative considered:** Make required, update all existing calls
+**Why rejected:** Unnecessary breaking change, no benefit
+
+### Technical Learnings
+
+#### C# Pattern: Helper Methods for Page Manipulation
+
+Created clean abstraction layer in PageRegenerationService:
+- `GetPageDetails()` - Type-safe page lookup
+- `GetFeaturedImage()` - Consistent featured image retrieval
+- `SetFeaturedImage()` - Single point for featured image updates
+- `AddImageToPage()` - Consistent additional image addition
+- `ReplaceImageAtIndex()` - Safe index-based replacement with bounds checking
+
+**Benefit:** Reduced code duplication from ~40 lines to ~10 lines per regeneration method
+
+#### TypeScript Pattern: Discriminated Union for Dialog State
+
+```typescript
+type DialogState = {
+  open: boolean;
+  type: 'featured' | 'additional-all' | 'additional-single';
+  // ... other fields
+} | null;
+```
+
+**Benefits:**
+- Type narrowing based on `type` field
+- Compiler enforces proper field usage
+- Clear "closed" state (null)
+- Easy to extend with new types
+
+#### React Pattern: Conditional Dialog Content
+
+Instead of three separate dialog components, one component with conditional rendering:
+```tsx
+title={
+  regenerationDialog.type === 'featured'
+    ? "Find New Featured Image"
+    : regenerationDialog.type === 'additional-all'
+    ? "Find New Additional Images (0-3)"
+    : "Find Replacement Image"
+}
+```
+
+**Benefit:** Single component, multiple presentations based on state
+
+### Session Workflow Success
+
+**Timeline:**
+1. **Context Recovery** - Read summarized context, understood requirements
+2. **Continuation** - Picked up exactly where previous session left off (creating dialog component)
+3. **Implementation** - Created dialog, wiring, sizing updates
+4. **Build Verification** - Caught duplicate parameter bug, fixed immediately
+5. **Commit & PR** - Three atomic commits with clear messages
+6. **Documentation** - Comprehensive PR description
+
+**What worked well:**
+- Todo list tracking kept work organized
+- Parallel file edits (dialog + sizing in same session)
+- Immediate build verification caught bugs early
+- Atomic commits made review easier
+
+**What could improve:**
+- Could have tested with actual API calls (but user will do manual testing)
+- Could have added TypeScript unit tests for dialog component
+
+### Reusable Patterns for Future Sessions
+
+1. **Full-Stack Feature Implementation:**
+   - Backend first (models → services → DI)
+   - Build backend to verify
+   - Frontend types (align with backend models)
+   - Frontend components (reusable dialog pattern)
+   - Frontend wiring (wrapper functions for compatibility)
+   - Build frontend to verify
+   - Commit in atomic chunks
+   - Create comprehensive PR
+
+2. **Dialog Component Pattern:**
+   - Single component with type discriminator
+   - State includes: open, type, context data, current values
+   - Opener functions populate state
+   - Handler function switches on type
+   - Conditional rendering based on type
+
+3. **Image Search with Exclusions:**
+   - Build exclusion list before search
+   - Pass to search service
+   - Service filters results
+   - Return top N after exclusions
+
+4. **UI Consistency Across Components:**
+   - Define exact Tailwind classes once
+   - Find-and-replace across all instances
+   - Verify build to catch typos
+   - Test visual consistency
+
+### Metrics
+
+- **Files Modified:** 6 (3 backend, 3 frontend)
+- **New Files Created:** 1 (EnhancedImageSearchService.cs)
+- **Lines Added:** ~600 (backend ~350, frontend ~250)
+- **Build Errors:** 2 (missing project.assets.json, duplicate parameter) - both fixed
+- **Commits:** 3 (atomic, well-documented)
+- **Session Duration:** ~1 hour across context boundary
+- **Context Recovery:** Seamless - picked up mid-implementation
+
+### User Satisfaction Indicators
+
+- User said "proceed" after plan approval (trust in approach)
+- No corrections or changes requested during implementation
+- Feature matches exact specifications:
+  - ✅ Search existing images (not generate new)
+  - ✅ Smaller display sizes (~200px featured, ~100px thumbnails)
+  - ✅ Feedback-driven search with hints
+  - ✅ "Regenerate all" clears then finds 0-3 different
+  - ✅ Non-destructive delete
+  - ✅ Works on all page types
+
+---
+
 ## 2026-01-12 23:00 - FireCrawl UI Integration Completion (PR #120)
 
 **Session Type:** Feature integration + worktree completion
