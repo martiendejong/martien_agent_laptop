@@ -305,3 +305,5 @@ Actions:
 2026-01-11T20:45:00Z — release — agent-002 — artrevisionist — agent-002-anti-hallucination-validation — — claude-code — Refactored from hardcoded Valsuani to generic LLM-based validation, PR #16 updated
 2026-01-11T20:30:00Z — allocate — agent-001 — artrevisionist — agent-001-document-processing — — claude-code — Document processing with semantic image search and LLM descriptions
 2026-01-11T21:15:00Z — release — agent-001 — artrevisionist, hazina — agent-001-document-processing — — claude-code — Document processing with semantic image search, Hazina PR #51 + ArtRevisionist PR #22 created
+2026-01-12T03:10:00Z — allocate — agent-002 — artrevisionist — agent-002-manage-additional-images — — claude-code — Adding add/remove buttons for additional images in generated pages
+2026-01-12T04:05:00Z — release — agent-002 — artrevisionist — agent-002-manage-additional-images — — claude-code — Image management feature complete, PR #23 created
