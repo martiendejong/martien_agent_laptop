@@ -336,3 +336,5 @@ Actions:
 
 2026-01-12T22:30:00Z — allocate — agent-002 — client-manager — agent-002-firecrawl-integration — — claude-code — Completing FireCrawl UI integration: adding routing and navigation for CompetitorDashboard (PR #120)
 2026-01-12T23:00:00Z — release — agent-002 — client-manager — agent-002-firecrawl-integration — — claude-code — Completed: UI routing and navigation for CompetitorDashboard. Commit 47857e8 pushed to PR #120. Feature now fully integrated.
+2026-01-12T23:05:00Z — allocate — agent-002 — client-manager — agent-002-image-ocr-extraction — — claude-code — Implementing image OCR for header/footer extraction (Tesseract integration)
+2026-01-12T23:15:00Z — release — agent-002 — client-manager — agent-002-image-ocr-extraction — — claude-code — Completed: Image OCR implementation for header/footer extraction. Tesseract 5.2.0 integrated. PR #123→develop created.
