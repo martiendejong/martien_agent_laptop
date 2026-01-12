@@ -4,6 +4,84 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-12 18:35 - Dynamic Window Color Icon Enhancement
+
+**Session Type:** Feature enhancement - User experience improvement
+**Context:** User requested "scripts that signal that the application is going to do work will make the header blue (add a blue icon) and that whatever script that signals there is a problem makes the header red"
+**Outcome:** ✅ SUCCESS - Enhanced window title with prominent colored emoji icons and uppercase state labels
+
+### Problem
+
+The dynamic window color system was working but:
+1. State text was lowercase ("running") - less visible
+2. Emoji encoding had issues (UTF-8 problems with Write tool)
+3. User wanted clear visual distinction between work (blue) and problems (red)
+
+### Root Cause
+
+- PowerShell script used literal emoji characters prone to encoding corruption
+- Window title format didn't emphasize state sufficiently
+- .NET `[char]` casting can't handle supplementary plane Unicode (emoji > U+FFFF)
+
+### Solution
+
+**Technical changes:**
+1. **Fixed emoji encoding** - Use `[System.Char]::ConvertFromUtf32()` instead of `[char]` cast
+   - Blue circle: `ConvertFromUtf32(0x1F535)` instead of `[char]0x1F535`
+   - Handles supplementary Unicode planes correctly
+
+2. **Enhanced visibility** - Made state text uppercase
+   - Before: "🔵 running - MAIN"
+   - After: "🔵 RUNNING - MAIN"
+
+3. **Color-to-purpose mapping:**
+   - 🔵 RUNNING = Work in progress (blue icon + blue background)
+   - 🔴 BLOCKED = Problem/waiting for input (red icon + red background)
+   - 🟢 COMPLETE = Task done (green icon + green background)
+   - ⚪ IDLE = Ready for next task (white icon + black background)
+
+**Files modified:**
+- `C:\scripts\set-state-color.ps1` - Core color management script
+- All 4 quick-access scripts work correctly (color-running.bat, color-blocked.bat, etc.)
+
+### Pattern Learned
+
+**Emoji in PowerShell:**
+- ❌ Don't use literal emoji in Write tool (encoding issues)
+- ❌ Don't use `[char]0xHEX` for emoji > U+FFFF (out of range)
+- ✅ DO use `[System.Char]::ConvertFromUtf32(0xHEX)` for all emoji
+- ✅ DO test in actual PowerShell environment (bash rendering differs)
+
+**UX for visual state:**
+- Color alone isn't enough - add prominent icon
+- Uppercase text increases visibility
+- Consistent emoji-color pairing (blue circle = blue background)
+
+### Testing
+
+All 4 states tested successfully:
+```
+✓ color-running.bat → Blue background + 🔵 RUNNING
+✓ color-blocked.bat → Red background + 🔴 BLOCKED
+✓ color-complete.bat → Green background + 🟢 COMPLETE
+✓ color-idle.bat → Black background + ⚪ IDLE
+```
+
+### Commit
+
+**Commit:** 4489513
+**Message:** "feat: Improve dynamic window color icons"
+**Pushed:** Yes (machine_agents repo)
+
+### Future Enhancement Ideas
+
+- Sound notifications on state change (optional)
+- System tray icon color sync
+- Multi-monitor awareness (change specific window only)
+- Integration with taskbar preview color
+
+---
+
 ## 2026-01-12 23:45 - Contextual File Tagging Integration Fixes
 
 **Session Type:** Bug fixes - Compilation and runtime errors after feature merge
