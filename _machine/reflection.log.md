@@ -192,6 +192,62 @@ var match = Regex.Match(text, @"!\[.*?\]\((.*?)\)");
 
 **Commit:** ddc8447
 
+### Problem 4b: Generated Images Still Not Displaying - Incomplete URLs
+
+**User Follow-up:** After regex fix, still no image. Console shows: `![Eenvoudig huis](https://localhost:54501/`
+
+**Browser Console Evidence:**
+- Markdown URL is incomplete: `https://localhost:54501/` (cuts off mid-URL)
+- Should be: `https://localhost:54501/api/uploadeddocuments/file/{projectId}/{filename}.png`
+- Message finalized at 273 characters, URL truncated
+
+**Root Cause:**
+1. `ChatImageService.BuildImageUrl()` returns **relative URL**: `/api/uploadeddocuments/file/...`
+2. Tool (`ToolsContextImageExtensions.cs`) extracts relative URL via regex
+3. Tool returns JSON to LLM: `{"imageUrl": "/api/uploadeddocuments/file/...", ...}`
+4. **LLM tries to make URL absolute** but doesn't know the base URL
+5. LLM outputs `https://localhost:54501/` and stops (doesn't know what comes next)
+6. Result: Incomplete markdown, image doesn't render
+
+**Fix (Three-Part Solution):**
+
+**1. Add BaseUrl to CurrentRequestContext (CurrentRequestContext.cs):**
+```csharp
+private static readonly AsyncLocal<string> _baseUrl = new AsyncLocal<string>();
+
+public static string BaseUrl
+{
+    get => _baseUrl.Value ?? "https://localhost:54501";
+    set => _baseUrl.Value = value;
+}
+```
+
+**2. Set BaseUrl from HTTP Request (ChatController.cs line 1321):**
+```csharp
+var baseUrl = $"{Request.Scheme}://{Request.Host}";
+ClientManagerAPI.Helpers.CurrentRequestContext.BaseUrl = baseUrl;
+```
+
+**3. Convert Relative URLs to Absolute in Tool (ToolsContextImageExtensions.cs line 125):**
+```csharp
+if (!string.IsNullOrEmpty(imageUrl) && imageUrl.StartsWith("/"))
+{
+    var baseUrl = ClientManagerAPI.Helpers.CurrentRequestContext.BaseUrl;
+    imageUrl = $"{baseUrl}{imageUrl}";
+}
+```
+
+**Explanation:**
+- Tool now returns **absolute URL** to LLM: `https://localhost:54501/api/uploadeddocuments/file/...`
+- LLM uses the complete URL directly in markdown without modification
+- Frontend receives full URL and can display image correctly
+- Works in development (localhost) and production (actual domain)
+
+**Also Fixed:**
+- `ToolsContextImageExtensions.cs` line 117: Changed regex from `![Generated Image]` to `![.*?]` (same issue as ChatController)
+
+**Commit:** 1063e56
+
 ### Key Learnings
 
 **Pattern 1: OpenAIConfig Initialization Trap**
@@ -220,6 +276,15 @@ var match = Regex.Match(text, @"!\[.*?\]\((.*?)\)");
 - Use capture groups that match patterns, not literal strings
 - **Guideline:** `@"!\[.*?\]\((.*?)\)"` > `@"!\[Generated Image\]\((.*?)\)"`
 
+**Pattern 5: Tool Responses Must Be LLM-Ready**
+- Tools return data that LLM will include in its responses
+- **LLM cannot intelligently convert relative URLs to absolute URLs**
+- If tool returns relative URL `/api/...`, LLM tries to make absolute but fails
+- Solution: **Tools must return absolute URLs**, not relative ones
+- Use AsyncLocal context to pass request base URL to tools
+- **Guideline:** Tool responses should be ready to use as-is, no LLM processing needed
+- Example: Return `https://domain.com/api/file/x.png` not `/api/file/x.png`
+
 ### Files Modified
 
 **Backend:**
@@ -229,7 +294,9 @@ var match = Regex.Match(text, @"!\[.*?\]\((.*?)\)");
 - ClientManagerAPI/Controllers/WebsiteController.cs (model param)
 - ClientManagerAPI/Controllers/IntakeController.cs (model param)
 - ClientManagerAPI/Services/SocialMediaGenerationService.cs (model param)
-- ClientManagerAPI/Controllers/ChatController.cs (image URL extraction regex)
+- ClientManagerAPI/Controllers/ChatController.cs (image URL extraction regex + base URL context)
+- ClientManagerAPI/Extensions/ToolsContextImageExtensions.cs (flexible regex + absolute URL conversion)
+- ClientManagerAPI/Helpers/CurrentRequestContext.cs (BaseUrl property for tool access)
 
 ### Testing Recommendations
 
