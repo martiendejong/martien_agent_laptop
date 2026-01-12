@@ -21,21 +21,23 @@ $colors = @{
 # Emit ANSI escape sequence (no clear screen)
 Write-Host -NoNewline $colors[$State]
 
-# Also update window title with status emoji
+# Status emojis using Unicode escape sequences
 $emojis = @{
-    "running"  = "🔵"
-    "complete" = "🟢"
-    "blocked"  = "🔴"
-    "idle"     = "⚪"
+    "running"  = [System.Char]::ConvertFromUtf32(0x1F535)  # Blue circle emoji
+    "complete" = [System.Char]::ConvertFromUtf32(0x1F7E2)  # Green circle emoji
+    "blocked"  = [System.Char]::ConvertFromUtf32(0x1F534)  # Red circle emoji
+    "idle"     = [System.Char]::ConvertFromUtf32(0x26AA)   # White circle emoji
 }
 
 # Get current branch if in git repo
 $branch = (git branch --show-current 2>$null)
+$stateUpper = $State.ToUpper()
+
 if ($branch) {
     $branch = $branch.ToUpper()
-    $title = "$($emojis[$State]) $State - $branch"
+    $title = "$($emojis[$State]) $stateUpper - $branch"
 } else {
-    $title = "$($emojis[$State]) CLAUDE AGENT - $state"
+    $title = "$($emojis[$State]) $stateUpper - CLAUDE AGENT"
 }
 
 $host.UI.RawUI.WindowTitle = $title
