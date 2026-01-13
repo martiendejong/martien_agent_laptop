@@ -4,6 +4,70 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-13 17:30 [QUICK FIX] - Active Debugging Mode: Build Errors on feature/document-metadata-display
+
+**Session Type:** Active Debugging Mode (user-reported build errors)
+**Context:** User working on `feature/document-metadata-display` branch with 3 compilation errors
+**Outcome:** ✅ SUCCESS - Fixed 3 errors, build passes (0 errors, 4840 warnings)
+**Mode:** 🐛 Active Debugging Mode (direct edits in C:\Projects\client-manager)
+
+### Errors Fixed
+
+**File:** `ClientManagerAPI\Extensions\ToolsContextImageExtensions.cs`
+
+1. **CS0136** (line 136): Variable `metaService` redeclared in inner scope
+   - **Root cause:** Line 87 declared `metaService` in outer lambda scope
+   - **Fix:** Removed duplicate declaration (lines 136-137), reused existing `metaService` and `messageService`
+
+2. **CS1503** (lines 140, 144): Cannot convert `List<ConversationMessage>` to `SerializableList<ConversationMessage>`
+   - **Root cause:** `StoreChatMessages()` method signature expects `SerializableList<T>`
+   - **Fix:** Wrapped `chat.ChatMessages` in `new SerializableList<ConversationMessage>(...)`
+
+**Verification:** Build succeeded with `dotnet build --configuration Release` (0 errors)
+
+### Critical Pattern 71: MANDATORY Build + QA Verification After Code Changes
+
+**Problem:** Code changes may introduce compilation errors, test failures, or runtime issues that aren't caught until deployment.
+
+**Solution: ALWAYS run these checks AFTER making code changes:**
+
+1. **Build verification** (MANDATORY):
+   ```bash
+   cd C:/Projects/client-manager && dotnet build --configuration Release
+   ```
+   - Must show `0 Error(s)` (warnings are acceptable)
+   - Catch compilation errors early
+
+2. **Run existing tests** (when available):
+   ```bash
+   dotnet test --configuration Release
+   ```
+   - Ensure changes don't break existing functionality
+
+3. **QA checks** (project-specific):
+   - For client-manager: Check if there are automated QA scripts
+   - Run linters, formatters, or other quality tools
+   - Verify critical user flows still work
+
+**When to apply:**
+- ✅ **Active Debugging Mode** - After fixing build errors
+- ✅ **Feature Development Mode** - Before creating PR (mandatory)
+- ✅ **Any code edit** - Before marking todo as completed
+
+**Integration with workflow:**
+- Add "Run build to verify changes" as final todo item
+- Add "Run tests if available" as follow-up todo
+- Mark as blocking - cannot complete task until build passes
+
+**User request:** "I want you to solve them and also that whenever you make changes in the future that as part of it you run the build and the qa checks locally to make sure that the application is in a workable state"
+
+**Commitment:** From this point forward, ALL code changes will be followed by:
+1. Build verification
+2. Test execution (if tests exist)
+3. QA checks (if available)
+
+---
+
 ## 2026-01-13 15:00 [SESSION] - React Virtuoso + Image Rendering Bug (Critical Pattern Discovery)
 
 **Session Type:** Deep debugging of React rendering issue
