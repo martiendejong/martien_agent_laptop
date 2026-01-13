@@ -334,3 +334,199 @@ Summary says:        → Verify:              → Reality:
 - Action: Restored repos to develop, prevented future worktree issues
 
 ---
+
+
+## 📁 DOCUMENTATION HYGIENE PROTOCOL
+
+**Implemented:** 2026-01-13
+**Purpose:** Prevent content rot and maintain navigable documentation structure
+
+### Root Directory Rules
+
+**Maximum 15 .md files in C:\scripts\ root:**
+
+**MUST KEEP (Core documentation):**
+- ✅ `CLAUDE.md` - Main documentation index
+- ✅ `ZERO_TOLERANCE_RULES.md` - Critical quick reference
+- ✅ Modular docs (8 files):
+  - `ci-cd-troubleshooting.md`
+  - `continuous-improvement.md`
+  - `development-patterns.md`
+  - `git-workflow.md`
+  - `session-management.md`
+  - `tools-and-productivity.md`
+  - `worktree-workflow.md`
+  - `DYNAMIC_WINDOW_COLORS.md`
+
+**MAY KEEP (User references):**
+- ✅ `QUICK_LAUNCHERS.md` - User quick reference
+- ✅ `QUICK_START_USER_COST_TRACKING.md` - User quick start guide
+- ✅ `NOTIFICATION_ACCESS.md` - User notification guide
+
+**MUST ARCHIVE (Everything else):**
+- ❌ Planning documents → Move to `_machine/knowledge/`
+- ❌ Implementation details → Move to `_machine/knowledge/`
+- ❌ Old reference docs → Move to `_archive/`
+- ❌ Outdated files → Move to `_archive/`
+
+### Backup File Policy
+
+**NEVER commit backup files to production:**
+- ❌ `*.backup` files
+- ❌ `*.backup-YYYYMMDD` files
+- ❌ `*_old.*` files
+
+**Rationale:** Git history is the backup. Backup files clutter the directory and cause confusion about which version is authoritative.
+
+**If you need to preserve state before major changes:**
+```bash
+# Create a git branch instead of a backup file
+git branch backup/pre-major-refactor-$(date +%Y%m%d)
+git push origin backup/pre-major-refactor-$(date +%Y%m%d)
+```
+
+### Planning Document Lifecycle
+
+**When creating planning/analysis documents:**
+
+1. **During planning phase:** Work in root for easy access
+2. **After implementation:** Move to `_machine/knowledge/<topic>/`
+3. **If obsolete:** Move to `_archive/`
+
+**Example:**
+```bash
+# During planning
+C:\scripts\hazina-integration-roadmap.md
+
+# After implementation complete
+C:\scripts\_machine\knowledge\hazina-analysis\hazina-integration-roadmap.md
+
+# If approach abandoned
+C:\scripts\_archive\hazina-integration-roadmap-abandoned-2026-01.md
+```
+
+### Stale Script Detection
+
+**Archive .bat/.cmd/.ps1 files unused for 60+ days:**
+
+**Monthly audit checklist:**
+```bash
+# Find scripts older than 60 days with no recent modifications
+find C:/scripts -maxdepth 1 -type f \( -name "*.bat" -o -name "*.cmd" -o -name "*.ps1" \) -mtime +60
+
+# Review each:
+# - Still used? Keep
+# - One-time tool (like BFG)? Archive
+# - Replaced by better tool? Archive
+```
+
+**Archive location:** `C:\scripts\_archive/old-launchers/`
+
+### _machine Folder Maintenance
+
+**Keep ONLY active/frequently accessed files in `_machine/` root:**
+
+**MUST KEEP (Active):**
+- ✅ `reflection.log.md` - Session learnings (CRITICAL)
+- ✅ `worktrees.pool.md` - Agent allocations (CRITICAL)
+- ✅ `worktrees.activity.md` - Activity log (CRITICAL)
+- ✅ `worktrees.protocol.md` - Worktree protocol (CRITICAL)
+- ✅ `pr-dependencies.md` - Cross-repo PR tracking
+- ✅ `instances.map.md` - Instance tracking
+- ✅ `MULTI_AGENT_CONFLICT_DETECTION.md` - Conflict prevention
+- ✅ `KNOWLEDGE_BASE_SUMMARY.md` - Knowledge index
+
+**MUST KEEP (Subfolders):**
+- ✅ `knowledge/` - Reference documentation
+- ✅ `best-practices/` - Pattern library
+- ✅ `ADR/` - Architecture decision records
+- ✅ `lessons/` - Categorized learnings
+
+**MUST ARCHIVE (Stale reference docs):**
+- ❌ Initial setup deep-dives → `_machine/archive/reference-YYYY-MM-<label>/`
+- ❌ One-time analysis documents → `_machine/archive/reference-YYYY-MM-<label>/`
+- ❌ Superseded strategy docs → `_machine/archive/reference-YYYY-MM-<label>/`
+
+### Monthly Maintenance Checklist
+
+**Run on 1st of each month:**
+
+```bash
+# 1. Check root directory file count
+ls C:/scripts/*.md | wc -l
+# Target: ≤15 files
+
+# 2. Find duplicate filenames between root and _machine
+find C:/scripts/_machine -name "*.md" -exec basename {} \; | sort > /tmp/machine_files.txt
+find C:/scripts -maxdepth 1 -name "*.md" -exec basename {} \; | sort > /tmp/root_files.txt
+comm -12 /tmp/machine_files.txt /tmp/root_files.txt
+# Target: 0 duplicates (or only README.md)
+
+# 3. Find backup files in production
+find C:/scripts -name "*.backup*" -o -name "*_old.*"
+# Target: 0 files
+
+# 4. Find scripts unused for 60+ days
+find C:/scripts -maxdepth 1 -type f \( -name "*.bat" -o -name "*.cmd" -o -name "*.ps1" \) -mtime +60
+# Review and archive if unused
+
+# 5. Check _machine folder size
+du -sh C:/scripts/_machine/
+# Target: <2MB (excluding reflection.log.md which grows continuously)
+
+# 6. Review _machine root file count
+ls C:/scripts/_machine/*.md | wc -l
+# Target: ≤15 active files (excluding subdirectories)
+```
+
+### Archive Directory Structure
+
+```
+C:\scripts\_archive/
+├── old-launchers/              # Stale .bat/.cmd/.ps1 files
+│   ├── chatgpt_yolo.bat
+│   ├── codex_yolo.cmd
+│   └── bfg.jar
+├── reference-YYYY-MM-<label>/  # Outdated root .md files
+│   ├── README.md
+│   ├── scripts.md
+│   └── pr-settings-guide.md
+└── ...
+
+C:\scripts\_machine\archive/
+├── reference-YYYY-MM-<label>/  # Stale reference docs
+│   ├── ACCESSIBILITY_TESTING.md
+│   ├── BRANCHING_STRATEGY.md
+│   ├── CLIENT_MANAGER_DEEP_DIVE.md
+│   └── ...
+└── ...
+```
+
+### Enforcement
+
+**At end of every session:**
+1. ✅ Check if you created any planning documents in root
+2. ✅ If task complete: Move planning docs to `_machine/knowledge/`
+3. ✅ Check for any `.backup` files created
+4. ✅ Delete backup files (they're in git history)
+5. ✅ Verify root directory still ≤15 .md files
+
+**Monthly audit triggers:**
+- First session of each month
+- After major reorganization
+- When root directory feels cluttered (>20 files)
+
+### Success Criteria
+
+**Documentation is healthy ONLY IF:**
+- ✅ Root directory has ≤15 .md files
+- ✅ No duplicate filenames between root and _machine
+- ✅ No .backup files in production
+- ✅ Stale scripts archived after 60 days
+- ✅ _machine root has ≤15 active .md files
+- ✅ Planning docs moved to knowledge/ after implementation
+- ✅ Archive directories organized by date and topic
+
+**This protocol prevents content rot and maintains a navigable documentation structure.**
+
+---
