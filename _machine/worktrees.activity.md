@@ -339,3 +339,5 @@ Actions:
 2026-01-12T23:05:00Z — allocate — agent-002 — client-manager — agent-002-image-ocr-extraction — — claude-code — Implementing image OCR for header/footer extraction (Tesseract integration)
 2026-01-12T23:15:00Z — release — agent-002 — client-manager — agent-002-image-ocr-extraction — — claude-code — Completed: Image OCR implementation for header/footer extraction. Tesseract 5.2.0 integrated. PR #123→develop created.
 2026-01-12T23:45:00Z — allocate — agent-002 — client-manager — feature/configurable-prompts-system — — claude-code — Migrating all client-manager prompts to configurable store-based system (50+ prompts)
+2026-01-13T00:15:00Z — allocate — agent-004 — client-manager — feature/document-metadata-display — — claude-code — Display document tags and descriptions in fullscreen image/document viewers
+2026-01-13T01:00:00Z — release — agent-004 — client-manager — feature/document-metadata-display — — claude-code — PR #125 created: Display document tags and descriptions in fullscreen viewers

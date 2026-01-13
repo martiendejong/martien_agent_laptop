@@ -6,7 +6,7 @@ Seat states:
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | artrevisionist | feature/enhanced-image-management | 2026-01-12T21:00:00Z | 🔄 Enhanced image management with feedback-driven search |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | client-manager | feature/configurable-prompts-system | 2026-01-12T23:45:00Z | 🔄 Migrating all prompts to configurable store-based system |
-| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-11T00:40:00Z | ✅ Fixed scrollbar styling + horizontal scroll (PR #91 created) |
+| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-13T01:00:00Z | ✅ Document metadata display (PR #125 created) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-11T11:45:00Z | ✅ Fixed WordPress publish timeout (PR #14 created) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-11T03:00:00Z | ✅ Context compression implemented (Hazina PR #35 + client-manager PR #93 created) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-01-10T16:00:00Z | ✅ Cleaned up: Chat issues docs (PR #60/#80 MERGED) + Config templates (Hazina PR #33 MERGED), worktree released |
