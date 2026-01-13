@@ -4,6 +4,38 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-14 [BEST PRACTICE] - Ask Clarifying Questions Before Feature Development
+
+**Pattern Type:** Process Improvement - Requirements Gathering
+**Context:** User explicitly requested clarifying questions before building social media post generation feature
+**Outcome:** ✅ Added as standard practice
+
+### Critical Pattern 77: Ask Clarifying Questions Before Building Features
+
+**When to Ask Questions:**
+- When implementing NEW features (not bug fixes or small changes)
+- When requirements mention UI screens, workflows, or integrations
+- When there are implicit assumptions about existing systems
+- When the feature touches multiple parts of the codebase
+
+**What to Ask About:**
+1. **Existing infrastructure** - What's already in place that this connects to?
+2. **Data models** - Where does the data come from? Where is it stored?
+3. **UI/UX flow** - Where does this screen live? Navigation path?
+4. **Integrations** - External APIs, services, authentication?
+5. **Edge cases** - Error handling, empty states, permissions?
+6. **Scope boundaries** - What's in v1 vs future iterations?
+
+**When NOT to Ask:**
+- Bug fixes with clear reproduction steps
+- Small code changes with explicit instructions
+- Tasks where the user already provided comprehensive requirements
+- Exploratory/research tasks
+
+**Key Insight:** Asking questions upfront saves 10x the time vs building the wrong thing and iterating.
+
+---
+
 ## 2026-01-13 16:00 [BUG FIX] - Background Task Overwriting AI-Generated Metadata
 
 **Pattern Type:** Race Condition - Background Task Overwriting Data
