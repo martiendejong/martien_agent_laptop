@@ -4,8 +4,9 @@
 *.phar
 *.dll
 
-# Claude local settings
-.claude/
+# Claude local settings (exclude settings, include skills)
+.claude/settings.json
+.claude/settings.local.json
 
 # Node modules (reinstall with npm install)
 node_modules/
@@ -36,4 +37,9 @@ secrets/
 
 # Weird filename
 C:*
-tmpclaude-*
+
+# Machine temp files (created at runtime)
+_machine/tmpclaude-*
+
+# Bootstrap-generated (machine-specific state - templates tracked separately)
+# These are created by bootstrap from .template files
