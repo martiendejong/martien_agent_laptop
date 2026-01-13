@@ -4,6 +4,330 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-14 01:00 [FEATURE IMPLEMENTATION] - Hazina Search API Complete Integration
+
+**Pattern Type:** Feature Development - Framework Integration
+**Context:** Building Hazina.API.Search with real Hazina framework (not stubs)
+**Outcome:** ✅ SUCCESS - Full REST API with 10+ endpoints, all tests passing
+**Mode:** 🏗️ Feature Development Mode (worktree: agent-002)
+
+### Critical Pattern 74: Hazina Framework Integration Architecture
+
+When integrating with the Hazina framework, understand these architectural layers:
+
+#### Layer 1: LLM Client (`Hazina.LLMs.*`)
+```
+ILLMClient (interface) - Core abstraction for LLM operations
+├── GenerateEmbedding(string data) → Embedding
+├── GetResponse() → Chat completion
+└── GetResponseStream() → Streaming response
+
+OpenAIClientWrapper : ILLMClient - OpenAI implementation
+ClaudeClientWrapper : ILLMClient - Anthropic implementation
+```
+
+**Key Insight:** Use `ILLMClient.GenerateEmbedding()` for embeddings, NOT a separate embedding API.
+
+#### Layer 2: Provider Orchestration (`Hazina.AI.Providers`)
+```
+IProviderOrchestrator : ILLMClient - Multi-provider management
+├── RegisterProvider(name, client, metadata)
+├── GetProvider(name)
+└── All ILLMClient methods (delegates to active provider)
+
+ProviderOrchestrator - Implementation
+```
+
+**Key Insight:** RAGEngine requires `IProviderOrchestrator`, not just `ILLMClient`.
+
+#### Layer 3: Storage (`Hazina.Store.*`)
+```
+DocumentStore (GLOBAL namespace - no using needed!)
+├── Store(key, content, metadata, split)
+├── Get(key) → string?
+├── GetMetadata(key) → DocumentMetadata?
+├── List(folder, recursive) → List<string>
+└── Remove(key) → bool
+
+EmbeddingMemoryStore : IEmbeddingStore, IVectorSearchStore
+├── StoreAsync(key, embedding, checksum)
+├── GetAsync(key)
+├── SearchSimilarAsync(embedding, topK, minSimilarity)
+└── RemoveAsync(key)
+```
+
+**⚠️ CRITICAL:** `DocumentStore`, `IDocumentStore`, `DocumentMetadata` are in the **GLOBAL NAMESPACE** - no `using` statement needed!
+
+#### Layer 4: RAG Engine (`Hazina.AI.RAG`)
+```
+RAGEngine
+├── Constructor(orchestrator, vectorStore, documentStore?, config)
+├── QueryAsync(query, options) → RAGResponse (with answer generation)
+├── SearchAsync(query, topK, minSimilarity) → List<Document>
+└── IndexDocumentsAsync()
+
+IVectorStore (in Hazina.AI.RAG.Core namespace)
+├── AddAsync(id, embedding, metadata, cancellationToken)
+└── SearchAsync(queryEmbedding, topK, cancellationToken)
+```
+
+### Critical Pattern 75: Backward Compatibility Adapters
+
+The Hazina framework has both old and new architectures. Use adapters for compatibility:
+
+**OLD Architecture (DocumentStore expects):**
+```csharp
+ITextEmbeddingStore // Legacy interface
+├── StoreEmbedding(key, text)
+├── GetEmbedding(key)
+└── RemoveEmbedding(key)
+```
+
+**NEW Architecture (preferred):**
+```csharp
+IEmbeddingStore + IEmbeddingGenerator
+EmbeddingService(store, generator)
+```
+
+**ADAPTER (bridges old and new):**
+```csharp
+// Use LegacyTextEmbeddingStoreAdapter instead of TextEmbeddingMemoryStore
+var adapter = new LegacyTextEmbeddingStoreAdapter(embeddingService, embeddingMemoryStore);
+
+// Pass adapter to DocumentStore (which expects ITextEmbeddingStore)
+var documentStore = new DocumentStore(
+    adapter,           // ← Adapter bridges old interface to new
+    textStore,
+    chunkStore,
+    metadataStore,
+    llmClient,
+    embeddingMemoryStore,
+    embeddingGenerator);
+```
+
+**⚠️ AVOID:** `TextEmbeddingMemoryStore` is marked obsolete - use the adapter pattern.
+
+### Critical Pattern 76: Framework Class Location Gotchas
+
+| Class | Namespace | Notes |
+|-------|-----------|-------|
+| `DocumentStore` | **GLOBAL** | No using needed |
+| `IDocumentStore` | **GLOBAL** | No using needed |
+| `DocumentMetadata` | **GLOBAL** | Has `OriginalPath`, NOT `OriginalFilename` |
+| `ITextStore` | **GLOBAL** | No using needed |
+| `TextFileStore` | `Hazina.Store.EmbeddingStore` | Constructor needs `rootFolder` string |
+| `ChunkFileStore` | **GLOBAL** | Pass folder path to constructor |
+| `EmbeddingMemoryStore` | `Hazina.Store.EmbeddingStore` | Implements both `IEmbeddingStore` and `IVectorSearchStore` |
+| `LLMEmbeddingGenerator` | `Hazina.Store.EmbeddingStore` | Needs `ILLMClient` + dimensions |
+| `EmbeddingService` | `Hazina.Store.EmbeddingStore` | New architecture service |
+| `RAGEngine` | `Hazina.AI.RAG` | Needs `IProviderOrchestrator` |
+| `IVectorStore` | `Hazina.AI.RAG.Core` | Different from `IVectorSearchStore`! |
+| `VectorSearchResult` | `Hazina.AI.RAG.Core` | RAG-specific result type |
+
+### Critical Pattern 77: Service Registration for ASP.NET Core
+
+```csharp
+// 1. OpenAI Configuration
+builder.Services.AddSingleton<OpenAIConfig>(sp => {
+    var config = new OpenAIConfig();
+    builder.Configuration.GetSection("Hazina:OpenAI").Bind(config);
+    config.ApiKey ??= Environment.GetEnvironmentVariable("HAZINA_OPENAI_APIKEY");
+    config.Model ??= "gpt-4o";
+    config.EmbeddingModel ??= "text-embedding-3-small";
+    return config;
+});
+
+// 2. LLM Client
+builder.Services.AddSingleton<ILLMClient>(sp =>
+    new OpenAIClientWrapper(sp.GetRequiredService<OpenAIConfig>()));
+
+// 3. Provider Orchestrator (RAGEngine needs this, not just ILLMClient!)
+builder.Services.AddSingleton<IProviderOrchestrator>(sp => {
+    var orchestrator = new ProviderOrchestrator(sp.GetService<ILogger<ProviderOrchestrator>>());
+    orchestrator.RegisterProvider("openai",
+        sp.GetRequiredService<ILLMClient>(),
+        new ProviderMetadata { Name = "openai", Type = ProviderType.OpenAI, ... });
+    return orchestrator;
+});
+
+// 4. Store Factory (creates complete Hazina store instances)
+builder.Services.AddSingleton<IHazinaStoreFactory, HazinaStoreFactory>();
+```
+
+### Mistakes Made and Corrections
+
+1. **Used wrong namespace imports**
+   - ❌ `using Hazina.Store.DocumentStore;` - Doesn't exist!
+   - ✅ No using needed - classes are in global namespace
+
+2. **Used obsolete class**
+   - ❌ `new TextEmbeddingMemoryStore(_llmClient)`
+   - ✅ `new LegacyTextEmbeddingStoreAdapter(embeddingService, embeddingMemoryStore)`
+
+3. **Wrong property name on DocumentMetadata**
+   - ❌ `metadata.OriginalFilename`
+   - ✅ `metadata.OriginalPath` (extract filename with `Path.GetFileName()`)
+
+4. **Used deprecated Headers.Add()**
+   - ❌ `context.Response.Headers.Add("X-Frame-Options", "DENY")`
+   - ✅ `context.Response.Headers["X-Frame-Options"] = "DENY"`
+
+5. **Created duplicate interface definitions**
+   - ❌ Defined own `IVectorStore` that conflicted with `Hazina.AI.RAG.Core.IVectorStore`
+   - ✅ Use fully qualified name `Hazina.AI.RAG.Core.IVectorStore` and `Hazina.AI.RAG.Core.VectorSearchResult`
+
+### Key Files Created/Modified
+
+```
+Hazina.API.Search/
+├── Integration/
+│   └── HazinaIntegration.cs    # Factory + adapters for Hazina components
+├── Services/
+│   ├── RAGStoreManager.cs      # Store lifecycle + document operations
+│   └── SearchService.cs        # RAG query delegation
+├── Controllers/
+│   ├── RAGStoresController.cs  # CRUD for RAG stores
+│   ├── DocumentsController.cs  # Upload/list/get/delete documents
+│   └── SearchController.cs     # RAG search endpoints
+└── Program.cs                  # Service registrations
+```
+
+### Test Results
+- **DocumentStore Tests:** 29/29 passed ✅
+- **Architecture Tests:** 12/12 passed ✅
+- **Build:** 0 errors ✅
+
+### Future Reference
+
+When building new Hazina integrations:
+1. **Check global namespace first** - Many core classes have no namespace
+2. **Use adapters for backward compatibility** - `LegacyTextEmbeddingStoreAdapter`
+3. **RAGEngine needs IProviderOrchestrator** - Not just ILLMClient
+4. **IVectorStore exists in two places** - Use `Hazina.AI.RAG.Core.IVectorStore`
+5. **DocumentMetadata properties** - `OriginalPath`, `MimeType`, `CustomMetadata`, `Size`
+
+---
+
+## 2026-01-13 23:30 [DEBUGGING SESSION] - Multi-Layer Build Error Resolution
+
+**Pattern Type:** Active Debugging - Cross-Project Build Failures
+**Context:** artrevisionist project with HazinaStore.sln failing to build
+**Mode:** Active Debugging Mode (user debugging on develop branch)
+
+### Problem Chain Encountered
+
+**Initial Error:** NU1105 - Unable to find project information for Hazina.Neurochain.Core
+**Root Causes:** Multiple cascading issues across solution, C# code, and frontend
+
+### Issue 1: Stale Solution File References
+
+**Symptoms:**
+- NU1105 errors about missing project information
+- `dotnet restore` failing with MSB3202
+
+**Root Cause:**
+- `HazinaStore.sln` had outdated project references:
+  - `importchecker\HazinaStore worker.csproj` - directory didn't exist
+  - `HazinaStoreAPI\HazinaStoreAPI.csproj` - renamed to `ArtRevisionistAPI`
+
+**Fix:**
+- Remove non-existent project references from .sln file
+- Update paths to match current directory structure
+- Remove orphaned build configurations for deleted projects
+
+**Lesson:** When NU1105 errors appear, first check if the solution file references projects that actually exist. Run `dotnet restore` from command line to see full error context.
+
+### Issue 2: C# Optional Parameter Order (CS1737)
+
+**Symptoms:**
+```
+CS1737: Optional parameters must appear after all required parameters
+```
+
+**Root Cause in ChatImageService.cs:**
+```csharp
+// WRONG - optional parameter before required ones
+public ChatImageService(
+    ...,
+    IImageAnalysisService? imageAnalysisService = null,  // Optional
+    IGeneratedImageRepository generatedImageRepository,   // Required - ERROR!
+    IChatMetadataService metadataService,                 // Required - ERROR!
+    IChatMessageService messageService)                   // Required - ERROR!
+```
+
+**Fix:**
+```csharp
+// CORRECT - optional parameter at end
+public ChatImageService(
+    ...,
+    IGeneratedImageRepository generatedImageRepository,
+    IChatMetadataService metadataService,
+    IChatMessageService messageService,
+    IImageAnalysisService? imageAnalysisService = null)  // Optional at END
+```
+
+**Lesson:** In C#, optional parameters (those with `= defaultValue`) MUST come after all required parameters. When fixing, also update any constructor chaining calls.
+
+### Issue 3: Incomplete/WIP Code Breaking Build
+
+**Symptoms:**
+```
+CS0117: 'ConversationMessage' does not contain a definition for 'ImageUrl'
+CS1061: 'OpenAIClientWrapper' does not contain a definition for 'GetChatResponseAsync'
+```
+
+**Root Cause:**
+- `ImageAnalysisService.cs` used APIs that don't exist yet
+- Code was WIP/incomplete but committed to develop branch
+
+**Fix:**
+- Comment out broken implementation
+- Return placeholder/fallback result
+- Preserve original code in comments for future implementation
+
+**Lesson:** When encountering multiple "does not contain definition" errors in a single method, the code is likely WIP. For Active Debugging Mode, comment it out with a TODO rather than trying to implement missing APIs.
+
+### Issue 4: JavaScript Duplicate Parameter Names
+
+**Symptoms:**
+```
+Uncaught SyntaxError: Duplicate parameter name not allowed in this context (at TopicPages.tsx:921:277)
+```
+
+**Root Cause in TopicPages.tsx:**
+```typescript
+// WRONG - duplicate parameter in destructuring
+const MainPageCard = ({
+  ...,
+  onAddImage,           // First occurrence
+  onRemoveAdditionalImage,
+  onAddImage,           // DUPLICATE - causes runtime error!
+}: {
+```
+
+**Detection Method:**
+```bash
+grep -n "onAddImage" src/pages/TopicPages.tsx
+# Look for consecutive duplicate lines in destructuring sections
+```
+
+**Fix:** Remove the duplicate parameter from destructuring.
+
+**Lesson:**
+- Browser error line numbers often refer to bundled code, not source
+- Column 277+ suggests the error is in transpiled/minified output
+- Search for the parameter name throughout the file to find duplicates
+- Duplicates in destructuring parameters cause JavaScript runtime errors, not TypeScript compile errors
+
+### Key Takeaways
+
+1. **Cascade Debugging:** Build errors often mask each other. Fix in order: solution → restore → compile → runtime
+2. **Command Line First:** `dotnet restore` and `dotnet build` from CLI give clearer errors than IDE
+3. **Search for Duplicates:** When "duplicate" errors occur, grep for the identifier across the file
+4. **Active Debugging Mode:** For user's debugging sessions, prioritize getting build working over perfect fixes
+
+---
+
 ## 2026-01-13 22:00 [CRITICAL PATTERN 73] - Paired Worktree Allocation for Dependent Projects
 
 **Pattern Type:** Worktree Management - Dependency Handling
