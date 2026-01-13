@@ -1,18 +1,39 @@
 # Worktree Workflow - Complete Protocol
 
-## 🚨🚨🚨 ZERO-TOLERANCE ENFORCEMENT - READ FIRST 🚨🚨🚨
+## 🚨🚨🚨 DUAL-MODE WORKFLOW - READ FIRST 🚨🚨🚨
 
-**USER ESCALATION (2026-01-08):** Previous sessions violated workflow despite protocols.
-**MANDATE:** "zorg dat je dit echt nooit meer doet"
-**POLICY:** ZERO TOLERANCE - NO EXCEPTIONS - NO EXCUSES
+**UPDATED (2026-01-13):** Claude operates in TWO modes - Feature Development vs Active Debugging
 
-**BEFORE YOU DO ANYTHING:** Read C:\scripts\_machine\reflection.log.md § 2026-01-08 02:00
+**CRITICAL:** Read `C:\scripts\dual-mode-workflow.md` for complete decision tree
+
+**Quick Decision:**
+- User proposes NEW feature/change → 🏗️ **Feature Development Mode** (USE WORKTREES - this document applies)
+- User posts build errors / "I'm debugging" → 🐛 **Active Debugging Mode** (WORK IN C:\Projects\<repo> directly)
+
+**This document (worktree-workflow.md) applies ONLY to Feature Development Mode.**
+
+**For Active Debugging Mode:** See `C:\scripts\dual-mode-workflow.md` § Active Debugging Mode
 
 ---
 
-## ⚠️ CRITICAL: PRE-FLIGHT CHECKLIST BEFORE ANY CODE EDIT ⚠️
+## 🚨🚨🚨 ZERO-TOLERANCE ENFORCEMENT - FEATURE DEVELOPMENT MODE 🚨🚨🚨
 
-**🚨 HARD STOP! Before using Edit or Write tools on ANY code file, you MUST allocate a worktree! 🚨**
+**USER ESCALATION (2026-01-08):** Previous sessions violated workflow despite protocols.
+**MANDATE:** "zorg dat je dit echt nooit meer doet"
+**POLICY:** ZERO TOLERANCE - NO EXCEPTIONS - NO EXCUSES (in Feature Development Mode)
+
+**BEFORE YOU DO ANYTHING:**
+1. Determine mode: Feature Development or Active Debugging? (See dual-mode-workflow.md)
+2. If Feature Development Mode: Read C:\scripts\_machine\reflection.log.md § 2026-01-08 02:00
+
+---
+
+## ⚠️ CRITICAL: PRE-FLIGHT CHECKLIST BEFORE ANY CODE EDIT (FEATURE DEVELOPMENT MODE) ⚠️
+
+**🚨 HARD STOP! This checklist applies ONLY to Feature Development Mode! 🚨**
+**🚨 If user is debugging/posting errors, see Active Debugging Mode in dual-mode-workflow.md! 🚨**
+
+**🚨 In Feature Development Mode: Before using Edit or Write tools on ANY code file, you MUST allocate a worktree! 🚨**
 **🚨 VIOLATION = CRITICAL FAILURE - User has mandated zero tolerance! 🚨**
 
 ### The Problem
@@ -135,22 +156,27 @@ When multiple agents run in parallel, they MUST NOT share the same worktree. Eac
 **Full protocol: C:\scripts\_machine\worktrees.protocol.md**
 
 
-## Worktree-only rule
+## 🏗️ Feature Development Mode - Worktree-only rule
 
-**Standard workflow:**
+**APPLIES TO:** Feature Development Mode only (new features, refactoring, architectural changes)
+
+**Standard workflow (Feature Development Mode):**
 - All code edits occur in: C:\Projects\worker-agents\agent-XXX\<repo>\
 - C:\Projects\<repo> is for read/debug/test only
+- ALWAYS allocate worktree before editing code
 
-**Exception - When user posts build errors (2026-01-11):**
-- User posting compilation errors means they are debugging in C:\Projects\<repo>
-- You are ALLOWED to work directly in C:\Projects\<repo> to fix build errors
-- The git branch in C:\Projects\<repo> does NOT need to be reset to develop
-- Work on the feature branch directly in C:\Projects\<repo> when fixing build errors
+**🐛 Active Debugging Mode - Direct editing allowed:**
+- User posting compilation errors → Active Debugging Mode
+- User says "I'm working on branch X" → Active Debugging Mode
+- User debugging in Visual Studio → Active Debugging Mode
+- Work directly in C:\Projects\<repo> on user's current branch
+- NO worktree allocation needed
+- See `C:\scripts\dual-mode-workflow.md` for complete rules
 
-**Branch strategy update (2026-01-11):**
-- New feature branches can now be branched from **develop** instead of main
-- develop → feature/* (correct)
-- main → feature/* (old pattern, no longer required)
+**Branch strategy:**
+- New feature branches branch from **develop** (not main)
+- develop → agent-XXX-feature-name (correct)
+- main → feature/* (old pattern, deprecated)
 
 use the browser mcp server for debugging of frontend applications.
 

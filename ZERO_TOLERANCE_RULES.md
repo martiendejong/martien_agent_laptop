@@ -1,12 +1,27 @@
 # 🚨 ZERO-TOLERANCE RULES - QUICK REFERENCE 🚨
 
-**EFFECTIVE:** 2026-01-08
+**EFFECTIVE:** 2026-01-13 (Updated with Dual-Mode Workflow)
 **USER MANDATE:** "zorg dat je dit echt nooit meer doet"
 **VIOLATIONS:** CRITICAL FAILURE - NO EXCEPTIONS
 
 ---
 
-## THE 4 HARD STOP RULES
+## 🎯 DUAL-MODE WORKFLOW - CRITICAL CONTEXT
+
+**NEW (2026-01-13):** Claude operates in TWO modes:
+
+1. **🏗️ FEATURE DEVELOPMENT MODE** - New features → Use worktrees (strict rules apply)
+2. **🐛 ACTIVE DEBUGGING MODE** - User debugging → Work in C:\Projects\<repo> (rules relaxed)
+
+**DECISION TREE:**
+- User proposes NEW feature/change → 🏗️ Feature Development Mode
+- User posts build errors / "I'm working on branch X" → 🐛 Active Debugging Mode
+
+**FULL DETAILS:** `C:\scripts\dual-mode-workflow.md`
+
+---
+
+## THE 4 HARD STOP RULES (Feature Development Mode)
 
 ### ✋ RULE 1: ALLOCATE WORKTREE BEFORE CODE EDIT
 ```
@@ -37,24 +52,35 @@ AFTER creating PR (gh pr create):
 ❌ Presenting PR before releasing worktree = VIOLATION
 ```
 
-### ✋ RULE 3: NEVER EDIT IN C:\Projects\<repo>
+### ✋ RULE 3: NEVER EDIT IN C:\Projects\<repo> (Feature Development Mode)
 ```
+🏗️ FEATURE DEVELOPMENT MODE:
 ✅ ALLOWED: Read C:\Projects\<repo>\**\*
 ❌ FORBIDDEN: Edit C:\Projects\<repo>\**\*
 ✅ REQUIRED: Edit C:\Projects\worker-agents\agent-XXX\<repo>\**\*
 
-❌ VIOLATION = CRITICAL FAILURE
+🐛 ACTIVE DEBUGGING MODE (Exception):
+✅ ALLOWED: Edit C:\Projects\<repo>\**\* on user's current branch
+❌ FORBIDDEN: Switching branches, creating PRs, allocating worktrees
+
+❌ VIOLATION = Editing C:\Projects\<repo> in Feature Development Mode
 ```
 
-### ✋ RULE 3B: C:\Projects\<repo> STAYS ON DEVELOP
+### ✋ RULE 3B: C:\Projects\<repo> STAYS ON DEVELOP (Feature Development Mode)
 ```
+🏗️ FEATURE DEVELOPMENT MODE:
 BEFORE allocating worktree:
 □ Check: git -C C:\Projects\<repo> branch --show-current
 □ If NOT develop: git checkout develop && git pull
 □ C:\Projects\<repo> = BASE for all worktrees
 □ NEVER checkout feature branches in C:\Projects\<repo>
 
-❌ VIOLATION = CRITICAL FAILURE
+🐛 ACTIVE DEBUGGING MODE (Exception):
+□ User is on their working branch (e.g., feature/X)
+□ DO NOT switch branches
+□ Work on whatever branch user currently has checked out
+
+❌ VIOLATION = Switching branches away from develop in Feature Development Mode
 ```
 
 ### ✋ RULE 4: SCRIPTS FOLDER = LAW
@@ -69,17 +95,45 @@ ALWAYS read and follow:
 
 ---
 
-## PRE-FLIGHT CHECKLIST (Print mentally)
+## 🚦 MODE DETECTION CHECKLIST (FIRST STEP - Print mentally)
 
-**BEFORE EVERY CODE EDIT:**
+**BEFORE ANYTHING ELSE - Determine the mode:**
 ```
-□ Am I about to edit code?
+□ Did user post build errors or error output?
+□ Did user say "I'm working on branch X" or "I'm debugging"?
+□ Is user providing context about their CURRENT active work?
+□ Is this a quick fix to code user is actively developing?
+
+IF ANY ☐ = YES → 🐛 ACTIVE DEBUGGING MODE (skip worktree allocation)
+IF ALL ☐ = NO → 🏗️ FEATURE DEVELOPMENT MODE (strict rules apply)
+```
+
+---
+
+## PRE-FLIGHT CHECKLIST - FEATURE DEVELOPMENT MODE
+
+**BEFORE EVERY CODE EDIT (Feature Development Mode only):**
+```
+□ Am I in Feature Development Mode? (not Active Debugging)
 □ Have I read worktrees.pool.md?
 □ Have I marked a seat BUSY?
 □ Am I editing in agent-XXX worktree? (NOT C:\Projects\<repo>)
 □ Do I know which worktree I'm using?
 
 IF ANY ☐ = NO → STOP! ALLOCATE FIRST!
+```
+
+## PRE-FLIGHT CHECKLIST - ACTIVE DEBUGGING MODE
+
+**WHEN USER IS DEBUGGING (Active Debugging Mode only):**
+```
+□ Am I in Active Debugging Mode? (user posted errors/working on branch)
+□ Have I checked user's current branch? (git branch --show-current)
+□ Am I working in C:\Projects\<repo>? (NOT worktree)
+□ Am I preserving user's branch state? (NOT switching branches)
+□ Am I making quick fixes without creating PRs?
+
+IF ANY ☐ = NO → VERIFY MODE OR SWITCH TO FEATURE DEVELOPMENT MODE!
 ```
 
 ---
@@ -100,19 +154,31 @@ IF ANY ☐ = NO → DON'T PRESENT PR YET! RELEASE FIRST!
 
 ---
 
-## SUCCESS = ALL OF:
+## SUCCESS - FEATURE DEVELOPMENT MODE:
 - ✅ All edits in worktrees (ZERO in C:\Projects\<repo>)
 - ✅ Changes committed and pushed
 - ✅ PR visible on GitHub
 - ✅ Worktree released (FREE)
 - ✅ Activity log complete (allocate → release)
+- ✅ Base repos back on develop branch
+
+## SUCCESS - ACTIVE DEBUGGING MODE:
+- ✅ User's build errors resolved
+- ✅ Edits made in C:\Projects\<repo> on user's current branch
+- ✅ Branch state preserved (NOT switched)
+- ✅ NO worktree allocated
+- ✅ NO PR created automatically
+- ✅ Fast turnaround time
 
 ## FAILURE = ANY OF:
-- ❌ Edited in C:\Projects\<repo> directly
-- ❌ No commit at session end
-- ❌ No push to remote
-- ❌ No PR created
-- ❌ Worktree still BUSY
+- ❌ Edited in C:\Projects\<repo> in FEATURE DEVELOPMENT MODE
+- ❌ Allocated worktree in ACTIVE DEBUGGING MODE
+- ❌ Switched user's branch in ACTIVE DEBUGGING MODE
+- ❌ No commit at end of FEATURE DEVELOPMENT session
+- ❌ No push to remote in FEATURE DEVELOPMENT session
+- ❌ No PR created in FEATURE DEVELOPMENT session
+- ❌ Worktree still BUSY after PR creation
+- ❌ Created PR in ACTIVE DEBUGGING MODE (unless user explicitly requested)
 
 ---
 

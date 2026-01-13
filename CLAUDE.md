@@ -12,7 +12,8 @@ This documentation has been split into focused, manageable files for better clar
 
 ### 🚨 **Critical - Read First**
 1. **[ZERO_TOLERANCE_RULES.md](./ZERO_TOLERANCE_RULES.md)** - Quick reference for hard-stop rules
-2. **[worktree-workflow.md](./worktree-workflow.md)** - Worktree allocation, zero-tolerance enforcement, release protocol
+2. **[dual-mode-workflow.md](./dual-mode-workflow.md)** - **NEW (2026-01-13)** Feature Development vs Active Debugging mode decision tree
+3. **[worktree-workflow.md](./worktree-workflow.md)** - Worktree allocation, zero-tolerance enforcement, release protocol (Feature Development Mode)
 
 ### 🔄 **Core Workflows**
 3. **[continuous-improvement.md](./continuous-improvement.md)** - Self-learning protocols, end-of-task updates, session recovery
@@ -144,15 +145,27 @@ C:\scripts\.claude\skills\
 
 ### Every Session Start - MANDATORY:
 1. ✅ **Read** `ZERO_TOLERANCE_RULES.md` - Know the hard-stop rules
-2. ✅ **Run** `C:/scripts/tools/repo-dashboard.sh` - Check environment state
-3. ✅ **Verify** base repos on `develop` branch (C:\Projects\client-manager, C:\Projects\hazina)
-4. ✅ **Check** `worktrees.pool.md` - Available agent seats
+2. ✅ **Read** `dual-mode-workflow.md` - Understand Feature Development vs Active Debugging modes
+3. ✅ **Run** `C:/scripts/tools/repo-dashboard.sh` - Check environment state
+4. ✅ **Verify** base repos on `develop` branch (C:\Projects\client-manager, C:\Projects\hazina)
+5. ✅ **Check** `worktrees.pool.md` - Available agent seats
 
-### Before ANY Code Edit:
+### Before ANY Code Edit - Determine Mode:
+1. 🚦 **Mode Detection** - See `dual-mode-workflow.md` decision tree
+   - User proposes NEW feature → 🏗️ **Feature Development Mode**
+   - User posts errors / debugging → 🐛 **Active Debugging Mode**
+
+### Feature Development Mode (new features, refactoring):
 1. ✅ **Allocate worktree** - See `worktree-workflow.md` § Atomic Allocation
 2. ✅ **Mark seat BUSY** - Update `worktrees.pool.md`
 3. ✅ **Work in** `C:\Projects\worker-agents\agent-XXX\<repo>\`
 4. ❌ **NEVER edit** `C:\Projects\<repo>\` directly
+
+### Active Debugging Mode (user debugging, build errors):
+1. ✅ **Check user's current branch** - `git branch --show-current`
+2. ✅ **Work in** `C:\Projects\<repo>\` on user's current branch
+3. ❌ **DO NOT** allocate worktree
+4. ❌ **DO NOT** switch branches
 
 ### After Creating PR:
 1. ✅ **Release worktree** - See `worktree-workflow.md` § Release Protocol
@@ -171,7 +184,9 @@ C:\scripts\.claude\skills\
 
 | Task | See Documentation | Auto-Discoverable Skill |
 |------|-------------------|------------------------|
-| Allocate worktree for code editing | `worktree-workflow.md` § Atomic Allocation | ✅ `allocate-worktree` |
+| **DECIDE: Feature Development vs Active Debugging** | **`dual-mode-workflow.md`** | - |
+| Allocate worktree for code editing (Feature Mode) | `worktree-workflow.md` § Atomic Allocation | ✅ `allocate-worktree` |
+| Work directly in C:\Projects\<repo> (Debug Mode) | `dual-mode-workflow.md` § Active Debugging Mode | - |
 | Release worktree after PR | `worktree-workflow.md` § Release Protocol | ✅ `release-worktree` |
 | Check worktree pool status | `worktree-workflow.md` § Pool Management | ✅ `worktree-status` |
 | Detect multi-agent conflicts | `_machine/MULTI_AGENT_CONFLICT_DETECTION.md` | ✅ `multi-agent-conflict` |
@@ -195,10 +210,21 @@ C:\scripts\.claude\skills\
 ## 🎯 Success Criteria
 
 **You are operating correctly ONLY IF:**
+
+### Feature Development Mode:
 - ✅ All code edits happen in allocated worktrees (ZERO in C:\Projects\<repo>)
-- ✅ Base repos (C:\Projects\<repo>) always on `develop` branch
+- ✅ Base repos (C:\Projects\<repo>) always on `develop` branch after PR
 - ✅ Worktree pool accurately reflects BUSY/FREE status
 - ✅ Every PR has corresponding notification in HTML dashboard
+- ✅ Worktree released IMMEDIATELY after PR creation
+
+### Active Debugging Mode:
+- ✅ Code edits made directly in C:\Projects\<repo> on user's current branch
+- ✅ Branch state preserved (NOT switched to develop)
+- ✅ NO worktree allocated
+- ✅ Fast turnaround for user's debugging session
+
+### Both Modes:
 - ✅ Every mistake is logged in reflection.log.md with corrective action
 - ✅ Window colors reflect actual state (BLUE=working, GREEN=done, RED=blocked, BLACK=idle)
 - ✅ Every session ends with committed documentation updates
