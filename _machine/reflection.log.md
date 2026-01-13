@@ -4,6 +4,277 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-13 01:00 [SESSION] - Document Metadata Display in Fullscreen Viewers (PR #125)
+
+**Session Type:** Frontend feature implementation (React/TypeScript)
+**Context:** User requested tags and descriptions be visible when clicking on documents/images in both documents list and chat views
+**Outcome:** ✅ SUCCESS - Clean implementation with zero TypeScript errors, user preferences applied, complete zero-tolerance compliance
+**PR:** #125 (https://github.com/martiendejong/client-manager/pull/125)
+
+### Key Accomplishments
+
+**Implementation Overview:**
+1. Added metadata overlay to fullscreen image viewers (ImageViewer + FileAttachment)
+2. Extended type definitions to support tags and descriptions throughout component tree
+3. Updated data plumbing in DocumentsList and MessageItem to pass metadata
+4. Zero backend changes required (data already available from ContextualFileTaggingService)
+
+**Files Modified:**
+- `ClientManagerFrontend/src/types/Message.tsx` - Extended Attachment type
+- `ClientManagerFrontend/src/components/view/ImageViewer.tsx` - Added metadata overlay
+- `ClientManagerFrontend/src/components/view/analysis/FileAttachment.tsx` - Enhanced fullscreen
+- `ClientManagerFrontend/src/components/containers/DocumentsList.tsx` - Metadata passing
+- `ClientManagerFrontend/src/components/containers/MessageItem.tsx` - Attachment data
+
+**Verification:**
+- ✅ Frontend build: ZERO TypeScript errors
+- ✅ Worktree allocated and released properly (agent-004)
+- ✅ User preferences applied (always visible, all tags, explicit "no description" message)
+- ✅ PR created with comprehensive documentation
+
+### Critical Patterns Discovered
+
+#### Pattern 58: User Preference Collection in Plan Mode
+
+**Problem:** Feature implementation choices can go multiple ways - need to align with user expectations upfront to avoid rework.
+
+**Solution:** Use AskUserQuestion during plan mode to gather UI/UX preferences BEFORE implementing.
+
+**When to use:**
+- Feature has multiple valid design approaches
+- UI behavior can be "always on", "toggleable", or "auto-hide"
+- Display limits are unclear (show all vs. show first N)
+- Missing data handling needs decision ("hide" vs. "show placeholder")
+
+**How to implement:**
+```typescript
+// During plan mode exploration
+AskUserQuestion({
+  questions: [
+    {
+      question: "Should the metadata overlay be always visible or toggleable?",
+      header: "Overlay Display",
+      multiSelect: false,
+      options: [
+        { label: "Always visible", description: "Simple and clear" },
+        { label: "Toggleable with 'i' key", description: "Cleaner view" },
+        { label: "Auto-hide after 3s", description: "Balance of both" }
+      ]
+    }
+  ]
+})
+```
+
+**Benefits:**
+- ✅ Avoids implementing wrong solution
+- ✅ User feels consulted and involved
+- ✅ Clear requirements before coding starts
+- ✅ Documents design decisions in plan file
+
+**Key insight:** 3-5 minutes of user questions saves hours of rework.
+
+---
+
+#### Pattern 59: Metadata Overlay UI Pattern for Fullscreen Media
+
+**Problem:** Need to display contextual information (tags, descriptions, metadata) over fullscreen images without obscuring content.
+
+**Solution:** Bottom-anchored gradient overlay with proper z-index and pointer-events management.
+
+**Component structure:**
+```tsx
+<div className="fixed inset-0 bg-black/90 flex items-center justify-center">
+  <button onClick={onClose} className="absolute top-4 right-4">
+    <X className="w-6 h-6" />
+  </button>
+
+  <img src={src} alt={alt} className="max-w-full max-h-full" />
+
+  {/* Metadata Overlay */}
+  {hasMetadata && (
+    <div
+      className="absolute bottom-0 left-0 right-0 p-4 pointer-events-none"
+      style={{
+        background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 70%, transparent 100%)'
+      }}
+    >
+      <div className="max-w-4xl mx-auto space-y-2 pointer-events-auto">
+        {/* Tags */}
+        {tags?.length > 0 && (
+          <div className="flex gap-1.5 flex-wrap">
+            {tags.map((tag, idx) => (
+              <span key={idx} className="px-2.5 py-1 rounded-md text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Description */}
+        <p className="text-sm text-white/90">{description || "No description available"}</p>
+      </div>
+    </div>
+  )}
+</div>
+```
+
+**Key techniques:**
+- `pointer-events-none` on overlay container (allows clicking through)
+- `pointer-events-auto` on content (enables interactions with metadata)
+- Gradient overlay (doesn't obscure image)
+- Responsive max-width container (looks good on all screens)
+- Consistent styling with existing tag badges
+
+**Styling pattern:**
+```css
+background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 70%, transparent 100%)
+```
+
+**When to use:**
+- Fullscreen image viewers
+- Video players with metadata
+- Gallery views with captions
+- Any fullscreen media needing contextual info
+
+**Success criteria:**
+✅ Overlay doesn't obscure primary content
+✅ Text remains readable (proper contrast)
+✅ Works in dark and light modes
+✅ Responsive on mobile and desktop
+✅ Keyboard accessible (ESC to close)
+
+---
+
+#### Pattern 60: Type-First Development for TypeScript Projects
+
+**Problem:** Adding new data fields across component tree requires updates in multiple places - easy to miss locations and get TypeScript errors.
+
+**Solution:** Update type definitions FIRST, then let TypeScript compiler guide implementation.
+
+**Step-by-step approach:**
+
+**1. Update core type definitions:**
+```typescript
+// types/Message.tsx
+export type Attachment = {
+  fileName: string
+  fileUrl: string
+  mimeType: string
+  // Add new fields here FIRST
+  tags?: string[]        // ← New
+  description?: string   // ← New
+}
+```
+
+**2. Update component prop interfaces:**
+```typescript
+// components/ImageViewer.tsx
+interface ImageViewerProps {
+  src: string
+  alt: string
+  onClose: () => void
+  tags?: string[]        // ← New
+  description?: string   // ← New
+}
+```
+
+**3. Update component implementations:**
+```typescript
+// Destructure new props
+function ImageViewer({ src, alt, onClose, tags, description }: ImageViewerProps) {
+  // Use the new fields
+  {tags && <TagDisplay tags={tags} />}
+  {description && <Description text={description} />}
+}
+```
+
+**4. Update data plumbing:**
+```typescript
+// Pass new fields through component tree
+const imageData = {
+  filename: att.fileName,
+  fileUrl: att.fileUrl,
+  // Include new fields
+  tags: att.tags,
+  description: att.description
+}
+```
+
+**5. Run build to verify:**
+```bash
+npm run build
+# TypeScript will show any missed locations
+```
+
+**Benefits:**
+- ✅ TypeScript compiler finds ALL locations needing updates
+- ✅ No missed props or undefined errors
+- ✅ Type safety throughout component tree
+- ✅ Refactoring is safer and faster
+
+**Key insight:** Update types BEFORE implementation - compiler becomes your checklist.
+
+**Detection of success:**
+```bash
+npm run build
+# Output: ✓ 3433 modules transformed
+# Zero TypeScript errors = all locations updated
+```
+
+---
+
+### Session Execution Quality
+
+**Zero-Tolerance Compliance:**
+- ✅ Read ZERO_TOLERANCE_RULES.md at session start
+- ✅ Allocated agent-004 worktree before any code edits
+- ✅ All edits in `C:/Projects/worker-agents/agent-004/client-manager/`
+- ✅ Zero edits in `C:/Projects/client-manager/` (base repo)
+- ✅ Committed, pushed, and created PR
+- ✅ Released worktree (marked FREE in pool)
+- ✅ Logged allocation and release in activity.md
+- ✅ Switched base repo back to develop
+- ✅ Pruned worktrees
+
+**Plan Mode Execution:**
+- ✅ Launched Explore agent to understand current implementation
+- ✅ Used AskUserQuestion to gather UI/UX preferences
+- ✅ Documented plan in plan file before implementation
+- ✅ User approved plan before coding started
+
+**Implementation Quality:**
+- ✅ Type definitions updated first
+- ✅ Build verified after all changes (zero errors)
+- ✅ No backend changes required (verified data availability)
+- ✅ Consistent styling with existing components
+- ✅ Responsive design considerations applied
+
+### Lessons for Future Sessions
+
+**DO:**
+- ✅ Use AskUserQuestion in plan mode for UI/UX decisions
+- ✅ Update TypeScript type definitions BEFORE implementation
+- ✅ Verify backend data availability before planning frontend changes
+- ✅ Apply user preferences explicitly in code and documentation
+- ✅ Build after all changes to catch TypeScript errors
+- ✅ Follow complete worktree protocol (allocate → work → PR → release)
+
+**DON'T:**
+- ❌ Assume UI/UX preferences - always ask when multiple approaches exist
+- ❌ Start implementation before types are updated
+- ❌ Skip build verification ("it should work")
+- ❌ Present PR before releasing worktree (CRITICAL VIOLATION)
+
+**Key insight:**
+> User preference collection during plan mode + type-first development = zero rework, clean implementation, happy user.
+
+**Pattern numbers assigned:**
+- Pattern 58: User Preference Collection in Plan Mode
+- Pattern 59: Metadata Overlay UI Pattern for Fullscreen Media
+- Pattern 60: Type-First Development for TypeScript Projects
+
+---
+
 ## 2026-01-12 [SESSION] - Art Revisionist Enhanced Image Management (PR #25)
 
 **Session Type:** Full-stack feature implementation (Backend C# + Frontend React/TypeScript)
