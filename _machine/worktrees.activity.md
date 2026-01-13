@@ -353,3 +353,5 @@ Actions:
 2026-01-13T06:15:00Z — allocate — agent-002 — client-manager — fix/prompts-frontend-display — PROMPTS-UI-FIX — claude-code — Investigating why prompts aren't displaying in frontend UI after Phase 2 integration
 2026-01-13T12:30:00Z — release — agent-002 — client-manager — agent-002-fix-signalr-image — — claude-code — Fixed SignalR image deduplication, FileAttachment now renders (PR #129)
 2026-01-14T02:30:00Z — release — agent-001 — client-manager — agent-001-select-document-extraction — — claude-code — Completed: Select from uploaded docs for header/footer extraction (PR #136 created)
+2026-01-14T10:00:00Z — allocate — agent-001 — client-manager+hazina — agent-001-social-post-generator — — claude-code — Social Media Post Generator: 12 post ideas, platform-adapted generation, image suggestions
+2026-01-14T11:30:00Z — release — agent-001 — client-manager+hazina — agent-001-social-post-generator — #137 — claude-code — Post Ideas Generator: 12 ideas, platform-adapted posts, image suggestions
