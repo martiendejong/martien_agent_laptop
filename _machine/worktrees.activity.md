@@ -341,3 +341,4 @@ Actions:
 2026-01-12T23:45:00Z — allocate — agent-002 — client-manager — feature/configurable-prompts-system — — claude-code — Migrating all client-manager prompts to configurable store-based system (50+ prompts)
 2026-01-13T00:15:00Z — allocate — agent-004 — client-manager — feature/document-metadata-display — — claude-code — Display document tags and descriptions in fullscreen image/document viewers
 2026-01-13T01:00:00Z — release — agent-004 — client-manager — feature/document-metadata-display — — claude-code — PR #125 created: Display document tags and descriptions in fullscreen viewers
+2026-01-13T01:30:00Z — release — agent-002 — client-manager+hazina — feature/configurable-prompts-system — — claude-code — Completed: Configurable prompts system Phase 1 infrastructure (PromptService, metadata models, 7 API endpoints, 15 prompts migrated, metadata.json, categories.json). PR #124→develop (client-manager). Commits: Multiple (see PR)
