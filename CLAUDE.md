@@ -198,6 +198,7 @@ C:\scripts\.claude\skills\
 | **LOAD: Machine configuration** | **`MACHINE_CONFIG.md`** (paths, projects) | - |
 | **DECIDE: Feature Development vs Active Debugging** | **`GENERAL_DUAL_MODE_WORKFLOW.md`** | - |
 | Allocate worktree for code editing (Feature Mode) | `GENERAL_WORKTREE_PROTOCOL.md` § Atomic Allocation | ✅ `allocate-worktree` |
+| **Allocate paired worktrees (client-manager + Hazina)** | **`worktree-workflow.md` § Pattern 73** | ✅ `allocate-worktree` |
 | Work directly in base repo (Debug Mode) | `GENERAL_DUAL_MODE_WORKFLOW.md` § Active Debugging Mode | - |
 | Release worktree after PR | `worktree-workflow.md` § Release Protocol | ✅ `release-worktree` |
 | Check worktree pool status | `worktree-workflow.md` § Pool Management | ✅ `worktree-status` |
