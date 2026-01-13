@@ -4,6 +4,147 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-13 15:00 [SESSION] - React Virtuoso + Image Rendering Bug (Critical Pattern Discovery)
+
+**Session Type:** Deep debugging of React rendering issue
+**Context:** SignalR-delivered images not rendering in chat despite all logic appearing correct
+**Outcome:** ✅ SUCCESS after 5 PRs - Images now render correctly via FileAttachment
+**PRs:** #127 (SignalR delivery), #129 (dedup fix), #130 (debug logging), #131 (more logging), #132 (Map fix), #133 (useMemo fix)
+
+### The Problem
+
+Generated images from DALL-E were being delivered via SignalR to the frontend but **never rendered**:
+- SignalR event `ReceiveGeneratedImage` was firing correctly
+- Message was being added to the messages array
+- Console showed "About to render FileAttachment" with valid `Comp` variable
+- But `FileAttachment.tsx` component function was **never called** (breakpoint at line 40 never triggered)
+
+### Root Cause Discovery
+
+**The bug had THREE layers:**
+
+1. **Layer 1: Duplicate image URLs across messages**
+   - Backend was sending image via SignalR AND sometimes in LLM streaming response
+   - `seenImageUrls` Set was skipping "duplicate" URLs
+   - Fix: Pre-compute SignalR URLs and give them priority (PR #129)
+
+2. **Layer 2: Virtuoso calls itemContent multiple times**
+   - React-Virtuoso virtualizing list calls `itemContent` callback multiple times per message
+   - First call: URL added to `seenImageUrls`, image renders
+   - Second call: URL already in Set → **SKIPPED as duplicate!**
+   - Fix attempt: Changed Set to Map<url, messageId> to track ownership (PR #132) - **DIDN'T WORK**
+
+3. **Layer 3: Mutating state during render**
+   - Even with Map, the mutation `seenImageUrls.set()` happened during render
+   - React's rendering model doesn't guarantee when itemContent callbacks execute
+   - Different Virtuoso passes could see different Map states
+   - **THE REAL FIX:** Use `useMemo` to pre-compute ownership ONCE per messages change (PR #133)
+
+### Critical Pattern 70: Never Mutate During React Render
+
+**Problem:** Code that mutates a shared data structure during React component render will behave unpredictably, especially with:
+- Virtual lists (Virtuoso, react-window, react-virtual)
+- React StrictMode (renders twice in dev)
+- React Concurrent Mode
+- Any component that re-renders frequently
+
+**Anti-Pattern:**
+```typescript
+// BAD: Mutating during render
+const seenUrls = new Map<string, string>()
+
+const renderItem = (item) => {
+  if (seenUrls.has(item.url)) return null  // UNPREDICTABLE!
+  seenUrls.set(item.url, item.id)          // MUTATION DURING RENDER
+  return <Component url={item.url} />
+}
+```
+
+**Correct Pattern:**
+```typescript
+// GOOD: Pre-compute with useMemo, no mutation
+const urlOwnership = useMemo(() => {
+  const ownership = new Map<string, string>()
+  items.forEach(item => {
+    if (!ownership.has(item.url)) {
+      ownership.set(item.url, item.id)  // Safe: happens once per items change
+    }
+  })
+  return ownership
+}, [items])
+
+const renderItem = (item) => {
+  const owner = urlOwnership.get(item.url)
+  if (owner !== item.id) return null  // Stable: same answer every call
+  return <Component url={item.url} />
+}
+```
+
+### Critical Pattern 71: Debugging "Component Never Called" Issues
+
+**Symptoms:**
+- React DevTools shows component in tree
+- Console logs show "about to render Component"
+- But component function body never executes (breakpoints don't trigger)
+
+**Debugging Checklist:**
+1. ✅ Is JSX being returned? (Add console.log before return statement)
+2. ✅ Is parent element mounted? (Check DOM)
+3. ✅ Is React catching an error? (Check error boundaries)
+4. ✅ Is virtualizing list not rendering item? (Virtuoso, react-window)
+5. ✅ Are there multiple render passes with different state?
+6. ✅ **Is state being mutated during render?** ← THE GOTCHA
+
+**Key Insight:** If a component "about to render" log appears but component never executes, suspect **state mutation during render** causing different outcomes on different render passes.
+
+### Critical Pattern 72: Virtuoso itemContent Called Multiple Times
+
+**React-Virtuoso behavior:**
+- `itemContent` callback is called multiple times per item
+- Purposes: measurement, actual render, re-render on scroll
+- All calls happen within same React render cycle
+- **Any mutation in itemContent affects subsequent calls!**
+
+**Safe practices for Virtuoso:**
+1. Never mutate shared state in `itemContent`
+2. Pre-compute all derived data in `useMemo`
+3. Use stable references (useCallback for handlers)
+4. Treat `itemContent` as a pure function
+
+### Debugging Journey Timeline
+
+| Time | Action | Result |
+|------|--------|--------|
+| Start | 50-expert analysis suggested restart VS | Didn't help |
+| +30min | Found zero-tolerance violation in base repo | Salvaged code to worktree |
+| +45min | Created PR #127 for SignalR delivery | SignalR events received |
+| +1hr | Fixed stale closure with setMessagesRef | Events adding messages |
+| +1.5hr | Added debug logging (PR #130, #131) | Saw "About to render" but no component call |
+| +2hr | Changed Set to Map (PR #132) | Still broken - same symptoms |
+| +2.5hr | **Key insight:** saw "(duplicate)" in logs with Map code = stale code? | Hard refresh didn't help |
+| +3hr | Realized mutation during render is the issue | Pre-computed with useMemo |
+| +3.5hr | PR #133 with useMemo fix | ✅ **WORKING!** |
+
+### Lessons Learned
+
+1. **Virtual lists have non-obvious render behavior** - itemContent may run many times
+2. **React render should be pure** - No mutations, no side effects
+3. **useMemo is for stable computed values** - Perfect for deduplication logic
+4. **Debug logs that show "old" messages mean stale code** - Always verify deployed code
+5. **Complex bugs have multiple layers** - First fix may expose the real issue
+6. **Add logging incrementally** - Each layer of logging revealed the next problem
+
+### Files Modified
+
+- `MessagesPane.tsx` - Image URL ownership now computed via useMemo
+- `FileAttachment.tsx` - Added component entry logging (debug)
+- `ChatWindow.tsx` - SignalR ReceiveGeneratedImage handler with setMessagesRef fix
+
+### Tags
+#react #virtuoso #useMemo #render-mutation #debugging #signalr #image-rendering
+
+---
+
 ## 2026-01-13 14:00 [SESSION] - Web Scraping as LLM Tool (Hazina Framework Enhancement)
 
 **Session Type:** LLM tool integration (C#/Hazina Framework)
