@@ -182,21 +182,44 @@ git -C C:/Projects/worker-agents/agent-XXX/hazina branch --show-current
 - Conflict detection: `C:/scripts/_machine/MULTI_AGENT_CONFLICT_DETECTION.md`
 - Pool status: `C:/scripts/_machine/worktrees.pool.md`
 
-## Example: Complete Allocation
+## Example: Complete Allocation (client-manager with Hazina)
 
 ```bash
-# 1. Conflict check
+# 1. Conflict check (BOTH repos)
 bash C:/scripts/tools/check-branch-conflicts.sh client-manager agent-001-new-feature
+bash C:/scripts/tools/check-branch-conflicts.sh hazina agent-001-new-feature
 
-# 2. If no conflicts, proceed
+# 2. Ensure base repos on develop
+git -C C:/Projects/client-manager checkout develop && git pull origin develop
+git -C C:/Projects/hazina checkout develop && git pull origin develop
+
+# 3. Create BOTH worktrees (same branch name)
 cd C:/Projects/client-manager
 git worktree add C:/Projects/worker-agents/agent-001/client-manager -b agent-001-new-feature
 
-# 3. Update tracking files (pool.md, activity.md, instances.map.md)
+cd C:/Projects/hazina
+git worktree add C:/Projects/worker-agents/agent-001/hazina -b agent-001-new-feature
 
-# 4. Verify
+# 4. Update tracking files
+# - pool.md: Mark agent-001 BUSY
+# - activity.md: Log allocation (mention both repos)
+# - instances.map.md: Add entry
+
+# 5. Verify both worktrees exist
 ls C:/Projects/worker-agents/agent-001/client-manager/
+ls C:/Projects/worker-agents/agent-001/hazina/
+
+# 6. Verify same branch name in both
 git -C C:/Projects/worker-agents/agent-001/client-manager branch --show-current
+# Output: agent-001-new-feature
+
+git -C C:/Projects/worker-agents/agent-001/hazina branch --show-current
+# Output: agent-001-new-feature (SAME!)
+
+# 7. Build verification (Pattern 71)
+cd C:/Projects/worker-agents/agent-001/client-manager
+dotnet build --configuration Release
+# Must succeed with 0 errors
 ```
 
 ## Troubleshooting
