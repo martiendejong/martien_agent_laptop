@@ -141,10 +141,23 @@ git -C C:/Projects/worker-agents/agent-XXX/<repo> branch --show-current
 - No conflicts detected (checked with conflict detection script)
 - Seat marked BUSY in pool.md
 - Worktree directory exists at `C:/Projects/worker-agents/agent-XXX/<repo>/`
-- Branch created and checked out in worktree
+- **For client-manager:** BOTH worktrees created (client-manager + hazina, same branch name)
+- Branch created and checked out in worktree(s)
 - Allocation logged in activity.md
 - Entry added to instances.map.md
-- Base repo still on develop branch
+- Base repo(s) still on develop branch
+
+**Verification for client-manager:**
+```bash
+# Check both worktrees exist
+ls C:/Projects/worker-agents/agent-XXX/client-manager
+ls C:/Projects/worker-agents/agent-XXX/hazina
+
+# Verify same branch name in both
+git -C C:/Projects/worker-agents/agent-XXX/client-manager branch --show-current
+git -C C:/Projects/worker-agents/agent-XXX/hazina branch --show-current
+# Must match: agent-XXX-<same-feature-name>
+```
 
 ## Critical Rules
 
