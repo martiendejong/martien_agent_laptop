@@ -4,6 +4,48 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-14 [BUG FIX] - Configuration Double Indirection Causes API Key Resolution Failure
+
+**Pattern Type:** Configuration Management Bug
+**Context:** Post Ideas Generator returning HTTP 401 "invalid_api_key" error with masked key `configur************************iKey`
+**Root Cause:** Double indirection in configuration path not being resolved
+**Outcome:** ✅ Fixed by using direct configuration path
+
+### Critical Pattern 78: Avoid Configuration Reference Chains
+
+**Problem:**
+```
+model-routing.config.json:
+  "apiKeySource": "configuration:OpenAI:ApiKey"
+
+appsettings.json:
+  "OpenAI": {
+    "ApiKey": "configuration:ApiSettings:OpenApiKey"  // ← WRONG: Reference, not value!
+  }
+```
+
+The `ResolveConfigValue()` in `ModelRouter.cs` only resolves ONE level of `configuration:` prefix. When it reads `OpenAI:ApiKey`, it gets the literal string `"configuration:ApiSettings:OpenApiKey"` which is then used as the API key!
+
+**Error symptom:** `configur************************iKey` in error message (masked placeholder string being used as key)
+
+**Solution:** Point directly to the final configuration path:
+```
+model-routing.config.json:
+  "apiKeySource": "configuration:ApiSettings:OpenApiKey"  // ← Direct path to actual key
+```
+
+**Diagnostic clue:** When API key error shows a masked string starting with `configur`, it's likely an unresolved `configuration:` reference being used as the literal key value.
+
+**Prevention:**
+1. Never chain `configuration:` references (A → B → actual value)
+2. All `apiKeySource` settings must point directly to leaf values containing actual keys
+3. Validate config resolution at startup by logging masked key prefixes
+4. Document which config paths contain actual values vs references
+
+**Files affected:** `ClientManagerAPI/Configuration/model-routing.config.json` line 368
+
+---
+
 ## 2026-01-14 [BEST PRACTICE] - Ask Clarifying Questions Before Feature Development
 
 **Pattern Type:** Process Improvement - Requirements Gathering
