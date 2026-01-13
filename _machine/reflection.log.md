@@ -4,6 +4,57 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-13 16:00 [BUG FIX] - Background Task Overwriting AI-Generated Metadata
+
+**Pattern Type:** Race Condition - Background Task Overwriting Data
+**Context:** Image upload generates AI description, but description was lost after background text extraction
+**Outcome:** ✅ SUCCESS - Fixed in Hazina PR #73
+**Mode:** 🐛 Active Debugging Mode (user debugging on feature branch)
+
+### Critical Pattern 76: Background Tasks Must Preserve All Metadata
+
+**Symptom:** AI-generated image descriptions were saved during upload but then became `null` in `uploadedFiles.json`.
+
+**Investigation Path:**
+1. Logs showed description being generated (21 chars)
+2. Logs showed metadata update with description
+3. But `uploadedFiles.json` had `"Description": null`
+4. Tags WERE preserved correctly → pointed to separate code path
+
+**Root Cause:** `LegacySyncService.SyncDocumentMetadata` (Hazina)
+
+The background task `ExtractTextInBackground` runs AFTER upload completes. It calls `SyncDocumentMetadata` which:
+- ✅ Preserved Tags
+- ❌ Did NOT preserve Description
+
+**Timeline:**
+1. Upload → AI generates Description → saves to JSON ✓
+2. Background task starts (fire-and-forget via `Task.Run`)
+3. Background calls `SyncDocumentMetadata`
+4. Creates NEW UploadedFile object (Description = null)
+5. Saves to JSON → overwrites Description ✗
+
+**The Fix:**
+```csharp
+// Before: Only preserved tags
+var existingTags = existingFile?.Tags ?? new List<string>();
+
+// After: Preserve both tags AND description  
+var existingTags = existingFile?.Tags ?? new List<string>();
+var existingDescription = existingFile?.Description;
+// ... create uploadedFile ...
+uploadedFile.Description = existingDescription;
+```
+
+### Key Lessons
+
+1. **When adding new model fields, audit ALL code paths that write to storage** - especially background tasks
+2. **If one field persists but another doesn't, look for partial update code** - Tags vs Description discrepancy pointed to SyncDocumentMetadata
+3. **Background tasks should READ-MODIFY-WRITE, not CREATE-WRITE**
+4. **Search pattern:** `grep -r "uploadedFiles.json" --include="*.cs"` to find all write paths
+
+---
+
 ## 2026-01-14 01:00 [FEATURE IMPLEMENTATION] - Hazina Search API Complete Integration
 
 **Pattern Type:** Feature Development - Framework Integration
