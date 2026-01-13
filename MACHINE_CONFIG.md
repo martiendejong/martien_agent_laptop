@@ -73,6 +73,33 @@ MACHINE_CONTEXT_PATH=C:\scripts\_machine
 
 ---
 
+## 🔗 Paired Worktree Allocation (Pattern 73)
+
+**CRITICAL FOR THIS MACHINE:** client-manager depends on Hazina framework.
+
+**When allocating worktree for client-manager, MUST ALSO allocate Hazina worktree:**
+```bash
+# Allocate BOTH in same agent folder with SAME branch name
+cd C:/Projects/client-manager
+git worktree add C:/Projects/worker-agents/agent-001/client-manager -b agent-001-feature
+
+cd C:/Projects/hazina
+git worktree add C:/Projects/worker-agents/agent-001/hazina -b agent-001-feature
+```
+
+**Result:**
+```
+C:\Projects\worker-agents\agent-001\
+├── client-manager\    ← Branch: agent-001-feature
+└── hazina\            ← Branch: agent-001-feature (SAME!)
+```
+
+**Why:** Build verification and tests require both repos present.
+
+**See:** `worktree-workflow.md` § Pattern 73 for complete details
+
+---
+
 ## 🔧 Tool Paths
 
 ### Git

@@ -4,6 +4,162 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-13 22:00 [CRITICAL PATTERN 73] - Paired Worktree Allocation for Dependent Projects
+
+**Pattern Type:** Worktree Management - Dependency Handling
+**Context:** client-manager depends on Hazina framework
+**Insight:** When working on projects with dependencies, allocate worktrees for BOTH projects in the same agent folder
+
+### The Problem
+
+**Previous approach:**
+- Allocate worktree only for primary project (e.g., client-manager)
+- Hazina remains in C:\Projects\hazina on develop branch
+- Result: Cannot build whole project or run QA tests with both in sync
+
+**Build failures:**
+```
+Build failed: Cannot find Hazina assemblies
+Tests failed: Hazina version mismatch
+Runtime errors: Incompatible API changes between repos
+```
+
+### The Solution: Paired Worktree Allocation
+
+**MANDATORY for client-manager (and any project with framework dependencies):**
+
+When allocating worktree for client-manager, ALSO allocate Hazina worktree in the SAME agent folder.
+
+```bash
+# Allocate client-manager worktree
+cd C:/Projects/client-manager
+git worktree add C:/Projects/worker-agents/agent-001/client-manager -b agent-001-feature-name
+
+# ALSO allocate Hazina worktree (SAME branch name!)
+cd C:/Projects/hazina
+git worktree add C:/Projects/worker-agents/agent-001/hazina -b agent-001-feature-name
+```
+
+**Result:**
+```
+C:\Projects\worker-agents\agent-001\
+├── client-manager\    ← Branch: agent-001-feature-name
+└── hazina\            ← Branch: agent-001-feature-name (same!)
+```
+
+### Why This Matters
+
+1. **Build verification:**
+   - client-manager references Hazina assemblies
+   - Both must be on same branch for successful build
+   - `dotnet build --configuration Release` runs against BOTH
+
+2. **QA tests:**
+   - Integration tests may depend on Hazina behavior
+   - Tests run against both repos in agent folder
+   - Ensures compatibility between changes
+
+3. **Cross-repo changes:**
+   - Some features require changes in BOTH repos
+   - Example: New Hazina API → client-manager consumes it
+   - Both changes tested together before PR
+
+4. **Atomic testing:**
+   - Changes are tested as a unit
+   - No "works on my machine" due to version mismatch
+   - CI/CD will test the same combination
+
+### When to Apply
+
+**✅ ALWAYS for client-manager:**
+- client-manager depends on Hazina
+- EVERY client-manager worktree needs paired Hazina worktree
+- Even if you're not changing Hazina, allocate it for build/test
+
+**✅ For other dependent projects:**
+- artrevisionist (if it depends on Hazina)
+- Any new project that references framework code
+
+**❌ NOT needed for:**
+- Standalone projects with no dependencies
+- Documentation-only changes
+- Changes to scripts in C:\scripts
+
+### Updated Workflow (Feature Development Mode)
+
+**Before (incomplete):**
+```bash
+# Allocate worktree
+cd C:/Projects/client-manager
+git worktree add C:/Projects/worker-agents/agent-001/client-manager -b agent-001-feature
+
+# Work on code
+cd C:/Projects/worker-agents/agent-001/client-manager
+# ... make changes ...
+
+# Try to build (FAILS!)
+dotnet build --configuration Release
+# Error: Cannot find Hazina assemblies
+```
+
+**After (correct):**
+```bash
+# Allocate BOTH worktrees
+cd C:/Projects/client-manager
+git worktree add C:/Projects/worker-agents/agent-001/client-manager -b agent-001-feature
+
+cd C:/Projects/hazina
+git worktree add C:/Projects/worker-agents/agent-001/hazina -b agent-001-feature
+
+# Work on code
+cd C:/Projects/worker-agents/agent-001/client-manager
+# ... make changes ...
+
+# Build succeeds with both in sync
+dotnet build --configuration Release
+# Success: 0 errors
+
+# Run QA tests
+dotnet test --configuration Release
+# Tests pass with correct Hazina version
+```
+
+### Integration with Existing Patterns
+
+**Combines with:**
+- **Pattern 71:** Mandatory build + QA verification (requires both worktrees for build to succeed)
+- **Pattern 52:** Merge develop before PR (merge in BOTH repos)
+- **Worktree Release Protocol:** Release BOTH worktrees after PR
+
+**Updated Release Protocol:**
+```bash
+# After creating PR, release BOTH worktrees
+rm -rf C:/Projects/worker-agents/agent-001/client-manager
+rm -rf C:/Projects/worker-agents/agent-001/hazina
+
+# Switch BOTH base repos to develop
+git -C C:/Projects/client-manager checkout develop
+git -C C:/Projects/hazina checkout develop
+
+# Prune BOTH repos
+git -C C:/Projects/client-manager worktree prune
+git -C C:/Projects/hazina worktree prune
+```
+
+### Key Takeaways
+
+1. **client-manager = ALWAYS paired with Hazina worktree**
+2. **Same branch name in both repos** (agent-001-feature-name)
+3. **Build and test in agent folder** with both worktrees present
+4. **Release BOTH worktrees** after PR creation
+5. **Critical Pattern 71 (build verification) depends on this pattern**
+
+**User mandate:** "update in your rules that whenever your work on a project in a worktree that uses hazina as well that you also make a worktree of hazina in the same worker agent folder so that you can build the whole project and run the qa tests when you are done with the code changes"
+
+**Status:** Documented and mandatory from 2026-01-13 forward
+
+---
+
 ## 2026-01-13 17:30 [QUICK FIX] - Active Debugging Mode: Build Errors on feature/document-metadata-display
 
 **Session Type:** Active Debugging Mode (user-reported build errors)

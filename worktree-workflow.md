@@ -180,16 +180,173 @@ When multiple agents run in parallel, they MUST NOT share the same worktree. Eac
 
 use the browser mcp server for debugging of frontend applications.
 
-projects: 
+projects:
 
 client-manager / brand2boost:
-promotion and brand development saas software that 
+promotion and brand development saas software that
 code frontend and api code: c:\projects\client-manager
 hazina framework: c:\projects\hazine
 store config + data: c:\stores\brand2boost
 admin user: wreckingball pw: Th1s1sSp4rt4!
 
 do not run the client manager frontend or backend yourself from the command like, let me do it from visual studio and in my npm.
+
+
+## 🔗 CRITICAL: Paired Worktree Allocation for Dependent Projects (Pattern 73)
+
+**EFFECTIVE:** 2026-01-13
+**APPLIES TO:** client-manager, artrevisionist, and any project that depends on Hazina
+
+### The Rule
+
+**When allocating worktree for client-manager, you MUST ALSO allocate Hazina worktree in the SAME agent folder.**
+
+### Why This is Mandatory
+
+1. **Build verification requires both:**
+   - client-manager references Hazina assemblies
+   - `dotnet build --configuration Release` needs both repos on same branch
+   - Pattern 71 (mandatory build verification) depends on this
+
+2. **QA tests require both:**
+   - Integration tests may depend on Hazina behavior
+   - Tests run against both repos in agent folder
+   - Ensures compatibility before PR
+
+3. **Cross-repo changes:**
+   - Some features require changes in BOTH repos
+   - Example: New Hazina API → client-manager consumes it
+   - Both tested together atomically
+
+### Allocation Process
+
+```bash
+# Step 1: Allocate client-manager worktree
+cd C:/Projects/client-manager
+git worktree add C:/Projects/worker-agents/agent-001/client-manager -b agent-001-feature-name
+
+# Step 2: IMMEDIATELY allocate Hazina worktree (SAME branch name!)
+cd C:/Projects/hazina
+git worktree add C:/Projects/worker-agents/agent-001/hazina -b agent-001-feature-name
+```
+
+**Result:**
+```
+C:\Projects\worker-agents\agent-001\
+├── client-manager\    ← Branch: agent-001-feature-name
+└── hazina\            ← Branch: agent-001-feature-name (SAME!)
+```
+
+### Critical Points
+
+**✅ ALWAYS:**
+- Use SAME branch name for both repos (agent-001-feature-name)
+- Allocate BOTH worktrees in SAME agent folder
+- Build/test from agent folder with both present
+- Release BOTH worktrees after PR
+
+**❌ NEVER:**
+- Allocate only client-manager worktree without Hazina
+- Use different branch names for the two repos
+- Skip Hazina worktree "because I'm not changing Hazina"
+  - You still need it for build/test to work!
+
+### Updated Release Protocol
+
+```bash
+# After creating PR(s), release BOTH worktrees
+rm -rf C:/Projects/worker-agents/agent-001/client-manager
+rm -rf C:/Projects/worker-agents/agent-001/hazina
+
+# Switch BOTH base repos to develop
+git -C C:/Projects/client-manager checkout develop
+git -C C:/Projects/hazina checkout develop
+
+# Pull latest in BOTH repos
+git -C C:/Projects/client-manager pull origin develop
+git -C C:/Projects/hazina pull origin develop
+
+# Prune BOTH repos
+git -C C:/Projects/client-manager worktree prune
+git -C C:/Projects/hazina worktree prune
+```
+
+### When NOT Needed
+
+**Skip paired allocation for:**
+- ❌ Standalone projects (no dependencies)
+- ❌ Documentation-only changes in C:\scripts
+- ❌ Active Debugging Mode (user already has environment set up)
+
+**ONLY skip if you're CERTAIN the project doesn't reference Hazina assemblies.**
+
+### Example: Complete Workflow with Paired Worktrees
+
+```bash
+# 1. Conflict check (BOTH repos)
+bash C:/scripts/tools/check-branch-conflicts.sh client-manager agent-001-feature
+bash C:/scripts/tools/check-branch-conflicts.sh hazina agent-001-feature
+
+# 2. Ensure base repos on develop
+git -C C:/Projects/client-manager checkout develop && git pull origin develop
+git -C C:/Projects/hazina checkout develop && git pull origin develop
+
+# 3. Allocate BOTH worktrees (same branch name)
+cd C:/Projects/client-manager
+git worktree add C:/Projects/worker-agents/agent-001/client-manager -b agent-001-feature
+
+cd C:/Projects/hazina
+git worktree add C:/Projects/worker-agents/agent-001/hazina -b agent-001-feature
+
+# 4. Update tracking files (mark pool BUSY, log allocation)
+
+# 5. Work on code in agent folder
+cd C:/Projects/worker-agents/agent-001/client-manager
+# ... make changes ...
+
+# 6. Build verification (Pattern 71 - MANDATORY)
+cd C:/Projects/worker-agents/agent-001/client-manager
+dotnet build --configuration Release
+# Must show: 0 Error(s)
+
+# 7. Run QA tests
+dotnet test --configuration Release
+
+# 8. Commit and push (BOTH repos if changes in both)
+git add -A && git commit -m "Feature: ..."
+git push -u origin agent-001-feature
+
+# If Hazina also changed:
+cd C:/Projects/worker-agents/agent-001/hazina
+git add -A && git commit -m "Feature: ..."
+git push -u origin agent-001-feature
+
+# 9. Create PR(s)
+gh pr create --base develop --title "..." --body "..."
+
+# 10. Release BOTH worktrees (IMMEDIATELY after PR creation)
+rm -rf C:/Projects/worker-agents/agent-001/*
+# ... update pool.md, activity.md, commit tracking ...
+git -C C:/Projects/client-manager checkout develop
+git -C C:/Projects/hazina checkout develop
+git -C C:/Projects/client-manager worktree prune
+git -C C:/Projects/hazina worktree prune
+
+# 11. THEN present PR to user
+```
+
+### Cross-Repo PR Dependencies
+
+**If you change BOTH repos:**
+- Create separate PRs (one for Hazina, one for client-manager)
+- Add DEPENDENCY ALERT in client-manager PR body
+- Document in `C:\scripts\_machine\pr-dependencies.md`
+- See: `C:\scripts\git-workflow.md` § Cross-Repo Dependencies
+
+**See also:**
+- Pattern 73: Paired Worktree Allocation (reflection.log.md § 2026-01-13 22:00)
+- Pattern 71: Mandatory Build + QA Verification
+- allocate-worktree Skill: `.claude/skills/allocate-worktree/SKILL.md`
 
 
 ## 🚨 MANDATORY: WORKTREE RELEASE PROTOCOL

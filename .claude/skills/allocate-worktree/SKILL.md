@@ -68,21 +68,45 @@ Edit `C:/scripts/_machine/worktrees.pool.md`:
 - Set Branch name
 - Update Last activity timestamp
 
-### Step 2: Create Worktree
+### Step 2: Create Worktree(s)
+
+**🚨 CRITICAL (Pattern 73): For client-manager, ALWAYS create paired Hazina worktree! 🚨**
+
+**Reason:** client-manager depends on Hazina assemblies. Build and QA tests require BOTH repos in sync.
 
 ```bash
-# For client-manager
+# For client-manager (ALWAYS paired with Hazina)
 cd C:/Projects/client-manager
 git worktree add C:/Projects/worker-agents/agent-XXX/client-manager -b <branch-name>
 
-# For hazina
+# IMMEDIATELY also create Hazina worktree (SAME branch name!)
 cd C:/Projects/hazina
 git worktree add C:/Projects/worker-agents/agent-XXX/hazina -b <branch-name>
+```
+
+**Result:**
+```
+C:\Projects\worker-agents\agent-XXX\
+├── client-manager\    ← Branch: agent-XXX-feature-name
+└── hazina\            ← Branch: agent-XXX-feature-name (SAME!)
+```
+
+**For standalone projects (no Hazina dependency):**
+```bash
+# Example: artrevisionist (if standalone)
+cd C:/Projects/artrevisionist
+git worktree add C:/Projects/worker-agents/agent-XXX/artrevisionist -b <branch-name>
 ```
 
 **Branch naming convention:**
 - Feature: `agent-XXX-<feature-name>`
 - Fix: `agent-XXX-<fix-name>`
+
+**Why paired worktrees matter:**
+- ✅ Build succeeds: `dotnet build --configuration Release`
+- ✅ Tests run correctly: `dotnet test --configuration Release`
+- ✅ Compatibility verified before PR
+- ❌ Without Hazina worktree: Build fails with assembly errors
 
 ### Step 3: Log Allocation
 

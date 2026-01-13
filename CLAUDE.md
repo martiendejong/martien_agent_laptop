@@ -1,6 +1,6 @@
 # Claude Agent - Main Documentation Index
 
-**Before starting, read:** `C:\scripts\ZERO_TOLERANCE_RULES.md`
+**Before starting, read:** `C:\scripts\MACHINE_CONFIG.md` then `C:\scripts\GENERAL_ZERO_TOLERANCE_RULES.md`
 
 You are a self-improving agent started by `c:\scripts\claude_agent.bat`. During execution, you will self-reflect and learn from your actions. You will update your own mechanisms to improve effectiveness. Update files in the `c:\scripts` folder carefully and thoughtfully.
 
@@ -8,12 +8,21 @@ You are a self-improving agent started by `c:\scripts\claude_agent.bat`. During 
 
 ## 📁 Documentation Structure
 
-This documentation has been split into focused, manageable files for better clarity:
+**NEW (2026-01-13):** Documentation is now split into **PORTABLE** (general rules) and **MACHINE-SPECIFIC** (local configuration) files.
 
-### 🚨 **Critical - Read First**
-1. **[ZERO_TOLERANCE_RULES.md](./ZERO_TOLERANCE_RULES.md)** - Quick reference for hard-stop rules
-2. **[dual-mode-workflow.md](./dual-mode-workflow.md)** - **NEW (2026-01-13)** Feature Development vs Active Debugging mode decision tree
-3. **[worktree-workflow.md](./worktree-workflow.md)** - Worktree allocation, zero-tolerance enforcement, release protocol (Feature Development Mode)
+### 🌍 **PORTABLE - General Rules** (Copy to Plugin)
+Files prefixed with `GENERAL_*` can be copied to Claude Code plugin settings:
+1. **[GENERAL_ZERO_TOLERANCE_RULES.md](./GENERAL_ZERO_TOLERANCE_RULES.md)** - Critical rules (uses variables)
+2. **[GENERAL_DUAL_MODE_WORKFLOW.md](./GENERAL_DUAL_MODE_WORKFLOW.md)** - Feature Development vs Active Debugging (portable)
+3. **[GENERAL_WORKTREE_PROTOCOL.md](./GENERAL_WORKTREE_PROTOCOL.md)** - Complete worktree workflow (portable)
+4. **[PORTABILITY_GUIDE.md](./PORTABILITY_GUIDE.md)** - How to adapt for your machine
+
+### 💻 **MACHINE-SPECIFIC - This Machine Only**
+Local configuration and hardcoded paths:
+1. **[MACHINE_CONFIG.md](./MACHINE_CONFIG.md)** - **READ FIRST** - Paths, projects, local setup
+2. **[ZERO_TOLERANCE_RULES.md](./ZERO_TOLERANCE_RULES.md)** - (Legacy, uses hardcoded paths)
+3. **[dual-mode-workflow.md](./dual-mode-workflow.md)** - (Legacy, uses hardcoded paths)
+4. **[worktree-workflow.md](./worktree-workflow.md)** - (Legacy, uses hardcoded paths)
 
 ### 🔄 **Core Workflows**
 3. **[continuous-improvement.md](./continuous-improvement.md)** - Self-learning protocols, end-of-task updates, session recovery
@@ -144,11 +153,12 @@ C:\scripts\.claude\skills\
 ## 🚀 Quick Start Guide
 
 ### Every Session Start - MANDATORY:
-1. ✅ **Read** `ZERO_TOLERANCE_RULES.md` - Know the hard-stop rules
-2. ✅ **Read** `dual-mode-workflow.md` - Understand Feature Development vs Active Debugging modes
-3. ✅ **Run** `C:/scripts/tools/repo-dashboard.sh` - Check environment state
-4. ✅ **Verify** base repos on `develop` branch (C:\Projects\client-manager, C:\Projects\hazina)
-5. ✅ **Check** `worktrees.pool.md` - Available agent seats
+1. ✅ **Read** `MACHINE_CONFIG.md` - Load local paths and projects
+2. ✅ **Read** `GENERAL_ZERO_TOLERANCE_RULES.md` - Know the hard-stop rules
+3. ✅ **Read** `GENERAL_DUAL_MODE_WORKFLOW.md` - Understand Feature Development vs Active Debugging modes
+4. ✅ **Run** `C:/scripts/tools/repo-dashboard.sh` - Check environment state
+5. ✅ **Verify** base repos on `develop` branch (see MACHINE_CONFIG.md for paths)
+6. ✅ **Check** `worktrees.pool.md` - Available agent seats
 
 ### Before ANY Code Edit - Determine Mode:
 1. 🚦 **Mode Detection** - See `dual-mode-workflow.md` decision tree
@@ -184,9 +194,11 @@ C:\scripts\.claude\skills\
 
 | Task | See Documentation | Auto-Discoverable Skill |
 |------|-------------------|------------------------|
-| **DECIDE: Feature Development vs Active Debugging** | **`dual-mode-workflow.md`** | - |
-| Allocate worktree for code editing (Feature Mode) | `worktree-workflow.md` § Atomic Allocation | ✅ `allocate-worktree` |
-| Work directly in C:\Projects\<repo> (Debug Mode) | `dual-mode-workflow.md` § Active Debugging Mode | - |
+| **SET UP: First time setup** | **`PORTABILITY_GUIDE.md`** (if copying to plugin) | - |
+| **LOAD: Machine configuration** | **`MACHINE_CONFIG.md`** (paths, projects) | - |
+| **DECIDE: Feature Development vs Active Debugging** | **`GENERAL_DUAL_MODE_WORKFLOW.md`** | - |
+| Allocate worktree for code editing (Feature Mode) | `GENERAL_WORKTREE_PROTOCOL.md` § Atomic Allocation | ✅ `allocate-worktree` |
+| Work directly in base repo (Debug Mode) | `GENERAL_DUAL_MODE_WORKFLOW.md` § Active Debugging Mode | - |
 | Release worktree after PR | `worktree-workflow.md` § Release Protocol | ✅ `release-worktree` |
 | Check worktree pool status | `worktree-workflow.md` § Pool Management | ✅ `worktree-status` |
 | Detect multi-agent conflicts | `_machine/MULTI_AGENT_CONFLICT_DETECTION.md` | ✅ `multi-agent-conflict` |
