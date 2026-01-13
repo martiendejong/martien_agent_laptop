@@ -4,6 +4,98 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-13 [DEPLOYMENT] - ArtRevisionist & Brand2Boost Production Deployment Learnings
+
+**Pattern Type:** Deployment Troubleshooting
+**Context:** Deploying both applications to VPS with multiple configuration and build issues
+**Outcome:** ✅ Both apps deployed after resolving DI, package, and config issues
+
+### Critical Pattern 79: dotnet publish Caches Build Outputs
+
+**Problem:** After editing `Program.cs` to fix DI lifetime issues, `dotnet publish` reported success but didn't update the DLL - msdeploy showed "0 changes".
+
+**Root Cause:** dotnet's incremental build detected no changes because:
+1. The fix was made in a previous session before context loss
+2. The build system uses file timestamps, not content hashes
+3. If source is "unchanged" since last build, outputs are reused
+
+**Solution:**
+```powershell
+# Clean bin/obj folders to force full recompile
+Remove-Item -Recurse -Force 'ArtRevisionistAPI\bin' -ErrorAction SilentlyContinue
+Remove-Item -Recurse -Force 'ArtRevisionistAPI\obj' -ErrorAction SilentlyContinue
+dotnet publish -c Release
+```
+
+**Diagnostic clue:** When msdeploy shows "Total changes: 0" but you expect updates, check DLL timestamps with:
+```powershell
+Get-ChildItem 'dist\backend\*.dll' | Sort-Object LastWriteTime -Descending | Select-Object -First 5
+```
+
+### Critical Pattern 80: DI Lifetime Cascade - Singleton Cannot Consume Scoped
+
+**Problem:** `Cannot consume scoped service 'IHazinaAIService' from singleton 'IFactValidationService'`
+
+**Root Cause:** When a Scoped service (IHazinaAIService) is injected into a Singleton, the Singleton would hold a reference to a single Scoped instance forever, breaking the Scoped lifetime contract.
+
+**Solution:** Change all services in the dependency chain to Scoped:
+```csharp
+// These ALL needed to change from AddSingleton to AddScoped:
+builder.Services.AddScoped<IPagesGenerationService, PagesGenerationService>();
+builder.Services.AddScoped<IPagesContentExpansionService, PagesContentExpansionService>();
+builder.Services.AddScoped<IFactValidationService, LLMFactValidationService>();
+builder.Services.AddScoped<ResponseValidationWrapper>();
+builder.Services.AddScoped<ITopicSpecificPromptService, GenericPromptService>();
+```
+
+**Key insight:** If ANY service in a dependency chain is Scoped, ALL services that depend on it (directly or transitively) must also be Scoped or Transient.
+
+### Critical Pattern 81: Configuration Key Naming Inconsistency
+
+**Problem:** `InvalidOperationException: Projects:path not configured`
+
+**Root Cause:** Code expected `Projects:path` but appsettings.json had `ProjectSettings:ProjectsFolder` - inconsistent naming conventions between services.
+
+**Solution:** Add the expected configuration key:
+```json
+{
+  "Projects": {
+    "path": "c:\\stores\\artrevisionist\\data"
+  }
+}
+```
+
+**Prevention:** When creating production config files, search the codebase for all configuration key references:
+```powershell
+grep -r 'configuration\[' --include='*.cs' | grep -v '/bin/' | grep -v '/obj/'
+```
+
+### Critical Pattern 82: Package Version Conflicts in Multi-Project Solutions
+
+**Problem:** `NU1605: Detected package downgrade: Microsoft.Extensions.Http.Polly from 10.0.0 to 8.0.12`
+
+**Root Cause:** Hazina library (transitive dependency) required 10.0.0, but ArtRevisionistAPI had explicit pin to 8.0.12 for .NET 8 compatibility.
+
+**Solution:** Remove explicit version pin and let transitive dependency win:
+```xml
+<!-- Remove this line: -->
+<PackageReference Include="Microsoft.Extensions.Http.Polly" Version="8.0.12" />
+```
+
+**Key insight:** When Hazina is updated, its transitive dependencies may conflict with explicit pins in consuming projects. Let the library's requirements take precedence.
+
+### Deployment Scripts Reference
+
+**Brand2Boost:** Uses PowerShell scripts
+- `publish-brand2boost-backend.ps1` - Build + overlay env/prod config + msdeploy
+- `publish-brand2boost-frontend.ps1` - npm build + overlay env/prod config + msdeploy
+
+**ArtRevisionist:** Uses batch files
+- `release.bat` - Build only, copies to dist/
+- `deploy.bat` - 4-step msdeploy (config first with DoNotDeleteRule, then app with skip rules)
+
+---
+
 ## 2026-01-14 [BUG FIX] - Configuration Double Indirection Causes API Key Resolution Failure
 
 **Pattern Type:** Configuration Management Bug
