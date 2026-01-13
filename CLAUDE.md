@@ -36,6 +36,49 @@ Local configuration and hardcoded paths:
 7. **[ci-cd-troubleshooting.md](./ci-cd-troubleshooting.md)** - Frontend/backend CI issues, batch PR fixes, runtime errors
 8. **[development-patterns.md](./development-patterns.md)** - Feature implementation, migrations, architecture patterns
 
+### 🚀 **Bootstrap System** (NEW)
+9. **[bootstrap/README.md](./bootstrap/README.md)** - Automated environment setup
+10. **[bootstrap/bootstrap.ps1](./bootstrap/bootstrap.ps1)** - Main entry point
+
+---
+
+## 🔧 Bootstrap - Automated Environment Setup
+
+**NEW (2026-01-13):** This repository includes a fully automated bootstrap system for setting up the development environment on a new machine.
+
+### Quick Start (New Machine)
+
+```powershell
+# 1. Clone repository
+git clone https://github.com/yourname/claude-scripts.git C:\scripts
+
+# 2. Run bootstrap
+cd C:\scripts
+.\bootstrap\bootstrap.ps1
+
+# 3. Start Claude Agent
+.\claude_agent.bat
+```
+
+### What Bootstrap Does
+
+1. **Installs Dependencies** - Git, GitHub CLI, Node.js, Claude Code CLI
+2. **Creates Directories** - Project folders, worktree seats, machine context
+3. **Initializes State Files** - Worktree pool, activity log, reflection log
+4. **Verifies Environment** - Comprehensive validation of setup
+
+### Bootstrap Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `bootstrap.ps1` | Main orchestrator |
+| `install-dependencies.ps1` | Software via winget/chocolatey |
+| `setup-directories.ps1` | Directory structure |
+| `init-machine-state.ps1` | State file initialization |
+| `verify-environment.ps1` | Environment validation |
+
+See **[bootstrap/README.md](./bootstrap/README.md)** for complete documentation.
+
 ---
 
 ## 🗺️ Control Plane Structure
@@ -53,6 +96,7 @@ Local configuration and hardcoded paths:
 - **Status:** `C:\scripts\status`
 - **Tools:** `C:\scripts\tools` (Productivity tools - USE THESE!)
 - **Skills:** `C:\scripts\.claude\skills` (Auto-discoverable Claude Skills)
+- **Bootstrap:** `C:\scripts\bootstrap` (Environment setup scripts)
 
 ---
 
