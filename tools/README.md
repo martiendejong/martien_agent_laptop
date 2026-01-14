@@ -52,6 +52,58 @@ WARNING: 1 seats marked FREE but still have worktrees!
 - When debugging worktree conflicts
 - To find orphaned worktrees that need cleanup
 
+### worktree-release-all.ps1 / worktree-release-all.sh
+
+Commits all changes in worktrees and releases them to their resting branches.
+
+**Usage:**
+```powershell
+# Dry-run (preview what would happen)
+.\worktree-release-all.ps1 -DryRun
+
+# Release all worktrees with auto-commit
+.\worktree-release-all.ps1 -AutoCommit
+
+# Release specific seat only
+.\worktree-release-all.ps1 -Seats "agent-003"
+
+# Skip push to remote
+.\worktree-release-all.ps1 -AutoCommit -SkipPush
+
+# Or via bash
+./worktree-release-all.sh --dry-run
+./worktree-release-all.sh --auto
+./worktree-release-all.sh --seat agent-003
+```
+
+**What it does for each worktree:**
+1. Checks for uncommitted changes
+2. Commits with auto-generated message (or prompts for message)
+3. Pushes to remote
+4. Switches to resting branch (agent001, agent002, etc.)
+5. Updates worktrees.pool.md to mark seat as FREE
+
+**Example output:**
+```
+Processing agent-003
+====================
+  Repository: client-manager
+  Current branch: feature/restaurant-menu
+  Target branch: agent003
+  [OK] No uncommitted changes
+  -> Pushing to remote...
+  [OK] Pushed to remote
+  -> Switching to agent003...
+  [OK] Switched to agent003
+  -> Updating pool status...
+  [OK] Pool status updated to FREE
+```
+
+**When to use:**
+- End of work session (release all worktrees)
+- Before starting fresh work (clean slate)
+- After creating PRs (release back to resting state)
+
 ---
 
 ## Solution Integrity Tools

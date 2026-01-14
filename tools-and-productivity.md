@@ -31,6 +31,10 @@ This shows:
 - Dashboard shows agent pool status
 - If resource issues → Run `check-worktree-health.sh`
 
+**4. End of Session / After Creating PRs:**
+- Run `worktree-release-all.ps1 -AutoCommit` to release all worktrees
+- Or release specific seat: `worktree-release-all.ps1 -Seats "agent-003"`
+
 **4. Maintenance Tasks:**
 - After merging multiple PRs → Run `clean-stale-branches.sh`
 - Weekly → Run `check-worktree-health.sh`
@@ -50,7 +54,8 @@ See **C:\scripts\tools\README.md** for full documentation.
 2. **pr-status.sh** - All PRs at a glance (ROI 7.0)
 3. **repo-dashboard.sh** - Environment overview (ROI 4.5) ⭐ Use at startup
 4. **worktree-status.ps1** - Active worktrees & branches (ROI 7.0) ⭐ Use before allocation
-5. **check-worktree-health.sh** - Detect stale allocations (ROI 4.5)
+5. **worktree-release-all.ps1** - Release all worktrees to resting branch (ROI 7.0) ⭐ Use after PRs
+6. **check-worktree-health.sh** - Detect stale allocations (ROI 4.5)
 6. **install-hooks.sh** - Pre-commit checks (ROI 4.0)
 7. **find-todos.sh** - TODO/FIXME tracker (ROI 5.3)
 8. **sync-configs.sh** - Config file sync (ROI 4.0)
