@@ -30,14 +30,24 @@
 
 .EXAMPLE
     .\clickup-sync.ps1 -Action list
-    .\clickup-sync.ps1 -Action update -TaskId "86c45buz7" -Status "testen"
-    .\clickup-sync.ps1 -Action comment -TaskId "86c45buz7" -Comment "PR #149 created"
+    .\clickup-sync.ps1 -Action update -TaskId "869bhfw7r" -Status "busy"
+    .\clickup-sync.ps1 -Action comment -TaskId "869bhfw7r" -Comment "PR #149 created"
     .\clickup-sync.ps1 -Action create -Name "Fix login bug" -Description "Details here"
+
+.NOTES
+    Workflow:
+    - todo     : Task created
+    - busy     : Agent working, branch/PR created
+    - review   : PR merged, ready for acceptance test
+    - done     : Acceptance test passed (user sets this)
+
+    Branch naming: feature/<task-id>-<description>
+    Example: feature/869bhfw7r-restaurant-menu
 #>
 
 param(
     [Parameter(Mandatory=$true)]
-    [ValidateSet("list", "update", "create", "comment", "show")]
+    [ValidateSet("list", "update", "create", "comment", "show", "link-pr", "pr-merged")]
     [string]$Action,
 
     [string]$TaskId,
@@ -45,6 +55,8 @@ param(
     [string]$Comment,
     [string]$Name,
     [string]$Description,
+    [int]$PrNumber,
+    [string]$Repo = "martiendejong/client-manager",
     [string]$ListId = "901214097647"  # Default: Brand Designer list (client-manager)
 )
 
@@ -161,12 +173,61 @@ switch ($Action) {
         $body = @{
             name = $Name
             description = if ($Description) { $Description } else { "" }
-            status = "backlog"
+            status = "todo"
         } | ConvertTo-Json
 
         $task = Invoke-RestMethod -Method POST -Uri $url -Headers $headers -Body $body
         Write-Host "Task created: $($task.id)" -ForegroundColor Green
         Write-Host "Name: $($task.name)"
         Write-Host "URL: $($task.url)"
+    }
+
+    "link-pr" {
+        # Link a PR to a ClickUp task (when PR is created)
+        if (-not $TaskId) {
+            Write-Error "TaskId required for link-pr action"
+            exit 1
+        }
+        if (-not $PrNumber) {
+            Write-Error "PrNumber required for link-pr action"
+            exit 1
+        }
+
+        $prUrl = "https://github.com/$Repo/pull/$PrNumber"
+        $commentText = "🔗 GitHub PR #${PrNumber}: $prUrl"
+
+        $url = "$apiBase/task/$TaskId/comment"
+        $body = @{ comment_text = $commentText } | ConvertTo-Json
+
+        $result = Invoke-RestMethod -Method POST -Uri $url -Headers $headers -Body $body
+        Write-Host "PR #$PrNumber linked to task $TaskId" -ForegroundColor Green
+        Write-Host "Task URL: https://app.clickup.com/t/$TaskId"
+    }
+
+    "pr-merged" {
+        # Update task when PR is merged (set to review for acceptance test)
+        if (-not $TaskId) {
+            Write-Error "TaskId required for pr-merged action"
+            exit 1
+        }
+        if (-not $PrNumber) {
+            Write-Error "PrNumber required for pr-merged action"
+            exit 1
+        }
+
+        # Update status to review
+        $url = "$apiBase/task/$TaskId"
+        $body = @{ status = "review" } | ConvertTo-Json
+        $task = Invoke-RestMethod -Method PUT -Uri $url -Headers $headers -Body $body
+
+        # Add merge comment
+        $prUrl = "https://github.com/$Repo/pull/$PrNumber"
+        $commentText = "✅ PR #${PrNumber} merged: $prUrl`n`nReady for acceptance test."
+        $commentUrl = "$apiBase/task/$TaskId/comment"
+        $commentBody = @{ comment_text = $commentText } | ConvertTo-Json
+        Invoke-RestMethod -Method POST -Uri $commentUrl -Headers $headers -Body $commentBody | Out-Null
+
+        Write-Host "Task $TaskId updated to 'review' - ready for acceptance test" -ForegroundColor Green
+        Write-Host "Task URL: $($task.url)"
     }
 }
