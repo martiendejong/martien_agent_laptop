@@ -6546,3 +6546,45 @@ This helped trace that the issue was typography data being rendered as a React c
 2. **TypeScript `string` return type doesn't enforce runtime behavior** - objects can slip through
 3. **Search for `{data?.X}` patterns** in JSX - these are vulnerable if X could be an object
 4. **Error message contains the object keys** - use this to trace the data structure causing the issue
+
+---
+
+## 2026-01-14 [PROCESS] - Local Deployment Scripts, NOT GitHub Actions
+
+**Pattern Type:** Critical Process Correction
+**Context:** User reminded me to use local PowerShell deployment scripts
+**Outcome:** ✅ Learned correct deployment process
+
+### The Mistake
+
+I assumed GitHub Actions would handle deployment after pushing to `main`. When the Actions failed (due to billing issues), I didn't know the correct deployment method.
+
+### The Correct Process
+
+**ALWAYS use local PowerShell scripts for deployment:**
+
+```powershell
+# Frontend deployment
+powershell -ExecutionPolicy Bypass -File "C:/Projects/client-manager/publish-brand2boost-frontend.ps1"
+
+# Backend deployment  
+powershell -ExecutionPolicy Bypass -File "C:/Projects/client-manager/publish-brand2boost-backend.ps1"
+```
+
+### What the Scripts Do
+
+1. **Frontend (`publish-brand2boost-frontend.ps1`):**
+   - Runs `npm run build`
+   - Deploys via msdeploy to VPS (85.215.217.154)
+
+2. **Backend (`publish-brand2boost-backend.ps1`):**
+   - Runs `dotnet publish` (Release config)
+   - Deploys via msdeploy to VPS
+
+### Key Documentation
+
+Full deployment docs: `C:/scripts/ci-cd-troubleshooting.md` § PRODUCTION DEPLOYMENT
+
+### Rule
+
+**After merging to main, ALWAYS run the deployment scripts locally.** Do not rely on GitHub Actions for client-manager deployment.
