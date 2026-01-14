@@ -27,6 +27,7 @@ This shows:
 - "What coverage do we have?" → Run `coverage-report.sh`
 
 **3. Before Allocating Worktree:**
+- Run `worktree-status.ps1` to see active worktrees and branches
 - Dashboard shows agent pool status
 - If resource issues → Run `check-worktree-health.sh`
 
@@ -48,13 +49,14 @@ See **C:\scripts\tools\README.md** for full documentation.
 1. **clean-stale-branches.sh** - Delete merged branches (ROI 8.0)
 2. **pr-status.sh** - All PRs at a glance (ROI 7.0)
 3. **repo-dashboard.sh** - Environment overview (ROI 4.5) ⭐ Use at startup
-4. **check-worktree-health.sh** - Detect stale allocations (ROI 4.5)
-5. **install-hooks.sh** - Pre-commit checks (ROI 4.0)
-6. **find-todos.sh** - TODO/FIXME tracker (ROI 5.3)
-7. **sync-configs.sh** - Config file sync (ROI 4.0)
-8. **agent-activity.sh** - Agent status report (ROI 3.8)
-9. **coverage-report.sh** - Test coverage analysis (ROI 3.5)
-10. **generate-changelog.sh** - PR changelog (ROI 3.2)
+4. **worktree-status.ps1** - Active worktrees & branches (ROI 7.0) ⭐ Use before allocation
+5. **check-worktree-health.sh** - Detect stale allocations (ROI 4.5)
+6. **install-hooks.sh** - Pre-commit checks (ROI 4.0)
+7. **find-todos.sh** - TODO/FIXME tracker (ROI 5.3)
+8. **sync-configs.sh** - Config file sync (ROI 4.0)
+9. **agent-activity.sh** - Agent status report (ROI 3.8)
+10. **coverage-report.sh** - Test coverage analysis (ROI 3.5)
+11. **generate-changelog.sh** - PR changelog (ROI 3.2)
 
 **Testing Status:** Only repo-dashboard.sh fully tested. Test others as you use them.
 

@@ -1,6 +1,60 @@
-# Solution Integrity Tools
+# Agent Tools
 
 ## Overview
+
+Productivity tools for Claude agents and developers working on multi-repo projects.
+
+---
+
+## Worktree Management Tools
+
+### worktree-status.ps1 / worktree-status.sh
+
+Shows active git worktrees across all worker agent seats and compares with pool status.
+
+**Usage:**
+```powershell
+# Detailed view
+.\worktree-status.ps1
+
+# Compact table view
+.\worktree-status.ps1 -Compact
+
+# Or via bash
+./worktree-status.sh
+./worktree-status.sh -c
+```
+
+**Output includes:**
+- Active worktrees per agent seat
+- Branch names and commit hashes
+- Pool status comparison (BUSY/FREE/STALE)
+- Warnings for discrepancies (FREE but has worktrees)
+- Orphaned worktrees not in agent folders
+- Base repository status
+
+**Example output:**
+```
+agent-001 [BUSY]
+  - client-manager @ allitemslist (bbde2a5)
+  - hazina @ allitemslist (390a63d)
+
+agent-003 [FREE]
+  - client-manager @ feature/restaurant-menu (a8cd673)
+
+WARNING: 1 seats marked FREE but still have worktrees!
+  - agent-003
+```
+
+**When to use:**
+- Before allocating a worktree (check what's in use)
+- After releasing a worktree (verify cleanup)
+- When debugging worktree conflicts
+- To find orphaned worktrees that need cleanup
+
+---
+
+## Solution Integrity Tools
 
 Tools for detecting and fixing .NET solution file integrity issues - specifically when .csproj files exist on disk but are not included in the solution file.
 
