@@ -164,6 +164,9 @@ See **[bootstrap/README.md](./bootstrap/README.md)** for complete documentation.
 #### 🔌 Integrations
 - **`mcp-setup`** - Configure MCP servers for external integrations (Google Drive, GitHub, databases, APIs)
 
+#### 🔧 Meta
+- **`skill-creator`** - Create new Claude Skills with proper format, YAML frontmatter, and best practices
+
 ### How Skills Work
 
 1. **Discovery** - Claude loads skill names and descriptions at startup
@@ -196,6 +199,10 @@ You: "Document what we learned today"
 You: "Add Google Drive integration to Claude"
 → Claude activates: mcp-setup Skill
 → Guides OAuth setup, configures MCP server, sets environment variables
+
+You: "Create a skill for database migrations"
+→ Claude activates: skill-creator Skill
+→ Creates directory structure, SKILL.md with frontmatter, updates index
 ```
 
 ### Skill File Structure
@@ -220,7 +227,7 @@ C:\scripts\.claude\skills\
 - Auto-discovery would help future sessions
 - New agents would benefit from guided workflow
 
-**See:** `self-improvement` Skill for creation process
+**See:** `skill-creator` Skill for complete creation process and templates
 
 ---
 
