@@ -5134,3 +5134,289 @@ This session successfully implemented Phase 1 of the configurable prompts system
 **Impact:** Enables gradual migration of all hardcoded prompts to manageable, versionable, searchable configuration files.
 
 **Ready for:** User review of PR #124, then Phase 2 (frontend UI) or Phase 3 (service migration).
+
+---
+
+## 2026-01-14 [FEATURE IMPLEMENTATION] - Unified Activity List (All Items List)
+
+**Pattern Type:** Large Feature Implementation Strategy
+**Context:** User requested complete replacement of left sidebar with unified activity feed
+**Outcome:** ✅ Successfully implemented 25 features, ~5,000 lines, PR #149
+
+### Pattern 85: Breaking Large Features into Non-Breaking Sequential Features
+
+**Problem:** User requested a "big change" - completely replacing the sidebar with a new activity list showing all item types.
+
+**Solution Applied:**
+1. Created comprehensive planning document with 50-expert analysis
+2. Broke down into 25 sequential non-breaking features
+3. Implemented in 6 batches, each independently deployable
+4. Used feature flags for gradual rollout
+
+**Feature Breakdown Strategy:**
+```
+Foundation First (Types, Store, Service) → No UI impact
+Shared Utilities (Thumbnails, Metadata) → Reusable building blocks
+Core Components (Item, Card, List) → Internal, not connected
+Interactive Features (Expand, Compress) → Building on core
+Container Shell (Sidebar, Search, Filter) → Still not connected
+Integration (Feature Flags, Switcher) → Safe activation path
+```
+
+**Key Insight:** Each feature category was designed so that:
+- It compiles and runs independently
+- Existing code is never touched
+- New code is additive only
+- Feature flags control visibility
+
+### Pattern 86: Discriminated Union Types for Multi-Type Lists
+
+**Problem:** Activity list needs to display 9 different item types (documents, chats, analysis, gathered data, etc.) with type-specific metadata.
+
+**Solution:**
+```typescript
+// Base interface for common fields
+interface ActivityItemBase {
+  id: string;
+  type: ItemType;
+  title: string;
+  preview: string;
+  timestamp: Date;
+}
+
+// Type-specific extensions
+interface DocumentActivityItem extends ActivityItemBase {
+  type: 'document';  // Literal type for discrimination
+  metadata: {
+    fileName: string;
+    fileSize: number;
+    mimeType: string;
+  };
+}
+
+// Union type for type-safe handling
+type ActivityItemUnion =
+  | DocumentActivityItem
+  | ChatActivityItem
+  | AnalysisActivityItem
+  | ...;
+
+// Type guards auto-narrow in switch statements
+switch (item.type) {
+  case 'document':
+    // TypeScript knows item.metadata has fileName, fileSize, mimeType
+    break;
+}
+```
+
+**Key Insight:** Discriminated unions provide compile-time safety for heterogeneous lists while enabling type-specific rendering.
+
+### Pattern 87: Feature Flag System for Gradual Rollout
+
+**Problem:** Need to deploy new sidebar without breaking existing functionality, allow testing in production.
+
+**Solution:**
+```typescript
+// Feature flag provider with localStorage persistence
+export const ActivityFeatureFlagProvider = ({ children }) => {
+  const [flags, setFlags] = useState(() => loadFromLocalStorage());
+
+  // Toggle individual features
+  const toggle = (flag: ActivityFeatureFlag) => {
+    setFlags(prev => {
+      const next = { ...prev, [flag]: !prev[flag] };
+      saveToLocalStorage(next);
+      return next;
+    });
+  };
+
+  return <FeatureFlagContext.Provider value={{ flags, toggle, ... }}>
+    {children}
+  </FeatureFlagContext.Provider>;
+};
+
+// Conditional rendering
+export const SidebarSwitcher = ({ oldSidebar, newSidebar }) => {
+  const isEnabled = useActivityFeature('activity-sidebar');
+  return isEnabled ? newSidebar : oldSidebar;
+};
+
+// Debug panel for development
+export const FeatureFlagDebugPanel = () => {
+  // Shows 🚩 button in corner with all toggles
+  // Only renders in development
+};
+```
+
+**Key Insight:** Feature flags enable:
+1. Zero-risk deployment (new code ships but is disabled)
+2. A/B testing capability
+3. Quick rollback (disable flag vs redeploy)
+4. Progressive rollout (enable for specific users)
+
+### Pattern 88: Compressed Stack UX Pattern
+
+**Problem:** Activity list could have hundreds of items but should show only 5 most recent, with access to older items.
+
+**Solution:**
+```typescript
+// Show visible items + compressed indicator
+const { visibleItems, hiddenCount } = useMemo(() => {
+  if (showAll) return { visibleItems: items, hiddenCount: 0 };
+
+  return {
+    visibleItems: items.slice(0, visibleCount),
+    hiddenCount: items.length - visibleCount,
+  };
+}, [items, visibleCount, showAll]);
+
+// CompressedStack component
+<CompressedStack
+  count={hiddenCount}          // "+47 older items"
+  oldestTimestamp={oldest}     // "2w ago"
+  onExpand={() => setShowAll(true)}
+/>
+```
+
+**Visual Design:**
+- Stacked layer effect (3 offset cards)
+- Hover animation reveals depth
+- Shows count and time range
+- Single click expands all
+
+**Key Insight:** The compressed stack pattern balances information density with discoverability - users see recent items immediately but know more exist.
+
+### Pattern 89: Service Layer with Data Transformers
+
+**Problem:** Unified activity list needs to aggregate data from multiple existing services (documents, chats, gathered data) with different response formats.
+
+**Solution:**
+```typescript
+// Transformers convert each source format to unified ActivityItem
+const transformDocument = (doc: DocumentResponse): DocumentActivityItem => ({
+  id: doc.id,
+  type: 'document',
+  title: doc.title || doc.fileName,
+  preview: doc.content?.substring(0, 150) || '',
+  timestamp: new Date(doc.createdAt),
+  thumbnailUrl: doc.thumbnailUrl,
+  metadata: {
+    fileName: doc.fileName,
+    fileSize: doc.fileSize,
+    mimeType: doc.mimeType,
+  },
+});
+
+// Aggregate from multiple sources
+async getItemsFromExistingSources(projectId: string): Promise<ActivityResponse> {
+  const [documents, chats, gathered] = await Promise.all([
+    this.fetchDocuments(projectId),
+    this.fetchChats(projectId),
+    this.fetchGathered(projectId),
+  ]);
+
+  const items = [
+    ...documents.map(transformDocument),
+    ...chats.map(transformChat),
+    ...gathered.map(transformGathered),
+  ].sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
+
+  return { items, hasMore: false, cursor: undefined };
+}
+```
+
+**Key Insight:** Transformers at the service layer:
+1. Keep components pure (work with unified types)
+2. Isolate API format changes (only transformer needs updating)
+3. Enable parallel fetching for performance
+4. Support gradual migration to unified backend endpoint
+
+### Pattern 90: Batch Implementation Strategy
+
+**Batch Structure Used:**
+| Batch | Features | Focus | Risk |
+|-------|----------|-------|------|
+| 1 | F1, F6-F8 | Foundation + utilities | Zero |
+| 2 | F2, F3, F5 | Data layer | Zero |
+| 3 | F9-F13 | Interactive components | Zero |
+| 4 | F14-F18 | Sidebar shell + UX | Zero |
+| 5 | F19-F23 | Polish + actions | Zero |
+| 6 | F24-F25 | Grid + integration | Low |
+
+**Commit Strategy:**
+- One commit per batch with detailed message
+- Each commit is deployable
+- Feature summary in commit body
+- Co-authored-by for traceability
+
+**Key Insight:** Batching by risk level and dependency order:
+1. Allows early detection of design issues
+2. Provides natural checkpoints for user review
+3. Makes git history navigable
+4. Enables partial rollback if needed
+
+### Component Architecture Summary
+
+```
+src/
+├── types/
+│   └── ActivityItem.ts          # Discriminated union types
+├── stores/
+│   └── activityStore.ts         # Zustand state management
+├── services/
+│   └── activity.ts              # API + transformers
+├── hooks/
+│   ├── useActivityItems.ts      # Data fetching hook
+│   └── useKeyboardNavigation.ts # A11y hook
+├── components/
+│   ├── shared/                  # Reusable UI primitives
+│   │   ├── ItemThumbnail.tsx
+│   │   ├── ItemMetadata.tsx
+│   │   ├── RelativeTimestamp.tsx
+│   │   └── ExpandableContent.tsx
+│   ├── activity/                # Activity-specific components
+│   │   ├── ActivityItem.tsx
+│   │   ├── ActivityItemCard.tsx
+│   │   ├── ActivityList.tsx
+│   │   ├── ActivitySidebar.tsx
+│   │   ├── CompressedStack.tsx
+│   │   ├── FilterChips.tsx
+│   │   ├── SearchInput.tsx
+│   │   ├── EmptyStates.tsx
+│   │   ├── PopupDetailModal.tsx
+│   │   ├── ActivityGrid.tsx
+│   │   ├── ActivityFeatureFlag.tsx
+│   │   └── activity-animations.css
+│   └── actions/                 # Actions sidebar
+│       ├── ActionButton.tsx
+│       ├── ActionCategory.tsx
+│       └── ActionsSidebar.tsx
+```
+
+### Key Takeaways
+
+1. **25 features, 0 breaking changes** - Additive-only approach with feature flags
+2. **~5,000 lines in one session** - Batch strategy enabled sustained velocity
+3. **Type safety throughout** - Discriminated unions caught issues at compile time
+4. **A11y built-in** - Keyboard navigation, focus management, ARIA attributes
+5. **Reduced motion support** - CSS respects user preferences
+
+### Files Created
+
+| Category | Files | Lines |
+|----------|-------|-------|
+| Types | 1 | ~200 |
+| Stores | 1 | ~150 |
+| Services | 1 | ~250 |
+| Hooks | 2 | ~350 |
+| Shared Components | 4 | ~450 |
+| Activity Components | 12 | ~2,800 |
+| Actions Components | 3 | ~600 |
+| CSS | 1 | ~200 |
+| **Total** | **25** | **~5,000** |
+
+### PR Reference
+
+**PR #149:** https://github.com/martiendejong/client-manager/pull/149
+**Branch:** `allitemslist`
+**Base:** `develop`
