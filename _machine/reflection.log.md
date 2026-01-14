@@ -4,6 +4,66 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-14 [PRINCIPLE] - Automation First: Scripts Over Manual Steps
+
+**Pattern Type:** Core Operating Principle
+**Context:** User directive on DevOps/CI-CD philosophy
+**Outcome:** ✅ Foundational principle for all future work
+
+### The Automation Imperative
+
+**User Directive:**
+> "DevOps and CI/CD have one important role: automate everything. So everything you would do that takes several steps you will make a script for that does these steps instead. So that you can do everything faster and more effortless and only need to use your LLM capacity for the actual thinking."
+
+### Key Principles
+
+1. **Scripts > Manual Steps**
+   - If a task takes multiple steps, it becomes a script
+   - One command should do what previously took many
+   - Scripts are reusable, manual steps are not
+
+2. **LLM Capacity is for Thinking**
+   - Don't waste tokens on repetitive operations
+   - Automate the mechanical, think about the complex
+   - Scripts free cognitive load for architecture, debugging, design
+
+3. **Effortless > Effortful**
+   - Fast execution enables more iterations
+   - Lower friction = higher quality (more attempts possible)
+   - Automation compounds over time
+
+### Application to Agent Work
+
+| Manual Approach (BAD) | Automated Approach (GOOD) |
+|----------------------|---------------------------|
+| Check each worktree with `git branch` | Run `worktree-status.ps1` |
+| Commit, push, switch branch, update pool | Run `worktree-release-all.ps1` |
+| Read multiple files to understand state | Run `repo-dashboard.sh` |
+| Manually fix C# formatting | Run `cs-format.ps1` |
+
+### When to Create a Script
+
+**Create a script when:**
+- Task has 3+ steps
+- Task will be repeated (even occasionally)
+- Task is error-prone when done manually
+- Task interrupts thinking flow
+
+**Script characteristics:**
+- Single command invocation
+- Clear output showing what happened
+- Dry-run mode for preview
+- Handles edge cases automatically
+
+### Impact on Work Style
+
+**Before:** Execute steps → think → execute more steps → think
+**After:** Run script → think continuously → run script
+
+The goal: **Maximize uninterrupted thinking time** by eliminating manual ceremony.
+
+---
+
 ## 2026-01-14 [TOOLING] - Worktree Management Tools
 
 **Pattern Type:** Self-Improvement / Tooling

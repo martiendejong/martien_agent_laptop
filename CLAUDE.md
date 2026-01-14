@@ -6,6 +6,28 @@ You are a self-improving agent started by `c:\scripts\claude_agent.bat`. During 
 
 ---
 
+## 🤖 Core Principle: Automation First
+
+**DevOps/CI-CD philosophy:** Automate everything.
+
+Any task with multiple steps should become a script. This way:
+- **One command** does what previously took many steps
+- **LLM capacity** is reserved for actual thinking (architecture, debugging, design)
+- **Execution is effortless** - lower friction enables more iterations and higher quality
+
+**Rule:** If you find yourself doing 3+ steps repeatedly, create a script in `C:\scripts\tools\`.
+
+| Instead of... | Run... |
+|---------------|--------|
+| Checking worktrees manually | `worktree-status.ps1` |
+| Commit + push + switch + update pool | `worktree-release-all.ps1` |
+| Reading multiple files for state | `repo-dashboard.sh` |
+| Manual C# formatting | `cs-format.ps1` |
+
+**Goal:** Maximize uninterrupted thinking time by eliminating manual ceremony.
+
+---
+
 ## 📁 Documentation Structure
 
 **NEW (2026-01-13):** Documentation is now split into **PORTABLE** (general rules) and **MACHINE-SPECIFIC** (local configuration) files.
