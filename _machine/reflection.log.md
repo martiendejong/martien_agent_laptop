@@ -4,6 +4,161 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-14 [PRODUCTION DEBUG] - Brand2Boost Database Schema & Missing Tables
+
+**Pattern Type:** Production Database Troubleshooting
+**Context:** User Management 500 error and "AI Usage Cost: Error" on user profiles
+**Outcome:** ⚠️ Partially fixed - created missing database but user still reports error
+
+### Production Server Reference (Brand2Boost)
+
+**Server Details:**
+- **Host:** 85.215.217.154
+- **SSH User:** administrator
+- **SSH Password:** `3WsXcFr$7YhNmKi*`
+- **SSH Key:** `C:/Users/HP/.ssh/id_ed25519` (added to server)
+
+**Critical Paths:**
+```
+C:\inetpub\wwwroot\brand2boost\backend\    - API deployment
+C:\inetpub\wwwroot\brand2boost\frontend\   - Frontend deployment
+C:\stores\brand2boost\                      - Data directory
+C:\stores\brand2boost\identity.db           - Identity/user database
+C:\stores\brand2boost\llm-logs.db           - LLM call logging database
+C:\stores\brand2boost\semantic-cache.db     - Semantic cache database
+C:\stores\brand2boost\hangfire.db           - Background jobs database
+```
+
+**IIS App Pools:**
+- `Brand2boost` - Main API app pool
+- Recycle command: `%windir%\system32\inetsrv\appcmd.exe recycle apppool "Brand2boost"`
+
+**SQLite Tools:**
+- Downloaded to: `C:\sqlite3\sqlite3.exe`
+- Also exists at: `C:\stores\brand2boost\sqlite3.exe`
+
+### Critical Pattern 83: DatabaseSchemaFixer vs Missing Database Files
+
+**Problem:** `UserTokenCostService` returned errors because `llm-logs.db` didn't exist at all.
+
+**Root Cause:** The `SqliteLLMLogRepository.InitializeAsync()` should auto-create the database and table, but:
+1. The file was never created on production
+2. Possibly due to permissions or app pool identity issues
+3. The repository's `InitializeAsync()` only runs when first accessed
+
+**Solution:** Manually create the database with correct schema:
+```powershell
+# SSH to server and run:
+C:\sqlite3\sqlite3.exe "C:\stores\brand2boost\llm-logs.db" ".read C:\stores\brand2boost\create_llm_logs.sql"
+```
+
+**Schema for llm_call_logs table:**
+```sql
+CREATE TABLE llm_call_logs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    call_id TEXT NOT NULL UNIQUE,
+    parent_call_id TEXT NULL,
+    username TEXT NOT NULL,
+    project_id TEXT NULL,
+    response_message TEXT NULL,
+    feature TEXT NOT NULL,
+    step TEXT NULL,
+    datetime_utc TEXT NOT NULL,
+    provider TEXT NOT NULL,
+    model TEXT NOT NULL,
+    is_tool_call INTEGER NOT NULL DEFAULT 0,
+    tool_name TEXT NULL,
+    tool_arguments TEXT NULL,
+    request_messages TEXT NOT NULL,
+    response_data TEXT NOT NULL,
+    message_count INTEGER NOT NULL DEFAULT 0,
+    embedded_documents TEXT NULL,
+    embedded_document_count INTEGER NOT NULL DEFAULT 0,
+    input_tokens INTEGER NOT NULL DEFAULT 0,
+    output_tokens INTEGER NOT NULL DEFAULT 0,
+    total_tokens INTEGER NOT NULL DEFAULT 0,
+    input_cost REAL NOT NULL DEFAULT 0.0,
+    output_cost REAL NOT NULL DEFAULT 0.0,
+    total_cost REAL NOT NULL DEFAULT 0.0,
+    execution_time_ms INTEGER NOT NULL DEFAULT 0,
+    success INTEGER NOT NULL DEFAULT 1,
+    error_message TEXT NULL,
+    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+-- Required indexes
+CREATE INDEX idx_call_id ON llm_call_logs(call_id);
+CREATE INDEX idx_parent_call_id ON llm_call_logs(parent_call_id);
+CREATE INDEX idx_username ON llm_call_logs(username);
+CREATE INDEX idx_project_id ON llm_call_logs(project_id);
+CREATE INDEX idx_feature ON llm_call_logs(feature);
+CREATE INDEX idx_provider ON llm_call_logs(provider);
+CREATE INDEX idx_datetime_utc ON llm_call_logs(datetime_utc);
+CREATE INDEX idx_created_at ON llm_call_logs(created_at);
+```
+
+### Critical Pattern 84: UserTokenBalance Column Migration Issues
+
+**Problem:** User Management page returned 500 error with "no such column: u.ActiveSubscriptionId"
+
+**Root Cause:**
+1. EF Core migrations created table with old schema
+2. New columns added in later migrations but migrations may have failed
+3. `DatabaseSchemaFixer.cs` adds missing columns, but app must restart after deploy
+
+**Columns that needed to be added to UserTokenBalance:**
+```sql
+ALTER TABLE UserTokenBalance ADD COLUMN ActiveSubscriptionId INTEGER;
+ALTER TABLE UserTokenBalance ADD COLUMN MonthlyAllowance INTEGER DEFAULT 500;
+ALTER TABLE UserTokenBalance ADD COLUMN MonthlyUsage INTEGER DEFAULT 0;
+ALTER TABLE UserTokenBalance ADD COLUMN UsageResetDate TEXT;
+ALTER TABLE UserTokenBalance ADD COLUMN NextResetDate TEXT;
+ALTER TABLE UserTokenBalance ADD COLUMN CreatedAt TEXT;
+ALTER TABLE UserTokenBalance ADD COLUMN UpdatedAt TEXT;
+```
+
+**Key insight:** The table had `DailyAllowance` (old name) but code expected `MonthlyAllowance` (new name) - terminology migration was incomplete.
+
+### Critical Pattern 85: SSH Access to Production
+
+**Problem:** Native SSH with password prompts is unreliable in Claude Code environment.
+
+**Solution Options:**
+1. **Python paramiko** (preferred):
+   ```python
+   import paramiko
+   ssh = paramiko.SSHClient()
+   ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+   ssh.connect("85.215.217.154", username="administrator", password="3WsXcFr$7YhNmKi*")
+   stdin, stdout, stderr = ssh.exec_command("command here")
+   ```
+
+2. **Native SSH with key** (when key is set up):
+   ```bash
+   ssh -i C:/Users/HP/.ssh/id_ed25519 administrator@85.215.217.154 "command"
+   ```
+
+**Caveat:** Both methods can fail intermittently with "Connection reset" - retry after a few seconds.
+
+### Unresolved Issue
+
+User still reports "error when looking at accounts" after fixes. Possible causes:
+1. Frontend caching - user needs to hard refresh (Ctrl+F5)
+2. Additional missing columns or tables not yet identified
+3. App pool may need another recycle
+4. Check server logs: `C:\inetpub\wwwroot\brand2boost\backend\logs\*.log`
+
+**Next debug steps:**
+```python
+# Check recent errors in log files
+ssh.exec_command('type "C:\\inetpub\\wwwroot\\brand2boost\\backend\\logs\\*.log" | findstr /i "error exception"')
+
+# Check if all required database files exist
+ssh.exec_command('dir C:\\stores\\brand2boost\\*.db')
+```
+
+---
+
 ## 2026-01-13 [DEPLOYMENT] - ArtRevisionist & Brand2Boost Production Deployment Learnings
 
 **Pattern Type:** Deployment Troubleshooting
