@@ -5854,3 +5854,147 @@ Claude Code stores MCP server config in `~/.claude.json` under:
 | "Access denied" | Add email to OAuth consent screen test users |
 | "API not enabled" | Enable Google Drive API in Cloud Console |
 | MCP not loading | Restart Claude Code, check JSON syntax |
+
+---
+
+## 2026-01-14 14:15 - Google Drive MCP & Dev Environment Setup
+
+### Session Context
+User requested to check Google Drive for brand2boost config files, then create dev environment folder structure.
+
+### Pattern 92: Google Drive OAuth Access Blocked Fix
+
+**Problem:** OAuth flow shows Access blocked: [app] has not completed the Google verification process
+
+**Root Cause:** OAuth app is in testing mode and user email not in test users list.
+
+**Solution:**
+1. Go to Google Cloud Console ? APIs & Services ? OAuth consent screen
+2. Scroll to Test users section
+3. Click + ADD USERS and add the email trying to authenticate
+4. Retry OAuth flow
+
+**Key Insight:** Personal apps don't need full Google verification. Adding yourself as test user is sufficient. Publish App is also an option for personal use.
+
+### Pattern 93: OAuth Client vs User Credentials
+
+**Critical Distinction - Two Different Files:**
+
+| File | Type | Source | Contains |
+|------|------|--------|----------|
+|  | App credentials | Download from Google Cloud Console |  |
+|  | User credentials | Generated after OAuth flow |  |
+
+**Common Mistake:** User had OAuth client credentials file, thought it was user credentials. The  wrapper is the giveaway - user credentials have  at root level.
+
+### Pattern 94: Dev/Prod Environment Folder Structure
+
+**Created standardized environment config structure:**
+
+
+
+**Key Differences Dev vs Prod:**
+- API URLs:  vs 
+- Frontend:  vs 
+- Feature flags: All ON (dev) vs selective (prod)
+- AllowSignup: true (dev) vs false (prod)
+
+### Pattern 95: MCP Restart Required for New Tools
+
+**Behavior:** After completing OAuth flow and MCP showing Connected, Claude Code still cannot use MCP tools until session restart.
+
+**Reason:** MCP tools are loaded at startup. Runtime connection status update doesn't inject new tools.
+
+**Workaround:** User must restart Claude Code to access newly configured MCP tools.
+
+### Files Created This Session
+
+| File | Purpose |
+|------|---------|
+|  | Dev backend config with localhost URLs |
+|  | Dev secrets (actual API keys) |
+|  | All features enabled |
+|  | Copied from prod |
+|  | Copied from prod |
+|  | Dev frontend config |
+|  | Setup instructions |
+
+
+---
+
+## 2026-01-14 14:15 - Google Drive MCP & Dev Environment Setup
+
+### Session Context
+User requested to check Google Drive for brand2boost config files, then create dev environment folder structure.
+
+### Pattern 92: Google Drive OAuth "Access Blocked" Fix
+
+**Problem:** OAuth flow shows "Access blocked: [app] has not completed the Google verification process"
+
+**Root Cause:** OAuth app is in "testing" mode and user email not in test users list.
+
+**Solution:**
+1. Go to Google Cloud Console > APIs & Services > OAuth consent screen
+2. Scroll to "Test users" section
+3. Click "+ ADD USERS" and add the email trying to authenticate
+4. Retry OAuth flow
+
+**Key Insight:** Personal apps don't need full Google verification. Adding yourself as test user is sufficient. "Publish App" is also an option for personal use.
+
+### Pattern 93: OAuth Client vs User Credentials
+
+**Critical Distinction - Two Different Files:**
+
+| File | Type | Source | Contains |
+|------|------|--------|----------|
+| gcp-oauth.keys.json | App credentials | Download from Google Cloud Console | installed.client_id, client_secret |
+| gdrive-credentials.json | User credentials | Generated after OAuth flow | access_token, refresh_token |
+
+**Common Mistake:** User had OAuth client credentials file, thought it was user credentials. The "installed" wrapper is the giveaway - user credentials have access_token at root level.
+
+### Pattern 94: Dev/Prod Environment Folder Structure
+
+**Created standardized environment config structure:**
+
+```
+C:\Projects\client-manager\env\
+  dev\
+    README.md
+    backend\
+      appsettings.json          (localhost URLs, placeholders)
+      appsettings.Secrets.json  (actual API keys)
+      web.config
+      Configuration\
+        feature-flags.json    (all features ON for dev)
+        model-routing.config.json
+    frontend\
+      config.js                 (localhost:5000 API)
+  prod\
+    (same structure, production URLs)
+```
+
+**Key Differences Dev vs Prod:**
+- API URLs: localhost:5000 vs api.brand2boost.com
+- Frontend: localhost:4200 vs app.brand2boost.com
+- Feature flags: All ON (dev) vs selective (prod)
+- AllowSignup: true (dev) vs false (prod)
+
+### Pattern 95: MCP Restart Required for New Tools
+
+**Behavior:** After completing OAuth flow and MCP showing "Connected", Claude Code still cannot use MCP tools until session restart.
+
+**Reason:** MCP tools are loaded at startup. Runtime connection status update doesn't inject new tools.
+
+**Workaround:** User must restart Claude Code to access newly configured MCP tools.
+
+### Files Created This Session
+
+| File | Purpose |
+|------|---------|
+| env/dev/backend/appsettings.json | Dev backend config with localhost URLs |
+| env/dev/backend/appsettings.Secrets.json | Dev secrets (actual API keys) |
+| env/dev/backend/Configuration/feature-flags.json | All features enabled |
+| env/dev/backend/Configuration/model-routing.config.json | Copied from prod |
+| env/dev/backend/web.config | Copied from prod |
+| env/dev/frontend/config.js | Dev frontend config |
+| env/dev/README.md | Setup instructions |
