@@ -4,6 +4,52 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-14 [SKILL-CREATOR-DIRECTIVE] - Proactive Skill Creation
+
+**Pattern Type:** Self-Improvement / Meta-Skill Usage
+**Context:** Created skill-creator meta-skill for standardized skill generation
+**Outcome:** ✅ New directive established
+
+### Directive
+
+**When to proactively create new skills:**
+- When discovering a complex workflow that will be repeated
+- When a pattern emerges that future sessions would benefit from
+- When user explicitly requests a new capability be documented
+- When a workaround or fix should become standard procedure
+
+### How to Use skill-creator
+
+1. **Recognize the opportunity** - "This workflow is complex enough to be a skill"
+2. **Invoke skill-creator** - Follow its structured process
+3. **Create proper structure** - Directory, SKILL.md with YAML frontmatter
+4. **Update CLAUDE.md index** - Add to appropriate category
+5. **Commit immediately** - Make available for future sessions
+
+### Trigger Keywords
+
+Watch for these signals that a skill should be created:
+- "I keep doing this same pattern..."
+- "Future sessions should know about..."
+- "This is a reusable workflow for..."
+- "Let me document this process..."
+- Complex multi-step procedures being explained
+
+### Meta-Skill Loop
+
+```
+Pattern discovered → Consider: Is this skill-worthy?
+                   → If yes: Use skill-creator
+                   → Create skill
+                   → Update index
+                   → Commit
+                   → Future sessions benefit
+```
+
+**User Mandate:** Proactively create skills when useful patterns emerge. Don't wait to be asked.
+
+---
+
 ## 2026-01-14 [CROSS-REPO-SYNC] - Property Sync Between Hazina and client-manager
 
 **Pattern Type:** Cross-Repository Dependencies / Schema Sync
