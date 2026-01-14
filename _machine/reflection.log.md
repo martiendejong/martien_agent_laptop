@@ -158,6 +158,157 @@ ssh.exec_command('dir C:\\stores\\brand2boost\\*.db')
 ```
 
 ---
+## 2026-01-14 [DOCUMENTATION] - ArtRevisionist Production Server Reference
+
+**Pattern Type:** Production Environment Documentation
+**Context:** Documenting production server details for future sessions
+
+### Production Server Reference (ArtRevisionist)
+
+**Server Details:**
+- **Host:** 85.215.217.154 (same VPS as Brand2Boost)
+- **SSH User:** administrator
+- **SSH Password:** `3WsXcFr$7YhNmKi*`
+- **Domains:**
+  - API: api.artrevisionist.com
+  - Frontend: app.artrevisionist.com
+
+**IIS Configuration:**
+- **API Site:** ArtRevisionistAPI
+- **Frontend Site:** ArtRevisionistApp
+- **API App Pool:** ArtRevisionist
+- **Frontend App Pool:** ArtRevisionistApp
+
+**Critical Paths:**
+```
+C:\stores\artrevisionist\backend\     - API deployment
+C:\stores\artrevisionist\www\         - Frontend deployment
+C:\stores\artrevisionist\data\        - Data directory
+C:\stores\artrevisionist\logs\        - Log files
+C:\stores\artrevisionist\config\      - Configuration overrides
+```
+
+**Database Files:**
+```
+C:\stores\artrevisionist\data\identity.db     - Identity/user database
+C:\stores\artrevisionist\data\hangfire.db     - Background jobs (configured in appsettings)
+C:\stores\artrevisionist\data\llm-logs.db     - LLM call logging (configured in appsettings)
+```
+
+**Deployment Scripts (Local):**
+- `C:\Projects\artrevisionist\release.bat` - Build only (creates dist/)
+- `C:\Projects\artrevisionist\deploy.bat` - 4-step msdeploy:
+  1. Deploy backend config (env\prod\backend) with DoNotDeleteRule
+  2. Deploy backend application with skip rules for db/config/logs
+  3. Deploy frontend config (env\prod\frontend) with DoNotDeleteRule
+  4. Deploy frontend application with skip rules for web.config/config.js
+
+**Skip Rules in deploy.bat:**
+- identity.db (preserve user data)
+- certs folder
+- web.config
+- appsettings.json
+- Configuration folder
+- *.log files
+- *-logs.db (LLM logs)
+- hangfire.db
+
+**Admin Credentials:**
+- User: `sjoerd`
+- Password: `Andersom123!`
+
+**App Pool Commands:**
+```powershell
+# Recycle API app pool
+%windir%\system32\inetsrv\appcmd.exe recycle apppool "ArtRevisionist"
+
+# Recycle Frontend app pool
+%windir%\system32\inetsrv\appcmd.exe recycle apppool "ArtRevisionistApp"
+```
+
+**Key Configuration (env\prod\backend\appsettings.json):**
+- OpenAI Model: gpt-4o-mini
+- Ollama Endpoint: http://85.215.217.154:5555
+- LLM Logging: Enabled, 30 day retention
+- Stripe: Test mode configured
+- M-Pesa: Sandbox configured (Kenyan payments)
+
+---
+
+## 2026-01-14 [DOCUMENTATION] - Bugatti Insights Production Server Reference
+
+**Pattern Type:** Production Environment Documentation
+**Context:** Documenting production server details for future sessions
+
+### Production Server Reference (Bugatti Insights)
+
+**Server Details:**
+- **Host:** 85.215.217.154 (same VPS as Brand2Boost/ArtRevisionist)
+- **SSH User:** administrator
+- **SSH Password:** `3WsXcFr$7YhNmKi*`
+- **Domain:** api.bugattiinsights.com
+
+**IIS Configuration:**
+- **API Site:** BugattiInsightsAPI
+- **App Pool:** BugattiInsightsAPI
+
+**Critical Path:**
+```
+C:\bugattiinsights\                    - API deployment (flat structure, no subfolders)
+C:\bugattiinsights\identity.db         - User database (in app root)
+C:\bugattiinsights\appsettings.json    - Configuration
+C:\bugattiinsights\certs\              - SSL certificates
+```
+
+**Notable:** Bugatti Insights uses a flat deployment structure unlike Brand2Boost/ArtRevisionist. All files are in the root `C:\bugattiinsights\` folder.
+
+**Local Development (Not Yet Production-Ready):**
+```
+C:\Projects\bugattiinsights\sourcecode\backend\Website\     - Backend API
+C:\Projects\bugattiinsights\sourcecode\frontend\            - Frontend app
+C:\Projects\bugattiinsights\registry\                       - Vehicle data store
+C:\Projects\bugattiinsights\registry\bugatti.db             - Local SQLite database
+C:\Projects\bugattiinsights\registry\vehicles.json          - Vehicle data JSON
+```
+
+**Admin Credentials:**
+- User: `arjan`
+- Password: `Arjanisdebeste!`
+
+**Deployment Status:**
+- API: Deployed and running (August 2025 build)
+- Frontend: Not deployed (no frontend IIS site found)
+- No deployment scripts created yet
+
+**App Pool Commands:**
+```powershell
+# Recycle app pool
+%windir%\system32\inetsrv\appcmd.exe recycle apppool "BugattiInsightsAPI"
+```
+
+**Key Configuration:**
+- OpenAI for embeddings and chat
+- Google Ads API configured (for Bugatti dealership analytics)
+- PDF extraction capabilities (UglyToad.PdfPig)
+- Excel export (ClosedXML)
+
+---
+
+## All VPS Applications Summary
+
+| Application | API Domain | Frontend Domain | Backend Path | Data Path |
+|-------------|------------|-----------------|--------------|-----------|
+| Brand2Boost | api.brand2boost.com | app.brand2boost.com | C:\inetpub\wwwroot\brand2boost\backend | C:\stores\brand2boost |
+| ArtRevisionist | api.artrevisionist.com | app.artrevisionist.com | C:\stores\artrevisionist\backend | C:\stores\artrevisionist\data |
+| Bugatti Insights | api.bugattiinsights.com | (none) | C:\bugattiinsights | C:\bugattiinsights |
+
+**Common VPS Details:**
+- IP: 85.215.217.154
+- SSH Port: 22
+- WebDeploy Port: 8172
+- SQLite Tools: C:\sqlite3\sqlite3.exe
+
+---
 
 ## 2026-01-13 [DEPLOYMENT] - ArtRevisionist & Brand2Boost Production Deployment Learnings
 
