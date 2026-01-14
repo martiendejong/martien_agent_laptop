@@ -5749,3 +5749,108 @@ src/
 **PR #149:** https://github.com/martiendejong/client-manager/pull/149
 **Branch:** `allitemslist`
 **Base:** `develop`
+
+
+---
+
+## 2026-01-14 12:40 - Google Drive MCP Server Integration
+
+### Context
+User wanted to add Google Drive integration to Claude Code to access files from their Drive account.
+
+### Key Learning: API Keys vs OAuth2
+
+**Common Misconception:** Users often have a Google Cloud API key and assume it works for all Google services.
+
+**Reality:**
+- **API keys** = Project identification, public data access only
+- **OAuth2 credentials** = User authentication, personal data access (Drive, Gmail, Calendar)
+
+Google Drive **requires OAuth2** to access user-specific files. An API key alone cannot access personal Drive content.
+
+### MCP Server Setup Pattern
+
+**Official Google Drive MCP Server:** `@modelcontextprotocol/server-gdrive`
+
+**Installation Command:**
+```bash
+claude mcp add gdrive -s user -- npx -y @modelcontextprotocol/server-gdrive
+```
+
+**Required Environment Variables:**
+```json
+{
+  "env": {
+    "GDRIVE_OAUTH_PATH": "C:\path\to\gcp-oauth.keys.json",
+    "GDRIVE_CREDENTIALS_PATH": "C:\path\to\gdrive-credentials.json"
+  }
+}
+```
+
+### OAuth Credentials Creation Steps
+
+1. **Google Cloud Console** → Create/select project
+2. **Enable API** → APIs & Services → Library → "Google Drive API" → Enable
+3. **OAuth Consent Screen** → External → Add app name, emails, test users
+4. **Create Credentials** → OAuth client ID → Desktop app → Download JSON
+5. **Save JSON** → Rename to `gcp-oauth.keys.json`
+
+### Configuration Location
+
+Claude Code stores MCP server config in `~/.claude.json` under:
+- **User-level:** `mcpServers` object at root (available in all projects)
+- **Project-level:** `projects["C:/path"].mcpServers` (project-specific)
+
+### Post-Setup Flow
+
+1. Restart Claude Code (MCP servers initialize on startup)
+2. First Drive access triggers OAuth browser flow
+3. User grants permissions → Credentials saved to `GDRIVE_CREDENTIALS_PATH`
+4. Subsequent sessions use saved credentials
+
+### Pattern 91: MCP Server Configuration
+
+**Standard MCP server structure:**
+```json
+{
+  "mcpServers": {
+    "<server-name>": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "<npm-package>"],
+      "env": {
+        "CONFIG_VAR": "value"
+      }
+    }
+  }
+}
+```
+
+**Key Insight:** MCP servers extend Claude Code's capabilities through standardized tool interfaces. Each server can provide:
+- Resources (files, data sources)
+- Tools (actions Claude can take)
+- Prompts (predefined interactions)
+
+### Files Created/Modified
+
+| File | Purpose |
+|------|---------|
+| `C:\scripts\_machine\gcp-oauth.keys.json` | OAuth credentials (client ID, secret) |
+| `C:\scripts\_machine\gdrive-credentials.json` | Will store authenticated tokens after OAuth flow |
+| `C:\Users\HP\.claude.json` | MCP server configuration added |
+
+### Available Google Drive Tools (after setup)
+
+- `gdrive_search` - Search files by name/content
+- `gdrive_read_file` - Read file contents
+- `gdrive_list_files` - List folder contents
+- Export Google Docs/Sheets to standard formats
+
+### Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| "Invalid credentials" | Re-download OAuth JSON from Google Cloud Console |
+| "Access denied" | Add email to OAuth consent screen test users |
+| "API not enabled" | Enable Google Drive API in Cloud Console |
+| MCP not loading | Restart Claude Code, check JSON syntax |

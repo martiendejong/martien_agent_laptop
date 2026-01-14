@@ -35,6 +35,11 @@ Thumbs.db
 *.key
 secrets/
 
+# OAuth credentials (contain client secrets)
+_machine/gcp-oauth.keys.json
+_machine/gdrive-credentials.json
+_machine/client_secret_*.json
+
 # Weird filename
 C:*
 

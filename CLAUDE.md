@@ -161,6 +161,9 @@ See **[bootstrap/README.md](./bootstrap/README.md)** for complete documentation.
 - **`session-reflection`** - Update reflection.log.md with session learnings
 - **`self-improvement`** - Update CLAUDE.md and documentation with new patterns
 
+#### 🔌 Integrations
+- **`mcp-setup`** - Configure MCP servers for external integrations (Google Drive, GitHub, databases, APIs)
+
 ### How Skills Work
 
 1. **Discovery** - Claude loads skill names and descriptions at startup
@@ -189,6 +192,10 @@ You: "We need to rename 'daily' to 'monthly' across the codebase"
 You: "Document what we learned today"
 → Claude activates: session-reflection Skill
 → Updates reflection.log.md with proper format
+
+You: "Add Google Drive integration to Claude"
+→ Claude activates: mcp-setup Skill
+→ Guides OAuth setup, configures MCP server, sets environment variables
 ```
 
 ### Skill File Structure
