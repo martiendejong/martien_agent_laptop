@@ -1,0 +1,73 @@
+{
+  "api_key": "pk_74525428_TXT8V1QUA13N7SCRM0UUM6WNQO2I2NML",
+  "api_base": "https://api.clickup.com/api/v2",
+  "workspaces": {
+    "personal": {
+      "id": "9015747737",
+      "name": "Martien de Jong's Workspace",
+      "role": "owner",
+      "spaces": {
+        "household": { "id": "90152830188", "name": "Managing our household" },
+        "team": { "id": "90152557872", "name": "Team Space" },
+        "realtime": { "id": "90156079868", "name": "Realtime Task Boards" },
+        "tax": { "id": "90156513478", "name": "Tax Administration" }
+      }
+    },
+    "company": {
+      "id": "9015748488",
+      "name": "Furniture Website",
+      "role": "admin",
+      "spaces": {
+        "martien": { "id": "90152560438", "name": "Martien de Jong" },
+        "company": {
+          "id": "90153500783",
+          "name": "Martien de Jong - Company",
+          "folders": {
+            "operations": { "id": "90157505655" },
+            "sales": { "id": "90157505633" },
+            "projects": {
+              "id": "90157505784",
+              "lists": {
+                "vera_ai": {
+                  "id": "901506248257",
+                  "name": "Vera AI",
+                  "task_count": 31,
+                  "maps_to": ["client-manager", "hazina"]
+                },
+                "socranext": {
+                  "id": "901511986511",
+                  "name": "SocraNext",
+                  "task_count": 3,
+                  "maps_to": ["socranext"]
+                }
+              }
+            }
+          }
+        },
+        "nashipaes": { "id": "90154132126", "name": "the Nashipaes" }
+      }
+    },
+    "gigshub": {
+      "id": "9012956001",
+      "name": "GigsHub Workspace",
+      "role": "member",
+      "spaces": {
+        "gigshub": { "id": "90123937819", "name": "GigsHub" },
+        "team_tasks": { "id": "90124247049", "name": "Team Tasks" }
+      }
+    }
+  },
+  "repo_mapping": {
+    "client-manager": {
+      "workspace": "company",
+      "list_id": "901506248257",
+      "list_name": "Vera AI"
+    },
+    "hazina": {
+      "workspace": "company",
+      "list_id": "901506248257",
+      "list_name": "Vera AI"
+    }
+  },
+  "last_updated": "2026-01-14"
+}

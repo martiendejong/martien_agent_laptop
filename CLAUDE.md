@@ -23,6 +23,7 @@ Any task with multiple steps should become a script. This way:
 | Commit + push + switch + update pool | `worktree-release-all.ps1` |
 | Reading multiple files for state | `repo-dashboard.sh` |
 | Manual C# formatting | `cs-format.ps1` |
+| Checking ClickUp tasks | `clickup-sync.ps1 -Action list` |
 
 **Goal:** Maximize uninterrupted thinking time by eliminating manual ceremony.
 
