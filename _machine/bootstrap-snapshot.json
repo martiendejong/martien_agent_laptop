@@ -1,0 +1,220 @@
+﻿{
+    "baseRepos":  {
+                      "hazina":  {
+                                     "branch":  "develop",
+                                     "path":  "C:\\Projects\\hazina",
+                                     "clean":  true
+                                 },
+                      "client-manager":  {
+                                             "branch":  "main",
+                                             "path":  "C:\\Projects\\client-manager",
+                                             "clean":  true
+                                         }
+                  },
+    "activeWorktrees":  [
+                            {
+                                "branch":  "allitemslist",
+                                "path":  "C:\\Projects\\worker-agents\\agent-001\\client-manager",
+                                "repo":  "client-manager",
+                                "seat":  "agent-001"
+                            },
+                            {
+                                "branch":  "agent001",
+                                "path":  "C:\\Projects\\worker-agents\\agent-001\\hazina",
+                                "repo":  "hazina",
+                                "seat":  "agent-001"
+                            },
+                            {
+                                "branch":  "agent002",
+                                "path":  "C:\\Projects\\worker-agents\\agent-002\\hazina",
+                                "repo":  "hazina",
+                                "seat":  "agent-002"
+                            },
+                            {
+                                "branch":  "agent003",
+                                "path":  "C:\\Projects\\worker-agents\\agent-003\\client-manager",
+                                "repo":  "client-manager",
+                                "seat":  "agent-003"
+                            },
+                            {
+                                "branch":  "develop",
+                                "path":  "C:\\Projects\\worker-agents\\agent-003\\hazina",
+                                "repo":  "hazina",
+                                "seat":  "agent-003"
+                            },
+                            {
+                                "branch":  "feature/agent-web-search",
+                                "path":  "C:\\Projects\\worker-agents\\Agentstartbranch\\client-manager",
+                                "repo":  "client-manager",
+                                "seat":  "Agentstartbranch"
+                            },
+                            {
+                                "branch":  "feature/agent-web-search",
+                                "path":  "C:\\Projects\\worker-agents\\Agentstartbranch\\hazina",
+                                "repo":  "hazina",
+                                "seat":  "Agentstartbranch"
+                            }
+                        ],
+    "tools":  [
+                  {
+                      "path":  "C:\\scripts\\tools\\bootstrap-snapshot.ps1",
+                      "name":  "bootstrap-snapshot",
+                      "modified":  "2026-01-15"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\check-all-solutions.ps1",
+                      "name":  "check-all-solutions",
+                      "modified":  "2026-01-10"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\claude-ctl.ps1",
+                      "name":  "claude-ctl",
+                      "modified":  "2026-01-15"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\clickup-sync.ps1",
+                      "name":  "clickup-sync",
+                      "modified":  "2026-01-14"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\create-unified-epic.ps1",
+                      "name":  "create-unified-epic",
+                      "modified":  "2026-01-14"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\cs-format.ps1",
+                      "name":  "cs-format",
+                      "modified":  "2026-01-07"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\daily-summary.ps1",
+                      "name":  "daily-summary",
+                      "modified":  "2026-01-15"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\detect-missing-projects.ps1",
+                      "name":  "detect-missing-projects",
+                      "modified":  "2026-01-10"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\generate-feature-doc.ps1",
+                      "name":  "generate-feature-doc",
+                      "modified":  "2026-01-08"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\link-pr149.ps1",
+                      "name":  "link-pr149",
+                      "modified":  "2026-01-14"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\migrate-analysis-fields-to-txt.ps1",
+                      "name":  "migrate-analysis-fields-to-txt",
+                      "modified":  "2026-01-10"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\pattern-search.ps1",
+                      "name":  "pattern-search",
+                      "modified":  "2026-01-15"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\pre-commit-hook.ps1",
+                      "name":  "pre-commit-hook",
+                      "modified":  "2026-01-15"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\prune-branches.ps1",
+                      "name":  "prune-branches",
+                      "modified":  "2026-01-15"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\system-health.ps1",
+                      "name":  "system-health",
+                      "modified":  "2026-01-15"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\update-phase0.ps1",
+                      "name":  "update-phase0",
+                      "modified":  "2026-01-14"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\worktree-allocate.ps1",
+                      "name":  "worktree-allocate",
+                      "modified":  "2026-01-15"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\worktree-release-all.ps1",
+                      "name":  "worktree-release-all",
+                      "modified":  "2026-01-14"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\worktree-status.ps1",
+                      "name":  "worktree-status",
+                      "modified":  "2026-01-14"
+                  }
+              ],
+    "recentReflections":  [
+                              {
+                                  "date":  "2026-01-15",
+                                  "preview":  "\r **Pattern Type:** New Capability / Personal Workspace Discovery\r **Context:** User requested access to personal ClickUp list \"nijeveen\" in \"Managing our household\" space\r",
+                                  "tag":  "CLICKUP-PERSONAL-WORKSPACE"
+                              },
+                              {
+                                  "date":  "2026-01-14",
+                                  "preview":  "\r **Pattern Type:** New Capability / Tool Creation\r **Context:** User requested spam management for info@martiendejong.nl\r",
+                                  "tag":  "EMAIL-MANAGEMENT"
+                              },
+                              {
+                                  "date":  "2026-01-14",
+                                  "preview":  "\r **Pattern Type:** Self-Improvement / Meta-Skill Usage\r **Context:** Created skill-creator meta-skill for standardized skill generation\r",
+                                  "tag":  "SKILL-CREATOR-DIRECTIVE"
+                              },
+                              {
+                                  "date":  "2026-01-14",
+                                  "preview":  "\r **Pattern Type:** Cross-Repository Dependencies / Schema Sync\r **Context:** User pulled changes from develop and got compilation errors about missing properties\r",
+                                  "tag":  "CROSS-REPO-SYNC"
+                              },
+                              {
+                                  "date":  "2026-01-14",
+                                  "preview":  "\r **Pattern Type:** EF Core / Database Migrations\r **Context:** Migration failed with \"duplicate column\" and \"no such column\" errors\r",
+                                  "tag":  "EF-MIGRATION-CONFLICT"
+                              }
+                          ],
+    "summary":  {
+                    "freeSeats":  11,
+                    "busySeats":  1,
+                    "toolCount":  19,
+                    "activeWorktreeCount":  7,
+                    "skillCount":  14
+                },
+    "pool":  {
+                 "agent-002":  "FREE",
+                 "agent-008":  "FREE",
+                 "agent-005":  "FREE",
+                 "agent-007":  "FREE",
+                 "agent-010":  "FREE",
+                 "agent-006":  "FREE",
+                 "agent-009":  "FREE",
+                 "agent-012":  "FREE",
+                 "agent-011":  "FREE",
+                 "agent-004":  "FREE",
+                 "agent-003":  "FREE",
+                 "agent-001":  "BUSY"
+             },
+    "skills":  [
+                   "allocate-worktree",
+                   "api-patterns",
+                   "debug-mode",
+                   "feature-mode",
+                   "github-workflow",
+                   "mcp-setup",
+                   "multi-agent-conflict",
+                   "pr-dependencies",
+                   "release-worktree",
+                   "self-improvement",
+                   "session-reflection",
+                   "skill-creator",
+                   "terminology-migration",
+                   "worktree-status"
+               ],
+    "generated":  "2026-01-15T00:21:32Z"
+}
