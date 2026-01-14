@@ -4,6 +4,161 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-14 [TOOLING] - Worktree Management Tools
+
+**Pattern Type:** Self-Improvement / Tooling
+**Context:** User requested tools to quickly see worktree status and release all worktrees
+**Outcome:** ✅ Two new tools created and documented
+
+### Problem Statement
+
+Managing git worktrees across multiple agent seats was error-prone:
+1. No quick way to see which branches each worktree was using
+2. Manual process to release worktrees (commit, push, switch branch, update pool)
+3. Discrepancies between actual worktree state and pool.md status
+4. Worktrees left on feature branches after PR creation instead of resting branches
+
+### Solution: Two Complementary Tools
+
+#### Tool 1: `worktree-status.ps1`
+
+**Purpose:** Quick overview of all active worktrees and their branches
+
+**Key Features:**
+- Scans all base repos (client-manager, hazina) for worktrees
+- Groups by agent seat (agent-001, agent-002, etc.)
+- Compares with worktrees.pool.md status (BUSY/FREE/STALE)
+- Warns when seats marked FREE still have active worktrees
+- Identifies orphaned worktrees not in standard agent folders
+- Compact table mode for quick scanning
+
+**Usage Pattern:**
+```powershell
+# Before allocating worktree - check what's in use
+.\worktree-status.ps1 -Compact
+
+# After releasing - verify cleanup worked
+.\worktree-status.ps1
+```
+
+#### Tool 2: `worktree-release-all.ps1`
+
+**Purpose:** Bulk commit and release worktrees to resting branches
+
+**Key Design Decision:** Keep worktrees, just switch branches
+- User insight: "easier to keep worktrees and have them point to a resting base branch than to create and delete them every time"
+- Resting branches: agent001, agent002, agent003, etc. (no hyphen)
+- Worktree structure stays intact, ready for next allocation
+
+**What it does for each worktree:**
+1. Check for uncommitted changes
+2. Commit with auto-generated or prompted message
+3. Push to remote
+4. Switch to resting branch (agent001, agent002, etc.)
+5. Update worktrees.pool.md to mark seat as FREE
+
+**Usage Pattern:**
+```powershell
+# End of session - release everything
+.\worktree-release-all.ps1 -AutoCommit
+
+# After creating PR - release specific seat
+.\worktree-release-all.ps1 -Seats "agent-003"
+
+# Preview what would happen
+.\worktree-release-all.ps1 -DryRun
+```
+
+### Critical Pattern 88: Worktree Resting Branches
+
+**Convention:** Each agent seat has a permanent resting branch:
+- agent-001 → `agent001` (no hyphen)
+- agent-002 → `agent002`
+- agent-003 → `agent003`
+
+**Why resting branches matter:**
+1. Worktrees can't be on the same branch as another worktree
+2. Resting branch is unique per seat, avoids conflicts
+3. No need to delete/recreate worktrees between tasks
+4. Quick to switch from resting branch to new feature branch
+
+**Allocation flow:**
+```
+agent003 (resting) → feature/new-feature (working) → agent003 (resting)
+```
+
+### Critical Pattern 89: PowerShell String Escaping
+
+**Problem:** Complex strings with special characters cause parse errors
+
+**Examples of issues:**
+```powershell
+# BAD - @ symbol interpolated incorrectly
+Write-Host "Changes in $Repo @ $Branch"
+
+# GOOD - use string concatenation
+Write-Host ("Changes in " + $Repo + " @ " + $Branch)
+
+# BAD - here-string with < > characters
+$msg = @"
+Co-Authored-By: Claude <email>
+"@
+
+# GOOD - simple concatenation
+$msg = $message + "`n`nCo-Authored-By: Claude <email>"
+
+# BAD - regex with pipe characters in double quotes
+$pattern = "(\|\s*$Seat\s*\|[^|]*\|)"
+
+# GOOD - simple line matching instead
+if ($line -match "^\|\s*$Seat\s*\|" -and $line -match "\|\s*BUSY\s*\|")
+```
+
+### Critical Pattern 90: Tool Design for Agent Use
+
+**Principles learned:**
+1. **Dry-run mode essential** - Always preview destructive operations
+2. **Auto mode for scripting** - `-AutoCommit` avoids interactive prompts
+3. **Specific targeting** - `-Seats "agent-003"` for surgical operations
+4. **Clear output** - Color-coded status indicators ([OK], [WARN], [ERR])
+5. **Bash wrappers** - `.sh` files for cross-platform invocation
+6. **Self-documenting** - PowerShell comment-based help (`.SYNOPSIS`, `.EXAMPLE`)
+
+### Workflow Integration
+
+**Updated mandatory workflows:**
+
+| When | Tool | Command |
+|------|------|---------|
+| Session start | worktree-status | `.\worktree-status.ps1 -Compact` |
+| Before allocation | worktree-status | Check what's in use |
+| After creating PR | worktree-release-all | `.\worktree-release-all.ps1 -Seats "agent-XXX"` |
+| End of session | worktree-release-all | `.\worktree-release-all.ps1 -AutoCommit` |
+
+### Files Created
+
+- `C:\scripts\tools\worktree-status.ps1` (230 lines)
+- `C:\scripts\tools\worktree-status.sh` (bash wrapper)
+- `C:\scripts\tools\worktree-release-all.ps1` (463 lines)
+- `C:\scripts\tools\worktree-release-all.sh` (bash wrapper)
+- Updated `C:\scripts\tools\README.md`
+- Updated `C:\scripts\tools-and-productivity.md`
+
+### Impact
+
+**Before:** Manual, error-prone worktree management
+- Forgot to release worktrees after PRs
+- Discrepancies between pool.md and actual state
+- No quick visibility into what's allocated
+
+**After:** Automated, reliable worktree lifecycle
+- One command to see all worktree status
+- One command to release all worktrees
+- Pool.md stays in sync with actual state
+- Clear audit trail of what's in use
+
+---
+
 ## 2026-01-14 [FEATURE] - Restaurant Menu Complete Implementation (Phase 1+2+3)
 
 **Pattern Type:** Full-Stack Feature Implementation
