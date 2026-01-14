@@ -14,6 +14,12 @@
 | `worktree-allocate.ps1` | Allocate seat | `.\worktree-allocate.ps1 -Repo client-manager -Branch feature/x` |
 | `worktree-status.ps1` | Check seats | `.\worktree-status.ps1 -Compact` |
 | `worktree-release-all.ps1` | Release seats | `.\worktree-release-all.ps1 -AutoCommit` |
+| `pattern-search.ps1` | Search past solutions | `.\pattern-search.ps1 -Query "error"` |
+| `read-reflections.ps1` | Read reflection log | `.\read-reflections.ps1 -Recent 10` |
+| `maintenance.ps1` | Run maintenance | `.\maintenance.ps1 -Full` |
+| `archive-reflections.ps1` | Archive old entries | `.\archive-reflections.ps1 -DryRun` |
+| `migrate-pool-to-json.ps1` | Convert pool to JSON | `.\migrate-pool-to-json.ps1` |
+| `pre-commit-hook.ps1` | Enforcement hooks | `.\pre-commit-hook.ps1 -Check` |
 
 ---
 

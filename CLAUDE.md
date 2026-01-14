@@ -21,11 +21,34 @@ Any task with multiple steps should become a script. This way:
 |---------------|--------|
 | Checking worktrees manually | `worktree-status.ps1` |
 | Commit + push + switch + update pool | `worktree-release-all.ps1` |
-| Reading multiple files for state | `repo-dashboard.sh` |
+| Reading multiple files for state | `bootstrap-snapshot.ps1` |
 | Manual C# formatting | `cs-format.ps1` |
 | Checking ClickUp tasks | `clickup-sync.ps1 -Action list` |
+| Allocating worktree manually | `worktree-allocate.ps1 -Repo client-manager -Branch feature/x` |
+| Running health checks | `system-health.ps1` |
+| Searching past patterns | `pattern-search.ps1 -Query "error"` |
+| Unified operations | `claude-ctl.ps1 status` |
 
 **Goal:** Maximize uninterrupted thinking time by eliminating manual ceremony.
+
+### 🔧 Essential Tools Quick Reference
+
+| Tool | Purpose | Example |
+|------|---------|---------|
+| `claude-ctl.ps1` | **Unified CLI** - single entry point | `claude-ctl.ps1 status` |
+| `bootstrap-snapshot.ps1` | Fast startup state | `bootstrap-snapshot.ps1 -Generate` |
+| `system-health.ps1` | Comprehensive health check | `system-health.ps1 -Fix` |
+| `worktree-allocate.ps1` | Single-command allocation | `worktree-allocate.ps1 -Repo client-manager -Branch x -Paired` |
+| `worktree-status.ps1` | Check worktree pool | `worktree-status.ps1 -Compact` |
+| `worktree-release-all.ps1` | Release worktrees | `worktree-release-all.ps1 -AutoCommit` |
+| `pattern-search.ps1` | Search past solutions | `pattern-search.ps1 -Query "build error"` |
+| `read-reflections.ps1` | Read reflection log | `read-reflections.ps1 -Recent 10` |
+| `daily-summary.ps1` | Activity digest | `daily-summary.ps1 -Output markdown` |
+| `maintenance.ps1` | Run maintenance tasks | `maintenance.ps1 -Full` |
+| `prune-branches.ps1` | Clean old branches | `prune-branches.ps1 -DryRun` |
+| `pre-commit-hook.ps1` | Zero-tolerance enforcement | `pre-commit-hook.ps1 -Install -RepoPath <path>` |
+
+**Full documentation:** [tools/README.md](./tools/README.md)
 
 ---
 
