@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "googleapis": "^170.0.0",
+    "imap": "^0.8.19",
+    "mailparser": "^3.9.1",
     "open": "^11.0.0"
   }
 }
