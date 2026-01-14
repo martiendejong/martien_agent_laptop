@@ -7,7 +7,7 @@ Seat states:
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager+hazina | allitemslist | 2026-01-14T14:00:00Z | 🔄 All Items List: unified activity sidebar with 50-expert design review |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | hazina | agent-002-phase1-complete-implementation | 2026-01-13T23:15:00Z | 🔄 Complete Phase 1 - Full RAG implementation with document processing |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-14T16:30:00Z | ✅ Chat ID URL routing (PR #146 created) - worktree released |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-14T04:15:00Z | ✅ Restaurant Menu Phase 1+2+3 complete (PR #148 updated) - worktree released |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-14T18:00:00Z | ✅ Restaurant Menu Phase 1+2+3 complete (PR #148 created) - worktree released |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-14T17:00:00Z | ✅ Token verification for chat generation (PR #147 created) - worktree released |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-01-10T16:00:00Z | ✅ Cleaned up: Chat issues docs (PR #60/#80 MERGED) + Config templates (Hazina PR #33 MERGED), worktree released |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-01-10T15:30:00Z | ✅ Cleaned up: Security hardening (PR #61) and payment-models work completed and merged |

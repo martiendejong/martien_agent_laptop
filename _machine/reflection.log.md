@@ -4,6 +4,120 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-14 [FEATURE] - Restaurant Menu Complete Implementation (Phase 1+2+3)
+
+**Pattern Type:** Full-Stack Feature Implementation
+**Context:** Restaurant Menu feature for Brand2Boost client-manager
+**Outcome:** ✅ Complete - PR #148 created with all 3 phases
+
+### Implementation Summary
+
+**Phase 1 - Backend Infrastructure (14 files, ~1,361 lines):**
+- Models: MenuItem, MenuCategory, MenuItemImage, MenuItemAllergen, MenuItemDietaryTag
+- Services: IMenuItemService, IMenuCategoryService with full CRUD
+- Controller: RestaurantMenuController with search, reorder, and reference data endpoints
+- EU 1169/2011 allergen compliance (14 major allergens) + 6 additional
+- 20 dietary tag types (Vegetarian, Vegan, GlutenFree, Halal, Kosher, etc.)
+
+**Phase 2 - Document Upload & Extraction (~1,000 lines):**
+- Models: MenuSourceDocument, MenuCardTemplate
+- Service: MenuExtractionService with PDF/DOCX/Image processing
+- Controller: MenuExtractionController with file upload and template management
+- Used UglyToad.PdfPig for PDF text/font extraction
+- Used DocumentFormat.OpenXml for DOCX header/footer extraction
+- Used System.Drawing for image color palette extraction
+
+**Phase 3 - Frontend UI (~1,100 lines):**
+- Components: MenuCatalogPage, MenuItemList, MenuItemCard, MenuItemForm, MenuCategoryPanel, DietaryTagBadges, MenuDocumentUpload
+- Service: menuService.ts with full API client
+- Tabbed UI for Menu Items and Templates/Upload
+- Drag-drop document upload with extraction status indicators
+
+### Critical Pattern 85: System.Drawing.Color Ambiguity with OpenXml
+
+**Problem:** Build error `CS0104: 'Color' is an ambiguous reference between 'System.Drawing.Color' and 'DocumentFormat.OpenXml.Wordprocessing.Color'`
+
+**Cause:** When using both `System.Drawing` and `DocumentFormat.OpenXml.Wordprocessing` in the same file, both namespaces define a `Color` type.
+
+**Solution:** Use fully qualified type name:
+```csharp
+// Instead of:
+var quantized = Color.FromArgb(...)
+
+// Use:
+var quantized = System.Drawing.Color.FromArgb(...)
+```
+
+### Critical Pattern 86: UpdateAsync Must Include Related Entities
+
+**Problem:** `UpdateMenuItemAsync` was not updating allergens and dietary tags - they were being ignored.
+
+**Cause:** EF Core doesn't automatically track changes to navigation properties unless they're loaded.
+
+**Solution:**
+1. Load existing related entities with `.Include()`
+2. Remove old items not in the update
+3. Add new items from the update
+
+```csharp
+// Load existing with related entities
+var existing = await _context.MenuItems
+    .Include(m => m.Allergens)
+    .Include(m => m.DietaryTags)
+    .FirstOrDefaultAsync(m => m.Id == menuItem.Id);
+
+// Remove old allergens not in update
+var allergensToRemove = existing.Allergens
+    .Where(ea => !menuItem.Allergens.Any(na => na.AllergenType == ea.AllergenType))
+    .ToList();
+foreach (var allergen in allergensToRemove)
+{
+    existing.Allergens.Remove(allergen);
+}
+
+// Add new allergens
+foreach (var newAllergen in menuItem.Allergens)
+{
+    if (!existing.Allergens.Any(ea => ea.AllergenType == newAllergen.AllergenType))
+    {
+        existing.Allergens.Add(new MenuItemAllergen { ... });
+    }
+}
+```
+
+### Critical Pattern 87: Worktree npm Dependencies
+
+**Problem:** Frontend build failed with "vite not found" in worktree.
+
+**Cause:** `npm install` was not run in the worktree after allocation.
+
+**Solution:** Always run `npm install` in worktree before building frontend:
+```bash
+cd C:\Projects\worker-agents\agent-XXX\client-manager\ClientManagerFrontend
+npm install
+npm run build
+```
+
+### Self-Review Practice
+
+**Lesson:** After completing implementation, perform self-review by reading your own changes. Found the allergen/dietary tag update bug during self-review before PR creation.
+
+**Best Practice:**
+1. Complete implementation
+2. Build both backend and frontend
+3. Read through all changed files
+4. Look for missing functionality (especially related entity updates)
+5. Fix issues found
+6. Then create PR
+
+### Worktree Status After Session
+
+- agent-003: ✅ Released (Restaurant Menu PR #148)
+- agent-001: BUSY (All Items List - different work)
+- agent-002: BUSY (Phase 1 RAG - different work)
+
+---
+
 ## 2026-01-14 [PRODUCTION DEBUG] - Brand2Boost Database Schema & Missing Tables
 
 **Pattern Type:** Production Database Troubleshooting
