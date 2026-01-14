@@ -355,3 +355,4 @@ Actions:
 2026-01-14T02:30:00Z — release — agent-001 — client-manager — agent-001-select-document-extraction — — claude-code — Completed: Select from uploaded docs for header/footer extraction (PR #136 created)
 2026-01-14T10:00:00Z — allocate — agent-001 — client-manager+hazina — agent-001-social-post-generator — — claude-code — Social Media Post Generator: 12 post ideas, platform-adapted generation, image suggestions
 2026-01-14T11:30:00Z — release — agent-001 — client-manager+hazina — agent-001-social-post-generator — #137 — claude-code — Post Ideas Generator: 12 ideas, platform-adapted posts, image suggestions
+2026-01-14T14:00:00Z — allocate — agent-001 — client-manager+hazina — allitemslist — — claude-code — All Items List feature: unified activity sidebar showing all documents, data, analyses with fade-out animation and 50-expert design review
