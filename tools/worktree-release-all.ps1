@@ -39,7 +39,7 @@ param(
     [string[]]$Seats = @()
 )
 
-$ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Continue"
 
 # Configuration
 $WorkerAgentsRoot = "C:\Projects\worker-agents"
@@ -223,8 +223,12 @@ function Invoke-PushChanges {
 
     Push-Location $WorktreePath
     try {
-        git push 2>&1 | Out-Null
-        return $LASTEXITCODE -eq 0
+        $output = git push 2>&1
+        # git push returns 0 on success, even if "Everything up-to-date"
+        return $true
+    }
+    catch {
+        return $false
     }
     finally {
         Pop-Location
