@@ -1,6 +1,6 @@
 ---
 name: api-patterns
-description: Common API development patterns including OpenAI config initialization, API response enrichment, avoiding URL duplication, and LLM integration. Use when working with APIs, fixing compilation errors, or integrating AI services.
+description: Common API development patterns including OpenAI config initialization, API response enrichment, URL duplication, LLM integration, System.Text.Json dynamic handling, and JSON serialization issues. Use when working with APIs, fixing compilation/runtime errors, or debugging JSON issues.
 allowed-tools: Read, Write, Edit, Grep, Bash
 user-invocable: true
 ---
@@ -361,6 +361,124 @@ When extracting structured data from LLM responses:
 @"!\[Generated Image\]\((.*?)\)"  // ❌ Too rigid
 ```
 
+## Pattern 7: System.Text.Json Dynamic Parameter Handling
+
+### Problem
+
+Using `dynamic` parameter with ASP.NET Core (System.Text.Json):
+
+```csharp
+// ❌ FAILS at runtime
+public async Task<IActionResult> UpdateUser([FromBody] dynamic userData)
+{
+    string userId = userData?.Id?.ToString();  // RuntimeBinderException!
+}
+```
+
+**Error:** `'System.Text.Json.JsonElement' does not contain a definition for 'Id'`
+
+### Root Cause
+
+**Newtonsoft.Json** → deserializes `dynamic` as `ExpandoObject` → property access works
+**System.Text.Json** → deserializes `dynamic` as `JsonElement` → property access fails
+
+### Solution - Use JsonElement with TryGetProperty
+
+```csharp
+// ✅ CORRECT - Explicit JsonElement type
+public async Task<IActionResult> UpdateUser([FromBody] System.Text.Json.JsonElement userData)
+{
+    // Safe property access
+    string? userId = userData.TryGetProperty("Id", out var idProp)
+        ? idProp.GetString()
+        : null;
+
+    // With default value
+    string email = userData.TryGetProperty("Email", out var emailProp)
+        ? emailProp.GetString() ?? defaultEmail
+        : defaultEmail;
+
+    // For nullable check (property exists but value is null)
+    bool avatarWasProvided = userData.TryGetProperty("Avatar", out _);
+
+    // For numbers
+    int count = userData.TryGetProperty("Count", out var countProp)
+        ? countProp.GetInt32()
+        : 0;
+}
+```
+
+### Key Points
+
+1. **Never use `dynamic`** with System.Text.Json - use `JsonElement`
+2. **Use `TryGetProperty`** - returns `false` for missing properties (doesn't throw)
+3. **Handle nulls** - `GetString()` returns `null` for JSON `null`
+4. **Distinguish missing vs null** - `TryGetProperty` returns `false` only if property doesn't exist
+
+---
+
+## Pattern 8: JSON Property Name Collision in Anonymous Types
+
+### Problem
+
+```csharp
+// ❌ FAILS - Property name collision
+var response = new
+{
+    Avatar = userAvatar,
+    avatar = userAvatar  // Collision!
+};
+```
+
+**Error:** `The JSON property name for 'avatar' collides with another property`
+
+### Root Cause
+
+ASP.NET Core's System.Text.Json uses **camelCase naming policy by default**:
+- `Avatar` → serialized as `"avatar"`
+- `avatar` → serialized as `"avatar"`
+
+Both properties become the same JSON key.
+
+### Solution
+
+Remove duplicates - System.Text.Json handles casing automatically:
+
+```csharp
+// ✅ CORRECT - Single property, serializes as "avatar"
+var response = new
+{
+    Avatar = userAvatar  // JSON: { "avatar": "..." }
+};
+```
+
+### Prevention
+
+**When creating anonymous types:**
+1. ✅ Use PascalCase property names only
+2. ✅ Don't add "lowercase for compatibility" duplicates
+3. ✅ Trust the JSON serializer's naming policy
+
+```csharp
+// ❌ Don't do this
+var response = new
+{
+    FirstName = user.FirstName,
+    firstName = user.FirstName,  // Collision!
+    lastName = user.LastName     // Collision with LastName!
+};
+
+// ✅ Do this
+var response = new
+{
+    FirstName = user.FirstName,
+    LastName = user.LastName
+    // JSON output: { "firstName": "...", "lastName": "..." }
+};
+```
+
+---
+
 ## Detection and Prevention
 
 ### Pre-Development Checklist
@@ -395,6 +513,12 @@ grep -r "!\\\[Generated Image\\\]" --include="*.cs"
 
 # Check for ILLMProviderFactory (wrong interface)
 grep -r "ILLMProviderFactory" --include="*.cs"
+
+# Find dynamic parameters (potential System.Text.Json issues)
+grep -r "\[FromBody\] dynamic" --include="*.cs"
+
+# Find potential JSON property collisions (lowercase duplicates)
+grep -rE "^\s+\w+ = .*,\s*$" --include="*.cs" -A 1 | grep -E "^\s+[a-z]\w+ = "
 ```
 
 ## Related Documentation
@@ -413,3 +537,6 @@ grep -r "ILLMProviderFactory" --include="*.cs"
 - Seeing 404 errors with `/api/api/` in URLs
 - Implementing LLM tool integrations
 - Extracting data from LLM responses
+- Getting `RuntimeBinderException` with `JsonElement`
+- Getting `JSON property name collision` errors
+- Using `[FromBody] dynamic` parameters

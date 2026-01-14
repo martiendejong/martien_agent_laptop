@@ -194,7 +194,7 @@ switch ($Action) {
         }
 
         $prUrl = "https://github.com/$Repo/pull/$PrNumber"
-        $commentText = "🔗 GitHub PR #${PrNumber}: $prUrl"
+        $commentText = "GitHub PR #${PrNumber}: $prUrl"
 
         $url = "$apiBase/task/$TaskId/comment"
         $body = @{ comment_text = $commentText } | ConvertTo-Json
@@ -222,7 +222,7 @@ switch ($Action) {
 
         # Add merge comment
         $prUrl = "https://github.com/$Repo/pull/$PrNumber"
-        $commentText = "✅ PR #${PrNumber} merged: $prUrl`n`nReady for acceptance test."
+        $commentText = "PR #${PrNumber} merged: $prUrl - Ready for acceptance test."
         $commentUrl = "$apiBase/task/$TaskId/comment"
         $commentBody = @{ comment_text = $commentText } | ConvertTo-Json
         Invoke-RestMethod -Method POST -Uri $commentUrl -Headers $headers -Body $commentBody | Out-Null

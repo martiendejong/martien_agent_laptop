@@ -427,3 +427,59 @@ python3 -c "import sqlite3; conn = sqlite3.connect('c:/stores/brand2boost/identi
 
 ---
 
+## 🚀 PRODUCTION DEPLOYMENT
+
+### Deployment Scripts (ALWAYS USE POWERSHELL)
+
+**IMPORTANT:** Always use the PowerShell scripts for deployment, not the batch file.
+
+```powershell
+# Backend deployment
+powershell -ExecutionPolicy Bypass -File "C:/Projects/client-manager/publish-brand2boost-backend.ps1"
+
+# Frontend deployment
+powershell -ExecutionPolicy Bypass -File "C:/Projects/client-manager/publish-brand2boost-frontend.ps1"
+```
+
+### What the Scripts Do
+
+1. **Backend (`publish-brand2boost-backend.ps1`):**
+   - Cleans `dist/backend`
+   - Runs `dotnet publish` (Release config)
+   - Copies `env/prod/backend/*` config files
+   - Deploys via msdeploy to VPS (85.215.217.154)
+   - Skips: identity.db, certs/, web.config, log files, hangfire.db
+
+2. **Frontend (`publish-brand2boost-frontend.ps1`):**
+   - Cleans `dist/www`
+   - Runs `npm ci && npm run build`
+   - Copies `env/prod/frontend/*` config files
+   - Deploys via msdeploy to VPS
+
+### Deployment Prerequisites
+
+- Password files must exist:
+  - `env/prod/backend.publish.password`
+  - `env/prod/www.publish.password`
+- IIS Web Deploy V3 must be installed (`msdeploy.exe`)
+- VPS must be accessible at 85.215.217.154:8172
+
+### Pre-Deployment Checklist
+
+1. ✅ Merge develop → main for hazina (if hazina changes)
+2. ✅ Merge develop → main for client-manager
+3. ✅ Ensure no uncommitted changes (stash if needed)
+4. ✅ Run backend deployment
+5. ✅ Run frontend deployment
+6. ✅ Switch repos back to develop branch
+
+### Common Deployment Errors
+
+**npm EPERM error after frontend build:**
+```
+npm error code EPERM - operation not permitted, unlink rollup.win32-x64-msvc.node
+```
+This occurs AFTER deployment completes - can be ignored. The msdeploy sync finished successfully.
+
+---
+

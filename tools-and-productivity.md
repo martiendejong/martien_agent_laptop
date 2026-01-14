@@ -62,8 +62,38 @@ See **C:\scripts\tools\README.md** for full documentation.
 9. **agent-activity.sh** - Agent status report (ROI 3.8)
 10. **coverage-report.sh** - Test coverage analysis (ROI 3.5)
 11. **generate-changelog.sh** - PR changelog (ROI 3.2)
+12. **browser-test/** - Puppeteer browser automation scripts (NEW)
 
 **Testing Status:** Only repo-dashboard.sh fully tested. Test others as you use them.
+
+### Browser Testing Tools (NEW - 2026-01-14)
+
+**Location:** `C:\scripts\tools\browser-test\`
+
+**Purpose:** Automated browser testing with Puppeteer connecting to Brave/Chrome.
+
+**Setup:**
+```powershell
+# Start browser with remote debugging
+& "C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe" --remote-debugging-port=9222
+```
+
+**Usage:**
+```bash
+cd C:\scripts\tools\browser-test
+node test-submit-registration-v3.js
+```
+
+**Test Results Location:** `C:\testresults\<app>\<test-YYYY-MM-DD>\`
+
+**Key Scripts:**
+- `test-submit-registration-v3.js` - Registration flow test
+- `test-login-submit.js` - Login flow test
+- `capture-current-state.js` - Screenshot current state
+
+**Documentation:**
+- `C:\scripts\tools\browser-test\README.md`
+- `C:\scripts\_machine\best-practices\browser-testing.md`
 
 **Tracking:** Update C:\scripts\tools\TOOLS_STATUS.md after each tool usage.
 

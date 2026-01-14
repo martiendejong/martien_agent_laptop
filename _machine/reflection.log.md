@@ -4,6 +4,236 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-14 [CROSS-REPO-SYNC] - Property Sync Between Hazina and client-manager
+
+**Pattern Type:** Cross-Repository Dependencies / Schema Sync
+**Context:** User pulled changes from develop and got compilation errors about missing properties
+**Outcome:** ✅ Fixed, documented patterns for future reference
+
+### Problem
+
+After pulling Diko's changes from `develop`, compilation failed with errors:
+- `HazinaStoreUser` does not contain a definition for `Phone`
+- `HazinaStoreUser` does not contain a definition for `PhoneNumber`
+- SQLite Error: `no such column: u.Avatar`
+
+### Root Cause
+
+**Cross-repo changes were not synchronized:**
+1. Diko added code in `client-manager` that expected `Phone` property on `HazinaStoreUser`
+2. The corresponding change in `Hazina` (adding the property) was never made/committed
+3. Database migration for `Avatar` column was also missing
+
+### Fix Pattern
+
+When client-manager code references new Hazina properties:
+1. **Check Hazina models first** - Add missing properties to the framework
+2. **Check EF migrations** - Add database columns if needed
+3. **Pull both repos** - Ensure both are on same branch state
+
+### Files Modified
+
+| Repository | File | Change |
+|------------|------|--------|
+| Hazina | `HazinaStoreUser.cs` | Added `public string? Phone { get; set; }` |
+| client-manager | `UserController.cs:281` | Simplified to `Phone = HazinaStoreUser.Phone` |
+| client-manager | Migration | Added `Avatar` column to `UserProfiles` |
+
+---
+
+## 2026-01-14 [EF-MIGRATION-CONFLICT] - Raw SQL Migrations Cause EF Schema Detection Issues
+
+**Pattern Type:** EF Core / Database Migrations
+**Context:** Migration failed with "duplicate column" and "no such column" errors
+**Outcome:** ✅ Fixed with raw SQL migration approach
+
+### Problem
+
+EF Core generated migration tried to:
+1. Rename `DailyAllowance` → `MonthlyAllowance` (already done by raw SQL)
+2. Add columns that already existed (`ActiveSubscriptionId`, etc.)
+
+### Root Cause
+
+Previous migration `20260109160000_UpdatePaymentModels.cs` used **raw SQL table rebuild** to:
+- Rename columns
+- Add new columns
+- Modify constraints
+
+EF Core's model snapshot became out of sync with the actual database schema. When generating new migrations, EF detected "differences" that weren't real.
+
+### Fix Pattern: Raw SQL Migration for Schema Additions
+
+When adding columns after raw SQL migrations have been used:
+
+```csharp
+public partial class AddUserProfileAvatar : Migration
+{
+    protected override void Up(MigrationBuilder migrationBuilder)
+    {
+        // Use raw SQL to avoid EF schema detection conflicts
+        migrationBuilder.Sql(@"
+            ALTER TABLE UserProfiles ADD COLUMN Avatar TEXT NULL;
+        ");
+    }
+
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+        // SQLite doesn't support DROP COLUMN - leave in place
+    }
+}
+```
+
+### Key Learnings
+
+1. **Raw SQL migrations break EF tracking** - Once you use `migrationBuilder.Sql()` for schema changes, EF loses track
+2. **Model snapshot must match reality** - Manually update `IdentityDbContextModelSnapshot.cs` after raw SQL migrations
+3. **Simple migrations work best** - For single column additions after raw SQL, use another raw SQL migration
+4. **Don't mix approaches** - Either use EF-managed migrations OR raw SQL, not both for same table
+
+---
+
+## 2026-01-14 [JSON-PROPERTY-COLLISION] - Anonymous Type Property Name Collision
+
+**Pattern Type:** ASP.NET Core / JSON Serialization
+**Context:** Runtime exception when returning anonymous type with duplicate property names
+**Outcome:** ✅ Fixed by removing duplicate property
+
+### Problem
+
+```csharp
+// This FAILS at runtime:
+var userResponse = new
+{
+    Avatar = avatar,
+    avatar = avatar  // Collision! Same name when serialized
+};
+```
+
+Error: `The JSON property name for 'avatar' collides with another property`
+
+### Root Cause
+
+ASP.NET Core's System.Text.Json uses **camelCase naming policy by default**. Both `Avatar` and `avatar` serialize to `"avatar"` in JSON, causing collision.
+
+### Fix
+
+Remove the duplicate - JSON serializer handles casing automatically:
+
+```csharp
+var userResponse = new
+{
+    Avatar = avatar  // Serializes as "avatar" in JSON
+};
+```
+
+---
+
+## 2026-01-14 [SYSTEM-TEXT-JSON-DYNAMIC] - Dynamic Parameters Don't Work with System.Text.Json
+
+**Pattern Type:** ASP.NET Core / JSON Deserialization
+**Context:** Runtime exception accessing properties on `dynamic` parameter
+**Outcome:** ✅ Fixed by using `JsonElement` instead
+
+### Problem
+
+```csharp
+// This FAILS at runtime with System.Text.Json:
+public async Task<IActionResult> UpdateUser([FromBody] dynamic userData)
+{
+    string userId = userData?.Id?.ToString();  // RuntimeBinderException!
+}
+```
+
+Error: `'System.Text.Json.JsonElement' does not contain a definition for 'Id'`
+
+### Root Cause
+
+**Newtonsoft.Json** deserializes `dynamic` as `ExpandoObject` → property access works
+**System.Text.Json** deserializes `dynamic` as `JsonElement` → property access fails
+
+### Fix Pattern: Use JsonElement with TryGetProperty
+
+```csharp
+public async Task<IActionResult> UpdateUser([FromBody] System.Text.Json.JsonElement userData)
+{
+    // Safe property access with TryGetProperty
+    string? userId = userData.TryGetProperty("Id", out var idProp)
+        ? idProp.GetString()
+        : null;
+
+    string? email = userData.TryGetProperty("Email", out var emailProp)
+        ? emailProp.GetString() ?? defaultValue
+        : defaultValue;
+
+    // Check if property exists (for null vs missing distinction)
+    bool hasAvatar = userData.TryGetProperty("Avatar", out _);
+}
+```
+
+### Key Learnings
+
+1. **Never use `dynamic` with System.Text.Json** - It doesn't work like Newtonsoft
+2. **Use `JsonElement`** - Explicit type, safe property access
+3. **Use `TryGetProperty`** - Returns bool, doesn't throw on missing properties
+4. **Check existence vs null** - `TryGetProperty` returns false for missing, `GetString()` returns null for JSON null
+
+---
+
+## 2026-01-14 [SOCIAL-OAUTH] - Frontend Config Required for Social Login
+
+**Pattern Type:** Configuration / OAuth
+**Context:** Facebook login showing "Client ID not configured" error after backend secrets were updated
+**Outcome:** ✅ Fixed, documented for future reference
+
+### Problem
+
+After updating backend `appsettings.json` and `appsettings.Secrets.json` with social media OAuth credentials, Facebook login still failed with "Client ID not configured" error.
+
+### Root Cause
+
+**Social OAuth requires BOTH backend AND frontend configuration:**
+
+1. **Backend** (`appsettings.json` / `appsettings.Secrets.json`):
+   - ClientId, ClientSecret, RedirectUri, Scopes
+   - Used for server-side token exchange
+
+2. **Frontend** (`config.js`):
+   - Client IDs only (secrets stay in backend)
+   - Used for initiating OAuth redirect flow
+
+### Files to Update
+
+| Layer | File | Contents |
+|-------|------|----------|
+| Backend (schema) | `ClientManagerAPI/appsettings.json` | Structure, RedirectUris, Scopes |
+| Backend (secrets) | `ClientManagerAPI/appsettings.Secrets.json` | ClientId, ClientSecret |
+| Frontend (dev) | `env/dev/frontend/config.js` | Client IDs for localhost |
+| Frontend (prod) | `env/prod/frontend/config.js` | Client IDs for production |
+
+### Frontend config.js Example
+
+```javascript
+window.__CONFIG__ = {
+  API_URL: "https://api.brand2boost.com/api/",
+  LINKEDIN_CLIENT_ID: "770k2mszhs3pl9",
+  FACEBOOK_CLIENT_ID: "764190923379550",
+  GOOGLE_CLIENT_ID: "522975587259-...",
+  TWITTER_CLIENT_ID: "NUo0djNUZnBx...",
+  // ... other platforms
+};
+```
+
+### Lesson Learned
+
+When adding/updating social OAuth credentials:
+1. Update backend `appsettings.json` (structure)
+2. Update backend `appsettings.Secrets.json` (secrets)
+3. **Update frontend `config.js`** (client IDs)
+4. Redeploy both backend AND frontend
+
+---
+
 ## 2026-01-14 [FEATURE-FLAGS] - Feature Flag Binding Mismatch Pattern
 
 **Pattern Type:** Bug Fix / Configuration
