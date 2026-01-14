@@ -21,10 +21,10 @@ Claude Agent can synchronize with ClickUp to:
 
 ### Repository → ClickUp Mapping
 
-| Repository | Workspace | List | List ID |
-|------------|-----------|------|---------|
-| client-manager | Furniture Website | Vera AI | 901506248257 |
-| hazina | Furniture Website | Vera AI | 901506248257 |
+| Repository | Workspace | Folder | List | List ID |
+|------------|-----------|--------|------|---------|
+| client-manager | GigsHub | Internal | Brand Designer | 901214097647 |
+| hazina | GigsHub | Internal | Brand Designer | (shared list) |
 
 ---
 
@@ -38,27 +38,29 @@ Claude Agent can synchronize with ClickUp to:
 ### 2. Furniture Website (Company)
 - **ID:** 9015748488
 - **Role:** Admin
-- **Usage:** client-manager/hazina development tasks
-- **Key List:** Vera AI (901506248257) - 31 tasks
+- **Usage:** Legacy Vera AI list (not actively used)
 
-### 3. GigsHub Workspace
+### 3. GigsHub Workspace (PRIMARY)
 - **ID:** 9012956001
 - **Role:** Member
-- **Usage:** GigsHub project
+- **Usage:** **client-manager/hazina development tasks**
+- **Key List:** Brand Designer (901214097647) - 100 tasks
 
 ---
 
-## Vera AI Task Statuses (client-manager/hazina)
+## Brand Designer Task Statuses
 
-| Status | Color | Meaning |
-|--------|-------|---------|
-| prullenbak | grey | Trash/archived |
-| ooit | yellow | Someday/maybe |
-| backlog | grey | Backlog - not prioritized |
-| bugs | purple | Bug reports |
-| volgende 30u | grey | Next 30 hours |
-| blocked | red | Blocked |
-| testen | grey | In testing |
+| Status | Meaning |
+|--------|---------|
+| todo | To do - ready to start |
+| busy | In progress |
+| review | Ready for review |
+| needs input | Waiting for clarification |
+| needs refinement | Needs more detail |
+| next sprint | Planned for next sprint |
+| blocked | Blocked by dependency |
+| done | Completed |
+| cancelled | Cancelled |
 
 ---
 
@@ -71,20 +73,20 @@ $headers = @{Authorization = "pk_74525428_TXT8V1QUA13N7SCRM0UUM6WNQO2I2NML"}
 
 ### Common Endpoints
 
-**Get tasks from Vera AI list:**
+**Get tasks from Brand Designer list:**
 ```powershell
-Invoke-RestMethod -Uri "https://api.clickup.com/api/v2/list/901506248257/task?archived=false" -Headers $headers
+Invoke-RestMethod -Uri "https://api.clickup.com/api/v2/list/901214097647/task?archived=false" -Headers $headers
 ```
 
 **Update task status:**
 ```powershell
-Invoke-RestMethod -Method PUT -Uri "https://api.clickup.com/api/v2/task/{task_id}" -Headers $headers -Body (@{status="testen"} | ConvertTo-Json) -ContentType "application/json"
+Invoke-RestMethod -Method PUT -Uri "https://api.clickup.com/api/v2/task/{task_id}" -Headers $headers -Body (@{status="review"} | ConvertTo-Json) -ContentType "application/json"
 ```
 
 **Create task:**
 ```powershell
-$body = @{name="Task name"; description="Details"; status="backlog"} | ConvertTo-Json
-Invoke-RestMethod -Method POST -Uri "https://api.clickup.com/api/v2/list/901506248257/task" -Headers $headers -Body $body -ContentType "application/json"
+$body = @{name="Task name"; description="Details"; status="todo"} | ConvertTo-Json
+Invoke-RestMethod -Method POST -Uri "https://api.clickup.com/api/v2/list/901214097647/task" -Headers $headers -Body $body -ContentType "application/json"
 ```
 
 ---
@@ -100,12 +102,13 @@ Invoke-RestMethod -Method POST -Uri "https://api.clickup.com/api/v2/list/9015062
 
 2. **Agent picks task and updates status:**
    ```
-   clickup-sync.ps1 -Action update -TaskId "86c45buz7" -Status "in progress"
+   clickup-sync.ps1 -Action update -TaskId "869bhfw7r" -Status "busy"
    ```
 
-3. **When PR created, update to "testen":**
+3. **When PR created, update to "review":**
    ```
-   clickup-sync.ps1 -Action update -TaskId "86c45buz7" -Status "testen" -Comment "PR #149 created"
+   clickup-sync.ps1 -Action update -TaskId "869bhfw7r" -Status "review"
+   clickup-sync.ps1 -Action comment -TaskId "869bhfw7r" -Comment "PR #149 created"
    ```
 
 ### Agent Autonomy
@@ -120,29 +123,25 @@ Claude Agent can autonomously:
 
 ## Current Open Tasks (as of 2026-01-14)
 
-**In "testen" (testing):** 13 tasks
-- Vera stop button
-- Image generation from content hooks
-- Loading icons
-- Emoticons for content hooks
-- Password requirements display
-- BigQuery admin-only access
-- Facebook connection bug
-- Chat overflow issue
-- Role-specific prompts
-- Query mechanism improvements
+**Total:** 100 open tasks
 
-**In "backlog":** 6 tasks
-- Backend team input
-- Photoshoot briefing generation
-- Search crawler research
-- Inhakers feature
-- Task queue for generation
-- Huisstijl in project settings
+| Status | Count |
+|--------|-------|
+| done | 49 |
+| review | 15 |
+| todo | 8 |
+| busy | 8 |
+| needs refinement | 7 |
+| needs input | 5 |
+| next sprint | 4 |
+| cancelled | 3 |
+| blocked | 1 |
 
-**Blocked:** 2 tasks
-- Google Ads
-- Password forgotten email
+**Recent high-activity tasks:**
+- restaurant menu (869bhfw7r)
+- project chat url (869brntyj)
+- left: one list of all generated items (869brkx6e)
+- token usage for in chat generated items (869brmb1z)
 
 ---
 

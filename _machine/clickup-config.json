@@ -28,17 +28,16 @@
             "projects": {
               "id": "90157505784",
               "lists": {
-                "vera_ai": {
+                "vera_ai_legacy": {
                   "id": "901506248257",
                   "name": "Vera AI",
                   "task_count": 31,
-                  "maps_to": ["client-manager", "hazina"]
+                  "note": "Legacy list - not actively used"
                 },
                 "socranext": {
                   "id": "901511986511",
                   "name": "SocraNext",
-                  "task_count": 3,
-                  "maps_to": ["socranext"]
+                  "task_count": 3
                 }
               }
             }
@@ -53,21 +52,54 @@
       "role": "member",
       "spaces": {
         "gigshub": { "id": "90123937819", "name": "GigsHub" },
-        "team_tasks": { "id": "90124247049", "name": "Team Tasks" }
+        "team_tasks": {
+          "id": "90124247049",
+          "name": "Team Tasks",
+          "folders": {
+            "internal": {
+              "id": "90126650982",
+              "name": "Internal",
+              "lists": {
+                "brand_designer": {
+                  "id": "901214097647",
+                  "name": "Brand Designer",
+                  "task_count": 100,
+                  "maps_to": ["client-manager", "hazina"],
+                  "statuses": ["todo", "busy", "review", "needs input", "needs refinement", "next sprint", "blocked", "done", "cancelled"]
+                }
+              }
+            },
+            "clients": {
+              "id": "90126651004",
+              "name": "Clients",
+              "lists": {
+                "vera_ai": { "id": "901211218614", "name": "Vera AI", "task_count": 104 },
+                "wreckingball": { "id": "901211218756", "name": "wreckingball.ai", "task_count": 19 },
+                "cloudgrafo": { "id": "901213168637", "name": "CloudGrafo", "task_count": 14 },
+                "vloerenhuis": { "id": "901213305955", "name": "Vloerenhuis.", "task_count": 33 }
+              }
+            }
+          }
+        }
       }
     }
   },
   "repo_mapping": {
     "client-manager": {
-      "workspace": "company",
-      "list_id": "901506248257",
-      "list_name": "Vera AI"
+      "workspace": "gigshub",
+      "space": "team_tasks",
+      "folder": "internal",
+      "list_id": "901214097647",
+      "list_name": "Brand Designer"
     },
     "hazina": {
-      "workspace": "company",
-      "list_id": "901506248257",
-      "list_name": "Vera AI"
+      "workspace": "gigshub",
+      "space": "team_tasks",
+      "folder": "internal",
+      "list_id": "901214097647",
+      "list_name": "Brand Designer"
     }
   },
+  "default_list_id": "901214097647",
   "last_updated": "2026-01-14"
 }

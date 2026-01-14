@@ -45,7 +45,7 @@ param(
     [string]$Comment,
     [string]$Name,
     [string]$Description,
-    [string]$ListId = "901506248257"  # Default: Vera AI list
+    [string]$ListId = "901214097647"  # Default: Brand Designer list (client-manager)
 )
 
 # Load config
@@ -78,7 +78,7 @@ function Format-TaskTable {
 
 switch ($Action) {
     "list" {
-        Write-Host "`n=== Vera AI Tasks (client-manager/hazina) ===" -ForegroundColor Cyan
+        Write-Host "`n=== Brand Designer Tasks (client-manager/hazina) ===" -ForegroundColor Cyan
 
         $url = "$apiBase/list/$ListId/task?archived=false&include_closed=false"
         $response = Invoke-RestMethod -Uri $url -Headers $headers
