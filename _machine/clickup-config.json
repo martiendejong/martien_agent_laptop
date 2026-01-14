@@ -7,7 +7,22 @@
       "name": "Martien de Jong's Workspace",
       "role": "owner",
       "spaces": {
-        "household": { "id": "90152830188", "name": "Managing our household" },
+        "household": {
+          "id": "90152830188",
+          "name": "Managing our household",
+          "lists": {
+            "nijeveen": {
+              "id": "901519266250",
+              "name": "nijeveen",
+              "description": "Personal household todos for the Nijeveen home - maintenance, cleaning, and home improvement tasks",
+              "task_count": 8
+            },
+            "general": {
+              "id": "901507109073",
+              "name": "List"
+            }
+          }
+        },
         "team": { "id": "90152557872", "name": "Team Space" },
         "realtime": { "id": "90156079868", "name": "Realtime Task Boards" },
         "tax": { "id": "90156513478", "name": "Tax Administration" }

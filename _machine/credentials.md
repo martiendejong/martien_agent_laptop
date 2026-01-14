@@ -14,6 +14,7 @@ This file contains credentials for various services. Keep secure.
 - **SMTP Port:** 587 (TLS) or 465 (SSL)
 - **IMAP Host:** mail.zxcs.nl
 - **IMAP Port:** 993 (SSL)
+- **Note:** SMTP and IMAP use different passwords on this server!
 
 ### Brand2Boost Email
 - **Email:** account@brand2boost.com

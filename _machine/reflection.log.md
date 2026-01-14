@@ -4,6 +4,52 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-14 [EMAIL-MANAGEMENT] - IMAP Email Cleanup Tools
+
+**Pattern Type:** New Capability / Tool Creation
+**Context:** User requested spam management for info@martiendejong.nl
+**Outcome:** ✅ Created reusable IMAP toolset
+
+### Tools Created
+
+| Script | Purpose |
+|--------|---------|
+| `imap-recent-messages.js` | Show 5 most recent inbox messages |
+| `imap-spam-manager.js` | View spam folder, move to trash |
+| `imap-action.js` | Move messages to spam/archive with pagination |
+| `imap-next.js` | Paginated message viewer |
+
+### Key Learnings
+
+1. **SMTP vs IMAP passwords can differ** - For mail.zxcs.nl, SMTP uses one password, IMAP uses another
+2. **User email preferences:**
+   - LinkedIn notifications → Spam
+   - Lovable updates → Archive (not spam)
+   - Kenya Airways → Keep (travel)
+   - Anthropic → Important
+   - IND.nl → Important (government)
+   - perridon.com (Sjoerd) → Important contact
+   - volgjewoning.nl → Important (housing)
+
+3. **Spam domain patterns:**
+   - `neooudh.store` - Most prolific spam domain (fake Dutch services)
+   - Phishing uses legitimate-sounding names with random domains
+   - Watch for: firebaseapp.com, .lat, .in domains with Dutch content
+
+### Workflow Pattern
+
+```
+Show 5 messages → User reviews → Identify spam/archive/keep
+→ Move with --spam= and --archive= flags → Show next 5 → Repeat
+```
+
+### Documentation
+
+- Full workflow documented in `C:\scripts\tools\EMAIL_MANAGEMENT.md`
+- Credentials in `C:\scripts\_machine\credentials.md`
+
+---
+
 ## 2026-01-14 [SKILL-CREATOR-DIRECTIVE] - Proactive Skill Creation
 
 **Pattern Type:** Self-Improvement / Meta-Skill Usage
