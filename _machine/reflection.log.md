@@ -6456,3 +6456,93 @@ C:\testresults\
 - Browser test scripts in `C:\scripts\tools\browser-test\`
 - Uses Puppeteer-core connecting to Brave on port 9222
 - React-compatible input simulation with `_valueTracker` hack
+
+---
+
+## 2026-01-14 [BUG FIX] - React Error #31: Objects Rendered as Children
+
+**Pattern Type:** Critical Bug Fix
+**Context:** Production crash when clicking Typography control
+**Outcome:** ✅ Fixed and deployed
+
+### The Error
+
+```
+Error: Minified React error #31
+Objects are not valid as a React child (found: object with keys {Typography})
+```
+
+### Root Cause Analysis
+
+React error #31 occurs when an object is passed directly as a JSX child instead of a string. The issue was in multiple locations:
+
+1. **`getHeadline()` function** in `MessageItem.tsx` and `MessagesPane.tsx`:
+   ```javascript
+   // DANGEROUS - returns object if data.title is an object
+   if (data?.title) return data.title
+   ```
+   Then rendered as `{headline}` - crashes if headline is an object.
+
+2. **`slot.value` rendering** in `BrandDocumentFragment.tsx`:
+   ```jsx
+   {slot.value || <span>empty</span>}
+   ```
+   If `slot.value` is `{Typography: [...]}`, React crashes.
+
+3. **`item.content` rendering** in `AnalysisData.tsx`:
+   ```jsx
+   {item.content}
+   ```
+   If content is an object instead of string, React crashes.
+
+### The Fix Pattern
+
+**Always validate types before rendering:**
+
+```javascript
+// Safe string extraction
+const safeString = (val: unknown): string | null => {
+  if (typeof val === 'string') return val
+  return null
+}
+
+// Safe content conversion
+function safeContent(content: unknown): string {
+  if (content === null || content === undefined) return ''
+  if (typeof content === 'string') return content
+  if (typeof content === 'object') {
+    try {
+      return JSON.stringify(content, null, 2)
+    } catch {
+      return '[Object]'
+    }
+  }
+  return String(content)
+}
+```
+
+### Files Fixed
+
+| File | Issue | Fix |
+|------|-------|-----|
+| `MessageItem.tsx` | `getHeadline()` returned objects | Added `safeString()` guard |
+| `MessagesPane.tsx` | `getHeadline()` returned objects | Added `safeString()` guard |
+| `AnalysisData.tsx` | `{item.content}` rendered objects | Added `safeContent()` wrapper |
+| `BrandDocumentFragment.tsx` | `{slot.value}` rendered objects | Added `safeSlotValue()` wrapper |
+| `BrandDocumentFragmentChat.tsx` | `{slot.value}` rendered objects | Added `safeSlotValue()` wrapper |
+
+### Key Insight
+
+**The `{Typography}` in the error message was the exact key** from the serialized typography format:
+```javascript
+serializeTypography = (entries) => JSON.stringify({ Typography: entries })
+```
+
+This helped trace that the issue was typography data being rendered as a React child somewhere.
+
+### Prevention Rules
+
+1. **Never trust API data types** - always validate before rendering
+2. **TypeScript `string` return type doesn't enforce runtime behavior** - objects can slip through
+3. **Search for `{data?.X}` patterns** in JSX - these are vulnerable if X could be an object
+4. **Error message contains the object keys** - use this to trace the data structure causing the issue
