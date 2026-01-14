@@ -4,6 +4,71 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-15 [CLICKUP-PERSONAL-WORKSPACE] - Household Task Management
+
+**Pattern Type:** New Capability / Personal Workspace Discovery
+**Context:** User requested access to personal ClickUp list "nijeveen" in "Managing our household" space
+**Outcome:** ✅ Discovered, documented, and can now manage personal household todos
+
+### ClickUp Personal Workspace Structure
+
+```
+Martien de Jong's Workspace (ID: 9015747737)
+└── Managing our household (Space ID: 90152830188)
+    ├── nijeveen (List ID: 901519266250) ← Personal house todos
+    └── List (ID: 901507109073) ← General
+```
+
+### Nijeveen List Purpose
+
+**This is the user's personal household todo list for their home in Nijeveen.**
+
+Categories of tasks:
+- Home maintenance (kitchen hood, drainage)
+- Cleaning (floors, cabinets)
+- Garden work
+- Appliance repairs (TV)
+
+### Available Statuses for Household Lists
+
+| Status | Use Case |
+|--------|----------|
+| `someday maybe` | Future/low priority |
+| `soon` | Coming up |
+| `next batch` | Next round of work |
+| `todo` | Ready to do |
+| `in progress` | Currently working |
+| `blocked` | Waiting on something |
+| `unfinished` | Started but incomplete |
+| `done` / `complete` | Finished |
+
+### Key Learning: ClickUp Status Names
+
+**⚠️ GOTCHA:** ClickUp statuses have NO SPACES in their identifiers.
+- ❌ `"to do"` → API error: "Status not found"
+- ✅ `"todo"` → Works correctly
+
+Always query `/list/{id}` endpoint first to get exact status names before creating tasks.
+
+### API Pattern for Creating Personal Tasks
+
+```powershell
+$body = @{
+    name = "Task name"
+    status = "todo"  # NO SPACE!
+} | ConvertTo-Json
+
+Invoke-RestMethod -Method POST `
+    -Uri "https://api.clickup.com/api/v2/list/901519266250/task" `
+    -Headers $headers -Body $body
+```
+
+### Documentation Updated
+
+- `C:\scripts\_machine\clickup-config.json` - Added nijeveen list with description
+
+---
+
 ## 2026-01-14 [EMAIL-MANAGEMENT] - IMAP Email Cleanup Tools
 
 **Pattern Type:** New Capability / Tool Creation
