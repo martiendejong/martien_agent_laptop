@@ -1,0 +1,503 @@
+{
+  "$schema": "unified-components.schema.json",
+  "version": "1.0",
+  "description": "Unified component registry for Brand2Boost",
+
+  "components": [
+
+    // ═══════════════════════════════════════════════════════════════
+    // CONTENT COMPONENTS - Store data, multiple sources
+    // ═══════════════════════════════════════════════════════════════
+
+    {
+      "id": "brand-name",
+      "type": "content",
+      "category": "brand",
+      "displayName": "Brand Name",
+
+      "source": {
+        "allowed": ["ai", "user"],
+        "default": "ai",
+        "canSwitch": true
+      },
+
+      "storage": {
+        "type": "file",
+        "fileName": "brand-name.txt",
+        "format": "text"
+      },
+
+      "generation": {
+        "enabled": true,
+        "promptFile": "brand-name.prompt.txt",
+        "tokenCost": 10
+      },
+
+      "displays": {
+        "chat": {
+          "enabled": true,
+          "component": "TextCard",
+          "props": { "editable": true, "regeneratable": true }
+        },
+        "sidebar": {
+          "enabled": true,
+          "component": "SidebarTextItem",
+          "showInList": "brand-assets"
+        },
+        "fullscreen": {
+          "enabled": true,
+          "component": "TextEditor",
+          "allowEdit": true
+        }
+      }
+    },
+
+    {
+      "id": "logo",
+      "type": "content",
+      "category": "visual",
+      "displayName": "Logo",
+
+      "source": {
+        "allowed": ["ai", "user", "extracted"],
+        "default": "ai",
+        "canSwitch": true
+      },
+
+      "storage": {
+        "type": "file",
+        "fileName": "logo.json",
+        "format": "json",
+        "blobStorage": true
+      },
+
+      "generation": {
+        "enabled": true,
+        "promptFile": "logo.prompt.txt",
+        "tokenCost": 50,
+        "imageGeneration": true
+      },
+
+      "extraction": {
+        "enabled": true,
+        "fromTypes": ["uploaded-document"],
+        "method": "image-extraction"
+      },
+
+      "displays": {
+        "chat": {
+          "enabled": true,
+          "component": "ImageCard",
+          "props": { "showVariations": true, "regeneratable": true }
+        },
+        "sidebar": {
+          "enabled": true,
+          "component": "SidebarImageItem",
+          "showInList": "brand-assets",
+          "thumbnail": true
+        },
+        "fullscreen": {
+          "enabled": true,
+          "component": "ImageGallery",
+          "allowUpload": true,
+          "allowGenerate": true
+        }
+      }
+    },
+
+    {
+      "id": "business-plan",
+      "type": "content",
+      "category": "documents",
+      "displayName": "Business Plan",
+
+      "source": {
+        "allowed": ["ai", "user", "extracted"],
+        "default": "ai"
+      },
+
+      "storage": {
+        "type": "file",
+        "fileName": "business-plan.json",
+        "format": "json"
+      },
+
+      "generation": {
+        "enabled": true,
+        "promptFile": "business-plan.prompt.txt",
+        "tokenCost": 100,
+        "outputFormat": "document"
+      },
+
+      "displays": {
+        "chat": {
+          "enabled": true,
+          "component": "DocumentCard",
+          "props": { "preview": true, "downloadable": true }
+        },
+        "sidebar": {
+          "enabled": true,
+          "component": "SidebarDocumentItem",
+          "showInList": "documents"
+        },
+        "fullscreen": {
+          "enabled": true,
+          "component": "DocumentViewer",
+          "allowEdit": true,
+          "allowExport": ["pdf", "docx"]
+        }
+      }
+    },
+
+    {
+      "id": "menu-item",
+      "type": "content",
+      "category": "restaurant",
+      "displayName": "Menu Item",
+
+      "source": {
+        "allowed": ["user", "ai", "extracted"],
+        "default": "user"
+      },
+
+      "storage": {
+        "type": "database",
+        "entity": "MenuItem",
+        "relationships": ["MenuCategory", "MenuItemAllergen"]
+      },
+
+      "generation": {
+        "enabled": true,
+        "promptFile": "menu-item-description.prompt.txt",
+        "fields": ["description", "marketingCopy"],
+        "tokenCost": 15
+      },
+
+      "displays": {
+        "chat": {
+          "enabled": true,
+          "component": "MenuItemCard",
+          "props": { "showPrice": true, "showAllergens": true }
+        },
+        "sidebar": {
+          "enabled": true,
+          "component": "SidebarMenuItem",
+          "showInList": "menu-items",
+          "groupBy": "category"
+        },
+        "fullscreen": {
+          "enabled": true,
+          "component": "MenuItemEditor",
+          "allowEdit": true
+        }
+      }
+    },
+
+    {
+      "id": "uploaded-document",
+      "type": "content",
+      "category": "documents",
+      "displayName": "Uploaded Document",
+
+      "source": {
+        "allowed": ["user"],
+        "default": "user"
+      },
+
+      "storage": {
+        "type": "database",
+        "entity": "UploadedDocument",
+        "blobStorage": true
+      },
+
+      "extraction": {
+        "canExtractTo": ["logo", "brand-header", "brand-footer", "color-scheme"],
+        "methods": ["ocr", "image-extraction", "text-extraction"]
+      },
+
+      "displays": {
+        "chat": {
+          "enabled": true,
+          "component": "DocumentCard",
+          "props": { "showExtractButton": true }
+        },
+        "sidebar": {
+          "enabled": true,
+          "component": "SidebarDocumentItem",
+          "showInList": "uploaded-documents"
+        },
+        "fullscreen": {
+          "enabled": true,
+          "component": "DocumentViewer",
+          "allowExtraction": true
+        }
+      }
+    },
+
+    {
+      "id": "gathered-data",
+      "type": "content",
+      "category": "custom",
+      "displayName": "Custom Field",
+
+      "source": {
+        "allowed": ["user", "ai"],
+        "default": "user"
+      },
+
+      "storage": {
+        "type": "json",
+        "dynamic": true,
+        "schemaless": true
+      },
+
+      "displays": {
+        "chat": {
+          "enabled": true,
+          "component": "DynamicCard",
+          "props": { "editable": true }
+        },
+        "sidebar": {
+          "enabled": true,
+          "component": "SidebarDynamicItem",
+          "showInList": "custom-data"
+        },
+        "fullscreen": {
+          "enabled": true,
+          "component": "DynamicEditor"
+        }
+      }
+    },
+
+    // ═══════════════════════════════════════════════════════════════
+    // ACTION COMPONENTS - No storage, trigger interactions
+    // ═══════════════════════════════════════════════════════════════
+
+    {
+      "id": "upload-file",
+      "type": "action",
+      "category": "interaction",
+      "displayName": "Upload File",
+
+      "action": {
+        "type": "file-upload",
+        "accepts": ["image/*", "application/pdf", ".docx"],
+        "maxSize": "50MB",
+        "targetType": "uploaded-document"
+      },
+
+      "displays": {
+        "chat": {
+          "enabled": true,
+          "component": "FileUploadCard",
+          "props": { "dragDrop": true, "showProgress": true }
+        },
+        "sidebar": { "enabled": false },
+        "fullscreen": { "enabled": false }
+      },
+
+      "triggers": {
+        "onComplete": {
+          "action": "navigate",
+          "target": "uploaded-document",
+          "showInChat": true
+        }
+      }
+    },
+
+    {
+      "id": "connect-facebook",
+      "type": "action",
+      "category": "integration",
+      "displayName": "Connect Facebook",
+
+      "action": {
+        "type": "oauth",
+        "provider": "facebook",
+        "scopes": ["pages_read_engagement", "pages_manage_posts"],
+        "endpoint": "/api/facebook/connect"
+      },
+
+      "displays": {
+        "chat": {
+          "enabled": true,
+          "component": "OAuthConnectCard",
+          "props": {
+            "icon": "facebook",
+            "buttonText": "Connect Facebook Page",
+            "description": "Link your Facebook page to publish content"
+          }
+        },
+        "sidebar": { "enabled": false },
+        "fullscreen": { "enabled": false }
+      },
+
+      "triggers": {
+        "onComplete": {
+          "action": "refresh",
+          "target": "social-connections",
+          "showSuccess": true
+        }
+      }
+    },
+
+    {
+      "id": "connect-instagram",
+      "type": "action",
+      "category": "integration",
+      "displayName": "Connect Instagram",
+
+      "action": {
+        "type": "oauth",
+        "provider": "instagram",
+        "scopes": ["instagram_basic", "instagram_content_publish"],
+        "endpoint": "/api/instagram/connect"
+      },
+
+      "displays": {
+        "chat": {
+          "enabled": true,
+          "component": "OAuthConnectCard",
+          "props": {
+            "icon": "instagram",
+            "buttonText": "Connect Instagram",
+            "description": "Link your Instagram account"
+          }
+        },
+        "sidebar": { "enabled": false },
+        "fullscreen": { "enabled": false }
+      }
+    },
+
+    {
+      "id": "buy-tokens",
+      "type": "action",
+      "category": "billing",
+      "displayName": "Buy Tokens",
+
+      "action": {
+        "type": "navigation",
+        "target": "/buy-tokens",
+        "modal": true
+      },
+
+      "displays": {
+        "chat": {
+          "enabled": true,
+          "component": "BuyTokensCard",
+          "props": {
+            "showBalance": true,
+            "showPackages": true
+          }
+        },
+        "sidebar": { "enabled": false },
+        "fullscreen": { "enabled": false }
+      }
+    },
+
+    {
+      "id": "confirm-action",
+      "type": "action",
+      "category": "interaction",
+      "displayName": "Confirm Action",
+
+      "action": {
+        "type": "confirmation",
+        "dynamic": true
+      },
+
+      "displays": {
+        "chat": {
+          "enabled": true,
+          "component": "ConfirmationCard",
+          "props": {
+            "showYesNo": true,
+            "configurable": true
+          }
+        },
+        "sidebar": { "enabled": false },
+        "fullscreen": { "enabled": false }
+      }
+    },
+
+    {
+      "id": "select-options",
+      "type": "action",
+      "category": "interaction",
+      "displayName": "Select Options",
+
+      "action": {
+        "type": "selection",
+        "dynamic": true,
+        "multiSelect": false
+      },
+
+      "displays": {
+        "chat": {
+          "enabled": true,
+          "component": "SelectionCard",
+          "props": {
+            "showAsButtons": true,
+            "showAsDropdown": false
+          }
+        },
+        "sidebar": { "enabled": false },
+        "fullscreen": { "enabled": false }
+      }
+    }
+  ],
+
+  // ═══════════════════════════════════════════════════════════════
+  // SIDEBAR LISTS - Group components in sidebar
+  // ═══════════════════════════════════════════════════════════════
+
+  "sidebarLists": [
+    {
+      "id": "brand-assets",
+      "displayName": "Brand Assets",
+      "icon": "Sparkles",
+      "order": 1,
+      "expandedByDefault": true
+    },
+    {
+      "id": "documents",
+      "displayName": "Documents",
+      "icon": "FileText",
+      "order": 2
+    },
+    {
+      "id": "uploaded-documents",
+      "displayName": "Uploaded Files",
+      "icon": "Upload",
+      "order": 3
+    },
+    {
+      "id": "menu-items",
+      "displayName": "Menu Items",
+      "icon": "UtensilsCrossed",
+      "order": 4,
+      "conditional": { "feature": "restaurant-menu" }
+    },
+    {
+      "id": "custom-data",
+      "displayName": "Custom Data",
+      "icon": "Database",
+      "order": 5
+    }
+  ],
+
+  // ═══════════════════════════════════════════════════════════════
+  // CATEGORIES - Group components logically
+  // ═══════════════════════════════════════════════════════════════
+
+  "categories": [
+    { "id": "brand", "displayName": "Brand Identity", "icon": "Sparkles" },
+    { "id": "visual", "displayName": "Visual Assets", "icon": "Image" },
+    { "id": "documents", "displayName": "Documents", "icon": "FileText" },
+    { "id": "restaurant", "displayName": "Restaurant", "icon": "UtensilsCrossed" },
+    { "id": "custom", "displayName": "Custom Data", "icon": "Database" },
+    { "id": "interaction", "displayName": "Interactions", "icon": "MessageSquare" },
+    { "id": "integration", "displayName": "Integrations", "icon": "Link" },
+    { "id": "billing", "displayName": "Billing", "icon": "CreditCard" }
+  ]
+}
