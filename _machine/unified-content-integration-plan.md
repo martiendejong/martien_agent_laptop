@@ -175,30 +175,38 @@ The unified content system can be built **ON TOP OF** PR #149's architecture rat
 
 ## Git Branch Strategy
 
+**UPDATED:** All unified content work merges INTO `allitemslist` branch, not develop.
+
 ```
 develop
 │
-├── PR #149 (allitemslist) ← MERGE FIRST
-│
-└── develop (post-149)
+└── allitemslist (PR #149 - INTEGRATION BRANCH)
     │
     ├── feature/unified-types
-    │   └── PR #xxx
+    │   └── PR → allitemslist
     │
-    ├── feature/action-components (depends on unified-types)
-    │   └── PR #xxx
+    ├── feature/action-components
+    │   └── PR → allitemslist
     │
-    ├── feature/unified-config (depends on action-components)
-    │   └── PR #xxx
+    ├── feature/unified-config
+    │   └── PR → allitemslist
     │
-    ├── feature/chat-components (depends on unified-config)
-    │   └── PR #xxx
+    ├── feature/chat-components
+    │   └── PR → allitemslist
     │
-    └── feature/unified-menu (depends on chat-components)
-        └── PR #xxx
+    └── feature/unified-menu
+        └── PR → allitemslist
+        │
+        └── FINAL: allitemslist → develop (comprehensive PR)
 ```
 
-**Critical:** Each PR must be independently deployable with feature flags.
+**Benefits:**
+- All unified UI work stays together
+- One comprehensive review when merging to develop
+- Easier to test complete feature set
+- No partial states in develop
+
+**Critical:** Keep `allitemslist` regularly rebased on develop to avoid drift.
 
 ---
 

@@ -4,6 +4,152 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-14 [FEATURE-FLAGS] - Feature Flag Binding Mismatch Pattern
+
+**Pattern Type:** Bug Fix / Configuration
+**Context:** AllItemsList feature flags not loading from backend API
+**Outcome:** ✅ Fixed, documented for future reference
+
+### Problem
+
+Feature flags API (`/api/featureflags`) returning `{}` empty object despite `feature-flags.json` having all values set.
+
+### Root Cause
+
+**Binding mismatch between JSON structure and C# class:**
+
+```csharp
+// Program.cs - binds to "FeatureFlags" section
+builder.Services.Configure<FeatureFlagsConfiguration>(
+    builder.Configuration.GetSection("FeatureFlags"));
+
+// FeatureFlagsConfiguration.cs - expects FeatureFlags property
+public class FeatureFlagsConfiguration {
+    public Dictionary<string, bool> FeatureFlags { get; set; }
+}
+```
+
+The code was looking for `FeatureFlags.FeatureFlags` in the config tree, but JSON only had `FeatureFlags`.
+
+### Solution
+
+Changed binding to use root configuration:
+```csharp
+// BEFORE (broken):
+builder.Services.Configure<FeatureFlagsConfiguration>(
+    builder.Configuration.GetSection("FeatureFlags"));
+
+// AFTER (working):
+builder.Services.Configure<FeatureFlagsConfiguration>(
+    builder.Configuration);
+```
+
+### Lesson Learned
+
+When using `IOptions<T>` with custom JSON files:
+1. Check if `GetSection()` is needed vs binding to root
+2. The section name in `GetSection()` must match the JSON key
+3. The class property name must match the next level down
+4. **Test the API endpoint directly** to verify flags are loaded
+
+---
+
+## 2026-01-14 [UI-INTEGRATION] - Feature Components Built But Not Wired
+
+**Pattern Type:** Implementation Gap Analysis
+**Context:** AllItemsList components 100% built but not showing in UI
+**Outcome:** ✅ Identified and fixed integration gap
+
+### Problem
+
+User enabled `EnableGeneratedItemsList` feature flag but saw no UI change. Feature flag was working correctly (verified via API), but UI remained unchanged.
+
+### Root Cause
+
+**Components were fully implemented but never integrated into MainLayout:**
+
+| What Existed | What Was Missing |
+|--------------|------------------|
+| ActivitySidebar component ✅ | Import in MainLayout ❌ |
+| ActionsSidebar component ✅ | Conditional rendering ❌ |
+| Feature flag context ✅ | Flag check in layout ❌ |
+| All supporting hooks/stores ✅ | Wiring to UI ❌ |
+
+### Solution
+
+Added to `MainLayout.tsx`:
+1. Import `useFeatureFlagContext`
+2. Import `ActivitySidebar` and `ActionsSidebar`
+3. Check `flags.enableGeneratedItemsList`
+4. Conditional render: old `<Sidebar>` vs new `<ActivitySidebar>`
+5. Add `<ActionsSidebar>` on right side
+
+### 50-Expert Analysis Pattern
+
+Used "50-expert analysis" approach to systematically audit:
+- What's implemented vs what's missing
+- Data flow from flag → UI
+- Integration points that need wiring
+
+**This pattern is valuable for debugging "feature doesn't work" issues.**
+
+### Lesson Learned
+
+When implementing feature-flagged features:
+1. **Build components** (done)
+2. **Wire to feature flag check** (often forgotten!)
+3. **Integrate into main layout/routing**
+4. **Test the full flow** from flag → UI change
+
+---
+
+## 2026-01-14 [UI-REQUIREMENTS] - User Requirements Clarification Pattern
+
+**Pattern Type:** Requirements Gathering
+**Context:** Initial AllItemsList implementation had wrong UI (tabs, too many items)
+**Outcome:** ✅ Iteratively refined based on user feedback
+
+### Initial Implementation vs User Intent
+
+| Implemented | User Actually Wanted |
+|-------------|---------------------|
+| Search bar | No search |
+| Filter tabs | No tabs |
+| 10 visible items | Only 3 items |
+| All items regardless of age | Only items < 1 week old |
+| Compressed stack for overflow | Items fade out and disappear |
+
+### Iterative Refinement
+
+1. **First pass:** Enabled all features (search, filters, many items)
+2. **User feedback:** "I see three tabs which was not supposed to be the case"
+3. **Second pass:** Disabled search/filters, reduced to 3 items
+4. **User feedback:** "Items should fade out when new ones come"
+5. **Third pass:** Added `maxAgeDays`, `hideOverflow`, `fadeOutBottom` props
+
+### Props Added for Configurability
+
+```tsx
+<ActivitySidebar
+  visibleCount={3}           // Only 3 items
+  showSearch={false}         // No search bar
+  showFilters={false}        // No filter tabs
+  maxAgeDays={7}             // Only items < 1 week
+  hideOverflow={true}        // No "load more" or compressed stack
+  fadeOutBottom={true}       // Last items fade out
+/>
+```
+
+### Lesson Learned
+
+For UI features:
+1. **Start minimal** - easier to add than remove
+2. **Make everything configurable** via props
+3. **Default to OFF** for optional features
+4. **Ask clarifying questions** before building complex UI
+
+---
+
 ## 2026-01-14 [PRINCIPLE] - Automation First: Scripts Over Manual Steps
 
 **Pattern Type:** Core Operating Principle
@@ -5998,3 +6144,39 @@ C:\Projects\client-manager\env\
 | env/dev/backend/web.config | Copied from prod |
 | env/dev/frontend/config.js | Dev frontend config |
 | env/dev/README.md | Setup instructions |
+
+---
+
+## 2026-01-14 [TESTING] - Structured Test Results Organization
+
+**Pattern Type:** Process Improvement
+**Context:** Browser automation testing with Puppeteer
+**Outcome:** ✅ New standard established
+
+### Practice Established
+
+All test results (screenshots, logs, summaries) should be stored in a structured folder hierarchy:
+
+```
+C:\testresults\
+├── <application-name>\
+│   ├── <test-name-YYYY-MM-DD>\
+│   │   ├── TEST_SUMMARY.md
+│   │   ├── screenshot-*.png
+│   │   └── logs/
+```
+
+### Benefits
+- Organized test artifacts by application and date
+- Easy to compare results across test runs
+- Persistent storage (not in temp folders)
+- TEST_SUMMARY.md provides context for screenshots
+
+### First Implementation
+- `C:\testresults\brand2boost\frank-tasks-verification-2026-01-14\`
+- Contains 30 screenshots + TEST_SUMMARY.md
+
+### Tooling Created
+- Browser test scripts in `C:\scripts\tools\browser-test\`
+- Uses Puppeteer-core connecting to Brave on port 9222
+- React-compatible input simulation with `_valueTracker` hack
