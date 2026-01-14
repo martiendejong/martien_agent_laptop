@@ -356,3 +356,4 @@ Actions:
 2026-01-14T10:00:00Z — allocate — agent-001 — client-manager+hazina — agent-001-social-post-generator — — claude-code — Social Media Post Generator: 12 post ideas, platform-adapted generation, image suggestions
 2026-01-14T11:30:00Z — release — agent-001 — client-manager+hazina — agent-001-social-post-generator — #137 — claude-code — Post Ideas Generator: 12 ideas, platform-adapted posts, image suggestions
 2026-01-14T14:00:00Z — allocate — agent-001 — client-manager+hazina — allitemslist — — claude-code — All Items List feature: unified activity sidebar showing all documents, data, analyses with fade-out animation and 50-expert design review
+2026-01-14T15:00:00Z — allocate — agent-003 — client-manager — feature/restaurant-menu — — claude-code — Restaurant Menu feature: analysis field with meal catalog, upload menu cards (PDF/DOCX/image), extract header/footer, generate new menu PDFs
