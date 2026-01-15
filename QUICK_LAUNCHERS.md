@@ -85,18 +85,21 @@ echo %PATH% | findstr scripts
 ### `cm` - Client Manager Frontend
 - Opens new CMD window titled "Client Manager Frontend"
 - Navigates to `C:\Projects\client-manager\ClientManagerFrontend`
+- **Auto-validates node_modules** (runs npm install if corrupt)
 - Runs `npm run dev`
 - Starts Vite dev server (typically http://localhost:5173)
 
 ### `ar` - ArtRevisionist Frontend
 - Opens new CMD window titled "ArtRevisionist Frontend"
 - Navigates to `C:\Projects\artrevisionist\artrevisionist`
+- **Auto-validates node_modules** (runs npm install if corrupt)
 - Runs `npm run dev`
 - Starts Vue/Vite dev server
 
 ### `bi` - Bugatti Insights Frontend
 - Opens new CMD window titled "Bugatti Insights Frontend"
 - Navigates to `C:\Projects\bugattiinsights\sourcecode\frontend`
+- **Auto-validates node_modules** (runs npm install if corrupt)
 - Runs `npm run dev`
 - Starts frontend dev server
 
@@ -140,6 +143,45 @@ Now you can easily tell your sessions apart and never send commands to the wrong
 
 ---
 
+## 🛡️ Auto-Validation (New Feature - 2026-01-15)
+
+**All frontend launchers (cm, ar, bi) now automatically validate node_modules before starting!**
+
+### How It Works
+
+When you run any frontend launcher, it automatically:
+
+1. **Checks node_modules health** using `npm list --depth=0`
+2. **Auto-repairs if needed** by running `npm install`
+3. **Starts dev server** once dependencies are validated
+
+### Why This Matters
+
+✅ **Prevents "vite is not recognized" errors** - Corrupt node_modules are fixed automatically
+✅ **No manual intervention** - You don't need to remember to run npm install
+✅ **Handles branch switches** - Auto-installs if dependencies changed
+✅ **Recovers from interruptions** - Fixes incomplete npm install operations
+
+### What You'll See
+
+**Normal startup (node_modules OK):**
+```
+Checking node_modules...
+[OK] Starting dev server...
+> npm run dev
+```
+
+**Auto-repair (node_modules corrupt):**
+```
+Checking node_modules...
+[WARNING] Running npm install...
+(npm install output)
+[OK] Starting dev server...
+> npm run dev
+```
+
+---
+
 ## Troubleshooting
 
 ### Command not found
@@ -157,6 +199,11 @@ Now you can easily tell your sessions apart and never send commands to the wrong
 ### Port already in use
 - If a frontend is already running, you'll get a port conflict
 - Close the existing process or use the new window
+
+### Auto-validation fails
+- Close all VS Code instances and terminal windows
+- Manually delete node_modules folder
+- Run the launcher again (it will reinstall from scratch)
 
 ---
 

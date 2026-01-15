@@ -167,20 +167,45 @@ if errorlevel 1 npm install
 - Provide clear error messages for corrupt dependencies
 - Auto-repair when possible, fail clearly when not
 
+### Solution Evolution
+
+**Initial Implementation (commit 343da7d):**
+- Added validation to cm.bat
+- Problem: Ran in current window, closed immediately
+
+**Fix (commit 0bcc64f):**
+- Moved validation into the new window command chain
+- Used bash-style command chaining: `(check || install) && run`
+
+**Final Implementation (applied to all launchers):**
+Applied pattern to all 3 frontend launchers:
+- ✅ `cm.bat` - Client Manager Frontend
+- ✅ `ar.bat` - ArtRevisionist Frontend
+- ✅ `bi.bat` - Bugatti Insights Frontend
+
+**Command Pattern:**
+```batch
+start "Title" cmd /k "cd /d <path> && (echo Checking... && npm list --depth=0 >nul 2>&1 || (echo Installing... && npm install)) && echo Starting... && npm run dev"
+```
+
 ### Files Modified
-- `C:\scripts\cm.bat` - Added pre-flight validation (commit 343da7d)
+- `C:\scripts\cm.bat` - Auto-validation (commits 343da7d, 0bcc64f)
+- `C:\scripts\ar.bat` - Auto-validation
+- `C:\scripts\bi.bat` - Auto-validation
+- `C:\scripts\QUICK_LAUNCHERS.md` - Documented auto-validation feature
 
-### Commit
+### Commits
 ```
-feat: Add automatic node_modules validation to cm.bat
-
-- Checks node_modules health before starting dev server
-- Auto-runs npm install if dependencies are corrupt/out-of-sync
-- Prevents 'vite is not recognized' errors
-- Shows clear error messages if npm install fails
+343da7d - feat: Add automatic node_modules validation to cm.bat
+0bcc64f - fix: Run validation inside new window instead of current window
+<next> - feat: Apply auto-validation to all frontend launchers (ar, bi)
 ```
 
-**Impact:** Prevents intermittent vite errors, improves developer experience, reduces debugging time
+**Impact:**
+- Prevents intermittent vite/npm errors across ALL frontend projects
+- Improves developer experience system-wide
+- Reduces debugging time for all npm-based launchers
+- Establishes reusable pattern for future launchers
 
 ---
 
