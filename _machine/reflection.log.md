@@ -6835,3 +6835,51 @@ Full deployment docs: `C:/scripts/ci-cd-troubleshooting.md` § PRODUCTION DEPLOY
 ### Rule
 
 **After merging to main, ALWAYS run the deployment scripts locally.** Do not rely on GitHub Actions for client-manager deployment.
+
+---
+
+## 2026-01-15 [TOOLING] - Created deploy.ps1 Wrapper Tool
+
+**Pattern Type:** Automation / Tool Creation
+**Context:** Repeated deployment steps should be a single command
+**Outcome:** ✅ New tool created
+
+### The Pattern
+
+Every time I deploy, I need to:
+1. Remember the path to the publish script
+2. Run with correct PowerShell execution policy
+3. Check the output
+
+### The Solution
+
+Created `C:\scripts\tools\deploy.ps1`:
+
+```powershell
+# Frontend only (default)
+deploy.ps1
+
+# Backend only
+deploy.ps1 -Target backend
+
+# Both
+deploy.ps1 -Target both
+
+# Dry run
+deploy.ps1 -DryRun
+```
+
+### Automation First Principle
+
+From CLAUDE.md: "If you find yourself doing 3+ steps repeatedly, create a script in `C:\scripts\tools\`"
+
+Tools I should use regularly:
+- `deploy.ps1` - Deploy to production
+- `claude-ctl.ps1` - Unified CLI for common operations
+- `system-health.ps1` - Check environment health
+- `pattern-search.ps1` - Search past solutions in reflection log
+- `worktree-allocate.ps1` - Single-command worktree allocation
+
+### Key Insight
+
+**Don't waste LLM tokens on ceremony.** Use tools for repetitive tasks, save brain power for actual problem-solving.

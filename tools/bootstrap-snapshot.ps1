@@ -219,21 +219,39 @@ switch ($Format) {
         Write-Host ""
 
         Write-Host "WORKTREE POOL:" -ForegroundColor Yellow
-        $snapshot.pool.PSObject.Properties | ForEach-Object {
-            $color = if ($_.Value -eq "FREE") { "Green" } elseif ($_.Value -eq "BUSY") { "Red" } else { "Gray" }
-            Write-Host "  $($_.Name): " -NoNewline
-            Write-Host $_.Value -ForegroundColor $color
+        # Handle both hashtable (fresh) and PSCustomObject (from JSON)
+        $poolProps = if ($snapshot.pool -is [hashtable]) {
+            $snapshot.pool.GetEnumerator()
+        } else {
+            $snapshot.pool.PSObject.Properties | Where-Object { $_.MemberType -eq 'NoteProperty' }
+        }
+        $poolProps | Sort-Object Name | ForEach-Object {
+            $seatName = if ($_ -is [System.Collections.DictionaryEntry]) { $_.Key } else { $_.Name }
+            $seatStatus = if ($_ -is [System.Collections.DictionaryEntry]) { $_.Value } else { $_.Value }
+            $color = if ($seatStatus -eq "FREE") { "Green" } elseif ($seatStatus -eq "BUSY") { "Red" } else { "Gray" }
+            Write-Host "  $seatName : " -NoNewline
+            Write-Host $seatStatus -ForegroundColor $color
         }
         Write-Host ""
 
         Write-Host "BASE REPOSITORIES:" -ForegroundColor Yellow
-        $snapshot.baseRepos.PSObject.Properties | ForEach-Object {
-            $status = if ($_.Value.clean) { "[clean]" } else { "[dirty]" }
-            Write-Host "  $($_.Name): $($_.Value.branch) $status"
+        $repoProps = if ($snapshot.baseRepos -is [hashtable]) {
+            $snapshot.baseRepos.GetEnumerator()
+        } else {
+            $snapshot.baseRepos.PSObject.Properties | Where-Object { $_.MemberType -eq 'NoteProperty' }
+        }
+        $repoProps | ForEach-Object {
+            $repoName = if ($_ -is [System.Collections.DictionaryEntry]) { $_.Key } else { $_.Name }
+            $repoInfo = if ($_ -is [System.Collections.DictionaryEntry]) { $_.Value } else { $_.Value }
+            $status = if ($repoInfo.clean -eq $true) { "[clean]" } else { "[dirty]" }
+            $branchColor = if ($repoInfo.branch -eq "develop") { "Green" } else { "Yellow" }
+            Write-Host "  $repoName : " -NoNewline
+            Write-Host "$($repoInfo.branch)" -ForegroundColor $branchColor -NoNewline
+            Write-Host " $status"
         }
         Write-Host ""
 
-        if ($snapshot.activeWorktrees.Count -gt 0) {
+        if ($snapshot.activeWorktrees -and $snapshot.activeWorktrees.Count -gt 0) {
             Write-Host "ACTIVE WORKTREES:" -ForegroundColor Yellow
             $snapshot.activeWorktrees | ForEach-Object {
                 Write-Host "  $($_.seat)/$($_.repo) @ $($_.branch)"
@@ -242,8 +260,10 @@ switch ($Format) {
         }
 
         Write-Host "RECENT REFLECTIONS:" -ForegroundColor Yellow
-        $snapshot.recentReflections | ForEach-Object {
-            Write-Host "  $($_.date) [$($_.tag)]" -ForegroundColor DarkCyan
+        if ($snapshot.recentReflections) {
+            $snapshot.recentReflections | ForEach-Object {
+                Write-Host "  $($_.date) [$($_.tag)]" -ForegroundColor DarkCyan
+            }
         }
         Write-Host ""
 

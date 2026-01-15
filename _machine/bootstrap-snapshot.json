@@ -97,6 +97,11 @@
                       "modified":  "2026-01-15"
                   },
                   {
+                      "path":  "C:\\scripts\\tools\\deploy.ps1",
+                      "name":  "deploy",
+                      "modified":  "2026-01-15"
+                  },
+                  {
                       "path":  "C:\\scripts\\tools\\detect-missing-projects.ps1",
                       "name":  "detect-missing-projects",
                       "modified":  "2026-01-10"
@@ -190,6 +195,11 @@
                               },
                               {
                                   "date":  "2026-01-15",
+                                  "preview":  "\r **Pattern Type:** Documentation Improvement\r **Context:** Self-improvement cycle created 8+ new tools that needed visibility\r",
+                                  "tag":  "TOOLING-REFERENCE"
+                              },
+                              {
+                                  "date":  "2026-01-15",
                                   "preview":  "\r **Pattern Type:** New Capability / Personal Workspace Discovery\r **Context:** User requested access to personal ClickUp list \"nijeveen\" in \"Managing our household\" space\r",
                                   "tag":  "CLICKUP-PERSONAL-WORKSPACE"
                               },
@@ -202,17 +212,12 @@
                                   "date":  "2026-01-14",
                                   "preview":  "\r **Pattern Type:** Self-Improvement / Meta-Skill Usage\r **Context:** Created skill-creator meta-skill for standardized skill generation\r",
                                   "tag":  "SKILL-CREATOR-DIRECTIVE"
-                              },
-                              {
-                                  "date":  "2026-01-14",
-                                  "preview":  "\r **Pattern Type:** Cross-Repository Dependencies / Schema Sync\r **Context:** User pulled changes from develop and got compilation errors about missing properties\r",
-                                  "tag":  "CROSS-REPO-SYNC"
                               }
                           ],
     "summary":  {
                     "freeSeats":  11,
                     "busySeats":  1,
-                    "toolCount":  25,
+                    "toolCount":  26,
                     "activeWorktreeCount":  7,
                     "skillCount":  14
                 },
@@ -246,5 +251,5 @@
                    "terminology-migration",
                    "worktree-status"
                ],
-    "generated":  "2026-01-15T08:57:57Z"
+    "generated":  "2026-01-15T08:59:20Z"
 }
