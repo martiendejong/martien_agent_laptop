@@ -57,25 +57,25 @@ What other options did we evaluate?
 - [ADR-004: Multi-Tenant SaaS Architecture](./004-multi-tenant-architecture.md)
 
 ### Backend Architecture
-- [ADR-005: ASP.NET Core Web API Framework](./005-aspnet-core-webapi.md)
-- [ADR-006: Entity Framework Core as ORM](./006-entity-framework-core.md)
+- ADR-005: ASP.NET Core Web API Framework _(planned)_
+- ADR-006: Entity Framework Core as ORM _(planned)_
 - [ADR-007: SignalR for Real-Time Communication](./007-signalr-real-time.md)
 - [ADR-008: JWT Authentication Strategy](./008-jwt-authentication.md)
 
 ### Frontend Architecture
-- [ADR-009: React 18 + TypeScript Stack](./009-react-typescript.md)
+- ADR-009: React 18 + TypeScript Stack _(planned)_
 - [ADR-010: Zustand for State Management](./010-zustand-state-management.md)
-- [ADR-011: TailwindCSS + Radix UI Design System](./011-tailwind-radix-ui.md)
-- [ADR-012: Vite as Build Tool](./012-vite-build-tool.md)
+- ADR-011: TailwindCSS + Radix UI Design System _(planned)_
+- ADR-012: Vite as Build Tool _(planned)_
 
 ### AI & LLM Integration
-- [ADR-013: Multi-Provider LLM Strategy](./013-multi-provider-llm.md)
+- ADR-013: Multi-Provider LLM Strategy _(planned)_
 - [ADR-014: Token-Based Pricing Model](./014-token-based-pricing.md)
-- [ADR-015: RAG Architecture with pgvector](./015-rag-pgvector.md)
+- ADR-015: RAG Architecture with pgvector _(planned)_
 
 ### Development Workflow
-- [ADR-016: Main/Develop Branching Strategy](./016-git-branching-strategy.md)
-- [ADR-017: Agent-Driven Development Model](./017-agent-driven-development.md)
+- ADR-016: Main/Develop Branching Strategy _(planned)_
+- ADR-017: Agent-Driven Development Model _(planned)_
 
 ---
 
