@@ -73,18 +73,19 @@ Local configuration and hardcoded paths:
 ### 🔄 **Core Workflows**
 3. **[continuous-improvement.md](./continuous-improvement.md)** - Self-learning protocols, end-of-task updates, session recovery
 4. **[git-workflow.md](./git-workflow.md)** - Cross-repo PR dependencies, sync rules, git-flow workflow
+5. **[_machine/DEFINITION_OF_DONE.md](./_machine/DEFINITION_OF_DONE.md)** - **CRITICAL** - Complete DoD checklist for all tasks
 
 ### 🎨 **User Interface & Productivity**
-5. **[session-management.md](./session-management.md)** - Dynamic window titles/colors, HTML notification tracking
-6. **[tools-and-productivity.md](./tools-and-productivity.md)** - Productivity tools, C# auto-fix, debug configs, testing
+6. **[session-management.md](./session-management.md)** - Dynamic window titles/colors, HTML notification tracking
+7. **[tools-and-productivity.md](./tools-and-productivity.md)** - Productivity tools, C# auto-fix, debug configs, testing
 
 ### 🔧 **Development & Troubleshooting**
-7. **[ci-cd-troubleshooting.md](./ci-cd-troubleshooting.md)** - Frontend/backend CI issues, batch PR fixes, runtime errors
-8. **[development-patterns.md](./development-patterns.md)** - Feature implementation, migrations, architecture patterns
+8. **[ci-cd-troubleshooting.md](./ci-cd-troubleshooting.md)** - Frontend/backend CI issues, batch PR fixes, runtime errors
+9. **[development-patterns.md](./development-patterns.md)** - Feature implementation, migrations, architecture patterns
 
 ### 🚀 **Bootstrap System** (NEW)
-9. **[bootstrap/README.md](./bootstrap/README.md)** - Automated environment setup
-10. **[bootstrap/bootstrap.ps1](./bootstrap/bootstrap.ps1)** - Main entry point
+10. **[bootstrap/README.md](./bootstrap/README.md)** - Automated environment setup
+11. **[bootstrap/bootstrap.ps1](./bootstrap/bootstrap.ps1)** - Main entry point
 
 ---
 
@@ -260,9 +261,10 @@ C:\scripts\.claude\skills\
 1. ✅ **Read** `MACHINE_CONFIG.md` - Load local paths and projects
 2. ✅ **Read** `GENERAL_ZERO_TOLERANCE_RULES.md` - Know the hard-stop rules
 3. ✅ **Read** `GENERAL_DUAL_MODE_WORKFLOW.md` - Understand Feature Development vs Active Debugging modes
-4. ✅ **Run** `C:/scripts/tools/repo-dashboard.sh` - Check environment state
-5. ✅ **Verify** base repos on `develop` branch (see MACHINE_CONFIG.md for paths)
-6. ✅ **Check** `worktrees.pool.md` - Available agent seats
+4. ✅ **Read** `_machine/DEFINITION_OF_DONE.md` - Know what "done" means for all tasks
+5. ✅ **Run** `C:/scripts/tools/repo-dashboard.sh` - Check environment state
+6. ✅ **Verify** base repos on `develop` branch (see MACHINE_CONFIG.md for paths)
+7. ✅ **Check** `worktrees.pool.md` - Available agent seats
 
 ### Before ANY Code Edit - Determine Mode:
 1. 🚦 **Mode Detection** - See `dual-mode-workflow.md` decision tree
@@ -288,9 +290,10 @@ C:\scripts\.claude\skills\
 4. ✅ **Log reflection** - See `continuous-improvement.md` § End-of-Task Protocol
 
 ### End of Session:
-1. ✅ **Update reflection.log.md** - Document learnings
-2. ✅ **Update this documentation** - Add new patterns discovered
-3. ✅ **Commit and push** - Machine_agents repo (`cd C:\scripts && git add -A && git commit && git push`)
+1. ✅ **Verify DoD completion** - All tasks meet Definition of Done criteria
+2. ✅ **Update reflection.log.md** - Document learnings
+3. ✅ **Update this documentation** - Add new patterns discovered
+4. ✅ **Commit and push** - Machine_agents repo (`cd C:\scripts && git add -A && git commit && git push`)
 
 ---
 
@@ -301,6 +304,7 @@ C:\scripts\.claude\skills\
 | **SET UP: First time setup** | **`PORTABILITY_GUIDE.md`** (if copying to plugin) | - |
 | **LOAD: Machine configuration** | **`MACHINE_CONFIG.md`** (paths, projects) | - |
 | **DECIDE: Feature Development vs Active Debugging** | **`GENERAL_DUAL_MODE_WORKFLOW.md`** | - |
+| **VERIFY: Definition of Done for all tasks** | **`_machine/DEFINITION_OF_DONE.md`** | - |
 | Allocate worktree for code editing (Feature Mode) | `GENERAL_WORKTREE_PROTOCOL.md` § Atomic Allocation | ✅ `allocate-worktree` |
 | **Allocate paired worktrees (client-manager + Hazina)** | **`worktree-workflow.md` § Pattern 73** | ✅ `allocate-worktree` |
 | Work directly in base repo (Debug Mode) | `GENERAL_DUAL_MODE_WORKFLOW.md` § Active Debugging Mode | - |
