@@ -4,6 +4,87 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-15 16:15 [PATTERN] - Static HTML Pages for Social Media Platform Verification
+
+**Pattern Type:** Infrastructure / SEO / Compliance
+**Context:** TikTok API integration required publicly accessible Terms of Service and Privacy Policy URLs
+**Outcome:** Created static HTML pages that crawlers can read without JavaScript
+
+### Problem
+
+Social media platforms (TikTok, Facebook, Google, LinkedIn) require:
+- Terms of Service URL
+- Privacy Policy URL
+
+These URLs must return **actual legal content** to crawlers. React SPA pages fail because:
+- Crawlers don't execute JavaScript
+- They see only `<div id="root"></div>` (empty shell)
+- TikTok "Verify URL properties" fails
+
+**Symptoms:**
+```
+curl https://app.brand2boost.com/privacy-policy
+# Returns: 1,827 bytes (React shell only)
+# TikTok error: "Cannot verify URL properties"
+```
+
+### Solution
+
+1. **Create static HTML files** in `public/` folder:
+   - `privacy-policy.html`, `terms-and-conditions.html`, `cookie-policy.html`
+   - `data-deletion.html`, `app-description.html`, `permissions.html`
+   - `support.html`, `contact.html`, `learn-more.html`
+
+2. **Configure IIS web.config** to serve static HTML at same URLs as React routes:
+   ```xml
+   <rule name="Privacy Policy" stopProcessing="true">
+       <match url="^privacy-policy$" />
+       <action type="Rewrite" url="privacy-policy.html" />
+   </rule>
+   <!-- ... more rules ... -->
+   <rule name="SPA Fallback" stopProcessing="true">
+       <match url=".*" />
+       <conditions>
+           <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+       </conditions>
+       <action type="Rewrite" url="/index.html" />
+   </rule>
+   ```
+
+3. **Update deployment** to use web.config from GitHub:
+   - Removed `env/prod/frontend/web.config`
+   - Removed `-skip:web.config` from `deploy.bat`
+   - web.config now comes from `public/` in build output
+
+### Result
+
+```
+curl https://app.brand2boost.com/privacy-policy
+# Returns: 17,346 bytes (full legal content)
+# TikTok verification: PASS
+```
+
+### Key Learnings
+
+1. **Crawlers don't execute JavaScript** - Always need static HTML for SEO/compliance pages
+2. **IIS rewrite rules order matters** - Specific routes before SPA fallback
+3. **Deployment skips can bite you** - Check what files are excluded during deploy
+4. **Static + SPA can coexist** - Serve static for specific routes, SPA for everything else
+
+### Files Created
+
+| File | Purpose |
+|------|---------|
+| `public/*.html` | Static legal pages (10 files) |
+| `public/web.config` | IIS rewrite rules |
+
+### Related
+
+- PR #153: https://github.com/martiendejong/client-manager/pull/153
+- ClickUp: https://app.clickup.com/t/869bt9mxh
+
+---
+
 ## 2026-01-15 15:21 [TOOL-IMPROVEMENT] - Auto-Validation for cm.bat (Vite Error Prevention)
 
 **Pattern Type:** Preventive Tool Enhancement
