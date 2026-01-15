@@ -4,6 +4,105 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-15 15:21 [TOOL-IMPROVEMENT] - Auto-Validation for cm.bat (Vite Error Prevention)
+
+**Pattern Type:** Preventive Tool Enhancement
+**Context:** User reported intermittent "vite is not recognized" error when running `cm` command
+**Root Cause:** Corrupt/incomplete node_modules due to interrupted npm install or locked files
+**Outcome:** Enhanced cm.bat with automatic dependency validation and repair
+
+### Problem Analysis
+
+**Symptom:**
+```
+'vite' is not recognized as an internal or external command
+```
+
+**Diagnosis Steps:**
+1. Checked if vite binary exists in node_modules/.bin/ ✅
+2. Checked if node_modules directory exists ✅
+3. Attempted npm install → Found EPERM error on rollup native binaries
+4. Identified root cause: Corrupt node_modules from locked files
+
+**Root Causes Identified:**
+1. npm install interrupted (Ctrl+C, crash, process termination)
+2. Native binaries (.node files) locked by running processes (VS Code, Vite dev server)
+3. Branch switches without running npm install
+4. Antivirus/file system locks during installation
+
+### Solution Implemented
+
+**Enhanced cm.bat with:**
+1. Pre-flight validation: `npm list --depth=0` to check node_modules health
+2. Automatic repair: Auto-runs `npm install` if validation fails
+3. Error handling: Shows clear error messages if install fails
+4. User feedback: Informative status messages during validation
+
+**Code diff:**
+```batch
+# Before:
+start "Client Manager Frontend" cmd /k "cd /d ... && npm run dev"
+
+# After:
+cd /d C:\Projects\client-manager\ClientManagerFrontend
+npm list --depth=0 >nul 2>&1
+if errorlevel 1 (
+    echo Running npm install to fix...
+    npm install
+)
+start "Client Manager Frontend" cmd /k "npm run dev"
+```
+
+### Learnings
+
+1. **npm list is a reliable health check**: `npm list --depth=0` detects corrupt/incomplete node_modules
+2. **Native binaries are fragile**: .node files (rollup, esbuild) are frequently locked by processes
+3. **Proactive validation > Reactive debugging**: Checking before running prevents user-facing errors
+4. **EPERM errors indicate locked files**: Common when VS Code, dev servers, or antivirus have files open
+
+### Pattern for Reuse
+
+**Any npm-based tool should validate before running:**
+```batch
+npm list --depth=0 >nul 2>&1
+if errorlevel 1 npm install
+```
+
+**Apply to:**
+- Other quick launcher scripts (cm-backend.bat, etc.)
+- CI/CD pipelines (validate cache before build)
+- Development environment startup scripts
+
+### Prevention Checklist
+
+**For users:**
+- Close all terminals/editors before branch switching
+- Run `npm install` after every branch switch or package.json change
+- Don't interrupt npm install operations
+- If errors occur, delete node_modules and reinstall clean
+
+**For tools:**
+- Always validate node_modules before starting dev servers
+- Provide clear error messages for corrupt dependencies
+- Auto-repair when possible, fail clearly when not
+
+### Files Modified
+- `C:\scripts\cm.bat` - Added pre-flight validation (commit 343da7d)
+
+### Commit
+```
+feat: Add automatic node_modules validation to cm.bat
+
+- Checks node_modules health before starting dev server
+- Auto-runs npm install if dependencies are corrupt/out-of-sync
+- Prevents 'vite is not recognized' errors
+- Shows clear error messages if npm install fails
+```
+
+**Impact:** Prevents intermittent vite errors, improves developer experience, reduces debugging time
+
+---
+
 ## 2026-01-15 [SELF-IMPROVEMENT-CYCLE] - Autonomous Self-Reinforced Learning (10 Cycles)
 
 **Pattern Type:** Meta-Improvement / System Evolution
