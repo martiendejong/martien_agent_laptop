@@ -109,6 +109,37 @@ For future self-improvement cycles:
 
 ---
 
+## 2026-01-15 [TOOLING-REFERENCE] - CLAUDE.md Enhanced with Quick Reference
+
+**Pattern Type:** Documentation Improvement
+**Context:** Self-improvement cycle created 8+ new tools that needed visibility
+**Outcome:** ✅ CLAUDE.md now has Essential Tools Quick Reference table
+
+### Key Addition
+
+CLAUDE.md now includes a quick reference table for all essential tools:
+
+| Tool | Purpose |
+|------|---------|
+| `claude-ctl.ps1` | Unified CLI - single entry point |
+| `bootstrap-snapshot.ps1` | Fast startup state |
+| `system-health.ps1` | Comprehensive health check |
+| `worktree-allocate.ps1` | Single-command allocation |
+| `pattern-search.ps1` | Search past solutions |
+| `read-reflections.ps1` | Read reflection log |
+| `daily-summary.ps1` | Activity digest |
+| `maintenance.ps1` | Run maintenance tasks |
+| `prune-branches.ps1` | Clean old branches |
+| `pre-commit-hook.ps1` | Zero-tolerance enforcement |
+
+### Why This Matters
+
+- **Discoverability**: New sessions immediately see available tools
+- **Automation First**: Reinforces the core principle with concrete examples
+- **Reduced friction**: One glance shows what's available
+
+---
+
 ## 2026-01-15 [CLICKUP-PERSONAL-WORKSPACE] - Household Task Management
 
 **Pattern Type:** New Capability / Personal Workspace Discovery
