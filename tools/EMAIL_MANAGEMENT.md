@@ -2,36 +2,47 @@
 
 Tools for managing emails via IMAP for `info@martiendejong.nl`.
 
-## Quick Reference
+## Quick Reference (Main Tools)
 
 ```powershell
 cd C:\scripts\tools
 
-# Show 5 most recent messages
-node imap-recent-messages.js
+# PowerShell wrapper (recommended)
+.\email.ps1 list                      # Show 10 most recent
+.\email.ps1 list -Count 5 -Offset 10  # Pagination
+.\email.ps1 spam 1234,1235            # Move to spam
+.\email.ps1 archive 1234              # Move to archive
+.\email.ps1 search "anthropic"        # Search emails
+.\email.ps1 folders                   # List folders
 
-# Show messages with offset (e.g., messages 11-15)
-node imap-next.js --offset=10
+# Auto-cleanup (batch spam detection)
+node email-cleanup.js                 # Scan & clean spam
+node email-cleanup.js --dry-run       # Preview only
+node email-cleanup.js --count=100     # Scan more messages
 
-# Move messages to spam and show next batch
-node imap-action.js --spam=1234,1235 --offset=15
-
-# Move messages to archive and show next batch
-node imap-action.js --archive=1234,1235 --offset=15
-
-# Combined actions
-node imap-action.js --spam=1234 --archive=1235,1236 --offset=20
+# Direct Node.js usage
+node email-manager.js list --count=10 --offset=0
+node email-manager.js spam 1234,1235,1236
+node email-manager.js archive 1234
+node email-manager.js search "query"
 ```
 
-## Available Scripts
+## Main Tools
+
+| Tool | Purpose |
+|------|---------|
+| `email.ps1` | **PowerShell wrapper** - easiest to use |
+| `email-manager.js` | **Unified manager** - list, spam, archive, search |
+| `email-cleanup.js` | **Auto-cleanup** - detect & batch remove spam |
+
+## Legacy Scripts (still work)
 
 | Script | Purpose |
 |--------|---------|
 | `imap-recent-messages.js` | Show 5 most recent inbox messages |
-| `imap-spam-manager.js` | View all spam folder messages, move recent to trash |
-| `imap-next.js` | Move UIDs to spam, show next 5 messages |
-| `imap-action.js` | Move to spam/archive, show messages at offset |
-| `imap-get-uids.js` | Debug tool to get UIDs of last 5 messages |
+| `imap-spam-manager.js` | View spam folder, move to trash |
+| `imap-next.js` | Move UIDs to spam, show next 5 |
+| `imap-action.js` | Move to spam/archive with offset |
 
 ## IMAP Configuration
 
