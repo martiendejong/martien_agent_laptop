@@ -1,8 +1,8 @@
-# C:\\scripts Control Plane (YOLO) — Rebuilt Layout
+﻿# C:\\scripts Control Plane (YOLO) â€” Rebuilt Layout
 
 This bundle matches the intended on-disk layout:
 
-C:\\scripts  
+C:\\scripts
 claude\_yolo.bat (stays in root)
 codex\_yolo.cmd
 chatgpt\_yolo.bat

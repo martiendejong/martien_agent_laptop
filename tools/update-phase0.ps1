@@ -1,3 +1,15 @@
+<#
+.SYNOPSIS
+    Updates Phase 0 task in ClickUp with new strategy.
+
+.DESCRIPTION
+    One-time script to update the Phase 0 task with the
+    allitemslist integration branch strategy.
+
+.EXAMPLE
+    .\update-phase0.ps1
+#>
+
 $ApiKey = 'pk_74525428_TXT8V1QUA13N7SCRM0UUM6WNQO2I2NML'
 $TaskId = '869bt43qt'
 $Headers = @{ Authorization = $ApiKey; 'Content-Type' = 'application/json' }

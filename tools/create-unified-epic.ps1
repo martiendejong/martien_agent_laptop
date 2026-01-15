@@ -1,3 +1,15 @@
+<#
+.SYNOPSIS
+    Creates the Unified Content System epic in ClickUp.
+
+.DESCRIPTION
+    One-time script to create the EPIC task and phase subtasks
+    for the Unified Content System implementation.
+
+.EXAMPLE
+    .\create-unified-epic.ps1
+#>
+
 $ApiKey = 'pk_74525428_TXT8V1QUA13N7SCRM0UUM6WNQO2I2NML'
 $ListId = '901214097647'
 $Headers = @{ Authorization = $ApiKey; 'Content-Type' = 'application/json' }

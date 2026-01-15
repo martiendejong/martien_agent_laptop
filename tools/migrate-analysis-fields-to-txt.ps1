@@ -1,5 +1,17 @@
-# Migration script: Rename .json to .txt for text-only analysis fields
-# Usage: .\migrate-analysis-fields-to-txt.ps1 -StoresPath "C:\stores\brand2boost"
+<#
+.SYNOPSIS
+    Rename .json to .txt for text-only analysis fields.
+
+.DESCRIPTION
+    Migration script to rename analysis field files from .json to .txt
+    for fields that contain only plain text content.
+
+.PARAMETER StoresPath
+    Path to the stores directory (e.g., C:\stores\brand2boost)
+
+.EXAMPLE
+    .\migrate-analysis-fields-to-txt.ps1 -StoresPath "C:\stores\brand2boost"
+#>
 
 param(
     [Parameter(Mandatory=$true)]

@@ -1,3 +1,15 @@
+<#
+.SYNOPSIS
+    Links PR #149 to the Phase 0 ClickUp task.
+
+.DESCRIPTION
+    One-time script to add a comment linking the GitHub PR
+    to the corresponding ClickUp task.
+
+.EXAMPLE
+    .\link-pr149.ps1
+#>
+
 $ApiKey = 'pk_74525428_TXT8V1QUA13N7SCRM0UUM6WNQO2I2NML'
 $TaskId = '869bt43qt'
 $Headers = @{ Authorization = $ApiKey; 'Content-Type' = 'application/json' }

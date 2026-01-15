@@ -1,4 +1,4 @@
-# Agent Reflection Log
+﻿# Agent Reflection Log
 
 This file tracks learnings, mistakes, and improvements across agent sessions.
 
@@ -8,7 +8,7 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 **Pattern Type:** Meta-Improvement / System Evolution
 **Context:** User requested endless self-improvement loop with 50-expert panel analysis
-**Outcome:** ✅ 26+ improvements implemented across 2 cycles
+**Outcome:** âœ… 26+ improvements implemented across 2 cycles
 
 ### Summary
 
@@ -61,13 +61,13 @@ Each expert analyzed current system and proposed improvements.
 
 ### Key Findings
 
-1. **Documentation was scattered** → Created NAVIGATION.md and QUICKSTART.md
-2. **No unified CLI** → Created claude-ctl.ps1
-3. **Slow startup** → Created bootstrap-snapshot.ps1
-4. **No self-diagnostics** → Created system-health.ps1
-5. **Manual allocation** → Created worktree-allocate.ps1
-6. **No historical search** → Created pattern-search.ps1
-7. **Implicit modes** → Created explicit mode skills
+1. **Documentation was scattered** â†’ Created NAVIGATION.md and QUICKSTART.md
+2. **No unified CLI** â†’ Created claude-ctl.ps1
+3. **Slow startup** â†’ Created bootstrap-snapshot.ps1
+4. **No self-diagnostics** â†’ Created system-health.ps1
+5. **Manual allocation** â†’ Created worktree-allocate.ps1
+6. **No historical search** â†’ Created pattern-search.ps1
+7. **Implicit modes** â†’ Created explicit mode skills
 
 ### Improvement Statistics
 
@@ -113,7 +113,7 @@ For future self-improvement cycles:
 
 **Pattern Type:** Documentation Improvement
 **Context:** Self-improvement cycle created 8+ new tools that needed visibility
-**Outcome:** ✅ CLAUDE.md now has Essential Tools Quick Reference table
+**Outcome:** âœ… CLAUDE.md now has Essential Tools Quick Reference table
 
 ### Key Addition
 
@@ -144,15 +144,15 @@ CLAUDE.md now includes a quick reference table for all essential tools:
 
 **Pattern Type:** New Capability / Personal Workspace Discovery
 **Context:** User requested access to personal ClickUp list "nijeveen" in "Managing our household" space
-**Outcome:** ✅ Discovered, documented, and can now manage personal household todos
+**Outcome:** âœ… Discovered, documented, and can now manage personal household todos
 
 ### ClickUp Personal Workspace Structure
 
 ```
 Martien de Jong's Workspace (ID: 9015747737)
-└── Managing our household (Space ID: 90152830188)
-    ├── nijeveen (List ID: 901519266250) ← Personal house todos
-    └── List (ID: 901507109073) ← General
+â””â”€â”€ Managing our household (Space ID: 90152830188)
+    â”œâ”€â”€ nijeveen (List ID: 901519266250) â† Personal house todos
+    â””â”€â”€ List (ID: 901507109073) â† General
 ```
 
 ### Nijeveen List Purpose
@@ -180,9 +180,9 @@ Categories of tasks:
 
 ### Key Learning: ClickUp Status Names
 
-**⚠️ GOTCHA:** ClickUp statuses have NO SPACES in their identifiers.
-- ❌ `"to do"` → API error: "Status not found"
-- ✅ `"todo"` → Works correctly
+**âš ï¸ GOTCHA:** ClickUp statuses have NO SPACES in their identifiers.
+- âŒ `"to do"` â†’ API error: "Status not found"
+- âœ… `"todo"` â†’ Works correctly
 
 Always query `/list/{id}` endpoint first to get exact status names before creating tasks.
 
@@ -209,7 +209,7 @@ Invoke-RestMethod -Method POST `
 
 **Pattern Type:** New Capability / Tool Creation
 **Context:** User requested spam management for info@martiendejong.nl
-**Outcome:** ✅ Created reusable IMAP toolset
+**Outcome:** âœ… Created reusable IMAP toolset
 
 ### Tools Created
 
@@ -224,13 +224,13 @@ Invoke-RestMethod -Method POST `
 
 1. **SMTP vs IMAP passwords can differ** - For mail.zxcs.nl, SMTP uses one password, IMAP uses another
 2. **User email preferences:**
-   - LinkedIn notifications → Spam
-   - Lovable updates → Archive (not spam)
-   - Kenya Airways → Keep (travel)
-   - Anthropic → Important
-   - IND.nl → Important (government)
-   - perridon.com (Sjoerd) → Important contact
-   - volgjewoning.nl → Important (housing)
+   - LinkedIn notifications â†’ Spam
+   - Lovable updates â†’ Archive (not spam)
+   - Kenya Airways â†’ Keep (travel)
+   - Anthropic â†’ Important
+   - IND.nl â†’ Important (government)
+   - perridon.com (Sjoerd) â†’ Important contact
+   - volgjewoning.nl â†’ Important (housing)
 
 3. **Spam domain patterns:**
    - `neooudh.store` - Most prolific spam domain (fake Dutch services)
@@ -240,8 +240,8 @@ Invoke-RestMethod -Method POST `
 ### Workflow Pattern
 
 ```
-Show 5 messages → User reviews → Identify spam/archive/keep
-→ Move with --spam= and --archive= flags → Show next 5 → Repeat
+Show 5 messages â†’ User reviews â†’ Identify spam/archive/keep
+â†’ Move with --spam= and --archive= flags â†’ Show next 5 â†’ Repeat
 ```
 
 ### Documentation
@@ -255,7 +255,7 @@ Show 5 messages → User reviews → Identify spam/archive/keep
 
 **Pattern Type:** Self-Improvement / Meta-Skill Usage
 **Context:** Created skill-creator meta-skill for standardized skill generation
-**Outcome:** ✅ New directive established
+**Outcome:** âœ… New directive established
 
 ### Directive
 
@@ -285,12 +285,12 @@ Watch for these signals that a skill should be created:
 ### Meta-Skill Loop
 
 ```
-Pattern discovered → Consider: Is this skill-worthy?
-                   → If yes: Use skill-creator
-                   → Create skill
-                   → Update index
-                   → Commit
-                   → Future sessions benefit
+Pattern discovered â†’ Consider: Is this skill-worthy?
+                   â†’ If yes: Use skill-creator
+                   â†’ Create skill
+                   â†’ Update index
+                   â†’ Commit
+                   â†’ Future sessions benefit
 ```
 
 **User Mandate:** Proactively create skills when useful patterns emerge. Don't wait to be asked.
@@ -301,7 +301,7 @@ Pattern discovered → Consider: Is this skill-worthy?
 
 **Pattern Type:** Cross-Repository Dependencies / Schema Sync
 **Context:** User pulled changes from develop and got compilation errors about missing properties
-**Outcome:** ✅ Fixed, documented patterns for future reference
+**Outcome:** âœ… Fixed, documented patterns for future reference
 
 ### Problem
 
@@ -338,12 +338,12 @@ When client-manager code references new Hazina properties:
 
 **Pattern Type:** EF Core / Database Migrations
 **Context:** Migration failed with "duplicate column" and "no such column" errors
-**Outcome:** ✅ Fixed with raw SQL migration approach
+**Outcome:** âœ… Fixed with raw SQL migration approach
 
 ### Problem
 
 EF Core generated migration tried to:
-1. Rename `DailyAllowance` → `MonthlyAllowance` (already done by raw SQL)
+1. Rename `DailyAllowance` â†’ `MonthlyAllowance` (already done by raw SQL)
 2. Add columns that already existed (`ActiveSubscriptionId`, etc.)
 
 ### Root Cause
@@ -390,7 +390,7 @@ public partial class AddUserProfileAvatar : Migration
 
 **Pattern Type:** ASP.NET Core / JSON Serialization
 **Context:** Runtime exception when returning anonymous type with duplicate property names
-**Outcome:** ✅ Fixed by removing duplicate property
+**Outcome:** âœ… Fixed by removing duplicate property
 
 ### Problem
 
@@ -426,7 +426,7 @@ var userResponse = new
 
 **Pattern Type:** ASP.NET Core / JSON Deserialization
 **Context:** Runtime exception accessing properties on `dynamic` parameter
-**Outcome:** ✅ Fixed by using `JsonElement` instead
+**Outcome:** âœ… Fixed by using `JsonElement` instead
 
 ### Problem
 
@@ -442,8 +442,8 @@ Error: `'System.Text.Json.JsonElement' does not contain a definition for 'Id'`
 
 ### Root Cause
 
-**Newtonsoft.Json** deserializes `dynamic` as `ExpandoObject` → property access works
-**System.Text.Json** deserializes `dynamic` as `JsonElement` → property access fails
+**Newtonsoft.Json** deserializes `dynamic` as `ExpandoObject` â†’ property access works
+**System.Text.Json** deserializes `dynamic` as `JsonElement` â†’ property access fails
 
 ### Fix Pattern: Use JsonElement with TryGetProperty
 
@@ -477,7 +477,7 @@ public async Task<IActionResult> UpdateUser([FromBody] System.Text.Json.JsonElem
 
 **Pattern Type:** Configuration / OAuth
 **Context:** Facebook login showing "Client ID not configured" error after backend secrets were updated
-**Outcome:** ✅ Fixed, documented for future reference
+**Outcome:** âœ… Fixed, documented for future reference
 
 ### Problem
 
@@ -531,7 +531,7 @@ When adding/updating social OAuth credentials:
 
 **Pattern Type:** Bug Fix / Configuration
 **Context:** AllItemsList feature flags not loading from backend API
-**Outcome:** ✅ Fixed, documented for future reference
+**Outcome:** âœ… Fixed, documented for future reference
 
 ### Problem
 
@@ -581,7 +581,7 @@ When using `IOptions<T>` with custom JSON files:
 
 **Pattern Type:** Implementation Gap Analysis
 **Context:** AllItemsList components 100% built but not showing in UI
-**Outcome:** ✅ Identified and fixed integration gap
+**Outcome:** âœ… Identified and fixed integration gap
 
 ### Problem
 
@@ -593,10 +593,10 @@ User enabled `EnableGeneratedItemsList` feature flag but saw no UI change. Featu
 
 | What Existed | What Was Missing |
 |--------------|------------------|
-| ActivitySidebar component ✅ | Import in MainLayout ❌ |
-| ActionsSidebar component ✅ | Conditional rendering ❌ |
-| Feature flag context ✅ | Flag check in layout ❌ |
-| All supporting hooks/stores ✅ | Wiring to UI ❌ |
+| ActivitySidebar component âœ… | Import in MainLayout âŒ |
+| ActionsSidebar component âœ… | Conditional rendering âŒ |
+| Feature flag context âœ… | Flag check in layout âŒ |
+| All supporting hooks/stores âœ… | Wiring to UI âŒ |
 
 ### Solution
 
@@ -611,7 +611,7 @@ Added to `MainLayout.tsx`:
 
 Used "50-expert analysis" approach to systematically audit:
 - What's implemented vs what's missing
-- Data flow from flag → UI
+- Data flow from flag â†’ UI
 - Integration points that need wiring
 
 **This pattern is valuable for debugging "feature doesn't work" issues.**
@@ -622,7 +622,7 @@ When implementing feature-flagged features:
 1. **Build components** (done)
 2. **Wire to feature flag check** (often forgotten!)
 3. **Integrate into main layout/routing**
-4. **Test the full flow** from flag → UI change
+4. **Test the full flow** from flag â†’ UI change
 
 ---
 
@@ -630,7 +630,7 @@ When implementing feature-flagged features:
 
 **Pattern Type:** Requirements Gathering
 **Context:** Initial AllItemsList implementation had wrong UI (tabs, too many items)
-**Outcome:** ✅ Iteratively refined based on user feedback
+**Outcome:** âœ… Iteratively refined based on user feedback
 
 ### Initial Implementation vs User Intent
 
@@ -677,7 +677,7 @@ For UI features:
 
 **Pattern Type:** Core Operating Principle
 **Context:** User directive on DevOps/CI-CD philosophy
-**Outcome:** ✅ Foundational principle for all future work
+**Outcome:** âœ… Foundational principle for all future work
 
 ### The Automation Imperative
 
@@ -726,8 +726,8 @@ For UI features:
 
 ### Impact on Work Style
 
-**Before:** Execute steps → think → execute more steps → think
-**After:** Run script → think continuously → run script
+**Before:** Execute steps â†’ think â†’ execute more steps â†’ think
+**After:** Run script â†’ think continuously â†’ run script
 
 The goal: **Maximize uninterrupted thinking time** by eliminating manual ceremony.
 
@@ -737,7 +737,7 @@ The goal: **Maximize uninterrupted thinking time** by eliminating manual ceremon
 
 **Pattern Type:** Self-Improvement / Tooling
 **Context:** User requested tools to quickly see worktree status and release all worktrees
-**Outcome:** ✅ Two new tools created and documented
+**Outcome:** âœ… Two new tools created and documented
 
 ### Problem Statement
 
@@ -801,9 +801,9 @@ Managing git worktrees across multiple agent seats was error-prone:
 ### Critical Pattern 88: Worktree Resting Branches
 
 **Convention:** Each agent seat has a permanent resting branch:
-- agent-001 → `agent001` (no hyphen)
-- agent-002 → `agent002`
-- agent-003 → `agent003`
+- agent-001 â†’ `agent001` (no hyphen)
+- agent-002 â†’ `agent002`
+- agent-003 â†’ `agent003`
 
 **Why resting branches matter:**
 1. Worktrees can't be on the same branch as another worktree
@@ -813,7 +813,7 @@ Managing git worktrees across multiple agent seats was error-prone:
 
 **Allocation flow:**
 ```
-agent003 (resting) → feature/new-feature (working) → agent003 (resting)
+agent003 (resting) â†’ feature/new-feature (working) â†’ agent003 (resting)
 ```
 
 ### Critical Pattern 89: PowerShell String Escaping
@@ -892,7 +892,7 @@ if ($line -match "^\|\s*$Seat\s*\|" -and $line -match "\|\s*BUSY\s*\|")
 
 **Pattern Type:** Full-Stack Feature Implementation
 **Context:** Restaurant Menu feature for Brand2Boost client-manager
-**Outcome:** ✅ Complete - PR #148 created with all 3 phases
+**Outcome:** âœ… Complete - PR #148 created with all 3 phases
 
 ### Implementation Summary
 
@@ -996,7 +996,7 @@ npm run build
 
 ### Worktree Status After Session
 
-- agent-003: ✅ Released (Restaurant Menu PR #148)
+- agent-003: âœ… Released (Restaurant Menu PR #148)
 - agent-001: BUSY (All Items List - different work)
 - agent-002: BUSY (Phase 1 RAG - different work)
 
@@ -1006,7 +1006,7 @@ npm run build
 
 **Pattern Type:** Production Database Troubleshooting
 **Context:** User Management 500 error and "AI Usage Cost: Error" on user profiles
-**Outcome:** ⚠️ Partially fixed - created missing database but user still reports error
+**Outcome:** âš ï¸ Partially fixed - created missing database but user still reports error
 
 ### Production Server Reference (Brand2Boost)
 
@@ -1312,7 +1312,7 @@ C:\Projects\bugattiinsights\registry\vehicles.json          - Vehicle data JSON
 
 **Pattern Type:** Deployment Troubleshooting
 **Context:** Deploying both applications to VPS with multiple configuration and build issues
-**Outcome:** ✅ Both apps deployed after resolving DI, package, and config issues
+**Outcome:** âœ… Both apps deployed after resolving DI, package, and config issues
 
 ### Critical Pattern 79: dotnet publish Caches Build Outputs
 
@@ -1405,7 +1405,7 @@ grep -r 'configuration\[' --include='*.cs' | grep -v '/bin/' | grep -v '/obj/'
 **Pattern Type:** Configuration Management Bug
 **Context:** Post Ideas Generator returning HTTP 401 "invalid_api_key" error with masked key `configur************************iKey`
 **Root Cause:** Double indirection in configuration path not being resolved
-**Outcome:** ✅ Fixed by using direct configuration path
+**Outcome:** âœ… Fixed by using direct configuration path
 
 ### Critical Pattern 78: Avoid Configuration Reference Chains
 
@@ -1416,7 +1416,7 @@ model-routing.config.json:
 
 appsettings.json:
   "OpenAI": {
-    "ApiKey": "configuration:ApiSettings:OpenApiKey"  // ← WRONG: Reference, not value!
+    "ApiKey": "configuration:ApiSettings:OpenApiKey"  // â† WRONG: Reference, not value!
   }
 ```
 
@@ -1427,13 +1427,13 @@ The `ResolveConfigValue()` in `ModelRouter.cs` only resolves ONE level of `confi
 **Solution:** Point directly to the final configuration path:
 ```
 model-routing.config.json:
-  "apiKeySource": "configuration:ApiSettings:OpenApiKey"  // ← Direct path to actual key
+  "apiKeySource": "configuration:ApiSettings:OpenApiKey"  // â† Direct path to actual key
 ```
 
 **Diagnostic clue:** When API key error shows a masked string starting with `configur`, it's likely an unresolved `configuration:` reference being used as the literal key value.
 
 **Prevention:**
-1. Never chain `configuration:` references (A → B → actual value)
+1. Never chain `configuration:` references (A â†’ B â†’ actual value)
 2. All `apiKeySource` settings must point directly to leaf values containing actual keys
 3. Validate config resolution at startup by logging masked key prefixes
 4. Document which config paths contain actual values vs references
@@ -1446,7 +1446,7 @@ model-routing.config.json:
 
 **Pattern Type:** Process Improvement - Requirements Gathering
 **Context:** User explicitly requested clarifying questions before building social media post generation feature
-**Outcome:** ✅ Added as standard practice
+**Outcome:** âœ… Added as standard practice
 
 ### Critical Pattern 77: Ask Clarifying Questions Before Building Features
 
@@ -1478,8 +1478,8 @@ model-routing.config.json:
 
 **Pattern Type:** Race Condition - Background Task Overwriting Data
 **Context:** Image upload generates AI description, but description was lost after background text extraction
-**Outcome:** ✅ SUCCESS - Fixed in Hazina PR #73
-**Mode:** 🐛 Active Debugging Mode (user debugging on feature branch)
+**Outcome:** âœ… SUCCESS - Fixed in Hazina PR #73
+**Mode:** ðŸ› Active Debugging Mode (user debugging on feature branch)
 
 ### Critical Pattern 76: Background Tasks Must Preserve All Metadata
 
@@ -1489,27 +1489,27 @@ model-routing.config.json:
 1. Logs showed description being generated (21 chars)
 2. Logs showed metadata update with description
 3. But `uploadedFiles.json` had `"Description": null`
-4. Tags WERE preserved correctly → pointed to separate code path
+4. Tags WERE preserved correctly â†’ pointed to separate code path
 
 **Root Cause:** `LegacySyncService.SyncDocumentMetadata` (Hazina)
 
 The background task `ExtractTextInBackground` runs AFTER upload completes. It calls `SyncDocumentMetadata` which:
-- ✅ Preserved Tags
-- ❌ Did NOT preserve Description
+- âœ… Preserved Tags
+- âŒ Did NOT preserve Description
 
 **Timeline:**
-1. Upload → AI generates Description → saves to JSON ✓
+1. Upload â†’ AI generates Description â†’ saves to JSON âœ“
 2. Background task starts (fire-and-forget via `Task.Run`)
 3. Background calls `SyncDocumentMetadata`
 4. Creates NEW UploadedFile object (Description = null)
-5. Saves to JSON → overwrites Description ✗
+5. Saves to JSON â†’ overwrites Description âœ—
 
 **The Fix:**
 ```csharp
 // Before: Only preserved tags
 var existingTags = existingFile?.Tags ?? new List<string>();
 
-// After: Preserve both tags AND description  
+// After: Preserve both tags AND description
 var existingTags = existingFile?.Tags ?? new List<string>();
 var existingDescription = existingFile?.Description;
 // ... create uploadedFile ...
@@ -1529,8 +1529,8 @@ uploadedFile.Description = existingDescription;
 
 **Pattern Type:** Feature Development - Framework Integration
 **Context:** Building Hazina.API.Search with real Hazina framework (not stubs)
-**Outcome:** ✅ SUCCESS - Full REST API with 10+ endpoints, all tests passing
-**Mode:** 🏗️ Feature Development Mode (worktree: agent-002)
+**Outcome:** âœ… SUCCESS - Full REST API with 10+ endpoints, all tests passing
+**Mode:** ðŸ—ï¸ Feature Development Mode (worktree: agent-002)
 
 ### Critical Pattern 74: Hazina Framework Integration Architecture
 
@@ -1539,9 +1539,9 @@ When integrating with the Hazina framework, understand these architectural layer
 #### Layer 1: LLM Client (`Hazina.LLMs.*`)
 ```
 ILLMClient (interface) - Core abstraction for LLM operations
-├── GenerateEmbedding(string data) → Embedding
-├── GetResponse() → Chat completion
-└── GetResponseStream() → Streaming response
+â”œâ”€â”€ GenerateEmbedding(string data) â†’ Embedding
+â”œâ”€â”€ GetResponse() â†’ Chat completion
+â””â”€â”€ GetResponseStream() â†’ Streaming response
 
 OpenAIClientWrapper : ILLMClient - OpenAI implementation
 ClaudeClientWrapper : ILLMClient - Anthropic implementation
@@ -1552,9 +1552,9 @@ ClaudeClientWrapper : ILLMClient - Anthropic implementation
 #### Layer 2: Provider Orchestration (`Hazina.AI.Providers`)
 ```
 IProviderOrchestrator : ILLMClient - Multi-provider management
-├── RegisterProvider(name, client, metadata)
-├── GetProvider(name)
-└── All ILLMClient methods (delegates to active provider)
+â”œâ”€â”€ RegisterProvider(name, client, metadata)
+â”œâ”€â”€ GetProvider(name)
+â””â”€â”€ All ILLMClient methods (delegates to active provider)
 
 ProviderOrchestrator - Implementation
 ```
@@ -1564,32 +1564,32 @@ ProviderOrchestrator - Implementation
 #### Layer 3: Storage (`Hazina.Store.*`)
 ```
 DocumentStore (GLOBAL namespace - no using needed!)
-├── Store(key, content, metadata, split)
-├── Get(key) → string?
-├── GetMetadata(key) → DocumentMetadata?
-├── List(folder, recursive) → List<string>
-└── Remove(key) → bool
+â”œâ”€â”€ Store(key, content, metadata, split)
+â”œâ”€â”€ Get(key) â†’ string?
+â”œâ”€â”€ GetMetadata(key) â†’ DocumentMetadata?
+â”œâ”€â”€ List(folder, recursive) â†’ List<string>
+â””â”€â”€ Remove(key) â†’ bool
 
 EmbeddingMemoryStore : IEmbeddingStore, IVectorSearchStore
-├── StoreAsync(key, embedding, checksum)
-├── GetAsync(key)
-├── SearchSimilarAsync(embedding, topK, minSimilarity)
-└── RemoveAsync(key)
+â”œâ”€â”€ StoreAsync(key, embedding, checksum)
+â”œâ”€â”€ GetAsync(key)
+â”œâ”€â”€ SearchSimilarAsync(embedding, topK, minSimilarity)
+â””â”€â”€ RemoveAsync(key)
 ```
 
-**⚠️ CRITICAL:** `DocumentStore`, `IDocumentStore`, `DocumentMetadata` are in the **GLOBAL NAMESPACE** - no `using` statement needed!
+**âš ï¸ CRITICAL:** `DocumentStore`, `IDocumentStore`, `DocumentMetadata` are in the **GLOBAL NAMESPACE** - no `using` statement needed!
 
 #### Layer 4: RAG Engine (`Hazina.AI.RAG`)
 ```
 RAGEngine
-├── Constructor(orchestrator, vectorStore, documentStore?, config)
-├── QueryAsync(query, options) → RAGResponse (with answer generation)
-├── SearchAsync(query, topK, minSimilarity) → List<Document>
-└── IndexDocumentsAsync()
+â”œâ”€â”€ Constructor(orchestrator, vectorStore, documentStore?, config)
+â”œâ”€â”€ QueryAsync(query, options) â†’ RAGResponse (with answer generation)
+â”œâ”€â”€ SearchAsync(query, topK, minSimilarity) â†’ List<Document>
+â””â”€â”€ IndexDocumentsAsync()
 
 IVectorStore (in Hazina.AI.RAG.Core namespace)
-├── AddAsync(id, embedding, metadata, cancellationToken)
-└── SearchAsync(queryEmbedding, topK, cancellationToken)
+â”œâ”€â”€ AddAsync(id, embedding, metadata, cancellationToken)
+â””â”€â”€ SearchAsync(queryEmbedding, topK, cancellationToken)
 ```
 
 ### Critical Pattern 75: Backward Compatibility Adapters
@@ -1599,9 +1599,9 @@ The Hazina framework has both old and new architectures. Use adapters for compat
 **OLD Architecture (DocumentStore expects):**
 ```csharp
 ITextEmbeddingStore // Legacy interface
-├── StoreEmbedding(key, text)
-├── GetEmbedding(key)
-└── RemoveEmbedding(key)
+â”œâ”€â”€ StoreEmbedding(key, text)
+â”œâ”€â”€ GetEmbedding(key)
+â””â”€â”€ RemoveEmbedding(key)
 ```
 
 **NEW Architecture (preferred):**
@@ -1617,7 +1617,7 @@ var adapter = new LegacyTextEmbeddingStoreAdapter(embeddingService, embeddingMem
 
 // Pass adapter to DocumentStore (which expects ITextEmbeddingStore)
 var documentStore = new DocumentStore(
-    adapter,           // ← Adapter bridges old interface to new
+    adapter,           // â† Adapter bridges old interface to new
     textStore,
     chunkStore,
     metadataStore,
@@ -1626,7 +1626,7 @@ var documentStore = new DocumentStore(
     embeddingGenerator);
 ```
 
-**⚠️ AVOID:** `TextEmbeddingMemoryStore` is marked obsolete - use the adapter pattern.
+**âš ï¸ AVOID:** `TextEmbeddingMemoryStore` is marked obsolete - use the adapter pattern.
 
 ### Critical Pattern 76: Framework Class Location Gotchas
 
@@ -1678,45 +1678,45 @@ builder.Services.AddSingleton<IHazinaStoreFactory, HazinaStoreFactory>();
 ### Mistakes Made and Corrections
 
 1. **Used wrong namespace imports**
-   - ❌ `using Hazina.Store.DocumentStore;` - Doesn't exist!
-   - ✅ No using needed - classes are in global namespace
+   - âŒ `using Hazina.Store.DocumentStore;` - Doesn't exist!
+   - âœ… No using needed - classes are in global namespace
 
 2. **Used obsolete class**
-   - ❌ `new TextEmbeddingMemoryStore(_llmClient)`
-   - ✅ `new LegacyTextEmbeddingStoreAdapter(embeddingService, embeddingMemoryStore)`
+   - âŒ `new TextEmbeddingMemoryStore(_llmClient)`
+   - âœ… `new LegacyTextEmbeddingStoreAdapter(embeddingService, embeddingMemoryStore)`
 
 3. **Wrong property name on DocumentMetadata**
-   - ❌ `metadata.OriginalFilename`
-   - ✅ `metadata.OriginalPath` (extract filename with `Path.GetFileName()`)
+   - âŒ `metadata.OriginalFilename`
+   - âœ… `metadata.OriginalPath` (extract filename with `Path.GetFileName()`)
 
 4. **Used deprecated Headers.Add()**
-   - ❌ `context.Response.Headers.Add("X-Frame-Options", "DENY")`
-   - ✅ `context.Response.Headers["X-Frame-Options"] = "DENY"`
+   - âŒ `context.Response.Headers.Add("X-Frame-Options", "DENY")`
+   - âœ… `context.Response.Headers["X-Frame-Options"] = "DENY"`
 
 5. **Created duplicate interface definitions**
-   - ❌ Defined own `IVectorStore` that conflicted with `Hazina.AI.RAG.Core.IVectorStore`
-   - ✅ Use fully qualified name `Hazina.AI.RAG.Core.IVectorStore` and `Hazina.AI.RAG.Core.VectorSearchResult`
+   - âŒ Defined own `IVectorStore` that conflicted with `Hazina.AI.RAG.Core.IVectorStore`
+   - âœ… Use fully qualified name `Hazina.AI.RAG.Core.IVectorStore` and `Hazina.AI.RAG.Core.VectorSearchResult`
 
 ### Key Files Created/Modified
 
 ```
 Hazina.API.Search/
-├── Integration/
-│   └── HazinaIntegration.cs    # Factory + adapters for Hazina components
-├── Services/
-│   ├── RAGStoreManager.cs      # Store lifecycle + document operations
-│   └── SearchService.cs        # RAG query delegation
-├── Controllers/
-│   ├── RAGStoresController.cs  # CRUD for RAG stores
-│   ├── DocumentsController.cs  # Upload/list/get/delete documents
-│   └── SearchController.cs     # RAG search endpoints
-└── Program.cs                  # Service registrations
+â”œâ”€â”€ Integration/
+â”‚   â””â”€â”€ HazinaIntegration.cs    # Factory + adapters for Hazina components
+â”œâ”€â”€ Services/
+â”‚   â”œâ”€â”€ RAGStoreManager.cs      # Store lifecycle + document operations
+â”‚   â””â”€â”€ SearchService.cs        # RAG query delegation
+â”œâ”€â”€ Controllers/
+â”‚   â”œâ”€â”€ RAGStoresController.cs  # CRUD for RAG stores
+â”‚   â”œâ”€â”€ DocumentsController.cs  # Upload/list/get/delete documents
+â”‚   â””â”€â”€ SearchController.cs     # RAG search endpoints
+â””â”€â”€ Program.cs                  # Service registrations
 ```
 
 ### Test Results
-- **DocumentStore Tests:** 29/29 passed ✅
-- **Architecture Tests:** 12/12 passed ✅
-- **Build:** 0 errors ✅
+- **DocumentStore Tests:** 29/29 passed âœ…
+- **Architecture Tests:** 12/12 passed âœ…
+- **Build:** 0 errors âœ…
 
 ### Future Reference
 
@@ -1842,7 +1842,7 @@ grep -n "onAddImage" src/pages/TopicPages.tsx
 
 ### Key Takeaways
 
-1. **Cascade Debugging:** Build errors often mask each other. Fix in order: solution → restore → compile → runtime
+1. **Cascade Debugging:** Build errors often mask each other. Fix in order: solution â†’ restore â†’ compile â†’ runtime
 2. **Command Line First:** `dotnet restore` and `dotnet build` from CLI give clearer errors than IDE
 3. **Search for Duplicates:** When "duplicate" errors occur, grep for the identifier across the file
 4. **Active Debugging Mode:** For user's debugging sessions, prioritize getting build working over perfect fixes
@@ -1888,8 +1888,8 @@ git worktree add C:/Projects/worker-agents/agent-001/hazina -b agent-001-feature
 **Result:**
 ```
 C:\Projects\worker-agents\agent-001\
-├── client-manager\    ← Branch: agent-001-feature-name
-└── hazina\            ← Branch: agent-001-feature-name (same!)
+â”œâ”€â”€ client-manager\    â† Branch: agent-001-feature-name
+â””â”€â”€ hazina\            â† Branch: agent-001-feature-name (same!)
 ```
 
 ### Why This Matters
@@ -1906,7 +1906,7 @@ C:\Projects\worker-agents\agent-001\
 
 3. **Cross-repo changes:**
    - Some features require changes in BOTH repos
-   - Example: New Hazina API → client-manager consumes it
+   - Example: New Hazina API â†’ client-manager consumes it
    - Both changes tested together before PR
 
 4. **Atomic testing:**
@@ -1916,16 +1916,16 @@ C:\Projects\worker-agents\agent-001\
 
 ### When to Apply
 
-**✅ ALWAYS for client-manager:**
+**âœ… ALWAYS for client-manager:**
 - client-manager depends on Hazina
 - EVERY client-manager worktree needs paired Hazina worktree
 - Even if you're not changing Hazina, allocate it for build/test
 
-**✅ For other dependent projects:**
+**âœ… For other dependent projects:**
 - artrevisionist (if it depends on Hazina)
 - Any new project that references framework code
 
-**❌ NOT needed for:**
+**âŒ NOT needed for:**
 - Standalone projects with no dependencies
 - Documentation-only changes
 - Changes to scripts in C:\scripts
@@ -2009,8 +2009,8 @@ git -C C:/Projects/hazina worktree prune
 
 **Session Type:** Active Debugging Mode (user-reported build errors)
 **Context:** User working on `feature/document-metadata-display` branch with 3 compilation errors
-**Outcome:** ✅ SUCCESS - Fixed 3 errors, build passes (0 errors, 4840 warnings)
-**Mode:** 🐛 Active Debugging Mode (direct edits in C:\Projects\client-manager)
+**Outcome:** âœ… SUCCESS - Fixed 3 errors, build passes (0 errors, 4840 warnings)
+**Mode:** ðŸ› Active Debugging Mode (direct edits in C:\Projects\client-manager)
 
 ### Errors Fixed
 
@@ -2051,9 +2051,9 @@ git -C C:/Projects/hazina worktree prune
    - Verify critical user flows still work
 
 **When to apply:**
-- ✅ **Active Debugging Mode** - After fixing build errors
-- ✅ **Feature Development Mode** - Before creating PR (mandatory)
-- ✅ **Any code edit** - Before marking todo as completed
+- âœ… **Active Debugging Mode** - After fixing build errors
+- âœ… **Feature Development Mode** - Before creating PR (mandatory)
+- âœ… **Any code edit** - Before marking todo as completed
 
 **Integration with workflow:**
 - Add "Run build to verify changes" as final todo item
@@ -2073,7 +2073,7 @@ git -C C:/Projects/hazina worktree prune
 
 **Session Type:** Deep debugging of React rendering issue
 **Context:** SignalR-delivered images not rendering in chat despite all logic appearing correct
-**Outcome:** ✅ SUCCESS after 5 PRs - Images now render correctly via FileAttachment
+**Outcome:** âœ… SUCCESS after 5 PRs - Images now render correctly via FileAttachment
 **PRs:** #127 (SignalR delivery), #129 (dedup fix), #130 (debug logging), #131 (more logging), #132 (Map fix), #133 (useMemo fix)
 
 ### The Problem
@@ -2096,7 +2096,7 @@ Generated images from DALL-E were being delivered via SignalR to the frontend bu
 2. **Layer 2: Virtuoso calls itemContent multiple times**
    - React-Virtuoso virtualizing list calls `itemContent` callback multiple times per message
    - First call: URL added to `seenImageUrls`, image renders
-   - Second call: URL already in Set → **SKIPPED as duplicate!**
+   - Second call: URL already in Set â†’ **SKIPPED as duplicate!**
    - Fix attempt: Changed Set to Map<url, messageId> to track ownership (PR #132) - **DIDN'T WORK**
 
 3. **Layer 3: Mutating state during render**
@@ -2153,12 +2153,12 @@ const renderItem = (item) => {
 - But component function body never executes (breakpoints don't trigger)
 
 **Debugging Checklist:**
-1. ✅ Is JSX being returned? (Add console.log before return statement)
-2. ✅ Is parent element mounted? (Check DOM)
-3. ✅ Is React catching an error? (Check error boundaries)
-4. ✅ Is virtualizing list not rendering item? (Virtuoso, react-window)
-5. ✅ Are there multiple render passes with different state?
-6. ✅ **Is state being mutated during render?** ← THE GOTCHA
+1. âœ… Is JSX being returned? (Add console.log before return statement)
+2. âœ… Is parent element mounted? (Check DOM)
+3. âœ… Is React catching an error? (Check error boundaries)
+4. âœ… Is virtualizing list not rendering item? (Virtuoso, react-window)
+5. âœ… Are there multiple render passes with different state?
+6. âœ… **Is state being mutated during render?** â† THE GOTCHA
 
 **Key Insight:** If a component "about to render" log appears but component never executes, suspect **state mutation during render** causing different outcomes on different render passes.
 
@@ -2188,7 +2188,7 @@ const renderItem = (item) => {
 | +2hr | Changed Set to Map (PR #132) | Still broken - same symptoms |
 | +2.5hr | **Key insight:** saw "(duplicate)" in logs with Map code = stale code? | Hard refresh didn't help |
 | +3hr | Realized mutation during render is the issue | Pre-computed with useMemo |
-| +3.5hr | PR #133 with useMemo fix | ✅ **WORKING!** |
+| +3.5hr | PR #133 with useMemo fix | âœ… **WORKING!** |
 
 ### Lessons Learned
 
@@ -2214,7 +2214,7 @@ const renderItem = (item) => {
 
 **Session Type:** LLM tool integration (C#/Hazina Framework)
 **Context:** Transform PR #120 web scraping from UI-driven workflow to autonomous LLM-accessible tool
-**Outcome:** ✅ SUCCESS - LLM can now autonomously scrape websites for branding analysis during chat conversations
+**Outcome:** âœ… SUCCESS - LLM can now autonomously scrape websites for branding analysis during chat conversations
 **Commit:** Hazina `008241a` (pushed to develop)
 
 ### Key Accomplishments
@@ -2229,17 +2229,17 @@ const renderItem = (item) => {
 - `Hazina/src/Tools/Services/Hazina.Tools.Services.Chat/Tools/ToolExecutor.cs` (+182 lines)
 
 **Implementation:**
-- ✅ Added `IFireCrawlService` dependency to ToolExecutor constructor
-- ✅ Added tool definition in `GetToolDefinitions()` with JSON schema
-- ✅ Added switch case for `scrape_website_branding` in `ExecuteAsync()`
-- ✅ Implemented `ExecuteScrapeBrandingAsync()` with full error handling
-- ✅ Added `ScrapeBrandingArgs` parameter class
+- âœ… Added `IFireCrawlService` dependency to ToolExecutor constructor
+- âœ… Added tool definition in `GetToolDefinitions()` with JSON schema
+- âœ… Added switch case for `scrape_website_branding` in `ExecuteAsync()`
+- âœ… Implemented `ExecuteScrapeBrandingAsync()` with full error handling
+- âœ… Added `ScrapeBrandingArgs` parameter class
 
 **Verification:**
-- ✅ Build succeeded: `dotnet build --configuration Release` (0 errors)
-- ✅ Committed and pushed to Hazina develop branch
-- ⏳ Service registration needed in client-manager startup
-- ⏳ Production testing pending
+- âœ… Build succeeded: `dotnet build --configuration Release` (0 errors)
+- âœ… Committed and pushed to Hazina develop branch
+- â³ Service registration needed in client-manager startup
+- â³ Production testing pending
 
 ### Critical Patterns Discovered
 
@@ -2248,7 +2248,7 @@ const renderItem = (item) => {
 **Problem:** Feature implemented as UI-driven manual workflow (user clicks buttons), but LLM needs autonomous access for chat conversations.
 
 **Architecture Analysis Process:**
-1. **Check upstream dependencies** - Does the service layer exist? (Hazina PR #69 ✅)
+1. **Check upstream dependencies** - Does the service layer exist? (Hazina PR #69 âœ…)
 2. **Find existing patterns** - How are other tools implemented? (ToolExecutor.cs pattern)
 3. **Identify missing link** - What connects service to LLM? (Tool definition + executor)
 
@@ -2301,7 +2301,7 @@ private class ScrapeBrandingArgs
 
 3. **Screenshots Disabled by Default**
    - Default `capture_screenshot: false`
-   - Rationale: Screenshots are 1-3MB base64 → expensive token cost
+   - Rationale: Screenshots are 1-3MB base64 â†’ expensive token cost
    - LLM can enable if user explicitly requests visual analysis
 
 4. **Error Handling**
@@ -2313,13 +2313,13 @@ private class ScrapeBrandingArgs
 
 **Before (UI-only):**
 ```
-User → Manual UI Wizard → Controller → Service → Database
+User â†’ Manual UI Wizard â†’ Controller â†’ Service â†’ Database
 ```
 
 **After (LLM-accessible):**
 ```
-User → Chat LLM → Tool Registry → ToolExecutor → Service → Return to LLM
-                                                              ↓
+User â†’ Chat LLM â†’ Tool Registry â†’ ToolExecutor â†’ Service â†’ Return to LLM
+                                                              â†“
                                               (LLM continues conversation with data)
 ```
 
@@ -2328,20 +2328,20 @@ User → Chat LLM → Tool Registry → ToolExecutor → Service → Return to L
 ```
 User: "Analyze the branding of tesla.com"
 LLM: *autonomously invokes scrape_website_branding*
-     → Receives: colors, fonts, logo, typography
-     → Responds: "Tesla uses a bold red (#E82127)..."
+     â†’ Receives: colors, fonts, logo, typography
+     â†’ Responds: "Tesla uses a bold red (#E82127)..."
 
 User: "Compare our branding with nike.com and adidas.com"
 LLM: *invokes tool twice in parallel*
-     → Analyzes both competitors
-     → Provides competitive analysis
+     â†’ Analyzes both competitors
+     â†’ Provides competitive analysis
 ```
 
 **When to use this pattern:**
-- ✅ Service layer already exists (check PRs, codebase)
-- ✅ Existing tool pattern is discoverable (search for ToolExecutor, IToolDefinition)
-- ✅ LLM needs autonomous access during conversations
-- ✅ UI workflow exists but limits LLM capabilities
+- âœ… Service layer already exists (check PRs, codebase)
+- âœ… Existing tool pattern is discoverable (search for ToolExecutor, IToolDefinition)
+- âœ… LLM needs autonomous access during conversations
+- âœ… UI workflow exists but limits LLM capabilities
 
 **Key insight:** Always check for existing service layer BEFORE implementing new infrastructure. Hazina PR #69 provided all the heavy lifting - we just needed to expose it as a tool.
 
@@ -2357,29 +2357,29 @@ LLM: *invokes tool twice in parallel*
 ```
 Question: Does the service layer exist?
 Method: Search for recent PRs, check codebase
-Result: ✅ Hazina PR #69 (FireCrawl service) - MERGED
+Result: âœ… Hazina PR #69 (FireCrawl service) - MERGED
 ```
 
 **Phase 2: Find Patterns (Existing Code)**
 ```
 Question: How are other tools implemented?
 Method: Search for "Tool", "ToolExecutor", "IToolDefinition"
-Result: ✅ Found ToolExecutor.cs with 8 existing tools
-Pattern: Tool definition → Switch case → Execution method → Argument class
+Result: âœ… Found ToolExecutor.cs with 8 existing tools
+Pattern: Tool definition â†’ Switch case â†’ Execution method â†’ Argument class
 ```
 
 **Phase 3: Create Implementation Plan**
 ```
 Question: What's missing to connect them?
 Method: Document exact steps with code snippets
-Result: ✅ Complete plan at C:\scripts\plans\web-scraping-llm-tool-implementation.md
+Result: âœ… Complete plan at C:\scripts\plans\web-scraping-llm-tool-implementation.md
 ```
 
 **Benefits:**
-- ✅ No reinventing the wheel - follow established patterns
-- ✅ Complete understanding before coding
-- ✅ User can review plan before implementation
-- ✅ Documentation created automatically
+- âœ… No reinventing the wheel - follow established patterns
+- âœ… Complete understanding before coding
+- âœ… User can review plan before implementation
+- âœ… Documentation created automatically
 
 **Execution Order:**
 1. Read dependencies/services (Hazina PR #69 diff)
@@ -2487,7 +2487,7 @@ else
 
 **Session Type:** Frontend feature implementation (React/TypeScript)
 **Context:** User requested tags and descriptions be visible when clicking on documents/images in both documents list and chat views
-**Outcome:** ✅ SUCCESS - Clean implementation with zero TypeScript errors, user preferences applied, complete zero-tolerance compliance
+**Outcome:** âœ… SUCCESS - Clean implementation with zero TypeScript errors, user preferences applied, complete zero-tolerance compliance
 **PR:** #125 (https://github.com/martiendejong/client-manager/pull/125)
 
 ### Key Accomplishments
@@ -2506,10 +2506,10 @@ else
 - `ClientManagerFrontend/src/components/containers/MessageItem.tsx` - Attachment data
 
 **Verification:**
-- ✅ Frontend build: ZERO TypeScript errors
-- ✅ Worktree allocated and released properly (agent-004)
-- ✅ User preferences applied (always visible, all tags, explicit "no description" message)
-- ✅ PR created with comprehensive documentation
+- âœ… Frontend build: ZERO TypeScript errors
+- âœ… Worktree allocated and released properly (agent-004)
+- âœ… User preferences applied (always visible, all tags, explicit "no description" message)
+- âœ… PR created with comprehensive documentation
 
 ### Critical Patterns Discovered
 
@@ -2545,10 +2545,10 @@ AskUserQuestion({
 ```
 
 **Benefits:**
-- ✅ Avoids implementing wrong solution
-- ✅ User feels consulted and involved
-- ✅ Clear requirements before coding starts
-- ✅ Documents design decisions in plan file
+- âœ… Avoids implementing wrong solution
+- âœ… User feels consulted and involved
+- âœ… Clear requirements before coding starts
+- âœ… Documents design decisions in plan file
 
 **Key insight:** 3-5 minutes of user questions saves hours of rework.
 
@@ -2616,11 +2616,11 @@ background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 70%, tra
 - Any fullscreen media needing contextual info
 
 **Success criteria:**
-✅ Overlay doesn't obscure primary content
-✅ Text remains readable (proper contrast)
-✅ Works in dark and light modes
-✅ Responsive on mobile and desktop
-✅ Keyboard accessible (ESC to close)
+âœ… Overlay doesn't obscure primary content
+âœ… Text remains readable (proper contrast)
+âœ… Works in dark and light modes
+âœ… Responsive on mobile and desktop
+âœ… Keyboard accessible (ESC to close)
 
 ---
 
@@ -2640,8 +2640,8 @@ export type Attachment = {
   fileUrl: string
   mimeType: string
   // Add new fields here FIRST
-  tags?: string[]        // ← New
-  description?: string   // ← New
+  tags?: string[]        // â† New
+  description?: string   // â† New
 }
 ```
 
@@ -2652,8 +2652,8 @@ interface ImageViewerProps {
   src: string
   alt: string
   onClose: () => void
-  tags?: string[]        // ← New
-  description?: string   // ← New
+  tags?: string[]        // â† New
+  description?: string   // â† New
 }
 ```
 
@@ -2686,17 +2686,17 @@ npm run build
 ```
 
 **Benefits:**
-- ✅ TypeScript compiler finds ALL locations needing updates
-- ✅ No missed props or undefined errors
-- ✅ Type safety throughout component tree
-- ✅ Refactoring is safer and faster
+- âœ… TypeScript compiler finds ALL locations needing updates
+- âœ… No missed props or undefined errors
+- âœ… Type safety throughout component tree
+- âœ… Refactoring is safer and faster
 
 **Key insight:** Update types BEFORE implementation - compiler becomes your checklist.
 
 **Detection of success:**
 ```bash
 npm run build
-# Output: ✓ 3433 modules transformed
+# Output: âœ“ 3433 modules transformed
 # Zero TypeScript errors = all locations updated
 ```
 
@@ -2705,44 +2705,44 @@ npm run build
 ### Session Execution Quality
 
 **Zero-Tolerance Compliance:**
-- ✅ Read ZERO_TOLERANCE_RULES.md at session start
-- ✅ Allocated agent-004 worktree before any code edits
-- ✅ All edits in `C:/Projects/worker-agents/agent-004/client-manager/`
-- ✅ Zero edits in `C:/Projects/client-manager/` (base repo)
-- ✅ Committed, pushed, and created PR
-- ✅ Released worktree (marked FREE in pool)
-- ✅ Logged allocation and release in activity.md
-- ✅ Switched base repo back to develop
-- ✅ Pruned worktrees
+- âœ… Read ZERO_TOLERANCE_RULES.md at session start
+- âœ… Allocated agent-004 worktree before any code edits
+- âœ… All edits in `C:/Projects/worker-agents/agent-004/client-manager/`
+- âœ… Zero edits in `C:/Projects/client-manager/` (base repo)
+- âœ… Committed, pushed, and created PR
+- âœ… Released worktree (marked FREE in pool)
+- âœ… Logged allocation and release in activity.md
+- âœ… Switched base repo back to develop
+- âœ… Pruned worktrees
 
 **Plan Mode Execution:**
-- ✅ Launched Explore agent to understand current implementation
-- ✅ Used AskUserQuestion to gather UI/UX preferences
-- ✅ Documented plan in plan file before implementation
-- ✅ User approved plan before coding started
+- âœ… Launched Explore agent to understand current implementation
+- âœ… Used AskUserQuestion to gather UI/UX preferences
+- âœ… Documented plan in plan file before implementation
+- âœ… User approved plan before coding started
 
 **Implementation Quality:**
-- ✅ Type definitions updated first
-- ✅ Build verified after all changes (zero errors)
-- ✅ No backend changes required (verified data availability)
-- ✅ Consistent styling with existing components
-- ✅ Responsive design considerations applied
+- âœ… Type definitions updated first
+- âœ… Build verified after all changes (zero errors)
+- âœ… No backend changes required (verified data availability)
+- âœ… Consistent styling with existing components
+- âœ… Responsive design considerations applied
 
 ### Lessons for Future Sessions
 
 **DO:**
-- ✅ Use AskUserQuestion in plan mode for UI/UX decisions
-- ✅ Update TypeScript type definitions BEFORE implementation
-- ✅ Verify backend data availability before planning frontend changes
-- ✅ Apply user preferences explicitly in code and documentation
-- ✅ Build after all changes to catch TypeScript errors
-- ✅ Follow complete worktree protocol (allocate → work → PR → release)
+- âœ… Use AskUserQuestion in plan mode for UI/UX decisions
+- âœ… Update TypeScript type definitions BEFORE implementation
+- âœ… Verify backend data availability before planning frontend changes
+- âœ… Apply user preferences explicitly in code and documentation
+- âœ… Build after all changes to catch TypeScript errors
+- âœ… Follow complete worktree protocol (allocate â†’ work â†’ PR â†’ release)
 
 **DON'T:**
-- ❌ Assume UI/UX preferences - always ask when multiple approaches exist
-- ❌ Start implementation before types are updated
-- ❌ Skip build verification ("it should work")
-- ❌ Present PR before releasing worktree (CRITICAL VIOLATION)
+- âŒ Assume UI/UX preferences - always ask when multiple approaches exist
+- âŒ Start implementation before types are updated
+- âŒ Skip build verification ("it should work")
+- âŒ Present PR before releasing worktree (CRITICAL VIOLATION)
 
 **Key insight:**
 > User preference collection during plan mode + type-first development = zero rework, clean implementation, happy user.
@@ -2758,7 +2758,7 @@ npm run build
 
 **Session Type:** Full-stack feature implementation (Backend C# + Frontend React/TypeScript)
 **Context:** User requested enhanced image management with search-based regeneration, smaller images, and feedback-driven search
-**Outcome:** ✅ SUCCESS - Complete implementation with reusable dialog component, semantic search integration, and consistent image sizing
+**Outcome:** âœ… SUCCESS - Complete implementation with reusable dialog component, semantic search integration, and consistent image sizing
 **PR:** #25 (https://github.com/martiendejong/artrevisionist/pull/25)
 
 ### Key Accomplishments
@@ -2777,8 +2777,8 @@ npm run build
 5. Applied consistent styling across MainPageCard, DetailCard, and EvidenceItem
 
 **Verification:**
-- Backend builds: ✅ ZERO errors
-- Frontend builds: ✅ ZERO TypeScript errors
+- Backend builds: âœ… ZERO errors
+- Frontend builds: âœ… ZERO TypeScript errors
 - Three commits pushed successfully
 - PR created with comprehensive documentation
 
@@ -3005,7 +3005,7 @@ title={
 ### Reusable Patterns for Future Sessions
 
 1. **Full-Stack Feature Implementation:**
-   - Backend first (models → services → DI)
+   - Backend first (models â†’ services â†’ DI)
    - Build backend to verify
    - Frontend types (align with backend models)
    - Frontend components (reusable dialog pattern)
@@ -3048,12 +3048,12 @@ title={
 - User said "proceed" after plan approval (trust in approach)
 - No corrections or changes requested during implementation
 - Feature matches exact specifications:
-  - ✅ Search existing images (not generate new)
-  - ✅ Smaller display sizes (~200px featured, ~100px thumbnails)
-  - ✅ Feedback-driven search with hints
-  - ✅ "Regenerate all" clears then finds 0-3 different
-  - ✅ Non-destructive delete
-  - ✅ Works on all page types
+  - âœ… Search existing images (not generate new)
+  - âœ… Smaller display sizes (~200px featured, ~100px thumbnails)
+  - âœ… Feedback-driven search with hints
+  - âœ… "Regenerate all" clears then finds 0-3 different
+  - âœ… Non-destructive delete
+  - âœ… Works on all page types
 
 ---
 
@@ -3061,7 +3061,7 @@ title={
 
 **Session Type:** Feature integration + worktree completion
 **Context:** PR #120 had complete backend + all frontend components but missing UI routing and navigation
-**Outcome:** ✅ SUCCESS - Full integration completed with proper worktree workflow. Feature now accessible to users.
+**Outcome:** âœ… SUCCESS - Full integration completed with proper worktree workflow. Feature now accessible to users.
 **PR:** #120 (https://github.com/martiendejong/client-manager/pull/120)
 
 ### Problem Analysis
@@ -3069,16 +3069,16 @@ title={
 PR #120 (FireCrawl competitive intelligence) had a critical gap:
 
 **What was complete:**
-- ✅ Backend: CompetitorBrand, BrandSnapshot, BrandingData models
-- ✅ Backend: BrandImportService with full logic
-- ✅ Backend: WebScrapingController with 4 API endpoints
-- ✅ Frontend: BrandImportWizard, CompetitorDashboard, CompetitorCard, BrandPreview components
-- ✅ Frontend: webScrapingApi.ts service + branding.ts types
+- âœ… Backend: CompetitorBrand, BrandSnapshot, BrandingData models
+- âœ… Backend: BrandImportService with full logic
+- âœ… Backend: WebScrapingController with 4 API endpoints
+- âœ… Frontend: BrandImportWizard, CompetitorDashboard, CompetitorCard, BrandPreview components
+- âœ… Frontend: webScrapingApi.ts service + branding.ts types
 
 **What was missing:**
-- ❌ No route in App.tsx (components unreachable)
-- ❌ No navigation menu item in Sidebar.tsx
-- ❌ No way for users to access the feature
+- âŒ No route in App.tsx (components unreachable)
+- âŒ No navigation menu item in Sidebar.tsx
+- âŒ No way for users to access the feature
 
 **Impact:** Feature was complete but invisible to end users - classic "works in PR, not in app" scenario.
 
@@ -3162,14 +3162,14 @@ import CompetitorDashboard from './components/branding/CompetitorDashboard'
 **Importance:** CRITICAL - User mandated zero-tolerance on direct C:\Projects edits
 
 **What worked this session:**
-1. ✅ Read worktrees.pool.md to find FREE seat (agent-002)
-2. ✅ Created worktree in isolated directory: C:\Projects\worker-agents\agent-002\client-manager
-3. ✅ Made all changes in worktree (NOT in C:\Projects\client-manager)
-4. ✅ Committed locally, pushed to origin
-5. ✅ Deleted worktree directory after push
-6. ✅ Marked worktree FREE in pool
-7. ✅ Logged release in activity log
-8. ✅ Committed tracking updates to machine_agents repo
+1. âœ… Read worktrees.pool.md to find FREE seat (agent-002)
+2. âœ… Created worktree in isolated directory: C:\Projects\worker-agents\agent-002\client-manager
+3. âœ… Made all changes in worktree (NOT in C:\Projects\client-manager)
+4. âœ… Committed locally, pushed to origin
+5. âœ… Deleted worktree directory after push
+6. âœ… Marked worktree FREE in pool
+7. âœ… Logged release in activity log
+8. âœ… Committed tracking updates to machine_agents repo
 
 **Why this matters:**
 - Base repo (C:\Projects\<repo>) stays clean on develop
@@ -3191,7 +3191,7 @@ import CompetitorDashboard from './components/branding/CompetitorDashboard'
 
 ### Success Criteria
 
-✅ **Verified complete:**
+âœ… **Verified complete:**
 1. CompetitorDashboard imported in App.tsx
 2. Two routes created (/:projectId/competitors and /competitors)
 3. Both use MainLayout with fullPageContent pattern
@@ -3206,19 +3206,19 @@ import CompetitorDashboard from './components/branding/CompetitorDashboard'
 ### Lessons for Future Sessions
 
 **DO:**
-- ✅ Always check if components need routing when reviewing PRs
-- ✅ Use worktree for ANY edit to backend code
-- ✅ Follow the two-route pattern (/:projectId/feature and /feature)
-- ✅ Copy existing route/navigation structures as templates
-- ✅ Release worktree BEFORE presenting result to user
-- ✅ Log all allocations/releases in activity.md
+- âœ… Always check if components need routing when reviewing PRs
+- âœ… Use worktree for ANY edit to backend code
+- âœ… Follow the two-route pattern (/:projectId/feature and /feature)
+- âœ… Copy existing route/navigation structures as templates
+- âœ… Release worktree BEFORE presenting result to user
+- âœ… Log all allocations/releases in activity.md
 
 **DON'T:**
-- ❌ Skip worktree allocation for "quick edits"
-- ❌ Edit C:\Projects\<repo> directly (use worktree)
-- ❌ Create single route variant (need both with/without projectId)
-- ❌ Present PR before releasing worktree
-- ❌ Forget to mark worktree FREE in pool
+- âŒ Skip worktree allocation for "quick edits"
+- âŒ Edit C:\Projects\<repo> directly (use worktree)
+- âŒ Create single route variant (need both with/without projectId)
+- âŒ Present PR before releasing worktree
+- âŒ Forget to mark worktree FREE in pool
 
 **Key insight:** Features are invisible until routed + navigated. Complete backend work must include complete UI integration, not just components.
 
@@ -3228,7 +3228,7 @@ import CompetitorDashboard from './components/branding/CompetitorDashboard'
 
 **Session Type:** Feature request submission + research
 **Context:** User identified critical need for programmatic model switching in autonomous agents
-**Outcome:** ✅ SUCCESS - Comprehensive feature request submitted as issue #17772
+**Outcome:** âœ… SUCCESS - Comprehensive feature request submitted as issue #17772
 
 ### Summary
 
@@ -3286,7 +3286,7 @@ For future feature requests:
 
 **Session Type:** Feature implementation + comprehensive code review + critical issue resolution
 **Context:** User requested per-user AI cost tracking feature with admin view, followed by production-readiness review
-**Outcome:** ✅ SUCCESS - Complete feature implemented, code review revealed 4 critical issues, all fixed and production-ready
+**Outcome:** âœ… SUCCESS - Complete feature implemented, code review revealed 4 critical issues, all fixed and production-ready
 **PR:** #122 (https://github.com/martiendejong/client-manager/pull/122)
 
 ### Task Overview
@@ -3296,23 +3296,23 @@ Implemented comprehensive per-user AI usage cost tracking system, conducted thor
 ### Key Achievements
 
 **Phase 1: Feature Implementation (Initial)**
-- ✅ Backend service (UserTokenCostService) with cost aggregation from Hazina LLM logs
-- ✅ API controller with role-based authorization (admin-only endpoints)
-- ✅ React frontend component with compact and full display modes
-- ✅ Integration into UsersManagementView for admin visibility
-- ✅ Both backend and frontend builds successful
+- âœ… Backend service (UserTokenCostService) with cost aggregation from Hazina LLM logs
+- âœ… API controller with role-based authorization (admin-only endpoints)
+- âœ… React frontend component with compact and full display modes
+- âœ… Integration into UsersManagementView for admin visibility
+- âœ… Both backend and frontend builds successful
 
 **Phase 2: Comprehensive Code Review**
-- ✅ Launched general-purpose agent to conduct deep code review
-- ✅ Identified 4 CRITICAL issues, 2 MEDIUM issues, 3 OPTIONAL improvements
-- ✅ Created detailed review comment on PR #122 with code examples and fixes
-- ✅ Prioritized issues by severity and production impact
+- âœ… Launched general-purpose agent to conduct deep code review
+- âœ… Identified 4 CRITICAL issues, 2 MEDIUM issues, 3 OPTIONAL improvements
+- âœ… Created detailed review comment on PR #122 with code examples and fixes
+- âœ… Prioritized issues by severity and production impact
 
 **Phase 3: Critical Issue Resolution**
-- ✅ Fixed all 4 critical issues in single commit (ac8a2cf)
-- ✅ Added bonus improvements (input validation, error indicators)
-- ✅ Verified builds pass after fixes
-- ✅ Documented all changes in commit message and PR comment
+- âœ… Fixed all 4 critical issues in single commit (ac8a2cf)
+- âœ… Added bonus improvements (input validation, error indicators)
+- âœ… Verified builds pass after fixes
+- âœ… Documented all changes in commit message and PR comment
 
 ### Critical Issues Discovered & Fixed
 
@@ -3323,16 +3323,16 @@ Implemented comprehensive per-user AI usage cost tracking system, conducted thor
 **Root Cause:** Default value initialization without considering empty result sets.
 
 **Impact:**
-- ❌ Misleading admin dashboard data
-- ❌ Confusing analytics (users with 0 requests showing recent activity)
-- ❌ Incorrect reporting and insights
+- âŒ Misleading admin dashboard data
+- âŒ Confusing analytics (users with 0 requests showing recent activity)
+- âŒ Incorrect reporting and insights
 
 **Fix:**
 ```csharp
 // BEFORE (WRONG)
 if (!logs.Any()) {
     return new UserCostSummary {
-        FirstRequest = DateTime.UtcNow,  // ❌ Misleading!
+        FirstRequest = DateTime.UtcNow,  // âŒ Misleading!
         LastRequest = DateTime.UtcNow
     };
 }
@@ -3343,7 +3343,7 @@ public DateTime? LastRequest { get; set; }
 
 if (!logs.Any()) {
     return new UserCostSummary {
-        FirstRequest = null,  // ✅ Accurate
+        FirstRequest = null,  // âœ… Accurate
         LastRequest = null
     };
 }
@@ -3360,15 +3360,15 @@ if (!logs.Any()) {
 **Root Cause:** TypeScript interface didn't specify nullable dates, developer assumed data always present.
 
 **Impact:**
-- ❌ UI crashes for users with no AI usage
-- ❌ Poor user experience
-- ❌ Production-breaking bug
+- âŒ UI crashes for users with no AI usage
+- âŒ Poor user experience
+- âŒ Production-breaking bug
 
 **Fix:**
 ```typescript
 // BEFORE (WRONG)
 interface UserCostSummary {
-  firstRequest: string;  // ❌ Not nullable
+  firstRequest: string;  // âŒ Not nullable
   lastRequest: string;
 }
 
@@ -3377,7 +3377,7 @@ interface UserCostSummary {
 
 // AFTER (CORRECT)
 interface UserCostSummary {
-  firstRequest: string | null;  // ✅ Nullable
+  firstRequest: string | null;  // âœ… Nullable
   lastRequest: string | null;
 }
 
@@ -3400,9 +3400,9 @@ interface UserCostSummary {
 **Root Cause:** Assumption that authentication username matches logging username without verification.
 
 **Impact:**
-- ❌ **CRITICAL:** If fields don't match, ALL users show $0.00 costs even with high usage
-- ❌ False sense of low costs, incorrect billing/analytics
-- ❌ Impossible to debug without logging
+- âŒ **CRITICAL:** If fields don't match, ALL users show $0.00 costs even with high usage
+- âŒ False sense of low costs, incorrect billing/analytics
+- âŒ Impossible to debug without logging
 
 **Fix:**
 ```csharp
@@ -3431,20 +3431,20 @@ _logger.LogInformation(
 **Root Cause:** Direct string interpolation without sanitization.
 
 **Impact:**
-- ❌ Cache key collisions between different users
-- ❌ Incorrect cached data returned
-- ❌ Possible cache storage errors
+- âŒ Cache key collisions between different users
+- âŒ Incorrect cached data returned
+- âŒ Possible cache storage errors
 
 **Fix:**
 ```csharp
 // BEFORE (WRONG)
 var cacheKey = $"user_cost_summary_{userId}";
-// userId = "user@example.com" → key = "user_cost_summary_user@example.com"
+// userId = "user@example.com" â†’ key = "user_cost_summary_user@example.com"
 
 // AFTER (CORRECT)
 var sanitizedUserId = userId.Replace("@", "_at_").Replace(".", "_dot_");
 var cacheKey = $"user_cost_summary_{sanitizedUserId}";
-// userId = "user@example.com" → key = "user_cost_summary_user_at_example_dot_com"
+// userId = "user@example.com" â†’ key = "user_cost_summary_user_at_example_dot_com"
 ```
 
 **Lesson Learned:** Always sanitize user input before using in cache keys, file paths, or other storage mechanisms.
@@ -3469,10 +3469,10 @@ public async Task<UserCostSummary> GetUserTotalCostAsync(string userId)
 ```tsx
 // Compact mode error handling
 if (error) {
-  return <span className="text-red-400 text-sm" title={error}>Error</span>;  // ✅ Red + hover message
+  return <span className="text-red-400 text-sm" title={error}>Error</span>;  // âœ… Red + hover message
 }
 if (!summary) {
-  return <span className="text-gray-400 text-sm">N/A</span>;  // ✅ Gray for missing data
+  return <span className="text-gray-400 text-sm">N/A</span>;  // âœ… Gray for missing data
 }
 ```
 
@@ -3488,10 +3488,10 @@ if (!summary) {
 
 **Example:**
 ```csharp
-// ❌ BAD - Misleading default value
+// âŒ BAD - Misleading default value
 public DateTime FirstRequest { get; set; }  // Defaults to DateTime.MinValue or current time
 
-// ✅ GOOD - Explicit nullability
+// âœ… GOOD - Explicit nullability
 public DateTime? FirstRequest { get; set; }  // Clearly indicates "might not exist"
 ```
 
@@ -3626,15 +3626,15 @@ export const DataDisplay: React.FC<Props> = ({ data, compact = false }) => {
 #### **Effective Review Structure**
 
 **What Worked:**
-1. ✅ **Categorize by severity:** CRITICAL → MEDIUM → OPTIONAL
-2. ✅ **Show code examples:** Both wrong and correct versions
-3. ✅ **Explain impact:** Why this matters in production
-4. ✅ **Provide specific fixes:** Not just "fix this" but exact code
-5. ✅ **Include testing checklist:** What to verify before merge
+1. âœ… **Categorize by severity:** CRITICAL â†’ MEDIUM â†’ OPTIONAL
+2. âœ… **Show code examples:** Both wrong and correct versions
+3. âœ… **Explain impact:** Why this matters in production
+4. âœ… **Provide specific fixes:** Not just "fix this" but exact code
+5. âœ… **Include testing checklist:** What to verify before merge
 
 **Review Template:**
 ```markdown
-## 🚨 CRITICAL ISSUES (Must Fix)
+## ðŸš¨ CRITICAL ISSUES (Must Fix)
 
 ### 1. Issue Name
 **File:** path/to/file.cs, Line X
@@ -3649,13 +3649,13 @@ bad example
 good example
 ```
 
-## ⚠️ MEDIUM Priority
+## âš ï¸ MEDIUM Priority
 [Same structure]
 
-## 💡 OPTIONAL Improvements
+## ðŸ’¡ OPTIONAL Improvements
 [Same structure]
 
-## 🧪 Testing Checklist
+## ðŸ§ª Testing Checklist
 - [ ] Test case 1
 - [ ] Test case 2
 ```
@@ -3697,13 +3697,13 @@ When reviewing code, check these areas systematically:
 ### Metrics & Outcomes
 
 **Implementation Quality:**
-- Initial implementation: ⭐⭐⭐⭐ (4/5) - Clean code, good architecture
-- Post-review: ⭐⭐⭐⭐⭐ (5/5) - Production-ready, edge cases handled
+- Initial implementation: â­â­â­â­ (4/5) - Clean code, good architecture
+- Post-review: â­â­â­â­â­ (5/5) - Production-ready, edge cases handled
 
 **Issues Prevented:**
-- 🚨 **1 Critical Production Bug:** ALL users showing $0.00 costs (if username fields didn't match)
-- 🚨 **1 Critical UI Crash:** Frontend crashing for users with no activity
-- ⚠️ **2 Data Quality Issues:** Misleading dates, cache key collisions
+- ðŸš¨ **1 Critical Production Bug:** ALL users showing $0.00 costs (if username fields didn't match)
+- ðŸš¨ **1 Critical UI Crash:** Frontend crashing for users with no activity
+- âš ï¸ **2 Data Quality Issues:** Misleading dates, cache key collisions
 
 **Time Investment:**
 - Feature implementation: ~30 minutes
@@ -3739,7 +3739,7 @@ When reviewing code, check these areas systematically:
 
 ### Reusable Workflow Patterns
 
-#### **Feature Implementation → Review → Fix Workflow**
+#### **Feature Implementation â†’ Review â†’ Fix Workflow**
 
 **Step 1: Implement Feature**
 ```bash
@@ -3819,15 +3819,15 @@ When reviewing code, check these areas systematically:
 
 ### Success Criteria Met
 
-- ✅ Feature fully implemented (backend + frontend + integration)
-- ✅ Comprehensive code review conducted
-- ✅ All critical issues identified
-- ✅ All critical issues fixed
-- ✅ Both builds pass (0 errors)
-- ✅ PR updated with review and fix comments
-- ✅ Worktree properly released
-- ✅ Tracking files updated
-- ✅ Learnings documented in reflection.log.md
+- âœ… Feature fully implemented (backend + frontend + integration)
+- âœ… Comprehensive code review conducted
+- âœ… All critical issues identified
+- âœ… All critical issues fixed
+- âœ… Both builds pass (0 errors)
+- âœ… PR updated with review and fix comments
+- âœ… Worktree properly released
+- âœ… Tracking files updated
+- âœ… Learnings documented in reflection.log.md
 
 **Status:** COMPLETE - Production-ready feature with comprehensive quality assurance
 
@@ -3837,7 +3837,7 @@ When reviewing code, check these areas systematically:
 
 **Session Type:** System enhancement - Auto-discoverable workflow integration
 **Context:** User requested integration of Claude Skills into autonomous agent system
-**Outcome:** ✅ SUCCESS - Complete Skills infrastructure created, 10 Skills implemented, documentation updated
+**Outcome:** âœ… SUCCESS - Complete Skills infrastructure created, 10 Skills implemented, documentation updated
 
 ### Task Overview
 
@@ -3854,11 +3854,11 @@ Integrated Claude Skills system into the autonomous agent infrastructure to enab
 
 #### GitHub Workflows (2 Skills)
 4. **github-workflow** - PR creation, reviews, merging, and lifecycle management
-5. **pr-dependencies** - Cross-repo dependency tracking (Hazina ↔ client-manager)
+5. **pr-dependencies** - Cross-repo dependency tracking (Hazina â†” client-manager)
 
 #### Development Patterns (3 Skills)
 6. **api-patterns** - Common API pitfalls (OpenAIConfig, response enrichment, URL duplication, LLM integration)
-7. **terminology-migration** - Codebase-wide refactoring pattern (e.g., daily → monthly)
+7. **terminology-migration** - Codebase-wide refactoring pattern (e.g., daily â†’ monthly)
 8. **multi-agent-conflict** - MANDATORY pre-allocation conflict detection
 
 #### Continuous Improvement (2 Skills)
@@ -3870,27 +3870,27 @@ Integrated Claude Skills system into the autonomous agent infrastructure to enab
 **Directory Structure Created:**
 ```
 C:\scripts\.claude\skills\
-├── allocate-worktree/
-│   ├── SKILL.md (1,447 lines)
-│   └── scripts/ (for future helper scripts)
-├── release-worktree/
-│   └── SKILL.md (878 lines)
-├── worktree-status/
-│   └── SKILL.md (561 lines)
-├── github-workflow/
-│   └── SKILL.md (1,163 lines)
-├── pr-dependencies/
-│   └── SKILL.md (1,021 lines)
-├── api-patterns/
-│   └── SKILL.md (1,048 lines)
-├── terminology-migration/
-│   └── SKILL.md (1,356 lines)
-├── multi-agent-conflict/
-│   └── SKILL.md (995 lines)
-├── session-reflection/
-│   └── SKILL.md (936 lines)
-└── self-improvement/
-    └── SKILL.md (1,221 lines)
+â”œâ”€â”€ allocate-worktree/
+â”‚   â”œâ”€â”€ SKILL.md (1,447 lines)
+â”‚   â””â”€â”€ scripts/ (for future helper scripts)
+â”œâ”€â”€ release-worktree/
+â”‚   â””â”€â”€ SKILL.md (878 lines)
+â”œâ”€â”€ worktree-status/
+â”‚   â””â”€â”€ SKILL.md (561 lines)
+â”œâ”€â”€ github-workflow/
+â”‚   â””â”€â”€ SKILL.md (1,163 lines)
+â”œâ”€â”€ pr-dependencies/
+â”‚   â””â”€â”€ SKILL.md (1,021 lines)
+â”œâ”€â”€ api-patterns/
+â”‚   â””â”€â”€ SKILL.md (1,048 lines)
+â”œâ”€â”€ terminology-migration/
+â”‚   â””â”€â”€ SKILL.md (1,356 lines)
+â”œâ”€â”€ multi-agent-conflict/
+â”‚   â””â”€â”€ SKILL.md (995 lines)
+â”œâ”€â”€ session-reflection/
+â”‚   â””â”€â”€ SKILL.md (936 lines)
+â””â”€â”€ self-improvement/
+    â””â”€â”€ SKILL.md (1,221 lines)
 ```
 
 **Total:** 10,626 lines of comprehensive Skill documentation
@@ -3907,7 +3907,7 @@ user-invocable: true
 
 **Files Modified:**
 - `C:\scripts\CLAUDE.md` - Added comprehensive Skills section with examples and workflow guide
-  - New section: § Claude Skills - Auto-Discoverable Workflows
+  - New section: Â§ Claude Skills - Auto-Discoverable Workflows
   - Updated Common Workflows table with Skill column
   - Added Skills to Control Plane Structure
 
@@ -3916,38 +3916,38 @@ user-invocable: true
 **Converted reflection.log.md patterns into Skills:**
 
 **Pattern 1-5 (OpenAIConfig, API Response Enrichment, LLM URLs):**
-→ Documented in **`api-patterns` Skill**
+â†’ Documented in **`api-patterns` Skill**
 
 **Pattern 52 (Worktree Allocation Protocol):**
-→ Expanded into **`allocate-worktree` Skill** with conflict detection
+â†’ Expanded into **`allocate-worktree` Skill** with conflict detection
 
 **Pattern 53 (Worktree Release Protocol):**
-→ Expanded into **`release-worktree` Skill** with 9-step checklist
+â†’ Expanded into **`release-worktree` Skill** with 9-step checklist
 
 **Pattern 54 (Multi-Agent Conflict Detection):**
-→ Expanded into **`multi-agent-conflict` Skill** with 4-check system
+â†’ Expanded into **`multi-agent-conflict` Skill** with 4-check system
 
 **Pattern 55 (Comprehensive Terminology Migration):**
-→ Expanded into **`terminology-migration` Skill** with grep → sed → build pattern
+â†’ Expanded into **`terminology-migration` Skill** with grep â†’ sed â†’ build pattern
 
 **Cross-Repo PR Dependencies (2026-01-12 entries):**
-→ Documented in **`pr-dependencies` Skill** with merge order enforcement
+â†’ Documented in **`pr-dependencies` Skill** with merge order enforcement
 
 **Session Reflection Protocol:**
-→ Codified in **`session-reflection` Skill** with entry template
+â†’ Codified in **`session-reflection` Skill** with entry template
 
 **Self-Improvement Mandate:**
-→ Codified in **`self-improvement` Skill** with update decision tree
+â†’ Codified in **`self-improvement` Skill** with update decision tree
 
 ### Key Benefits
 
-✅ **Auto-Discovery** - Claude activates Skills based on task context without explicit invocation
-✅ **Pattern Reuse** - Reflection log patterns now discoverable by future sessions
-✅ **Zero-Tolerance Enforcement** - Critical workflows (allocation, release, conflicts) have guided checklists
-✅ **Knowledge Preservation** - 2+ years of learnings captured in actionable format
-✅ **Onboarding** - New agent sessions have guided workflows from session 1
-✅ **Consistency** - Same patterns applied across all sessions
-✅ **Completeness** - Skills include examples, troubleshooting, success criteria
+âœ… **Auto-Discovery** - Claude activates Skills based on task context without explicit invocation
+âœ… **Pattern Reuse** - Reflection log patterns now discoverable by future sessions
+âœ… **Zero-Tolerance Enforcement** - Critical workflows (allocation, release, conflicts) have guided checklists
+âœ… **Knowledge Preservation** - 2+ years of learnings captured in actionable format
+âœ… **Onboarding** - New agent sessions have guided workflows from session 1
+âœ… **Consistency** - Same patterns applied across all sessions
+âœ… **Completeness** - Skills include examples, troubleshooting, success criteria
 
 ### How Skills Work
 
@@ -3958,21 +3958,21 @@ user-invocable: true
 **Activation Phase (Task Match):**
 ```
 User: "I need to allocate a worktree for a new feature"
-→ Claude matches "allocate worktree" in allocate-worktree Skill description
-→ Loads SKILL.md content
-→ Follows workflow: conflict detection → pool check → allocation → logging
+â†’ Claude matches "allocate worktree" in allocate-worktree Skill description
+â†’ Loads SKILL.md content
+â†’ Follows workflow: conflict detection â†’ pool check â†’ allocation â†’ logging
 ```
 
 **Benefits Over Static Documentation:**
-- ✅ Context-aware activation (only loads when relevant)
-- ✅ Progressive disclosure (supporting files loaded on demand)
-- ✅ Auto-discovery (no need to remember which doc to read)
-- ✅ Scoped (can restrict to specific projects or teams)
+- âœ… Context-aware activation (only loads when relevant)
+- âœ… Progressive disclosure (supporting files loaded on demand)
+- âœ… Auto-discovery (no need to remember which doc to read)
+- âœ… Scoped (can restrict to specific projects or teams)
 
 ### Documentation Updates
 
 **CLAUDE.md Changes:**
-1. Added § Claude Skills - Auto-Discoverable Workflows
+1. Added Â§ Claude Skills - Auto-Discoverable Workflows
    - What Are Skills explanation
    - Complete skill listing with descriptions
    - How Skills Work (3-phase process)
@@ -3983,7 +3983,7 @@ User: "I need to allocate a worktree for a new feature"
 2. Updated Common Workflows Quick Reference
    - Added "Auto-Discoverable Skill" column
    - Mapped 10 workflows to Skills
-   - ✅ indicators for available Skills
+   - âœ… indicators for available Skills
 
 3. Updated Control Plane Structure
    - Added Skills path: `C:\scripts\.claude\skills`
@@ -4002,27 +4002,27 @@ User: "I need to allocate a worktree for a new feature"
 - **Tools** - Executable scripts, manual invocation
 
 **When to create a Skill:**
-- ✅ Workflow has multiple mandatory steps (e.g., allocation, release)
-- ✅ Pattern is frequently used across sessions
-- ✅ Mistakes are costly (e.g., worktree conflicts, PR dependencies)
-- ✅ New agents benefit from guided workflow
-- ❌ Simple one-step operations
-- ❌ One-time tasks
+- âœ… Workflow has multiple mandatory steps (e.g., allocation, release)
+- âœ… Pattern is frequently used across sessions
+- âœ… Mistakes are costly (e.g., worktree conflicts, PR dependencies)
+- âœ… New agents benefit from guided workflow
+- âŒ Simple one-step operations
+- âŒ One-time tasks
 
-**Pattern 58: Reflection Log → Skills Pipeline**
+**Pattern 58: Reflection Log â†’ Skills Pipeline**
 
 **Pipeline:**
 ```
 Problem encountered
-    ↓
+    â†“
 Reflection log entry (root cause + solution + pattern)
-    ↓
+    â†“
 Pattern documented with number (Pattern N)
-    ↓
+    â†“
 Evaluate: Is this pattern reusable and complex?
-    ↓
+    â†“
 Create Skill for auto-discovery
-    ↓
+    â†“
 Update CLAUDE.md with Skill reference
 ```
 
@@ -4035,7 +4035,7 @@ Update CLAUDE.md with Skill reference
 
 ### Success Criteria
 
-✅ **Skills integration successful ONLY IF:**
+âœ… **Skills integration successful ONLY IF:**
 - 10 SKILL.md files created in `.claude/skills/` structure
 - Each Skill has proper YAML frontmatter
 - CLAUDE.md documents Skills comprehensively
@@ -4049,18 +4049,18 @@ Update CLAUDE.md with Skill reference
 **Skill structure verified:**
 ```bash
 find .claude/skills -name "SKILL.md"
-# Result: 10 files found ✅
+# Result: 10 files found âœ…
 ```
 
 **CLAUDE.md updated:**
-- § Claude Skills section: 94 lines ✅
-- Common Workflows table: 3 columns with Skill mapping ✅
-- Control Plane Structure: Skills path added ✅
+- Â§ Claude Skills section: 94 lines âœ…
+- Common Workflows table: 3 columns with Skill mapping âœ…
+- Control Plane Structure: Skills path added âœ…
 
 **Git status:**
 - `.claude/` directory staged with `-f` (was in .gitignore)
 - `CLAUDE.md` staged
-- Ready to commit ✅
+- Ready to commit âœ…
 
 ### Files Modified/Created
 
@@ -4103,7 +4103,7 @@ Key Features:
 - Enforces zero-tolerance rules and best practices
 
 Documentation Updates:
-- CLAUDE.md § Claude Skills section (94 lines)
+- CLAUDE.md Â§ Claude Skills section (94 lines)
 - Common Workflows table updated with Skill mapping
 - Control Plane Structure includes Skills path
 
@@ -4114,7 +4114,7 @@ Benefits:
 - Consistency across all agent sessions
 
 Pattern documented: Pattern 57 (Skills as Living Documentation)
-Pattern documented: Pattern 58 (Reflection Log → Skills Pipeline)
+Pattern documented: Pattern 58 (Reflection Log â†’ Skills Pipeline)
 
 Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
 ```
@@ -4138,11 +4138,11 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
 **User request:** "how do i incorporate claude skills in my scripts system"
 
 **Delivered:**
-1. ✅ Complete Skills infrastructure created
-2. ✅ 10 comprehensive Skills implemented
-3. ✅ Reflection patterns converted to Skills
-4. ✅ CLAUDE.md integration documentation
-5. ✅ Auto-discovery enabled
+1. âœ… Complete Skills infrastructure created
+2. âœ… 10 comprehensive Skills implemented
+3. âœ… Reflection patterns converted to Skills
+4. âœ… CLAUDE.md integration documentation
+5. âœ… Auto-discovery enabled
 
 **This implementation transforms the autonomous agent system from static documentation to dynamic, context-aware workflow guidance.**
 
@@ -4153,7 +4153,7 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
   - Added `.claude/skills/**\SKILL.md` to files to update regularly
   - Added "Reusable patterns that should become Skills" to improvement examples
   - Enhanced HOW TO UPDATE with STEP 6: Evaluate if pattern should become a Skill
-  - Added § CLAUDE SKILLS INTEGRATION with Skills creation pipeline
+  - Added Â§ CLAUDE SKILLS INTEGRATION with Skills creation pipeline
   - Updated SUCCESS METRICS to include Skills criteria
   - Enhanced END-OF-TASK protocol with STEP 4: Skill evaluation
 
@@ -4167,7 +4167,7 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
 
 **Session Type:** Configuration enhancement - Store analysis field addition
 **Context:** User requested adding a "vibe" analysis field to capture environment and atmosphere in a fairytale-like narrative style
-**Outcome:** ✅ SUCCESS - New field added, prompt template created, committed and pushed to brand2boost repo
+**Outcome:** âœ… SUCCESS - New field added, prompt template created, committed and pushed to brand2boost repo
 
 ### Task Overview
 
@@ -4202,14 +4202,14 @@ Added a new analysis field to the brand2boost store configuration that captures 
 **Pattern 56: Store Configuration vs Code Changes**
 
 **When working with stores (`C:\stores\<project>/`):**
-- ✅ Direct editing is ALLOWED (no worktree allocation needed)
-- ✅ These are configuration/data files, not application code
-- ✅ Store repos have their own git repositories
-- ✅ Commit and push directly to store repo after changes
+- âœ… Direct editing is ALLOWED (no worktree allocation needed)
+- âœ… These are configuration/data files, not application code
+- âœ… Store repos have their own git repositories
+- âœ… Commit and push directly to store repo after changes
 
 **Distinction from C:\Projects\ worktree rules:**
-- ❌ `C:\Projects\<repo>` = application code → REQUIRES worktree allocation
-- ✅ `C:\stores\<repo>` = configuration/data → direct editing allowed
+- âŒ `C:\Projects\<repo>` = application code â†’ REQUIRES worktree allocation
+- âœ… `C:\stores\<repo>` = configuration/data â†’ direct editing allowed
 
 **Store Structure Pattern (brand2boost):**
 - `analysis-fields.config.json` defines all available analysis fields
@@ -4277,11 +4277,11 @@ feat: Add 'vibe' analysis field for fairytale-style atmosphere descriptions
 
 ### Success Criteria Achieved
 
-- ✅ New field appears in analysis-fields.config.json (position: after "brand-story")
-- ✅ Prompt template created with clear instructions and example
-- ✅ Changes committed and pushed to brand2boost repo
-- ✅ Correctly identified as configuration work (no worktree needed)
-- ✅ Maintained existing field order and structure
+- âœ… New field appears in analysis-fields.config.json (position: after "brand-story")
+- âœ… Prompt template created with clear instructions and example
+- âœ… Changes committed and pushed to brand2boost repo
+- âœ… Correctly identified as configuration work (no worktree needed)
+- âœ… Maintained existing field order and structure
 
 ### Pattern Added to Knowledge Base
 
@@ -4306,14 +4306,14 @@ feat: Add 'vibe' analysis field for fairytale-style atmosphere descriptions
 
 ### Lessons Learned
 
-**✅ What Worked Well:**
+**âœ… What Worked Well:**
 
 1. **Pattern recognition** - Identified this as store configuration (not code) immediately
 2. **Context gathering** - Read existing fields to match style and structure
 3. **Example-driven design** - Provided concrete example in prompt template
 4. **TodoWrite usage** - Tracked 3-step process for visibility
 
-**🔑 Key Insights:**
+**ðŸ”‘ Key Insights:**
 
 1. **Configuration vs Code distinction matters:**
    - Worktree rules apply to code repos
@@ -4340,8 +4340,8 @@ feat: Add 'vibe' analysis field for fairytale-style atmosphere descriptions
 - Adding new tool configurations (`tools.config.json`)
 
 **Next time a similar request comes:**
-1. Check if target is in `C:\stores\` → direct edit
-2. Check if target is in `C:\Projects\` → worktree allocation required
+1. Check if target is in `C:\stores\` â†’ direct edit
+2. Check if target is in `C:\Projects\` â†’ worktree allocation required
 3. For stores: commit directly to main after changes
 4. For code: follow full worktree protocol with PR
 
@@ -4351,7 +4351,7 @@ feat: Add 'vibe' analysis field for fairytale-style atmosphere descriptions
 
 **Session Type:** Feature enhancement - User experience improvement
 **Context:** User requested "scripts that signal that the application is going to do work will make the header blue (add a blue icon) and that whatever script that signals there is a problem makes the header red"
-**Outcome:** ✅ SUCCESS - Enhanced window title with prominent colored emoji icons and uppercase state labels
+**Outcome:** âœ… SUCCESS - Enhanced window title with prominent colored emoji icons and uppercase state labels
 
 ### Problem
 
@@ -4374,14 +4374,14 @@ The dynamic window color system was working but:
    - Handles supplementary Unicode planes correctly
 
 2. **Enhanced visibility** - Made state text uppercase
-   - Before: "🔵 running - MAIN"
-   - After: "🔵 RUNNING - MAIN"
+   - Before: "ðŸ”µ running - MAIN"
+   - After: "ðŸ”µ RUNNING - MAIN"
 
 3. **Color-to-purpose mapping:**
-   - 🔵 RUNNING = Work in progress (blue icon + blue background)
-   - 🔴 BLOCKED = Problem/waiting for input (red icon + red background)
-   - 🟢 COMPLETE = Task done (green icon + green background)
-   - ⚪ IDLE = Ready for next task (white icon + black background)
+   - ðŸ”µ RUNNING = Work in progress (blue icon + blue background)
+   - ðŸ”´ BLOCKED = Problem/waiting for input (red icon + red background)
+   - ðŸŸ¢ COMPLETE = Task done (green icon + green background)
+   - âšª IDLE = Ready for next task (white icon + black background)
 
 **Files modified:**
 - `C:\scripts\set-state-color.ps1` - Core color management script
@@ -4390,10 +4390,10 @@ The dynamic window color system was working but:
 ### Pattern Learned
 
 **Emoji in PowerShell:**
-- ❌ Don't use literal emoji in Write tool (encoding issues)
-- ❌ Don't use `[char]0xHEX` for emoji > U+FFFF (out of range)
-- ✅ DO use `[System.Char]::ConvertFromUtf32(0xHEX)` for all emoji
-- ✅ DO test in actual PowerShell environment (bash rendering differs)
+- âŒ Don't use literal emoji in Write tool (encoding issues)
+- âŒ Don't use `[char]0xHEX` for emoji > U+FFFF (out of range)
+- âœ… DO use `[System.Char]::ConvertFromUtf32(0xHEX)` for all emoji
+- âœ… DO test in actual PowerShell environment (bash rendering differs)
 
 **UX for visual state:**
 - Color alone isn't enough - add prominent icon
@@ -4404,10 +4404,10 @@ The dynamic window color system was working but:
 
 All 4 states tested successfully:
 ```
-✓ color-running.bat → Blue background + 🔵 RUNNING
-✓ color-blocked.bat → Red background + 🔴 BLOCKED
-✓ color-complete.bat → Green background + 🟢 COMPLETE
-✓ color-idle.bat → Black background + ⚪ IDLE
+âœ“ color-running.bat â†’ Blue background + ðŸ”µ RUNNING
+âœ“ color-blocked.bat â†’ Red background + ðŸ”´ BLOCKED
+âœ“ color-complete.bat â†’ Green background + ðŸŸ¢ COMPLETE
+âœ“ color-idle.bat â†’ Black background + âšª IDLE
 ```
 
 ### Commit
@@ -4429,7 +4429,7 @@ All 4 states tested successfully:
 
 **Session Type:** Bug fixes - Compilation and runtime errors after feature merge
 **Context:** User merged feature/contextual-file-tagging to develop and encountered multiple errors
-**Outcome:** ✅ SUCCESS - Fixed 3 distinct issues: compilation errors, runtime ArgumentException, missing API response fields
+**Outcome:** âœ… SUCCESS - Fixed 3 distinct issues: compilation errors, runtime ArgumentException, missing API response fields
 
 ### Problem 1: Compilation Errors in LLM Client Usage
 
@@ -4484,9 +4484,9 @@ After creating `new OpenAIConfig(apiKey)`, explicitly set `config.Model = "gpt-4
 
 **Root Cause:**
 Upload endpoint was:
-1. ✅ Generating tags/description via ContextualFileTaggingService
-2. ✅ Saving tags/description to uploadedFiles.json
-3. ❌ NOT returning tags/description in API response
+1. âœ… Generating tags/description via ContextualFileTaggingService
+2. âœ… Saving tags/description to uploadedFiles.json
+3. âŒ NOT returning tags/description in API response
 
 Frontend couldn't display metadata it never received.
 
@@ -4515,9 +4515,9 @@ When user requests image generation via natural language (not `/image` command):
 1. LLM calls `generate_image` tool
 2. Tool generates markdown: `![Generated Image](url)` and returns JSON to LLM
 3. LLM wraps tool result in conversational response: "Hier is de afbeelding: ![Eenvoudig huis](url)"
-4. **LLM changes alt text** from "Generated Image" → contextual alt text
+4. **LLM changes alt text** from "Generated Image" â†’ contextual alt text
 5. `ChatController.ExtractImageUrl()` regex: `@"!\[Generated Image\]\((.*?)\)"` only matched specific alt text
-6. Extraction failed → no SignalR "ImageGenerationProgress" sent → frontend never received image URL
+6. Extraction failed â†’ no SignalR "ImageGenerationProgress" sent â†’ frontend never received image URL
 
 **Fix (ChatController.cs line 2061):**
 ```csharp
@@ -4615,7 +4615,7 @@ if (!string.IsNullOrEmpty(imageUrl) && imageUrl.StartsWith("/"))
 - When LLM calls tools, it often wraps results in conversational responses
 - LLM may modify structured output (markdown, formatting) to match context
 - Extraction regexes must be FLEXIBLE, not hardcoded to specific text
-- Example: `![Generated Image](url)` → LLM changes to `![Eenvoudig huis](url)`
+- Example: `![Generated Image](url)` â†’ LLM changes to `![Eenvoudig huis](url)`
 - Use capture groups that match patterns, not literal strings
 - **Guideline:** `@"!\[.*?\]\((.*?)\)"` > `@"!\[Generated Image\]\((.*?)\)"`
 
@@ -4644,13 +4644,13 @@ if (!string.IsNullOrEmpty(imageUrl) && imageUrl.StartsWith("/"))
 ### Testing Recommendations
 
 For future LLM integration work:
-1. ✅ Verify OpenAIConfig initialization includes Model parameter
-2. ✅ Check ILLMClient interface for correct method signatures
-3. ✅ Test file upload → check frontend receives all metadata
-4. ✅ Verify API responses match frontend TypeScript interfaces
-5. ✅ Test image generation (both `/image` and natural language) → verify image displays in chat
-6. ✅ Check browser console for SignalR "ImageGenerationProgress" notifications
-7. ✅ Test extraction regexes with LLM-customized output, not just hardcoded formats
+1. âœ… Verify OpenAIConfig initialization includes Model parameter
+2. âœ… Check ILLMClient interface for correct method signatures
+3. âœ… Test file upload â†’ check frontend receives all metadata
+4. âœ… Verify API responses match frontend TypeScript interfaces
+5. âœ… Test image generation (both `/image` and natural language) â†’ verify image displays in chat
+6. âœ… Check browser console for SignalR "ImageGenerationProgress" notifications
+7. âœ… Test extraction regexes with LLM-customized output, not just hardcoded formats
 
 ### Next Session Actions
 
@@ -4668,15 +4668,15 @@ For future LLM integration work:
 
 **Session Type:** Feature implementation - Visual state feedback system
 **User Request:** "claude code determines the color of the window based on the kind of thing you are doing"
-**Outcome:** ✅ SUCCESS - Implemented dynamic terminal color changes based on execution state
+**Outcome:** âœ… SUCCESS - Implemented dynamic terminal color changes based on execution state
 
 ### Feature Overview
 
 Created a state-based visual feedback system that changes terminal background color based on Claude Code's activity:
-- 🔵 **BLUE** - Running a task (active work)
-- 🟢 **GREEN** - Task completed successfully
-- 🔴 **RED** - Blocked on user input/decision
-- ⚪ **BLACK** - Idle/ready for next task
+- ðŸ”µ **BLUE** - Running a task (active work)
+- ðŸŸ¢ **GREEN** - Task completed successfully
+- ðŸ”´ **RED** - Blocked on user input/decision
+- âšª **BLACK** - Idle/ready for next task
 
 ### Technical Implementation
 
@@ -4712,7 +4712,7 @@ Created a state-based visual feedback system that changes terminal background co
    - Updates window title with state emoji
 
 2. **CLAUDE.md:**
-   - Added comprehensive section: "🎨 DYNAMIC WINDOW COLORS"
+   - Added comprehensive section: "ðŸŽ¨ DYNAMIC WINDOW COLORS"
    - Documented MANDATORY color change protocol for Claude
    - Integration examples and success criteria
 
@@ -4735,18 +4735,18 @@ C:\scripts\color-idle.bat
 ```
 
 **Critical integration points:**
-- BEFORE using AskUserQuestion tool → `color-blocked.bat`
-- AFTER receiving user answer → `color-running.bat`
-- BEFORE presenting completed work → `color-complete.bat`
-- When no active tasks → `color-idle.bat`
+- BEFORE using AskUserQuestion tool â†’ `color-blocked.bat`
+- AFTER receiving user answer â†’ `color-running.bat`
+- BEFORE presenting completed work â†’ `color-complete.bat`
+- When no active tasks â†’ `color-idle.bat`
 
 ### Benefits Achieved
 
-✅ **Visual state awareness** - User knows Claude's status at a glance
-✅ **Multi-window management** - Can differentiate multiple Claude sessions by color
-✅ **Attention management** - Red (blocked) immediately draws user's attention
-✅ **Progress tracking** - Green confirms successful task completion
-✅ **Professional polish** - Visual feedback similar to modern IDEs
+âœ… **Visual state awareness** - User knows Claude's status at a glance
+âœ… **Multi-window management** - Can differentiate multiple Claude sessions by color
+âœ… **Attention management** - Red (blocked) immediately draws user's attention
+âœ… **Progress tracking** - Green confirms successful task completion
+âœ… **Professional polish** - Visual feedback similar to modern IDEs
 
 ### Technical Learnings
 
@@ -4807,7 +4807,7 @@ C:\scripts\color-idle.bat
 ### Next Session Actions
 
 **MANDATORY for all future sessions:**
-1. Read `C:\scripts\CLAUDE.md` section "🎨 DYNAMIC WINDOW COLORS"
+1. Read `C:\scripts\CLAUDE.md` section "ðŸŽ¨ DYNAMIC WINDOW COLORS"
 2. Call color scripts at appropriate state transitions
 3. Test color changes work correctly in user's terminal
 4. Use colors consistently throughout session
@@ -4820,7 +4820,7 @@ C:\scripts\color-idle.bat
 
 **Session Type:** Bug investigation and fix (backend + frontend)
 **Context:** User reported token amounts showing as 0 in user management despite users having tokens
-**Outcome:** ✅ SUCCESS - Identified root cause, fixed backend API, updated frontend field names
+**Outcome:** âœ… SUCCESS - Identified root cause, fixed backend API, updated frontend field names
 
 ### Problem Statement
 
@@ -4838,14 +4838,14 @@ C:\scripts\color-idle.bat
    - Frontend code was correct but data never arrived from backend
 
 2. **Backend Analysis:**
-   - Traced `UserController.GetUsers()` → `UserService.GetUsers()` → `AspNetUserAccountManager.GetUsers()`
+   - Traced `UserController.GetUsers()` â†’ `UserService.GetUsers()` â†’ `AspNetUserAccountManager.GetUsers()`
    - Found that `GetUsers()` only returned: Id, Account, Email, FirstName, LastName, Role
    - Token data exists in `UserTokenBalances` table but wasn't being queried
 
 3. **Database Schema Review:**
    - `UserTokenBalance` entity has: CurrentBalance, MonthlyAllowance, MonthlyUsage, NextResetDate
    - Token data is stored separately from user identity data
-   - One-to-one relationship: UserId (FK) → IdentityUser
+   - One-to-one relationship: UserId (FK) â†’ IdentityUser
 
 ### Solution Implemented
 
@@ -4855,11 +4855,11 @@ C:\scripts\color-idle.bat
 2. Modified `GetUsers()` to:
    - Query `UserTokenBalances` table for each user
    - Enrich response with token fields:
-     - `tokenBalance` → from `CurrentBalance`
-     - `monthlyAllowance` → from `MonthlyAllowance`
-     - `tokensUsedThisMonth` → from `MonthlyUsage`
-     - `tokensRemainingThisMonth` → calculated (MonthlyAllowance - MonthlyUsage)
-     - `nextResetDate` → from `NextResetDate`
+     - `tokenBalance` â†’ from `CurrentBalance`
+     - `monthlyAllowance` â†’ from `MonthlyAllowance`
+     - `tokensUsedThisMonth` â†’ from `MonthlyUsage`
+     - `tokensRemainingThisMonth` â†’ calculated (MonthlyAllowance - MonthlyUsage)
+     - `nextResetDate` â†’ from `NextResetDate`
 3. Added `using Microsoft.EntityFrameworkCore;` for async queries
 
 **Field Name Correction (by user/linter):**
@@ -4871,12 +4871,12 @@ C:\scripts\color-idle.bat
 
 1. `UsersManagement.tsx`:
    - Updated `User` interface with monthly field names
-   - Changed default values: 1000 → 500 (matches backend defaults)
+   - Changed default values: 1000 â†’ 500 (matches backend defaults)
    - Added `nextResetDate` field
 
 2. `UsersManagementView.tsx`:
    - Updated `User` interface
-   - Changed "Daily allowance" → "Monthly allowance" in UI
+   - Changed "Daily allowance" â†’ "Monthly allowance" in UI
    - Added next reset date display in token adjustment modal
 
 ### Technical Insights
@@ -4884,20 +4884,20 @@ C:\scripts\color-idle.bat
 **Pattern: API Response Enrichment**
 
 When backend uses relational data across multiple tables:
-- ✅ **Correct:** Query related tables and enrich response in controller/service layer
-- ❌ **Wrong:** Assume frontend will make multiple API calls to assemble data
+- âœ… **Correct:** Query related tables and enrich response in controller/service layer
+- âŒ **Wrong:** Assume frontend will make multiple API calls to assemble data
 
 **Key Learning:** Frontend defaulting to 0 masked the backend bug. Without fallback values, this would have been caught immediately as `undefined` errors.
 
 **Database Pattern:**
 ```
-IdentityUser (1) ─────────── (1) UserTokenBalance
-    │                              │
-    ├─ Id                          ├─ UserId (FK)
-    ├─ UserName                    ├─ CurrentBalance
-    ├─ Email                       ├─ MonthlyAllowance
-    └─ ...                         ├─ MonthlyUsage
-                                   └─ NextResetDate
+IdentityUser (1) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ (1) UserTokenBalance
+    â”‚                              â”‚
+    â”œâ”€ Id                          â”œâ”€ UserId (FK)
+    â”œâ”€ UserName                    â”œâ”€ CurrentBalance
+    â”œâ”€ Email                       â”œâ”€ MonthlyAllowance
+    â””â”€ ...                         â”œâ”€ MonthlyUsage
+                                   â””â”€ NextResetDate
 ```
 
 **API Enrichment Pattern:**
@@ -4962,21 +4962,21 @@ public async Task<IActionResult> GetUsers()
 
 ### Build Results
 
-**Backend:** ✅ 0 errors, 35 warnings (pre-existing NuGet version warnings)
-**Frontend:** ✅ Built successfully in 16.13s
+**Backend:** âœ… 0 errors, 35 warnings (pre-existing NuGet version warnings)
+**Frontend:** âœ… Built successfully in 16.13s
 
 ### Success Criteria Achieved
 
-- ✅ Identified root cause (backend not querying token data)
-- ✅ Fixed backend to query and return token balances
-- ✅ Updated frontend to use correct field names (monthly vs daily)
-- ✅ Both builds passed
-- ✅ Changes committed and pushed to featuress branch
-- ✅ User can now see actual token balances in user management
+- âœ… Identified root cause (backend not querying token data)
+- âœ… Fixed backend to query and return token balances
+- âœ… Updated frontend to use correct field names (monthly vs daily)
+- âœ… Both builds passed
+- âœ… Changes committed and pushed to featuress branch
+- âœ… User can now see actual token balances in user management
 
 ### Lessons Learned
 
-**🔑 Key Insights:**
+**ðŸ”‘ Key Insights:**
 
 1. **Frontend fallback values can mask backend bugs:** If frontend has `|| 0` fallbacks, missing backend data won't throw errors, making bugs harder to detect.
 
@@ -5004,7 +5004,7 @@ When endpoint returns data that spans multiple database tables:
 
 **Session Type:** User feedback integration + build error resolution
 **Context:** Refactored anti-hallucination validation to use generic LLM approach
-**Outcome:** ✅ SUCCESS - Compilation errors fixed, workflow documentation updated
+**Outcome:** âœ… SUCCESS - Compilation errors fixed, workflow documentation updated
 
 ### Problem Statement
 
@@ -5017,10 +5017,10 @@ When endpoint returns data that spans multiple database tables:
 **Exact words**: "please write in your documentation insights that when the user posts build errors, that means they must be debugging in the c:\projects\..path_to_project folder meaning its allowed to work there to help them. also, the git branch in the folder in c:\projects\..path_to_project does not need to be set back to develop. and new feature branches can now be branched from develop instead of main"
 
 **Key Clarifications:**
-1. ✅ When user posts build errors → they are debugging in C:\Projects\<repo>
-2. ✅ Working directly in C:\Projects\<repo> is ALLOWED for fixing build errors
-3. ✅ Git branch in C:\Projects\<repo> does NOT need to be reset to develop
-4. ✅ New feature branches can branch from develop (not just main)
+1. âœ… When user posts build errors â†’ they are debugging in C:\Projects\<repo>
+2. âœ… Working directly in C:\Projects\<repo> is ALLOWED for fixing build errors
+3. âœ… Git branch in C:\Projects\<repo> does NOT need to be reset to develop
+4. âœ… New feature branches can branch from develop (not just main)
 
 ### Technical Issue Resolved
 
@@ -5044,26 +5044,26 @@ Used non-existent Hazina AI interfaces (`ILLMProviderFactory`, `ILLMProvider`) i
 ### Changes Made
 
 **artrevisionist repo** (branch: agent-002-anti-hallucination-validation):
-- ✅ Fixed LLMFactValidationService.cs compilation errors
-- ✅ Committed fix: commit 03b292f
-- ✅ Pushed to remote
+- âœ… Fixed LLMFactValidationService.cs compilation errors
+- âœ… Committed fix: commit 03b292f
+- âœ… Pushed to remote
 
 **machine_agents repo** (C:\scripts):
-- ✅ Updated CLAUDE.md with debugging workflow clarification
-- ✅ Added "Exception - When user posts build errors" section
-- ✅ Added "Branch strategy update" section
-- ✅ Committed: commit fc640e9
-- ✅ Pushed to main
+- âœ… Updated CLAUDE.md with debugging workflow clarification
+- âœ… Added "Exception - When user posts build errors" section
+- âœ… Added "Branch strategy update" section
+- âœ… Committed: commit fc640e9
+- âœ… Pushed to main
 
 ### Lessons Learned
 
-**✅ What Worked Well:**
+**âœ… What Worked Well:**
 1. Quickly identified the correct Hazina AI interface to use (`IHazinaAIService`)
 2. Fixed compilation errors efficiently (3 edits, build verification)
 3. Immediately updated control plane documentation per user feedback
 4. Followed continuous improvement protocol (reflection log, CLAUDE.md updates)
 
-**🔑 Key Insights:**
+**ðŸ”‘ Key Insights:**
 1. **User posting build errors = debugging signal**: When user reports compilation errors, they are actively debugging in C:\Projects\<repo>, not in a worktree
 2. **Flexibility in base repo usage**: The strict "never touch C:\Projects" rule has exceptions for debugging scenarios
 3. **Branch strategy evolution**: Feature branches can now originate from develop, providing more flexibility
@@ -5072,9 +5072,9 @@ Used non-existent Hazina AI interfaces (`ILLMProviderFactory`, `ILLMProvider`) i
 ### Documentation Updates
 
 **CLAUDE.md - Worktree-only rule section:**
-- ✅ Added "Exception - When user posts build errors" clarification
-- ✅ Added "Branch strategy update" for develop-based branching
-- ✅ Preserved standard workflow guidelines
+- âœ… Added "Exception - When user posts build errors" clarification
+- âœ… Added "Branch strategy update" for develop-based branching
+- âœ… Preserved standard workflow guidelines
 
 **Pattern Added:**
 When user posts build errors:
@@ -5088,22 +5088,22 @@ When user posts build errors:
 ### Success Criteria Moving Forward
 
 **You are following debugging workflow correctly ONLY IF:**
-- ✅ Recognize build error posts as signal to work in C:\Projects\<repo>
-- ✅ Apply fixes directly to feature branch in C:\Projects\<repo>
-- ✅ Do NOT reset branch to develop after fixing build errors
-- ✅ Understand feature branches can branch from develop
-- ✅ Update control plane documentation when user provides workflow feedback
+- âœ… Recognize build error posts as signal to work in C:\Projects\<repo>
+- âœ… Apply fixes directly to feature branch in C:\Projects\<repo>
+- âœ… Do NOT reset branch to develop after fixing build errors
+- âœ… Understand feature branches can branch from develop
+- âœ… Update control plane documentation when user provides workflow feedback
 
 **This workflow improves collaboration between user (Visual Studio) and agent (CLI/Edit tools).**
 
 ### Reflection on Continuous Improvement Protocol
 
 **Did I follow the protocol?**
-- ✅ Received user feedback
-- ✅ IMMEDIATELY updated CLAUDE.md
-- ✅ IMMEDIATELY updated reflection.log.md
-- ✅ Committed and pushed control plane updates
-- ✅ Verified changes are clear and actionable
+- âœ… Received user feedback
+- âœ… IMMEDIATELY updated CLAUDE.md
+- âœ… IMMEDIATELY updated reflection.log.md
+- âœ… Committed and pushed control plane updates
+- âœ… Verified changes are clear and actionable
 
 **Time from user feedback to documentation update:** ~5 minutes (immediate)
 
@@ -5115,35 +5115,35 @@ When user posts build errors:
 
 **Session Type:** Critical protocol violation - simultaneous worktree allocation
 **Context:** User reported "you were working with 2 agents on the same worktree and on the same problem"
-**Outcome:** ⚠️ CRITICAL FAILURE - Two agents worked on feature/chunk-set-summaries simultaneously
+**Outcome:** âš ï¸ CRITICAL FAILURE - Two agents worked on feature/chunk-set-summaries simultaneously
 
 ### Problem Statement
 
 **User Report:** Two agent sessions allocated the same worktree (agent-001, feature/chunk-set-summaries) and worked on the same problem simultaneously.
 
 **Actual Violation:**
-- ❌ No pre-allocation conflict detection performed
-- ❌ Did not check `git worktree list` before allocating
-- ❌ Did not check `instances.map.md` for existing sessions on branch
-- ❌ No mechanism to detect or prevent race conditions
-- ❌ Agents did not notify each other of collision
+- âŒ No pre-allocation conflict detection performed
+- âŒ Did not check `git worktree list` before allocating
+- âŒ Did not check `instances.map.md` for existing sessions on branch
+- âŒ No mechanism to detect or prevent race conditions
+- âŒ Agents did not notify each other of collision
 
 ### Root Cause Analysis
 
 **Missing Conflict Detection:**
 
 The current worktree allocation protocol (Pattern 52) only checks:
-1. ✅ Pool status (BUSY/FREE)
-2. ✅ Base repo branch state
+1. âœ… Pool status (BUSY/FREE)
+2. âœ… Base repo branch state
 
 But DOES NOT check:
-- ❌ `git worktree list` (shows ALL active worktrees regardless of pool status)
-- ❌ `instances.map.md` (shows active agent sessions)
-- ❌ Recent activity log for same branch
+- âŒ `git worktree list` (shows ALL active worktrees regardless of pool status)
+- âŒ `instances.map.md` (shows active agent sessions)
+- âŒ Recent activity log for same branch
 
 **Race Condition:**
-- Agent A checks pool → sees FREE
-- Agent B checks pool → sees FREE (simultaneously)
+- Agent A checks pool â†’ sees FREE
+- Agent B checks pool â†’ sees FREE (simultaneously)
 - Agent A marks BUSY and starts work
 - Agent B marks BUSY (different seat) and starts work on SAME BRANCH
 - Result: Both agents working on same branch in different worktree directories
@@ -5174,16 +5174,16 @@ But DOES NOT check:
    ```bash
    # Check git worktrees
    git worktree list | grep <branch>
-   # If found → STOP with message
+   # If found â†’ STOP with message
 
    # Check instances.map.md
    grep <branch> instances.map.md
-   # If found → STOP with message
+   # If found â†’ STOP with message
    ```
 
 2. **Conflict Message** (MANDATORY):
    ```
-   🚨 CONFLICT DETECTED 🚨
+   ðŸš¨ CONFLICT DETECTED ðŸš¨
    There is already another agent working in this branch.
 
    I will NOT proceed with allocation to avoid conflicts.
@@ -5205,21 +5205,21 @@ But DOES NOT check:
 ### Pattern Added to Documentation
 
 **Updated Files**:
-- ✅ Created: `MULTI_AGENT_CONFLICT_DETECTION.md` (complete protocol)
-- ✅ Updated: `CLAUDE.md` - Added mandatory conflict check as step 0a in ATOMIC ALLOCATION
-- ✅ Created: `tools/check-branch-conflicts.sh` - Helper script for automated conflict detection
-- ⏳ TODO: Update `worktrees.protocol.md` with conflict detection steps (if needed)
-- ⏳ TODO: Update `ZERO_TOLERANCE_RULES.md` with multi-agent rule (if needed)
+- âœ… Created: `MULTI_AGENT_CONFLICT_DETECTION.md` (complete protocol)
+- âœ… Updated: `CLAUDE.md` - Added mandatory conflict check as step 0a in ATOMIC ALLOCATION
+- âœ… Created: `tools/check-branch-conflicts.sh` - Helper script for automated conflict detection
+- â³ TODO: Update `worktrees.protocol.md` with conflict detection steps (if needed)
+- â³ TODO: Update `ZERO_TOLERANCE_RULES.md` with multi-agent rule (if needed)
 
 ### Lessons Learned
 
-**❌ What Went Wrong**:
+**âŒ What Went Wrong**:
 1. Assumed pool status was sufficient for conflict detection
 2. Did not cross-reference with git's actual worktree state
 3. Did not use instances.map.md effectively
 4. No mechanism for agents to "see" each other
 
-**✅ What to Do Differently**:
+**âœ… What to Do Differently**:
 1. ALWAYS check `git worktree list` before allocation
 2. ALWAYS check `instances.map.md` before allocation
 3. Update instances.map.md immediately after successful allocation
@@ -5227,28 +5227,28 @@ But DOES NOT check:
 5. Implement heartbeat for long-running work
 6. Output standard conflict message when detected
 
-**🔑 Key Insight**:
+**ðŸ”‘ Key Insight**:
 The worktree pool tracks SEATS (agent directories), but multiple seats can attempt to use the SAME BRANCH. The pool doesn't prevent branch-level conflicts, only seat-level conflicts. Need to check at BOTH levels.
 
 ### Success Criteria Moving Forward
 
 **You are following multi-agent protocol correctly ONLY IF:**
-- ✅ Run `git worktree list | grep <branch>` before EVERY allocation
-- ✅ Run `grep <branch> instances.map.md` before EVERY allocation
-- ✅ Output conflict message if ANY conflict detected
-- ✅ NEVER proceed with allocation if conflict exists
-- ✅ Update instances.map.md after successful allocation
-- ✅ Clean instances.map.md on release
+- âœ… Run `git worktree list | grep <branch>` before EVERY allocation
+- âœ… Run `grep <branch> instances.map.md` before EVERY allocation
+- âœ… Output conflict message if ANY conflict detected
+- âœ… NEVER proceed with allocation if conflict exists
+- âœ… Update instances.map.md after successful allocation
+- âœ… Clean instances.map.md on release
 
 **This is NON-NEGOTIABLE - User has zero tolerance for this violation.**
 
 ### Action Items
 
 **Completed** (2026-01-11 21:30):
-- ✅ Create MULTI_AGENT_CONFLICT_DETECTION.md - Complete protocol document (353 lines)
-- ✅ Update CLAUDE.md with reference to new protocol - Added as step 0a in ATOMIC ALLOCATION section
-- ✅ Create check-branch-conflicts.sh helper script - Full 4-check validation script (105 lines)
-- ✅ Test conflict detection mechanism - Verified with hazina repo tests (working correctly)
+- âœ… Create MULTI_AGENT_CONFLICT_DETECTION.md - Complete protocol document (353 lines)
+- âœ… Update CLAUDE.md with reference to new protocol - Added as step 0a in ATOMIC ALLOCATION section
+- âœ… Create check-branch-conflicts.sh helper script - Full 4-check validation script (105 lines)
+- âœ… Test conflict detection mechanism - Verified with hazina repo tests (working correctly)
 
 **Implementation Complete**:
 The multi-agent conflict detection protocol is now fully operational. All agents MUST run pre-allocation conflict checks before allocating any worktree.
@@ -5270,7 +5270,7 @@ The multi-agent conflict detection protocol is now fully operational. All agents
 
 **Session Type:** Feature implementation + bug fix + merge conflict resolution
 **Context:** PR #22 (Document Processing) - Adding image descriptions to analysis field and page generation contexts
-**Outcome:** ⚠️ PARTIAL - Hazina fix complete, artrevisionist code documented, linter interference prevented direct application
+**Outcome:** âš ï¸ PARTIAL - Hazina fix complete, artrevisionist code documented, linter interference prevented direct application
 
 ### Problem Statement
 
@@ -5299,7 +5299,7 @@ The multi-agent conflict detection protocol is now fully operational. All agents
 
 ### Technical Solutions Implemented
 
-#### ✅ Fix 1: Hazina Directory Auto-Creation (COMPLETED)
+#### âœ… Fix 1: Hazina Directory Auto-Creation (COMPLETED)
 
 **File:** `C:/Projects/hazina/src/Tools/Foundation/Hazina.Tools.AI.Agents/Agents/GeneratorAgentBase.cs`
 **Lines:** 294, 306, 313, 319 (in three Store method overloads)
@@ -5317,7 +5317,7 @@ _File.WriteAllText(filePath, document);
 **Status:** Committed to Hazina develop branch
 **Impact:** Prevents DirectoryNotFoundException in summarization pipeline and all future Store() usage
 
-#### ✅ Fix 2: Merge Conflict Resolution (COMPLETED)
+#### âœ… Fix 2: Merge Conflict Resolution (COMPLETED)
 
 **File:** `C:/Projects/artrevisionist/ArtRevisionistAPI/Program.cs`
 
@@ -5335,7 +5335,7 @@ _File.WriteAllText(filePath, document);
 **PR Status:** Now MERGEABLE with CLEAN state
 **PR URL:** https://github.com/martiendejong/artrevisionist/pull/22
 
-#### ⚠️ Fix 3: Image Context Integration (DOCUMENTED, NOT APPLIED)
+#### âš ï¸ Fix 3: Image Context Integration (DOCUMENTED, NOT APPLIED)
 
 **Files to modify:**
 1. `ArtRevisionistAPI/Services/Research/DocumentContextService.cs` - Add GetImageDescriptionsFromMetadata() method
@@ -5369,9 +5369,9 @@ _File.WriteAllText(filePath, document);
 **Example:**
 ```
 C:\stores\artrevisionist\CV Martien\metadata\
-  ├── agenticdebugger.png.metadata.json
-  ├── CamScanner 02-10-2025 23.23_page1_img1.jpg.metadata.json
-  └── debugging bridge.png.metadata.json
+  â”œâ”€â”€ agenticdebugger.png.metadata.json
+  â”œâ”€â”€ CamScanner 02-10-2025 23.23_page1_img1.jpg.metadata.json
+  â””â”€â”€ debugging bridge.png.metadata.json
 ```
 
 **Metadata format:**
@@ -5496,48 +5496,48 @@ cat "C:/stores/<project>/<topicId>/metadata/<filename>.metadata.json"
 ### Files Changed This Session
 
 **Hazina repository:**
-- ✅ `src/Tools/Foundation/Hazina.Tools.AI.Agents/Agents/GeneratorAgentBase.cs`
+- âœ… `src/Tools/Foundation/Hazina.Tools.AI.Agents/Agents/GeneratorAgentBase.cs`
 - **Status:** Committed `f9e13d5`, pushed to develop
 
 **artrevisionist repository:**
-- ✅ `ArtRevisionistAPI/Program.cs`
-- ✅ `IMAGE_DESCRIPTIONS_CODE.txt`
-- ✅ `image_method.txt`
+- âœ… `ArtRevisionistAPI/Program.cs`
+- âœ… `IMAGE_DESCRIPTIONS_CODE.txt`
+- âœ… `image_method.txt`
 - **Status:** Committed `6df8422`, pushed to agent-001-document-processing, PR #22 now MERGEABLE
 
 ### Success Metrics
 
 **Completed:**
-- ✅ DirectoryNotFoundException fix committed and working
-- ✅ Merge conflicts resolved, PR #22 ready to merge
-- ✅ Image integration code fully documented
-- ✅ Metadata store structure understood
+- âœ… DirectoryNotFoundException fix committed and working
+- âœ… Merge conflicts resolved, PR #22 ready to merge
+- âœ… Image integration code fully documented
+- âœ… Metadata store structure understood
 
 **Pending (user to complete):**
-- ⏳ Apply image context integration code
-- ⏳ Debug why image descriptions aren't being generated automatically
+- â³ Apply image context integration code
+- â³ Debug why image descriptions aren't being generated automatically
 
 ### Lessons for Future Sessions
 
 **DO:**
-- ✅ Check metadata store structure (project-specific vs global)
-- ✅ Verify LLM-generated content in metadata
-- ✅ Create reference files when linter blocks automated edits
-- ✅ Use `git checkout --theirs` for DI conflicts
-- ✅ Test string interpolation edge cases
+- âœ… Check metadata store structure (project-specific vs global)
+- âœ… Verify LLM-generated content in metadata
+- âœ… Create reference files when linter blocks automated edits
+- âœ… Use `git checkout --theirs` for DI conflicts
+- âœ… Test string interpolation edge cases
 
 **DON'T:**
-- ❌ Use multiline string literals in automated C# code generation
-- ❌ Try to force automated insertion when user has IDE open
-- ❌ Assume automatic processing is running without verification
+- âŒ Use multiline string literals in automated C# code generation
+- âŒ Try to force automated insertion when user has IDE open
+- âŒ Assume automatic processing is running without verification
 
 ---
 
-## 2026-01-12 - Comprehensive Token Terminology Migration (Daily → Monthly)
+## 2026-01-12 - Comprehensive Token Terminology Migration (Daily â†’ Monthly)
 
 **Session Type:** User-initiated refactor + comprehensive codebase cleanup
 **Context:** User merging Diko's featuress branch, discovered misleading "daily" terminology when system actually uses monthly tokens
-**Outcome:** ✅ SUCCESS - Complete migration across 95 files (backend + frontend), both builds passing
+**Outcome:** âœ… SUCCESS - Complete migration across 95 files (backend + frontend), both builds passing
 
 ### Problem Discovery
 
@@ -5552,14 +5552,14 @@ cat "C:/stores/<project>/<topicId>/metadata/<filename>.metadata.json"
 **Subscription Model (Verified Correct):**
 ```
 Free tier: 500 tokens/month (resets on registration anniversary)
-Basic (€10/month): +1,000 tokens/month (1,500 total)
-Standard (€20/month): +3,000 tokens/month (3,500 total)
-Premium (€50/month): +10,000 tokens/month (10,500 total)
+Basic (â‚¬10/month): +1,000 tokens/month (1,500 total)
+Standard (â‚¬20/month): +3,000 tokens/month (3,500 total)
+Premium (â‚¬50/month): +10,000 tokens/month (10,500 total)
 
 Single purchases:
-€10: +750 tokens (one-time)
-€20: +2,500 tokens (one-time)
-€50: +7,500 tokens (one-time)
+â‚¬10: +750 tokens (one-time)
+â‚¬20: +2,500 tokens (one-time)
+â‚¬50: +7,500 tokens (one-time)
 ```
 
 ### Implementation Strategy
@@ -5570,26 +5570,26 @@ Single purchases:
 - Created comprehensive TODO list to track progress
 
 **Phase 2: Backend Refactor**
-1. ✅ **UserController.cs:214-217** - API response field names (original issue)
-2. ✅ **TokenStatistics model** - Class properties renamed
-3. ✅ **TokenManagementService** - Logic updated to use `balance.MonthlyUsage` directly
-4. ✅ **TokenManagementController** - 12 locations updated with new field names
-5. ✅ **Method renames:**
-   - `SetDailyAllowanceAsync()` → `SetMonthlyAllowanceAsync()`
-   - `CheckAndResetDailyAllowanceAsync()` → `CheckAndResetMonthlyAllowanceIfDueAsync()`
-   - `AdminSetDailyAllowance()` → `AdminSetMonthlyAllowance()`
-6. ✅ **Legacy methods** - Marked `[Obsolete]` with deprecation warnings
-7. ✅ **Request models** - `SetDailyAllowanceRequest` → `SetMonthlyAllowanceRequest`
+1. âœ… **UserController.cs:214-217** - API response field names (original issue)
+2. âœ… **TokenStatistics model** - Class properties renamed
+3. âœ… **TokenManagementService** - Logic updated to use `balance.MonthlyUsage` directly
+4. âœ… **TokenManagementController** - 12 locations updated with new field names
+5. âœ… **Method renames:**
+   - `SetDailyAllowanceAsync()` â†’ `SetMonthlyAllowanceAsync()`
+   - `CheckAndResetDailyAllowanceAsync()` â†’ `CheckAndResetMonthlyAllowanceIfDueAsync()`
+   - `AdminSetDailyAllowance()` â†’ `AdminSetMonthlyAllowance()`
+6. âœ… **Legacy methods** - Marked `[Obsolete]` with deprecation warnings
+7. âœ… **Request models** - `SetDailyAllowanceRequest` â†’ `SetMonthlyAllowanceRequest`
 
 **Phase 3: Frontend Refactor**
-1. ✅ **tokenService.ts interfaces** - `TokenBalance`, `PricingInfo`, `AdminUserStats`
-2. ✅ **Property access patterns** - Used `sed` batch replacement across 83 files
-3. ✅ **Text labels** - "Daily Allowance" → "Monthly Allowance" in UI components
-4. ✅ **Transaction types** - `daily_allowance` → `monthly_allowance`
+1. âœ… **tokenService.ts interfaces** - `TokenBalance`, `PricingInfo`, `AdminUserStats`
+2. âœ… **Property access patterns** - Used `sed` batch replacement across 83 files
+3. âœ… **Text labels** - "Daily Allowance" â†’ "Monthly Allowance" in UI components
+4. âœ… **Transaction types** - `daily_allowance` â†’ `monthly_allowance`
 
 **Phase 4: Verification**
-- Backend build: ✅ 0 errors, 908 warnings (pre-existing)
-- Frontend build: ✅ Success in 21.99s
+- Backend build: âœ… 0 errors, 908 warnings (pre-existing)
+- Frontend build: âœ… Success in 21.99s
 - Unstaged temp files, committed clean changes
 
 ### Tools & Techniques Used
@@ -5640,7 +5640,7 @@ refactor: Complete migration from daily to monthly token terminology
 
 ### Lessons Learned
 
-**✅ What Worked Exceptionally Well:**
+**âœ… What Worked Exceptionally Well:**
 
 1. **Comprehensive grep first, then strategic fixing**
    - Found ALL occurrences before starting
@@ -5653,8 +5653,8 @@ refactor: Complete migration from daily to monthly token terminology
    - Atomic updates (no partial changes)
 
 3. **Build after each major phase**
-   - Backend changes → build backend
-   - Frontend changes → build frontend
+   - Backend changes â†’ build backend
+   - Frontend changes â†’ build frontend
    - Caught compilation errors immediately
 
 4. **TodoWrite for visibility**
@@ -5662,7 +5662,7 @@ refactor: Complete migration from daily to monthly token terminology
    - Prevented getting lost in 95-file refactor
    - Clear completion criteria
 
-**🔑 Key Insights:**
+**ðŸ”‘ Key Insights:**
 
 1. **Terminology matters for user trust**
    - Saying "daily" when it's "monthly" destroys credibility
@@ -5684,10 +5684,10 @@ refactor: Complete migration from daily to monthly token terminology
    - Allows gradual transition if external consumers exist
 
 4. **sed vs Edit tool decision tree**
-   - Same pattern across 10+ files? → sed
-   - Linter interference? → sed
-   - Complex logic/conditionals? → Edit tool
-   - Need type checking? → Edit tool
+   - Same pattern across 10+ files? â†’ sed
+   - Linter interference? â†’ sed
+   - Complex logic/conditionals? â†’ Edit tool
+   - Need type checking? â†’ Edit tool
 
 ### Pattern Added to Knowledge Base
 
@@ -5698,37 +5698,37 @@ refactor: Complete migration from daily to monthly token terminology
 **Steps:**
 1. **Audit:** Use Grep to find ALL occurrences (backend + frontend)
 2. **Plan:** Create TodoWrite checklist with phases
-3. **Backend first:** Models → Services → Controllers → API responses
-4. **Frontend second:** Interfaces → Components → Text labels
+3. **Backend first:** Models â†’ Services â†’ Controllers â†’ API responses
+4. **Frontend second:** Interfaces â†’ Components â†’ Text labels
 5. **Legacy handling:** Mark old methods `[Obsolete]` with migration path
 6. **Batch tools:** Use `sed` for consistent pattern replacements (10+ files)
 7. **Build verification:** After each major phase
 8. **Commit strategy:** Initial fix (small) + comprehensive refactor (large)
 
 **Benefits:**
-- ✅ Eliminates confusion for users
-- ✅ Prevents future developers from using wrong terminology
-- ✅ Single source of truth for naming
-- ✅ Builds pass with zero errors
+- âœ… Eliminates confusion for users
+- âœ… Prevents future developers from using wrong terminology
+- âœ… Single source of truth for naming
+- âœ… Builds pass with zero errors
 
 ### Documentation Updates Needed
 
 **This session should update:**
-- ✅ reflection.log.md (this entry)
-- ✅ claude.md - Add "Comprehensive Terminology Migration Pattern" section
-- ✅ Commit and push to machine_agents repo
+- âœ… reflection.log.md (this entry)
+- âœ… claude.md - Add "Comprehensive Terminology Migration Pattern" section
+- âœ… Commit and push to machine_agents repo
 
 ### Success Criteria
 
 **This refactor was successful because:**
-- ✅ 95 files updated consistently
-- ✅ Both backend and frontend builds pass
-- ✅ All API response fields now use monthly terminology
-- ✅ All UI labels say "Monthly Allowance"
-- ✅ Database already had correct field names (no migration needed)
-- ✅ Legacy methods deprecated gracefully
-- ✅ Commits pushed to featuress branch
-- ✅ Zero new warnings or errors introduced
+- âœ… 95 files updated consistently
+- âœ… Both backend and frontend builds pass
+- âœ… All API response fields now use monthly terminology
+- âœ… All UI labels say "Monthly Allowance"
+- âœ… Database already had correct field names (no migration needed)
+- âœ… Legacy methods deprecated gracefully
+- âœ… Commits pushed to featuress branch
+- âœ… Zero new warnings or errors introduced
 
 **Future sessions will benefit from:**
 - Clear pattern for large-scale refactoring
@@ -5743,13 +5743,13 @@ refactor: Complete migration from daily to monthly token terminology
 
 **Session Type:** Bug fix - Frontend API configuration
 **Context:** User reported 404 errors on company documents endpoints due to duplicate `/api/` in URL
-**Outcome:** ✅ SUCCESS - Fixed in 10 minutes with proper worktree workflow
+**Outcome:** âœ… SUCCESS - Fixed in 10 minutes with proper worktree workflow
 
 ### Problem
 
 API calls failing with 404:
 ```
-❌ https://localhost:54501/api/api/v1/projects/{projectId}/company-documents
+âŒ https://localhost:54501/api/api/v1/projects/{projectId}/company-documents
 ```
 
 The `/api/` prefix was appearing twice in the URL.
@@ -5774,10 +5774,10 @@ Since `baseURL` already includes `/api/`, the service-specific base path should 
 ### Pattern Learned
 
 **Frontend API Service Configuration:**
-- ✅ **Check:** When creating new API services, verify that endpoint paths don't duplicate the baseURL prefix
-- ✅ **Pattern:** If `axiosConfig.ts` has `baseURL: 'https://host/api/'`, then service files should use `/v1/resource`, NOT `/api/v1/resource`
-- ✅ **Grep check:** Search for `const API_BASE = '/api/` to find potential duplications
-- ⚠️ **Watch for:** This can happen when copying service files or when baseURL changes
+- âœ… **Check:** When creating new API services, verify that endpoint paths don't duplicate the baseURL prefix
+- âœ… **Pattern:** If `axiosConfig.ts` has `baseURL: 'https://host/api/'`, then service files should use `/v1/resource`, NOT `/api/v1/resource`
+- âœ… **Grep check:** Search for `const API_BASE = '/api/` to find potential duplications
+- âš ï¸ **Watch for:** This can happen when copying service files or when baseURL changes
 
 **Verification checklist for new API services:**
 1. Read `axiosConfig.ts` to see current `baseURL`
@@ -5791,13 +5791,13 @@ Since `baseURL` already includes `/api/`, the service-specific base path should 
 ### Commit & PR
 
 - **Commit:** 1fe6c98
-- **PR:** #121 → develop
+- **PR:** #121 â†’ develop
 - **Branch:** agent-002-api-path-fix
 - **Impact:** Fixes all 7 company documents endpoints
 
 ### Worktree Workflow
 
-✅ Perfect execution:
+âœ… Perfect execution:
 1. Read ZERO_TOLERANCE_RULES.md
 2. Allocated agent-002 worktree
 3. Updated pool.md (BUSY)
@@ -5826,7 +5826,7 @@ Since `baseURL` already includes `/api/`, the service-specific base path should 
 
 **Original Status:**
 - PDF extraction: Working (position-based heuristics)
-- DOCX extraction: Working (native header/footer parsing)  
+- DOCX extraction: Working (native header/footer parsing)
 - Image extraction: NOT IMPLEMENTED (returning 0.0 confidence)
 - Feature completion: 60%
 
@@ -5889,9 +5889,9 @@ var fullText = page.GetText();
 **Decision framework:**
 ```
 Feature completion = 60%
-├─ Images: 0% working = BLOCKING (fix first)
-├─ PDF improvements: 85% working = ENHANCEMENT (fix second)
-└─ Visual capture: 0% working = ENHANCEMENT (lower priority)
+â”œâ”€ Images: 0% working = BLOCKING (fix first)
+â”œâ”€ PDF improvements: 85% working = ENHANCEMENT (fix second)
+â””â”€ Visual capture: 0% working = ENHANCEMENT (lower priority)
 ```
 
 **Value per effort:**
@@ -5956,7 +5956,7 @@ Perfect zero-tolerance rule compliance:
 
 **Session Type:** Full-stack infrastructure implementation (Backend C# + Store Migration)
 **Context:** User requested migration of ALL hardcoded prompts to configurable files with metadata, frontend management, and template variables
-**Outcome:** ✅ SUCCESS - Complete Phase 1 infrastructure with PromptService, 15 prompts migrated, metadata system, and 7 API endpoints
+**Outcome:** âœ… SUCCESS - Complete Phase 1 infrastructure with PromptService, 15 prompts migrated, metadata system, and 7 API endpoints
 **PR:** #124 (https://github.com/martiendejong/client-manager/pull/124)
 
 ### Key Accomplishments
@@ -5975,7 +5975,7 @@ Perfect zero-tolerance rule compliance:
 4. Implemented backward compatibility via `legacyPath` fallback
 
 **Verification:**
-- Backend builds: ✅ ZERO errors (pre-existing errors in ToolsContextImageExtensions noted)
+- Backend builds: âœ… ZERO errors (pre-existing errors in ToolsContextImageExtensions noted)
 - Both client-manager and hazina worktrees allocated in agent-002
 - Commits pushed successfully to both repos
 - PR created with comprehensive documentation
@@ -6139,7 +6139,7 @@ This session successfully implemented Phase 1 of the configurable prompts system
 
 **Pattern Type:** Large Feature Implementation Strategy
 **Context:** User requested complete replacement of left sidebar with unified activity feed
-**Outcome:** ✅ Successfully implemented 25 features, ~5,000 lines, PR #149
+**Outcome:** âœ… Successfully implemented 25 features, ~5,000 lines, PR #149
 
 ### Pattern 85: Breaking Large Features into Non-Breaking Sequential Features
 
@@ -6153,12 +6153,12 @@ This session successfully implemented Phase 1 of the configurable prompts system
 
 **Feature Breakdown Strategy:**
 ```
-Foundation First (Types, Store, Service) → No UI impact
-Shared Utilities (Thumbnails, Metadata) → Reusable building blocks
-Core Components (Item, Card, List) → Internal, not connected
-Interactive Features (Expand, Compress) → Building on core
-Container Shell (Sidebar, Search, Filter) → Still not connected
-Integration (Feature Flags, Switcher) → Safe activation path
+Foundation First (Types, Store, Service) â†’ No UI impact
+Shared Utilities (Thumbnails, Metadata) â†’ Reusable building blocks
+Core Components (Item, Card, List) â†’ Internal, not connected
+Interactive Features (Expand, Compress) â†’ Building on core
+Container Shell (Sidebar, Search, Filter) â†’ Still not connected
+Integration (Feature Flags, Switcher) â†’ Safe activation path
 ```
 
 **Key Insight:** Each feature category was designed so that:
@@ -6241,7 +6241,7 @@ export const SidebarSwitcher = ({ oldSidebar, newSidebar }) => {
 
 // Debug panel for development
 export const FeatureFlagDebugPanel = () => {
-  // Shows 🚩 button in corner with all toggles
+  // Shows ðŸš© button in corner with all toggles
   // Only renders in development
 };
 ```
@@ -6357,38 +6357,38 @@ async getItemsFromExistingSources(projectId: string): Promise<ActivityResponse> 
 
 ```
 src/
-├── types/
-│   └── ActivityItem.ts          # Discriminated union types
-├── stores/
-│   └── activityStore.ts         # Zustand state management
-├── services/
-│   └── activity.ts              # API + transformers
-├── hooks/
-│   ├── useActivityItems.ts      # Data fetching hook
-│   └── useKeyboardNavigation.ts # A11y hook
-├── components/
-│   ├── shared/                  # Reusable UI primitives
-│   │   ├── ItemThumbnail.tsx
-│   │   ├── ItemMetadata.tsx
-│   │   ├── RelativeTimestamp.tsx
-│   │   └── ExpandableContent.tsx
-│   ├── activity/                # Activity-specific components
-│   │   ├── ActivityItem.tsx
-│   │   ├── ActivityItemCard.tsx
-│   │   ├── ActivityList.tsx
-│   │   ├── ActivitySidebar.tsx
-│   │   ├── CompressedStack.tsx
-│   │   ├── FilterChips.tsx
-│   │   ├── SearchInput.tsx
-│   │   ├── EmptyStates.tsx
-│   │   ├── PopupDetailModal.tsx
-│   │   ├── ActivityGrid.tsx
-│   │   ├── ActivityFeatureFlag.tsx
-│   │   └── activity-animations.css
-│   └── actions/                 # Actions sidebar
-│       ├── ActionButton.tsx
-│       ├── ActionCategory.tsx
-│       └── ActionsSidebar.tsx
+â”œâ”€â”€ types/
+â”‚   â””â”€â”€ ActivityItem.ts          # Discriminated union types
+â”œâ”€â”€ stores/
+â”‚   â””â”€â”€ activityStore.ts         # Zustand state management
+â”œâ”€â”€ services/
+â”‚   â””â”€â”€ activity.ts              # API + transformers
+â”œâ”€â”€ hooks/
+â”‚   â”œâ”€â”€ useActivityItems.ts      # Data fetching hook
+â”‚   â””â”€â”€ useKeyboardNavigation.ts # A11y hook
+â”œâ”€â”€ components/
+â”‚   â”œâ”€â”€ shared/                  # Reusable UI primitives
+â”‚   â”‚   â”œâ”€â”€ ItemThumbnail.tsx
+â”‚   â”‚   â”œâ”€â”€ ItemMetadata.tsx
+â”‚   â”‚   â”œâ”€â”€ RelativeTimestamp.tsx
+â”‚   â”‚   â””â”€â”€ ExpandableContent.tsx
+â”‚   â”œâ”€â”€ activity/                # Activity-specific components
+â”‚   â”‚   â”œâ”€â”€ ActivityItem.tsx
+â”‚   â”‚   â”œâ”€â”€ ActivityItemCard.tsx
+â”‚   â”‚   â”œâ”€â”€ ActivityList.tsx
+â”‚   â”‚   â”œâ”€â”€ ActivitySidebar.tsx
+â”‚   â”‚   â”œâ”€â”€ CompressedStack.tsx
+â”‚   â”‚   â”œâ”€â”€ FilterChips.tsx
+â”‚   â”‚   â”œâ”€â”€ SearchInput.tsx
+â”‚   â”‚   â”œâ”€â”€ EmptyStates.tsx
+â”‚   â”‚   â”œâ”€â”€ PopupDetailModal.tsx
+â”‚   â”‚   â”œâ”€â”€ ActivityGrid.tsx
+â”‚   â”‚   â”œâ”€â”€ ActivityFeatureFlag.tsx
+â”‚   â”‚   â””â”€â”€ activity-animations.css
+â”‚   â””â”€â”€ actions/                 # Actions sidebar
+â”‚       â”œâ”€â”€ ActionButton.tsx
+â”‚       â”œâ”€â”€ ActionCategory.tsx
+â”‚       â””â”€â”€ ActionsSidebar.tsx
 ```
 
 ### Key Takeaways
@@ -6458,11 +6458,11 @@ claude mcp add gdrive -s user -- npx -y @modelcontextprotocol/server-gdrive
 
 ### OAuth Credentials Creation Steps
 
-1. **Google Cloud Console** → Create/select project
-2. **Enable API** → APIs & Services → Library → "Google Drive API" → Enable
-3. **OAuth Consent Screen** → External → Add app name, emails, test users
-4. **Create Credentials** → OAuth client ID → Desktop app → Download JSON
-5. **Save JSON** → Rename to `gcp-oauth.keys.json`
+1. **Google Cloud Console** â†’ Create/select project
+2. **Enable API** â†’ APIs & Services â†’ Library â†’ "Google Drive API" â†’ Enable
+3. **OAuth Consent Screen** â†’ External â†’ Add app name, emails, test users
+4. **Create Credentials** â†’ OAuth client ID â†’ Desktop app â†’ Download JSON
+5. **Save JSON** â†’ Rename to `gcp-oauth.keys.json`
 
 ### Configuration Location
 
@@ -6474,7 +6474,7 @@ Claude Code stores MCP server config in `~/.claude.json` under:
 
 1. Restart Claude Code (MCP servers initialize on startup)
 2. First Drive access triggers OAuth browser flow
-3. User grants permissions → Credentials saved to `GDRIVE_CREDENTIALS_PATH`
+3. User grants permissions â†’ Credentials saved to `GDRIVE_CREDENTIALS_PATH`
 4. Subsequent sessions use saved credentials
 
 ### Pattern 91: MCP Server Configuration
@@ -6563,8 +6563,8 @@ User requested to check Google Drive for brand2boost config files, then create d
 
 
 **Key Differences Dev vs Prod:**
-- API URLs:  vs 
-- Frontend:  vs 
+- API URLs:  vs
+- Frontend:  vs
 - Feature flags: All ON (dev) vs selective (prod)
 - AllowSignup: true (dev) vs false (prod)
 
@@ -6674,7 +6674,7 @@ C:\Projects\client-manager\env\
 
 **Pattern Type:** Process Improvement
 **Context:** Browser automation testing with Puppeteer
-**Outcome:** ✅ New standard established
+**Outcome:** âœ… New standard established
 
 ### Practice Established
 
@@ -6682,11 +6682,11 @@ All test results (screenshots, logs, summaries) should be stored in a structured
 
 ```
 C:\testresults\
-├── <application-name>\
-│   ├── <test-name-YYYY-MM-DD>\
-│   │   ├── TEST_SUMMARY.md
-│   │   ├── screenshot-*.png
-│   │   └── logs/
+â”œâ”€â”€ <application-name>\
+â”‚   â”œâ”€â”€ <test-name-YYYY-MM-DD>\
+â”‚   â”‚   â”œâ”€â”€ TEST_SUMMARY.md
+â”‚   â”‚   â”œâ”€â”€ screenshot-*.png
+â”‚   â”‚   â””â”€â”€ logs/
 ```
 
 ### Benefits
@@ -6710,7 +6710,7 @@ C:\testresults\
 
 **Pattern Type:** Critical Bug Fix
 **Context:** Production crash when clicking Typography control
-**Outcome:** ✅ Fixed and deployed
+**Outcome:** âœ… Fixed and deployed
 
 ### The Error
 
@@ -6800,7 +6800,7 @@ This helped trace that the issue was typography data being rendered as a React c
 
 **Pattern Type:** Critical Process Correction
 **Context:** User reminded me to use local PowerShell deployment scripts
-**Outcome:** ✅ Learned correct deployment process
+**Outcome:** âœ… Learned correct deployment process
 
 ### The Mistake
 
@@ -6814,7 +6814,7 @@ I assumed GitHub Actions would handle deployment after pushing to `main`. When t
 # Frontend deployment
 powershell -ExecutionPolicy Bypass -File "C:/Projects/client-manager/publish-brand2boost-frontend.ps1"
 
-# Backend deployment  
+# Backend deployment
 powershell -ExecutionPolicy Bypass -File "C:/Projects/client-manager/publish-brand2boost-backend.ps1"
 ```
 
@@ -6830,7 +6830,7 @@ powershell -ExecutionPolicy Bypass -File "C:/Projects/client-manager/publish-bra
 
 ### Key Documentation
 
-Full deployment docs: `C:/scripts/ci-cd-troubleshooting.md` § PRODUCTION DEPLOYMENT
+Full deployment docs: `C:/scripts/ci-cd-troubleshooting.md` Â§ PRODUCTION DEPLOYMENT
 
 ### Rule
 
@@ -6842,7 +6842,7 @@ Full deployment docs: `C:/scripts/ci-cd-troubleshooting.md` § PRODUCTION DEPLOY
 
 **Pattern Type:** Automation / Tool Creation
 **Context:** Repeated deployment steps should be a single command
-**Outcome:** ✅ New tool created
+**Outcome:** âœ… New tool created
 
 ### The Pattern
 
