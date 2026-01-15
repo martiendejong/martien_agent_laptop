@@ -4,8 +4,8 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-01-15T17:30:00Z | ✅ Publish scripts migration (PR #156 created) - worktree released |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-01-15T17:30:00Z | ✅ Publish scripts migration (PR #28 created) - worktree released |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-01-15T19:00:00Z | ✅ Batch file deprecation (PR #157 created) - worktree released |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-01-15T19:00:00Z | ✅ Batch file deprecation (PR #29 created) - worktree released |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-14T16:30:00Z | ✅ Chat ID URL routing (PR #146 created) - worktree released |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-14T18:00:00Z | ✅ Restaurant Menu Phase 1+2+3 complete (PR #148 created) - worktree released |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-14T17:00:00Z | ✅ Token verification for chat generation (PR #147 created) - worktree released |
