@@ -25,37 +25,18 @@
                                 "seat":  "agent-001"
                             },
                             {
-                                "branch":  "agent002",
-                                "path":  "C:\\Projects\\worker-agents\\agent-002\\hazina",
-                                "repo":  "hazina",
-                                "seat":  "agent-002"
-                            },
-                            {
-                                "branch":  "agent003",
-                                "path":  "C:\\Projects\\worker-agents\\agent-003\\client-manager",
-                                "repo":  "client-manager",
-                                "seat":  "agent-003"
-                            },
-                            {
                                 "branch":  "develop",
                                 "path":  "C:\\Projects\\worker-agents\\agent-003\\hazina",
                                 "repo":  "hazina",
                                 "seat":  "agent-003"
-                            },
-                            {
-                                "branch":  "feature/agent-web-search",
-                                "path":  "C:\\Projects\\worker-agents\\Agentstartbranch\\client-manager",
-                                "repo":  "client-manager",
-                                "seat":  "Agentstartbranch"
-                            },
-                            {
-                                "branch":  "feature/agent-web-search",
-                                "path":  "C:\\Projects\\worker-agents\\Agentstartbranch\\hazina",
-                                "repo":  "hazina",
-                                "seat":  "Agentstartbranch"
                             }
                         ],
     "tools":  [
+                  {
+                      "path":  "C:\\scripts\\tools\\aliases.ps1",
+                      "name":  "aliases",
+                      "modified":  "2026-01-15"
+                  },
                   {
                       "path":  "C:\\scripts\\tools\\archive-reflections.ps1",
                       "name":  "archive-reflections",
@@ -80,6 +61,11 @@
                       "path":  "C:\\scripts\\tools\\clickup-sync.ps1",
                       "name":  "clickup-sync",
                       "modified":  "2026-01-14"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\config.ps1",
+                      "name":  "config",
+                      "modified":  "2026-01-15"
                   },
                   {
                       "path":  "C:\\scripts\\tools\\create-unified-epic.ps1",
@@ -112,6 +98,16 @@
                       "modified":  "2026-01-15"
                   },
                   {
+                      "path":  "C:\\scripts\\tools\\email.ps1",
+                      "name":  "email",
+                      "modified":  "2026-01-15"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\fix-all.ps1",
+                      "name":  "fix-all",
+                      "modified":  "2026-01-15"
+                  },
+                  {
                       "path":  "C:\\scripts\\tools\\generate-feature-doc.ps1",
                       "name":  "generate-feature-doc",
                       "modified":  "2026-01-08"
@@ -134,6 +130,11 @@
                   {
                       "path":  "C:\\scripts\\tools\\migrate-pool-to-json.ps1",
                       "name":  "migrate-pool-to-json",
+                      "modified":  "2026-01-15"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\new-tool.ps1",
+                      "name":  "new-tool",
                       "modified":  "2026-01-15"
                   },
                   {
@@ -162,8 +163,23 @@
                       "modified":  "2026-01-15"
                   },
                   {
+                      "path":  "C:\\scripts\\tools\\session-start.ps1",
+                      "name":  "session-start",
+                      "modified":  "2026-01-15"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\smoke-test.ps1",
+                      "name":  "smoke-test",
+                      "modified":  "2026-01-15"
+                  },
+                  {
                       "path":  "C:\\scripts\\tools\\system-health.ps1",
                       "name":  "system-health",
+                      "modified":  "2026-01-15"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\tool-log.ps1",
+                      "name":  "tool-log",
                       "modified":  "2026-01-15"
                   },
                   {
@@ -174,6 +190,11 @@
                   {
                       "path":  "C:\\scripts\\tools\\worktree-allocate.ps1",
                       "name":  "worktree-allocate",
+                      "modified":  "2026-01-15"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\worktree-cleanup.ps1",
+                      "name":  "worktree-cleanup",
                       "modified":  "2026-01-15"
                   },
                   {
@@ -217,8 +238,8 @@
     "summary":  {
                     "freeSeats":  11,
                     "busySeats":  1,
-                    "toolCount":  26,
-                    "activeWorktreeCount":  7,
+                    "toolCount":  35,
+                    "activeWorktreeCount":  3,
                     "skillCount":  14
                 },
     "pool":  {
@@ -251,5 +272,5 @@
                    "terminology-migration",
                    "worktree-status"
                ],
-    "generated":  "2026-01-15T08:59:20Z"
+    "generated":  "2026-01-15T09:09:31Z"
 }

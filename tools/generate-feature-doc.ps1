@@ -1,5 +1,23 @@
-# Generate feature documentation from template
-# Usage: .\generate-feature-doc.ps1 -FeatureName "Context Compression" -Version "2.0.0" -OutputPath "C:\Projects\hazina\docs\CONTEXT_COMPRESSION.md"
+<#
+.SYNOPSIS
+    Generate feature documentation from template.
+
+.DESCRIPTION
+    Creates a new feature documentation file from a template.
+    Replaces placeholders with provided values.
+
+.PARAMETER FeatureName
+    Name of the feature being documented
+
+.PARAMETER Version
+    Version number of the feature
+
+.PARAMETER OutputPath
+    Path where the documentation file will be created
+
+.EXAMPLE
+    .\generate-feature-doc.ps1 -FeatureName "Context Compression" -Version "2.0.0" -OutputPath "C:\Projects\hazina\docs\CONTEXT_COMPRESSION.md"
+#>
 
 param(
     [Parameter(Mandatory=$true)]

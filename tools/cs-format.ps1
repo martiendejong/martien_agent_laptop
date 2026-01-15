@@ -1,5 +1,24 @@
-# cs-format.ps1
-# Post-edit helper: Run dotnet format on C# projects after edits
+<#
+.SYNOPSIS
+    Run dotnet format on C# projects after edits.
+
+.DESCRIPTION
+    Post-edit helper that runs dotnet format on C# solutions or projects.
+    Automatically finds .sln or .csproj files if given a directory.
+
+.PARAMETER ProjectPath
+    Path to the project/solution file or directory to format
+
+.PARAMETER VerifyOnly
+    Only verify formatting without making changes
+
+.PARAMETER Verbose
+    Show detailed output
+
+.EXAMPLE
+    .\cs-format.ps1 -ProjectPath "C:\Projects\client-manager"
+    .\cs-format.ps1 -ProjectPath "C:\Projects\hazina" -VerifyOnly
+#>
 
 param(
     [Parameter(Mandatory=$false)]
