@@ -12,7 +12,11 @@ const path = require('path');
 
 // Parse command line arguments
 const args = process.argv.slice(2);
-const getArg = (name) => args.find(a => a.startsWith(`--${name}=`))?.split('=').slice(1).join('=');
+const getArg = (name) => {
+  const arg = args.find(a => a.startsWith(`--${name}=`));
+  if (!arg) return null;
+  return arg.substring(`--${name}=`.length);
+};
 
 const to = getArg('to');
 const subject = getArg('subject');
@@ -20,6 +24,13 @@ const bodyFile = getArg('body-file');
 const bodyText = getArg('body');
 const attachment = getArg('attachment');
 const from = getArg('from') || 'info@martiendejong.nl';
+
+console.log('Arguments parsed:');
+console.log('  to:', to);
+console.log('  subject:', subject);
+console.log('  bodyFile:', bodyFile);
+console.log('  bodyText:', bodyText);
+console.log('  attachment:', attachment);
 
 if (!to || !subject || (!bodyFile && !bodyText)) {
   console.error('Usage: node email-send.js --to "email@example.com" --subject "Subject" --body "Text" --attachment "path"');
@@ -30,8 +41,8 @@ if (!to || !subject || (!bodyFile && !bodyText)) {
 // SMTP configuration for info@martiendejong.nl
 const smtpConfig = {
   host: 'mail.zxcs.nl',
-  port: 587, // Try STARTTLS first
-  secure: false, // true for 465, false for other ports
+  port: 465, // SSL/TLS port
+  secure: true, // true for 465, false for other ports
   auth: {
     user: 'info@martiendejong.nl',
     pass: 'hLPFy6MdUnfEDbYTwXps'
