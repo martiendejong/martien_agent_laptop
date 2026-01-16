@@ -87,8 +87,20 @@ Any task with multiple steps should become a script. This way:
 | **`generate-debug-configs.ps1`** | **NEW: Advanced debug configs** | `generate-debug-configs.ps1 -ProjectPath . -Scenario docker -ContainerName "api"` |
 | **`git-interactive.ps1`** | **NEW: Git interactive helper** | `git-interactive.ps1 -Operation rebase -TargetBranch develop` |
 | **`onboard-developer.ps1`** | **NEW: Developer onboarding** | `onboard-developer.ps1 -DeveloperName "John Doe" -DeveloperEmail "john@example.com"` |
+| **`generate-infrastructure.ps1`** | **NEW: Infrastructure as Code generator** | `generate-infrastructure.ps1 -Provider terraform -ResourceType webapp -ProjectName "app"` |
+| **`analyze-cloud-costs.ps1`** | **NEW: Cloud cost analyzer** | `analyze-cloud-costs.ps1 -Provider azure -TimeRange 30d -GenerateReport` |
+| **`monitor-service-health.ps1`** | **NEW: Service health monitor** | `monitor-service-health.ps1 -Endpoints "https://api.example.com/health" -Interval 60` |
+| **`validate-deployment.ps1`** | **NEW: Deployment validator** | `validate-deployment.ps1 -ProjectPath . -Environment production` |
+| **`detect-config-drift.ps1`** | **NEW: Configuration drift detector** | `detect-config-drift.ps1 -SourceEnvironment production -TargetEnvironment staging -ConfigType appsettings` |
+| **`refactor-code.ps1`** | **NEW: Automated code refactoring** | `refactor-code.ps1 -ProjectPath . -RefactoringType remove-unused -DryRun` |
+| **`test-api-contracts.ps1`** | **NEW: API contract testing** | `test-api-contracts.ps1 -SpecPath "swagger.json" -BaseUrl "https://localhost:5001"` |
+| **`manage-performance-baseline.ps1`** | **NEW: Performance baseline manager** | `manage-performance-baseline.ps1 -Action capture -BaselineName "release-1.0"` |
+| **`generate-team-metrics.ps1`** | **NEW: Team metrics dashboard** | `generate-team-metrics.ps1 -TimeRange 30d -OutputFormat html` |
+| **`devtools.ps1`** | **NEW: Master toolchain orchestrator** | `devtools.ps1 list` or `devtools.ps1 health` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
+
+**🎉 MILESTONE: ALL 50 RECOMMENDATIONS IMPLEMENTED! Total: 97 tools (47 original + 50 new)**
 
 ---
 
