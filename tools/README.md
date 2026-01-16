@@ -20,6 +20,8 @@
 | `archive-reflections.ps1` | Archive old entries | `.\archive-reflections.ps1 -DryRun` |
 | `migrate-pool-to-json.ps1` | Convert pool to JSON | `.\migrate-pool-to-json.ps1` |
 | `pre-commit-hook.ps1` | Enforcement hooks | `.\pre-commit-hook.ps1 -Check` |
+| `email-export.js` | Export emails | `node email-export.js --query="..." --output="..."` |
+| `email-send.js` | Send emails via SMTP | `node email-send.js --to="..." --subject="..." --body-file="..."` |
 
 ---
 
@@ -275,19 +277,76 @@ ClickUp task management integration.
 .\clickup-sync.ps1 -Action list-statuses -ListId <id>
 ```
 
-### IMAP Email Tools
+### Email Tools
 
-Email management for info@martiendejong.nl.
+**Multi-account email management and automation.**
+
+#### email-export.js
+
+Export emails from multiple accounts (IMAP and Gmail).
 
 ```bash
-# Show recent messages
-node imap-recent-messages.js
+# Export emails matching query
+node email-export.js --query="gemeente meppel" --output="C:\gemeente_emails"
 
-# Manage spam
-node imap-spam-manager.js
+# Uses credentials from script for:
+# - info@martiendejong.nl (IMAP)
+# - Gmail (requires GMAIL_APP_PASSWORD env variable)
+```
 
-# Batch actions
-node imap-action.js --spam=1,2,3 --archive=4,5
+**Features:**
+- Multi-account support
+- Manual header filtering (more reliable than IMAP SEARCH)
+- Exports to .eml files
+- Creates metadata summary JSON
+
+#### email-send.js
+
+Send emails via SMTP with attachments.
+
+```bash
+# Send email with attachment
+node email-send.js \
+  --to="recipient@example.com" \
+  --subject="Subject Line" \
+  --body-file="/path/to/body.txt" \
+  --attachment="/path/to/file.zip"
+
+# Or with direct body text
+node email-send.js \
+  --to="recipient@example.com" \
+  --subject="Subject" \
+  --body="Email body text"
+```
+
+**SMTP Configuration:**
+- Host: `mail.zxcs.nl`
+- Port: `465` (SSL/TLS)
+- **Important:** Port 587 (STARTTLS) does NOT work
+- Credentials embedded for info@martiendejong.nl
+
+**Features:**
+- File attachments with proper MIME types
+- Body from file or direct text
+- SMTP connection verification
+- Detailed error messages
+
+#### email.ps1 / email-manager.js
+
+IMAP management wrapper for info@martiendejong.nl.
+
+```powershell
+# List recent messages
+.\email.ps1 list -Count 10
+
+# Search messages
+.\email.ps1 search "query"
+
+# Spam management
+.\email.ps1 spam 1234,1235
+
+# Archive messages
+.\email.ps1 archive 1234
 ```
 
 See `EMAIL_MANAGEMENT.md` for full documentation.
@@ -358,5 +417,5 @@ When creating new tools:
 
 ---
 
-**Last Updated:** 2026-01-15
-**Tool Count:** 25+ scripts
+**Last Updated:** 2026-01-16
+**Tool Count:** 27+ scripts

@@ -1,6 +1,153 @@
-﻿# Agent Reflection Log
+# Agent Reflection Log
 
 This file tracks learnings, mistakes, and improvements across agent sessions.
+
+---
+
+## 2026-01-16 23:00 [SESSION] - Email Export and Automated Sending System
+
+**Pattern Type:** Email Automation / Document Package Creation / SMTP Integration
+**Context:** Export emails from multiple accounts, create comprehensive help request package, send via SMTP
+**Tools Created:** `email-export.js`, `email-send.js`
+**Outcome:** ✅ 30 emails exported, complete package created, email successfully sent
+
+### User Request
+
+**Original (Dutch):** "find all emails to and from gemeente meppel from my martiendejong2008@gmail.com account and my info@martiendejong.nl and store all of them in the folder c:\gemeente_emails"
+
+**Follow-up:** Create PDF document and complete package to send to helpers (Corina and Suzanne) about 3-year struggle with municipality regarding marriage to partner from Kenya.
+
+**Final Request:** "stuur nu de mail met het pakket gezipt naar corina (corina van de bosch scauting) met de begeleidende tekst en subject"
+
+### Email Export Implementation
+
+**Created:** `C:\scripts\tools\email-export.js`
+
+**Key Learning - IMAP Search Limitations:**
+- Initial approach using IMAP SEARCH with complex queries failed
+- **Solution:** Fetch ALL emails and filter manually by checking headers:
+  ```javascript
+  const allUids = await search(imap, ['ALL']);
+  const fetch = imap.fetch(allUids, { bodies: 'HEADER.FIELDS (FROM TO SUBJECT)' });
+  // Filter by checking if headers contain query string
+  ```
+- **Benefit:** More reliable, works across different IMAP implementations
+
+**Gmail Authentication:**
+- Regular passwords don't work with IMAP
+- **Required:** App-specific password from Google Account settings
+- User provided app password: `tazi tkhj swkv qcnt`
+
+**Export Results:**
+- `info@martiendejong.nl` (IMAP): 4 emails
+- `martiendejong2008@gmail.com` (Gmail): 26 emails
+- **Total:** 30 emails exported as .eml files
+- Location: `C:\gemeente_emails\EMAILS_GEMEENTE_MEPPEL\`
+
+### Email Sending Implementation
+
+**Created:** `C:\scripts\tools\email-send.js`
+
+**CRITICAL LEARNING - SMTP Configuration:**
+
+**FAILED Approach (Port 587 STARTTLS):**
+```javascript
+{
+  host: 'mail.zxcs.nl',
+  port: 587,
+  secure: false,
+  // Error: "Greeting never received"
+}
+```
+
+**SUCCESSFUL Approach (Port 465 SSL):**
+```javascript
+{
+  host: 'mail.zxcs.nl',
+  port: 465,
+  secure: true,
+  auth: {
+    user: 'info@martiendejong.nl',
+    pass: 'hLPFy6MdUnfEDbYTwXps'
+  },
+  tls: {
+    rejectUnauthorized: false
+  }
+}
+```
+
+**Rule for Future:** For `mail.zxcs.nl` SMTP, always use port 465 with `secure: true`, NOT port 587.
+
+### Document Package Creation
+
+**Created:** `C:\gemeente_emails\PAKKET_VOOR_CORINA_EN_SUZANNE\`
+
+**Contents:**
+1. `Hulpverzoek_ Martien de Jong & Sofy Nashipae Mpoe - Gemeente Meppel.pdf` (12 pages)
+2. `BEGELEIDENDE_EMAIL_CORINA.txt` (pre-written email body)
+3. `BEGELEIDENDE_EMAIL_SUZANNE.txt` (pre-written email body)
+4. `EMAILS_GEMEENTE_MEPPEL\` (26 .eml files + metadata)
+5. `README_LEES_DIT_EERST.txt` (step-by-step instructions)
+6. `PAKKET_VOOR_CORINA_EN_SUZANNE.zip` (417 KB complete package)
+
+**PDF Creation Approach:**
+- Pandoc with wkhtmltopdf/pdflatex: Not installed
+- Word COM automation: Failed (Word not accessible)
+- **Successful:** Professional HTML with print-to-PDF CSS styling
+- User could print to PDF via browser (Ctrl+P)
+
+### Email Sent Successfully
+
+**Details:**
+- **To:** corina.vandenbosch@scauting.nl
+- **From:** Martien de Jong <info@martiendejong.nl>
+- **Subject:** Hulpverzoek - Situatie Gemeente Meppel (documenten bijgevoegd)
+- **Attachment:** PAKKET_VOOR_CORINA_EN_SUZANNE.zip (426,558 bytes)
+- **Message ID:** 4105dd2e-f042-24d6-3ae5-8cdcf412d57b@martiendejong.nl
+- **Response:** 250 OK id=1vglUL-00000000dYz-0sFF
+
+### Pattern for Future Email Sending
+
+**Command:**
+```bash
+node /c/scripts/tools/email-send.js \
+  --to="recipient@example.com" \
+  --subject="Subject Line" \
+  --body-file="/path/to/body.txt" \
+  --attachment="/path/to/file.zip"
+```
+
+**Features:**
+- Supports both `--body` (direct text) and `--body-file` (from file)
+- Attachments with filename preservation
+- SMTP verification before sending
+- Detailed logging and error messages
+
+### Argument Parsing Fix
+
+**Issue:** Complex argument parsing with `split('=').slice(1).join('=')` was fragile
+**Solution:** Simpler substring approach:
+```javascript
+const getArg = (name) => {
+  const arg = args.find(a => a.startsWith(`--${name}=`));
+  if (!arg) return null;
+  return arg.substring(`--${name}=`.length);
+};
+```
+
+### Tools Enhancement
+
+**New capabilities:**
+- ✅ Multi-account email export with manual header filtering
+- ✅ SMTP email sending with attachments
+- ✅ Professional document package creation
+- ✅ Automated email composition with variable substitution (phone number)
+
+**Future Enhancement Ideas:**
+- Email templates system with placeholders
+- Batch email sending
+- Email tracking/receipt confirmation
+- Integration with email-manager.js for unified tool
 
 ---
 
