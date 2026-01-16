@@ -77,6 +77,11 @@ Any task with multiple steps should become a script. This way:
 | **`manage-feature-flags.ps1`** | **NEW: Feature flag manager** | `manage-feature-flags.ps1 -Action create -FlagName NewFeature` |
 | **`analyze-logs.ps1`** | **NEW: Log analyzer** | `analyze-logs.ps1 -LogPath logs -TimeRange 24h -MinLevel Error` |
 | **`generate-ci-pipeline.ps1`** | **NEW: CI pipeline generator** | `generate-ci-pipeline.ps1 -ProjectPath . -ProjectType fullstack` |
+| **`run-e2e-tests.ps1`** | **NEW: E2E test runner (Playwright)** | `run-e2e-tests.ps1 -ProjectPath . -Browser all -UpdateSnapshots` |
+| **`manage-environment.ps1`** | **NEW: Environment variable manager** | `manage-environment.ps1 -Action validate -Environment production` |
+| **`seed-database.ps1`** | **NEW: Database seeder (Bogus)** | `seed-database.ps1 -ProjectPath . -DataVolume medium -ClearExisting` |
+| **`test-api-load.ps1`** | **NEW: API load tester** | `test-api-load.ps1 -BaseUrl https://localhost:5001 -Pattern ramp-up -Concurrency 50` |
+| **`generate-code-metrics.ps1`** | **NEW: Code metrics dashboard** | `generate-code-metrics.ps1 -ProjectPath . -CompareToBaseline` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 
