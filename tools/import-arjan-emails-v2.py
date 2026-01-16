@@ -56,11 +56,14 @@ CONTACTS = {
         ]
     },
     'rinus_socranext': {
-        'name': 'Rinus (Socranext)',
+        'name': 'Rinus Huisman (Socranext)',
         'emails': [
+            'rinushuisman@gmail.com',
             'rinus@socranext.nl',
             'socranext.nl',
             'socranext',
+            'rinus huisman',
+            'rinushuisman',
             'rinus'
         ]
     },
