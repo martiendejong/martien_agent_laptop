@@ -381,7 +381,7 @@ if ($cycles.Count -gt 0) {
     Write-Host "=== WARNING: Circular Dependencies Detected ===" -ForegroundColor Red
     Write-Host ""
     foreach ($cycle in $cycles) {
-        Write-Host "  $($cycle -join ' → ')" -ForegroundColor Yellow
+        Write-Host ("  " + ($cycle -join ' -> ')) -ForegroundColor Yellow
     }
     Write-Host ""
 }

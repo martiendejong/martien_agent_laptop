@@ -57,6 +57,11 @@ Any task with multiple steps should become a script. This way:
 | **`setup-performance-budget.ps1`** | **NEW: Performance budget setup** | `setup-performance-budget.ps1 -ProjectPath .` |
 | **`analyze-bundle-size.ps1`** | **NEW: Bundle size analyzer** | `analyze-bundle-size.ps1 -ProjectPath . -Build` |
 | **`generate-dependency-graph.ps1`** | **NEW: Dependency graph viz** | `generate-dependency-graph.ps1` |
+| **`test-coverage-report.ps1`** | **NEW: Test coverage reporter** | `test-coverage-report.ps1 -ProjectPath . -Threshold 80` |
+| **`cleanup-stale-branches.ps1`** | **NEW: Stale branch cleanup** | `cleanup-stale-branches.ps1 -DryRun` |
+| **`track-todos.ps1`** | **NEW: TODO tracker with GitHub issues** | `track-todos.ps1 -Path . -Recursive` |
+| **`generate-api-docs.ps1`** | **NEW: API documentation generator** | `generate-api-docs.ps1 -ProjectPath . -Format all` |
+| **`health-check.ps1`** | **NEW: Environment health checker** | `health-check.ps1 -Full -Fix` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 
