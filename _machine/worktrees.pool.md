@@ -5,10 +5,10 @@ Seat states:
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager | agent-001-orchestrator-integration | 2026-01-16T15:00:00Z | 🚧 Week 1-2: Integrating BackgroundTaskOrchestrator into Image/Blog/Analysis generation services |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | hazina | agent-002-docs-in-repo | 2026-01-16T17:15:00Z | 🚧 Generating API documentation with DocFX |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | client-manager | agent-003-docs-in-repo | 2026-01-16T17:15:00Z | 🚧 Generating API documentation with DocFX |
-| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | BUSY | artrevisionist | agent-004-docs-in-repo | 2026-01-16T17:15:00Z | 🚧 Generating API documentation with DocFX |
-| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | BUSY | bugattiinsights | agent-005-docs-in-repo | 2026-01-16T17:15:00Z | 🚧 Generating API documentation with DocFX |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-01-16T18:00:00Z | ✅ Generated docs committed to PR #78 (47 pages, 204 files) |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-16T18:00:00Z | ✅ Generated docs committed to PR #164 (75 pages, 96 files) |
+| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-16T18:00:00Z | ✅ Artrevisionist: Build failed due to missing dependencies, no docs generated |
+| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-16T18:00:00Z | ✅ Bugattiinsights: Build failed due to .NET version conflicts, no docs generated |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-01-16T21:30:00Z | ✅ DocFX complete (PR #1) - 5/5 projects, 84 pages - worktree released |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-01-10T15:30:00Z | ✅ Cleaned up: Security hardening (PR #61) and payment-models work completed and merged |
 | agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | - | - | 2026-01-09T23:30:00Z | ✅ Fixed content hooks generation - pushed to client-manager payment-models branch (PR #82) |
