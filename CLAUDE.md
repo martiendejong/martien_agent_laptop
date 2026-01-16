@@ -82,6 +82,11 @@ Any task with multiple steps should become a script. This way:
 | **`seed-database.ps1`** | **NEW: Database seeder (Bogus)** | `seed-database.ps1 -ProjectPath . -DataVolume medium -ClearExisting` |
 | **`test-api-load.ps1`** | **NEW: API load tester** | `test-api-load.ps1 -BaseUrl https://localhost:5001 -Pattern ramp-up -Concurrency 50` |
 | **`generate-code-metrics.ps1`** | **NEW: Code metrics dashboard** | `generate-code-metrics.ps1 -ProjectPath . -CompareToBaseline` |
+| **`generate-vscode-workspace.ps1`** | **NEW: VS Code workspace generator** | `generate-vscode-workspace.ps1 -ProjectPath . -MultiRoot -WorkspaceName "Project"` |
+| **`manage-snippets.ps1`** | **NEW: Snippet library manager** | `manage-snippets.ps1 -Action install -Language csharp -IDE vscode` |
+| **`generate-debug-configs.ps1`** | **NEW: Advanced debug configs** | `generate-debug-configs.ps1 -ProjectPath . -Scenario docker -ContainerName "api"` |
+| **`git-interactive.ps1`** | **NEW: Git interactive helper** | `git-interactive.ps1 -Operation rebase -TargetBranch develop` |
+| **`onboard-developer.ps1`** | **NEW: Developer onboarding** | `onboard-developer.ps1 -DeveloperName "John Doe" -DeveloperEmail "john@example.com"` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 
