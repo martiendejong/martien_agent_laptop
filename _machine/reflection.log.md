@@ -4,6 +4,130 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-16 01:30 [PATTERN] - Adding Git-Tracked Data Stores to Visual Studio Solutions
+
+**Pattern Type:** Development Environment / Productivity
+**Context:** User wanted to add `C:\stores\brand2boost` (config/data store) to Visual Studio solution alongside code projects
+**Requirement:** Only show git-tracked files, exclude databases, temp files, logs, and user data
+**Outcome:** Created minimal .csproj that respects .gitignore patterns
+
+### Problem
+
+User has a data/config folder (`C:\stores\brand2boost`) containing:
+- ✅ Prompt files (*.txt) - tracked in git
+- ✅ Config files (*.json) - some tracked, some ignored
+- ✅ Documentation (*.md) - tracked
+- ❌ Databases (*.db, *.db-shm, *.db-wal) - ignored
+- ❌ Temp files (tmpclaude-*) - ignored
+- ❌ User data (users.json) - ignored
+- ❌ Project folders (p-*) - ignored
+- ❌ Logs - ignored
+
+**Challenge:** Add to Visual Studio solution but only show git-tracked files for easy editing/navigation.
+
+### Solution Options
+
+**Option 1: Solution Folder**
+- Right-click solution → Add → New Solution Folder
+- Manually add specific files
+- Pros: Simple, no project file
+- Cons: Manual maintenance, doesn't auto-track new files
+
+**Option 2: SDK-Style .csproj with .gitignore-aware exclusions** ✅ Recommended
+- Create minimal project file that mirrors .gitignore patterns
+- Automatically includes all git-tracked files
+- Excludes ignored files via `Exclude` attribute
+
+### Implementation
+
+**Created `brand2boost.csproj`:**
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <EnableDefaultItems>false</EnableDefaultItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Include all files EXCEPT those in .gitignore -->
+    <None Include="**\*"
+          Exclude="*.db;*.backup;**\tmpclaude*;users.json;p-*\**;identity.db-*;hangfire.db-*;.git\**;bin\**;obj\**;.chats\**;logs\**;model-usage-stats\**" />
+  </ItemGroup>
+</Project>
+```
+
+**Add to solution:**
+- Visual Studio: Right-click solution → Add → Existing Project → browse to `brand2boost.csproj`
+- Or edit `.sln` directly to add project reference
+
+### Key Patterns
+
+1. **`EnableDefaultItems>false`** - Prevents SDK from auto-including C# files
+2. **`<None Include="**\*">`** - Includes all files as content (not compiled)
+3. **`Exclude="..."`** - Mirrors .gitignore patterns to exclude non-tracked files
+4. **`IsPackable>false`** - Prevents NuGet packaging (not a library)
+
+### Exclude Pattern Translation
+
+| .gitignore Pattern | .csproj Exclude Pattern |
+|-------------------|------------------------|
+| `/identity.db` | `*.db` |
+| `/**/tmpclaude*` | `**\tmpclaude*` |
+| `/users.json` | `users.json` |
+| `/**` (all folders matching pattern) | `p-*\**` |
+
+**Key Translation Rules:**
+- Forward slashes (`/`) → Backslashes (`\`) in Windows .csproj
+- Leading `/` in .gitignore = root-only → Direct pattern in .csproj
+- `**/` prefix in .gitignore = any depth → `**\` in .csproj
+
+### Result
+
+Visual Studio solution now shows:
+- ✅ Client Manager API (code)
+- ✅ Hazina framework projects (code)
+- ✅ brand2boost store (config/prompts only)
+
+**brand2boost project shows:**
+- ✅ 38 prompt files (*.txt)
+- ✅ Config files (analysis-fields.config.json, interview.settings.json, tools.config.json)
+- ✅ Documentation (ANALYSIS_AND_IMPROVEMENTS.md)
+- ✅ .gitignore
+- ❌ No databases, logs, temp files, or user data
+
+### Reusable Pattern
+
+**When to use:**
+- Adding non-code folders (configs, docs, prompts) to .NET solutions
+- Want files visible in Solution Explorer for easy editing
+- Need to respect .gitignore (don't show ignored files)
+- Folder has mixed tracked/ignored content
+
+**Template:**
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <EnableDefaultItems>false</EnableDefaultItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="**\*" Exclude="<.gitignore-patterns-here>;.git\**;bin\**;obj\**" />
+  </ItemGroup>
+</Project>
+```
+
+### Files Created
+- `C:\stores\brand2boost\brand2boost.csproj` - Minimal project file
+
+### Related Use Cases
+- `C:\scripts\` - Could add to solution for easy access to agent documentation
+- `C:\Projects\client-manager\docs\` - Project-specific documentation
+- Any config/data folder that needs visibility in IDE
+
+---
+
 ## 2026-01-15 16:15 [PATTERN] - Static HTML Pages for Social Media Platform Verification
 
 **Pattern Type:** Infrastructure / SEO / Compliance
