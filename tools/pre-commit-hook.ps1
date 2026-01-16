@@ -10,6 +10,7 @@
     - Edits in C:\Projects\<repo> during Feature Development Mode
     - Uncommitted worktree changes
     - Pool/worktree inconsistencies
+    - Secret scanning (API keys, passwords, tokens, private keys)
 
 .PARAMETER Install
     Install this hook to a repository
@@ -65,6 +66,92 @@ function Write-Violation {
     Write-Host ""
 }
 
+function Test-ForSecrets {
+    <#
+    .SYNOPSIS
+        Scans staged files for secrets (API keys, passwords, tokens)
+    #>
+
+    # Secret patterns (regex)
+    $secretPatterns = @{
+        "Generic Password" = 'password\s*[=:]\s*["\']?[^"\'\s]{8,}'
+        "API Key" = 'api[_-]?key\s*[=:]\s*["\']?[A-Za-z0-9]{20,}'
+        "GitHub Token" = '(gh|github)[_-]?token\s*[=:]\s*["\']?[A-Za-z0-9_]+'
+        "OAuth Token" = 'Bearer\s+[A-Za-z0-9\-._~+/]+=*'
+        "Private Key" = '-----BEGIN (RSA|OPENSSH|PRIVATE) KEY-----'
+        "AWS Access Key" = 'AKIA[0-9A-Z]{16}'
+        "Generic Secret" = 'secret\s*[=:]\s*["\']?[^"\'\s]{12,}'
+        "Connection String" = 'Server=.*;Password=[^;]+;'
+        "JWT Token" = 'eyJ[A-Za-z0-9_-]+\.eyJ[A-Za-z0-9_-]+\.'
+    }
+
+    # Files to always exclude
+    $excludePatterns = @(
+        '\.md$',          # Markdown (documentation)
+        '\.txt$',         # Text files
+        'package-lock\.json$',  # Package lock files
+        '\.min\.js$',     # Minified files
+        '\.map$',         # Source maps
+        'test.*\.cs$',    # Test files
+        'Test.*\.cs$'     # Test files
+    )
+
+    # Get staged files
+    $stagedFiles = git diff --cached --name-only --diff-filter=ACM 2>$null
+
+    if (-not $stagedFiles) {
+        return @()  # No staged files
+    }
+
+    $foundSecrets = @()
+
+    foreach ($file in $stagedFiles) {
+        # Skip excluded files
+        $shouldSkip = $false
+        foreach ($pattern in $excludePatterns) {
+            if ($file -match $pattern) {
+                $shouldSkip = $true
+                break
+            }
+        }
+        if ($shouldSkip) { continue }
+
+        # Get file content from staging area
+        $content = git show ":$file" 2>$null
+        if (-not $content) { continue }
+
+        # Check each pattern
+        foreach ($patternName in $secretPatterns.Keys) {
+            $pattern = $secretPatterns[$patternName]
+
+            $matches = [regex]::Matches($content, $pattern, [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
+
+            if ($matches.Count -gt 0) {
+                foreach ($match in $matches) {
+                    # Get line number
+                    $lineNumber = ($content.Substring(0, $match.Index) -split "`n").Count
+
+                    # Get context (the line containing the secret)
+                    $lines = $content -split "`n"
+                    $contextLine = if ($lineNumber -le $lines.Count) { $lines[$lineNumber - 1] } else { "" }
+
+                    # Redact the secret value for display
+                    $redacted = $contextLine -replace '([=:]\s*["\']?)[^"\'\s]{4,}', '$1***REDACTED***'
+
+                    $foundSecrets += @{
+                        "File" = $file
+                        "Line" = $lineNumber
+                        "Type" = $patternName
+                        "Context" = $redacted
+                    }
+                }
+            }
+        }
+    }
+
+    return $foundSecrets
+}
+
 function Invoke-PreCommitChecks {
     $violations = @()
     $warnings = @()
@@ -97,6 +184,34 @@ function Invoke-PreCommitChecks {
         if ($poolContent -notmatch "\| $seat .* \| BUSY \|") {
             $warnings += "Committing in $seat worktree but seat is not marked BUSY in pool.md"
         }
+    }
+
+    # Check 3: Secret scanning
+    $secrets = Test-ForSecrets
+    if ($secrets.Count -gt 0) {
+        Write-Host ""
+        Write-Host "=== SECRET DETECTED ===" -ForegroundColor Red
+        Write-Host ""
+        Write-Host "Found $($secrets.Count) potential secret(s) in staged files:" -ForegroundColor Red
+        Write-Host ""
+
+        foreach ($secret in $secrets) {
+            Write-Host "  File: $($secret.File):$($secret.Line)" -ForegroundColor Yellow
+            Write-Host "  Type: $($secret.Type)" -ForegroundColor Yellow
+            Write-Host "  Context: $($secret.Context)" -ForegroundColor DarkGray
+            Write-Host ""
+        }
+
+        Write-Host "CRITICAL: Secrets should NEVER be committed to git!" -ForegroundColor Red
+        Write-Host ""
+        Write-Host "Actions:" -ForegroundColor Cyan
+        Write-Host "  1. Remove the secret from the file" -ForegroundColor White
+        Write-Host "  2. Store in environment variables or Azure KeyVault" -ForegroundColor White
+        Write-Host "  3. Add to .gitignore if file should not be tracked" -ForegroundColor White
+        Write-Host "  4. If this is a false positive, add to excludePatterns in pre-commit-hook.ps1" -ForegroundColor White
+        Write-Host ""
+
+        $violations += "SECRET SCANNING: Found $($secrets.Count) potential secret(s) in commit"
     }
 
     # Output results

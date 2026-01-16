@@ -52,6 +52,11 @@ Any task with multiple steps should become a script. This way:
 | **`model-selector.ps1`** | **NEW: Intelligent model selection** | `model-selector.ps1 -Task "..." -Analyze` |
 | **`smart-search.ps1`** | **NEW: Context-aware doc search** | `smart-search.ps1 -Query "worktree"` |
 | **`diagnose-error.ps1`** | **NEW: AI-powered error diagnosis** | `diagnose-error.ps1 -ErrorMessage "..."` |
+| **`scan-secrets.ps1`** | **NEW: Secret scanning** | `scan-secrets.ps1 -Path . -Recursive` |
+| **`generate-release-notes.ps1`** | **NEW: Release notes generator** | `generate-release-notes.ps1 -Since v1.0.0` |
+| **`setup-performance-budget.ps1`** | **NEW: Performance budget setup** | `setup-performance-budget.ps1 -ProjectPath .` |
+| **`analyze-bundle-size.ps1`** | **NEW: Bundle size analyzer** | `analyze-bundle-size.ps1 -ProjectPath . -Build` |
+| **`generate-dependency-graph.ps1`** | **NEW: Dependency graph viz** | `generate-dependency-graph.ps1` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 
