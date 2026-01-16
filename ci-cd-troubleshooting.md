@@ -483,3 +483,115 @@ This occurs AFTER deployment completes - can be ignored. The msdeploy sync finis
 
 ---
 
+
+---
+
+## 📚 DOCFX DOCUMENTATION BUILD PATTERNS (2026-01-16)
+
+**Context:** DocFX documentation generation in CI/CD and local environments
+**Added:** 2026-01-16 (DocFX private repository documentation session)
+
+### Pattern 1: GitHub Actions Auto-Commit for Generated Documentation
+
+**Use Case:** Automatically commit generated documentation to repository (private repos without GitHub Pages)
+
+**Workflow Configuration:**
+
+```yaml
+name: Documentation
+
+on:
+  push:
+    branches: [develop, main]
+  pull_request:
+    branches: [develop]
+
+permissions:
+  contents: write  # CRITICAL: Must have write permission to commit
+  pages: write
+  id-token: write
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore DocFX tool
+        run: dotnet tool restore
+
+      - name: Generate documentation metadata
+        run: dotnet docfx metadata docfx.json
+
+      - name: Build documentation
+        run: dotnet docfx build docfx.json
+
+      - name: Commit generated documentation
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/main')
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/apidoc/
+          if git diff --staged --quiet; then
+            echo "No changes to documentation"
+          else
+            git commit -m "docs: Auto-generate API documentation [skip ci]"
+            git push
+          fi
+
+      - name: Upload documentation artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/apidoc
+```
+
+**Key Elements:**
+
+1. **[skip ci] flag** - Prevents infinite loop
+2. **contents: write permission** - Required to push commits
+3. **Conditional commit** - Only on develop/main branches
+4. **Check for changes** - Don't commit if docs unchanged
+
+### Pattern 2: Local Build Failures vs CI/CD Success
+
+**Pattern:** Don't block on local documentation generation failures.
+
+**Common Scenarios:**
+
+#### Missing Cross-Repository Dependencies
+- Local worktree only contains single repository
+- CI/CD checks out all required repositories
+- **Action:** Merge infrastructure changes, let CI/CD generate docs
+
+#### .NET Version Conflicts
+- Local SDK version differs from project requirements
+- CI/CD uses specified version in workflow
+- **Action:** Don't block on local failure, verify CI/CD passes
+
+### Best Practices
+
+**DO:**
+- Run `dotnet docfx metadata` before `dotnet docfx build`
+- Use `[skip ci]` flag when auto-committing documentation
+- Set `contents: write` permission for auto-commit
+- Accept local build failures if CI/CD succeeds
+- Track `docs/apidoc/` in git for private repositories
+
+**DON'T:**
+- Skip metadata generation step
+- Commit without `[skip ci]` (causes infinite loop)
+- Block PR merge on local build failure
+- Use `docs/_site` for private repository documentation
+
+### Real-World Example
+
+**DocFX private repository documentation (2026-01-16):**
+- Local build success: 2/4 repositories
+- Local build failures: 2/4 repositories
+- CI/CD success after merge: 4/4 repositories
+- **Lesson:** Local build failures acceptable when CI/CD has proper dependencies
