@@ -370,3 +370,6 @@ Actions:
 2026-01-16T20:45:00Z — allocate — agent-004 — client-manager — agent-004-docfx-integration — — claude-code — Implementing DocFX documentation generation for client-manager
 2026-01-16T20:45:00Z — allocate — agent-005 — artrevisionist — agent-005-docfx-integration — — claude-code — Implementing DocFX documentation generation for artrevisionist
 2026-01-16T20:45:00Z — allocate — agent-006 — bugattiinsights — agent-006-docfx-integration — — claude-code — Implementing DocFX documentation generation for bugattiinsights
+2026-01-16T21:30:00Z — release — agent-004 — client-manager — agent-004-docfx-integration — — claude-code — Completed: DocFX documentation (PR #163) - XML docs enabled in 4/4 projects, 75+ pages generated, GitHub Pages workflow added
+2026-01-16T21:30:00Z — release — agent-005 — artrevisionist — agent-005-docfx-integration — — claude-code — Completed: DocFX documentation (PR #30) - XML docs enabled in 4/4 projects, 26 pages generated, GitHub Pages workflow added
+2026-01-16T21:30:00Z — release — agent-006 — bugattiinsights — agent-006-docfx-integration — — claude-code — Completed: DocFX documentation (PR #1) - XML docs enabled in 5/5 projects, 84 pages generated, GitHub Pages workflow added
