@@ -242,7 +242,7 @@ def main():
     print("  Output format: EML + JSON (zoals gemeente_emails)")
     print("=" * 70)
 
-    output_dir = Path('C:/scripts/arjan_emails')
+    output_dir = Path('C:/arjan_emails')
     total_emails = 0
     results = {}
 
