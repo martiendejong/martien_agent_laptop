@@ -72,6 +72,11 @@ Any task with multiple steps should become a script. This way:
 | **`auto-code-review.ps1`** | **NEW: Automated code review** | `auto-code-review.ps1 -Path . -PRNumber 123 -PostComments` |
 | **`manage-translations.ps1`** | **NEW: Localization manager** | `manage-translations.ps1 -ProjectPath . -Action validate -Locale nl` |
 | **`backup-restore.ps1`** | **NEW: Backup & restore automation** | `backup-restore.ps1 -Action backup -Type all` |
+| **`monitor-api-performance.ps1`** | **NEW: API performance monitor** | `monitor-api-performance.ps1 -BaseUrl https://localhost:7001 -Duration 60` |
+| **`compare-database-schemas.ps1`** | **NEW: Database schema compare** | `compare-database-schemas.ps1 -SourceDatabase Dev -TargetDatabase Prod` |
+| **`manage-feature-flags.ps1`** | **NEW: Feature flag manager** | `manage-feature-flags.ps1 -Action create -FlagName NewFeature` |
+| **`analyze-logs.ps1`** | **NEW: Log analyzer** | `analyze-logs.ps1 -LogPath logs -TimeRange 24h -MinLevel Error` |
+| **`generate-ci-pipeline.ps1`** | **NEW: CI pipeline generator** | `generate-ci-pipeline.ps1 -ProjectPath . -ProjectType fullstack` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 
