@@ -67,6 +67,11 @@ Any task with multiple steps should become a script. This way:
 | **`analyze-build-cache.ps1`** | **NEW: Build cache analyzer** | `analyze-build-cache.ps1 -ProjectPath . -Measure` |
 | **`validate-migration.ps1`** | **NEW: EF Core migration validator** | `validate-migration.ps1 -ProjectPath . -GenerateRollback` |
 | **`generate-component-catalog.ps1`** | **NEW: React component catalog** | `generate-component-catalog.ps1 -ProjectPath . -Format all` |
+| **`generate-docker-compose.ps1`** | **NEW: Docker Compose generator** | `generate-docker-compose.ps1 -ProjectPath . -GenerateDockerfiles` |
+| **`profile-performance.ps1`** | **NEW: Performance profiler** | `profile-performance.ps1 -ProjectPath . -ProfileType all` |
+| **`auto-code-review.ps1`** | **NEW: Automated code review** | `auto-code-review.ps1 -Path . -PRNumber 123 -PostComments` |
+| **`manage-translations.ps1`** | **NEW: Localization manager** | `manage-translations.ps1 -ProjectPath . -Action validate -Locale nl` |
+| **`backup-restore.ps1`** | **NEW: Backup & restore automation** | `backup-restore.ps1 -Action backup -Type all` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 
