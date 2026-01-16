@@ -62,6 +62,11 @@ Any task with multiple steps should become a script. This way:
 | **`track-todos.ps1`** | **NEW: TODO tracker with GitHub issues** | `track-todos.ps1 -Path . -Recursive` |
 | **`generate-api-docs.ps1`** | **NEW: API documentation generator** | `generate-api-docs.ps1 -ProjectPath . -Format all` |
 | **`health-check.ps1`** | **NEW: Environment health checker** | `health-check.ps1 -Full -Fix` |
+| **`setup-commit-template.ps1`** | **NEW: Git commit templates** | `setup-commit-template.ps1 -Install` |
+| **`update-dependencies.ps1`** | **NEW: Dependency updater** | `update-dependencies.ps1 -ProjectPath . -CheckOnly` |
+| **`analyze-build-cache.ps1`** | **NEW: Build cache analyzer** | `analyze-build-cache.ps1 -ProjectPath . -Measure` |
+| **`validate-migration.ps1`** | **NEW: EF Core migration validator** | `validate-migration.ps1 -ProjectPath . -GenerateRollback` |
+| **`generate-component-catalog.ps1`** | **NEW: React component catalog** | `generate-component-catalog.ps1 -ProjectPath . -Format all` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 
