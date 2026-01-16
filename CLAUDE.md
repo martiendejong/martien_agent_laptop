@@ -47,6 +47,11 @@ Any task with multiple steps should become a script. This way:
 | `maintenance.ps1` | Run maintenance tasks | `maintenance.ps1 -Full` |
 | `prune-branches.ps1` | Clean old branches | `prune-branches.ps1 -DryRun` |
 | `pre-commit-hook.ps1` | Zero-tolerance enforcement | `pre-commit-hook.ps1 -Install -RepoPath <path>` |
+| **`merge-pr-sequence.ps1`** | **NEW: Automated PR merge sequencer** | `merge-pr-sequence.ps1 -DryRun` |
+| **`validate-pr-base.ps1`** | **NEW: Validate PR base branch** | `validate-pr-base.ps1 -Repo client-manager` |
+| **`model-selector.ps1`** | **NEW: Intelligent model selection** | `model-selector.ps1 -Task "..." -Analyze` |
+| **`smart-search.ps1`** | **NEW: Context-aware doc search** | `smart-search.ps1 -Query "worktree"` |
+| **`diagnose-error.ps1`** | **NEW: AI-powered error diagnosis** | `diagnose-error.ps1 -ErrorMessage "..."` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 

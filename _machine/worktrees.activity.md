@@ -367,3 +367,6 @@ Actions:
 2026-01-16T20:00:00Z — release — agent-002 — hazina — agent-002-docfx-integration — — claude-code — Completed: DocFX documentation generation infrastructure (PR #76) - XML docs enabled in 41 Core projects, generate-docs.ps1 script, DOCUMENTATION_GUIDELINES.md
 2026-01-16T20:15:00Z — allocate — agent-003 — hazina — agent-003-github-pages-deployment — — claude-code — Adding GitHub Actions workflow for automatic DocFX documentation deployment to GitHub Pages
 2026-01-16T20:30:00Z — release — agent-003 — hazina — agent-003-github-pages-deployment — — claude-code — Completed: GitHub Pages deployment workflow (PR #77) - automated DocFX deployment to https://martiendejong.github.io/Hazina/
+2026-01-16T20:45:00Z — allocate — agent-004 — client-manager — agent-004-docfx-integration — — claude-code — Implementing DocFX documentation generation for client-manager
+2026-01-16T20:45:00Z — allocate — agent-005 — artrevisionist — agent-005-docfx-integration — — claude-code — Implementing DocFX documentation generation for artrevisionist
+2026-01-16T20:45:00Z — allocate — agent-006 — bugattiinsights — agent-006-docfx-integration — — claude-code — Implementing DocFX documentation generation for bugattiinsights
