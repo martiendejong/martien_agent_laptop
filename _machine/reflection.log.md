@@ -4,6 +4,108 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-17 23:45 - PR Conflict Resolution: Merge main into develop
+
+**Pattern Type:** Git Conflict Resolution / Active Debugging Mode
+**Context:** Resolved merge conflicts in PR #237 (merge main into develop)
+**Project:** client-manager
+**Outcome:** ✅ Successfully resolved 5 file conflicts and merged PR
+
+### The Task
+
+User requested: "resolve the conflicts in this pr https://github.com/martiendejong/client-manager/pull/237"
+
+**PR Details:**
+- Title: "merge main into develop"
+- Base: develop
+- Head: main
+- State: CONFLICTING → MERGED
+- Conflicts: 5 files
+
+### Mode Detection: Active Debugging
+
+**Decision:** Active Debugging Mode
+- User wants immediate conflict resolution on existing PR
+- Not a new feature development
+- Quick fix needed for merge conflicts
+- Work directly in base repo (C:\Projects\client-manager)
+
+### Conflict Resolution Strategy
+
+**Files with conflicts:**
+1. `ClientManagerFrontend/package.json` - TipTap version conflicts
+2. `ClientManagerFrontend/package-lock.json` - Dependency lockfile conflicts
+3. `ClientManagerFrontend/src/components/content/PostIdeasGenerator.tsx` - Service vs axios approach
+4. `ClientManagerFrontend/src/components/license-manager/SelectFromUploadsDialog.tsx` - Service vs axios approach
+5. `ClientManagerAPI/ClientManagerAPI.local.csproj` - Auto-resolved by git
+
+### Resolution Approach
+
+**1. Package files (package.json, package-lock.json):**
+- Conflict: TipTap packages v2.1.13 (develop) vs v3.15.3 (main)
+- Resolution: Accepted main's newer versions (v3.15.3)
+- Strategy: Manual edit for package.json, `git checkout --theirs` for package-lock.json
+
+**2. TypeScript components (PostIdeasGenerator.tsx, SelectFromUploadsDialog.tsx):**
+- Conflict: Service layer pattern (develop) vs direct axios calls (main)
+- Resolution: Accepted main's axios approach using `git checkout --theirs`
+- Reasoning: Merging main INTO develop means main has authoritative changes
+
+### Commands Used
+
+```bash
+# Fetch and attempt merge
+cd C:/Projects/client-manager
+git fetch origin
+git merge origin/main  # Triggered conflicts
+
+# Resolve package.json manually
+Edit file to accept main's TipTap v3.15.3 versions
+
+# Resolve package-lock.json
+git checkout --theirs ClientManagerFrontend/package-lock.json
+
+# Resolve TypeScript files
+git checkout --theirs ClientManagerFrontend/src/components/content/PostIdeasGenerator.tsx
+git checkout --theirs ClientManagerFrontend/src/components/license-manager/SelectFromUploadsDialog.tsx
+
+# Stage and commit merge
+git add .
+git commit -m "Merge branch 'main' into develop..."
+git push origin develop
+```
+
+### Result
+
+✅ **PR #237 automatically merged** after pushing resolved conflicts
+- All 5 conflicts resolved
+- Merge commit: `48aceda`
+- PR state: MERGED
+
+### Key Learnings
+
+1. **`git checkout --theirs` is efficient** for accepting incoming changes wholesale
+2. **Active Debugging Mode was correct** - no worktree allocation needed for PR conflict resolution
+3. **Package-lock.json conflicts** - better to accept one side completely rather than manual merge
+4. **Merge direction matters** - "merge main into develop" means main is authoritative
+
+### Process Efficiency
+
+**Time to resolution:** ~5 minutes
+**Tools used:**
+- TodoWrite for progress tracking (5 tasks)
+- git merge + git checkout --theirs
+- Edit tool for manual package.json conflict
+
+**Success criteria met:**
+- ✅ All conflicts resolved
+- ✅ Merge committed and pushed
+- ✅ PR automatically closed as MERGED
+- ✅ No worktree pollution (worked in base repo)
+- ✅ Fast turnaround
+
+---
+
 ## 2026-01-17 22:30 [CRITICAL DISCOVERY] - WordPress Plugin Templates Override Theme Templates
 
 **Pattern Type:** WordPress Architecture / Template Hierarchy / Custom Post Types
