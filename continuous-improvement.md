@@ -97,6 +97,122 @@ Commit and push
 
 **See:** `self-improvement` Skill for detailed Skill creation process
 
+---
+
+## 🎯 EXPERT PANEL ANALYSIS PROTOCOL
+
+**Added:** 2026-01-17
+**Context:** Distinguish between CODE improvements vs PROCESS improvements when creating expert panel analyses
+
+### Step 1: Clarify Domain (Code vs Process)
+
+**BEFORE creating expert panel, confirm focus area with user:**
+
+**CODE Domain:**
+- Infrastructure, architecture, performance, security
+- Technical debt, migrations, refactoring
+- Build systems, deployment pipelines
+- Database optimization, caching strategies
+- **Experts needed:** DevOps engineers, cloud architects, security specialists, database experts
+- **Value metrics:** Cost reduction, uptime %, performance gains, latency reduction
+
+**PROCESS Domain:**
+- Workflow optimization, task management, sprint planning
+- Team collaboration, communication, documentation
+- Metrics and KPIs (velocity, cycle time, DORA metrics)
+- Quality gates (DoD, PR templates, code review guidelines)
+- **Experts needed:** Agile coaches, Scrum masters, productivity specialists, DevOps culture experts
+- **Value metrics:** Time saved, cycle time reduction, velocity increase, developer satisfaction
+
+### Step 2: Recognize Intent Signals
+
+**RED FLAGS indicating PROCESS focus:**
+- "way of working"
+- "ClickUp", "project management", "tasks", "workflow"
+- "team collaboration", "communication"
+- "sprint planning", "velocity", "metrics"
+- "how we work together"
+
+**RED FLAGS indicating CODE focus:**
+- "codebase quality"
+- "infrastructure", "deployment", "performance"
+- "security vulnerabilities", "technical debt"
+- "architecture", "design patterns"
+- "build failures", "test coverage"
+
+### Step 3: Select Appropriate Deliverable Format
+
+**BEFORE creating deliverable, clarify audience and format:**
+
+**Markdown** (`.md` files):
+- ✅ Good for: Technical documentation, code patterns, developer-only content
+- ✅ Audience: Developers, technical stakeholders
+- ❌ Bad for: Team-wide adoption, non-technical stakeholders, implementation guides
+
+**HTML** (styled web pages):
+- ✅ Good for: Team-wide communication, implementation guides, executive summaries
+- ✅ Features: Visual aids, print-friendly, mobile-responsive, color-coded sections
+- ✅ Accessibility: Can be opened by anyone without technical tools
+- ✅ Audience: Entire team including non-technical members
+
+**Question to ask:**
+> "Should the deliverable be technical documentation (markdown) or a team-accessible implementation guide (HTML)?"
+
+### Step 4: Prioritize for Action
+
+**Problem:** 50 improvements = overwhelming
+**Solution:** Prioritize by value/effort ratio (ROI-based ranking)
+
+**Best practices:**
+- Calculate ROI for each improvement (Annual Value € / Effort hours)
+- Select top 5-10 by ROI for immediate implementation
+- Provide extensive step-by-step instructions for selected improvements
+- Include success metrics and timelines
+- Break into phases (Week 1: Quick Wins, Week 2: Foundations, etc.)
+
+### Example: Process Analysis Request
+
+**User says:**
+> "Analyze our way of working with ClickUp and create improvement recommendations"
+
+**Correct interpretation:**
+- 🎯 PROCESS domain (not code)
+- Expert panel: Agile coaches, productivity specialists, team collaboration experts
+- Focus areas: Workflow automation, sprint planning, task management, metrics
+- Deliverable: HTML implementation guide for entire team
+- Prioritization: Top 5 by ROI with step-by-step instructions
+
+**Wrong interpretation:**
+- ❌ CODE domain
+- ❌ Expert panel: DevOps engineers, cloud architects
+- ❌ Focus areas: Infrastructure, security, performance
+- ❌ Result: Technical recommendations user didn't ask for
+
+### Verification Questions
+
+**When uncertain, ask:**
+1. "Should this analysis focus on CODE QUALITY (infrastructure, performance, security) or PROCESS IMPROVEMENT (workflow, team collaboration, project management)?"
+2. "Should the deliverable be technical documentation (markdown) or a team-accessible guide (HTML)?"
+3. "Who is the primary audience: developers only, or entire team including non-technical members?"
+
+### Success Criteria
+
+**Analysis is correctly scoped ONLY IF:**
+- ✅ Expert panel matches the domain (Code vs Process)
+- ✅ Improvements address the actual request (not assumptions)
+- ✅ Deliverable format matches the audience
+- ✅ Prioritization makes recommendations actionable
+- ✅ User gets what they asked for (not what you assumed)
+
+**Real Example (2026-01-17):**
+- Initial interpretation: CODE improvements (€2.05M value)
+- User correction: "I want PROCESS improvements, not code"
+- Corrected analysis: PROCESS improvements (€480K value)
+- Final deliverable: Top 5 with HTML guide (€59K/year, 2 weeks)
+- **Lesson:** Always verify domain before investing hours in analysis
+
+---
+
 ### SUCCESS METRICS:
 
 **You are self-improving ONLY IF:**
