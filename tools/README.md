@@ -20,6 +20,8 @@
 | `archive-reflections.ps1` | Archive old entries | `.\archive-reflections.ps1 -DryRun` |
 | `migrate-pool-to-json.ps1` | Convert pool to JSON | `.\migrate-pool-to-json.ps1` |
 | `pre-commit-hook.ps1` | Enforcement hooks | `.\pre-commit-hook.ps1 -Check` |
+| `merge-dependabot-prs.ps1` | **NEW** Batch merge PRs | `.\merge-dependabot-prs.ps1 -DryRun` |
+| `toggle-workflow-triggers.ps1` | **NEW** Toggle CI triggers | `.\toggle-workflow-triggers.ps1 -Mode manual -DryRun` |
 | `email-export.js` | Export emails | `node email-export.js --query="..." --output="..."` |
 | `email-send.js` | Send emails via SMTP | `node email-send.js --to="..." --subject="..." --body-file="..."` |
 
@@ -256,6 +258,156 @@ Shows status of open PRs across repos.
 
 ```bash
 ./pr-status.sh
+```
+
+### merge-dependabot-prs.ps1 ⭐ NEW
+
+**Batch merge or close Dependabot PRs automatically.**
+
+Processes all open Dependabot PRs based on their merge status:
+- Merges PRs that are MERGEABLE (squash + delete branch)
+- Closes PRs with CONFLICTING status (Dependabot will recreate them)
+- Provides detailed summary report
+
+**Created:** 2026-01-17 (Session: GitHub Actions billing workaround)
+**Use Case:** When you have 20+ Dependabot PRs and need to process them quickly
+
+```powershell
+# Preview what would happen (recommended first run)
+.\merge-dependabot-prs.ps1 -DryRun
+
+# Automatically merge all mergeable PRs without prompts
+.\merge-dependabot-prs.ps1 -AutoMerge
+
+# Interactive mode (confirm each merge)
+.\merge-dependabot-prs.ps1
+
+# Process PRs in different repository
+.\merge-dependabot-prs.ps1 -Repo "owner/repo" -AutoMerge
+
+# Custom closure message
+.\merge-dependabot-prs.ps1 -ClosureMessage "Your custom message here"
+```
+
+**Parameters:**
+- `-Repo` - Repository in format "owner/repo" (default: martiendejong/client-manager)
+- `-DryRun` - Preview actions without making changes
+- `-AutoMerge` - Skip confirmation prompts
+- `-ClosureMessage` - Custom message for closing conflicting PRs
+
+**Output:**
+```
+═══════════════════════════════════════════════════════════
+  Dependabot PR Batch Processor
+═══════════════════════════════════════════════════════════
+Repository: martiendejong/client-manager
+Mode: LIVE
+
+Found 4 Dependabot PR(s)
+
+PR #218: Bump @tiptap/extension-link from 2.27.2 to 3.15.3
+  Status: CONFLICTING
+  Closing (will be recreated)...
+  ✓ Closed
+
+PR #217: Bump Swashbuckle.AspNetCore.Annotations from 8.1.0 to 10.1.0
+  Status: MERGEABLE
+  Merging...
+  ✓ Merged
+
+═══════════════════════════════════════════════════════════
+  Summary Report
+═══════════════════════════════════════════════════════════
+Merged:  1
+Closed:  3
+Skipped: 0
+Errors:  0
+
+Merged PRs: 217
+Closed PRs: 218, 216, 215
+```
+
+**Why Close Conflicting PRs?**
+- Dependabot automatically recreates PRs when the base branch updates
+- Closing stale PRs triggers recreation against the latest develop
+- Avoids manual conflict resolution for automated dependency updates
+
+### toggle-workflow-triggers.ps1 ⭐ NEW
+
+**Toggle GitHub Actions workflows between automatic and manual modes.**
+
+Converts workflow triggers between:
+- **Manual mode**: workflow_dispatch only (no automatic runs)
+- **Automatic mode**: push, pull_request, schedule triggers
+
+**Created:** 2026-01-17 (Session: GitHub Actions billing workaround)
+**Use Case:** GitHub Actions billing issues, deployment freezes, testing
+
+```powershell
+# Preview conversion to manual-only (recommended first run)
+.\toggle-workflow-triggers.ps1 -Mode manual -DryRun
+
+# Convert all workflows to manual-only
+.\toggle-workflow-triggers.ps1 -Mode manual
+
+# Convert only test workflows
+.\toggle-workflow-triggers.ps1 -Mode manual -WorkflowFilter "*test*"
+
+# Convert in different repository
+.\toggle-workflow-triggers.ps1 -Mode manual -RepoPath "C:\Projects\other-repo"
+
+# Disable automatic backup
+.\toggle-workflow-triggers.ps1 -Mode manual -Backup $false
+```
+
+**Parameters:**
+- `-RepoPath` - Path to repository (default: C:\Projects\client-manager)
+- `-Mode` - Target mode: "manual" or "automatic"
+- `-DryRun` - Preview changes without modifying files
+- `-Backup` - Create backup before modification (default: true)
+- `-WorkflowFilter` - Only process matching workflows (e.g., "*build*")
+
+**What It Does (Manual Mode):**
+
+Transforms workflows from:
+```yaml
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    - cron: '0 0 * * 1'
+```
+
+To:
+```yaml
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for running this workflow'
+        required: false
+        default: 'Manual validation'
+```
+
+**Benefits:**
+- No automatic workflow failures during billing issues
+- All workflows still runnable from Actions tab (manual trigger)
+- User controls GitHub Actions minute spending
+- Prevents red flags on every commit/PR
+
+**Backup Location:**
+- Backups stored in: `.github/workflows/backups/backup_YYYYMMDD_HHMMSS/`
+- Automatic backup on every run (unless `-Backup $false`)
+
+**After Running:**
+```powershell
+# Commit and push changes
+cd C:\Projects\client-manager
+git add .github/workflows/
+git commit -m "chore(ci): Convert workflows to manual mode"
+git push origin develop
 ```
 
 ---

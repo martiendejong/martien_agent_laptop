@@ -4,6 +4,270 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-17 02:30 [SESSION] - client-manager: GitHub Actions Billing Workaround & Batch PR Processing
+
+**Pattern Type:** CI/CD Configuration / DevOps Automation / Dependency Management
+**Context:** GitHub Actions billing issues causing all automatic workflows to fail with red flags
+**Project:** client-manager (ASP.NET Core 9 + React/TypeScript SPA)
+**Outcome:** ✅ 8 workflows converted to manual-only, 46 PRs merged/closed total, 0 PRs remaining
+
+### User Request
+
+**Original (Dutch):** "we are ignoring the automatic actions completely for now. can you make it such that in the gitactions they are still available to run manually but dont give a red flag when not run?"
+
+**Context:** All GitHub Actions workflows failing with billing error: "The job was not started because recent account payments have failed or your spending limit needs to be increased". This was causing red X marks on every commit and PR, even though the code was fine.
+
+### Solution: Convert All Workflows to Manual-Only (workflow_dispatch)
+
+**Workflows Converted (8 total):**
+
+1. **backend-build.yml** - Removed push/PR triggers
+2. **frontend-build.yml** - Removed push/PR triggers
+3. **pr-size-check.yml** - Removed PR trigger, added optional pr_number input
+4. **codeql.yml** - Removed weekly schedule cron (security scanning)
+5. **dependency-scan.yml** - Removed weekly schedule cron (NPM audit, .NET vuln scan)
+6. **secret-scan.yml** - Removed weekly schedule cron (TruffleHog, Gitleaks)
+7. **auto-tag-stable.yml** - Removed PR merge trigger, added pr_number input
+8. **deploy-docs.yml** - Removed push/PR triggers for DocFX documentation
+
+**Workflows Already Manual (3 total):**
+- backend-test.yml
+- frontend-test.yml
+- auth-integration-tests.yml
+
+**Standard Conversion Pattern:**
+```yaml
+# BEFORE (automatic):
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    - cron: '0 0 * * 1'  # Weekly
+
+# AFTER (manual-only):
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for running this workflow'
+        required: false
+        default: 'Manual validation'
+```
+
+**Benefits:**
+- No automatic failures = no red flags on commits/PRs
+- All workflows still runnable from Actions tab when needed
+- User controls when to spend GitHub Actions minutes
+- Code quality unaffected (tests still runnable on-demand)
+
+### Batch PR Processing Pattern
+
+**Session Total: 46 PRs Processed**
+
+This session alone merged/closed:
+- 1 PR merged (Swashbuckle.AspNetCore.Annotations 8.1.0 → 10.1.0)
+- 3 PRs closed with conflicts (tiptap, System.Drawing.Common, vite)
+
+Combined with earlier session work:
+- 45 total PRs merged across multiple sessions
+- All dependabot PRs processed (0 remaining)
+
+**Merge Decision Pattern:**
+```bash
+# 1. Check PR status
+gh pr view <number> --repo <repo> --json state,mergeable
+
+# 2. If MERGEABLE:
+gh pr merge <number> --repo <repo> --squash --delete-branch
+
+# 3. If CONFLICTING:
+gh pr close <number> --repo <repo> --comment "Closing due to merge conflicts. Dependabot will recreate against updated develop."
+```
+
+**Why Close Conflicting PRs?**
+- Dependabot automatically recreates PRs when base branch updates
+- Closing stale PRs triggers recreation against latest develop
+- Avoids manual conflict resolution for automated PRs
+- Cleaner than leaving conflicting PRs open
+
+### Major Version Updates Merged (Breaking Changes Accepted)
+
+**Frontend Dependencies:**
+- tailwindcss 3.x → 4.x (major CSS framework update)
+- vitest 1.x → 4.x (test framework major update)
+- vite 5.x → 7.x (build tool major update)
+- @tiptap/* 2.x → 3.x (rich text editor major update)
+
+**Backend Dependencies:**
+- EntityFrameworkCore 8.x → 9.x (.NET 9 upgrade)
+- Swashbuckle 8.x → 10.x (Swagger/OpenAPI tooling)
+- System.Drawing.Common 8.x → 10.x (graphics library)
+
+**User Directive:**
+User said "merge ze maar gewoon" (just merge them) when warned about:
+- No test coverage validation
+- Builds failing due to billing (not code issues)
+- Potential breaking changes in major versions
+
+**Implication:** User prioritizes dependency freshness over cautious incremental updates.
+
+### Multi-Session Merge Conflict Resolution Pattern (PR #160)
+
+**Earlier Session Work (9 conflicts resolved):**
+- Strategy: Keep refactoring work (--ours) for TagsList.tsx, TagsListChat.tsx
+- Strategy: Accept console.log fixes (--theirs) for 7 other files
+- Result: PR became MERGEABLE after systematic conflict resolution
+
+**Pattern for Future:**
+1. Allocate worktree for conflict resolution (if Feature Mode)
+2. Check which branch has "better" changes per file
+3. Use `git checkout --theirs <file>` or `--ours <file>` strategically
+4. Don't blindly choose one strategy for all files
+5. Commit with clear explanation of resolution strategy
+
+### Learnings and Optimizations
+
+**✅ SUCCESS #1: Strategic Workflow Conversion**
+- Understood user's business need (avoid red flags during billing issue)
+- Preserved functionality (manual runs still possible)
+- Systematic approach: checked all 11 workflows, converted 8
+- Clear commit message explaining why and what changed
+
+**✅ SUCCESS #2: Efficient Batch PR Processing**
+- Used parallel gh commands when checking multiple PRs
+- Clear decision tree: merge if possible, close with explanation if not
+- Understood Dependabot behavior (auto-recreate on close)
+- Processed 46 PRs total across sessions without errors
+
+**🔧 OPTIMIZATION OPPORTUNITY #1: Batch PR Merge Tool Needed**
+**Problem:** Manually checking and merging 20+ PRs is repetitive
+**Solution:** Create `C:\scripts\tools\merge-dependabot-prs.ps1`
+**Features:**
+- List all open dependabot PRs
+- Check merge status for each
+- Auto-merge MERGEABLE PRs
+- Auto-close CONFLICTING PRs with standard message
+- Summary report (X merged, Y closed, Z skipped)
+- Dry-run mode for safety
+
+**🔧 OPTIMIZATION OPPORTUNITY #2: GitHub Actions Workflow Mode Switcher**
+**Problem:** Converting 8 workflows manually was repetitive
+**Solution:** Create `C:\scripts\tools\toggle-workflow-triggers.ps1`
+**Features:**
+- Scan .github/workflows/*.yml
+- Detect current trigger types (push/PR/schedule/manual)
+- Convert between automatic and manual modes
+- Preserve workflow_dispatch inputs if they exist
+- Dry-run preview of changes
+- Use cases: billing issues, testing, deployment freeze
+
+**🔧 OPTIMIZATION OPPORTUNITY #3: Claude Skill for PR Dependency Resolution**
+**Problem:** Merge conflicts from dependabot PRs are common
+**Solution:** Create `.claude/skills/resolve-dependabot-conflicts/SKILL.md`
+**When to activate:** User mentions "dependabot PR conflicts" or "merge dependabot"
+**Workflow:**
+1. Fetch latest develop
+2. Create temporary worktree for conflict resolution
+3. Attempt automatic resolution (prefer incoming changes for lock files)
+4. Report which files need manual review
+5. Provide resolution commands
+
+**✅ SUCCESS #3: Handling Active Debugging Mode Correctly**
+- User had merge in progress in base repo (C:\Projects\client-manager)
+- Worked directly in base repo (not worktree) - correct for Active Debugging Mode
+- Completed merge, committed workflow changes, pushed
+- Did NOT allocate worktree (appropriate for configuration changes)
+
+### Tools/Skills Analysis for Future Optimization
+
+**Patterns Observed This Session:**
+1. ✅ Batch PR processing (merge/close many PRs)
+2. ✅ Workflow trigger conversion (automatic → manual)
+3. ✅ Dependabot conflict handling
+4. ⚠️ Large-scale dependency updates (major versions)
+
+**Recommended New Tools:**
+
+| Tool | Priority | Justification |
+|------|----------|---------------|
+| `merge-dependabot-prs.ps1` | **HIGH** | Processed 46 PRs manually - could be 1 command |
+| `toggle-workflow-triggers.ps1` | **MEDIUM** | Converted 8 workflows manually - reusable pattern |
+| `analyze-dependency-updates.ps1` | **MEDIUM** | Major version updates need risk assessment |
+| `pr-conflict-resolver.ps1` | **LOW** | Already have worktree tools, skills cover this |
+
+**Recommended New Skills:**
+
+| Skill | Priority | Justification |
+|-------|----------|---------------|
+| `batch-pr-management` | **HIGH** | Auto-discover when >5 PRs open, guide bulk operations |
+| `dependency-update-strategy` | **MEDIUM** | Guide major vs minor update decisions |
+
+**Decision:** Will create `merge-dependabot-prs.ps1` and `toggle-workflow-triggers.ps1` after this reflection.
+
+### Commands Used This Session
+
+**GitHub PR Management:**
+```bash
+# List PRs
+gh pr list --repo martiendejong/client-manager --limit 20
+
+# Merge PR
+gh pr merge <number> --repo <repo> --squash --delete-branch
+
+# Close PR with comment
+gh pr close <number> --repo <repo> --comment "Reason for closing"
+```
+
+**Git Operations:**
+```bash
+# Check status
+git status
+
+# Add and commit workflow changes
+git add .github/workflows/
+git commit -m "chore(ci): Convert all workflows to manual-only"
+
+# Discard log file changes
+git restore ClientManagerAPI/fatal.log
+
+# Push to remote
+git push origin develop
+```
+
+**File Operations:**
+```bash
+# List workflow files
+ls -la /c/Projects/client-manager/.github/workflows/
+```
+
+### Statistics
+
+- **Workflows converted:** 8
+- **PRs merged this session:** 1
+- **PRs closed this session:** 3
+- **Total PRs processed (all sessions):** 46
+- **Open PRs remaining:** 0
+- **Lines changed in workflows:** ~80 (8 files × ~10 lines each)
+- **Time saved for user:** No more red flags on every commit/PR
+
+### Next Session Preparation
+
+**Recommended Actions:**
+1. Create `merge-dependabot-prs.ps1` tool (30-50 lines)
+2. Create `toggle-workflow-triggers.ps1` tool (50-100 lines)
+3. Update `tools/README.md` with new tools
+4. Test new tools with dry-run mode before production use
+
+**Context for Next Agent:**
+- All workflows are now manual-only
+- To run any workflow: Go to Actions tab → select workflow → click "Run workflow"
+- Dependabot PRs will continue coming - use new tool to batch process
+- User prefers merging dependency updates quickly (even major versions)
+
+---
+
 ## 2026-01-16 22:00 [SESSION] - MastermindGroupAI: 100-Point Plan Implementation (5 Critical Items)
 
 **Pattern Type:** Code Quality / Performance Optimization / Security Hardening / Testing
