@@ -4,6 +4,193 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-17 16:30 - Missing File Recovery & Property Name Mismatch
+
+**Pattern Type:** File Recovery / Build Error Resolution / Active Debugging Mode
+**Context:** Vite import error and C# compilation errors after develop→main merge
+**Project:** client-manager
+**Outcome:** ✅ Restored missing file from git history, fixed property name errors, synced main and develop
+
+### The Task
+
+User encountered Vite build error:
+```
+Failed to resolve import "../lib/api" from "src/services/demoService.ts"
+```
+
+Then after merging develop→main, C# compilation errors:
+```
+CS1061: 'AnalysisFieldInfo' does not contain a definition for 'ChatComponentName'
+```
+
+### Root Cause Analysis
+
+**Problem 1: Missing `src/lib/api.ts`**
+- User was working in old branch `fix/develop-issues-systematic`
+- File `src/lib/api.ts` was deleted in this branch
+- File existed in develop (commit 3a77be9)
+- Multiple components import from this file (demoService.ts, DemoSession.tsx, etc.)
+
+**Problem 2: Property name mismatch**
+- Code referenced `fieldInfo?.ChatComponentName`
+- Actual property in `AnalysisFieldInfo` is `ComponentName`
+- Property is defined in Hazina framework: `Hazina.Tools.Services.Store/Analysis/IAnalysisFieldsProvider.cs`
+
+### Resolution Strategy
+
+**1. File Recovery from Git History**
+```bash
+# Found file in git history
+git log --all --full-history --oneline -- "src/lib/api.ts"
+
+# Restored from commit 3a77be9
+cd C:/Projects/client-manager
+git checkout 3a77be9 -- ClientManagerFrontend/src/lib/api.ts
+
+# Committed and pushed
+git add ClientManagerFrontend/src/lib/api.ts
+git commit -m "fix: Restore missing src/lib/api.ts from git history"
+git push origin fix/develop-issues-systematic
+```
+
+**2. Develop → Main Merge**
+```bash
+# Switch to main, pull latest
+git checkout main
+git pull origin main
+
+# Normalize line endings first (conflict resolution)
+git add -A
+git commit -m "chore: Normalize line endings (CRLF -> LF)"
+
+# Merge develop
+git merge develop -m "Merge develop into main"
+git push origin main
+```
+
+**3. Property Name Fix**
+```bash
+# In main branch (Active Debugging Mode - direct edit)
+# Changed both occurrences in ToolsContextAnalysisExtensions.cs:
+# Line 153: ChatComponentName → ComponentName
+# Line 183: ChatComponentName → ComponentName
+
+git add ClientManagerAPI/Extensions/ToolsContextAnalysisExtensions.cs
+git commit -m "fix: Replace ChatComponentName with ComponentName"
+git push origin main
+
+# Cherry-pick to develop
+git checkout develop
+git cherry-pick c27ed38
+git push origin develop
+```
+
+### Key Learnings
+
+1. **Git File Recovery Pattern**
+   - Use `git log --all --full-history -- <path>` to find deleted files
+   - Restore with `git checkout <commit> -- <path>`
+   - Missing imports often indicate deleted shared utilities
+
+2. **Old Branch Confusion**
+   - User was in outdated `fix/develop-issues-systematic` branch
+   - Develop had already moved forward with fixes
+   - Always check `git branch --show-current` and branch age
+
+3. **Cross-Repository Property Names**
+   - When using framework types (Hazina), verify property names
+   - `ChatComponentName` doesn't exist - correct property is `ComponentName`
+   - Check framework source when compilation errors reference external types
+
+4. **Active Debugging Mode Applied Correctly**
+   - User had build errors → Active Debugging Mode
+   - Worked directly in C:\Projects\client-manager (no worktree)
+   - Made fixes on current branch (main)
+   - Fast turnaround for user
+
+5. **Line Ending Normalization**
+   - Windows CRLF vs Unix LF can block merges
+   - Git shows: "CRLF will be replaced by LF the next time Git touches it"
+   - Solution: Commit line ending changes before merge
+
+6. **Cherry-Pick for Cross-Branch Fixes**
+   - Fixed in main first (where user reported error)
+   - Cherry-picked to develop to keep branches in sync
+   - Prevents same error from reappearing
+
+### Process Timeline
+
+1. Vite import error → Investigated missing file
+2. Found file in git history → Restored to old branch
+3. User clarified develop already works → Explained branch confusion
+4. Merged develop→main → Line ending conflicts
+5. Normalized line endings → Successful merge
+6. C# compilation errors → Fixed property names
+7. Cherry-picked fix to develop → Both branches synchronized
+
+### Commands Reference
+
+**Check git history for deleted file:**
+```bash
+git log --all --full-history --oneline -- "path/to/file"
+```
+
+**Restore file from specific commit:**
+```bash
+git checkout <commit-hash> -- path/to/file
+```
+
+**Cherry-pick commit to another branch:**
+```bash
+git checkout <target-branch>
+git cherry-pick <commit-hash>
+```
+
+**Accept line ending changes:**
+```bash
+git add -A
+git commit -m "chore: Normalize line endings"
+```
+
+### Anti-Patterns Avoided
+
+❌ **DON'T:**
+- Recreate missing files from scratch (use git history first)
+- Work in outdated branches without checking develop
+- Assume property names without verifying in source
+- Ignore line ending warnings during merge
+
+✅ **DO:**
+- Use `git log --all --full-history` to find deleted files
+- Check current branch and its relation to develop
+- Verify framework property names in their source
+- Address line ending conflicts before merging
+- Cherry-pick fixes to keep branches synchronized
+
+### Files Modified
+
+**client-manager:**
+- `ClientManagerFrontend/src/lib/api.ts` (restored)
+- `ClientManagerAPI/Extensions/ToolsContextAnalysisExtensions.cs` (property name fix)
+
+### Success Metrics
+
+- ✅ Vite import error resolved
+- ✅ Develop merged into main (77 commits)
+- ✅ C# compilation errors fixed (2 occurrences)
+- ✅ Fix applied to both main and develop
+- ✅ All changes pushed to remote
+- ✅ No worktree allocation (Active Debugging Mode)
+
+### Future Prevention
+
+1. **Before working on old branches:** Check if develop has moved forward
+2. **When file imports fail:** Search git history before recreating
+3. **When using framework types:** Verify property names in framework source
+4. **After merges:** Test compilation to catch property mismatches early
+
+---
+
 ## 2026-01-17 23:45 - PR Conflict Resolution: Merge main into develop
 
 **Pattern Type:** Git Conflict Resolution / Active Debugging Mode
