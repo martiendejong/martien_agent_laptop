@@ -4,6 +4,198 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-17 22:30 [CRITICAL DISCOVERY] - WordPress Plugin Templates Override Theme Templates
+
+**Pattern Type:** WordPress Architecture / Template Hierarchy / Custom Post Types
+**Context:** Implemented floating image layout for WordPress theme, but changes didn't appear in localhost
+**Project:** Art Revisionist WordPress integration
+**Outcome:** ✅ Discovered plugin templates override theme, fixed both locations
+
+### The Problem: Theme Changes Not Appearing
+
+**Initial Implementation (INCOMPLETE):**
+- Modified WordPress theme files:
+  - `C:\xampp\htdocs\wp-content\themes\artrevisionist-wp-theme\single.php`
+  - `C:\xampp\htdocs\wp-content\themes\artrevisionist-wp-theme\assets\css\content.css`
+  - Updated `functions.php` to enqueue CSS
+- Committed, pushed, version bumped to 1.2.0
+- User tested in localhost: **NOT WORKING**
+
+**Initial Diagnosis (WRONG):**
+- Assumed browser cache issue
+- Created troubleshooting guide with cache-clearing steps
+- Suggested theme reactivation
+- **Reality:** Theme changes were never being used!
+
+### Root Cause Discovery
+
+**HTML Inspection Revealed:**
+```html
+<div class="b2bk-page">
+    <div class="b2bk-featured-image">  <!-- NOT ar-featured-image! -->
+```
+
+**Expected from theme:**
+```html
+<div class="ar-featured-image ar-float-right">
+```
+
+**Realization:** Pages were using classes from plugin (`b2bk-*`), not theme (`ar-*`)
+
+### WordPress Architecture: Plugin Templates Override Theme Templates
+
+**Template Hierarchy for Custom Post Types:**
+
+1. **Plugin Templates** (highest priority):
+   - Location: `wp-content/plugins/{plugin-name}/templates/single-{post-type}.php`
+   - Used by: Art Revisionist plugin for `b2bk_topic_page`, `b2bk_detail`, `b2bk_evidence`
+
+2. **Theme Templates** (lower priority):
+   - Location: `wp-content/themes/{theme-name}/single.php`
+   - Used by: Standard posts, pages (when no custom template exists)
+
+**Art Revisionist Plugin Templates:**
+```
+C:\xampp\htdocs\wp-content\plugins\artrevisionist-wordpress\
+├── templates/
+│   ├── single-b2bk-topic-page.php    (Topic Pages)
+│   ├── single-b2bk-detail.php        (Detail pages)
+│   ├── single-b2bk-evidence.php      (Evidence pages)
+│   └── single-b2bk-topic.php         (Topic listings)
+```
+
+### The Fix: Update Plugin Templates
+
+**Modified 3 plugin template files:**
+1. `single-b2bk-detail.php`
+2. `single-b2bk-topic-page.php`
+3. `single-b2bk-evidence.php`
+
+**Changes:**
+- Added same floating layout logic as theme `single.php`
+- Featured image: `<div class="b2bk-featured-image ar-featured-image ar-float-right">`
+- Additional images: wrapped with alternating `ar-float-left` / `ar-float-right`
+- Reused theme CSS (`content.css`) by applying theme classes to plugin templates
+
+**Git commits:**
+- Plugin repo: `38c27ae` - "feat: Implement floating image layout in plugin templates"
+- Theme repo: `b4e3874` - "feat: Implement floating image layout for WordPress posts" (already done)
+
+### Critical Lessons for WordPress Development
+
+**BEFORE modifying WordPress theme for custom features:**
+
+1. ✅ **Check if plugin has templates** - Custom post types often use plugin templates
+2. ✅ **Inspect actual HTML output** - Don't assume theme templates are being used
+3. ✅ **Search for template files:**
+   ```bash
+   find /c/xampp/htdocs/wp-content/plugins -name "*.php" | grep template
+   ```
+4. ✅ **Identify template hierarchy:**
+   - Custom post types → Plugin templates first
+   - Standard posts → Theme templates
+   - Pages → Theme templates or custom page templates
+
+**When implementing cross-cutting features (like floating images):**
+
+1. ✅ **Create reusable CSS in theme** - Single source of truth for styles
+2. ✅ **Apply theme classes in plugin templates** - Plugin templates use theme CSS
+3. ✅ **Update both locations:**
+   - Theme: `single.php` (for standard posts)
+   - Plugin: `single-{post-type}.php` (for custom post types)
+
+### WordPress Template Detection Protocol
+
+**Step 1: Inspect Page Source**
+- Look for unique class names (e.g., `b2bk-page`, `ar-single-post`)
+- Identify which template is being used
+
+**Step 2: Find Template File**
+```bash
+# Search theme
+find /c/xampp/htdocs/wp-content/themes -name "*.php" | xargs grep "b2bk-page"
+
+# Search plugins
+find /c/xampp/htdocs/wp-content/plugins -name "*.php" | xargs grep "b2bk-page"
+```
+
+**Step 3: Check Template Loader**
+- Plugins can override templates via `template_include` filter
+- Check plugin code: `class-{plugin}-templates.php`
+
+### Art Revisionist WordPress Architecture
+
+**Component Locations:**
+
+| Component | Location | Purpose |
+|-----------|----------|---------|
+| Theme files | `C:\xampp\htdocs\wp-content\themes\artrevisionist-wp-theme\` | Global styles, header, footer, standard posts |
+| Plugin files | `C:\xampp\htdocs\wp-content\plugins\artrevisionist-wordpress\` | Custom post types, templates, REST API |
+| Custom post types | Plugin: `includes/class-b2bk-cpt.php` | Registers `b2bk_topic`, `b2bk_topic_page`, `b2bk_detail`, `b2bk_evidence` |
+| Templates | Plugin: `templates/single-b2bk-*.php` | Controls rendering of custom post types |
+| Styles | Theme: `assets/css/*.css` | Reusable CSS for both theme and plugin |
+
+**Publishing Flow:**
+```
+Art Revisionist API (C#)
+    ↓ (REST API call)
+WordPress REST API
+    ↓ (creates custom post)
+Plugin Templates (b2bk-*)
+    ↓ (applies)
+Theme CSS (content.css)
+    ↓
+Beautiful floating layout! 🎨
+```
+
+### Files Modified This Session
+
+**WordPress Theme (already committed):**
+- `single.php` - Floating layout for standard posts
+- `assets/css/content.css` - CSS definitions (NEW file)
+- `functions.php` - Enqueue content.css
+- `style.css` - Version 1.2.0
+
+**WordPress Plugin (newly discovered and fixed):**
+- `templates/single-b2bk-detail.php` - Detail pages layout
+- `templates/single-b2bk-topic-page.php` - Topic pages layout
+- `templates/single-b2bk-evidence.php` - Evidence pages layout
+
+**Total changes:**
+- Theme: 24 files, 1639 insertions, 30 deletions
+- Plugin: 3 files, 117 insertions, 21 deletions
+
+### Corrective Action for Future WordPress Work
+
+**When user reports "changes not working in WordPress":**
+
+1. ✅ **STOP and inspect HTML source first** - Don't assume browser cache
+2. ✅ **Identify actual template in use** - Check class names, structure
+3. ✅ **Find template file** - Search theme AND plugins
+4. ✅ **Check custom post type registration** - May have custom templates
+5. ✅ **Update all template locations** - Theme + Plugin if needed
+6. ✅ **Only then consider cache** - After confirming templates are correct
+
+**RED FLAGS indicating plugin templates:**
+- Custom post type slugs in URL (e.g., `/topic/`, `/b2bk_detail/`)
+- Unique CSS class prefixes (e.g., `b2bk-`, custom prefix)
+- Classes not found in theme files
+- HTML structure different from theme templates
+
+### Success Outcome
+
+✅ Floating image layout now works across ALL Art Revisionist pages:
+- Standard posts (via theme `single.php`)
+- Topic Pages (via plugin `single-b2bk-topic-page.php`)
+- Detail pages (via plugin `single-b2bk-detail.php`)
+- Evidence pages (via plugin `single-b2bk-evidence.php`)
+
+✅ All changes committed and pushed to GitHub
+✅ Documentation updated
+✅ User confirmed: "nice. nu is het goed!"
+
+---
+
 ## 2026-01-17 20:00 [LEARNING] - Process vs Code Improvements: Critical User Intent Recognition
 
 **Pattern Type:** Analysis & Strategic Planning / User Intent Recognition / Deliverable Format Selection
