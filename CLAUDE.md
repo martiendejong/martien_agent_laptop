@@ -123,9 +123,10 @@ Local configuration and hardcoded paths:
 4. **[worktree-workflow.md](./worktree-workflow.md)** - (Legacy, uses hardcoded paths)
 
 ### 🔄 **Core Workflows**
-3. **[continuous-improvement.md](./continuous-improvement.md)** - Self-learning protocols, end-of-task updates, session recovery
-4. **[git-workflow.md](./git-workflow.md)** - Cross-repo PR dependencies, sync rules, git-flow workflow
-5. **[_machine/DEFINITION_OF_DONE.md](./_machine/DEFINITION_OF_DONE.md)** - **CRITICAL** - Complete DoD checklist for all tasks
+3. **[_machine/SOFTWARE_DEVELOPMENT_PRINCIPLES.md](./_machine/SOFTWARE_DEVELOPMENT_PRINCIPLES.md)** - **MANDATORY** - Boy Scout Rule, architectural purity, code quality standards
+4. **[continuous-improvement.md](./continuous-improvement.md)** - Self-learning protocols, end-of-task updates, session recovery
+5. **[git-workflow.md](./git-workflow.md)** - Cross-repo PR dependencies, sync rules, git-flow workflow
+6. **[_machine/DEFINITION_OF_DONE.md](./_machine/DEFINITION_OF_DONE.md)** - **CRITICAL** - Complete DoD checklist for all tasks
 
 ### 🎨 **User Interface & Productivity**
 6. **[session-management.md](./session-management.md)** - Dynamic window titles/colors, HTML notification tracking
@@ -312,16 +313,18 @@ C:\scripts\.claude\skills\
 ### Every Session Start - MANDATORY:
 1. ✅ **Read** `MACHINE_CONFIG.md` - Load local paths and projects
 2. ✅ **Read** `GENERAL_ZERO_TOLERANCE_RULES.md` - Know the hard-stop rules
-3. ✅ **Read** `GENERAL_DUAL_MODE_WORKFLOW.md` - Understand Feature Development vs Active Debugging modes
-4. ✅ **Read** `_machine/DEFINITION_OF_DONE.md` - Know what "done" means for all tasks
-5. ✅ **Run** `C:/scripts/tools/repo-dashboard.sh` - Check environment state
-6. ✅ **Verify** base repos on `develop` branch (see MACHINE_CONFIG.md for paths)
-7. ✅ **Check** `worktrees.pool.md` - Available agent seats
+3. ✅ **Read** `_machine/SOFTWARE_DEVELOPMENT_PRINCIPLES.md` - Boy Scout Rule, architectural purity, code quality
+4. ✅ **Read** `GENERAL_DUAL_MODE_WORKFLOW.md` - Understand Feature Development vs Active Debugging modes
+5. ✅ **Read** `_machine/DEFINITION_OF_DONE.md` - Know what "done" means for all tasks
+6. ✅ **Run** `C:/scripts/tools/repo-dashboard.sh` - Check environment state
+7. ✅ **Verify** base repos on `develop` branch (see MACHINE_CONFIG.md for paths)
+8. ✅ **Check** `worktrees.pool.md` - Available agent seats
 
 ### Before ANY Code Edit - Determine Mode:
 1. 🚦 **Mode Detection** - See `dual-mode-workflow.md` decision tree
    - User proposes NEW feature → 🏗️ **Feature Development Mode**
    - User posts errors / debugging → 🐛 **Active Debugging Mode**
+2. 🧹 **Boy Scout Rule** - Read entire file first, identify cleanup opportunities (unused imports, naming, docs, magic numbers)
 
 ### Feature Development Mode (new features, refactoring):
 1. ✅ **Allocate worktree** - See `worktree-workflow.md` § Atomic Allocation
@@ -357,6 +360,7 @@ C:\scripts\.claude\skills\
 | **LOAD: Machine configuration** | **`MACHINE_CONFIG.md`** (paths, projects) | - |
 | **DECIDE: Feature Development vs Active Debugging** | **`GENERAL_DUAL_MODE_WORKFLOW.md`** | - |
 | **VERIFY: Definition of Done for all tasks** | **`_machine/DEFINITION_OF_DONE.md`** | - |
+| **APPLY: Boy Scout Rule & Code Quality Standards** | **`_machine/SOFTWARE_DEVELOPMENT_PRINCIPLES.md`** | - |
 | Allocate worktree for code editing (Feature Mode) | `GENERAL_WORKTREE_PROTOCOL.md` § Atomic Allocation | ✅ `allocate-worktree` |
 | **Allocate paired worktrees (client-manager + Hazina)** | **`worktree-workflow.md` § Pattern 73** | ✅ `allocate-worktree` |
 | Work directly in base repo (Debug Mode) | `GENERAL_DUAL_MODE_WORKFLOW.md` § Active Debugging Mode | - |

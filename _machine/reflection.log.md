@@ -4,6 +4,114 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-17 05:00 [LEARNING] - Software Development Principles Codified
+
+**Pattern Type:** Development Standards / Code Quality / Architectural Principles
+**Context:** User requested comprehensive development principles document
+**Project:** Universal (applies to all projects)
+**Outcome:** ✅ Created SOFTWARE_DEVELOPMENT_PRINCIPLES.md with mandatory standards
+
+### User Request
+
+**Original (Dutch):** "setup a setup of general software development principles and design principles for all projects. one rule is the boyscout rule where when you change a file you also look at the file as a whole and see if there are any small improvements that can be made and implement them as part of a cleanup cycle. another rule is that code needs to be architecturally pure and neat. we will always choose the options that lead to a more understandable architecture."
+
+### Solution: Comprehensive Principles Document
+
+**Created:** `C:\scripts\_machine\SOFTWARE_DEVELOPMENT_PRINCIPLES.md`
+
+**Core Principles Documented:**
+
+1. **Boy Scout Rule (MANDATORY)**
+   - "Always leave the code better than you found it"
+   - 3-phase protocol: Pre-change scan → During change cleanup → Post-change review
+   - Checklist: Remove unused imports, fix naming, add docs, extract magic numbers, simplify conditions
+   - Examples showing before/after for real-world scenarios
+
+2. **Architectural Purity Principles**
+   - **Clarity Over Cleverness** - If it requires explanation, it's not clear enough
+   - **Single Responsibility Principle** - One class/method = one reason to change
+   - **Dependency Inversion** - Depend on abstractions, inject dependencies
+   - **Separation of Concerns** - Controllers → Services → Repositories → Domain
+   - **Open/Closed Principle** - Open for extension, closed for modification
+
+3. **Code Quality Standards**
+   - Naming conventions (PascalCase classes, _camelCase fields, camelCase params)
+   - Method size: Max 20 lines, ideal 5-10 lines
+   - Class size: Max 300 lines, ideal 100-200 lines
+   - Cyclomatic complexity: Max 10, ideal 1-4
+
+4. **Architectural Decision Rules (Priority Order)**
+   - Priority 1: Understandability (junior dev can understand in 6 months)
+   - Priority 2: Maintainability (easy to modify when requirements change)
+   - Priority 3: Testability (can unit test without mocking half the framework)
+   - Priority 4: Performance (optimize only proven bottlenecks)
+
+5. **Cleanup Cycle Protocol**
+   - Pre-change scan (1-2 min)
+   - During-change cleanup (continuous)
+   - Post-change review (2-3 min)
+   - Commit strategy (single commit or separate refactor commits)
+
+6. **Anti-Patterns to Avoid**
+   - God Objects (classes doing everything)
+   - Magic Numbers (unexplained constants)
+   - Shotgun Surgery (single change affects many files)
+   - Copy-Paste Programming (duplicated code)
+   - Leaky Abstractions (implementation details bleeding through)
+
+### Integration with Machine Rules
+
+**Updated Documents:**
+- `CLAUDE.md` - Added reference to SOFTWARE_DEVELOPMENT_PRINCIPLES.md
+- Startup protocol now includes reading this document
+
+**Impact on Future Sessions:**
+- All code changes must apply Boy Scout Rule
+- All architectural decisions use 4-priority framework
+- All PRs checked against code review checklist
+- Continuous improvement mindset embedded in workflow
+
+### Key Learnings
+
+**✅ What Worked:**
+- Comprehensive examples showing ❌ BAD vs ✅ GOOD
+- Concrete checklists for Boy Scout Rule application
+- Clear priority framework for architectural decisions
+- Specific metrics (method lines, class size, complexity)
+
+**💡 Insights:**
+- User values **understandability over cleverness** as primary architectural goal
+- Cleanup should be part of EVERY code change, not deferred
+- Small incremental improvements compound over time
+- Clear standards reduce decision fatigue and code review friction
+
+**🎯 Action Items:**
+- ✅ Apply Boy Scout Rule to every file touched in current mastermindgroupAI refactoring
+- ✅ Extract magic numbers (e.g., "4096" MaxTokens) to named constants
+- ✅ Add XML documentation to all new public methods
+- ✅ Keep methods under 20 lines during OrchestratorService implementation
+
+### Pattern for Future Sessions
+
+**When Editing Any File:**
+```
+1. Pre-scan: Read entire file, identify 3-5 quick wins
+2. Primary change: Implement feature/fix
+3. Cleanup: Apply Boy Scout checklist
+4. Post-review: Verify file is better than before
+5. Commit: Include cleanup in commit message
+```
+
+**When Making Architectural Decisions:**
+```
+1. Understandability: Will junior dev understand this?
+2. Maintainability: Easy to modify later?
+3. Testability: Can I unit test this?
+4. Performance: Is this a bottleneck? (optimize only if YES)
+```
+
+---
+
 ## 2026-01-17 02:30 [SESSION] - client-manager: GitHub Actions Billing Workaround & Batch PR Processing
 
 **Pattern Type:** CI/CD Configuration / DevOps Automation / Dependency Management
