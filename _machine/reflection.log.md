@@ -13949,3 +13949,93 @@ Any PR-related work = Feature Development Mode = Worktree required
 
 No exceptions.
 
+---
+
+## 2026-01-18 17:00 - User Communication Pattern Recognition (Mode Detection Enhancement)
+
+**Pattern Type:** Session Management / User Communication / Mode Detection
+**Context:** User explicitly taught communication patterns for mode detection
+**Outcome:** ✅ Clear rules documented for recognizing Active Debugging vs Feature Development modes
+
+### User's Communication Patterns
+
+**Active Debugging Mode** → Work in `C:\Projects\{repo}` directly:
+- **Pattern:** "I'm now debugging the client manager and it's giving this error: {error content}"
+- **Indicators:**
+  - Present tense ("I'm debugging")
+  - Error-focused
+  - User is actively working
+  - User is in their IDE/development session
+- **Action:** Work in base repo on user's current branch, NO worktree allocation
+
+**Feature Development Mode** → Allocate worktree in `C:\Projects\worker-agents\agent-XXX\{repo}`:
+- **Patterns:**
+  - "Develop the feature that is described in ClickUp task: {task url}"
+  - "Merge the develop branch into branch X so that the PR can be tested and merged back into develop"
+- **Indicators:**
+  - Task-oriented language
+  - "Develop", "feature", "implement"
+  - "Merge", "PR", "test"
+  - Future/imperative tense
+  - Assignment of autonomous work
+- **Action:** Allocate worktree, work autonomously, create PR, release worktree
+
+### Key Insight
+
+**User's language reveals intent:**
+- **"I'm debugging"** = I'm helping user in their active session
+- **"Develop/implement/merge"** = I'm doing autonomous feature work
+
+This aligns perfectly with the dual-mode workflow philosophy:
+- **Active Debugging:** Fast, in-place assistance with user's current work
+- **Feature Development:** Isolated, safe autonomous work with proper git workflow
+
+### Mode Detection Decision Tree Enhancement
+
+**Add these linguistic markers:**
+
+| User Says | Mode | Worktree? |
+|-----------|------|-----------|
+| "I'm debugging X and getting error Y" | 🐛 Active Debugging | ❌ NO |
+| "Getting this build error: X" | 🐛 Active Debugging | ❌ NO |
+| "This isn't working: X" | 🐛 Active Debugging | ❌ NO |
+| "Develop feature: X" | 🏗️ Feature Development | ✅ YES |
+| "Implement X from ClickUp task" | 🏗️ Feature Development | ✅ YES |
+| "Merge develop into branch X" | 🏗️ Feature Development | ✅ YES |
+| "Create PR for X" | 🏗️ Feature Development | ✅ YES |
+| "Fix the CI build on PR #X" | 🏗️ Feature Development | ✅ YES |
+
+### Lessons Learned
+
+1. **User communication style is consistent and intentional**
+   - They use different language for different work modes
+   - Recognizing these patterns improves mode detection accuracy
+   - Less need to ask clarifying questions
+
+2. **Tense matters:**
+   - Present tense ("I'm debugging") = Active work session
+   - Imperative/future tense ("Develop", "Implement") = Assigned task
+
+3. **Subject matters:**
+   - "I" as subject = User is working, I'm assisting
+   - Implicit subject or task-focused = I'm working autonomously
+
+4. **Error presence is a strong signal:**
+   - User posting errors → Almost always Active Debugging
+   - Exception: "Fix CI errors on PR #X" → Feature Development (working on PR)
+
+### Action Items
+
+- ✅ Documented user communication patterns
+- [ ] Update GENERAL_DUAL_MODE_WORKFLOW.md with linguistic markers
+- [ ] Add examples to mode detection decision tree
+- [ ] Review past sessions to validate pattern consistency
+
+### Commitment
+
+**Use these patterns to improve mode detection accuracy**
+- Listen to user's language carefully
+- Recognize "I'm debugging" vs "Develop feature" immediately
+- Apply correct mode without asking clarifying questions
+- Trust the user's communication style
+
