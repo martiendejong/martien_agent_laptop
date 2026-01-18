@@ -485,3 +485,5 @@ Actions:
 2026-01-18T21:00:00Z – release – agent-002 – client-manager – agent-002-fix-activity-flash – – claude-code – Completed: PR #254 created, commit 2e82029. Fixed UX issue where old activities flash when switching projects.
 2026-01-18T21:30:00Z – allocate – agent-002 – client-manager – agent-002-fix-profiles-route – – claude-code – Fixing profiles navigation route (homepage instead of /settings/profiles)
 2026-01-18T22:00:00Z – release – agent-002 – client-manager – agent-002-fix-profiles-route – – claude-code – Completed: PR #255 created, commit 518909e. Fixed profiles navigation to go to homepage instead of /settings/profiles.
+2026-01-18T22:30:00Z – allocate – agent-002 – client-manager – agent-002-fix-activity-flash – – claude-code – Adding activity reset when switching profiles/returning to homepage
+2026-01-18T23:00:00Z – release – agent-002 – client-manager – agent-002-fix-activity-flash – – claude-code – Completed: Added activity reset when switching profiles, commit e35bbb6, pushed to PR #254
