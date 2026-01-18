@@ -14573,3 +14573,118 @@ The zero-tolerance rules exist for a reason - follow them exactly.
 
 **CRITICAL TAKEAWAY:** ANY branch work that leads to a PR MUST be done in a worktree, even if you're currently in the base repo. No exceptions.
 
+
+---
+
+## 2026-01-18 23:15 - CRITICAL: Never Switch Branches in Base Repo
+
+**Pattern Type:** Zero-Tolerance Protocol / Worktree Workflow
+**User Directive:** Never switch branches in base repo unless explicitly instructed
+**Outcome:** MANDATORY protocol update
+
+### User Statement
+
+"you never switch the branch in the repo folder except explicitly instructed to do so, instead you use a worktree to create or switch to another branch"
+
+### The Rule (Absolute)
+
+**In base repo (C:\Projects\client-manager):**
+- FORBIDDEN: git checkout <any-branch>
+- FORBIDDEN: git switch <any-branch>
+- FORBIDDEN: Changing branches for any reason (except explicit user instruction)
+
+**If I need a different branch:**
+- CORRECT: Use worktree (git worktree add)
+- WRONG: Switch base repo branch
+
+### What Changed
+
+**OLD (Wrong) Protocol:**
+After PR creation, switch base repo to develop:
+```bash
+cd C:/Projects/client-manager && git checkout develop
+```
+
+**NEW (Correct) Protocol:**
+After PR creation, leave base repo branch alone:
+```bash
+# Just release worktree and prune
+rm -rf C:/Projects/worker-agents/agent-002/*
+git worktree prune
+# DO NOT switch base repo branch
+```
+
+### The Mental Model
+
+**Base repo = Library (read-only reference)**
+- Read files
+- View history
+- Source for worktrees
+- DO NOT modify branches
+
+**Worktrees = Study desks (workspaces)**
+- Create branches
+- Make changes
+- Switch between branches (by using different worktrees)
+
+### Base Repo Operations
+
+**ALLOWED:**
+- git status, git log, git diff (read-only)
+- git pull (update current branch)
+- Reading files
+- Searching/grepping
+
+**FORBIDDEN:**
+- git checkout/switch (never change branches)
+- git commit (for PR work)
+- Creating branches
+- Making code edits for PRs
+
+**EXCEPTION:**
+- Only if user explicitly instructs: "switch base repo to X"
+
+### Updated Release Protocol
+
+**Correct steps after PR creation:**
+1. Release worktree (rm -rf)
+2. Update pool.md
+3. Prune worktrees
+4. Leave base repo branch alone
+
+**DO NOT:**
+- Switch base repo to develop
+- Switch base repo to any branch
+
+### Why This Matters
+
+**Problems with switching base repo:**
+- Unnecessary git operations
+- Can interfere with other processes
+- Risks unexpected state
+- Creates confusion
+- Not needed with proper worktree usage
+
+**Benefits of never switching:**
+- Base repo state is stable
+- No risk of forgetting to switch back
+- Clean separation: base = reference, worktrees = work
+- Multiple agents can safely reference base repo
+- Simpler mental model
+
+### Commitment
+
+**From this moment forward:**
+- I will NEVER switch base repo branches on my own
+- I will only use worktrees for branch work
+- I will leave base repo in whatever state it is
+- I will only switch base repo if user explicitly instructs
+
+**Zero violations from this point forward.**
+
+### Critical Takeaway
+
+**Base repo branches are READ-ONLY (unless user instructs)**
+
+Never git checkout in base repo. Always use worktrees instead.
+
