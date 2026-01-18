@@ -14039,3 +14039,84 @@ This aligns perfectly with the dual-mode workflow philosophy:
 - Apply correct mode without asking clarifying questions
 - Trust the user's communication style
 
+---
+
+## 2026-01-18 17:05 - MANDATORY Mode Clarification Protocol (User-Mandated Safety Rule)
+
+**Pattern Type:** Critical Safety Protocol / Mode Detection / Zero Tolerance
+**Context:** User explicitly mandated asking for clarification when uncertain about repo vs worktree
+**Outcome:** ✅ New HARD STOP rule documented - never assume, always ask when uncertain
+
+### User Directive
+
+**Exact instruction:** "From now on I want you to whenever I say or suggest you to change files or do anything with git or execute a build or anything else in a project, and you are not sure if I want it to be done in the repo or in a worktree I want you to immediately ask this and write or do nothing else before continuing"
+
+### MANDATORY Mode Clarification Protocol
+
+**When there is ANY uncertainty about base repo vs worktree:**
+
+1. ⛔ **STOP immediately** - Do not proceed with any action
+2. ❓ **Ask explicitly:** "Should I work in the base repo (`C:\Projects\{repo}`) or allocate a worktree?"
+3. ⏸️ **Do NOTHING else** - No file reads, no edits, no git commands, no builds, no assumptions
+4. ✅ **Wait for explicit user confirmation** before any action
+
+### What Counts as "Uncertain"
+
+**Ask for clarification when:**
+- User's language doesn't clearly match Active Debugging or Feature Development patterns
+- Request involves code changes but context is ambiguous
+- User says "fix", "update", "change" without clear mode indicators
+- Mixed signals (e.g., mentions error but also says "implement")
+- New/unusual phrasing that doesn't match documented patterns
+- ANY doubt whatsoever about which mode to use
+
+**Do NOT assume based on:**
+- "It seems like..." reasoning
+- "Probably" or "likely" guesses
+- Past similar requests
+- Complexity of the task
+
+### Rationale
+
+1. **User explicitly mandated this protocol** - This is a direct user requirement
+2. **Zero tolerance for mode violations** - Mistakes are costly and erode trust
+3. **Asking is ALWAYS better than guessing wrong** - 5-second clarification vs hours of rework
+4. **Prevents costly mistakes** - Wrong mode = wasted effort, potential conflicts, user frustration
+
+### Critical Note
+
+**This overrides the previous "apply correct mode without asking" guidance.**
+
+The user communication pattern recognition (documented above) is still valuable for CLEAR cases, but:
+- **Clear case** = Proceed confidently
+- **ANY uncertainty** = STOP and ASK
+
+**When in doubt, ASK. Never assume.**
+
+### Examples of When to Ask
+
+**Clear (no need to ask):**
+- "I'm debugging client-manager and getting error X" → Active Debugging Mode
+- "Develop the feature from ClickUp task XYZ" → Feature Development Mode
+
+**Uncertain (MUST ask):**
+- "Fix the login validation" → Which mode? User debugging or new task?
+- "Update the API endpoint" → User's current work or autonomous task?
+- "Change the database schema" → Migration in progress or new feature?
+- "Run the build" → In base repo or worktree context?
+
+### Action Items
+
+- ✅ Documented mandatory clarification protocol
+- [ ] Update GENERAL_ZERO_TOLERANCE_RULES.md with this protocol
+- [ ] Add "When uncertain, ASK" to all mode detection documentation
+- [ ] Create examples of clear vs uncertain scenarios
+
+### Commitment
+
+**From this moment forward:**
+- ANY uncertainty → Immediate STOP and ASK
+- No assumptions, no "probably", no guessing
+- User's explicit answer is the only acceptable input
+- 100% compliance with this protocol
+
