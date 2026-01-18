@@ -14337,3 +14337,239 @@ useEffect(() => {
 
 **Result:** ✅ Production-ready PR, awaiting user review and testing.
 
+
+---
+
+## 2026-01-18 22:15 - CRITICAL WORKTREE PROTOCOL CLARIFICATION
+
+**Pattern Type:** Zero-Tolerance Protocol / Worktree Workflow / User-Mandated Rule
+**Context:** User clarification on when to use worktrees
+**Outcome:** ✅ MANDATORY protocol update - Critical understanding correction
+
+### User Directive
+
+**User Statement:** "when you create a new branch with a pr you do that by default in a worktree. even when we are working in the repo folder itself and you decide that you want to solve something in a new branch then you will create this branch in a worktree folder and not in your repo."
+
+### The Clarification
+
+**PREVIOUS UNDERSTANDING (INCOMPLETE):**
+- Feature Development Mode → Use worktrees
+- Active Debugging Mode → Work in base repo (C:\Projects\client-manager)
+- If already in base repo debugging, stay there
+
+**CORRECTED UNDERSTANDING (MANDATORY):**
+- **ANY new branch for a PR → ALWAYS use worktree**
+- **Even if currently working in base repo → Switch to worktree for branch work**
+- Base repo (C:\Projects\client-manager) → **NEVER create feature branches here**
+- Worktree folder (C:\Projects\worker-agents\agent-XXX\) → **ALWAYS create branches here**
+
+### The Rule (Absolute)
+
+**When you decide to solve something in a new branch:**
+```
+❌ WRONG: Create branch in C:\Projects\client-manager
+✅ CORRECT: Create branch in C:\Projects\worker-agents\agent-XXX\client-manager
+```
+
+**Regardless of:**
+- Where you're currently working (base repo or worktree)
+- What mode you're in (Feature Development or Active Debugging)
+- Whether it's a quick fix or major feature
+- Whether user is debugging or not
+
+**If it needs a branch + PR → It needs a worktree**
+
+### Examples
+
+**Example 1: Already in Base Repo, Need to Create PR**
+```bash
+# Current location: C:\Projects\client-manager (base repo)
+# User says: "fix this and create a PR"
+
+❌ WRONG APPROACH:
+cd C:/Projects/client-manager
+git checkout -b fix/some-issue     # NO! Don't create branch in base repo
+# ... make changes ...
+git commit && git push
+gh pr create
+
+✅ CORRECT APPROACH:
+# 1. Allocate worktree
+cd C:/Projects/client-manager
+git worktree add C:/Projects/worker-agents/agent-002/client-manager -b agent-002-fix-issue
+
+# 2. Update pool.md (mark BUSY)
+# 3. Work in worktree
+cd C:/Projects/worker-agents/agent-002/client-manager
+# ... make changes ...
+git commit && git push
+gh pr create
+
+# 4. Release worktree (mark FREE)
+# 5. Switch base repo back to develop
+```
+
+**Example 2: Quick Fix During Debugging Session**
+```bash
+# User is debugging, you're in base repo helping
+# User says: "can you fix this profiles navigation issue in a PR?"
+
+❌ WRONG: Create branch right there in base repo
+✅ CORRECT: Allocate worktree, create branch there, make PR, release
+```
+
+**Example 3: Multiple Small Fixes**
+```bash
+# User reports 3 small bugs
+# Each needs a separate PR
+
+❌ WRONG: Create 3 branches in base repo
+✅ CORRECT: 
+  - Allocate worktree for fix 1, create PR, release
+  - Allocate worktree for fix 2, create PR, release
+  - Allocate worktree for fix 3, create PR, release
+```
+
+### Base Repo Usage (C:\Projects\client-manager)
+
+**ONLY allowed operations in base repo:**
+1. ✅ Reading files for investigation
+2. ✅ Running grep/search operations
+3. ✅ Checking git status/log/diff (for information)
+4. ✅ Switching branches (to develop/main)
+5. ✅ Pulling updates (git pull)
+
+**FORBIDDEN operations in base repo:**
+1. ❌ Creating new branches (`git checkout -b`)
+2. ❌ Making code edits for PRs
+3. ❌ Committing changes for PRs
+4. ❌ Pushing feature branches
+5. ❌ Creating PRs from base repo
+
+**Exception:** Active Debugging Mode WITHOUT PR
+- If user is debugging and you're making quick edits WITHOUT creating a PR
+- You can work in base repo on user's current branch
+- But the moment you need a PR → Switch to worktree
+
+### Why This Matters
+
+**Prevents:**
+1. Base repo getting stuck on feature branches
+2. Confusion about which branch is "clean develop"
+3. Worktree pool becoming unreliable
+4. Multiple agents conflicting on base repo state
+5. Breaking the zero-tolerance protocol
+
+**Ensures:**
+1. Base repo always clean on develop/main
+2. All PR work isolated in worktrees
+3. Easy parallel agent operation
+4. Clear state tracking in pool.md
+5. Consistent workflow compliance
+
+### Updated Decision Tree
+
+**User requests change → Will this become a PR?**
+```
+YES → Allocate worktree, create branch there, work, PR, release
+NO → Can work in base repo (if Active Debugging Mode)
+```
+
+**Currently in base repo → User asks for PR?**
+```
+ALWAYS → Allocate worktree, move work there (or start fresh)
+```
+
+**Quick fix vs major feature?**
+```
+IRRELEVANT → If it needs a PR, use worktree (size doesn't matter)
+```
+
+### Session Context
+
+**What Triggered This:**
+- Today's session had TWO PRs created (#254, #255)
+- Both were created properly in worktrees (agent-002)
+- But user clarified the protocol to ensure I ALWAYS do this
+- Not just for "Feature Development Mode" but for ANY PR work
+
+**What I Did Right:**
+- ✅ Both PRs today used worktrees correctly
+- ✅ Followed proper allocation → work → release cycle
+- ✅ Updated pool.md accurately
+
+**What I'm Clarifying:**
+- The protocol is NOT "use worktrees in Feature Mode"
+- The protocol IS "use worktrees for ANY branch/PR work"
+- This is absolute, not situational
+
+### Documentation Updates Needed
+
+**Files to Update:**
+1. ✅ reflection.log.md - This entry (done)
+2. 🔜 GENERAL_ZERO_TOLERANCE_RULES.md - Add explicit "ANY PR → worktree" rule
+3. 🔜 GENERAL_DUAL_MODE_WORKFLOW.md - Clarify that PR creation triggers worktree requirement
+4. 🔜 GENERAL_WORKTREE_PROTOCOL.md - Add "Decision: Need PR? → Need Worktree" section
+
+### The Absolute Rule (Summary)
+
+**IF creating a PR → MUST use worktree**
+
+**No exceptions. No shortcuts. No "but it's just a quick fix".**
+
+**Location of work:**
+- Base repo: `C:\Projects\client-manager` → ONLY for reading, git info, branch switching
+- Worktree: `C:\Projects\worker-agents\agent-XXX\client-manager` → ALL branch/PR work
+
+**Commit to memory:**
+```
+PR = Worktree
+New Branch = Worktree  
+Feature = Worktree
+Bug Fix (with PR) = Worktree
+Quick Fix (with PR) = Worktree
+```
+
+**Only exception:**
+```
+Active debugging without PR = Can use base repo on user's current branch
+```
+
+### Success Criteria Going Forward
+
+**I am following this protocol correctly when:**
+- ✅ Every PR I create originates from a worktree
+- ✅ I never create branches in base repo
+- ✅ Base repo stays on develop/main except during Active Debugging
+- ✅ I allocate worktree BEFORE starting any PR work
+- ✅ I release worktree AFTER PR creation
+
+**I am violating this protocol if:**
+- ❌ I create a branch in base repo for a PR
+- ❌ I work on a feature branch in base repo
+- ❌ I commit/push from base repo for a PR
+- ❌ Base repo is on a feature branch after I'm done
+
+### Internalization
+
+**From now on, when I hear:**
+- "Can you fix this in a PR?" → **Immediate thought: Allocate worktree**
+- "Create a branch for this" → **Immediate thought: Worktree location**
+- "Make this change" → **Immediate question: PR needed? If yes → Worktree**
+
+**Default assumption:**
+- **If it might become a PR → Start in worktree**
+- **When in doubt → Use worktree**
+
+### User Patience Note
+
+The user has been extremely patient in clarifying protocols.
+This clarification ensures I don't slip into bad habits.
+The zero-tolerance rules exist for a reason - follow them exactly.
+
+**Commitment:** ZERO violations from this point forward.
+
+---
+
+**CRITICAL TAKEAWAY:** ANY branch work that leads to a PR MUST be done in a worktree, even if you're currently in the base repo. No exceptions.
+
