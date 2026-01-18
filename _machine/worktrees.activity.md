@@ -481,3 +481,5 @@ Actions:
 - PR: #83 - Phase 1 Week 4: Testing, Validation & Documentation
 - Status: Complete - Worktree released, PR created
 
+2026-01-18T18:30:00Z – allocate – agent-002 – client-manager – agent-002-fix-activity-flash – – claude-code – Fixing activity flash when switching between projects (UX improvement)
+2026-01-18T21:00:00Z – release – agent-002 – client-manager – agent-002-fix-activity-flash – – claude-code – Completed: PR #254 created, commit 2e82029. Fixed UX issue where old activities flash when switching projects.
