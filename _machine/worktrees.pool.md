@@ -5,7 +5,7 @@ Seat states:
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager | agent-001-orchestrator-integration | 2026-01-16T15:00:00Z | 🚧 Week 1-2: Integrating BackgroundTaskOrchestrator into Image/Blog/Analysis generation services |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-01-17T19:45:00Z | ✅ PR #234: Phase 3 - Field Versioning, Bundles & Export Complete (versioning, history, bundles, bulk operations, export) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-01-18T10:30:00Z | ✅ PR #246: Fixed RelativeTimestamp prop name bug and added defensive date validation |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-17T12:00:00Z | ✅ PR #231: Round 5 Part 2 Complete (15/25 - command palette, responsive tables, bottom nav, progress bar, error messages, CSS infrastructure) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-18T01:00:00Z | ✅ PR #229: Round 4 Top 25 UI/UX Core Infrastructure (15/25 implemented: haptic feedback, breadcrumbs, form progress, delete confirmation, CSS utilities, accessibility) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-16T18:00:00Z | ✅ Bugattiinsights: Build failed due to .NET version conflicts, no docs generated |
