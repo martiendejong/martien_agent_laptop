@@ -13327,3 +13327,91 @@ The 493% ROI over 3 years is compelling. Few-shot prompting (learning from user'
 **Status:** Complete ✅
 
 ---
+
+---
+
+## 2026-01-18 14:00 - Activity Sidebar Bug Fixes: Multi-Stage Debugging Session
+
+**Pattern Type:** Active Debugging / Bug Fixing / React Hooks Violations
+**Context:** User testing activity sidebar after PR #233 merge, encountering multiple cascading errors
+**Project:** client-manager (develop branch)
+**Outcome:** 5 bugs fixed across 4 commits
+
+### The Bug Chain
+
+User reported clicking activity items crashed with RangeError. This triggered a multi-stage debugging session revealing cascading issues.
+
+#### Bug 1: RelativeTimestamp Prop Name Mismatch
+**Error:** RangeError: Invalid time value at RelativeTimestamp.tsx:11
+
+**Root Cause:**
+- RelativeTimestamp component expects date prop
+- Called with timestamp prop in 3 locations
+
+**Fix:** PR #247
+- Changed all timestamp to date props
+- Added defensive null/undefined checks to utilities
+
+**Critical Lesson:** PR #246 was accidentally merged to main instead of develop. Always verify target branch.
+
+#### Bug 2: LogoGalleryModal React Hooks Violation (Partial)
+**Error:** Rendered more hooks than during the previous render
+
+**Root Cause:** Early return between hooks
+
+**First Fix:** Commit b840f03 - INCOMPLETE, missed 3 more hooks
+
+#### Bug 3: ItemMetadata Props Mismatch
+**Error:** Element type is invalid
+
+**Root Cause:** PopupDetailModal passing wrong props to ItemMetadata
+
+**Fix:** Commit b6c57ef
+
+#### Bug 4: LogoGalleryModal Hooks Violation (Complete)
+**Error:** Still getting hooks error for logo items
+
+**Root Cause:** 3 useCallback hooks AFTER early return
+- When isOpen=false: 3 hooks called
+- When isOpen=true: 6 hooks called
+
+**Complete Fix:** Commit d209500 - Moved ALL hooks before early return
+
+### Key Learnings
+
+#### 1. React Hooks Rule Enforcement (CRITICAL)
+Rule: Hooks must be called in EXACT SAME ORDER on every render
+
+Common Violation: Early return between hooks
+
+Debugging Checklist:
+- Count ALL hooks (useState, useEffect, useCallback, useMemo, useRef)
+- Ensure EVERY hook is called before ANY early return
+- Never put hooks inside if/else blocks or loops
+
+#### 2. Multi-Stage Debugging Strategy
+- Treat each error as independent
+- Pull latest code and verify fixes are deployed
+- Read FULL component, not just first issue
+- Count ALL hooks, not just obvious ones
+
+#### 3. PR Target Branch Verification
+Always use: gh pr create --base develop
+
+#### 4. Defensive Programming in Utilities
+Always validate inputs and return graceful fallbacks
+
+### Statistics
+- Bugs Found: 5
+- Commits: 4
+- Files Modified: 4
+- Time: ~2 hours
+
+### Future Prevention
+Code Review Checklist:
+- Count hooks in components with early returns
+- Verify all hooks before conditional logic
+- Check prop names match interfaces
+- Add defensive validation
+- Verify PR target branch
+
