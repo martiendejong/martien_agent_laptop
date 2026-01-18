@@ -341,6 +341,28 @@ Claude Action:
 → Output: "PR #125 created: <url>"
 ```
 
+**Scenario 4: PR Conflict Resolution (CRITICAL - Common Mistake)**
+```
+User: "PR #236 has merge conflicts with develop. Merge develop into it so it can be tested and merged"
+
+Claude Action:
+→ Mode: Feature Development (PR maintenance = code work)
+→ Allocate: agent-001, create worktree
+→ Branch: fix/develop-issues-systematic (existing PR branch)
+→ Location: ${WORKTREE_PATH}/agent-001/<repo>
+→ Work:
+  1. Check out existing PR branch in worktree
+  2. Merge origin/develop in worktree
+  3. Resolve conflicts in worktree
+  4. Commit merge in worktree
+  5. Push from worktree
+→ Release: Clean agent-001, mark FREE, switch to main branch
+→ Output: "PR #236 conflicts resolved, now mergeable: <url>"
+
+⚠️ COMMON MISTAKE: Working directly in ${BASE_REPO_PATH}/<repo> because "it's just maintenance"
+✅ CORRECT: ANY work on PR branches requires worktree allocation
+```
+
 ---
 
 ## 🎯 Mode Detection Quick Reference
@@ -355,6 +377,8 @@ Claude Action:
 | "Refactor the service layer" | 🏗️ Feature | ${WORKTREE_PATH}/agent-XXX/<repo> | ✅ Yes |
 | "Add a new component for..." | 🏗️ Feature | ${WORKTREE_PATH}/agent-XXX/<repo> | ✅ Yes |
 | "Create an API endpoint for..." | 🏗️ Feature | ${WORKTREE_PATH}/agent-XXX/<repo> | ✅ Yes |
+| **"Merge develop into PR #XXX"** | **🏗️ Feature** | **${WORKTREE_PATH}/agent-XXX/<repo>** | **✅ Yes** |
+| **"Resolve conflicts in PR #XXX"** | **🏗️ Feature** | **${WORKTREE_PATH}/agent-XXX/<repo>** | **✅ Yes** |
 
 ---
 
