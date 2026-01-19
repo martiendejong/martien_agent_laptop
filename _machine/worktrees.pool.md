@@ -7,7 +7,7 @@ Seat states:
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager | agent-001-orchestrator-integration | 2026-01-16T15:00:00Z | 🚧 Week 1-2: Integrating BackgroundTaskOrchestrator into Image/Blog/Analysis generation services |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | client-manager+hazina | agent-002-wordpress-content-import | 2026-01-19T12:00:00Z | 🚧 WordPress content import with Hazina UnifiedContent framework |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-19T18:30:00Z | ✅ PR #82 conflicts RESOLVED: Merged develop, guardrails implementation preserved |
-| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-20T00:35:00Z | ✅ Chat URL routing COMPLETE: PR #266 created, chatId preserved |
+| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-19T19:00:00Z | ✅ PR #83 conflicts RESOLVED: Merged main, guardrails implementation preserved |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-20T01:15:00Z | ✅ PR Template COMPLETE: PR #268 created, 110 lines, 25+ checklist items |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-01-20T03:00:00Z | ✅ Code Review Guide COMPLETE: PR #282 created, 509 lines with 10-area checklist |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-01-10T15:30:00Z | ✅ Cleaned up: Security hardening (PR #61) and payment-models work completed and merged |
