@@ -375,6 +375,10 @@ C:\scripts\.claude\skills\
 | Avoid API development pitfalls | Reflection log patterns | ✅ `api-patterns` |
 | Migrate terminology across codebase | `development-patterns.md` § Terminology Migration | ✅ `terminology-migration` |
 | **Large-scale refactoring (>100 changes)** | **`development-patterns.md` § Foundation + Roadmap Pattern** | - |
+| **Platform-agnostic multi-source integration** | **`reflection.log.md` (2026-01-19 20:00) § UnifiedContent Pattern** | - |
+| **Granular import with per-type control** | **`reflection.log.md` (2026-01-19 20:00) § Per-Content-Type Import** | - |
+| **Frontend service layer architecture** | **`reflection.log.md` (2026-01-19 20:00) § Service Layer Pattern** | - |
+| **Create ClickUp tasks for future work** | **Use `clickup-sync.ps1 -Action create`** | - |
 | **Autonomous ClickUp task management** | **`.claude/skills/clickhub-coding-agent/`** | ✅ **`clickhub-coding-agent`** |
 | Update reflection.log.md | `continuous-improvement.md` § Reflection Protocol | ✅ `session-reflection` |
 | Update documentation with learnings | `continuous-improvement.md` § Self-Improvement | ✅ `self-improvement` |
@@ -490,6 +494,6 @@ When implemented, this will enable agents to:
 
 ---
 
-**Last Updated:** 2026-01-19 (Added Foundation + Roadmap Pattern for large-scale refactoring)
+**Last Updated:** 2026-01-19 20:00 (Added patterns: UnifiedContent platform-agnostic storage, Per-Content-Type Import, Service Layer architecture, ClickUp task creation workflow)
 **Maintained By:** Claude Agent (Self-improving documentation)
 **User Mandate:** "zorg dat je dus constant leert van jezelf en je eigen instructies bijwerkt"
