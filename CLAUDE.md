@@ -22,6 +22,8 @@ Any task with multiple steps should become a script. This way:
 | Checking worktrees manually | `worktree-status.ps1` |
 | Commit + push + switch + update pool | `worktree-release-all.ps1` |
 | Reading multiple files for state | `bootstrap-snapshot.ps1` |
+| **Checking user activity & context** | **`monitor-activity.ps1 -Mode context`** |
+| **Detecting other Claude instances** | **`monitor-activity.ps1 -Mode claude`** |
 | Manual C# formatting | `cs-format.ps1` |
 | Checking ClickUp tasks | `clickup-sync.ps1 -Action list` |
 | Allocating worktree manually | `worktree-allocate.ps1 -Repo client-manager -Branch feature/x` |
