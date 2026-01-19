@@ -545,3 +545,4 @@ Actions:
 2026-01-20T03:30:00Z — release — agent-002 — client-manager+hazina — agent-002-framework-url-enrichment — — claude-code — Framework URL enrichment COMPLETE: PRs created (Hazina #94, client-manager #281). IMessagePreprocessor framework + UrlDetectionHintProvider implementation. Replaces PR #269 controller hack with SOLID architecture.
 2026-01-19T12:00:00Z — allocate — agent-002 — client-manager+hazina — agent-002-wordpress-content-import — — claude-code — WordPress content import: Implementing UnifiedContent framework (Hazina) + WordPress import UI (client-manager)
 2026-01-20T02:40:00Z | agent-006 | ALLOCATE | feature/869bu91dn-code-review-guide | ClickUp #869bu91dn - Code review guide
+2026-01-19T16:59:35Z | agent-006 | RELEASE | feature/869bu91dn-code-review-guide | PR #282 created - Code Review Guide (509 lines)
