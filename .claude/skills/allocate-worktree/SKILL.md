@@ -11,6 +11,37 @@ user-invocable: true
 
 ## MANDATORY Pre-Allocation Checks
 
+### 0. Mode Detection (CRITICAL - FIRST CHECK)
+
+**BEFORE doing ANYTHING, verify this is Feature Development Mode:**
+
+```powershell
+# Run mode detection on user's request
+$mode = detect-mode.ps1 -UserMessage $userRequest
+
+if ($mode -ne "FEATURE_DEVELOPMENT_MODE") {
+    Write-Host "⚠️  Mode is $mode - DO NOT ALLOCATE WORKTREE" -ForegroundColor Red
+    Write-Host "This is Active Debugging Mode - work in base repo instead" -ForegroundColor Yellow
+    exit 1
+}
+```
+
+**HARD RULE: ClickUp URL present → ALWAYS Feature Development Mode**
+
+If user message contains:
+- `clickup.com` URL
+- Task ID like `869abc123`
+- Any ClickUp reference
+
+→ You MUST use Feature Development Mode (allocate worktree)
+
+**Why this check exists:**
+- 2026-01-20: Critical mistake where ClickUp task was treated as Debug Mode
+- Resulted in direct base repo edits, no PR, no ClickUp link
+- User mandate: "do not ever forget that again"
+
+**This check prevents trust-breaking workflow violations.**
+
 ### 1. Read Zero-Tolerance Rules
 ```bash
 # ALWAYS read first

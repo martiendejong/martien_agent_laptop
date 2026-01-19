@@ -32,6 +32,7 @@ Any task with multiple steps should become a script. This way:
 | Searching past patterns | `pattern-search.ps1 -Query "error"` |
 | Unified operations | `claude-ctl.ps1 status` |
 | **Diagnosing UTF-16/encoding errors** | **`detect-encoding-issues.ps1 -ProjectPath . -Fix`** |
+| **Detecting Feature vs Debug mode** | **`detect-mode.ps1 -UserMessage "..." -Analyze`** |
 
 **Goal:** Maximize uninterrupted thinking time by eliminating manual ceremony.
 
@@ -105,14 +106,23 @@ Any task with multiple steps should become a script. This way:
 | **`generate-team-metrics.ps1`** | **NEW: Team metrics dashboard** | `generate-team-metrics.ps1 -TimeRange 30d -OutputFormat html` |
 | **`devtools.ps1`** | **NEW: Master toolchain orchestrator** | `devtools.ps1 list` or `devtools.ps1 health` |
 | **`detect-encoding-issues.ps1`** | **NEW: File encoding issue detector/fixer** | `detect-encoding-issues.ps1 -ProjectPath . -Fix -Recursive` |
+| **`detect-mode.ps1`** | **NEW: Feature vs Debug mode detector** | `detect-mode.ps1 -UserMessage "..." -Analyze` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 
-**🎉 MILESTONE: ALL 50 RECOMMENDATIONS IMPLEMENTED! Total: 98 tools (47 original + 51 new)**
+**🎉 MILESTONE: ALL 50 RECOMMENDATIONS IMPLEMENTED! Total: 99 tools (47 original + 52 new)**
+
+**Latest additions (2026-01-20):**
+- `detect-mode.ps1` - Critical mode detection to prevent ClickUp task workflow violations
 
 ---
 
 ## 📁 Documentation Structure
+
+**UPDATED (2026-01-20):** Complete system integration documentation added for parallel agent coordination.
+
+### 🎯 **START HERE: System Integration**
+1. **[SYSTEM_INTEGRATION.md](./_machine/SYSTEM_INTEGRATION.md)** - **MASTER GUIDE** - Read this to understand how ALL components work together: architecture, unified workflows, state management, coordination protocols, validation, troubleshooting, tool integration
 
 **NEW (2026-01-13):** Documentation is now split into **PORTABLE** (general rules) and **MACHINE-SPECIFIC** (local configuration) files.
 
@@ -134,11 +144,16 @@ Local configuration and hardcoded paths:
 3. **[_machine/SOFTWARE_DEVELOPMENT_PRINCIPLES.md](./_machine/SOFTWARE_DEVELOPMENT_PRINCIPLES.md)** - **MANDATORY** - Boy Scout Rule, architectural purity, code quality standards
 4. **[continuous-improvement.md](./continuous-improvement.md)** - Self-learning protocols, end-of-task updates, session recovery
 5. **[git-workflow.md](./git-workflow.md)** - Cross-repo PR dependencies, sync rules, git-flow workflow
-6. **[_machine/DEFINITION_OF_DONE.md](./_machine/DEFINITION_OF_DONE.md)** - **CRITICAL** - Complete DoD checklist for all tasks
+6. **[_machine/DEFINITION_OF_DONE.md](./_machine/DEFINITION_OF_DONE.md)** - **CRITICAL** - Complete DoD checklist (now includes coordination criteria)
+
+### 🔀 **Parallel Agent Coordination (NEW - 2026-01-20)**
+7. **[.claude/skills/parallel-agent-coordination/SKILL.md](./.claude/skills/parallel-agent-coordination/SKILL.md)** - Complete coordination protocol (50-expert analysis)
+8. **[tools/PARALLEL_AGENT_COORDINATION_QUICKSTART.md](./tools/PARALLEL_AGENT_COORDINATION_QUICKSTART.md)** - Implementation guide (4-phase approach)
+9. **[_machine/COORDINATION_TROUBLESHOOTING.md](./_machine/COORDINATION_TROUBLESHOOTING.md)** - Quick troubleshooting reference
 
 ### 🎨 **User Interface & Productivity**
-6. **[session-management.md](./session-management.md)** - Dynamic window titles/colors, HTML notification tracking
-7. **[tools-and-productivity.md](./tools-and-productivity.md)** - Productivity tools, C# auto-fix, debug configs, testing
+10. **[session-management.md](./session-management.md)** - Dynamic window titles/colors, HTML notification tracking
+11. **[tools-and-productivity.md](./tools-and-productivity.md)** - Productivity tools, C# auto-fix, debug configs, testing
 
 ### 🔧 **Development & Troubleshooting**
 8. **[ci-cd-troubleshooting.md](./ci-cd-troubleshooting.md)** - Frontend/backend CI issues, batch PR fixes, runtime errors
@@ -343,9 +358,10 @@ C:\scripts\.claude\skills\
 11. ✅ **IF multiple agents detected (step 8):** Activate `parallel-agent-coordination` protocol - use adaptive allocation strategy, enhanced conflict detection, activity-based prioritization
 
 ### Before ANY Code Edit - Determine Mode:
-1. 🚦 **Mode Detection** - See `dual-mode-workflow.md` decision tree
-   - User proposes NEW feature → 🏗️ **Feature Development Mode**
-   - User posts errors / debugging → 🐛 **Active Debugging Mode**
+1. 🚦 **Mode Detection** - **CRITICAL: Use `detect-mode.ps1` to prevent workflow violations**
+   - **HARD RULE:** ClickUp URL present → ALWAYS Feature Development Mode
+   - Run: `detect-mode.ps1 -UserMessage $userRequest -Analyze`
+   - See `dual-mode-workflow.md` decision tree for details
 2. 🧹 **Boy Scout Rule** - Read entire file first, identify cleanup opportunities (unused imports, naming, docs, magic numbers)
 
 ### Feature Development Mode (new features, refactoring):

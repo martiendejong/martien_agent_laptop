@@ -379,3 +379,147 @@ A task is **DONE** only when ALL of the following criteria are met:
 **Status:** Active
 
 **COMMITMENT:** No task is marked "done" until ALL DoD criteria are met.
+
+---
+
+## 🔀 Parallel Agent Coordination Criteria (NEW - 2026-01-20)
+
+**Applies when:** Multiple Claude agents are running simultaneously (agentCount > 1)
+
+### Before Starting Work
+
+- [ ] **Activity context checked**
+  - `monitor-activity.ps1 -Mode context` executed
+  - Agent count determined
+  - User focus state identified
+  - Priority assigned (user-focused = 100, background = 50)
+
+- [ ] **Coordination strategy selected**
+  - < 3 agents → Optimistic allocation (fast path)
+  - ≥ 3 agents → Pessimistic allocation with jitter (slow path)
+  - Strategy documented in allocation log
+
+- [ ] **Conflict detection passed**
+  - `check-branch-conflicts.sh` executed successfully
+  - No conflicts found (exit code 0)
+  - If conflicts found → STOP, use different branch name
+
+- [ ] **Heartbeat prepared** (if multi-agent)
+  - Heartbeat mechanism ready to start
+  - Heartbeat file location verified: `C:\scripts\_machine\heartbeats\<agent-id>.heartbeat`
+
+### During Work
+
+- [ ] **Heartbeat active** (if multi-agent)
+  - Heartbeat updating every 10-60 seconds
+  - Heartbeat includes: timestamp, PID, status, active allocations
+  - No heartbeat stale warnings
+
+- [ ] **No conflicts with other agents**
+  - Working on unique branch (not used by others)
+  - Worktree exclusively allocated to this agent
+  - No duplicate allocation detected
+
+- [ ] **Proper strategy used**
+  - Followed optimistic or pessimistic path as determined
+  - Added jitter if pessimistic (random 0-500ms delay)
+  - Respected priority assignments
+
+### After Work Complete
+
+- [ ] **Metrics logged**
+  - Allocation latency recorded
+  - Strategy used logged (optimistic/pessimistic)
+  - Agent count at time of allocation logged
+  - Priority level logged
+  - Any conflicts encountered logged
+
+- [ ] **Heartbeat stopped**
+  - Background heartbeat job terminated
+  - Heartbeat file removed or marked inactive
+  - No orphaned heartbeat processes
+
+- [ ] **Validation passed**
+  - Pool state consistent with git reality
+  - No duplicate allocations detected
+  - Agent properly unregistered from coordination system
+  - No stale state left behind
+
+### Quality Metrics (Target Values)
+
+- [ ] **Allocation success rate** ≥ 95%
+  - Your allocations succeed without conflicts
+  - Retry count ≤ 3 per allocation
+
+- [ ] **Allocation latency** (p99) < 10 seconds
+  - Time from allocation start to worktree ready
+  - Includes conflict detection, pool check, git worktree creation
+
+- [ ] **Conflict rate** < 1%
+  - Percentage of allocations that encounter conflicts
+  - Zero duplicate allocations
+
+- [ ] **Zero coordination violations**
+  - No allocations without conflict detection
+  - No releases without proper cleanup
+  - No orphaned allocations
+  - No stale heartbeats
+
+### Troubleshooting Checklist
+
+If coordination issues encountered:
+
+- [ ] **Issue logged in reflection.log.md**
+  - Root cause identified
+  - Resolution documented
+  - Prevention strategy defined
+
+- [ ] **System state verified**
+  - Pool.md consistent
+  - Instances.map.md accurate
+  - Activity.md complete
+  - No corrupted state files
+
+- [ ] **Validation run**
+  - Manual validation executed: `Invoke-CoordinationValidation`
+  - All issues auto-repaired or manually fixed
+  - System health confirmed
+
+---
+
+## 🎯 Integration with Existing DoD
+
+**Parallel coordination criteria AUGMENT existing DoD, not replace:**
+
+- Use **General DoD** (original sections) for code quality, testing, PR, deployment
+- Use **Coordination DoD** (this section) when multiple agents are running
+- **Both must be satisfied** for task to be considered DONE
+
+**Decision Flow:**
+```
+Task complete?
+  ↓
+General DoD satisfied? (code quality, tests, PR, etc.)
+  ↓ YES
+Agent count > 1?
+  ↓ YES
+Coordination DoD satisfied? (heartbeat, metrics, no conflicts, etc.)
+  ↓ YES
+✅ TASK IS DONE
+```
+
+**Single Agent Sessions:**
+- General DoD only (skip coordination criteria)
+- Faster completion (no coordination overhead)
+
+**Multi-Agent Sessions:**
+- General DoD + Coordination DoD
+- Ensures no conflicts, proper metrics, clean handoff
+
+---
+
+**Last Updated:** 2026-01-20 03:00
+**Added:** Parallel Agent Coordination criteria
+**Integration:** Mandatory when agentCount > 1
+**Reference:** See `SYSTEM_INTEGRATION.md` for complete coordination protocol
+
