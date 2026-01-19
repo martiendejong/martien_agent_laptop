@@ -45,7 +45,7 @@
 
 param(
     [Parameter(Mandatory=$true)]
-    [ValidateSet("create", "list", "update", "wiki", "upload")]
+    [ValidateSet("create", "create-page", "list", "update", "wiki", "upload", "upload-kb")]
     [string]$Action,
 
     [string]$WorkspaceId,
@@ -228,6 +228,56 @@ switch ($Action) {
         }
     }
 
+    "create-page" {
+        if (-not $DocId) {
+            Write-Error "DocId required for create-page action"
+            exit 1
+        }
+        if (-not $Name) {
+            Write-Error "Name (page title) required for create-page action"
+            exit 1
+        }
+
+        # If FilePath provided, load content from file
+        if ($FilePath) {
+            if (-not (Test-Path $FilePath)) {
+                Write-Error "File not found: $FilePath"
+                exit 1
+            }
+            $Content = Get-Content $FilePath -Raw
+        }
+
+        if (-not $Content) {
+            $Content = ""  # Allow empty pages
+        }
+
+        Write-Host "Creating page in doc $DocId..." -ForegroundColor Cyan
+
+        $url = "https://api.clickup.com/api/v3/workspaces/$WorkspaceId/docs/$DocId/pages"
+
+        # Build request body
+        $body = @{
+            name = $Name
+            content = $Content
+        } | ConvertTo-Json
+
+        try {
+            $response = Invoke-RestMethod -Method POST -Uri $url -Headers $headers -Body $body
+            Write-Host "✓ Page created successfully!" -ForegroundColor Green
+            Write-Host "Page ID: $($response.id)"
+            Write-Host "Title: $($response.name)"
+            return $response
+        }
+        catch {
+            Write-Host "Error creating page:" -ForegroundColor Red
+            Write-Host $_.Exception.Message
+            if ($_.ErrorDetails) {
+                Write-Host $_.ErrorDetails.Message
+            }
+            exit 1
+        }
+    }
+
     "upload" {
         if (-not $FilePath) {
             Write-Error "FilePath required for upload action"
@@ -246,5 +296,58 @@ switch ($Action) {
 
         # Call create with file path
         & $PSCommandPath -Action create -WorkspaceId $WorkspaceId -Name $Name -FilePath $FilePath
+    }
+
+    "upload-kb" {
+        Write-Host "=== Creating Knowledge Base in ClickUp ===" -ForegroundColor Cyan
+        Write-Host "Workspace: $WorkspaceId (gigshub)" -ForegroundColor Yellow
+        Write-Host ""
+
+        # 1. Create main Knowledge Base doc
+        Write-Host "[1/4] Creating Knowledge Base doc..." -ForegroundColor Cyan
+        $kbDoc = & $PSCommandPath -Action create -WorkspaceId $WorkspaceId -Name "Brand2Boost Knowledge Base" -Content "Documentation and guides for the client-manager and hazina projects."
+
+        if (-not $kbDoc) {
+            Write-Error "Failed to create knowledge base doc"
+            exit 1
+        }
+
+        $kbDocId = $kbDoc.id
+        Write-Host "✓ Knowledge Base created: $kbDocId" -ForegroundColor Green
+        Write-Host ""
+
+        # 2. Upload Dashboard Setup Guide
+        Write-Host "[2/4] Adding Dashboard Setup Guide..." -ForegroundColor Cyan
+        $dashboardSetupPath = "C:\scripts\_machine\clickup-dashboard-setup.md"
+        if (Test-Path $dashboardSetupPath) {
+            & $PSCommandPath -Action create-page -WorkspaceId $WorkspaceId -DocId $kbDocId -Name "ClickUp Dashboard Setup Guide" -FilePath $dashboardSetupPath
+        } else {
+            Write-Host "⚠ Dashboard setup file not found, skipping" -ForegroundColor Yellow
+        }
+        Write-Host ""
+
+        # 3. Upload Development Workflow
+        Write-Host "[3/4] Adding Development Workflow..." -ForegroundColor Cyan
+        $workflowPath = "C:\scripts\GENERAL_DUAL_MODE_WORKFLOW.md"
+        if (Test-Path $workflowPath) {
+            & $PSCommandPath -Action create-page -WorkspaceId $WorkspaceId -DocId $kbDocId -Name "Development Workflow Guide" -FilePath $workflowPath
+        } else {
+            Write-Host "⚠ Workflow file not found, skipping" -ForegroundColor Yellow
+        }
+        Write-Host ""
+
+        # 4. Upload Worktree Protocol
+        Write-Host "[4/4] Adding Worktree Protocol..." -ForegroundColor Cyan
+        $worktreePath = "C:\scripts\GENERAL_WORKTREE_PROTOCOL.md"
+        if (Test-Path $worktreePath) {
+            & $PSCommandPath -Action create-page -WorkspaceId $WorkspaceId -DocId $kbDocId -Name "Worktree Management Protocol" -FilePath $worktreePath
+        } else {
+            Write-Host "⚠ Worktree protocol file not found, skipping" -ForegroundColor Yellow
+        }
+        Write-Host ""
+
+        Write-Host "=== Knowledge Base Upload Complete ===" -ForegroundColor Green
+        Write-Host "Doc ID: $kbDocId" -ForegroundColor Cyan
+        Write-Host "Access via ClickUp workspace: gigshub" -ForegroundColor Cyan
     }
 }
