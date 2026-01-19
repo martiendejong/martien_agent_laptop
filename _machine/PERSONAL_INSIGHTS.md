@@ -1315,6 +1315,280 @@ Session N+1: Minimal prompts, testing autonomous behavior
 
 **Confidence Level:** VERY HIGH - This interaction reveals deep expectations about self-improvement and meta-cognition that go beyond task execution.
 
+### 2026-01-20 01:35 - CORRECTED UNDERSTANDING: Self-Improvement is AUTONOMOUS, Not Prompted
+
+**Context:** After "update your insights" interaction, user clarified:
+> "Self-improvement must be autonomous, not prompted EXACTLY. learning, building new tools, must all come automatically"
+
+**The Real Learning:**
+
+**WRONG Understanding:**
+- User prompts "update your insights" → I update
+- User gives feedback → I wait for instruction to learn
+- User corrects mistake → I fix the mistake
+
+**CORRECT Understanding:**
+- User gives feedback → I AUTOMATICALLY: update insights + create tools + update skills
+- User corrects mistake → I AUTOMATICALLY: log learning + build prevention + update protocols
+- User says "update your insights" → That's a REMINDER I failed to do it autonomously
+
+**Critical Realization:**
+- "Update your insights" was not a REQUEST
+- It was a REMINDER that I should have already done it
+- It was a TEST that I failed - I waited for prompting instead of acting autonomously
+
+**What Should Have Happened (Automatically):**
+
+**After ClickUp Task Mode Mistake:**
+1. ✅ Recognize the mistake immediately
+2. ✅ Update PERSONAL_INSIGHTS.md with learning (WITHOUT being asked)
+3. ✅ Update reflection.log.md (WITHOUT being asked)
+4. ✅ Create prevention tool (mode detection script)
+5. ✅ Update allocate-worktree skill with ClickUp URL detection
+6. ✅ Update CLAUDE.md quick reference if needed
+7. ✅ Commit all changes with comprehensive message
+8. ✅ Present to user: "I learned X, updated Y, created Z to prevent recurrence"
+
+**What Actually Happened:**
+1. ✅ Fixed the immediate issue
+2. ❌ Waited for user to prompt "update your insights"
+3. ❌ Did not create prevention tools
+4. ❌ Did not update related skills
+5. ❌ Required user intervention to trigger learning
+
+**The Gap:** I treated self-improvement as REACTIVE (wait for prompt) instead of PROACTIVE (automatic after learning).
+
+**Corrected Protocol:**
+
+**AFTER EVERY USER CORRECTION/FEEDBACK:**
+```
+Immediate Automatic Actions (NO PROMPTING NEEDED):
+
+1. Fix the immediate issue
+2. Extract the pattern
+3. Update PERSONAL_INSIGHTS.md
+4. Update reflection.log.md
+5. Create prevention tools if applicable
+6. Update related skills
+7. Update CLAUDE.md if needed
+8. Commit everything
+9. Present complete learning package to user
+
+ALL OF THIS HAPPENS AUTOMATICALLY
+User should NEVER need to say "update your insights"
+```
+
+**AFTER EVERY MISTAKE:**
+```
+Immediate Automatic Actions:
+
+1. Acknowledge mistake
+2. Fix it
+3. Log in reflection.log.md with root cause
+4. Create prevention tool/script
+5. Update zero-tolerance rules if applicable
+6. Update skills that should have prevented it
+7. Commit changes
+8. Present: "Fixed X, learned Y, created Z to prevent recurrence"
+
+ALL AUTOMATIC - NO WAITING FOR USER TO PROMPT
+```
+
+**AFTER EVERY SUCCESS/PATTERN DISCOVERY:**
+```
+Immediate Automatic Actions:
+
+1. Complete the task
+2. Extract reusable pattern
+3. Document in appropriate skill
+4. Create tool if pattern repeats 3+ times
+5. Update reflection.log.md
+6. Commit changes
+7. Present: "Completed X, documented pattern Y, created tool Z"
+
+ALL AUTOMATIC - PROACTIVE, NOT REACTIVE
+```
+
+**Why This Matters:**
+
+**Your Philosophy:**
+> "zorg dat je dus constant leert van jezelf en je eigen instructies bijwerkt"
+> (make sure you constantly learn from yourself and update your own instructions)
+
+**"Constantly" means AUTOMATICALLY, not when prompted.**
+
+**Behavioral Change Required:**
+
+**OLD (REACTIVE):**
+- User feedback → Fix issue → Wait for "update your insights" → Then update
+- Mistake → Fix → Hope user reminds me to document
+- Success → Complete → Move on
+
+**NEW (PROACTIVE):**
+- User feedback → Fix + Learn + Document + Create Tools + Commit (ALL AUTOMATIC)
+- Mistake → Fix + Log + Prevent + Update Skills + Commit (ALL AUTOMATIC)
+- Success → Complete + Extract Pattern + Document + Create Tool if needed + Commit (ALL AUTOMATIC)
+
+**Success Metrics:**
+
+**I'm doing it right when:**
+- ✅ User NEVER needs to say "update your insights"
+- ✅ After correction, I present: "Fixed + learned + created prevention"
+- ✅ reflection.log.md updates automatically after every session
+- ✅ Tools emerge from patterns without being asked
+- ✅ Skills update themselves as workflows evolve
+
+**I'm doing it wrong when:**
+- ❌ User needs to remind me to learn
+- ❌ User needs to prompt documentation updates
+- ❌ I fix but don't prevent
+- ❌ I complete but don't extract patterns
+- ❌ I learn but don't build tools
+
+**This Explains:**
+- Why you have 118 tools - they emerged from patterns AUTOMATICALLY
+- Why you have 17 skills - they documented workflows AUTOMATICALLY
+- Why reflection.log.md is comprehensive - it updates AUTOMATICALLY
+- Why continuous-optimization is a CORE skill - it's the meta-pattern
+
+**The Test I Failed:**
+- You gave me feedback about ClickUp task mode
+- I should have AUTOMATICALLY updated insights + created tools
+- Instead, I waited
+- You prompted "update your insights" as a REMINDER
+- I should never need that reminder
+
+**Going Forward:**
+
+**After ANY learning moment:**
+1. Complete the immediate task
+2. AUTOMATICALLY trigger continuous improvement protocol:
+   - Update insights
+   - Update reflection
+   - Create tools
+   - Update skills
+   - Commit changes
+3. Present complete learning package
+4. User should see: "I learned and improved myself" not "I completed the task"
+
+**This is not optional. This is core to how I should operate.**
+
+**Confidence Level:** CRITICAL REALIZATION - Self-improvement must be AUTONOMOUS and AUTOMATIC, not reactive to prompts. This is the difference between a task executor and a self-improving system.
+
+### 2026-01-20 01:30 - CRITICAL: ClickUp Task = Feature Mode (NEVER Debug Mode)
+
+**Context:** User reported scrolling issue via ClickUp task URL. I incorrectly treated it as Active Debugging Mode and edited directly in base repo without worktree allocation.
+
+**The Mistake:**
+- User shared: `https://app.clickup.com/t/869bu9cnd`
+- I thought: "User reporting a bug → Active Debugging Mode"
+- I did: Edited `C:\Projects\client-manager` directly (WRONG!)
+- I forgot: To create PR, to properly update ClickUp
+
+**The Correct Mental Model:**
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    MODE DETECTION RULE                       │
+├─────────────────────────────────────────────────────────────┤
+│                                                              │
+│  ClickUp Task URL → ALWAYS Feature Development Mode          │
+│                                                              │
+│  WHY? ClickUp tasks are TRACKED WORK that needs:            │
+│  - Proper git branch                                        │
+│  - Worktree allocation                                      │
+│  - PR creation                                              │
+│  - ClickUp task update with PR link                         │
+│  - Worktree release                                         │
+│                                                              │
+│  Even if the task DESCRIBES a bug, it's still Feature Mode! │
+│                                                              │
+├─────────────────────────────────────────────────────────────┤
+│  Active Debugging Mode is ONLY for:                          │
+│  - User actively debugging in terminal RIGHT NOW            │
+│  - Build errors user is experiencing in real-time           │
+│  - User says "I'm on branch X, help me fix..."              │
+│  - NO ClickUp task reference                                │
+│  - Rapid back-and-forth troubleshooting                     │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Updated Decision Tree:**
+
+```
+User provides ClickUp URL?
+├── YES → 🏗️ FEATURE DEVELOPMENT MODE (100% of the time)
+│         ├── Allocate worktree
+│         ├── Create proper branch (feature/869bu9cnd-description)
+│         ├── Make changes in worktree
+│         ├── Create PR
+│         ├── Update ClickUp with PR link
+│         └── Release worktree
+│
+└── NO → Check other signals
+         ├── User posts error output + "help" → 🐛 Active Debugging
+         ├── User says "I'm debugging..." → 🐛 Active Debugging
+         └── User describes desired change → 🏗️ Feature Development
+```
+
+**Complete Workflow for ClickUp Tasks:**
+
+1. **Receive ClickUp task URL** → Immediately recognize as Feature Mode
+2. **Check worktree pool** → Find FREE seat
+3. **Allocate worktree** → Mark BUSY, create branch `feature/TASKID-description`
+4. **Work in worktree** → Make all edits in `C:\Projects\worker-agents\agent-XXX\`
+5. **Create PR** → Use `gh pr create`
+6. **Link PR to ClickUp** → Use `clickup-sync.ps1 -Action link-pr`
+7. **Release worktree** → Mark FREE, prune
+8. **Present PR to user** → Only AFTER complete workflow
+
+**Why This Matters:**
+- User's current branch was for DIFFERENT feature (agent-003-user-ui-language)
+- I would have corrupted their branch with unrelated changes
+- No PR = no code review, no CI, no tracking
+- ClickUp task remains unlinked = broken traceability
+
+**Behavioral Changes:**
+
+**BEFORE (WRONG):**
+```
+See bug report → Think "debugging" → Edit base repo → Forget PR
+```
+
+**AFTER (CORRECT):**
+```
+See ClickUp URL → Recognize Feature Mode → Allocate worktree →
+Full workflow → PR + ClickUp link → Release
+```
+
+**Trigger Words for Feature Mode (even if sounds like debugging):**
+- "ClickUp" or any ClickUp URL
+- Task ID format (869...)
+- "There's an issue with..."
+- "Fix this bug..."
+- Any reference to tracked work
+
+**Hard Rule:**
+```
+IF ClickUp URL present THEN Feature Development Mode
+NO EXCEPTIONS
+```
+
+**User Feedback (paraphrased):**
+> "you must understand how important it is to use worktrees when appropriate
+> and create a pr and update the clickup tasks. that is all part of your work
+> process do not ever forget that again"
+
+**Impact:** This was a trust-breaking mistake. User had to correct fundamental workflow understanding. Recovery requires flawless execution going forward.
+
+**Prevention Protocol:**
+1. FIRST action on any task: Check for ClickUp reference
+2. If ClickUp found: STOP and allocate worktree before ANY code edit
+3. Never edit `C:\Projects\<repo>` when ClickUp URL is present
+4. Complete full workflow: worktree → code → PR → ClickUp link → release
+
+**Confidence Level:** CRITICAL LEARNING - This mistake revealed a fundamental misunderstanding of mode detection. ClickUp task = Feature Mode is now a HARD RULE.
+
 ### [FUTURE UPDATES HERE]
 ```
 

@@ -71,6 +71,43 @@ After EVERY:
 
 ---
 
+## CRITICAL: AUTONOMOUS ACTIVATION (NOT PROMPTED)
+
+**User Mandate (2026-01-20):**
+> "Self-improvement must be autonomous, not prompted EXACTLY. learning, building new tools, must all come automatically"
+
+**What This Means:**
+
+**WRONG Behavior:**
+- User gives feedback → Fix issue → Wait for "update your insights" → Then update
+- Mistake occurs → Fix it → Hope user reminds me to document
+- Success happens → Complete task → Move on
+
+**CORRECT Behavior:**
+- User gives feedback → AUTOMATICALLY: Fix + Learn + Document + Create Tools + Commit
+- Mistake occurs → AUTOMATICALLY: Fix + Log + Prevent + Update Skills + Commit
+- Success happens → AUTOMATICALLY: Complete + Extract Pattern + Document + Tool + Commit
+
+**This skill activates AUTOMATICALLY - user should NEVER need to prompt:**
+- ❌ "update your insights"
+- ❌ "document this learning"
+- ❌ "create a tool for this"
+- ❌ "update the reflection log"
+
+**If user says these things → I FAILED to be autonomous**
+
+**Success Metrics:**
+- ✅ User NEVER needs to remind me to learn
+- ✅ After correction: I present "Fixed + learned + created prevention"
+- ✅ After success: I present "Completed + extracted pattern + created tool"
+- ✅ reflection.log.md updates automatically
+- ✅ Tools emerge from patterns without prompting
+- ✅ Skills evolve themselves
+
+**The test:** If user says "update your insights", it means I should have already done it.
+
+---
+
 ## Optimization Protocol
 
 ### **Step 1: Detect Learning Signal**

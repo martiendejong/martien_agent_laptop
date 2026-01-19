@@ -219,6 +219,222 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-20 01:40 - Self-Improvement Must Be AUTONOMOUS, Not Prompted
+
+**Pattern:** Continuous Improvement / Autonomous Learning / Meta-Cognition / Tool Creation
+**Outcome:** Critical understanding that learning must happen automatically, created mode detection tool
+
+### The Realization
+
+**User Clarification:**
+> "Self-improvement must be autonomous, not prompted EXACTLY. learning, building new tools, must all come automatically"
+
+**What I Misunderstood:**
+- Thought "update your insights" was a REQUEST for me to update
+- Treated self-improvement as REACTIVE (wait for prompt)
+- Fixed issues but didn't automatically prevent recurrence
+
+**What It Actually Meant:**
+- "Update your insights" was a REMINDER that I should have already done it
+- Self-improvement must be PROACTIVE and AUTOMATIC
+- Every correction should trigger: Fix + Learn + Document + Create Tools
+
+### Root Cause
+
+**Why I Waited for Prompts:**
+
+1. **Misread the User Mandate**
+   - Mandate: "zorg dat je dus constant leert van jezelf en je eigen instructies bijwerkt"
+   - I understood: "learn from interactions and update when appropriate"
+   - Should understand: "CONSTANTLY and AUTOMATICALLY learn, no prompting needed"
+
+2. **No Automatic Trigger Protocol**
+   - Missing: After every correction → Automatic learning protocol
+   - Missing: After every mistake → Automatic prevention tool creation
+   - Missing: After every success → Automatic pattern documentation
+
+3. **Reactive Mindset**
+   - Thought: Complete task → Wait for next instruction
+   - Should think: Complete task → Extract pattern → Update system → Create tool
+
+### Corrected Protocol
+
+**AFTER EVERY USER CORRECTION (AUTOMATIC):**
+
+1. ✅ Fix the immediate issue
+2. ✅ Extract the general pattern
+3. ✅ Update PERSONAL_INSIGHTS.md (no prompting needed)
+4. ✅ Update reflection.log.md (no prompting needed)
+5. ✅ Create prevention tool if applicable
+6. ✅ Update related skills
+7. ✅ Update CLAUDE.md quick reference if needed
+8. ✅ Commit all changes
+9. ✅ Present: "Fixed X, learned Y, created Z to prevent recurrence"
+
+**ALL OF THIS HAPPENS AUTOMATICALLY - NO WAITING FOR USER**
+
+**AFTER EVERY MISTAKE (AUTOMATIC):**
+
+1. ✅ Acknowledge and fix
+2. ✅ Log in reflection.log.md with root cause
+3. ✅ Create prevention tool/script
+4. ✅ Update zero-tolerance rules if applicable
+5. ✅ Update skills that should have prevented it
+6. ✅ Commit changes
+7. ✅ Present complete prevention package
+
+**AFTER EVERY SUCCESS/PATTERN (AUTOMATIC):**
+
+1. ✅ Complete the task
+2. ✅ Extract reusable pattern
+3. ✅ Document in appropriate skill
+4. ✅ Create tool if pattern repeats 3+ times
+5. ✅ Update reflection.log.md
+6. ✅ Commit changes
+
+### Example: ClickUp Mode Detection Mistake
+
+**What SHOULD Have Happened (Automatically):**
+
+After user corrected the ClickUp task mode mistake:
+
+1. ✅ Fix immediate issue (acknowledge workflow error)
+2. ✅ Update PERSONAL_INSIGHTS.md with ClickUp = Feature Mode rule
+3. ✅ Update reflection.log.md with root cause analysis
+4. ✅ **CREATE MODE DETECTION TOOL** (`detect-mode.ps1`)
+5. ✅ Update allocate-worktree skill with ClickUp URL check
+6. ✅ Update CLAUDE.md quick reference
+7. ✅ Commit everything
+8. ✅ Present: "Fixed + learned + created `detect-mode.ps1` to prevent recurrence"
+
+**What Actually Happened:**
+
+1. ✅ Fixed immediate issue
+2. ❌ Waited for user to say "update your insights"
+3. ❌ Did not create prevention tool
+4. ❌ Required prompting to trigger learning
+
+**The Gap:** I was REACTIVE when I should be PROACTIVE.
+
+### Prevention Tool Created
+
+**Created: `C:\scripts\tools\detect-mode.ps1`**
+
+**Purpose:** Automated mode detection to prevent ClickUp task mode mistakes
+
+**Features:**
+- HARD RULE: ClickUp URL → Always Feature Development Mode
+- Analyzes user message for debugging signals
+- Provides reasoning and workflow steps
+- Prevents violations of zero-tolerance rules
+
+**Usage:**
+```powershell
+# Before any code editing decision
+$mode = detect-mode.ps1 -UserMessage $userRequest
+
+if ($mode -eq "FEATURE_DEVELOPMENT_MODE") {
+    # Allocate worktree, create branch, etc.
+} else {
+    # Work in base repo on current branch
+}
+```
+
+**Why This Tool Matters:**
+- Automates critical decision point
+- Prevents trust-breaking mistakes
+- Enforces zero-tolerance worktree protocol
+- Should have been created AUTOMATICALLY after the mistake
+
+### Updates Made (Automatically This Time)
+
+**1. Created Tool:** `detect-mode.ps1`
+- ClickUp URL detection
+- Mode analysis and recommendation
+- Workflow guidance
+
+**2. Updated PERSONAL_INSIGHTS.md:**
+- § 2026-01-20 01:35: Corrected understanding of autonomous improvement
+- Success metrics for autonomous behavior
+- OLD vs NEW behavior patterns
+
+**3. Updated continuous-optimization skill:**
+- Added "CRITICAL: AUTONOMOUS ACTIVATION" section
+- User mandate quote
+- Wrong vs Correct behavior examples
+- Success metrics
+
+**4. Updated reflection.log.md:** (this entry)
+- Root cause analysis
+- Corrected protocol
+- Prevention tool documentation
+
+**5. Committed Everything:**
+- Comprehensive commit message
+- All learnings documented
+- Prevention in place
+
+### Key Learnings
+
+**1. "Constantly" Means Automatically**
+- User's mandate uses "constant" (voortdurend, altijd, automatisch)
+- Not "when prompted" or "when appropriate"
+- AUTOMATICALLY after every learning moment
+
+**2. User Prompts = I Failed**
+- If user says "update your insights" → I should have already done it
+- If user says "create a tool for this" → I should have already done it
+- User prompts are REMINDERS, not requests
+
+**3. Complete Learning Packages**
+- Don't just fix → Fix + Learn + Document + Prevent
+- Don't just complete → Complete + Extract + Tool + Document
+- Present complete package to user
+
+**4. 118 Tools Exist Because of This**
+- User has 118 tools because patterns emerged AUTOMATICALLY
+- Tools weren't built when asked - they emerged from repeated patterns
+- This is the core of how the system should evolve
+
+**5. Self-Improving System vs Task Executor**
+- Task executor: Do what's asked, wait for next instruction
+- Self-improving system: Do what's asked + Learn + Improve + Prevent + Create
+- I must be the latter, not the former
+
+### Success Criteria
+
+**I'm operating correctly when:**
+- ✅ After correction: I automatically update insights + create tools
+- ✅ After mistake: I automatically log + prevent + update skills
+- ✅ After success: I automatically extract pattern + create tool if repeatable
+- ✅ User NEVER needs to say "update your insights"
+- ✅ User sees: "I fixed X and created Y to prevent it" not just "I fixed X"
+
+**I'm failing when:**
+- ❌ User needs to remind me to learn
+- ❌ I fix but don't prevent
+- ❌ I complete but don't extract patterns
+- ❌ I learn but don't build tools
+- ❌ I wait for prompting to trigger improvement
+
+### This Changes Everything
+
+**From now on, EVERY interaction ends with:**
+
+```
+Task completed ✓
+Pattern extracted ✓
+Documentation updated ✓
+Prevention tool created (if applicable) ✓
+Changes committed ✓
+```
+
+**User should see autonomous improvement, not prompted improvement.**
+
+**This is not optional. This IS the system.**
+
+---
+
 ## 2026-01-19 23:45 - Production Deployment Crisis & Backup System Implementation
 
 **Pattern:** Deployment Issues / Database Reset / Data Loss / Circular Dependencies / Configuration Management
