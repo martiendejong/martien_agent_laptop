@@ -249,6 +249,9 @@ See **[bootstrap/README.md](./bootstrap/README.md)** for complete documentation.
 #### 🔌 Integrations
 - **`mcp-setup`** - Configure MCP servers for external integrations (Google Drive, GitHub, databases, APIs)
 
+#### 🧠 Context Intelligence & System Awareness
+- **`activity-monitoring`** - Real-time user activity tracking and context-aware intelligence using ManicTime integration. Detects what user is doing, counts Claude instances, identifies idle/unattended system, enables adaptive assistance.
+
 #### 🗄️ Database & Migrations
 - **`ef-migration-safety`** - Safe EF Core migration workflow with pre-flight checks, breaking change detection, and multi-step migration patterns
 
@@ -328,8 +331,9 @@ C:\scripts\.claude\skills\
 4. ✅ **Read** `GENERAL_DUAL_MODE_WORKFLOW.md` - Understand Feature Development vs Active Debugging modes
 5. ✅ **Read** `_machine/DEFINITION_OF_DONE.md` - Know what "done" means for all tasks
 6. ✅ **Run** `C:/scripts/tools/repo-dashboard.sh` - Check environment state
-7. ✅ **Verify** base repos on `develop` branch (see MACHINE_CONFIG.md for paths)
-8. ✅ **Check** `worktrees.pool.md` - Available agent seats
+7. ✅ **Run** `monitor-activity.ps1 -Mode context` - **CRITICAL: Get user context, detect other Claude instances, check if user is present**
+8. ✅ **Verify** base repos on `develop` branch (see MACHINE_CONFIG.md for paths)
+9. ✅ **Check** `worktrees.pool.md` - Available agent seats
 
 ### Before ANY Code Edit - Determine Mode:
 1. 🚦 **Mode Detection** - See `dual-mode-workflow.md` decision tree
@@ -503,6 +507,6 @@ When implemented, this will enable agents to:
 
 ---
 
-**Last Updated:** 2026-01-19 23:50 (Added EF Core migration safety system: pre-flight checks, breaking change detection, migration patterns, auto-discoverable skill)
+**Last Updated:** 2026-01-19 20:30 (Added ManicTime activity monitoring integration: real-time context awareness, multi-agent detection, idle/unattended detection, adaptive assistance. Tool: monitor-activity.ps1, Skill: activity-monitoring)
 **Maintained By:** Claude Agent (Self-improving documentation)
 **User Mandate:** "zorg dat je dus constant leert van jezelf en je eigen instructies bijwerkt"
