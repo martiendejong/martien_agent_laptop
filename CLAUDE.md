@@ -38,6 +38,7 @@ Any task with multiple steps should become a script. This way:
 | `claude-ctl.ps1` | **Unified CLI** - single entry point | `claude-ctl.ps1 status` |
 | `bootstrap-snapshot.ps1` | Fast startup state | `bootstrap-snapshot.ps1 -Generate` |
 | `system-health.ps1` | Comprehensive health check | `system-health.ps1 -Fix` |
+| **`monitor-activity.ps1`** | **ManicTime activity tracking - context awareness** | `monitor-activity.ps1 -Mode context` |
 | `worktree-allocate.ps1` | Single-command allocation | `worktree-allocate.ps1 -Repo client-manager -Branch x -Paired` |
 | `worktree-status.ps1` | Check worktree pool | `worktree-status.ps1 -Compact` |
 | `worktree-release-all.ps1` | Release worktrees | `worktree-release-all.ps1 -AutoCommit` |
@@ -76,6 +77,8 @@ Any task with multiple steps should become a script. This way:
 | **`compare-database-schemas.ps1`** | **NEW: Database schema compare** | `compare-database-schemas.ps1 -SourceDatabase Dev -TargetDatabase Prod` |
 | **`manage-feature-flags.ps1`** | **NEW: Feature flag manager** | `manage-feature-flags.ps1 -Action create -FlagName NewFeature` |
 | **`analyze-logs.ps1`** | **NEW: Log analyzer** | `analyze-logs.ps1 -LogPath logs -TimeRange 24h -MinLevel Error` |
+| **`ef-preflight-check.ps1`** | **NEW: EF Core migration pre-flight safety check** | `ef-preflight-check.ps1 -Context AppDbContext -ProjectPath . -FailOnDrift` |
+| **`ef-migration-preview.ps1`** | **NEW: EF Core migration SQL preview + breaking change detection** | `ef-migration-preview.ps1 -Migration AddUserEmail -Context AppDbContext -GenerateRollback` |
 | **`generate-ci-pipeline.ps1`** | **NEW: CI pipeline generator** | `generate-ci-pipeline.ps1 -ProjectPath . -ProjectType fullstack` |
 | **`run-e2e-tests.ps1`** | **NEW: E2E test runner (Playwright)** | `run-e2e-tests.ps1 -ProjectPath . -Browser all -UpdateSnapshots` |
 | **`manage-environment.ps1`** | **NEW: Environment variable manager** | `manage-environment.ps1 -Action validate -Environment production` |
@@ -244,6 +247,9 @@ See **[bootstrap/README.md](./bootstrap/README.md)** for complete documentation.
 #### 🔌 Integrations
 - **`mcp-setup`** - Configure MCP servers for external integrations (Google Drive, GitHub, databases, APIs)
 
+#### 🗄️ Database & Migrations
+- **`ef-migration-safety`** - Safe EF Core migration workflow with pre-flight checks, breaking change detection, and multi-step migration patterns
+
 #### 🔧 Meta
 - **`skill-creator`** - Create new Claude Skills with proper format, YAML frontmatter, and best practices
 
@@ -378,6 +384,7 @@ C:\scripts\.claude\skills\
 | **Platform-agnostic multi-source integration** | **`reflection.log.md` (2026-01-19 20:00) § UnifiedContent Pattern** | - |
 | **Granular import with per-type control** | **`reflection.log.md` (2026-01-19 20:00) § Per-Content-Type Import** | - |
 | **Frontend service layer architecture** | **`reflection.log.md` (2026-01-19 20:00) § Service Layer Pattern** | - |
+| **Safe EF Core migrations** | **`_machine/migration-patterns.md` + `ef-migration-safety` skill** | ✅ `ef-migration-safety` |
 | **Create ClickUp tasks for future work** | **Use `clickup-sync.ps1 -Action create`** | - |
 | **Autonomous ClickUp task management** | **`.claude/skills/clickhub-coding-agent/`** | ✅ **`clickhub-coding-agent`** |
 | Update reflection.log.md | `continuous-improvement.md` § Reflection Protocol | ✅ `session-reflection` |
@@ -494,6 +501,6 @@ When implemented, this will enable agents to:
 
 ---
 
-**Last Updated:** 2026-01-19 20:00 (Added patterns: UnifiedContent platform-agnostic storage, Per-Content-Type Import, Service Layer architecture, ClickUp task creation workflow)
+**Last Updated:** 2026-01-19 23:50 (Added EF Core migration safety system: pre-flight checks, breaking change detection, migration patterns, auto-discoverable skill)
 **Maintained By:** Claude Agent (Self-improving documentation)
 **User Mandate:** "zorg dat je dus constant leert van jezelf en je eigen instructies bijwerkt"
