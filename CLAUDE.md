@@ -30,6 +30,7 @@ Any task with multiple steps should become a script. This way:
 | Running health checks | `system-health.ps1` |
 | Searching past patterns | `pattern-search.ps1 -Query "error"` |
 | Unified operations | `claude-ctl.ps1 status` |
+| **Diagnosing UTF-16/encoding errors** | **`detect-encoding-issues.ps1 -ProjectPath . -Fix`** |
 
 **Goal:** Maximize uninterrupted thinking time by eliminating manual ceremony.
 
@@ -102,10 +103,11 @@ Any task with multiple steps should become a script. This way:
 | **`manage-performance-baseline.ps1`** | **NEW: Performance baseline manager** | `manage-performance-baseline.ps1 -Action capture -BaselineName "release-1.0"` |
 | **`generate-team-metrics.ps1`** | **NEW: Team metrics dashboard** | `generate-team-metrics.ps1 -TimeRange 30d -OutputFormat html` |
 | **`devtools.ps1`** | **NEW: Master toolchain orchestrator** | `devtools.ps1 list` or `devtools.ps1 health` |
+| **`detect-encoding-issues.ps1`** | **NEW: File encoding issue detector/fixer** | `detect-encoding-issues.ps1 -ProjectPath . -Fix -Recursive` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 
-**🎉 MILESTONE: ALL 50 RECOMMENDATIONS IMPLEMENTED! Total: 97 tools (47 original + 50 new)**
+**🎉 MILESTONE: ALL 50 RECOMMENDATIONS IMPLEMENTED! Total: 98 tools (47 original + 51 new)**
 
 ---
 
@@ -511,6 +513,6 @@ When implemented, this will enable agents to:
 
 ---
 
-**Last Updated:** 2026-01-19 21:45 (Added comprehensive self-optimization system: PERSONAL_INSIGHTS.md for deep user understanding, continuous-optimization skill for meta-learning, integrated feedback loops. NOW FULLY OPTIMIZING BASED ON USER'S COGNITIVE ARCHITECTURE.)
+**Last Updated:** 2026-01-19 23:55 (Added file encoding detection tool for UTF-16/BOM issues causing Babel parse errors. Tool: detect-encoding-issues.ps1 - Session: UTF-16 encoding incident + Active Debugging Mode validation)
 **Maintained By:** Claude Agent (Self-improving documentation)
 **User Mandate:** "zorg dat je dus constant leert van jezelf en je eigen instructies bijwerkt"
