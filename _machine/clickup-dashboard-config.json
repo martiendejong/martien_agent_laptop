@@ -1,0 +1,390 @@
+﻿{
+    "name":  "Brand2Boost Team Dashboard",
+    "alerts":  [
+                   {
+                       "trigger":  "count",
+                       "name":  "Blocked Items Alert",
+                       "action":  {
+                                      "message":  "[!] BLOCKED ITEMS ALERT: We have {{count}} blocked tasks requiring attention.",
+                                      "channel":  "#dev-team",
+                                      "type":  "slack_notification"
+                                  },
+                       "frequency":  "daily",
+                       "time":  "09:00",
+                       "condition":  {
+                                         "operator":  "greater_than",
+                                         "value":  5,
+                                         "widget_id":  1
+                                     }
+                   },
+                   {
+                       "frequency":  "every_6_hours",
+                       "name":  "Review SLA Alert",
+                       "condition":  {
+                                         "field":  "days_in_review",
+                                         "operator":  "greater_than",
+                                         "value":  2,
+                                         "widget_id":  2
+                                     },
+                       "action":  {
+                                      "message":  "[!] REVIEW SLA OVERDUE: {{task_name}} has been in review for {{days_in_review}} days.",
+                                      "channel":  "#dev-team",
+                                      "type":  "slack_notification"
+                                  },
+                       "trigger":  "custom_field"
+                   }
+               ],
+    "description":  "Sprint health, blockers, and team capacity tracking",
+    "widgets":  [
+                    {
+                        "id":  1,
+                        "name":  "[BLOCKED] Needs Action",
+                        "settings":  {
+                                         "color":  "#ff4444",
+                                         "sort":  {
+                                                      "field":  "date_updated",
+                                                      "direction":  "asc"
+                                                  },
+                                         "limit":  20,
+                                         "fields":  [
+                                                        "name",
+                                                        "assignee",
+                                                        "custom_field_blocked_reason",
+                                                        "date_updated"
+                                                    ],
+                                         "filters":  {
+                                                         "status":  [
+                                                                        "blocked"
+                                                                    ]
+                                                     }
+                                     },
+                        "type":  "task_list",
+                        "position":  {
+                                         "col":  1,
+                                         "row":  1
+                                     },
+                        "size":  "third"
+                    },
+                    {
+                        "id":  2,
+                        "name":  "[REVIEW] SLA Tracker",
+                        "settings":  {
+                                         "color":  "#ff9800",
+                                         "sort":  {
+                                                      "field":  "date_updated",
+                                                      "direction":  "asc"
+                                                  },
+                                         "limit":  20,
+                                         "fields":  [
+                                                        "name",
+                                                        "assignee",
+                                                        "days_in_review"
+                                                    ],
+                                         "filters":  {
+                                                         "status":  [
+                                                                        "review"
+                                                                    ]
+                                                     }
+                                     },
+                        "type":  "task_list",
+                        "position":  {
+                                         "col":  2,
+                                         "row":  1
+                                     },
+                        "size":  "third"
+                    },
+                    {
+                        "id":  3,
+                        "name":  "Sprint Velocity Trend",
+                        "settings":  {
+                                         "group_by":  "date_closed",
+                                         "aggregation":  "count",
+                                         "target_line":  40,
+                                         "time_range":  "last_6_weeks",
+                                         "filters":  {
+                                                         "status":  [
+                                                                        "done"
+                                                                    ]
+                                                     }
+                                     },
+                        "type":  "line_chart",
+                        "position":  {
+                                         "col":  3,
+                                         "row":  1
+                                     },
+                        "size":  "third"
+                    },
+                    {
+                        "id":  4,
+                        "name":  "[TEAM] Capacity \u0026 WIP",
+                        "settings":  {
+                                         "group_by":  "assignee",
+                                         "wip_limit":  3,
+                                         "show_wip_limit":  true,
+                                         "filters":  {
+                                                         "status":  [
+                                                                        "busy",
+                                                                        "review"
+                                                                    ]
+                                                     }
+                                     },
+                        "type":  "workload",
+                        "position":  {
+                                         "col":  1,
+                                         "row":  2
+                                     },
+                        "size":  "half"
+                    },
+                    {
+                        "id":  5,
+                        "name":  "[EPIC] Completion Status",
+                        "settings":  {
+                                         "show_percentage":  true,
+                                         "group_by":  "epic",
+                                         "show_task_count":  true,
+                                         "sort":  "percentage_desc"
+                                     },
+                        "type":  "progress_bars",
+                        "position":  {
+                                         "col":  2,
+                                         "row":  2
+                                     },
+                        "size":  "half"
+                    },
+                    {
+                        "id":  6,
+                        "name":  "[SPRINT] Active Sprint - All Tasks",
+                        "settings":  {
+                                         "group_by":  "status",
+                                         "card_fields":  [
+                                                             "assignee",
+                                                             "priority",
+                                                             "tags",
+                                                             "due_date"
+                                                         ],
+                                         "columns":  [
+                                                         "todo",
+                                                         "busy",
+                                                         "review",
+                                                         "blocked"
+                                                     ],
+                                         "filters":  {
+                                                         "status":  [
+                                                                        "todo",
+                                                                        "busy",
+                                                                        "review",
+                                                                        "blocked"
+                                                                    ]
+                                                     }
+                                     },
+                        "type":  "board",
+                        "position":  {
+                                         "col":  1,
+                                         "row":  3
+                                     },
+                        "size":  "full"
+                    },
+                    {
+                        "id":  7,
+                        "name":  "[CHART] Task Distribution",
+                        "settings":  {
+                                         "show_percentage":  true,
+                                         "group_by":  "status",
+                                         "filters":  {
+                                                         "status_not":  [
+                                                                            "done"
+                                                                        ]
+                                                     }
+                                     },
+                        "type":  "pie_chart",
+                        "position":  {
+                                         "col":  1,
+                                         "row":  4
+                                     },
+                        "size":  "third"
+                    },
+                    {
+                        "id":  8,
+                        "name":  "[PRIORITY] Top Priorities - Next Up",
+                        "settings":  {
+                                         "sort":  {
+                                                      "field":  "priority",
+                                                      "direction":  "desc"
+                                                  },
+                                         "limit":  10,
+                                         "filters":  {
+                                                         "status":  [
+                                                                        "todo"
+                                                                    ],
+                                                         "priority":  [
+                                                                          "urgent",
+                                                                          "high"
+                                                                      ]
+                                                     }
+                                     },
+                        "type":  "task_list",
+                        "position":  {
+                                         "col":  2,
+                                         "row":  4
+                                     },
+                        "size":  "third"
+                    },
+                    {
+                        "id":  9,
+                        "name":  "[METRIC] Average Cycle Time",
+                        "settings":  {
+                                         "aggregation":  "average",
+                                         "metric":  "cycle_time",
+                                         "time_range":  "last_4_weeks",
+                                         "target_line":  3
+                                     },
+                        "type":  "line_chart",
+                        "position":  {
+                                         "col":  3,
+                                         "row":  4
+                                     },
+                        "size":  "third"
+                    },
+                    {
+                        "id":  10,
+                        "name":  "[DONE] Completed This Week",
+                        "settings":  {
+                                         "sort":  {
+                                                      "field":  "date_closed",
+                                                      "direction":  "desc"
+                                                  },
+                                         "limit":  15,
+                                         "fields":  [
+                                                        "name",
+                                                        "assignee",
+                                                        "date_closed",
+                                                        "custom_field_pr_link"
+                                                    ],
+                                         "filters":  {
+                                                         "status":  [
+                                                                        "done"
+                                                                    ],
+                                                         "date_closed_gte":  "7_days_ago"
+                                                     }
+                                     },
+                        "type":  "task_list",
+                        "position":  {
+                                         "col":  1,
+                                         "row":  5
+                                     },
+                        "size":  "half"
+                    },
+                    {
+                        "id":  11,
+                        "name":  "[FLOW] Work In Progress",
+                        "settings":  {
+                                         "layers":  [
+                                                        "done",
+                                                        "review",
+                                                        "busy",
+                                                        "todo",
+                                                        "blocked"
+                                                    ],
+                                         "group_by":  "status",
+                                         "time_range":  "last_30_days",
+                                         "stacked":  true
+                                     },
+                        "type":  "area_chart",
+                        "position":  {
+                                         "col":  2,
+                                         "row":  5
+                                     },
+                        "size":  "half"
+                    },
+                    {
+                        "id":  12,
+                        "name":  "[METRICS] Sprint Health Indicators",
+                        "settings":  {
+                                         "metrics":  [
+                                                         {
+                                                             "filter":  {
+                                                                            "time_range":  "current_sprint",
+                                                                            "status":  [
+                                                                                           "done"
+                                                                                       ]
+                                                                        },
+                                                             "name":  "Tasks Done",
+                                                             "target":  40,
+                                                             "calculation":  "count",
+                                                             "trend":  "increase_good"
+                                                         },
+                                                         {
+                                                             "filter":  {
+                                                                            "status":  [
+                                                                                           "review"
+                                                                                       ]
+                                                                        },
+                                                             "name":  "Review Queue",
+                                                             "target":  3,
+                                                             "calculation":  "count",
+                                                             "trend":  "decrease_good"
+                                                         },
+                                                         {
+                                                             "filter":  {
+                                                                            "status":  [
+                                                                                           "blocked"
+                                                                                       ]
+                                                                        },
+                                                             "name":  "Blocked Items",
+                                                             "target":  2,
+                                                             "calculation":  "count",
+                                                             "trend":  "decrease_good"
+                                                         },
+                                                         {
+                                                             "filter":  {
+                                                                            "time_range":  "last_7_days"
+                                                                        },
+                                                             "name":  "Avg Cycle Time",
+                                                             "calculation":  "average_cycle_time",
+                                                             "trend":  "decrease_good",
+                                                             "unit":  "days",
+                                                             "target":  3
+                                                         }
+                                                     ]
+                                     },
+                        "type":  "number_cards",
+                        "position":  {
+                                         "col":  1,
+                                         "row":  6
+                                     },
+                        "size":  "full"
+                    }
+                ],
+    "list_id":  "901214097647",
+    "custom_fields":  [
+                          {
+                              "formula":  "(Reach * Impact * Confidence) / Effort",
+                              "name":  "RICE Score",
+                              "dependencies":  [
+                                                   "Reach",
+                                                   "Impact",
+                                                   "Confidence",
+                                                   "Effort"
+                                               ],
+                              "type":  "formula"
+                          },
+                          {
+                              "name":  "Blocked Reason",
+                              "required_when":  {
+                                                    "status":  "blocked"
+                                                },
+                              "type":  "text"
+                          },
+                          {
+                              "auto_set":  true,
+                              "name":  "Review SLA",
+                              "type":  "date",
+                              "formula":  "date_moved_to_review + 24_hours"
+                          },
+                          {
+                              "name":  "PR Link",
+                              "type":  "url"
+                          }
+                      ],
+    "workspace_id":  "REPLACE_WITH_YOUR_WORKSPACE_ID"
+}
