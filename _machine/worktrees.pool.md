@@ -5,10 +5,10 @@ Seat states:
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager | agent-001-orchestrator-integration | 2026-01-16T15:00:00Z | 🚧 Week 1-2: Integrating BackgroundTaskOrchestrator into Image/Blog/Analysis generation services |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | client-manager | feature/869btq487-legal-pages-links | 2026-01-19T23:30:00Z | 🚧 Implementing legal pages footer links (ClickUp #869btq487) |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-19T18:00:00Z | ✅ Snapchat Create Post COMPLETE: SnapchatPublisher (429 lines), Hazina#89 + client-manager#263, ClickUp #869bt9urn |
-| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-19T16:30:00Z | ✅ DTO Foundation COMPLETE: MessageResponse, BulkOperationResult, DTO_COMPLETION_GUIDE.md (PR #261) |
-| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-16T18:00:00Z | ✅ Bugattiinsights: Build failed due to .NET version conflicts, no docs generated |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-01-20T01:00:00Z | ✅ Language per project COMPLETE: PR #267 created, migration + API + frontend |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-20T01:30:00Z | ✅ URL content extraction COMPLETE: PR #269 created, automatic webpage fetching in chat |
+| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-20T00:35:00Z | ✅ Chat URL routing COMPLETE: PR #266 created, chatId preserved |
+| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-20T01:15:00Z | ✅ PR Template COMPLETE: PR #268 created, 110 lines, 25+ checklist items |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-01-16T21:30:00Z | ✅ DocFX complete (PR #1) - 5/5 projects, 84 pages - worktree released |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-01-10T15:30:00Z | ✅ Cleaned up: Security hardening (PR #61) and payment-models work completed and merged |
 | agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | - | - | 2026-01-09T23:30:00Z | ✅ Fixed content hooks generation - pushed to client-manager payment-models branch (PR #82) |
