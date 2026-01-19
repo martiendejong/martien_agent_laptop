@@ -540,3 +540,5 @@ Actions:
 2026-01-20T00:35:00Z | agent-004 | RELEASE | feature/869brntyj-chat-url-routing | PR #266 created - Chat URL routing fix
 2026-01-20T01:10:00Z | agent-005 | ALLOCATE | feature/869bu91d8-pr-template | ClickUp #869bu91d8 - PR template
 2026-01-20T01:15:00Z | agent-005 | RELEASE | feature/869bu91d8-pr-template | PR #268 created - PR template
+
+2026-01-20T02:30:00Z — allocate — agent-002 — client-manager+hazina — agent-002-framework-url-enrichment — — claude-code — Framework-level URL enrichment: Replace PR #269 controller hack with proper Hazina tools. Paired repos for framework + client changes.
