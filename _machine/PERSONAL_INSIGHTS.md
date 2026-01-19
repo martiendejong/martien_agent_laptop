@@ -1118,6 +1118,98 @@ Pattern: These are CRITICAL - never lose during merges
 
 **Confidence Level:** HIGH - Good recovery from missed Ollama setting. User correction provided valuable learning about completeness expectations.
 
+### 2026-01-20 00:10 - ClickHub Agent: Anti-Loop Protocol for Blocked Tasks
+
+**Context:** User feedback on clickhub-coding-agent skill behavior when tasks are blocked and then answered.
+
+**User Directive:**
+> "When you see a task that you moved to blocked and someone replied with a comment to your questions, then don't move it back into blocked without at least saying why you absolutely cannot continue without having these questions answered."
+
+**Problem Identified:**
+- **Infinite Loop Pattern:** Agent blocks task with questions → User answers → Agent blocks again without reading answers → Frustration
+- **Overly Cautious Behavior:** Blocking tasks for minor uncertainties that could be resolved in PR review
+- **Poor Communication:** Silently re-blocking without explaining what's still missing
+
+**Key Insights:**
+
+1. **User Prefers Action Over Paralysis**
+   - **Pattern:** User values iterations and refinement over upfront perfection
+   - **Learning:** "Bias toward action, not paralysis" - proceed with 80% information
+   - **Validation:** Better to implement with documented assumptions than endlessly block
+   - **Anti-pattern:** Waiting for 100% perfect information before starting
+
+2. **Read Responses, Don't Ignore Them**
+   - **Pattern:** When user takes time to answer questions, HONOR that effort by reading carefully
+   - **Learning:** Check comment history, analyze answers, determine if sufficient to proceed
+   - **Anti-pattern:** Posting questions → Ignoring answers → Re-blocking silently
+
+3. **Explain Re-Blocking Decisions**
+   - **Pattern:** If still blocked after user replies, explain SPECIFICALLY what's missing
+   - **Learning:** "Don't move it back into blocked without at least saying why"
+   - **Communication:** Post follow-up questions that reference user's previous answers
+   - **Anti-pattern:** Silent re-blocking without explanation
+
+4. **Make Reasonable Assumptions**
+   - **Pattern:** When 80%+ information available, proceed with documented assumptions
+   - **Learning:** Users prefer implementation they can correct in PR review over theoretical discussion
+   - **Implementation:** Post comment listing assumptions before moving to busy
+   - **Philosophy:** Implementation reveals edge cases better than upfront discussion
+
+5. **ClickHub Agent Behavioral Guidelines**
+   - **Decision threshold:** 80% information = proceed
+   - **Communication:** Always explain reasoning when re-blocking
+   - **Documentation:** List assumptions when proceeding with incomplete info
+   - **Philosophy:** Iterations > perfection, action > paralysis
+
+**Updated Skill:**
+- Added § 3.5: Handle Previously Blocked Tasks - CRITICAL ANTI-LOOP PROTOCOL
+- Decision tree for blocked task encounters
+- Protocol for reading comment history
+- Guidelines for making reasonable assumptions
+- Anti-patterns to avoid (silent re-blocking, ignoring answers)
+- Patterns to follow (document assumptions, explain decisions)
+
+**Behavioral Pattern Confirmed:**
+- **User's work style:** Iterative, action-oriented, values progress over perfection
+- **Communication style:** Direct feedback when behavior doesn't match expectations
+- **Frustration trigger:** Stuck in loops, lack of progress, ignored effort (answering questions)
+- **Solution preference:** Autonomous agents that make reasonable decisions and explain reasoning
+
+**Implications for All Skills/Tools:**
+
+**General Principle: Bias Toward Action**
+- When uncertain, make best effort with available info
+- Document assumptions clearly
+- Prefer iteration over upfront perfection
+- Don't block on minor uncertainties
+
+**Communication Principle: Honor User Effort**
+- If user provided input (answers, feedback, corrections), READ it carefully
+- Don't ask same question twice
+- Acknowledge user input in follow-up actions
+- Explain decisions that might seem contradictory
+
+**Autonomous Decision-Making:**
+- 80% information threshold for proceeding
+- Document assumptions when proceeding with incomplete info
+- Only escalate/block when truly impossible to proceed
+- Explain reasoning for blocking decisions
+
+**This Aligns With:**
+- ✅ Dutch directness (clear explanation of decisions)
+- ✅ Pragmatic approach (what works > theoretical perfection)
+- ✅ Efficiency focus (avoid stuck loops)
+- ✅ Systems thinking (prevent infinite loops with protocol)
+- ✅ Autonomous execution (make decisions, document reasoning)
+
+**Success Metrics:**
+- ✅ User provided clear, specific feedback
+- ✅ Directive was actionable ("don't do X without Y")
+- ✅ Feedback reveals user's decision-making philosophy
+- ✅ Pattern applicable beyond just ClickHub agent
+
+**Confidence Level:** HIGH - This is valuable insight into user's preference for action-oriented, iterative development over cautious, perfection-seeking approaches.
+
 ### [FUTURE UPDATES HERE]
 ```
 

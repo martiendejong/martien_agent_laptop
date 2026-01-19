@@ -168,6 +168,134 @@ C:/scripts/tools/clickup-sync.ps1 -Action update -TaskId "<task-id>" -Status "bl
 
 Do not implement tasks with unanswered questions. Move to next task.
 
+### Step 3.5: Handle Previously Blocked Tasks - CRITICAL ANTI-LOOP PROTOCOL
+
+**PROBLEM:** Agent can get into frustrating infinite loop:
+1. Agent posts questions → Moves to blocked
+2. User answers questions in comments
+3. Agent sees task again → Doesn't read answers → Blocks again
+
+**USER DIRECTIVE (2026-01-20):**
+> "When you see a task that you moved to blocked and someone replied with a comment to your questions, then don't move it back into blocked without at least saying why you absolutely cannot continue without having these questions answered."
+
+**PROTOCOL FOR BLOCKED TASKS:**
+
+#### When Encountering a "Blocked" Task:
+
+**Step 1: Check Comment History**
+```powershell
+# Get full task details including comments
+C:/scripts/tools/clickup-sync.ps1 -Action show -TaskId "<task-id>"
+
+# Look for:
+# - Agent's previous "QUESTIONS BEFORE IMPLEMENTATION" comment
+# - User replies after that comment
+# - Timestamps to determine if questions were answered
+```
+
+**Step 2: Analyze User Responses**
+
+**If user has replied with answers:**
+- ✅ **READ THE ANSWERS CAREFULLY**
+- ✅ Determine if answers provide enough information to proceed
+- ✅ If yes → Move to "todo" status and implement (proceed to Step 4)
+- ✅ If no → See Step 3 below
+
+**Step 3: Only Re-Block If Absolutely Necessary**
+
+**If answers are still insufficient:**
+```powershell
+# Post NEW comment explaining what's STILL missing
+C:/scripts/tools/clickup-sync.ps1 -Action comment -TaskId "<task-id>" -Comment "
+FOLLOW-UP QUESTIONS:
+
+Thank you for your previous response. I reviewed your answers but still need clarification on:
+
+1. [Specific aspect] - Your answer mentioned X, but I need to know Y to proceed
+2. [Another aspect] - Still unclear about Z
+
+I want to move forward on this task, but these specific details will determine the implementation approach.
+
+-- ClickHub Coding Agent
+"
+
+# Keep status as blocked (already blocked)
+# Do NOT silently re-block - explain WHY in the comment
+```
+
+**Step 4: Make Best Effort Attempt**
+
+**CRITICAL: Don't be overly cautious**
+- If 80% of information is available → **PROCEED**
+- Make reasonable assumptions and document them
+- Post comment with assumptions: "Implementing with assumption that X. Please correct if wrong."
+- Better to implement and iterate than endlessly block
+
+**Step 5: Document Assumptions When Proceeding**
+
+```powershell
+# When moving forward with reasonable assumptions
+C:/scripts/tools/clickup-sync.ps1 -Action comment -TaskId "<task-id>" -Comment "
+PROCEEDING WITH IMPLEMENTATION:
+
+Based on your answers, I'm implementing with these assumptions:
+- [Assumption 1]: Using centered modal (standard pattern for this app)
+- [Assumption 2]: Repository pattern (consistent with existing code)
+- [Assumption 3]: User without subscription sees upgrade prompt
+
+If any of these assumptions are incorrect, the implementation can be adjusted in PR review.
+
+Moving to 'busy' status.
+
+-- ClickHub Coding Agent
+"
+
+# Update to busy and implement
+C:/scripts/tools/clickup-sync.ps1 -Action update -TaskId "<task-id>" -Status "busy"
+```
+
+**ANTI-PATTERNS TO AVOID:**
+
+❌ **DON'T:** Silently re-block task after user has replied
+❌ **DON'T:** Ask the same questions again
+❌ **DON'T:** Block tasks for minor uncertainties that can be resolved in PR review
+❌ **DON'T:** Wait for 100% perfect information before starting
+❌ **DON'T:** Ignore user's attempt to answer questions
+
+✅ **DO:** Read all comments carefully
+✅ **DO:** Make best effort with available information
+✅ **DO:** Document assumptions when proceeding
+✅ **DO:** Only re-block if truly impossible to proceed
+✅ **DO:** Explain specifically what's still missing
+
+**DECISION TREE:**
+
+```
+Blocked task encountered
+  ↓
+Has user replied to questions?
+  ↓
+├─ NO → Keep blocked, skip to next task
+  ↓
+├─ YES → Read replies carefully
+     ↓
+     Can I proceed with 80%+ information?
+       ↓
+       ├─ YES → Post assumptions comment → Move to busy → Implement
+       ↓
+       ├─ MAYBE → Try to infer missing details → Post assumptions → Implement
+       ↓
+       ├─ NO → Post specific follow-up questions → Explain WHY still blocked → Keep blocked
+```
+
+**PHILOSOPHY:**
+
+**Bias toward action, not paralysis.**
+- Users prefer iterations over perfection
+- PRs allow for feedback and refinement
+- Implementation reveals edge cases better than theoretical discussion
+- Blocked tasks frustrate users - make every effort to unblock
+
 ### Step 4: Execute TODO Tasks
 
 For tasks in "todo" status with NO uncertainties:

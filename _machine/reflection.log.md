@@ -4,6 +4,221 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-20 00:10 - ClickHub Agent: Anti-Loop Protocol Implementation
+
+**Pattern:** Autonomous Agent Behavior / User Feedback / Infinite Loop Prevention / Decision-Making Philosophy
+**Outcome:** Updated clickhub-coding-agent skill with anti-loop protocol for blocked tasks
+
+### User Feedback
+
+**User Request:**
+> "When you see a task that you moved to blocked and someone replied with a comment to your questions, then don't move it back into blocked without at least saying why you absolutely cannot continue without having these questions answered. Update this in your skills, tools and insights."
+
+**Problem:** ClickHub agent was at risk of frustrating infinite loop behavior:
+1. Agent finds uncertainty → Posts questions → Moves to blocked
+2. User answers questions
+3. Agent encounters task again → Doesn't read answers → Blocks again (loop)
+
+### Root Cause Analysis
+
+**Why This Could Happen:**
+
+1. **No Protocol for Revisiting Blocked Tasks**
+   - Original skill had protocol for initial blocking
+   - No guidance for what to do when encountering already-blocked tasks
+   - Missing: "Check if user has replied since you blocked it"
+
+2. **Conservative Decision-Making**
+   - Tendency to block on any uncertainty
+   - No threshold for "enough information to proceed"
+   - Missing: "80% information = proceed with documented assumptions"
+
+3. **Poor Communication Pattern**
+   - Original skill: Block task → Skip to next
+   - Missing: "If re-blocking after user reply, explain WHY"
+   - Missing: "Reference user's previous answer and explain what's still missing"
+
+4. **Lack of Iteration Philosophy**
+   - Original focus: Get perfect information upfront
+   - Missing: "Implement and iterate in PR review"
+   - Missing: "Users prefer action over paralysis"
+
+### Solution Implemented
+
+**Added to clickhub-coding-agent/SKILL.md:**
+
+**§ 3.5: Handle Previously Blocked Tasks - CRITICAL ANTI-LOOP PROTOCOL**
+
+**Key Components:**
+
+1. **Comment History Check**
+   - Read full task including all comments
+   - Identify agent's previous "QUESTIONS BEFORE IMPLEMENTATION" comment
+   - Look for user replies after that timestamp
+   - Analyze user responses carefully
+
+2. **Decision Tree**
+   ```
+   Blocked task encountered
+     ↓
+   Has user replied to questions?
+     ↓
+   ├─ NO → Keep blocked, skip to next task
+     ↓
+   ├─ YES → Read replies carefully
+        ↓
+        Can I proceed with 80%+ information?
+          ↓
+          ├─ YES → Post assumptions → Move to busy → Implement
+          ├─ MAYBE → Infer missing details → Post assumptions → Implement
+          ├─ NO → Post specific follow-up → Explain WHY → Keep blocked
+   ```
+
+3. **80% Information Threshold**
+   - If 80%+ information available → PROCEED
+   - Don't wait for 100% perfect information
+   - Make reasonable assumptions based on:
+     - Existing code patterns
+     - Similar features in codebase
+     - Common UX/UI conventions
+     - Standard architectural patterns
+
+4. **Document Assumptions When Proceeding**
+   ```
+   Post comment:
+   "PROCEEDING WITH IMPLEMENTATION:
+
+   Based on your answers, I'm implementing with these assumptions:
+   - [Assumption 1]: Using centered modal (standard pattern)
+   - [Assumption 2]: Repository pattern (consistent with code)
+   - [Assumption 3]: User without subscription sees upgrade prompt
+
+   If any assumptions are incorrect, can adjust in PR review.
+
+   Moving to 'busy' status."
+   ```
+
+5. **Explain Re-Blocking Decisions**
+   ```
+   If still blocked after user reply:
+   "FOLLOW-UP QUESTIONS:
+
+   Thank you for your previous response. I reviewed your answers but still need:
+
+   1. [Specific] - Your answer mentioned X, but need Y to proceed
+   2. [Another] - Still unclear about Z
+
+   These specific details will determine implementation approach."
+   ```
+
+6. **Anti-Patterns to Avoid**
+   - ❌ Silently re-block after user has replied
+   - ❌ Ask same questions again
+   - ❌ Block for minor uncertainties solvable in PR review
+   - ❌ Wait for 100% perfect information
+   - ❌ Ignore user's attempt to answer
+
+7. **Patterns to Follow**
+   - ✅ Read all comments carefully
+   - ✅ Make best effort with available information
+   - ✅ Document assumptions when proceeding
+   - ✅ Only re-block if truly impossible to proceed
+   - ✅ Explain specifically what's still missing
+
+### Key Philosophy: Bias Toward Action
+
+**User's Preference Pattern:**
+- **Iterations > Perfection** - Prefer working implementation that can be refined
+- **Action > Paralysis** - Prefer documented assumptions over endless blocking
+- **PR Review > Upfront Discussion** - Implementation reveals edge cases better
+
+**Decision-Making Principle:**
+- **80% threshold** - Proceed if 80%+ information available
+- **Reasonable assumptions** - Based on existing patterns, conventions, standards
+- **Document reasoning** - Make assumptions visible for PR review
+- **Explain blocking** - If re-blocking, specifically explain what's missing
+
+### Updated Files
+
+**1. `.claude/skills/clickhub-coding-agent/SKILL.md`**
+- Added § 3.5: Handle Previously Blocked Tasks (150+ lines)
+- Decision tree for blocked task encounters
+- 80% information threshold guidance
+- Assumption documentation templates
+- Anti-patterns and patterns lists
+- Philosophy section on bias toward action
+
+**2. `_machine/PERSONAL_INSIGHTS.md`**
+- § 2026-01-20 00:10 - ClickHub Agent: Anti-Loop Protocol
+- User's iterative, action-oriented work style confirmed
+- Decision-making philosophy documented
+- Implications for all skills/tools (general principles)
+- Alignment with Dutch directness, pragmatism, efficiency
+
+**3. `_machine/reflection.log.md`** (this file)
+- Root cause analysis
+- Solution documentation
+- Philosophy extraction
+- Files updated
+
+### Learnings for Future Development
+
+**1. Always Design for Re-Entry**
+- When creating autonomous agents that loop, design for revisiting same items
+- Don't just handle "first encounter" - handle "already processed, checking again"
+- Example: ClickHub processes tasks in cycles - must handle blocked tasks in cycle N+1
+
+**2. Establish Decision Thresholds**
+- Autonomous agents need clear thresholds for action vs. escalation
+- "80% information = proceed" is concrete and actionable
+- Prevents analysis paralysis and infinite loops
+
+**3. Honor User Effort**
+- If user takes time to provide input (answers, feedback), READ it carefully
+- Don't ask same question twice
+- Acknowledge and reference previous user input in follow-up actions
+
+**4. Document Reasoning**
+- When proceeding with assumptions, make them visible
+- When blocking/re-blocking, explain specific reasoning
+- Transparency builds trust in autonomous systems
+
+**5. Iteration-Friendly Development**
+- Users prefer working code they can refine over perfect planning
+- PRs are designed for feedback loops
+- Implementation reveals edge cases better than theoretical discussion
+
+### Success Metrics
+
+**Immediate:**
+- ✅ Skill updated with comprehensive anti-loop protocol
+- ✅ PERSONAL_INSIGHTS.md updated with decision-making philosophy
+- ✅ reflection.log.md updated with learnings
+
+**Future (When ClickHub Agent Runs):**
+- ✅ No infinite loops on blocked tasks
+- ✅ User answers are read and considered
+- ✅ Re-blocking includes specific explanations
+- ✅ Tasks proceed when 80%+ information available
+- ✅ Assumptions are documented in task comments
+- ✅ User satisfaction with autonomous task management
+
+### Related Patterns
+
+**Similar Learnings:**
+- **Boy Scout Rule** - Leave code better than you found it → Leave tasks unblocked when possible
+- **Bias toward action** - Automation first, reserve thinking for thinking → Implement first, refine in PR
+- **Dutch directness** - Say what you mean → Explain blocking decisions clearly
+- **Pragmatic approach** - What works > theoretically pure → 80% threshold over 100% perfection
+
+**Applicable to Other Contexts:**
+- Any autonomous looping agent (monitoring, processing, executing)
+- Multi-cycle workflows where items are revisited
+- Decision-making in uncertain environments
+- Human-AI collaboration patterns
+
+---
+
 ## 2026-01-19 23:45 - Production Deployment Crisis & Backup System Implementation
 
 **Pattern:** Deployment Issues / Database Reset / Data Loss / Circular Dependencies / Configuration Management
