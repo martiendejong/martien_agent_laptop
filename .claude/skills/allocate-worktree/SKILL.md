@@ -17,7 +17,40 @@ user-invocable: true
 cat C:/scripts/ZERO_TOLERANCE_RULES.md
 ```
 
-### 2. Multi-Agent Conflict Detection (CRITICAL)
+### 2. ManicTime Coordination Check (MANDATORY)
+
+**Get current agent activity context:**
+
+```powershell
+# Check how many Claude agents are running and their status
+$context = monitor-activity.ps1 -Mode context -OutputFormat object
+
+Write-Host "Active Claude Instances: $($context.ClaudeInstances.Count)"
+Write-Host "User Attending: $($context.System.UserAttending)"
+Write-Host "System Idle: $($context.IdleTime.IsIdle)"
+```
+
+**Store for later use:**
+```powershell
+$agentCount = $context.ClaudeInstances.Count
+$userFocused = $context.System.UserAttending
+$myPriority = if ($userFocused) { 100 } else { 50 }
+```
+
+**Coordination Strategy Selection:**
+```powershell
+if ($agentCount -lt 3) {
+    Write-Host "✅ Low contention ($agentCount agents) - using optimistic allocation"
+    $strategy = "optimistic"  # Fast path
+} else {
+    Write-Host "⚠️  High contention ($agentCount agents) - using pessimistic allocation"
+    $strategy = "pessimistic"  # Slow path with jitter
+    # Add random delay to reduce thundering herd
+    Start-Sleep -Milliseconds (Get-Random -Minimum 0 -Maximum 500)
+}
+```
+
+### 3. Multi-Agent Conflict Detection (CRITICAL)
 Before allocating ANY worktree, check for conflicts:
 
 ```bash
@@ -35,14 +68,14 @@ I will NOT proceed with allocation to avoid conflicts.
 
 **STOP IMMEDIATELY. Do not allocate.**
 
-### 3. Check Pool Status
+### 4. Check Pool Status
 ```bash
 cat C:/scripts/_machine/worktrees.pool.md
 ```
 
 Find a FREE seat (agent-001, agent-002, etc.). If all BUSY, provision new seat.
 
-### 4. Verify Base Repos on Develop
+### 5. Verify Base Repos on Develop
 ```bash
 # Check client-manager
 git -C C:/Projects/client-manager branch --show-current

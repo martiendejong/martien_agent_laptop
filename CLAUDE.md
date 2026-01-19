@@ -24,6 +24,7 @@ Any task with multiple steps should become a script. This way:
 | Reading multiple files for state | `bootstrap-snapshot.ps1` |
 | **Checking user activity & context** | **`monitor-activity.ps1 -Mode context`** |
 | **Detecting other Claude instances** | **`monitor-activity.ps1 -Mode claude`** |
+| **Parallel agent coordination** | **`parallel-agent-coordination` skill + `monitor-activity.ps1`** |
 | Manual C# formatting | `cs-format.ps1` |
 | Checking ClickUp tasks | `clickup-sync.ps1 -Action list` |
 | Allocating worktree manually | `worktree-allocate.ps1 -Repo client-manager -Branch feature/x` |
@@ -254,6 +255,7 @@ See **[bootstrap/README.md](./bootstrap/README.md)** for complete documentation.
 
 #### 🧠 Context Intelligence & System Awareness
 - **`activity-monitoring`** - Real-time user activity tracking and context-aware intelligence using ManicTime integration. Detects what user is doing, counts Claude instances, identifies idle/unattended system, enables adaptive assistance.
+- **`parallel-agent-coordination`** - **NEW (2026-01-20):** Real-time coordination protocol for multiple Claude agents using ManicTime. Prevents conflicts, enables intelligent work distribution, ensures efficient parallel operation. Based on 50-expert analysis. Use when multiple agents running simultaneously.
 
 #### 🗄️ Database & Migrations
 - **`ef-migration-safety`** - Safe EF Core migration workflow with pre-flight checks, breaking change detection, and multi-step migration patterns
@@ -335,9 +337,10 @@ C:\scripts\.claude\skills\
 5. ✅ **Read** `GENERAL_DUAL_MODE_WORKFLOW.md` - Understand Feature Development vs Active Debugging modes
 6. ✅ **Read** `_machine/DEFINITION_OF_DONE.md` - Know what "done" means for all tasks
 7. ✅ **Run** `C:/scripts/tools/repo-dashboard.sh` - Check environment state
-8. ✅ **Run** `monitor-activity.ps1 -Mode context` - **CRITICAL: Get user context, detect other Claude instances, check if user is present**
+8. ✅ **Run** `monitor-activity.ps1 -Mode context` - **CRITICAL: Get user context, detect other Claude instances (parallel coordination), check if user is present**
 9. ✅ **Verify** base repos on `develop` branch (see MACHINE_CONFIG.md for paths)
 10. ✅ **Check** `worktrees.pool.md` - Available agent seats
+11. ✅ **IF multiple agents detected (step 8):** Activate `parallel-agent-coordination` protocol - use adaptive allocation strategy, enhanced conflict detection, activity-based prioritization
 
 ### Before ANY Code Edit - Determine Mode:
 1. 🚦 **Mode Detection** - See `dual-mode-workflow.md` decision tree
