@@ -238,6 +238,9 @@ See **[bootstrap/README.md](./bootstrap/README.md)** for complete documentation.
 - **`session-reflection`** - Update reflection.log.md with session learnings
 - **`self-improvement`** - Update CLAUDE.md and documentation with new patterns
 
+#### 📋 Task Management
+- **`clickhub-coding-agent`** - Autonomous ClickUp task manager: analyze unassigned tasks, identify uncertainties, post questions, pick up todo tasks, execute code changes with worktrees, operate in continuous loop
+
 #### 🔌 Integrations
 - **`mcp-setup`** - Configure MCP servers for external integrations (Google Drive, GitHub, databases, APIs)
 
@@ -371,6 +374,7 @@ C:\scripts\.claude\skills\
 | Track cross-repo PR dependencies | `git-workflow.md` § Cross-Repo Dependencies | ✅ `pr-dependencies` |
 | Avoid API development pitfalls | Reflection log patterns | ✅ `api-patterns` |
 | Migrate terminology across codebase | `development-patterns.md` § Terminology Migration | ✅ `terminology-migration` |
+| **Autonomous ClickUp task management** | **`.claude/skills/clickhub-coding-agent/`** | ✅ **`clickhub-coding-agent`** |
 | Update reflection.log.md | `continuous-improvement.md` § Reflection Protocol | ✅ `session-reflection` |
 | Update documentation with learnings | `continuous-improvement.md` § Self-Improvement | ✅ `self-improvement` |
 | Manage window colors (RUNNING/COMPLETE/BLOCKED) | `session-management.md` § Dynamic Window Colors | - |
