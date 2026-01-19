@@ -75,7 +75,38 @@ gh pr list --search "<task-keyword>"
 # Use Task tool with Explore agent for comprehensive search
 ```
 
-#### 2.3 Identify Uncertainties
+#### 2.3 Detect Duplicate Tasks
+
+**Check for similar/duplicate tasks in ClickUp:**
+
+```powershell
+# List all tasks to find similar ones
+C:/scripts/tools/clickup-sync.ps1 -Action list
+
+# Look for tasks with similar names or descriptions
+# Example: "Google Login" and "Google OAuth integration" might be duplicates
+```
+
+**If duplicate found:**
+- Identify which task is the "master" (usually older or more detailed)
+- Post comment on duplicate task identifying the master
+- Mark duplicate as blocked or close it
+
+**Example comment for duplicate:**
+```
+DUPLICATE TASK DETECTED
+
+This task appears to be a duplicate of:
+- Task ID: 869abc123
+- Task Name: "Google OAuth integration"
+- Task URL: https://app.clickup.com/t/869abc123
+
+Recommend closing this task and working on the master task instead.
+
+-- ClickHub Coding Agent
+```
+
+#### 2.4 Identify Uncertainties
 
 **Critical questions that MUST be answered before implementation:**
 - Which approach should be taken? (if multiple options exist)
@@ -84,9 +115,30 @@ gh pr list --search "<task-keyword>"
 - Are there existing patterns to follow?
 - What are the acceptance criteria?
 
-### Step 3: Handle Uncertainties
+### Step 3: Handle Duplicates and Uncertainties
 
-#### 3.1 Post Questions as Comments
+#### 3.1 Handle Duplicate Tasks
+
+If task is identified as duplicate:
+
+```powershell
+# Post duplicate notice
+C:/scripts/tools/clickup-sync.ps1 -Action comment -TaskId "<duplicate-task-id>" -Comment "
+DUPLICATE TASK
+
+This appears to be a duplicate of task #<master-task-id>: <master-task-name>
+URL: https://app.clickup.com/t/<master-task-id>
+
+Recommend closing this task and consolidating work on the master task.
+
+-- ClickHub Coding Agent
+"
+
+# Move to blocked (or close if you have permission)
+C:/scripts/tools/clickup-sync.ps1 -Action update -TaskId "<duplicate-task-id>" -Status "blocked"
+```
+
+#### 3.2 Post Questions as Comments
 
 If **ANY** uncertainty exists that absolutely must be answered:
 
@@ -105,14 +157,14 @@ Please clarify before I proceed with implementation.
 "
 ```
 
-#### 3.2 Move to Blocked (if questions exist)
+#### 3.3 Move to Blocked (if questions or duplicates exist)
 
 ```powershell
 # Update task status to blocked
 C:/scripts/tools/clickup-sync.ps1 -Action update -TaskId "<task-id>" -Status "blocked"
 ```
 
-#### 3.3 Skip to Next Task
+#### 3.4 Skip to Next Task
 
 Do not implement tasks with unanswered questions. Move to next task.
 
@@ -330,7 +382,34 @@ End Loop
 
 ## Examples
 
-### Example 1: Task with Uncertainties
+### Example 1: Duplicate Task Detected
+
+**ClickUp Tasks Found:**
+- Task #869bt9uak: "Google Login"
+- Task #869buekwz: "Google Ads is missing in the connected accounts"
+
+**Agent Analysis:**
+```
+POTENTIAL DUPLICATES:
+- Both tasks mention "Google" integration
+- Need to verify if they're the same feature or different
+```
+
+**Agent Action:**
+- Reviews both task descriptions in detail
+- Determines they are different (Login vs Ads)
+- No action needed - continues with analysis
+
+**Actual Duplicate Example:**
+- Task #869bt9uak: "Google Login"
+- Task #869bt9ubt: "Google Login OAuth Integration"
+
+**Agent Action:**
+- Posts comment on #869bt9ubt identifying #869bt9uak as master
+- Moves #869bt9ubt to "blocked" status
+- Recommends user close duplicate
+
+### Example 2: Task with Uncertainties
 
 **ClickUp Task #869abc123:**
 - Name: "Add user profile export feature"
@@ -351,7 +430,7 @@ QUESTIONS IDENTIFIED:
 - Updates status to "blocked"
 - Skips to next task
 
-### Example 2: Task Ready for Implementation
+### Example 3: Task Ready for Implementation
 
 **ClickUp Task #869def456:**
 - Name: "Fix broken login button styling"
@@ -376,7 +455,7 @@ CERTAINTIES:
 - Updates task to "review"
 - Releases worktree
 
-### Example 3: Existing Branch Found
+### Example 4: Existing Branch Found
 
 **ClickUp Task #869ghi789:**
 - Name: "Implement dark mode toggle"
@@ -396,7 +475,7 @@ $ git branch -a | grep -i dark
 - Creates PR
 - Links to task
 
-### Example 4: Continuous Operation
+### Example 5: Continuous Operation
 
 **Cycle 1 (00:00):**
 - Task #123: Posted questions, moved to blocked

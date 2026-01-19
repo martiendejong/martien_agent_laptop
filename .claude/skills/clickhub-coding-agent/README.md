@@ -73,22 +73,42 @@ C:/scripts/.claude/skills/clickhub-coding-agent/scripts/clickhub-analyze-task.ps
 
 1. **Fetch Tasks** - List all unassigned tasks from ClickUp
 2. **Analyze Each Task** - Check for:
+   - Duplicate tasks (similar names/descriptions)
    - Existing branches/PRs
    - Related code
    - Requirement clarity
    - Implementation uncertainties
-3. **Handle Uncertainties**:
+3. **Handle Duplicates**:
+   - Post comment identifying master task
+   - Move duplicate to "blocked" status
+   - Skip to next task
+4. **Handle Uncertainties**:
    - Post questions as comments
    - Move task to "blocked" status
    - Skip to next task
-4. **Execute Clear Tasks**:
+5. **Execute Clear Tasks**:
    - Allocate worktree (Feature Development Mode)
    - Implement changes following Boy Scout Rule
    - Create PR and link to ClickUp
    - Update task to "review" status
    - Release worktree
-5. **Sleep** - Wait specified duration
-6. **Repeat** - Start next cycle
+6. **Sleep** - Wait specified duration
+7. **Repeat** - Start next cycle
+
+### Example: Duplicate Task
+
+**Tasks:**
+- #869bt9uak: "Google Login"
+- #869bt9ubt: "Google Login OAuth Integration"
+
+**Agent Analysis:**
+- Both tasks appear to be the same feature
+- #869bt9uak created first (master task)
+
+**Agent Action:**
+- Posts comment on #869bt9ubt: "DUPLICATE TASK - This appears to be a duplicate of task #869bt9uak"
+- Moves #869bt9ubt to "blocked" status
+- Continues with #869bt9uak
 
 ### Example: Task with Uncertainties
 
