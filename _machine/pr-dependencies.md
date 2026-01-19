@@ -6,6 +6,7 @@ Track cross-repository PR dependencies between Hazina and client-manager.
 
 | Downstream PR | Depends On (Hazina) | Status | Notes |
 |---------------|---------------------|--------|-------|
+| [client-manager#257](https://github.com/martiendejong/client-manager/pull/257) | [Hazina#85](https://github.com/martiendejong/Hazina/pull/85) | ⏳ Waiting | Backend genericness - Pagination, Repository, SoftDelete patterns |
 | [artrevisionist#22](https://github.com/martiendejong/artrevisionist/pull/22) | [Hazina#51](https://github.com/martiendejong/Hazina/pull/51) | ⏳ Waiting | Document processing - UploadedFile and ImageMetadata enhancements |
 | [client-manager#96](https://github.com/martiendejong/client-manager/pull/96) | [Hazina#37](https://github.com/martiendejong/Hazina/pull/37) | ⏳ Waiting | Image generation fix - missing Model parameter in OpenAIConfig |
 | [client-manager#35](https://github.com/martiendejong/client-manager/pull/35) | [Hazina#9](https://github.com/martiendejong/Hazina/pull/9) | ⏳ Waiting | SemanticCache adapters need GenerateEmbeddingAsync |
