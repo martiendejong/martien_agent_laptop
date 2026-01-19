@@ -374,6 +374,7 @@ C:\scripts\.claude\skills\
 | Track cross-repo PR dependencies | `git-workflow.md` § Cross-Repo Dependencies | ✅ `pr-dependencies` |
 | Avoid API development pitfalls | Reflection log patterns | ✅ `api-patterns` |
 | Migrate terminology across codebase | `development-patterns.md` § Terminology Migration | ✅ `terminology-migration` |
+| **Large-scale refactoring (>100 changes)** | **`development-patterns.md` § Foundation + Roadmap Pattern** | - |
 | **Autonomous ClickUp task management** | **`.claude/skills/clickhub-coding-agent/`** | ✅ **`clickhub-coding-agent`** |
 | Update reflection.log.md | `continuous-improvement.md` § Reflection Protocol | ✅ `session-reflection` |
 | Update documentation with learnings | `continuous-improvement.md` § Self-Improvement | ✅ `self-improvement` |
@@ -489,6 +490,6 @@ When implemented, this will enable agents to:
 
 ---
 
-**Last Updated:** 2026-01-12 (Reorganized into modular files)
+**Last Updated:** 2026-01-19 (Added Foundation + Roadmap Pattern for large-scale refactoring)
 **Maintained By:** Claude Agent (Self-improving documentation)
 **User Mandate:** "zorg dat je dus constant leert van jezelf en je eigen instructies bijwerkt"
