@@ -5,7 +5,7 @@ Seat states:
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager | agent-001-orchestrator-integration | 2026-01-16T15:00:00Z | 🚧 Week 1-2: Integrating BackgroundTaskOrchestrator into Image/Blog/Analysis generation services |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-01-19T22:00:00Z | ✅ Phase 3 COMPLETE: StructuredResponseService (generic, reusable), all 4 channels updated, artrevisionist feature/metamodel-report-system |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | client-manager | feature/869btq487-legal-pages-links | 2026-01-19T23:30:00Z | 🚧 Implementing legal pages footer links (ClickUp #869btq487) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-19T18:00:00Z | ✅ Snapchat Create Post COMPLETE: SnapchatPublisher (429 lines), Hazina#89 + client-manager#263, ClickUp #869bt9urn |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-19T16:30:00Z | ✅ DTO Foundation COMPLETE: MessageResponse, BulkOperationResult, DTO_COMPLETION_GUIDE.md (PR #261) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-16T18:00:00Z | ✅ Bugattiinsights: Build failed due to .NET version conflicts, no docs generated |
