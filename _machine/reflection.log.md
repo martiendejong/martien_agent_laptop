@@ -4,6 +4,146 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-19 22:30 - Status Value Normalization Pattern & WordPress Import Implementation
+
+**Pattern:** Frontend/Backend Status Mismatch / Active Debugging Mode / API Integration Completion
+**Outcome:** Fixed disabled WordPress settings gear icon + completed WordPress import feature integration
+
+### Issue Summary
+
+**Problem:** WordPress settings gear icon disabled after merging WordPress connection code to develop branch
+
+**Root Cause:**
+- Backend returns enum values: `"Active"`, `"TokenExpired"`, `"Revoked"`, `"Error"` (from `AccountStatus` enum)
+- Frontend expected lowercase: `"connected"`, `"expired"`, `"error"`
+- Button disabled condition: `account.status !== 'connected'` (line 595)
+- **Result:** All WordPress accounts appear inactive even when status is `"Active"`
+
+### Critical Discovery - Codebase Pattern
+
+**The Pattern (Already Used in `useGeneratedItems.ts`):**
+```typescript
+// EXISTING PATTERN IN CODEBASE:
+function mapStatus(status: string): GeneratedItemStatus {
+  const statusMap: Record<string, GeneratedItemStatus> = {
+    pending: 'pending',
+    processing: 'processing',
+    // ...
+  }
+  return statusMap[status.toLowerCase()] || 'pending'  // ← Normalize with toLowerCase()
+}
+```
+
+**Applied Fix:**
+```typescript
+// ConnectedAccounts.tsx:239-255
+const getStatusIcon = (status: string) => {
+  const normalizedStatus = status.toLowerCase()  // ← Key insight
+  switch (normalizedStatus) {
+    case 'active':
+    case 'connected':
+      return <CheckCircle2 className="w-4 h-4 text-green-500" />
+    case 'tokenexpired':
+    case 'expired':
+      return <AlertCircle className="w-4 h-4 text-yellow-500" />
+    case 'revoked':
+      return <AlertCircle className="w-4 h-4 text-orange-500" />
+    case 'error':
+      return <AlertCircle className="w-4 h-4 text-red-500" />
+  }
+}
+
+// Button disabled condition (line 598):
+disabled={account.status.toLowerCase() !== 'active' && account.status.toLowerCase() !== 'connected'}
+```
+
+### WordPress Import Feature Completion
+
+**Completed Integration:**
+1. ✅ **Backend Endpoints (SocialImportController.cs:535-673):**
+   - `POST /api/social/wordpress/{projectId}/accounts/{accountId}/discover-types` - List content types
+   - `POST /api/social/wordpress/{projectId}/accounts/{accountId}/import-content-type` - Import content
+   - `GET /api/social/wordpress/{projectId}/accounts/{accountId}/import-status` - Get import stats
+
+2. ✅ **Frontend Service (wordpress.ts):**
+   - Updated routes from `/wordpress/` → `/social/wordpress/` (match backend controller route)
+   - Removed mock data TODOs
+   - Connected to real backend APIs
+
+3. ✅ **WordPress Settings Modal (WordPressSettings.tsx):**
+   - Implemented real `loadImportStatus()` - fetches actual import counts from backend
+   - Implemented real `handleImport()` - calls backend import endpoint
+   - Status mapping: Backend response → Frontend `ImportStatus` structure
+   - Per-content-type import tracking (posts, pages, products)
+
+**Feature Capabilities:**
+- Import WordPress posts, pages, and WooCommerce products
+- Track import counts per content type
+- Show last sync timestamp
+- Force full re-import capability
+- Real-time import status updates
+- Unified content storage (integrates with existing content management)
+
+### Active Debugging Mode Application
+
+**Context:** User just merged code to develop branch, debugging disabled button
+
+**Correct Workflow:**
+1. ✅ Detected Active Debugging Mode (user debugging merged code on develop)
+2. ✅ Worked directly in `C:\Projects\client-manager` (not worktree)
+3. ✅ Preserved branch state (develop)
+4. ✅ No worktree allocation
+5. ✅ Fast turnaround for debugging
+
+### Key Learnings
+
+1. **Status Normalization Pattern:**
+   - **Always use `.toLowerCase()` when comparing status values from backend**
+   - Follow existing codebase patterns (found in `useGeneratedItems.ts`)
+   - Support both legacy and new status values for backwards compatibility
+
+2. **TODO Comments as Integration Checkpoints:**
+   - `WordPressSettings.tsx` had TODO comments for "when backend is ready"
+   - Backend endpoints existed since 2026-01-19 18:29 commit (dfc68b42)
+   - **Learning:** Check backend implementation before assuming endpoints don't exist
+
+3. **API Route Prefixes:**
+   - Controller route: `[Route("api/social")]` (SocialImportController.cs:22)
+   - WordPress endpoints: Under `/wordpress/` sub-path
+   - **Full URL:** `/api/social/wordpress/{projectId}/...`
+   - Common mistake: Frontend calling `/wordpress/` instead of `/social/wordpress/`
+
+4. **Active Debugging Mode Recognition:**
+   - User context: "just merged code", "debugging disabled button"
+   - Correct action: Work in base repo, not worktree
+   - Fast iteration for debugging user's active work
+
+### Prevention & Automation
+
+**Prevent Similar Issues:**
+1. Create ESLint rule to flag hardcoded status string comparisons without normalization
+2. Add status value normalization utility: `normalizeStatus(status: string): string`
+3. Update API response DTOs to include normalized status field
+
+**Documentation Update:**
+- Added pattern to development-patterns.md § Status Value Normalization
+- Updated reflection log with WordPress import completion
+
+### Impact
+
+- ✅ WordPress settings gear icon now enabled for Active accounts
+- ✅ WordPress import feature fully functional (posts, pages, products)
+- ✅ Real-time import status tracking
+- ✅ Per-content-type granular import control
+- ✅ Follows existing codebase patterns for status handling
+
+**Files Changed:**
+- `ConnectedAccounts.tsx:239-255, 598, 622` - Status normalization
+- `wordpress.ts:44, 58, 72` - API route fixes (`/social/wordpress/`)
+- `WordPressSettings.tsx:34-63, 65-97` - Real API integration (removed TODOs)
+
+---
+
 ## 2026-01-19 19:40 - EF Core Table Naming Convention Incident
 
 **Pattern:** DbContext Configuration Completeness / EF Core Table Naming Mismatch / Migration Troubleshooting
@@ -18783,3 +18923,146 @@ This system prevents:
 **Documentation Quality:** 🟢 HIGH - Comprehensive with examples and expert insights
 
 **Last Updated:** 2026-01-19 23:45
+
+---
+
+## 2026-01-19 23:50 - UTF-16 Encoding Issue in React Components
+
+**Pattern:** File Encoding Issues / Babel Parse Errors / Vite Dev Server Caching
+**Outcome:** Successfully diagnosed and fixed UTF-16 encoding causing Babel parse failures
+
+### Incident Summary
+
+**Error:** `[plugin:vite:react-babel] Unexpected character '' at (1:1)`
+
+**Root Cause:**
+- React component file (Footer.tsx) encoded as UTF-16 with BOM
+- Babel parser expects UTF-8 without BOM
+- Read tool showed spaces between characters (diagnostic signal)
+- Write tool doesn't control encoding explicitly
+
+### Solution Pattern
+
+**Detection Signal:**
+```
+Reading file shows: "i m p o r t   {   L i n k   }"
+Instead of:         "import { Link }"
+→ Indicates UTF-16 encoding
+```
+
+**Fix Approach:**
+```powershell
+# Write tool alone insufficient - doesn't control encoding
+# Solution: PowerShell with explicit UTF8Encoding
+$content = Get-Content -Path $temp -Raw
+$utf8 = New-Object System.Text.UTF8Encoding $false  # $false = no BOM
+[System.IO.File]::WriteAllText($target, $content, $utf8)
+```
+
+**Critical Step:**
+- After encoding fix, Vite dev server caches old parsed module
+- **Must restart dev server or hard refresh browser**
+- Error persists until cache cleared
+
+### Learning: Active Debugging Mode Application
+
+**Context:**
+- User on `develop` branch with build errors
+- Posted compilation error (Active Debugging context)
+
+**Correct Actions Taken:**
+✅ Checked current branch first (`git branch --show-current`)
+✅ Worked directly in base repo (C:\Projects\client-manager)
+✅ Did NOT allocate worktree
+✅ Fast turnaround (3 tool calls to fix)
+✅ No unnecessary ceremony
+
+**Validation:** Dual-mode workflow correctly applied
+
+### Learning: Missing Model Properties
+
+**Error:** `CS1061: 'TikTokLoginRequest' does not contain a definition for 'RedirectUri'`
+
+**Pattern:**
+- Controller expects property that doesn't exist on model
+- Quick Grep → Find model definition → Add missing property
+
+**Fix:**
+```csharp
+public class TikTokLoginRequest
+{
+    public string Code { get; set; } = string.Empty;
+    public string CodeVerifier { get; set; } = string.Empty;
+    public string? RedirectUri { get; set; }  // ← Added
+}
+```
+
+**Lesson:** OAuth models should have optional RedirectUri for flexibility
+
+### Automation Opportunity
+
+**Pattern Detected:** UTF-16 encoding issues could recur
+
+**Proposed Tool:** `detect-encoding-issues.ps1`
+```powershell
+# Scan project for files with wrong encoding
+# Focus on: .tsx, .ts, .jsx, .js files
+# Report UTF-16, UTF-16-BE, UTF-8-BOM files
+# Optional: Auto-fix to UTF-8 without BOM
+```
+
+**Threshold:** Not yet 3 repetitions, but high-impact pattern
+**Decision:** Document pattern, create tool if occurs again
+
+### User Behavior Observations
+
+**Communication Style:**
+- Terse, error-message-only approach
+- No preamble or context explanation
+- Expects autonomous diagnosis and fix
+
+**Response Preference:**
+- Direct fix without lengthy explanation
+- Show solution immediately
+- Explain root cause after (if needed)
+
+**Validation:** Aligns with PERSONAL_INSIGHTS.md § Communication Preferences
+
+### Technical Insights
+
+**1. File Encoding Diagnostics:**
+- Read tool output is diagnostic tool
+- Spaces between characters = UTF-16
+- Unexpected symbols at start = BOM
+
+**2. PowerShell Encoding Control:**
+- `Get-Content` preserves original encoding in string
+- `[System.IO.File]::WriteAllText()` with explicit encoding
+- `New-Object System.Text.UTF8Encoding $false` = UTF-8 no BOM
+
+**3. Vite Dev Server Behavior:**
+- Caches parsed/transformed modules
+- Encoding changes require cache clear
+- Restart dev server or hard refresh browser
+
+### Continuous Improvement Actions
+
+✅ **Completed:**
+1. Fixed UTF-16 encoding issue with PowerShell script
+2. Added missing RedirectUri property to TikTokLoginRequest
+3. Applied Active Debugging Mode correctly (no worktree)
+4. Documented encoding detection pattern
+
+⏳ **Future Considerations:**
+1. Create `detect-encoding-issues.ps1` if pattern repeats
+2. Add encoding check to pre-commit hooks
+3. Document in ci-cd-troubleshooting.md § Frontend Build Errors
+4. Consider adding to error diagnosis skill
+
+---
+
+**Session Impact:** 🟢 MEDIUM - Quick fixes, documented reusable patterns
+**Pattern Reusability:** 🟢 HIGH - Encoding issues common in multi-dev environments
+**Mode Application:** 🟢 PERFECT - Active Debugging Mode executed correctly
+
+**Last Updated:** 2026-01-19 23:50

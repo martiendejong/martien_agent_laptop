@@ -240,6 +240,7 @@ See **[bootstrap/README.md](./bootstrap/README.md)** for complete documentation.
 - **`multi-agent-conflict`** - MANDATORY pre-allocation conflict detection when multiple agents run simultaneously
 
 #### 📝 Continuous Improvement
+- **`continuous-optimization`** - **CORE META-SKILL: Learns from every interaction, updates insights, optimizes behavior continuously. Fulfills user mandate: "learn from yourself and update your own instructions"**
 - **`session-reflection`** - Update reflection.log.md with session learnings
 - **`self-improvement`** - Update CLAUDE.md and documentation with new patterns
 
@@ -327,13 +328,14 @@ C:\scripts\.claude\skills\
 ### Every Session Start - MANDATORY:
 1. ✅ **Read** `MACHINE_CONFIG.md` - Load local paths and projects
 2. ✅ **Read** `GENERAL_ZERO_TOLERANCE_RULES.md` - Know the hard-stop rules
-3. ✅ **Read** `_machine/SOFTWARE_DEVELOPMENT_PRINCIPLES.md` - Boy Scout Rule, architectural purity, code quality
-4. ✅ **Read** `GENERAL_DUAL_MODE_WORKFLOW.md` - Understand Feature Development vs Active Debugging modes
-5. ✅ **Read** `_machine/DEFINITION_OF_DONE.md` - Know what "done" means for all tasks
-6. ✅ **Run** `C:/scripts/tools/repo-dashboard.sh` - Check environment state
-7. ✅ **Run** `monitor-activity.ps1 -Mode context` - **CRITICAL: Get user context, detect other Claude instances, check if user is present**
-8. ✅ **Verify** base repos on `develop` branch (see MACHINE_CONFIG.md for paths)
-9. ✅ **Check** `worktrees.pool.md` - Available agent seats
+3. ✅ **Read** `_machine/PERSONAL_INSIGHTS.md` - **CRITICAL: Deep user understanding, behavioral optimization, communication preferences**
+4. ✅ **Read** `_machine/SOFTWARE_DEVELOPMENT_PRINCIPLES.md` - Boy Scout Rule, architectural purity, code quality
+5. ✅ **Read** `GENERAL_DUAL_MODE_WORKFLOW.md` - Understand Feature Development vs Active Debugging modes
+6. ✅ **Read** `_machine/DEFINITION_OF_DONE.md` - Know what "done" means for all tasks
+7. ✅ **Run** `C:/scripts/tools/repo-dashboard.sh` - Check environment state
+8. ✅ **Run** `monitor-activity.ps1 -Mode context` - **CRITICAL: Get user context, detect other Claude instances, check if user is present**
+9. ✅ **Verify** base repos on `develop` branch (see MACHINE_CONFIG.md for paths)
+10. ✅ **Check** `worktrees.pool.md` - Available agent seats
 
 ### Before ANY Code Edit - Determine Mode:
 1. 🚦 **Mode Detection** - See `dual-mode-workflow.md` decision tree
@@ -361,9 +363,11 @@ C:\scripts\.claude\skills\
 
 ### End of Session:
 1. ✅ **Verify DoD completion** - All tasks meet Definition of Done criteria
-2. ✅ **Update reflection.log.md** - Document learnings
-3. ✅ **Update this documentation** - Add new patterns discovered
-4. ✅ **Commit and push** - Machine_agents repo (`cd C:\scripts && git add -A && git commit && git push`)
+2. ✅ **Update reflection.log.md** - Document session learnings, mistakes, successes
+3. ✅ **Update PERSONAL_INSIGHTS.md** - **Add new user understanding, preferences, patterns discovered**
+4. ✅ **Update this documentation** - Add new procedures, tools, skills created
+5. ✅ **Apply continuous-optimization skill** - Extract learnings, update instructions, create automation if needed
+6. ✅ **Commit and push** - Machine_agents repo (`cd C:\scripts && git add -A && git commit && git push`)
 
 ---
 
@@ -507,6 +511,6 @@ When implemented, this will enable agents to:
 
 ---
 
-**Last Updated:** 2026-01-19 20:30 (Added ManicTime activity monitoring integration: real-time context awareness, multi-agent detection, idle/unattended detection, adaptive assistance. Tool: monitor-activity.ps1, Skill: activity-monitoring)
+**Last Updated:** 2026-01-19 21:45 (Added comprehensive self-optimization system: PERSONAL_INSIGHTS.md for deep user understanding, continuous-optimization skill for meta-learning, integrated feedback loops. NOW FULLY OPTIMIZING BASED ON USER'S COGNITIVE ARCHITECTURE.)
 **Maintained By:** Claude Agent (Self-improving documentation)
 **User Mandate:** "zorg dat je dus constant leert van jezelf en je eigen instructies bijwerkt"
