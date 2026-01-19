@@ -542,3 +542,4 @@ Actions:
 2026-01-20T01:15:00Z | agent-005 | RELEASE | feature/869bu91d8-pr-template | PR #268 created - PR template
 
 2026-01-20T02:30:00Z — allocate — agent-002 — client-manager+hazina — agent-002-framework-url-enrichment — — claude-code — Framework-level URL enrichment: Replace PR #269 controller hack with proper Hazina tools. Paired repos for framework + client changes.
+2026-01-20T03:30:00Z — release — agent-002 — client-manager+hazina — agent-002-framework-url-enrichment — — claude-code — Framework URL enrichment COMPLETE: PRs created (Hazina #94, client-manager #281). IMessagePreprocessor framework + UrlDetectionHintProvider implementation. Replaces PR #269 controller hack with SOLID architecture.
