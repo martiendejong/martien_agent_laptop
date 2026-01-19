@@ -2132,3 +2132,395 @@ EOF
 - Reflection log: C:\scripts\_machine\reflection.log.md § 2026-01-19 16:30
 - Related PRs: Hazina #85, client-manager #257 (backend genericness foundation)
 
+---
+
+## 🌍 PLATFORM-AGNOSTIC INTEGRATION PATTERN (UnifiedContent)
+
+**When to use:** Building integrations with multiple external platforms (social media, CRMs, calendars, documents) that need unified storage and LLM-friendly querying.
+
+**Problem:** Each platform has different data structures. Creating per-platform tables leads to:
+- ❌ Schema changes for every new platform
+- ❌ Complex queries across platforms
+- ❌ Difficult LLM integration (can't query "all content from last month")
+- ❌ Code duplication for similar operations
+
+**Solution:** Single unified model with platform discriminator + metadata dictionary.
+
+### The Pattern
+
+**1. Unified Model with Platform Discriminator**
+
+```csharp
+public class UnifiedContent
+{
+    public string Id { get; set; }
+    public string ProjectId { get; set; }
+    public string AccountId { get; set; }
+
+    // Platform discriminator
+    public string SourceType { get; set; }        // "wordpress", "linkedin", "instagram"
+    public string SourceId { get; set; }          // Platform's original ID
+
+    // Platform-agnostic fields (common to all)
+    public string ContentType { get; set; }       // "post", "page", "product", "article"
+    public string Title { get; set; }
+    public string Content { get; set; }           // Plain text for LLM
+    public string ContentHtml { get; set; }       // Original HTML
+    public string Summary { get; set; }
+    public string FeaturedImageUrl { get; set; }
+    public DateTime PublishedAt { get; set; }
+    public DateTime? UpdatedAt { get; set; }
+    public DateTime ImportedAt { get; set; }
+
+    // Platform-specific fields (extensible)
+    public Dictionary<string, object> PlatformMetadata { get; set; }
+
+    // Display flags
+    public bool IsHistorical { get; set; }
+    public bool DisplayOnCalendar { get; set; }
+}
+```
+
+**2. Platform-Specific Provider Implementation**
+
+```csharp
+public class WordPressProvider : ISocialProvider
+{
+    public async Task<List<UnifiedContent>> FetchContentAsUnifiedAsync(
+        string contentType,
+        string projectId,
+        string accountId)
+    {
+        return contentType.ToLower() switch
+        {
+            "post" => await FetchPostsAsUnifiedAsync(...),
+            "page" => await FetchPagesAsUnifiedAsync(...),
+            "product" => await FetchProductsAsUnifiedAsync(...),
+            _ => throw new ArgumentException($"Unknown content type: {contentType}")
+        };
+    }
+
+    private UnifiedContent MapPostToUnifiedContent(WordPressPost wpPost, ...)
+    {
+        return new UnifiedContent
+        {
+            Id = $"wordpress-{wpPost.Id}",
+            SourceType = "wordpress",
+            SourceId = wpPost.Id.ToString(),
+            ContentType = "post",
+            Title = StripHtml(wpPost.Title?.Rendered ?? ""),
+            Content = StripHtml(wpPost.Content?.Rendered ?? ""),
+            ContentHtml = wpPost.Content?.Rendered ?? "",
+
+            // Platform-specific metadata
+            PlatformMetadata = new Dictionary<string, object>
+            {
+                ["wordpress_id"] = wpPost.Id,
+                ["slug"] = wpPost.Slug ?? "",
+                ["type"] = "post",
+                ["website_url"] = websiteUrl
+            }
+        };
+    }
+}
+```
+
+**3. SQLite Storage with FTS5 (LLM-Friendly)**
+
+```sql
+CREATE TABLE unified_content (
+    id TEXT PRIMARY KEY,
+    project_id TEXT NOT NULL,
+    account_id TEXT NOT NULL,
+    source_type TEXT NOT NULL,
+    source_id TEXT NOT NULL,
+    content_type TEXT,
+    title TEXT,
+    content TEXT,
+    content_html TEXT,
+    platform_metadata TEXT,  -- JSON
+    published_at TEXT,
+    imported_at TEXT,
+    UNIQUE(project_id, source_type, source_id)
+);
+
+-- Full-text search index for LLM queries
+CREATE VIRTUAL TABLE unified_content_fts USING fts5(
+    title,
+    content,
+    content='unified_content'
+);
+```
+
+**4. LLM-Friendly Querying**
+
+```csharp
+// Query ALL content across ALL platforms
+var allContent = await store.SearchContentAsync(
+    projectId,
+    query: "marketing strategy",
+    sourceTypes: null  // All platforms
+);
+
+// Query specific platform
+var wordpressOnly = await store.GetContentBySourceTypeAsync(
+    projectId,
+    sourceType: "wordpress"
+);
+
+// Time-based queries (for AI inspiration)
+var recentContent = await store.GetContentByDateRangeAsync(
+    projectId,
+    startDate: DateTime.Now.AddMonths(-3),
+    endDate: DateTime.Now
+);
+```
+
+### Benefits
+
+✅ **Extensibility** - New platforms = new SourceType, zero schema changes
+✅ **Single Query** - LLM asks "show all content from last month" across ALL platforms
+✅ **Preserved Specifics** - PlatformMetadata stores WordPress slugs, LinkedIn URLs, etc.
+✅ **Full-Text Search** - FTS5 for fast LLM content retrieval
+✅ **Calendar Integration** - Single table for displaying all platform content
+✅ **AI Inspiration** - Analyze patterns across all user's content
+
+### Implementation Checklist
+
+- [ ] Create UnifiedContent model with SourceType discriminator
+- [ ] Add platform-agnostic fields (Title, Content, PublishedAt)
+- [ ] Add PlatformMetadata dictionary for platform-specific fields
+- [ ] Create SQLite store with FTS5 index
+- [ ] Implement provider's `FetchContentAsUnifiedAsync()` method
+- [ ] Map platform-specific models to UnifiedContent
+- [ ] Store both HTML and plain text versions
+- [ ] Add unique constraint: (project_id, source_type, source_id)
+- [ ] Implement search/query methods for LLM integration
+- [ ] Add calendar display flags (DisplayOnCalendar)
+
+### When NOT to Use
+
+❌ **DON'T use UnifiedContent when:**
+- Single platform integration (no need for abstraction)
+- Platforms too different to unify (e.g., video vs text)
+- No LLM/search requirements (simple CRUD is fine)
+- Platform-specific queries dominate (e.g., Instagram-only analytics)
+
+### Real-World Example: WordPress Import
+
+**Implementation:** Hazina PR #95 + client-manager PR #283
+
+```
+Before (Per-Platform Tables):
+- wordpress_posts (title, content, slug, excerpt)
+- linkedin_posts (title, text, visibility, impressions)
+- instagram_posts (caption, media_url, likes, comments)
+❌ 3 tables, 3 storage implementations, no cross-platform queries
+
+After (UnifiedContent):
+- unified_content (source_type, content_type, title, content, platform_metadata)
+✅ 1 table, 1 storage implementation, full cross-platform querying
+✅ LLM can ask: "Show me all my posts from last month (any platform)"
+✅ Calendar shows WordPress + LinkedIn + Instagram in single view
+```
+
+### File References
+
+- Reflection log: C:\scripts\_machine\reflection.log.md § 2026-01-19 20:00
+- Model: Hazina.Tools.Services.Social.Models.UnifiedContent
+- Provider: Hazina.Tools.Services.Social.Providers.WordPressProvider
+- Store: Hazina.Tools.Services.Social.Stores.SqliteUnifiedContentStore
+- PRs: Hazina #95, client-manager #283
+
+---
+
+## 📥 PER-CONTENT-TYPE IMPORT PATTERN
+
+**When to use:** Building import features where users need granular control over what gets imported (e.g., WordPress posts vs pages vs products, Gmail contacts vs emails vs calendar).
+
+**Problem:** "Import All" approach leads to:
+- ❌ Unwanted data imported (user only wants posts, not products)
+- ❌ Long wait times (importing everything every time)
+- ❌ No progress visibility (user can't see what's being imported)
+- ❌ All-or-nothing failures (if products fail, posts also fail)
+
+**Solution:** Granular per-type import with separate UI controls and error isolation.
+
+### The Pattern
+
+**1. Content Type Discovery**
+
+```csharp
+// Endpoint: GET /api/social/wordpress/{projectId}/accounts/{accountId}/discover-types
+public async Task<List<WordPressContentType>> DiscoverContentTypes(...)
+{
+    return new List<WordPressContentType>
+    {
+        new() { Slug = "post", Name = "Blog Posts", Icon = "📝", Description = "Your blog posts and articles" },
+        new() { Slug = "page", Name = "Pages", Icon = "📄", Description = "Static pages like About, Contact" },
+        new() { Slug = "product", Name = "Products", Icon = "🛍️", Description = "WooCommerce products" }
+    };
+}
+```
+
+**2. Per-Type Import Endpoint**
+
+```csharp
+// Endpoint: POST /api/social/wordpress/{projectId}/accounts/{accountId}/import-content-type
+public async Task<IActionResult> ImportContentType(
+    string projectId,
+    string accountId,
+    [FromBody] WordPressContentImportRequest request)
+{
+    // Import ONLY the requested content type
+    var content = await provider.FetchContentAsUnifiedAsync(
+        request.ContentType,  // "post", "page", or "product"
+        projectId,
+        accountId,
+        request.MaxItems
+    );
+
+    await store.SaveContentAsync(projectId, content);
+
+    return Ok(new {
+        message = $"Successfully imported {content.Count} {request.ContentType}",
+        imported = content.Count,
+        contentType = request.ContentType
+    });
+}
+```
+
+**3. Import Status Tracking**
+
+```csharp
+// Endpoint: GET /api/social/wordpress/{projectId}/accounts/{accountId}/import-status
+public async Task<WordPressImportStatus> GetImportStatus(...)
+{
+    var allContent = await store.GetContentByAccountAsync(projectId, accountId);
+
+    return new WordPressImportStatus
+    {
+        LastImportAt = account.LastImportAt,
+        TotalImported = allContent.Count,
+        ContentByType = allContent
+            .GroupBy(c => c.ContentType)
+            .ToDictionary(g => g.Key, g => g.Count()),
+        HasImported = allContent.Any()
+    };
+}
+```
+
+**4. Frontend Per-Type UI**
+
+```typescript
+// WordPressSettings.tsx - Per-content-type cards
+{contentTypes.map((type) => {
+  const count = getImportCount(type.slug);
+  const imported = hasImported(type.slug);
+  const isImporting = importing === type.slug;
+
+  return (
+    <div key={type.slug} className="content-type-card">
+      <div className="content-type-info">
+        <span className="icon">{type.icon}</span>
+        <h3>{type.name}</h3>
+        <p>{type.description}</p>
+        {imported && <p>Imported: {count} items</p>}
+      </div>
+
+      <button onClick={() => handleImport(type, imported)}>
+        {isImporting ? 'Importing...' : imported ? 'Sync' : 'Import'}
+      </button>
+    </div>
+  );
+})}
+```
+
+### User Experience Flow
+
+1. **User opens settings** → Sees available content types (Posts, Pages, Products)
+2. **User clicks "Import"** on Posts → Only posts imported, pages/products untouched
+3. **Import completes** → Shows "Imported 150 posts"
+4. **User clicks "Sync"** on Posts → Re-imports posts for updates
+5. **Later, user imports Pages** → Now has Posts (150) + Pages (12)
+
+### Benefits
+
+✅ **Selective Import** - User chooses what to import (saves bandwidth)
+✅ **Progress Visibility** - Clear count per type ("150 posts, 12 pages")
+✅ **Error Isolation** - If products fail, posts still succeed
+✅ **Incremental UX** - Test with one type before importing all
+✅ **Sync Support** - Re-import to get updates (not just initial import)
+
+### Implementation Checklist
+
+- [ ] Create content type discovery endpoint
+- [ ] Add per-type import endpoint (accepts contentType param)
+- [ ] Implement import status endpoint (returns counts per type)
+- [ ] Create frontend service layer (wordpress.ts)
+- [ ] Build modal with per-type cards
+- [ ] Show Import/Sync buttons based on status
+- [ ] Display import counts per type
+- [ ] Add loading states per type
+- [ ] Show success/error messages per operation
+- [ ] Refresh status after import completion
+
+### Advanced: Batch Import (Optional)
+
+For users who want everything:
+
+```typescript
+// "Import All" button
+const handleImportAll = async () => {
+  const results = await Promise.allSettled(
+    contentTypes.map(type =>
+      wordpressService.importContentType(projectId, accountId, {
+        contentType: type.slug,
+        maxItems: 1000
+      })
+    )
+  );
+
+  // Show: "Imported 150 posts, 12 pages, 45 products"
+  // Or: "Imported 150 posts, 12 pages. Products failed: API rate limit"
+};
+```
+
+### File References
+
+- Reflection log: C:\scripts\_machine\reflection.log.md § 2026-01-19 20:00
+- Frontend component: ClientManagerFrontend/src/components/containers/WordPressSettings.tsx
+- Service layer: ClientManagerFrontend/src/services/wordpress.ts
+- API controller: ClientManagerAPI/Controllers/SocialImportController.cs
+- PRs: Hazina #95, client-manager #283
+
+### ClickUp Task Creation Workflow
+
+After implementing features with future enhancements, create ClickUp tasks:
+
+```powershell
+# Create task for each enhancement
+powershell.exe -File C:/scripts/tools/clickup-sync.ps1 -Action create `
+  -Name "WordPress Import: Calendar Integration" `
+  -Description "Display imported WordPress content on calendar
+
+**Requirements:**
+- Show imported posts/pages on calendar view
+- WordPress branding/icon
+- Filter by account
+- Click to view details
+
+**Dependencies:**
+- Requires Hazina #95 and client-manager #283 merged"
+```
+
+**Example from this session:** Created 6 ClickUp tasks for WordPress import future work:
+1. Calendar Integration (869buxcpe)
+2. AI Inspiration Engine (869buxcq7)
+3. Incremental Sync (869buxcru)
+4. Batch Import (869buxcv6)
+5. Scheduled Auto-Sync (869buxcxa)
+6. Error Handling & Retry (869buxczc)
+
+---
+
