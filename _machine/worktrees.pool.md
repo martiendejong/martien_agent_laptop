@@ -5,7 +5,7 @@ Seat states:
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager | agent-001-orchestrator-integration | 2026-01-16T15:00:00Z | 🚧 Week 1-2: Integrating BackgroundTaskOrchestrator into Image/Blog/Analysis generation services |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-01-19T13:00:00Z | ✅ Tumblr Create Post COMPLETE: TumblrPublisher (446 lines), Hazina#86 + client-manager#258, ClickUp #869bt9ute |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-01-19T17:00:00Z | ✅ Reddit Create Post COMPLETE: RedditPublisher (458 lines), Hazina#88 + client-manager#262, ClickUp #869bt9und |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-19T14:00:00Z | ✅ AI Dynamic Actions COMPLETE: Frontend (DynamicActionsSidebar, SignalR) + Backend (8 CRITICAL fixes), PR #259 |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-19T16:30:00Z | ✅ DTO Foundation COMPLETE: MessageResponse, BulkOperationResult, DTO_COMPLETION_GUIDE.md (PR #261) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-16T18:00:00Z | ✅ Bugattiinsights: Build failed due to .NET version conflicts, no docs generated |
