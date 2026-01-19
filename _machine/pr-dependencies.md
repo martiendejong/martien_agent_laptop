@@ -6,6 +6,7 @@ Track cross-repository PR dependencies between Hazina and client-manager.
 
 | Downstream PR | Depends On (Hazina) | Status | Notes |
 |---------------|---------------------|--------|-------|
+| [client-manager#283](https://github.com/martiendejong/client-manager/pull/283) | [Hazina#95](https://github.com/martiendejong/Hazina/pull/95) | ⏳ Waiting | WordPress UnifiedContent - FetchContentAsUnifiedAsync() method |
 | [client-manager#257](https://github.com/martiendejong/client-manager/pull/257) | [Hazina#85](https://github.com/martiendejong/Hazina/pull/85) | ⏳ Waiting | Backend genericness - Pagination, Repository, SoftDelete patterns |
 | [artrevisionist#22](https://github.com/martiendejong/artrevisionist/pull/22) | [Hazina#51](https://github.com/martiendejong/Hazina/pull/51) | ⏳ Waiting | Document processing - UploadedFile and ImageMetadata enhancements |
 | [client-manager#96](https://github.com/martiendejong/client-manager/pull/96) | [Hazina#37](https://github.com/martiendejong/Hazina/pull/37) | ⏳ Waiting | Image generation fix - missing Model parameter in OpenAIConfig |
@@ -74,6 +75,14 @@ Track cross-repository PR dependencies between Hazina and client-manager.
 ---
 
 ## History
+
+### 2026-01-19 (agent-002 session)
+- ✅ Created WordPress UnifiedContent import PRs:
+  - **Hazina #95:** Extended WordPressProvider with FetchContentAsUnifiedAsync() method
+  - **client-manager #283:** Backend API endpoints + frontend UI for per-content-type import
+  - Dependency tracked: client-manager #283 depends on Hazina #95
+  - Features: Per-type import (posts, pages, products), import status tracking, settings modal
+  - Backend built successfully (0 errors), frontend TypeScript syntax verified
 
 ### 2026-01-09 (13:30 UTC)
 - ✅ All PR issues resolved:

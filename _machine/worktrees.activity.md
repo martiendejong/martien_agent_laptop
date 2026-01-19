@@ -1,5 +1,6 @@
+2026-01-19T20:00:00Z — release — agent-002 — client-manager+hazina — agent-002-wordpress-content-import — — claude-code — WordPress UnifiedContent import COMPLETE: Backend endpoints (discover-types, import-content-type, import-status), frontend UI (WordPressSettings modal, per-type import), PRs #95 (Hazina) + #283 (client-manager) created, dependency tracked, backend built successfully, worktrees released
 2026-01-19T22:00:00Z — release — agent-002 — artrevisionist — feature/metamodel-report-system — METAMODEL-001 — claude-code — Phase 3 COMPLETE: StructuredResponseService (generic, reusable), all 4 channels updated with robust JSON parsing + retry logic, commits 96b2103 + 9e70f3c
-﻿
+
 # worktrees.activity.md (machine-wide)
 
 Append-only activity log for worktree allocations/releases.
