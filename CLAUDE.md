@@ -248,6 +248,9 @@ See **[bootstrap/README.md](./bootstrap/README.md)** for complete documentation.
 - **`release-worktree`** - Release worktree after PR creation with complete cleanup protocol
 - **`worktree-status`** - Check pool status, available seats, and system health
 
+#### 🔄 Advanced Context Processing
+- **`rlm`** - **NEW (2026-01-20):** Recursive Language Model pattern for handling massive contexts (10M+ tokens) by treating them as external variables. Auto-activates for large files (>50KB), multi-file analysis (10+ files), or codebase-wide operations. Enables unbounded context processing through Python REPL and recursive sub-LLM calls.
+
 #### 🔀 GitHub Workflows
 - **`github-workflow`** - PR creation, code reviews, merging, and lifecycle management
 - **`pr-dependencies`** - Cross-repo dependency tracking between Hazina and client-manager
@@ -407,6 +410,7 @@ C:\scripts\.claude\skills\
 | Release worktree after PR | `worktree-workflow.md` § Release Protocol | ✅ `release-worktree` |
 | Check worktree pool status | `worktree-workflow.md` § Pool Management | ✅ `worktree-status` |
 | Detect multi-agent conflicts | `_machine/MULTI_AGENT_CONFLICT_DETECTION.md` | ✅ `multi-agent-conflict` |
+| **Handle massive contexts (10M+ tokens)** | **Research: ArXiv:2512.24601** | ✅ **`rlm`** |
 | Create/review/merge PRs | `git-workflow.md` § GitHub Workflows | ✅ `github-workflow` |
 | Track cross-repo PR dependencies | `git-workflow.md` § Cross-Repo Dependencies | ✅ `pr-dependencies` |
 | Avoid API development pitfalls | Reflection log patterns | ✅ `api-patterns` |
