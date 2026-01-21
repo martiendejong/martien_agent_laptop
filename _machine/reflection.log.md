@@ -4,6 +4,70 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-22 01:00 - Debug Session: SQLite Provider + Env Vars + FK Seed Mismatch
+
+**Project:** client-manager
+**Outcome:** SUCCESS - Resolved 4 interconnected issues after merge to develop
+**Mode:** Active Debugging
+
+### Issue 1: SQLite `EnableRetryOnFailure` Not Supported (CS1061)
+
+**Error:** `SqliteDbContextOptionsBuilder does not contain EnableRetryOnFailure`
+
+**Root Cause:** `EnableRetryOnFailure()` is SQL Server-specific (for transient network failures). SQLite is file-based - no network = no transient failures.
+
+**Fix:** Removed from 4 files: `Program.cs:209`, `DbContext.cs:127`, `ServiceRegistrationExtensions.cs:67`, `IdentityDbContextFactory.cs:21`
+
+**Key Learning:** EF Core provider methods are NOT universal. Always check provider-specific documentation.
+
+### Issue 2: Environment Variable Substitution Broken (CS0246, CS1061)
+
+**Errors:**
+- `DictionaryEntry could not be found`
+- `MemoryConfigurationProvider could not be found`
+- `IEnumerable<IConfigurationProvider> does not contain Insert`
+
+**Root Cause:** Code used reflection to access provider internals + tried to modify read-only `IEnumerable`.
+
+**Fix:** Rewrote `SubstituteEnvironmentVariables()` to use public API:
+```csharp
+foreach (var kvp in configuration.AsEnumerable()) {
+    // Substitute ${VAR:default} patterns
+    configuration[kvp.Key] = substitutedValue;
+}
+```
+
+**Key Learning:** Never use reflection to access provider internals. `IConfiguration` supports direct read/write.
+
+### Issue 3: FK Constraint Failed - Seed Data Mismatch
+
+**Error:** `SQLite Error 19: 'FOREIGN KEY constraint failed'` at startup
+
+**Root Cause:** Two seeders with DIFFERENT category names:
+| Seeder | Categories Used |
+|--------|-----------------|
+| EF `HasData()` | `quick-actions`, `analysis`, `content`, `website`, `social-media`, `data`, `tools` |
+| JSON Runtime | `Content`, `Branding`, `Publishing`, `Integration`, `Analytics`, `General` |
+
+**Fix:**
+1. Updated `ActionDefinitions.json` to use correct lowercase IDs
+2. Added SQL cleanup in migration before FK creation
+
+**Category Mapping:**
+- `Content` → `content`, `Branding` → `analysis`, `Publishing` → `website`
+- `Integration` → `social-media`, `Analytics` → `data`, `General` → `tools`
+
+**Key Learning:** When using BOTH `HasData()` AND runtime JSON seeders, ensure FK values match EXACTLY including case.
+
+### Diagnostic Pattern for FK Errors at Startup
+
+1. Is error during migration or runtime? (Check if migrations table exists)
+2. If runtime: Search for `*Seeder.cs` and `*.json` in SeedData/
+3. Compare seeder values against FK target table
+4. SQLite string PKs are case-sensitive!
+
+---
+
 ## 2026-01-21 23:30 - Multi-Issue Debug Session: JWT + FK Constraint + Migration
 
 **Project:** client-manager
