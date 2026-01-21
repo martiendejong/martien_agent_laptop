@@ -4,6 +4,77 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-21 23:30 - Multi-Issue Debug Session: JWT + FK Constraint + Migration
+
+**Project:** client-manager
+**Outcome:** SUCCESS - Fixed 3 cascading issues
+**Mode:** Active Debugging
+
+### Issue 1: JWT Token Decoding Error (IDX10400)
+
+**Error:** `System.FormatException: IDX10400: Unable to decode as Base64url encoded string`
+
+**Root Cause:** Frontend could store invalid tokens (like literal string `"undefined"`) in localStorage, which then got passed to backend via `?token=` query parameter.
+
+**Fix:** Added JWT format validation in `authUrl.ts`:
+```typescript
+function isValidJwtFormat(token: string): boolean {
+  if (!token || typeof token !== 'string') return false;
+  const parts = token.split('.');
+  if (parts.length !== 3) return false;
+  const base64urlRegex = /^[A-Za-z0-9_-]+$/;
+  return parts.every(part => part.length > 0 && base64urlRegex.test(part));
+}
+```
+
+**Key Learning:** Always validate tokens before using them. Check for:
+- `null`, `"null"`, `"undefined"` strings
+- Valid JWT format (3 dot-separated base64url parts)
+
+### Issue 2: SQLite Foreign Key Constraint Failed
+
+**Error:** `SQLite Error 19: 'FOREIGN KEY constraint failed'` in `TokenManagementService.RecordTransactionAsync`
+
+**Root Cause:** `TokenTransaction` model had navigation property `public virtual Project? Project { get; set; }` which created implicit FK constraint. When middleware passed a non-existent `projectId`, insert failed.
+
+**Fix:**
+1. Removed `Project` navigation property from `Models/Token/TokenTransaction.cs`
+2. Removed FK configuration from `DbContext.cs`, kept `ProjectId` as plain string
+
+**Key Learning:** Audit log tables should NOT have FK constraints because:
+- Need to record transactions for projects that may be deleted
+- Need to handle invalid/stale IDs gracefully
+- Use plain string columns for reference IDs in audit tables
+
+### Issue 3: PendingModelChangesWarning on Startup
+
+**Error:** `PendingModelChangesWarning: The model has pending changes. Add a new migration.`
+
+**Root Cause:** Changed EF model (removed FK) but didn't create migration.
+
+**Fix:** Create migration with:
+```bash
+# STOP the running API first (files locked)
+dotnet ef migrations add RemoveTokenTransactionProjectFK --context IdentityDbContext
+dotnet ef database update --context IdentityDbContext
+```
+
+**Key Learning:** When modifying EF models during debug session:
+1. Stop the running application first (DLLs locked)
+2. Create migration immediately after model change
+3. Apply migration before restarting
+
+### Pattern: Cascading Debug Issues
+
+This session showed how one fix can reveal the next underlying issue:
+1. JWT fix → revealed FK constraint issue (requests now reached DB)
+2. FK fix → revealed migration needed
+3. Migration → app runs correctly
+
+**Lesson:** In Active Debugging Mode, expect cascading issues. Fix one layer at a time, test, then fix the next.
+
+---
+
 ## 2026-01-21 18:15 - Resolution: PendingModelChangesWarning Fixed + Workflow Hardened
 
 **Project:** client-manager
