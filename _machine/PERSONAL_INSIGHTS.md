@@ -2417,6 +2417,77 @@ After merging ANY Hazina PR:
 
 ---
 
+### Session: 2026-01-21 16:20 - Post-Merge Interface Changes Breaking Mock Implementations (CS0535)
+
+**Context:** Second error after merging Hazina PR #103 - CS0535 in MockLLMProviderFactory.
+
+**Error Pattern:**
+```
+CS0535: 'MockLLMProviderFactory' does not implement interface member 'ILLMProviderFactory.Registry'
+ClientManagerAPI.IntegrationTests\Fixtures\MockLLMProviderFactory.cs (line 13)
+```
+
+**Root Cause:**
+- `ILLMProviderFactory` interface (in client-manager) gained new property `Registry` returning `ProviderRegistry`
+- This was added in LLMProviderFactory.cs:166 as part of Hazina.LLMs.Registry integration
+- MockLLMProviderFactory (test fixture) didn't implement the new property
+- Test project build fails with CS0535 (missing interface member)
+
+**Critical Pattern: Interface Evolution After Hazina Merge**
+
+When Hazina changes add new types (like ProviderRegistry):
+1. ✅ Client-manager production code gets updated (LLMProviderFactory implements Registry)
+2. ❌ Client-manager test mocks do NOT get automatically updated
+3. ❌ Test project builds fail with CS0535 errors
+
+**Solution Applied:**
+```csharp
+// Added to MockLLMProviderFactory.cs
+using Hazina.LLMs.Registry;  // New using directive
+
+public ProviderRegistry Registry => Substitute.For<ProviderRegistry>();  // Mock property
+```
+
+**EXPANDED Post-Merge Checklist:**
+
+After merging ANY Hazina PR:
+1. ✅ Verify new Hazina projects are in ClientManager.local.sln (NU1105 prevention)
+2. ✅ Check if Hazina added new interfaces/types that client-manager uses
+3. ✅ Search for CS0535 errors in test projects (mock implementations)
+4. ✅ Update ALL mocks to implement new interface members
+5. ✅ Build test projects: `dotnet build ClientManagerAPI.IntegrationTests --no-dependencies`
+6. ✅ Build test projects: `dotnet build ClientManager.Tests --no-dependencies`
+
+**Mock Update Pattern:**
+- If interface adds property: Add property to mock returning `Substitute.For<Type>()`
+- If interface adds method: Add method to mock returning appropriate mock or default value
+- Add required `using` directives for new Hazina types
+
+**Detection:**
+```powershell
+# After Hazina merge, check for interface implementation errors
+dotnet build ClientManagerAPI.IntegrationTests --no-dependencies 2>&1 | grep CS0535
+dotnet build ClientManager.Tests --no-dependencies 2>&1 | grep CS0535
+```
+
+**Why This Matters:**
+- Test failures block CI/CD pipeline
+- Developer can't run tests locally
+- User workflow disrupted when trying to verify changes
+
+**Files Affected This Session:**
+1. ClientManager.local.sln - Added Hazina.LLMs.Registry project (NU1105 fix)
+2. MockLLMProviderFactory.cs - Added Registry property (CS0535 fix)
+
+**Insight Captured:**
+✅ After ANY Hazina merge, systematically check and update test mocks
+✅ Interface evolution is a common post-merge breaking change
+✅ Use --no-dependencies build flag when VS has file locks
+
+**Confidence Level:** HIGH - Two distinct patterns identified and documented. Post-merge validation checklist expanded.
+
+---
+
 ### Session: 2026-01-21 01:45 - CV Organization & Complete Professional Profile Discovery
 
 **Context:** User requested comprehensive CV folder creation for job applications. This session revealed the COMPLETE professional profile - not just recent AI work.
