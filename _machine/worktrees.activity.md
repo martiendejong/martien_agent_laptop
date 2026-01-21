@@ -557,3 +557,5 @@ Actions:
  2026-01-20T20:18:06Z | agent-002 | ALLOCATE | client-manager | agent-002-nexus-visual-migration-plan | Creating visual migration plan from nexus-stream-74 design
 2026-01-20T20:23:27Z | agent-002 | RELEASE | client-manager | agent-002-nexus-visual-migration-plan | Plan committed and pushed, worktree cleaned
 2026-01-20T23:36:25Z | agent-002 | RELEASE | client-manager | agent-002-nexus-visual-migration-plan | Steps 1-5 complete, foundation committed, 50-expert review conducted
+2026-01-21T01:05:00Z — allocate — agent-004 — hazina — agent-004-pdok-integration — — claude-code — Building comprehensive PDOK MCP server integration for Dutch Kadaster open data
+2026-01-21T01:30:00Z — release — agent-004 — hazina — agent-004-pdok-integration — — claude-code — PR #100 created: Complete PDOK integration with BAG, Kadaster, Locatieserver clients and MCP server
