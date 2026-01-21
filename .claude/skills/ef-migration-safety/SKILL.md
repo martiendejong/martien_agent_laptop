@@ -25,6 +25,79 @@ This skill provides a **zero-failure migration workflow** for EF Core schema cha
 4. **ALWAYS generate rollback script for production**
 5. **NEVER skip testing on clone database**
 6. **ALWAYS use explicit `.ToTable("TableName")` for ALL entities** ⚡ NEW
+7. **ALWAYS create migration when adding DbSet/entity** ⚡ CRITICAL - See below
+
+---
+
+## ⚡ CRITICAL: Migration Is Part Of The Feature, Not "Later"
+
+**Incident ID:** EFCORE-MIGRATION-OMISSION-20260122
+
+### 🔴 The Problem
+
+When you add:
+- A new `DbSet<T>` to DbContext
+- A new entity class
+- Entity configuration in `OnModelCreating`
+
+You MUST also create and commit the migration file as part of the same work.
+
+### ❌ WRONG (What was done)
+```csharp
+// Added to DbContext.cs
+public DbSet<ChatActiveAction> ChatActiveActions { get; set; }
+
+// Added entity configuration...
+// Committed code...
+// Told user: "Run migration later when VS is not locking files"
+// ← THIS IS A VIOLATION
+```
+
+### ✅ CORRECT (What should be done)
+```bash
+# 1. Before starting code changes
+#    Ask user to stop VS if running (required for CLI migrations)
+
+# 2. After adding DbSet and entity config
+dotnet ef migrations add AddChatActiveActions --context IdentityDbContext
+
+# 3. Verify migration file is correct
+cat Migrations/*_AddChatActiveActions.cs
+
+# 4. Apply migration
+dotnet ef database update
+
+# 5. Verify table exists
+# (Use SQL query or app startup test)
+
+# 6. THEN commit ALL files together:
+#    - New entity model
+#    - DbContext changes
+#    - Migration files (*.cs, *.Designer.cs)
+#    - ModelSnapshot update
+```
+
+### 🛑 If VS Is Locking Files
+
+If you cannot run `dotnet ef` because VS has file locks:
+
+1. **ASK USER FIRST**: "I need to create a database migration. Can you stop VS/the API for a moment?"
+2. **WAIT** for user confirmation
+3. **CREATE** the migration
+4. **VERIFY** it works
+5. **TELL** user they can restart VS
+
+**NEVER** just skip the migration and say "do it later".
+
+### 📋 Pre-Commit Checklist For Database Features
+
+- [ ] Entity class created
+- [ ] DbSet added to DbContext
+- [ ] Entity configuration added in OnModelCreating
+- [ ] **Migration file created** (`dotnet ef migrations add`)
+- [ ] **Migration applied to dev** (`dotnet ef database update`)
+- [ ] **Table verified** (exists with correct schema)
+- [ ] All files committed together (entity + dbcontext + migrations)
 
 ---
 

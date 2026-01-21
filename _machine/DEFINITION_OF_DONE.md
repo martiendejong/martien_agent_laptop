@@ -239,10 +239,14 @@ A task is **DONE** only when ALL of the following criteria are met:
   - `.env` file updated (if new config required)
   - Azure KeyVault updated (if production secrets needed)
 
-- [ ] **Database migrations applied**
-  - Migration script created (if schema changes)
-  - Applied to development database
-  - Applied to production database (during deployment)
+- [ ] **Database migrations created AND applied** (CRITICAL)
+  - Migration file created: `dotnet ef migrations add <Name> --context IdentityDbContext`
+  - Migration file reviewed: Check `Migrations/*.cs` for correct Up/Down methods
+  - Migration compiles: `dotnet build` passes
+  - Migration applied to dev: `dotnet ef database update`
+  - Migration COMMITTED with the feature (not "do later")
+  - **HARD RULE:** If you add a DbSet or entity, you MUST create the migration as part of the same work
+  - **HARD RULE:** Never tell user "run migration later" - it's part of your job
 
 - [ ] **Frontend + Backend compatibility verified**
   - API contract not broken

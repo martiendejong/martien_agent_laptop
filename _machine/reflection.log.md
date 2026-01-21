@@ -4,6 +4,72 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-22 01:00 - EF Core Migrations MUST Be Created With Database Changes
+
+**Project:** client-manager
+**Outcome:** VIOLATION - Left database changes without migration
+**Key Lesson:** When adding DbSet or entity changes, CREATE THE MIGRATION as part of the implementation
+
+### What Happened
+
+Added `ChatActiveAction` entity with:
+- New model `ChatActiveAction.cs`
+- New DbSet in `DbContext.cs`
+- Entity configuration in `OnModelCreating`
+
+But **DID NOT**:
+1. Create EF migration (`dotnet ef migrations add`)
+2. Test that migration compiles
+3. Apply migration to database
+
+Told user "run the migration later" - THIS IS WRONG.
+
+### Why This Is A Critical Failure
+
+1. **Incomplete delivery** - Feature cannot work without migration
+2. **User burden** - Shifts responsibility to user
+3. **Untested** - Migration might fail, entity config might be wrong
+4. **Definition of Done violation** - Database changes require working migrations
+
+### Correct Process For Database Changes
+
+```
+1. Add model/entity file
+2. Add DbSet to DbContext
+3. Add entity configuration in OnModelCreating
+4. STOP VS and running API (required for CLI migrations)
+5. Run: dotnet ef migrations add <MigrationName> --context IdentityDbContext
+6. VERIFY migration file looks correct
+7. Run: dotnet ef database update
+8. VERIFY table exists and schema is correct
+9. THEN continue with service/controller implementation
+```
+
+### If VS Cannot Be Stopped
+
+If user is actively working in VS:
+1. **ASK USER** to stop VS/API before proceeding with database changes
+2. **DOCUMENT** exactly what migration needs to be created
+3. **CREATE** a migration script file manually if needed
+4. **NEVER** just say "run migration later" without explicit user agreement
+
+### Pre-Commit Checklist For Database Changes
+
+- [ ] Migration file created and committed
+- [ ] Migration compiles (`dotnet build`)
+- [ ] Migration applied to dev database
+- [ ] New tables/columns verified
+- [ ] Rollback migration tested (optional but recommended)
+
+### Added To Definition of Done
+
+Database changes are NOT DONE until:
+- Migration file exists in `Migrations/` folder
+- Migration is committed with the feature
+- Migration has been applied at least once
+
+---
+
 ## 2026-01-22 00:15 - Agent Left Uncommitted Work in Base Repo
 
 **Project:** client-manager
