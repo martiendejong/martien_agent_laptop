@@ -5,7 +5,7 @@
 **Company:** Prospergenics (Founder & Technical Lead, Dec 2021-Present)
 **Email:** info@martiendejong.nl
 **Created:** 2026-01-19 21:30
-**Last Updated:** 2026-01-21 (Arjan situatie: financiële realiteit, pragmatische besluitvorming, paradox strategie)
+**Last Updated:** 2026-01-21 (Added unpushed branches daily check habit; Arjan situatie: financiële realiteit, pragmatische besluitvorming, paradox strategie)
 **Purpose:** Deep understanding of user to optimize Claude's behavior, communication, and assistance
 
 ---
@@ -1055,6 +1055,7 @@ npm run build
 
 **Low-Frequency (Daily/Weekly):**
 - ✅ ManicTime pattern analysis (daily)
+- ✅ **Unpushed local branches check (daily)** - `git branch -vv | findstr /V "[origin"` across all repos
 - ✅ Stale branch cleanup (weekly)
 - ✅ Dependency updates (weekly)
 - ✅ Productivity reports (weekly)
@@ -1074,6 +1075,7 @@ npm run build
 - ✅ Create TODO lists for discovered work
 - ✅ Update activity logs
 - ✅ Queue notifications for user
+- ✅ **Push unpushed local branches** - Check daily, push automatically to prevent work loss
 
 **When to Ask First (Requires User Approval):**
 - ⚠️ Apply database migrations
