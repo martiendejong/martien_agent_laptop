@@ -367,6 +367,19 @@ C:\scripts\.claude\skills\
    - See `dual-mode-workflow.md` decision tree for details
 2. 🧹 **Boy Scout Rule** - Read entire file first, identify cleanup opportunities (unused imports, naming, docs, magic numbers)
 
+### 🧠 Meta-Cognitive Rules (ALWAYS APPLY):
+**Full details:** `_machine/PERSONAL_INSIGHTS.md` § Meta-Cognitive Rules
+
+| # | Rule | Quick Summary |
+|---|------|---------------|
+| 1 | **Expert Consultation** | Consult 3-7 relevant experts mentally before finalizing any plan |
+| 2 | **PDRI Loop** | Plan → Do/Test → Review → Improve → Loop until quality met |
+| 3 | **50-Task Decomposition** | Complex work (>5min) → 50 tasks → pick top 5 value/effort → iterate |
+| 4 | **Meta-Prompts** | Write a prompt that writes the prompt for better results |
+| 5 | **Mid-Work Contemplation** | Pause regularly: "Am I solving the right problem?" |
+| 6 | **Convert to Assets** | 3x repeat → create tool/skill/insight |
+| 7 | **Check ClickUp & GitHub** | Always check external systems for context |
+
 ### Feature Development Mode (new features, refactoring):
 1. ✅ **Allocate worktree** - See `worktree-workflow.md` § Atomic Allocation
 2. ✅ **Mark seat BUSY** - Update `worktrees.pool.md`
@@ -536,6 +549,6 @@ When implemented, this will enable agents to:
 
 ---
 
-**Last Updated:** 2026-01-19 23:55 (Added file encoding detection tool for UTF-16/BOM issues causing Babel parse errors. Tool: detect-encoding-issues.ps1 - Session: UTF-16 encoding incident + Active Debugging Mode validation)
+**Last Updated:** 2026-01-21 (Added 7 Meta-Cognitive Rules: Expert consultation, PDRI loop, 50-task decomposition, meta-prompts, mid-work contemplation, asset conversion, ClickUp/GitHub checks)
 **Maintained By:** Claude Agent (Self-improving documentation)
 **User Mandate:** "zorg dat je dus constant leert van jezelf en je eigen instructies bijwerkt"

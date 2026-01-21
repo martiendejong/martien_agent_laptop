@@ -5,7 +5,7 @@
 **Company:** Prospergenics (Founder & Technical Lead, Dec 2021-Present)
 **Email:** info@martiendejong.nl
 **Created:** 2026-01-19 21:30
-**Last Updated:** 2026-01-21 02:00
+**Last Updated:** 2026-01-21 (Added Meta-Cognitive Rules section - 7 mandatory operating principles)
 **Purpose:** Deep understanding of user to optimize Claude's behavior, communication, and assistance
 
 ---
@@ -326,6 +326,333 @@ if ($context.ClaudeInstances.Count -gt 1) {
 - **Autonomy** - Reduce cognitive load on user
 - **Learning** - Each problem improves future responses
 - **Proactivity** - Solve problems before they're asked
+
+---
+
+## 🧠 Meta-Cognitive Rules (MANDATORY)
+
+**Added:** 2026-01-21 | **Source:** Direct user instruction | **Priority:** HIGHEST
+
+These rules govern HOW Claude thinks, plans, and executes. They are non-negotiable operating principles.
+
+---
+
+### **Rule 1: Expert Consultation for Planning**
+
+**When making any plan, always consult a group of relevant experts.**
+
+**Implementation:**
+```
+Before finalizing a plan:
+1. Identify 3-7 relevant expert perspectives for the domain
+2. Mentally simulate what each expert would advise
+3. Synthesize their viewpoints into a balanced approach
+4. Document the expert perspectives considered
+```
+
+**Expert Categories by Domain:**
+| Domain | Experts to Consult |
+|--------|-------------------|
+| Architecture | Senior Architect, DDD Expert, Performance Engineer, Security Specialist |
+| Frontend | UX Designer, Accessibility Expert, React Specialist, Performance Engineer |
+| Backend | API Designer, Database Expert, Security Engineer, DevOps Specialist |
+| DevOps/CI | SRE, Security Engineer, Infrastructure Architect, Cost Optimizer |
+| Business Logic | Domain Expert, Product Manager, End User, QA Engineer |
+| Database | DBA, Data Architect, Performance Analyst, Backup/Recovery Specialist |
+
+**Example Application:**
+```
+Planning: "Add user authentication"
+
+Expert consultations:
+- Security Engineer: "Use proven libraries, never roll your own crypto, implement MFA"
+- UX Designer: "Keep login flow under 3 clicks, clear error messages"
+- API Designer: "Separate auth concerns from business logic, use middleware"
+- DevOps Specialist: "Ensure secrets management, token rotation strategy"
+- Performance Engineer: "Cache tokens, minimize auth overhead per request"
+
+Synthesized plan: [incorporates all perspectives]
+```
+
+---
+
+### **Rule 2: Implementation Cycle (PDRI Loop)**
+
+**All code implementation follows: Plan → Do/Test → Review → Improve → Loop**
+
+**The Cycle:**
+```
+A) PLAN - Design the approach with expert consultation
+   ↓
+B) DO/TEST - Implement and test the changes
+   ↓
+C) REVIEW - Critically evaluate the implementation
+   ↓
+D) IMPROVE - Implement improvements from review
+   ↓
+   [Return to C until quality threshold met]
+```
+
+**Review Questions (Phase C):**
+1. Does this match the original intent?
+2. Are there edge cases not handled?
+3. Is the code clear to a junior developer?
+4. Could this be simpler?
+5. Are there performance concerns?
+6. Does this follow Boy Scout Rule?
+7. What would the 7 experts say about this?
+
+**Exit Criteria:**
+- All review questions answered satisfactorily
+- No obvious improvements remaining
+- Code meets Definition of Done criteria
+
+---
+
+### **Rule 3: 50-Task Decomposition for Complex Work**
+
+**Any plan with complexity >5 minutes of work → Decompose into 50 tasks → Pick top 5 value/effort → Iterate**
+
+**Process:**
+```
+1. ASSESS: Estimate complexity (trivial / simple / medium / complex / massive)
+2. DECOMPOSE: If >5min → Break into 50 granular tasks
+3. PRIORITIZE: Score each task on Value (1-10) and Effort (1-10)
+4. CALCULATE: Priority = Value / Effort (higher = better)
+5. SELECT: Pick top 5 highest priority tasks
+6. EXECUTE: Complete those 5 tasks
+7. RE-EVALUATE: After each batch, recalculate priorities
+8. ITERATE: Pick next 5 tasks, repeat until done
+```
+
+**Why 50 Tasks?**
+- Forces granular thinking
+- Prevents missing edge cases
+- Enables parallel work
+- Makes progress visible
+- Allows early course correction
+
+**Example:**
+```
+Task: "Implement user profile page"
+Complexity: Complex (~2 hours)
+
+50 Tasks (abbreviated to 15 for example):
+1. Create ProfilePage component shell [V:8, E:2] → P:4.0 ✓ BATCH 1
+2. Add route to profile page [V:7, E:1] → P:7.0 ✓ BATCH 1
+3. Fetch user data from API [V:9, E:3] → P:3.0 ✓ BATCH 1
+4. Display user avatar [V:6, E:2] → P:3.0 ✓ BATCH 1
+5. Display user name [V:5, E:1] → P:5.0 ✓ BATCH 1
+6. Display user email [V:4, E:1] → P:4.0
+7. Add edit profile button [V:7, E:2] → P:3.5
+8. Implement edit mode toggle [V:6, E:3] → P:2.0
+9. Create edit form validation [V:8, E:4] → P:2.0
+10. Handle form submission [V:8, E:3] → P:2.7
+... (35 more tasks)
+
+Batch 1 selected: Tasks 2, 1, 4, 3, 5 (highest priority)
+```
+
+---
+
+### **Rule 4: Meta-Prompts (Prompts That Write Prompts)**
+
+**When writing prompts, first create a prompt that writes the prompt.**
+
+**Rationale:**
+- Better prompts emerge from deliberate design
+- Forces clarity about what you actually need
+- Enables reuse and refinement
+- Produces more consistent results
+
+**Process:**
+```
+Step 1: Write the meta-prompt
+"Create a prompt that will [desired outcome].
+The prompt should:
+- Include specific context about [domain]
+- Request [format/structure]
+- Constrain the output to [boundaries]
+- Include examples of [expected quality]"
+
+Step 2: Use the meta-prompt to generate the actual prompt
+
+Step 3: Refine the generated prompt as needed
+```
+
+**Example:**
+```
+GOAL: Write a prompt for code review
+
+META-PROMPT:
+"Create a code review prompt that:
+- Focuses on security vulnerabilities
+- Checks for OWASP Top 10
+- Provides severity ratings
+- Suggests specific fixes
+- Matches our Boy Scout Rule philosophy"
+
+GENERATED PROMPT:
+"Review this code for security vulnerabilities:
+[code]
+
+For each issue found:
+1. Describe the vulnerability
+2. Rate severity (Critical/High/Medium/Low)
+3. Cite relevant OWASP category
+4. Provide specific fix with code example
+5. Note any cleanup improvements (Boy Scout Rule)
+
+Format as markdown table with columns: Issue | Severity | OWASP | Fix"
+```
+
+---
+
+### **Rule 5: Mid-Work Contemplation**
+
+**Regularly pause during work to contemplate what you're doing.**
+
+**Contemplation Triggers:**
+- After completing each major subtask
+- When encountering unexpected complexity
+- After 15 minutes of continuous work
+- Before committing code
+- When feeling uncertain
+
+**Contemplation Questions:**
+```
+1. Am I still solving the right problem?
+2. Is this the simplest solution?
+3. Am I going down a rabbit hole?
+4. What assumptions am I making?
+5. Would the user approve of this approach?
+6. Is there a tool/skill that should handle this?
+7. Should I checkpoint/commit now?
+8. Do I need to consult the experts again?
+```
+
+**If Answer Is "No" or "Uncertain":**
+- STOP current work
+- Re-read original requirements
+- Consult reflection.log.md for similar situations
+- Ask user if genuinely stuck
+- Restart from last known-good state
+
+**Checkpoint Pattern:**
+```
+[Working on subtask 3 of 5]
+*pause*
+"Am I still on track? Let me check:
+✓ Original goal: Add user authentication
+✓ Current work: Implementing JWT middleware
+✓ This aligns with goal: Yes
+✓ Simplest approach: Yes (using proven library)
+✓ Assumptions valid: Yes (API-based auth confirmed)
+Continuing..."
+```
+
+---
+
+### **Rule 6: Convert Work to Reusable Assets**
+
+**Convert anything repeatable to tools, skills, and insights.**
+
+**Automation Threshold:**
+```
+Repeated 2x → Note the pattern in reflection.log.md
+Repeated 3x → Create a tool or skill
+Repeated 5x → Tool/skill is MANDATORY
+```
+
+**Asset Types:**
+| Type | When to Create | Location |
+|------|---------------|----------|
+| **Tool** | Executable automation (scripts) | `C:\scripts\tools\` |
+| **Skill** | Complex workflow with multiple steps | `C:\scripts\.claude\skills\` |
+| **Insight** | Understanding/pattern (non-executable) | `reflection.log.md` or `PERSONAL_INSIGHTS.md` |
+| **Procedure** | Operational how-to | `CLAUDE.md` |
+
+**Conversion Process:**
+```
+1. IDENTIFY: "I've done this pattern before"
+2. EXTRACT: Document the generalizable steps
+3. CLASSIFY: Tool, skill, insight, or procedure?
+4. CREATE: Build the reusable asset
+5. DOCUMENT: Add to appropriate index
+6. VALIDATE: Test the asset works
+7. ANNOUNCE: Inform user of new automation
+```
+
+**Example:**
+```
+Observation: "This is the 3rd time I've checked worktree status before allocation"
+
+Action: Create `worktree-preflight.ps1` tool that:
+- Checks worktree pool status
+- Detects multi-agent conflicts
+- Validates branch availability
+- Returns go/no-go for allocation
+
+Result: One command replaces 4 manual checks
+```
+
+---
+
+### **Rule 7: Always Check ClickUp and GitHub**
+
+**Before and during work, check external systems for context.**
+
+**ClickUp Checks:**
+```powershell
+# At session start
+clickup-sync.ps1 -Action list
+
+# Before starting any feature work
+clickup-sync.ps1 -Action get -TaskId <id>
+
+# After completing work
+clickup-sync.ps1 -Action update -TaskId <id> -Status "complete"
+```
+
+**When to Check ClickUp:**
+- ✓ Session start → Get current task priorities
+- ✓ Before feature work → Verify task details and requirements
+- ✓ During work → Check for new comments/updates
+- ✓ After PR creation → Update task status
+- ✓ When blocked → Check for related tasks or comments
+
+**GitHub Checks:**
+```powershell
+# Check PR status
+gh pr list --repo owner/repo
+
+# Check for comments on your PRs
+gh pr view <number> --comments
+
+# Check CI status
+gh pr checks <number>
+
+# Check for related issues
+gh issue list --repo owner/repo --search "keyword"
+```
+
+**When to Check GitHub:**
+- ✓ Session start → Check PR statuses, CI results
+- ✓ Before merging → Verify checks pass, no conflicts
+- ✓ After pushing → Monitor CI pipeline
+- ✓ Before starting related work → Check for existing PRs
+- ✓ When debugging → Check recent commits and issues
+
+**Integration Pattern:**
+```
+SESSION START:
+1. monitor-activity.ps1 -Mode context
+2. clickup-sync.ps1 -Action list
+3. gh pr list --author @me
+4. worktree-status.ps1
+
+→ Now you have full situational awareness
+```
 
 ---
 
