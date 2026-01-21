@@ -4008,3 +4008,76 @@ HP waardeert:
 4. **Erken de paradox** - Soms moet je iets willen zonder het te laten merken
 5. **Update documentatie proactief** - HP verwacht dat inzichten bijgehouden worden
 
+---
+
+### Session: 2026-01-21 23:30 - ChatController Extraction & Technical Namespace Gotchas
+
+**Context:** Continued code cleanup work - extracting controllers from ChatController.cs (2,871 lines) to enforce Single Responsibility Principle.
+
+#### Technical Insights Discovered
+
+**1. CRITICAL: UserService Namespace Mismatch**
+
+| Expected | Actual |
+|----------|--------|
+| `Hazina.Tools.Services.Users` | `HazinaStore.Services` |
+
+The `UserService` class lives in `HazinaStore.Services`, NOT the namespace that contains the `using Hazina.Tools.Services.Users;` directive. This caused CS0246 build errors when extracting controllers.
+
+**Why this matters:**
+- The file `Hazina.Tools.Services\Users\UserService.cs` has `namespace HazinaStore.Services`
+- The path suggests one namespace but the actual namespace is different
+- Other services in `Hazina.Tools.Services.Users` exist (like interfaces) but UserService itself is in HazinaStore.Services
+
+**Pattern to remember:**
+```csharp
+// WRONG - path-implied namespace
+using Hazina.Tools.Services.Users;  // Doesn't include UserService class
+
+// CORRECT - actual namespace
+using HazinaStore.Services;  // Contains UserService class
+```
+
+**2. Controller Extraction Pattern**
+
+When extracting large controllers for SRP compliance:
+- Keep endpoints with complex dependencies in original controller
+- Example: `GenerateImage` kept in ChatController due to `AgentWithImageTools` dependencies
+- Simpler retrieval endpoints (GetGeneratedImage, GetUploadedImage) can be extracted
+
+**3. Build Command Targeting**
+
+When solution references non-existent project paths:
+```bash
+# BAD - may fail due to solution-level references
+dotnet build --configuration Release
+
+# GOOD - target specific project
+cd ClientManagerAPI && dotnet build --configuration Release
+```
+
+**4. Extracted Controllers Summary (PR #301)**
+
+| Controller | Responsibility | Lines |
+|------------|---------------|-------|
+| ChatFileController | File uploads | ~350 |
+| ChatImageController | Image retrieval | ~150 |
+| ChatManagementController | CRUD operations | ~300 |
+| OpeningQuestionsController | Conversation starters | ~150 |
+
+Total: ~950 lines extracted, ChatController reduced from 2,871 to ~1,920 lines.
+
+#### Session Workflow Quality
+
+- ✅ Continued from context-compacted session without user intervention
+- ✅ Fixed 4+ build errors independently
+- ✅ PR created and worktree released properly
+- ✅ All tracking files updated (pool.md, activity.md, instances.map.md)
+
+#### Leermoment voor Claude
+
+**Bij namespace errors in Hazina/client-manager:**
+1. Don't trust path-implied namespaces
+2. Check actual namespace declaration in source file
+3. `HazinaStore.Services` is a common location for services despite file paths
+

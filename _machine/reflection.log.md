@@ -4,6 +4,62 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-21 23:30 - ChatController Extraction & Namespace Gotcha
+
+**Project:** client-manager (ChatController cleanup)
+**Outcome:** SUCCESS - PR #301 created, 4 controllers extracted, ~950 lines moved
+**Key Lesson:** File paths don't imply namespaces in Hazina codebase
+
+### Context
+
+Continuing code cleanup - ChatController.cs was 2,871 lines with 50+ endpoints. Previously extracted ChatGuidanceController (PR #297). User requested extraction of file upload, image, opening questions, and chat CRUD endpoints.
+
+### Technical Gotcha Discovered
+
+**UserService namespace mismatch:**
+
+| File Path | Expected Namespace | Actual Namespace |
+|-----------|-------------------|------------------|
+| `Hazina.Tools.Services\Users\UserService.cs` | `Hazina.Tools.Services.Users` | `HazinaStore.Services` |
+
+This caused CS0246 "type not found" errors when I used `using Hazina.Tools.Services.Users;` expecting it to include `UserService`. The fix was to use `using HazinaStore.Services;`.
+
+**Root cause:** The file declares `namespace HazinaStore.Services` despite being in a path that suggests a different namespace.
+
+### Pattern for Future Sessions
+
+```csharp
+// When you see this error:
+// CS0246: The type or namespace name 'UserService' could not be found
+
+// Check the actual namespace in the source file, not the path:
+// File: Hazina.Tools.Services\Users\UserService.cs
+// Actual: namespace HazinaStore.Services
+
+using HazinaStore.Services;  // ✅ Correct
+// NOT: using Hazina.Tools.Services.Users;  // ❌ Wrong
+```
+
+### Controllers Extracted
+
+| Controller | Lines | Endpoints |
+|------------|-------|-----------|
+| ChatFileController | ~350 | UploadFile, AddFileMessageToChat, SaveFileMetadata |
+| ChatImageController | ~150 | GetGeneratedImage, GetUploadedImage |
+| ChatManagementController | ~300 | GetChats, DeleteChat, RenameChat, PinChat, etc. |
+| OpeningQuestionsController | ~150 | GetOpeningQuestion, GetProjectOpeningQuestion |
+
+**Decision:** Kept `GenerateImage` endpoints in ChatController due to complex `AgentWithImageTools` dependencies.
+
+### Session Quality
+
+- ✅ Resumed from context-compacted conversation correctly
+- ✅ Fixed all build errors autonomously
+- ✅ Proper worktree release protocol followed
+- ✅ Documentation updated (insights + reflection)
+
+---
+
 ## 2026-01-22 01:00 - Art Revisionist WordPress Theme Design Implementation
 
 **Project:** Art Revisionist (WordPress theme + plugin for art history research)
