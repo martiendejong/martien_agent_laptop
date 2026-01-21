@@ -4,6 +4,60 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-21 18:15 - Resolution: PendingModelChangesWarning Fixed + Workflow Hardened
+
+**Project:** client-manager
+**Outcome:** SUCCESS - Fixed runtime error and added preventive safeguards
+**Reference:** Follow-up to 2026-01-22 01:00 entry (migration missing)
+
+### What Happened
+
+User encountered `PendingModelChangesWarning` at runtime after committing to develop. The `ChatActiveActions` table was defined in DbContext but missing from migrations.
+
+### Resolution
+
+1. Created migration: `dotnet ef migrations add SyncPendingModelChanges --context IdentityDbContext`
+2. Migration captured the missing `ChatActiveActions` table
+3. Committed migration to develop (commit `5740923f`)
+4. Pushed to origin
+
+### Workflow Hardening Added
+
+Updated documentation to ensure this never happens again:
+
+**CLAUDE.md - New Section: "Pre-PR Validation (MANDATORY for EF Core projects)"**
+```
+1. ✅ Build passes - dotnet build
+2. ✅ Check pending migrations - dotnet ef migrations has-pending-model-changes --context IdentityDbContext
+   - Exit code 0 → No pending changes, continue
+   - Exit code 1 → STOP! Create migration FIRST
+3. ✅ Review migration - Verify Up/Down methods
+4. ✅ Commit migration with feature - Never commit code without its migration
+```
+
+**DEFINITION_OF_DONE.md - Enhanced Database Migration Section**
+- Added 6-step explicit process
+- Added HARD RULE: A PR with pending model changes that causes `PendingModelChangesWarning` at runtime is a CRITICAL FAILURE
+- Added recommendation to use `ef-preflight-check.ps1` before PR
+
+### Key Commands To Remember
+
+```bash
+# Check if model has pending changes (BEFORE creating PR)
+dotnet ef migrations has-pending-model-changes --context IdentityDbContext
+
+# If exit code != 0, create migration
+dotnet ef migrations add <Name> --context IdentityDbContext
+```
+
+### Prevention Strategy
+
+Future agents MUST run the pending model changes check as part of the pre-PR validation workflow. This is now documented in both:
+- `CLAUDE.md` → Quick Start Guide → Pre-PR Validation
+- `_machine/DEFINITION_OF_DONE.md` → Brand2Boost section → Database migrations
+
+---
+
 ## 2026-01-22 01:00 - EF Core Migrations MUST Be Created With Database Changes
 
 **Project:** client-manager
