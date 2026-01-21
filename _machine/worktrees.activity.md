@@ -569,3 +569,6 @@ Actions:
 2026-01-21T19:52:44Z | agent-003 | RELEASE | feature/869bucvk2-token-balance-userprofile | PR #304 created, worktree released
 2026-01-21T19:57:15Z | agent-003 | ALLOCATE | feature/869bvf2xa-image-lightbox | ClickHub: Fix image lightbox in activities list
 2026-01-21T20:01:12Z | agent-003 | RELEASE | feature/869bvf2xa-image-lightbox | PR #305 created, worktree released
+2026-01-21T22:16:14Z | agent-005 | ALLOCATE | feature/869bvf38q-chat-image-display | ClickHub: Fix uploaded image display in chat
+2026-01-21T22:18:38Z | agent-005 | RELEASE | feature/869bvf38q-chat-image-display | PR #311 created, worktree released
+2026-01-21T22:46:00Z | agent-003 | ALLOCATE | feature/869bverkf-analysis-search-nav | ClickHub: Fix analysis field navigation from search

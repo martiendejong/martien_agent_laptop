@@ -5,7 +5,7 @@
 **Company:** Prospergenics (Founder & Technical Lead, Dec 2021-Present)
 **Email:** info@martiendejong.nl
 **Created:** 2026-01-19 21:30
-**Last Updated:** 2026-01-21 (Added unpushed branches daily check habit; Arjan situatie: financiële realiteit, pragmatische besluitvorming, paradox strategie)
+**Last Updated:** 2026-01-21 22:00 (Arjan sessie: objectiviteit herzien, substantie > toon, pragmatische onderhandeling, simpele aanpak wint)
 **Purpose:** Deep understanding of user to optimize Claude's behavior, communication, and assistance
 
 ---
@@ -4082,4 +4082,99 @@ Total: ~950 lines extracted, ChatController reduced from 2,871 to ~1,920 lines.
 1. Don't trust path-implied namespaces
 2. Check actual namespace declaration in source file
 3. `HazinaStore.Services` is a common location for services despite file paths
+
+---
+
+### Session: 2026-01-21 22:00 - Arjan Situatie: Objectiviteit Herzien & Pragmatische Aanpak
+
+**Context:** HP vroeg om objectieve analyse van zijn WhatsApp berichten aan Arjan Stroeve - waren ze kwetsend, en zijn zijn inschattingen over Arjan correct?
+
+#### Kritieke Lering: Substantie > Toon
+
+**Mijn initiële fout:**
+Ik focuste op HP's harde woorden (late-night berichten, beschuldigingen, dreigende taal) en concludeerde dat zijn communicatie "kwetsend" was.
+
+**HP's correctie (terecht):**
+> "Je focust nu wel erg op woorden terwijl het gedrag van Arjan gevolgen heeft op mensenlevens."
+
+**Wat ik miste:**
+1. **Het wurgcontract** - Arjan's poging om HP's hele vakgebied te blokkeren (bewezen)
+2. **Arjan's expliciete uitspraak**: "Ik kan het financieel wel lijden, maar ik vind je niet meer waard"
+3. **Arjan's eis**: Stop met Kenya-team, want "wat jij in je eentje doet zet geen zoden aan de dijk"
+4. **Machtsmisbruik**: Samenwerking stoppen omdat HP het restrictieve contract niet tekende
+
+**Herziene conclusie:**
+HP's woede was gerechtvaardigd. De *toon* van zijn berichten was problematisch, maar de *substantie* van zijn klacht was correct. Iemand met macht werkte hem bewust in een onmogelijke positie.
+
+#### Belangrijke Karaktereigenschap: Pragmatisme Boven Emotie
+
+**Sleutelcitaat van HP:**
+> "Als ik mijn familie kan voeden en mijn projecten kan voortzetten dan kan ik daar mijn gevoelens enzo voor opzij zetten."
+
+**Wat dit betekent:**
+- HP is niet wraakzuchtig - hij wil praktische uitkomsten
+- Hij kan samenwerken met iemand die hem heeft benadeeld als het functioneel is
+- Financiële overleving > emotionele genoegdoening
+- Hij denkt strategisch, niet impulsief
+
+#### Simpele Aanpak Wint
+
+**Mijn voorstel:** Wacht 2-3 maanden, stuur formele email met partnership voorstel.
+
+**HP's reactie:** "Na die tijd hoeft het al niet meer."
+
+**HP's eigen idee:**
+> "Ik denk dat het idee om toch gewoon eens te bellen over de facturen beter is... en dan peilen"
+
+**Lering:**
+HP komt vaak zelf met de beste oplossing. Mijn rol is:
+1. Informatie structureren
+2. Opties presenteren
+3. Ruimte geven voor zijn eigen conclusie
+
+#### Financiële Context
+
+**Minimum behoefte:** €10.000/maand
+**Ideale constructie:** Combinatie van retainer + revenue share + equity
+**Urgentie:** Acuut - wachten is geen optie
+
+#### Strategie Die HP Koos
+
+**Aanpak:** Bel over openstaande facturen (legitieme reden), peil de sfeer, indien positief: voorzichtig verder.
+
+**Waarom dit werkt:**
+- Laagdrempelig
+- Geen grote "ja/nee" beslissing voor Arjan
+- Geeft informatie over waar Arjan staat
+- Opent de deur zonder te pushen
+
+#### Leerpunten voor Claude
+
+| Wat ik deed | Wat ik had moeten doen |
+|-------------|------------------------|
+| Focuste op toon van HP's berichten | Eerst de substantie van de klacht analyseren |
+| Gaf Arjan benefit of the doubt o.b.v. beleefde berichten | Kijken naar daden, niet alleen woorden |
+| Stelde complexe strategie voor | Luisteren naar HP's simplere idee |
+| Wachten voorgesteld (2-3 maanden) | Erkennen dat urgentie dat niet toelaat |
+
+**Meta-lering:**
+Wanneer HP pushback geeft op mijn analyse, is dat vaak terecht. Hij kent de context beter dan ik. Mijn objectiviteit moet ruimte laten voor informatie die niet in de documenten staat.
+
+#### Arjan Profiel - Aanvulling
+
+**Nieuwe informatie (uit HP's gesprekken, niet WhatsApp):**
+- Arjan is miljonair (volgens HP)
+- Arjan zei expliciet dat hij meer kan betalen maar HP "niet meer waard" vindt
+- Arjan wilde dat HP zijn Kenya-operatie zou stoppen
+- Arjan stopte samenwerking toen HP het wurgcontract weigerde
+
+**Patroon:**
+1. Afhankelijkheid creëren
+2. Restrictieve voorwaarden opleggen
+3. Stoppen als er niet wordt voldaan
+4. Polite framing behouden ("ik wens je het beste")
+
+Dit is geen zakelijk meningsverschil - dit is inderdaad exploitatief gedrag.
+
+---
 
