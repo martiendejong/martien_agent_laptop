@@ -4,6 +4,91 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-21 16:00 - Cross-Repository Provider Registry Integration
+
+**Pattern:** Multi-Repo Feature Integration / Session Continuation / Implicit Scope Expansion
+**Outcome:** SUCCESS - Integrated Hazina.LLMs.Registry into client-manager and artrevisionist
+
+### User Request
+
+> "is this now implemented for client-manager and artrevisionist as well?"
+
+**Context:** Previous session created Hazina.LLMs.Registry (PR #103). User's question revealed implicit expectation that framework features should be integrated into ALL consumers.
+
+### Key Insight: End-to-End Framework Integration
+
+**Discovery:** When user requests a framework feature, they implicitly expect:
+1. Base library implementation (Hazina)
+2. Integration into ALL consumer projects (client-manager, artrevisionist)
+3. Proper dependency tracking
+
+This is NOT over-engineering - it's the user's definition of "done."
+
+### Technical Execution
+
+| Step | Action | Result |
+|------|--------|--------|
+| 1. Mode Detection | Feature Development (not debugging) | ✅ Worktree required |
+| 2. Worktree Allocation | agent-003 for client-manager, hazina, artrevisionist | ✅ All three at same level |
+| 3. client-manager Integration | Refactored LLMProviderFactory with registry | ✅ 159 lines changed |
+| 4. artrevisionist Integration | Added registry + refactored TagScoringService | ✅ 22 lines changed |
+| 5. Build Verification | Both projects compile successfully | ✅ 0 errors |
+| 6. PR Creation | Created #294 (client-manager), #32 (artrevisionist) | ✅ With dependency alerts |
+| 7. Dependency Tracking | Updated pr-dependencies.md | ✅ Both depend on Hazina #103 |
+| 8. Worktree Release | Removed worktrees, updated pool | ✅ Clean release |
+
+### Worktree Path Pattern
+
+**Critical Learning:** Consumer repos have relative paths to Hazina (`..\..\hazina\...`).
+
+For builds to work, ALL repos must be at same level:
+```
+C:\Projects\worker-agents\agent-003\
+├── client-manager\   ← ..\..\hazina resolves to ↓
+├── hazina\           ← THIS MUST EXIST
+└── artrevisionist\   ← ..\..\hazina resolves to ↑
+```
+
+**Future Rule:** When allocating worktree for client-manager or artrevisionist, ALWAYS ensure hazina worktree exists at same level.
+
+### Session Continuation Success
+
+- Context preserved across session compaction
+- Picked up exactly where previous session left off
+- No repeated work or re-explanation needed
+- Demonstrates value of proper session documentation
+
+### PRs Created
+
+| Repo | PR | Depends On | Status |
+|------|-----|-----------|--------|
+| Hazina | [#103](https://github.com/martiendejong/Hazina/pull/103) | - | Open |
+| client-manager | [#294](https://github.com/martiendejong/client-manager/pull/294) | Hazina #103 | Open |
+| artrevisionist | [#32](https://github.com/martiendejong/artrevisionist/pull/32) | Hazina #103 | Open |
+
+**Merge Order:** Hazina #103 → then client-manager #294 + artrevisionist #32
+
+### Backward Compatibility
+
+Maintained full backward compatibility:
+- `LocalEndpoints.UseLocalEndpoints` override still works
+- Existing config keys (`OpenAI:Model`, etc.) still read
+- Factory pattern allows gradual migration
+
+### What Went Well
+
+- ✅ Recognized implicit scope expansion immediately
+- ✅ Reused existing hazina worktree (from previous session)
+- ✅ Parallel bash commands for efficiency
+- ✅ Proper dependency alerts in PR descriptions
+- ✅ Clean worktree protocol execution
+
+### Confidence Level
+
+HIGH - Multi-repository feature integration executed cleanly. User expectation pattern documented for future sessions.
+
+---
+
 ## 2026-01-20 20:35 - RLM Skill: Unbounded Context Processing
 
 **Pattern:** Advanced Context Management / Recursive Processing / Skill Creation / Research Integration
