@@ -83,6 +83,34 @@ Maintained full backward compatibility:
 - ✅ Proper dependency alerts in PR descriptions
 - ✅ Clean worktree protocol execution
 
+### Technical Edge Cases Encountered
+
+1. **Dirty Base Repo**
+   - client-manager was on `agent-002-nexus-visual-migration-plan` with uncommitted changes
+   - Solution: `git stash push -m "WIP: visual migration changes"` before checkout
+   - **Learning:** Always check for uncommitted changes before worktree operations
+
+2. **Content Files Missing in Worktree**
+   - artrevisionist build failed: `localhost.pfx` and `googleads.yaml` not found
+   - These files are in `.gitignore` but referenced in csproj as content
+   - Solution: Manual copy from base repo to worktree
+   - **Learning:** After worktree creation, check for non-git content files needed for build
+
+3. **Worktree Reuse Optimization**
+   - hazina worktree at agent-003 already existed from previous session
+   - Had the registry code on `agent-003-provider-registry` branch
+   - Reused instead of recreating - saved significant time
+
+### User Command: "update your insights"
+
+This is an explicit end-of-session command meaning:
+1. Read PERSONAL_INSIGHTS.md and reflection.log.md
+2. Add NEW learnings (avoid redundancy)
+3. Update timestamps
+4. Commit changes
+
+This is the user actively enforcing the continuous improvement directive.
+
 ### Confidence Level
 
 HIGH - Multi-repository feature integration executed cleanly. User expectation pattern documented for future sessions.

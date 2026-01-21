@@ -2315,3 +2315,33 @@ C:\Projects\worker-agents\agent-003\
 
 **Confidence Level:** HIGH - Multi-repository feature integration executed cleanly. User expectation pattern captured for future sessions.
 
+**Additional Technical Learnings:**
+
+1. **Stash Pattern for Dirty Base Repos**
+   - Base repo (client-manager) had uncommitted changes on different branch
+   - Solution: `git stash push -m "WIP: description" && git checkout develop`
+   - This preserves user's work while allowing worktree creation from develop
+
+2. **Content Files Don't Auto-Copy to Worktrees**
+   - artrevisionist build failed: missing `localhost.pfx` and `googleads.yaml`
+   - These are marked `<CopyToOutputDirectory>Always</CopyToOutputDirectory>` but aren't in git
+   - Solution: Manually copy from base repo to worktree
+   - **Future rule:** After creating worktree, check for content files that need manual copy
+
+3. **Existing Worktree Reuse**
+   - hazina worktree already existed from previous session (agent-003-provider-registry branch)
+   - Instead of removing and recreating, reused it - the registry code was already there
+   - **Optimization:** Check for existing worktrees before creating new ones
+
+**User Communication Pattern Update:**
+
+> **"update your insights"** - This is an explicit command the user gives at session end.
+>
+> User expects:
+> 1. Read existing insights
+> 2. Add meaningful NEW learnings (not redundant)
+> 3. Update timestamps
+> 4. Commit the changes
+>
+> This is part of the continuous improvement directive - user actively enforces self-learning.
+
