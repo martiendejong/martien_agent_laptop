@@ -179,27 +179,31 @@ A task is **DONE** only when ALL of the following criteria are met:
    ↓
 3. Write tests + manual testing
    ↓
-4. Commit + push
+4. ★ CHECK: Pending migrations (EF Core projects) ★
+   → dotnet ef migrations has-pending-model-changes
+   → If pending: create migration BEFORE continuing
    ↓
-5. Create PR (base: develop)
+5. Commit + push (include migrations!)
    ↓
-6. Code review + approval
+6. Create PR (base: develop)
    ↓
-7. Merge to develop
+7. Code review + approval
    ↓
-8. CI/CD pipeline runs
+8. Merge to develop
    ↓
-9. Deploy to staging (optional)
+9. CI/CD pipeline runs
    ↓
-10. Deploy to production
+10. Deploy to staging (optional)
    ↓
-11. Verify in production
+11. Deploy to production
    ↓
-12. Update documentation
+12. Verify in production
    ↓
-13. Notify stakeholders
+13. Update documentation
    ↓
-14. Mark task as DONE ✅
+14. Notify stakeholders
+   ↓
+15. Mark task as DONE ✅
 ```
 
 ---
@@ -240,13 +244,18 @@ A task is **DONE** only when ALL of the following criteria are met:
   - Azure KeyVault updated (if production secrets needed)
 
 - [ ] **Database migrations created AND applied** (CRITICAL)
-  - Migration file created: `dotnet ef migrations add <Name> --context IdentityDbContext`
-  - Migration file reviewed: Check `Migrations/*.cs` for correct Up/Down methods
-  - Migration compiles: `dotnet build` passes
-  - Migration applied to dev: `dotnet ef database update`
-  - Migration COMMITTED with the feature (not "do later")
-  - **HARD RULE:** If you add a DbSet or entity, you MUST create the migration as part of the same work
+  - **STEP 1 - Pre-PR Check:** BEFORE creating PR, run: `dotnet ef migrations has-pending-model-changes --context IdentityDbContext`
+    - If exit code = 0 → No pending changes, continue
+    - If exit code ≠ 0 → STOP! Create migration first (Step 2)
+  - **STEP 2 - Create Migration:** `dotnet ef migrations add <Name> --context IdentityDbContext`
+  - **STEP 3 - Review:** Check `Migrations/*.cs` for correct Up/Down methods
+  - **STEP 4 - Build:** `dotnet build` passes (migration compiles)
+  - **STEP 5 - Apply:** `dotnet ef database update` (apply to local dev)
+  - **STEP 6 - Commit:** Migration COMMITTED with the feature (not "do later")
+  - **HARD RULE:** If you add a DbSet, change entity properties, or modify OnModelCreating, you MUST create the migration
   - **HARD RULE:** Never tell user "run migration later" - it's part of your job
+  - **HARD RULE:** A PR with pending model changes that causes `PendingModelChangesWarning` at runtime is a CRITICAL FAILURE
+  - **AUTOMATED CHECK:** Run `ef-preflight-check.ps1 -Context IdentityDbContext -ProjectPath <path>` before PR
 
 - [ ] **Frontend + Backend compatibility verified**
   - API contract not broken

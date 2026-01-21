@@ -392,6 +392,17 @@ C:\scripts\.claude\skills\
 3. ❌ **DO NOT** allocate worktree
 4. ❌ **DO NOT** switch branches
 
+### ⚠️ Pre-PR Validation (MANDATORY for EF Core projects):
+**BEFORE committing and creating PR, run these checks:**
+1. ✅ **Build passes** - `dotnet build`
+2. ✅ **Check pending migrations** - `dotnet ef migrations has-pending-model-changes --context IdentityDbContext`
+   - Exit code 0 → No pending changes, continue
+   - Exit code 1 → **STOP! Create migration FIRST**: `dotnet ef migrations add <Name> --context IdentityDbContext`
+3. ✅ **Review migration** - Verify Up/Down methods in `Migrations/*.cs`
+4. ✅ **Commit migration with feature** - Never commit code without its migration
+
+**HARD RULE:** A PR that causes `PendingModelChangesWarning` at runtime is a **CRITICAL FAILURE**.
+
 ### After Creating PR:
 1. ✅ **Release worktree** - See `worktree-workflow.md` § Release Protocol
 2. ✅ **Update notifications** - See `session-management.md` § HTML Dashboard
