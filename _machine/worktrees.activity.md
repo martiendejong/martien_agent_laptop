@@ -1,3 +1,4 @@
+2026-01-22T04:15:00Z — release — agent-005 — hazina — feature/hazina-coder-cli — — claude-code — HazinaCoder CLI COMPLETE: PR #107 created - Multi-provider coding assistant (OpenAI/Anthropic/Ollama), Anthropic tool calling support (+609 lines), GitStatusTool, ListDirectoryTool, WebFetchTool, HazinaCoderToolsContext
 2026-01-21T23:30:00Z — release — agent-005 — client-manager — agent-005-extract-chat-controllers — — claude-code — ChatController Extraction COMPLETE: PR #301 created - 4 controllers extracted (ChatFileController, ChatImageController, ChatManagementController, OpeningQuestionsController), ~950 lines moved, SRP compliance
 2026-01-21T14:05:00Z — release — agent-003 — hazina — agent-003-test-infrastructure — — claude-code — Test Infrastructure COMPLETE: PR #106 created - 59 unit tests for EmailService/BigQueryService/ToolRegistrationService/AgentExecutionService, TestBase, FakeDataGenerator, MockHttpMessageHandler, local pre-commit hooks
 2026-01-21T14:00:00Z — release — agent-003 — client-manager+hazina — agent-003-context-aware-sidebar-phase2 — — claude-code — Context-Aware Sidebar Phase 2 COMPLETE: PR #299 created - ILifecycleDetectionService interface, LifecycleDetectionService impl, lifecycle filtering API, CategoryAccordion component, ActionContextProvider wired to App.tsx
@@ -564,3 +565,7 @@ Actions:
 2026-01-20T23:36:25Z | agent-002 | RELEASE | client-manager | agent-002-nexus-visual-migration-plan | Steps 1-5 complete, foundation committed, 50-expert review conducted
 2026-01-21T01:05:00Z — allocate — agent-004 — hazina — agent-004-pdok-integration — — claude-code — Building comprehensive PDOK MCP server integration for Dutch Kadaster open data
 2026-01-21T01:30:00Z — release — agent-004 — hazina — agent-004-pdok-integration — — claude-code — PR #100 created: Complete PDOK integration with BAG, Kadaster, Locatieserver clients and MCP server
+2026-01-21T19:46:47Z | agent-003 | ALLOCATE | feature/869bucvk2-token-balance-userprofile | ClickHub: Fix TokenBalance creation for OAuth users
+2026-01-21T19:52:44Z | agent-003 | RELEASE | feature/869bucvk2-token-balance-userprofile | PR #304 created, worktree released
+2026-01-21T19:57:15Z | agent-003 | ALLOCATE | feature/869bvf2xa-image-lightbox | ClickHub: Fix image lightbox in activities list
+2026-01-21T20:01:12Z | agent-003 | RELEASE | feature/869bvf2xa-image-lightbox | PR #305 created, worktree released
