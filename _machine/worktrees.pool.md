@@ -6,7 +6,7 @@ Seat states:
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager | agent-001-orchestrator-integration | 2026-01-16T15:00:00Z | 🚧 Week 1-2: Integrating BackgroundTaskOrchestrator into Image/Blog/Analysis generation services |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | hazina | agent-002-layered-image-enhanced | 2026-01-21T00:32:00Z | 🚧 Enhancing LayeredImageTool: per-layer config, sequential generation, context passing |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-20T02:00:00Z | ✅ ClickUp #869bu9cnd UPDATED: Chat smooth scrolling - PR #289 updated |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | hazina | agent-003-ai-native-stack | 2026-01-21T12:00:00Z | 🚧 Hazina.AI Native Stack: LocalLLM, Inference, Training, Vision modules |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-19T19:00:00Z | ✅ PR #83 conflicts RESOLVED: Merged main, guardrails implementation preserved |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-20T01:15:00Z | ✅ PR Template COMPLETE: PR #268 created, 110 lines, 25+ checklist items |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-01-20T03:00:00Z | ✅ Code Review Guide COMPLETE: PR #282 created, 509 lines with 10-area checklist |
