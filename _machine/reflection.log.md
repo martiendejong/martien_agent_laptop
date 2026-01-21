@@ -4,6 +4,221 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-21 22:00 - Claude Code EBUSY Crash on .claude.json
+
+**Issue:** Claude Code CLI crash due to file locking conflict
+**Outcome:** SESSION INTERRUPTED - Work lost, documentation needed
+**Root Cause:** Multiple Claude instances competing for write access to config file
+
+### Error Details
+
+```
+ERROR  EBUSY: resource busy or locked, open 'C:\Users\HP\.claude.json'
+at writeFileSync (node:fs:2426:20)
+at _M (file:///C:/Users/HP/AppData/Roaming/npm/node_modules/@anthropic-ai/claude-code/cli.js:4569:1161)
+```
+
+### Analysis
+
+The crash occurs when:
+1. Multiple Claude Code instances run simultaneously (parallel agents)
+2. Both try to write to `C:\Users\HP\.claude.json` at the same time
+3. Windows file locking prevents second write → EBUSY error
+4. Unhandled promise rejection crashes the CLI
+
+### Prevention Strategies
+
+| Strategy | Implementation |
+|----------|----------------|
+| **Detect multi-instance** | Run `monitor-activity.ps1 -Mode claude` before starting work |
+| **Stagger operations** | Avoid starting multiple Claude sessions simultaneously |
+| **Check file locks** | `handle.exe .claude.json` (SysInternals) to identify lock holder |
+| **Emergency recovery** | Close all Claude instances, delete `.claude.json.lock` if exists |
+
+### Work Lost (Context for Recovery)
+
+Session was analyzing technical debt prioritization:
+1. Install Analyzers & SonarQube (21 hrs) - Foundation for visibility
+2. Split AgentFactory God Object (76 hrs) - 1,088 lines, 51 methods, 5+ responsibilities
+3. Create Test Infrastructure (28 hrs) - <1% coverage is catastrophic
+4. Unit Tests for Refactored Code (80 hrs) - Validates refactoring
+
+### Recommendation for Claude Code Team
+
+**Feature Request:** Add retry logic with exponential backoff and file locking awareness to config file writes. Consider using atomic write pattern (write to temp, rename) instead of direct `writeFileSync`.
+
+### Files to Check After Crash
+
+- Worktree status: Any allocated worktrees may be orphaned
+- Git state: Uncommitted changes may exist
+- Tool output: Background processes may still be running
+
+### Recovery Executed (2026-01-21 22:15)
+
+Successfully recovered interrupted work:
+1. ✅ Found uncommitted changes in Hazina (8 files, 634 lines)
+2. ✅ Created branch `feature/coding-standards-analyzers`
+3. ✅ Committed analyzer configuration work
+4. ✅ Pushed and created **PR #104**: https://github.com/martiendejong/Hazina/pull/104
+5. ✅ Reset base repo to clean `develop` state
+
+**Lesson:** Always check `git status` after crash to find and preserve uncommitted work.
+
+---
+
+## 2026-01-21 22:50 - AgentFactory God Object Refactoring
+
+**Pattern:** Extract-Service Refactoring for SRP Compliance
+**Outcome:** SUCCESS - Split 1,088-line god object into 5 focused services
+**Project:** Hazina
+
+### Problem
+
+AgentFactory.cs was a "god object" with:
+- 1,088 lines
+- 51 methods
+- 5+ distinct responsibilities mixed together
+
+This violated Single Responsibility Principle and made the code hard to understand, test, and maintain.
+
+### Solution: Service Extraction
+
+Extracted 5 focused services from the monolith:
+
+| Service | Lines | Responsibility |
+|---------|-------|----------------|
+| EmailService | ~180 | SMTP/IMAP operations |
+| BigQueryService | ~100 | Google BigQuery queries |
+| ToolRegistrationService | ~480 | Tool creation & registration |
+| AgentExecutionService | ~170 | Agent/Flow execution |
+| AgentFactory (refactored) | 398 | Agent creation only |
+
+### Key Decisions
+
+| Decision | Rationale |
+|----------|-----------|
+| Interfaces for each service | Enable DI and testing |
+| CommonToolParameters class | Centralize reusable parameter definitions |
+| Backwards compatibility region | Keep legacy methods working during transition |
+| Lowercase field names | Match existing code convention |
+
+### What Went Well
+
+- ✅ Build passed first try after namespace fixes
+- ✅ No breaking changes to public API
+- ✅ Clean service boundaries
+- ✅ 63% line reduction in AgentFactory
+
+### Lessons Learned
+
+1. **Check existing namespace conventions** - Original code used global namespace; new code initially used explicit namespaces causing errors
+2. **Preserve field names for compatibility** - Changed StoresConfig → storesConfig to match existing references
+3. **Method signature delegation** - When extracting, use lambdas to adapt signatures: `(a,b,c,d) => Method(a,b,c,d,default)`
+
+### Files Changed
+
+**New Files (13):**
+- Services/Email/{IEmailService,EmailService,EmailSettings,EmailSummary,EmailDetail}.cs
+- Services/BigQuery/{IBigQueryService,BigQueryService}.cs
+- Services/Execution/{IAgentExecutionService,AgentExecutionService}.cs
+- Services/Tools/{IToolRegistrationService,ToolRegistrationService}.cs
+- Services/Tools/Parameters/CommonToolParameters.cs
+
+**Modified:**
+- Core/AgentFactory.cs (1,088 → 398 lines)
+
+**PR:** https://github.com/martiendejong/Hazina/pull/105
+
+---
+
+## 2026-01-21 18:30 - WordPress Image Deduplication Pattern
+
+**Pattern:** In-Memory Session Cache for Duplicate Prevention
+**Outcome:** SUCCESS - Implemented shared image references for WordPress publishing
+**Project:** ArtRevisionist
+
+### User Request
+
+> "when pages and images are being published to the wordpress site it uploads every image for every page separately. when an image is reused between pages it should only send it to wordpress once and have the pages refer to the same shared image in wordpress."
+
+### Problem Identified
+
+In `WordPressPublishService.PublishTopicAsync()`, images were uploaded via `UploadImageAsync()` every time they were referenced:
+- Topic featured image
+- Page featured images (multiple pages)
+- Additional images per page
+- Detail featured images
+- Evidence featured images
+- Evidence attachments
+
+If `hero.jpg` was used on 5 pages → 5 separate uploads to WordPress → 5 different Media IDs.
+
+### Solution: Session-Scoped Dictionary Cache
+
+**Implementation:** Single `Dictionary<string, int>` field in the service:
+
+```csharp
+private Dictionary<string, int> _uploadedMediaCache = new Dictionary<string, int>();
+```
+
+**Lifecycle:**
+1. Cleared at start of `PublishTopicAsync()`
+2. Checked before each upload (return cached ID if found)
+3. Populated after each successful upload
+4. Scoped service = fresh cache per request
+
+### Key Design Decisions
+
+| Decision | Rationale |
+|----------|-----------|
+| Dictionary vs ConcurrentDictionary | Single-threaded publish flow, no concurrency needed |
+| Filename as key (not hash) | Same filename = same image in this context; hash would add I/O overhead |
+| Session-scoped (not persistent) | Different WordPress sites may have different IDs; avoids stale cache issues |
+| Applied to both images AND files | `UploadFileAsync` also benefits (evidence attachments) |
+
+### What Went Well
+
+- ✅ Minimal code change (4 insertion points, ~15 lines total)
+- ✅ No new dependencies or services
+- ✅ Backward compatible (existing behavior preserved for first upload)
+- ✅ Logging indicates cache hits for debugging
+- ✅ Build verified: 0 errors
+
+### Pattern for Future Reference
+
+**In-Memory Session Cache Pattern:**
+```csharp
+// Field
+private Dictionary<TKey, TValue> _cache = new();
+
+// At operation start
+_cache.Clear();
+
+// Before expensive operation
+if (_cache.TryGetValue(key, out var cached)) return cached;
+
+// After successful operation
+_cache[key] = result;
+```
+
+**Use when:**
+- Operation is expensive (network I/O, disk I/O)
+- Same input may occur multiple times within single operation scope
+- Result is deterministic for same input within scope
+- No cross-request persistence needed
+
+### Files Changed
+
+- `ArtRevisionistAPI/Services/WordPress/WordPressPublishService.cs`
+  - Line 45-48: Cache field declaration
+  - Line 69-70: Cache clear at operation start
+  - Line 453-458: Cache check in `UploadImageAsync`
+  - Line 501-502: Cache store after image upload
+  - Line 519-524: Cache check in `UploadFileAsync`
+  - Line 567-568: Cache store after file upload
+
+---
+
 ## 2026-01-21 16:00 - Cross-Repository Provider Registry Integration
 
 **Pattern:** Multi-Repo Feature Integration / Session Continuation / Implicit Scope Expansion
