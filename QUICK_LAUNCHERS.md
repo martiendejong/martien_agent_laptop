@@ -4,11 +4,12 @@ All launchers are in `C:\scripts\` and work immediately with CTRL+R.
 
 ## Available Commands
 
-### Claude Agent & Notifications
+### AI Agents & Notifications
 | Command | Description | Full Path |
 |---------|-------------|-----------|
 | **`n`** | Notifications dashboard | `C:\scripts\n.bat` |
 | **`c`** | Claude Agent control plane | `C:\scripts\c.bat` |
+| **`oc`** | OpenCode Agent control plane | `C:\scripts\oc.bat` |
 
 ### Frontend Development Servers
 
@@ -81,6 +82,15 @@ echo %PATH% | findstr scripts
 - Runs `claude_agent.bat`
 - Starts the autonomous agent control plane
 - **Benefit:** Prevents accidentally sending commands to wrong agent session
+
+### `oc` - OpenCode Agent
+- Opens new CMD window with **dynamic title**
+- **Window title shows current git branch in ALL-CAPS** (same as Claude Agent)
+- Falls back to "OPENCODE AGENT" if not in a git repository
+- Navigates to `C:\scripts`
+- Runs `opencode_agent.bat`
+- Starts the autonomous agent control plane using OpenCode CLI
+- **Benefit:** Alternative AI agent using OpenCode with same infrastructure
 
 ### `cm` - Client Manager Frontend
 - Opens new CMD window titled "Client Manager Frontend"
@@ -235,10 +245,10 @@ start "Hazina Tests" cmd /k "cd /d C:\Projects\hazina && dotnet test"
 
 ## Summary
 
-✅ **5 quick launchers created**
+✅ **6 quick launchers created**
 ✅ **All work with CTRL+R immediately**
 ✅ **Short commands available after adding to PATH**
 ✅ **Each opens in its own window with proper title**
 ✅ **Automatically navigates to correct directory**
 
-**Most used:** `n` (notifications), `c` (claude agent), `cm` (client manager)
+**Most used:** `n` (notifications), `c` (claude agent), `oc` (opencode agent), `cm` (client manager)
