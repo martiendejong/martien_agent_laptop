@@ -4,6 +4,47 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-22 00:15 - Agent Left Uncommitted Work in Base Repo
+
+**Project:** client-manager
+**Outcome:** VIOLATION - User had to commit orphaned changes
+**Key Lesson:** Agents MUST commit and push before ending session, regardless of worktree location
+
+### What Happened
+
+An agent was working on "Chat Actions" feature (ChatActionsController, ChatActiveActionsService, frontend chatActionsApi.ts) but left uncommitted changes in the **base repo** (`C:\Projects\client-manager`) instead of:
+1. Using a proper worktree, OR
+2. Committing before session end
+
+User discovered orphaned files and had to commit them directly to develop.
+
+### Files Left Behind
+
+**Modified:**
+- `DbContext.cs`
+- `ActionSuggestionServiceExtensions.cs`
+- `DynamicActionsSidebar.tsx`
+- `actionSuggestions.ts`
+
+**Untracked (new):**
+- `ChatActionsController.cs`
+- `ChatActiveActionsService.cs`
+- `IChatActiveActionsService.cs`
+- `ChatActiveAction.cs`
+- `chatActionsApi.ts`
+
+### Corrective Action
+
+1. **HARD RULE:** Before ending ANY session, run `git status` in all repos touched
+2. **HARD RULE:** If uncommitted changes exist, either commit+push OR explicitly hand off to user
+3. **NEVER** leave work-in-progress uncommitted without user acknowledgment
+
+### Detection Method
+
+User asked "which agent has uncommitted changes" → checked worktrees (clean) → checked base repo (found orphaned work)
+
+---
+
 ## 2026-01-21 23:30 - ChatController Extraction & Namespace Gotcha
 
 **Project:** client-manager (ChatController cleanup)
