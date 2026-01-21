@@ -6,6 +6,8 @@ Track cross-repository PR dependencies between Hazina and client-manager.
 
 | Downstream PR | Depends On (Hazina) | Status | Notes |
 |---------------|---------------------|--------|-------|
+| [client-manager#293](https://github.com/martiendejong/client-manager/pull/293) | [Hazina#102](https://github.com/martiendejong/Hazina/pull/102) | ⏳ Waiting | LayeredImageTool integration - document header generation |
+| [artrevisionist#33](https://github.com/martiendejong/artrevisionist/pull/33) | [Hazina#102](https://github.com/martiendejong/Hazina/pull/102) | ⏳ Waiting | LayeredImageTool integration - automatic text-based image generation |
 | [client-manager#294](https://github.com/martiendejong/client-manager/pull/294) | [Hazina#103](https://github.com/martiendejong/Hazina/pull/103) | ⏳ Waiting | LLM Provider Registry integration |
 | [artrevisionist#32](https://github.com/martiendejong/artrevisionist/pull/32) | [Hazina#103](https://github.com/martiendejong/Hazina/pull/103) | ⏳ Waiting | LLM Provider Registry integration |
 | [client-manager#283](https://github.com/martiendejong/client-manager/pull/283) | [Hazina#95](https://github.com/martiendejong/Hazina/pull/95) | ⏳ Waiting | WordPress UnifiedContent - FetchContentAsUnifiedAsync() method |
@@ -77,6 +79,16 @@ Track cross-repository PR dependencies between Hazina and client-manager.
 ---
 
 ## History
+
+### 2026-01-21 (agent-002 session)
+- ✅ Created LayeredImageTool integration PRs:
+  - **Hazina #102:** Vision-enhanced LayeredImageTool with per-layer config, sequential generation, context passing
+  - **client-manager #293:** Document header/footer generation using LayeredImageTool
+  - **artrevisionist #33:** Automatic layered generation for text-based image requests
+  - Dependencies tracked: client-manager #293 and artrevisionist #33 both depend on Hazina #102
+  - Features: Multi-layer image generation (PDN/ORA/PSD), vision-enhanced context, editable text layers
+  - Text detection service automatically identifies text requests and uses layered generation
+  - Documentation: 900+ lines in LAYERED_IMAGE_INTEGRATION.md for each integration
 
 ### 2026-01-19 (agent-002 session)
 - ✅ Created WordPress UnifiedContent import PRs:
