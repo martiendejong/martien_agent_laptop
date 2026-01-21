@@ -4178,3 +4178,112 @@ Dit is geen zakelijk meningsverschil - dit is inderdaad exploitatief gedrag.
 
 ---
 
+
+### Session: 2026-01-22 07:00 - ClickHub Coding Agent: 6 PRs in One Session
+
+**Context:** Ran autonomous ClickHub Coding Agent, processed multiple ClickUp tasks, created 6 PRs.
+
+#### Technical Insights
+
+**1. SignalR State Management - Multiple Response Paths**
+
+**Bug found:** Typing indicator stayed visible after AI responses.
+
+**Root cause:** The chat system has MULTIPLE ways AI can respond:
+- Streaming text via `ProjectChat`/`ProjectChatCanvas` → calls `finalizeStreamingMessage()` → clears typing
+- `GatheredData` SignalR event → adds message → **didn't clear typing**
+- `AnalysisData` SignalR event → adds message → **didn't clear typing**
+- `ComponentRequested` SignalR event → adds message → **didn't clear typing**
+- HTTP response → finally block → should clear typing
+
+**Fix:** Added `stopOperation('typing')` to ALL response handlers, not just streaming.
+
+**Learning:** When debugging state issues in event-driven systems, trace ALL event paths that can modify state. A state machine with multiple entry points needs consistent exit handling.
+
+**2. Develop Branch Uncommitted Fixes**
+
+**Problem:** Worktree created from `origin/develop` failed to build, but base repo `C:\Projects\client-manager` built fine.
+
+**Cause:** Base repo had uncommitted fixes for build errors that weren't pushed yet.
+
+**Solution:** Copied fixed files from base repo to worktree.
+
+**Learning:** Before allocating worktree, check if base repo has uncommitted changes that might affect build:
+```bash
+cd C:/Projects/<repo> && git status
+```
+
+**3. Foundation-First Pattern for Complex Features**
+
+**Task:** WordPress import error handling with retry logic.
+
+**Approach:**
+1. Create data models first (ImportErrorLog, ImportResult, ImportErrorType enum)
+2. Create classification logic (ImportErrorClassifier)
+3. Create service layer (ImportErrorLogService)
+4. Create database migration
+5. Integration into controllers (follow-up PR)
+
+**Why this works:**
+- Each layer can be reviewed independently
+- Foundation is solid before integration complexity
+- Partial PRs are still valuable
+- Easier to test in isolation
+
+**4. Error Classification for Retry Decisions**
+
+**Pattern identified:**
+| Error Type | HTTP Codes | Retry? | Strategy |
+|------------|-----------|--------|----------|
+| Transient | 429, 502-504, timeout | Yes | Exponential backoff |
+| Permanent | 400, 401, 403, 404, 422 | No | Log and skip |
+| Unknown | Other | Maybe | 1 cautious retry |
+
+**Key insight:** Classifying errors BEFORE deciding to retry prevents wasted resources and user frustration.
+
+#### Process Insights
+
+**5. Vague ClickUp Tasks → Block Immediately**
+
+**Examples blocked this session:**
+- "lots of translations are lost" - No specifics about which translations
+- "regenerate buttons" - No design specs for UI/behavior
+
+**Action:** Posted specific questions and moved to "blocked" status.
+
+**Learning:** Don't attempt implementation with insufficient requirements. Blocking with clear questions is better than guessing wrong.
+
+**6. Partial Success Model for Imports**
+
+**User expectation:** "Import 95 of 100 posts, show which 5 failed"
+
+**Implementation:**
+```csharp
+public class ImportResult {
+    public int ImportedCount { get; set; }
+    public int FailedCount { get; set; }
+    public List<ImportErrorDetail> Errors { get; set; }
+    public bool PartialSuccess => ImportedCount > 0 && FailedCount > 0;
+}
+```
+
+**Key insight:** Binary success/failure is bad UX for batch operations. Always design for partial success.
+
+#### Session Metrics
+
+| Metric | Value |
+|--------|-------|
+| Tasks completed | 6 |
+| PRs created | #304, #305, #311, #313, #314, #317 |
+| Tasks blocked | 2 |
+| Worktrees used | agent-003, agent-005 |
+| Build issues resolved | 1 (partial class modifier) |
+
+#### Patterns Reinforced
+
+1. **Boy Scout Rule** - Fixed pre-existing build issue (AnalysisController partial class)
+2. **Zero Tolerance** - Proper worktree allocation/release for every task
+3. **ClickUp Integration** - Link PRs, update status, post questions as comments
+4. **Exploration First** - Used Task/Explore agent before implementing fixes
+
+---
