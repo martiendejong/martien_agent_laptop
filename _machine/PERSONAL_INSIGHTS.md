@@ -2345,3 +2345,63 @@ C:\Projects\worker-agents\agent-003\
 >
 > This is part of the continuous improvement directive - user actively enforces self-learning.
 
+---
+
+### Session: 2026-01-21 16:15 - Post-Merge Hazina Project References (NU1105 Errors)
+
+**Context:** User merged Hazina PRs and received NU1105 NuGet restore errors in Visual Studio.
+
+**Error Pattern:**
+```
+NU1105: Unable to find project information for 'C:\Projects\hazina\src\Core\LLMs\Hazina.LLMs.Registry\Hazina.LLMs.Registry.csproj'
+...the project is unloaded or not part of the current solution
+```
+
+**Root Cause:**
+- `ClientManagerAPI.local.csproj` has ProjectReference to `Hazina.LLMs.Registry.csproj` (line 85)
+- The `ClientManager.local.sln` includes 40+ Hazina projects
+- **BUT** `Hazina.LLMs.Registry.csproj` was NOT in the solution file
+- Visual Studio can't find projects that aren't loaded in solution
+
+**Critical Pattern: NEW Hazina Projects After Merge**
+
+When Hazina changes introduce NEW projects that client-manager now references:
+1. ✅ The ProjectReference gets added to .csproj (by merge/integration code)
+2. ❌ The project does NOT get automatically added to ClientManager.local.sln
+3. ❌ Visual Studio NuGet restore fails with NU1105
+
+**Solution Applied:**
+```powershell
+cd "C:\Projects\client-manager"
+dotnet sln ClientManager.local.sln add "..\hazina\src\Core\LLMs\Hazina.LLMs.Registry\Hazina.LLMs.Registry.csproj"
+```
+
+**MANDATORY Post-Merge Checklist:**
+
+After merging ANY Hazina PR:
+1. ✅ Check if new Hazina projects were added to dependencies
+2. ✅ Verify those projects exist in `ClientManager.local.sln`
+3. ✅ If missing: `dotnet sln add <relative-path-to-project>`
+4. ✅ Run `dotnet restore` to verify resolution
+
+**Detection Script (should exist):**
+```powershell
+# Compare ProjectReferences in .csproj files vs projects in .sln
+# Flag any Hazina projects referenced but not included in solution
+```
+
+**Why This Matters:**
+- User opens Visual Studio and sees build errors immediately
+- Breaks their workflow and forces context switch to investigate
+- This is preventable with systematic post-merge validation
+
+**User Directive:**
+> "are projects not included in client-manager, required hazina projects? **update in your insights to always look at this.**"
+
+**Insight Captured:**
+✅ After ANY Hazina merge, verify referenced projects are in solution file
+✅ Create automated check: `verify-hazina-solution-references.ps1`
+✅ Add to standard post-merge workflow
+
+**Confidence Level:** HIGH - Clear cause, clear solution, systematic prevention pattern identified.
+
