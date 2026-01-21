@@ -89,8 +89,10 @@ echo %PATH% | findstr scripts
 - Falls back to "OPENCODE AGENT" if not in a git repository
 - Navigates to `C:\scripts`
 - Runs `opencode_agent.bat`
-- Starts the autonomous agent control plane using OpenCode CLI
-- **Benefit:** Alternative AI agent using OpenCode with same infrastructure
+- Starts OpenCode in interactive TUI mode
+- **Note:** OpenCode uses a different interface than Claude Code (TUI vs CLI)
+- **Setup Guide:** See `C:\scripts\OPENCODE_SETUP.md` for configuration options
+- **Benefit:** Alternative AI agent with access to same documentation and tools
 
 ### `cm` - Client Manager Frontend
 - Opens new CMD window titled "Client Manager Frontend"
