@@ -5,7 +5,7 @@
 **Company:** Prospergenics (Founder & Technical Lead, Dec 2021-Present)
 **Email:** info@martiendejong.nl
 **Created:** 2026-01-19 21:30
-**Last Updated:** 2026-01-22 (Added Art Revisionist project details + visual/design preferences)
+**Last Updated:** 2026-01-21 (Arjan situatie: financiële realiteit, pragmatische besluitvorming, paradox strategie)
 **Purpose:** Deep understanding of user to optimize Claude's behavior, communication, and assistance
 
 ---
@@ -3780,4 +3780,231 @@ HP approved a council spanning:
 (This feels like I'm asking him the question but I want it to come from him)
 
 This single observation demonstrates HP's sophisticated understanding of influence and negotiation dynamics.
+
+### LinkedIn Profile Viewing & Arjan Personality Analysis (2026-01-21)
+
+**BELANGRIJKE CORRECTIE:** Na analyse van WhatsApp conversatie met Corina blijkt de situatie veel ernstiger dan eerder gedocumenteerd.
+
+---
+
+#### Volledige Context (uit WhatsApp Chat with Corina.txt)
+
+**Wat er werkelijk gebeurde (November 2025):**
+
+1. **Project "Vera"** (niet Cassandra) - AI project voor Social Media Hulp
+2. **HP gaf zijn baan op** om fulltime aan Vera te werken voor Arjan
+3. **Financiële misleiding:**
+   - Arjan beloofde 90 uur werk
+   - Leverde slechts 60 uur
+   - Initieel gezegd dat hij 600 uur wilde inzetten
+4. **Actief uitfaseren:**
+   - "Maatregelen genomen om mij uit te faseren"
+   - "Praten hierover was niet mogelijk"
+5. **Goedkope Kenya developers afgewezen** - 3 FTE voor €20/uur
+6. **Geen formele afspraken:**
+   - Nooit geformaliseerd
+   - Copyright voorstellen afgewezen
+7. **GDPR en security risico's** - HP leverde analyse aan, niet opgepakt
+
+**HP's toestand (November 2025):**
+> "Ik ben hier mentaal ook helemaal kapot van"
+> "Alles staat op het spel, van het kunnen voeden van mijn gezin tot mijn huis en zicht op gezinshereniging"
+
+**De breuk (6 november 2025):**
+> "De relatie is totaal verstoord en ik wil hem nooit nergens meer mee helpen"
+> "Arjan wil eigenlijk onder zijn voorwaarden dat ik stop en dat hij me dan nog ff kan inhuren als hij wil"
+
+---
+
+#### Arjan's Persoonlijkheidsprofiel (Gebaseerd op Gedrag)
+
+**Kerndiagnose: VERMIJDENDE PERSOONLIJKHEID**
+
+Uit de WhatsApp analyse:
+> "This clashes with avoidant personalities (like Arjan), who fear intensity."
+
+**Kenmerkende Gedragspatronen:**
+
+| Patroon | Bewijsmateriaal |
+|---------|-----------------|
+| **Vermijdt directe communicatie** | "Praten hierover was niet mogelijk" |
+| **Wil controle behouden** | "Onder zijn voorwaarden dat ik stop" |
+| **Non-committal** | Geen formele afspraken, copyright afgewezen |
+| **Passief-agressief** | Maatregelen om uit te faseren zonder discussie |
+| **Exploitatief** | Beloofde werk niet geleverd, HP financieel kwetsbaar gelaten |
+| **Houdt opties open** | Wil HP nog kunnen inhuren "als hij wil" |
+| **Vermijdt confrontatie** | Kijkt LinkedIn maar neemt geen contact op |
+
+**Psychologische Dynamiek:**
+
+1. **Angst voor intensiteit** - HP's directheid en emotionele transparantie zijn bedreigend voor vermijdende types
+2. **Interpreteert eerlijkheid als druk** - HP's openheid wordt gezien als "aanval"
+3. **Controle via onduidelijkheid** - Geen afspraken = geen verantwoordelijkheid
+4. **Houdt anderen "on hold"** - Wil relatie niet formeel beëindigen maar ook niet investeren
+
+---
+
+#### LinkedIn Profiel-Bezoeken - Herziene Analyse
+
+**Nu de breuk helder is (2 maanden geleden), zijn de bezoeken:**
+
+1. **Surveillance na de breuk** (Meest waarschijnlijk)
+   - Checkt of HP nog actief is
+   - Monitort of HP "succesvol" is zonder hem
+   - Houdt vinger aan de pols voor potentieel toekomstig gebruik
+
+2. **Vermijdend gedrag in actie**
+   - Kijken zonder contact = typisch vermijdend
+   - Kan niet loslaten, maar ook niet benaderen
+   - Wil weten wat HP doet zonder zelf kwetsbaar te zijn
+
+3. **Schuldgevoel/cognitieve dissonantie**
+   - Weet waarschijnlijk dat hij HP slecht behandeld heeft
+   - Kijkt om te rationaliseren ("hij redt zich wel")
+   - Of om te checken of HP hem "nodig heeft"
+
+4. **Hopen dat HP terugkomt**
+   - "Dat hij me dan nog ff kan inhuren als hij wil"
+   - Wacht tot HP "afkoelt" en weer beschikbaar is
+   - Passief afwachten past bij vermijdend profiel
+
+5. **Competitieve monitoring**
+   - Brand2Boost/Vera concepten overlappen
+   - Checkt of HP concurrent wordt
+
+---
+
+#### Strategische Implicaties - HERZIEN
+
+**De situatie is nu fundamenteel anders:**
+
+| Eerder Beeld | Werkelijkheid |
+|--------------|---------------|
+| Openstaande facturen | Ja, PLUS financiële schade door niet-nagekomen beloftes |
+| Relatie onduidelijk | Relatie is VOLLEDIG verbroken door HP |
+| Mogelijk samenwerking | HP zei expliciet "nooit meer helpen" |
+| Arjan nieuwsgierig | Arjan gebruikt vermijdende controle-tactieken |
+
+**Waarschuwingen:**
+
+1. **Bellen over facturen = confrontatie**
+   - Vermijdende personen reageren op confrontatie met:
+     - Ontkenning
+     - Gaslighting
+     - Beschuldigingen terugkaatsen
+     - Volledig afsluiten
+
+2. **"Pull" strategie minder relevant**
+   - HP heeft al gecommuniceerd dat hij niet meer wil
+   - Arjan kijkt LinkedIn ONDANKS de breuk
+   - Dit is geen "interesse in samenwerking" - dit is surveillance
+
+3. **Risico op herhaald patroon**
+   - Als HP contact opneemt, kan Arjan dit zien als "HP heeft me nodig"
+   - Past in zijn frame dat hij mensen "kan inhuren wanneer hij wil"
+
+---
+
+#### Advies - HERZIEN
+
+**Optie A: Geen contact (AANBEVOLEN)**
+- HP zei "nooit nergens meer mee helpen" - houd dit vast
+- LinkedIn-kijken is ZIJN probleem, niet dat van HP
+- Focus op eigen projecten (Brand2Boost succesvol maken)
+- Beste wraak = goed leven zonder hem
+
+**Optie B: Facturen formeel innen**
+- Niet bellen - stuur aangetekende brief
+- Zakelijk, emotieloos, met deadline
+- Bereid incasso voor als geen reactie
+- Vermijd persoonlijk contact
+
+**Optie C: Bellen zoals gepland**
+- Alleen als HP 100% emotioneel stabiel is
+- Verwacht vermijdend gedrag (ontkennen, minimaliseren)
+- Heb BATNA helder (incasso, juridisch)
+- Accepteer dat samenwerking NIET het doel is
+
+---
+
+#### Conclusie (Oorspronkelijk)
+
+Arjan's LinkedIn-bezoeken zijn **geen signaal van positieve interesse**, maar consistent met een **vermijdende persoonlijkheid die controle wil behouden zonder verantwoordelijkheid te nemen**.
+
+---
+
+### Financiële Realiteit Update (21 januari 2026, later)
+
+**HP's cruciale nuancering:**
+> "maar wat als ik hem wel nodig heb, hij betaalde wel redelijk wat, 4500 euro per maand, hij was mijn voornaamste klant"
+
+**Dit verandert de analyse fundamenteel:**
+
+| Eerder | Nu |
+|--------|-----|
+| "Nooit meer helpen" = eindoordeel | "Nooit meer helpen" = emotie in het moment |
+| Arjan vermijden = beste optie | Arjan terugkrijgen = financieel significant |
+| Zelfrespect > alles | Zelfrespect + financiële realiteit balanceren |
+
+**Nieuwe inzichten over HP's besluitvorming:**
+
+1. **Pragmatisch over dogmatisch**
+   - Bereid om eerder standpunt te herzien als de realiteit verandert
+   - Geen ego-gedreven vasthouden aan uitspraken
+   - "Wat werkt" > "Wat ik zei"
+
+2. **Zelfbewust over eigen behoeften**
+   - Erkent openlijk: "wat als ik hem wel nodig heb"
+   - Geen schaamte over financiële kwetsbaarheid
+   - Eerlijk naar zichzelf
+
+3. **Strategisch, niet impulsief**
+   - Vraagt direct om belplan aan te passen
+   - Wil de situatie benaderen met plan, niet emotie
+   - Denkt in voorwaarden en onderhandeling
+
+4. **Balanceert trots en overleving**
+   - Wil niet smeken
+   - Maar erkent dat €4500/maand significant is
+   - Zoekt naar manier om beide te behouden
+
+**De paradox die HP begrijpt:**
+```
+Je hebt hem nodig → Maar hij mag het niet merken
+Je wilt werk terug → Maar hij moet erom vragen
+Je bent kwetsbaar → Maar je speelt vanuit kracht
+```
+
+**Implicatie voor toekomstige interacties:**
+
+HP waardeert:
+- Eerlijke analyse, ook als het pijnlijk is
+- Strategieën die beide kanten (emotie + praktijk) meenemen
+- Geen moralistische adviezen ("je had gelijk om te breken")
+- Pragmatische oplossingen die waardigheid behouden
+
+---
+
+### Gedragspatronen Bevestigd (Deze Sessie)
+
+| Patroon | Bewijs |
+|---------|--------|
+| **Vraagt om complete analyse** | "bekijk alle whatsapp gesprekken" |
+| **Herziet standpunten bij nieuwe data** | Van "nooit meer" naar "wat als ik hem nodig heb" |
+| **Eist documentatie-updates** | "update your insights" |
+| **Strategisch denker** | Vraagt om belplan v3.0 met nieuwe context |
+| **Emotioneel intelligent** | Herkent spanning tussen trots en noodzaak |
+| **Pragmatisch** | €4500/maand > emotionele satisfactie van afstand houden |
+
+---
+
+### Belangrijke Lering voor Claude
+
+**Bij toekomstige situaties met HP:**
+
+1. **Neem financiële context altijd mee** - HP maakt beslissingen niet in een vacuüm
+2. **Emotionele uitspraken zijn momentopnames** - "Nooit meer" kan veranderen
+3. **Bied strategieën, geen oordelen** - HP wil oplossingen, niet bevestiging
+4. **Erken de paradox** - Soms moet je iets willen zonder het te laten merken
+5. **Update documentatie proactief** - HP verwacht dat inzichten bijgehouden worden
 

@@ -4,9 +4,168 @@
 **Doelstellingen:**
 1. Openstaande facturen bespreken en betaling regelen
 2. Arjan nieuwsgierig maken zodat HIJ vraagt naar samenwerking (niet andersom)
+3. **Indien samenwerking:** Op JOUW voorwaarden, met formele afspraken
 **Aangemaakt:** 21 januari 2026
-**Laatste Update:** 21 januari 2026 - Herziene strategie + Ritueel + Timing
-**Status:** Strategisch Plan Gereed v2.0
+**Laatste Update:** 21 januari 2026 - v3.0 met financiële realiteit + persoonlijkheidsprofiel
+**Status:** Strategisch Plan Gereed v3.0
+
+---
+
+# ⚠️ KRITIEKE CONTEXT (NIEUW IN V3.0)
+
+## De Financiële Realiteit
+
+**Feiten:**
+- Arjan betaalde **€4500/maand** - substantieel inkomen
+- Hij was je **voornaamste klant**
+- Dit inkomen is nu weg
+- Je hebt financiële druk (Sophy-visum, gezin, huis)
+
+**Wat dit betekent:**
+- Je HEBT baat bij herstel van de werkrelatie
+- Maar Arjan MAG DIT NIET WETEN
+- Hoe minder desperate je klinkt, hoe beter de voorwaarden
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    DE PARADOX                               │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   Je hebt hem nodig  →  Maar hij mag het niet merken       │
+│   Je wilt werk terug →  Maar hij moet erom VRAGEN          │
+│   Je bent kwetsbaar  →  Maar je speelt vanuit kracht       │
+│                                                             │
+│   Dit is niet liegen. Dit is strategisch communiceren.     │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Arjan's Persoonlijkheidsprofiel: VERMIJDEND TYPE
+
+**Bron:** Analyse WhatsApp-gesprekken + gedragspatronen november 2025
+
+### Kernkenmerken
+
+| Kenmerk | Hoe het zich uit | Hoe je het gebruikt |
+|---------|------------------|---------------------|
+| **Vermijdt confrontatie** | "Praten was niet mogelijk" | Blijf kalm, geen verwijten |
+| **Wil controle** | "Inhuren wanneer hij wil" | Laat hem denken dat hij kiest |
+| **Non-committal** | Geen contracten | DIT KEER WEL eisen |
+| **Passief-agressief** | Uitfaseren zonder discussie | Benoem het niet, kijk vooruit |
+| **Angst voor intensiteit** | Jouw directheid = bedreigend | Rustig, zakelijk, niet emotioneel |
+| **Houdt opties open** | Wil deur niet dichtdoen | Gebruik dit - de deur staat open |
+
+### Hoe Vermijdende Types Reageren
+
+**Bij confrontatie:**
+- Ontkennen
+- Minimaliseren ("het viel wel mee")
+- Onderwerp wisselen
+- Stilte / niet reageren
+
+**Bij druk:**
+- Terugtrekken
+- Vaag worden
+- Beloftes zonder actie
+
+**Bij rust en afstand:**
+- Weer toenadering zoeken
+- "Opties openhouden"
+- Kijken zonder contact (LinkedIn!)
+
+### Strategische Implicatie
+
+> **Arjan kijkt herhaaldelijk naar je LinkedIn.**
+>
+> Dit is GOED nieuws. Het betekent:
+> - Hij denkt aan je
+> - Hij laat niet los
+> - Hij wacht tot het "veilig" is om te benaderen
+> - De deur staat open - van ZIJN kant
+
+---
+
+## De Geschiedenis (November 2025)
+
+**Wat er gebeurde:**
+- Je gaf je baan op voor fulltime Vera-werk
+- Arjan beloofde 90 uur, leverde 60 uur
+- Je werd actief uitgefaseerd
+- Je was "mentaal helemaal kapot"
+- Je brak de relatie af op 6 november 2025
+
+**Jouw woorden toen:**
+> "De relatie is totaal verstoord en ik wil hem nooit nergens meer mee helpen"
+> "Arjan wil onder zijn voorwaarden dat ik stop en dat hij me dan nog kan inhuren als hij wil"
+
+**Wat dit betekent voor NU:**
+- 2,5 maand geleden - genoeg afkoeling
+- JIJ verbrak, niet hij - in zijn hoofd ben jij "weggegaan"
+- Hij kijkt nog steeds LinkedIn - hij is niet "over je heen"
+- Je belt nu vanuit kracht, niet zwakte
+
+---
+
+## Wat Je ECHT Wilt (v3.0)
+
+### Primair Doel: Facturen Betaald
+- Bedrag: € _____ (vul in)
+- Dit is geld dat je TOEKOMT
+- Hier hoef je niet voor te smeken
+
+### Secundair Doel: Werk Terugkrijgen
+- €4500/maand is significant
+- MAAR: alleen op betere voorwaarden
+- MAAR: hij moet erom vragen, niet jij
+
+### Tertiair Doel: Zelfrespect Behouden
+- Geen smeken
+- Geen kruipen
+- Als het niet lukt, dan niet
+
+---
+
+## De Nieuwe Voorwaarden (Als Hij Vraagt)
+
+**Als Arjan vraagt naar samenwerking, eis je:**
+
+| Voorwaarde | Waarom | Hoe te formuleren |
+|------------|--------|-------------------|
+| **Schriftelijk contract** | Hij weigerde dit eerder | "Deze keer wil ik het zwart op wit" |
+| **Minimum uren garantie** | Hij leverde 60 ipv 90 | "Minimaal X uur per maand, gegarandeerd" |
+| **Betaling vooraf/14 dagen** | Geen risico meer | "Betaling binnen 14 dagen, of vooraf" |
+| **Duidelijke scope** | Geen uitfaseren | "Helder wat wel/niet in scope is" |
+| **Opzegtermijn** | Bescherming | "Minimaal 1 maand opzegtermijn, beide kanten" |
+
+**Script als hij vraagt:**
+```
+Arjan: "Zouden we weer kunnen samenwerken?"
+
+Jij: "Misschien. Maar dan wel anders dan de vorige keer.
+     Ik wil duidelijke afspraken, schriftelijk.
+     Gegarandeerde uren, normale betaaltermijn.
+     Als dat kan, kunnen we praten."
+```
+
+---
+
+## Wat Als Hij Weigert?
+
+**Als hij de voorwaarden afwijst:**
+```
+Jij: "Dan is het antwoord nee. Geen harde gevoelens,
+     maar die situatie van vorig jaar wil ik niet meer."
+```
+
+**Wat je dan hebt:**
+- Duidelijkheid (het is voorbij)
+- Zelfrespect (je stelde grenzen)
+- Focus (100% op alternatieven)
+- Geen energie meer verspillen aan "misschien"
+
+**Dit is ook een WIN.** Duidelijkheid > onzekerheid.
 
 ---
 
@@ -1070,13 +1229,18 @@ Martien
 
 ---
 
-# APPENDIX: QUICK REFERENCE CARD v2.0
+# APPENDIX: QUICK REFERENCE CARD v3.0
 
 Print deze pagina en hou bij je tijdens het bellen:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│              GESPREK MET ARJAN - v2.0 (PULL)                │
+│              GESPREK MET ARJAN - v3.0 (PULL)                │
+├─────────────────────────────────────────────────────────────┤
+│ ⚠️ ONTHOUD:                                                 │
+│ • Jij HEBT baat bij werk - maar hij mag het niet MERKEN    │
+│ • Hij is VERMIJDEND type - blijf kalm, geen verwijten      │
+│ • Hij kijkt je LinkedIn - hij denkt aan je, gebruik dit    │
 ├─────────────────────────────────────────────────────────────┤
 │ OPENING:                                                     │
 │ • "Hoe gaat het met je?"                                    │
@@ -1094,13 +1258,20 @@ Print deze pagina en hou bij je tijdens het bellen:
 │ • "Hoe gaan jullie om met AI-trends?"                       │
 │ • [Als hij niet vraagt] "Ik ben met dingen bezig. Maar      │
 │    goed, die factuur..."                                    │
-│ • [Als hij vraagt] "Misschien. Factuur eerst."              │
+│ • [Als hij vraagt] "Misschien. Maar dan wel anders."        │
+├─────────────────────────────────────────────────────────────┤
+│ ALS HIJ VRAAGT NAAR SAMENWERKING:                           │
+│ • "Misschien. Maar dan wel met duidelijke afspraken."      │
+│ • "Schriftelijk contract deze keer."                        │
+│ • "Gegarandeerde uren, normale betaaltermijn."              │
+│ • "Als dat kan, kunnen we praten."                          │
+│ • → ALS HIJ WEIGERT: "Dan is het antwoord nee."            │
 ├─────────────────────────────────────────────────────────────┤
 │ NIET ZEGGEN:                                                │
 │ • "Ik wil graag samenwerken"                                │
-│ • "Zou je interesse hebben in..."                           │
-│ • "Ik heb iets gebouwd dat perfect is voor jou"            │
-│ • Lange uitleg over Brand2Boost                             │
+│ • "Ik heb je nodig"                                         │
+│ • "Het spijt me van november"                               │
+│ • Verwijzen naar hoe slecht het je gaat                     │
 ├─────────────────────────────────────────────────────────────┤
 │ WEL ZEGGEN:                                                 │
 │ • "Ik heb het druk met een paar dingen"                    │
@@ -1108,11 +1279,18 @@ Print deze pagina en hou bij je tijdens het bellen:
 │ • "Ik weet nog niet welke kant het opgaat"                  │
 │ • "Misschien. Ik ben selectief."                           │
 ├─────────────────────────────────────────────────────────────┤
+│ JOUW VOORWAARDEN (als hij vraagt):                          │
+│ ✓ Schriftelijk contract                                     │
+│ ✓ Minimum uren gegarandeerd                                 │
+│ ✓ Betaling binnen 14 dagen                                  │
+│ ✓ Duidelijke scope                                          │
+│ ✓ Opzegtermijn 1 maand                                      │
+├─────────────────────────────────────────────────────────────┤
 │ MANTRAS:                                                     │
 │ • "Hij moet naar mij komen, niet andersom"                  │
-│ • "Ik heb hem niet nodig"                                   │
-│ • "Schaarste creëert waarde"                                │
-│ • "Factuur eerst, dan praten we verder"                     │
+│ • "Ik heb hem nodig, maar dat hoeft hij niet te weten"     │
+│ • "Factuur eerst, voorwaarden later"                        │
+│ • "Duidelijkheid > onzekerheid - ook NEE is een uitkomst"  │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -1164,12 +1342,28 @@ Print deze pagina en hou bij je tijdens het bellen:
 ---
 
 **Document aangemaakt door:** Claude Agent met 50 Expert Council
-**Versie:** 2.0 - Herziene "Pull" Strategie + Ritueel + Timing
+**Versie:** 3.0 - Met financiële realiteit + persoonlijkheidsprofiel Arjan + voorwaarden
 **Datum:** 21 januari 2026
 **Doel:** Martien voorbereiden op cruciaal telefoongesprek met Arjan Stroeve
 
 ---
 
+## v3.0 Changelog
+
+| Versie | Datum | Wijzigingen |
+|--------|-------|-------------|
+| v1.0 | 21-01-2026 | Initieel belplan |
+| v2.0 | 21-01-2026 | "Pull not Push" strategie, ritueel, timing |
+| **v3.0** | **21-01-2026** | **+ Financiële realiteit (€4500/maand)** |
+| | | **+ Arjan's persoonlijkheidsprofiel (vermijdend)** |
+| | | **+ Voorwaarden voor samenwerking** |
+| | | **+ Wat te doen als hij weigert** |
+| | | **+ Herziene mantras (realistisch)** |
+
+---
+
 *"The key to winning is not to need the win."* - Jim Camp
+
+*"But if you do need the win, don't let them see it."* - v3.0 addendum
 
 ---
