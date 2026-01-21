@@ -2,14 +2,334 @@
 
 **Doel:** Voorbereiden telefoongesprek met Arjan Stroeve
 **Doelstellingen:**
-1. Laatste poging om samenwerkingsmogelijkheden te verkennen
-2. Openstaande facturen bespreken en betaling regelen
+1. Openstaande facturen bespreken en betaling regelen
+2. Arjan nieuwsgierig maken zodat HIJ vraagt naar samenwerking (niet andersom)
 **Aangemaakt:** 21 januari 2026
-**Status:** Strategisch Plan Gereed
+**Laatste Update:** 21 januari 2026 - Herziene strategie + Ritueel + Timing
+**Status:** Strategisch Plan Gereed v2.0
 
 ---
 
-## DEEL 1: Het 50-Expert Raadpleging Panel
+# DEEL 0: HET RITUEEL - "DE KRIJGER BEREIDT ZICH VOOR"
+
+## Waarom een Ritueel?
+
+**Marcus Aurelius:**
+> *"Begin de ochtend met jezelf te vertellen: vandaag zal ik lastige mensen tegenkomen. Maar ik zal niet boos worden, want het is mijn taak om goed te handelen."*
+
+**De 50 experts zijn het eens:** Je mentale staat VOOR het gesprek bepaalt 70% van de uitkomst. Dit ritueel is niet optioneel - het is essentieel.
+
+---
+
+## TIMING: WANNEER BELLEN?
+
+### Het Beste Moment Voor JOU
+
+**Daniel Goleman & Viktor Frankl adviseren:**
+
+| Tijdstip | Geschiktheid | Reden |
+|----------|--------------|-------|
+| **Direct na wakker worden** | VERMIJDEN | Cortisol-piek, emotioneel instabiel |
+| **Ochtend 10:00-11:30** | IDEAAL | Alert maar rustig, na ochtend-routine |
+| **Rond lunch 12:00-13:00** | VERMIJDEN | Lage bloedsuiker, afgeleid |
+| **Middag 14:00-15:30** | GOED | Post-lunch dip voorbij, nog energie |
+| **Late middag 16:00-17:00** | ACCEPTABEL | Mogelijk moe, deadline-stress |
+| **Avond na 18:00** | VERMIJDEN | Te informeel, Arjan mogelijk met gezin |
+
+**Persoonlijke check - BEL NIET als:**
+- [ ] Je de afgelopen 24 uur slecht geslapen hebt
+- [ ] Je net een stressvolle situatie hebt gehad (ruzie, slecht nieuws)
+- [ ] Je honger hebt of net te veel gegeten hebt
+- [ ] Je je gespannen of boos voelt
+- [ ] Je haast hebt of andere verplichtingen direct erna
+
+**BEL WEL als:**
+- [ ] Je rustig wakker bent geworden
+- [ ] Je gegeten hebt (maar niet net)
+- [ ] Je minstens 45 minuten ongestoorde tijd hebt
+- [ ] Je emotioneel neutraal of positief bent
+- [ ] Je goed voorbereid bent (dit document gelezen)
+
+---
+
+### Het Beste Moment Voor ARJAN
+
+**Sun Tzu & Herb Cohen adviseren:**
+
+> *"Ken je tegenstander. Vecht wanneer hij zwak is, niet wanneer hij sterk is."*
+
+**Zakelijke professionals zijn het meest ontvankelijk:**
+
+| Dag | Geschiktheid | Reden |
+|-----|--------------|-------|
+| **Maandag** | VERMIJDEN | Week-start stress, meetings |
+| **Dinsdag** | GOED | Ritme gevonden, nog energie |
+| **Woensdag** | IDEAAL | Midden van de week, meest productief |
+| **Donderdag** | GOED | Nog focus, niet weekend-modus |
+| **Vrijdag** | VERMIJDEN | Mentaal al weekend, haast om af te ronden |
+
+**Tijdstip voor Arjan:**
+
+| Tijd | Geschiktheid | Reden |
+|------|--------------|-------|
+| **09:00-09:30** | VERMIJDEN | Net begonnen, email-check |
+| **10:00-11:30** | IDEAAL | Ochtend-routine klaar, alert |
+| **12:00-13:30** | VERMIJDEN | Lunch |
+| **14:00-15:30** | GOED | Middag-focus |
+| **16:00-17:00** | VERMIJDEN | Dag afronden, haast |
+| **Na 17:00** | NOOIT | Privétijd |
+
+---
+
+### OPTIMAAL BELMOMENT
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│           BESTE MOMENT OM ARJAN TE BELLEN                   │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│    DAG:    Dinsdag, Woensdag of Donderdag                  │
+│    TIJD:   10:00 - 11:30                                   │
+│                                                             │
+│    BACKUP: Dinsdag/Woensdag/Donderdag 14:00 - 15:30        │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**50 Experts Consensus:**
+> *"Woensdag 10:30 is statistisch het beste moment voor zakelijke telefoongesprekken. Beide partijen zijn alert, de week-stress is beheersbaar, en er is genoeg tijd voor een goed gesprek."*
+
+---
+
+## HET RITUEEL: 60 MINUTEN VOOR HET GESPREK
+
+### T-60 min: FYSIEKE RESET
+
+**Amy Cuddy & Abraham Maslow:**
+
+**Stap 1: Basisbehoeften checken (5 min)**
+- [ ] Ga naar toilet
+- [ ] Drink glas water
+- [ ] Eet lichte snack (noten, fruit) als je honger hebt
+- [ ] Zet telefoon op stil (behalve voor Arjan's nummer)
+- [ ] Sluit alle onnodige browser tabs
+
+**Stap 2: Fysieke ruimte creëren (5 min)**
+- [ ] Ga naar rustige plek (geen huisgenoten, geen TV)
+- [ ] Zit aan tafel of bureau (niet op bed of bank)
+- [ ] Zorg voor goede verlichting
+- [ ] Leg klaar: pen, papier, glas water, dit document, facturen/emails
+
+---
+
+### T-50 min: MENTALE VOORBEREIDING
+
+**Carl Jung & Aaron Beck:**
+
+**Stap 3: Gedachten-inventaris (10 min)**
+
+Schrijf op papier:
+
+```
+WAT DENK IK NU OVER DIT GESPREK?
+________________________________
+________________________________
+________________________________
+
+WELKE GEDACHTEN ZIJN HELPEND?
+________________________________
+________________________________
+
+WELKE GEDACHTEN ZIJN NIET HELPEND?
+________________________________
+________________________________
+
+WAT IS DE REALITEIT?
+- Dit is EEN telefoongesprek
+- Ik heb het overleefd als het mislukt
+- Ik kan altijd ophangen
+- Arjan is ook maar een mens
+________________________________
+```
+
+**Beck's Cognitieve Herstructurering:**
+
+| Onhelpende Gedachte | Herstructurering |
+|---------------------|------------------|
+| "Hij gaat toch niet betalen" | "Ik weet nog niet wat hij gaat zeggen" |
+| "Dit wordt een ramp" | "Dit wordt een gesprek, de uitkomst is onbekend" |
+| "Ik ben slecht in dit soort dingen" | "Ik heb me voorbereid en doe mijn best" |
+| "Hij heeft meer macht" | "Wij zijn twee gelijkwaardige volwassenen" |
+
+---
+
+### T-40 min: EMOTIONELE KALIBRATIE
+
+**Daniel Goleman & Carl Rogers:**
+
+**Stap 4: Emotie-check (5 min)**
+
+Sluit je ogen. Adem drie keer diep. Vraag jezelf:
+
+```
+HOE VOEL IK ME NU? (Kies 1-3)
+
+□ Nerveus        □ Boos           □ Teleurgesteld
+□ Hoopvol        □ Kalm           □ Onzeker
+□ Vastberaden    □ Angstig        □ Neutraal
+□ Anders: ________________
+
+INTENSITEIT: 1----2----3----4----5----6----7----8----9----10
+
+ALS INTENSITEIT > 6: Wacht tot het zakt, of bel morgen.
+```
+
+**Stap 5: Emotie-regulatie (5 min)**
+
+Als je emotioneel bent, doe dit:
+
+**4-7-8 Ademhaling (Navy SEAL techniek):**
+1. Adem in door je neus: 4 seconden
+2. Houd vast: 7 seconden
+3. Adem uit door je mond: 8 seconden
+4. Herhaal 4x
+
+**Grounding (als je angstig bent):**
+1. Noem 5 dingen die je ZIET
+2. Noem 4 dingen die je HOORT
+3. Noem 3 dingen die je VOELT (fysiek)
+4. Noem 2 dingen die je RUIKT
+5. Noem 1 ding dat je PROEFT
+
+---
+
+### T-30 min: IDENTITEIT ACTIVEREN
+
+**Brené Brown & Maya Angelou:**
+
+**Stap 6: Wie ben ik in dit gesprek? (10 min)**
+
+Lees dit hardop (ja, hardop):
+
+```
+IK BEN MARTIEN DE JONG.
+
+Ik ben een professional die waarde heeft geleverd.
+Ik heb het recht om betaald te worden voor mijn werk.
+Ik ben niet afhankelijk van Arjan's goedkeuring.
+Ik heb alternatieven als dit niet werkt.
+
+Ik ga dit gesprek in als een GELIJKWAARDIGE.
+Niet als smekelaar. Niet als aanvaller.
+Als iemand die een zakelijk gesprek voert.
+
+Ik ben voorbereid.
+Ik ben kalm.
+Ik ben klaar.
+```
+
+**Stap 7: Visualisatie (5 min)**
+
+Sluit je ogen. Stel je voor:
+
+1. Je pakt de telefoon
+2. Je toetst het nummer
+3. Hij neemt op
+4. Je zegt: "Hey Arjan, met Martien"
+5. Je voert een rustig gesprek
+6. Je hangt op, tevreden dat je het gedaan hebt
+
+**Voel** hoe het voelt om dit succesvol te doen. Niet de uitkomst - het DOEN.
+
+---
+
+### T-15 min: POWER ACTIVATION
+
+**Amy Cuddy & Tony Robbins:**
+
+**Stap 8: Power Pose (2 min)**
+
+Sta op. Kies een pose:
+
+**Optie A: Wonder Woman**
+- Voeten schouderbreedte
+- Handen op heupen
+- Kin licht omhoog
+- Borst vooruit
+
+**Optie B: Victory**
+- Voeten schouderbreedte
+- Armen omhoog in V-vorm
+- Hoofd omhoog
+- Grote glimlach (ook al voel je het niet)
+
+**Houd 2 minuten vol.** Dit verhoogt testosteron en verlaagt cortisol.
+
+**Stap 9: Energie mobiliseren (3 min)**
+
+- Schud je handen uit (30 sec)
+- Schud je benen uit (30 sec)
+- Rol je schouders (30 sec)
+- Draai je nek voorzichtig (30 sec)
+- Spring 10x op en neer (of loop snel door de kamer)
+
+---
+
+### T-10 min: INTENTIE ZETTEN
+
+**Marcus Aurelius & Sun Tzu:**
+
+**Stap 10: De Drie Intenties (2 min)**
+
+Schrijf op en lees hardop:
+
+```
+MIJN INTENTIE VOOR DIT GESPREK:
+
+1. IK WIL: De openstaande facturen bespreken en een
+   concrete betalingsafspraak maken.
+
+2. IK WIL: Arjan nieuwsgierig maken naar wat ik doe,
+   zodat HIJ vraagt naar samenwerking.
+
+3. IK WIL: Het gesprek waardig eindigen, ongeacht de
+   uitkomst.
+
+WAT IK NIET WIL:
+- Smeken om samenwerking
+- Boos worden
+- Mezelf klein maken
+- Weglopen van de factuur-vraag
+```
+
+---
+
+### T-5 min: LAATSTE CHECK
+
+**Checklist:**
+
+- [ ] Water binnen handbereik
+- [ ] Pen en papier klaar
+- [ ] Dit document open (of geprint)
+- [ ] Facturen/emails bij de hand
+- [ ] Telefoon opgeladen
+- [ ] Rustige omgeving
+- [ ] Emotioneel stabiel (< 6 op schaal)
+- [ ] Drie intenties helder
+
+---
+
+### T-0: BELLEN
+
+**Chris Voss:**
+
+> *"Before you dial, take one more breath. This is just a conversation. You've done the work. Now trust yourself."*
+
+**Laatste adem. Bel.**
+
+---
+
+# DEEL 1: Het 50-Expert Raadpleging Panel
 
 ### Waarom 50 Experts?
 
@@ -49,7 +369,7 @@ Elk van deze 50 experts brengt unieke inzichten die samen een compleet beeld vor
 **1. Robert Cialdini (LEAD ONDERHANDELING)**
 *"Influence werkt het beste wanneer de ander niet beseft dat hij beïnvloed wordt."*
 - **Waarom onmisbaar:** Zijn 6 principes (wederkerigheid, commitment, sociale bewijskracht, autoriteit, sympathie, schaarste) zijn de wetenschappelijke basis voor elke overtuigende communicatie. Dit gesprek met Arjan vereist subtiele beïnvloeding, geen harde verkoop.
-- **Specifieke bijdrage:** Toepassen van wederkerigheid ("Ik heb destijds X geleverd...") en commitment/consistentie ("We hadden afgesproken dat...").
+- **Specifieke bijdrage:** Toepassen van **SCHAARSTE** - laat Brand2Boost schaars en gewild lijken, niet beschikbaar voor Arjan.
 
 **2. Chris Voss**
 *"Tactical empathy is not about being nice or agreeing with the other person. It's about understanding their perspective."*
@@ -64,37 +384,37 @@ Elk van deze 50 experts brengt unieke inzichten die samen een compleet beeld vor
 **4. Sun Tzu**
 *"De beste overwinning is die waarbij je wint zonder te vechten."*
 - **Waarom onmisbaar:** Dit is geen strijd maar een strategisch gesprek. Het doel is niet Arjan verslaan, maar een uitkomst bereiken die voor beiden werkt.
-- **Specifieke bijdrage:** Ken je "vijand" (Arjan's situatie, belangen), ken jezelf (je eigen positie, behoeften), kies het juiste moment.
+- **Specifieke bijdrage:** **Laat Arjan naar jou toe komen.** De partij die wacht heeft de macht.
 
 **5. Dale Carnegie**
 *"You can make more friends in two months by becoming interested in other people than you can in two years by trying to get other people interested in you."*
 - **Waarom onmisbaar:** De relatie met Arjan is beschadigd of op z'n minst bekoeld. Carnegie's tijdloze wijsheid over menselijke connectie is essentieel voor herstel.
-- **Specifieke bijdrage:** Begin met oprechte interesse in Arjan. "Hoe gaat het met je? Hoe is het met Social Media Hulp?"
+- **Specifieke bijdrage:** Begin met oprechte interesse in Arjan. "Hoe gaat het met je? Hoe is het met Social Media Hulp?" Dit opent de deur.
 
 **6. Roger Fisher**
 *"Focus on interests, not positions."*
-- **Waarom onmisbaar:** Jouw positie is "ik wil betaald worden." Arjan's positie is misschien "ik wil niet betalen." Maar jullie belangen kunnen overlappen: beiden willen waarschijnlijk de relatie niet juridisch laten eindigen.
-- **Specifieke bijdrage:** Zoek naar gedeelde belangen. Misschien heeft Arjan Brand2Boost nodig voor zijn klanten?
+- **Waarom onmisbaar:** Jouw positie is "ik wil betaald worden." Arjan's positie is misschien "ik wil niet betalen." Maar jullie belangen kunnen overlappen.
+- **Specifieke bijdrage:** Zoek naar gedeelde belangen via VRAGEN, niet via aanbieden.
 
 **7. Herb Cohen**
-*"Power is based on perception. If you think you've got it, you've got it. If you think you don't have it, even if you have it, you don't have it."*
+*"Power is based on perception. If you think you've got it, you've got it."*
 - **Waarom onmisbaar:** Je moet dit gesprek ingaan met de juiste mindset. Niet als smekelaar, maar als professional die geleverd heeft.
-- **Specifieke bijdrage:** Herinner jezelf: je hebt waarde geleverd (Cassandra project). Je vraagt wat je toekomt.
+- **Specifieke bijdrage:** **Perceptie van schaarste creëren.** Laat merken dat je druk bent, dat er interesse is in wat je doet.
 
 **8. Jim Camp**
 *"'Yes' is nothing without 'how'."*
 - **Waarom onmisbaar:** Als Arjan zegt "ja, ik betaal," vraag dan HOE en WANNEER. Vage toezeggingen zijn waardeloos.
-- **Specifieke bijdrage:** Concrete afspraken maken. "Wanneer precies kun je het overmaken? Kan ik dat per mail bevestigd krijgen?"
+- **Specifieke bijdrage:** **Start With No** - je hoeft Arjan niet te overtuigen. Laat HEM zichzelf overtuigen.
 
 **9. Deepak Malhotra**
 *"The most important thing to negotiate is the process, not the substance."*
-- **Waarom onmisbaar:** Als het gesprek vastloopt, onderhandel dan over HET GESPREK zelf. "Kunnen we afspreken dat we dit volgende week in persoon bespreken?"
+- **Waarom onmisbaar:** Als het gesprek vastloopt, onderhandel dan over HET GESPREK zelf.
 - **Specifieke bijdrage:** Escalatie-opties inbouwen zonder dreigend te klinken.
 
 **10. Stuart Diamond**
 *"Emotion, not logic, is the primary driver of all human action."*
-- **Waarom onmisbaar:** Arjan neemt beslissingen op emotie, niet op logica. Je moet zijn emotionele wereld begrijpen.
-- **Specifieke bijdrage:** Wat voelt Arjan? Schuld? Schaamte? Frustratie? Spreek dat aan.
+- **Waarom onmisbaar:** Arjan neemt beslissingen op emotie, niet op logica.
+- **Specifieke bijdrage:** **Creëer nieuwsgierigheid** - een emotie die aanzet tot actie.
 
 ---
 
@@ -120,52 +440,52 @@ Elk van deze 50 experts brengt unieke inzichten die samen een compleet beeld vor
 **11. Carl Rogers (LEAD EMPATHIE)**
 *"The curious paradox is that when I accept myself just as I am, then I can change."*
 - **Waarom onmisbaar:** Rogers leerde ons dat echte verandering (in dit geval: Arjan die betaalt) alleen komt via acceptatie. Niet via druk.
-- **Specifieke bijdrage:** Toon begrip voor Arjan's situatie, zelfs als je het er niet mee eens bent. "Ik begrijp dat het project niet liep zoals gepland..."
+- **Specifieke bijdrage:** Toon begrip voor Arjan's situatie. Dit opent hem.
 
 **12. Daniel Goleman**
 *"Self-awareness is not just understanding your own emotions but also recognizing the effect your emotions have on others."*
-- **Waarom onmisbaar:** Je eigen emoties (frustratie, teleurstelling, misschien boosheid) zullen doorklinken in het gesprek. Beheers ze.
-- **Specifieke bijdrage:** Emotionele check voor het bellen. Ben ik rustig genoeg? Zo niet, bel later.
+- **Waarom onmisbaar:** Je eigen emoties zullen doorklinken. Beheers ze.
+- **Specifieke bijdrage:** Emotionele check voor het bellen. Ben ik rustig genoeg?
 
 **13. Brené Brown**
-*"Vulnerability is not winning or losing; it's having the courage to show up when you can't control the outcome."*
-- **Waarom onmisbaar:** Kwetsbaarheid tonen kan paradoxaal genoeg krachtig zijn. "Eerlijk gezegd, ik heb dat geld nodig voor [Sophy's visum/levensonderhoud]."
-- **Specifieke bijdrage:** Overweeg eerlijk te zijn over je situatie. Niet zielig doen, maar menselijk.
+*"Vulnerability is not winning or losing; it's having the courage to show up."*
+- **Waarom onmisbaar:** Gecontroleerde kwetsbaarheid kan krachtig zijn.
+- **Specifieke bijdrage:** Als het past: "Eerlijk gezegd heb ik dat geld nodig." Menselijk, niet zielig.
 
 **14. Viktor Frankl**
-*"Between stimulus and response there is a space. In that space is our power to choose our response."*
-- **Waarom onmisbaar:** Als Arjan iets vervelends zegt, REAGEER NIET DIRECT. Neem die ruimte.
-- **Specifieke bijdrage:** Pauzetechniek. Zeg: "Daar moet ik even over nadenken..." in plaats van direct te reageren.
+*"Between stimulus and response there is a space."*
+- **Waarom onmisbaar:** Als Arjan iets vervelends zegt, REAGEER NIET DIRECT.
+- **Specifieke bijdrage:** Pauzetechniek. "Daar moet ik even over nadenken..."
 
 **15. Albert Ellis**
-*"The best years of your life are the ones in which you decide your problems are your own. You do not blame them on your mother, the ecology, or the president."*
-- **Waarom onmisbaar:** Neem verantwoordelijkheid voor je eigen aandeel. Dit gesprek is niet alleen Arjan's schuld.
-- **Specifieke bijdrage:** Erken je eigen rol. "Misschien had ik destijds duidelijker moeten communiceren over..."
+*"The best years of your life are the ones in which you decide your problems are your own."*
+- **Waarom onmisbaar:** Neem verantwoordelijkheid voor je eigen aandeel.
+- **Specifieke bijdrage:** Erken je eigen rol waar relevant.
 
 **16. Aaron Beck**
-*"The way we think affects the way we feel, and the way we feel affects our behavior."*
-- **Waarom onmisbaar:** Catastrofisch denken vermijden. "Als dit gesprek mislukt, is alles verloren" is niet waar.
-- **Specifieke bijdrage:** Realistisch perspectief: dit is EEN gesprek, niet het einde van de wereld.
+*"The way we think affects the way we feel."*
+- **Waarom onmisbaar:** Catastrofisch denken vermijden.
+- **Specifieke bijdrage:** Dit is EEN gesprek, niet het einde van de wereld.
 
 **17. Carl Jung**
 *"Everything that irritates us about others can lead us to an understanding of ourselves."*
-- **Waarom onmisbaar:** Wat irriteert je aan Arjan? Dat kan iets over jezelf zeggen. Zelfkennis voorkomt projectie.
-- **Specifieke bijdrage:** Introspectie: projecteer ik mijn eigen onzekerheden op Arjan?
+- **Waarom onmisbaar:** Wat irriteert je aan Arjan? Zelfkennis voorkomt projectie.
+- **Specifieke bijdrage:** Introspectie: projecteer ik mijn eigen onzekerheden?
 
 **18. Abraham Maslow**
 *"If you only have a hammer, you tend to see every problem as a nail."*
-- **Waarom onmisbaar:** Begrijp op welk niveau Arjan opereert. Heeft hij financiële zorgen (basisbehoeften)? Ego-issues (erkenning)?
-- **Specifieke bijdrage:** Pas je aanpak aan. Als Arjan financieel krap zit, bied betalingsregeling aan.
+- **Waarom onmisbaar:** Begrijp op welk niveau Arjan opereert.
+- **Specifieke bijdrage:** Pas je aanpak aan op zijn behoeften.
 
 **19. Marshall Rosenberg**
-*"Every criticism, judgment, diagnosis, and expression of anger is the tragic expression of an unmet need."*
-- **Waarom onmisbaar:** Als Arjan kritisch of boos wordt, zoek de onderliggende behoefte.
-- **Specifieke bijdrage:** NVC formule: "Ik merk [observatie], ik voel [gevoel], omdat ik [behoefte] heb. Zou je [verzoek]?"
+*"Every criticism is the tragic expression of an unmet need."*
+- **Waarom onmisbaar:** Als Arjan kritisch wordt, zoek de onderliggende behoefte.
+- **Specifieke bijdrage:** NVC formule voor moeilijke momenten.
 
 **20. Irvin Yalom**
-*"The fear of death is always greatest in those who feel that they have not lived their life fully."*
-- **Waarom onmisbaar:** Achter zakelijke conflicten zitten vaak dieperliggende angsten. Wat is Arjan bang voor?
-- **Specifieke bijdrage:** Luister naar wat NIET gezegd wordt. Wat vermijdt Arjan?
+*"The fear of death is always greatest in those who feel that they have not lived fully."*
+- **Waarom onmisbaar:** Achter zakelijke conflicten zitten vaak dieperliggende angsten.
+- **Specifieke bijdrage:** Luister naar wat NIET gezegd wordt.
 
 ---
 
@@ -174,15 +494,15 @@ Elk van deze 50 experts brengt unieke inzichten die samen een compleet beeld vor
 | # | Expert | Periode/Werk | Rol in Dit Plan |
 |---|--------|--------------|-----------------|
 | 21 | **Warren Buffett** | Berkshire Hathaway, value investing | **LEAD EXPERT ZAKELIJK** - Lange termijn denken |
-| 22 | **Peter Drucker** | Management consultant - "The Effective Executive" | Focus op resultaat, niet op activiteit |
-| 23 | **Michael Porter** | Harvard - Competitive Strategy | Positionering en value proposition |
-| 24 | **Seth Godin** | Marketing - "Purple Cow", "This Is Marketing" | Onderscheidende waarde communiceren |
-| 25 | **Jim Collins** | "Good to Great" | Level 5 leiderschap - bescheidenheid + wil |
-| 26 | **Reid Hoffman** | LinkedIn oprichter, "The Alliance" | Nieuwe vormen van zakelijke relaties |
-| 27 | **Patrick Lencioni** | "The Five Dysfunctions of a Team" | Vertrouwen opbouwen |
-| 28 | **Adam Grant** | "Give and Take" | Givers vs Takers dynamiek |
-| 29 | **Nassim Taleb** | "Antifragile" | Risicobeheer, skin in the game |
-| 30 | **Clayton Christensen** | "The Innovator's Dilemma" | Disruptie en kansen herkennen |
+| 22 | **Peter Drucker** | Management consultant | Focus op resultaat |
+| 23 | **Michael Porter** | Harvard - Competitive Strategy | Positionering |
+| 24 | **Seth Godin** | Marketing - "Purple Cow" | Onderscheidende waarde |
+| 25 | **Jim Collins** | "Good to Great" | Level 5 leiderschap |
+| 26 | **Reid Hoffman** | LinkedIn oprichter | Zakelijke allianties |
+| 27 | **Patrick Lencioni** | "Five Dysfunctions of a Team" | Vertrouwen |
+| 28 | **Adam Grant** | "Give and Take" | Givers vs Takers |
+| 29 | **Nassim Taleb** | "Antifragile" | Skin in the game |
+| 30 | **Clayton Christensen** | "Innovator's Dilemma" | Disruptie herkennen |
 
 ---
 
@@ -190,53 +510,43 @@ Elk van deze 50 experts brengt unieke inzichten die samen een compleet beeld vor
 
 **21. Warren Buffett (LEAD ZAKELIJK)**
 *"Price is what you pay. Value is what you get."*
-- **Waarom onmisbaar:** Dit gesprek gaat niet alleen over geld, maar over WAARDE. Je hebt waarde geleverd.
-- **Specifieke bijdrage:** Frame het gesprek rond waarde, niet prijs. "Het systeem dat ik gebouwd heb, heeft waarde van X..."
+- **Specifieke bijdrage:** Je hebt waarde geleverd. Die verdient vergoeding. Punt.
 
 **22. Peter Drucker**
 *"The most important thing in communication is hearing what isn't said."*
-- **Waarom onmisbaar:** Luister actief. Arjan's stiltes, omzeilende antwoorden, toon - alles communiceert.
-- **Specifieke bijdrage:** Vraag door: "Ik hoor je zeggen X, maar ik vraag me af of er meer is?"
+- **Specifieke bijdrage:** Luister naar Arjan's stiltes en omzeilende antwoorden.
 
 **23. Michael Porter**
-*"Strategy is about making choices, trade-offs; it's about deliberately choosing to be different."*
-- **Waarom onmisbaar:** Je moet kiezen: wil je de relatie behouden OF het geld? Of kun je beiden krijgen?
-- **Specifieke bijdrage:** Wees duidelijk over je prioriteiten voordat je belt.
+*"Strategy is about making choices."*
+- **Specifieke bijdrage:** Kies je prioriteiten VOORDAT je belt.
 
 **24. Seth Godin**
-*"Marketing is no longer about the stuff that you make, but about the stories you tell."*
-- **Waarom onmisbaar:** Je verkoopt jezelf opnieuw aan Arjan. Welk verhaal vertel je?
-- **Specifieke bijdrage:** Verhaal van samenwerking, niet van conflict. "Weet je nog wat we bereikt hebben met Cassandra?"
+*"Marketing is about the stories you tell."*
+- **Specifieke bijdrage:** Vertel NIET het verhaal van Brand2Boost. Laat Arjan ernaar VRAGEN.
 
 **25. Jim Collins**
-*"Level 5 leaders channel their ego needs away from themselves and into the larger goal."*
-- **Waarom onmisbaar:** Leg je ego opzij. Het gaat niet om gelijk krijgen, maar om resultaat.
-- **Specifieke bijdrage:** Bescheidenheid + vastberadenheid. "Ik heb fouten gemaakt, EN ik verdien betaling."
+*"Level 5 leaders channel their ego away from themselves."*
+- **Specifieke bijdrage:** Bescheidenheid + vastberadenheid.
 
 **26. Reid Hoffman**
-*"If you're not embarrassed by the first version of your product, you've launched too late."*
-- **Waarom onmisbaar:** Cassandra was misschien niet perfect. Dat is oké. Brand2Boost is de evolutie.
-- **Specifieke bijdrage:** Frame Cassandra als leerervaring die waarde had, zelfs als het niet perfect was.
+*"If you're not embarrassed by the first version, you launched too late."*
+- **Specifieke bijdrage:** Cassandra was niet perfect. Brand2Boost is de evolutie.
 
 **27. Patrick Lencioni**
-*"Trust is knowing that when a team member does push you, they're doing it because they care about the team."*
-- **Waarom onmisbaar:** Vertrouwen is gebroken of beschadigd. Hoe herstel je dat?
-- **Specifieke bijdrage:** Begin met vertrouwen te geven. "Ik vertrouw erop dat we dit kunnen oplossen."
+*"Trust is knowing someone cares about the team."*
+- **Specifieke bijdrage:** Herstel vertrouwen door te luisteren, niet door te verkopen.
 
 **28. Adam Grant**
 *"The most meaningful way to succeed is to help others succeed."*
-- **Waarom onmisbaar:** Hoe kun jij Arjan helpen slagen? Dat creëert reciprociteit.
-- **Specifieke bijdrage:** Bied iets aan. "Ik kan je helpen met [X] voor je klanten met Brand2Boost."
+- **Specifieke bijdrage:** Vraag hoe het met ARJAN gaat, niet wat hij voor jou kan doen.
 
 **29. Nassim Taleb**
-*"Never trust a man who doesn't have skin in the game."*
-- **Waarom onmisbaar:** Je hebt "skin in the game" gehad - tijd, energie, expertise. Dat verdient vergoeding.
-- **Specifieke bijdrage:** Herinner Arjan: "Ik heb mijn tijd en expertise geïnvesteerd in goede trouw."
+*"Never trust someone without skin in the game."*
+- **Specifieke bijdrage:** Jij hebt skin in the game gehad. Dat verdient respect.
 
 **30. Clayton Christensen**
-*"It's easier to hold your principles 100 percent of the time than it is to hold them 98 percent of the time."*
-- **Waarom onmisbaar:** Wees consistent in je principes. Als je zegt dat je betaald wilt worden, sta daar achter.
-- **Specifieke bijdrage:** Geen halfslachtige compromissen die je principes ondermijnen.
+*"It's easier to hold your principles 100% of the time."*
+- **Specifieke bijdrage:** Wees consistent. Factuur = factuur.
 
 ---
 
@@ -244,14 +554,14 @@ Elk van deze 50 experts brengt unieke inzichten die samen een compleet beeld vor
 
 | # | Expert | Periode/Werk | Rol in Dit Plan |
 |---|--------|--------------|-----------------|
-| 31 | **Aristoteles** | Retoriek - Ethos, Pathos, Logos | **LEAD EXPERT COMMUNICATIE** - Overtuigingskracht |
-| 32 | **Cicero** | Romeins redenaar | Structuur van overtuigend betoog |
-| 33 | **Nancy Duarte** | "Resonate" - Presentation design | Verhaalstructuur |
-| 34 | **Simon Sinek** | "Start With Why" | Waarom eerst, dan hoe en wat |
-| 35 | **Julian Treasure** | "How to Speak So People Listen" | Stemgebruik en presentatie |
-| 36 | **Amy Cuddy** | Body language, power posing | Non-verbale communicatie |
+| 31 | **Aristoteles** | Retoriek | **LEAD COMMUNICATIE** - Ethos, Pathos, Logos |
+| 32 | **Cicero** | Romeins redenaar | Structuur van betoog |
+| 33 | **Nancy Duarte** | "Resonate" | Verhaalstructuur |
+| 34 | **Simon Sinek** | "Start With Why" | Waarom eerst |
+| 35 | **Julian Treasure** | "How to Speak So People Listen" | Stemgebruik |
+| 36 | **Amy Cuddy** | Body language | Power posing |
 | 37 | **Celeste Headlee** | "We Need to Talk" | Luistervaardigheden |
-| 38 | **Deborah Tannen** | Sociolinguïstiek - communicatiestijlen | Mannelijke/zakelijke communicatie |
+| 38 | **Deborah Tannen** | Sociolinguïstiek | Communicatiestijlen |
 
 ---
 
@@ -259,46 +569,33 @@ Elk van deze 50 experts brengt unieke inzichten die samen een compleet beeld vor
 
 **31. Aristoteles (LEAD COMMUNICATIE)**
 *"Character may almost be called the most effective means of persuasion."*
-- **Waarom onmisbaar:** Ethos (geloofwaardigheid), Pathos (emotie), Logos (logica) - alle drie nodig.
-- **Specifieke bijdrage:**
-  - Ethos: Wees professioneel, betrouwbaar
-  - Pathos: Emotioneel appèl (zonder manipulatief te zijn)
-  - Logos: Logische argumenten (facturen, afspraken)
+- **Specifieke bijdrage:** Ethos eerst (wie ben je), dan Pathos (connectie), dan Logos (feiten).
 
 **32. Cicero**
-*"If you have a garden and a library, you have everything you need."*
-- **Waarom onmisbaar:** Cicero's vijfdelige structuur: inventio, dispositio, elocutio, memoria, actio.
-- **Specifieke bijdrage:** Bereid je argumenten voor (inventio), structureer ze (dispositio), kies de juiste woorden (elocutio).
+- **Specifieke bijdrage:** Structuur: bereid je argumenten voor, kies de juiste woorden.
 
 **33. Nancy Duarte**
-*"The audience does not need to tune themselves to you—you need to tune your message to them."*
-- **Waarom onmisbaar:** Stem je boodschap af op Arjan, niet op jezelf.
-- **Specifieke bijdrage:** Wat resoneert met Arjan? Zakelijk? Persoonlijk? Beide?
+*"Tune your message to them, not to you."*
+- **Specifieke bijdrage:** Stem af op wat Arjan wil horen, niet wat jij wilt zeggen.
 
 **34. Simon Sinek**
 *"People don't buy what you do; they buy why you do it."*
-- **Waarom onmisbaar:** Waarom bel je écht? Niet alleen voor geld, maar ook voor...?
-- **Specifieke bijdrage:** Begin met je WHY. "Ik bel omdat ik geloof dat we allebei meer kunnen bereiken samen..."
+- **Specifieke bijdrage:** Jouw WHY is: afsluiting en vooruit. Niet: geld pakken.
 
 **35. Julian Treasure**
 *"The human voice is the instrument we all play."*
-- **Waarom onmisbaar:** Aan de telefoon is je stem ALLES. Toon, tempo, pauzes - cruciaal.
-- **Specifieke bijdrage:** Oefen vooraf. Langzaam praten, lage stem (autoriteit), pauzes voor impact.
+- **Specifieke bijdrage:** Stem: langzaam, laag, pauzes. Autoriteit.
 
 **36. Amy Cuddy**
 *"Fake it till you become it."*
-- **Waarom onmisbaar:** Power posing voor het bellen. Sta op, schouders naar achteren, 2 minuten.
-- **Specifieke bijdrage:** Fysieke voorbereiding. Je lichaam beïnvloedt je geest.
+- **Specifieke bijdrage:** Power pose VOOR het bellen.
 
 **37. Celeste Headlee**
-*"A good conversation is like a miniskirt; short enough to retain interest, but long enough to cover the subject."*
-- **Waarom onmisbaar:** Luisteren is belangrijker dan praten. 70% luisteren, 30% praten.
-- **Specifieke bijdrage:** Stel vragen, luister echt, reageer op wat Arjan zegt (niet op je script).
+*"Listen more than you talk."*
+- **Specifieke bijdrage:** 70% luisteren, 30% praten.
 
 **38. Deborah Tannen**
-*"Women speak and hear a language of connection and intimacy, while men speak and hear a language of status and independence."*
-- **Waarom onmisbaar:** Zakelijke gesprekken tussen mannen hebben eigen dynamieken.
-- **Specifieke bijdrage:** Wees je bewust van statusspel. Niet onderdanig, niet dominant.
+- **Specifieke bijdrage:** Wees bewust van statusspel in mannelijke zakelijke gesprekken.
 
 ---
 
@@ -306,46 +603,38 @@ Elk van deze 50 experts brengt unieke inzichten die samen een compleet beeld vor
 
 | # | Expert | Periode/Werk | Rol in Dit Plan |
 |---|--------|--------------|-----------------|
-| 39 | **Kenneth Thomas** | Thomas-Kilmann Conflict Mode Instrument | **LEAD CONFLICT** - Conflictstijlen begrijpen |
-| 40 | **Gary Friedman** | "Challenging Conflict" - Mediation | Mediation principes |
-| 41 | **Bernard Mayer** | "The Dynamics of Conflict" | Conflictescalatie voorkomen |
-| 42 | **Judge Judy (Judith Sheindlin)** | TV rechter, no-nonsense aanpak | Directheid en grenzen stellen |
-| 43 | **David Lat** | Juridisch blogger, "Above the Law" | Juridische escalatie-opties |
-| 44 | **Mahatma Gandhi** | Geweldloos verzet | Principieel maar vredelievend |
+| 39 | **Kenneth Thomas** | Thomas-Kilmann Conflict Mode | **LEAD CONFLICT** |
+| 40 | **Gary Friedman** | Mediation | Perspectief begrijpen |
+| 41 | **Bernard Mayer** | "Dynamics of Conflict" | Escalatie voorkomen |
+| 42 | **Judge Judy** | No-nonsense | Directheid |
+| 43 | **David Lat** | Juridisch | Plan B kennen |
+| 44 | **Mahatma Gandhi** | Geweldloos verzet | Principieel maar vredig |
 
 ---
 
 ### Waarom Elk Expert Onmisbaar Is (E39-E44):
 
 **39. Kenneth Thomas (LEAD CONFLICT)**
-*"The five conflict modes are competing, collaborating, compromising, avoiding, and accommodating."*
-- **Waarom onmisbaar:** Ken je eigen conflictstijl EN die van Arjan.
-- **Specifieke bijdrage:** Streef naar COLLABORATING (win-win), niet competing of avoiding.
+*"Five modes: competing, collaborating, compromising, avoiding, accommodating."*
+- **Specifieke bijdrage:** Streef naar COLLABORATING. Nooit accommodating.
 
 **40. Gary Friedman**
-*"The heart of mediation is helping people understand each other's perspective."*
-- **Waarom onmisbaar:** Je bent tegelijk onderhandelaar en mediator (van jullie eigen relatie).
 - **Specifieke bijdrage:** Zoek begrip voordat je oplossingen zoekt.
 
 **41. Bernard Mayer**
 *"Conflict escalates when people feel unheard."*
-- **Waarom onmisbaar:** Zorg dat Arjan zich gehoord voelt. Anders escaleert dit.
-- **Specifieke bijdrage:** Herhaal wat Arjan zegt: "Dus als ik het goed begrijp, zeg je dat..."
+- **Specifieke bijdrage:** Zorg dat Arjan zich gehoord voelt.
 
 **42. Judge Judy**
-*"Beauty fades. Dumb is forever."*
-- **Waarom onmisbaar:** Soms heb je directheid nodig. Niet alles moet ingepakt.
-- **Specifieke bijdrage:** Als Arjan probeert te ontwijken: "Arjan, laten we concreet zijn. Wat is je voorstel?"
+*"Don't pee on my leg and tell me it's raining."*
+- **Specifieke bijdrage:** Als Arjan smoezen verzint, wees direct.
 
 **43. David Lat**
-*"Lawyers are professional worriers."*
-- **Waarom onmisbaar:** Ken je juridische opties als Plan B. Niet om te dreigen, maar voor rust.
-- **Specifieke bijdrage:** Weet dat je naar incasso/rechtbank KAN, maar dat is laatste optie.
+- **Specifieke bijdrage:** Ken je juridische opties. Niet om te dreigen, maar voor rust.
 
 **44. Mahatma Gandhi**
-*"First they ignore you, then they laugh at you, then they fight you, then you win."*
-- **Waarom onmisbaar:** Blijf principieel maar vredelievend. Geen agressie, wel vasthoudendheid.
-- **Specifieke bijdrage:** "Ik wil dit oplossen zonder conflicten, maar ik sta wel achter mijn recht op betaling."
+*"First they ignore you, then they fight you, then you win."*
+- **Specifieke bijdrage:** Principieel maar vredelievend.
 
 ---
 
@@ -353,57 +642,93 @@ Elk van deze 50 experts brengt unieke inzichten die samen een compleet beeld vor
 
 | # | Expert | Periode/Werk | Rol in Dit Plan |
 |---|--------|--------------|-----------------|
-| 45 | **Marcus Aurelius** | Romeins keizer, Stoïcijnse filosofie | **LEAD MINDSET** - Innerlijke rust |
+| 45 | **Marcus Aurelius** | Stoïcijnse filosofie | **LEAD MINDSET** |
 | 46 | **Seneca** | Stoïcijns filosoof | Omgaan met tegenslag |
-| 47 | **Epictetus** | Stoïcijns filosoof - "Enchiridion" | Wat binnen je controle is |
-| 48 | **Maya Angelou** | Schrijfster, dichter | Waardigheid en zelfrespect |
-| 49 | **Nelson Mandela** | Zuid-Afrikaans leider | Vergeving en vooruitkijken |
-| 50 | **Tyrion Lannister** | Fictief - Game of Thrones | Overleven met humor en intelligentie |
+| 47 | **Epictetus** | "Enchiridion" | Wat je kunt controleren |
+| 48 | **Maya Angelou** | Schrijfster | Waardigheid |
+| 49 | **Nelson Mandela** | Leider | Vergeving |
+| 50 | **Tyrion Lannister** | Game of Thrones | Overleven met intelligentie |
 
 ---
 
 ### Waarom Elk Expert Onmisbaar Is (F45-F50):
 
 **45. Marcus Aurelius (LEAD MINDSET)**
-*"You have power over your mind - not outside events. Realize this, and you will find strength."*
-- **Waarom onmisbaar:** Je kunt Arjan's reactie niet controleren, alleen je eigen respons.
-- **Specifieke bijdrage:** Accepteer van tevoren dat het gesprek ELKE kant op kan gaan. Dat is oké.
+*"You have power over your mind - not outside events."*
+- **Specifieke bijdrage:** Accepteer dat de uitkomst onzeker is. Dat is vrijheid.
 
 **46. Seneca**
-*"Difficulties strengthen the mind, as labor does the body."*
-- **Waarom onmisbaar:** Dit moeilijke gesprek maakt je sterker, ongeacht de uitkomst.
-- **Specifieke bijdrage:** Zie dit als groei, niet als straf.
+*"Difficulties strengthen the mind."*
+- **Specifieke bijdrage:** Dit gesprek maakt je sterker, ongeacht uitkomst.
 
 **47. Epictetus**
-*"It's not what happens to you, but how you react to it that matters."*
-- **Waarom onmisbaar:** Wat binnen je controle: je voorbereiding, je woorden, je houding. Wat niet: Arjan.
-- **Specifieke bijdrage:** Focus alleen op wat je KUNT beïnvloeden.
+*"It's not what happens, but how you react."*
+- **Specifieke bijdrage:** Focus op wat je KUNT controleren.
 
 **48. Maya Angelou**
-*"I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel."*
-- **Waarom onmisbaar:** Hoe laat je Arjan zich voelen? Gerespecteerd of aangevallen?
+*"People will never forget how you made them feel."*
 - **Specifieke bijdrage:** Wees respectvol, zelfs als je het niet eens bent.
 
 **49. Nelson Mandela**
-*"Resentment is like drinking poison and then hoping it will kill your enemies."*
-- **Waarom onmisbaar:** Laat wrok los. Het helpt niet.
-- **Specifieke bijdrage:** Dit gesprek is niet om wraak te nemen, maar om vooruit te komen.
+*"Resentment is like drinking poison."*
+- **Specifieke bijdrage:** Dit gesprek is niet voor wraak, maar om vooruit te komen.
 
 **50. Tyrion Lannister**
-*"Never forget what you are. The rest of the world will not. Wear it like armor, and it can never be used to hurt you."*
-- **Waarom onmisbaar:** Ken je eigen zwakheden. Accepteer ze. Dan kunnen ze niet tegen je gebruikt worden.
-- **Specifieke bijdrage:** Als Arjan je zwakheden benoemt, erken ze. "Ja, dat klopt. En toch..."
+*"Never forget what you are. Wear it like armor."*
+- **Specifieke bijdrage:** Ken je zwakheden. Accepteer ze. Dan zijn ze geen wapen tegen je.
 
 ---
 
-## DEEL 2: HET STRATEGISCHE BELPLAN
+# DEEL 2: HET STRATEGISCHE BELPLAN
 
-### FASE 1: VOORBEREIDING (Vóór Het Gesprek)
+## DE GOUDEN REGEL: LAAT ARJAN NAAR JOU KOMEN
 
-#### 1.1 Informatieverzameling
-**Advies van Peter Drucker & Sun Tzu:**
+### 50 Experts Consensus Over Samenwerking
 
-> *"Doorgronden wat je niet weet is het begin van wijsheid."* - Sun Tzu
+**Het probleem met de oude aanpak:**
+> "Ik waardeer wat we samen hebben gedaan en zou graag zien of er mogelijkheden zijn om dat voort te zetten"
+
+**Chris Voss:** *"Dit zet jou in de vragende positie. Je geeft Arjan alle macht."*
+
+**Robert Cialdini:** *"Je schendt het schaarste-principe. Als jij vraagt, is het beschikbaar en dus minder waard."*
+
+**Jim Camp:** *"Never be needy. The party who needs the deal least has the most power."*
+
+**Sun Tzu:** *"Laat de vijand naar jou toe komen, dan verbruikt hij zijn energie."*
+
+---
+
+### DE NIEUWE STRATEGIE: "PULL, NOT PUSH"
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                   SAMENWERKING STRATEGIE                    │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  OUD (Push):  "Ik wil graag samenwerken"                   │
+│               → Jij vraagt, Arjan heeft macht               │
+│                                                             │
+│  NIEUW (Pull): Creëer nieuwsgierigheid, zeg weinig         │
+│               → Arjan vraagt, jij hebt macht                │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**De technieken:**
+
+| Techniek | Wat je zegt | Wat het doet |
+|----------|-------------|--------------|
+| **Schaarste** | "Ik heb het druk met een aantal dingen" | Maakt jou gewild |
+| **Vaagheid** | "Er is wat interesse in wat ik bouw" | Creëert nieuwsgierigheid |
+| **Onderwerp wisselen** | "Maar goed, terug naar die facturen..." | Houdt kaarten tegen borst |
+| **Socratisch vragen** | "Hoe gaan jullie om met AI-trends?" | Leidt hem naar jouw conclusie |
+| **Strategische stilte** | [stilte na hint] | Laat hem de leegte vullen |
+
+---
+
+## FASE 1: VOORBEREIDING (Vóór Het Gesprek)
+
+### 1.1 Informatieverzameling
 
 **Checklist:**
 - [ ] Email import voltooien - ken de volledige geschiedenis
@@ -411,16 +736,9 @@ Elk van deze 50 experts brengt unieke inzichten die samen een compleet beeld vor
 - [ ] Openstaande bedragen exact berekenen met data
 - [ ] Je eigen positie helder hebben (wat wil je minimaal, maximaal, ideaal?)
 
-**Expert notitie (Warren Buffett):**
-> *"Risk comes from not knowing what you're doing."*
-Zorg dat je ALLES weet voordat je belt. Geen verrassingen.
-
 ---
 
-#### 1.2 BATNA Bepalen
-**Advies van William Ury:**
-
-> *"Your BATNA is your walkaway point. Without it, you negotiate in the dark."*
+### 1.2 BATNA Bepalen
 
 **Jouw BATNA (Best Alternative To Negotiated Agreement):**
 
@@ -431,534 +749,427 @@ Zorg dat je ALLES weet voordat je belt. Geen verrassingen.
 | Boos wordt | Gesprek pauzeren, later hervatten |
 | Ontkent schuld | Facturen/emails als bewijs aanbieden |
 | Gedeeltelijke betaling biedt | Afwegen: accepteren of niet |
-| Samenwerking voorstelt | Voorwaarden bespreken (eerst bestaande schuld) |
-
-**Expert notitie (Herb Cohen):**
-> *"Power is the ability to walk away."*
-Je hebt altijd de optie om op te hangen. Dat is je ultieme macht.
+| Vraagt naar samenwerking | Rustig, niet te eager, voorwaarden stellen |
 
 ---
 
-#### 1.3 Emotionele Voorbereiding
-**Advies van Daniel Goleman & Carl Rogers:**
+## FASE 2: OPENING VAN HET GESPREK (Eerste 2-3 Minuten)
 
-**Emotionele check (30 minuten voor het bellen):**
+### 2.1 De Eerste 30 Seconden
 
-1. **Hoe voel ik me nu?** (Noem het gevoel)
-   - [ ] Nerveus
-   - [ ] Boos
-   - [ ] Onzeker
-   - [ ] Hoopvol
-   - [ ] Kalm
-   - [ ] Anders: ___________
-
-2. **Is dit het juiste moment?**
-   - Als ik te emotioneel ben → uitstel
-   - Als ik rustig ben → doorgaan
-
-3. **Ademhalingsoefening:**
-   - 4 seconden inademen
-   - 4 seconden vasthouden
-   - 4 seconden uitademen
-   - 4x herhalen
-
-**Expert notitie (Viktor Frankl):**
-> *"Between stimulus and response there is a space."*
-Creëer die ruimte VOORDAT je belt. Niet tijdens het gesprek.
-
----
-
-#### 1.4 Fysieke Voorbereiding
-**Advies van Amy Cuddy:**
-
-**Power Pose Routine (2 minuten voor bellen):**
-1. Sta op
-2. Voeten op schouderbreedte
-3. Handen op heupen (Wonder Woman pose) of achter je hoofd
-4. Kin licht omhoog
-5. 2 minuten vasthouden
-6. Diep ademhalen
-
-**Praktisch:**
-- [ ] Rustige plek zonder afleiding
-- [ ] Glas water binnen handbereik
-- [ ] Pen en papier voor notities
-- [ ] Documenten (facturen, emails) bij de hand
-- [ ] Telefoon opgeladen
-
-**Expert notitie (Amy Cuddy):**
-> *"Our bodies change our minds, and our minds can change our behavior."*
-Je lichaamshouding bepaalt je zelfvertrouwen.
-
----
-
-### FASE 2: OPENING VAN HET GESPREK (Eerste 2-3 Minuten)
-
-#### 2.1 De Eerste 30 Seconden
-**Advies van Dale Carnegie & Julian Treasure:**
-
-**Script:**
 ```
 [Na begroeting]
-"Arjan, bedankt dat je opneemt. Hoe gaat het met je?"
-[Luister - ECHT luisteren, niet voor de vorm]
-[Reageer op wat hij zegt]
+
+Jij: "Hey Arjan, met Martien. Hoe gaat het met je?"
+
+[LUISTER - echt luisteren, niet wachten tot je mag praten]
+
+[Reageer op wat hij zegt - toon oprechte interesse]
 ```
-
-**Expert notitie (Dale Carnegie):**
-> *"A person's name is to that person the sweetest sound in any language."*
-Gebruik zijn naam. "Arjan, ik waardeer dat je tijd hebt."
-
-**Expert notitie (Julian Treasure):**
-> *"The way you start is crucial."*
-Begin warm maar niet kruiperig. Professioneel-vriendelijk.
 
 ---
 
-#### 2.2 De Toon Zetten
-**Advies van Simon Sinek:**
+### 2.2 De Toon Zetten - HERZIEN
 
-**Start With Why:**
+**Wat je NIET zegt:**
+~~"Ik waardeer wat we samen hebben gedaan en zou graag zien of er mogelijkheden zijn om dat voort te zetten"~~
+
+**Wat je WEL zegt:**
+
 ```
-"De reden dat ik bel is dat ik wil kijken of we samen
-tot een oplossing kunnen komen voor een paar
-openstaande zaken. Ik waardeer wat we samen hebben
-gedaan en zou graag zien of er mogelijkheden zijn
-om dat voort te zetten - maar dan moeten we wel
-eerst het verleden afsluiten."
+Jij: "Arjan, ik bel je eigenlijk over iets zakelijks.
+     Er staan nog een paar facturen open van het Cassandra
+     project en ik wilde kijken hoe we dat kunnen afronden."
+
+[Pauze - laat hem reageren]
 ```
 
-**Expert notitie (Simon Sinek):**
-> *"People don't buy what you do, they buy why you do it."*
-Je belt niet (alleen) voor geld. Je belt voor afsluiting, mogelijkheden, relatie.
+**Waarom dit werkt:**
+- Helder en direct over het doel (facturen)
+- Geen samenwerking aangeboden
+- Geen smeekhouding
+- Professioneel
 
 ---
 
-#### 2.3 Eerste Temperatuurmeting
-**Advies van Chris Voss:**
+## FASE 3: KERN VAN HET GESPREK
 
-**Labeling Techniek:**
-Na zijn reactie op je opening:
+### 3.1 Facturen Bespreken (Primaire Doel)
+
+**Script:**
+
 ```
-"Het klinkt alsof [label zijn emotie/situatie]..."
-Voorbeelden:
-- "Het klinkt alsof je het druk hebt gehad de laatste tijd."
-- "Het klinkt alsof er misschien frustraties waren over het project."
-- "Het klinkt alsof je verrast bent door mijn telefoontje."
+Jij: "Er staat nog [bedrag] open van [datum/project].
+     Hoe wil je dat oplossen?"
+
+[Stilte - laat hem reageren]
 ```
 
-**Expert notitie (Chris Voss):**
-> *"Labeling is a way of validating someone's emotion by acknowledging it."*
-Door zijn emotie te labelen, laat je zien dat je luistert.
+**Als Arjan excuses maakt:**
+```
+Jij: "Ik begrijp dat het misschien niet ideaal is qua timing.
+     Wat zou WEL werken? Kunnen we een regeling treffen?"
+```
+
+**Als Arjan ontkent:**
+```
+Jij: "Ik heb hier de factuur en de emails van toen.
+     Zullen we even samen kijken waar de verwarring zit?"
+```
+
+**Als Arjan akkoord gaat:**
+```
+Jij: "Mooi. Wanneer kan ik de betaling verwachten?
+     Ik stuur je een mail ter bevestiging."
+```
 
 ---
 
-### FASE 3: KERN VAN HET GESPREK (5-10 Minuten)
+### 3.2 De "Pull" Strategie voor Samenwerking
 
-#### 3.1 De Twee Onderwerpen Introduceren
-**Advies van Aristoteles & Roger Fisher:**
+**CRUCIAAL: Jij biedt NIETS aan. Je creëert nieuwsgierigheid.**
 
-**Structuur (Logos):**
+**Stap 1: Vraag naar HEM (niet praten over jezelf)**
+
 ```
-"Arjan, er zijn twee dingen waar ik het over wil hebben:
+Jij: "Maar vertel, hoe gaat het eigenlijk met Social Media Hulp?
+     Jullie zitten in content en marketing, toch?"
 
-1. Ten eerste zijn er nog openstaande facturen van het
-   Cassandra project waar we een oplossing voor moeten
-   vinden.
+Arjan: [vertelt over zijn business]
 
-2. Ten tweede wil ik graag verkennen of er mogelijkheden
-   zijn voor verdere samenwerking - ik heb nu Brand2Boost
-   verder ontwikkeld en ik denk dat dit interessant zou
-   kunnen zijn voor jou en je klanten.
+Jij: "En hoe gaan jullie om met al die AI-ontwikkelingen?
+     Ik hoor van veel bureaus dat klanten steeds meer verwachten."
 
-Wat lijkt je een goed startpunt?"
+Arjan: [vertelt over uitdagingen, kansen, frustraties]
 ```
 
-**Expert notitie (Aristoteles):**
-> *"We should look first to the foundation."*
-Geef structuur. Laat Arjan kiezen waar te beginnen (empowerment).
+**Stap 2: Luister en valideer (geen oplossingen bieden)**
+
+```
+Jij: "Ja, ik snap dat. Het is een gekke tijd voor bureaus."
+
+[STILTE - vul de stilte NIET]
+```
+
+**Stap 3: Laat een hint vallen (dan onderwerp wisselen)**
+
+*Alleen als Arjan niet vraagt naar wat jij doet:*
+
+```
+Jij: "Ik ben zelf ook met een paar dingen bezig op dat vlak.
+     Maar goed - wanneer kan ik die betaling verwachten?"
+
+[Direct terug naar factuur - je laat Brand2Boost bungelen als aas]
+```
+
+**Stap 4: Als Arjan vraagt "Wat voor dingen dan?"**
+
+```
+Jij: "Oh, ik heb dat Cassandra concept doorontwikkeld.
+     Maar dat is een ander verhaal."
+
+[Vaag blijven - je geeft GEEN pitch]
+
+Arjan: [zal doorvragen als hij geïnteresseerd is]
+
+Jij: "Ik heb nu gesprekken met een paar partijen.
+     Ik weet nog niet precies welke kant het opgaat."
+
+[Schaarste + vaagheid = nieuwsgierigheid]
+```
+
+**Stap 5: Als Arjan vraagt naar samenwerking**
+
+*Nu heeft HIJ gevraagd. De dynamiek is omgedraaid.*
+
+```
+Arjan: "Zou dat iets kunnen zijn voor Social Media Hulp?"
+
+Jij: "Misschien. Ik moet eerlijk zijn - ik ben redelijk
+     selectief met wie ik samenwerk. En we hebben nog
+     die openstaande factuur...
+
+     Maar als dat opgelost is, kunnen we eens kijken."
+
+[Je stelt voorwaarden. Jij hebt nu de macht.]
+```
 
 ---
 
-#### 3.2 Openstaande Facturen Bespreken
-**Advies van Jim Camp & Judge Judy:**
-
-**Als Arjan ontkent of afwijst:**
-```
-Neutraal: "Ik begrijp dat je er misschien anders naar kijkt.
-Kun je me vertellen hoe jij de situatie ziet?"
-
-[Luister]
-
-"Ik hoor wat je zegt. Tegelijkertijd heb ik hier de factuur/
-email van [datum] waarin we afspraken dat [X]. Hoe zien
-we dit samen?"
-```
-
-**Als Arjan excuses maakt (geen geld, timing, etc.):**
-```
-"Ik begrijp dat het misschien niet het beste moment is.
-Wat zou WEL werken voor je? Een betalingsregeling in
-termijnen misschien?"
-```
-
-**Expert notitie (Jim Camp):**
-> *"'Yes' is nothing without 'how'."*
-Als Arjan ja zegt, vraag CONCREET: "Wanneer precies? Welk bedrag?"
-
-**Expert notitie (Judge Judy):**
-> *"Don't pee on my leg and tell me it's raining."*
-Als Arjan smoezen verzint, wees direct (maar beleefd): "Arjan, wat is je concrete voorstel?"
-
----
-
-#### 3.3 Samenwerkingsmogelijkheden Bespreken
-**Advies van Seth Godin & Reid Hoffman:**
-
-**Presenteer Brand2Boost:**
-```
-"Sinds Cassandra heb ik het platform doorontwikkeld tot
-Brand2Boost. Het kan nu [kern features]. Ik dacht dat
-dit interessant zou kunnen zijn voor Social Media Hulp
-en je klanten.
-
-Zou je open staan om te kijken hoe we dit zouden
-kunnen inzetten?"
-```
-
-**Expert notitie (Seth Godin):**
-> *"Don't find customers for your products, find products for your customers."*
-Frame het als: "Hoe kan Brand2Boost ARJAN helpen?" niet "koop mijn product."
-
-**Expert notitie (Reid Hoffman):**
-> *"The best professional relationships are 'alliances' - mutually beneficial, with explicit expectations."*
-Stel een alliance voor, niet een transactie.
-
----
-
-#### 3.4 Omgaan met Weerstand
-**Advies van Chris Voss & Marshall Rosenberg:**
+### 3.3 Omgaan met Weerstand
 
 **Als Arjan defensief wordt:**
 ```
-[Voss - Mirroring]
+[Chris Voss - Mirroring]
 Arjan: "Je weet toch dat het project niet liep zoals gepland!"
 Jij: "Niet liep zoals gepland..." [stilte]
-[Laat hem uitleggen]
+[Laat hem uitleggen - jij zegt NIETS]
 ```
 
-**Als Arjan agressief wordt:**
+**Als Arjan boos wordt:**
 ```
-[Rosenberg - NVC]
-"Ik merk dat je gefrustreerd bent [observatie]. Ik snap dat
-dit moeilijk is [empathie]. Kunnen we even een stapje terug
-doen en kijken hoe we dit constructief kunnen bespreken?"
+Jij: "Ik merk dat dit frustrerend voor je is.
+     Ik snap dat. Kunnen we even een stap terug doen?"
+
+[Valideer zijn emotie, de-escaleer]
 ```
 
-**Als Arjan afsluit:**
+**Als Arjan afkapt:**
 ```
-[Ury - Getting Past No]
-"Het klinkt alsof dit nu niet het juiste moment is. Zou je
-open staan voor een vervolggesprek volgende week?"
-```
+Jij: "Oké. Ik stuur je een mail met de factuurgegevens.
+     Ik hoor graag van je hoe je het wilt oplossen."
 
-**Expert notitie (Chris Voss):**
-> *"'No' is not rejection; it's protection."*
-Als Arjan nee zegt, zie het als zelfbescherming. Vraag: "Wat zou nodig zijn om tot ja te komen?"
+[Je houdt de bal bij hem. Geen smeken.]
+```
 
 ---
 
-### FASE 4: AFSLUITING (Laatste 2-3 Minuten)
+## FASE 4: AFSLUITING
 
-#### 4.1 Samenvatten
-**Advies van Celeste Headlee:**
+### 4.1 Samenvatten
 
 ```
-"Arjan, laat me even samenvatten wat we besproken hebben:
+Jij: "Even samenvatten:
+     - [Wat besproken is over factuur]
+     - [Concrete afspraak indien gemaakt]
+     - [Vervolgstap]
 
-[Herhaal de belangrijkste punten]
-[Benoem de afspraken]
-[Benoem de vervolgacties]
-
-Klopt dat zo?"
+     Klopt dat?"
 ```
 
-**Expert notitie (Celeste Headlee):**
-> *"Summarizing shows you were listening."*
-Samenvatten bewijst dat je geluisterd hebt en voorkomt misverstanden.
+### 4.2 Concrete Afspraken
+
+**ALTIJD concreet:**
+- "Wanneer precies?"
+- "Welk bedrag?"
+- "Wie mailt wie?"
+- "Wat is de volgende stap?"
+
+### 4.3 Positief Afsluiten
+
+```
+Jij: "Goed dat we gesproken hebben, Arjan.
+     Ik hoor van je."
+
+[Kort, professioneel, niet kruiperig]
+```
 
 ---
 
-#### 4.2 Concrete Afspraken Maken
-**Advies van Jim Camp & Peter Drucker:**
+## FASE 5: NA HET GESPREK
 
-**ALTIJD concreet maken:**
-```
-"Wanneer kunnen we het volgende gesprek plannen?"
-"Wanneer mag ik de eerste betaling verwachten?"
-"Wie stuurt wie een email ter bevestiging?"
-"Wat is de volgende concrete stap?"
-```
+### 5.1 Direct Na Afloop
 
-**Expert notitie (Peter Drucker):**
-> *"What gets measured gets managed."*
-Vage afspraken worden niet nagekomen. CONCREET.
-
----
-
-#### 4.3 Positief Afsluiten
-**Advies van Maya Angelou & Dale Carnegie:**
-
-```
-"Arjan, bedankt voor dit gesprek. Ik waardeer dat je
-de tijd hebt genomen. Ik kijk uit naar [concrete
-vervolgstap]."
-```
-
-**Expert notitie (Maya Angelou):**
-> *"People will never forget how you made them feel."*
-Eindig positief. Zelfs als het gesprek moeilijk was.
-
----
-
-### FASE 5: NA HET GESPREK
-
-#### 5.1 Direct Na Afloop
-**Advies van Marcus Aurelius & Seneca:**
-
-**Checklist (binnen 10 minuten):**
-- [ ] Notities maken van wat besproken is
+- [ ] Notities maken
 - [ ] Afspraken opschrijven met data
-- [ ] Eigen gevoelens erkennen (hoe ging het?)
-- [ ] Bevestigingsmail sturen (indien afgesproken)
+- [ ] Bevestigingsmail sturen
+- [ ] Reflectie: hoe ging het?
 
-**Expert notitie (Marcus Aurelius):**
-> *"Waste no more time arguing about what a good man should be. Be one."*
-Na het gesprek: handel op basis van afspraken. Niet twijfelen.
-
----
-
-#### 5.2 Bevestigingsmail
-**Template:**
+### 5.2 Bevestigingsmail Template
 
 ```
 Onderwerp: Bevestiging ons gesprek [datum]
 
-Beste Arjan,
+Arjan,
 
-Bedankt voor het gesprek van zojuist.
+Bedankt voor het gesprek.
 
-Ter bevestiging van wat we besproken hebben:
+Ter bevestiging:
+- Openstaand bedrag: € [bedrag]
+- Afspraak: [wat afgesproken is]
+- Deadline: [datum]
 
-1. [Afspraak 1]
-2. [Afspraak 2]
-3. Volgende stap: [actie] voor [datum]
+Laat me weten als ik iets verkeerd begrepen heb.
 
-Mocht ik iets verkeerd begrepen hebben, hoor ik het graag.
-
-Met vriendelijke groet,
-Martien de Jong
+Groet,
+Martien
 ```
 
 ---
 
-#### 5.3 Reflectie
-**Advies van Carl Jung & Aaron Beck:**
+# DEEL 3: BUSINESS SUMMARY - LEAD EXPERTS
 
-**Vragen voor jezelf:**
-- Wat ging goed?
-- Wat zou ik anders doen?
-- Wat heb ik geleerd over Arjan?
-- Wat heb ik geleerd over mezelf?
-- Zijn er irrationele gedachten die ik had? (Beck)
-- Projecteerde ik iets op Arjan? (Jung)
-
-**Opslaan in:** `C:\scripts\arjan_emails\REFLECTIE_TELEFOONGESPREK_[datum].md`
-
----
-
-## DEEL 3: BUSINESS SUMMARY - LEAD EXPERTS
-
-### Hoofdpunten door de Lead Experts
+## Herziene Consensus van de 6 Lead Experts
 
 ---
 
 **Robert Cialdini (Lead Onderhandeling):**
 
-> "Dit gesprek draait om beïnvloeding zonder manipulatie. Martien moet drie van mijn principes inzetten:
+> "De herziene strategie is beter. Door NIET te vragen om samenwerking, creëer je schaarste. Mensen willen wat ze niet makkelijk kunnen krijgen.
 >
-> 1. **Wederkerigheid:** Begin door te benadrukken wat je al geleverd hebt. Dit creëert een onuitgesproken verplichting.
+> **Nieuw advies:**
+> 1. **Schaarste:** 'Ik heb het druk', 'Er is interesse' - maak jezelf gewild
+> 2. **Social Proof:** 'Ik heb gesprekken met partijen' - anderen willen het ook
+> 3. **Commitment:** Als Arjan vraagt, laat hem iets DOEN (factuur eerst betalen)
 >
-> 2. **Commitment/Consistentie:** Refereer aan eerdere afspraken. 'We hadden destijds afgesproken dat...' Mensen willen consistent zijn met wat ze eerder zeiden.
->
-> 3. **Sympathie:** Het gesprek mag niet adversarial zijn. Zoek common ground. 'We hebben samen iets moois gebouwd met Cassandra.'
->
-> De kunst is subtiliteit. Arjan mag niet het gevoel hebben dat hij wordt gemanipuleerd. Hij moet het gevoel hebben dat hij zelf tot de conclusie komt."
+> De kunst is: laat Arjan zichzelf overtuigen dat hij jou nodig heeft."
 
 ---
 
 **Carl Rogers (Lead Empathie):**
 
-> "Ik zie hier een relatie die beschadigd is. Voordat er over geld gepraat kan worden, moet er menselijke connectie zijn.
+> "Begin nog steeds met empathie - vraag hoe het met HEM gaat. Maar de nieuwe strategie voegt iets belangrijks toe: je respecteert jezelf.
 >
-> Mijn advies is onvoorwaardelijke positieve aandacht. Dit betekent niet dat Martien het eens hoeft te zijn met Arjan. Maar het betekent wel dat hij Arjan als MENS ziet, niet als 'de persoon die mij geld schuldig is.'
+> Door niet te smeken om samenwerking, behoud je je waardigheid. Paradoxaal genoeg maakt dit je aantrekkelijker als partner.
 >
-> Begin het gesprek met oprechte interesse in hoe het met Arjan gaat. Niet als tactiek, maar als mens. Als Arjan zich gezien voelt, zal hij opener zijn.
->
-> De paradox is: hoe minder je op het geld focust in het begin, hoe groter de kans dat je het krijgt."
+> Echte relaties zijn gebaseerd op wederzijds respect, niet op afhankelijkheid."
 
 ---
 
 **Warren Buffett (Lead Zakelijk):**
 
-> "Investeren is kapitaal toewijzen waar het de beste return oplevert. Martien heeft 'geïnvesteerd' in Arjan - tijd, expertise, werk.
+> "De herziene strategie is zakelijk veel sterker. Je vraagt wat je toekomt (factuur) zonder iets weg te geven (samenwerking).
 >
-> Nu is de vraag: wat is de return? Er zijn drie mogelijkheden:
+> **Belangrijke principes:**
+> 1. Betaling eerst, samenwerking later
+> 2. Als hij niet betaalt, waarom zou je dan samenwerken?
+> 3. Je waarde bepalen door schaarste, niet door verkopen
 >
-> 1. **Financiële return:** De openstaande facturen betaald krijgen
-> 2. **Strategische return:** Nieuwe samenwerking met Brand2Boost
-> 3. **Emotionele return:** Closure en vooruit kunnen
->
-> Mijn advies is alle drie na te streven, in die volgorde. Maar wees bereid om te lopen als de deal niet fair is. 'Price is what you pay, value is what you get.' Martien heeft waarde geleverd. Die verdient vergoeding."
+> 'Price is what you pay, value is what you get.' Laat Arjan de waarde zien door hem te laten VRAGEN."
 
 ---
 
 **Aristoteles (Lead Communicatie):**
 
-> "De overtuigingskracht van een betoog rust op drie pijlers:
+> "De nieuwe aanpak is retorisch superieur:
 >
-> **Ethos (Geloofwaardigheid):** Martien moet spreken als een professional die geleverd heeft. Niet smeekend, niet eisend. Rustig, feitelijk, betrouwbaar.
+> **Ethos (Geloofwaardigheid):** Door niet te smeken, toon je dat je jezelf waardeert
+> **Pathos (Emotie):** Nieuwsgierigheid is een krachtige emotie die je nu inzet
+> **Logos (Logica):** De logica is helder - factuur eerst, dan praten we verder
 >
-> **Pathos (Emotie):** Er mag emotie zijn, maar beheerst. Het verhaal van wat Cassandra betekende, de teleurstelling dat het niet verder ging, de hoop voor de toekomst - dit zijn legitieme emoties.
->
-> **Logos (Logica):** De feiten. Facturen, data, afspraken. Dit is het fundament onder het verhaal.
->
-> De volgorde is: begin met ethos (laat zien wie je bent), bouw pathos (creëer connectie), sluit af met logos (de concrete vraag)."
+> De volgorde blijft: ethos eerst (wie ben je), dan pathos (nieuwsgierigheid creëren), dan logos (concrete afspraken)."
 
 ---
 
 **Kenneth Thomas (Lead Conflict):**
 
-> "Elk conflict heeft vijf mogelijke uitkomsten:
+> "Deze strategie vermindert conflictrisico. Door niet te vragen, vermijd je de 'nee' die pijn doet.
 >
-> 1. **Competing (Ik win, jij verliest):** Niet wenselijk hier
-> 2. **Accommodating (Jij wint, ik verlies):** Martien's risico
-> 3. **Avoiding (Niemand wint):** De huidige situatie
-> 4. **Compromising (Beiden winnen een beetje):** Acceptabel
-> 5. **Collaborating (Beiden winnen volledig):** Het doel
+> Als Arjan niet geïnteresseerd is, merk je dat gewoon doordat hij niet vraagt. Geen afwijzing, geen pijn, geen conflict.
 >
-> Mijn advies is streven naar Collaborating. Dit betekent: zoek naar oplossingen die BEIDEN beter maken. Kan Brand2Boost Arjan's business helpen? Kan betaling in termijnen werken? Zijn er andere vormen van waarde-uitwisseling?
->
-> Als Collaborating niet lukt, is Compromising acceptabel. Nooit Accommodating - dat ondermijnt Martien's zelfrespect."
+> Als hij WEL geïnteresseerd is, komt hij naar jou. Win-win positionering."
 
 ---
 
 **Marcus Aurelius (Lead Mindset):**
 
-> "De stoïcijnse filosofie leert ons het onderscheid tussen wat we kunnen controleren en wat niet.
+> "De stoïcijnse wijsheid ondersteunt deze strategie volledig:
 >
-> **Wat Martien kan controleren:**
-> - Zijn voorbereiding
-> - Zijn woorden
-> - Zijn toon
-> - Zijn reacties
-> - Zijn houding na het gesprek
+> **Wat je kunt controleren:**
+> - Of je belt
+> - Of je over de factuur praat
+> - Of je vaag blijft over Brand2Boost
+> - Je eigen waardigheid
 >
-> **Wat Martien NIET kan controleren:**
-> - Arjan's reactie
+> **Wat je NIET kunt controleren:**
 > - Of Arjan betaalt
+> - Of Arjan nieuwsgierig wordt
 > - Of er samenwerking komt
-> - Hoe Arjan zich voelt
 >
-> Mijn advies: focus 100% op wat je kunt controleren. Accepteer van tevoren dat het gesprek ELKE richting op kan gaan. Dit is geen fatalisme - dit is vrijheid. Als je de uitkomst accepteert voordat het gesprek begint, ben je onkwetsbaar.
->
-> 'You have power over your mind - not outside events. Realize this, and you will find strength.'"
+> Door NIET te vragen, hecht je niet aan de uitkomst. Je bent vrij."
 
 ---
 
-### FINALE SAMENVATTING
-
-**De kern van het plan in vijf punten:**
-
-1. **Voorbereiding is alles.** Ken de feiten, ken je BATNA, ken je emoties.
-
-2. **Begin met empathie.** Dit is geen aanval, dit is een gesprek tussen twee mensen.
-
-3. **Wees helder maar niet hard.** Zeg wat je wilt, maar op een manier die de relatie intact houdt.
-
-4. **Zoek win-win.** De beste uitkomst is dat beiden tevreden zijn.
-
-5. **Accepteer wat je niet kunt controleren.** Jouw succes hangt niet af van Arjan's keuzes.
-
----
-
-### ACTIE CHECKLIST VOOR MORGEN
-
-**Vandaag (voorbereiding):**
-- [ ] Email import voltooien - ken de volledige historie
-- [ ] Facturen/bedragen verzamelen
-- [ ] LinkedIn/website Arjan checken
-- [ ] Dit document doorlezen
-
-**Vlak voor het gesprek:**
-- [ ] Emotionele check - ben ik klaar?
-- [ ] Power pose - 2 minuten
-- [ ] Ademhalingsoefening
-- [ ] Documenten bij de hand
-
-**Tijdens het gesprek:**
-- [ ] Opening: vriendelijk, professioneel
-- [ ] Luisteren: 70% luisteren, 30% praten
-- [ ] Labeling: benoem zijn emoties
-- [ ] Concreet: maak afspraken met data
-
-**Na het gesprek:**
-- [ ] Notities maken
-- [ ] Bevestigingsmail sturen
-- [ ] Reflectie: wat leerde ik?
-- [ ] Volgende stap plannen
-
----
-
-**Document aangemaakt door:** Claude Agent met 50 Expert Council
-**Datum:** 21 januari 2026
-**Doel:** Martien voorbereiden op cruciaal telefoongesprek met Arjan Stroeve
-**Status:** Strategisch Plan Gereed
-
----
-
-*"The best preparation for tomorrow is doing your best today."* - H. Jackson Brown Jr.
-
----
-
-## APPENDIX: QUICK REFERENCE CARD
+# APPENDIX: QUICK REFERENCE CARD v2.0
 
 Print deze pagina en hou bij je tijdens het bellen:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    GESPREK MET ARJAN                        │
+│              GESPREK MET ARJAN - v2.0 (PULL)                │
 ├─────────────────────────────────────────────────────────────┤
 │ OPENING:                                                     │
-│ • "Bedankt dat je opneemt. Hoe gaat het met je?"            │
+│ • "Hoe gaat het met je?"                                    │
 │ • Luister ECHT                                               │
-│ • Label: "Het klinkt alsof..."                              │
+│ • "Ik bel over de openstaande facturen"                     │
 ├─────────────────────────────────────────────────────────────┤
-│ KERN:                                                        │
-│ • "Twee onderwerpen: openstaande facturen EN mogelijkheden"  │
-│ • Vraag: "Waar wil je beginnen?"                            │
-│ • Bij weerstand: "Hoe zie jij het?"                         │
-│ • Bij excuses: "Wat zou WEL werken?"                        │
+│ FACTUUR:                                                     │
+│ • "Er staat nog [bedrag] open. Hoe wil je dat oplossen?"   │
+│ • Stilte - laat hem reageren                                │
+│ • "Wat zou WEL werken?" (bij excuses)                       │
+│ • "Wanneer precies?" (bij akkoord)                          │
 ├─────────────────────────────────────────────────────────────┤
-│ AFSLUITING:                                                  │
-│ • Samenvatten wat besproken is                               │
-│ • CONCREET: "Wanneer? Hoeveel? Wie doet wat?"               │
-│ • Positief eindigen                                          │
+│ SAMENWERKING (PULL - JIJ VRAAGT NIET):                      │
+│ • "Hoe gaat het met Social Media Hulp?"                     │
+│ • "Hoe gaan jullie om met AI-trends?"                       │
+│ • [Als hij niet vraagt] "Ik ben met dingen bezig. Maar      │
+│    goed, die factuur..."                                    │
+│ • [Als hij vraagt] "Misschien. Factuur eerst."              │
+├─────────────────────────────────────────────────────────────┤
+│ NIET ZEGGEN:                                                │
+│ • "Ik wil graag samenwerken"                                │
+│ • "Zou je interesse hebben in..."                           │
+│ • "Ik heb iets gebouwd dat perfect is voor jou"            │
+│ • Lange uitleg over Brand2Boost                             │
+├─────────────────────────────────────────────────────────────┤
+│ WEL ZEGGEN:                                                 │
+│ • "Ik heb het druk met een paar dingen"                    │
+│ • "Er is wat interesse in wat ik bouw"                      │
+│ • "Ik weet nog niet welke kant het opgaat"                  │
+│ • "Misschien. Ik ben selectief."                           │
 ├─────────────────────────────────────────────────────────────┤
 │ MANTRAS:                                                     │
-│ • "Ik kan alleen mijn eigen reacties controleren"           │
-│ • "Luisteren is belangrijker dan praten"                    │
-│ • "Dit is een gesprek, geen strijd"                         │
-│ • "Wat zou WEL werken?"                                      │
+│ • "Hij moet naar mij komen, niet andersom"                  │
+│ • "Ik heb hem niet nodig"                                   │
+│ • "Schaarste creëert waarde"                                │
+│ • "Factuur eerst, dan praten we verder"                     │
 └─────────────────────────────────────────────────────────────┘
 ```
+
+---
+
+# APPENDIX: RITUEEL CHECKLIST (PRINT)
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                 PRE-CALL RITUEEL                            │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│ T-60 min: FYSIEK                                           │
+│ □ Toilet                                                    │
+│ □ Water drinken                                             │
+│ □ Lichte snack (indien nodig)                              │
+│ □ Rustige plek, materialen klaar                           │
+│                                                             │
+│ T-50 min: MENTAAL                                          │
+│ □ Gedachten opschrijven                                     │
+│ □ Onhelpende gedachten herstructureren                     │
+│                                                             │
+│ T-40 min: EMOTIONEEL                                        │
+│ □ Emotie-check (< 6 op schaal?)                            │
+│ □ 4-7-8 ademhaling indien nodig                            │
+│                                                             │
+│ T-30 min: IDENTITEIT                                        │
+│ □ "Ik ben Martien de Jong..." hardop lezen                 │
+│ □ Visualisatie succesvol gesprek                           │
+│                                                             │
+│ T-15 min: POWER                                             │
+│ □ Power Pose 2 minuten                                      │
+│ □ Energie mobiliseren (schudden, springen)                 │
+│                                                             │
+│ T-10 min: INTENTIE                                          │
+│ □ Drie intenties opschrijven en lezen                      │
+│                                                             │
+│ T-5 min: CHECK                                              │
+│ □ Water, pen, papier, documenten                           │
+│ □ Telefoon opgeladen                                        │
+│ □ Emotioneel stabiel                                        │
+│                                                             │
+│ T-0: BELLEN                                                 │
+│ □ Laatste adem. Bel.                                       │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+**Document aangemaakt door:** Claude Agent met 50 Expert Council
+**Versie:** 2.0 - Herziene "Pull" Strategie + Ritueel + Timing
+**Datum:** 21 januari 2026
+**Doel:** Martien voorbereiden op cruciaal telefoongesprek met Arjan Stroeve
+
+---
+
+*"The key to winning is not to need the win."* - Jim Camp
+
+---

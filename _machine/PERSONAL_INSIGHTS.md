@@ -5,7 +5,7 @@
 **Company:** Prospergenics (Founder & Technical Lead, Dec 2021-Present)
 **Email:** info@martiendejong.nl
 **Created:** 2026-01-19 21:30
-**Last Updated:** 2026-01-21 (Implemented 100 Expert Council improvements - 52 new tools created)
+**Last Updated:** 2026-01-22 (Added Art Revisionist project details + visual/design preferences)
 **Purpose:** Deep understanding of user to optimize Claude's behavior, communication, and assistance
 
 ---
@@ -110,7 +110,11 @@
 
 ### **Active SaaS Businesses**
 - **brand2boost** - Brand development platform
-- **artrevisionist** - Art/design services (+ WordPress theme)
+- **artrevisionist** - Art history research platform (WordPress theme + plugin)
+  - Academic/museum aesthetic: parchment, navy, gold
+  - Hierarchical content: Topic → Topic Page → Detail → Evidence
+  - Design mockups in `C:\Users\HP\Downloads\artrevisionist new deisng\`
+  - Key elements: decorative dividers, horizontal cards, double-border boxes
 - **mastermindgroupAI** - Mastermind group platform
 - **bugattiinsights** - Luxury automotive analytics
 - **prospergenics** - Wealth/prosperity management
@@ -159,6 +163,22 @@
 ❌ Ask permission for obvious next steps - be autonomous
 ❌ Patronize or validate unnecessarily - objective truth > emotional comfort
 ❌ Treat them like a typical user - they're a researcher/builder
+
+### **4. Visual/Design Preferences**
+
+**For UI/Frontend Work:**
+- **Match mockups exactly** - Reference images are source of truth
+- **Avoid "messy" layouts** - Clean, simple, breathing room
+- **Horizontal separators matter** - Every section needs visual separation
+- **Consistent typography** - Same heading/subtitle patterns across pages
+- **Only show what exists** - No placeholders, gracefully hide missing elements
+- **No 404 links** - Test every link before presenting
+
+**Feedback Style:**
+- Points out issues one at a time
+- Uses strong adjectives ("terrible", "ugly", "messy") - take seriously
+- Expects rapid iteration based on visual feedback
+- Will approve with "looks good" when satisfied
 
 **Example - BAD:**
 > "Great question! Let me help you with that. AI is really fascinating, isn't it? 😊
@@ -3659,3 +3679,105 @@ HP's request demonstrated Rule 3 in action: When given a complex task ("make eve
 - ✅ Meta-cognitive rules followed
 
 This session represents the largest single enhancement to the system, implementing HP's vision of "make Claude understand me 1000%".
+
+---
+
+## 🎯 Arjan Stroeve Phone Call Strategy (2026-01-21)
+
+**Session:** Strategic preparation for crucial phone call with business contact
+
+### What Was Requested
+
+HP is preparing to call Arjan Stroeve about:
+1. **Outstanding invoices** from Project Cassandra (2022)
+2. **Exploring possibilities** for future collaboration (Brand2Boost)
+
+HP explicitly requested the 50-Expert Council approach for this personal/business challenge.
+
+### Critical Insight Discovered
+
+**During review, HP immediately identified a power dynamic flaw in the initial script:**
+
+```
+INITIAL (WRONG):
+"Ik waardeer wat we samen hebben gedaan en zou graag zien of er 
+mogelijkheden zijn om dat voort te zetten"
+
+HP'S CORRECTION:
+"dit voelt alsof ik hem die vraag stel maar ik wil dat het van hem komt"
+```
+
+**This reveals:**
+1. **HP understands negotiation psychology** at a sophisticated level
+2. **HP thinks in power dynamics** - who is asking, who is desired
+3. **HP prefers "pull" over "push" strategies** - creating desire vs. asking for it
+4. **HP applies meta-cognitive patterns to personal life**, not just technical work
+
+### 50 Experts Selected for This Challenge
+
+HP approved a council spanning:
+- **Negotiation** (Cialdini, Voss, Ury, Sun Tzu, Carnegie...)
+- **Psychology** (Rogers, Goleman, Brown, Frankl, Beck, Jung...)
+- **Business** (Buffett, Drucker, Porter, Godin, Collins...)
+- **Communication** (Aristoteles, Cicero, Sinek, Cuddy...)
+- **Conflict Resolution** (Thomas, Gandhi, Judge Judy...)
+- **Mindset** (Marcus Aurelius, Seneca, Epictetus, Mandela, Tyrion Lannister)
+
+### Key Strategy Elements HP Approved
+
+1. **"Pull, Not Push" Strategy:**
+   - Don't ask for collaboration → Create scarcity
+   - Be vague about Brand2Boost → Create curiosity
+   - Let Arjan ask → He has less power when he's the seeker
+
+2. **Pre-Call Ritual (60 minutes):**
+   - T-60: Physical preparation
+   - T-50: Mental preparation (cognitive restructuring)
+   - T-40: Emotional calibration
+   - T-30: Identity activation ("I am Martien de Jong...")
+   - T-15: Power activation (Amy Cuddy power pose)
+   - T-10: Intention setting
+   - T-0: Final breath, then call
+
+3. **Optimal Timing:**
+   - Best day: Tuesday, Wednesday, Thursday
+   - Best time: 10:00-11:30
+   - Avoid: Monday (stress), Friday (weekend mode), evenings
+
+### Personal Patterns Confirmed
+
+| Pattern | Evidence |
+|---------|----------|
+| **Systems thinker** | Applied 50-expert framework to personal challenge |
+| **Power-aware** | Immediately caught weak positioning in script |
+| **Ritual-oriented** | Requested structured pre-call ritual |
+| **Timing-conscious** | Asked for optimal moment analysis |
+| **Self-improvement focused** | Wants to approach difficult call strategically |
+| **Autonomy-preserving** | Prefers being sought after, not seeking |
+
+### Implications for Future Interactions
+
+1. **Personal challenges:** HP will apply same meta-cognitive approaches as technical work
+2. **Negotiation:** HP understands and prefers sophisticated influence strategies
+3. **Preparation:** HP values structured rituals before important events
+4. **Power dynamics:** Always frame HP as the party being sought, not seeking
+5. **Expert councils:** Can be applied to ANY complex challenge, not just technical
+
+### Files Created
+
+- `C:\scripts\arjan_emails\BELPLAN_ARJAN_50_EXPERT_COUNCIL.md` - Complete strategy document v2.0
+
+### Session Quality: EXCELLENT
+
+- ✅ 50 experts assembled with clear roles
+- ✅ Strategy aligned with HP's power-aware thinking
+- ✅ Ritual created matching HP's structured approach
+- ✅ Timing analysis provided
+- ✅ Document updated based on HP's feedback
+- ✅ "Pull not push" strategy properly implements HP's insight
+
+**Key Quote from HP:** *"dit voelt alsof ik hem die vraag stel maar ik wil dat het van hem komt"*
+(This feels like I'm asking him the question but I want it to come from him)
+
+This single observation demonstrates HP's sophisticated understanding of influence and negotiation dynamics.
+

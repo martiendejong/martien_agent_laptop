@@ -4,6 +4,89 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-22 01:00 - Art Revisionist WordPress Theme Design Implementation
+
+**Project:** Art Revisionist (WordPress theme + plugin for art history research)
+**Outcome:** ITERATIVE IMPROVEMENT - Initial implementation was "messy", refined through user feedback
+**Key Lesson:** Match design mockups exactly; don't over-engineer layouts
+
+### Context
+
+User has reference design images in `C:\Users\HP\Downloads\artrevisionist new deisng\` showing elegant academic design:
+- Clean parchment background
+- Decorative section dividers (`— INTRODUCTION —`)
+- Horizontal separator lines
+- Double-bordered "Statement of Purpose" box
+- Horizontal card layout (image left, text right)
+
+### Mistakes Made
+
+| Mistake | Impact | Correction |
+|---------|--------|------------|
+| Created two-column layout with Statement next to Research | "Looks messy" | Moved Statement below fold, full-width centered |
+| Subscribe button linked to `/subscribe` (404) | Broken UX | Removed button entirely |
+| Showed placeholder image when no featured image exists | Broken image | Only render image div if `has_post_thumbnail()` |
+| Used generic grid card layout for topic pages | Didn't match mockup | Changed to horizontal cards (image left, content right) |
+| Inconsistent heading styles between pages | Visual inconsistency | Created unified `.ar-page__*` CSS system |
+
+### Design Principles Extracted
+
+1. **Horizontal separators are key** - Every section needs a subtle line divider
+2. **Statement of Purpose below fold** - Not competing for attention with main content
+3. **Only show what exists** - Don't use placeholders; gracefully hide missing elements
+4. **Consistent typography** - Same title/subtitle/location pattern across all pages
+5. **Horizontal card layout** - Image (140px) left, content right, separated by lines
+6. **Section labels with underlines** - `TOPIC PAGES (5)` with border-bottom
+
+### Files Created/Modified
+
+**Theme (`artrevisionist-wp-theme`):**
+- `front-page.php` - Homepage template (quote, featured, research, statement)
+- `page-about.php` - About page template
+- `page-contact.php` - Contact page with native form
+- `assets/css/decorative.css` - All decorative elements + page styles
+
+**Plugin (`artrevisionist-wordpress`):**
+- `templates/single-b2bk-topic.php` - Topic page with horizontal cards
+- `templates/single-b2bk-topic-page.php` - Sub-topic page with intro section
+
+### User Preferences Discovered
+
+| Preference | Evidence |
+|------------|----------|
+| Dislikes "messy" layouts | Direct feedback on initial homepage |
+| Values visual consistency | "Same heading and font style as other pages" |
+| Prefers mockup-matching | Provided reference images as source of truth |
+| Notices missing elements | "Horizontal separator lines are missing" |
+| Iterative feedback style | Points out issues one at a time |
+
+### Technical Notes
+
+- WordPress front-page.php requires `show_on_front = 'page'` + `page_on_front` set in options
+- Page templates need `/* Template Name: X */` comment for WordPress to recognize them
+- Native contact form uses `admin_post_` action hooks + `wp_mail()`
+- Contact page was `/contact-us/` not `/contact/` (check existing slugs!)
+
+### Recovery Commands Used
+
+```php
+// Create and set homepage
+$home_id = wp_insert_post(['post_title' => 'Home', 'post_status' => 'publish', 'post_type' => 'page']);
+update_option('show_on_front', 'page');
+update_option('page_on_front', $home_id);
+
+// Apply page templates
+update_post_meta($page_id, '_wp_page_template', 'page-about.php');
+```
+
+### Future Work
+
+- User needs to add Featured Image to Valsuani topic for homepage to show image
+- Consider adding subscribe functionality (Mailerlite integration?)
+- May need footer navigation with dot separators (per mockup)
+
+---
+
 ## 2026-01-21 22:00 - Claude Code EBUSY Crash on .claude.json
 
 **Issue:** Claude Code CLI crash due to file locking conflict
@@ -20466,4 +20549,49 @@ Each interaction tests:
 
 **The Evolution:**
 Task executor → Autonomous learner → Systematic improver → Self-improving intelligence
+
+
+---
+
+## 2026-01-21 12:00 - Arjan Phone Call Strategy Session
+
+### What Happened
+Created comprehensive 50-Expert Council strategy document for HP's phone call with Arjan Stroeve about outstanding invoices and potential collaboration.
+
+### Key Learning: "Pull Not Push" Strategy
+
+**Critical moment:** HP reviewed the initial script and identified a power dynamic flaw:
+- Initial: "Ik wil graag zien of er mogelijkheden zijn om voort te zetten"
+- Problem: This puts HP in asking/seeking position, giving Arjan power
+- Solution: Create scarcity and curiosity so ARJAN asks about collaboration
+
+**This applies universally:**
+1. Don't offer → Create desire
+2. Don't ask → Make them ask
+3. Scarcity creates value
+4. The party who needs the deal least has the most power
+
+### Pattern Confirmed
+HP applies the same meta-cognitive frameworks (50-expert councils, systematic preparation, timing optimization) to personal challenges as technical ones. This is consistent with their systems-thinking approach.
+
+### Useful Techniques Documented
+
+**Pre-call ritual (60 min):**
+- Physical reset (T-60)
+- Mental preparation with cognitive restructuring (T-50)
+- Emotional calibration with 4-7-8 breathing (T-40)
+- Identity activation - read affirmations aloud (T-30)
+- Power pose (T-15)
+- Intention setting (T-10)
+
+**Optimal call timing:**
+- Best: Tue/Wed/Thu 10:00-11:30
+- Worst: Monday (stress), Friday (weekend mode), after 17:00
+
+### Files Updated
+- `C:\scripts\arjan_emails\BELPLAN_ARJAN_50_EXPERT_COUNCIL.md` - v2.0 with pull strategy
+- `C:\scripts\_machine\PERSONAL_INSIGHTS.md` - New session entry
+
+### Tags
+#negotiation #psychology #personal-strategy #50-expert-council #pull-not-push
 
