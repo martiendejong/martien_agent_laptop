@@ -4,6 +4,255 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-22 14:30 - Post-Merge Migration Cascade Debugging
+
+**Project:** client-manager
+**Outcome:** SUCCESS - Fixed 4 migration files + multiple code issues after large branch merge
+**Mode:** Active Debugging
+
+### The Cascade Pattern
+
+After merging many feature branches to develop, errors appear in layers. Each fix reveals the next:
+
+```
+Layer 1: Compilation errors (interfaces, namespaces, DI)
+    ↓
+Layer 2: Runtime DI errors (missing registrations)
+    ↓
+Layer 3: Runtime behavior errors (JsonElement != null)
+    ↓
+Layer 4: Database migration errors (wrong table names)
+    ↓
+Layer 5: Idempotency errors (column already exists)
+```
+
+### Critical Learning: Entity Name ≠ Table Name
+
+**The Bug Pattern:**
+```csharp
+// Entity class
+public class ProjectDb { ... }
+
+// DbContext mapping
+modelBuilder.Entity<ProjectDb>().ToTable("ProjectsDb");
+
+// Migration WRONG (uses entity-like name)
+table: "Projects"
+
+// Migration CORRECT (uses actual table name)
+table: "ProjectsDb"
+```
+
+**Files that had wrong table name `"Projects"` instead of `"ProjectsDb"`:**
+1. `20260109150000_AddDatabaseIndices.cs` - CreateIndex/DropIndex operations
+2. `20260120003500_AddProjectLanguage.cs` - Raw SQL `ALTER TABLE Projects`
+3. `20260103000000_AddSocialMediaPosts.cs` - FK constraint
+4. `20260103010000_AddPostLinking.cs` - FK constraint
+
+### Pattern: Finding Wrong Table References
+
+```powershell
+# Find all references to a table name in migrations
+Grep 'table: "Projects"' Migrations/  # Should return nothing if table is ProjectsDb
+Grep 'ALTER TABLE Projects' Migrations/  # Check raw SQL too
+```
+
+### Making Migrations Idempotent
+
+When column already exists but migration isn't recorded:
+```csharp
+// BAD - fails if column exists
+migrationBuilder.Sql("ALTER TABLE X ADD COLUMN Y TEXT");
+
+// GOOD - empty migration, column already exists
+protected override void Up(MigrationBuilder migrationBuilder)
+{
+    // Column already exists from previous partial migration - no-op
+}
+```
+
+### JsonElement Dynamic Comparison (Repeated Pattern)
+
+**Still seeing this error pattern - document permanently:**
+```csharp
+// WRONG - RuntimeBinderException
+if (obj.Payload != null)
+
+// CORRECT
+var isPayloadPresent = obj.Payload is not null &&
+    !(obj.Payload is System.Text.Json.JsonElement je &&
+      je.ValueKind == System.Text.Json.JsonValueKind.Undefined);
+```
+
+### DI Registration Dependency Chain Pattern
+
+**Problem:** `PsdExporter` depends on `OraExporter` as concrete type, not interface.
+
+```csharp
+// ❌ WRONG - OraExporter not registered as concrete type
+builder.Services.AddScoped<ILayeredImageExporter, OraExporter>();
+builder.Services.AddScoped<ILayeredImageExporter, PsdExporter>();  // FAILS - can't resolve OraExporter
+
+// ✅ CORRECT - Register concrete types FIRST, then interfaces
+// Step 1: Register dependencies
+builder.Services.AddScoped<ILayerCompositor, LayerCompositor>();
+
+// Step 2: Register concrete types (for injection into other services)
+builder.Services.AddScoped<OraExporter>();
+builder.Services.AddScoped<PsdExporter>();
+
+// Step 3: Register interface implementations (using factory to get concrete)
+builder.Services.AddScoped<ILayeredImageExporter>(sp => sp.GetRequiredService<OraExporter>());
+builder.Services.AddScoped<ILayeredImageExporter>(sp => sp.GetRequiredService<PsdExporter>());
+```
+
+**Key insight:** When Service A depends on Service B as concrete type, register B as both concrete AND interface.
+
+### Package Version Alignment After Merges
+
+**Problem:** Different branches use different package versions.
+
+```xml
+<!-- Branch A -->
+<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="8.1.0" />
+
+<!-- Branch B (merged) -->
+<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="10.1.0" />
+```
+
+**Error:** `OpenApiOperation` type mismatch between versions.
+
+**Fix:** Align all related packages to same major version:
+```xml
+<PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.0" />
+<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="8.1.0" />
+```
+
+### Duplicate Class Definitions From Merges
+
+**Problem:** Same class defined in multiple files after merge.
+
+```
+Error CS0101: The namespace 'X' already contains a definition for 'TikTokLoginRequest'
+```
+
+**Fix:** Search for duplicate definitions, remove one:
+```powershell
+Grep "class TikTokLoginRequest" --include="*.cs"
+```
+
+### Method Signature Changes Across Branches
+
+**Problem:** Method signature changed in one branch, call sites not updated.
+
+```csharp
+// Old signature (Branch A)
+FetchContentAsUnifiedAsync(platform, token, modifiedAfter, cancellationToken)
+
+// New signature (Branch B)
+FetchContentAsUnifiedAsync(platform, token, cancellationToken)
+
+// Error after merge: cannot convert DateTime? to CancellationToken
+```
+
+**Fix:** Update call sites to match new signature.
+
+### All Fixes Applied This Session
+
+1. ✅ Fixed 4 migration files with wrong table names
+2. ✅ Made AddProjectLanguage migration idempotent
+3. ✅ Fixed JsonElement comparison in 4 controller/service files
+4. ✅ Fixed DI registration order (ILayerCompositor → OraExporter → PsdExporter)
+5. ✅ Fixed Swashbuckle version alignment (8.1.0)
+6. ✅ Removed duplicate TikTokLoginRequest class
+7. ✅ Fixed FetchContentAsUnifiedAsync parameter mismatch
+8. ✅ Fixed chatServiceFactory with correct Hazina interfaces
+9. ✅ Fixed agentFactory with proper AgentWithImageTools constructor
+10. ✅ Resolved ambiguous `Project` reference with fully qualified name
+
+### Prevention Checklist (Add to PR Review)
+
+Before merging feature branches:
+- [ ] Grep migrations for hardcoded table names matching entity names
+- [ ] Verify all migrations have `.Designer.cs` files
+- [ ] Check `__EFMigrationsHistory` for partially applied migrations
+- [ ] Test migration on fresh database AND existing database
+
+---
+
+## 2026-01-22 03:45 - Smart Layered Image Generator
+
+**Project:** layered-image-test (C:\Projects\layered-image-test)
+**Outcome:** SUCCESS - Created prompt-driven multi-layer image generator
+**Mode:** Feature Development
+
+### What Was Built
+
+A SmartLayeredGenerator that takes ONE natural language prompt and:
+1. **LLM Plans Layers** - GPT-4 analyzes prompt, decides what layers are needed
+2. **Generates Each Layer** - Background (opaque) + elements (transparent)
+3. **Vision Positioning** - GPT-4 Vision looks at composite, decides element positions
+4. **Composites Result** - Combines all layers into final image
+
+### Key Learnings
+
+**1. Layer Architecture - Background Should Include Static Elements**
+```
+WRONG: Background + House + Car + Text (4 separate layers)
+RIGHT: Background-with-house + Car + Text (house is PART of background)
+```
+Static scene elements (buildings, streets, landscapes) should be in ONE background layer. Only dynamic/foreground elements should be separate layers. This creates visual coherence.
+
+**2. GPT-Image Transparent Background Limitations**
+Even with `background: "transparent"`, GPT-Image often includes environment elements (ground, reflections, context). Must use VERY explicit prompts:
+```
+"CRITICAL: Volledig transparante achtergrond. GEEN straat, GEEN omgeving,
+GEEN reflecties op de grond. ALLEEN het object zelf."
+```
+
+**3. LLM Positioning Needs Guidance**
+The Vision-based positioning often places elements too high (floating). Include explicit placement guidance in prompts:
+```
+"Het voertuig moet MIDDEN OP DE WEG in de voorgrond geplaatst worden"
+```
+
+**4. Text ON Objects**
+To put text on objects (like "SCP" on a van), generate the object WITH the text in the AI prompt rather than compositing text as separate layer.
+
+### Usage
+
+```powershell
+cd C:\Projects\layered-image-test\LayeredImageTest
+$env:OPENAI_API_KEY = "sk-..."
+dotnet run -- --smart --prompt="Je beschrijving van de gewenste afbeelding"
+```
+
+Or interactively:
+```powershell
+dotnet run -- --smart
+# Then enter prompt when asked
+```
+
+### Files Created
+- `SmartLayeredGenerator.cs` - Main prompt-driven generator
+- `Program.cs` - Updated with --smart mode
+- `AddTextLayer.cs` - Utility for adding text to existing composites
+
+### Pattern: Effective Layer Prompts
+
+```
+"Maak een afbeelding met N lagen:
+
+LAAG 1 (ACHTERGROND): [Complete scene description INCLUDING static elements]
+
+LAAG 2 (ELEMENT): [Foreground element] KRITISCH: Transparante achtergrond,
+GEEN omgeving. Moet gepositioneerd worden [specific placement instructions]
+
+LAAG 3 (TEKST): '[text]' in [style] letters [position]"
+```
+
+---
+
 ## 2026-01-22 01:00 - Debug Session: SQLite Provider + Env Vars + FK Seed Mismatch
 
 **Project:** client-manager

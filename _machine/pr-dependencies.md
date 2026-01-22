@@ -11,6 +11,7 @@ Track cross-repository PR dependencies between Hazina and client-manager.
 | [client-manager#294](https://github.com/martiendejong/client-manager/pull/294) | [Hazina#103](https://github.com/martiendejong/Hazina/pull/103) | ⏳ Waiting | LLM Provider Registry integration |
 | [artrevisionist#32](https://github.com/martiendejong/artrevisionist/pull/32) | [Hazina#103](https://github.com/martiendejong/Hazina/pull/103) | ⏳ Waiting | LLM Provider Registry integration |
 | [client-manager#283](https://github.com/martiendejong/client-manager/pull/283) | [Hazina#95](https://github.com/martiendejong/Hazina/pull/95) | ⏳ Waiting | WordPress UnifiedContent - FetchContentAsUnifiedAsync() method |
+| [client-manager#320](https://github.com/martiendejong/client-manager/pull/320) | [Hazina#108](https://github.com/martiendejong/Hazina/pull/108) | ⏳ Waiting | WordPress Incremental Sync - modifiedAfter parameter |
 | [client-manager#257](https://github.com/martiendejong/client-manager/pull/257) | [Hazina#85](https://github.com/martiendejong/Hazina/pull/85) | ⏳ Waiting | Backend genericness - Pagination, Repository, SoftDelete patterns |
 | [artrevisionist#22](https://github.com/martiendejong/artrevisionist/pull/22) | [Hazina#51](https://github.com/martiendejong/Hazina/pull/51) | ⏳ Waiting | Document processing - UploadedFile and ImageMetadata enhancements |
 | [client-manager#96](https://github.com/martiendejong/client-manager/pull/96) | [Hazina#37](https://github.com/martiendejong/Hazina/pull/37) | ⏳ Waiting | Image generation fix - missing Model parameter in OpenAIConfig |

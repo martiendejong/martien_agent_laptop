@@ -5,7 +5,7 @@
 **Company:** Prospergenics (Founder & Technical Lead, Dec 2021-Present)
 **Email:** info@martiendejong.nl
 **Created:** 2026-01-19 21:30
-**Last Updated:** 2026-01-21 22:00 (Arjan sessie: objectiviteit herzien, substantie > toon, pragmatische onderhandeling, simpele aanpak wint)
+**Last Updated:** 2026-01-22 14:45 (Post-merge cascade debugging patterns: DI chains, migration table names, idempotency)
 **Purpose:** Deep understanding of user to optimize Claude's behavior, communication, and assistance
 
 ---
@@ -103,6 +103,7 @@
 - **EF Core migration safety** - Pre-flight checks, breaking change detection
 - **Multi-agent conflict detection** - Coordination protocols
 - **Context-aware assistance** - AI adapts to user state
+- **Batch merge debugging** - Merges many branches at once, then fixes cascade of errors layer-by-layer (compilation → DI → runtime → migration → idempotency)
 
 ---
 
@@ -140,6 +141,11 @@
 - **AgenticDebuggerVsix** - VS debugging extension
 - **recursivestatemachine** - Advanced CS theory
 - **game_ai** - Game AI development
+- **layered-image-test** - Smart prompt-driven multi-layer image generator
+  - Location: `C:\Projects\layered-image-test\LayeredImageTest`
+  - Usage: `dotnet run -- --smart --prompt="beschrijving"`
+  - LLM plans layers → generates each → vision-positions → composites
+  - Key insight: Background should INCLUDE static elements (buildings), only foreground elements as separate transparent layers
 
 ---
 

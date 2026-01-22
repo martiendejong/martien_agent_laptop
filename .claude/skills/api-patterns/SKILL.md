@@ -415,6 +415,37 @@ public async Task<IActionResult> UpdateUser([FromBody] System.Text.Json.JsonElem
 3. **Handle nulls** - `GetString()` returns `null` for JSON `null`
 4. **Distinguish missing vs null** - `TryGetProperty` returns `false` only if property doesn't exist
 
+### Critical: Null Comparison with Dynamic JsonElement
+
+**Error signature:**
+```
+Microsoft.CSharp.RuntimeBinder.RuntimeBinderException:
+Operator '!=' cannot be applied to operands of type 'System.Text.Json.JsonElement' and '<null>'
+```
+
+**Root cause:** When `dynamic` contains a `JsonElement`, you can't use `!= null` comparison.
+
+```csharp
+// ❌ WRONG - Causes RuntimeBinderException
+dynamic obj = GetSomeDynamicData();
+if (obj.Payload != null)  // CRASH!
+
+// ✅ CORRECT - Proper null/undefined check
+var isPayloadPresent = obj.Payload is not null &&
+    !(obj.Payload is System.Text.Json.JsonElement je &&
+      je.ValueKind == System.Text.Json.JsonValueKind.Undefined);
+
+if (isPayloadPresent)
+{
+    // Safe to use obj.Payload
+}
+```
+
+**Common locations for this bug:**
+- Controllers extracting data from chat/AI responses
+- Services processing LLM output with `Payload` properties
+- Any code using `dynamic` with deserialized JSON
+
 ---
 
 ## Pattern 8: JSON Property Name Collision in Anonymous Types

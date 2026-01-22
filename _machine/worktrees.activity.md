@@ -572,3 +572,6 @@ Actions:
 2026-01-21T22:16:14Z | agent-005 | ALLOCATE | feature/869bvf38q-chat-image-display | ClickHub: Fix uploaded image display in chat
 2026-01-21T22:18:38Z | agent-005 | RELEASE | feature/869bvf38q-chat-image-display | PR #311 created, worktree released
 2026-01-21T22:46:00Z | agent-003 | ALLOCATE | feature/869bverkf-analysis-search-nav | ClickHub: Fix analysis field navigation from search
+2026-01-21T23:29:40Z | agent-003 | RELEASE | feature/869buxcv6-wordpress-batch-import | PR #319 created - WordPress batch import
+2026-01-21T23:39:45Z | agent-003 | RELEASE | feature/869buxcru-wordpress-incremental-sync | PRs #320 + Hazina#108 created - WordPress incremental sync
+2026-01-21T23:50:11Z | agent-003 | RELEASE | fix/869bvervf-missing-translations | PR #321 created - translation fixes
