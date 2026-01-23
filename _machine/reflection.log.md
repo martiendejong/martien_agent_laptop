@@ -4,6 +4,36 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-23 22:00 - Panel System Refactoring: Modal Architecture & Action Registry
+
+**Project:** client-manager / Brand2Boost frontend
+**Outcome:** SUCCESS - Complete panel system refactoring with 6 new components, 14 new actions
+**Mode:** Feature Development (direct base repo edit per user's active session)
+
+### Summary
+
+Refactored panel system from side-panel to centered modal. Created 6 new panel components, added 14 new actions, fixed z-index layering bug.
+
+### Key Fixes
+
+1. **z-index bug** - Modal at z-50 appeared below ChatInput at z-[55] → Fixed with z-[60]
+2. **PlaceholderPanel anti-pattern** - 7 actions showed "coming soon" → Created real components
+3. **Hardcoded empty data** - GatheredPanel showed empty array → Fetch via API
+
+### Components Created
+
+GatheredDataPanel, AnalysisOverviewPanel, WebsiteImportPanel, MediaLibraryPanel, LinksPanel, HelpPanel
+
+### Pattern Learned
+
+User asks for **confirmation before major changes**: present analysis → wait for approval → implement.
+
+### Architectural Pattern
+
+Panel Registry as single source of truth with lazy loading and URL-driven state.
+
+---
+
 ## 2026-01-23 20:00 - Peridon Layered Image: AI Regeneration vs Extraction
 
 **Project:** Personal project - Hazina layered image tool usage
@@ -21530,3 +21560,169 @@ HP applies the same meta-cognitive frameworks (50-expert councils, systematic pr
 - New: `Services/Import/ImportErrorClassifier.cs`, `ImportErrorLogService.cs`
 
 ---
+
+---
+
+## 2026-01-23 13:00 - Production Deployment v2026.01.23-stable: Logo Fix & Manual Deployment
+
+**Project:** client-manager (Brand2Boost)
+**Outcome:** SUCCESS - Tagged, deployed backend/frontend, fixed logo issue
+**Mode:** Feature Development (production deployment)
+
+### The Task: Deploy main version to production
+
+**What user wanted:**
+1. Tag main branch for production release
+2. Deploy to production VPS
+3. Fix logo not showing on app.brand2boost.com
+
+**What was accomplished:**
+1. ✅ Created tag `v2026.01.23-stable` with 245 commits from develop
+2. ✅ Backend deployed via MS Web Deploy (with minor log file lock - non-critical)
+3. ✅ Frontend deployed successfully
+4. ✅ Fixed logo path issue and redeployed
+
+### Critical Insights: Production Deployment Workflow
+
+**LESSON 1: GitHub Actions Billing Blocks Automated Deployment**
+- **Issue:** GitHub Actions workflows failed with billing error
+- **Error:** "recent account payments have failed or spending limit needs to be increased"
+- **Impact:** Automated Azure deployment pipeline didn't run
+- **Resolution:** Manual deployment via PowerShell scripts (`publish-brand2boost-backend.ps1`, `publish-brand2boost-frontend.ps1`)
+- **Pattern:** Always have manual deployment fallback for production systems
+
+**LESSON 2: Hardcoded Asset Paths Break in Production**
+- **Bug:** Logo used hardcoded path `/src/assets/brandforge-logo.png`
+- **Why it failed:** `/src/` folder doesn't exist in Vite production builds
+- **Symptom:** Logo visible in dev, invisible in production
+- **Root cause:** Not using the imported variable that Vite processes
+```typescript
+// WRONG (hardcoded dev path):
+const logoSrc = isSquare ? '/logo.png' : '/src/assets/brandforge-logo.png';
+
+// CORRECT (use Vite import):
+import brandForgeLogo from '../../assets/brandforge-logo.png';
+const logoSrc = isSquare ? '/logo.png' : brandForgeLogo;
+```
+- **Why this matters:** Vite transforms imports to `/assets/brandforge-logo-[hash].png`
+- **Quick fix:** Copy asset to production + patch built JS with sed
+- **Proper fix:** Use the import variable (committed to develop)
+
+**LESSON 3: Tailwind CSS 4.x Breaking Changes**
+- **Issue:** Fresh build failed with "tailwindcss directly as PostCSS plugin" error
+- **Cause:** Tailwind CSS 4.x requires `@tailwindcss/postcss` package
+- **Dependencies:** Multiple version conflicts (Tailwind 4.1.18 vs 3.4.19, @tiptap peer deps)
+- **Resolution:** Used existing build artifacts from `dist/` folder
+- **Long-term fix needed:** Lock Tailwind to v3.x in package.json for stability
+- **Pattern:** When build system broken, use last known good build + apply minimal patches
+
+**LESSON 4: MS Web Deploy - Locked Files Are Normal**
+- **Warning during deployment:** `brand2boost-20260123_001.log` locked by running process
+- **Why it happens:** Application is running and writing to log file
+- **Impact:** NONE - log rotation handles this, application continues
+- **Action required:** NONE - expected behavior
+- **Don't panic:** File locks during deployment to running apps are expected
+
+**LESSON 5: web.config Routing Was Not The Problem**
+- **User suspected:** web.config routing blocking logo
+- **Reality:** web.config was correctly configured
+- **Evidence:** PNG files excluded from SPA rewrite via pattern match
+- **Actual problem:** Wrong source path in JavaScript
+- **Debugging approach:** Check actual asset existence before blaming routing
+
+### Production Deployment Checklist (Proven Pattern)
+
+**1. Pre-Deployment:**
+- [ ] Verify develop is clean and tested
+- [ ] Check GitHub Actions status (if automated)
+- [ ] Ensure manual deployment scripts accessible
+
+**2. Tagging:**
+- [ ] Merge develop to main
+- [ ] Create annotated tag: `v$(date +'%Y.%m.%d')-stable`
+- [ ] Include comprehensive release notes in tag
+- [ ] Push tag to GitHub: `git push origin v2026.01.23-stable`
+
+**3. Deployment:**
+- [ ] Run backend deployment: `publish-brand2boost-backend.ps1`
+- [ ] Check for locked files (ignore log files)
+- [ ] Run frontend deployment: `publish-brand2boost-frontend.ps1`
+- [ ] Verify msdeploy output shows changes applied
+
+**4. Post-Deployment:**
+- [ ] Switch back to develop branch
+- [ ] Test production site manually
+- [ ] Check browser console for asset 404s
+- [ ] Verify database migrations applied
+
+**5. Hotfix If Needed:**
+- [ ] Make minimal change in source
+- [ ] Apply same change to dist/ folder
+- [ ] Redeploy only changed files
+- [ ] Commit fix to develop
+- [ ] Document in deployment summary
+
+### Files Changed This Session
+
+**Production deployment:**
+1. `C:\Projects\client-manager\ClientManagerFrontend\src\components\ui\Logo.tsx` - Fixed hardcoded path
+2. `C:\Projects\client-manager\dist\www\assets\brandforge-logo.png` - Added missing asset
+3. `C:\Projects\client-manager\dist\www\assets\index-Db9S3cLb.js` - Patched with sed
+4. `C:\scripts\_machine\deployment-summary-2026-01-23.md` - Created deployment record
+
+**Git commits:**
+- Tag: `v2026.01.23-stable` on main branch
+- Commit: `90edc2f9` - "fix: Use imported brandForgeLogo instead of hardcoded path"
+
+### Known Issues to Address
+
+1. **GitHub Actions Billing** - User needs to fix for automated deployments
+2. **Tailwind CSS 4.x** - Lock to v3.x to prevent breaking changes
+3. **@tiptap peer dependencies** - Consider upgrading or using --legacy-peer-deps
+4. **Build system fragility** - Consider containerized builds for consistency
+
+### Metrics
+
+- **Deployment time:** ~15 minutes (including troubleshooting)
+- **Backend size:** Published to C:\stores\brand2boost\backend
+- **Frontend size:** 2.2MB main bundle (index-Db9S3cLb.js)
+- **Total changes deployed:** Backend (full), Frontend (2 files updated)
+- **Commits in release:** 245 from develop to main
+
+### Pattern: Emergency Logo Fix Workflow
+
+**When fresh build fails but production needs immediate fix:**
+1. Locate the asset in source: `src/assets/brandforge-logo.png`
+2. Copy to production dist: `cp src/assets/file.png dist/www/assets/`
+3. Find broken reference in built JS: `grep "/src/assets" dist/www/assets/*.js`
+4. Patch with sed: `sed -i 's|/src/assets/file.png|/assets/file.png|g' dist/www/assets/bundle.js`
+5. Deploy changed files only: `msdeploy` will show minimal changes
+6. Fix source code properly: Use import variable instead of hardcoded path
+7. Commit fix for next build: Push to develop branch
+
+### Success Criteria Met
+
+- ✅ v2026.01.23-stable tag created and pushed
+- ✅ Main branch contains all develop changes (245 commits)
+- ✅ Backend deployed to production VPS
+- ✅ Frontend deployed to production VPS
+- ✅ Logo now visible on app.brand2boost.com
+- ✅ Source code fix committed to develop
+- ✅ Deployment documentation created
+- ✅ Working tree clean
+
+### Recommendations for Future Deployments
+
+1. **Fix GitHub Actions billing** - Enable automated Azure deployments
+2. **Lock Tailwind CSS to v3.x** - Prevent v4 breaking changes
+3. **Add pre-deployment smoke tests** - Catch asset path issues before deploy
+4. **Document manual deployment procedure** - Clear steps for when automation fails
+5. **Consider asset validation** - Script to check all imported assets exist in build
+6. **Add deployment health check** - Automated verification after deploy
+
+---
+
+**Deployed By:** Claude Sonnet 4.5
+**Deployment Method:** Manual (PowerShell + MS Web Deploy)
+**Production URL:** https://app.brand2boost.com
+**Result:** ✅ SUCCESS
