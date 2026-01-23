@@ -4554,3 +4554,79 @@ const unused = allPanelTypes.filter(t => !usedPanelTypes.has(t));
 **User Values:** Comprehensive analysis before action on strategic decisions.
 
 ---
+
+### 2026-01-23 - Pattern Recognition Failure: Git Tag Naming Convention
+
+**Context:** User requested: "tag the client manager main branch", then provided "1" as the tag name.
+
+**What Happened:**
+1. User said "tag the client manager main branch"
+2. I asked what tag name to use
+3. User replied: "1"
+4. I created tag `1` literally
+5. User: "the tag should have been the date of today?"
+6. I corrected to `v2026.01.23-v2`
+
+**What I Should Have Done:**
+1. Check existing tags FIRST: `git tag --list --sort=-version:refname`
+2. Observe clear pattern: `v2026.01.23-stable`, `v2026.01.11-stable`, etc.
+3. Infer "1" likely means "version 1 for today" or misunderstanding
+4. Propose date-based tag matching existing convention
+5. Ask: "I see you use v2026.01.DD-stable. Since v2026.01.23-stable exists, should I create v2026.01.23-v2?"
+
+**Root Cause:** 
+- **Failed to apply pattern recognition** before executing literal interpretation
+- **Didn't check existing conventions** as first step
+- **Took ambiguous input at face value** instead of inferring intent from context
+
+**Pattern Recognition Failure:**
+```
+Existing tags: v2026.01.23-stable, v2026.01.11-stable, v2026.01.10-stable...
+User input: "1"
+My interpretation: Create tag "1" (WRONG)
+Correct interpretation: Create tag matching date pattern for today (RIGHT)
+```
+
+**General Principle:**
+**"CONVENTIONS FIRST, LITERALS SECOND"** - When user input is ambiguous or unusual, check existing patterns before executing literally.
+
+**Corrected Workflow:**
+```
+User gives ambiguous input → Check existing patterns → Propose interpretation → Execute
+```
+
+**Anti-Pattern Detected:**
+- Taking ultra-terse input literally without context checking
+- Not leveraging observable patterns in the codebase
+- Asking open-ended questions when patterns provide clear answer
+
+**New Protocol: Ambiguous Input Resolution**
+1. **Check Observable Patterns**
+   - Git tags, branch names, commit messages
+   - File naming conventions
+   - Existing configuration formats
+2. **Infer Intent**
+   - Match user input to likely meaning within pattern
+   - Consider "1" in tag context = "version 1 for today"
+3. **Propose Interpretation**
+   - "I see you use v2026.01.DD-stable. Since v2026.01.23-stable exists, should I create v2026.01.23-v2?"
+4. **Execute After Confirmation**
+
+**Success Pattern (This Session):**
+- ✅ When told "yes" (ambiguous which option), I correctly inferred the v2026.01.23-v2 option
+- ✅ Quickly corrected mistake by deleting wrong tag and creating correct one
+- ✅ User's second "yes" validated I finally understood the pattern
+
+**Key Insight:**
+User expects me to **infer intent from established patterns** rather than take ambiguous input literally. This is part of "understanding context" - the codebase's existing conventions ARE context.
+
+**Confidence Level:** HIGH - This was a clear pattern recognition failure. The existing tags provided unambiguous guidance that I failed to consult before acting.
+
+**Behavioral Update:**
+- ✅ ALWAYS check for existing patterns before executing ambiguous input
+- ✅ INFER intent from conventions when input is terse/unclear
+- ✅ PROPOSE interpretation based on patterns rather than ask open-ended questions
+- ✅ Treat codebase conventions as implicit requirements
+
+**Related Insight:** This connects to earlier learning about user's ultra-concise communication style. When they give minimal input ("1"), they expect me to use ALL available context (existing patterns) to infer correct meaning.
+
