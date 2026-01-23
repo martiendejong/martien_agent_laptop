@@ -5,7 +5,7 @@
 **Company:** Prospergenics (Founder & Technical Lead, Dec 2021-Present)
 **Email:** info@martiendejong.nl
 **Created:** 2026-01-19 21:30
-**Last Updated:** 2026-01-23 (ChatController split debugging: framework constructor changes, extracted controllers, active debugging workflow)
+**Last Updated:** 2026-01-23 20:00 (Peridon layered image: AI regeneration vs extraction, communication clarification patterns, Dutch language precision)
 **Purpose:** Deep understanding of user to optimize Claude's behavior, communication, and assistance
 
 ---
@@ -69,6 +69,14 @@
 - **Dutch Directness** - Appreciates blunt honesty
 - **English for Technical** - Thinks/codes in English, personal life in Dutch
 - **Dense Information** - Can handle complex, multi-layered insights
+- **CRITICAL: Listen to corrections** - When user says "nee zeker niet" after 2-3 attempts, STOP and ask for step-by-step clarification
+- **Dutch language precision matters:**
+  - "genereren" = generate NEW (create), NOT extract
+  - "op basis van" = inspired by/based on, NOT copy from
+  - "je moet" = imperative/directive, take literally
+- **User knows what they want** - When corrected 3+ times on same topic, their mental model is different than Claude's interpretation
+  - ✅ DO: Ask "Can you describe the exact process step-by-step?"
+  - ❌ DON'T: Keep trying variations of same wrong approach
 
 ---
 
@@ -106,6 +114,9 @@
 - **Move fast, debug runtime** - Merges PRs to develop first, tests in Visual Studio, expects Claude to fix errors from stack traces
 - **Batch merge debugging** - Merges many branches at once, then fixes cascade of errors layer-by-layer (compilation → DI → runtime → migration → idempotency)
 - **Framework evolution tolerance** - Accepts that PRs may break when framework (Hazina) evolves during PR lifetime
+- **AI workflows over traditional processing** - Prefers LLM vision + generation (ChatGPT/DALL-E) over computer vision algorithms (OpenCV, thresholding, masking)
+  - When user says "laat AI genereren": They mean GPT-4 Vision + DALL-E 3, NOT ImageSharp pixel manipulation
+  - Regeneration > Extraction: Create new inspired by original, don't extract from original
 
 ---
 
