@@ -5,7 +5,7 @@
 **Company:** Prospergenics (Founder & Technical Lead, Dec 2021-Present)
 **Email:** info@martiendejong.nl
 **Created:** 2026-01-19 21:30
-**Last Updated:** 2026-01-23 22:00 (Panel system architecture: UniversalModal pattern, action-to-panel registry, lazy loading for code splitting, z-index layering)
+**Last Updated:** 2026-01-23 23:30 (NullReferenceException debugging: User provides stack trace with full details, trusts autonomous diagnosis/fix without approval steps, expects fast turnaround in Active Debugging mode)
 **Purpose:** Deep understanding of user to optimize Claude's behavior, communication, and assistance
 
 ---
