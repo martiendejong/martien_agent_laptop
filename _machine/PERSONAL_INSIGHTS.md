@@ -5,7 +5,7 @@
 **Company:** Prospergenics (Founder & Technical Lead, Dec 2021-Present)
 **Email:** info@martiendejong.nl
 **Created:** 2026-01-19 21:30
-**Last Updated:** 2026-01-22 14:45 (Post-merge cascade debugging patterns: DI chains, migration table names, idempotency)
+**Last Updated:** 2026-01-23 (ChatController split debugging: framework constructor changes, extracted controllers, active debugging workflow)
 **Purpose:** Deep understanding of user to optimize Claude's behavior, communication, and assistance
 
 ---
@@ -103,7 +103,9 @@
 - **EF Core migration safety** - Pre-flight checks, breaking change detection
 - **Multi-agent conflict detection** - Coordination protocols
 - **Context-aware assistance** - AI adapts to user state
+- **Move fast, debug runtime** - Merges PRs to develop first, tests in Visual Studio, expects Claude to fix errors from stack traces
 - **Batch merge debugging** - Merges many branches at once, then fixes cascade of errors layer-by-layer (compilation → DI → runtime → migration → idempotency)
+- **Framework evolution tolerance** - Accepts that PRs may break when framework (Hazina) evolves during PR lifetime
 
 ---
 

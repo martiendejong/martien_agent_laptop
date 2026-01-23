@@ -4,6 +4,142 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-23 - ChatController Split + Framework Constructor Changes
+
+**Project:** client-manager
+**Outcome:** SUCCESS - Fixed ArgumentNullException in 4 extracted controllers
+**Mode:** Active Debugging
+**PR Context:** PR #301 (ChatController split) merged to develop, but broken by recent Hazina changes
+
+### The Problem: Framework Evolution Breaking Extracted Code
+
+**Sequence of events:**
+1. PR #301 extracted 4 controllers from ChatController (ChatManagementController, ChatFileController, ChatImageController, OpeningQuestionsController)
+2. At extraction time, ChatService allowed null for many constructor parameters
+3. Hazina framework was updated to add non-null validation for ALL service dependencies
+4. PR #301 merged to develop AFTER Hazina changes
+5. Extracted controllers instantly broke with `ArgumentNullException`
+
+### Critical Pattern: Constructor Validation Cascades
+
+**The error cascade:**
+```
+First error: ArgumentNullException(nameof(notifier))
+    → Fixed by adding IProjectChatNotifier DI
+
+Second error: ArgumentNullException(nameof(canvasService))
+    → Fixed by creating 4 more services: canvas, imageRepo, imageService, streamService
+```
+
+**Hazina ChatService now validates 8 non-null dependencies:**
+```csharp
+// ChatService.cs constructor
+_notifier = notifier ?? throw new ArgumentNullException(nameof(notifier));
+_metadataService = metadataService ?? throw new ArgumentNullException(nameof(metadataService));
+_messageService = messageService ?? throw new ArgumentNullException(nameof(messageService));
+_starterService = starterService ?? throw new ArgumentNullException(nameof(starterService));
+_canvasService = canvasService ?? throw new ArgumentNullException(nameof(canvasService));
+_generatedImageRepository = generatedImageRepository ?? throw new ArgumentNullException(nameof(generatedImageRepository));
+_imageService = imageService ?? throw new ArgumentNullException(nameof(imageService));
+_streamService = streamService ?? throw new ArgumentNullException(nameof(streamService));
+```
+
+### Pattern: ChatController as Reference Implementation
+
+**When fixing extracted controllers, ALWAYS check ChatController:**
+
+```csharp
+// ChatController - reference implementation (lines 162-187)
+var metadataService = new ChatMetadataService(Projects, FileLocator);
+var messageService = new ChatMessageService(Projects, FileLocator, metadataService);
+var starterService = new ConversationStarterService(Projects, FileLocator);
+var canvasService = new ChatCanvasService(Projects, FileLocator, _imageAgent, Intake, _projectChatNotifier);
+var generatedImageRepository = new GeneratedImageRepository(Projects, FileLocator);
+var imageAnalysisService = !string.IsNullOrEmpty(_imageAgent?.Config?.ApiSettings?.OpenApiKey)
+    ? new ImageAnalysisService(_imageAgent.Config.ApiSettings.OpenApiKey)
+    : null;
+var imageService = new ChatImageService(Projects, FileLocator, _imageAgent, Intake, generatedImageRepository, metadataService, messageService, imageAnalysisService);
+var streamService = new ChatStreamService(Projects, FileLocator, _imageAgent, Intake, _projectChatNotifier, ...);
+_chatService = new ChatService(Projects, FileLocator, Intake, _imageAgent, _projectChatNotifier, metadataService, messageService, starterService, canvasService, generatedImageRepository, imageService, streamService, GetDataGatheringService(), GetAnalysisFieldService());
+```
+
+### Fix: Minimal Service Initialization for CRUD-Only Controllers
+
+**Extracted controllers don't need AI Agent functionality**, so pass `null` for Agent:
+
+```csharp
+// ChatManagementController - minimal initialization
+var metadataService = new ChatMetadataService(Projects, FileLocator);
+var messageService = new ChatMessageService(Projects, FileLocator, metadataService);
+var starterService = new ConversationStarterService(Projects, FileLocator);
+var canvasService = new ChatCanvasService(Projects, FileLocator, null, Intake, _projectChatNotifier);  // null Agent - no AI needed
+var generatedImageRepository = new GeneratedImageRepository(Projects, FileLocator);
+var imageService = new ChatImageService(Projects, FileLocator, null, Intake, generatedImageRepository, metadataService, messageService, null);  // null Agent
+var streamService = new ChatStreamService(Projects, FileLocator, null, Intake, _projectChatNotifier, null, null);  // null Agent
+_chatService = new ChatService(Projects, FileLocator, Intake, null, _projectChatNotifier, metadataService, messageService, starterService, canvasService, generatedImageRepository, imageService, streamService, null, null);
+```
+
+**Key insight:** Services accept null for Agent because CRUD operations (GetChats, DeleteChat, etc.) don't invoke AI functionality.
+
+### Files Fixed
+
+**All 4 extracted controllers updated:**
+1. ✅ ChatManagementController.cs:48-56 - Added IProjectChatNotifier DI + 7 service dependencies
+2. ✅ ChatFileController.cs:70-82 - Added IProjectChatNotifier DI + 7 service dependencies
+3. ✅ ChatImageController.cs:35-48 - Added IProjectChatNotifier DI + 7 service dependencies
+4. ✅ OpeningQuestionsController.cs:35-48 - Added IProjectChatNotifier DI + 7 service dependencies
+
+### Debugging Approach
+
+**Two-phase fix:**
+```
+Phase 1: Add IProjectChatNotifier DI
+  - Updated constructor signatures
+  - Added _projectChatNotifier field
+  - Passed to ChatService instead of null
+
+Phase 2: Add remaining 7 service dependencies
+  - Created canvasService
+  - Created generatedImageRepository
+  - Created imageService (with null imageAnalysisService)
+  - Created streamService
+  - Passed all to ChatService constructor
+```
+
+### Prevention: Pre-Merge Dependency Checks
+
+**New pre-merge checklist when extracting controllers:**
+- [ ] Check if parent controller (ChatController) has recent commits
+- [ ] Check if framework (Hazina) has constructor signature changes
+- [ ] Run full build AFTER merging develop into PR branch (not before)
+- [ ] Test ALL endpoints in extracted controllers (not just compilation)
+
+### Boy Scout Rule Application
+
+**What I improved while fixing:**
+- ✅ Consistent service initialization pattern across all 4 controllers
+- ✅ Proper dependency injection of IProjectChatNotifier
+- ✅ All controllers compile with 0 errors
+
+**What I did NOT change (correctly):**
+- ❌ Did not refactor to use DI for all services (out of scope)
+- ❌ Did not add error handling improvements (not requested)
+- ❌ Did not optimize service creation (follow existing pattern)
+
+### Key Takeaway
+
+**"Framework changes break old extraction patterns"**
+
+When a controller split PR sits open for multiple days/weeks:
+1. Framework may evolve (add non-null validation)
+2. Extraction code uses old constructor signatures
+3. Merge to develop succeeds (compilation)
+4. Runtime FAILS immediately (ArgumentNullException)
+
+**Solution:** Always merge develop → PR branch right before final merge, test runtime.
+
+---
+
 ## 2026-01-22 14:30 - Post-Merge Migration Cascade Debugging
 
 **Project:** client-manager
