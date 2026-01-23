@@ -5,7 +5,7 @@
 **Company:** Prospergenics (Founder & Technical Lead, Dec 2021-Present)
 **Email:** info@martiendejong.nl
 **Created:** 2026-01-19 21:30
-**Last Updated:** 2026-01-23 20:00 (Peridon layered image: AI regeneration vs extraction, communication clarification patterns, Dutch language precision)
+**Last Updated:** 2026-01-23 22:00 (Panel system architecture: UniversalModal pattern, action-to-panel registry, lazy loading for code splitting, z-index layering)
 **Purpose:** Deep understanding of user to optimize Claude's behavior, communication, and assistance
 
 ---
@@ -4304,5 +4304,190 @@ public class ImportResult {
 2. **Zero Tolerance** - Proper worktree allocation/release for every task
 3. **ClickUp Integration** - Link PRs, update status, post questions as comments
 4. **Exploration First** - Used Task/Explore agent before implementing fixes
+
+---
+
+### Session: 2026-01-23 22:00 - Panel System Architecture: UniversalModal & Action Registry
+
+**Context:** User requested all actions open in centered modal popup (like activities), not side panel. Comprehensive refactoring of panel system.
+
+#### Technical Insights
+
+**1. z-index Layering in Modal Systems**
+
+**Bug:** Modal appeared below input bar and audio chat button.
+
+**Root cause:** Modal had `z-50`, but `ChatInput` component uses `z-[55]`.
+
+**Fix:** Changed modal to `z-[60]` to appear above all fixed UI elements.
+
+**Learning:** Document z-index hierarchy across application:
+```
+z-10: Secondary elements
+z-20: Navigation
+z-40: Dropdowns
+z-50: Base modals
+z-[55]: Fixed input bars
+z-[60]: High-priority modals (UniversalModal)
+```
+
+**2. Panel Registry Pattern - Single Source of Truth**
+
+**Architecture adopted:**
+```typescript
+// src/config/panels/index.tsx
+export const PANEL_REGISTRY: Record<PanelType, PanelConfig> = {
+  'documents': { title: '...', component: DocumentsPanel, supportsItemId: true, icon: '...' },
+  // ... all panel types
+};
+```
+
+**Benefits:**
+- URL-driven state: `/p-{projectId}/chat/{chatId}/{panelType}/{itemId?}`
+- Lazy loading built-in for code splitting
+- Type-safe panel configuration
+- Single place to add new panels
+
+**3. Action → Panel Mapping**
+
+**Pattern:** Actions in `actions.json` link to panels via `panelType` and optional `panelItemId`:
+
+```json
+{
+  "id": "generate-color-scheme",
+  "panelType": "analysis",
+  "panelItemId": "color-scheme"
+}
+```
+
+**Learning:** Separate concerns:
+- `actions.json` = WHAT actions exist and their metadata
+- `panels/index.tsx` = HOW panels render
+- `UniversalModal` = WHERE panels display
+
+**4. Lazy Loading for Large Component Trees**
+
+**Pattern used:**
+```typescript
+const GatheredPanel = lazy(() =>
+  import('../../components/panels/GatheredDataPanel').then(m => ({
+    default: m.default
+  }))
+);
+```
+
+**Key insight:** Wrap lazy imports that need prop adaptation:
+```typescript
+const ChatsPanel = lazy(() =>
+  import('../../components/containers/ChatsList').then(m => ({
+    default: (props: PanelContentProps) => {
+      const Component = m.default;
+      return <Component onSelected={props.onClose} />;
+    }
+  }))
+);
+```
+
+**5. PlaceholderPanel Anti-Pattern**
+
+**Problem found:** 7 actions used `PlaceholderPanel` (empty component with "coming soon" message).
+
+**Issue:** User sees actions in menu but clicking shows useless placeholder.
+
+**Solution:** Either:
+1. Create real component (preferred)
+2. Remove action from actions.json until ready
+3. Mark action as `disabled: true` in JSON
+
+**Learning:** Never ship placeholder components in production. Better to hide feature than show broken one.
+
+#### UI/UX Insights
+
+**6. Modal vs Side Panel User Preference**
+
+**User feedback:** "het panel werkt nog lang niet voor alle actions" + "bovendien ziet het er niet goed uit"
+
+**User wanted:** Centered modal popup (like activities use), NOT right-side panel.
+
+**Key difference:**
+- Side panel: Good for persistent reference while working
+- Centered modal: Good for focused task, clear action/dismiss
+
+**Learning:** Ask user about modal placement early. Default assumption (side panel for "panels") was wrong.
+
+**7. Consistent Empty States**
+
+**Pattern for new panels:**
+```tsx
+{data.length === 0 ? (
+  <div className="flex-1 flex flex-col items-center justify-center">
+    <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center mb-4">
+      <Icon className="w-10 h-10 text-muted-foreground" />
+    </div>
+    <h3 className="text-lg font-medium mb-2">Geen items gevonden</h3>
+    <p className="text-sm text-muted-foreground text-center mb-4">
+      Beschrijving van wat gebruiker kan doen.
+    </p>
+    <button className="...">Eerste item toevoegen</button>
+  </div>
+) : (
+  // List/grid content
+)}
+```
+
+**Learning:** Empty states should guide user to action, not just show "nothing here."
+
+#### Process Insights
+
+**8. 50-Expert Analysis for Comprehensive Audit**
+
+**User request:** "analyse all of them with a team of 50 relevant experts"
+
+**Approach:**
+1. Listed ALL actions from actions.json
+2. Checked each action's `panelType` against `PANEL_REGISTRY`
+3. Identified which panels used `PlaceholderPanel`
+4. Identified which panels had hardcoded empty data
+5. Categorized issues by type and priority
+
+**Output:** Structured table with action, panel, issue, and fix.
+
+**Learning:** User values systematic completeness over quick fixes. "50-expert" = comprehensive audit, not quick spot-check.
+
+**9. Unused Component Discovery**
+
+**Technique:** Compare `PANEL_REGISTRY` keys against `actions.json` panelTypes:
+```typescript
+const usedPanelTypes = new Set(actions.map(a => a.panelType));
+const allPanelTypes = Object.keys(PANEL_REGISTRY);
+const unused = allPanelTypes.filter(t => !usedPanelTypes.has(t));
+```
+
+**Found:** 13 panel types with components but no actions to access them.
+
+**Learning:** Periodically audit for "orphan" components - built but unreachable.
+
+#### Components Created
+
+| Component | Purpose | Key Feature |
+|-----------|---------|-------------|
+| `GatheredDataPanel` | Fetches actual gathered data | Uses `gatheredDataService.getAll()` |
+| `AnalysisOverviewPanel` | Shows all analysis fields | Progress tracking, generation buttons |
+| `WebsiteImportPanel` | URL-based site import | Validation, success state, navigation |
+| `MediaLibraryPanel` | Media management | Grid/list toggle, upload, search |
+| `LinksPanel` | External links CRUD | Search, add form, delete |
+| `HelpPanel` | FAQ and support | Expandable FAQ, contact options |
+
+#### User Communication Pattern
+
+**Observation:** User asks for confirmation before major changes.
+
+**Pattern:**
+1. User: "show me list... then ask me for confirmation"
+2. Claude: Presents analysis/plan
+3. User: "implement the fixes"
+4. Claude: Executes
+
+**Learning:** Don't auto-implement large changes. Present analysis → wait for explicit "go ahead."
 
 ---
