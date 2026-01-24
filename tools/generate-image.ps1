@@ -84,7 +84,7 @@ if ($Model -eq "dall-e-3") {
 $outputDir = Split-Path -Parent $OutputPath
 if ($outputDir -and -not (Test-Path $outputDir)) {
     New-Item -ItemType Directory -Path $outputDir -Force | Out-Null
-    Write-Host "✓ Created directory: $outputDir" -ForegroundColor Green
+    Write-Host "[+] Created directory: $outputDir" -ForegroundColor Green
 }
 
 # Prepare API request
@@ -111,10 +111,10 @@ if ($Model -eq "dall-e-3") {
 
 $jsonBody = $body | ConvertTo-Json
 
-Write-Host "🎨 Generating image with OpenAI DALL-E..." -ForegroundColor Cyan
-Write-Host "   Model: $Model" -ForegroundColor Gray
-Write-Host "   Size: $Size" -ForegroundColor Gray
-Write-Host "   Prompt: $Prompt" -ForegroundColor Gray
+Write-Host "[*] Generating image with OpenAI DALL-E..." -ForegroundColor Cyan
+Write-Host "    Model: $Model" -ForegroundColor Gray
+Write-Host "    Size: $Size" -ForegroundColor Gray
+Write-Host "    Prompt: $Prompt" -ForegroundColor Gray
 
 try {
     # Call OpenAI API
@@ -129,18 +129,18 @@ try {
     $revisedPrompt = $response.data[0].revised_prompt
 
     if ($revisedPrompt) {
-        Write-Host "   Revised prompt: $revisedPrompt" -ForegroundColor Gray
+        Write-Host "    Revised prompt: $revisedPrompt" -ForegroundColor Gray
     }
 
-    Write-Host "✓ Image generated successfully" -ForegroundColor Green
-    Write-Host "⬇ Downloading image..." -ForegroundColor Cyan
+    Write-Host "[+] Image generated successfully" -ForegroundColor Green
+    Write-Host "[*] Downloading image..." -ForegroundColor Cyan
 
     # Download the image
     Invoke-WebRequest -Uri $imageUrl -OutFile $OutputPath
 
     $fileInfo = Get-Item $OutputPath
-    Write-Host "✓ Image saved to: $OutputPath" -ForegroundColor Green
-    Write-Host "   Size: $([math]::Round($fileInfo.Length / 1KB, 2)) KB" -ForegroundColor Gray
+    Write-Host "[+] Image saved to: $OutputPath" -ForegroundColor Green
+    Write-Host "    Size: $([math]::Round($fileInfo.Length / 1KB, 2)) KB" -ForegroundColor Gray
 
     # Return metadata
     return @{
@@ -155,14 +155,14 @@ try {
     }
 
 } catch {
-    Write-Host "❌ Error generating image:" -ForegroundColor Red
+    Write-Host "[!] Error generating image:" -ForegroundColor Red
     Write-Host $_.Exception.Message -ForegroundColor Red
 
     if ($_.ErrorDetails) {
         $errorDetails = $_.ErrorDetails.Message | ConvertFrom-Json -ErrorAction SilentlyContinue
         if ($errorDetails.error) {
-            Write-Host "   API Error: $($errorDetails.error.message)" -ForegroundColor Red
-            Write-Host "   Type: $($errorDetails.error.type)" -ForegroundColor Red
+            Write-Host "    API Error: $($errorDetails.error.message)" -ForegroundColor Red
+            Write-Host "    Type: $($errorDetails.error.type)" -ForegroundColor Red
         }
     }
 
