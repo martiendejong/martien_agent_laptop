@@ -33,6 +33,7 @@ Any task with multiple steps should become a script. This way:
 | Unified operations | `claude-ctl.ps1 status` |
 | **Diagnosing UTF-16/encoding errors** | **`detect-encoding-issues.ps1 -ProjectPath . -Fix`** |
 | **Detecting Feature vs Debug mode** | **`detect-mode.ps1 -UserMessage "..." -Analyze`** |
+| **Generating AI images** | **`generate-image.ps1 -Prompt "..." -OutputPath "..."`** |
 
 **Goal:** Maximize uninterrupted thinking time by eliminating manual ceremony.
 
@@ -107,13 +108,14 @@ Any task with multiple steps should become a script. This way:
 | **`devtools.ps1`** | **NEW: Master toolchain orchestrator** | `devtools.ps1 list` or `devtools.ps1 health` |
 | **`detect-encoding-issues.ps1`** | **NEW: File encoding issue detector/fixer** | `detect-encoding-issues.ps1 -ProjectPath . -Fix -Recursive` |
 | **`detect-mode.ps1`** | **NEW: Feature vs Debug mode detector** | `detect-mode.ps1 -UserMessage "..." -Analyze` |
+| **`generate-image.ps1`** | **NEW: AI image generation via OpenAI DALL-E** | `generate-image.ps1 -Prompt "African house" -OutputPath "image.png"` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 
-**🎉 MILESTONE: ALL 50 RECOMMENDATIONS IMPLEMENTED! Total: 99 tools (47 original + 52 new)**
+**🎉 MILESTONE: ALL 50 RECOMMENDATIONS IMPLEMENTED! Total: 100 tools (47 original + 53 new)**
 
-**Latest additions (2026-01-20):**
-- `detect-mode.ps1` - Critical mode detection to prevent ClickUp task workflow violations
+**Latest additions (2026-01-25):**
+- `generate-image.ps1` - AI image generation using OpenAI DALL-E 2/3 with automatic download
 
 ---
 

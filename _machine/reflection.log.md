@@ -4,6 +4,172 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-25 14:30 - AI Image Generation Integration: DALL-E Tool
+
+**Capability:** AI-powered image generation via OpenAI DALL-E
+**Outcome:** SUCCESS - Full integration into agent toolset
+**Impact:** Autonomous image generation for any project need
+
+### Summary
+
+Created complete AI image generation system with two tools:
+1. **`generate-image.ps1`** - Core tool with full DALL-E API integration
+2. **`ai-image.ps1`** - Wrapper with automatic API key loading
+
+User requested: "neem deze tool nu op in jouw systeem zodat je in het vervolg in elk project afbeeldingen kunt genereren wanneer je wilt"
+
+### Implementation Details
+
+**Core Tool (generate-image.ps1):**
+- OpenAI DALL-E 2 and DALL-E 3 support
+- Configurable parameters: model, size, quality, style
+- Automatic image download and save to specified path
+- Comprehensive error handling with API error details
+- Returns metadata (revised prompt, file size, image URL)
+
+**Wrapper Tool (ai-image.ps1):**
+- Automatically loads API key from `C:\Projects\client-manager\ClientManagerAPI\appsettings.Secrets.json`
+- Simplifies usage - no need to pass API key manually
+- Delegates to generate-image.ps1 with all parameters
+
+**API Key Location:**
+```json
+// C:\Projects\client-manager\ClientManagerAPI\appsettings.Secrets.json
+{
+  "ApiSettings": {
+    "OpenApiKey": "sk-svcacct-..."
+  }
+}
+```
+
+### Usage Patterns
+
+**For Claude agents (preferred - automatic API key):**
+```powershell
+powershell.exe -File "C:/scripts/tools/ai-image.ps1" `
+    -Prompt "A traditional African house with thatched roof" `
+    -OutputPath "C:/temp/output.png" `
+    -Quality "hd"
+```
+
+**For manual use (explicit API key):**
+```powershell
+powershell.exe -File "C:/scripts/tools/generate-image.ps1" `
+    -ApiKey "sk-..." `
+    -Prompt "..." `
+    -OutputPath "..."
+```
+
+### Test Results
+
+**Test 1: Robot Logo**
+- Prompt: "A minimalist logo for a software development company, featuring a robot mascot"
+- Result: ✅ Success - 1081.46 KB, clean design with binary code elements
+- Model: DALL-E 3, Size: 1024x1024
+
+**Test 2: African House**
+- Prompt: "A traditional African house with thatched roof, mud walls, savanna landscape"
+- Result: ✅ Success - 1963.58 KB, photorealistic with acacia trees and golden sunset
+- Model: DALL-E 3, Size: 1024x1024, Quality: HD
+
+**Test 3: Futuristic City (wrapper test)**
+- Prompt: "A futuristic cityscape at night with neon lights"
+- Result: ✅ Success - 1988.1 KB, stunning cityscape with neon colors
+- Model: DALL-E 3, Quality: HD
+- **Wrapper worked perfectly** - automatic API key loading successful
+
+### Key Parameters
+
+**Model Options:**
+- `dall-e-2` - Faster, cheaper, lower quality
+- `dall-e-3` - Slower, higher quality, better prompt understanding (default)
+
+**Size Options:**
+- DALL-E 3: 1024x1024 (default), 1024x1792, 1792x1024
+- DALL-E 2: 256x256, 512x512, 1024x1024
+
+**Quality (DALL-E 3 only):**
+- `standard` (default) - Fast, cost-effective
+- `hd` - Higher detail, better quality
+
+**Style (DALL-E 3 only):**
+- `vivid` (default) - More dramatic, colorful
+- `natural` - More realistic, subdued
+
+### DALL-E 3 Prompt Revision
+
+DALL-E 3 automatically revises prompts for better results. Examples from tests:
+
+**Original:** "A minimalist logo for a software development company, featuring a robot mascot"
+**Revised:** "Design a minimalist logo for a hypothetical software development company. The design should make use of a blue and white color scheme and feature a friendly robot as a prominent mascot..."
+
+**Original:** "A traditional African house with thatched roof, mud walls"
+**Revised:** "A typical African hut, uniquely characterized by its thatched roof and walls made of mud, encompassed within the boundless expanse of a savanna landscape..."
+
+### Documentation Updates
+
+1. **CLAUDE.md** - Added to Essential Tools Quick Reference:
+   - Quick reference entry: "Generating AI images"
+   - Tools table entry with example
+   - Updated tool count: 100 tools (47 original + 53 new)
+
+2. **tools/generate-image.ps1** - Created with full documentation
+3. **tools/ai-image.ps1** - Created wrapper with automatic API key loading
+
+### Use Cases
+
+**When to use AI image generation:**
+- Marketing materials (website images, social media)
+- Placeholder images for development
+- UI/UX mockups and concepts
+- Documentation illustrations
+- Blog post headers
+- Product visualization
+- Brand identity exploration
+- User onboarding graphics
+- Error state illustrations
+- Empty state designs
+
+**Best practices:**
+- Be specific in prompts (colors, style, composition, lighting)
+- Use HD quality for production images
+- Use standard quality for quick iterations
+- Specify aspect ratio based on usage (1024x1024 square, 1792x1024 landscape, 1024x1792 portrait)
+- Review revised prompt to understand what DALL-E interpreted
+- Save images with descriptive filenames
+
+### Integration Status
+
+✅ **Tool created and tested**
+✅ **Wrapper with auto API key loading**
+✅ **Documentation updated (CLAUDE.md)**
+✅ **Reflection log entry created**
+✅ **Committed to git repository**
+✅ **Available for immediate use**
+
+### Future Enhancements
+
+**Potential improvements:**
+- Batch generation (multiple images from prompts list)
+- Style presets (logo, photo, illustration, sketch)
+- Integration with client-manager for campaign image generation
+- Automatic optimization for web (resize, compress)
+- Image variant generation (same prompt, different seeds)
+- Cost tracking (API usage monitoring)
+
+### Pattern for Future
+
+**Creating new AI/ML capabilities:**
+1. Build core tool with full API integration
+2. Create wrapper for simplified agent usage
+3. Store API keys in appsettings.Secrets.json
+4. Test thoroughly with real-world examples
+5. Document in CLAUDE.md and reflection log
+6. Commit to git
+7. Consider future enhancements
+
+---
+
 ## 2026-01-24 13:00 - Worktree Exception: Simple Websites Workflow
 
 **Project:** hydro-vision-website (and similar simple sites)
