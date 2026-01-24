@@ -4,6 +4,78 @@ This file tracks learnings, mistakes, and improvements across agent sessions.
 
 ---
 
+## 2026-01-24 13:00 - Worktree Exception: Simple Websites Workflow
+
+**Project:** hydro-vision-website (and similar simple sites)
+**Outcome:** SUCCESS - Documented explicit exception to worktree protocol
+**Impact:** Streamlined workflow for simple projects
+
+### Summary
+
+User explicitly requested that simple websites like hydro-vision-website should be edited directly in `C:\Projects\<repo>` on main branch WITHOUT using worktree workflow. This is a valid exception for single-developer, simple projects where fast iteration is more important than strict process.
+
+### Key Learnings
+
+**Not all projects require worktree workflow:**
+- Simple static websites (Vite + React, no complex dependencies)
+- Single developer projects
+- No CI/CD complexity requiring isolation
+- User prefers fast iteration over PR review process
+
+**What makes a project "worktree-exempt":**
+1. Simple tech stack (no complex build verification)
+2. Single developer (no collaboration conflicts)
+3. Fast deployment workflow (direct to main is acceptable)
+4. User explicitly requests exemption
+5. Low risk of breaking changes
+
+### Documentation Updates
+
+**Updated files:**
+1. **MACHINE_CONFIG.md** - Added Project 2: hydro-vision-website section with explicit worktree exception
+2. **GENERAL_ZERO_TOLERANCE_RULES.md** - Added "EXCEPTIONS TO WORKTREE RULES" section
+3. **reflection.log.md** - This entry
+
+**New workflow for hydro-vision-website:**
+```bash
+# ✅ CORRECT for exempt projects
+cd C:/Projects/hydro-vision-website
+# Edit files directly on main branch
+git add .
+git commit -m "..."
+git push origin main
+
+# ❌ WRONG - Don't use worktrees for exempt projects
+# Don't: allocate worktree, create feature branches, create PRs
+```
+
+### Pattern for Future
+
+**Before applying worktree workflow, check:**
+1. Read `MACHINE_CONFIG.md` § Projects
+2. Check if project has "WORKTREE EXCEPTION" marker
+3. If exempt: work directly in base repo
+4. If not exempt: follow standard worktree protocol
+
+**When to add new exceptions:**
+- User explicitly requests simplified workflow
+- Project meets "simple project" criteria
+- Document in MACHINE_CONFIG.md with rationale
+
+### Mistakes Avoided
+
+**Previous behavior:**
+- Would allocate worktree for ALL projects regardless of complexity
+- Overhead of worktree workflow slowed down simple site updates
+- User had to wait for branch creation, PR process for trivial changes
+
+**Improved behavior:**
+- Check MACHINE_CONFIG.md for exemptions first
+- Apply appropriate workflow based on project type
+- Respect user's preference for simplified workflow on simple projects
+
+---
+
 ## 2026-01-23 23:30 - NullReferenceException Fix: UserService Dependency Injection
 
 **Project:** client-manager / Hazina framework

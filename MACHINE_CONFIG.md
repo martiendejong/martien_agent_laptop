@@ -73,6 +73,36 @@ MACHINE_CONTEXT_PATH=C:\scripts\_machine
 
 ---
 
+### Project 2: hydro-vision-website
+**Type:** Simple marketing website (Vite + React + TypeScript + Tailwind)
+
+**Paths:**
+- Code: `C:\Projects\hydro-vision-website`
+
+**Main Branch:**
+- `main`
+
+**⚠️ WORKTREE EXCEPTION:**
+**For this project and similar simple websites:**
+- ❌ **DO NOT** allocate worktrees
+- ❌ **DO NOT** create feature branches
+- ✅ **EDIT DIRECTLY** in `C:\Projects\hydro-vision-website` on `main` branch
+- ✅ Commit and push directly to main
+- ✅ No PR required for simple changes
+
+**Rationale:**
+- Simple static website with single developer
+- No complex dependencies or build verification needed
+- Fast iteration workflow preferred
+- User explicitly exempted this project from worktree protocol
+
+**Development Environment:**
+- Stack: Vite + React 18 + TypeScript + Tailwind CSS + shadcn-ui
+- Run: `npm run dev` (user runs, not Claude)
+- Build: `npm run build`
+
+---
+
 ## 🔗 Paired Worktree Allocation (Pattern 73)
 
 **CRITICAL FOR THIS MACHINE:** client-manager depends on Hazina framework.

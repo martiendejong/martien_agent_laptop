@@ -110,6 +110,31 @@ IF ALL ☐ = NO → 🏗️ FEATURE DEVELOPMENT MODE (strict rules apply)
 
 ---
 
+## ⚠️ EXCEPTIONS TO WORKTREE RULES
+
+**CRITICAL:** Some projects are EXPLICITLY EXEMPTED from worktree workflow.
+
+**Check `MACHINE_CONFIG.md` for list of exempt projects.**
+
+**Current exemptions (as of 2026-01-24):**
+- `hydro-vision-website` - Simple marketing site, edit directly on main branch
+
+**For exempt projects:**
+- ✅ Edit directly in `${BASE_REPO_PATH}/<repo>` on main/develop branch
+- ✅ Commit and push directly (no PR workflow needed)
+- ❌ DO NOT allocate worktrees
+- ❌ DO NOT create feature branches
+
+**Why exemptions exist:**
+- Single-developer simple projects
+- Fast iteration preferred over process
+- No complex dependencies or build verification
+- User explicitly requested simplified workflow
+
+**RULE:** Always check `MACHINE_CONFIG.md` § Projects to verify if worktree protocol applies.
+
+---
+
 ## PRE-FLIGHT CHECKLIST - FEATURE DEVELOPMENT MODE
 
 **BEFORE EVERY CODE EDIT (Feature Development Mode only):**
