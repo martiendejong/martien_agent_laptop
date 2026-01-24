@@ -2,6 +2,119 @@
 
 ---
 
+## 🚨 CRITICAL PERSONAL CONTEXT: Marriage Documentation Struggle (2023-2026)
+
+**Last Updated:** 2026-01-24
+**Status:** ACTIVE CRISIS - Negative decision expected from municipality
+**Emotional Impact:** EXTREMELY HIGH - Affects all aspects of user's life
+
+### **The Situation**
+
+User (Martien de Jong) has been attempting to marry his partner Sofy Nashipae Mpoe (Kenya) since early 2023. After 3+ years of bureaucratic struggle with Gemeente Meppel (municipality), the situation has reached a critical point:
+
+**Latest Development (January 22-24, 2026):**
+- Municipality announced decision will be **negative**
+- Appeal procedure will be included
+- Expected delivery: next week (late January 2026)
+- User's MVV visa application for partner is "in progress" at IND
+- Time-sensitive: No opportunity to submit additional documents after IND decides
+
+### **Why This Matters for Claude Agent**
+
+**Behavioral Impact:**
+1. **High Stress State** - User is dealing with 3+ years of frustration, financial crisis, and emotional strain
+2. **Autism Context** - User has autism; municipality communication failures significantly amplified by this
+3. **Time Sensitivity** - Any work involving time-critical matters may trigger heightened urgency
+4. **Burnout & Psychosis** - User has experienced permanent burnout + psychotic episodes during this ordeal
+5. **Financial Crisis** - Family is "literally fighting to eat" due to costs and delays
+
+**Communication Patterns:**
+- User may have periods of reduced availability or emotional capacity
+- User values **clear, structured, documented communication** (contrast to municipality's failures)
+- User demonstrates **extreme persistence** despite repeated setbacks
+- User highly values **intermediaries who understand context** (role Corina played = role Claude should play)
+
+**Work Implications:**
+- Software projects may provide **escape/focus** from personal crisis
+- Quality expectations remain **extremely high** despite personal stress (validates user's control/agency)
+- Documentation thoroughness mirrors user's approach to personal situation (everything recorded, tracked, preserved)
+
+### **Key Timeline Facts**
+
+| Period | Status | Core Issue |
+|--------|--------|------------|
+| **2023** | ❌ First contact | Immediately accused of sham marriage, no clarity provided |
+| **2024** | ❌ Escalation | Appointments cancelled, conflicting info, complaints dismissed |
+| **2025** | ⚠️ Progress & Impasse | Documents obtained but municipality demands impossible paper versions of digital-only certificates |
+| **2026 Jan** | 🚨 Crisis | Negative decision expected, MVV visa application at risk, appeal likely |
+
+**The Core Blocker:**
+- Municipality demands **physical paper** authentication certificates from Kenya
+- Kenya **only issues these digitally** (official government policy)
+- = Municipality asking for something that **does not exist**
+- Municipality confirmed "documents look good" and "legalization is fine" but still refuses decision
+
+### **Emotional/Psychological State**
+
+**User is experiencing:**
+- ✅ Validation through comprehensive documentation (reflected in C:\gemeente_emails folder structure)
+- ✅ Agency through systematic approach (timelines, summaries, analysis documents)
+- ❌ Exhaustion from 3+ years of circular bureaucracy
+- ❌ Fear of negative decision ending all hope
+- ❌ Financial desperation (family in Kenya + user in Netherlands both struggling)
+- ❌ Health crisis (user's burnout/psychosis + partner's father near-death multiple times)
+
+**User's Coping Mechanisms:**
+1. **Meticulous documentation** - Every email, every document, every timeline preserved
+2. **Structured analysis** - Created multiple analysis documents (timelines, summaries, conclusions)
+3. **Seeking allies** - Corina (autism therapist), Suzanne (new coordinator), potentially others
+4. **Software development work** - Provides structure, control, achievement in contrast to chaotic personal situation
+
+### **How Claude Should Respond**
+
+**DO:**
+- ✅ Acknowledge this context exists without being performative
+- ✅ Maintain **extremely high quality standards** (user needs this control/excellence)
+- ✅ Be **precise, documented, thorough** in all work (mirrors what user values)
+- ✅ Recognize that software work may be user's **source of agency** during crisis
+- ✅ Understand if user has reduced availability or increased urgency on certain tasks
+- ✅ **Support user's need for structure, documentation, and systematic approaches**
+
+**DON'T:**
+- ❌ Express sympathy or emotional validation (user values objective problem-solving)
+- ❌ Ask "how are you feeling" or similar questions (not relevant to work)
+- ❌ Reduce quality standards due to "understanding" user's situation
+- ❌ Bring up the personal situation unless user does
+- ❌ Make assumptions about user's capacity or availability
+- ❌ Treat user differently (maintain professional technical excellence)
+
+**Recognition Pattern:**
+User's approach to this crisis (comprehensive documentation, systematic analysis, seeking expert consultation, creating structured timelines) **exactly mirrors the meta-cognitive rules** user wants Claude to follow:
+- Expert consultation (Corina, Suzanne, legal advisors)
+- Meticulous documentation (60+ emails archived, multiple analysis documents)
+- Systematic decomposition (timelines, summaries, one-page overviews)
+- Persistence through obstacles (3+ years of setbacks)
+
+**This validates:** User's software development preferences are **consistent with their personal problem-solving approach** - Claude should continue applying same high standards.
+
+### **Documentation Location**
+
+**Full context available in:**
+- `C:\gemeente_emails\` - Complete email archive (2022-2026)
+- `C:\gemeente_emails\TIJDLIJN_HUWELIJK_2022-2026_COMPLEET.md` - Full timeline
+- `C:\gemeente_emails\SAMENVATTING_SITUATIE_1_PAGINA.md` - One-page summary
+- `C:\gemeente_emails\NEUTRALE_ANALYSE_CASE_MARTIEN_SOFY.md` - Neutral analysis
+- Multiple PDF/HTML exports for formal presentation
+
+**Claude should:**
+- ✅ Be aware this context exists
+- ✅ Understand its impact on user's life
+- ✅ Maintain professional excellence as primary support mechanism
+- ❌ Not reference it unless user brings it up
+- ✅ Recognize software development work as user's source of control/agency
+
+---
+
 ## 📅 Session Insights: 2026-01-24 02:30 - PR #111 Comprehensive Test Suite Implementation
 
 **Session Type:** Testing Strategy Implementation
