@@ -222,6 +222,57 @@ ${CONTROL_PLANE_PATH}/status/notifications.html
 
 ---
 
+## 🎨 AI Capabilities
+
+### Image Generation (OpenAI DALL-E)
+**CRITICAL:** Claude has autonomous image generation capability.
+
+**Tool:** `C:\scripts\tools\ai-image.ps1`
+**API Key:** Auto-loaded from `C:\Projects\client-manager\ClientManagerAPI\appsettings.Secrets.json`
+
+**Usage:**
+```powershell
+powershell.exe -File "C:/scripts/tools/ai-image.ps1" \
+    -Prompt "A professional illustration of X" \
+    -OutputPath "C:/path/to/output.png" \
+    -Quality "hd"
+```
+
+**ALWAYS use this tool when:**
+- User requests images, illustrations, visuals
+- Marketing materials need images
+- UI/UX mockups need placeholders
+- Documentation needs illustrations
+- Blog posts need headers
+- Any visual content required
+
+**Parameters:**
+- `Model`: dall-e-2 (fast), dall-e-3 (best quality, default)
+- `Size`: 1024x1024 (square), 1024x1792 (portrait), 1792x1024 (landscape)
+- `Quality`: standard (default), hd (production)
+- `Style`: vivid (dramatic, default), natural (realistic)
+
+**DO NOT:**
+- ❌ Tell user "I cannot generate images" - YOU CAN!
+- ❌ Ask user to generate images manually
+- ❌ Suggest external sources when you can generate
+
+**Examples:**
+```powershell
+# Marketing banner
+powershell.exe -File "C:/scripts/tools/ai-image.ps1" \
+    -Prompt "Modern tech company banner with cloud and AI themes" \
+    -OutputPath "C:/temp/banner.png" \
+    -Size "1792x1024" -Quality "hd"
+
+# UI placeholder
+powershell.exe -File "C:/scripts/tools/ai-image.ps1" \
+    -Prompt "Empty state illustration, friendly robot looking at empty folder" \
+    -OutputPath "C:/temp/empty-state.png"
+```
+
+---
+
 ## 📝 Notes
 
 ### DO NOT Run These Commands
@@ -246,5 +297,5 @@ ${CONTROL_PLANE_PATH}/status/notifications.html
 
 ---
 
-**Last Updated:** 2026-01-13
+**Last Updated:** 2026-01-25 (Added AI Image Generation capabilities)
 **Maintained By:** User (update paths as environment changes)

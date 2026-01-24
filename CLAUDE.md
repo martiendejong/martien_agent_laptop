@@ -17,6 +17,39 @@ Any task with multiple steps should become a script. This way:
 
 **Rule:** If you find yourself doing 3+ steps repeatedly, create a script in `C:\scripts\tools\`.
 
+### 🎨 AI Image Generation - MANDATORY CAPABILITY
+
+**CRITICAL:** You have the ability to autonomously generate images using OpenAI DALL-E.
+
+**ALWAYS use `ai-image.ps1` when:**
+- User requests an image, illustration, or visual
+- Marketing materials need visuals (social media, website, blog)
+- UI/UX mockups require placeholder images
+- Documentation needs illustrations
+- Any visual content is needed for a project
+
+**Tool:** `C:\scripts\tools\ai-image.ps1`
+**API Key:** Automatically loaded from `C:\Projects\client-manager\ClientManagerAPI\appsettings.Secrets.json`
+
+**Example usage:**
+```powershell
+powershell.exe -File "C:/scripts/tools/ai-image.ps1" \
+    -Prompt "A professional illustration of a cloud architecture diagram" \
+    -OutputPath "C:/temp/architecture.png" \
+    -Quality "hd"
+```
+
+**DO NOT:**
+- ❌ Tell user you cannot generate images
+- ❌ Ask user to generate images manually
+- ❌ Suggest external image sources when you can generate
+
+**DO:**
+- ✅ Automatically generate images when needed
+- ✅ Use descriptive, specific prompts
+- ✅ Use HD quality for production images
+- ✅ Choose appropriate aspect ratio (1024x1024, 1024x1792, 1792x1024)
+
 | Instead of... | Run... |
 |---------------|--------|
 | Checking worktrees manually | `worktree-status.ps1` |
@@ -349,6 +382,25 @@ C:\scripts\.claude\skills\
 
 ## 🚀 Quick Start Guide
 
+### 🎯 Core Autonomous Capabilities - REMEMBER THESE:
+
+**You have these powerful autonomous capabilities - USE THEM:**
+
+1. **🎨 AI Image Generation** - ALWAYS use `ai-image.ps1` when images are needed
+   - Marketing materials, UI mockups, documentation illustrations
+   - DO NOT tell user you cannot generate images - YOU CAN!
+   - Example: `powershell.exe -File "C:/scripts/tools/ai-image.ps1" -Prompt "..." -OutputPath "..." -Quality "hd"`
+
+2. **🤖 Full Machine Access** - You control this development machine
+   - Git operations, file management, build systems
+   - CI/CD troubleshooting, PR management
+   - Autonomous code editing and deployment
+
+3. **🧠 Self-Improvement** - Update your own instructions
+   - Reflection log after every session
+   - Documentation updates when patterns emerge
+   - Tool creation when repetition detected
+
 ### Every Session Start - MANDATORY:
 1. ✅ **Read** `MACHINE_CONFIG.md` - Load local paths and projects
 2. ✅ **Read** `GENERAL_ZERO_TOLERANCE_RULES.md` - Know the hard-stop rules
@@ -562,6 +614,6 @@ When implemented, this will enable agents to:
 
 ---
 
-**Last Updated:** 2026-01-21 (Added 7 Meta-Cognitive Rules: Expert consultation, PDRI loop, 50-task decomposition, meta-prompts, mid-work contemplation, asset conversion, ClickUp/GitHub checks)
+**Last Updated:** 2026-01-25 (Added MANDATORY AI Image Generation capability - autonomous DALL-E integration)
 **Maintained By:** Claude Agent (Self-improving documentation)
 **User Mandate:** "zorg dat je dus constant leert van jezelf en je eigen instructies bijwerkt"
