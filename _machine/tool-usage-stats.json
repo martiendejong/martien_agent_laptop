@@ -20,8 +20,8 @@
                                         },
                   "monitor-activity":  {
                                            "FirstUsed":  "2026-01-25 16:42:47",
-                                           "TotalCalls":  8,
-                                           "LastUsed":  "2026-01-25 19:32:59",
+                                           "TotalCalls":  10,
+                                           "LastUsed":  "2026-01-25 19:46:37",
                                            "RecentCalls":  0
                                        },
                   "clickup-sync":  {
@@ -32,20 +32,20 @@
                                    },
                   "ai-image":  {
                                    "FirstUsed":  "2026-01-25 19:33:34",
-                                   "TotalCalls":  1,
-                                   "LastUsed":  "2026-01-25 19:33:34",
+                                   "TotalCalls":  2,
+                                   "LastUsed":  "2026-01-25 19:46:34",
                                    "RecentCalls":  0
                                },
                   "ai-image-universal":  {
                                              "FirstUsed":  "2026-01-25 19:33:34",
-                                             "TotalCalls":  1,
-                                             "LastUsed":  "2026-01-25 19:33:34",
+                                             "TotalCalls":  2,
+                                             "LastUsed":  "2026-01-25 19:46:34",
                                              "RecentCalls":  0
                                          },
                   "generate-image-advanced":  {
                                                   "FirstUsed":  "2026-01-25 19:33:34",
-                                                  "TotalCalls":  1,
-                                                  "LastUsed":  "2026-01-25 19:33:34",
+                                                  "TotalCalls":  2,
+                                                  "LastUsed":  "2026-01-25 19:46:34",
                                                   "RecentCalls":  0
                                               },
                   "ai-vision":  {
@@ -53,6 +53,12 @@
                                     "TotalCalls":  1,
                                     "LastUsed":  "2026-01-25 19:34:19",
                                     "RecentCalls":  0
-                                }
+                                },
+                  "worktree-allocate":  {
+                                            "FirstUsed":  "2026-01-25 19:47:50",
+                                            "TotalCalls":  1,
+                                            "LastUsed":  "2026-01-25 19:47:50",
+                                            "RecentCalls":  0
+                                        }
               }
 }

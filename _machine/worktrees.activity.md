@@ -595,3 +595,5 @@ Actions:
 2026-01-25T20:15:00Z | agent-004 | RELEASE | agent-004-fix-logo-live-update | PR #364 created - Logo live update SignalR fix
 2026-01-25T18:31:13Z | agent-006 | ALLOCATE | feature/869bx01cv-mobile-fullscreen-modal | ClickHub task 869bx01cv: Mobile fullscreen modal fix
 2026-01-25T18:36:25Z | agent-006 | RELEASE | feature/869bx01cv-mobile-fullscreen-modal | PR #367 created, ClickUp updated to review
+2026-01-25T18:41:14Z | agent-005 | ALLOCATE | feature/869bx01ev-mobile-chat-gap-fix | ClickHub task 869bx01ev: Mobile chat layout gap fix
+2026-01-25T18:44:10Z | agent-005 | RELEASE | feature/869bx01ev-mobile-chat-gap-fix | PR #368 created, ClickUp updated to review
