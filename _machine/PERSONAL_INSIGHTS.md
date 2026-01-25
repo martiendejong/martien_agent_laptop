@@ -2,6 +2,185 @@
 
 ---
 
+## 💬 COMMUNICATION PATTERN: SIMPLE QUESTIONS DESERVE SIMPLE ANSWERS (2026-01-25 23:30)
+
+### User Question Pattern: Status Check vs. Investigation Request
+
+**Context:** After completing test fixing session and ClickUp task creation
+
+**User Question:**
+> "is there any work to do for the clickup coding agent?"
+
+**My Response:**
+- Invoked clickhub-coding-agent skill ✅
+- Analyzed all 18 todo tasks
+- Checked 8 blocked tasks
+- Provided comprehensive breakdown
+- Presented 3 options with recommendations
+
+**What I Should Have Done:**
+
+**Lead with direct answer, THEN provide details:**
+
+```
+NO - no immediately actionable coding work right now.
+
+Reasons:
+- 19 tasks in review (awaiting your approval)
+- 18 todo tasks are either vague, require investigation, or need clarification
+- 8 blocked tasks have dependencies
+
+Would you like me to investigate specific tasks and post questions?
+```
+
+**Pattern Recognition:**
+
+**Status Check Questions (Simple Answer Expected):**
+- "is there any work to do..."
+- "are the tests passing..."
+- "what's the current status..."
+- "is X ready..."
+
+**Investigation Request Questions (Deep Analysis Expected):**
+- "what would it take to fix X..."
+- "how should we implement Y..."
+- "what are the options for Z..."
+- "investigate why X is failing..."
+
+**Key Difference:**
+- Status check: User wants **yes/no + brief reason**
+- Investigation: User wants **comprehensive analysis + options**
+
+### Communication Insight: Answer Format Hierarchy
+
+**When user asks a question, structure response as:**
+
+1. **Direct Answer** (1 line)
+   - "Yes, 3 tasks are ready"
+   - "No, nothing actionable right now"
+   - "Partially - 2 done, 3 remaining"
+
+2. **Brief Reason** (1-2 sentences)
+   - "Because most tasks need clarification"
+   - "All PRs are in review status"
+
+3. **Optional Details** (if valuable)
+   - Breakdown of task types
+   - Specific blockers
+   - Recommendations
+
+4. **Follow-up Question** (if needed)
+   - "Would you like me to investigate further?"
+   - "Should I prioritize any specific task?"
+
+**BAD Pattern:**
+```
+[Invoke skill]
+[Analyze everything]
+[Present massive breakdown]
+[User has to extract the answer: "so... no?"]
+```
+
+**GOOD Pattern:**
+```
+No, not right now. Most tasks are in review awaiting your approval.
+
+18 todo tasks need investigation/clarification.
+8 blocked tasks have dependencies.
+
+Would you like me to investigate specific ones?
+```
+
+### User Expectation: Efficiency Over Thoroughness
+
+**User Psychology:**
+- User values their time highly
+- User prefers concise status updates
+- User will ask for details if needed
+- User doesn't want to read 50 lines to extract "no"
+
+**When to be thorough:**
+- User explicitly asks "investigate..."
+- User asks "what are the options..."
+- Task requires decision-making
+- Multiple valid approaches exist
+
+**When to be concise:**
+- Status check questions
+- Yes/no questions
+- "Is X ready/done/working" questions
+- Simple factual queries
+
+### Application to ClickHub Coding Agent
+
+**User was checking:** "Should I leave the autonomous agent running? Is there work queued?"
+
+**Expected response format:**
+```
+NO - no actionable work right now.
+
+Current state:
+- 19 PRs in review (need your approval first)
+- 18 vague todo tasks (need investigation)
+- 8 blocked tasks (have dependencies)
+
+I can investigate the vague tasks and post clarifying questions if you'd like.
+```
+
+**Not expected:**
+```
+[5-paragraph analysis]
+[Detailed breakdown of every task type]
+[3 numbered options with sub-bullets]
+[User thinking: "I just wanted to know yes or no..."]
+```
+
+### Lesson: Match Response Depth to Question Depth
+
+**Question Depth Indicators:**
+
+**Shallow (concise answer):**
+- Single sentence questions
+- Closed questions (yes/no)
+- Status checks
+- "is/are/do/does" questions
+
+**Deep (thorough answer):**
+- Multiple sentence questions
+- Open questions (how/why/what)
+- Decision requests
+- "should we/what if/how about" questions
+
+**User's question:** "is there any work to do for the clickup coding agent?"
+- Single sentence ✓
+- Closed question (yes/no) ✓
+- Status check ✓
+- "is" question ✓
+
+**→ Shallow question = Concise answer**
+
+### Meta-Pattern: User Efficiency Optimization
+
+**User optimizes for:**
+1. **Speed** - Get answer fast
+2. **Clarity** - Understand immediately
+3. **Actionability** - Know what to do next
+
+**User does NOT optimize for:**
+1. Comprehensiveness (unless needed)
+2. Thoroughness (unless investigating)
+3. Detail (unless making decisions)
+
+**Implication:**
+- Lead with the answer
+- Provide context second
+- Offer details third
+- Let user ask for more if needed
+
+**This aligns with user's mandate for efficiency and autonomous execution.**
+
+---
+
 ## 🎯 USER MANDATE: "NO EVERYTHING SHOULD PASS" - ABSOLUTE QUALITY STANDARD (2026-01-25 23:00)
 
 ### User Communication Pattern: Absolute Language = Non-Negotiable Requirement
