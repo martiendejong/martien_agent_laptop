@@ -110,6 +110,9 @@ powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
 | **🆕 Finding N+1 query performance issues** | **`n-plus-one-query-detector.ps1`** |
 | **🆕 Detecting flaky tests** | **`flaky-test-detector.ps1 -Iterations 10`** |
 | **🆕 DAILY tool review (end of session)** | **`daily-tool-review.ps1`** |
+| **🆕 Multi-agent work queue coordination** | **`agent-work-queue.ps1 -Action list`** |
+| **🆕 Track tool usage (validate estimates)** | **`usage-heatmap-tracker.ps1 -Action report`** |
+| **🆕 Calculate deployment risk score** | **`deployment-risk-score.ps1 -Threshold 70`** |
 
 **Goal:** Maximize uninterrupted thinking time by eliminating manual ceremony.
 
@@ -198,21 +201,28 @@ powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
 | **`n-plus-one-query-detector.ps1`** | **NEW: Find N+1 query performance issues (EF Core)** | `n-plus-one-query-detector.ps1` |
 | **`flaky-test-detector.ps1`** | **NEW: Find non-deterministic tests via repeated runs** | `flaky-test-detector.ps1 -Iterations 10` |
 | **`daily-tool-review.ps1`** | **NEW: DAILY mandatory end-of-session tool wishlist review** | `daily-tool-review.ps1` |
+| **`agent-work-queue.ps1`** | **WAVE 2: Multi-agent task coordination (claim/release protocol)** | `agent-work-queue.ps1 -Action list` |
+| **`usage-heatmap-tracker.ps1`** | **WAVE 2: Track actual tool usage, validate value estimates** | `usage-heatmap-tracker.ps1 -Action report -TimeRange week` |
+| **`deployment-risk-score.ps1`** | **WAVE 2: Calculate deployment risk, prevent production incidents** | `deployment-risk-score.ps1 -Threshold 70` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 
-**🎉 MILESTONE: 107 tools implemented! (47 original + 54 recommended + 6 meta-optimization)**
+**🎉 MILESTONE: 110 tools implemented! (47 original + 54 recommended + 6 Wave 1 + 3 Wave 2)**
 
 **Latest additions (2026-01-25):**
 - `ai-image.ps1` - Universal AI image generation (4 providers, 4 modes, reference images)
 - `ai-vision.ps1` - Ask questions about images (4 providers, multi-image support, OCR)
-- **🆕 META-OPTIMIZATION TOOLS** (50-expert analysis, value/effort ratio optimized):
+- **🆕 META-OPTIMIZATION WAVE 1** (50-expert analysis, dev productivity focus):
   - `context-snapshot.ps1` - Save/restore work context (ratio 10.0)
   - `code-hotspot-analyzer.ps1` - Refactoring priorities (ratio 9.0)
   - `unused-code-detector.ps1` - Dead code elimination (ratio 9.0)
   - `n-plus-one-query-detector.ps1` - Performance issue finder (ratio 6.7)
   - `flaky-test-detector.ps1` - Non-deterministic test detector (ratio 6.0)
-  - `daily-tool-review.ps1` - **DAILY mandatory review** (auto-detect patterns, enforce continuous improvement)
+  - `daily-tool-review.ps1` - DAILY mandatory review (auto-detect patterns)
+- **🆕 META-OPTIMIZATION WAVE 2** (blind spot analysis, collaboration + production focus):
+  - `agent-work-queue.ps1` - Multi-agent coordination (ratio 10.0)
+  - `usage-heatmap-tracker.ps1` - Usage analytics + estimate validation (ratio 6.0)
+  - `deployment-risk-score.ps1` - Production safety (ratio 6.7)
 
 ---
 
@@ -689,6 +699,6 @@ When implemented, this will enable agents to:
 
 ---
 
-**Last Updated:** 2026-01-25 (Meta-Optimization: DAILY review cadence + 6 tools + continuous discovery system)
+**Last Updated:** 2026-01-25 (Wave 2: Blind spot analysis + multi-agent + production safety - 9 tools total, 206 identified)
 **Maintained By:** Claude Agent (Self-improving documentation)
 **User Mandate:** "zorg dat je dus constant leert van jezelf en je eigen instructies bijwerkt"
