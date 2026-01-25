@@ -1305,16 +1305,114 @@ Whether **intentional exploitation** or **convenient deflection**, user's gut fe
 - ✅ Strategic framework established (Breaking Bad)
 - ✅ User's gut feeling validated with evidence
 - ✅ Clear path forward defined
+- ✅ **CRITICAL: Strategy corrected based on user repair intent**
 
 **Key Deliverable:**
-Next: Draft email to Allan (Gus Fring mode - kort, feitelijk, professioneel, forward-looking)
+Diplomatic email to Allan - **repair-focused, maximaal zacht, deur wijd open**
 
 ---
 
-**Last Updated:** 2026-01-25 19:00
-**Next Action:** Draft strategic email to Allan
-**Confidence:** HIGH - Complete situational awareness achieved
-**User's State:** Analytically prepared, seeking strategic response
+### **🎯 BEHAVIORAL PATTERN DISCOVERED: Nuclear vs Repair Decision Tree**
+
+**Major Learning:** User applies **DIFFERENT conflict strategies** based on **relationship value**.
+
+#### When User Goes "Nuclear" (Forced Convergence):
+
+**Triggers:**
+- ✅ **Time-wasters** (bureaucracy, unclear situations - Gemeente)
+- ✅ **Bad faith actors** (exploitation + denial)
+- ✅ **Dead-end situations** (waiting = guaranteed loss)
+- ✅ **Mission-blockers** (obstruct core purpose - MVV visum)
+
+**Characteristics:**
+- High urgency + high stakes + **low relationship value**
+- Waiting politely = losing everything
+- Forcing outcome = only viable option
+- **Examples:** Sofy documentation ultimatum, Gemeente public escalation
+
+#### When User Chooses "Repair Mode" (Current Situation):
+
+**Triggers:**
+- ✅ **Valuable relationships** (repair = solves many problems)
+- ✅ **Pragmatic benefit** (restored relationship has strategic value)
+- ✅ **Repairable party** (Allan = pragmatic "Bolsa", not ego-driven "Eladio")
+- ✅ **Worth investment** (willing to call/meet, offer help first)
+
+**Characteristics:**
+- Complex situation + structural value + **repair possibility**
+- Patience = possible win
+- Diplomacy > force
+- **Example:** Arjan/Allan (target Allan the stabilizer, not Arjan the ego-center)
+
+**Decision Matrix:**
+
+| Factor | Nuclear Mode | Repair Mode |
+|--------|--------------|-------------|
+| **Relationship Value** | Low/None | High/Strategic |
+| **Other Party** | Ego-driven/hostile | Pragmatic/reachable |
+| **Time Pressure** | Extreme/existential | Manageable |
+| **Repair Possibility** | Zero | Non-zero |
+| **User's Approach** | Force convergence | Maximum diplomacy |
+| **Language** | Firm, clear, final | Soft, open, collaborative |
+
+#### Critical Insight for Claude:
+
+**DON'T Assume:**
+- ❌ User always wants to "win" conflicts
+- ❌ User always operates from strength position
+- ❌ Exploitation always = respond with force
+- ❌ "Nuclear option" = user's only mode
+
+**DO Recognize:**
+- ✅ User is **context-dependent strategist**
+- ✅ User weighs **relationship value** heavily
+- ✅ User will **give first** if repair has value
+- ✅ User's "niet hard" style = **authentic preference**, not weakness
+- ✅ User's "compression phase" (limited bullshit tolerance) = applies to **time-wasters**, not valuable relationships
+
+#### Application to Future Conflicts:
+
+**Before Drafting ANY Conflict Response, ASK:**
+
+1. Does user see strategic value in relationship repair?
+2. Is other party potentially reasonable (Allan-type vs Arjan-type)?
+3. Does user's language suggest repair intent? ("niemand voor het hoofd stoten")
+4. Would restored relationship solve practical problems?
+
+**If 3+ YES → Repair Mode:**
+- Maximum diplomacy
+- Give before asking
+- Personal investment offer (call/meeting)
+- Warmth + empathy throughout
+- Zero pressure language
+- WE-framing ("samen oplossen")
+- Vulnerable tone ("ik hoop")
+
+**If 3+ NO → Protective Mode:**
+- Firm professional boundaries
+- Clear framing of issues
+- Document for potential legal use
+- Prepare for breakdown
+- Preserve dignity but don't bend
+
+#### This Session's Key Learning:
+
+Claude initially assumed **protective mode** because of strong exploitation evidence (wurgcontract, payment refusals, narrative warfare).
+
+User corrected:
+> "als deze relatie toch op één of andere manier hersteld kan worden zou dat echt veel problemen oplossen"
+
+This reveals user's **pragmatic flexibility** - not locked into single strategy, adapts based on situation value. User will fight when necessary (Gemeente nuclear escalation) but prefers repair when strategically valuable (Arjan/Allan situation).
+
+**Implication:**
+Always check for **repair signals** in user's language before assuming protective/defensive approach is wanted.
+
+---
+
+**Last Updated:** 2026-01-25 19:50
+**Next Action:** Save diplomatic email draft to C:\arjan_emails
+**Confidence:** HIGH - User's conflict resolution style now properly understood
+**User's State:** Ready for repair-focused diplomatic email
 
 ---
 
