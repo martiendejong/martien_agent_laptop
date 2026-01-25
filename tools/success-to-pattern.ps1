@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Success → Amplification Pipeline - Every win generates replication pattern.
     50-Expert Council Improvement #23 | Priority: 2.25
@@ -33,6 +33,9 @@ param(
 
     [string]$Tags = ""
 )
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
 
 $PatternLibrary = "C:\scripts\_machine\pattern_library.json"
 $ReflectionLog = "C:\scripts\_machine\reflection.log.md"

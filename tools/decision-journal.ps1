@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Decision Journal - Log decisions with context for future reference.
     50-Expert Council Improvement #25 | Priority: 2.67
@@ -39,6 +39,11 @@ param(
     [switch]$List,
     [switch]$Review
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 $JournalFile = "C:\scripts\_machine\decision_journal.json"
 $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"

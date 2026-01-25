@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Generates a new tool from template.
 
@@ -6,6 +6,9 @@
     Creates a new PowerShell tool with:
     - Standard comment-based help
     - Common parameters (DryRun, Verbose)
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
     - Config import
     - Error handling
     - Logging

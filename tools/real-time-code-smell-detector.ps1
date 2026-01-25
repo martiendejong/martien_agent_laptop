@@ -1,4 +1,4 @@
-# Real-Time Code Smell Detector - File watcher for live analysis
+﻿# Real-Time Code Smell Detector - File watcher for live analysis
 # Wave 2 Tool #10 (Ratio: 6.7)
 
 param(
@@ -14,6 +14,9 @@ param(
     [Parameter(Mandatory=$false)]
     [int]$MaxComplexity = 10
 )
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
 
 Write-Host "Starting real-time code smell detector..." -ForegroundColor Cyan
 Write-Host "  Path: $Path" -ForegroundColor Gray

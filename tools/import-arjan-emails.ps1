@@ -1,4 +1,4 @@
-#!/usr/bin/env pwsh
+﻿#!/usr/bin/env pwsh
 <#
 .SYNOPSIS
     Importeert emails van Arjan's contacten uit Gmail en martiendejong.nl mailbox
@@ -26,7 +26,12 @@
 #>
 
 param(
-    [ValidateSet('gmail', 'martiendejong', 'all')]
+    [ValidateSet('gmail', 'martiendejong', 'all')
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+]
     [string]$Source = 'all',
 
     [switch]$Setup

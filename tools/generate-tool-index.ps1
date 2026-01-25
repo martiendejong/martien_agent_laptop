@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Generate a complete index of all available tools.
 
@@ -19,7 +19,12 @@
 #>
 
 param(
-    [ValidateSet("text", "markdown", "json")]
+    [ValidateSet("text", "markdown", "json")
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+]
     [string]$Format = "text",
     [string]$OutputFile
 )

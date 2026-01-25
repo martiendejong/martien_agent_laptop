@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Create ClickUp tasks for AI Prompting Best Practices implementation
 .DESCRIPTION
@@ -32,7 +32,12 @@ function New-ClickUpTask {
         [string]$Description,
         [string]$Priority = "normal",  # urgent, high, normal, low
         [int]$TimeEstimateHours = 0,
-        [string[]]$Tags = @(),
+        [string[]]$Tags = @()
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+,
         [string]$Status = "todo"
     )
 

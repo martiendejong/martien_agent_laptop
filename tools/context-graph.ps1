@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Context Graph & Knowledge Management
     50-Expert Council Improvements #3, #26, #29, #30 | Priority: 1.4, 1.125, 1.6, 2.0
@@ -30,6 +30,11 @@ param(
     [switch]$Compress,
     [switch]$Dedupe
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 $GraphFile = "C:\scripts\_machine\context_graph.json"
 $DocsPath = "C:\scripts\_machine"

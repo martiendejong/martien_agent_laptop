@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Sets up Lighthouse CI performance budgets for frontend projects.
 
@@ -33,6 +33,9 @@ param(
     [string]$DevServer = "http://localhost:3000",
     [string]$Routes = "/"
 )
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
 
 function Create-LighthouseBudget {
     param([string]$Path)

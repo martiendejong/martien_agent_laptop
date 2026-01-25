@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     View and manage the tool execution log.
 
@@ -31,6 +31,11 @@ param(
     [switch]$Clear,
     [switch]$Stats
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 $LogPath = "C:\scripts\_machine\tool-executions.log"
 

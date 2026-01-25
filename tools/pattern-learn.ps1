@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Prompt Pattern Learning - Analyzes prompts to detect patterns and suggest automations.
     50-Expert Council Improvement #2 | Priority: 2.5
@@ -28,6 +28,11 @@ param(
     [switch]$Suggest,
     [switch]$Report
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 $PromptLog = "C:\scripts\_machine\user_prompts.log.md"
 $PatternDB = "C:\scripts\_machine\learned_patterns.json"

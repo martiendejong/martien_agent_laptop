@@ -1,10 +1,13 @@
-# Next Action Predictor - Predict what user will do next based on patterns
+﻿# Next Action Predictor - Predict what user will do next based on patterns
 # Wave 2 Tool #9 (Ratio: 6.0)
 
 param(
     [Parameter(Mandatory=$false)]
     [int]$TopN = 5
 )
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
 
 $HistoryPath = (Get-PSReadlineOption).HistorySavePath
 

@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Infrastructure as Code generator for Azure resources.
 
@@ -40,6 +40,9 @@ param(
     [ValidateSet("dev", "staging", "production")]
     [string]$Environment = "dev"
 )
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
 
 function Generate-TerraformWebApp {
     param([string]$ProjectName, [string]$Environment)

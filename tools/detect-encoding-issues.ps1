@@ -1,4 +1,4 @@
-#!/usr/bin/env pwsh
+﻿#!/usr/bin/env pwsh
 <#
 .SYNOPSIS
     Detects and fixes file encoding issues in JavaScript/TypeScript projects
@@ -34,7 +34,12 @@
 param(
     [string]$ProjectPath = ".",
     [switch]$Fix,
-    [string[]]$FileTypes = @(".ts", ".tsx", ".js", ".jsx", ".vue", ".svelte"),
+    [string[]]$FileTypes = @(".ts", ".tsx", ".js", ".jsx", ".vue", ".svelte")
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+,
     [switch]$Recursive
 )
 

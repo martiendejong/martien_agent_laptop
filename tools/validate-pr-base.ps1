@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Validates PR base branch before creation to prevent violations.
 
@@ -21,6 +21,11 @@ param(
     [string]$Repo,
     [string]$BaseBranch = "develop"
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 $RepoMappings = @{
     "client-manager" = "C:\Projects\client-manager"

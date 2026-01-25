@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     ClickUp synchronization tool for Claude Agent
 
@@ -59,6 +59,9 @@ param(
     [string]$Repo = "martiendejong/client-manager",
     [string]$ListId = "901214097647"  # Default: Brand Designer list (client-manager)
 )
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
 
 # Load config
 $configPath = "C:\scripts\_machine\clickup-config.json"

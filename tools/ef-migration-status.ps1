@@ -1,4 +1,4 @@
-#!/usr/bin/env pwsh
+﻿#!/usr/bin/env pwsh
 <#
 .SYNOPSIS
     Quick EF Core migration status check
@@ -18,6 +18,11 @@ param(
     [string]$ProjectPath = "C:\Projects\client-manager\ClientManagerAPI",
     [switch]$Detailed
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 Write-Host "=== EF Core Migration Status ===" -ForegroundColor Cyan
 Write-Host "Project: $ProjectPath" -ForegroundColor Gray

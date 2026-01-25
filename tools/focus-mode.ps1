@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Focus Mode - Suppress non-critical notifications
     50-Expert Council V2 Improvement #41 | Priority: 2.67
@@ -35,6 +35,11 @@ param(
     [switch]$Status,
     [switch]$Stats
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 $FocusFile = "C:\scripts\_machine\focus_mode.json"
 

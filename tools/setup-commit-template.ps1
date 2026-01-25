@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Sets up Git commit message templates with conventional commits format.
 
@@ -54,7 +54,12 @@ param(
     [string]$Repo,
     [switch]$Interactive,
 
-    [ValidateSet("feat", "fix", "docs", "style", "refactor", "perf", "test", "build", "ci", "chore")]
+    [ValidateSet("feat", "fix", "docs", "style", "refactor", "perf", "test", "build", "ci", "chore")
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+]
     [string]$Type,
 
     [string]$Scope,

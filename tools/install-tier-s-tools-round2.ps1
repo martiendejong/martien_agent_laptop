@@ -1,6 +1,11 @@
-# Install All Tier S CLI Tools - Round 2 (Tools 101-120)
+﻿# Install All Tier S CLI Tools - Round 2 (Tools 101-120)
 # Generated: 2026-01-25
 # Total: 20 tools, 1.39 MB
+
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
 
 Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
 Write-Host "CLI Tools Installation - Round 2" -ForegroundColor Cyan

@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Technical Debt Quantifier
     50-Expert Council V2 Improvement #2 | Priority: 1.8
@@ -25,6 +25,11 @@ param(
     [switch]$Track,
     [switch]$Trends
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 $DebtFile = "C:\scripts\_machine\tech_debt.json"
 

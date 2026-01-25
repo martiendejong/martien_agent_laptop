@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Detect flaky tests by running test suite multiple times and identifying non-deterministic failures
 
@@ -87,6 +87,9 @@ param(
     [ValidateRange(0.0, 1.0)]
     [double]$MaxFailureRate = 0.9
 )
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
 
 Write-Host "🔍 Flaky Test Detector" -ForegroundColor Cyan
 Write-Host "   Project: $ProjectPath" -ForegroundColor Gray

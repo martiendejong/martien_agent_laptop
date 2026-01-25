@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Tool Effectiveness Scorer
     50-Expert Council V2 Improvement #46 | Priority: 2.0
@@ -30,6 +30,11 @@ param(
     [switch]$Helpful,
     [switch]$Report
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 $EffectivenessFile = "C:\scripts\_machine\tool_effectiveness.json"
 

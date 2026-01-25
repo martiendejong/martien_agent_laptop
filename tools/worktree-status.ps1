@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Shows active git worktrees across all worker agent seats.
 
@@ -26,7 +26,12 @@ param(
     [string[]]$BaseRepos = @(
         "C:\Projects\client-manager",
         "C:\Projects\hazina"
-    ),
+    )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+,
     [string]$PoolFile = "C:\scripts\_machine\worktrees.pool.md",
     [switch]$Compact
 )

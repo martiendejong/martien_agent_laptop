@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Batch merge or close Dependabot PRs based on merge status
 
@@ -39,6 +39,11 @@ param(
     [switch]$AutoMerge,
     [string]$ClosureMessage = "Closing due to merge conflicts. Dependabot will automatically recreate this PR against the updated develop branch."
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 $ErrorActionPreference = "Stop"
 

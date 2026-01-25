@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Automated PR merge sequencer based on cross-repo dependencies.
 
@@ -28,6 +28,11 @@ param(
     [switch]$WaitForCI = $true,
     [switch]$AutoUpdate
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 $DependenciesFile = "C:\scripts\_machine\pr-dependencies.md"
 $Repositories = @{

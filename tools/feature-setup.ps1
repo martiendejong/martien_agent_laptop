@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     One-Click Feature Setup
     50-Expert Council V2 Improvement #11 | Priority: 2.0
@@ -32,6 +32,9 @@ param(
     [switch]$Paired,
     [string]$Description = ""
 )
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
 
 $PoolFile = "C:\scripts\_machine\worktrees.pool.json"
 $BaseDir = "C:\Projects"

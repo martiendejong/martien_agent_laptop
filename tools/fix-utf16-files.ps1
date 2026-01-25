@@ -1,10 +1,15 @@
-#!/usr/bin/env pwsh
+﻿#!/usr/bin/env pwsh
 # Fix UTF-16 encoded files in the frontend
 
 param(
     [string]$Path = "C:\Projects\client-manager\ClientManagerFrontend\src",
     [switch]$DryRun
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 Write-Host "Scanning for UTF-16 encoded files..." -ForegroundColor Cyan
 

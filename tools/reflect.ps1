@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Auto-Reflection Checkpoint - Pause and verify direction.
     Expert: Kahneman + HP Meta-Cognitive Rule #5
@@ -32,6 +32,11 @@ param(
     [string]$Goal = "",
     [switch]$CheckOnly
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 $ReflectionFile = "C:\scripts\_machine\reflection_checkpoints.md"

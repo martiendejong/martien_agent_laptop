@@ -1,4 +1,4 @@
-# Boilerplate Generator - Scaffold React components + tests + docs
+﻿# Boilerplate Generator - Scaffold React components + tests + docs
 # Wave 2 Tool #8 (Ratio: 6.0)
 
 param(
@@ -12,6 +12,9 @@ param(
     [Parameter(Mandatory=$false)]
     [string]$OutputPath = "."
 )
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
 
 function New-ReactComponent {
     param([string]$Name, [string]$Path)

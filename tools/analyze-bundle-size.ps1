@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Analyzes Vite bundle size and suggests optimizations.
 
@@ -33,6 +33,9 @@ param(
     [int]$Threshold = 500,
     [switch]$OutputReport
 )
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
 
 function Get-PackageJson {
     param([string]$Path)

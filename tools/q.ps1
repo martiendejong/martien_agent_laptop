@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Quick Commands - Single letter access to top operations.
     Expert: Tim Ferriss | Impact: 8 | Effort: 2 | Priority: 4.0
@@ -31,6 +31,9 @@ param(
     [Parameter(Position=0)]
     [string]$Command = "?"
 )
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
 
 $scriptDir = "C:\scripts\tools"
 

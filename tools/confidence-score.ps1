@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Understanding Confidence Score & Expertise Tracking
     50-Expert Council Improvements #50, #28, #27 | Priority: 2.0, 1.75, 1.11
@@ -34,6 +34,11 @@ param(
     [switch]$ShowExpertise,
     [switch]$Gaps
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 $ExpertiseFile = "C:\scripts\_machine\expertise_tracking.json"
 

@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Tool Usage Analytics, Self-Documentation & Versioning
     50-Expert Council Improvements #14, #16, #18, #17 | Priority: 2.33, 2.0, 1.5, 1.4
@@ -34,6 +34,11 @@ param(
     [switch]$Docs,
     [switch]$Deps
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 $AnalyticsFile = "C:\scripts\_machine\tool_analytics.json"
 $ToolsPath = "C:\scripts\tools"

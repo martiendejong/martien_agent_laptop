@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Loads Claude Agent tool aliases for quick access.
 
@@ -32,7 +32,12 @@ $Aliases = @{
     # Worktree management
     "cwt" = { & "$ToolsPath\worktree-status.ps1" -Compact }
     "cwtfull" = { & "$ToolsPath\worktree-status.ps1" }
-    "calloc" = { param($repo, $branch) & "$ToolsPath\worktree-allocate.ps1" -Repo $repo -Branch $branch -Paired }
+    "calloc" = { param($repo, $branch)
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+ & "$ToolsPath\worktree-allocate.ps1" -Repo $repo -Branch $branch -Paired }
     "crelease" = { & "$ToolsPath\worktree-release-all.ps1" -AutoCommit }
     "cclean" = { & "$ToolsPath\worktree-cleanup.ps1" -SyncOnly }
 

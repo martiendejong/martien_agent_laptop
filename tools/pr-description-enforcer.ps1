@@ -1,4 +1,4 @@
-# PR Description Enforcer - Template checker + auto-generator
+﻿# PR Description Enforcer - Template checker + auto-generator
 # Wave 2 Tool #4 (Ratio: 9.0)
 
 param(
@@ -9,6 +9,9 @@ param(
     [ValidateSet('check', 'generate', 'fix')]
     [string]$Action = 'check'
 )
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
 
 $RequiredSections = @(
     '## Summary',

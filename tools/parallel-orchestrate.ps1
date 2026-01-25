@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Parallel Agent Orchestrator & Batch Operations
     50-Expert Council Improvements #32, #34 | Priority: 1.43, 1.6
@@ -36,6 +36,11 @@ param(
     [switch]$Add,
     [string]$Operation = ""
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 $OrchFile = "C:\scripts\_machine\orchestration.json"
 $PoolFile = "C:\scripts\_machine\worktrees.pool.md"

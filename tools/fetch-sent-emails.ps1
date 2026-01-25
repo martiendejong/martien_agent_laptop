@@ -1,4 +1,4 @@
-# Email Fetcher - Retrieve Sent Emails via IMAP
+﻿# Email Fetcher - Retrieve Sent Emails via IMAP
 # Uses MailKit library for robust IMAP access
 
 param(
@@ -14,6 +14,9 @@ param(
     [Parameter(Mandatory=$false)]
     [switch]$AllEmails
 )
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
 
 # Check if MailKit is available
 $mailKitPath = "C:\Program Files\PackageManagement\NuGet\Packages\MailKit.*\lib\netstandard2.0\MailKit.dll"

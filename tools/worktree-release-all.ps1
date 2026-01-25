@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Commits all changes in active worktrees and releases them to their base branches.
 
@@ -37,6 +37,11 @@ param(
     [switch]$AutoCommit,
     [switch]$SkipPush,
     [string[]]$Seats = @()
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 )
 
 $ErrorActionPreference = "Continue"

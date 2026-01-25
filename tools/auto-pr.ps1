@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Auto-PR Generator
     50-Expert Council V2 Improvement #12 | Priority: 2.25
@@ -31,6 +31,11 @@ param(
     [switch]$Draft,
     [string]$RepoPath = "."
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 function Analyze-Commits {
     param([string]$Base, [string]$RepoPath)

@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Prunes stale and merged branches from repositories.
 
@@ -33,6 +33,11 @@ param(
     [switch]$IncludeRemote,
     [string]$Repo
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 $BaseRepos = @(
     "C:\Projects\client-manager",

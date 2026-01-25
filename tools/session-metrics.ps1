@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Track and display session metrics for Claude Agent.
 
@@ -31,6 +31,11 @@ param(
     [switch]$Show,
     [int]$History = 0
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 $MetricsPath = "C:\scripts\_machine\session-metrics.json"
 $CurrentSessionPath = "C:\scripts\_machine\current-session.json"

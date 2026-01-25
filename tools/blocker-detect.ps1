@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Blocker Detector
     50-Expert Council V2 Improvement #33 | Priority: 1.8
@@ -34,6 +34,11 @@ param(
     [int]$Id = 0,
     [switch]$List
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 $BlockerFile = "C:\scripts\_machine\blockers.json"
 

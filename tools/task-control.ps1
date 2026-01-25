@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Interrupt-Resume Protocol & Background Optimization
     50-Expert Council Improvements #38, #39, #33 | Priority: 1.8, 1.17, 2.0
@@ -37,6 +37,11 @@ param(
     [switch]$ZeroStart,
     [string]$Checkpoint = ""
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 $ControlFile = "C:\scripts\_machine\task_control.json"
 $ToolsPath = "C:\scripts\tools"

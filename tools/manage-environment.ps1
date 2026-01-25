@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Manages environment variables and .env files across environments.
 
@@ -52,6 +52,9 @@ param(
     [string]$SourceEnv,
     [string]$TargetEnv
 )
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
 
 $script:ValidationRules = @{
     "PORT" = @{ "Type" = "number"; "Min" = 1; "Max" = 65535 }

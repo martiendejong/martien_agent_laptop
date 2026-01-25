@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Generates a daily activity summary across all agent sessions.
 
@@ -23,7 +23,12 @@
 #>
 
 param(
-    [string]$Date = (Get-Date -Format "yyyy-MM-dd"),
+    [string]$Date = (Get-Date -Format "yyyy-MM-dd")
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+,
     [ValidateSet("text", "markdown", "json")]
     [string]$Output = "text"
 )

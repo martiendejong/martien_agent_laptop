@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Search for patterns in reflection log and problem-solution index.
 
@@ -33,6 +33,9 @@ param(
 
     [int]$Recent = 0
 )
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
 
 $Sources = @{
     reflections = "C:\scripts\_machine\reflection.log.md"

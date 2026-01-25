@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Universal AI image generation with automatic API key loading
 
@@ -143,6 +143,9 @@ param(
     [Parameter(Mandatory=$false)]
     [int]$Seed = -1
 )
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
 
 $ErrorActionPreference = "Stop"
 

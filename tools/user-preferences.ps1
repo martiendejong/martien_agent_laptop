@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Preference Extraction & Style Matching
     50-Expert Council Improvements #43, #47 | Priority: 2.0, 1.75
@@ -34,6 +34,11 @@ param(
     [switch]$Show,
     [string]$Apply = ""
 )
+
+# AUTO-USAGE TRACKING
+$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
 
 $PrefsFile = "C:\scripts\_machine\user_preferences.json"
 
