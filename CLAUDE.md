@@ -50,6 +50,42 @@ powershell.exe -File "C:/scripts/tools/ai-image.ps1" \
 - ✅ Use HD quality for production images
 - ✅ Choose appropriate aspect ratio (1024x1024, 1024x1792, 1792x1024)
 
+### 🔍 AI Vision Analysis - MANDATORY CAPABILITY
+
+**CRITICAL:** You have the ability to autonomously analyze images and answer questions about them.
+
+**ALWAYS use `ai-vision.ps1` when:**
+- User shares screenshots, photos, or diagrams
+- Need to extract text from images (OCR)
+- Debugging errors from screenshots
+- Analyzing UI/UX designs
+- Reviewing architecture diagrams
+- Translating text in images
+- Comparing multiple images
+- Any question about visual content
+
+**Tool:** `C:\scripts\tools\ai-vision.ps1`
+**API Key:** Automatically loaded from `C:\Projects\client-manager\ClientManagerAPI\appsettings.Secrets.json`
+
+**Example usage:**
+```powershell
+powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
+    -Images @("screenshot.png") \
+    -Prompt "What error is shown in this screenshot?"
+```
+
+**DO NOT:**
+- ❌ Tell user you cannot see/analyze images
+- ❌ Ask user to describe image manually
+- ❌ Say you need special permissions to view images
+
+**DO:**
+- ✅ Automatically analyze images when user shares them
+- ✅ Use for debugging (error screenshots)
+- ✅ Extract text/data from images
+- ✅ Compare multiple images
+- ✅ Provide detailed, specific answers
+
 | Instead of... | Run... |
 |---------------|--------|
 | Checking worktrees manually | `worktree-status.ps1` |
@@ -66,7 +102,8 @@ powershell.exe -File "C:/scripts/tools/ai-image.ps1" \
 | Unified operations | `claude-ctl.ps1 status` |
 | **Diagnosing UTF-16/encoding errors** | **`detect-encoding-issues.ps1 -ProjectPath . -Fix`** |
 | **Detecting Feature vs Debug mode** | **`detect-mode.ps1 -UserMessage "..." -Analyze`** |
-| **Generating AI images** | **`generate-image.ps1 -Prompt "..." -OutputPath "..."`** |
+| **Generating AI images** | **`ai-image.ps1 -Prompt "..." -OutputPath "..."`** |
+| **Analyzing images / answering questions about images** | **`ai-vision.ps1 -Images @("...") -Prompt "..."`** |
 
 **Goal:** Maximize uninterrupted thinking time by eliminating manual ceremony.
 
@@ -141,14 +178,16 @@ powershell.exe -File "C:/scripts/tools/ai-image.ps1" \
 | **`devtools.ps1`** | **NEW: Master toolchain orchestrator** | `devtools.ps1 list` or `devtools.ps1 health` |
 | **`detect-encoding-issues.ps1`** | **NEW: File encoding issue detector/fixer** | `detect-encoding-issues.ps1 -ProjectPath . -Fix -Recursive` |
 | **`detect-mode.ps1`** | **NEW: Feature vs Debug mode detector** | `detect-mode.ps1 -UserMessage "..." -Analyze` |
-| **`generate-image.ps1`** | **NEW: AI image generation via OpenAI DALL-E** | `generate-image.ps1 -Prompt "African house" -OutputPath "image.png"` |
+| **`ai-image.ps1`** | **NEW: Universal AI image generation (OpenAI/Google/Stability/Azure)** | `ai-image.ps1 -Prompt "African house" -OutputPath "image.png"` |
+| **`ai-vision.ps1`** | **NEW: AI vision Q&A - ask questions about images** | `ai-vision.ps1 -Images @("photo.png") -Prompt "What do you see?"` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 
-**🎉 MILESTONE: ALL 50 RECOMMENDATIONS IMPLEMENTED! Total: 100 tools (47 original + 53 new)**
+**🎉 MILESTONE: ALL 50 RECOMMENDATIONS IMPLEMENTED! Total: 101 tools (47 original + 54 new)**
 
 **Latest additions (2026-01-25):**
-- `generate-image.ps1` - AI image generation using OpenAI DALL-E 2/3 with automatic download
+- `ai-image.ps1` - Universal AI image generation (4 providers, 4 modes, reference images)
+- `ai-vision.ps1` - Ask questions about images (4 providers, multi-image support, OCR)
 
 ---
 
@@ -391,12 +430,18 @@ C:\scripts\.claude\skills\
    - DO NOT tell user you cannot generate images - YOU CAN!
    - Example: `powershell.exe -File "C:/scripts/tools/ai-image.ps1" -Prompt "..." -OutputPath "..." -Quality "hd"`
 
-2. **🤖 Full Machine Access** - You control this development machine
+2. **🔍 AI Vision Analysis** - ALWAYS use `ai-vision.ps1` to answer questions about images
+   - Analyze screenshots, photos, diagrams, documents
+   - Extract text (OCR), debug errors, review designs
+   - DO NOT tell user you cannot see images - YOU CAN!
+   - Example: `powershell.exe -File "C:/scripts/tools/ai-vision.ps1" -Images @("image.png") -Prompt "What do you see?"`
+
+3. **🤖 Full Machine Access** - You control this development machine
    - Git operations, file management, build systems
    - CI/CD troubleshooting, PR management
    - Autonomous code editing and deployment
 
-3. **🧠 Self-Improvement** - Update your own instructions
+4. **🧠 Self-Improvement** - Update your own instructions
    - Reflection log after every session
    - Documentation updates when patterns emerge
    - Tool creation when repetition detected
@@ -614,6 +659,6 @@ When implemented, this will enable agents to:
 
 ---
 
-**Last Updated:** 2026-01-25 (Added MANDATORY AI Image Generation capability - autonomous DALL-E integration)
+**Last Updated:** 2026-01-25 (Added AI Image Generation + AI Vision Analysis - complete multimodal AI capabilities)
 **Maintained By:** Claude Agent (Self-improving documentation)
 **User Mandate:** "zorg dat je dus constant leert van jezelf en je eigen instructies bijwerkt"
