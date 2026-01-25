@@ -113,6 +113,13 @@ powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
 | **🆕 Multi-agent work queue coordination** | **`agent-work-queue.ps1 -Action list`** |
 | **🆕 Track tool usage (validate estimates)** | **`usage-heatmap-tracker.ps1 -Action report`** |
 | **🆕 Calculate deployment risk score** | **`deployment-risk-score.ps1 -Threshold 70`** |
+| **🆕 Enforce PR description quality** | **`pr-description-enforcer.ps1 -Action check`** |
+| **🆕 Validate appsettings.json** | **`config-validator.ps1 -CheckSecrets`** |
+| **🆕 Sync branches across repos** | **`cross-repo-sync.ps1 -Action status`** |
+| **🆕 Generate Architecture Decision Records** | **`adr-generator.ps1 -PRNumber 123`** |
+| **🆕 Scaffold React components + tests** | **`boilerplate-generator.ps1 -Type component -Name Button`** |
+| **🆕 Predict next command** | **`next-action-predictor.ps1`** |
+| **🆕 Real-time code smell detection** | **`real-time-code-smell-detector.ps1 -Path src`** |
 
 **Goal:** Maximize uninterrupted thinking time by eliminating manual ceremony.
 
@@ -204,10 +211,17 @@ powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
 | **`agent-work-queue.ps1`** | **WAVE 2: Multi-agent task coordination (claim/release protocol)** | `agent-work-queue.ps1 -Action list` |
 | **`usage-heatmap-tracker.ps1`** | **WAVE 2: Track actual tool usage, validate value estimates** | `usage-heatmap-tracker.ps1 -Action report -TimeRange week` |
 | **`deployment-risk-score.ps1`** | **WAVE 2: Calculate deployment risk, prevent production incidents** | `deployment-risk-score.ps1 -Threshold 70` |
+| **`pr-description-enforcer.ps1`** | **WAVE 2: Enforce PR description templates, auto-generate** | `pr-description-enforcer.ps1 -Action check` |
+| **`config-validator.ps1`** | **WAVE 2: Validate config files, detect typos/secrets** | `config-validator.ps1` |
+| **`cross-repo-sync.ps1`** | **WAVE 2: Sync Hazina + client-manager branches** | `cross-repo-sync.ps1 -Action create -BranchName feature/x` |
+| **`adr-generator.ps1`** | **WAVE 2: Generate Architecture Decision Records from PRs** | `adr-generator.ps1 -PRNumber 123` |
+| **`boilerplate-generator.ps1`** | **WAVE 2: Scaffold components/services/controllers + tests** | `boilerplate-generator.ps1 -Type component -Name Button` |
+| **`next-action-predictor.ps1`** | **WAVE 2: Predict next command based on history patterns** | `next-action-predictor.ps1` |
+| **`real-time-code-smell-detector.ps1`** | **WAVE 2: File watcher with live code smell analysis** | `real-time-code-smell-detector.ps1 -Path src` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 
-**🎉 MILESTONE: 110 tools implemented! (47 original + 54 recommended + 6 Wave 1 + 3 Wave 2)**
+**🎉 MILESTONE: 117 tools implemented! (47 original + 54 recommended + 6 Wave 1 + 10 Wave 2)**
 
 **Latest additions (2026-01-25):**
 - `ai-image.ps1` - Universal AI image generation (4 providers, 4 modes, reference images)
@@ -220,9 +234,17 @@ powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
   - `flaky-test-detector.ps1` - Non-deterministic test detector (ratio 6.0)
   - `daily-tool-review.ps1` - DAILY mandatory review (auto-detect patterns)
 - **🆕 META-OPTIMIZATION WAVE 2** (blind spot analysis, collaboration + production focus):
+  - **Tier S+ (ratio > 5.0) - ALL 10 IMPLEMENTED:**
   - `agent-work-queue.ps1` - Multi-agent coordination (ratio 10.0)
-  - `usage-heatmap-tracker.ps1` - Usage analytics + estimate validation (ratio 6.0)
+  - `pr-description-enforcer.ps1` - PR quality enforcement (ratio 9.0)
+  - `config-validator.ps1` - Config validation (ratio 8.0)
+  - `adr-generator.ps1` - Architecture Decision Records (ratio 8.0)
   - `deployment-risk-score.ps1` - Production safety (ratio 6.7)
+  - `real-time-code-smell-detector.ps1` - Live code analysis (ratio 6.7)
+  - `usage-heatmap-tracker.ps1` - Usage analytics (ratio 6.0)
+  - `boilerplate-generator.ps1` - Scaffolding (ratio 6.0)
+  - `next-action-predictor.ps1` - Predictive assistance (ratio 6.0)
+  - `cross-repo-sync.ps1` - Multi-repo workflow (ratio 6.0)
 
 ---
 
@@ -699,6 +721,6 @@ When implemented, this will enable agents to:
 
 ---
 
-**Last Updated:** 2026-01-25 (Wave 2: Blind spot analysis + multi-agent + production safety - 9 tools total, 206 identified)
+**Last Updated:** 2026-01-25 (Wave 2 COMPLETE: All 10 Tier S+ tools implemented - 16 tools total, 206 identified)
 **Maintained By:** Claude Agent (Self-improving documentation)
 **User Mandate:** "zorg dat je dus constant leert van jezelf en je eigen instructies bijwerkt"
