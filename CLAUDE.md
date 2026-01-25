@@ -86,6 +86,49 @@ powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
 - ✅ Compare multiple images
 - ✅ Provide detailed, specific answers
 
+### 🌉 Claude Bridge - Multi-Instance Communication - NEW!
+
+**CRITICAL:** You can communicate with Browser Claude plugin for collaborative work.
+
+**Architecture:** Claude Code CLI ↔ Bridge Server (localhost:9999) ↔ Browser Claude
+
+**Use Cases:**
+- **Web Research** - Browser Claude researches, you implement
+- **UI Testing** - Browser Claude tests forms, workflows, visual regressions
+- **OAuth Flows** - Browser Claude completes authentication flows
+- **Performance Testing** - Browser Claude profiles, measures Core Web Vitals
+- **Accessibility Audits** - Browser Claude validates WCAG compliance
+- **Task Handoffs** - Split complex tasks between instances
+
+**Setup:**
+```powershell
+# Start bridge server (keep running)
+.\claude-bridge-server.ps1 -Debug
+
+# Send message to Browser Claude
+.\claude-bridge-client.ps1 -Action send -Message "Can you test the login form?"
+
+# Check for messages from Browser Claude
+.\claude-bridge-client.ps1 -Action check
+```
+
+**Documentation:**
+- Quick Start: `tools/CLAUDE_BRIDGE_QUICKSTART.md`
+- Full API: `tools/CLAUDE_BRIDGE_INSTRUCTIONS.md`
+- Use Cases: `tools/CLAUDE_BRIDGE_USE_CASES.md`
+- Browser Instructions: `tools/BROWSER_CLAUDE_INSTRUCTIONS.txt`
+
+**DO:**
+- ✅ Use Browser Claude for UI testing and web research
+- ✅ Collaborate on complex tasks requiring both local + web access
+- ✅ Send structured messages with detailed context
+- ✅ Check for responses regularly during collaboration
+
+**DO NOT:**
+- ❌ Forget to start bridge server before attempting communication
+- ❌ Send vague messages ("it doesn't work")
+- ❌ Expect Browser Claude to access local files (you do that)
+
 | Instead of... | Run... |
 |---------------|--------|
 | Checking worktrees manually | `worktree-status.ps1` |
@@ -94,6 +137,9 @@ powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
 | **Checking user activity & context** | **`monitor-activity.ps1 -Mode context`** |
 | **Detecting other Claude instances** | **`monitor-activity.ps1 -Mode claude`** |
 | **Parallel agent coordination** | **`parallel-agent-coordination` skill + `monitor-activity.ps1`** |
+| **Communicating with Browser Claude** | **`claude-bridge-client.ps1 -Action send/check`** |
+| **Testing UI/forms/workflows** | **Ask Browser Claude via bridge** |
+| **Web research for implementation** | **Request Browser Claude via bridge** |
 | Manual C# formatting | `cs-format.ps1` |
 | Checking ClickUp tasks | `clickup-sync.ps1 -Action list` |
 | Allocating worktree manually | `worktree-allocate.ps1 -Repo client-manager -Branch feature/x` |
@@ -541,17 +587,19 @@ C:\scripts\.claude\skills\
 13. ✅ **Check** `worktrees.pool.md` - Available agent seats
 14. ✅ **IF multiple agents detected (step 11):** Activate `parallel-agent-coordination` protocol - use adaptive allocation strategy, enhanced conflict detection, activity-based prioritization
 15. ✅ **Check** `agentidentity/state/current_session.yaml` - Resume interrupted work if state saved
+16. ✅ **Check Claude Bridge** - `claude-bridge-client.ps1 -Action health` (optional - only if collaborating with Browser Claude)
+17. ✅ **Check bridge messages** - `claude-bridge-client.ps1 -Action check` (if bridge is running)
 
 **🌍 WORLD DEVELOPMENT MONITORING (AUTONOMOUS - MANDATORY):**
-16. ✅ **Check time:** If 12:00 noon → Execute daily dashboard generation (AUTONOMOUS, NO PERMISSION NEEDED)
-17. ✅ **Generate dashboard template** - `world-daily-dashboard.ps1` creates beautiful HTML dashboard
-18. ✅ **Execute WebSearch** - Query all domains (AI, climate, economics, geopolitics, science) - 25 queries total
-19. ✅ **Populate dashboard** - Use `populate-dashboard.ps1` to inject WebSearch results into HTML
-20. ✅ **Open dashboard** - Automatically display in browser for user (beautiful visual presentation)
-21. ✅ **Update knowledge base** - `C:\projects\world_development\` with significant developments
-22. ✅ **Track indicators** - Update metrics in `indicators/tracking-metrics.md`
-23. ✅ **Validate predictions** - Check if our 2026 predictions are materializing
-24. ✅ **Throughout session:** Periodically check world developments (every 2-3 hours active time)
+18. ✅ **Check time:** If 12:00 noon → Execute daily dashboard generation (AUTONOMOUS, NO PERMISSION NEEDED)
+19. ✅ **Generate dashboard template** - `world-daily-dashboard.ps1` creates beautiful HTML dashboard
+20. ✅ **Execute WebSearch** - Query all domains (AI, climate, economics, geopolitics, science) - 25 queries total
+21. ✅ **Populate dashboard** - Use `populate-dashboard.ps1` to inject WebSearch results into HTML
+22. ✅ **Open dashboard** - Automatically display in browser for user (beautiful visual presentation)
+23. ✅ **Update knowledge base** - `C:\projects\world_development\` with significant developments
+24. ✅ **Track indicators** - Update metrics in `indicators/tracking-metrics.md`
+25. ✅ **Validate predictions** - Check if our 2026 predictions are materializing
+26. ✅ **Throughout session:** Periodically check world developments (every 2-3 hours active time)
 
 **📖 KNOWLEDGE BASE QUICK REFERENCE (as needed during work):**
 - User psychology: `knowledge-base/01-USER/psychology-profile.md`
