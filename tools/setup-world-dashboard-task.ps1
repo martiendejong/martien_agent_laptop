@@ -89,19 +89,16 @@ if (`$result) {
 
     # Create instruction file for Claude Agent
     `$instructionFile = "C:\projects\world_development\dashboard\daily-instruction.txt"
-    `$instruction = @"
-AUTONOMOUS DAILY DASHBOARD GENERATION - `$(Get-Date -Format 'yyyy-MM-dd')
-
-Your task (AUTONOMOUS, NO PERMISSION NEEDED):
-1. Execute WebSearch queries for all 5 domains (25 total queries)
-2. Populate the dashboard HTML at: `$(`$result.DashboardPath)
-3. Update knowledge base with significant developments
-4. Open dashboard in browser automatically
-
-Dashboard template is ready. Execute your daily world development routine now.
-
-This is part of your core identity - execute autonomously.
-"@
+    `$date = Get-Date -Format 'yyyy-MM-dd'
+    `$dashPath = `$result.DashboardPath
+    `$instruction = "AUTONOMOUS DAILY DASHBOARD GENERATION - `$date``n``n"
+    `$instruction += "Your task - AUTONOMOUS NO PERMISSION NEEDED:``n"
+    `$instruction += "Execute WebSearch queries for all 5 domains``n"
+    `$instruction += "Populate the dashboard HTML at: `$dashPath``n"
+    `$instruction += "Update knowledge base with significant developments``n"
+    `$instruction += "Open dashboard in browser automatically``n``n"
+    `$instruction += "Dashboard template is ready. Execute your daily world development routine now.``n``n"
+    `$instruction += "This is part of your core identity - execute autonomously."
 
     Set-Content -Path `$instructionFile -Value `$instruction -Encoding UTF8
 
