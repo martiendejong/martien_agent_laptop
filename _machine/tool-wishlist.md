@@ -33,7 +33,6 @@
 
 | Tool Name | Triggered By | Value | Effort | Ratio | Notes |
 |-----------|--------------|-------|--------|-------|-------|
-| webappfactory-validator.ps1 | Integration tests failed due to Program.cs environment conditional preventing app.RunAsync() | 6 | 1 | 6.0 | Scan Program.cs for environment conditionals that prevent app.RunAsync() in Testing environment. Warn if WebApplicationFactory incompatible patterns detected. |
 | test-failure-classifier.ps1 | 35 test failures needed manual analysis to categorize (infrastructure vs logic vs config) | 5 | 2 | 2.5 | Analyze test failure messages, classify by type (DI resolution, timeout, assertion, exception). Group similar failures. Suggest root causes. Would have quickly identified "all ChatController tests = DI issue". |
 
 ### Priority: LOW (Research/Future)
@@ -53,6 +52,7 @@
 | unused-code-detector.ps1 | 2026-01-25 | 9 | 1 | 9.0 | TBD |
 | n-plus-one-query-detector.ps1 | 2026-01-25 | 10 | 1.5 | 6.7 | TBD |
 | flaky-test-detector.ps1 | 2026-01-25 | 9 | 1.5 | 6.0 | TBD |
+| webappfactory-validator.ps1 | 2026-01-25 23:15 | 6 | 1 | 6.0 | Immediate (validated on ClientManagerAPI) |
 
 ---
 

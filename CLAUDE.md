@@ -158,6 +158,7 @@ powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
 | **`analyze-bundle-size.ps1`** | **NEW: Bundle size analyzer** | `analyze-bundle-size.ps1 -ProjectPath . -Build` |
 | **`generate-dependency-graph.ps1`** | **NEW: Dependency graph viz** | `generate-dependency-graph.ps1` |
 | **`test-coverage-report.ps1`** | **NEW: Test coverage reporter** | `test-coverage-report.ps1 -ProjectPath . -Threshold 80` |
+| **`webappfactory-validator.ps1`** | **NEW: WebApplicationFactory compatibility checker** | `webappfactory-validator.ps1 -ProjectPath . -Fix` |
 | **`cleanup-stale-branches.ps1`** | **NEW: Stale branch cleanup** | `cleanup-stale-branches.ps1 -DryRun` |
 | **`track-todos.ps1`** | **NEW: TODO tracker with GitHub issues** | `track-todos.ps1 -Path . -Recursive` |
 | **`generate-api-docs.ps1`** | **NEW: API documentation generator** | `generate-api-docs.ps1 -ProjectPath . -Format all` |
@@ -223,11 +224,12 @@ powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 
-**🎉 MILESTONE: 118 tools implemented! (47 original + 54 recommended + 6 Wave 1 + 10 Wave 2 + 1 custom)**
+**🎉 MILESTONE: 119 tools implemented! (47 original + 54 recommended + 6 Wave 1 + 10 Wave 2 + 2 custom)**
 
 **Latest additions (2026-01-25):**
 - `ai-image.ps1` - Universal AI image generation (4 providers, 4 modes, reference images)
 - `ai-vision.ps1` - Ask questions about images (4 providers, multi-image support, OCR)
+- `webappfactory-validator.ps1` - WebApplicationFactory compatibility checker (prevents integration test failures)
 - `social-messages-review.ps1` - Daily social media messaging review with AI-powered reply drafts (Facebook Pages inbox integration)
 - **🆕 META-OPTIMIZATION WAVE 1** (50-expert analysis, dev productivity focus):
   - `context-snapshot.ps1` - Save/restore work context (ratio 10.0)
