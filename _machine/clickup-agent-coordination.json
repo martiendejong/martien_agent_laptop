@@ -2,8 +2,12 @@
     "agents":  {
 
                },
-    "last_updated":  "2026-01-25T20:06:28Z",
+    "last_updated":  "2026-01-25T20:42:26Z",
     "claims":  {
-
+                   "869bwzx6q":  {
+                                     "status":  "claimed",
+                                     "agent_id":  "agent-008",
+                                     "claimed_at":  "2026-01-25T20:42:26Z"
+                                 }
                }
 }
