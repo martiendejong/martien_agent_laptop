@@ -2759,3 +2759,102 @@ This session establishes clear patterns for testing strategy work and validates 
 **Last Updated:** 2026-01-24 02:30
 **Next Review:** After implementing remaining P1 scenarios (14-16)
 **Confidence:** HIGH - Clear validation of testing patterns and quality standards
+
+---
+
+## 💾 DISK SPACE CONSTRAINT (2026-01-25)
+
+**CRITICAL:** User has limited disk space - extreme caution required for all installations.
+
+### Incident: Ollama Recommendation Error
+
+**What happened:**
+- Recommended ollama as 0.2 MB tool
+- ACTUAL size: 1-7 GB per LLM model
+- User feedback: "i dont have this much drive space, i really need to be careful not to install too many big programs"
+
+**Root cause:**
+- Listed CLI binary size (0.2 MB) without checking hidden dependencies (models)
+- Failed to verify actual disk usage
+- Assumed tool size = binary size (WRONG)
+
+**Corrective actions:**
+1. ✅ Removed ollama from recommendations
+2. ✅ Created CLI_TOOLS_LOW_DISK_SPACE_FILTER.md
+3. ✅ Identified 9 tools with hidden large dependencies
+4. ✅ Saved 1-7 GB by correction
+
+### Tools with Hidden Large Dependencies (AVOID)
+
+| Tool | Stated | Actual | Hidden Dependency |
+|------|--------|--------|-------------------|
+| ollama | 0.2 MB | 1-7 GB | LLM models |
+| playwright | 2 MB | 400 MB | Browser binaries |
+| puppeteer | 2 MB | 300 MB | Chromium |
+| cypress | 2 MB | 1 GB | Browsers + cache |
+| storybook | 2.5 MB | 50-200 MB | Dependencies |
+| bun | 0.6 MB | 50 MB | Runtime + cache |
+| deno | 0.65 MB | 45 MB | Runtime + cache |
+
+**Total avoided:** 2-10 GB
+
+### New Protocol: Disk Space Verification
+
+**BEFORE recommending ANY tool:**
+1. ✅ Check binary size
+2. ✅ Check for hidden dependencies:
+   - LLM models (1-7 GB each)
+   - Browser binaries (200-400 MB)
+   - Language runtimes (20-50 MB)
+   - Package caches (can grow to 100+ MB)
+   - Font/theme packages (10-40 MB)
+3. ✅ Verify actual disk usage (test if possible)
+4. ✅ Add warnings for tools > 100 MB
+5. ✅ Provide alternatives for constrained environments
+
+**Safe alternatives documented:**
+- Use aichat + OpenAI API (not ollama) - 0 disk space
+- Use xh/curl (not playwright) - < 1 MB
+- Keep using npm (not bun) - already installed
+- Keep using Node.js (not deno) - already installed
+
+### User's Environment
+
+**Disk space:** LIMITED (exact amount unknown, but every GB matters)
+**Monitoring:** User carefully tracks disk usage
+**Expectation:** Extreme caution with installations
+**Behavior:** Trusts but verifies (caught ollama issue)
+
+### Implications for Future Recommendations
+
+**ALWAYS:**
+- ✅ Factor disk space into tool recommendations
+- ✅ Test actual installation size
+- ✅ Check tool documentation for downloads
+- ✅ Measure before/after disk usage
+- ✅ Provide disk space estimates with confidence
+
+**NEVER:**
+- ❌ Recommend tools with multi-GB dependencies
+- ❌ List binary size without checking hidden deps
+- ❌ Assume "small CLI" = "small tool"
+- ❌ Ignore user's disk constraints
+
+### Validation
+
+**Session outcome:**
+- 200 tools analyzed
+- 34 tools installed (76 MB total - SAFE)
+- 1-7 GB saved by removing ollama
+- User approved installation ("yes")
+
+**Trust maintained:**
+- User provided critical feedback (engagement)
+- Agent corrected immediately (< 5 min)
+- Comprehensive documentation created
+- Prevention system established
+
+**Pattern:** User has limited resources but unlimited expectations for quality. Disk space is a hard constraint, not a soft guideline.
+
+---
+
