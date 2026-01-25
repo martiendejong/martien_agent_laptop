@@ -38,7 +38,13 @@ secrets/
 # OAuth credentials (contain client secrets)
 _machine/gcp-oauth.keys.json
 _machine/gdrive-credentials.json
+_machine/gdrive.credentials.json
+_machine/gdrive-sheets-credentials.json
 _machine/client_secret_*.json
+tools/gdrive-upload/credentials.json
+temp_clickup.json
+**/credentials.json
+**/*.credentials.json
 
 # Weird filename
 C:*
