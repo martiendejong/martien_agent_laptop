@@ -9,7 +9,7 @@ Seat states:
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | client-manager+hazina | agent-003-fix-all-test-failures | 2026-01-25T16:50:00Z | 🚧 Fix all 43 failing tests (integration DB provider conflict, unit test infrastructure, test/impl alignment) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-25T16:02:02Z | ✅ PR #357: Fix activities list not updating (added itemGenerated listener) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-25T16:07:00Z | ✅ PR #359: Add location/address prompt to workflow step 1 |
-| agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-01-20T03:00:00Z | ✅ Code Review Guide COMPLETE: PR #282 created, 509 lines with 10-area checklist |
+| agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-01-25T16:13:00Z | ✅ PR #360: Move Post Ideas Generator to Social Media section (UX fix) |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-01-10T15:30:00Z | ✅ Cleaned up: Security hardening (PR #61) and payment-models work completed and merged |
 | agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | - | - | 2026-01-09T23:30:00Z | ✅ Fixed content hooks generation - pushed to client-manager payment-models branch (PR #82) |
 | agent-009 | agent009 | C:\Projects | C:\Projects\worker-agents\agent-009 | FREE | - | - | 2026-01-10T14:30:00Z | ✅ Cleaned up: Deleted obsolete branch test/integration-test-environment (PR #73 already merged) |
