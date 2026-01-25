@@ -59,9 +59,16 @@ param(
     [string]$Repo = "martiendejong/client-manager",
     [string]$ListId = "901214097647"  # Default: Brand Designer list (client-manager)
 )
-# AUTO-USAGE TRACKING
-$toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
-. "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
+
+# DISABLED: Usage logger interferes with output capture when called from bash
+# TODO: Fix usage logger to not suppress stdout/stderr
+# # AUTO-USAGE TRACKING
+# try {
+#     $toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
+#     . "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction Stop
+# } catch {
+#     # Silently continue if usage logging fails
+# }
 
 # Load config
 $configPath = "C:\scripts\_machine\clickup-config.json"
@@ -169,6 +176,7 @@ switch ($Action) {
     "create" {
         if (-not $Name) {
             Write-Error "Name required for create action"
+            Write-Output "ERROR: Name required for create action"
             exit 1
         }
 
@@ -179,10 +187,24 @@ switch ($Action) {
             status = "todo"
         } | ConvertTo-Json
 
-        $task = Invoke-RestMethod -Method POST -Uri $url -Headers $headers -Body $body
-        Write-Host "Task created: $($task.id)" -ForegroundColor Green
-        Write-Host "Name: $($task.name)"
-        Write-Host "URL: $($task.url)"
+        try {
+            Write-Host "`nCreating task in list $ListId..." -ForegroundColor Yellow
+
+            $task = Invoke-RestMethod -Method POST -Uri $url -Headers $headers -Body $body -ErrorAction Stop
+
+            Write-Host "`n=== Task Created Successfully ===" -ForegroundColor Green
+            Write-Host "ID: $($task.id)"
+            Write-Host "Name: $($task.name)"
+            Write-Host "Status: $($task.status.status)"
+            Write-Host "URL: $($task.url)"
+        } catch {
+            Write-Host "`n=== Error Creating Task ===" -ForegroundColor Red
+            Write-Host "Error: $($_.Exception.Message)"
+            if ($_.ErrorDetails) {
+                Write-Host "Details: $($_.ErrorDetails.Message)"
+            }
+            exit 1
+        }
     }
 
     "link-pr" {
