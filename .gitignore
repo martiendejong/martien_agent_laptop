@@ -48,3 +48,4 @@ _machine/tmpclaude-*
 
 # Bootstrap-generated (machine-specific state - templates tracked separately)
 # These are created by bootstrap from .template files
+09-SECRETS/
