@@ -1,6 +1,7 @@
-﻿# Install All Tier S CLI Tools - Round 2 (Tools 101-120)
+﻿# Install All Tier S CLI Tools - Round 2 (Tools 101-119)
 # Generated: 2026-01-25
-# Total: 20 tools, 1.39 MB
+# CORRECTED: 19 tools, ~1.35 MB (ollama removed - 1-7 GB per model)
+# User has limited disk space - extreme caution with large tools
 
 
 # AUTO-USAGE TRACKING
@@ -43,7 +44,11 @@ if ($missingPrereqs.Count -gt 0) {
 }
 
 Write-Host ""
-Write-Host "Installing Tier S Round 2 Tools (20 tools, 1.39 MB total)..." -ForegroundColor Cyan
+Write-Host "⚠️  DISK SPACE NOTICE:" -ForegroundColor Yellow
+Write-Host "    Ollama NOT included (1-7 GB per model)" -ForegroundColor Gray
+Write-Host "    Use aichat + OpenAI API instead (0 disk space)" -ForegroundColor Gray
+Write-Host ""
+Write-Host "Installing Tier S Round 2 Tools (19 tools, ~1.35 MB total)..." -ForegroundColor Cyan
 Write-Host ""
 
 $installed = 0
