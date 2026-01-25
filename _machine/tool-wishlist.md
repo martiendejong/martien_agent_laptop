@@ -20,19 +20,21 @@
 
 | Tool Name | Triggered By | Value | Effort | Ratio | Notes |
 |-----------|--------------|-------|--------|-------|-------|
-| *Currently empty - add as discovered* | | | | | |
+| test-infrastructure-analyzer.ps1 | Test failure session (2026-01-25): 20 ChatController tests failing due to deep constructor chains | 9 | 2 | 4.5 | Scan controllers for deep dependency chains (>3 levels), suggest service extraction. Would have detected ChatController issue proactively. |
 
 ### Priority: HIGH (Implement This Month)
 
 | Tool Name | Triggered By | Value | Effort | Ratio | Notes |
 |-----------|--------------|-------|--------|-------|-------|
-| *Currently empty - add as discovered* | | | | | |
+| clickup-pr-auto-linker.ps1 | Test session PR #356 had no ClickUp task - manual creation required | 8 | 1.5 | 5.3 | Auto-detect PRs without ClickUp tasks, create task, link PR, assign to user. Eliminates manual steps. Pattern: PR ready → auto-create task → assign → link. |
+| service-extraction-scaffolder.ps1 | Manually created IInterviewDetectionService + impl + tests (22 files) | 7 | 2.5 | 2.8 | Generate service interface, implementation, and unit test skeleton from controller methods. Input: controller file path + method names. Output: 3 files (interface, impl, tests). |
 
 ### Priority: MEDIUM (Implement When Needed)
 
 | Tool Name | Triggered By | Value | Effort | Ratio | Notes |
 |-----------|--------------|-------|--------|-------|-------|
-| *Currently empty - add as discovered* | | | | | |
+| webappfactory-validator.ps1 | Integration tests failed due to Program.cs environment conditional preventing app.RunAsync() | 6 | 1 | 6.0 | Scan Program.cs for environment conditionals that prevent app.RunAsync() in Testing environment. Warn if WebApplicationFactory incompatible patterns detected. |
+| test-failure-classifier.ps1 | 35 test failures needed manual analysis to categorize (infrastructure vs logic vs config) | 5 | 2 | 2.5 | Analyze test failure messages, classify by type (DI resolution, timeout, assertion, exception). Group similar failures. Suggest root causes. Would have quickly identified "all ChatController tests = DI issue". |
 
 ### Priority: LOW (Research/Future)
 

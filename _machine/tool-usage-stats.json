@@ -59,6 +59,12 @@
                                             "TotalCalls":  3,
                                             "LastUsed":  "2026-01-25 20:00:23",
                                             "RecentCalls":  0
-                                        }
+                                        },
+                  "webappfactory-validator":  {
+                                                  "FirstUsed":  "2026-01-25 20:03:49",
+                                                  "TotalCalls":  1,
+                                                  "LastUsed":  "2026-01-25 20:03:49",
+                                                  "RecentCalls":  0
+                                              }
               }
 }
