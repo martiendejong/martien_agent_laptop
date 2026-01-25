@@ -1,6 +1,11 @@
 ﻿# Development Patterns Library
 
-## ðŸ”§ NAMESPACE MIGRATION PATTERNS
+> 📚 **Knowledge Base References:**
+> - **Architecture Patterns** → `C:\scripts\_machine\knowledge-base\05-PROJECTS\` (client-manager, Hazina framework)
+> - **Reflection Insights** → `C:\scripts\_machine\knowledge-base\08-KNOWLEDGE\reflection-insights.md` (lessons learned)
+> - **Workflows** → `C:\scripts\_machine\knowledge-base\06-WORKFLOWS\INDEX.md` (documented procedures)
+
+## ðŸ"§ NAMESPACE MIGRATION PATTERNS
 
 **When Hazina namespaces change, client-manager needs updates:**
 
@@ -1467,6 +1472,12 @@ Assert.Greater(extraction.ConfidenceScore, 0);
 
 
 ---
+
+---
+
+> 📚 **See Also:**
+> - **Hazina Framework Patterns** → `C:\scripts\_machine\knowledge-base\05-PROJECTS\hazina\framework-patterns.md`
+> - **client-manager Architecture** → `C:\scripts\_machine\knowledge-base\05-PROJECTS\client-manager\architecture.md`
 
 ## 📚 PARALLEL MULTI-REPOSITORY DOCUMENTATION INFRASTRUCTURE PATTERN (2026-01-16)
 
