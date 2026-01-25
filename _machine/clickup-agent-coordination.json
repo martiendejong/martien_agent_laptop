@@ -1,0 +1,13 @@
+﻿{
+    "agents":  {
+
+               },
+    "last_updated":  "2026-01-25T19:30:13Z",
+    "claims":  {
+                   "869bx01cv":  {
+                                     "status":  "claimed",
+                                     "agent_id":  "clickhub-001",
+                                     "claimed_at":  "2026-01-25T19:30:13Z"
+                                 }
+               }
+}
