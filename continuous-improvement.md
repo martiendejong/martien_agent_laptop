@@ -646,3 +646,23 @@ C:\scripts\_machine\archive/
 **This protocol prevents content rot and maintains a navigable documentation structure.**
 
 ---
+
+## 📚 See Also
+
+**For centralized knowledge:**
+- **Knowledge Base Index:** `C:\scripts\_machine\knowledge-base\README.md` - Complete KB overview
+- **Reflection Insights:** `C:\scripts\_machine\knowledge-base\08-KNOWLEDGE\reflection-insights.md` - Extracted patterns
+- **User Profile:** `C:\scripts\_machine\knowledge-base\01-USER\psychology-profile.md` - Deep user understanding
+- **Communication Style:** `C:\scripts\_machine\knowledge-base\01-USER\communication-style.md` - How to communicate with user
+
+**Self-improvement skills:**
+- **Session Reflection Skill:** `C:\scripts\.claude\skills\session-reflection\`
+- **Self-Improvement Skill:** `C:\scripts\.claude\skills\self-improvement\`
+- **Continuous Optimization Skill:** `C:\scripts\.claude\skills\continuous-optimization\`
+
+**Tools for documentation:**
+- **Pattern Search:** `C:\scripts\tools\pattern-search.ps1`
+- **Read Reflections:** `C:\scripts\tools\read-reflections.ps1`
+- **Smart Search:** `C:\scripts\tools\smart-search.ps1`
+
+---

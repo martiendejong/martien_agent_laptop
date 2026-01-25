@@ -234,3 +234,25 @@ cd /c/Projects/client-manager && git checkout develop
 git tag -l "v*-stable" --sort=-creatordate | head -5
 ```
 
+---
+
+## 📚 See Also
+
+**Related workflows:**
+- **Worktree Protocol:** `GENERAL_WORKTREE_PROTOCOL.md` - Complete worktree allocation and release
+- **Dual-Mode Workflow:** `GENERAL_DUAL_MODE_WORKFLOW.md` - Feature Development vs Active Debugging
+- **Definition of Done:** `C:\scripts\_machine\DEFINITION_OF_DONE.md` - PR merge criteria
+
+**External system documentation:**
+- **GitHub Integration:** `C:\scripts\_machine\knowledge-base\04-EXTERNAL-SYSTEMS\github-integration.md` - Complete GitHub setup
+- **Git Repositories:** `C:\scripts\_machine\knowledge-base\03-DEVELOPMENT\git-repositories.md` - All repo details
+
+**Automation tools:**
+- **PR Dependencies:** `C:\scripts\tools\validate-pr-base.ps1`
+- **PR Merge Sequencer:** `C:\scripts\tools\merge-pr-sequence.ps1`
+- **Branch Cleanup:** `C:\scripts\tools\prune-branches.ps1`, `cleanup-stale-branches.ps1`
+
+**PR management skills:**
+- **GitHub Workflow Skill:** `C:\scripts\.claude\skills\github-workflow\`
+- **PR Dependencies Skill:** `C:\scripts\.claude\skills\pr-dependencies\`
+

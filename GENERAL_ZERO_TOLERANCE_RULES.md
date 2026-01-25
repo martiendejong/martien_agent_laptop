@@ -229,8 +229,18 @@ When copying to plugin, replace these with actual values:
 
 ---
 
+---
+
+## 📚 See Also
+
+**For complete workflow details:**
+- **Dual-Mode Workflow:** `GENERAL_DUAL_MODE_WORKFLOW.md` - Feature Development vs Active Debugging decision tree
+- **Worktree Protocol:** `GENERAL_WORKTREE_PROTOCOL.md` - Complete allocation and release protocol
+- **Workflows Index:** `C:\scripts\_machine\knowledge-base\06-WORKFLOWS\INDEX.md` - All workflows with decision trees
+- **Definition of Done:** `C:\scripts\_machine\DEFINITION_OF_DONE.md` - Complete task completion checklist
+
 **Version:** 1.0 (Portable)
-**Last Updated:** 2026-01-13
+**Last Updated:** 2026-01-25 (Added knowledge base references)
 **Maintained By:** Claude Community
 **Portability:** This document uses variables - see MACHINE_CONFIG.md for local paths
 

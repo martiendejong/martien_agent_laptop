@@ -1,10 +1,15 @@
 # Tools and Productivity
 
+> 📚 **Knowledge Base References:**
+> - **Complete Tools Catalog** → `C:\scripts\_machine\knowledge-base\07-AUTOMATION\tools-library.md`
+> - **Tool Selection Guide** → `C:\scripts\_machine\knowledge-base\07-AUTOMATION\tool-selection-guide.md`
+> - **User Psychology & Preferences** → `C:\scripts\_machine\knowledge-base\01-USER\` (communication, trust, autonomy)
+
 ## 🔧 PRODUCTIVITY TOOLS - USE PROACTIVELY
 
 **USER DIRECTIVE (2026-01-11):** "make sure you use the tools where needed and/or appropriate"
 
-**STATUS:** 10 tools built and ready to use. See C:\scripts\tools\TOOLS_STATUS.md for complete list.
+**STATUS:** 147 production-ready tools. See knowledge base for complete catalog.
 
 ### MANDATORY Tool Usage
 
@@ -48,7 +53,9 @@ This shows:
 
 ### Available Tools (Quick Reference)
 
-See **C:\scripts\tools\README.md** for full documentation.
+> 📚 **For complete tool documentation:**
+> - **Tools Library** → `C:\scripts\_machine\knowledge-base\07-AUTOMATION\tools-library.md` (147 tools categorized)
+> - **Full Reference** → `C:\scripts\tools\README.md` (detailed usage examples)
 
 1. **clean-stale-branches.sh** - Delete merged branches (ROI 8.0)
 2. **pr-status.sh** - All PRs at a glance (ROI 7.0)
@@ -160,6 +167,10 @@ Copy-Item "$source\*.config" $dest -ErrorAction SilentlyContinue
 **When to use:** Before running builds/tests in worktree that require local configuration.
 
 invoke wp_cli by running wp.bat (wp_cli is not installed/not working, fix this)
+
+## 🔌 Agentic Debugger Bridge
+
+> 📚 **See Also:** `C:\scripts\_machine\knowledge-base\02-MACHINE\software-inventory.md` (debugging tools)
 
 Use the Agentic Debugger Bridge at localhost://27183 to control visual studio debugging.
 You can control Visual Studio via the Agentic Debugger Bridge (local HTTP API).

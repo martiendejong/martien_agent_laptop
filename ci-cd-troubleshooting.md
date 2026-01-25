@@ -1,5 +1,10 @@
 # CI/CD Troubleshooting Guide
 
+> 📚 **Knowledge Base References:**
+> - **GitHub Integration** → `C:\scripts\_machine\knowledge-base\04-EXTERNAL-SYSTEMS\github-integration.md` (workflows, PRs, CI/CD)
+> - **Project Architecture** → `C:\scripts\_machine\knowledge-base\05-PROJECTS\client-manager\architecture.md` (build pipeline details)
+> - **Workflows** → `C:\scripts\_machine\knowledge-base\06-WORKFLOWS\INDEX.md` (documented procedures)
+
 ## ⚠️ FRONTEND CI TROUBLESHOOTING (React/Vite/npm) ⚠️
 
 **Common CI failures and fixes for ClientManagerFrontend:**
@@ -92,6 +97,9 @@ grep -n "duplicateKey" src/services/*.ts
 ```
 
 ### Quick CI Debug Commands
+
+> 📚 **GitHub CLI Reference:** `C:\scripts\_machine\knowledge-base\04-EXTERNAL-SYSTEMS\github-integration.md`
+
 ```bash
 # Get failed CI logs
 gh run view <run-id> --repo owner/repo --log-failed | tail -60
@@ -428,6 +436,10 @@ python3 -c "import sqlite3; conn = sqlite3.connect('c:/stores/brand2boost/identi
 ---
 
 ## 🚀 PRODUCTION DEPLOYMENT
+
+> 📚 **See Also:**
+> - **Environment Variables** → `C:\scripts\_machine\knowledge-base\02-MACHINE\environment-variables.md` (deployment credentials)
+> - **Secrets Registry** → `C:\scripts\_machine\knowledge-base\09-SECRETS\api-keys-registry.md` (API keys, passwords)
 
 ### Deployment Scripts (ALWAYS USE POWERSHELL)
 

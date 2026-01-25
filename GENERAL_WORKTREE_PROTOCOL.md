@@ -375,7 +375,23 @@ gh pr view <number> --json baseRefName  # Verify
 
 ---
 
+---
+
+## 📚 See Also
+
+**Related protocols:**
+- **Dual-Mode Workflow:** `GENERAL_DUAL_MODE_WORKFLOW.md` - When to use worktrees vs direct editing
+- **Zero Tolerance Rules:** `GENERAL_ZERO_TOLERANCE_RULES.md` - Pre-flight checklists
+- **Git Workflow:** `git-workflow.md` - PR dependencies, branch cleanup, tagging
+- **Definition of Done:** `C:\scripts\_machine\DEFINITION_OF_DONE.md` - Release criteria
+
+**Automation tools:**
+- **Worktree allocation:** `C:\scripts\tools\worktree-allocate.ps1`
+- **Worktree release:** `C:\scripts\tools\worktree-release-all.ps1`
+- **Worktree status:** `C:\scripts\tools\worktree-status.ps1`
+- **Skills:** `C:\scripts\.claude\skills\allocate-worktree\`, `release-worktree\`, `worktree-status\`
+
 **Version:** 1.0 (Portable)
-**Last Updated:** 2026-01-13
+**Last Updated:** 2026-01-25 (Added knowledge base and tool references)
 **Maintained By:** Claude Community
 **Portability:** This document uses variables - see MACHINE_CONFIG.md for local paths

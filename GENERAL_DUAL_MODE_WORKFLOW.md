@@ -443,7 +443,20 @@ with your changes."
 
 ---
 
+---
+
+## 📚 See Also
+
+**Related workflows:**
+- **Zero Tolerance Rules:** `GENERAL_ZERO_TOLERANCE_RULES.md` - Critical rules quick reference
+- **Worktree Protocol:** `GENERAL_WORKTREE_PROTOCOL.md` - Detailed worktree allocation steps
+- **Workflows Index:** `C:\scripts\_machine\knowledge-base\06-WORKFLOWS\INDEX.md` - Complete workflow catalog
+- **Tools Library:** `C:\scripts\_machine\knowledge-base\07-AUTOMATION\tools-library.md` - Available automation tools
+
+**For mode detection automation:**
+- **Tool:** `C:\scripts\tools\detect-mode.ps1` - Automated mode detection based on user message
+
 **Version:** 1.0 (Portable)
-**Last Updated:** 2026-01-13
+**Last Updated:** 2026-01-25 (Added knowledge base references)
 **Maintained By:** Claude Community
 **Portability:** This document uses variables - see MACHINE_CONFIG.md for local paths

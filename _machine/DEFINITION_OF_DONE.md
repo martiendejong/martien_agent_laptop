@@ -531,8 +531,34 @@ Coordination DoD satisfied? (heartbeat, metrics, no conflicts, etc.)
 
 ---
 
-**Last Updated:** 2026-01-20 03:00
-**Added:** Parallel Agent Coordination criteria
+---
+
+## 📚 See Also
+
+**Core workflow documentation:**
+- **Zero Tolerance Rules:** `C:\scripts\GENERAL_ZERO_TOLERANCE_RULES.md` - Pre-flight checklists
+- **Dual-Mode Workflow:** `C:\scripts\GENERAL_DUAL_MODE_WORKFLOW.md` - Feature vs Debug mode
+- **Worktree Protocol:** `C:\scripts\GENERAL_WORKTREE_PROTOCOL.md` - Complete allocation protocol
+- **Git Workflow:** `C:\scripts\git-workflow.md` - PR dependencies and merge rules
+- **Software Principles:** `C:\scripts\_machine\SOFTWARE_DEVELOPMENT_PRINCIPLES.md` - Boy Scout Rule, SOLID
+
+**Parallel coordination:**
+- **System Integration:** `C:\scripts\_machine\SYSTEM_INTEGRATION.md` - Complete coordination protocol
+- **Coordination Troubleshooting:** `C:\scripts\_machine\COORDINATION_TROUBLESHOOTING.md` - Quick fixes
+
+**Automation tools for DoD validation:**
+- **Pre-commit checks:** `C:\scripts\tools\pre-commit-hook.ps1`
+- **Migration validation:** `C:\scripts\tools\validate-migration.ps1`, `ef-preflight-check.ps1`
+- **PR validation:** `C:\scripts\tools\pr-description-enforcer.ps1`
+- **Deployment risk:** `C:\scripts\tools\deployment-risk-score.ps1`
+- **Health check:** `C:\scripts\tools\health-check.ps1`
+
+**External systems:**
+- **ClickUp Integration:** `C:\scripts\_machine\knowledge-base\04-EXTERNAL-SYSTEMS\clickup-structure.md`
+- **GitHub Integration:** `C:\scripts\_machine\knowledge-base\04-EXTERNAL-SYSTEMS\github-integration.md`
+
+**Last Updated:** 2026-01-25 (Added knowledge base references)
+**Added:** Parallel Agent Coordination criteria (2026-01-20)
 **Integration:** Mandatory when agentCount > 1
 **Reference:** See `SYSTEM_INTEGRATION.md` for complete coordination protocol
 

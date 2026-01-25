@@ -297,5 +297,16 @@ powershell.exe -File "C:/scripts/tools/ai-image.ps1" \
 
 ---
 
-**Last Updated:** 2026-01-25 (Added AI Image Generation capabilities)
+---
+
+## 📚 See Also
+
+**For detailed machine context:**
+- **File system map:** `C:\scripts\_machine\knowledge-base\02-MACHINE\file-system-map.md` - Complete directory structure
+- **Software inventory:** `C:\scripts\_machine\knowledge-base\02-MACHINE\software-inventory.md` - All installed software
+- **Environment variables:** `C:\scripts\_machine\knowledge-base\02-MACHINE\environment-variables.md` - Complete PATH and env vars
+- **Git repositories:** `C:\scripts\_machine\knowledge-base\03-DEVELOPMENT\git-repositories.md` - All repo details
+- **API keys registry:** `C:\scripts\_machine\knowledge-base\09-SECRETS\api-keys-registry.md` - All credentials and keys
+
+**Last Updated:** 2026-01-25 (Added AI Image Generation capabilities + KB references)
 **Maintained By:** User (update paths as environment changes)

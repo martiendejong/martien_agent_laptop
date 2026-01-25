@@ -2,6 +2,11 @@
 
 **Complete reference for Claude Agent productivity tools.**
 
+> 📚 **For comprehensive tools documentation:**
+> - **Tools Catalog** → `C:\scripts\_machine\knowledge-base\07-AUTOMATION\tools-library.md` (complete categorized list)
+> - **Tool Selection Guide** → `C:\scripts\_machine\knowledge-base\07-AUTOMATION\tool-selection-guide.md` (decision trees, when to use each tool)
+> - **Alphabetical Index** → `C:\scripts\_machine\knowledge-base\07-AUTOMATION\tools-alphabetical-index.md` (quick lookup)
+
 ---
 
 ## Quick Reference
@@ -560,6 +565,13 @@ When creating new tools:
 
 ## Related Documentation
 
+**Knowledge Base:**
+- **Tools Library** → `C:\scripts\_machine\knowledge-base\07-AUTOMATION\tools-library.md` (complete catalog with categories)
+- **Tool Selection Guide** → `C:\scripts\_machine\knowledge-base\07-AUTOMATION\tool-selection-guide.md` (when to use which tool)
+- **Skills Catalog** → `C:\scripts\_machine\knowledge-base\07-AUTOMATION\skills-catalog.md` (auto-discoverable workflows)
+- **Workflows** → `C:\scripts\_machine\knowledge-base\06-WORKFLOWS\INDEX.md` (all documented workflows)
+
+**Legacy Documentation:**
 - **Navigation:** `C:\scripts\NAVIGATION.md`
 - **Problem solutions:** `C:\scripts\_machine\problem-solution-index.md`
 - **Reflection log:** `C:\scripts\_machine\reflection.log.md`

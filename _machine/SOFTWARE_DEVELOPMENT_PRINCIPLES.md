@@ -842,3 +842,21 @@ Use these tools:
 **Remember:** The goal is not perfection. The goal is continuous improvement.
 
 **Apply the Boy Scout Rule:** Leave every file better than you found it.
+
+---
+
+## 📚 See Also
+
+**Related development guidelines:**
+- **Definition of Done:** `C:\scripts\_machine\DEFINITION_OF_DONE.md` - Complete task completion checklist
+- **Continuous Improvement:** `C:\scripts\continuous-improvement.md` - Self-learning protocols
+- **Best Practices Library:** `C:\scripts\_machine\best-practices\` - Pattern library
+
+**Project-specific architecture:**
+- **client-manager Architecture:** `C:\scripts\_machine\knowledge-base\05-PROJECTS\client-manager\architecture.md`
+- **Hazina Framework Patterns:** `C:\scripts\_machine\knowledge-base\05-PROJECTS\hazina\framework-patterns.md`
+
+**Code quality tools:**
+- **C# Auto-fix:** `C:\scripts\tools\cs-format.ps1`, `cs-autofix\`
+- **Code Analysis:** `C:\scripts\tools\auto-code-review.ps1`
+- **Code Metrics:** `C:\scripts\tools\generate-code-metrics.ps1`
