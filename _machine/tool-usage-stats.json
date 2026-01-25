@@ -17,6 +17,12 @@
                                             "TotalCalls":  1,
                                             "LastUsed":  "2026-01-25 16:32:07",
                                             "RecentCalls":  0
-                                        }
+                                        },
+                  "monitor-activity":  {
+                                           "FirstUsed":  "2026-01-25 16:42:47",
+                                           "TotalCalls":  1,
+                                           "LastUsed":  "2026-01-25 16:42:48",
+                                           "RecentCalls":  0
+                                       }
               }
 }
