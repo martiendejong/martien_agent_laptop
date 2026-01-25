@@ -47,6 +47,12 @@
                                                   "TotalCalls":  1,
                                                   "LastUsed":  "2026-01-25 19:33:34",
                                                   "RecentCalls":  0
-                                              }
+                                              },
+                  "ai-vision":  {
+                                    "FirstUsed":  "2026-01-25 19:34:19",
+                                    "TotalCalls":  1,
+                                    "LastUsed":  "2026-01-25 19:34:19",
+                                    "RecentCalls":  0
+                                }
               }
 }
