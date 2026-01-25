@@ -182,7 +182,7 @@ Write-Host "📝 Action Items:" -ForegroundColor Cyan
 Write-Host "   1. Review wishlist: code $WishlistPath" -ForegroundColor White
 Write-Host "   2. Implement top 1 item if ratio > 8.0 or effort = 1" -ForegroundColor White
 Write-Host "   3. Move any completed tools to IMPLEMENTED section" -ForegroundColor White
-Write-Host "   4. Add any new 'I wish...' thoughts from today" -ForegroundColor White
+Write-Host "   4. Add any new ""I wish..."" thoughts from today" -ForegroundColor White
 Write-Host ""
 
 # Auto-implement check
