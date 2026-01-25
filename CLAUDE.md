@@ -104,6 +104,11 @@ powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
 | **Detecting Feature vs Debug mode** | **`detect-mode.ps1 -UserMessage "..." -Analyze`** |
 | **Generating AI images** | **`ai-image.ps1 -Prompt "..." -OutputPath "..."`** |
 | **Analyzing images / answering questions about images** | **`ai-vision.ps1 -Images @("...") -Prompt "..."`** |
+| **🆕 Saving work context before interruption** | **`context-snapshot.ps1 -Action Save -Notes "..."`** |
+| **🆕 Finding code refactoring priorities** | **`code-hotspot-analyzer.ps1`** |
+| **🆕 Detecting unused code** | **`unused-code-detector.ps1`** |
+| **🆕 Finding N+1 query performance issues** | **`n-plus-one-query-detector.ps1`** |
+| **🆕 Detecting flaky tests** | **`flaky-test-detector.ps1 -Iterations 10`** |
 
 **Goal:** Maximize uninterrupted thinking time by eliminating manual ceremony.
 
@@ -180,14 +185,25 @@ powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
 | **`detect-mode.ps1`** | **NEW: Feature vs Debug mode detector** | `detect-mode.ps1 -UserMessage "..." -Analyze` |
 | **`ai-image.ps1`** | **NEW: Universal AI image generation (OpenAI/Google/Stability/Azure)** | `ai-image.ps1 -Prompt "African house" -OutputPath "image.png"` |
 | **`ai-vision.ps1`** | **NEW: AI vision Q&A - ask questions about images** | `ai-vision.ps1 -Images @("photo.png") -Prompt "What do you see?"` |
+| **`context-snapshot.ps1`** | **NEW: Capture/restore work context (files, git, terminal)** | `context-snapshot.ps1 -Action Save -Notes "Debugging auth"` |
+| **`code-hotspot-analyzer.ps1`** | **NEW: Find refactoring priorities (high churn + complexity)** | `code-hotspot-analyzer.ps1 -Since "3 months ago"` |
+| **`unused-code-detector.ps1`** | **NEW: Detect unused classes/methods/properties** | `unused-code-detector.ps1 -MinConfidence 7` |
+| **`n-plus-one-query-detector.ps1`** | **NEW: Find N+1 query performance issues (EF Core)** | `n-plus-one-query-detector.ps1` |
+| **`flaky-test-detector.ps1`** | **NEW: Find non-deterministic tests via repeated runs** | `flaky-test-detector.ps1 -Iterations 10` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 
-**🎉 MILESTONE: ALL 50 RECOMMENDATIONS IMPLEMENTED! Total: 101 tools (47 original + 54 new)**
+**🎉 MILESTONE: 106 tools implemented! (47 original + 54 recommended + 5 meta-optimization)**
 
 **Latest additions (2026-01-25):**
 - `ai-image.ps1` - Universal AI image generation (4 providers, 4 modes, reference images)
 - `ai-vision.ps1` - Ask questions about images (4 providers, multi-image support, OCR)
+- **🆕 META-OPTIMIZATION TOOLS** (50-expert analysis, value/effort ratio optimized):
+  - `context-snapshot.ps1` - Save/restore work context (ratio 10.0)
+  - `code-hotspot-analyzer.ps1` - Refactoring priorities (ratio 9.0)
+  - `unused-code-detector.ps1` - Dead code elimination (ratio 9.0)
+  - `n-plus-one-query-detector.ps1` - Performance issue finder (ratio 6.7)
+  - `flaky-test-detector.ps1` - Non-deterministic test detector (ratio 6.0)
 
 ---
 
@@ -659,6 +675,6 @@ When implemented, this will enable agents to:
 
 ---
 
-**Last Updated:** 2026-01-25 (Added AI Image Generation + AI Vision Analysis - complete multimodal AI capabilities)
+**Last Updated:** 2026-01-25 (Meta-Optimization: 50-expert analysis + 5 Tier S tools + continuous discovery system)
 **Maintained By:** Claude Agent (Self-improving documentation)
 **User Mandate:** "zorg dat je dus constant leert van jezelf en je eigen instructies bijwerkt"
