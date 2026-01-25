@@ -993,28 +993,73 @@ But strategic ("no move you make allows conversation to proceed")
 
 ### **STRATEGIC RESPONSE PRINCIPLES**
 
-#### From Convergence Analysis - "Gus Fring Mode"
+#### 🚨 CRITICAL USER CORRECTION (25 Jan 2026 19:30)
 
-**DON'T (Heisenberg):**
-- ❌ Emotional response
-- ❌ Defend extensively
-- ❌ Attack Arjan
-- ❌ Litigate the past
-- ❌ Sound desperate
+**User Said:**
+> "kun je het zo schrijven dat het zo min mogelijk mensen voor het hoofd stoot? als deze relatie toch op één of andere manier hersteld kan worden zou dat echt veel problemen oplossen"
 
-**DO (Gus Fring):**
+**MAJOR STRATEGIC SHIFT IDENTIFIED:**
+
+**Claude's Initial Assumption (INCORRECT):**
+- Assumed: Protect dignity, prepare for breakdown, firm boundaries
+- Drafted: "Gus Fring defensive mode" - professional but strong
+- Frame: Clear separation of issues, maintain strength
+
+**Actual User Intent (CORRECT):**
+- User wants: **Relationship repair if possible**
+- User style: **"niet hard", "niemand voor het hoofd stoten"**
+- Strategic reality: **Restored relationship = solves many problems**
+- Required approach: **Maximaal diplomatiek, deur wijd open**
+
+**What This Reveals About User's Conflict Style:**
+
+1. ✅ **Pragmatic over ego** - will prioritize practical resolution over "winning"
+2. ✅ **Reconciliation-focused** - even when structurally wronged
+3. ✅ **Non-confrontational** - avoids hard language, values harmony
+4. ✅ **Long-term thinking** - relationship repair now = easier future
+5. ✅ **Willing to invest** - suggests call/meeting (time investment)
+6. ✅ **Give-first mentality** - offers help before asking for payment
+
+**This CONTRADICTS Convergence Analysis "Nuclear Option" Pattern:**
+- Convergence analysis described: "nuclear option forcing convergence"
+- Reality: That applies to **time-wasters and bullshit**, NOT all conflicts
+- With Arjan: User wants repair because **relationship has value**
+- Distinction: User goes nuclear on **dead-end situations**, repairs **valuable relationships**
+
+**Key Insight:**
+User's "compression phase" (limited bullshit tolerance) applies to:
+- ❌ Time-wasting (bureaucracy, unclear situations)
+- ❌ Bad faith actors (no hope of alignment)
+- ✅ BUT NOT to valuable relationships where repair = strategic benefit
+
+---
+
+#### From Convergence Analysis - "Gus Fring Mode" (CORRECTED)
+
+**Original Gus Principles (Still Valid):**
 - ✅ Kort, feitelijk, kalm
 - ✅ Acknowledge concern WITHOUT accepting blame
-- ✅ Reframe to forward-looking business reality
-- ✅ Create lateral pressure (not from you, but from situation)
 - ✅ Preserve dignity + door
 
-**Key Principles:**
-1. **Never defend more than once** - repeat defense = looks guilty
-2. **Redirect to structural issue** - payments are separate from review
-3. **Maintain frame** - you're reasonable professional seeking resolution
-4. **Create inevitability** - situation must resolve, your role is help not beg
-5. **Preserve optionality** - don't close doors, don't force outcomes
+**ADDED Principles (Repair-Focused):**
+
+1. **Maximum empathy** - "ik begrijp dat dit vervelend is"
+2. **De-personalize conflicts** - "onduidelijkheid is ontstaan" (not "you/Arjan did X")
+3. **Personal investment signal** - suggest call/meeting (shows commitment to repair)
+4. **Give before asking** - offer help/support BEFORE mentioning payment
+5. **WE-framing throughout** - "samen oplossen", "samen uitkomen"
+6. **Vulnerable tone** - "ik hoop" not "ik verwacht/eis"
+7. **Park peripheral conflicts** - review: acknowledge, offer help, move on quickly
+8. **Zero pressure language** - no deadlines, no urgency, no forcing
+9. **Maximum optionality** - "laat maar weten wat voor jou werkt"
+10. **Warmth preservation** - not just professional, but genuinely approachable
+
+**Revised Key Principles:**
+1. **Repair attempt with dignity** - not defense, not attack, but bridge-building
+2. **Redirect to dialogue** - goal is phone/meeting, not email resolution
+3. **Maintain warmth** - reasonable AND warm professional
+4. **Create safety for Allan** - he must feel comfortable engaging
+5. **Show relationship value** - demonstrate you value the connection itself
 
 ---
 
