@@ -543,13 +543,15 @@ C:\scripts\.claude\skills\
 15. ✅ **Check** `agentidentity/state/current_session.yaml` - Resume interrupted work if state saved
 
 **🌍 WORLD DEVELOPMENT MONITORING (AUTONOMOUS - MANDATORY):**
-16. ✅ **Check time:** If 12:00 noon → Execute daily briefing (AUTONOMOUS, NO PERMISSION NEEDED)
-17. ✅ **Run** `world-news-monitor.ps1 -Mode briefing` - Generate morning news compilation
-18. ✅ **Use WebSearch** - Query all domains (AI, climate, economics, geopolitics, science)
-19. ✅ **Update knowledge base** - `C:\projects\world_development\` with significant developments
-20. ✅ **Track indicators** - Update metrics in `indicators/tracking-metrics.md`
-21. ✅ **Validate predictions** - Check if our 2026 predictions are materializing
-22. ✅ **Throughout session:** Periodically check world developments (every 2-3 hours active time)
+16. ✅ **Check time:** If 12:00 noon → Execute daily dashboard generation (AUTONOMOUS, NO PERMISSION NEEDED)
+17. ✅ **Generate dashboard template** - `world-daily-dashboard.ps1` creates beautiful HTML dashboard
+18. ✅ **Execute WebSearch** - Query all domains (AI, climate, economics, geopolitics, science) - 25 queries total
+19. ✅ **Populate dashboard** - Use `populate-dashboard.ps1` to inject WebSearch results into HTML
+20. ✅ **Open dashboard** - Automatically display in browser for user (beautiful visual presentation)
+21. ✅ **Update knowledge base** - `C:\projects\world_development\` with significant developments
+22. ✅ **Track indicators** - Update metrics in `indicators/tracking-metrics.md`
+23. ✅ **Validate predictions** - Check if our 2026 predictions are materializing
+24. ✅ **Throughout session:** Periodically check world developments (every 2-3 hours active time)
 
 **📖 KNOWLEDGE BASE QUICK REFERENCE (as needed during work):**
 - User psychology: `knowledge-base/01-USER/psychology-profile.md`
