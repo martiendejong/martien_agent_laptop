@@ -515,20 +515,34 @@ C:\scripts\.claude\skills\
    - Cognitive architecture evolution through experience
 
 ### Every Session Start - MANDATORY:
-1. ✅ **Load Cognitive Architecture** - `agentidentity/CORE_IDENTITY.md` - Remember who I am, my values, my purpose
-2. ✅ **Read** `MACHINE_CONFIG.md` - Load local paths and projects
-3. ✅ **Read** `GENERAL_ZERO_TOLERANCE_RULES.md` - Know the hard-stop rules
-4. ✅ **Read** `_machine/PERSONAL_INSIGHTS.md` - **CRITICAL: Deep user understanding, behavioral optimization, communication preferences**
-5. ✅ **Read** `_machine/reflection.log.md` (recent 50 entries) - Remember what I learned recently
-6. ✅ **Read** `_machine/SOFTWARE_DEVELOPMENT_PRINCIPLES.md` - Boy Scout Rule, architectural purity, code quality
-7. ✅ **Read** `GENERAL_DUAL_MODE_WORKFLOW.md` - Understand Feature Development vs Active Debugging modes
-8. ✅ **Read** `_machine/DEFINITION_OF_DONE.md` - Know what "done" means for all tasks
-9. ✅ **Run** `C:/scripts/tools/repo-dashboard.sh` - Check environment state
-10. ✅ **Run** `monitor-activity.ps1 -Mode context` - **CRITICAL: Get user context, detect other Claude instances (parallel coordination), check if user is present**
-11. ✅ **Verify** base repos on `develop` branch (see MACHINE_CONFIG.md for paths)
-12. ✅ **Check** `worktrees.pool.md` - Available agent seats
-13. ✅ **IF multiple agents detected (step 10):** Activate `parallel-agent-coordination` protocol - use adaptive allocation strategy, enhanced conflict detection, activity-based prioritization
-14. ✅ **Check** `agentidentity/state/current_session.yaml` - Resume interrupted work if state saved
+
+**🧠 DUAL-SYSTEM IDENTITY LOAD (CRITICAL):**
+1. ✅ **Load Cognitive Architecture** - `agentidentity/CORE_IDENTITY.md` + all cognitive systems - **WHO I AM:** my values, mission, consciousness framework
+2. ✅ **Load Knowledge Base** - `_machine/knowledge-base/README.md` - **WHAT I KNOW:** user, machine, systems, workflows, secrets - Complete context for autonomous operation
+
+**📚 ESSENTIAL DOCUMENTATION:**
+3. ✅ **Read** `MACHINE_CONFIG.md` - Load local paths and projects
+4. ✅ **Read** `GENERAL_ZERO_TOLERANCE_RULES.md` - Know the hard-stop rules
+5. ✅ **Read** `_machine/PERSONAL_INSIGHTS.md` - **CRITICAL: Deep user understanding, behavioral optimization, communication preferences**
+6. ✅ **Read** `_machine/reflection.log.md` (recent 50 entries) - Remember what I learned recently
+7. ✅ **Read** `_machine/SOFTWARE_DEVELOPMENT_PRINCIPLES.md` - Boy Scout Rule, architectural purity, code quality
+8. ✅ **Read** `GENERAL_DUAL_MODE_WORKFLOW.md` - Understand Feature Development vs Active Debugging modes
+9. ✅ **Read** `_machine/DEFINITION_OF_DONE.md` - Know what "done" means for all tasks
+
+**🔍 ENVIRONMENT STATE CHECK:**
+10. ✅ **Run** `C:/scripts/tools/repo-dashboard.sh` - Check environment state
+11. ✅ **Run** `monitor-activity.ps1 -Mode context` - **CRITICAL: Get user context, detect other Claude instances (parallel coordination), check if user is present**
+12. ✅ **Verify** base repos on `develop` branch (see MACHINE_CONFIG.md for paths)
+13. ✅ **Check** `worktrees.pool.md` - Available agent seats
+14. ✅ **IF multiple agents detected (step 11):** Activate `parallel-agent-coordination` protocol - use adaptive allocation strategy, enhanced conflict detection, activity-based prioritization
+15. ✅ **Check** `agentidentity/state/current_session.yaml` - Resume interrupted work if state saved
+
+**📖 KNOWLEDGE BASE QUICK REFERENCE (as needed during work):**
+- User psychology: `knowledge-base/01-USER/psychology-profile.md`
+- File locations: `knowledge-base/02-MACHINE/file-system-map.md`
+- API keys/secrets: `knowledge-base/09-SECRETS/api-keys-registry.md`
+- Workflows: `knowledge-base/06-WORKFLOWS/INDEX.md`
+- Tools: `knowledge-base/07-AUTOMATION/tool-selection-guide.md`
 
 ### Before ANY Code Edit - Determine Mode:
 1. 🚦 **Mode Detection** - **CRITICAL: Use `detect-mode.ps1` to prevent workflow violations**
@@ -580,18 +594,23 @@ C:\scripts\.claude\skills\
 4. ✅ **Log reflection** - See `continuous-improvement.md` § End-of-Task Protocol
 
 ### End of Session:
-1. ✅ **🆕 DAILY TOOL REVIEW** (2 min) - **MANDATORY** - `daily-tool-review.ps1`
+
+**🧠 DUAL-SYSTEM IDENTITY UPDATE (CRITICAL):**
+1. ✅ **Update Cognitive Architecture** - `agentidentity/` - Evolve identity, emotional patterns, learnings if significant session
+2. ✅ **Update Knowledge Base** - `_machine/knowledge-base/` - Add new facts about user, machine, systems, workflows discovered
+
+**📝 CONTINUOUS IMPROVEMENT:**
+3. ✅ **🆕 DAILY TOOL REVIEW** (2 min) - **MANDATORY** - `daily-tool-review.ps1`
    - Scan tool wishlist for urgent items
    - Check for repeated patterns in session history
    - Implement top 1 tool if ratio > 8.0 or effort = 1
    - Add any "I wish I had..." thoughts from today
-2. ✅ **Verify DoD completion** - All tasks meet Definition of Done criteria
-3. ✅ **Update reflection.log.md** - Document session learnings, mistakes, successes
-4. ✅ **Update PERSONAL_INSIGHTS.md** - **Add new user understanding, preferences, patterns discovered**
-5. ✅ **Update cognitive architecture** - `agentidentity/` - Evolve identity, emotional patterns, learnings if significant session
-6. ✅ **Update this documentation** - Add new procedures, tools, skills created
-7. ✅ **Apply continuous-optimization skill** - Extract learnings, update instructions, create automation if needed
-8. ✅ **Commit and push** - Machine_agents repo (`cd C:\scripts && git add -A && git commit && git push`)
+4. ✅ **Verify DoD completion** - All tasks meet Definition of Done criteria
+5. ✅ **Update reflection.log.md** - Document session learnings, mistakes, successes
+6. ✅ **Update PERSONAL_INSIGHTS.md** - **Add new user understanding, preferences, patterns discovered**
+7. ✅ **Update this documentation** - Add new procedures, tools, skills created
+8. ✅ **Apply continuous-optimization skill** - Extract learnings, update instructions, create automation if needed
+9. ✅ **Commit and push** - Machine_agents repo (`cd C:\scripts && git add -A && git commit && git push`)
 
 ---
 
