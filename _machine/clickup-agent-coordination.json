@@ -2,12 +2,8 @@
     "agents":  {
 
                },
-    "last_updated":  "2026-01-25T20:00:16Z",
+    "last_updated":  "2026-01-25T20:06:28Z",
     "claims":  {
-                   "869bwujke":  {
-                                     "status":  "claimed",
-                                     "agent_id":  "agent-007",
-                                     "claimed_at":  "2026-01-25T20:00:16Z"
-                                 }
+
                }
 }
