@@ -391,13 +391,91 @@ foreach ($seat in $seatWorktrees.Keys | Sort-Object) {
             Write-Success "No uncommitted changes"
         }
 
-        # Push changes
+        # Merge develop into feature branch (NEW: catch conflicts before PR creation)
+        if ($wt.Branch -ne "develop" -and $wt.Branch -ne "main" -and $wt.Branch -notmatch "^agent\d+$") {
+            if ($DryRun) {
+                Write-DryRun "Would merge develop into $($wt.Branch)"
+            }
+            else {
+                Write-Step "Merging develop into feature branch..."
+                Push-Location $wt.Path
+                try {
+                    git fetch origin develop 2>&1 | Out-Null
+                    $mergeOutput = git merge origin/develop --no-edit 2>&1
+
+                    if ($LASTEXITCODE -ne 0) {
+                        Write-Err "MERGE CONFLICTS detected with develop!"
+                        Write-Host ""
+                        Write-Host "  Conflicts in:" -ForegroundColor Red
+                        git diff --name-only --diff-filter=U | ForEach-Object {
+                            Write-Host "    - $_" -ForegroundColor Yellow
+                        }
+                        Write-Host ""
+                        Write-Host "  ACTION REQUIRED:" -ForegroundColor Yellow
+                        Write-Host "  1. Resolve conflicts manually in: $($wt.Path)"
+                        Write-Host "  2. git add <resolved-files>"
+                        Write-Host "  3. git merge --continue"
+                        Write-Host "  4. Re-run this script"
+                        Write-Host ""
+                        $results.Errors++
+                        continue
+                    }
+
+                    Write-Success "Successfully merged develop"
+                }
+                finally {
+                    Pop-Location
+                }
+            }
+        }
+
+        # Run pre-flight validation (NEW: catch issues before PR creation)
+        if ($wt.Branch -ne "develop" -and $wt.Branch -ne "main" -and $wt.Branch -notmatch "^agent\d+$") {
+            if ($DryRun) {
+                Write-DryRun "Would run pr-preflight.ps1"
+            }
+            else {
+                Write-Step "Running pre-flight validation..."
+                Push-Location $wt.Path
+                try {
+                    $preflightScript = "C:\scripts\tools\pr-preflight.ps1"
+                    if (Test-Path $preflightScript) {
+                        $preflightOutput = & $preflightScript -Repo $wt.Repo -Branch $wt.Branch 2>&1
+                        $preflightExitCode = $LASTEXITCODE
+
+                        if ($preflightExitCode -eq 0) {
+                            Write-Success "Pre-flight validation passed"
+                        }
+                        elseif ($preflightExitCode -eq 1) {
+                            Write-Err "Pre-flight validation FAILED"
+                            Write-Host ""
+                            Write-Host "  Fix issues before creating PR:" -ForegroundColor Yellow
+                            Write-Host $preflightOutput
+                            Write-Host ""
+                            $results.Errors++
+                            continue
+                        }
+                        else {
+                            Write-Warn "Pre-flight validation had warnings (continuing)"
+                        }
+                    }
+                    else {
+                        Write-Warn "pr-preflight.ps1 not found - skipping validation"
+                    }
+                }
+                finally {
+                    Pop-Location
+                }
+            }
+        }
+
+        # Push changes (now includes merged state + validated code)
         if (-not $SkipPush) {
             if ($DryRun) {
                 Write-DryRun "Would push to remote"
             }
             else {
-                Write-Step "Pushing to remote..."
+                Write-Step "Pushing validated code to remote..."
                 $pushed = Invoke-PushChanges -WorktreePath $wt.Path
                 if ($pushed) {
                     Write-Success "Pushed to remote"

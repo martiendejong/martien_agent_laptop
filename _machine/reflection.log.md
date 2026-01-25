@@ -358,6 +358,40 @@ User trusts agent to:
 **This is Meta-Cognitive Rule #1 applied to the meta-level:**
 > Consult 50 experts to optimize the agent itself, not just code
 
+### 🔄 UPDATE: Daily Cadence Upgrade (2026-01-25 02:15)
+
+**User feedback:** "doe dat wekelijks maar dagelijks"
+
+**Action taken:**
+1. ✅ Changed tool wishlist review from WEEKLY → **DAILY**
+2. ✅ Created `daily-tool-review.ps1` - automated 2-minute end-of-session routine
+3. ✅ Updated CLAUDE.md end-of-session checklist (daily review now step #1)
+4. ✅ Added continuous improvement mandate to CLAUDE.md
+5. ✅ Lowered capture threshold: 3x repeated → **2x repeated** (catch patterns earlier)
+
+**New workflow:**
+- **DAILY (end of every session):** Run `daily-tool-review.ps1` (2 min mandatory)
+  - Scan wishlist for urgent items
+  - Auto-detect repeated patterns from session history
+  - Implement top 1 tool if ratio > 8.0 or effort = 1
+  - Add any "I wish..." thoughts from today
+- **Weekly (Sunday):** 5-min meta-review (usage tracking, validate estimates)
+- **Monthly (1st Monday):** 15-min deep dive (patterns, retire unused, adjust priorities)
+
+**Why this is better:**
+- Daily review catches tool opportunities immediately (not waiting 7 days)
+- Repeated patterns detected same-day (can implement before session ends)
+- Continuous improvement becomes **habit**, not event
+- Tally marks system tracks urgency (|||| = 5 times = URGENT)
+- Lower friction = higher adoption = faster capability growth
+
+**Expected impact:**
+- Was: 1 tool per week (52/year)
+- Now: 1 tool per day when needed (200-300/year potential)
+- Reality: ~2-3 tools per week (100-150/year) = **3x increase**
+
+**This implements true "constant proces"** - not weekly batch, but daily continuous flow.
+
 ---
 
 **Session Rating:** ⭐⭐⭐⭐⭐ (5/5)

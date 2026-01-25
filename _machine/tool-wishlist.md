@@ -56,34 +56,52 @@
 
 ## 🔄 HOW TO USE THIS WISHLIST
 
-### When Working (During Session)
+### During Session (Real-Time Capture)
 
 **If you find yourself:**
 - ❓ "I wish I had a script for this..."
-- 🔁 Doing the same manual steps for 3rd time
+- 🔁 Doing the same manual steps for **2nd time** (down from 3rd - catch earlier!)
 - 😫 Spending >5 minutes on repetitive task
 - 🐛 Debugging same type of issue again
 
 **Then:**
-1. **Capture immediately** in this file (ACTIVE WISHLIST section)
-2. **Estimate value/effort** (quick gut check, 1-10 scale)
+1. **Capture IMMEDIATELY** in this file (ACTIVE WISHLIST section)
+2. **Quick estimate** value/effort (1-10 scale, 30 seconds)
 3. **Add context** ("Triggered by: debugging N+1 query in UserService")
-4. **Continue working** (don't implement immediately unless critical)
+4. **Continue working** (don't implement unless CRITICAL)
+5. **Tally mark** if same wish appears again (|||| = 5 occurrences = URGENT)
 
-### Weekly Review (End of Week)
+### DAILY Review (End of EVERY Session) ⭐
 
-1. **Sort by ratio** (Value/Effort)
-2. **Promote top 3** to "Implement This Week"
-3. **Move implemented tools** to IMPLEMENTED section
-4. **Archive low-value items** (delete or move to research)
-5. **Track usage frequency** of implemented tools
+**MANDATORY 2-minute end-of-session routine:**
 
-### Pattern Recognition
+1. **Scan wishlist** - Any new items today?
+2. **Check tally marks** - Any item hit 3+ times? → URGENT
+3. **Sort by ratio** - Top 3 still correct?
+4. **Implement top 1** if:
+   - Ratio > 8.0 (ultra-high value)
+   - OR tally marks ≥ 3 (needed repeatedly today)
+   - OR effort = 1 (trivial to implement)
+5. **Move completed** to IMPLEMENTED section
+6. **Quick wins** - Any 10-minute tools that would help tomorrow?
 
-**After 3 months, analyze:**
+### Weekly Meta-Review (Every Sunday)
+
+**5-minute strategic review:**
+1. **Track usage** - Update usage tracking table
+2. **Validate estimates** - Were value/effort predictions accurate?
+3. **Retire unused** - Any tools not used in 30 days? → Archive
+4. **Pattern recognition** - What themes emerged this week?
+5. **Adjust priorities** - Re-sort based on actual usage
+
+### Monthly Meta-Analysis (First Monday)
+
+**15-minute deep dive:**
 - Which types of tools get used most? (double down on that category)
 - Which tools never get used? (avoid similar tools)
 - What common themes emerge? (indicates systematic gaps)
+- Are we still implementing tools reactively or proactively?
+- Update quarterly goals based on learnings
 
 ---
 
@@ -192,6 +210,8 @@
 
 ---
 
-**Last Updated:** 2026-01-25 02:10
-**Next Review:** 2026-02-01 (weekly)
-**Maintenance:** Living document - update during every session reflection
+**Last Updated:** 2026-01-25 02:15 (Changed to DAILY review cadence)
+**Next Review:** END OF EVERY SESSION (daily mandatory)
+**Weekly Meta-Review:** Every Sunday
+**Monthly Analysis:** First Monday of month
+**Maintenance:** Living document - update multiple times per day

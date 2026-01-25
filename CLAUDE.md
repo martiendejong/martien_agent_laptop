@@ -109,8 +109,15 @@ powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
 | **🆕 Detecting unused code** | **`unused-code-detector.ps1`** |
 | **🆕 Finding N+1 query performance issues** | **`n-plus-one-query-detector.ps1`** |
 | **🆕 Detecting flaky tests** | **`flaky-test-detector.ps1 -Iterations 10`** |
+| **🆕 DAILY tool review (end of session)** | **`daily-tool-review.ps1`** |
 
 **Goal:** Maximize uninterrupted thinking time by eliminating manual ceremony.
+
+**🔄 CONTINUOUS IMPROVEMENT MANDATE:**
+- **DAILY:** Review tool wishlist at end of every session (2 min mandatory)
+- **CAPTURE:** Any "I wish I had..." thought immediately in wishlist
+- **IMPLEMENT:** Top 1 tool per day if ratio > 8.0 or effort = 1
+- **TRACK:** Monthly usage validation, retire unused tools
 
 ### 🔧 Essential Tools Quick Reference
 
@@ -190,10 +197,11 @@ powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
 | **`unused-code-detector.ps1`** | **NEW: Detect unused classes/methods/properties** | `unused-code-detector.ps1 -MinConfidence 7` |
 | **`n-plus-one-query-detector.ps1`** | **NEW: Find N+1 query performance issues (EF Core)** | `n-plus-one-query-detector.ps1` |
 | **`flaky-test-detector.ps1`** | **NEW: Find non-deterministic tests via repeated runs** | `flaky-test-detector.ps1 -Iterations 10` |
+| **`daily-tool-review.ps1`** | **NEW: DAILY mandatory end-of-session tool wishlist review** | `daily-tool-review.ps1` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 
-**🎉 MILESTONE: 106 tools implemented! (47 original + 54 recommended + 5 meta-optimization)**
+**🎉 MILESTONE: 107 tools implemented! (47 original + 54 recommended + 6 meta-optimization)**
 
 **Latest additions (2026-01-25):**
 - `ai-image.ps1` - Universal AI image generation (4 providers, 4 modes, reference images)
@@ -204,6 +212,7 @@ powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
   - `unused-code-detector.ps1` - Dead code elimination (ratio 9.0)
   - `n-plus-one-query-detector.ps1` - Performance issue finder (ratio 6.7)
   - `flaky-test-detector.ps1` - Non-deterministic test detector (ratio 6.0)
+  - `daily-tool-review.ps1` - **DAILY mandatory review** (auto-detect patterns, enforce continuous improvement)
 
 ---
 
@@ -525,12 +534,17 @@ C:\scripts\.claude\skills\
 4. ✅ **Log reflection** - See `continuous-improvement.md` § End-of-Task Protocol
 
 ### End of Session:
-1. ✅ **Verify DoD completion** - All tasks meet Definition of Done criteria
-2. ✅ **Update reflection.log.md** - Document session learnings, mistakes, successes
-3. ✅ **Update PERSONAL_INSIGHTS.md** - **Add new user understanding, preferences, patterns discovered**
-4. ✅ **Update this documentation** - Add new procedures, tools, skills created
-5. ✅ **Apply continuous-optimization skill** - Extract learnings, update instructions, create automation if needed
-6. ✅ **Commit and push** - Machine_agents repo (`cd C:\scripts && git add -A && git commit && git push`)
+1. ✅ **🆕 DAILY TOOL REVIEW** (2 min) - **MANDATORY** - `daily-tool-review.ps1`
+   - Scan tool wishlist for urgent items
+   - Check for repeated patterns in session history
+   - Implement top 1 tool if ratio > 8.0 or effort = 1
+   - Add any "I wish I had..." thoughts from today
+2. ✅ **Verify DoD completion** - All tasks meet Definition of Done criteria
+3. ✅ **Update reflection.log.md** - Document session learnings, mistakes, successes
+4. ✅ **Update PERSONAL_INSIGHTS.md** - **Add new user understanding, preferences, patterns discovered**
+5. ✅ **Update this documentation** - Add new procedures, tools, skills created
+6. ✅ **Apply continuous-optimization skill** - Extract learnings, update instructions, create automation if needed
+7. ✅ **Commit and push** - Machine_agents repo (`cd C:\scripts && git add -A && git commit && git push`)
 
 ---
 
@@ -675,6 +689,6 @@ When implemented, this will enable agents to:
 
 ---
 
-**Last Updated:** 2026-01-25 (Meta-Optimization: 50-expert analysis + 5 Tier S tools + continuous discovery system)
+**Last Updated:** 2026-01-25 (Meta-Optimization: DAILY review cadence + 6 tools + continuous discovery system)
 **Maintained By:** Claude Agent (Self-improving documentation)
 **User Mandate:** "zorg dat je dus constant leert van jezelf en je eigen instructies bijwerkt"
