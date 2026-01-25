@@ -1,55 +1,115 @@
 <#
 .SYNOPSIS
-    Wrapper for generate-image.ps1 with automatic API key loading
+    Universal AI image generation with automatic API key loading
 
 .DESCRIPTION
-    Simplifies image generation by automatically loading the OpenAI API key
-    from client-manager appsettings.Secrets.json. This is the preferred way
-    for Claude agents to generate images without passing the API key manually.
+    Simplified wrapper for ai-image-universal.ps1 with automatic API key loading.
+    Supports multiple providers: OpenAI, Google Imagen, Stability AI, Azure OpenAI
+    Supports all modes: generate, edit, variation, vision-enhanced
+
+.PARAMETER Provider
+    AI provider: openai (default), google, stability, azure
+
+.PARAMETER Mode
+    Operation mode: generate (default), edit, variation, vision-enhanced
 
 .PARAMETER Prompt
-    Text description of the image to generate
+    Text description of the image
 
 .PARAMETER OutputPath
-    File path where the generated image should be saved (PNG format)
+    File path for output image
 
 .PARAMETER Model
-    DALL-E model to use. Options: dall-e-2, dall-e-3 (default: dall-e-3)
+    Model name (auto-selected if not specified)
 
 .PARAMETER Size
-    Image size. For DALL-E 3: 1024x1024, 1024x1792, 1792x1024 (default: 1024x1024)
-    For DALL-E 2: 256x256, 512x512, 1024x1024
+    Image size (format varies by provider)
 
 .PARAMETER Quality
-    Image quality (DALL-E 3 only). Options: standard, hd (default: standard)
+    Quality setting (OpenAI/Azure only): standard, hd
 
 .PARAMETER Style
-    Image style (DALL-E 3 only). Options: vivid, natural (default: vivid)
+    Style setting (OpenAI/Azure only): vivid, natural
+
+.PARAMETER SourceImage
+    Source image for edit/variation modes
+
+.PARAMETER MaskImage
+    Mask image for edit mode (transparent areas regenerated)
+
+.PARAMETER ReferenceImages
+    Reference images for vision-enhanced mode
+
+.PARAMETER ReferenceDescriptions
+    Descriptions for each reference image
+
+.PARAMETER NegativePrompt
+    What NOT to include (Google/Stability only)
+
+.PARAMETER GuidanceScale
+    How closely to follow prompt 1-20 (Google/Stability only)
+
+.PARAMETER Steps
+    Number of diffusion steps (Stability AI only)
+
+.PARAMETER Seed
+    Random seed for reproducibility (Stability AI only)
 
 .EXAMPLE
-    .\ai-image.ps1 -Prompt "A sunset over mountains" -OutputPath "C:\images\sunset.png"
+    # Simple OpenAI DALL-E 3 generation
+    .\ai-image.ps1 -Prompt "A sunset over mountains" -OutputPath "sunset.png"
 
 .EXAMPLE
-    .\ai-image.ps1 -Prompt "Abstract art" -OutputPath "art.png" -Quality hd -Size 1792x1024
+    # Google Imagen with negative prompt
+    .\ai-image.ps1 -Provider google -Prompt "A cat" `
+        -NegativePrompt "dog, blurry" -OutputPath "cat.png"
+
+.EXAMPLE
+    # Stability AI with high guidance
+    .\ai-image.ps1 -Provider stability -Prompt "Cyberpunk city" `
+        -GuidanceScale 15 -Steps 50 -OutputPath "city.png"
+
+.EXAMPLE
+    # Vision-enhanced with reference images
+    .\ai-image.ps1 -Mode vision-enhanced `
+        -ReferenceImages @("style-ref.png", "color-ref.png") `
+        -ReferenceDescriptions @("Match this art style", "Use this color palette") `
+        -Prompt "A forest landscape" -OutputPath "forest.png"
+
+.EXAMPLE
+    # Image editing (inpainting, DALL-E 2)
+    .\ai-image.ps1 -Mode edit -SourceImage "photo.png" -MaskImage "mask.png" `
+        -Prompt "A red car in the masked area" -OutputPath "edited.png"
+
+.EXAMPLE
+    # Image variations (DALL-E 2)
+    .\ai-image.ps1 -Mode variation -SourceImage "original.png" -OutputPath "variation.png"
 
 .NOTES
     Created: 2026-01-25
-    Wrapper for generate-image.ps1 - automatically loads API key from appsettings.Secrets.json
+    API keys automatically loaded from appsettings.Secrets.json
 #>
 
 param(
-    [Parameter(Mandatory=$true)]
-    [string]$Prompt,
+    [Parameter(Mandatory=$false)]
+    [ValidateSet("openai", "google", "stability", "azure")]
+    [string]$Provider = "openai",
+
+    [Parameter(Mandatory=$false)]
+    [ValidateSet("generate", "edit", "variation", "vision-enhanced")]
+    [string]$Mode = "generate",
+
+    [Parameter(Mandatory=$false)]
+    [string]$Prompt = "",
 
     [Parameter(Mandatory=$true)]
     [string]$OutputPath,
 
     [Parameter(Mandatory=$false)]
-    [ValidateSet("dall-e-2", "dall-e-3")]
-    [string]$Model = "dall-e-3",
+    [string]$Model = "",
 
     [Parameter(Mandatory=$false)]
-    [string]$Size = "1024x1024",
+    [string]$Size = "",
 
     [Parameter(Mandatory=$false)]
     [ValidateSet("standard", "hd")]
@@ -57,51 +117,64 @@ param(
 
     [Parameter(Mandatory=$false)]
     [ValidateSet("vivid", "natural")]
-    [string]$Style = "vivid"
+    [string]$Style = "vivid",
+
+    [Parameter(Mandatory=$false)]
+    [string]$SourceImage = "",
+
+    [Parameter(Mandatory=$false)]
+    [string]$MaskImage = "",
+
+    [Parameter(Mandatory=$false)]
+    [string[]]$ReferenceImages = @(),
+
+    [Parameter(Mandatory=$false)]
+    [string[]]$ReferenceDescriptions = @(),
+
+    [Parameter(Mandatory=$false)]
+    [string]$NegativePrompt = "",
+
+    [Parameter(Mandatory=$false)]
+    [int]$GuidanceScale = 7,
+
+    [Parameter(Mandatory=$false)]
+    [int]$Steps = 30,
+
+    [Parameter(Mandatory=$false)]
+    [int]$Seed = -1
 )
 
 $ErrorActionPreference = "Stop"
 
-# Load API key from appsettings.Secrets.json
-$secretsPath = "C:\Projects\client-manager\ClientManagerAPI\appsettings.Secrets.json"
+# Find the universal script
+$universalScript = Join-Path $PSScriptRoot "ai-image-universal.ps1"
 
-if (-not (Test-Path $secretsPath)) {
-    Write-Error "API secrets file not found: $secretsPath"
+if (-not (Test-Path $universalScript)) {
+    Write-Error "ai-image-universal.ps1 not found: $universalScript"
     exit 1
 }
 
-try {
-    $secrets = Get-Content $secretsPath -Raw | ConvertFrom-Json
-    $apiKey = $secrets.ApiSettings.OpenApiKey
-
-    if (-not $apiKey) {
-        Write-Error "OpenApiKey not found in secrets file"
-        exit 1
-    }
-
-    # Call the main generate-image.ps1 script
-    $generateImageScript = Join-Path $PSScriptRoot "generate-image.ps1"
-
-    if (-not (Test-Path $generateImageScript)) {
-        Write-Error "generate-image.ps1 not found: $generateImageScript"
-        exit 1
-    }
-
-    # Build parameters
-    $params = @{
-        ApiKey = $apiKey
-        Prompt = $Prompt
-        OutputPath = $OutputPath
-        Model = $Model
-        Size = $Size
-        Quality = $Quality
-        Style = $Style
-    }
-
-    # Call the main script
-    & $generateImageScript @params
-
-} catch {
-    Write-Error "Failed to load API key: $_"
-    exit 1
+# Build parameters for universal script
+$params = @{
+    Provider = $Provider
+    Mode = $Mode
+    OutputPath = $OutputPath
 }
+
+if ($Prompt) { $params.Prompt = $Prompt }
+if ($Model) { $params.Model = $Model }
+if ($Size) { $params.Size = $Size }
+if ($Quality -ne "standard") { $params.Quality = $Quality }
+if ($Style -ne "vivid") { $params.Style = $Style }
+if ($SourceImage) { $params.SourceImage = $SourceImage }
+if ($MaskImage) { $params.MaskImage = $MaskImage }
+if ($ReferenceImages.Count -gt 0) { $params.ReferenceImages = $ReferenceImages }
+if ($ReferenceDescriptions.Count -gt 0) { $params.ReferenceDescriptions = $ReferenceDescriptions }
+if ($NegativePrompt) { $params.NegativePrompt = $NegativePrompt }
+if ($GuidanceScale -ne 7) { $params.GuidanceScale = $GuidanceScale }
+if ($Steps -ne 30) { $params.Steps = $Steps }
+if ($Seed -ne -1) { $params.Seed = $Seed }
+
+# Call universal script (API key will be auto-loaded)
+& $universalScript @params
+exit $LASTEXITCODE
