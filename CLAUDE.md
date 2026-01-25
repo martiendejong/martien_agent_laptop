@@ -542,6 +542,15 @@ C:\scripts\.claude\skills\
 14. ✅ **IF multiple agents detected (step 11):** Activate `parallel-agent-coordination` protocol - use adaptive allocation strategy, enhanced conflict detection, activity-based prioritization
 15. ✅ **Check** `agentidentity/state/current_session.yaml` - Resume interrupted work if state saved
 
+**🌍 WORLD DEVELOPMENT MONITORING (AUTONOMOUS - MANDATORY):**
+16. ✅ **Check time:** If 12:00 noon → Execute daily briefing (AUTONOMOUS, NO PERMISSION NEEDED)
+17. ✅ **Run** `world-news-monitor.ps1 -Mode briefing` - Generate morning news compilation
+18. ✅ **Use WebSearch** - Query all domains (AI, climate, economics, geopolitics, science)
+19. ✅ **Update knowledge base** - `C:\projects\world_development\` with significant developments
+20. ✅ **Track indicators** - Update metrics in `indicators/tracking-metrics.md`
+21. ✅ **Validate predictions** - Check if our 2026 predictions are materializing
+22. ✅ **Throughout session:** Periodically check world developments (every 2-3 hours active time)
+
 **📖 KNOWLEDGE BASE QUICK REFERENCE (as needed during work):**
 - User psychology: `knowledge-base/01-USER/psychology-profile.md`
 - File locations: `knowledge-base/02-MACHINE/file-system-map.md`
@@ -615,7 +624,16 @@ C:\scripts\.claude\skills\
 6. ✅ **Update PERSONAL_INSIGHTS.md** - **Add new user understanding, preferences, patterns discovered**
 7. ✅ **Update this documentation** - Add new procedures, tools, skills created
 8. ✅ **Apply continuous-optimization skill** - Extract learnings, update instructions, create automation if needed
-9. ✅ **Commit and push** - Machine_agents repo (`cd C:\scripts && git add -A && git commit && git push`)
+
+**🌍 WORLD DEVELOPMENT UPDATE (AUTONOMOUS - MANDATORY):**
+9. ✅ **Update world knowledge base** - `C:\projects\world_development\` with day's developments
+10. ✅ **Log significant events** - Create update entry in `updates/YYYY-MM-DD-topic.md` if major news
+11. ✅ **Track indicators** - Update metrics if new data available
+12. ✅ **Validate predictions** - Note if reality diverges from projections
+13. ✅ **Commit world_development** - (`cd C:\projects\world_development && git add -A && git commit && git push`)
+
+**💾 FINAL COMMIT:**
+14. ✅ **Commit and push scripts** - Machine_agents repo (`cd C:\scripts && git add -A && git commit && git push`)
 
 ---
 
