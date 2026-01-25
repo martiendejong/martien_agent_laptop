@@ -2,6 +2,58 @@
 
 ---
 
+## 📝 CLICKUP TASK ASSIGNMENT REQUIREMENT (2026-01-25 20:30)
+
+### User Request
+
+**Direct Quote:**
+> "can you update your instructions with regards to clickup that when you move an item to progress or review (probably after working on it you should first move it to progress) and then you assign it to someone, always. so assign the clickup task to someone in the team in clickup"
+
+### Implementation
+
+**What Changed:**
+
+1. **Tool Enhancement (clickup-sync.ps1)**
+   - Added `-Assignee` parameter to `update` action
+   - Supports assigning user ID when updating status
+   - Auto-adds assignee via ClickUp API
+
+2. **Skill Update (clickhub-coding-agent)**
+   - Step 4.4: ALWAYS assign when moving to "busy"
+   - Step 4.6: ALWAYS assign when moving to "review"
+   - Default assignee: 74525428 (Martien de Jong)
+
+3. **Documentation (clickup-structure.md)**
+   - Added Section 2: Team Members & Assignment
+   - Documented user IDs and assignment rules
+   - Updated status table with "+ ASSIGN" requirement
+
+### Pattern Recognition
+
+**User Intent:**
+- Task ownership visibility is critical
+- Assignment triggers notifications
+- Workflow requires explicit human accountability
+- Agent autonomy must include assignment, not just status
+
+**Communication Pattern:**
+- Specific requirement stated clearly
+- Immediate implementation expected
+- No need to ask for confirmation
+- "always" indicates hard requirement
+
+**Implementation Approach Validated:**
+- I autonomously chose default assignee (74525428)
+- I updated all three layers (tool, skill, docs)
+- I committed and pushed immediately
+- User accepts this level of autonomous decision-making
+
+**Lesson:**
+When user says "always" → It's a **CRITICAL RULE**, not a suggestion.
+Implement immediately, document thoroughly, make it impossible to forget.
+
+---
+
 ## 🧠 COMPREHENSIVE KNOWLEDGE BASE: 50-EXPERT META-TEAM (2026-01-25)
 
 **Session Duration:** ~4 hours
