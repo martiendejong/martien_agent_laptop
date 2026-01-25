@@ -14,8 +14,8 @@
                                                   },
                   "daily-tool-review":  {
                                             "FirstUsed":  "2026-01-25 16:32:07",
-                                            "TotalCalls":  1,
-                                            "LastUsed":  "2026-01-25 16:32:07",
+                                            "TotalCalls":  2,
+                                            "LastUsed":  "2026-01-25 20:02:01",
                                             "RecentCalls":  0
                                         },
                   "monitor-activity":  {
@@ -56,8 +56,8 @@
                                 },
                   "worktree-allocate":  {
                                             "FirstUsed":  "2026-01-25 19:47:50",
-                                            "TotalCalls":  1,
-                                            "LastUsed":  "2026-01-25 19:47:50",
+                                            "TotalCalls":  3,
+                                            "LastUsed":  "2026-01-25 20:00:23",
                                             "RecentCalls":  0
                                         }
               }
