@@ -68,17 +68,51 @@ feature/<task-id>-<description>
 
 ---
 
-## 2. Task Structure & Lifecycle
+## 2. Team Members & Assignment
 
-### 2.1 Task Status Workflow
+### 2.1 Available Assignees
+
+**Primary Team Members:**
+
+| Name | User ID | Role | Email |
+|------|---------|------|-------|
+| **Martien de Jong** | `74525428` | Primary Developer/Reviewer | martien@wreckingball.ai |
+
+**Assignment Rules:**
+
+- **Default assignee:** `74525428` (Martien de Jong)
+- **When to assign:**
+  - ✅ **ALWAYS** when moving task to `busy` (implementation started)
+  - ✅ **ALWAYS** when moving task to `review` (PR ready for acceptance test)
+- **How to assign:**
+  ```powershell
+  C:/scripts/tools/clickup-sync.ps1 -Action update -TaskId "<task-id>" -Status "busy" -Assignee "74525428"
+  ```
+
+**To get team member IDs:**
+
+```powershell
+# List all workspace users
+$headers = @{ Authorization = "pk_..." }
+Invoke-RestMethod -Uri "https://api.clickup.com/api/v2/team" -Headers $headers
+
+# Or check existing task assignees
+C:/scripts/tools/clickup-sync.ps1 -Action show -TaskId "<task-id>"
+```
+
+---
+
+## 3. Task Structure & Lifecycle
+
+### 3.1 Task Status Workflow
 
 **Available Statuses:**
 
 | Status | Color | Purpose | Who Sets | Agent Action |
 |--------|-------|---------|----------|--------------|
 | **todo** | 🔵 Blue | Ready for implementation | User/Agent | Pick up for implementation |
-| **busy** | 🟣 Purple | Agent working, branch/PR created | Agent | Set when starting work |
-| **review** | 🟠 Orange | PR merged, ready for acceptance test | Agent (auto on PR merge) | Wait for user acceptance |
+| **busy** | 🟣 Purple | Agent working, branch/PR created | Agent | Set when starting work **+ ASSIGN** |
+| **review** | 🟠 Orange | PR merged, ready for acceptance test | Agent (auto on PR merge) | Wait for user acceptance **+ ASSIGN** |
 | **needs input** | 🟡 Yellow | Requires clarification from user | Agent | Post questions, block |
 | **needs refinement** | 🟡 Yellow | Requires technical refinement | Agent/User | Analyze and refine |
 | **next sprint** | ⚪ White | Backlog for future sprint | User | Skip (not current priority) |
@@ -90,8 +124,9 @@ feature/<task-id>-<description>
 - ✅ Agent sets: `todo` → `busy` → `review`
 - ❌ Agent **NEVER** sets: `done` (user acceptance required)
 - ✅ Agent can set: `blocked`, `needs input` (with explanation)
+- ✅ **NEW (2026-01-25):** Agent **ALWAYS** assigns task when moving to `busy` or `review`
 
-### 2.2 Task Lifecycle Diagram
+### 3.2 Task Lifecycle Diagram
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -119,7 +154,7 @@ User Accepts              ↓
    [done] ✅
 ```
 
-### 2.3 Task Object Structure (API Response)
+### 3.3 Task Object Structure (API Response)
 
 **Core Fields:**
 
@@ -215,7 +250,7 @@ User Accepts              ↓
 
 ---
 
-## 3. Custom Fields
+## 4. Custom Fields
 
 ### 3.1 Standard Custom Fields (Brand Designer List)
 
@@ -265,7 +300,7 @@ Invoke-RestMethod -Method POST -Uri $url -Headers $headers -Body $body
 
 ---
 
-## 4. Task Templates & Patterns
+## 5. Task Templates & Patterns
 
 ### 4.1 Common Task Patterns
 
@@ -360,7 +395,7 @@ Invoke-RestMethod -Method POST -Uri $url -Headers $headers -Body $body
 - [ ] User experience smooth
 ```
 
-### 4.2 Required Task Fields
+### 5.2 Required Task Fields
 
 **Minimum Required for Agent Implementation:**
 
@@ -409,7 +444,7 @@ clickup-sync.ps1 -Action pr-merged -TaskId "869bmj7gd" -PrNumber 267
 # 3. User tests and sets status to "done"
 ```
 
-### 5.2 Branch Naming → Task ID Convention
+### 6.2 Branch Naming → Task ID Convention
 
 **Format:**
 ```bash
@@ -450,7 +485,7 @@ switch ($agentAction) {
 clickup-sync.ps1 -Action list | Where-Object { $_.status -eq "todo" -and $_.assignees.Count -eq 0 }
 ```
 
-### 5.4 Comment Automation
+### 6.4 Comment Automation
 
 **Agent Posts Comments for:**
 
@@ -562,7 +597,7 @@ End Loop
 - ❌ Blocked without resolution
 - ❌ User explicitly marked "do not automate"
 
-### 6.3 Question Posting Protocol
+### 7.3 Question Posting Protocol
 
 **When to Post Questions:**
 
@@ -599,7 +634,7 @@ When encountering a **blocked** task with previous agent questions:
 
 **Philosophy:** Bias toward action, not paralysis. Users prefer iterations over perfection.
 
-### 6.4 Assumption Documentation
+### 7.4 Assumption Documentation
 
 **When Proceeding with Partial Information:**
 
@@ -703,7 +738,7 @@ $body = @{
 $task = Invoke-RestMethod -Method POST -Uri $url -Headers $headers -Body $body
 ```
 
-### 7.3 Rate Limits & Error Handling
+### 8.3 Rate Limits & Error Handling
 
 **Rate Limits:**
 
@@ -760,9 +795,9 @@ try {
 
 ---
 
-## 8. Automation Workflows
+## 9. Automation Workflows
 
-### 8.1 `clickup-sync.ps1` Tool
+### 9.1 `clickup-sync.ps1` Tool
 
 **Location:** `C:\scripts\tools\clickup-sync.ps1`
 
@@ -772,7 +807,7 @@ try {
 |--------|------------|---------|
 | `list` | None | List all open tasks from Brand Designer |
 | `show` | `-TaskId` | Show full task details |
-| `update` | `-TaskId -Status` | Update task status |
+| `update` | `-TaskId -Status [-Assignee]` | Update task status (and optionally assign) |
 | `comment` | `-TaskId -Comment` | Add comment to task |
 | `create` | `-Name -Description` | Create new task |
 | `link-pr` | `-TaskId -PrNumber` | Link GitHub PR to task |
@@ -789,6 +824,9 @@ C:/scripts/tools/clickup-sync.ps1 -Action show -TaskId "869bmj7gd"
 
 # Update status
 C:/scripts/tools/clickup-sync.ps1 -Action update -TaskId "869bmj7gd" -Status "busy"
+
+# Update status AND assign (REQUIRED when moving to busy/review)
+C:/scripts/tools/clickup-sync.ps1 -Action update -TaskId "869bmj7gd" -Status "busy" -Assignee "74525428"
 
 # Add comment
 C:/scripts/tools/clickup-sync.ps1 -Action comment -TaskId "869bmj7gd" -Comment "PR #267 created"
@@ -853,7 +891,7 @@ New-Item -Path "C:/scripts/_machine/clickhub-stop.flag" -ItemType File
 
 ---
 
-## 9. Dashboard & Metrics
+## 10. Dashboard & Metrics
 
 ### 9.1 ClickUp Dashboard Setup
 
@@ -892,7 +930,7 @@ New-Item -Path "C:/scripts/_machine/clickhub-stop.flag" -ItemType File
 
 ## 10. Integration with Claude Agent
 
-### 10.1 Mode Detection
+### 11.1 Mode Detection
 
 **ClickUp URL = Feature Development Mode (HARD RULE)**
 
@@ -922,7 +960,7 @@ detect-mode.ps1 -UserMessage $userRequest -Analyze
 - [ ] ClickUp task set to `done` (by user)
 - [ ] Reflection log updated
 
-### 10.3 Worktree Coordination
+### 11.3 Worktree Coordination
 
 **When Implementing ClickUp Task:**
 
@@ -952,9 +990,9 @@ detect-mode.ps1 -UserMessage $userRequest -Analyze
 
 ---
 
-## 11. Troubleshooting
+## 12. Troubleshooting
 
-### 11.1 Common Issues
+### 12.1 Common Issues
 
 **Issue: API Key Invalid**
 
@@ -1023,9 +1061,9 @@ Invoke-RestMethod -Uri "https://api.clickup.com/api/v2/team" -Headers @{Authoriz
 
 ---
 
-## 12. Best Practices
+## 13. Best Practices
 
-### 12.1 Task Creation
+### 13.1 Task Creation
 
 ✅ **DO:**
 - Write clear, concise task titles
@@ -1060,7 +1098,7 @@ Invoke-RestMethod -Uri "https://api.clickup.com/api/v2/team" -Headers @{Authoriz
 - Leave tasks in "busy" indefinitely
 - Forget to update status
 
-### 12.3 User Responsibilities
+### 13.3 User Responsibilities
 
 ✅ **DO:**
 - Answer agent questions promptly
@@ -1078,7 +1116,7 @@ Invoke-RestMethod -Uri "https://api.clickup.com/api/v2/team" -Headers @{Authoriz
 
 ---
 
-## 13. Future Enhancements
+## 14. Future Enhancements
 
 ### 13.1 Planned Features
 

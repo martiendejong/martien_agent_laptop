@@ -7,7 +7,7 @@ Seat states:
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager | agent-001-orchestrator-integration | 2026-01-16T15:00:00Z | 🚧 Week 1-2: Integrating BackgroundTaskOrchestrator into Image/Blog/Analysis generation services |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | hazina+client-manager+artrevisionist | agent-002-layered-image-* | 2026-01-21T02:00:00Z | 🚧 LayeredImageTool: Hazina #102 (vision-enhanced), client-manager #293 (headers), artrevisionist #33 (text detection) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | client-manager+hazina | agent-003-fix-all-test-failures | 2026-01-25T16:50:00Z | 🚧 Fix all 43 failing tests (integration DB provider conflict, unit test infrastructure, test/impl alignment) |
-| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-25T19:00:00Z | ✅ PR #362: Fix blog categories language translation |
+| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-25T22:30:00Z | ✅ PR #365: Fix duplicate workflow questions in chat |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-25T16:07:00Z | ✅ PR #359: Add location/address prompt to workflow step 1 |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-01-25T16:13:00Z | ✅ PR #360: Move Post Ideas Generator to Social Media section (UX fix) |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-01-10T15:30:00Z | ✅ Cleaned up: Security hardening (PR #61) and payment-models work completed and merged |

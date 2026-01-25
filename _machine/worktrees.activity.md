@@ -590,3 +590,5 @@ Actions:
 2026-01-25T16:13:00Z | agent-006 | RELEASE | agent-006-move-post-ideas-to-social-section | PR #360: Navigation UX fix
 2026-01-25T18:30:00Z | agent-004 | RELEASE | agent-004-translate-content-hooks | Hazina PR #117 + client-manager PR #361 created - Content hooks language fix
 2026-01-25T19:00:00Z | agent-004 | RELEASE | agent-004-translate-blog-categories | PR #362 created - Blog categories language fix
+2026-01-25T19:30:00Z | agent-004 | RELEASE | agent-004-fix-activity-logo | PR #363 created - Activity logo selectedIndex fix
+2026-01-25T20:15:00Z | agent-004 | RELEASE | agent-004-fix-logo-live-update | PR #364 created - Logo live update SignalR fix

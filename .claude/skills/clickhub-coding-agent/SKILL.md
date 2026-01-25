@@ -245,13 +245,13 @@ Based on your answers, I'm implementing with these assumptions:
 
 If any of these assumptions are incorrect, the implementation can be adjusted in PR review.
 
-Moving to 'busy' status.
+Moving to 'busy' status and assigning.
 
 -- ClickHub Coding Agent
 "
 
-# Update to busy and implement
-C:/scripts/tools/clickup-sync.ps1 -Action update -TaskId "<task-id>" -Status "busy"
+# Update to busy and implement - ALWAYS assign when moving to busy
+C:/scripts/tools/clickup-sync.ps1 -Action update -TaskId "<task-id>" -Status "busy" -Assignee "74525428"
 ```
 
 **ANTI-PATTERNS TO AVOID:**
@@ -356,11 +356,14 @@ cd "C:/Projects/worker-agents/$AGENT_SEAT/client-manager"
 # - Definition of Done from DEFINITION_OF_DONE.md
 ```
 
-#### 4.4 Update ClickUp Task Status
+#### 4.4 Update ClickUp Task Status and Assign
+
+**CRITICAL:** ALWAYS assign task when moving to "busy" or "review"
 
 ```powershell
-# Update to busy when starting implementation
-C:/scripts/tools/clickup-sync.ps1 -Action update -TaskId "<task-id>" -Status "busy"
+# Update to busy when starting implementation AND assign to someone
+# Default assignee: 74525428 (Martien de Jong - primary developer)
+C:/scripts/tools/clickup-sync.ps1 -Action update -TaskId "<task-id>" -Status "busy" -Assignee "74525428"
 
 # Add progress comment
 C:/scripts/tools/clickup-sync.ps1 -Action comment -TaskId "<task-id>" -Comment "
@@ -369,6 +372,7 @@ IMPLEMENTATION STARTED
 Branch: $BRANCH_NAME
 Worktree: $AGENT_SEAT
 Approach: [Brief description of technical approach]
+Assigned to: Martien de Jong
 
 -- ClickHub Coding Agent
 "
@@ -409,7 +413,7 @@ gh pr create \
   --base develop
 ```
 
-#### 4.6 Link PR to ClickUp
+#### 4.6 Link PR to ClickUp and Assign Reviewer
 
 ```powershell
 # Get PR number from gh output
@@ -418,8 +422,9 @@ $PR_NUMBER = <number>
 # Link PR to task
 C:/scripts/tools/clickup-sync.ps1 -Action link-pr -TaskId "<task-id>" -PrNumber $PR_NUMBER
 
-# Update task to review status
-C:/scripts/tools/clickup-sync.ps1 -Action update -TaskId "<task-id>" -Status "review"
+# Update task to review status AND assign to reviewer
+# Default assignee: 74525428 (Martien de Jong - primary reviewer)
+C:/scripts/tools/clickup-sync.ps1 -Action update -TaskId "<task-id>" -Status "review" -Assignee "74525428"
 ```
 
 #### 4.7 Release Worktree

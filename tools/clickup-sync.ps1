@@ -19,6 +19,9 @@
 .PARAMETER Status
     New status for task (for update action)
 
+.PARAMETER Assignee
+    User ID to assign task to (for update action, optional)
+
 .PARAMETER Comment
     Comment text (for comment action)
 
@@ -31,6 +34,7 @@
 .EXAMPLE
     .\clickup-sync.ps1 -Action list
     .\clickup-sync.ps1 -Action update -TaskId "869bhfw7r" -Status "busy"
+    .\clickup-sync.ps1 -Action update -TaskId "869bhfw7r" -Status "busy" -Assignee "74525428"
     .\clickup-sync.ps1 -Action comment -TaskId "869bhfw7r" -Comment "PR #149 created"
     .\clickup-sync.ps1 -Action create -Name "Fix login bug" -Description "Details here"
 
@@ -52,6 +56,7 @@ param(
 
     [string]$TaskId,
     [string]$Status,
+    [string]$Assignee,
     [string]$Comment,
     [string]$Name,
     [string]$Description,
@@ -148,11 +153,29 @@ switch ($Action) {
             exit 1
         }
 
+        # Update status
         $url = "$apiBase/task/$TaskId"
         $body = @{ status = $Status } | ConvertTo-Json
-
         $task = Invoke-RestMethod -Method PUT -Uri $url -Headers $headers -Body $body
         Write-Host "Task $TaskId updated to status: $Status" -ForegroundColor Green
+
+        # Update assignee if provided
+        if ($Assignee) {
+            $assignUrl = "$apiBase/task/$TaskId"
+            $assignBody = @{
+                assignees = @{
+                    add = @($Assignee)
+                }
+            } | ConvertTo-Json -Depth 3
+
+            try {
+                Invoke-RestMethod -Method PUT -Uri $assignUrl -Headers $headers -Body $assignBody | Out-Null
+                Write-Host "Task $TaskId assigned to user: $Assignee" -ForegroundColor Green
+            } catch {
+                Write-Warning "Failed to assign task: $($_.Exception.Message)"
+            }
+        }
+
         Write-Host "URL: $($task.url)"
     }
 
