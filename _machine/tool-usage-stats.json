@@ -20,8 +20,8 @@
                                         },
                   "monitor-activity":  {
                                            "FirstUsed":  "2026-01-25 16:42:47",
-                                           "TotalCalls":  7,
-                                           "LastUsed":  "2026-01-25 19:27:49",
+                                           "TotalCalls":  8,
+                                           "LastUsed":  "2026-01-25 19:32:59",
                                            "RecentCalls":  0
                                        },
                   "clickup-sync":  {
@@ -29,6 +29,24 @@
                                        "TotalCalls":  18,
                                        "LastUsed":  "2026-01-25 17:41:17",
                                        "RecentCalls":  0
-                                   }
+                                   },
+                  "ai-image":  {
+                                   "FirstUsed":  "2026-01-25 19:33:34",
+                                   "TotalCalls":  1,
+                                   "LastUsed":  "2026-01-25 19:33:34",
+                                   "RecentCalls":  0
+                               },
+                  "ai-image-universal":  {
+                                             "FirstUsed":  "2026-01-25 19:33:34",
+                                             "TotalCalls":  1,
+                                             "LastUsed":  "2026-01-25 19:33:34",
+                                             "RecentCalls":  0
+                                         },
+                  "generate-image-advanced":  {
+                                                  "FirstUsed":  "2026-01-25 19:33:34",
+                                                  "TotalCalls":  1,
+                                                  "LastUsed":  "2026-01-25 19:33:34",
+                                                  "RecentCalls":  0
+                                              }
               }
 }
