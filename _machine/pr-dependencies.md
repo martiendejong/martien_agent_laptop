@@ -6,6 +6,7 @@ Track cross-repository PR dependencies between Hazina and client-manager.
 
 | Downstream PR | Depends On (Hazina) | Status | Notes |
 |---------------|---------------------|--------|-------|
+| [client-manager#373](https://github.com/martiendejong/client-manager/pull/373) | [Hazina#118](https://github.com/martiendejong/Hazina/pull/118) | ⏳ Waiting | Social messaging integration - ISocialMessagingProvider interface + Facebook implementation |
 | [client-manager#293](https://github.com/martiendejong/client-manager/pull/293) | [Hazina#102](https://github.com/martiendejong/Hazina/pull/102) | ⏳ Waiting | LayeredImageTool integration - document header generation |
 | [artrevisionist#33](https://github.com/martiendejong/artrevisionist/pull/33) | [Hazina#102](https://github.com/martiendejong/Hazina/pull/102) | ⏳ Waiting | LayeredImageTool integration - automatic text-based image generation |
 | [client-manager#294](https://github.com/martiendejong/client-manager/pull/294) | [Hazina#103](https://github.com/martiendejong/Hazina/pull/103) | ⏳ Waiting | LLM Provider Registry integration |
@@ -80,6 +81,15 @@ Track cross-repository PR dependencies between Hazina and client-manager.
 ---
 
 ## History
+
+### 2026-01-25 (agent-004 session)
+- ✅ Created Social Media Messaging Integration PRs:
+  - **Hazina #118:** ISocialMessagingProvider interface + FacebookMessagingProvider implementation
+  - **client-manager #373:** Complete messaging integration (backend API, frontend inbox UI, Hangfire job, agent tool)
+  - Dependency tracked: client-manager #373 depends on Hazina #118
+  - Features: Facebook Pages inbox, conversation/message management, AI reply drafts, daily import job
+  - Phases: 1=Hazina interface, 2=Backend API, 3=Frontend UI, 4=Agent tool
+  - Agent tool: social-messages-review.ps1 with OpenAI GPT-4o integration for AI reply drafts
 
 ### 2026-01-21 (agent-002 session)
 - ✅ Created LayeredImageTool integration PRs:
