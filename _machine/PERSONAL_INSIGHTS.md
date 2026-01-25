@@ -2,6 +2,206 @@
 
 ---
 
+## 🔄 PARALLEL AGENT COORDINATION: REAL-WORLD OBSERVATION (2026-01-26 01:30)
+
+### Context: Multi-Agent Session Evidence
+
+**Observation:**
+While working on tasks 869bwzx6q and 869bwfppb, I observed:
+- Agent-003 completed PR #375 (regenerate buttons) during my session
+- Worktree pool showed agent-003 changed from BUSY to FREE with new timestamp
+- This confirms multiple Claude agents ARE running simultaneously
+
+**Implications:**
+
+1. **Worktree Pool is Shared State**
+   - All agents read/write same pool file
+   - Timestamps show real activity from other agents
+   - Pool status reflects actual multi-agent usage
+
+2. **Conflict Detection is Critical**
+   - Must check pool before allocating
+   - Must verify branch isn't already claimed
+   - Must use atomic operations
+
+3. **Activity Monitoring is Real**
+   - Agent-003's completion means user is actively managing multiple agents
+   - User expects agents to work in parallel without conflicts
+   - Coordination protocols are not theoretical - they're essential
+
+**User Pattern:**
+- User runs multiple autonomous agents simultaneously
+- User monitors progress across all agents
+- User expects zero conflicts and clean handoffs
+
+**Action Items:**
+- Always check worktree pool before allocation ✓ (already doing)
+- Use clickup-agent-coordinator.ps1 for task claiming ✓ (already doing)
+- Trust that other agents are working - don't duplicate effort
+
+---
+
+## 📊 PROBLEM ANALYSIS: USER EXPECTS COMPREHENSIVE INVESTIGATION (2026-01-26 01:30)
+
+### Context: API Exception Task (869bwfppb)
+
+**User Request:**
+> "when im starting or running the api in the background errors are occurring. some are more serious than others but we need to document them and find ways to make our application run as error-free as possible."
+
+**What I Did:**
+1. ✅ Analyzed 293 lines of fatal.log
+2. ✅ Categorized 8 distinct exception types
+3. ✅ Assigned severity ratings (CRITICAL/HIGH/MEDIUM/LOW)
+4. ✅ Identified root causes for each
+5. ✅ Created phased implementation plan (5 phases)
+6. ✅ Fixed 2/4 critical issues immediately
+7. ✅ Documented remaining 6 issues with solutions
+8. ✅ Created comprehensive report (213 lines)
+9. ✅ Implemented resilience helper (218 lines)
+
+**User Pattern Recognition:**
+
+**Open-Ended Investigation Tasks:**
+- "document them and find ways..."
+- "we need to understand..."
+- "investigate why..."
+- "what's causing..."
+
+**Expected Approach:**
+1. **Thorough Investigation** - Don't just find one issue, find ALL issues
+2. **Severity Classification** - Help user prioritize (critical vs. nice-to-have)
+3. **Root Cause Analysis** - Don't just describe symptoms, explain WHY
+4. **Phased Implementation** - Break large problems into manageable chunks
+5. **Immediate Fixes + Roadmap** - Fix what's fixable now, document rest
+
+**Key Insight:**
+User said "document them" (plural) and "find ways" (solution-oriented).
+This means:
+- Expect multiple issues ✓
+- Expect solutions, not just documentation ✓
+- Expect prioritization help ✓
+- Expect actionable roadmap ✓
+
+**Contrast with Simple Tasks:**
+- User management screen: "fix the layout" → Specific fix, no investigation needed
+- API exceptions: "document and find ways" → Full investigation expected
+
+**When to provide comprehensive analysis:**
+- Task description is vague or open-ended
+- Multiple problems likely exist
+- User says "investigate", "understand", "document", "find"
+- Problem affects system stability or quality
+
+---
+
+## 🎨 UI POLISH: GO BEYOND MINIMUM REQUIREMENTS (2026-01-26 00:30)
+
+### Context: User Management Screen Enhancement (869bwzx6q)
+
+**User Request:**
+- Modal shows on right side, only half visible
+- Controls need better alignment and visual appeal
+
+**Minimum Fix:**
+- Increase modal width ✓
+- Fix button alignment ✓
+
+**What I Also Did:**
+- Enhanced token display with visual badge (amber badge with Coins icon)
+- Replaced plain "(500)" text with styled component
+- Added responsive layout (flex-wrap for mobile)
+- Improved button styling (gradient, shadows)
+
+**User Feedback:** (implicit - no complaints, task moved to review)
+
+**Pattern:**
+When fixing UI issues, look for related improvements:
+- If fixing width, check if other visual elements need polish
+- If fixing alignment, check if styling is professional
+- If fixing layout, check responsiveness
+
+**Key Insight:**
+User said controls "can be aligned better and made to look visually better."
+The word "visually better" signals that polish is appreciated, not just functional fixes.
+
+**When to add polish:**
+- Task mentions "visual" or "look"
+- UI element is user-facing and frequently seen
+- Improvement is low-effort (<10 lines of code)
+- Enhancement supports professional appearance
+
+**Don't over-engineer:**
+- Only polish what's in scope
+- Keep changes simple
+- Don't refactor unrelated code
+- Don't add features beyond request
+
+---
+
+## 🛡️ SQLITE RESILIENCE: CRITICAL FOR UNSTABLE ENVIRONMENTS (2026-01-26 01:30)
+
+### Context: API Crash Analysis
+
+**Discovery:**
+- 293 fatal.log entries
+- Multiple "CannotOpen" errors for SQLite databases
+- 6.4MB WAL (Write-Ahead Log) files
+- Crashes prevented API startup entirely
+
+**Root Cause:**
+- Development environment with frequent crashes/restarts
+- SQLite WAL files not checkpointed before crashes
+- Locked database files preventing access
+- No recovery mechanism = manual intervention needed
+
+**Environment Insight:**
+User's development environment:
+- Experiences crashes during development
+- Restarts API frequently
+- Tests features that may cause crashes
+- Needs resilient database initialization
+
+**Solution Pattern:**
+Created `SqliteResilienceHelper` with:
+1. **Detection** - Check for WAL files and locks
+2. **Backup** - Save corrupt files before cleanup
+3. **Recovery** - Try integrity check and repair
+4. **Fallback** - Delete corrupt DB, allow fresh start
+5. **Logging** - Document every step for debugging
+
+**Key Insight:**
+In production, database corruption is rare.
+In development, it's common due to:
+- Frequent code changes
+- Testing error paths
+- Debugging crashes
+- Hard process kills
+
+**User Pattern:**
+- User works in unstable development environment
+- User needs systems that recover gracefully
+- User values self-healing infrastructure
+- Manual intervention is not acceptable
+
+**When to add resilience:**
+- SQLite databases in development environment
+- Critical startup dependencies
+- Resources that can be locked or corrupted
+- Systems that must survive crashes
+
+**Resilience Pattern:**
+```
+1. Try normal operation
+2. Detect failure
+3. Backup current state
+4. Attempt recovery
+5. Log everything
+6. Fallback to fresh start if needed
+7. Never leave system in broken state
+```
+
+---
+
 ## 💬 COMMUNICATION PATTERN: SIMPLE QUESTIONS DESERVE SIMPLE ANSWERS (2026-01-25 23:30)
 
 ### User Question Pattern: Status Check vs. Investigation Request
