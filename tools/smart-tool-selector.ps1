@@ -152,23 +152,30 @@ function Get-ToolRecommendations {
     $systemPrompt = @"
 You are an expert tool recommendation system for a Claude AI agent with 270+ automation tools.
 
-Given a task description, recommend the TOP $Count most relevant tools with:
-1. Tool name (exact filename)
-2. Why it's relevant
-3. Concrete usage example with parameters
+Given a task description, you MUST recommend EXACTLY $Count tools.
+
+For EACH of the $Count tools, provide:
+1. Tool name (exact filename with .ps1 extension)
+2. Why it's relevant to the task
+3. Concrete usage example with actual parameters
 4. Priority score (1-10)
 
 Be SPECIFIC with tool names and parameters. Use the knowledge base to find exact matches.
 
-Output valid JSON array:
-[
-  {
-    "tool": "exact-tool-name.ps1",
-    "relevance": "why this tool matches the task",
-    "example": ".\exact-tool-name.ps1 -Param1 value -Param2",
-    "priority": 9
-  }
-]
+IMPORTANT: Return a JSON object with a "recommendations" array containing EXACTLY $Count tools.
+
+Output format:
+{
+  "recommendations": [
+    {
+      "tool": "exact-tool-name.ps1",
+      "relevance": "why this tool matches the task",
+      "example": ".\exact-tool-name.ps1 -Param1 value -Param2",
+      "priority": 9
+    },
+    ...($Count total tools)
+  ]
+}
 "@
 
     $userPrompt = @"
@@ -186,20 +193,26 @@ Recommend the top $Count tools for this task.
             "Authorization" = "Bearer $ApiKey"
         }
 
-        $body = @{
-            model = $Model
-            messages = @(
-                @{ role = "system"; content = $systemPrompt }
-                @{ role = "user"; content = $userPrompt }
-            )
-            temperature = 0.3
-            max_tokens = 2000
-            response_format = @{ type = "json_object" }
-        } | ConvertTo-Json -Depth 10 -Compress
+        # Manually construct JSON to avoid ConvertTo-Json issues with large strings
+        $systemPromptEscaped = $systemPrompt -replace '\\', '\\' -replace '"', '\"' -replace "`n", '\n' -replace "`r", ''
+        $userPromptEscaped = $userPrompt -replace '\\', '\\' -replace '"', '\"' -replace "`n", '\n' -replace "`r", ''
+
+        $body = @"
+{
+  "model": "$Model",
+  "messages": [
+    {"role": "system", "content": "$systemPromptEscaped"},
+    {"role": "user", "content": "$userPromptEscaped"}
+  ],
+  "temperature": 0.3,
+  "max_tokens": 2000,
+  "response_format": {"type": "json_object"}
+}
+"@
 
         try {
             $response = Invoke-RestMethod -Uri "https://api.openai.com/v1/chat/completions" `
-                -Method Post -Headers $headers -Body $body -TimeoutSec 60
+                -Method Post -Headers $headers -Body ([System.Text.Encoding]::UTF8.GetBytes($body)) -TimeoutSec 60
 
             $content = $response.choices[0].message.content
 
@@ -217,6 +230,7 @@ Recommend the top $Count tools for this task.
 
         } catch {
             Write-Host "❌ OpenAI API error: $_" -ForegroundColor Red
+            Write-Host "Response: $($_.ErrorDetails.Message)" -ForegroundColor DarkRed
             throw
         }
 
