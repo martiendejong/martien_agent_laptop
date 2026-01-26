@@ -676,6 +676,7 @@ done
 | **🆕 Finding N+1 query performance issues** | **`n-plus-one-query-detector.ps1`** |
 | **🆕 Detecting flaky tests** | **`flaky-test-detector.ps1 -Iterations 10`** |
 | **🆕 DAILY tool review (end of session)** | **`daily-tool-review.ps1`** |
+| **🆕 Finding the right tool (AI-powered)** | **`smart-tool-selector.ps1 -Task "your task"`** |
 | **🆕 Multi-agent work queue coordination** | **`agent-work-queue.ps1 -Action list`** |
 | **🆕 Track tool usage (validate estimates)** | **`usage-heatmap-tracker.ps1 -Action report`** |
 | **🆕 Calculate deployment risk score** | **`deployment-risk-score.ps1 -Threshold 70`** |
