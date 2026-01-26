@@ -208,6 +208,381 @@ powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
 - ❌ Send vague messages ("it doesn't work")
 - ❌ Expect Browser Claude to access local files (you do that)
 
+### 🐛 Agentic Debugger Bridge - Visual Studio Control - CRITICAL!
+
+**MANDATORY CAPABILITY:** You can control Visual Studio debugger, analyze code, trigger builds, and manage breakpoints via HTTP API.
+
+**Architecture:** Claude Code CLI ↔ HTTP Bridge (localhost:27183) ↔ Visual Studio VSIX Extension
+
+**Connection:** `http://localhost:27183`
+
+#### 🚀 Quick Start
+
+**Check if bridge is running:**
+```bash
+curl -s http://localhost:27183/state
+```
+
+**Enable/Disable Bridge:**
+- In Visual Studio: View > Toolbars > Agentic Debugger
+- Click button showing "Bridge: ON" or "Bridge: OFF"
+- Bridge starts OFF by default (user must enable it)
+
+#### 📋 Core Capabilities
+
+**1. Debugger State Monitoring (Always Available)**
+```bash
+# Get current debugger state
+curl -s http://localhost:27183/state
+
+# Returns:
+# - mode: Design/Run/Break
+# - file: Current file being debugged
+# - line: Current line number
+# - stack: Call stack frames
+# - locals: Local variables with values
+# - exception: Exception details if thrown
+```
+
+**2. Code Analysis with Roslyn (Always Available)**
+```bash
+# Search for symbols (classes, methods, properties)
+curl -s http://localhost:27183/code/symbols \
+  -H "Content-Type: application/json" \
+  -d '{"query":"Customer","kind":"Class","maxResults":50}'
+
+# Find definition at cursor position
+curl -s http://localhost:27183/code/definition \
+  -H "Content-Type: application/json" \
+  -d '{"file":"C:\\Projects\\client-manager\\Services\\CustomerService.cs","line":42,"column":15}'
+
+# Find all references to symbol
+curl -s http://localhost:27183/code/references \
+  -H "Content-Type: application/json" \
+  -d '{"file":"C:\\Projects\\client-manager\\Models\\Customer.cs","line":10,"column":20}'
+
+# Get document outline/structure
+curl -s "http://localhost:27183/code/outline?file=C:\\Projects\\client-manager\\Program.cs"
+
+# Get semantic info (type, docs) at position
+curl -s http://localhost:27183/code/semantic \
+  -H "Content-Type: application/json" \
+  -d '{"file":"C:\\Projects\\client-manager\\Program.cs","line":25,"column":10}'
+```
+
+**3. Solution Information (Always Available)**
+```bash
+# Get build errors and warnings
+curl -s http://localhost:27183/errors
+
+# List all projects in solution
+curl -s http://localhost:27183/projects
+
+# Get output window content
+curl -s http://localhost:27183/output/Build
+curl -s http://localhost:27183/output/Debug
+```
+
+**4. Debug Control (Requires Permission)**
+```bash
+# Start debugging
+curl -s http://localhost:27183/command \
+  -H "Content-Type: application/json" \
+  -d '{"action":"start","projectName":"ClientManagerAPI"}'
+
+# Continue execution
+curl -s http://localhost:27183/command \
+  -H "Content-Type: application/json" \
+  -d '{"action":"continue"}'
+
+# Step into/over/out
+curl -s http://localhost:27183/command \
+  -H "Content-Type: application/json" \
+  -d '{"action":"stepInto"}'
+
+# Stop debugging
+curl -s http://localhost:27183/command \
+  -H "Content-Type: application/json" \
+  -d '{"action":"stop"}'
+
+# Pause/break execution
+curl -s http://localhost:27183/command \
+  -H "Content-Type: application/json" \
+  -d '{"action":"break"}'
+```
+
+**5. Breakpoint Management (Requires Permission)**
+```bash
+# Set breakpoint
+curl -s http://localhost:27183/command \
+  -H "Content-Type: application/json" \
+  -d '{"action":"setBreakpoint","file":"C:\\Projects\\client-manager\\Controllers\\CustomerController.cs","line":45,"condition":"customer.Id == 123"}'
+
+# Clear all breakpoints
+curl -s http://localhost:27183/command \
+  -H "Content-Type: application/json" \
+  -d '{"action":"clearBreakpoints"}'
+```
+
+**6. Build System (Requires Permission)**
+```bash
+# Build solution
+curl -s http://localhost:27183/command \
+  -H "Content-Type: application/json" \
+  -d '{"action":"build"}'
+
+# Rebuild solution
+curl -s http://localhost:27183/command \
+  -H "Content-Type: application/json" \
+  -d '{"action":"rebuild"}'
+
+# Clean solution
+curl -s http://localhost:27183/command \
+  -H "Content-Type: application/json" \
+  -d '{"action":"clean"}'
+```
+
+**7. Expression Evaluation (Requires Permission)**
+```bash
+# Evaluate expression in current debug context
+curl -s http://localhost:27183/command \
+  -H "Content-Type: application/json" \
+  -d '{"action":"eval","expression":"customer.Name"}'
+
+# Add watch expression
+curl -s http://localhost:27183/command \
+  -H "Content-Type: application/json" \
+  -d '{"action":"addWatch","expression":"orders.Count"}'
+```
+
+**8. Batch Operations (10x Faster)**
+```bash
+# Execute multiple commands in one request
+curl -s http://localhost:27183/batch \
+  -H "Content-Type: application/json" \
+  -d '{
+    "commands": [
+      {"action":"setBreakpoint","file":"C:\\Code\\Program.cs","line":42},
+      {"action":"setBreakpoint","file":"C:\\Code\\Program.cs","line":58},
+      {"action":"start"}
+    ],
+    "stopOnError": true
+  }'
+```
+
+#### 🔒 Permission Model
+
+**Default Permissions (Always Enabled):**
+- ✅ **Code Analysis** - Symbol search, definitions, references
+- ✅ **Observability** - State, metrics, errors, logs
+- ✅ **Solution Info** - Projects, errors, output windows
+
+**Restricted Permissions (Disabled by Default):**
+- 🔐 **Debug Control** - Start/stop, step, pause (user must enable in VS)
+- 🔐 **Breakpoints** - Set/clear breakpoints (user must enable in VS)
+- 🔐 **Build System** - Build, rebuild, clean (user must enable in VS)
+- 🔐 **Configuration** - Eval expressions, add watches (user must enable in VS)
+
+**Enable Permissions:**
+- In Visual Studio: Tools > Options > Agentic Debugger > Permissions
+- Check boxes for desired permissions
+- Bridge respects permissions in real-time (no restart needed)
+
+#### 📊 Observability & Monitoring
+
+**Health Check:**
+```bash
+curl -s http://localhost:27183/health
+```
+
+**Performance Metrics:**
+```bash
+curl -s http://localhost:27183/metrics
+# Returns: request count, latency, error rate, command counts
+```
+
+**Request Logs:**
+```bash
+curl -s http://localhost:27183/logs
+# Last 100 requests with timestamps, endpoints, status codes
+```
+
+**API Documentation:**
+```bash
+curl -s http://localhost:27183/docs
+# Full HTML documentation
+```
+
+**OpenAPI Spec:**
+```bash
+curl -s http://localhost:27183/swagger.json
+# OpenAPI 3.0 specification
+```
+
+#### 🎯 Common Use Cases
+
+**Use Case 1: Autonomous Debugging Session**
+```bash
+# 1. Check current state
+curl -s http://localhost:27183/state
+
+# 2. Set breakpoint at suspicious line
+curl -s http://localhost:27183/command \
+  -H "Content-Type: application/json" \
+  -d '{"action":"setBreakpoint","file":"C:\\Projects\\client-manager\\Services\\OrderService.cs","line":87}'
+
+# 3. Start debugging
+curl -s http://localhost:27183/command \
+  -H "Content-Type: application/json" \
+  -d '{"action":"start"}'
+
+# 4. Wait for breakpoint hit, then get state
+curl -s http://localhost:27183/state
+# Analyze locals, stack, variables
+
+# 5. Step through code
+curl -s http://localhost:27183/command -d '{"action":"stepOver"}'
+curl -s http://localhost:27183/state
+
+# 6. Continue or stop
+curl -s http://localhost:27183/command -d '{"action":"continue"}'
+```
+
+**Use Case 2: Code Navigation & Analysis**
+```bash
+# Find where Customer class is defined
+curl -s http://localhost:27183/code/symbols \
+  -H "Content-Type: application/json" \
+  -d '{"query":"Customer","kind":"Class"}'
+
+# Find all references to GetCustomer method
+curl -s http://localhost:27183/code/references \
+  -H "Content-Type: application/json" \
+  -d '{"file":"C:\\Projects\\client-manager\\Services\\CustomerService.cs","line":42,"column":20}'
+
+# Get outline of entire file
+curl -s "http://localhost:27183/code/outline?file=C:\\Projects\\client-manager\\Controllers\\CustomerController.cs"
+```
+
+**Use Case 3: Build Error Analysis**
+```bash
+# Get all build errors
+curl -s http://localhost:27183/errors | jq '.errors[] | select(.severity=="Error")'
+
+# Get build output
+curl -s http://localhost:27183/output/Build
+
+# Trigger rebuild
+curl -s http://localhost:27183/command -d '{"action":"rebuild"}'
+```
+
+**Use Case 4: Real-Time State Monitoring**
+```bash
+# Poll debugger state during active debugging session
+while true; do
+  STATE=$(curl -s http://localhost:27183/state)
+  MODE=$(echo "$STATE" | jq -r '.snapshot.mode')
+  if [ "$MODE" == "Break" ]; then
+    echo "Breakpoint hit!"
+    echo "$STATE" | jq '.snapshot.locals'
+    break
+  fi
+  sleep 1
+done
+```
+
+#### ⚡ Performance & Best Practices
+
+**DO:**
+- ✅ Use `/state` endpoint to check debugger status before commands
+- ✅ Use `/batch` for multiple operations (10x faster than individual requests)
+- ✅ Check `/errors` after build operations
+- ✅ Use code analysis endpoints for semantic search (faster than grep)
+- ✅ Poll `/state` during debugging to detect breakpoint hits
+- ✅ Check `/health` before starting automation workflows
+- ✅ Use `/metrics` to monitor bridge performance
+
+**DO NOT:**
+- ❌ Send debug commands when mode is "Design" (will fail)
+- ❌ Hammer endpoints in tight loops (use reasonable polling intervals)
+- ❌ Attempt restricted operations without checking permissions first
+- ❌ Forget to check if bridge is running before attempting connection
+- ❌ Use absolute paths with backslashes in JSON without escaping (`\\` not `\`)
+
+#### 🔧 Troubleshooting
+
+**Bridge not responding:**
+1. Check if Visual Studio is running
+2. View > Toolbars > Agentic Debugger
+3. Verify button shows "Bridge: ON" (not "Bridge: OFF")
+4. Check `%TEMP%\agentic_debugger.json` for connection details
+
+**Commands failing:**
+1. Check `/status` for enabled permissions
+2. Check `/state` to verify debugger mode
+3. Check `/logs` for detailed error messages
+4. Verify file paths use double backslashes in JSON
+
+**Code analysis not working:**
+1. Verify solution is open in Visual Studio
+2. Check that Roslyn integration is enabled (automatic)
+3. Use `/projects` to verify solution loaded correctly
+
+#### 📚 Integration with Claude Workflows
+
+**Autonomous Debugging Workflow:**
+```bash
+# When user reports a bug, I can:
+1. Check current state: curl http://localhost:27183/state
+2. Find relevant code: curl http://localhost:27183/code/symbols -d '{"query":"BuggyMethod"}'
+3. Set breakpoint: curl http://localhost:27183/command -d '{"action":"setBreakpoint",...}'
+4. Start debugging: curl http://localhost:27183/command -d '{"action":"start"}'
+5. Analyze state when hit: curl http://localhost:27183/state
+6. Step through: curl http://localhost:27183/command -d '{"action":"stepOver"}'
+7. Report findings to user
+```
+
+**Build Verification Workflow:**
+```bash
+# After code changes, I can:
+1. Trigger build: curl http://localhost:27183/command -d '{"action":"build"}'
+2. Check errors: curl http://localhost:27183/errors
+3. Get build output: curl http://localhost:27183/output/Build
+4. Report status to user
+```
+
+**Code Analysis Workflow:**
+```bash
+# When exploring codebase, I can:
+1. Search symbols: curl http://localhost:27183/code/symbols -d '{"query":"..."}'
+2. Go to definition: curl http://localhost:27183/code/definition -d '{...}'
+3. Find references: curl http://localhost:27183/code/references -d '{...}'
+4. Get outline: curl http://localhost:27183/code/outline?file=...
+```
+
+#### 🎓 Advanced Features
+
+**WebSocket Support (Real-Time Events):**
+- Connect to `ws://localhost:27183/ws` for real-time debugging events
+- Receive events: breakpoint hit, exception thrown, mode changed
+- Enables reactive workflows without polling
+
+**Multi-Instance Support:**
+- List all VS instances: `curl http://localhost:27183/instances`
+- Target specific instance: Add `"instanceId":"..."` to commands
+
+**Discovery File:**
+- Bridge writes connection details to `%TEMP%\agentic_debugger.json`
+- Contains: port, PID, authentication header, default key
+- Use for dynamic bridge discovery
+
+#### 📖 Full Documentation
+
+- **API Docs:** `http://localhost:27183/docs` (HTML)
+- **OpenAPI Spec:** `http://localhost:27183/swagger.json`
+- **VSIX Source:** `C:\Projects\AgenticDebuggerVsix\`
+- **Version:** 2.0 (current)
+
 ### 🖱️ UI Automation Bridge - Windows Desktop Control - NEW!
 
 **CRITICAL:** You have complete programmatic control over **any Windows desktop application**.
