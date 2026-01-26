@@ -642,6 +642,14 @@ done
 | **Checking user activity & context** | **`monitor-activity.ps1 -Mode context`** |
 | **Detecting other Claude instances** | **`monitor-activity.ps1 -Mode claude`** |
 | **Parallel agent coordination** | **`parallel-agent-coordination` skill + `monitor-activity.ps1`** |
+| **🆕 Starting agent session with tracking** | **`agent-session.ps1 -Action start`** |
+| **🆕 Ending agent session with statistics** | **`agent-session.ps1 -Action end -ExitReason "normal"`** |
+| **🆕 Checking messages from other agents** | **`agent-coordinate.ps1 -Action check_messages`** |
+| **🆕 Broadcasting message to all agents** | **`agent-coordinate.ps1 -Action broadcast -Message "..." -Priority 7`** |
+| **🆕 Detecting multi-agent conflicts** | **`agent-coordinate.ps1 -Action detect_conflicts`** |
+| **🆕 Viewing comprehensive agent dashboard** | **`agent-dashboard.ps1 -Watch`** |
+| **🆕 Allocating worktree with database tracking** | **`worktree-allocate-tracked.ps1 -Seat agent-003 -Repo client-manager -Branch feature/x`** |
+| **🆕 Git operations with performance tracking** | **`git-tracked.ps1 -Operation commit -Message "..."`** |
 | **Communicating with Browser Claude** | **`claude-bridge-client.ps1 -Action send/check`** |
 | **Testing UI/forms/workflows** | **Ask Browser Claude via bridge** |
 | **Web research for implementation** | **Request Browser Claude via bridge** |
