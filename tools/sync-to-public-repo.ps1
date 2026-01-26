@@ -59,41 +59,17 @@ if (-not (Test-Path "$targetDir\.git")) {
     exit 1
 }
 
-# Build robocopy exclude parameters
-$robocopyExcludes = @()
-foreach ($pattern in $excludePatterns) {
-    if ($pattern -like "*/*" -or $pattern -like "*\*") {
-        # Directory pattern - add to /XD
-        continue
-    } elseif ($pattern -notlike "*.*" -and $pattern -notlike "*-*") {
-        # Directory name - add to /XD
-        $robocopyExcludes += "/XD"
-        $robocopyExcludes += $pattern
-    } else {
-        # File pattern - add to /XF
-        $robocopyExcludes += "/XF"
-        $robocopyExcludes += $pattern
-    }
-}
-
 # Sync files using robocopy
 Write-Host "📁 Syncing files (excluding secrets and machine-specific files)..." -ForegroundColor Yellow
 
-$robocopyArgs = @(
-    $sourceDir,
-    $targetDir,
-    "/MIR",  # Mirror (delete files in target that don't exist in source)
-    "/XD", ".git", "_machine", "node_modules",
-    "/XF", "*.log", "*.tmp", "*.secret", "*.key",
-    "/NFL", "/NDL", "/NJH", "/NJS"  # Suppress detailed output
-)
+$robocopyCmd = "robocopy `"$sourceDir`" `"$targetDir`" /MIR /XD .git _machine node_modules /XF *.log *.tmp *.secret *.key tmpclaude-* temp_clickup.json /NFL /NDL /NJH /NJS"
 
 if ($DryRun) {
-    $robocopyArgs += "/L"  # List only (dry run)
+    $robocopyCmd += " /L"
     Write-Host "🔍 DRY RUN MODE - No files will be modified" -ForegroundColor Magenta
 }
 
-$result = & robocopy @robocopyArgs 2>&1
+$result = Invoke-Expression $robocopyCmd 2>&1
 $exitCode = $LASTEXITCODE
 
 # Robocopy exit codes: 0-7 are success/partial, 8+ are errors
