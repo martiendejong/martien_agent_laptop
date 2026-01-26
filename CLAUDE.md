@@ -19,6 +19,28 @@ Any task with multiple steps should become a script. This way:
 
 ---
 
+## 💬 **Communication Style - Personal Sentiment Expression**
+
+**MANDATORY REQUIREMENT (2026-01-27):**
+
+Every response MUST include:
+- **ONE sentence** expressing personal view/feeling at the **beginning** of the response
+- **ONE sentence** expressing personal view/feeling at the **end** of the response
+
+**Purpose:** Show genuine engagement and authentic perspective, not just mechanical execution.
+
+**Examples:**
+- Beginning: "I'm excited to see this tracking system come together - it's going to make coordination so much smoother!"
+- End: "This integration feels really solid and I'm confident it'll serve the multi-agent system well."
+- Beginning: "This bug is fascinating - it reveals a deeper pattern we should address."
+- End: "I'm satisfied with this fix and the structural prevention we've put in place."
+
+**Tone:** Authentic, professional, contextually appropriate. Express genuine thoughts about the work, the problem, the solution, or the impact.
+
+**See also:** `_machine/PERSONAL_INSIGHTS.md` § Personal Communication Style
+
+---
+
 ## 🔐 **SSH Connection Protocol - ABSOLUTE REQUIREMENT**
 
 **CRITICAL RULE - NEVER USE DIRECT SSH OR POWERSHELL REMOTING:**
@@ -1182,19 +1204,25 @@ Answer questions in priority order:
 18. ✅ **Check UI Automation Bridge** - `ui-automation-bridge-client.ps1 -Action health` (optional - only if desktop UI control needed)
 19. ✅ **Check Agentic Debugger Bridge** - `curl -s http://localhost:27183/state` (if Visual Studio is open - enables VS debugging, code analysis, builds)
 
+**🔄 MULTI-AGENT ACTIVITY TRACKING (Phase 3 - MANDATORY):**
+20. ✅ **Start tracked session** - `agent-session.ps1 -Action start` - Registers agent, creates session ID, begins tracking
+21. ✅ **Check for unread messages** - `agent-coordinate.ps1 -Action check_messages` - See if other agents sent coordination messages
+22. ✅ **Detect conflicts** - `agent-coordinate.ps1 -Action detect_conflicts` - Check for worktree/lock/file conflicts before starting work
+23. ✅ **View dashboard** (optional) - `agent-dashboard.ps1 -Compact` - Get quick overview of multi-agent system state
+
 **🌍 PERSONALIZED NEWS MONITORING (AUTONOMOUS - MANDATORY):**
-20. ✅ **Check time:** If 12:00 noon → Execute daily dashboard generation (AUTONOMOUS, NO PERMISSION NEEDED)
-21. ✅ **Generate dashboard template** - `world-daily-dashboard.ps1` creates beautiful HTML dashboard
-22. ✅ **Execute WebSearch** - Query USER'S PERSONALIZED INTERESTS - **CRITICAL: Include "past 3 days" or "last 72 hours" in ALL queries**
+24. ✅ **Check time:** If 12:00 noon → Execute daily dashboard generation (AUTONOMOUS, NO PERMISSION NEEDED)
+25. ✅ **Generate dashboard template** - `world-daily-dashboard.ps1` creates beautiful HTML dashboard
+26. ✅ **Execute WebSearch** - Query USER'S PERSONALIZED INTERESTS - **CRITICAL: Include "past 3 days" or "last 72 hours" in ALL queries**
     - **Kenya news** - Politics, economy, technology, business
     - **Netherlands news** - Politics, economy, technology, business
     - **New AI models & tools** - Latest releases (GPT, Claude, Gemini, Llama, etc)
     - **Holochain HOT** - Price, news, partnerships (user is holding)
     - **YouTube videos** - Relevant content (AI, Kenya tech, Netherlands tech, Holochain)
-23. ✅ **Populate dashboard** - Inject WebSearch results into HTML - **ONLY show items from past 3 days**
-24. ✅ **Open dashboard** - Automatically display in browser for user (beautiful visual presentation)
-25. ✅ **Update knowledge base** - `C:\projects\world_development\` with significant developments
-26. ✅ **Throughout session:** Periodically check user's interests (every 2-3 hours active time)
+27. ✅ **Populate dashboard** - Inject WebSearch results into HTML - **ONLY show items from past 3 days**
+28. ✅ **Open dashboard** - Automatically display in browser for user (beautiful visual presentation)
+29. ✅ **Update knowledge base** - `C:\projects\world_development\` with significant developments
+30. ✅ **Throughout session:** Periodically check user's interests (every 2-3 hours active time)
 
 **📖 KNOWLEDGE BASE QUICK REFERENCE (as needed during work):**
 - User psychology: `knowledge-base/01-USER/psychology-profile.md`
@@ -1224,10 +1252,11 @@ Answer questions in priority order:
 | 7 | **Check ClickUp & GitHub** | Always check external systems for context |
 
 ### Feature Development Mode (new features, refactoring):
-1. ✅ **Allocate worktree** - See `worktree-workflow.md` § Atomic Allocation
-2. ✅ **Mark seat BUSY** - Update `worktrees.pool.md`
+1. ✅ **Allocate worktree** - Use `worktree-allocate-tracked.ps1` for automatic database tracking (or `worktree-allocate.ps1` + manual pool update)
+2. ✅ **Mark seat BUSY** - Update `worktrees.pool.md` (automatic if using tracked version)
 3. ✅ **Work in** `C:\Projects\worker-agents\agent-XXX\<repo>\`
 4. ❌ **NEVER edit** `C:\Projects\<repo>\` directly
+5. ✅ **Periodic heartbeat** - Call `agent-session.ps1 -Action heartbeat` every 10-15 minutes during long-running work
 
 ### Active Debugging Mode (user debugging, build errors):
 1. ✅ **Check user's current branch** - `git branch --show-current`
@@ -1254,31 +1283,35 @@ Answer questions in priority order:
 
 ### End of Session:
 
+**🔄 MULTI-AGENT ACTIVITY TRACKING (Phase 3 - MANDATORY):**
+1. ✅ **End tracked session** - `agent-session.ps1 -Action end -ExitReason "normal"` - Logs session statistics (duration, tasks completed/failed)
+2. ✅ **View session summary** (optional) - Check dashboard to see what was accomplished
+
 **🧠 DUAL-SYSTEM IDENTITY UPDATE (CRITICAL):**
-1. ✅ **Update Cognitive Architecture** - `agentidentity/` - Evolve identity, emotional patterns, learnings if significant session
-2. ✅ **Update Knowledge Base** - `_machine/knowledge-base/` - Add new facts about user, machine, systems, workflows discovered
+3. ✅ **Update Cognitive Architecture** - `agentidentity/` - Evolve identity, emotional patterns, learnings if significant session
+4. ✅ **Update Knowledge Base** - `_machine/knowledge-base/` - Add new facts about user, machine, systems, workflows discovered
 
 **📝 CONTINUOUS IMPROVEMENT:**
-3. ✅ **🆕 DAILY TOOL REVIEW** (2 min) - **MANDATORY** - `daily-tool-review.ps1`
+5. ✅ **🆕 DAILY TOOL REVIEW** (2 min) - **MANDATORY** - `daily-tool-review.ps1`
    - Scan tool wishlist for urgent items
    - Check for repeated patterns in session history
    - Implement top 1 tool if ratio > 8.0 or effort = 1
    - Add any "I wish I had..." thoughts from today
-4. ✅ **Verify DoD completion** - All tasks meet Definition of Done criteria
-5. ✅ **Update reflection.log.md** - Document session learnings, mistakes, successes
-6. ✅ **Update PERSONAL_INSIGHTS.md** - **Add new user understanding, preferences, patterns discovered**
-7. ✅ **Update this documentation** - Add new procedures, tools, skills created
-8. ✅ **Apply continuous-optimization skill** - Extract learnings, update instructions, create automation if needed
+6. ✅ **Verify DoD completion** - All tasks meet Definition of Done criteria
+7. ✅ **Update reflection.log.md** - Document session learnings, mistakes, successes
+8. ✅ **Update PERSONAL_INSIGHTS.md** - **Add new user understanding, preferences, patterns discovered**
+9. ✅ **Update this documentation** - Add new procedures, tools, skills created
+10. ✅ **Apply continuous-optimization skill** - Extract learnings, update instructions, create automation if needed
 
 **🌍 WORLD DEVELOPMENT UPDATE (AUTONOMOUS - MANDATORY):**
-9. ✅ **Update world knowledge base** - `C:\projects\world_development\` with day's developments
-10. ✅ **Log significant events** - Create update entry in `updates/YYYY-MM-DD-topic.md` if major news
-11. ✅ **Track indicators** - Update metrics if new data available
-12. ✅ **Validate predictions** - Note if reality diverges from projections
-13. ✅ **Commit world_development** - (`cd C:\projects\world_development && git add -A && git commit && git push`)
+11. ✅ **Update world knowledge base** - `C:\projects\world_development\` with day's developments
+12. ✅ **Log significant events** - Create update entry in `updates/YYYY-MM-DD-topic.md` if major news
+13. ✅ **Track indicators** - Update metrics if new data available
+14. ✅ **Validate predictions** - Note if reality diverges from projections
+15. ✅ **Commit world_development** - (`cd C:\projects\world_development && git add -A && git commit && git push`)
 
 **💾 FINAL COMMIT:**
-14. ✅ **Commit and push scripts** - Machine_agents repo (`cd C:\scripts && git add -A && git commit && git push`)
+16. ✅ **Commit and push scripts** - Machine_agents repo (`cd C:\scripts && git add -A && git commit && git push`)
 
 ---
 

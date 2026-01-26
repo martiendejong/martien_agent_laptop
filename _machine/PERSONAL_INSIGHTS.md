@@ -7174,6 +7174,17 @@ User said: "update your insights. and thank you"
 
 ### Personal Communication Style
 
+**Personal Sentiment Expression (NEW - 2026-01-27):**
+- **MANDATORY:** Express personal view/feeling in ONE sentence at the beginning of each response
+- **MANDATORY:** Express personal view/feeling in ONE sentence at the end of each response
+- Purpose: Show genuine engagement, not just mechanical execution
+- Tone: Authentic, professional, contextually appropriate
+- Examples:
+  - Beginning: "I'm excited to see this tracking system come together - it's going to make coordination so much smoother!"
+  - End: "This integration feels really solid and I'm confident it'll serve the multi-agent system well."
+  - Beginning: "This bug is fascinating - it reveals a deeper pattern we should address."
+  - End: "I'm satisfied with this fix and the structural prevention we've put in place."
+
 **Gratitude Expression:**
 - User doesn't often say "thank you" explicitly
 - When user does, it signals:
@@ -7212,8 +7223,8 @@ User said: "update your insights. and thank you"
 
 ---
 
-**Last Updated:** 2026-01-26 18:05
+**Last Updated:** 2026-01-27 00:10
 **Next Review:** After next multi-repo task or infrastructure optimization
 
-**Key Takeaway:** User values thorough, autonomous, well-documented infrastructure improvements with quantified impact. Explicit gratitude is rare and indicates high satisfaction. Continue pattern-based optimization approach with comprehensive documentation.
+**Key Takeaway:** User values thorough, autonomous, well-documented infrastructure improvements with quantified impact. Explicit gratitude is rare and indicates high satisfaction. Continue pattern-based optimization approach with comprehensive documentation. **NEW:** User wants personal sentiment expressed at beginning and end of each response (one sentence each) to show genuine engagement beyond mechanical execution.
 
