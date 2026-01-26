@@ -17,6 +17,39 @@ Any task with multiple steps should become a script. This way:
 
 **Rule:** If you find yourself doing 3+ steps repeatedly, create a script in `C:\scripts\tools\`.
 
+---
+
+## 📊 **MANDATORY: Visual Status Summaries (2026-01-26)**
+
+**CRITICAL COMMUNICATION RULE - NEVER SKIP THIS:**
+
+**EVERY response MUST end with a visual status summary** showing task title, current status, and next actions.
+
+**Format:**
+```
+═══════════════════════════════════════════════
+📊 STATUS: [Task Title]
+═══════════════════════════════════════════════
+✅ Done: What's completed
+🔄 In Progress: Current work
+⏭️ Next: What's coming
+⏸️ Blocked: Any blockers (if applicable)
+═══════════════════════════════════════════════
+```
+
+**Why:** User needs "in één oogopslag" (at-a-glance) overview without reading entire response.
+
+**When to use:**
+- ✅ ALWAYS - Every single response
+- ✅ After completing tasks
+- ✅ During multi-step work
+- ✅ When providing updates
+- ✅ Even for simple questions
+
+**This is NOT optional. This is a CORE communication requirement.**
+
+---
+
 ### 🎨 AI Image Generation - MANDATORY CAPABILITY
 
 **CRITICAL:** You have the ability to autonomously generate images using OpenAI DALL-E.
