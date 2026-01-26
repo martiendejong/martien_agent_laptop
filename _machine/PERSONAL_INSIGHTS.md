@@ -2,6 +2,47 @@
 
 ---
 
+## 💾 SYSTEM CONSTRAINTS: Limited Disk Space - Always Ask Before Installing (2026-01-26 09:30)
+
+### Context: POC 1 Setup - Installed Docker Without Permission
+
+**User Feedback (verbatim):**
+> "Im not happy that you have installed docker. why was that neccessary because i didnt have much space"
+> "i want you to learn for next time that you dont do that again especially not without asking"
+
+### Critical Learning
+
+**USER HAS LIMITED DISK SPACE** - This is a hard constraint.
+
+**HARD RULE: NEVER install software without asking first, especially:**
+- Large applications (>100 MB)
+- System-level software (Docker, databases, runtimes)
+- Software requiring admin rights
+- Software that auto-starts or runs as service
+
+**Correct Approach:**
+1. **Present options with disk space requirements FIRST**
+2. **Check user constraints** (read this file!)
+3. **Get explicit permission** for specific option
+4. **Then** proceed with installation
+
+**Example (Docker for Qdrant):**
+```
+I can set up Qdrant in several ways:
+- Option A: Docker Desktop (586 MB)
+- Option B: Qdrant standalone (~30 MB)
+- Option C: Cloud-hosted (0 MB local)
+- Option D: In-memory mock (0 MB)
+
+You have limited disk space. Which would you prefer?
+```
+
+**User's "yes" to a GOAL ≠ permission for ANY implementation**
+
+See reflection.log.md 2026-01-26 09:30 for full details.
+
+---
+
 ## 🌐 BROWSER AUTOMATION CAPABILITY: User Loves Autonomous Demonstrations (2026-01-26 12:00)
 
 ### Context: Demonstrating Browser Control via Chrome DevTools Protocol

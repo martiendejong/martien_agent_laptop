@@ -358,12 +358,17 @@ powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
 | **`real-time-code-smell-detector.ps1`** | **WAVE 2: File watcher with live code smell analysis** | `real-time-code-smell-detector.ps1 -Path src` |
 | **`ui-automation-bridge-server.ps1`** | **NEW: Windows UI automation bridge server (FlaUI)** | `ui-automation-bridge-server.ps1 -Debug` |
 | **`ui-automation-bridge-client.ps1`** | **NEW: Control any Windows desktop application programmatically** | `ui-automation-bridge-client.ps1 -Action windows` |
+| **`verify-fact.ps1`** | **🆕 FACT VERIFICATION: Check if claim appears in knowledge base** | `verify-fact.ps1 -Claim "..." -SearchPath "C:\emails"` |
+| **`source-quote.ps1`** | **🆕 FACT VERIFICATION: Extract exact quote with context** | `source-quote.ps1 -File "path" -LineNumber 123 -Context 5` |
+| **`fact-triangulate.ps1`** | **🆕 FACT VERIFICATION: Find all mentions + detect contradictions** | `fact-triangulate.ps1 -Topic "..." -Paths @("C:\emails")` |
+| **`pre-publish-check.ps1`** | **🆕 FACT VERIFICATION: Verify all claims before publishing** | `pre-publish-check.ps1 -ContentFile "article.md" -KnowledgeBase "C:\kb"` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 
-**🎉 MILESTONE: 121 tools implemented! (47 original + 54 recommended + 6 Wave 1 + 10 Wave 2 + 2 custom + 2 UI automation)**
+**🎉 MILESTONE: 125 tools implemented! (47 original + 54 recommended + 6 Wave 1 + 10 Wave 2 + 2 custom + 2 UI automation + 4 fact verification)**
 
 **Latest additions (2026-01-26):**
+- **🆕 FACT VERIFICATION PROTOCOL** - 4 tools for mandatory fact-checking before content publication (verify-fact, source-quote, fact-triangulate, pre-publish-check)
 - **🆕 UI Automation Bridge** - Complete Windows desktop control via FlaUI (click, type, screenshot any app)
   - `ui-automation-bridge-server.ps1` - HTTP bridge server (localhost:27184)
   - `ui-automation-bridge-client.ps1` - PowerShell client for desktop automation
