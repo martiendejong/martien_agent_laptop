@@ -15,6 +15,12 @@
 |------|---------|-------------|
 | `claude-ctl.ps1` | Unified CLI | `.\claude-ctl.ps1 status` |
 | **`agent-logger.ps1`** | **Multi-agent activity tracking (SQLite)** | **`.\agent-logger.ps1 -Action register`** |
+| **`agent-logger-enhanced.ps1`** | **Enhanced tracking (worktrees, git, files)** | **`.\agent-logger-enhanced.ps1 -Action allocate_worktree`** |
+| **`agent-session.ps1`** | **Session lifecycle management** | **`.\agent-session.ps1 -Action start`** |
+| **`agent-coordinate.ps1`** | **Agent messaging and conflict detection** | **`.\agent-coordinate.ps1 -Action check_messages`** |
+| **`agent-dashboard.ps1`** | **Comprehensive monitoring dashboard** | **`.\agent-dashboard.ps1 -Watch`** |
+| **`worktree-allocate-tracked.ps1`** | **Worktree allocation with tracking** | **`.\worktree-allocate-tracked.ps1 -Seat agent-003 -Repo client-manager -Branch feature/x`** |
+| **`git-tracked.ps1`** | **Git operations with tracking** | **`.\git-tracked.ps1 -Operation commit -Message "..."`** |
 | **`query-agent-activity.ps1`** | **Agent coordination dashboard** | **`.\query-agent-activity.ps1 -Action dashboard`** |
 | `bootstrap-snapshot.ps1` | Fast startup state | `.\bootstrap-snapshot.ps1 -Generate` |
 | `system-health.ps1` | Health checks | `.\system-health.ps1 -Fix` |
@@ -563,6 +569,171 @@ When creating new tools:
 4. **Include help** via comment-based help
 5. **Update this README** with usage examples
 6. **Log significant actions** to appropriate activity files
+
+---
+
+## Multi-Agent Activity Tracking - Phase 3
+
+**🎉 Phase 3 Complete:** Advanced coordination, session management, and observability.
+
+### Overview
+
+SQLite-based multi-agent activity tracking system with 3 phases:
+
+- **Phase 1**: Basic tracking (agents, tasks, activity log)
+- **Phase 2**: Enhanced tracking (worktrees, git, files, tools, locks)
+- **Phase 3**: Advanced coordination (sessions, messaging, errors, metrics, learnings)
+
+**Total Tables:** 16 (v1-v12)
+**Schema Version:** 12
+
+### Phase 3 Tools
+
+#### agent-session.ps1 - Session Lifecycle Manager
+
+```powershell
+# Start session
+.\agent-session.ps1 -Action start
+# Output: Session started! Agent ID: agent-XXX, Session ID: session-XXX
+
+# Update heartbeat during work
+.\agent-session.ps1 -Action heartbeat
+
+# Check session status
+.\agent-session.ps1 -Action status
+
+# End session with statistics
+.\agent-session.ps1 -Action end -ExitReason "normal"
+# Output: Session ended! Duration: 312s, Tasks: 5 completed, 0 failed
+```
+
+#### agent-coordinate.ps1 - Multi-Agent Coordination
+
+```powershell
+# Broadcast message to all agents
+.\agent-coordinate.ps1 -Action broadcast -Message "Starting OAuth feature" -Priority 7
+
+# Send targeted message
+.\agent-coordinate.ps1 -Action send_message -ToAgent "agent-XXX" -Message "Review PR #123" -Priority 8
+
+# Check unread messages
+.\agent-coordinate.ps1 -Action check_messages
+
+# Detect conflicts (worktrees, locks, files, stale locks)
+.\agent-coordinate.ps1 -Action detect_conflicts
+
+# View active agents
+.\agent-coordinate.ps1 -Action view_agents
+
+# Clean up stale locks
+.\agent-coordinate.ps1 -Action cleanup_locks
+```
+
+#### agent-dashboard.ps1 - Comprehensive Monitoring
+
+```powershell
+# View dashboard once
+.\agent-dashboard.ps1
+
+# Watch mode (auto-refresh every 5 seconds)
+.\agent-dashboard.ps1 -Watch
+
+# Compact view
+.\agent-dashboard.ps1 -Compact
+```
+
+**Dashboard Sections:**
+1. Active Agents & Sessions
+2. Tasks In Progress
+3. Worktree Allocations
+4. Resource Locks
+5. Unread Messages
+6. Recent Git Operations
+7. Recent Pull Requests
+8. Recent Errors (24h)
+9. Statistics
+
+#### worktree-allocate-tracked.ps1 - Integrated Worktree Allocation
+
+```powershell
+# Single repo allocation with tracking
+.\worktree-allocate-tracked.ps1 -Seat agent-003 -Repo client-manager -Branch feature/oauth
+
+# Paired allocation (client-manager + hazina)
+.\worktree-allocate-tracked.ps1 -Seat agent-003 -Repo client-manager -Branch feature/oauth -Paired
+```
+
+**5-Step Process:**
+1. Check for conflicts in database
+2. Allocate physical worktree
+3. Lock repository
+4. Notify other agents
+5. Log metrics
+
+#### git-tracked.ps1 - Git Operations Wrapper
+
+```powershell
+# Commit with tracking
+.\git-tracked.ps1 -Operation commit -Message "feat: Add OAuth"
+
+# Push with tracking
+.\git-tracked.ps1 -Operation push -Remote origin -Branch feature/oauth
+
+# Pull, merge, checkout, rebase - all tracked
+.\git-tracked.ps1 -Operation merge -Branch develop
+.\git-tracked.ps1 -Operation checkout -Branch feature/oauth
+```
+
+**Automatic Tracking:**
+- Git operation logged with success/failure
+- Performance metrics (duration in ms)
+- Commit SHA captured
+- Error messages logged
+
+### Integration Workflow
+
+```powershell
+# 1. Start session
+.\agent-session.ps1 -Action start
+
+# 2. Check conflicts
+.\agent-coordinate.ps1 -Action detect_conflicts
+
+# 3. Allocate worktree (with tracking)
+.\worktree-allocate-tracked.ps1 -Seat agent-003 -Repo client-manager -Branch feature/x
+
+# 4. Work...
+cd C:\Projects\worker-agents\agent-003\client-manager
+
+# 5. Commit (with tracking)
+.\git-tracked.ps1 -Operation commit -Message "feat: Implement feature"
+
+# 6. Push (with tracking)
+.\git-tracked.ps1 -Operation push
+
+# 7. Release worktree
+.\agent-logger-enhanced.ps1 -Action release_worktree -Seat agent-003
+
+# 8. End session
+.\agent-session.ps1 -Action end -ExitReason "normal"
+```
+
+### Documentation
+
+- **Phase 1 & 2:** `ENHANCED_TRACKING_GUIDE.md` (578 lines)
+- **Phase 3:** `PHASE3_INTEGRATION_GUIDE.md` (complete integration guide)
+- **Quick Start:** See examples above
+
+### Database Schema
+
+**Phase 3 Tables (v8-v12):**
+- `agent_messages` (v8) - Agent-to-agent messaging with broadcast
+- `sessions` (v9) - Session lifecycle with statistics
+- `errors` (v10) - Structured error tracking with severity
+- `metrics` (v11) - Performance metrics collection
+- `learnings` (v12) - Knowledge capture system
+
+**All Tables:** agents, tasks, activity_log, worktree_allocations, resource_locks, git_operations, pull_requests, file_modifications, tool_usage, agent_messages, sessions, errors, metrics, learnings, schema_version
 
 ---
 
