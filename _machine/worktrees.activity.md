@@ -623,3 +623,5 @@ Actions:
 - artrevisionist: 59% reduction (~130 MB saved)
 
 **Status:** Worktrees released, PRs awaiting review
+2026-01-26T22:45:00Z — mark-stale — agent-001 — client-manager — agent-001-orchestrator-integration — — claude-code — STALE CLEANUP: PR #310 was MERGED but worktree never released. Removed worktree, deleted remote branch (already gone), marked seat FREE. Last activity jan 16 but filesystem showed jan 21 access.
+2026-01-26T22:45:00Z — mark-stale — agent-002 — hazina+client-manager — agent-002-layered-image-* — — claude-code — STALE CLEANUP: PRs #102 (Hazina) + #293 (client-manager) were MERGED but worktrees never released. Removed worktrees (hazina, client-manager), deleted remote branches (already gone), cleaned up artrevisionist folder, marked seat FREE. Updated pr-dependencies.md from ⏳ Waiting → 🔀 Merged. Last activity jan 21.

@@ -72,7 +72,7 @@ function Initialize-Database {
     # Check if SQLite is available
     $sqliteCmd = Get-Command sqlite3 -ErrorAction SilentlyContinue
     if (-not $sqliteCmd) {
-        Write-Host "❌ SQLite not found. Installing via winget..." -ForegroundColor Red
+        Write-Host " SQLite not found. Installing via winget..." -ForegroundColor Red
         winget install --id SQLite.SQLite -e --accept-source-agreements --accept-package-agreements
         $sqliteCmd = Get-Command sqlite3 -ErrorAction SilentlyContinue
         if (-not $sqliteCmd) {
@@ -397,7 +397,7 @@ ORDER BY last_heartbeat ASC;
         }
 
         'current_tasks' {
-            Write-Host "`n📋 Current Tasks (in progress):" -ForegroundColor Cyan
+            Write-Host "`n Current Tasks (in progress):" -ForegroundColor Cyan
             $sql = @"
 SELECT
     t.task_id,
@@ -420,7 +420,7 @@ LIMIT $Limit;
         }
 
         'unfinished_tasks' {
-            Write-Host "`n⏳ Unfinished Tasks:" -ForegroundColor Cyan
+            Write-Host "`n Unfinished Tasks:" -ForegroundColor Cyan
             $sql = @"
 SELECT
     t.task_id,
@@ -446,7 +446,7 @@ LIMIT $Limit;
             if (-not $TargetAgentId) {
                 $TargetAgentId = Get-AgentId
             }
-            Write-Host "`n📜 Activity History for $TargetAgentId (last $Limit):" -ForegroundColor Cyan
+            Write-Host "`n Activity History for $TargetAgentId (last $Limit):" -ForegroundColor Cyan
             $sql = @"
 SELECT
     datetime(timestamp) as time,
@@ -467,7 +467,7 @@ LIMIT $Limit;
         }
 
         'all_agents' {
-            Write-Host "`n🤖 All Agents:" -ForegroundColor Cyan
+            Write-Host "`n All Agents:" -ForegroundColor Cyan
             $sql = @"
 SELECT
     agent_id,
@@ -509,7 +509,7 @@ INSERT INTO activity_log (agent_id, timestamp, action_type, message, metadata)
 VALUES ('$agentId', '$now', 'cleanup', 'Terminated stale agents', '{}');
 "@
 
-    Write-Host "✅ Cleanup completed" -ForegroundColor Green
+    Write-Host " Cleanup completed" -ForegroundColor Green
 }
 
 # Main execution
@@ -519,14 +519,14 @@ try {
     switch ($Action) {
         'register' {
             $id = Register-Agent
-            Write-Host "`n🆔 Agent ID: $id" -ForegroundColor Cyan
+            Write-Host "`n Agent ID: $id" -ForegroundColor Cyan
             Write-Host "   Saved to: $AgentIdFile`n" -ForegroundColor Gray
         }
 
         'heartbeat' {
             Update-Heartbeat
             $id = Get-AgentId
-            Write-Host "💓 Heartbeat updated for $id" -ForegroundColor Green
+            Write-Host " Heartbeat updated for $id" -ForegroundColor Green
         }
 
         'log' {
@@ -534,7 +534,7 @@ try {
                 throw "Message required for log action"
             }
             Write-ActivityLog -ActionType "log" -Message $Message -TaskId $TaskId -Metadata $Metadata
-            Write-Host "✅ Activity logged" -ForegroundColor Green
+            Write-Host " Activity logged" -ForegroundColor Green
         }
 
         'start_task' {
@@ -542,7 +542,7 @@ try {
                 throw "Message (task title) required for start_task action"
             }
             $taskId = Start-Task -Title $Message -TaskId $TaskId -Description $Metadata
-            Write-Host "`n🆔 Task ID: $taskId`n" -ForegroundColor Cyan
+            Write-Host "`n Task ID: $taskId`n" -ForegroundColor Cyan
         }
 
         'complete_task' {
@@ -569,6 +569,6 @@ try {
     }
 
 } catch {
-    Write-Host "❌ Error: $_" -ForegroundColor Red
+    Write-Host " Error: $_" -ForegroundColor Red
     exit 1
 }

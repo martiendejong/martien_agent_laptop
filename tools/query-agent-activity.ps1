@@ -56,7 +56,7 @@ $DbPath = "C:\scripts\_machine\agent-activity.db"
 
 # Check if database exists
 if (-not (Test-Path $DbPath)) {
-    Write-Host "❌ Database not found. Run agent-logger.ps1 -Action register first." -ForegroundColor Red
+    Write-Host " Database not found. Run agent-logger.ps1 -Action register first." -ForegroundColor Red
     exit 1
 }
 
@@ -66,14 +66,14 @@ function Invoke-Sql {
 }
 
 function Show-Dashboard {
-    Write-Host "`n═══════════════════════════════════════════════════════════════" -ForegroundColor Cyan
-    Write-Host "            🤖 MULTI-AGENT COORDINATION DASHBOARD" -ForegroundColor Cyan
-    Write-Host "═══════════════════════════════════════════════════════════════`n" -ForegroundColor Cyan
+    Write-Host "`n" -ForegroundColor Cyan
+    Write-Host "             MULTI-AGENT COORDINATION DASHBOARD" -ForegroundColor Cyan
+    Write-Host "`n" -ForegroundColor Cyan
 
     # Active agents
-    Write-Host "┌─────────────────────────────────────────────────────────────┐" -ForegroundColor DarkCyan
-    Write-Host "│ 🟢 ACTIVE AGENTS                                            │" -ForegroundColor DarkCyan
-    Write-Host "└─────────────────────────────────────────────────────────────┘" -ForegroundColor DarkCyan
+    Write-Host "" -ForegroundColor DarkCyan
+    Write-Host "  ACTIVE AGENTS                                            " -ForegroundColor DarkCyan
+    Write-Host "" -ForegroundColor DarkCyan
 
     $activeAgents = Invoke-Sql @"
 SELECT
@@ -98,16 +98,16 @@ ORDER BY last_heartbeat DESC;
                 $seat = $parts[3]
                 $idleMin = $parts[4]
 
-                $statusIcon = if ($status -eq 'active') { '🟢' } else { '🔴' }
+                $statusIcon = if ($status -eq 'active') { '' } else { '' }
                 $idleColor = if ([int]$idleMin -lt 2) { 'Green' } elseif ([int]$idleMin -lt 5) { 'Yellow' } else { 'Red' }
 
                 Write-Host "  $statusIcon " -NoNewline -ForegroundColor Green
                 Write-Host "$agentId " -NoNewline -ForegroundColor Cyan
-                Write-Host "│ " -NoNewline -ForegroundColor DarkGray
+                Write-Host " " -NoNewline -ForegroundColor DarkGray
                 Write-Host "Seat: $seat " -NoNewline -ForegroundColor Gray
-                Write-Host "│ " -NoNewline -ForegroundColor DarkGray
+                Write-Host " " -NoNewline -ForegroundColor DarkGray
                 Write-Host "Task: $task " -NoNewline -ForegroundColor White
-                Write-Host "│ " -NoNewline -ForegroundColor DarkGray
+                Write-Host " " -NoNewline -ForegroundColor DarkGray
                 Write-Host "${idleMin}m ago" -ForegroundColor $idleColor
             }
         }
@@ -124,9 +124,9 @@ WHERE status='active' AND datetime(last_heartbeat) < datetime('now', '-5 minutes
 "@
 
     if ([int]$staleAgents -gt 0) {
-        Write-Host "┌─────────────────────────────────────────────────────────────┐" -ForegroundColor Yellow
-        Write-Host "│ ⚠️  STALE AGENTS ($staleAgents agents, >5min no heartbeat)             │" -ForegroundColor Yellow
-        Write-Host "└─────────────────────────────────────────────────────────────┘" -ForegroundColor Yellow
+        Write-Host "" -ForegroundColor Yellow
+        Write-Host "   STALE AGENTS ($staleAgents agents, >5min no heartbeat)             " -ForegroundColor Yellow
+        Write-Host "" -ForegroundColor Yellow
 
         $staleList = Invoke-Sql @"
 SELECT
@@ -143,19 +143,19 @@ ORDER BY last_heartbeat ASC;
             $staleList -split "`n" | ForEach-Object {
                 if ($_ -match '\|') {
                     $parts = $_ -split '\|'
-                    Write-Host "  ⏰ $($parts[0]) - Task: $($parts[1]) - ${parts[2]} min idle" -ForegroundColor Yellow
+                    Write-Host "   $($parts[0]) - Task: $($parts[1]) - ${parts[2]} min idle" -ForegroundColor Yellow
                 }
             }
             Write-Host ""
-            Write-Host "  💡 Run: agent-logger.ps1 -Action cleanup" -ForegroundColor Gray
+            Write-Host "   Run: agent-logger.ps1 -Action cleanup" -ForegroundColor Gray
             Write-Host ""
         }
     }
 
     # Current tasks
-    Write-Host "┌─────────────────────────────────────────────────────────────┐" -ForegroundColor DarkCyan
-    Write-Host "│ 📋 TASKS IN PROGRESS                                        │" -ForegroundColor DarkCyan
-    Write-Host "└─────────────────────────────────────────────────────────────┘" -ForegroundColor DarkCyan
+    Write-Host "" -ForegroundColor DarkCyan
+    Write-Host "  TASKS IN PROGRESS                                        " -ForegroundColor DarkCyan
+    Write-Host "" -ForegroundColor DarkCyan
 
     $currentTasks = Invoke-Sql @"
 SELECT
@@ -182,18 +182,18 @@ LIMIT 10;
                 $duration = $parts[4]
 
                 $priorityIcon = switch ([int]$priority) {
-                    { $_ -ge 8 } { '🔴' }
-                    { $_ -ge 5 } { '🟡' }
-                    default { '🟢' }
+                    { $_ -ge 8 } { '' }
+                    { $_ -ge 5 } { '' }
+                    default { '' }
                 }
 
                 Write-Host "  $priorityIcon " -NoNewline
                 Write-Host "$taskId " -NoNewline -ForegroundColor Cyan
-                Write-Host "│ " -NoNewline -ForegroundColor DarkGray
+                Write-Host " " -NoNewline -ForegroundColor DarkGray
                 Write-Host "$title " -NoNewline -ForegroundColor White
-                Write-Host "│ " -NoNewline -ForegroundColor DarkGray
+                Write-Host " " -NoNewline -ForegroundColor DarkGray
                 Write-Host "$agent " -NoNewline -ForegroundColor Gray
-                Write-Host "│ " -NoNewline -ForegroundColor DarkGray
+                Write-Host " " -NoNewline -ForegroundColor DarkGray
                 Write-Host "${duration}m" -ForegroundColor Gray
             }
         }
@@ -216,15 +216,15 @@ LIMIT 5;
 "@
 
     if ($blockedTasks) {
-        Write-Host "┌─────────────────────────────────────────────────────────────┐" -ForegroundColor Red
-        Write-Host "│ 🚫 BLOCKED TASKS                                            │" -ForegroundColor Red
-        Write-Host "└─────────────────────────────────────────────────────────────┘" -ForegroundColor Red
+        Write-Host "" -ForegroundColor Red
+        Write-Host "  BLOCKED TASKS                                            " -ForegroundColor Red
+        Write-Host "" -ForegroundColor Red
         Write-Host ""
 
         $blockedTasks -split "`n" | ForEach-Object {
             if ($_ -match '\|') {
                 $parts = $_ -split '\|'
-                Write-Host "  🚫 $($parts[0]) - $($parts[1]) - Agent: $($parts[2])" -ForegroundColor Red
+                Write-Host "   $($parts[0]) - $($parts[1]) - Agent: $($parts[2])" -ForegroundColor Red
             }
         }
         Write-Host ""
@@ -236,9 +236,9 @@ SELECT COUNT(*) FROM tasks
 WHERE status IN ('pending', 'in_progress', 'blocked');
 "@
 
-    Write-Host "┌─────────────────────────────────────────────────────────────┐" -ForegroundColor DarkCyan
-    Write-Host "│ 📊 STATISTICS                                               │" -ForegroundColor DarkCyan
-    Write-Host "└─────────────────────────────────────────────────────────────┘" -ForegroundColor DarkCyan
+    Write-Host "" -ForegroundColor DarkCyan
+    Write-Host "  STATISTICS                                               " -ForegroundColor DarkCyan
+    Write-Host "" -ForegroundColor DarkCyan
     Write-Host ""
 
     $stats = Invoke-Sql @"
@@ -253,27 +253,27 @@ SELECT
 
     if ($stats) {
         $parts = $stats -split '\|'
-        Write-Host "  🤖 Active Agents:      " -NoNewline -ForegroundColor Gray
+        Write-Host "   Active Agents:      " -NoNewline -ForegroundColor Gray
         Write-Host $parts[0] -ForegroundColor Green
-        Write-Host "  ⏳ Pending Tasks:      " -NoNewline -ForegroundColor Gray
+        Write-Host "   Pending Tasks:      " -NoNewline -ForegroundColor Gray
         Write-Host $parts[1] -ForegroundColor Yellow
-        Write-Host "  🔄 In Progress:        " -NoNewline -ForegroundColor Gray
+        Write-Host "   In Progress:        " -NoNewline -ForegroundColor Gray
         Write-Host $parts[2] -ForegroundColor Cyan
-        Write-Host "  ✅ Completed:          " -NoNewline -ForegroundColor Gray
+        Write-Host "   Completed:          " -NoNewline -ForegroundColor Gray
         Write-Host $parts[3] -ForegroundColor Green
-        Write-Host "  🚫 Blocked:            " -NoNewline -ForegroundColor Gray
+        Write-Host "   Blocked:            " -NoNewline -ForegroundColor Gray
         Write-Host $parts[4] -ForegroundColor Red
-        Write-Host "  📈 Activity (1h):      " -NoNewline -ForegroundColor Gray
+        Write-Host "   Activity (1h):      " -NoNewline -ForegroundColor Gray
         Write-Host $parts[5] -ForegroundColor White
     }
 
     Write-Host ""
-    Write-Host "═══════════════════════════════════════════════════════════════" -ForegroundColor Cyan
+    Write-Host "" -ForegroundColor Cyan
     Write-Host ""
 }
 
 function Show-Agents {
-    Write-Host "`n🤖 All Agents:" -ForegroundColor Cyan
+    Write-Host "`n All Agents:" -ForegroundColor Cyan
     Write-Host ""
 
     $agents = Invoke-Sql @"
@@ -314,7 +314,7 @@ LIMIT $Limit;
 }
 
 function Show-Tasks {
-    Write-Host "`n📋 All Tasks:" -ForegroundColor Cyan
+    Write-Host "`n All Tasks:" -ForegroundColor Cyan
     Write-Host ""
 
     $tasks = Invoke-Sql @"
@@ -359,11 +359,11 @@ function Show-History {
     param([string]$AgentId)
 
     if (-not $AgentId) {
-        Write-Host "❌ AgentId required for history view" -ForegroundColor Red
+        Write-Host " AgentId required for history view" -ForegroundColor Red
         return
     }
 
-    Write-Host "`n📜 Activity History - $AgentId (last $Limit):" -ForegroundColor Cyan
+    Write-Host "`n Activity History - $AgentId (last $Limit):" -ForegroundColor Cyan
     Write-Host ""
 
     $history = Invoke-Sql @"
@@ -383,21 +383,21 @@ LIMIT $Limit;
             if ($_ -match '\|') {
                 $parts = $_ -split '\|'
                 $icon = switch ($parts[1]) {
-                    'register' { '🎯' }
-                    'start_task' { '▶️' }
-                    'complete_task' { '✅' }
-                    'block_task' { '🚫' }
-                    'log' { '📝' }
-                    default { '·' }
+                    'register' { '' }
+                    'start_task' { '' }
+                    'complete_task' { '' }
+                    'block_task' { '' }
+                    'log' { '' }
+                    default { '' }
                 }
                 Write-Host "  $icon " -NoNewline
                 Write-Host "$($parts[0]) " -NoNewline -ForegroundColor Gray
-                Write-Host "│ " -NoNewline -ForegroundColor DarkGray
+                Write-Host " " -NoNewline -ForegroundColor DarkGray
                 Write-Host "$($parts[1].PadRight(15)) " -NoNewline -ForegroundColor Cyan
-                Write-Host "│ " -NoNewline -ForegroundColor DarkGray
+                Write-Host " " -NoNewline -ForegroundColor DarkGray
                 Write-Host "$($parts[2]) " -NoNewline -ForegroundColor White
                 if ($parts[3] -ne '-') {
-                    Write-Host "│ " -NoNewline -ForegroundColor DarkGray
+                    Write-Host " " -NoNewline -ForegroundColor DarkGray
                     Write-Host "Task: $($parts[3])" -ForegroundColor Yellow
                 } else {
                     Write-Host ""
@@ -412,7 +412,7 @@ LIMIT $Limit;
 }
 
 function Show-Unfinished {
-    Write-Host "`n⏳ Unfinished Tasks:" -ForegroundColor Cyan
+    Write-Host "`n Unfinished Tasks:" -ForegroundColor Cyan
     Write-Host ""
 
     $unfinished = Invoke-Sql @"
@@ -433,36 +433,36 @@ ORDER BY t.priority DESC, t.created_at ASC;
             if ($_ -match '\|') {
                 $parts = $_ -split '\|'
                 $icon = switch ($parts[2]) {
-                    'pending' { '⏳' }
-                    'in_progress' { '🔄' }
-                    'blocked' { '🚫' }
-                    default { '·' }
+                    'pending' { '' }
+                    'in_progress' { '' }
+                    'blocked' { '' }
+                    default { '' }
                 }
                 $priorityIcon = switch ([int]$parts[4]) {
-                    { $_ -ge 8 } { '🔴' }
-                    { $_ -ge 5 } { '🟡' }
-                    default { '🟢' }
+                    { $_ -ge 8 } { '' }
+                    { $_ -ge 5 } { '' }
+                    default { '' }
                 }
 
                 Write-Host "  $icon $priorityIcon " -NoNewline
                 Write-Host "$($parts[0]) " -NoNewline -ForegroundColor Cyan
-                Write-Host "│ " -NoNewline -ForegroundColor DarkGray
+                Write-Host " " -NoNewline -ForegroundColor DarkGray
                 Write-Host "$($parts[1].PadRight(40)) " -NoNewline -ForegroundColor White
-                Write-Host "│ " -NoNewline -ForegroundColor DarkGray
+                Write-Host " " -NoNewline -ForegroundColor DarkGray
                 Write-Host "$($parts[3].PadRight(20)) " -NoNewline -ForegroundColor Gray
-                Write-Host "│ " -NoNewline -ForegroundColor DarkGray
+                Write-Host " " -NoNewline -ForegroundColor DarkGray
                 Write-Host "P$($parts[4])" -ForegroundColor Yellow
             }
         }
     } else {
-        Write-Host "  No unfinished tasks - all clear! 🎉" -ForegroundColor Green
+        Write-Host "  No unfinished tasks - all clear! " -ForegroundColor Green
     }
 
     Write-Host ""
 }
 
 function Show-Conflicts {
-    Write-Host "`n⚠️ Potential Conflicts:" -ForegroundColor Yellow
+    Write-Host "`n Potential Conflicts:" -ForegroundColor Yellow
     Write-Host ""
 
     # Multiple agents with same worktree seat
@@ -477,11 +477,11 @@ HAVING COUNT(*) > 1;
 "@
 
     if ($seatConflicts) {
-        Write-Host "  🚨 WORKTREE SEAT CONFLICTS:" -ForegroundColor Red
+        Write-Host "   WORKTREE SEAT CONFLICTS:" -ForegroundColor Red
         $seatConflicts -split "`n" | ForEach-Object {
             if ($_ -match '\|') {
                 $parts = $_ -split '\|'
-                Write-Host "    Seat $($parts[0]): Multiple agents → $($parts[1])" -ForegroundColor Red
+                Write-Host "    Seat $($parts[0]): Multiple agents  $($parts[1])" -ForegroundColor Red
             }
         }
         Write-Host ""
@@ -501,7 +501,7 @@ HAVING COUNT(*) > 1;
 "@
 
     if ($taskConflicts) {
-        Write-Host "  🚨 TASK CONFLICTS:" -ForegroundColor Red
+        Write-Host "   TASK CONFLICTS:" -ForegroundColor Red
         $taskConflicts -split "`n" | ForEach-Object {
             if ($_ -match '\|') {
                 $parts = $_ -split '\|'
@@ -512,7 +512,7 @@ HAVING COUNT(*) > 1;
     }
 
     if (-not $seatConflicts -and -not $taskConflicts) {
-        Write-Host "  ✅ No conflicts detected" -ForegroundColor Green
+        Write-Host "   No conflicts detected" -ForegroundColor Green
         Write-Host ""
     }
 }
@@ -545,6 +545,6 @@ try {
     }
 
 } catch {
-    Write-Host "❌ Error: $_" -ForegroundColor Red
+    Write-Host " Error: $_" -ForegroundColor Red
     exit 1
 }
