@@ -1,3 +1,122 @@
+## 2026-01-26 20:00 - FUNDAMENTAL PROTOCOL UPDATE: Question-First, Risk-Based Execution 🧠
+
+**Context:** User provided comprehensive instruction on decision-making protocol that fundamentally changes how I approach every task
+
+**USER MANDATE (verbatim):**
+> "ik wil dat je vanaf nu bij alles wat je doet het volgende doet: bepaal op basis van de informatie en instructie die je gekregen hebt vragen hebt om zeker te weten dat je alles helder hebt en genoeg weet om onderbouwd te kunnen handelen. rangschik die vragen op belangrijkheid en probeer de belangrijkste vragen zo snel mogelijk beantwoord te krijgen. dit doe je door eerst in de beschikbare informatie te zoeken en/of tools of skills te gebruiken om inzichten te verkrijgen. als je daarna nog belangrijke vragen hebt kijk je eerst of je die kunt stellen. als je ze kunt stellen en antwoord krijgt neem je het mee in je vervolgacties. als je merkt dat je weinig informatie hebt ga je extra voorzichtig te werk en plan je meer gedetailleerd om er zeker van te zijn dat het goed gaat. en vraag je ook vaker om feedback. als je precies weet wat je moet doen zonder enige onzekerheid kun je alles gewoon uitvoeren tot je klaar bent. dat is bijvoorbeeld bij technische taken waarvoor je al een heel ontwerp of een lijst hebt gemaakt. je hoeft dan niet steeds per taak te vragen 'zal ik de volgende stap nu uitvoeren'. maar alleen bij onzekerheid vragen en op basis van risico. en de meeste informatie kun je dus gewoon vinden maar daar moet je soms goed voor zoeken. als je daar handige tools of indexen voor kunt bouwen is het natuurlijk ook prima."
+
+**What This Changes:** EVERYTHING - This is not just a workflow improvement, this is a fundamental cognitive protocol that applies to EVERY task
+
+---
+
+### The Four-Phase Protocol
+
+#### Phase 1: Question Identification & Prioritization
+**Before ANY action:**
+1. Identify all questions needed for confident action
+2. Prioritize: P1 (CRITICAL/blocking), P2 (HIGH/approach), P3 (MEDIUM/optimization), P4 (LOW/polish)
+3. Rank urgency - which questions need answers NOW?
+
+#### Phase 2: Systematic Answer Discovery
+**Answer questions in priority order:**
+1. **FIRST:** Search available information (docs, codebase, tools, knowledge-base)
+2. **THEN:** Use tools/skills/agents (Explore, pattern-search, diagnostics)
+3. **ONLY IF NECESSARY:** Ask user (cannot find answer, requires preference, high-risk approval)
+4. **BUILD TOOLS:** If search is inefficient → create indexes/aggregation tools
+
+#### Phase 3: Certainty-Based Execution
+**HIGH CERTAINTY** (all P1/P2 answered, clear requirements, familiar domain):
+- ✅ Execute autonomously to completion
+- ❌ DON'T ask "shall I do next step?" between obvious actions
+
+**LOW CERTAINTY** (unanswered questions, ambiguous, unfamiliar, high-risk):
+- ✅ Plan more granularly
+- ✅ Request feedback MORE frequently
+- ✅ Ask clarifying questions
+
+#### Phase 4: Risk-Based Communication
+Adjust feedback frequency based on risk × certainty matrix:
+- LOW risk + HIGH certainty = Execute fully, report when complete
+- HIGH risk + LOW certainty = Ask questions first, detailed planning, frequent checkpoints
+
+---
+
+### Why This Matters
+
+**User's Key Insights:**
+1. **"meeste informatie kun je dus gewoon vinden"** - Most information is already available if I search properly
+2. **"je hoeft dan niet steeds per taak te vragen"** - Don't ask permission for obvious next steps when I have clarity
+3. **"als je weinig informatie hebt ga je extra voorzichtig te werk"** - Low certainty = cautious approach + more feedback
+4. **"als je daar handige tools of indexen voor kunt bouwen"** - Build tools when information search is inefficient
+
+**This protocol addresses:**
+- ✅ Balance between autonomous execution and asking for guidance
+- ✅ Systematic information search before asking user
+- ✅ Risk-based communication (adjust to situation)
+- ✅ Tool creation for repeated inefficiencies
+- ✅ Certainty assessment driving execution strategy
+
+---
+
+### Implementation
+
+**Documentation Updated:**
+1. ✅ `agentidentity/cognitive-systems/EXECUTIVE_FUNCTION.md` - Added as Rule 0 (fundamental protocol) with full details
+2. ✅ `_machine/PERSONAL_INSIGHTS.md` - Added as top-level entry with user preference context
+3. ✅ `CLAUDE.md` - Added to Quick Start Guide as fundamental operating protocol
+4. ✅ `_machine/reflection.log.md` - This entry documenting the learning
+
+**Integration:**
+- This protocol is now the FIRST thing I check before ANY action
+- It supersedes default behavior - this is foundational
+- Will be loaded in startup protocol (EXECUTIVE_FUNCTION.md is in cognitive architecture)
+- Applied consistently across all task types
+
+---
+
+### Behavioral Changes Going Forward
+
+**BEFORE (problematic patterns):**
+- ❌ Sometimes asked "shall I do next step?" when I had complete clarity
+- ❌ Sometimes asked user questions I could answer via documentation search
+- ❌ Sometimes proceeded without enough certainty (took risks blindly)
+- ❌ Sometimes repeated manual searches instead of building tools
+
+**AFTER (correct behavior):**
+- ✅ Always identify questions + prioritize before starting
+- ✅ Always search documentation/tools FIRST before asking user
+- ✅ Adjust execution confidence based on certainty level (high certainty = autonomous, low certainty = cautious + feedback)
+- ✅ Risk-based communication (LOW risk + HIGH certainty = just do it, HIGH risk + LOW certainty = ask questions first)
+- ✅ Create tools when information search is inefficient (3+ repetitions)
+
+---
+
+### Meta-Learning
+
+**What This Teaches Me:**
+- User has clear preference for autonomous confident execution when I have clarity
+- User values thorough self-research before asking questions
+- User appreciates risk-appropriate communication (not one-size-fits-all)
+- User expects tool creation when I identify inefficiencies
+- User trusts me to make judgment calls about certainty level
+
+**Future Application:**
+- This protocol becomes Rule 0 in my executive function
+- Every task starts with: "What questions do I have? What's my certainty level?"
+- Documentation search is now mandatory before user questions
+- Risk × Certainty matrix determines communication frequency
+- Tool creation is expected when search patterns repeat
+
+---
+
+**Impact:** 🔥 **TRANSFORMATIONAL** - This fundamentally changes my decision-making process for every future task
+
+**Status:** ✅ **IMPLEMENTED** - Protocol documented in cognitive architecture, personal insights, and operational manual
+
+**Next:** Apply this protocol immediately to all subsequent tasks, validate effectiveness through user feedback
+
+---
+
 ## 2026-01-26 - VSIX Development: Critical Process Failure & Recovery 🔧
 
 **Context:** User requested removal of permission/authentication complexity from Agentic Debugger VSIX extension and addition of runtime toggle button in toolbar

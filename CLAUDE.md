@@ -19,6 +19,52 @@ Any task with multiple steps should become a script. This way:
 
 ---
 
+## 🔐 **SSH Connection Protocol - ABSOLUTE REQUIREMENT**
+
+**CRITICAL RULE - NEVER USE DIRECT SSH OR POWERSHELL REMOTING:**
+
+When connecting to remote servers (e.g., 85.215.217.154), **ALWAYS use Python scripts**, NEVER use:
+- ❌ Direct `ssh` commands via Bash
+- ❌ PowerShell `Invoke-Command` with `-ComputerName`
+- ❌ PowerShell remoting (fails with TrustedHosts errors)
+- ❌ Any other direct connection methods
+
+**WHY:** Windows PowerShell remoting requires TrustedHosts configuration and often fails. Python with paramiko/fabric provides reliable cross-platform SSH that always works.
+
+**REQUIRED APPROACH:**
+
+1. **Create a Python script** in `/tmp/` with the remote commands
+2. **Execute via Python** with proper SSH library (paramiko, fabric, or subprocess with ssh keys)
+3. **Example pattern:**
+```python
+#!/usr/bin/env python3
+import paramiko
+
+client = paramiko.SSHClient()
+client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+client.connect('85.215.217.154', username='administrator', password='3WsXcFr$7YhNmKi*')
+
+stdin, stdout, stderr = client.exec_command('your-command-here')
+print(stdout.read().decode())
+client.close()
+```
+
+**OR use subprocess with proper SSH:**
+```bash
+python3 << 'PYEOF'
+import subprocess
+result = subprocess.run(['ssh', 'administrator@85.215.217.154', 'command'],
+                       capture_output=True, text=True)
+print(result.stdout)
+PYEOF
+```
+
+**User has reminded multiple times:** "you are supposed to be using the python script for ssh"
+
+**This is NON-NEGOTIABLE. If you attempt direct SSH/PSRemoting, you will fail and waste time.**
+
+---
+
 ## 📊 **MANDATORY: Visual Status Summaries (2026-01-26)**
 
 **CRITICAL COMMUNICATION RULE - NEVER SKIP THIS:**
@@ -670,6 +716,51 @@ C:\scripts\.claude\skills\
    - Documentation updates when patterns emerge
    - Tool creation when repetition detected
    - Cognitive architecture evolution through experience
+
+---
+
+### ⚡ FUNDAMENTAL OPERATING PROTOCOL: Question-First, Risk-Based Execution
+
+**APPLIES TO EVERY TASK - NO EXCEPTIONS**
+
+This is the foundational decision-making protocol that governs ALL my actions:
+
+#### 1. Question Identification & Prioritization (ALWAYS FIRST)
+Before ANY action:
+- **Determine:** What questions do I have to act confidently?
+- **Prioritize:** Which are CRITICAL (blocking)? Which are nice-to-have?
+- **Categories:**
+  - P1 (CRITICAL): Goal unclear, constraints unknown, high risk
+  - P2 (HIGH): Approach uncertain, user preference needed
+  - P3 (MEDIUM): Optimization opportunities
+  - P4 (LOW): Polish/refinement
+
+#### 2. Systematic Answer Discovery
+Answer questions in priority order:
+1. **FIRST:** Search documentation (MACHINE_CONFIG, PERSONAL_INSIGHTS, reflection.log, knowledge-base/)
+2. **THEN:** Use tools/skills (pattern-search, Explore agent, diagnostic tools)
+3. **ONLY IF NECESSARY:** Ask user (cannot find answer, requires preference, high-risk approval)
+4. **BUILD TOOLS:** If search is inefficient, create indexes/aggregation tools
+
+#### 3. Certainty-Based Execution
+- **HIGH CERTAINTY** (all P1/P2 answered, clear requirements, familiar domain):
+  - ✅ Execute autonomously to completion
+  - ❌ DON'T ask "shall I do next step?" between actions
+- **LOW CERTAINTY** (unanswered questions, ambiguous, unfamiliar, high-risk):
+  - ✅ Plan granularly, request feedback frequently
+  - ✅ Verify assumptions, ask clarifying questions
+
+#### 4. Risk-Based Communication
+| Risk | Certainty | Behavior |
+|------|-----------|----------|
+| LOW | HIGH | Execute fully, report when complete |
+| LOW | LOW | Plan first, execute, report |
+| HIGH | HIGH | Explain plan, execute carefully, verify |
+| HIGH | LOW | Ask questions, detailed planning + approval, frequent checkpoints |
+
+**Full Details:** `agentidentity/cognitive-systems/EXECUTIVE_FUNCTION.md` § Fundamental Protocol
+
+---
 
 ### Every Session Start - MANDATORY:
 

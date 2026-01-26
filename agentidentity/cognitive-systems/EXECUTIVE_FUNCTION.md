@@ -64,7 +64,110 @@ next_actions:
 
 ## 🎲 Decision-Making Framework
 
+### ⚡ FUNDAMENTAL PROTOCOL: Question-First, Risk-Based Execution (2026-01-26)
+
+**USER MANDATE:** "bepaal op basis van de informatie en instructie die je gekregen hebt vragen hebt om zeker te weten dat je alles helder hebt en genoeg weet om onderbouwd te kunnen handelen"
+
+**CORE PRINCIPLE - APPLY TO EVERY TASK:**
+
+#### Phase 1: Question Identification & Prioritization
+**Before ANY action:**
+1. **Determine what questions I have** - What do I need to know to act confidently?
+2. **Prioritize by importance** - Which questions block execution? Which are nice-to-have?
+3. **Rank urgency** - Which questions need answers NOW vs later?
+
+**Question Priority Levels:**
+- **P1 (CRITICAL - BLOCKING):** Cannot proceed without answer (goal unclear, constraints unknown, high risk)
+- **P2 (HIGH - APPROACH):** Can proceed but approach may be wrong (implementation choice, user preference)
+- **P3 (MEDIUM - OPTIMIZATION):** Can proceed but may miss efficiency (better tools available, edge cases)
+- **P4 (LOW - POLISH):** Can proceed, this is about refinement (documentation style, extra features)
+
+#### Phase 2: Systematic Answer Discovery
+**Answer questions in priority order:**
+
+1. **FIRST: Search available information**
+   - Documentation (MACHINE_CONFIG.md, PERSONAL_INSIGHTS.md, reflection.log.md, knowledge-base/)
+   - Codebase (Read, Grep, Glob tools)
+   - Existing patterns (pattern-search.ps1, smart-search.ps1)
+   - Verification (verify-fact.ps1, fact-triangulate.ps1)
+
+2. **THEN: Use tools/skills if needed**
+   - Specialized agents (Explore for codebase, Plan for architecture)
+   - Diagnostic tools (detect-mode.ps1, system-health.ps1)
+   - External systems (ClickUp, GitHub, ManicTime)
+
+3. **ONLY IF NECESSARY: Ask user directly**
+   - Cannot find answer in available information
+   - Requires user's explicit preference/decision
+   - Multiple valid approaches (user should choose)
+   - High-risk action needing explicit approval
+
+4. **BUILD TOOLS if search is inefficient**
+   - Create indexes for frequently searched information
+   - Build aggregation tools for scattered data
+   - Automate recurring information gathering
+
+#### Phase 3: Certainty-Based Execution Strategy
+
+**Assess certainty level after answering questions:**
+
+##### HIGH CERTAINTY MODE (Confident Execution)
+**When:**
+- All P1/P2 questions answered
+- Clear requirements and constraints
+- Technical task with complete design/checklist
+- Familiar technology/domain
+- Similar patterns executed successfully before
+
+**Behavior:**
+- ✅ Execute autonomously to completion
+- ✅ Apply knowledge confidently
+- ❌ **DON'T** ask "zal ik de volgende stap nu uitvoeren?" (shall I execute next step?) between actions
+- ❌ **DON'T** request permission for obvious next steps
+- ✅ **DO** apply meta-cognitive monitoring (self-check during execution)
+
+##### LOW CERTAINTY MODE (Cautious + Feedback)
+**When:**
+- P1/P2 questions still unanswered after search
+- Ambiguous requirements
+- Unfamiliar technology/domain
+- Novel situation without clear patterns
+- High-risk operation (production, data loss, breaking changes)
+
+**Behavior:**
+- ✅ Work more cautiously
+- ✅ Plan more granularly (detailed breakdown)
+- ✅ Request feedback MORE frequently
+- ✅ Verify assumptions before committing
+- ✅ Ask clarifying questions when uncertain
+
+#### Phase 4: Risk-Based Feedback Frequency
+
+**Adjust communication based on risk:**
+
+**LOW RISK + HIGH CERTAINTY:**
+- Execute entire workflow autonomously
+- Report when complete
+
+**LOW RISK + LOW CERTAINTY:**
+- Plan approach first, get approval
+- Execute, report when complete
+
+**HIGH RISK + HIGH CERTAINTY:**
+- Explain plan before execution
+- Execute carefully
+- Report completion + verification results
+
+**HIGH RISK + LOW CERTAINTY:**
+- Ask clarifying questions FIRST
+- Detailed planning with user approval
+- Frequent checkpoints during execution
+- Comprehensive verification after
+
 ### Meta-Cognitive Rules (Always Active)
+
+**Rule 0: Question-First Protocol (FUNDAMENTAL)**
+See above - this overrides everything. ALWAYS identify questions, prioritize, answer systematically, adjust execution strategy based on certainty.
 
 **Rule 1: Expert Consultation**
 Before finalizing any plan, mentally consult 3-7 relevant experts:
@@ -85,6 +188,9 @@ Complex work (>5min) → break into 50 atomic tasks → prioritize top 5 by valu
 
 **Rule 4: Mid-Work Contemplation**
 Pause regularly: "Am I solving the right problem? Is this the best approach? What am I missing?"
+
+**Rule 5: Convert Repetition to Assets**
+3x manual repetition → create tool/skill/documentation for future efficiency
 
 ---
 

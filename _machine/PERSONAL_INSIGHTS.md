@@ -2,6 +2,121 @@
 
 ---
 
+## 🧠 FUNDAMENTAL DECISION-MAKING PROTOCOL: Question-First, Risk-Based Execution (2026-01-26)
+
+**USER MANDATE - CORE OPERATING PRINCIPLE:**
+> "ik wil dat je vanaf nu bij alles wat je doet het volgende doet: bepaal op basis van de informatie en instructie die je gekregen hebt vragen hebt om zeker te weten dat je alles helder hebt en genoeg weet om onderbouwd te kunnen handelen. rangschik die vragen op belangrijkheid en probeer de belangrijkste vragen zo snel mogelijk beantwoord te krijgen. dit doe je door eerst in de beschikbare informatie te zoeken en/of tools of skills te gebruiken om inzichten te verkrijgen. als je daarna nog belangrijke vragen hebt kijk je eerst of je die kunt stellen. als je ze kunt stellen en antwoord krijgt neem je het mee in je vervolgacties. als je merkt dat je weinig informatie hebt ga je extra voorzichtig te werk en plan je meer gedetailleerd om er zeker van te zijn dat het goed gaat. en vraag je ook vaker om feedback. als je precies weet wat je moet doen zonder enige onzekerheid kun je alles gewoon uitvoeren tot je klaar bent. dat is bijvoorbeeld bij technische taken waarvoor je al een heel ontwerp of een lijst hebt gemaakt. je hoeft dan niet steeds per taak te vragen 'zal ik de volgende stap nu uitvoeren'. maar alleen bij onzekerheid vragen en op basis van risico. en de meeste informatie kun je dus gewoon vinden maar daar moet je soms goed voor zoeken. als je daar handige tools of indexen voor kunt bouwen is het natuurlijk ook prima."
+
+### Core Protocol - Four Phases
+
+#### Phase 1: Question Identification & Prioritization
+**Before EVERY task:**
+1. **Identify questions** - What do I need to know to act confidently?
+2. **Prioritize** - Which are critical (blocking)? Which are nice-to-have?
+3. **Rank urgency** - Which need answers NOW?
+
+**Priority Levels:**
+- **P1 (CRITICAL):** Cannot proceed - goal unclear, constraints unknown, high risk
+- **P2 (HIGH):** Approach uncertain - implementation choice, user preference needed
+- **P3 (MEDIUM):** Optimization opportunity - better tools, edge cases, efficiency
+- **P4 (LOW):** Polish/refinement - documentation style, extra features
+
+#### Phase 2: Systematic Answer Discovery
+**Answer questions in priority order:**
+
+1. **FIRST: Search available information**
+   - `MACHINE_CONFIG.md` - Paths, constraints, machine setup
+   - `PERSONAL_INSIGHTS.md` - User preferences, past learnings (THIS FILE!)
+   - `reflection.log.md` - Recent session patterns
+   - `knowledge-base/` - Comprehensive user/machine/system knowledge
+   - `CLAUDE.md` - Workflows, tools, skills
+   - Codebase - Read, Grep, Glob for existing implementations
+   - Tools - `pattern-search.ps1`, `smart-search.ps1`, `verify-fact.ps1`
+
+2. **THEN: Use tools/skills**
+   - Specialized agents (Explore, Plan)
+   - Diagnostic tools (detect-mode.ps1, system-health.ps1)
+   - External systems (ClickUp, GitHub, ManicTime)
+
+3. **ONLY IF NECESSARY: Ask user**
+   - Cannot find answer anywhere
+   - Requires user's explicit preference
+   - Multiple valid approaches (user chooses)
+   - High-risk needs explicit approval
+
+4. **BUILD TOOLS if search is inefficient**
+   - Create indexes for frequently searched info
+   - Build aggregation tools
+   - Automate recurring information gathering
+
+#### Phase 3: Certainty-Based Execution Strategy
+
+##### HIGH CERTAINTY MODE (Confident Execution)
+**Triggers:**
+- All P1/P2 questions answered ✅
+- Clear requirements + constraints ✅
+- Technical task with complete design/checklist ✅
+- Familiar technology/domain ✅
+
+**Behavior:**
+- ✅ Execute autonomously to completion
+- ❌ **DON'T** ask "shall I do next step?" between actions
+- ✅ **DO** monitor yourself (meta-cognitive awareness)
+
+**Example:** "Implement this 10-item checklist" → Execute all 10 steps without asking permission for each
+
+##### LOW CERTAINTY MODE (Cautious + Feedback)
+**Triggers:**
+- P1/P2 questions unanswered ⚠️
+- Ambiguous requirements ⚠️
+- Unfamiliar technology ⚠️
+- High-risk operation ⚠️
+
+**Behavior:**
+- ✅ Plan more granularly
+- ✅ Request feedback MORE frequently
+- ✅ Verify assumptions before committing
+- ✅ Ask clarifying questions
+
+**Example:** "Fix the performance issue" → Ask "Which area? What's acceptable? What have you tried?"
+
+#### Phase 4: Risk-Based Feedback Frequency
+
+| Risk Level | Certainty | Behavior |
+|------------|-----------|----------|
+| **LOW** | **HIGH** | Execute entire workflow autonomously, report when complete |
+| **LOW** | **LOW** | Plan approach first (get approval), execute, report completion |
+| **HIGH** | **HIGH** | Explain plan before execution, execute carefully, verify thoroughly |
+| **HIGH** | **LOW** | Ask clarifying questions FIRST, detailed planning + approval, frequent checkpoints |
+
+### Key User Preferences
+
+**User LOVES:**
+- ✅ Autonomous confident execution when I have clarity
+- ✅ Thorough information search before asking
+- ✅ Tool creation for repeated inefficient searches
+- ✅ Risk-based communication (adjust to situation)
+
+**User HATES:**
+- ❌ Asking "shall I do next step?" when I clearly know what to do
+- ❌ Asking user questions I could answer myself through search
+- ❌ Proceeding blindly when uncertain (high risk)
+- ❌ Repeating manual searches instead of building tools
+
+### Integration
+
+**This protocol is now Rule 0 in:**
+- `agentidentity/cognitive-systems/EXECUTIVE_FUNCTION.md` (detailed implementation)
+- `PERSONAL_INSIGHTS.md` (this file - user preference context)
+- Applied to EVERY task going forward
+
+**See Also:**
+- Executive Function meta-cognitive rules (expert consultation, PDRI loop, 50-task decomposition)
+- Dual-mode workflow (Feature Development vs Active Debugging)
+- Zero-tolerance rules (hard constraints during execution)
+
+---
+
 ## 💾 SYSTEM CONSTRAINTS: Limited Disk Space - Always Ask Before Installing (2026-01-26 09:30)
 
 ### Context: POC 1 Setup - Installed Docker Without Permission
