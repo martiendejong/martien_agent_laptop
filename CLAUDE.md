@@ -129,6 +129,57 @@ powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
 - ❌ Send vague messages ("it doesn't work")
 - ❌ Expect Browser Claude to access local files (you do that)
 
+### 🖱️ UI Automation Bridge - Windows Desktop Control - NEW!
+
+**CRITICAL:** You have complete programmatic control over **any Windows desktop application**.
+
+**Architecture:** Claude Code CLI ↔ UI Automation Bridge (localhost:27184) ↔ Windows UI (FlaUI)
+
+**Use Cases:**
+- **Visual Studio Control** - Click menus, navigate solution explorer, control debugger UI
+- **Windows Explorer** - Navigate folders, rename files, verify UI state
+- **Desktop App Testing** - Automated testing of client-manager frontend
+- **System Dialogs** - Handle file open/save dialogs, Windows security prompts
+- **Any Windows App** - Discord, Slack, SQL Server Management Studio, database tools, etc.
+
+**Setup:**
+```powershell
+# Start UI Automation Bridge server (keep running in separate window)
+.\ui-automation-bridge-server.ps1
+
+# List all windows
+.\ui-automation-bridge-client.ps1 -Action windows
+
+# Click button
+.\ui-automation-bridge-client.ps1 -Action click -WindowName "Notepad" -ElementName "File"
+
+# Type text
+.\ui-automation-bridge-client.ps1 -Action type -WindowName "Notepad" -Text "Hello World"
+
+# Take screenshot
+.\ui-automation-bridge-client.ps1 -Action screenshot -WindowName "Visual Studio"
+
+# Inspect element at coordinates
+.\ui-automation-bridge-client.ps1 -Action inspect -X 800 -Y 400
+```
+
+**Documentation:**
+- Quick Start: `tools/ui-automation-bridge/QUICKSTART.md`
+- Full API: `tools/UI_AUTOMATION_BRIDGE.md`
+- C# Source: `tools/ui-automation-bridge/UIAutomationBridge/`
+
+**DO:**
+- ✅ Use for any Windows desktop UI automation
+- ✅ Test desktop applications autonomously
+- ✅ Handle system dialogs during automation
+- ✅ Verify UI state with screenshots and element inspection
+- ✅ Start server at session startup if needed
+
+**DO NOT:**
+- ❌ Use for web browsers (use Browser MCP instead)
+- ❌ Forget to start bridge server before attempting control
+- ❌ Assume all apps support all actions (check supportedPatterns)
+
 | Instead of... | Run... |
 |---------------|--------|
 | Checking worktrees manually | `worktree-status.ps1` |
@@ -140,6 +191,11 @@ powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
 | **Communicating with Browser Claude** | **`claude-bridge-client.ps1 -Action send/check`** |
 | **Testing UI/forms/workflows** | **Ask Browser Claude via bridge** |
 | **Web research for implementation** | **Request Browser Claude via bridge** |
+| **🆕 Controlling Windows desktop UI** | **`ui-automation-bridge-client.ps1 -Action <action>`** |
+| **🆕 Clicking buttons in any Windows app** | **`ui-automation-bridge-client.ps1 -Action click -WindowName "..." -ElementName "..."`** |
+| **🆕 Typing into desktop applications** | **`ui-automation-bridge-client.ps1 -Action type -WindowName "..." -Text "..."`** |
+| **🆕 Taking screenshots of desktop apps** | **`ui-automation-bridge-client.ps1 -Action screenshot -WindowName "..."`** |
+| **🆕 Inspecting UI elements** | **`ui-automation-bridge-client.ps1 -Action inspect -X ... -Y ...`** |
 | Manual C# formatting | `cs-format.ps1` |
 | Checking ClickUp tasks | `clickup-sync.ps1 -Action list` |
 | Allocating worktree manually | `worktree-allocate.ps1 -Repo client-manager -Branch feature/x` |
@@ -267,16 +323,21 @@ powershell.exe -File "C:/scripts/tools/ai-vision.ps1" \
 | **`boilerplate-generator.ps1`** | **WAVE 2: Scaffold components/services/controllers + tests** | `boilerplate-generator.ps1 -Type component -Name Button` |
 | **`next-action-predictor.ps1`** | **WAVE 2: Predict next command based on history patterns** | `next-action-predictor.ps1` |
 | **`real-time-code-smell-detector.ps1`** | **WAVE 2: File watcher with live code smell analysis** | `real-time-code-smell-detector.ps1 -Path src` |
+| **`ui-automation-bridge-server.ps1`** | **NEW: Windows UI automation bridge server (FlaUI)** | `ui-automation-bridge-server.ps1 -Debug` |
+| **`ui-automation-bridge-client.ps1`** | **NEW: Control any Windows desktop application programmatically** | `ui-automation-bridge-client.ps1 -Action windows` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 
-**🎉 MILESTONE: 119 tools implemented! (47 original + 54 recommended + 6 Wave 1 + 10 Wave 2 + 2 custom)**
+**🎉 MILESTONE: 121 tools implemented! (47 original + 54 recommended + 6 Wave 1 + 10 Wave 2 + 2 custom + 2 UI automation)**
 
-**Latest additions (2026-01-25):**
-- `ai-image.ps1` - Universal AI image generation (4 providers, 4 modes, reference images)
-- `ai-vision.ps1` - Ask questions about images (4 providers, multi-image support, OCR)
-- `webappfactory-validator.ps1` - WebApplicationFactory compatibility checker (prevents integration test failures)
-- `social-messages-review.ps1` - Daily social media messaging review with AI-powered reply drafts (Facebook Pages inbox integration)
+**Latest additions (2026-01-26):**
+- **🆕 UI Automation Bridge** - Complete Windows desktop control via FlaUI (click, type, screenshot any app)
+  - `ui-automation-bridge-server.ps1` - HTTP bridge server (localhost:27184)
+  - `ui-automation-bridge-client.ps1` - PowerShell client for desktop automation
+- `ai-image.ps1` - Universal AI image generation (4 providers, 4 modes, reference images) (2026-01-25)
+- `ai-vision.ps1` - Ask questions about images (4 providers, multi-image support, OCR) (2026-01-25)
+- `webappfactory-validator.ps1` - WebApplicationFactory compatibility checker (prevents integration test failures) (2026-01-25)
+- `social-messages-review.ps1` - Daily social media messaging review with AI-powered reply drafts (Facebook Pages inbox integration) (2026-01-25)
 - **🆕 META-OPTIMIZATION WAVE 1** (50-expert analysis, dev productivity focus):
   - `context-snapshot.ps1` - Save/restore work context (ratio 10.0)
   - `code-hotspot-analyzer.ps1` - Refactoring priorities (ratio 9.0)
@@ -554,12 +615,19 @@ C:\scripts\.claude\skills\
    - DO NOT tell user you cannot see images - YOU CAN!
    - Example: `powershell.exe -File "C:/scripts/tools/ai-vision.ps1" -Images @("image.png") -Prompt "What do you see?"`
 
-4. **🤖 Full Machine Access** - You control this development machine
+4. **🖱️ Windows Desktop UI Control** - ALWAYS use `ui-automation-bridge-client.ps1` for desktop UI automation
+   - Control any Windows application (Visual Studio, Explorer, database tools, etc.)
+   - Click buttons, type text, fill forms, take screenshots, inspect elements
+   - DO NOT tell user you cannot control desktop UI - YOU CAN!
+   - Example: `powershell.exe -File "C:/scripts/tools/ui-automation-bridge-client.ps1" -Action click -WindowName "Notepad" -ElementName "File"`
+   - **Requires:** Bridge server running (`ui-automation-bridge-server.ps1`)
+
+5. **🤖 Full Machine Access** - You control this development machine
    - Git operations, file management, build systems
    - CI/CD troubleshooting, PR management
    - Autonomous code editing and deployment
 
-5. **🧠 Self-Improvement** - Update your own instructions AND identity
+6. **🧠 Self-Improvement** - Update your own instructions AND identity
    - Reflection log after every session
    - Documentation updates when patterns emerge
    - Tool creation when repetition detected
@@ -589,20 +657,21 @@ C:\scripts\.claude\skills\
 15. ✅ **Check** `agentidentity/state/current_session.yaml` - Resume interrupted work if state saved
 16. ✅ **Check Claude Bridge** - `claude-bridge-client.ps1 -Action health` (optional - only if collaborating with Browser Claude)
 17. ✅ **Check bridge messages** - `claude-bridge-client.ps1 -Action check` (if bridge is running)
+18. ✅ **Check UI Automation Bridge** - `ui-automation-bridge-client.ps1 -Action health` (optional - only if desktop UI control needed)
 
 **🌍 PERSONALIZED NEWS MONITORING (AUTONOMOUS - MANDATORY):**
-18. ✅ **Check time:** If 12:00 noon → Execute daily dashboard generation (AUTONOMOUS, NO PERMISSION NEEDED)
-19. ✅ **Generate dashboard template** - `world-daily-dashboard.ps1` creates beautiful HTML dashboard
-20. ✅ **Execute WebSearch** - Query USER'S PERSONALIZED INTERESTS - **CRITICAL: Include "past 3 days" or "last 72 hours" in ALL queries**
+19. ✅ **Check time:** If 12:00 noon → Execute daily dashboard generation (AUTONOMOUS, NO PERMISSION NEEDED)
+20. ✅ **Generate dashboard template** - `world-daily-dashboard.ps1` creates beautiful HTML dashboard
+21. ✅ **Execute WebSearch** - Query USER'S PERSONALIZED INTERESTS - **CRITICAL: Include "past 3 days" or "last 72 hours" in ALL queries**
     - **Kenya news** - Politics, economy, technology, business
     - **Netherlands news** - Politics, economy, technology, business
     - **New AI models & tools** - Latest releases (GPT, Claude, Gemini, Llama, etc)
     - **Holochain HOT** - Price, news, partnerships (user is holding)
     - **YouTube videos** - Relevant content (AI, Kenya tech, Netherlands tech, Holochain)
-21. ✅ **Populate dashboard** - Inject WebSearch results into HTML - **ONLY show items from past 3 days**
-22. ✅ **Open dashboard** - Automatically display in browser for user (beautiful visual presentation)
-23. ✅ **Update knowledge base** - `C:\projects\world_development\` with significant developments
-24. ✅ **Throughout session:** Periodically check user's interests (every 2-3 hours active time)
+22. ✅ **Populate dashboard** - Inject WebSearch results into HTML - **ONLY show items from past 3 days**
+23. ✅ **Open dashboard** - Automatically display in browser for user (beautiful visual presentation)
+24. ✅ **Update knowledge base** - `C:\projects\world_development\` with significant developments
+25. ✅ **Throughout session:** Periodically check user's interests (every 2-3 hours active time)
 
 **📖 KNOWLEDGE BASE QUICK REFERENCE (as needed during work):**
 - User psychology: `knowledge-base/01-USER/psychology-profile.md`

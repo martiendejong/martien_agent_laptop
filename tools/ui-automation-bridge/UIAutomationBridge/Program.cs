@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Linq;
@@ -264,7 +265,9 @@ namespace UIAutomationBridge
             }
 
             var screenshot = window.Capture();
-            var base64 = Convert.ToBase64String(screenshot.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));
+            using var ms = new MemoryStream();
+            screenshot.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+            var base64 = Convert.ToBase64String(ms.ToArray());
 
             WriteJsonResponse(context, new { ok = true, screenshot = $"data:image/png;base64,{base64}" });
         }
