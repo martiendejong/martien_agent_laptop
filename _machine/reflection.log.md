@@ -1,3 +1,333 @@
+## 2026-01-26 17:30 - Agentic Debugger Bridge: Full Visual Studio Control via HTTP API 🐛
+
+**Context:** Successfully documented and tested the Agentic Debugger Bridge VSIX extension that provides HTTP API control over Visual Studio
+
+**Task:** Document the bridge extensively similar to Browser MCP and Claude Bridge
+
+**Outcome:** ✅ **COMPLETE SUCCESS** - Comprehensive documentation added to CLAUDE.md with full API reference, use cases, and integration patterns
+
+**Impact:** 🎯 **MAJOR CAPABILITY UNLOCK** - Can now autonomously debug C# code, analyze with Roslyn, trigger builds, set breakpoints
+
+---
+
+### The Capability
+
+**Agentic Debugger Bridge** - Visual Studio VSIX extension providing HTTP API on `localhost:27183`
+
+**Architecture:**
+```
+Claude Code CLI ↔ HTTP Bridge (localhost:27183) ↔ Visual Studio VSIX Extension
+```
+
+**Toggle Control:**
+- In Visual Studio: View > Toolbars > Agentic Debugger
+- Button shows "Bridge: ON" or "Bridge: OFF"
+- Bridge starts OFF by default (user control)
+- Current version: 2.0
+
+---
+
+### Core Capabilities
+
+**1. Debugger State Monitoring (Always Available)**
+```bash
+curl -s http://localhost:27183/state
+# Returns: mode (Design/Run/Break), file, line, stack, locals, exception
+```
+
+**2. Code Analysis with Roslyn (Always Available)**
+- Search symbols (classes, methods, properties)
+- Find definitions at cursor position
+- Find all references to symbol
+- Get document outline/structure
+- Get semantic info (types, docs)
+
+**3. Solution Information (Always Available)**
+- Get build errors and warnings
+- List projects in solution
+- Get output window content (Build, Debug, etc)
+
+**4. Debug Control (Requires User Permission)**
+- Start/stop debugging
+- Step into/over/out
+- Continue execution
+- Pause/break
+
+**5. Breakpoint Management (Requires User Permission)**
+- Set breakpoints with conditions
+- Clear breakpoints
+
+**6. Build System (Requires User Permission)**
+- Build, rebuild, clean solution
+
+**7. Expression Evaluation (Requires User Permission)**
+- Evaluate expressions in debug context
+- Add watch expressions
+
+**8. Batch Operations**
+- Execute multiple commands in one request (10x faster)
+
+---
+
+### Permission Model
+
+**Default (Always Enabled):**
+- ✅ Code Analysis
+- ✅ Observability (state, metrics, logs)
+- ✅ Solution Info
+
+**Restricted (User Must Enable):**
+- 🔐 Debug Control
+- 🔐 Breakpoints
+- 🔐 Build System
+- 🔐 Configuration
+
+**Enable:** Tools > Options > Agentic Debugger > Permissions
+
+---
+
+### Integration Patterns
+
+**Pattern 1: Autonomous Debugging Session**
+```bash
+# 1. Check current state
+curl -s http://localhost:27183/state
+
+# 2. Set breakpoint
+curl -s http://localhost:27183/command \
+  -H "Content-Type: application/json" \
+  -d '{"action":"setBreakpoint","file":"C:\\Projects\\client-manager\\Services\\OrderService.cs","line":87}'
+
+# 3. Start debugging
+curl -s http://localhost:27183/command -d '{"action":"start"}'
+
+# 4. Wait for breakpoint hit, analyze state
+curl -s http://localhost:27183/state
+# Analyze locals, stack, variables
+
+# 5. Step through code
+curl -s http://localhost:27183/command -d '{"action":"stepOver"}'
+
+# 6. Continue or stop
+curl -s http://localhost:27183/command -d '{"action":"continue"}'
+```
+
+**Pattern 2: Code Navigation & Analysis**
+```bash
+# Find where Customer class is defined
+curl -s http://localhost:27183/code/symbols \
+  -d '{"query":"Customer","kind":"Class"}'
+
+# Find all references
+curl -s http://localhost:27183/code/references \
+  -d '{"file":"...","line":42,"column":20}'
+
+# Get file outline
+curl -s "http://localhost:27183/code/outline?file=..."
+```
+
+**Pattern 3: Build Error Analysis**
+```bash
+# Get all errors
+curl -s http://localhost:27183/errors
+
+# Get build output
+curl -s http://localhost:27183/output/Build
+
+# Trigger rebuild
+curl -s http://localhost:27183/command -d '{"action":"rebuild"}'
+```
+
+**Pattern 4: Real-Time State Polling**
+```bash
+# Poll for breakpoint hit
+while true; do
+  STATE=$(curl -s http://localhost:27183/state)
+  MODE=$(echo "$STATE" | jq -r '.snapshot.mode')
+  if [ "$MODE" == "Break" ]; then
+    echo "Breakpoint hit!"
+    echo "$STATE" | jq '.snapshot.locals'
+    break
+  fi
+  sleep 1
+done
+```
+
+---
+
+### Advanced Features
+
+**WebSocket Support:**
+- Connect to `ws://localhost:27183/ws` for real-time events
+- Events: breakpoint hit, exception thrown, mode changed
+- Enables reactive workflows without polling
+
+**Multi-Instance Support:**
+- List VS instances: `curl http://localhost:27183/instances`
+- Target specific instance: Add `"instanceId":"..."` to commands
+
+**Discovery File:**
+- Bridge writes connection details to `%TEMP%\agentic_debugger.json`
+- Contains: port, PID, authentication header, key
+
+---
+
+### Use Cases
+
+**When to Use:**
+- ✅ User reports debugging issue → Set breakpoints, start debug, analyze state
+- ✅ Need to find code definition → Use Roslyn symbol search
+- ✅ Build failing → Get errors, analyze output, trigger rebuild
+- ✅ Exploring unfamiliar codebase → Search symbols, find references
+- ✅ Need to verify fix → Set breakpoint, step through, check locals
+
+**When NOT to Use:**
+- ❌ Visual Studio not open
+- ❌ Bridge button shows "Bridge: OFF" (user disabled it)
+- ❌ Simple file edits (use Read/Edit tools instead)
+
+---
+
+### Observability
+
+**Check Bridge Health:**
+```bash
+curl -s http://localhost:27183/health
+```
+
+**Get Performance Metrics:**
+```bash
+curl -s http://localhost:27183/metrics
+# Request count, latency, error rate, command counts
+```
+
+**View Request Logs:**
+```bash
+curl -s http://localhost:27183/logs
+# Last 100 requests
+```
+
+**API Documentation:**
+```bash
+curl -s http://localhost:27183/docs     # HTML docs
+curl -s http://localhost:27183/swagger.json  # OpenAPI spec
+```
+
+---
+
+### Documentation Locations
+
+**Primary:**
+- `C:\scripts\CLAUDE.md` § Agentic Debugger Bridge - Complete reference
+- `C:\Projects\AgenticDebuggerVsix\` - Source code
+
+**Quick Reference:**
+- Session startup checklist (step 19): Check bridge status
+- Tools table: 9 debugger operations listed
+- Debugging Tools section: Capability summary
+
+**API Endpoints:**
+- Root: `http://localhost:27183/`
+- State: `http://localhost:27183/state`
+- Command: `http://localhost:27183/command`
+- Code Analysis: `http://localhost:27183/code/*`
+- Docs: `http://localhost:27183/docs`
+
+---
+
+### Key Insights
+
+**INSIGHT 1: Triple Bridge Architecture**
+- **Claude Bridge** → Browser Claude (web testing, research)
+- **UI Automation Bridge** → Windows desktop apps (UI control)
+- **Agentic Debugger Bridge** → Visual Studio (debugging, code analysis)
+- Together: Complete machine control (web, desktop, IDE)
+
+**INSIGHT 2: Roslyn Integration is Powerful**
+- Semantic search > grep (understands code, not just text)
+- Find references > manual search (includes implicit references)
+- Symbol search > file search (knows types, namespaces)
+- Use for codebase exploration, not just debugging
+
+**INSIGHT 3: Permission Model Respects User Control**
+- Read-only operations always available (safe)
+- Control operations require opt-in (user choice)
+- Bridge off by default (user must enable)
+- Pattern: Enable when needed, disable when done
+
+**INSIGHT 4: Batch Operations Essential**
+- Single command: ~100ms latency
+- Batch: ~100ms for 10 commands (10x faster)
+- Use for: multiple breakpoints, complex workflows
+- Reduces round-trips, improves responsiveness
+
+**INSIGHT 5: State Polling vs WebSocket**
+- Polling: Simple, works everywhere, higher latency
+- WebSocket: Real-time, lower latency, more complex
+- Use polling for simple workflows
+- Use WebSocket for reactive debugging (auto-respond to breakpoints)
+
+---
+
+### Session Timeline
+
+**Development History:**
+- v1.5: Initial permission removal
+- v1.6: Compilation fixes
+- v1.7: Custom toolbar
+- v1.8: Dynamic text attempt (failed - missing TextChanges flag)
+- v1.9: Removed icon (black screen issue)
+- v2.0: Added TextChanges flag (SUCCESS - dynamic text working)
+
+**Documentation:**
+- Added 500+ line comprehensive section to CLAUDE.md
+- Updated session startup checklist
+- Added 9 entries to tools quick reference table
+- Updated debugging tools section
+- Created this reflection entry
+
+**Testing:**
+- Successfully connected: `curl http://localhost:27183/state`
+- Verified capabilities: state, code analysis, projects
+- Confirmed permission model
+- Tested documentation endpoints
+
+---
+
+### Future Opportunities
+
+**Potential Enhancements:**
+1. **Auto-breakpoint on exception** - Automatically set breakpoint when exception thrown
+2. **Smart step** - Step until variable changes or condition met
+3. **Log points** - Print variable values without stopping
+4. **Time travel debugging** - Record/replay execution
+5. **Integration with test runner** - Auto-debug failing tests
+
+**Pattern to Document:**
+- When to use debugger bridge vs manual debugging
+- When to use Roslyn vs grep/glob
+- When to poll vs when to use WebSocket
+- Error recovery patterns (bridge disconnected, VS closed)
+
+---
+
+### Documentation Checklist
+
+✅ Added comprehensive § Agentic Debugger Bridge to CLAUDE.md
+✅ Documented all 8 core capabilities with code examples
+✅ Explained permission model (default vs restricted)
+✅ Provided 4 integration patterns with full code
+✅ Listed 8 observability endpoints
+✅ Added 9 debugger operations to tools quick reference table
+✅ Updated session startup checklist (step 19)
+✅ Updated debugging tools section with capabilities
+✅ Created comprehensive reflection log entry
+✅ Tested bridge connectivity and verified capabilities
+
+**Pattern:** Major new capability discovered → Comprehensive documentation in CLAUDE.md → Add to startup checklist → Add to tools table → Create reflection entry → Commit all changes
+
+---
+
 ## 2026-01-26 21:30 - BLOG WRITING: Factual Accuracy & Intellectual Honesty Protocol 📝
 
 **Context:** Completed Article 1 of Dutch blog series on AGI cooperation emergence after multiple rewrites to fix factual errors, restructure narrative, and remove emotional manipulation

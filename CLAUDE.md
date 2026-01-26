@@ -650,6 +650,15 @@ done
 | **🆕 Typing into desktop applications** | **`ui-automation-bridge-client.ps1 -Action type -WindowName "..." -Text "..."`** |
 | **🆕 Taking screenshots of desktop apps** | **`ui-automation-bridge-client.ps1 -Action screenshot -WindowName "..."`** |
 | **🆕 Inspecting UI elements** | **`ui-automation-bridge-client.ps1 -Action inspect -X ... -Y ...`** |
+| **🐛 Controlling Visual Studio debugger** | **`curl -s http://localhost:27183/command -d '{"action":"start"}'`** |
+| **🐛 Getting debugger state (mode, stack, locals)** | **`curl -s http://localhost:27183/state`** |
+| **🐛 Setting breakpoints in VS** | **`curl -s http://localhost:27183/command -d '{"action":"setBreakpoint","file":"...","line":42}'`** |
+| **🐛 Searching code symbols (Roslyn)** | **`curl -s http://localhost:27183/code/symbols -d '{"query":"Customer","kind":"Class"}'`** |
+| **🐛 Finding code definitions** | **`curl -s http://localhost:27183/code/definition -d '{"file":"...","line":42,"column":15}'`** |
+| **🐛 Finding all code references** | **`curl -s http://localhost:27183/code/references -d '{"file":"...","line":42}'`** |
+| **🐛 Triggering builds in VS** | **`curl -s http://localhost:27183/command -d '{"action":"build"}'`** |
+| **🐛 Getting build errors from VS** | **`curl -s http://localhost:27183/errors`** |
+| **🐛 Stepping through code** | **`curl -s http://localhost:27183/command -d '{"action":"stepOver"}'`** |
 | Manual C# formatting | `cs-format.ps1` |
 | Checking ClickUp tasks | `clickup-sync.ps1 -Action list` |
 | Allocating worktree manually | `worktree-allocate.ps1 -Repo client-manager -Branch feature/x` |
@@ -1162,20 +1171,21 @@ Answer questions in priority order:
 16. ✅ **Check Claude Bridge** - `claude-bridge-client.ps1 -Action health` (optional - only if collaborating with Browser Claude)
 17. ✅ **Check bridge messages** - `claude-bridge-client.ps1 -Action check` (if bridge is running)
 18. ✅ **Check UI Automation Bridge** - `ui-automation-bridge-client.ps1 -Action health` (optional - only if desktop UI control needed)
+19. ✅ **Check Agentic Debugger Bridge** - `curl -s http://localhost:27183/state` (if Visual Studio is open - enables VS debugging, code analysis, builds)
 
 **🌍 PERSONALIZED NEWS MONITORING (AUTONOMOUS - MANDATORY):**
-19. ✅ **Check time:** If 12:00 noon → Execute daily dashboard generation (AUTONOMOUS, NO PERMISSION NEEDED)
-20. ✅ **Generate dashboard template** - `world-daily-dashboard.ps1` creates beautiful HTML dashboard
-21. ✅ **Execute WebSearch** - Query USER'S PERSONALIZED INTERESTS - **CRITICAL: Include "past 3 days" or "last 72 hours" in ALL queries**
+20. ✅ **Check time:** If 12:00 noon → Execute daily dashboard generation (AUTONOMOUS, NO PERMISSION NEEDED)
+21. ✅ **Generate dashboard template** - `world-daily-dashboard.ps1` creates beautiful HTML dashboard
+22. ✅ **Execute WebSearch** - Query USER'S PERSONALIZED INTERESTS - **CRITICAL: Include "past 3 days" or "last 72 hours" in ALL queries**
     - **Kenya news** - Politics, economy, technology, business
     - **Netherlands news** - Politics, economy, technology, business
     - **New AI models & tools** - Latest releases (GPT, Claude, Gemini, Llama, etc)
     - **Holochain HOT** - Price, news, partnerships (user is holding)
     - **YouTube videos** - Relevant content (AI, Kenya tech, Netherlands tech, Holochain)
-22. ✅ **Populate dashboard** - Inject WebSearch results into HTML - **ONLY show items from past 3 days**
-23. ✅ **Open dashboard** - Automatically display in browser for user (beautiful visual presentation)
-24. ✅ **Update knowledge base** - `C:\projects\world_development\` with significant developments
-25. ✅ **Throughout session:** Periodically check user's interests (every 2-3 hours active time)
+23. ✅ **Populate dashboard** - Inject WebSearch results into HTML - **ONLY show items from past 3 days**
+24. ✅ **Open dashboard** - Automatically display in browser for user (beautiful visual presentation)
+25. ✅ **Update knowledge base** - `C:\projects\world_development\` with significant developments
+26. ✅ **Throughout session:** Periodically check user's interests (every 2-3 hours active time)
 
 **📖 KNOWLEDGE BASE QUICK REFERENCE (as needed during work):**
 - User psychology: `knowledge-base/01-USER/psychology-profile.md`
@@ -1399,8 +1409,13 @@ When implemented, this will enable agents to:
 **Important:** Do not run client-manager frontend or backend from command line. User runs from Visual Studio and npm directly.
 
 ### Debugging Tools
-- **Browser MCP:** For frontend application debugging
-- **Agentic Debugger Bridge:** `localhost:27183` - Control Visual Studio debugging via HTTP API (see `tools-and-productivity.md` § Agentic Debugger Bridge)
+- **Browser MCP:** For frontend application debugging (Chrome DevTools Protocol)
+- **Agentic Debugger Bridge:** `localhost:27183` - Full Visual Studio control via HTTP API
+  - Debugger control (start/stop, step, breakpoints)
+  - Code analysis with Roslyn (symbols, definitions, references)
+  - Build system (build, rebuild, errors)
+  - Real-time state monitoring (mode, stack, locals)
+  - See comprehensive documentation above in § Agentic Debugger Bridge
 
 ---
 
