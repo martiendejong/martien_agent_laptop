@@ -20,8 +20,13 @@ REM --- Git checkpoint ---
 git add .
 git commit -m "checkpoint before HazinaCoder session" >nul 2>&1
 
+REM --- Set Ollama URL to production server ---
+set OLLAMA_HOST=http://localhost:5555
+
 REM --- HazinaCoder Autonomous Agent ---
 echo Starting HazinaCoder...
+echo.
+echo Provider: Ollama (production server - localhost:5555)
 echo.
 echo Features:
 echo   - Same context as Claude Code CLI (C:\scripts)
@@ -32,6 +37,6 @@ echo   - Worktree-first development
 echo.
 
 cd /d C:\Projects\hazina\apps\CLI\Hazina.App.HazinaCoder
-dotnet run -- --provider anthropic
+dotnet run -- --provider ollama
 
 pause
