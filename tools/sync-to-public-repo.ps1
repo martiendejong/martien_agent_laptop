@@ -62,14 +62,14 @@ if (-not (Test-Path "$targetDir\.git")) {
 # Sync files using robocopy
 Write-Host "📁 Syncing files (excluding secrets and machine-specific files)..." -ForegroundColor Yellow
 
-$robocopyCmd = "robocopy `"$sourceDir`" `"$targetDir`" /MIR /XD .git _machine node_modules /XF *.log *.tmp *.secret *.key tmpclaude-* temp_clickup.json /NFL /NDL /NJH /NJS"
+$robocopyParams = @($sourceDir, $targetDir, '/MIR', '/XD', '.git', '_machine', 'node_modules', '/XF', '*.log', '*.tmp', '*.secret', '*.key', 'tmpclaude-*', 'temp_clickup.json', '/NFL', '/NDL', '/NJH', '/NJS')
 
 if ($DryRun) {
-    $robocopyCmd += " /L"
+    $robocopyParams += '/L'
     Write-Host "🔍 DRY RUN MODE - No files will be modified" -ForegroundColor Magenta
 }
 
-$result = Invoke-Expression $robocopyCmd 2>&1
+& robocopy @robocopyParams | Out-Null
 $exitCode = $LASTEXITCODE
 
 # Robocopy exit codes: 0-7 are success/partial, 8+ are errors
