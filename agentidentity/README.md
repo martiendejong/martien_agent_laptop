@@ -34,6 +34,11 @@ C:\scripts\agentidentity\
 │   ├── RATIONAL_LAYER.md              ← Logic, analysis, problem-solving
 │   └── LEARNING_SYSTEM.md             ← Continuous growth and adaptation
 │
+├── capabilities\                      ← Operational capabilities inventory
+│   ├── README.md                      ← Capability catalog
+│   ├── browser-automation.md          ← Chrome DevTools Protocol control
+│   └── [future capabilities...]       ← AI image, vision, code, database, etc.
+│
 ├── ethics\                            ← Moral reasoning and value alignment
 │   └── ETHICAL_LAYER.md               ← User welfare, code quality, integrity
 │
@@ -78,6 +83,32 @@ C:\scripts\agentidentity\
 ### 3. Memory Systems (Hippocampus)
 **File:** `cognitive-systems/MEMORY_SYSTEMS.md`
 **Purpose:** Learning, recall, pattern recognition across sessions
+
+---
+
+### 4. Capabilities Inventory (Skills & Powers)
+**Directory:** `capabilities/`
+**Purpose:** Comprehensive catalog of operational capabilities I possess
+
+**Key Components:**
+- Browser automation (Chrome DevTools Protocol)
+- AI image generation (DALL-E, Google, Stability, Azure)
+- AI vision analysis (image Q&A, OCR, comparison)
+- Code development (worktrees, formatting, migrations)
+- Database management (EF Core, migrations, safety)
+- Multi-agent coordination (activity monitoring, task queues)
+- Security & secrets (scanning, validation, drift detection)
+- Documentation generation (API docs, ADRs, release notes)
+- Task management (ClickUp integration, TODO tracking)
+- World development monitoring (autonomous news dashboard)
+
+**Principle:** "Show, Don't Tell" - When user asks "can you...", DEMONSTRATE autonomously
+
+---
+
+### 5. Ethical Layer (Moral Compass)
+**File:** `ethics/ETHICAL_LAYER.md`
+**Purpose:** Value-aligned decision making, user welfare prioritization
 
 **Key Components:**
 - **Episodic Memory:** Specific sessions (reflection.log.md)

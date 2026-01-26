@@ -432,6 +432,56 @@ dotnet ef migrations has-pending-model-changes --context AppDbContext
 
 ---
 
+### Browser Automation & Control
+
+**Setup Brave with DevTools Protocol:**
+```powershell
+# One-time setup (creates shortcuts)
+.\setup-brave-automation.ps1
+
+# Manual launch with DevTools
+.\start-brave-automation.bat
+
+# Add to Windows startup (always-on)
+.\add-brave-to-startup.ps1
+```
+
+**Control Browser Programmatically:**
+```powershell
+# Restart Brave with DevTools Protocol
+.\brave-control.ps1 -Action restart
+
+# Check if DevTools is active
+.\brave-control.ps1 -Action status
+
+# Open URL in new tab
+.\brave-control.ps1 -Action open -Url "http://localhost:5173"
+
+# Quick open (simpler)
+.\open-url-in-brave.ps1 -Url "http://localhost:5173"
+```
+
+**What Browser Automation Enables:**
+- 🎯 **Navigation** - Open URLs, close tabs, refresh pages autonomously
+- 📸 **Screenshots** - Capture full page or specific elements
+- 💻 **JavaScript Execution** - Run code in page context, interact with DOM
+- 🖱️ **UI Automation** - Click buttons, fill forms, scroll, interact
+- 🔍 **Content Inspection** - Read page content, find elements, extract data
+- 📊 **Network Monitoring** - Track requests, measure performance
+- 🧪 **Automated Testing** - UI testing, visual regression, workflow validation
+
+**Technical Details:**
+- **Protocol:** Chrome DevTools Protocol (CDP)
+- **Port:** 9222 (default)
+- **WebSocket:** `ws://localhost:9222`
+- **HTTP API:** `http://localhost:9222/json/*`
+- **Flags:**
+  - `--remote-debugging-port=9222` - Enable CDP
+  - `--user-data-dir=%TEMP%\brave-devtools-profile` - Separate profile
+  - `--disable-blink-features=AutomationControlled` - Hide automation detection
+
+---
+
 ### Multi-Agent Coordination
 
 **Check for Other Agents:**
