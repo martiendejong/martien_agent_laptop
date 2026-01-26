@@ -1,3 +1,59 @@
+## 2026-01-26 03:15 - WORLD DASHBOARD TIMEFRAME: 3-Day Rolling Window Configuration
+
+**Context:** User clarification: "to be clear in my dashboard i want only items from the last 3 days"
+**Task:** Configure autonomous world development dashboard to show only past 72 hours
+**Outcome:** ✅ All systems updated with 3-day constraint, integrated into core identity
+**Impact:** 🎯 Dashboard now shows fresh, recent news with rolling 3-day window
+
+### What Was Updated
+
+**Core Identity Integration:**
+1. ✅ `CORE_IDENTITY.md` - Daily Protocol updated with "**CRITICAL: Only developments from PAST 3 DAYS**"
+2. ✅ `CLAUDE.md` - Steps 20-21 updated with 3-day filtering requirement
+3. ✅ Dashboard scripts configured to enforce timeframe
+
+**Technical Implementation:**
+1. ✅ `world-daily-dashboard.ps1` - Dashboard header shows "Timeframe: Past 3 Days", status bar updated
+2. ✅ `world-dashboard-wrapper.ps1` - Instruction file now mandates "past 3 days" or "last 72 hours" in ALL queries
+3. ✅ Documentation update created at `updates/2026-01-26-dashboard-timeframe-update.md`
+
+### WebSearch Query Pattern
+
+**All queries will now include temporal constraint:**
+```
+"<topic> past 3 days 2026"
+"<topic> last 72 hours 2026"
+```
+
+**Examples:**
+- "artificial intelligence breakthroughs past 3 days 2026"
+- "climate change developments last 72 hours"
+- "economic news past 3 days January 2026"
+
+### Benefits
+
+✅ **Fresh News Focus:** Only most recent, breaking developments
+✅ **Daily Value:** Each dashboard shows genuinely new content
+✅ **No Confusion:** Clear temporal context for every insight
+✅ **Historical Archive:** Daily snapshots create timeline of 3-day windows
+
+### Key Insight
+
+**User Preference Captured:** User wants dashboard as a **daily news briefing** (past 3 days) NOT a comprehensive analysis archive (weeks/months). This is a rolling window view of current events, not historical research.
+
+**Implementation Pattern:**
+- Query-level filtering (include in search string)
+- Result validation (verify dates match)
+- Freshness priority (most recent first)
+
+**Tomorrow's Dashboard:** Will automatically query 2026-01-24 to 2026-01-27, sliding window forward daily.
+
+### Commits
+- `world_development` repo: feat: Configure dashboard for 3-day rolling window (d9eeaf7)
+- `machine_agents` repo: feat: Configure world dashboard for 3-day rolling window (4ee938c)
+
+---
+
 ## 2026-01-26 02:00 - WORDPRESS + REACT SPA INTEGRATION: Complete Headless CMS Setup
 
 **Context:** User request: "in the hydro-vision-website where is the url to the wordpress system defined?" → Eventually: "create a wordpress theme and copy the build into it"
