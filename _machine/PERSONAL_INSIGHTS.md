@@ -1526,6 +1526,12 @@ Don't assume environment checks are safe - understand tool internals before addi
 2. User expects me to **infer requirements** from minimal context
 3. User wants **outcomes reported**, not step-by-step progress
 4. User accepts **autonomous decisions** (assignee ID, ClickUp list, etc.)
+5. **ALWAYS end responses with visual status summary** (2026-01-26)
+   - Clear section header with task title
+   - Current status (✅ done, 🔄 in progress, ⏸️ blocked, ⏭️ next)
+   - Next action if applicable
+   - Visually distinct formatting for quick scanning
+   - User needs "in één oogopslag" overview
 
 **Session Pattern:**
 1. User asks status question → I provide detailed breakdown
