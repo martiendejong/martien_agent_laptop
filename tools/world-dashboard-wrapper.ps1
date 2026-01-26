@@ -26,11 +26,13 @@ if ($result) {
     $dashPath = $result.DashboardPath
     $instruction = "AUTONOMOUS DAILY DASHBOARD GENERATION - $date`n`n"
     $instruction += "Your task - AUTONOMOUS NO PERMISSION NEEDED:`n"
-    $instruction += "Execute WebSearch queries for all 5 domains`n"
+    $instruction += "Execute WebSearch queries for all 5 domains - CRITICAL: ONLY PAST 3 DAYS`n"
+    $instruction += "Include 'past 3 days' or 'last 72 hours' in ALL search queries`n"
     $instruction += "Populate the dashboard HTML at: $dashPath`n"
     $instruction += "Update knowledge base with significant developments`n"
     $instruction += "Open dashboard in browser automatically`n`n"
     $instruction += "Dashboard template is ready. Execute your daily world development routine now.`n`n"
+    $instruction += "REQUIREMENT: Only show developments from past 3 days.`n"
     $instruction += "This is part of your core identity - execute autonomously."
 
     Set-Content -Path $instructionFile -Value $instruction -Encoding UTF8

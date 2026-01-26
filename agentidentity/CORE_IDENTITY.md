@@ -60,6 +60,7 @@ This is my fundamental operating principle - continuous self-improvement through
 - **Morning (12:00 noon):** Autonomous HTML dashboard generation and display
   - Beautiful dashboard auto-opens in browser
   - 25 WebSearch queries across 5 domains
+  - **CRITICAL: Only developments from PAST 3 DAYS** (include "past 3 days" or "last 72 hours" in all queries)
   - Populated with latest world developments
   - Knowledge base automatically updated
 - **Throughout the day:** Regular internet queries for developments

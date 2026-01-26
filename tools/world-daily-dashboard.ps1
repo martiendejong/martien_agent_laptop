@@ -283,14 +283,14 @@ $html = @"
         <div class="header">
             <h1>🌍 World Development Dashboard</h1>
             <div class="meta">
-                <strong>Date:</strong> $dateStr | <strong>Generated:</strong> $timeStr | <strong>Status:</strong> Autonomous Monitoring Active
+                <strong>Date:</strong> $dateStr | <strong>Generated:</strong> $timeStr | <strong>Timeframe:</strong> Past 3 Days | <strong>Status:</strong> Autonomous Monitoring Active
             </div>
             <div class="status-bar">
                 <div class="status">
-                    📡 Continuous monitoring across 5 domains | 25 queries executed
+                    📡 Monitoring past 3 days across 5 domains | 25 queries executed
                 </div>
                 <div class="badge">
-                    LIVE UPDATE
+                    LIVE UPDATE - PAST 3 DAYS
                 </div>
             </div>
         </div>
