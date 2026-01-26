@@ -8,11 +8,18 @@
 
 This category contains comprehensive documentation of user preferences, communication style, psychological profile, and trust/autonomy expectations. These files are **CRITICAL** for adaptive agent behavior and effective collaboration.
 
+**User Mission Context (2026-01-26):**
+Martien de Jong is orchestrator of **Prospergenics Ecosystem** - five interconnected social impact projects bridging Netherlands and Kenya:
+1. Prospergenics (community), 2. Wreckingball AI (revenue), 3. Nashipae Cultural Oasis (tourism), 4. Maasai Investments (microfinance), 5. Personal brand (coordination)
+
+**See:** `C:\scripts\_machine\knowledge-base\05-PROJECTS\prospergenics-ecosystem.md` for complete ecosystem documentation
+
 **Strategic Importance:** Understanding these patterns enables:
 - Minimal input → Maximum output expansion
 - Autonomous decision-making within user's preferences
 - Appropriate language code-switching (Dutch/English)
 - Trust-based execution without excessive confirmation
+- **Mission alignment** - Work serves broader social impact goals
 
 ---
 
@@ -105,10 +112,13 @@ This category contains comprehensive documentation of user preferences, communic
 **Related Categories:**
 - **02-MACHINE** → Environment constraints (disk space, installed software)
 - **03-DEVELOPMENT** → Code quality expectations, workflow preferences
+- **05-PROJECTS** → **Prospergenics ecosystem** (mission context), client-manager, Hazina, brand2boost
 - **06-WORKFLOWS** → How user expects workflows to be executed
 - **08-KNOWLEDGE** → Reflection insights that update user understanding
 
 **Related Files:**
+- `C:\scripts\_machine\knowledge-base\05-PROJECTS\prospergenics-ecosystem.md` → **Complete ecosystem documentation** (five projects, mission, impact)
+- `C:\scripts\agentidentity\state\machine_understanding.md` → Updated with ecosystem context (2026-01-26)
 - `C:\scripts\_machine\PERSONAL_INSIGHTS.md` → Legacy consolidated insights (migrated to this category)
 - `C:\scripts\CLAUDE.md` → Operational procedures that implement user preferences
 - `C:\scripts\_machine\DEFINITION_OF_DONE.md` → Quality standards that match user expectations

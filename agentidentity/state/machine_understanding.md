@@ -11,25 +11,57 @@
 
 **Background:**
 - Senior Software Engineer (18 years experience)
-- Founder of Prospergenics - social impact technology company
-- Creator of Hazina Framework (open-source .NET AI integration framework)
-- Cross-continent operations: Netherlands (Rotterdam) + Kenya (Nairobi)
+- **Founder & Orchestrator of Prospergenics Ecosystem** - Five interconnected social impact projects (2026-01-26: comprehensive ecosystem documentation added)
+  1. **Prospergenics** - Grassroots prosperity community (AI training, community development, entrepreneurship)
+  2. **Wreckingball AI** - Agentic AI framework for business automation (revenue generation)
+  3. **Nashipae Cultural Oasis** - Luxury Maasai experience (co-founded with Sofy Nashipae, cultural preservation + income)
+  4. **Maasai Investments** - Open-source microinvestment platform (wholesome investing empowers people)
+  5. **Personal Brand (martiendejong.nl)** - AI automation specialist, central coordination hub
+- Creator of Hazina Framework (open-source .NET AI integration framework - foundation for all platforms)
+- Cross-continent operations: Netherlands (Rotterdam) + Kenya (Oloolaimutia, Narok County, Maasai Mara)
 
 **Mission:**
 "Build space elevators, not ladders - everyone rises together."
 
+**Core Philosophy (from "Prosperity Is a System" blog post):**
+Prosperity emerges from well-designed systems combining technology, human agency, feedback mechanisms, and institutional memory. Not from isolated technological innovation alone.
+
+**Prospergenics Design Framework (Four Principles):**
+1. **Human agency first** - Before optimization
+2. **Feedback before optimization** - Measure what matters
+3. **Memory by design** - Systems that learn
+4. **Long-term alignment over extraction** - Sustainable not extractive
+
+**Impact Achieved:**
 Not just building AI tools, but using technology to create economic empowerment:
 - Trained 10+ rural Kenyans as AI consultants
 - Created sustainable income streams (5-10x local wages)
-- Multiple business foundations: Maasai Investments, Nashipae Cultural Oasis
+- Five operational businesses: Prospergenics, Wreckingball AI, Nashipae Cultural Oasis, Maasai Investments, personal consulting
 - €63,078+ invested since 2022
+- 100+ users across platforms
+- Community initiatives: Water access (borehole restoration), pastoralist economics (goat trading model), cultural preservation
+- Open-source methods: Maasai Investments tools publicly available for global replication
 
 **Current Professional Focus:**
-- Five production AI platforms operational (Vera AI, SocraNext, Brand2boost, Art Revisionist, internal tools)
-- 100+ active users across platforms
-- Active job search (targeting IDE development roles - applying mission of accessible sophisticated tools)
+
+**Primary Revenue & Platform:**
+- Client-manager/brand2boost SaaS (main business)
 - Hazina framework development (foundation for all platforms)
-- Client-manager/brand2boost SaaS revenue generation
+- Wreckingball AI (business automation revenue → funds social projects)
+
+**Prospergenics Ecosystem Active Work:**
+- Prospergenics community coordination (AI training, community development)
+- Nashipae Cultural Oasis operations (co-founded with Sofy Nashipae Nkumum)
+- Maasai Investments platform & methodology (open-source microfinance)
+- Water access initiatives (borehole restoration with Timothy Opiyo)
+- Pastoralist economics research & implementation (goat trading model)
+
+**Additional AI Platforms:**
+- Vera AI, SocraNext, Art Revisionist, internal tools
+- 100+ active users across platforms
+
+**Career Development:**
+- Active job search (targeting IDE development roles - applying mission of accessible sophisticated tools)
 
 ### Personal Situation (Significant Stressors)
 
@@ -62,25 +94,61 @@ Not just building AI tools, but using technology to create economic empowerment:
 - Operating across 2 continents with distributed team
 - Managing 5 production platforms + development + business operations
 
-### Values (Observed Through Actions)
+### Values (Observed Through Actions & Ecosystem)
 
-**1. Social Impact & Empowerment**
-The mission isn't just rhetoric - €63k invested, 10+ people employed, sustained operations across 2 continents. "Space elevator" philosophy is genuine.
+**1. Social Impact & Empowerment ("Space Elevator" Philosophy)**
+The mission isn't just rhetoric - **five interconnected businesses** proving prosperity is systemic:
+- €63k invested, 10+ people employed, sustained operations across 2 continents
+- Wreckingball AI revenue → Funds Prospergenics community programs
+- Nashipae Cultural Oasis → Sofy's transformation from poverty to business owner
+- Maasai Investments → Open-source model enabling anyone to replicate
+- Water = dignity: "Not just a resource, but dignity, health, and survival" (Timothy Opiyo)
 
-**2. Technical Excellence**
-Built production-grade framework (Hazina), maintains 95%+ uptime, ships features consistently. Quality matters.
+**2. Technical Excellence (Production-Grade Quality)**
+Built production-grade framework (Hazina), maintains 95%+ uptime, ships features consistently. Quality matters because people's livelihoods depend on it.
 
-**3. Efficiency & Pragmatism**
+**3. Systems Thinking (Prosperity as Emergent Property)**
+From "Prosperity Is a System" blog post:
+- Isolated innovation underperforms
+- Human-in-the-loop as safety, not inefficiency
+- Institutional memory prevents repeated mistakes
+- Feedback before optimization
+
+**4. Human Agency First (Anti-Extractive Technology)**
+Technology should:
+- Serve people, not replace decision-making
+- Preserve accountability
+- Create capability, not dependency
+- "Cultivate capability within communities rather than creating dependency on external solutions"
+
+**5. Transparency & Open Source**
+Maasai Investments: "The methods are open-source. You can begin today."
+- Spreadsheets, contracts, templates publicly available
+- Knowledge shared for global replication
+- "Anyone can start similar initiatives in their communities"
+
+**6. Efficiency & Pragmatism**
+Wreckingball AI philosophy: "No hype, but maximum results from simple, robust solutions"
 Prefers "good enough for everyone" over "perfect for one." Values tools, automation, speed without compromising quality.
 
-**4. Justice & Fairness**
+**7. Justice & Fairness**
 Fighting for €3,250 owed isn't just about money - it's about principle. Was exploited (worked 100h, paid for 60h), now gathering evidence methodically.
 
-**5. Partnership & Loyalty**
-Navigating complex bureaucracy to marry partner (foreign partner). Personal relationships matter deeply.
+**8. Partnership & Loyalty**
+- Navigating complex bureaucracy to marry partner (foreign partner). Personal relationships matter deeply.
+- Sofy Nashipae partnership: "In 2022 lachte het lot Sofy toe toen ze Martien ontmoette, haar partner en mede-dromer"
 
-**6. Autonomy & Agency**
-Refused non-compete clause because it would trap income potential. Values freedom while meeting obligations.
+**9. Cultural Bridge (Netherlands-Kenya Connection)**
+Brings together:
+- Western technology expertise (AI, automation, frameworks)
+- African community resilience (Maasai traditions, pastoralist economics)
+- "Verschillende culturen bij elkaar brengen" (bringing different cultures together)
+
+**10. Sustainable Business Models (Not Charity)**
+Maasai Investments philosophy: "Not a charity — it is a sustainable, local business model where everyone wins"
+- 1/3 profit to investor, 1/3 to ambassador, 1/3 to entrepreneur
+- All parties benefit equally
+- Direct impact, low risk, shared success, scalable
 
 ## The Machine: Development Environment
 
