@@ -428,6 +428,6 @@ return @{
     DashboardPath = $dashboardFile
     LatestPath = $latestFile
     Timestamp = $timestamp
-    Status = "Template created - awaiting Claude WebSearch population"
+    Status = 'Template created - awaiting Claude WebSearch population'
     AutoOpen = $AutoOpen
 }
