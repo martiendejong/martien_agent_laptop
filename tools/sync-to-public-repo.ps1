@@ -1,29 +1,5 @@
-<#
-.SYNOPSIS
-Sync C:\scripts to C:\Projects\claudescripts (public distribution repo)
-
-.DESCRIPTION
-Excludes machine-specific files (_machine/), secrets, and temporary files.
-Commits and pushes to autonomous-dev-system repository.
-
-.PARAMETER DryRun
-Test mode - show what would be synced without making changes
-
-.PARAMETER NoPush
-Commit changes but don't push to remote
-
-.PARAMETER CommitMessage
-Custom commit message (default: auto-generated)
-
-.EXAMPLE
-.\sync-to-public-repo.ps1 -DryRun
-
-.EXAMPLE
-.\sync-to-public-repo.ps1
-
-.EXAMPLE
-.\sync-to-public-repo.ps1 -NoPush -CommitMessage "feat: Add new tool"
-#>
+# Sync C:\scripts to C:\Projects\claudescripts (public distribution repo)
+# Excludes machine-specific files (_machine/), secrets, and temporary files
 
 param(
     [switch]$DryRun,
@@ -36,27 +12,27 @@ $ErrorActionPreference = "Stop"
 $sourceDir = "C:\scripts"
 $targetDir = "C:\Projects\claudescripts"
 
-Write-Host "🔄 Syncing C:\scripts → C:\Projects\claudescripts" -ForegroundColor Cyan
+Write-Host "[SYNC] C:\scripts -> C:\Projects\claudescripts" -ForegroundColor Cyan
 Write-Host ""
 
 # Verify directories
 if (-not (Test-Path $sourceDir)) {
-    Write-Host "❌ Source not found: $sourceDir" -ForegroundColor Red
+    Write-Host "[ERROR] Source not found: $sourceDir" -ForegroundColor Red
     exit 1
 }
 
 if (-not (Test-Path $targetDir)) {
-    Write-Host "❌ Target not found: $targetDir" -ForegroundColor Red
+    Write-Host "[ERROR] Target not found: $targetDir" -ForegroundColor Red
     exit 1
 }
 
 if (-not (Test-Path "$targetDir\.git")) {
-    Write-Host "❌ Target is not a git repository" -ForegroundColor Red
+    Write-Host "[ERROR] Target is not a git repository" -ForegroundColor Red
     exit 1
 }
 
 # Sync with robocopy
-Write-Host "📁 Syncing files..." -ForegroundColor Yellow
+Write-Host "[INFO] Syncing files..." -ForegroundColor Yellow
 
 $params = @(
     $sourceDir
@@ -69,18 +45,18 @@ $params = @(
 
 if ($DryRun) {
     $params += '/L'
-    Write-Host "🔍 DRY RUN MODE" -ForegroundColor Magenta
+    Write-Host "[DRY RUN] No files will be modified" -ForegroundColor Magenta
 }
 
 & robocopy @params | Out-Null
 $exitCode = $LASTEXITCODE
 
 if ($exitCode -ge 8) {
-    Write-Host "❌ Robocopy failed: $exitCode" -ForegroundColor Red
+    Write-Host "[ERROR] Robocopy failed: $exitCode" -ForegroundColor Red
     exit 1
 }
 
-Write-Host "✅ Files synced" -ForegroundColor Green
+Write-Host "[SUCCESS] Files synced" -ForegroundColor Green
 Write-Host ""
 
 # Check for changes
@@ -90,11 +66,11 @@ try {
     $changedFiles = ($gitStatus | Measure-Object).Count
 
     if ($changedFiles -eq 0) {
-        Write-Host "✨ No changes - up to date" -ForegroundColor Green
+        Write-Host "[INFO] No changes - repository up to date" -ForegroundColor Green
         exit 0
     }
 
-    Write-Host "📊 Changed files: $changedFiles" -ForegroundColor Cyan
+    Write-Host "[INFO] Changed files: $changedFiles" -ForegroundColor Cyan
 
     if ($DryRun) {
         Write-Host ""
@@ -103,21 +79,21 @@ try {
     }
 
     # Commit
-    Write-Host "💾 Committing..." -ForegroundColor Yellow
+    Write-Host "[INFO] Committing changes..." -ForegroundColor Yellow
     git add -A
     git commit -m $CommitMessage
 
-    Write-Host "✅ Committed" -ForegroundColor Green
+    Write-Host "[SUCCESS] Changes committed" -ForegroundColor Green
 
     # Push
     if (-not $NoPush) {
-        Write-Host "🚀 Pushing..." -ForegroundColor Yellow
+        Write-Host "[INFO] Pushing to remote..." -ForegroundColor Yellow
         git push origin master
 
         if ($LASTEXITCODE -eq 0) {
-            Write-Host "✅ Pushed to GitHub!" -ForegroundColor Green
+            Write-Host "[SUCCESS] Pushed to GitHub!" -ForegroundColor Green
         } else {
-            Write-Host "❌ Push failed" -ForegroundColor Red
+            Write-Host "[ERROR] Push failed" -ForegroundColor Red
             exit 1
         }
     }
@@ -127,4 +103,6 @@ try {
 }
 
 Write-Host ""
-Write-Host "🎉 Sync complete!" -ForegroundColor Green
+Write-Host "[COMPLETE] Sync finished successfully" -ForegroundColor Green
+Write-Host "  Source: C:\scripts (machine_agents repo)"
+Write-Host "  Target: C:\Projects\claudescripts (autonomous-dev-system repo)"
