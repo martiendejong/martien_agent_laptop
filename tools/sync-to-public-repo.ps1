@@ -38,8 +38,8 @@ $params = @(
     $sourceDir
     $targetDir
     '/MIR'
-    '/XD', '.git', '_machine', 'node_modules'
-    '/XF', '*.log', '*.tmp', '*.secret', '*.key', 'tmpclaude-*', 'temp_clickup.json', 'temp_clickup_comment.txt', 'create-hazinastore-config.py', 'oauth-keys.json', 'credentials.json'
+    '/XD', '.git', '_machine', 'node_modules', 'arjan_emails', 'whatsapp_conversations', 'correspondence', 'plans', 'emails'
+    '/XF', '*.log', '*.tmp', '*.secret', '*.key', 'tmpclaude-*', 'temp_clickup.json', 'temp_clickup_comment.txt', 'create-hazinastore-config.py', 'oauth-keys.json', 'credentials.json', 'analysis-*-brand2boost.md', 'backup-brand2boost.ps1', '*database*.py', 'ssh-*.py', '*-vps*.ps1', 'upload-config.py', 'create-project-kb.ps1', 'clickhub-analyze-task.ps1'
     '/NFL', '/NDL', '/NJH', '/NJS'
 )
 
