@@ -1,3 +1,171 @@
+## 2026-01-27 01:30 - CRITICAL: Deployment Configuration Validation Pattern 🚨
+
+**Context:** Production backend crashed on startup due to missing Sentry configuration section in deployed appsettings.json
+
+**What Happened:**
+- Production API returned 500 Internal Server Error
+- Checked server logs: `System.ArgumentNullException: Value cannot be null. (Parameter 'You must supply a DSN to use Sentry...')`
+- Root cause: Source `appsettings.json` had `"Dsn": "${SENTRY_DSN:}"`, but production overlay `env/prod/backend/appsettings.json` had NO Sentry section
+- During deployment, production config completely overwrites source config
+- Result: Deployed application had no Sentry configuration → startup failure
+
+**Immediate Fix:**
+1. Created Python SSH script to add Sentry config with empty DSN to server
+2. Restarted IIS
+3. Verified API health returned HTTP 200
+
+**Structural Fix:**
+1. **Created `validate-deployment-config.ps1`** - Pre-deployment validation script
+   - Validates critical sections: Sentry, ConnectionStrings, ApiSettings
+   - Checks required keys exist and have valid values
+   - Exits with code 1 if validation fails (blocks deployment)
+   - Extensible framework for adding new validation rules
+
+2. **Updated `publish-brand2boost-backend.ps1`** - Integrated validation
+   - Runs validation AFTER config overlay, BEFORE deployment
+   - Throws error if validation fails (abort deployment)
+   - Warns if validator script missing
+
+3. **Created `docs/DEPLOYMENT-VALIDATION.md`** - Complete documentation
+   - Incident history (2026-01-26 Sentry failure)
+   - How validation works
+   - Required configuration sections
+   - Adding new validation rules
+   - Troubleshooting guide
+
+---
+
+### KEY LEARNING: Configuration Overlay Pattern 🎯
+
+**Problem Pattern:**
+- Source config uses environment variables: `"Dsn": "${SENTRY_DSN:}"`
+- Production overlay has partial config (missing sections)
+- Deployment does COMPLETE replacement, not merge
+- Result: Deployed config missing critical sections
+
+**Solution Pattern:**
+1. **Production overlay MUST be complete** - Include ALL required sections, even if disabled
+2. **Pre-deployment validation** - Catch missing config BEFORE deploying
+3. **Validation script structure:**
+```powershell
+$requiredSections = @{
+    'SectionName' = @{
+        Description = 'Human-readable description'
+        RequiredKeys = @('Key1', 'Key2')
+        ValidationRule = { param($value) return $value -is [string] }
+    }
+}
+```
+4. **Integrate into deployment pipeline** - Run AFTER overlay, BEFORE deploy
+5. **Document incident** - Capture root cause and prevention
+
+**When to Use:**
+- ANY deployment with config file overlays (appsettings.json, web.config, etc.)
+- Multiple environments (dev, staging, production)
+- Configuration with environment variables
+- Critical services that must not fail on startup
+
+**Integration Points:**
+- Build pipeline: After `dotnet publish`, after config overlay
+- Pre-deployment: Before `msdeploy.exe` or similar
+- CI/CD: Add validation step to GitHub Actions/Azure Pipelines
+
+---
+
+### REUSABLE PATTERN: Pre-Flight Config Validation 🔍
+
+**Template for Future Projects:**
+
+1. **Create validator script** (`validate-deployment-config.ps1`):
+```powershell
+$config = Get-Content $configPath -Raw | ConvertFrom-Json
+$requiredSections = @{ ... }
+# Validate each section and required keys
+# Exit 1 if any validation fails
+```
+
+2. **Update deployment script**:
+```powershell
+# After config overlay
+& $validatorPath
+if ($LASTEXITCODE -ne 0) {
+    throw "Deployment configuration validation failed"
+}
+# Continue with deployment
+```
+
+3. **Document validation rules** (docs/DEPLOYMENT-VALIDATION.md):
+- Required sections and keys
+- Valid value formats
+- How to add new rules
+- Troubleshooting guide
+
+**Benefits:**
+- ✅ Catch config errors BEFORE production deployment
+- ✅ Clear error messages guide fixes
+- ✅ Prevents runtime failures due to missing config
+- ✅ Self-documenting (validation rules = requirements)
+- ✅ Extensible (add new rules as needed)
+
+---
+
+### ERROR PATTERN: Sentry v10 DSN Requirement
+
+**Sentry SDK v10 Behavior:**
+- REQUIRES Dsn property to exist
+- Valid values: Valid DSN URL OR empty string `""`
+- Invalid: Missing Dsn property, null, omitted section
+- Error if missing: `ArgumentNullException: You must supply a DSN...`
+
+**Solution:**
+```json
+{
+  "Sentry": {
+    "Dsn": "",
+    "_comment": "Sentry disabled - set DSN to enable error tracking"
+  }
+}
+```
+
+**Generalized Principle:**
+Libraries with required configuration (even if disabled) MUST have those sections in production config.
+
+---
+
+### TOOLS USED ✅
+
+**New Tools Created:**
+- ✅ `validate-deployment-config.ps1` - Pre-deployment validation
+- ✅ `check-server-files.ps1` - Remote file inspection helper
+- ✅ `debug-production-error.ps1` - Production error diagnosis
+
+**Existing Tools:**
+- ✅ Python paramiko SSH - Remote server file operations
+- ✅ PowerShell ConvertFrom-Json - Config parsing
+- ✅ Git commit - Version control
+
+**Tool Wishlist Entry:**
+- ❌ `config-validator.ps1` (WAVE 2 tool) exists but wasn't used - next time, check if relevant tool exists BEFORE creating new script
+- ✅ Consider: `deployment-preflight.ps1` - Unified pre-deployment checks (config, migrations, health checks)
+
+---
+
+### SUCCESS CRITERIA MET ✅
+
+- ✅ Production server fixed (API returning HTTP 200)
+- ✅ Structural prevention implemented (validation script)
+- ✅ Deployment pipeline updated (validation integrated)
+- ✅ Documentation complete (incident + solution + guide)
+- ✅ Committed to version control
+- ✅ Verified working (tested validation success/failure)
+
+**Impact:**
+- **Immediate:** Production API restored
+- **Structural:** Future deployments protected
+- **Reusable:** Pattern applicable to all ASP.NET Core deployments
+
+---
+
 ## 2026-01-26 23:00 - BLOG SERIES COMPLETE: Articles 2-6 Written (11,548 words) 📝
 
 **Context:** User requested completion of 6-article Dutch blog series on AGI cooperation emergence after Article 1 corrections
