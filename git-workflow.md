@@ -146,6 +146,87 @@ If a PR was created with wrong base:
 gh pr edit <number> --base develop
 ```
 
+### Pre-PR Build Verification (COMPILED PROJECTS)
+
+**CRITICAL RULE: NEVER create a PR for compiled projects without building first!**
+
+**Lesson learned:** 2026-01-26 - Created PR #4 for AgenticDebuggerVsix without building. User discovered 10+ compilation errors after merging to main. This is UNACCEPTABLE.
+
+#### Mandatory Pre-PR Checklist for C#/.NET/VSIX Projects
+
+**BEFORE running `gh pr create`:**
+
+```powershell
+# 1. Full build verification
+cd /c/Projects/worker-agents/agent-XXX/<repo>
+dotnet build
+
+# 2. Check exit code
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "❌ BUILD FAILED - Fix errors before PR" -ForegroundColor Red
+    exit 1
+}
+
+# 3. Check for warnings (optional but recommended)
+dotnet build --no-incremental | Select-String "warning"
+
+# 4. If VSIX project, check version numbers
+# - source.extension.vsixmanifest
+# - Package.cs InstalledProductRegistration attribute
+# Must match!
+
+# 5. ONLY if build succeeds, create PR
+gh pr create --title "..." --body "..."
+```
+
+#### What to Verify
+
+| Project Type | Verification Steps |
+|--------------|-------------------|
+| **C# Library** | `dotnet build`, check warnings |
+| **ASP.NET API** | `dotnet build`, check startup configuration |
+| **React Frontend** | `npm run build`, check bundle size |
+| **VSIX Extension** | `msbuild`, check version sync, test in VS |
+| **Test Project** | `dotnet test`, verify all tests pass |
+
+#### Why This Is Critical
+
+- **User Time:** Prevents user from debugging preventable errors
+- **Trust:** Shows thoroughness and professionalism
+- **Main Branch:** Keeps main/develop branches stable
+- **CI/CD:** Reduces failed builds in CI pipeline
+
+#### After Running Code-Modifying Scripts
+
+**Pattern:** Scripts that use regex/sed to modify code can corrupt syntax.
+
+```powershell
+# 1. Commit checkpoint
+git add -A && git commit -m "checkpoint before script"
+
+# 2. Run transformation script
+.\remove-permissions.ps1  # or any code-modifying script
+
+# 3. BUILD AND VERIFY
+dotnet build
+
+# 4. If broken, restore and do manual edits
+if ($LASTEXITCODE -ne 0) {
+    git reset --hard HEAD~1
+    Write-Host "Script broke code - doing manual edits instead"
+}
+```
+
+#### Exception: Non-Compiled Projects
+
+This rule does NOT apply to:
+- Markdown documentation changes
+- PowerShell scripts (unless explicitly testing)
+- Configuration files (JSON, YAML, etc.)
+- Simple text file changes
+
+Use judgment: If code is executed/compiled, BUILD IT before PR!
+
 ### Checking All Open PRs
 
 ```bash
