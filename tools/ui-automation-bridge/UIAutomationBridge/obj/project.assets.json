@@ -1,12 +1,22 @@
 {
   "version": 3,
   "targets": {
-    "net9.0": {
+    ".NETFramework,Version=v4.8": {
       "FlaUI.Core/5.0.0": {
         "type": "package",
         "dependencies": {
           "System.Management": "8.0.0"
         },
+        "frameworkAssemblies": [
+          "Accessibility",
+          "PresentationCore",
+          "PresentationFramework",
+          "System.IO.Compression",
+          "System.Management",
+          "System.Net.Http",
+          "System.Windows.Forms",
+          "WindowsBase"
+        ],
         "compile": {
           "lib/net48/FlaUI.Core.dll": {
             "related": ".xml"
@@ -24,6 +34,10 @@
           "FlaUI.Core": "5.0.0",
           "Interop.UIAutomationClient": "10.19041.0"
         },
+        "frameworkAssemblies": [
+          "Accessibility",
+          "WindowsBase"
+        ],
         "compile": {
           "lib/net48/FlaUI.UIA3.dll": {
             "related": ".xml"
@@ -38,46 +52,24 @@
       "Interop.UIAutomationClient/10.19041.0": {
         "type": "package",
         "compile": {
-          "lib/netcoreapp3.0/Interop.UIAutomationClient.dll": {}
+          "lib/net45/Interop.UIAutomationClient.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.0/Interop.UIAutomationClient.dll": {}
+          "lib/net45/Interop.UIAutomationClient.dll": {}
         },
         "build": {
           "build/_._": {}
         }
       },
-      "Microsoft.Win32.SystemEvents/10.0.2": {
-        "type": "package",
-        "compile": {
-          "lib/net9.0/Microsoft.Win32.SystemEvents.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net9.0/Microsoft.Win32.SystemEvents.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/net8.0/_._": {}
-        },
-        "runtimeTargets": {
-          "runtimes/win/lib/net9.0/Microsoft.Win32.SystemEvents.dll": {
-            "assetType": "runtime",
-            "rid": "win"
-          }
-        }
-      },
       "Newtonsoft.Json/13.0.4": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Newtonsoft.Json.dll": {
+          "lib/net45/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/Newtonsoft.Json.dll": {
+          "lib/net45/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -85,48 +77,33 @@
       "System.CodeDom/8.0.0": {
         "type": "package",
         "compile": {
-          "lib/net8.0/System.CodeDom.dll": {
+          "lib/net462/System.CodeDom.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net8.0/System.CodeDom.dll": {
+          "lib/net462/System.CodeDom.dll": {
             "related": ".xml"
           }
         },
         "build": {
-          "buildTransitive/net6.0/_._": {}
+          "buildTransitive/net462/_._": {}
         }
       },
       "System.Drawing.Common/10.0.2": {
         "type": "package",
-        "dependencies": {
-          "Microsoft.Win32.SystemEvents": "10.0.2"
-        },
         "compile": {
-          "lib/net9.0/System.Drawing.Common.dll": {
+          "lib/net462/System.Drawing.Common.dll": {
             "related": ".pdb;.xml"
-          },
-          "lib/net9.0/System.Private.Windows.Core.dll": {
-            "related": ".xml"
-          },
-          "lib/net9.0/System.Private.Windows.GdiPlus.dll": {
-            "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net9.0/System.Drawing.Common.dll": {
+          "lib/net462/System.Drawing.Common.dll": {
             "related": ".pdb;.xml"
-          },
-          "lib/net9.0/System.Private.Windows.Core.dll": {
-            "related": ".xml"
-          },
-          "lib/net9.0/System.Private.Windows.GdiPlus.dll": {
-            "related": ".xml"
           }
         },
         "build": {
-          "buildTransitive/net8.0/_._": {}
+          "buildTransitive/net462/_._": {}
         }
       },
       "System.Management/8.0.0": {
@@ -134,24 +111,135 @@
         "dependencies": {
           "System.CodeDom": "8.0.0"
         },
+        "frameworkAssemblies": [
+          "System.Management"
+        ],
         "compile": {
-          "lib/net8.0/System.Management.dll": {
+          "lib/net462/_._": {}
+        },
+        "runtime": {
+          "lib/net462/_._": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.8/win-x86": {
+      "FlaUI.Core/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Management": "8.0.0"
+        },
+        "frameworkAssemblies": [
+          "Accessibility",
+          "PresentationCore",
+          "PresentationFramework",
+          "System.IO.Compression",
+          "System.Management",
+          "System.Net.Http",
+          "System.Windows.Forms",
+          "WindowsBase"
+        ],
+        "compile": {
+          "lib/net48/FlaUI.Core.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net8.0/System.Management.dll": {
+          "lib/net48/FlaUI.Core.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "FlaUI.UIA3/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "FlaUI.Core": "5.0.0",
+          "Interop.UIAutomationClient": "10.19041.0"
+        },
+        "frameworkAssemblies": [
+          "Accessibility",
+          "WindowsBase"
+        ],
+        "compile": {
+          "lib/net48/FlaUI.UIA3.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net48/FlaUI.UIA3.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Interop.UIAutomationClient/10.19041.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Interop.UIAutomationClient.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Interop.UIAutomationClient.dll": {}
+        },
+        "build": {
+          "build/_._": {}
+        }
+      },
+      "Newtonsoft.Json/13.0.4": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "System.CodeDom/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net462/System.CodeDom.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net462/System.CodeDom.dll": {
             "related": ".xml"
           }
         },
         "build": {
-          "buildTransitive/net6.0/_._": {}
-        },
-        "runtimeTargets": {
-          "runtimes/win/lib/net8.0/System.Management.dll": {
-            "assetType": "runtime",
-            "rid": "win"
+          "buildTransitive/net462/_._": {}
+        }
+      },
+      "System.Drawing.Common/10.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net462/System.Drawing.Common.dll": {
+            "related": ".pdb;.xml"
           }
+        },
+        "runtime": {
+          "lib/net462/System.Drawing.Common.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net462/_._": {}
+        }
+      },
+      "System.Management/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.CodeDom": "8.0.0"
+        },
+        "frameworkAssemblies": [
+          "System.Management"
+        ],
+        "compile": {
+          "lib/net462/_._": {}
+        },
+        "runtime": {
+          "lib/net462/_._": {}
         }
       }
     }
@@ -215,41 +303,6 @@
         "lib/netcoreapp3.0/Interop.UIAutomationClient.dll",
         "lib/netstandard2.0/Interop.UIAutomationClient.dll",
         "tools/install.ps1"
-      ]
-    },
-    "Microsoft.Win32.SystemEvents/10.0.2": {
-      "sha512": "1G4BdeFwc8E95MpwtR7pO4rEh2YCG/o5gqcOszdQRGrWX1ayHTZtho3xPuYZTbBxKb/3kQHjL3b4nQeNGvbM9g==",
-      "type": "package",
-      "path": "microsoft.win32.systemevents/10.0.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "PACKAGE.md",
-        "THIRD-PARTY-NOTICES.TXT",
-        "buildTransitive/net461/Microsoft.Win32.SystemEvents.targets",
-        "buildTransitive/net462/_._",
-        "buildTransitive/net8.0/_._",
-        "buildTransitive/netcoreapp2.0/Microsoft.Win32.SystemEvents.targets",
-        "lib/net10.0/Microsoft.Win32.SystemEvents.dll",
-        "lib/net10.0/Microsoft.Win32.SystemEvents.xml",
-        "lib/net462/Microsoft.Win32.SystemEvents.dll",
-        "lib/net462/Microsoft.Win32.SystemEvents.xml",
-        "lib/net8.0/Microsoft.Win32.SystemEvents.dll",
-        "lib/net8.0/Microsoft.Win32.SystemEvents.xml",
-        "lib/net9.0/Microsoft.Win32.SystemEvents.dll",
-        "lib/net9.0/Microsoft.Win32.SystemEvents.xml",
-        "lib/netstandard2.0/Microsoft.Win32.SystemEvents.dll",
-        "lib/netstandard2.0/Microsoft.Win32.SystemEvents.xml",
-        "microsoft.win32.systemevents.10.0.2.nupkg.sha512",
-        "microsoft.win32.systemevents.nuspec",
-        "runtimes/win/lib/net10.0/Microsoft.Win32.SystemEvents.dll",
-        "runtimes/win/lib/net10.0/Microsoft.Win32.SystemEvents.xml",
-        "runtimes/win/lib/net8.0/Microsoft.Win32.SystemEvents.dll",
-        "runtimes/win/lib/net8.0/Microsoft.Win32.SystemEvents.xml",
-        "runtimes/win/lib/net9.0/Microsoft.Win32.SystemEvents.dll",
-        "runtimes/win/lib/net9.0/Microsoft.Win32.SystemEvents.xml",
-        "useSharedDesignerContext.txt"
       ]
     },
     "Newtonsoft.Json/13.0.4": {
@@ -399,7 +452,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net9.0": [
+    ".NETFramework,Version=v4.8": [
       "FlaUI.Core >= 5.0.0",
       "FlaUI.UIA3 >= 5.0.0",
       "Newtonsoft.Json >= 13.0.4",
@@ -428,7 +481,7 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net9.0"
+        "net48"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -436,8 +489,8 @@
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net48": {
+          "targetAlias": "net48",
           "projectReferences": {}
         }
       },
@@ -454,8 +507,8 @@
       "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
-      "net9.0": {
-        "targetAlias": "net9.0",
+      "net48": {
+        "targetAlias": "net48",
         "dependencies": {
           "FlaUI.Core": {
             "target": "Package",
@@ -474,46 +527,13 @@
             "version": "[10.0.2, )"
           }
         },
-        "imports": [
-          "net461",
-          "net462",
-          "net47",
-          "net471",
-          "net472",
-          "net48",
-          "net481"
-        ],
-        "assetTargetFallback": true,
-        "warn": true,
-        "frameworkReferences": {
-          "Microsoft.NETCore.App": {
-            "privateAssets": "all"
-          }
-        },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308\\RuntimeIdentifierGraph.json"
+      }
+    },
+    "runtimes": {
+      "win-x86": {
+        "#import": []
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'FlaUI.Core 5.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0'. This package may not be fully compatible with your project.",
-      "libraryId": "FlaUI.Core",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'FlaUI.UIA3 5.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0'. This package may not be fully compatible with your project.",
-      "libraryId": "FlaUI.UIA3",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    }
-  ]
+  }
 }

@@ -190,25 +190,37 @@ namespace UIAutomationBridge
         static void HandleGetWindows(HttpListenerContext context)
         {
             var desktop = _automation.GetDesktop();
-            var windows = desktop.FindAllChildren(cf => cf.ByControlType(ControlType.Window))
-                .Where(w => !string.IsNullOrWhiteSpace(w.Name))
-                .Select(w => new
+            var windows = new List<object>();
+
+            foreach (var w in desktop.FindAllChildren(cf => cf.ByControlType(ControlType.Window)))
+            {
+                try
                 {
-                    id = w.Properties.NativeWindowHandle.ValueOrDefault.ToString(),
-                    name = w.Name,
-                    automationId = w.Properties.AutomationId.ValueOrDefault,
-                    className = w.Properties.ClassName.ValueOrDefault,
-                    isVisible = !w.IsOffscreen,
-                    processId = w.Properties.ProcessId.ValueOrDefault,
-                    boundingRectangle = new
+                    if (string.IsNullOrWhiteSpace(w.Name))
+                        continue;
+
+                    bool isVisible = true;
+                    try { isVisible = !w.IsOffscreen; } catch { }
+
+                    windows.Add(new
                     {
-                        x = w.BoundingRectangle.X,
-                        y = w.BoundingRectangle.Y,
-                        width = w.BoundingRectangle.Width,
-                        height = w.BoundingRectangle.Height
-                    }
-                })
-                .ToList();
+                        id = w.Properties.NativeWindowHandle.ValueOrDefault.ToString(),
+                        name = w.Name,
+                        automationId = w.Properties.AutomationId.ValueOrDefault,
+                        className = w.Properties.ClassName.ValueOrDefault,
+                        isVisible,
+                        processId = w.Properties.ProcessId.ValueOrDefault,
+                        boundingRectangle = new
+                        {
+                            x = w.BoundingRectangle.X,
+                            y = w.BoundingRectangle.Y,
+                            width = w.BoundingRectangle.Width,
+                            height = w.BoundingRectangle.Height
+                        }
+                    });
+                }
+                catch { /* Skip windows that cause errors */ }
+            }
 
             WriteJsonResponse(context, new { ok = true, windows });
         }

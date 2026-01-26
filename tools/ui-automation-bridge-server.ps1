@@ -36,7 +36,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 $projectPath = Join-Path $PSScriptRoot "ui-automation-bridge\UIAutomationBridge"
-$dllPath = Join-Path $projectPath "bin\Debug\net9.0\UIAutomationBridge.dll"
+$dllPath = Join-Path $projectPath "bin\Debug\net48\UIAutomationBridge.exe"
 
 # Check if project exists
 if (-not (Test-Path $projectPath)) {
@@ -71,7 +71,7 @@ if ($Debug) {
 }
 
 try {
-    dotnet $dllPath @args
+    & $dllPath @args
 }
 catch {
     Write-Host "[ERROR] $($_.Exception.Message)" -ForegroundColor Red

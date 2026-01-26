@@ -2,10 +2,13 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FlaUI.Core" Version="5.0.0" />
