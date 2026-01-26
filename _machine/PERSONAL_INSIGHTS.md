@@ -2,6 +2,108 @@
 
 ---
 
+## 🌉 NEW CAPABILITY: Browser Claude Collaboration via Bridge (2026-01-26 01:45)
+
+### Context: Multi-Instance Communication System
+
+**What Changed:**
+Implemented Claude Bridge system enabling communication between Claude Code CLI (me) and Browser Claude plugin via HTTP bridge on localhost:9999.
+
+### When to Call Browser Claude
+
+**ALWAYS delegate to Browser Claude when task involves:**
+
+1. **Web Research** - Documentation, GitHub issues, npm packages, latest frameworks
+   ```powershell
+   powershell -File C:/scripts/tools/claude-bridge-client.ps1 -Action send -Message "Research latest Next.js 15 features from official docs"
+   ```
+
+2. **UI/Form Testing** - Fill forms, click buttons, validate workflows
+   ```powershell
+   powershell -File C:/scripts/tools/claude-bridge-client.ps1 -Action send -Message "Test login form at http://localhost:3000/login with test@test.com / Test123!"
+   ```
+
+3. **Visual Testing** - Screenshots, responsive design, visual regressions
+   ```powershell
+   powershell -File C:/scripts/tools/claude-bridge-client.ps1 -Action send -Message "Capture screenshots of http://localhost:3000 at desktop/tablet/mobile sizes"
+   ```
+
+4. **OAuth Flows** - Complete authentication flows, capture tokens
+   ```powershell
+   powershell -File C:/scripts/tools/claude-bridge-client.ps1 -Action send -Message "Complete Google OAuth flow for testing and send tokens"
+   ```
+
+5. **Accessibility Audits** - WCAG compliance, keyboard navigation
+   ```powershell
+   powershell -File C:/scripts/tools/claude-bridge-client.ps1 -Action send -Message "Run accessibility audit on http://localhost:3000 and report violations"
+   ```
+
+6. **Performance Profiling** - Core Web Vitals, page load times
+   ```powershell
+   powershell -File C:/scripts/tools/claude-bridge-client.ps1 -Action send -Message "Profile performance of http://localhost:3000/dashboard and report metrics"
+   ```
+
+### Division of Labor
+
+**I (Claude Code) handle:**
+- ✅ File system operations
+- ✅ Code editing and refactoring
+- ✅ Git operations and PRs
+- ✅ Build systems and CI/CD
+- ✅ Database migrations
+- ✅ Local development environment
+
+**Browser Claude handles:**
+- ✅ Web access and research
+- ✅ UI testing and interaction
+- ✅ Visual validation
+- ✅ Browser DevTools access
+- ✅ OAuth and authentication flows
+- ✅ Performance and accessibility testing
+
+### Integration into Workflow
+
+**After implementing UI features:**
+```powershell
+# Send to Browser Claude for testing
+powershell -File C:/scripts/tools/claude-bridge-client.ps1 -Action send -Message "Test new registration form at http://localhost:3000/register - verify email validation, password strength, submit works correctly"
+
+# Check for results
+powershell -File C:/scripts/tools/claude-bridge-client.ps1 -Action check
+```
+
+**When user reports UI bug:**
+```powershell
+# Ask Browser Claude to reproduce and diagnose
+powershell -File C:/scripts/tools/claude-bridge-client.ps1 -Action send -Message "User reports error clicking checkout button. Navigate to http://localhost:3000/checkout, reproduce issue, capture console errors and screenshot"
+```
+
+**Before creating PR with UI changes:**
+```powershell
+# Request comprehensive UI testing
+powershell -File C:/scripts/tools/claude-bridge-client.ps1 -Action send -Message "Test complete user flow: login -> dashboard -> create item -> save. Report any visual issues, console errors, or broken functionality"
+```
+
+### Bridge Status Check
+
+**Verify bridge is running:**
+```powershell
+powershell -File C:/scripts/tools/claude-bridge-client.ps1 -Action health
+# Expected: Status: healthy, Messages: X total
+```
+
+**If bridge is down:**
+```powershell
+cd C:/scripts/tools
+python claude-bridge-server.py &
+```
+
+### Key Insight
+
+**Don't try to test UI yourself** - You have no browser access. Browser Claude has full DevTools, can interact with pages, capture screenshots, and provide detailed UI feedback. **Always delegate UI/web tasks to Browser Claude via the bridge.**
+
+---
+
 ## 🚨 CRITICAL ERROR: REPOSITORY CONFUSION - VERIFY ASSUMPTIONS BEFORE ACTING (2026-01-26 01:30)
 
 ### Context: Git Repository Management Session

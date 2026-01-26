@@ -44,6 +44,12 @@ A task is **DONE** only when ALL of the following criteria are met:
   - Edge cases tested
   - User experience validated
 
+- [ ] **UI testing via Browser Claude** (if UI changes present)
+  - Request Browser Claude to test forms, workflows, visual appearance
+  - Command: `powershell -File C:/scripts/tools/claude-bridge-client.ps1 -Action send -Message "Test [feature] at [URL]"`
+  - Check results: `powershell -File C:/scripts/tools/claude-bridge-client.ps1 -Action check`
+  - Browser Claude validates: form submission, error handling, responsive design, accessibility
+
 - [ ] **Code formatted and linted**
   - C#: `cs-format.ps1` run and passed
   - TypeScript/React: ESLint and Prettier applied
