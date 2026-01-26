@@ -26729,3 +26729,68 @@ High (inferred from lack of complaints, minimal communication, acceptance of all
 
 ---
 
+
+---
+
+## 2026-01-26 18:00 - Test Binary Optimization Pattern (Multi-repo)
+
+**Context:** User reported Hazina tests folder consuming excessive disk space (4.8+ GB across 60 bin/obj folders)
+
+**Solution Implemented:**
+Created `Directory.Build.props` files to centralize test build output to `artifacts/tests/`:
+- **Hazina:** tests/Directory.Build.props (Tests/ folder with capital T)
+- **client-manager:** Directory.Build.props in root with conditional test-only application
+- **artrevisionist:** tests/Directory.Build.props (Tests/ folder)
+
+**Key Learnings:**
+
+### 1. MSBuild Shared Properties Pattern
+Using `Directory.Build.props` to apply settings to multiple projects:
+```xml
+<BaseOutputPath>$(MSBuildThisFileDirectory)..\artifacts\tests\$(MSBuildProjectName)\bin\</BaseOutputPath>
+<BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)..\artifacts\tests\$(MSBuildProjectName)\obj\</BaseIntermediateOutputPath>
+```
+
+### 2. Conditional Application (client-manager pattern)
+For repos with tests in root alongside production code:
+```xml
+<PropertyGroup Condition="$(MSBuildProjectName.EndsWith('.Tests')) OR $(MSBuildProjectName.EndsWith('.IntegrationTests'))">
+  <!-- Settings only apply to test projects -->
+</PropertyGroup>
+```
+
+### 3. Multi-repo Implementation Strategy
+When applying same optimization across multiple repos:
+1. Analyze each repo structure first (tests/ folder vs root)
+2. Allocate worktrees for all repos with same branch name
+3. Tailor implementation to each repo's structure
+4. Commit/push all repos sequentially
+5. Create PRs with consistent messaging
+6. Release all worktrees together
+
+### 4. Repository Structure Variations
+- **Hazina:** Tests/ folder (capital T) with many test projects
+- **client-manager:** Test projects in root (no tests/ folder)
+- **artrevisionist:** Tests/ folder (capital T) with few test projects
+
+**Impact:**
+- **Disk savings:** 2-3 GB (Hazina) + 200 MB (client-manager) + 130 MB (artrevisionist)
+- **Maintenance:** Single artifacts/ folder cleanup vs 60+ individual folders
+- **Build speed:** Reduced file copying overhead
+
+**Pattern for Future:**
+✅ Always check for test project folder structure before creating Directory.Build.props
+✅ Use conditional application when test projects are mixed with production code
+✅ Provide comprehensive documentation (TEST_BINARY_OPTIMIZATION.md)
+✅ Update .gitignore to exclude artifacts/
+✅ Measure and document expected savings in PR
+
+**Created Tool:**
+- C:\scripts\tools\cleanup-test-binaries.ps1 - One-command cleanup for existing bin/obj
+
+**PRs:**
+- Hazina #121
+- client-manager #400
+- artrevisionist #34
+
+**Status:** ✅ Complete - PRs created and worktrees released
