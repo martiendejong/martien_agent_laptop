@@ -1,3 +1,39 @@
+## 2026-01-26 11:00 - HazinaCoder: Fixed Ollama Environment Variable Support ✅
+
+**Context:** HazinaCoder POC 1 testing with Ollama on production server (port 5555)
+
+**Problem:**
+- User set `OLLAMA_HOST=http://localhost:5555` in hazinacoder.bat
+- HazinaCoder still tried to connect to `localhost:11434`
+- Error: "Kan geen verbinding maken omdat de doelcomputer de verbinding actief heeft geweigerd" (Connection refused)
+
+**Root Cause:**
+`C:\Projects\hazina\src\Core\LLMs.Providers\Hazina.LLMs.Ollama\Models\OllamaConfig.cs` line 35 had:
+```csharp
+protected override string? DefaultEndpoint => "http://localhost:11434";
+```
+This hardcoded value was ignoring the OLLAMA_HOST environment variable.
+
+**Fix Applied:**
+Changed line 35-36 to:
+```csharp
+protected override string? DefaultEndpoint =>
+    Environment.GetEnvironmentVariable("OLLAMA_HOST") ?? "http://localhost:11434";
+```
+
+**Verification:**
+- ✅ Code updated
+- ✅ Build successful (4 warnings, 0 errors)
+- ✅ Ready for user testing with h.bat launcher
+
+**Pattern for Future:**
+All provider configs (OpenAI, Anthropic, Ollama, etc.) should check environment variables BEFORE using hardcoded defaults. This allows flexible deployment without code changes.
+
+**Files Modified:**
+- `C:\Projects\hazina\src\Core\LLMs.Providers\Hazina.LLMs.Ollama\Models\OllamaConfig.cs`
+
+---
+
 ## 2026-01-27 01:30 - CRITICAL: Deployment Configuration Validation Pattern 🚨
 
 **Context:** Production backend crashed on startup due to missing Sentry configuration section in deployed appsettings.json
