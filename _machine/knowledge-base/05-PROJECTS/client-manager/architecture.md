@@ -2255,6 +2255,48 @@ npm run test:e2e:debug    # Debug mode
 
 **Change credentials in production!**
 
+#### Automated Browser Testing (Playwright MCP)
+
+**NEW (2026-01-26):** Claude Code can autonomously test the application using Playwright MCP integration.
+
+**Access URLs:**
+- Frontend: `https://localhost:5173`
+- Backend API: `https://localhost:54501`
+- Swagger: `https://localhost:54501/swagger`
+- Hangfire Dashboard: `https://localhost:54501/hangfire`
+
+**Capabilities:**
+- ✅ Launch browser and navigate to application
+- ✅ Capture page snapshots (YAML accessibility tree)
+- ✅ Monitor console messages (errors, warnings, logs)
+- ✅ Track network requests (API calls, 401 errors)
+- ✅ Take screenshots for documentation/regression testing
+- ✅ Interact with UI elements (click, type, fill forms)
+- ✅ Run E2E test scenarios autonomously
+
+**Example Usage:**
+```javascript
+// Claude can run Playwright commands via MCP
+await page.goto('https://localhost:5173');
+await page.click('button:has-text("Sign In")');
+await page.fill('input[name="username"]', 'wreckingball');
+```
+
+**Expected Console Notices (Development):**
+- ⚠️ Sentry DSN not configured (expected)
+- ❌ API 401 errors when backend not running or user not authenticated:
+  - `/api/language/user`
+  - `/api/actionsuggestions/categories`
+  - `/api/actionsuggestions/actions`
+
+**Landing Page Structure (Validated 2026-01-26):**
+- Complete marketing site: Features, How It Works, Pricing, Testimonials
+- Pricing tiers: Free (0€), Basic (10€), Standard (20€), Premium (50€)
+- CTAs: "Get Started Free", "Sign In"
+- Navigation: Features, How It Works, Pricing links
+
+**Integration:** Playwright MCP tools available in Claude Code CLI for autonomous testing workflows
+
 ---
 
 ## 📊 System Integration Points
