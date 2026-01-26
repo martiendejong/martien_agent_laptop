@@ -53,6 +53,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $DbPath = "C:\scripts\_machine\agent-activity.db"
+$SqlitePath = "C:\scripts\_machine\sqlite3.exe"
 
 # Check if database exists
 if (-not (Test-Path $DbPath)) {
@@ -62,7 +63,7 @@ if (-not (Test-Path $DbPath)) {
 
 function Invoke-Sql {
     param([string]$Sql)
-    return $Sql | sqlite3 $DbPath
+    return $Sql | & $SqlitePath $DbPath
 }
 
 function Show-Dashboard {

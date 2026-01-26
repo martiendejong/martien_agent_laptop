@@ -65,19 +65,14 @@ $ErrorActionPreference = 'Stop'
 # Paths
 $DbPath = "C:\scripts\_machine\agent-activity.db"
 $AgentIdFile = "C:\scripts\_machine\.current_agent_id"
+$SqlitePath = "C:\scripts\_machine\sqlite3.exe"
 $MachineId = $env:COMPUTERNAME
 
 # Initialize database schema
 function Initialize-Database {
     # Check if SQLite is available
-    $sqliteCmd = Get-Command sqlite3 -ErrorAction SilentlyContinue
-    if (-not $sqliteCmd) {
-        Write-Host " SQLite not found. Installing via winget..." -ForegroundColor Red
-        winget install --id SQLite.SQLite -e --accept-source-agreements --accept-package-agreements
-        $sqliteCmd = Get-Command sqlite3 -ErrorAction SilentlyContinue
-        if (-not $sqliteCmd) {
-            throw "Failed to install SQLite. Please install manually."
-        }
+    if (-not (Test-Path $SqlitePath)) {
+        throw "SQLite not found at $SqlitePath. Please ensure it's installed."
     }
 
     # Create database if not exists
@@ -134,7 +129,7 @@ CREATE INDEX IF NOT EXISTS idx_tasks_assigned ON tasks(assigned_to);
 '@ | Out-File -FilePath $schemaFile -Encoding UTF8
 
         # Execute schema
-        sqlite3 $DbPath ".read $schemaFile"
+        & $SqlitePath $DbPath ".read $schemaFile"
         Remove-Item $schemaFile
         Write-Host "Database initialized" -ForegroundColor Green
     }
@@ -169,9 +164,9 @@ function Invoke-Sql {
     param([string]$Sql, [switch]$Json)
 
     if ($Json) {
-        $result = $Sql | sqlite3 $DbPath -json
+        $result = $Sql | & $SqlitePath $DbPath -json
     } else {
-        $result = $Sql | sqlite3 $DbPath
+        $result = $Sql | & $SqlitePath $DbPath
     }
 
     return $result

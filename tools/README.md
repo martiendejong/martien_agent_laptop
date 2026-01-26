@@ -14,6 +14,8 @@
 | Tool | Purpose | Quick Usage |
 |------|---------|-------------|
 | `claude-ctl.ps1` | Unified CLI | `.\claude-ctl.ps1 status` |
+| **`agent-logger.ps1`** | **Multi-agent activity tracking (SQLite)** | **`.\agent-logger.ps1 -Action register`** |
+| **`query-agent-activity.ps1`** | **Agent coordination dashboard** | **`.\query-agent-activity.ps1 -Action dashboard`** |
 | `bootstrap-snapshot.ps1` | Fast startup state | `.\bootstrap-snapshot.ps1 -Generate` |
 | `system-health.ps1` | Health checks | `.\system-health.ps1 -Fix` |
 | `worktree-allocate.ps1` | Allocate seat | `.\worktree-allocate.ps1 -Repo client-manager -Branch feature/x` |
