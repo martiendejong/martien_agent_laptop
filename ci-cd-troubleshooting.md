@@ -493,6 +493,80 @@ npm error code EPERM - operation not permitted, unlink rollup.win32-x64-msvc.nod
 ```
 This occurs AFTER deployment completes - can be ignored. The msdeploy sync finished successfully.
 
+### Configuration Validation (CRITICAL)
+
+**Added:** 2026-01-27 (Sentry configuration incident)
+
+**Problem:** Configuration overlay completely replaces source config → missing sections cause runtime failures
+
+**Incident:** Backend crashed on startup with `System.ArgumentNullException: You must supply a DSN to use Sentry...`
+
+**Root Cause:**
+- Source `appsettings.json` had `"Dsn": "${SENTRY_DSN:}"` (env variable)
+- Production overlay `env/prod/backend/appsettings.json` had NO Sentry section
+- Deployment replaces entire config → Sentry section missing → startup failure
+
+**Solution:** Pre-deployment validation script catches missing config BEFORE deploying
+
+**Validation Script:** `validate-deployment-config.ps1`
+```powershell
+# Load deployed config from dist/backend/appsettings.json
+$config = Get-Content $configPath -Raw | ConvertFrom-Json
+
+# Define required sections
+$requiredSections = @{
+    'Sentry' = @{
+        Description = 'Sentry error tracking'
+        RequiredKeys = @('Dsn')
+        ValidationRule = { param($value) return $value -is [string] }
+    }
+    'ConnectionStrings' = @{
+        Description = 'Database connections'
+        RequiredKeys = @('DefaultConnection')
+        ValidationRule = { param($value) return $value -is [string] -and $value.Length -gt 0 }
+    }
+}
+
+# Validate and exit 1 if any required sections/keys missing
+```
+
+**Integration in Deployment Script:**
+```powershell
+# AFTER config overlay
+Copy-Item -Path env/prod/backend/* -Destination dist/backend -Recurse -Force
+
+# VALIDATE (NEW - blocks deployment if validation fails)
+& validate-deployment-config.ps1
+if ($LASTEXITCODE -ne 0) {
+    throw "Deployment configuration validation failed"
+}
+
+# DEPLOY to server
+& $msdeployPath @args
+```
+
+**Key Principle:** Production overlay MUST be complete - include ALL required sections, even if disabled
+
+**Example - Sentry Disabled:**
+```json
+{
+  "Sentry": {
+    "Dsn": "",
+    "_comment": "Sentry disabled - set DSN to enable"
+  }
+}
+```
+
+**Documentation:** `C:\Projects\client-manager\docs\DEPLOYMENT-VALIDATION.md`
+
+**When to Add Validation:**
+- ✅ Configuration with environment variables
+- ✅ Multiple environments (dev/staging/prod)
+- ✅ Libraries with required config (even if disabled)
+- ✅ ANY critical service that must not fail on startup
+
+**Pattern:** Run validation AFTER config overlay, BEFORE deployment
+
 ---
 
 
