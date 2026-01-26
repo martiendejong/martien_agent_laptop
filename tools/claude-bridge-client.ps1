@@ -79,6 +79,7 @@ switch ($Action) {
             $response | ConvertTo-Json
         } else {
             Write-Host "[SUCCESS] Message sent to Browser Claude (ID: $($response.message.id))" -ForegroundColor Green
+            Write-Host "Timestamp: $($response.message.timestamp)" -ForegroundColor Gray
             Write-Host ""
             Write-Host "Message: $Message" -ForegroundColor White
         }
