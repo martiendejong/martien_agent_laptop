@@ -1,4 +1,4 @@
-## 2026-01-26 11:00 - HazinaCoder: Fixed Ollama Environment Variable Support ✅
+## 2026-01-26 11:00 - HazinaCoder: Ollama Environment Variable - STILL NOT WORKING ⚠️
 
 **Context:** HazinaCoder POC 1 testing with Ollama on production server (port 5555)
 
@@ -7,30 +7,35 @@
 - HazinaCoder still tried to connect to `localhost:11434`
 - Error: "Kan geen verbinding maken omdat de doelcomputer de verbinding actief heeft geweigerd" (Connection refused)
 
-**Root Cause:**
-`C:\Projects\hazina\src\Core\LLMs.Providers\Hazina.LLMs.Ollama\Models\OllamaConfig.cs` line 35 had:
-```csharp
-protected override string? DefaultEndpoint => "http://localhost:11434";
-```
-This hardcoded value was ignoring the OLLAMA_HOST environment variable.
-
-**Fix Applied:**
-Changed line 35-36 to:
+**Fix Attempt #1: Update OllamaConfig.cs**
+Changed line 35-36 to read environment variable:
 ```csharp
 protected override string? DefaultEndpoint =>
     Environment.GetEnvironmentVariable("OLLAMA_HOST") ?? "http://localhost:11434";
 ```
 
-**Verification:**
-- ✅ Code updated
-- ✅ Build successful (4 warnings, 0 errors)
-- ✅ Ready for user testing with h.bat launcher
+**Result: STILL NOT WORKING** ❌
+- Code updated and rebuilt successfully
+- User tested again: same error (still connecting to 11434)
 
-**Pattern for Future:**
-All provider configs (OpenAI, Anthropic, Ollama, etc.) should check environment variables BEFORE using hardcoded defaults. This allows flexible deployment without code changes.
+**Possible Root Causes (Need Investigation):**
+1. Environment variable not being passed from batch script to dotnet process
+2. Config loaded from appsettings.json BEFORE environment variable check
+3. OllamaClient created with explicit endpoint somewhere else in code
+4. Endpoint property set explicitly after config initialization
+5. Base class `HazinaConfigBase.LoadFromConfiguration` overriding DefaultEndpoint
+
+**Next Steps:**
+- Need to investigate HazinaConfigBase.LoadFromConfiguration() method
+- Check if Endpoint property is being set explicitly from appsettings.json
+- May need to add debug logging to see what endpoint is actually being used
+- Consider alternative: pass endpoint as command-line argument instead of env var
+
+**Learning:**
+Environment variables in .NET are more complex than expected. Setting in batch script doesn't guarantee child process sees it. Need deeper investigation of Hazina config loading mechanism.
 
 **Files Modified:**
-- `C:\Projects\hazina\src\Core\LLMs.Providers\Hazina.LLMs.Ollama\Models\OllamaConfig.cs`
+- `C:\Projects\hazina\src\Core\LLMs.Providers\Hazina.LLMs.Ollama\Models\OllamaConfig.cs` (attempted fix, didn't work)
 
 ---
 
