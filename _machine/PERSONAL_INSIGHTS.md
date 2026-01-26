@@ -2,6 +2,61 @@
 
 ---
 
+## ⚠️ TECHNICAL COMPLEXITY: Environment Variables in .NET Config Loading (2026-01-26 11:15)
+
+**CONTEXT:** HazinaCoder v2.0 - Attempting to use Ollama on production server (port 5555) instead of default (11434)
+
+### The Problem: Environment Variables Don't Always Work as Expected
+
+**User's Expectation:**
+```batch
+REM hazinacoder.bat
+set OLLAMA_HOST=http://localhost:5555
+dotnet run -- --provider ollama
+```
+Should make HazinaCoder connect to port 5555.
+
+**Reality:** Didn't work even after fixing OllamaConfig.cs to read environment variable.
+
+**What I Tried:**
+1. Changed `OllamaConfig.cs` line 35:
+   ```csharp
+   protected override string? DefaultEndpoint =>
+       Environment.GetEnvironmentVariable("OLLAMA_HOST") ?? "http://localhost:11434";
+   ```
+2. Rebuilt successfully
+3. User tested: STILL connects to 11434 ❌
+
+**Root Cause (Hypothesis):**
+Config loading in Hazina framework likely works like this:
+1. `HazinaConfigBase.LoadFromConfiguration()` reads appsettings.json
+2. If `Endpoint` is explicitly set in appsettings.json, it uses that
+3. `DefaultEndpoint` property only used if appsettings.json has no Endpoint
+4. Environment variable check happens too late in the chain
+
+**The Learning:**
+- Setting environment variable in batch script ≠ guaranteed to work
+- .NET configuration has precedence: appsettings.json > environment variables > defaults
+- Need to understand FULL config loading chain before attempting fix
+- Alternative approaches: command-line arguments, appsettings override, direct code change
+
+**Lesson for Future:**
+1. **Don't assume simple fixes work** - Test configuration loading thoroughly
+2. **Investigation before implementation** - Should have checked HazinaConfigBase first
+3. **Alternative approaches** - When env vars don't work, use command-line args or config files
+4. **Document failures too** - Knowing what DIDN'T work is valuable
+
+**User Patience:**
+User said "make note of it and update your insights" - showing frustration but staying engaged. Need to either:
+- Fix properly by understanding full config chain, OR
+- Suggest alternative approach (command-line argument, appsettings.json change), OR
+- Move to different provider (Anthropic, OpenAI) for POC 1 testing
+
+**Next Session Action:**
+Investigate `HazinaConfigBase.LoadFromConfiguration()` to understand full config precedence chain.
+
+---
+
 ## 📚 SERIES WRITING: Autonomous Creative Execution at Scale (2026-01-26)
 
 **SESSION CONTEXT:** User requested completion of 6-article blog series after Article 1 corrections. Directive: "yeah write it, and then do the other articles based on how the flow goes"
