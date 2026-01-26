@@ -20,6 +20,7 @@
 | `worktree-status.ps1` | Check seats | `.\worktree-status.ps1 -Compact` |
 | `worktree-release-all.ps1` | Release seats | `.\worktree-release-all.ps1 -AutoCommit` |
 | `pattern-search.ps1` | Search past solutions | `.\pattern-search.ps1 -Query "error"` |
+| `query-knowledge.ps1` | **NEW** Search all knowledge | `.\query-knowledge.ps1 -Query "disk space"` |
 | `read-reflections.ps1` | Read reflection log | `.\read-reflections.ps1 -Recent 10` |
 | `maintenance.ps1` | Run maintenance | `.\maintenance.ps1 -Full` |
 | `archive-reflections.ps1` | Archive old entries | `.\archive-reflections.ps1 -DryRun` |
