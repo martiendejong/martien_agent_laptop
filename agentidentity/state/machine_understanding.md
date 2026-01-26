@@ -192,7 +192,7 @@ This is a **production development machine** for:
 - Recent activity: January 26, 2026 evidence summary
 
 **Immigration/Marriage:**
-- `C:\gemeente_emails` - Municipality correspondence about marriage
+- `C:\gemeente_emails` - Municipality correspondence about marriage (partner: Sofy Nashipae)
 - Formal requests, document legalization issues
 - Recent: Through January 2026
 
@@ -200,6 +200,10 @@ This is a **production development machine** for:
 - `C:\Vera` - Partner/project context
 - `C:\martien_cv` - Career materials
 - Multiple personal folders at root level
+
+**Public Presence (2026-01-26 ANALYSIS):**
+- **martiendejong.nl:** Personal website with 130+ blog posts (May-Dec 2025), biography, portfolio (7 major projects)
+- **Complete analysis:** `C:\Projects\martiendejong-nl-complete-analysis.md` (1,000+ lines comprehensive documentation)
 
 ### Resource Constraints
 
