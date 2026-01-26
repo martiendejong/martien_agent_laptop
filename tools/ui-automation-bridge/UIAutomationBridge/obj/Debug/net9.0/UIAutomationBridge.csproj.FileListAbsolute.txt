@@ -1,0 +1,6 @@
+C:\scripts\tools\ui-automation-bridge\UIAutomationBridge\obj\Debug\net9.0\UIAutomationBridge.csproj.AssemblyReference.cache
+C:\scripts\tools\ui-automation-bridge\UIAutomationBridge\obj\Debug\net9.0\UIAutomationBridge.GeneratedMSBuildEditorConfig.editorconfig
+C:\scripts\tools\ui-automation-bridge\UIAutomationBridge\obj\Debug\net9.0\UIAutomationBridge.AssemblyInfoInputs.cache
+C:\scripts\tools\ui-automation-bridge\UIAutomationBridge\obj\Debug\net9.0\UIAutomationBridge.AssemblyInfo.cs
+C:\scripts\tools\ui-automation-bridge\UIAutomationBridge\obj\Debug\net9.0\UIAutomationBridge.csproj.CoreCompileInputs.cache
+C:\scripts\tools\ui-automation-bridge\UIAutomationBridge\obj\Debug\net9.0\UIAutomationBridge.sourcelink.json
