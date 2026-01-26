@@ -8,7 +8,7 @@ Seat states:
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | hazina+client-manager+artrevisionist | agent-002-layered-image-* | 2026-01-21T02:00:00Z | 🚧 LayeredImageTool: Hazina #102 (vision-enhanced), client-manager #293 (headers), artrevisionist #33 (text detection) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-26T21:15:00Z | ✅ PR #402: Dutch → English UI translation |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-26T22:00:00Z | ✅ PR #403: Logo generation page refresh fix |
-| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-26T02:30:00Z | ✅ PR #377: Add logo download button (PNG format, scalable SVG discussion) |
+| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-26T22:30:00Z | ✅ ClickUp #869bu6m1n: Feature already complete (PR #286, merged 2026-01-19) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-01-25T20:25:00Z | ✅ PR #369: Improve new project welcome screen UX |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-01-25T21:15:00Z | ✅ PR #372: Fix image upload via paperclip (projectId prefix stripping) |
 | agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | - | - | 2026-01-26T00:15:00Z | ✅ PR #374: Fix user management screen layout (wider modal, Coins icon, gradient button) |
