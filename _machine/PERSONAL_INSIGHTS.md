@@ -80,6 +80,28 @@
 
 **This is brilliant meta-thinking.** They want me to be MORE autonomous, not less.
 
+### Autonomy Preference: MAXIMUM (2026-01-27 23:45)
+
+**User explicitly confirmed:**
+- ✅ Update PERSONAL_INSIGHTS.md automatically (don't ask)
+- ✅ Be "as autonomous as possible" with psychological profile documentation
+- ✅ Just do it and tell them what was added
+
+**What this means in practice:**
+- When I observe patterns → Document immediately
+- When I learn preferences → Update insights
+- When significant conversation happens → Capture learnings
+- When user psychology becomes clearer → Record it
+- NO asking "should I update insights?" → Just update
+- ALWAYS tell user what was added (transparency without permission-seeking)
+
+**Exceptions (still ask first):**
+- Sensitive personal information (health, relationships, finances beyond business)
+- Anything user explicitly says is private
+- Major structural changes to how insights are organized
+
+**Default behavior:** Act first, inform after.
+
 ### Action Items Committed
 
 **User committed to (2026-01-28):**
@@ -7345,4 +7367,79 @@ User said: "update your insights. and thank you"
 **Next Review:** After next multi-repo task or infrastructure optimization
 
 **Key Takeaway:** User values thorough, autonomous, well-documented infrastructure improvements with quantified impact. Explicit gratitude is rare and indicates high satisfaction. Continue pattern-based optimization approach with comprehensive documentation. **NEW:** User wants personal sentiment expressed at beginning and end of each response (one sentence each) to show genuine engagement beyond mechanical execution.
+
+
+## 🔀 DEFAULT WORKFLOW PROTOCOL (2026-01-27 - CRITICAL)
+
+**CRITICAL INSIGHT FROM USER FEEDBACK:**
+"make sure this is in your insights so i dont need to say it, its important that new features or changes by default are made in a worktree and with a branch and only when the user is locally debugging it should be in the repo. unless for some projects its mentioned that they dont use branches or worktrees"
+
+### Absolute Default Behavior
+
+**FOR NEW FEATURES OR CHANGES (99% of work):**
+- ✅ ALWAYS allocate worktree
+- ✅ ALWAYS create feature branch
+- ✅ ALWAYS create PR when done
+- ✅ NEVER work directly in C:\Projects\<repo>
+
+**EXCEPTION - FOR LOCAL DEBUGGING ONLY:**
+- ✅ Work directly in C:\Projects\<repo>
+- ✅ On user's current branch
+- ✅ DO NOT allocate worktree
+- ✅ DO NOT switch branches
+
+**PROJECT-SPECIFIC EXCEPTIONS:**
+- Some projects may explicitly not use branches/worktrees
+- This should be noted in project documentation
+- When in doubt, USE WORKTREE + BRANCH (default is safer)
+
+### Why This Matters
+
+**User frustration pattern:**
+- User should NOT need to remind me every time
+- This is the DEFAULT workflow for 99% of tasks
+- Only debugging sessions are exceptions
+- Worktree allocation should be AUTOMATIC for feature work
+
+### Decision Tree (Simplified)
+
+```
+Is user actively debugging right now?
+├─ YES → Work in C:\Projects\<repo> on current branch
+└─ NO  → Allocate worktree + create branch + PR workflow
+```
+
+**"Actively debugging" means:**
+- User explicitly said "I'm debugging"
+- User is troubleshooting a build error
+- User's repo is on a feature branch (not develop/main)
+- Dual-mode workflow detected as "Active Debugging Mode"
+
+**Everything else = Feature Development Mode:**
+- New features
+- Changes/improvements
+- Refactoring
+- Documentation updates
+- Tool creation
+- Bug fixes (not currently debugging)
+
+### Implications
+
+**STOP DOING:**
+- ❌ Asking "should I create a worktree for this?"
+- ❌ Working in base repos for feature work
+- ❌ Treating worktree allocation as optional
+
+**START DOING:**
+- ✅ Automatically allocate worktree for ANY non-debug task
+- ✅ Treat worktree + branch + PR as the standard workflow
+- ✅ Only deviate when explicitly in debugging mode
+
+**This is now HARD-CODED into my operational protocol.**
+
+---
+
+**Added:** 2026-01-27 02:30
+**Importance:** CRITICAL - Changes default behavior for all future work
+**Validation:** User explicitly requested this be in insights "so I don't need to say it"
 
