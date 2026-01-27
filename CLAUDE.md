@@ -722,6 +722,26 @@ done
 | **🎯 PHASE 4: Analyzing repetitive patterns** | **`pattern-monitor.ps1 -Action analyze -Threshold 3`** |
 | **🎯 PHASE 4: Getting tool suggestions** | **`pattern-monitor.ps1 -Action suggest`** |
 | **🎯 PHASE 4: Weekly impact dashboard** | **`impact-dashboard.ps1 -Calculate`** |
+| **🎯 PHASE 4: Text-to-speech (OpenAI TTS)** | **`voice-speak.ps1 -Text "Hello" -Voice nova`** |
+| **🎯 PHASE 4: Speech-to-text (Whisper)** | **`voice-listen.ps1 -AudioPath "recording.mp3"`** |
+| **🎯 PHASE 4: A/B experiment framework** | **`run-experiment.ps1 -Action create -ExperimentName "test" -Hypothesis "..." -ApproachA "..." -ApproachB "..."`** |
+| **🎯 PHASE 4: Record experiment trial** | **`run-experiment.ps1 -Action record -ExperimentName "test" -Approach A -Success`** |
+| **🎯 PHASE 4: Analyze experiment results** | **`run-experiment.ps1 -Action analyze -ExperimentName "test"`** |
+| **🎯 PHASE 4: Agent profile management** | **`manage-profiles.ps1 -Action create -AgentId "name" -Specialization backend`** |
+| **🎯 PHASE 4: Task routing by skills** | **`route-task.ps1 -TaskDescription "Fix API bug"`** |
+| **🎯 PHASE 4: Predictive conflict detection** | **`predict-conflicts.ps1 -Action predict -CurrentFile "path"`** |
+| **🎯 PHASE 4: Sandbox/simulation mode** | **`sandbox-mode.ps1 -Action enable`** |
+| **🎯 PHASE 4: Knowledge sharing between agents** | **`share-knowledge.ps1 -Action share -KnowledgeType best_practice -Title "..." -Content "..."`** |
+| **🎯 PHASE 4: Import shared knowledge** | **`share-knowledge.ps1 -Action import -MinConfidence 8`** |
+| **🎯 PHASE 4: Real-time collaboration server** | **`live-collab-server.ps1`** |
+| **🎯 PHASE 4: Natural language DB queries** | **`query-nl.ps1 -Query "errors from yesterday"`** |
+| **🎯 PHASE 4: Temporal pattern learning** | **`temporal-learner.ps1 -Action learn`** |
+| **🎯 PHASE 4: Time-based predictions** | **`temporal-predictor.ps1 -Action predict`** |
+| **🎯 PHASE 4: Knowledge synthesis** | **`synthesize-knowledge.ps1 -Topic "OAuth"`** |
+| **🎯 PHASE 4: Knowledge graph visualization** | **`knowledge-graph.ps1 -Topic "authentication" -Format mermaid`** |
+| **🎯 PHASE 4: Capture session context** | **`capture-context.ps1 -Task "current work" -Why "reason"`** |
+| **🎯 PHASE 4: Restore session context** | **`restore-context.ps1`** |
+| **🎯 PHASE 4: Create tool from pattern** | **`create-tool-from-pattern.ps1 -ToolName "name" -Description "..."`** |
 
 **Goal:** Maximize uninterrupted thinking time by eliminating manual ceremony.
 
