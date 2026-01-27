@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-01-27T21:30:00Z | ✅ Strategic vision roadmap created and merged into world_development |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-01-27T23:30:00Z | ✅ PR #36: Image diversity scoring to prevent duplicate images across pages |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | agents/agent-002-standby | 2026-01-27T18:30:00Z | ✅ PR #123: Added real-time terminal streaming (process-based bidirectional I/O, xterm.js) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | artrevisionist | feature/semantic-document-naming | 2026-01-27T14:45:00Z | ✅ PR #35: Semantic document naming + workflow integration (upload, pages, stories) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-26T22:00:00Z | ✅ PR #403: Logo generation page refresh fix |
