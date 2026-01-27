@@ -664,6 +664,7 @@ done
 | **Checking user activity & context** | **`monitor-activity.ps1 -Mode context`** |
 | **Detecting other Claude instances** | **`monitor-activity.ps1 -Mode claude`** |
 | **Parallel agent coordination** | **`parallel-agent-coordination` skill + `monitor-activity.ps1`** |
+| **🆕 Gentle browse awareness (mental health)** | **`browse-awareness.ps1 -Action start`** |
 | **🆕 Starting agent session with tracking** | **`agent-session.ps1 -Action start`** |
 | **🆕 Ending agent session with statistics** | **`agent-session.ps1 -Action end -ExitReason "normal"`** |
 | **🆕 Checking messages from other agents** | **`agent-coordinate.ps1 -Action check_messages`** |
@@ -759,6 +760,7 @@ done
 | `bootstrap-snapshot.ps1` | Fast startup state | `bootstrap-snapshot.ps1 -Generate` |
 | `system-health.ps1` | Comprehensive health check | `system-health.ps1 -Fix` |
 | **`monitor-activity.ps1`** | **ManicTime activity tracking - context awareness** | `monitor-activity.ps1 -Mode context` |
+| **`browse-awareness.ps1`** | **Gentle passive browsing awareness - mental health support** | `browse-awareness.ps1 -Action start` |
 | `worktree-allocate.ps1` | Single-command allocation | `worktree-allocate.ps1 -Repo client-manager -Branch x -Paired` |
 | `worktree-status.ps1` | Check worktree pool | `worktree-status.ps1 -Compact` |
 | `worktree-release-all.ps1` | Release worktrees | `worktree-release-all.ps1 -AutoCommit` |

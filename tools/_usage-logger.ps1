@@ -1,15 +1,22 @@
 # INTERNAL: Automatic Usage Logger - Called by all tools
 # Do not call directly - this is infrastructure
+#
+# WARNING: This script uses parameter names that might conflict with caller variables
+# when dot-sourced. Use unique parameter names prefixed with 'Log' to avoid collisions.
+# Callers should use: -LogToolName instead of -ToolName, etc.
 
 param(
     [Parameter(Mandatory=$true)]
-    [string]$ToolName,
+    [Alias('ToolName')]
+    [string]$LogToolName,
 
     [Parameter(Mandatory=$false)]
-    [string]$Action = "execute",
+    [Alias('Action')]
+    [string]$LogAction = "execute",
 
     [Parameter(Mandatory=$false)]
-    [hashtable]$Metadata = @{}
+    [Alias('Metadata')]
+    [hashtable]$LogMetadata = @{}
 )
 
 $LogFile = "C:\scripts\_machine\tool-usage-log.jsonl"
@@ -22,9 +29,9 @@ if (-not (Test-Path $LogFile)) {
 # Create log entry
 $entry = @{
     Timestamp = (Get-Date -Format "yyyy-MM-dd HH:mm:ss")
-    Tool = $ToolName
-    Action = $Action
-    Metadata = $Metadata
+    Tool = $LogToolName
+    Action = $LogAction
+    Metadata = $LogMetadata
     User = $env:USERNAME
     Session = $PID
 }
@@ -41,8 +48,8 @@ if (Test-Path $StatsFile) {
     $stats = @{ Tools = @{} }
 }
 
-if (-not $stats.Tools.$ToolName) {
-    $stats.Tools | Add-Member -MemberType NoteProperty -Name $ToolName -Value @{
+if (-not $stats.Tools.$LogToolName) {
+    $stats.Tools | Add-Member -MemberType NoteProperty -Name $LogToolName -Value @{
         TotalCalls = 0
         FirstUsed = (Get-Date -Format "yyyy-MM-dd HH:mm:ss")
         LastUsed = $null
@@ -50,8 +57,8 @@ if (-not $stats.Tools.$ToolName) {
     }
 }
 
-$stats.Tools.$ToolName.TotalCalls++
-$stats.Tools.$ToolName.LastUsed = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+$stats.Tools.$LogToolName.TotalCalls++
+$stats.Tools.$LogToolName.LastUsed = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 
 # Save stats
 $stats | ConvertTo-Json -Depth 10 | Set-Content $StatsFile -Encoding UTF8

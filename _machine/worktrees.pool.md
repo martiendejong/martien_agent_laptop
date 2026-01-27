@@ -5,7 +5,7 @@ Seat states:
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-01-27T16:30:00Z | ✅ PR #122 updated: Added plugin versioning, updates, rollback (6 tools total) |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-01-27T03:00:00Z | ✅ PR #123: Hazina.AgenticOrchestration module (Claude instance management via web UI) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | agents/agent-002-standby | 2026-01-27T18:30:00Z | ✅ PR #123: Added real-time terminal streaming (process-based bidirectional I/O, xterm.js) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-26T21:15:00Z | ✅ PR #402: Dutch → English UI translation |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-26T22:00:00Z | ✅ PR #403: Logo generation page refresh fix |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-26T22:30:00Z | ✅ ClickUp #869bu6m1n: Feature already complete (PR #286, merged 2026-01-19) |

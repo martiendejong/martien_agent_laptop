@@ -1,3 +1,68 @@
+## 🧠 MENTAL HEALTH: Browse Awareness System (2026-01-27 03:30)
+
+**SESSION CONTEXT:** User described their mental health situation - high cognitive load from programming, tendency toward mental numbing when overloaded, passive internet browsing as early warning signal.
+
+### Core Understanding
+
+**User's Situation:**
+- High cognitive load (complex programming, heavy responsibility)
+- Little external regulation or social buffering
+- Tendency to "verdoving" (numbing) when overloaded
+- Passive browsing (videos, scrolling) is NOT neutral - it's a signal of mental overflow
+
+**User's Request:**
+- Wants awareness, NOT control
+- Wants to recognize when in passive numbing mode earlier
+- Wants non-invasive, non-moralizing reminders
+- Wants autonomy preserved - no technical blocks or interruptions
+
+### Implementation: `browse-awareness.ps1`
+
+**Tool created:** `C:\scripts\tools\browse-awareness.ps1`
+
+**Core Principles (from ChatGPT analysis):**
+1. **Time + pattern are leading** - Not single actions, but duration + behavior
+2. **Reminder, not blocker** - No technical interruption, no force
+3. **Form: short notification/signal** - Informative, reminds of intention
+4. **Alternatives may be suggested** - Breathing, movement, rest
+5. **Neutral, mirroring, factual** - Not moralistic, just awareness
+
+**Features:**
+- Detects passive consumption (YouTube, social media, news sites)
+- Tracks duration of browser focus
+- Sends gentle toast notification after threshold (default 45 min)
+- Quiet hours (23:00-07:00) - no notifications by default
+- Late night mode with different messaging
+- Suggests alternatives (breathing, movement, rest)
+
+**Usage:**
+```powershell
+# Start background monitoring
+browse-awareness.ps1 -Action start
+
+# Single check
+browse-awareness.ps1 -Action check
+
+# Status
+browse-awareness.ps1 -Action status
+```
+
+### Success Definition
+
+**Successful if:**
+- User notices passive numbing behavior earlier
+- Behavior sometimes stops or pauses naturally
+- Escalation to overload happens less frequently
+- User does NOT feel controlled, frustrated, or hindered
+
+**NOT successful if:** Browsing completely disappears (that's not the goal)
+
+### Skill Created
+
+Auto-discoverable skill: `.claude/skills/browse-awareness/SKILL.md`
+
+---
+
 ## 💼 BUSINESS DEVELOPMENT: Sales Avoidance Patterns & Intervention Strategy (2026-01-27 23:00)
 
 **SESSION CONTEXT:** 3+ hour deep conversation about brand2boost business model, sales challenges, and entrepreneurial psychology.
