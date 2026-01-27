@@ -222,12 +222,7 @@ try {
         $metrics = Calculate-WeeklyMetrics -Week $weekBounds
     } else {
         # Try to load from database
-        $sql = @"
-SELECT bugs_prevented, time_saved_minutes, prs_created, prs_merged, tools_created,
-       code_quality_delta, learnings_captured
-FROM impact_metrics
-WHERE week_start = '$($weekBounds.Start)';
-"@
+        $sql = "SELECT bugs_prevented, time_saved_minutes, prs_created, prs_merged, tools_created, code_quality_delta, learnings_captured FROM impact_metrics WHERE week_start = '$($weekBounds.Start)';"
 
         $result = Invoke-Sql -Sql $sql
 
