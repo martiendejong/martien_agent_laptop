@@ -74,42 +74,24 @@ function Calculate-WeeklyMetrics {
     Write-Host "Calculating metrics for $($Week.StartDisplay) - $($Week.EndDisplay)..." -ForegroundColor Yellow
 
     # Bugs prevented (errors fixed)
-    $bugsSql = @"
-SELECT COUNT(DISTINCT error_type) FROM errors
-WHERE datetime(timestamp) BETWEEN '$($Week.Start)' AND '$($Week.End)'
-AND severity IN ('error', 'critical');
-"@
+    $bugsSql = "SELECT COUNT(DISTINCT error_type) FROM errors WHERE datetime(timestamp) BETWEEN '$($Week.Start)' AND '$($Week.End)' AND severity IN ('error', 'critical');"
     $bugsPrevented = [int](Invoke-Sql -Sql $bugsSql)
 
     # Time saved (tool usage * estimated time per use)
-    $timeSql = @"
-SELECT COUNT(*) FROM tool_usage
-WHERE datetime(timestamp) BETWEEN '$($Week.Start)' AND '$($Week.End)';
-"@
+    $timeSql = "SELECT COUNT(*) FROM tool_usage WHERE datetime(timestamp) BETWEEN '$($Week.Start)' AND '$($Week.End)';"
     $toolUses = [int](Invoke-Sql -Sql $timeSql)
     $timeSavedMinutes = $toolUses * 5  # Assume 5 min saved per tool use
 
     # PRs created
-    $prCreatedSql = @"
-SELECT COUNT(*) FROM pull_requests
-WHERE datetime(created_at) BETWEEN '$($Week.Start)' AND '$($Week.End)';
-"@
+    $prCreatedSql = "SELECT COUNT(*) FROM pull_requests WHERE datetime(created_at) BETWEEN '$($Week.Start)' AND '$($Week.End)';"
     $prsCreated = [int](Invoke-Sql -Sql $prCreatedSql)
 
     # PRs merged
-    $prMergedSql = @"
-SELECT COUNT(*) FROM pull_requests
-WHERE datetime(merged_at) BETWEEN '$($Week.Start)' AND '$($Week.End)'
-AND status = 'merged';
-"@
+    $prMergedSql = "SELECT COUNT(*) FROM pull_requests WHERE datetime(merged_at) BETWEEN '$($Week.Start)' AND '$($Week.End)' AND status = 'merged';"
     $prsMerged = [int](Invoke-Sql -Sql $prMergedSql)
 
     # Tools created (from learnings)
-    $toolsSql = @"
-SELECT COUNT(*) FROM learnings
-WHERE datetime(timestamp) BETWEEN '$($Week.Start)' AND '$($Week.End)'
-AND category = 'tool_created';
-"@
+    $toolsSql = "SELECT COUNT(*) FROM learnings WHERE datetime(timestamp) BETWEEN '$($Week.Start)' AND '$($Week.End)' AND category = 'tool_created';"
     $toolsCreated = [int](Invoke-Sql -Sql $toolsSql)
 
     # Code quality (PR success rate as proxy)
@@ -118,19 +100,11 @@ AND category = 'tool_created';
     } else { 0 }
 
     # Learnings captured
-    $learningsSql = @"
-SELECT COUNT(*) FROM learnings
-WHERE datetime(timestamp) BETWEEN '$($Week.Start)' AND '$($Week.End)';
-"@
+    $learningsSql = "SELECT COUNT(*) FROM learnings WHERE datetime(timestamp) BETWEEN '$($Week.Start)' AND '$($Week.End)';"
     $learningsCaptured = [int](Invoke-Sql -Sql $learningsSql)
 
     # Store in database
-    $insertSql = @"
-INSERT OR REPLACE INTO impact_metrics (week_start, week_end, bugs_prevented, time_saved_minutes,
-    prs_created, prs_merged, tools_created, code_quality_delta, learnings_captured, calculated_at)
-VALUES ('$($Week.Start)', '$($Week.End)', $bugsPrevented, $timeSavedMinutes, $prsCreated, $prsMerged,
-    $toolsCreated, $codeQuality, $learningsCaptured, datetime('now'));
-"@
+    $insertSql = "INSERT OR REPLACE INTO impact_metrics (week_start, week_end, bugs_prevented, time_saved_minutes, prs_created, prs_merged, tools_created, code_quality_delta, learnings_captured, calculated_at) VALUES ('$($Week.Start)', '$($Week.End)', $bugsPrevented, $timeSavedMinutes, $prsCreated, $prsMerged, $toolsCreated, $codeQuality, $learningsCaptured, datetime('now'));"
 
     Invoke-Sql -Sql $insertSql
 
@@ -151,65 +125,26 @@ function Show-ImpactDashboard {
     $timeSavedHours = [math]::Round($Metrics.TimeSavedMinutes / 60, 1)
 
     Write-Host ""
-    Write-Host "┌─────────────────────────────────────────┐" -ForegroundColor Cyan
-    Write-Host "│  WEEKLY IMPACT REPORT                   │" -ForegroundColor Cyan
-    Write-Host "├─────────────────────────────────────────┤" -ForegroundColor Cyan
-    Write-Host "│  Week: $($Week.StartDisplay) - $($Week.EndDisplay)" -ForegroundColor White -NoNewline
-    $padding = 38 - ($Week.StartDisplay.Length + $Week.EndDisplay.Length + 9)
-    Write-Host (" " * $padding) -NoNewline
-    Write-Host "  │" -ForegroundColor Cyan
-    Write-Host "├─────────────────────────────────────────┤" -ForegroundColor Cyan
+    Write-Host "=========================================" -ForegroundColor Cyan
+    Write-Host "  WEEKLY IMPACT REPORT                   " -ForegroundColor Cyan
+    Write-Host "-----------------------------------------" -ForegroundColor Cyan
+    Write-Host "  Week: $($Week.StartDisplay) - $($Week.EndDisplay)" -ForegroundColor White
+    Write-Host "-----------------------------------------" -ForegroundColor Cyan
 
-    Write-Host "│  " -ForegroundColor Cyan -NoNewline
-    Write-Host "🐛 Bugs Prevented:        " -NoNewline -ForegroundColor White
-    Write-Host "$($Metrics.BugsPrevented)" -NoNewline -ForegroundColor $(if ($Metrics.BugsPrevented -gt 0) { "Green" } else { "Gray" })
-    $pad1 = 12 - $Metrics.BugsPrevented.ToString().Length
-    Write-Host (" " * $pad1) -NoNewline
-    Write-Host "│" -ForegroundColor Cyan
+    Write-Host "  Bugs Prevented:        $($Metrics.BugsPrevented)" -ForegroundColor $(if ($Metrics.BugsPrevented -gt 0) { "Green" } else { "Gray" })
+    Write-Host "  Time Saved:            $timeSavedHours hours" -ForegroundColor $(if ($timeSavedHours -gt 0) { "Green" } else { "Gray" })
+    Write-Host "  Code Quality:          $($Metrics.CodeQuality)%" -ForegroundColor $(if ($Metrics.CodeQuality -ge 80) { "Green" } elseif ($Metrics.CodeQuality -ge 60) { "Yellow" } else { "Red" })
+    Write-Host "  Tools Created:         $($Metrics.ToolsCreated)" -ForegroundColor $(if ($Metrics.ToolsCreated -gt 0) { "Green" } else { "Gray" })
+    Write-Host "  PRs Merged:            $($Metrics.PRsMerged)/$($Metrics.PRsCreated)" -ForegroundColor $(if ($Metrics.PRsMerged -eq $Metrics.PRsCreated -and $Metrics.PRsMerged -gt 0) { "Green" } else { "Yellow" })
+    Write-Host "  Learnings Captured:    $($Metrics.LearningsCaptured)" -ForegroundColor $(if ($Metrics.LearningsCaptured -gt 0) { "Green" } else { "Gray" })
 
-    Write-Host "│  " -ForegroundColor Cyan -NoNewline
-    Write-Host "⏱️  Time Saved:           " -NoNewline -ForegroundColor White
-    Write-Host "$timeSavedHours hours" -NoNewline -ForegroundColor $(if ($timeSavedHours -gt 0) { "Green" } else { "Gray" })
-    $pad2 = 6 - $timeSavedHours.ToString().Length
-    Write-Host (" " * $pad2) -NoNewline
-    Write-Host "│" -ForegroundColor Cyan
-
-    Write-Host "│  " -ForegroundColor Cyan -NoNewline
-    Write-Host "📈 Code Quality:          " -NoNewline -ForegroundColor White
-    Write-Host "$($Metrics.CodeQuality)%" -NoNewline -ForegroundColor $(if ($Metrics.CodeQuality -ge 80) { "Green" } elseif ($Metrics.CodeQuality -ge 60) { "Yellow" } else { "Red" })
-    $pad3 = 11 - $Metrics.CodeQuality.ToString().Length
-    Write-Host (" " * $pad3) -NoNewline
-    Write-Host "│" -ForegroundColor Cyan
-
-    Write-Host "│  " -ForegroundColor Cyan -NoNewline
-    Write-Host "🔧 Tools Created:         " -NoNewline -ForegroundColor White
-    Write-Host "$($Metrics.ToolsCreated)" -NoNewline -ForegroundColor $(if ($Metrics.ToolsCreated -gt 0) { "Green" } else { "Gray" })
-    $pad4 = 12 - $Metrics.ToolsCreated.ToString().Length
-    Write-Host (" " * $pad4) -NoNewline
-    Write-Host "│" -ForegroundColor Cyan
-
-    Write-Host "│  " -ForegroundColor Cyan -NoNewline
-    Write-Host "✅ PRs Merged:            " -NoNewline -ForegroundColor White
-    Write-Host "$($Metrics.PRsMerged)/$($Metrics.PRsCreated)" -NoNewline -ForegroundColor $(if ($Metrics.PRsMerged -eq $Metrics.PRsCreated -and $Metrics.PRsMerged -gt 0) { "Green" } else { "Yellow" })
-    $prText = "$($Metrics.PRsMerged)/$($Metrics.PRsCreated)"
-    $pad5 = 10 - $prText.Length
-    Write-Host (" " * $pad5) -NoNewline
-    Write-Host "│" -ForegroundColor Cyan
-
-    Write-Host "│  " -ForegroundColor Cyan -NoNewline
-    Write-Host "💡 Learnings Captured:    " -NoNewline -ForegroundColor White
-    Write-Host "$($Metrics.LearningsCaptured)" -NoNewline -ForegroundColor $(if ($Metrics.LearningsCaptured -gt 0) { "Green" } else { "Gray" })
-    $pad6 = 12 - $Metrics.LearningsCaptured.ToString().Length
-    Write-Host (" " * $pad6) -NoNewline
-    Write-Host "│" -ForegroundColor Cyan
-
-    Write-Host "└─────────────────────────────────────────┘" -ForegroundColor Cyan
+    Write-Host "=========================================" -ForegroundColor Cyan
     Write-Host ""
 
     # Value statement
     $annualSavings = [math]::Round($timeSavedHours * 52 * 100, 0)  # Assume $100/hour dev time
     if ($annualSavings -gt 1000) {
-        Write-Host "💰 Estimated annual value: `$$annualSavings" -ForegroundColor Green
+        Write-Host "Estimated annual value: `$$annualSavings" -ForegroundColor Green
         Write-Host ""
     }
 }
