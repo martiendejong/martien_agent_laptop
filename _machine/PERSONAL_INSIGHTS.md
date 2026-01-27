@@ -7571,3 +7571,73 @@ Is user actively debugging right now?
 **Importance:** CRITICAL - Changes default behavior for all future work
 **Validation:** User explicitly requested this be in insights "so I don't need to say it"
 
+---
+
+## 🔒 PRODUCTION INFRASTRUCTURE: Backup Processes Are MANDATORY (2026-01-27)
+
+**SESSION CONTEXT:** User asked to set up backup for artrevisionist similar to brand2boost. Discovered NEITHER had automated backups on production server.
+
+### Critical Discovery
+
+**Before this session:**
+- ❌ Brand2boost production: NO automated backup
+- ❌ Artrevisionist production: NO automated backup
+- ⚠️ Only manual "Copy" folders existed (backend - Copy, www - Copy, etc.)
+- ⚠️ Risk: Complete data loss if server fails
+
+**After this session:**
+- ✅ Brand2boost: Automated daily backup at 3:00 AM
+- ✅ Artrevisionist: Automated daily backup at 3:30 AM
+- ✅ Both: 5-day retention with auto-rotation
+- ✅ Both: Proper scheduled tasks running as SYSTEM
+
+### HARD RULE: Production Checklist
+
+**When deploying ANY project to production, VERIFY:**
+
+1. **Backup System**
+   - [ ] Automated backup script exists
+   - [ ] Scheduled task registered
+   - [ ] Backup retention configured
+   - [ ] Backup location has sufficient space
+   - [ ] First backup has run successfully
+   - [ ] Restore procedure documented
+
+2. **Monitoring**
+   - [ ] Error tracking (Sentry/equivalent) configured
+   - [ ] Health check endpoint exists
+   - [ ] Logs are being captured
+
+3. **Configuration**
+   - [ ] All config files validated (appsettings, feature flags)
+   - [ ] Secrets properly managed (not in git)
+   - [ ] Environment-specific overrides in place
+
+4. **Build/Deploy**
+   - [ ] CI/CD pipeline working
+   - [ ] Deploy script tested
+   - [ ] Rollback procedure documented
+
+### Lesson Learned
+
+**User's implicit expectation:** When I set up production infrastructure for one project (brand2boost), I should PROACTIVELY ensure the same infrastructure exists for all production projects (artrevisionist).
+
+**My failure:** I created brand2boost backup locally but never verified it was deployed to production, and never checked if artrevisionist had similar infrastructure.
+
+**Correction:** Before considering ANY production deployment "complete", run through the full production checklist above.
+
+### Production Server Reference
+
+**Server:** `85.215.217.154`
+**Projects:**
+- Brand2boost: `C:\stores\brand2boost` → Backup: `C:\backups\brand2boost`
+- Artrevisionist: `C:\stores\artrevisionist` → Backup: `C:\backups\artrevisionist`
+
+**Backup Scripts Location (on server):** `C:\scripts\tools\`
+
+---
+
+**Added:** 2026-01-27 14:15
+**Importance:** CRITICAL - Production infrastructure must be complete
+**Validation:** User explicitly requested this insight after discovering missing backups
+
