@@ -717,6 +717,11 @@ done
 | **🆕 Scaffold React components + tests** | **`boilerplate-generator.ps1 -Type component -Name Button`** |
 | **🆕 Predict next command** | **`next-action-predictor.ps1`** |
 | **🆕 Real-time code smell detection** | **`real-time-code-smell-detector.ps1 -Path src`** |
+| **🎯 PHASE 4: Creating system checkpoint** | **`agent-checkpoint.ps1 -Tag "before-risky-change" -Description "..."`** |
+| **🎯 PHASE 4: Rolling back to checkpoint** | **`agent-rollback.ps1 -Tag "checkpoint-timestamp" -Force`** |
+| **🎯 PHASE 4: Analyzing repetitive patterns** | **`pattern-monitor.ps1 -Action analyze -Threshold 3`** |
+| **🎯 PHASE 4: Getting tool suggestions** | **`pattern-monitor.ps1 -Action suggest`** |
+| **🎯 PHASE 4: Weekly impact dashboard** | **`impact-dashboard.ps1 -Calculate`** |
 
 **Goal:** Maximize uninterrupted thinking time by eliminating manual ceremony.
 
