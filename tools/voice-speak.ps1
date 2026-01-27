@@ -54,25 +54,25 @@ param(
 $ErrorActionPreference = 'Stop'
 
 Write-Host ""
-Write-Host "═══════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "=========================================" -ForegroundColor Cyan
 Write-Host "  Text-to-Speech (OpenAI TTS)" -ForegroundColor White
-Write-Host "═══════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "=========================================" -ForegroundColor Cyan
 Write-Host ""
 
 # Load API key
 $secretsPath = "C:\Projects\client-manager\ClientManagerAPI\appsettings.Secrets.json"
 if (-not (Test-Path $secretsPath)) {
-    Write-Host "❌ API key not found: $secretsPath" -ForegroundColor Red
+    Write-Host "[ERROR] API key not found: $secretsPath" -ForegroundColor Red
     Write-Host ""
     Write-Host "Configure OpenAI API key in appsettings.Secrets.json" -ForegroundColor Yellow
     exit 1
 }
 
 $secrets = Get-Content $secretsPath | ConvertFrom-Json
-$apiKey = $secrets.OpenAI.ApiKey
+$apiKey = $secrets.ApiSettings.OpenApiKey
 
 if (-not $apiKey) {
-    Write-Host "❌ OpenAI.ApiKey not found in secrets" -ForegroundColor Red
+    Write-Host "[ERROR] ApiSettings.OpenApiKey not found in secrets" -ForegroundColor Red
     exit 1
 }
 
@@ -86,7 +86,7 @@ if (-not $OutputPath) {
     $OutputPath = "$env:TEMP\tts-$(Get-Date -Format 'yyyyMMdd-HHmmss').mp3"
 }
 
-Write-Host "🎤 Generating speech..." -ForegroundColor Cyan
+Write-Host "[*] Generating speech..." -ForegroundColor Cyan
 
 try {
     $body = @{
@@ -105,11 +105,11 @@ try {
         -Body $body `
         -OutFile $OutputPath
 
-    Write-Host "✅ Audio generated: $OutputPath" -ForegroundColor Green
+    Write-Host "[OK] Audio generated: $OutputPath" -ForegroundColor Green
     Write-Host ""
 
     if ($Play) {
-        Write-Host "🔊 Playing audio..." -ForegroundColor Cyan
+        Write-Host "[*] Playing audio..." -ForegroundColor Cyan
 
         # Use Windows Media Player
         Add-Type -AssemblyName presentationCore
@@ -124,12 +124,12 @@ try {
         }
 
         $mediaPlayer.Close()
-        Write-Host "✅ Playback complete" -ForegroundColor Green
+        Write-Host "[OK] Playback complete" -ForegroundColor Green
         Write-Host ""
     }
 
 } catch {
-    Write-Host "❌ Error: $_" -ForegroundColor Red
+    Write-Host "[ERROR] $_" -ForegroundColor Red
     Write-Host ""
     exit 1
 }

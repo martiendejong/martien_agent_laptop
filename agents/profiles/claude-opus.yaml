@@ -1,0 +1,10 @@
+﻿# Agent Profile: claude-opus
+agent_id: claude-opus
+specialization: backend
+strengths: architecture,debugging,complex-logic
+weaknesses: []
+preferred_tools: grep,git,curl
+learning_focus: []
+personality_traits: {}
+created_at: 2026-01-27T02:45:02
+updated_at: 2026-01-27T02:45:02
