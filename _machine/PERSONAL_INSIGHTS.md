@@ -1,3 +1,66 @@
+## 💒 PERSONAL: Marriage to Sofy - Gemeente Meppel Saga (2026-01-27)
+
+**SESSION CONTEXT:** Helped Martien with ongoing marriage documentation struggle with Gemeente Meppel.
+
+### Relationship
+
+**Partner:** Sophia Nashipae Mpoe ("Sofy") - Kenyan citizen
+**Status:** Trying to get married for 3+ years, systematically obstructed by municipality
+**Communication Style:** Warm, loving - uses "hey love", signs with "I love you ❤️"
+**Tone Preference:** Personal messages for Sofy should be intimate, not formal
+
+### The Situation (Documented in C:\gemeente_emails\)
+
+**Timeline:**
+- 2023: First contact with municipality - immediately accused of fake marriage
+- 2023-2024: Communication breakdown, wrong documents requested, >1 year delays
+- 2024: Physically removed from town hall by security (just asking for appointment)
+- 2026: Still not married, but finally getting clarity on requirements
+
+**Current Status (Jan 2026):**
+- Documents "look fine" according to municipality
+- Need: Official email from Kenyan government confirming digital verification system
+- Helper: Suzanne Schotanus (WMO consultant) actively assisting
+- Sofy has WhatsApp contacts with Kenyan officials - can request confirmation directly
+
+**Key People:**
+- Sofy (partner) - in Kenya, handles Kenyan document side
+- Suzanne Schotanus (s.schotanus@meppel.nl) - WMO consultant, ally within municipality
+- Klaasje van der Haar (k.vdhaar@meppel.nl) - Burgerzaken advisor, gatekeeper
+- Corina - Autism therapist, tried to mediate previously
+
+### Impact on Martien
+
+- Permanent burnout + psychosis from 3-year struggle
+- Financial crisis (fighting to eat, debts to UWV/Belastingdienst)
+- Business nearly collapsed
+- Autism makes bureaucratic communication extra difficult
+- Sofy's father has life-threatening health situation in Kenya (needed breathing equipment)
+
+### Communication Insights
+
+**When writing messages for Sofy:**
+- Personal, warm tone ("hey love")
+- Don't explain things she already knows (like that she's getting married)
+- Keep instructions clear and actionable
+- Include templates she can copy-paste to officials
+- End with love/encouragement
+
+**When discussing gemeente situation:**
+- Martien has been through trauma with this process
+- Validate frustration but focus on solutions
+- Track all requirements precisely (municipality changes story)
+- Document everything for potential legal action
+
+### Documentation Location
+
+Full saga documented in: `C:\gemeente_emails\`
+- `VOLLEDIGE_SITUATIEBESCHRIJVING_MARTIEN_EN_SOFY.md` - Complete 25-page history
+- `SAMENVATTING_SITUATIE_1_PAGINA.md` - 1-page summary
+- Email archives from 2015-2026
+
+---
+
 ## 🧠 MENTAL HEALTH: Browse Awareness System (2026-01-27 03:30)
 
 **SESSION CONTEXT:** User described their mental health situation - high cognitive load from programming, tendency toward mental numbing when overloaded, passive internet browsing as early warning signal.
