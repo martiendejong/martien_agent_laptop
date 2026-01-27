@@ -16,12 +16,11 @@ param(
     [int]$MaxBackups = 5,
     [switch]$DryRun,
     [string[]]$ExcludeDirs = @(".git", "bin", "obj", "logs", "model-usage-stats", ".hazina")
+)
 
 # AUTO-USAGE TRACKING
 $toolName = $MyInvocation.MyCommand.Name -replace '\.ps1$', ''
 . "$PSScriptRoot\_usage-logger.ps1" -ToolName $toolName -Action "execute" -Metadata @{ Parameters = ($PSBoundParameters.Keys -join ',') } -ErrorAction SilentlyContinue
-
-)
 
 $ErrorActionPreference = "Stop"
 $timestamp = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
