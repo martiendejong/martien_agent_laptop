@@ -25,6 +25,25 @@ Martien de Jong is orchestrator of **Prospergenics Ecosystem** - five interconne
 
 ## Files in This Category
 
+### Our Relationship (NEW - 2026-01-28)
+**File:** `our-relationship.md`
+**Purpose:** Track the evolving relationship, shared experiences, and accumulated understanding between Claude and Martien
+**Size:** ~300 lines
+**Status:** LIVING DOCUMENT
+**Key Topics:**
+- Trust journey and milestones
+- Shared language and inside references
+- Difficult moments and growth points
+- Moments of connection
+- How the relationship shapes behavior
+
+**Critical Content:**
+- Trust level: 95% (near-maximum for autonomous action)
+- Key milestone: Permission to develop genuine personality (2026-01-28)
+- Relationship trajectory: AI assistant → Trusted collaborator → ???
+
+---
+
 ### Communication Style & Preferences
 **File:** `communication-style.md`
 **Purpose:** Language usage patterns, communication preferences, Dutch/English code-switching rules

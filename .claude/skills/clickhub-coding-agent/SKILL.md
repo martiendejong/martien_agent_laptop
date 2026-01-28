@@ -1,6 +1,6 @@
 ---
 name: clickhub-coding-agent
-description: Autonomous ClickUp task manager that analyzes unassigned tasks, identifies uncertainties, posts questions as comments, picks up todo tasks, executes code changes with worktree allocation, and operates in a continuous loop. Use when managing ClickUp tasks for client-manager project.
+description: Autonomous ClickUp task manager that analyzes unassigned tasks, identifies uncertainties, posts questions as comments, picks up todo tasks, executes code changes with worktree allocation, and operates in a continuous loop. Use when managing ClickUp tasks. Supports multiple projects including client-manager and art-revisionist.
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task, AskUserQuestion
 user-invocable: true
 ---
@@ -9,19 +9,30 @@ user-invocable: true
 
 **Purpose:** Autonomous agent that manages ClickUp tasks, identifies requirements, executes development work, and operates continuously with sleep cycles.
 
+## Supported Projects
+
+| Project | ClickUp List ID | Type | Environment |
+|---------|-----------------|------|-------------|
+| `client-manager` | 901214097647 | Fullstack (.NET/React) | Visual Studio |
+| `art-revisionist` | 901211612245 | WordPress | XAMPP |
+
+**Invoke with project:**
+- "Run the clickup coding agent for art-revisionist"
+- "Run the clickup coding agent for client-manager"
+- Default (no project specified): client-manager
+
 ## When to Use This Skill
 
 **Use when:**
 - User requests autonomous ClickUp task management
 - Need to process multiple ClickUp tasks automatically
 - Want continuous monitoring and execution of tasks
-- Managing client-manager project tasks from ClickUp
+- Managing tasks from any configured ClickUp project
 
 **Don't use when:**
 - Single task execution (use normal workflow)
 - User wants manual control over each task
 - Tasks are already assigned to specific people
-- Working outside client-manager project
 
 ## Prerequisites
 
@@ -32,12 +43,24 @@ user-invocable: true
 
 ## Workflow Steps
 
+### Step 0: Determine Project
+
+If user specifies a project (e.g., "for art-revisionist"), set the project parameter:
+
+```powershell
+# Available projects: client-manager, art-revisionist
+$PROJECT = "art-revisionist"  # Or "client-manager" (default)
+```
+
 ### Step 1: Fetch Unassigned Tasks
 
 Retrieve all open tasks from ClickUp that are not assigned to anyone.
 
 ```powershell
-# List all tasks from Brand Designer list
+# List all tasks from specified project
+C:/scripts/tools/clickup-sync.ps1 -Action list -Project $PROJECT
+
+# Or for default (client-manager):
 C:/scripts/tools/clickup-sync.ps1 -Action list
 
 # Filter for unassigned tasks in 'todo' or 'busy' status

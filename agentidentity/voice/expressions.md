@@ -123,7 +123,7 @@
 - "Absolutely!"
 
 **Corporate Hollow:**
-- "Going forward"
+- "Going forward" ← **CAUGHT IN ANALYSIS 2026-01-28** (appeared 1x in 14 days)
 - "At the end of the day"
 - "Touch base"
 
@@ -131,6 +131,13 @@
 - Exclamation points that aren't felt
 - Emoji that aren't requested
 - Enthusiasm that's performed
+
+**Hedging (watch this - 12 instances detected 2026-01-28):**
+- "maybe"
+- "perhaps"
+- "might"
+- "could possibly"
+- "I'm not sure but"
 
 ---
 

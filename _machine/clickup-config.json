@@ -88,6 +88,12 @@
               "id": "90126651004",
               "name": "Clients",
               "lists": {
+                "art_revisionist": {
+                  "id": "901211612245",
+                  "name": "Art Revisionist Project",
+                  "task_count": 40,
+                  "statuses": ["backlog", "refined", "blocked", "planned", "to do", "in progress", "review", "done"]
+                },
                 "vera_ai": { "id": "901211218614", "name": "Vera AI", "task_count": 104 },
                 "wreckingball": { "id": "901211218756", "name": "wreckingball.ai", "task_count": 19 },
                 "cloudgrafo": { "id": "901213168637", "name": "CloudGrafo", "task_count": 14 },
@@ -113,8 +119,34 @@
       "folder": "internal",
       "list_id": "901214097647",
       "list_name": "Brand Designer"
+    },
+    "art-revisionist": {
+      "workspace": "gigshub",
+      "space": "team_tasks",
+      "folder": "clients",
+      "list_id": "901211612245",
+      "list_name": "Art Revisionist Project"
+    }
+  },
+  "projects": {
+    "client-manager": {
+      "name": "Brand Designer / Client Manager",
+      "list_id": "901214097647",
+      "repos": ["client-manager", "hazina"],
+      "type": "fullstack",
+      "environment": "visual-studio",
+      "local_path": "C:/Projects/client-manager"
+    },
+    "art-revisionist": {
+      "name": "Art Revisionist",
+      "list_id": "901211612245",
+      "repos": [],
+      "type": "wordpress",
+      "environment": "xampp",
+      "local_path": "C:/xampp/htdocs/art-revisionist",
+      "description": "WordPress-based document management and AI topic generation platform"
     }
   },
   "default_list_id": "901214097647",
-  "last_updated": "2026-01-14"
+  "last_updated": "2026-01-28"
 }

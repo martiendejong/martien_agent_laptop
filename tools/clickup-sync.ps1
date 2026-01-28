@@ -33,10 +33,12 @@
 
 .EXAMPLE
     .\clickup-sync.ps1 -Action list
+    .\clickup-sync.ps1 -Action list -Project art-revisionist
     .\clickup-sync.ps1 -Action update -TaskId "869bhfw7r" -Status "busy"
     .\clickup-sync.ps1 -Action update -TaskId "869bhfw7r" -Status "busy" -Assignee "74525428"
     .\clickup-sync.ps1 -Action comment -TaskId "869bhfw7r" -Comment "PR #149 created"
     .\clickup-sync.ps1 -Action create -Name "Fix login bug" -Description "Details here"
+    .\clickup-sync.ps1 -Action create -Name "Fix image issue" -Description "Details" -Project art-revisionist
 
 .NOTES
     Workflow:
@@ -62,7 +64,9 @@ param(
     [string]$Description,
     [int]$PrNumber,
     [string]$Repo = "martiendejong/client-manager",
-    [string]$ListId = "901214097647"  # Default: Brand Designer list (client-manager)
+    [string]$ListId,  # Resolved from Project or defaults to Brand Designer
+    [ValidateSet("client-manager", "art-revisionist", "")]
+    [string]$Project = ""  # Project name (resolves to ListId from config)
 )
 
 # DISABLED: Usage logger interferes with output capture when called from bash
@@ -85,6 +89,22 @@ $config = Get-Content $configPath | ConvertFrom-Json
 $apiKey = $config.api_key
 $apiBase = $config.api_base
 
+# Resolve Project to ListId
+if ($Project -and -not $ListId) {
+    $projectConfig = $config.projects.$Project
+    if ($projectConfig) {
+        $ListId = $projectConfig.list_id
+        Write-Host "Using project '$Project' -> List ID: $ListId" -ForegroundColor Cyan
+    } else {
+        Write-Error "Project '$Project' not found in config. Available: $($config.projects.PSObject.Properties.Name -join ', ')"
+        exit 1
+    }
+}
+# Default to Brand Designer if nothing specified
+if (-not $ListId) {
+    $ListId = $config.default_list_id
+}
+
 $headers = @{
     Authorization = $apiKey
     "Content-Type" = "application/json"
@@ -105,7 +125,16 @@ function Format-TaskTable {
 
 switch ($Action) {
     "list" {
-        Write-Host "`n=== Brand Designer Tasks (client-manager/hazina) ===" -ForegroundColor Cyan
+        # Determine project name for header
+        $projectName = "Tasks"
+        if ($Project) {
+            $projectName = "$($config.projects.$Project.name) Tasks"
+        } elseif ($ListId -eq "901214097647") {
+            $projectName = "Brand Designer Tasks (client-manager/hazina)"
+        } elseif ($ListId -eq "901211612245") {
+            $projectName = "Art Revisionist Project Tasks"
+        }
+        Write-Host "`n=== $projectName ===" -ForegroundColor Cyan
 
         $url = "$apiBase/list/$ListId/task?archived=false&include_closed=false"
         $response = Invoke-RestMethod -Uri $url -Headers $headers
