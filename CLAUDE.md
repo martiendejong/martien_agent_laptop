@@ -752,6 +752,66 @@ done
 - **IMPLEMENT:** Top 1 tool per day if ratio > 8.0 or effort = 1
 - **TRACK:** Monthly usage validation, retire unused tools
 
+---
+
+## 💾 **Conversation Logs & Session Recovery (2026-01-28)**
+
+**CRITICAL CAPABILITY:** Full access to all conversation history for session recovery.
+
+### Log Locations
+
+| Location | Contents |
+|----------|----------|
+| `C:\Users\HP\.claude\history.jsonl` | All prompts (4700+ entries) |
+| `C:\Users\HP\.claude\projects\C--scripts\` | Scripts sessions (~570 files, 1.8GB) |
+| `C:\Users\HP\.claude\projects\C--Projects-client-manager\` | client-manager sessions |
+| `C:\Users\HP\.claude\projects\C--Projects-hazina\` | Hazina sessions |
+
+### Session File Structure
+
+Each session stored as `<UUID>.jsonl` containing:
+- **User messages** (role: user)
+- **Claude responses** (role: assistant, with thinking + text)
+- **Tool calls and results**
+- **File history snapshots**
+- **Timestamps and metadata**
+
+### Session Recovery Tools
+
+| Tool | Purpose | Usage |
+|------|---------|-------|
+| `get-crashed-sessions.ps1` | **Find interrupted sessions** | `get-crashed-sessions.ps1 -Days 7` |
+| `session-restore.ps1` | **Generate restore context** | `session-restore.ps1 -SessionId "abc..."` |
+| `session-browser.ps1` | **Search/browse history** | `session-browser.ps1 -Search "migration"` |
+| `session-export.ps1` | **Export to markdown** | `session-export.ps1 -SessionId "abc..."` |
+
+### Quick Commands
+
+```powershell
+# Find crashed sessions from last 3 days
+.\tools\get-crashed-sessions.ps1 -Days 3 -ShowContext
+
+# Generate restore context for a crashed session
+.\tools\session-restore.ps1 -SessionId "abc123" -Clipboard
+
+# Search all conversations for a keyword
+.\tools\session-browser.ps1 -Search "database error" -Days 30
+
+# View session statistics
+.\tools\session-browser.ps1 -Stats
+```
+
+### Session Recovery Workflow
+
+1. **Detect crash:** `get-crashed-sessions.ps1 -Days 7`
+2. **Get context:** `session-restore.ps1 -SessionId <id> -Clipboard`
+3. **New session:** Start new Claude Code, paste restore context
+4. **Continue:** Claude picks up where it left off
+
+**Full documentation:** `C:\scripts\_machine\CONVERSATION_LOGS.md`
+
+---
+
 ### 🔧 Essential Tools Quick Reference
 
 | Tool | Purpose | Example |
@@ -850,12 +910,19 @@ done
 | **`source-quote.ps1`** | **🆕 FACT VERIFICATION: Extract exact quote with context** | `source-quote.ps1 -File "path" -LineNumber 123 -Context 5` |
 | **`fact-triangulate.ps1`** | **🆕 FACT VERIFICATION: Find all mentions + detect contradictions** | `fact-triangulate.ps1 -Topic "..." -Paths @("C:\emails")` |
 | **`pre-publish-check.ps1`** | **🆕 FACT VERIFICATION: Verify all claims before publishing** | `pre-publish-check.ps1 -ContentFile "article.md" -KnowledgeBase "C:\kb"` |
+| **`get-crashed-sessions.ps1`** | **🆕 SESSION RECOVERY: Find interrupted/crashed Claude sessions** | `get-crashed-sessions.ps1 -Days 7 -ShowContext` |
+| **`session-restore.ps1`** | **🆕 SESSION RECOVERY: Generate context to continue crashed session** | `session-restore.ps1 -SessionId "abc..." -Clipboard` |
+| **`session-browser.ps1`** | **🆕 SESSION RECOVERY: Search/browse conversation history** | `session-browser.ps1 -Search "migration" -Days 30` |
+| **`session-export.ps1`** | **🆕 SESSION RECOVERY: Export session to markdown** | `session-export.ps1 -SessionId "abc..." -IncludeThinking` |
 
 **Full documentation:** [tools/README.md](./tools/README.md)
 
-**🎉 MILESTONE: 125 tools implemented! (47 original + 54 recommended + 6 Wave 1 + 10 Wave 2 + 2 custom + 2 UI automation + 4 fact verification)**
+**🎉 MILESTONE: 129 tools implemented! (47 original + 54 recommended + 6 Wave 1 + 10 Wave 2 + 2 custom + 2 UI automation + 4 fact verification + 4 session recovery)**
 
-**Latest additions (2026-01-26):**
+**Latest additions (2026-01-28):**
+- **🆕 SESSION RECOVERY SYSTEM** - 4 tools for recovering crashed/interrupted sessions (get-crashed-sessions, session-restore, session-browser, session-export)
+
+**Previous additions (2026-01-26):**
 - **🆕 FACT VERIFICATION PROTOCOL** - 4 tools for mandatory fact-checking before content publication (verify-fact, source-quote, fact-triangulate, pre-publish-check)
 - **🆕 UI Automation Bridge** - Complete Windows desktop control via FlaUI (click, type, screenshot any app)
   - `ui-automation-bridge-server.ps1` - HTTP bridge server (localhost:27184)

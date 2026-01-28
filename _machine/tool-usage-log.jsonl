@@ -82,3 +82,9 @@
 {"Action":"execute","Timestamp":"2026-01-28 02:14:24","Metadata":{"Parameters":"Repo,Branch"},"User":"HP","Tool":"worktree-allocate","Session":32788}
 {"Action":"execute","Timestamp":"2026-01-28 02:16:11","Metadata":{"Parameters":"Repo,Branch"},"User":"HP","Tool":"worktree-allocate","Session":20004}
 {"Action":"execute","Timestamp":"2026-01-28 05:56:31","Metadata":{"Parameters":"Repo,Branch,Seat"},"User":"HP","Tool":"worktree-allocate","Session":44508}
+{"Action":"execute","Timestamp":"2026-01-28 06:11:54","Metadata":{"Parameters":"Prompt,OutputPath,Quality"},"User":"HP","Tool":"ai-image","Session":6412}
+{"Action":"execute","Timestamp":"2026-01-28 06:11:54","Metadata":{"Parameters":"Provider,Quality,Prompt,Mode,OutputPath"},"User":"HP","Tool":"ai-image-universal","Session":6412}
+{"Action":"execute","Timestamp":"2026-01-28 06:11:54","Metadata":{"Parameters":"Size,Model,ApiKey,Quality,OutputPath,Prompt,Style,Mode"},"User":"HP","Tool":"generate-image-advanced","Session":6412}
+{"Action":"execute","Timestamp":"2026-01-28 06:17:43","Metadata":{"Parameters":"Prompt,OutputPath,Size"},"User":"HP","Tool":"ai-image","Session":11836}
+{"Action":"execute","Timestamp":"2026-01-28 06:17:43","Metadata":{"Parameters":"Size,Provider,Prompt,Mode,OutputPath"},"User":"HP","Tool":"ai-image-universal","Session":11836}
+{"Action":"execute","Timestamp":"2026-01-28 06:17:43","Metadata":{"Parameters":"Size,Model,ApiKey,Quality,OutputPath,Prompt,Style,Mode"},"User":"HP","Tool":"generate-image-advanced","Session":11836}
