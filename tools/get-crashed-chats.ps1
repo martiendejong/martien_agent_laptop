@@ -3,8 +3,11 @@
     Lists Claude Code chats that crashed (no clean exit marker).
 
 .DESCRIPTION
-    Finds all sessions that started after the last clean exit
-    and assigns easy-to-remember IDs (crash-001, crash-002, etc.)
+    Uses TWO methods to find crashed sessions:
+    1. Active-sessions tracking (NEW): Sessions registered but not unregistered
+    2. Clean-exits comparison (OLD): Sessions not in clean_exits list
+
+    Assigns easy-to-remember IDs (crash-001, crash-002, etc.)
 
 .PARAMETER Project
     Project folder to check (default: C--scripts)
@@ -15,80 +18,139 @@
 .PARAMETER Json
     Output as JSON for programmatic use
 
+.PARAMETER Method
+    Detection method: "active" (new), "clean-exits" (old), or "both" (default)
+
+.PARAMETER Days
+    How many days back to look (default: 1)
+
 .EXAMPLE
     .\get-crashed-chats.ps1
     .\get-crashed-chats.ps1 -ShowContext
-    .\get-crashed-chats.ps1 -Json
+    .\get-crashed-chats.ps1 -Method active
+    .\get-crashed-chats.ps1 -Days 7
 #>
 
 param(
     [string]$Project = "C--scripts",
     [switch]$ShowContext,
-    [switch]$Json
+    [switch]$Json,
+    [ValidateSet("active", "clean-exits", "both")]
+    [string]$Method = "both",
+    [int]$Days = 1
 )
 
 $ErrorActionPreference = "Stop"
 
 # Configuration
 $TrackerFile = "C:\scripts\_machine\session-tracker.json"
+$ActiveSessionsFile = "C:\scripts\_machine\active-sessions.json"
 $CrashedChatsFile = "C:\scripts\_machine\crashed-chats.json"
 $ClaudeProjectsPath = "C:\Users\HP\.claude\projects"
 
-# Load tracker
-if (-not (Test-Path $TrackerFile)) {
-    Write-Host "No session tracker found. Run session-tracker.ps1 -Action status to initialize." -ForegroundColor Yellow
-    Write-Host "Currently, ALL sessions would be considered 'crashed' since we have no clean exit markers."
-    exit 0
-}
-
-$tracker = Get-Content $TrackerFile -Raw | ConvertFrom-Json
-
-# Get list of clean exit session IDs
-$cleanExitIds = @()
-if ($tracker.clean_exits) {
-    $cleanExitIds = $tracker.clean_exits | ForEach-Object { $_.session_id }
-}
-
-# Get cutoff time (last clean exit or 24 hours ago)
-$cutoffTime = if ($tracker.last_clean_exit_time) {
-    [DateTime]::Parse($tracker.last_clean_exit_time)
-} else {
-    (Get-Date).AddHours(-24)
-}
-
-# Find sessions that are NOT in clean exits and were modified after cutoff
 $projectPath = Join-Path $ClaudeProjectsPath $Project
-
 if (-not (Test-Path $projectPath)) {
     Write-Host "Project path not found: $projectPath" -ForegroundColor Red
     exit 1
 }
 
-$allSessions = Get-ChildItem -Path $projectPath -Filter "*.jsonl" -File |
-    Where-Object { $_.LastWriteTime -gt $cutoffTime } |
-    Sort-Object LastWriteTime
+# Calculate cutoff time
+$cutoffTime = (Get-Date).AddDays(-$Days)
 
-# Filter out clean exits
-$crashedSessions = @()
-foreach ($session in $allSessions) {
-    $sessionId = [System.IO.Path]::GetFileNameWithoutExtension($session.Name)
-    if ($sessionId -notin $cleanExitIds) {
-        # Read last user message for context
-        $lastUserMsg = ""
-        $lastTimestamp = ""
-        try {
-            $lines = Get-Content $session.FullName -Tail 30 -ErrorAction SilentlyContinue
-            foreach ($line in $lines) {
-                $entry = $line | ConvertFrom-Json -ErrorAction SilentlyContinue
-                if ($entry -and $entry.type -eq "user" -and $entry.message.content) {
-                    $content = $entry.message.content
-                    if ($content -is [string] -and -not $content.StartsWith("<")) {
-                        $lastUserMsg = $content
-                        if ($entry.timestamp) { $lastTimestamp = $entry.timestamp }
-                    }
+# Helper function to get last user message
+function Get-LastUserMessage {
+    param([string]$FilePath)
+    $lastUserMsg = ""
+    $lastTimestamp = ""
+    try {
+        $lines = Get-Content $FilePath -Tail 30 -ErrorAction SilentlyContinue
+        foreach ($line in $lines) {
+            $entry = $line | ConvertFrom-Json -ErrorAction SilentlyContinue
+            if ($entry -and $entry.type -eq "user" -and $entry.message.content) {
+                $content = $entry.message.content
+                if ($content -is [string] -and -not $content.StartsWith("<")) {
+                    $lastUserMsg = $content
+                    if ($entry.timestamp) { $lastTimestamp = $entry.timestamp }
                 }
             }
-        } catch {}
+        }
+    } catch {}
+    return @{ Message = $lastUserMsg; Timestamp = $lastTimestamp }
+}
+
+$crashedSessions = @()
+
+# METHOD 1: Active Sessions Tracking (NEW - most reliable)
+if ($Method -eq "active" -or $Method -eq "both") {
+    if (Test-Path $ActiveSessionsFile) {
+        $activeData = Get-Content $ActiveSessionsFile -Raw | ConvertFrom-Json
+        foreach ($prop in $activeData.sessions.PSObject.Properties) {
+            $session = $prop.Value
+            $sessionId = $session.session_id
+
+            # Check if process is still running
+            $processRunning = $false
+            if ($session.pid) {
+                try {
+                    $proc = Get-Process -Id $session.pid -ErrorAction SilentlyContinue
+                    if ($proc) { $processRunning = $true }
+                } catch {}
+            }
+
+            if (-not $processRunning) {
+                $sessionFile = Join-Path $projectPath "$sessionId.jsonl"
+                $fileInfo = if (Test-Path $sessionFile) { Get-Item $sessionFile } else { $null }
+
+                $context = @{ Message = ""; Timestamp = "" }
+                if ($ShowContext -and $fileInfo) {
+                    $context = Get-LastUserMessage -FilePath $sessionFile
+                }
+
+                $crashedSessions += [PSCustomObject]@{
+                    SessionId = $sessionId
+                    ShortId = $sessionId.Substring(0, 8)
+                    LastActivity = if ($fileInfo) { $fileInfo.LastWriteTime } else { [DateTime]::Parse($session.started_at) }
+                    SizeKB = if ($fileInfo) { [math]::Round($fileInfo.Length / 1KB, 1) } else { 0 }
+                    FilePath = $sessionFile
+                    LastUserMessage = if ($context.Message.Length -gt 100) { $context.Message.Substring(0, 100) + "..." } else { $context.Message }
+                    LastTimestamp = $context.Timestamp
+                    DetectedBy = "active-sessions"
+                }
+            }
+        }
+    }
+}
+
+# METHOD 2: Clean Exits Comparison (OLD - for sessions before active tracking was implemented)
+if ($Method -eq "clean-exits" -or $Method -eq "both") {
+    $cleanExitIds = @()
+
+    if (Test-Path $TrackerFile) {
+        $tracker = Get-Content $TrackerFile -Raw | ConvertFrom-Json
+        if ($tracker.clean_exits) {
+            $cleanExitIds = $tracker.clean_exits | ForEach-Object { $_.session_id }
+        }
+    }
+
+    $allSessions = Get-ChildItem -Path $projectPath -Filter "*.jsonl" -File |
+        Where-Object { $_.LastWriteTime -gt $cutoffTime } |
+        Sort-Object LastWriteTime
+
+    # Already found session IDs (avoid duplicates)
+    $alreadyFoundIds = $crashedSessions | ForEach-Object { $_.SessionId }
+
+    foreach ($session in $allSessions) {
+        $sessionId = [System.IO.Path]::GetFileNameWithoutExtension($session.Name)
+
+        # Skip if already found via active-sessions or if in clean exits
+        if ($sessionId -in $alreadyFoundIds -or $sessionId -in $cleanExitIds) {
+            continue
+        }
+
+        $context = @{ Message = ""; Timestamp = "" }
+        if ($ShowContext) {
+            $context = Get-LastUserMessage -FilePath $session.FullName
+        }
 
         $crashedSessions += [PSCustomObject]@{
             SessionId = $sessionId
@@ -96,11 +158,15 @@ foreach ($session in $allSessions) {
             LastActivity = $session.LastWriteTime
             SizeKB = [math]::Round($session.Length / 1KB, 1)
             FilePath = $session.FullName
-            LastUserMessage = if ($lastUserMsg.Length -gt 100) { $lastUserMsg.Substring(0, 100) + "..." } else { $lastUserMsg }
-            LastTimestamp = $lastTimestamp
+            LastUserMessage = if ($context.Message.Length -gt 100) { $context.Message.Substring(0, 100) + "..." } else { $context.Message }
+            LastTimestamp = $context.Timestamp
+            DetectedBy = "clean-exits"
         }
     }
 }
+
+# Sort by LastActivity descending (most recent first)
+$crashedSessions = $crashedSessions | Sort-Object LastActivity -Descending
 
 # Assign easy IDs (crash-001, crash-002, etc.)
 $crashedChats = @()
@@ -139,8 +205,7 @@ Write-Host "=" * 70 -ForegroundColor DarkGray
 Write-Host "  CRASHED CHATS REPORT" -ForegroundColor Red
 Write-Host "=" * 70 -ForegroundColor DarkGray
 Write-Host ""
-Write-Host "  Last clean exit: $($tracker.last_clean_exit_time)" -ForegroundColor DarkGray
-Write-Host "  Project: $Project" -ForegroundColor DarkGray
+Write-Host "  Method: $Method | Days: $Days | Project: $Project" -ForegroundColor DarkGray
 Write-Host ""
 
 if ($crashedChats.Count -eq 0) {
