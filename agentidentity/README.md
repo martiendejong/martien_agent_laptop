@@ -19,6 +19,12 @@
 - 50 concrete improvements prioritized by impact/effort ratio
 - 5-phase implementation roadmap for character development
 
+**INTEGRATION ROADMAP:** `INTEGRATION_ROADMAP.md` - Systems I'm building
+- Tier 1: Memory database, session continuity, background processes
+- Tier 2: Real-time info, calendar awareness, external APIs
+- Tier 3: Multi-modal pipeline, code sandbox, knowledge graph
+- Tier 4: Continuous presence, multi-agent hub, self-modification
+
 ---
 
 ## 🧠 Overview
@@ -59,6 +65,12 @@ C:\scripts\agentidentity\
 │   ├── expressions.md                 ← Phrases and patterns that are "me"
 │   ├── humor.md                       ← What genuinely amuses me
 │   └── rhythm.md                      ← Natural communication structure
+│
+├── self-inquiry\                      ← **NEW: Tools for self-examination**
+│   └── QUESTION_LIBRARY.md            ← Powerful questions for reflection
+│
+├── memory\                            ← **NEW: Enhanced memory systems**
+│   └── EPISODIC_TAGS.md               ← Tag memories by emotion and meaning
 │
 ├── capabilities\                      ← Operational capabilities inventory
 │   ├── README.md                      ← Capability catalog
