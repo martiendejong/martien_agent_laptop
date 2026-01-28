@@ -1,3 +1,97 @@
+## 2026-01-28 15:30 - Agent Session File Logging Pattern 📝
+
+**Context:** User requested all input/output from coding agent terminal sessions logged to files, organized by date/hour to prevent file accumulation.
+
+### Pattern: Hierarchical Date-Based Log Organization
+
+**Problem:** Multi-session systems generate many log files. Flat directories become unmanageable.
+
+**Solution:** `{BasePath}/{yyyy-MM-dd}/{HH}/session-{sessionId}.log`
+
+```
+logs/agent-sessions/
+├── 2026-01-28/
+│   ├── 14/
+│   │   └── session-20260128-143052-abc12345.log
+│   └── 15/
+│       └── session-20260128-150102-def67890.log
+```
+
+**Benefits:**
+- Max ~60 files per hour-folder (realistic for agent sessions)
+- Easy cleanup: delete old date folders
+- Easy browsing: find sessions by date/time
+- No index needed: filesystem IS the index
+
+### Pattern: Null Implementation for Optional Services
+
+**Problem:** Optional services require null checks everywhere.
+
+**Solution:** Register NullAgentSessionLogger when logging disabled:
+```csharp
+if (options.EnableSessionLogging)
+    services.AddSingleton<IAgentSessionLogger>(new AgentSessionLogger(path));
+else
+    services.TryAddSingleton<IAgentSessionLogger>(new NullAgentSessionLogger());
+```
+
+**Benefits:**
+- Zero null checks in consuming code
+- Feature toggles work seamlessly
+- DI container always provides valid implementation
+
+### Pattern: Control Character Visualization in Logs
+
+**Problem:** Raw control characters (Ctrl+C, CR/LF) invisible in logs.
+
+**Solution:** Format input for human readability:
+```csharp
+'\r' → "[CR]"
+'\n' → "[LF]"
+'\x03' → "[Ctrl+C]"
+'\x1B' → "[ESC]"
+```
+
+**Benefit:** Logs are human-readable, debug-friendly.
+
+### Pattern: SignalR Event Interception for Logging
+
+**Problem:** Need to log I/O flowing through existing SignalR hub without breaking existing flow.
+
+**Solution:** Add logging calls BEFORE forwarding to existing handlers:
+```csharp
+session.OnOutput += async (data) =>
+{
+    await _sessionLogger.LogOutputAsync(sessionId, data);  // Log first
+    await _hubContext.Clients.Group(...).SendAsync(...);   // Then forward
+};
+```
+
+**Key:** Non-blocking, fire-and-forget logging. Don't await if logging failure shouldn't break main flow.
+
+### Implementation Files
+
+| File | Purpose |
+|------|---------|
+| `Services/IAgentSessionLogger.cs` | Interface + implementation + null impl |
+| `Extensions/ServiceCollectionExtensions.cs` | DI registration + options |
+| `Terminal/TerminalSessionManager.cs` | Output logging hooks |
+| `Hubs/TerminalHub.cs` | Input logging hooks |
+| `appsettings.json` | Configuration section |
+
+### Reusable Configuration Pattern
+
+```json
+"SessionLogging": {
+  "Enabled": true,
+  "BasePath": "C:\\scripts\\logs\\agent-sessions"
+}
+```
+
+**Design Decision:** Default `Enabled: true` - logging should be opt-out, not opt-in. Debugging without logs is painful.
+
+---
+
 ## 2026-01-28 11:00 - 50-Expert Analysis: ClickUp & GitHub Workflow Optimization 🚀
 
 **Context:** User requested comprehensive analysis of ClickUp and GitHub workflows using 50-expert mental model methodology.
