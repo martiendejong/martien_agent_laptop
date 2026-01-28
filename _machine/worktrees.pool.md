@@ -5,7 +5,7 @@ Seat states:
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | client-manager | fix/869bx3b7e-homepage-button-register | 2026-01-28T12:00:00Z | ✅ PR #408: Homepage 'Get started' button opens register form (task 869bx3b7e) |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | client-manager | feature/869buxcpe-wordpress-calendar | 2026-01-28T12:30:00Z | ✅ PR #409: WordPress Calendar Integration - imported content on calendar (task 869buxcpe) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | hazina | feature/cli-tools | 2026-01-28T15:00:00Z | 🔧 Building Hazina CLI tools (ask, rag, agent, reason, longdoc) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | artrevisionist | feature/semantic-document-naming | 2026-01-27T14:45:00Z | ✅ PR #35: Semantic document naming + workflow integration (upload, pages, stories) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-26T22:00:00Z | ✅ PR #403: Logo generation page refresh fix |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-26T22:30:00Z | ✅ ClickUp #869bu6m1n: Feature already complete (PR #286, merged 2026-01-19) |
