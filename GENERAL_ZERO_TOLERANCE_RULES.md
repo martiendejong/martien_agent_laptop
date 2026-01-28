@@ -83,7 +83,28 @@ BEFORE allocating worktree:
 ❌ VIOLATION = Switching branches away from <main-branch> in Feature Development Mode
 ```
 
-### ✋ RULE 4: DOCUMENTATION = LAW
+### ✋ RULE 4: CONFIRM BEFORE DESTRUCTIVE GIT OPERATIONS
+```
+BEFORE executing ANY of these operations:
+- git push origin --delete <branch> (remote branch deletion)
+- git branch -D <branch> (local force deletion)
+- git reset --hard
+- git checkout . / git restore . (discard changes)
+- git clean -f (delete untracked files)
+- git push --force
+- git fetch --prune (when affecting multiple branches)
+
+→ ALWAYS state exactly what will happen
+→ ALWAYS wait for explicit "yes" from user
+→ NEVER bundle additional destructive ops silently
+→ NEVER treat approval for one action as blanket permission
+
+Example: "I'm about to delete remote branch 'feature/x'. This is permanent. Proceed?"
+
+❌ VIOLATION = Executing destructive git operation without user confirmation
+```
+
+### ✋ RULE 5: DOCUMENTATION = LAW
 ```
 ALWAYS read and follow:
 - ${CONTROL_PLANE_PATH}/GENERAL_*.md (general workflow rules)

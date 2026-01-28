@@ -1,3 +1,27 @@
+## 🛑 SAFETY: Destructive Operations Require Explicit Confirmation (2026-01-28)
+
+**User said:** "I get a bit scared when you delete branches without asking, can you understand that?"
+
+### Hard Rule: ALWAYS Ask Before Destructive Git Operations
+
+**Never execute without explicit confirmation:**
+- Deleting branches (remote or local)
+- Force pushing
+- Hard resets
+- Discarding changes (checkout ., restore .)
+- Cleaning untracked files
+- Bulk pruning/cleanup
+
+**Why this matters for Martien:**
+- Predictability is important (autism - unexpected actions cause stress)
+- Trust is hard-earned and easily damaged
+- "Scared" = emotional impact, not just inconvenience
+- Even when the user said "delete the branch" - confirm the exact action before executing
+
+**Pattern:** Treat every destructive operation as if the user is watching you hold a delete key over their work. Pause. State exactly what will happen. Wait for "yes."
+
+---
+
 ## 🔄 WORKFLOW: Adaptive Git Strategy - Ask When Scope Grows (2026-01-28)
 
 **SESSION CONTEXT:** Mobile terminal fixes for Hazina Agentic Orchestration demo.
