@@ -1,5 +1,42 @@
 # Git Workflow and PR Management
 
+## 🛑 CRITICAL: PR BASE BRANCH = DEVELOP (ALWAYS)
+
+**THIS IS A ZERO-TOLERANCE RULE - NO EXCEPTIONS WITHOUT EXPLICIT USER REQUEST**
+
+### The Rule
+
+Every PR must use `develop` as the base branch:
+
+```bash
+# CORRECT - Always include --base develop
+gh pr create --base develop --title "Feature: Add new component" --body "..."
+
+# WRONG - Omitting --base defaults to main
+gh pr create --title "Feature: Add new component" --body "..."  # ❌ VIOLATION
+
+# WRONG - Explicit main
+gh pr create --base main --title "Feature: Add new component" --body "..."  # ❌ VIOLATION
+```
+
+### Why This Matters
+
+| Branch | Purpose | PRs To This Branch |
+|--------|---------|-------------------|
+| `main` | Production releases only | ❌ NEVER (unless release) |
+| `develop` | Integration branch | ✅ ALL feature/bugfix/refactor PRs |
+
+### The ONLY Exception
+
+Release PRs go to `main`, but ONLY when user explicitly says:
+- "Create a release PR to main"
+- "Merge develop into main for release"
+- "This is a production release"
+
+If user doesn't say this explicitly → **base branch is DEVELOP**
+
+---
+
 ## 🔗 CROSS-REPO PR DEPENDENCIES
 
 **CRITICAL: When client-manager PR depends on hazina PR, CLEARLY MARK IT!**

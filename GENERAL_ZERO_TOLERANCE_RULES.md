@@ -114,6 +114,31 @@ ALWAYS read and follow:
 ❌ VIOLATION = CRITICAL FAILURE
 ```
 
+### ✋ RULE 6: PRs GO TO DEVELOP, NEVER TO MAIN
+```
+EVERY pull request base branch = develop
+
+CORRECT:
+gh pr create --base develop --title "..." --body "..."
+             ↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+             MANDATORY FLAG
+
+WRONG:
+gh pr create --title "..." --body "..."  ← Defaults to main = VIOLATION
+gh pr create --base main --title "..."   ← Explicit main = VIOLATION
+
+ONLY exception: Release PRs to main (user will explicitly request this)
+
+Workflow:
+├── Feature branches → PR to develop
+├── Bugfix branches → PR to develop
+├── Refactor branches → PR to develop
+└── Release branches → PR to main (ONLY when user explicitly says so)
+
+❌ VIOLATION = Creating PR to main without explicit user request
+❌ VIOLATION = Omitting --base develop from gh pr create
+```
+
 ---
 
 ## 🚦 MODE DETECTION CHECKLIST (FIRST STEP - Print mentally)

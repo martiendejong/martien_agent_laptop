@@ -13,11 +13,13 @@ user-invocable: true
 
 ### Standard PR Creation
 
+**🛑 CRITICAL: ALWAYS use `--base develop` - PRs NEVER go to main!**
+
 ```bash
 cd C:/Projects/worker-agents/agent-XXX/<repo>
 
-# Create PR with proper format
-gh pr create --title "<type>: <brief description>" --body "$(cat <<'EOF'
+# Create PR with proper format - NOTE: --base develop is MANDATORY
+gh pr create --base develop --title "<type>: <brief description>" --body "$(cat <<'EOF'
 ## Summary
 <1-3 bullet points explaining what changed and why>
 
