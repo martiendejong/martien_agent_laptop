@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | client-manager | fix/869bx3b7e-homepage-button-register | 2026-01-28T12:00:00Z | ✅ PR #408: Homepage 'Get started' button opens register form (task 869bx3b7e) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | artrevisionist | feature/869bycqp1-multi-file-upload | 2026-01-28T18:45:00Z | ✅ PR #37: Multi-file upload support (drag-and-drop + file picker) (ClickUp #869bycqp1) |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | hazina | feature/cli-tools | 2026-01-28T16:30:00Z | ✅ PR #127: Hazina CLI with 5 core AI tools (ask, rag, agent, reason, longdoc) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | artrevisionist | feature/semantic-document-naming | 2026-01-27T14:45:00Z | ✅ PR #35: Semantic document naming + workflow integration (upload, pages, stories) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-26T22:00:00Z | ✅ PR #403: Logo generation page refresh fix |
