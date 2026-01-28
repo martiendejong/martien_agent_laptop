@@ -1,0 +1,16 @@
+﻿{
+    "generated_at":  "2026-01-28T13:44:45.9652335+01:00",
+    "project":  "C--scripts",
+    "chats":  [
+                  {
+                      "EasyId":  "crash-001",
+                      "SessionId":  "9233679d-77fe-4928-afda-72cc30e612f7",
+                      "ShortId":  "9233679d",
+                      "LastActivity":  "2026-01-28 13:44",
+                      "SizeKB":  1215.8,
+                      "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\9233679d-77fe-4928-afda-72cc30e612f7.jsonl",
+                      "LastUserMessage":  ""
+                  }
+              ],
+    "last_clean_exit":  "2026-01-28T13:44:36.8069828+01:00"
+}

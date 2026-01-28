@@ -767,48 +767,57 @@ done
 | `C:\Users\HP\.claude\projects\C--Projects-client-manager\` | client-manager sessions |
 | `C:\Users\HP\.claude\projects\C--Projects-hazina\` | Hazina sessions |
 
-### Session File Structure
+### Crash Detection System (Clean Exit Markers)
 
-Each session stored as `<UUID>.jsonl` containing:
-- **User messages** (role: user)
-- **Claude responses** (role: assistant, with thinking + text)
-- **Tool calls and results**
-- **File history snapshots**
-- **Timestamps and metadata**
+**How it works:**
+1. `claude_agent.bat` records session **start** when launching Claude
+2. When Claude exits **normally**, it records a **clean exit marker**
+3. Sessions without clean exit markers = **crashed sessions**
+4. Crashed sessions get **easy IDs** like `crash-001`, `crash-002`
+
+**Key files:**
+- `C:\scripts\_machine\session-tracker.json` - Tracks clean exits
+- `C:\scripts\_machine\crashed-chats.json` - Cached list with easy IDs
 
 ### Session Recovery Tools
 
 | Tool | Purpose | Usage |
 |------|---------|-------|
-| `get-crashed-sessions.ps1` | **Find interrupted sessions** | `get-crashed-sessions.ps1 -Days 7` |
-| `session-restore.ps1` | **Generate restore context** | `session-restore.ps1 -SessionId "abc..."` |
+| `get-crashed-chats.ps1` | **List crashed chats with easy IDs** | `get-crashed-chats.ps1 -ShowContext` |
+| `restore-chat.ps1` | **Restore by easy ID** | `restore-chat.ps1 -ChatId crash-001` |
+| `session-tracker.ps1` | **Manage clean exit markers** | `session-tracker.ps1 -Action status` |
 | `session-browser.ps1` | **Search/browse history** | `session-browser.ps1 -Search "migration"` |
 | `session-export.ps1` | **Export to markdown** | `session-export.ps1 -SessionId "abc..."` |
 
 ### Quick Commands
 
 ```powershell
-# Find crashed sessions from last 3 days
-.\tools\get-crashed-sessions.ps1 -Days 3 -ShowContext
+# List all crashed chats with easy IDs
+.\tools\get-crashed-chats.ps1 -ShowContext
 
-# Generate restore context for a crashed session
-.\tools\session-restore.ps1 -SessionId "abc123" -Clipboard
+# Restore a specific crashed chat
+.\tools\restore-chat.ps1 -ChatId crash-001 -Clipboard
 
-# Search all conversations for a keyword
+# Check session tracker status
+.\tools\session-tracker.ps1 -Action status
+
+# Set baseline (ignore all prior sessions)
+.\tools\session-tracker.ps1 -Action baseline
+
+# Search conversations
 .\tools\session-browser.ps1 -Search "database error" -Days 30
-
-# View session statistics
-.\tools\session-browser.ps1 -Stats
 ```
 
 ### Session Recovery Workflow
 
-1. **Detect crash:** `get-crashed-sessions.ps1 -Days 7`
-2. **Get context:** `session-restore.ps1 -SessionId <id> -Clipboard`
-3. **New session:** Start new Claude Code, paste restore context
-4. **Continue:** Claude picks up where it left off
+1. **List crashed chats:** `get-crashed-chats.ps1`
+2. **Find your chat:** Look for easy ID (crash-001, crash-002, etc.)
+3. **Restore context:** `restore-chat.ps1 -ChatId crash-001 -Clipboard`
+4. **New session:** Open new Claude Code, paste context
+5. **Or simply say:** "restore the chat with id crash-001"
 
 **Full documentation:** `C:\scripts\_machine\CONVERSATION_LOGS.md`
+**Skill:** `restore-crashed-chat` (auto-activates when you say "restore chat")
 
 ---
 
