@@ -300,7 +300,25 @@ Has user replied to questions?
 
 For tasks in "todo" status with NO uncertainties:
 
-#### 4.1 Check for Existing Branch
+#### 4.1 Check for Existing Work (MANDATORY - Prevents Duplicate Effort)
+
+**STEP 1: Check if another agent is already working on this task**
+
+```powershell
+# Get task details including comments
+$taskDetails = C:/scripts/tools/clickup-sync.ps1 -Action show -TaskId "<task-id>"
+
+# Look for recent "AGENT WORKING" comment without "COMPLETED" or "HANDOFF"
+# If found and recent (within 2 hours), SKIP this task - another agent is on it!
+if ($taskDetails -match "🤖 AGENT WORKING" -and $taskDetails -notmatch "✅ AGENT COMPLETED") {
+    Write-Host "WARNING: Another agent is already working on this task!" -ForegroundColor Yellow
+    Write-Host "Check ClickUp comments for agent ID and status" -ForegroundColor Yellow
+    # SKIP to next task
+    return
+}
+```
+
+**STEP 2: Check for existing branch**
 
 ```bash
 cd C:/Projects/client-manager
@@ -360,12 +378,33 @@ cd "C:/Projects/worker-agents/$AGENT_SEAT/client-manager"
 
 **CRITICAL:** ALWAYS assign task when moving to "busy" or "review"
 
+**MANDATORY (2026-01-28): Post Agent ID Comment FIRST**
+
+Before doing any work, post a comment identifying which agent is working:
+
 ```powershell
-# Update to busy when starting implementation AND assign to someone
+# STEP 1: Post agent identification comment (MANDATORY - so other agents can see who's working)
+$AGENT_ID = "agent-003"  # Your agent seat number
+$SESSION_TIME = (Get-Date -Format "yyyy-MM-ddTHH:mm:ssZ")
+C:/scripts/tools/clickup-sync.ps1 -Action comment -TaskId "<task-id>" -Comment "
+🤖 AGENT WORKING
+
+Agent ID: $AGENT_ID
+Session Start: $SESSION_TIME
+Branch: $BRANCH_NAME
+Worktree: C:/Projects/worker-agents/$AGENT_ID/client-manager
+
+This task is now being actively worked on.
+Other agents: Please do not pick up this task.
+
+-- Claude Code Agent ($AGENT_ID)
+"
+
+# STEP 2: Update to busy when starting implementation AND assign to someone
 # Default assignee: 74525428 (Martien de Jong - primary developer)
 C:/scripts/tools/clickup-sync.ps1 -Action update -TaskId "<task-id>" -Status "busy" -Assignee "74525428"
 
-# Add progress comment
+# STEP 3: Add progress comment with technical details
 C:/scripts/tools/clickup-sync.ps1 -Action comment -TaskId "<task-id>" -Comment "
 IMPLEMENTATION STARTED
 
@@ -374,9 +413,15 @@ Worktree: $AGENT_SEAT
 Approach: [Brief description of technical approach]
 Assigned to: Martien de Jong
 
--- ClickHub Coding Agent
+-- ClickHub Coding Agent ($AGENT_ID)
 "
 ```
+
+**WHY AGENT ID COMMENT?**
+- Multiple agents may run simultaneously
+- Prevents duplicate work on same task
+- Creates audit trail of who worked on what
+- Enables agent coordination and handoffs
 
 #### 4.5 Complete Implementation
 
@@ -421,6 +466,24 @@ $PR_NUMBER = <number>
 
 # Link PR to task
 C:/scripts/tools/clickup-sync.ps1 -Action link-pr -TaskId "<task-id>" -PrNumber $PR_NUMBER
+
+# Post AGENT COMPLETED comment (closes the AGENT WORKING lifecycle)
+$AGENT_ID = "agent-003"  # Your agent seat number
+C:/scripts/tools/clickup-sync.ps1 -Action comment -TaskId "<task-id>" -Comment "
+✅ AGENT COMPLETED
+
+Agent ID: $AGENT_ID
+PR Created: #$PR_NUMBER
+PR URL: https://github.com/martiendejong/client-manager/pull/$PR_NUMBER
+Session Duration: [X hours]
+Files Changed: [count]
+Commits: [count]
+
+This task is ready for review. Worktree will be released.
+Other agents: Task is available for pickup if review changes needed.
+
+-- Claude Code Agent ($AGENT_ID)
+"
 
 # Update task to review status AND assign to reviewer
 # Default assignee: 74525428 (Martien de Jong - primary reviewer)

@@ -5,7 +5,7 @@ Seat states:
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager | fix/869bx3b7e-homepage-button-register | 2026-01-27T21:00:00Z | 🔧 Working on: get started button should show register form (task 869bx3b7e) |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-01-28T01:10:00Z | ✅ PR #373: Resolved merge conflict in Program.cs (social messaging + develop) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | client-manager | feature/869buxcpe-wordpress-calendar | 2026-01-28T11:00:00Z | 🔧 Working on: WordPress Calendar Integration (task 869buxcpe) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | artrevisionist | feature/semantic-document-naming | 2026-01-27T14:45:00Z | ✅ PR #35: Semantic document naming + workflow integration (upload, pages, stories) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-26T22:00:00Z | ✅ PR #403: Logo generation page refresh fix |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-26T22:30:00Z | ✅ ClickUp #869bu6m1n: Feature already complete (PR #286, merged 2026-01-19) |
