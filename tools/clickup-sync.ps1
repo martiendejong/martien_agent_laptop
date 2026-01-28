@@ -233,10 +233,12 @@ switch ($Action) {
         }
 
         $url = "$apiBase/list/$ListId/task"
+        # Different lists use different status names
+        $defaultStatus = if ($Project -eq "art-revisionist") { "to do" } else { "todo" }
         $body = @{
             name = $Name
             description = if ($Description) { $Description } else { "" }
-            status = "todo"
+            status = $defaultStatus
         } | ConvertTo-Json
 
         try {
