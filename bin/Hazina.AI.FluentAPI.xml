@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hazina.AI.FluentAPI</name>
+    </assembly>
+    <members>
+        <member name="T:Hazina.AI.FluentAPI.Configuration.QuickSetup">
+            <summary>
+            Quick setup helpers for common scenarios
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Configuration.QuickSetup.SetupOpenAI(System.String,System.String)">
+            <summary>
+            Setup for single OpenAI provider
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Configuration.QuickSetup.SetupWithFailover(System.String,System.String,System.String,System.String)">
+            <summary>
+            Setup with OpenAI + Anthropic failover
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Configuration.QuickSetup.SetupCostOptimized(System.String,System.String)">
+            <summary>
+            Setup cost-optimized (cheapest providers)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Configuration.QuickSetup.SetupAndConfigure(System.String,System.String,System.Boolean)">
+            <summary>
+            Setup and configure as default for Hazina.AI()
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FluentAPI.Core.Hazina">
+            <summary>
+            Main entry point for Hazina Fluent API
+            Example: var result = await Hazina.AI().WithProvider("openai").Ask("Hello").ExecuteAsync();
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.Hazina.ConfigureDefaultOrchestrator(Hazina.AI.Providers.Core.IProviderOrchestrator)">
+            <summary>
+            Configure default provider orchestrator for all subsequent calls
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.Hazina.AI">
+            <summary>
+            Start building an AI request
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.Hazina.AskAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Quick ask - simplified interface for single questions
+            Requires ConfigureDefaultOrchestrator() to be called first
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.Hazina.AskSafeAsync(System.String,System.Double,System.Threading.CancellationToken)">
+            <summary>
+            Quick ask with fault detection
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.Hazina.AskForJsonAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Quick ask expecting JSON response
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.Hazina.AskForCodeAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Quick ask expecting code response
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FluentAPI.Core.HazinaBuilder">
+            <summary>
+            Fluent API builder for Hazina AI operations
+            Provides developer-friendly interface reducing complexity by 70%
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.HazinaBuilder.WithOrchestrator(Hazina.AI.Providers.Core.IProviderOrchestrator)">
+            <summary>
+            Use a specific provider orchestrator
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.HazinaBuilder.WithProvider(System.String)">
+            <summary>
+            Use a specific provider by name
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.HazinaBuilder.WithCheapestProvider">
+            <summary>
+            Use cheapest available provider
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.HazinaBuilder.WithFastestProvider">
+            <summary>
+            Use fastest available provider
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.HazinaBuilder.WithPriorityProvider">
+            <summary>
+            Use highest priority provider
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.HazinaBuilder.WithFaultDetection(System.Double)">
+            <summary>
+            Enable fault detection with optional confidence threshold
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.HazinaBuilder.WithContext(Hazina.AI.Orchestration.Context.ConversationContext)">
+            <summary>
+            Use existing conversation context
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.HazinaBuilder.WithNewContext(System.Int32)">
+            <summary>
+            Create new conversation context
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.HazinaBuilder.WithSystemMessage(System.String)">
+            <summary>
+            Add system message
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.HazinaBuilder.Ask(System.String)">
+            <summary>
+            Ask a question (user message)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.HazinaBuilder.ExpectJson">
+            <summary>
+            Set expected response type for validation
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.HazinaBuilder.ExpectCode">
+            <summary>
+            Set expected response type to code
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.HazinaBuilder.WithGroundTruth(System.String,System.String)">
+            <summary>
+            Add ground truth for validation
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.HazinaBuilder.WithValidation(System.String,System.Func{System.String,System.Threading.Tasks.Task{System.Boolean}},Hazina.AI.FaultDetection.Core.IssueSeverity)">
+            <summary>
+            Add custom validation rule
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.HazinaBuilder.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            Execute the AI request
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Core.HazinaBuilder.ExecuteStreamAsync(System.Action{System.String},System.Threading.CancellationToken)">
+            <summary>
+            Execute with streaming response
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FluentAPI.Extensions.ProviderOrchestratorExtensions">
+            <summary>
+            Extension methods for IProviderOrchestrator
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Extensions.ProviderOrchestratorExtensions.CreateBuilder(Hazina.AI.Providers.Core.IProviderOrchestrator)">
+            <summary>
+            Create a fluent builder from orchestrator
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Extensions.ProviderOrchestratorExtensions.AskAsync(Hazina.AI.Providers.Core.IProviderOrchestrator,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Quick ask using orchestrator
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Extensions.ProviderOrchestratorExtensions.AskSafeAsync(Hazina.AI.Providers.Core.IProviderOrchestrator,System.String,System.Double,System.Threading.CancellationToken)">
+            <summary>
+            Ask with fault detection
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FluentAPI.Extensions.ProviderOrchestratorExtensions.AskForJsonAsync(Hazina.AI.Providers.Core.IProviderOrchestrator,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Ask expecting JSON
+            </summary>
+        </member>
+    </members>
+</doc>

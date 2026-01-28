@@ -82,13 +82,13 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-# Find hazina CLI
-$hazinaPath = "C:\Projects\hazina\apps\CLI\Hazina.CLI\bin\Debug\net9.0\hazina.exe"
+# Find hazina CLI - prefer stable bin location
+$hazinaPath = "C:\scripts\bin\hazina.exe"
 if (!(Test-Path $hazinaPath)) {
-    $hazinaPath = "C:\Projects\worker-agents\agent-002\hazina\apps\CLI\Hazina.CLI\bin\Debug\net9.0\hazina.exe"
+    $hazinaPath = "C:\Projects\worker-agents\agent-002\hazina\apps\CLI\Hazina.CLI\bin\Release\net9.0\hazina.exe"
 }
 if (!(Test-Path $hazinaPath)) {
-    Write-Error "Hazina CLI not found. Build it first: cd C:\Projects\hazina\apps\CLI\Hazina.CLI && dotnet build"
+    Write-Error "Hazina CLI not found at C:\scripts\bin\hazina.exe. Run: Copy-Item 'C:\Projects\hazina\apps\CLI\Hazina.CLI\bin\Release\net9.0\*' 'C:\scripts\bin\' -Recurse"
     exit 1
 }
 

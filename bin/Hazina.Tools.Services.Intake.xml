@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hazina.Tools.Services.Intake</name>
+    </assembly>
+    <members>
+        <member name="M:HazinaStore.IntakeRegenerators.ContentHooksRegenerator.BuildProjectContextAsync(System.String,System.Action{System.String})">
+            <summary>
+            Builds project context from analysis fields using IAnalysisFieldsProvider.
+            Loads all configured analysis fields (brand profile, tone of voice, etc.) and extracts their content.
+            </summary>
+        </member>
+        <member name="M:HazinaStore.IntakeRegenerators.ContentHooksRegenerator.GetLanguageInstruction(System.String)">
+            <summary>
+            Gets the language instruction to append to prompts.
+            Returns empty string if language is English (default) or null/empty.
+            </summary>
+        </member>
+    </members>
+</doc>

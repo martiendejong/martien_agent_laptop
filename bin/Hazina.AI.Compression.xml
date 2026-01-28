@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hazina.AI.Compression</name>
+    </assembly>
+    <members>
+        <member name="T:Hazina.AI.Compression.Interfaces.ITokenCounter">
+            <summary>
+            Provider-specific token counting interface
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Compression.Interfaces.ITokenCounter.ProviderName">
+            <summary>
+            Get the name of the provider this counter supports
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Compression.Interfaces.ITokenCounter.CountTokens(System.String,System.String)">
+            <summary>
+            Count tokens in text for a specific model
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Compression.Interfaces.ITokenCounter.CountTokens(System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            Count tokens across multiple text segments
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Compression.Interfaces.ITokenCounter.SupportsModel(System.String)">
+            <summary>
+            Check if this counter supports the given model
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Compression.Interfaces.ITokenCounter.TruncateToTokenLimit(System.String,System.Int32,System.String)">
+            <summary>
+            Truncate text to fit within token limit
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Compression.Models.CompressionOptions">
+            <summary>
+            Compression strategy configuration
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Compression.Models.CompressionOptions.MaxTokens">
+            <summary>
+            Maximum tokens for the context
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Compression.Models.CompressionOptions.ReservedSystemTokens">
+            <summary>
+            Reserved tokens for system prompt and tools
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Compression.Models.CompressionOptions.ReservedResponseTokens">
+            <summary>
+            Reserved tokens for response generation
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Compression.Models.CompressionOptions.Strategy">
+            <summary>
+            Compression strategy to use
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Compression.Models.CompressionOptions.EnableRelevanceScoring">
+            <summary>
+            Enable message relevance scoring
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Compression.Models.CompressionOptions.EnableSummarization">
+            <summary>
+            Enable conversation summarization
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Compression.Models.CompressionOptions.KeepRecentMessages">
+            <summary>
+            Number of recent messages to always keep
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Compression.Models.CompressionOptions.ProviderOrModel">
+            <summary>
+            Provider or model name for token counting
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Compression.Models.CompressionOptions.AvailableTokens">
+            <summary>
+            Get available tokens for content (after reserves)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Compression.Models.CompressionOptions.ForModel(System.String,System.Int32)">
+            <summary>
+            Create default options for a specific model
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Compression.Models.CompressionOptions.Aggressive">
+            <summary>
+            Aggressive compression preset
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Compression.Models.CompressionOptions.Balanced">
+            <summary>
+            Balanced compression preset (default)
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Compression.Models.CompressionOptions.Conservative">
+            <summary>
+            Conservative compression preset
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Compression.Models.CompressionStrategy">
+            <summary>
+            Compression strategy enum
+            </summary>
+        </member>
+        <member name="F:Hazina.AI.Compression.Models.CompressionStrategy.Conservative">
+            <summary>
+            Minimal compression - keep most content
+            </summary>
+        </member>
+        <member name="F:Hazina.AI.Compression.Models.CompressionStrategy.Balanced">
+            <summary>
+            Balanced approach - moderate compression
+            </summary>
+        </member>
+        <member name="F:Hazina.AI.Compression.Models.CompressionStrategy.Aggressive">
+            <summary>
+            Aggressive compression - maximize token savings
+            </summary>
+        </member>
+        <member name="F:Hazina.AI.Compression.Models.CompressionStrategy.None">
+            <summary>
+            No compression - passthrough
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Compression.Optimization.MessageHistoryOptimizer">
+            <summary>
+            Optimizes conversation history by applying relevance scoring, deduplication,
+            and intelligent truncation to fit within token budgets
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Compression.Optimization.MessageHistoryOptimizer.Optimize(System.Collections.Generic.List{HazinaChatMessage},System.String,Hazina.AI.Compression.Models.CompressionOptions)">
+            <summary>
+            Optimize message history to fit within token budget
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Compression.Optimization.MessageHistoryOptimizer.SelectRelevantMessages(System.Collections.Generic.List{HazinaChatMessage},System.String,System.Int32,Hazina.AI.Compression.Models.CompressionOptions)">
+            <summary>
+            Select messages based on relevance to current query
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Compression.Optimization.MessageHistoryOptimizer.CalculateRelevanceScore(HazinaChatMessage,System.String,System.Collections.Generic.List{HazinaChatMessage})">
+            <summary>
+            Calculate relevance score for a message
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Compression.Optimization.MessageHistoryOptimizer.TruncateToTokenLimit(System.Collections.Generic.List{HazinaChatMessage},System.Int32)">
+            <summary>
+            Truncate messages to fit within token limit (from beginning, keeping most recent)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Compression.Optimization.MessageHistoryOptimizer.CountTokens(System.Collections.Generic.IEnumerable{HazinaChatMessage})">
+            <summary>
+            Count tokens in messages
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Compression.Optimization.MessageHistoryOptimizer.DeduplicateMessages(System.Collections.Generic.List{HazinaChatMessage},System.Double)">
+            <summary>
+            Deduplicate similar consecutive messages (removes redundancy)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Compression.Optimization.MessageHistoryOptimizer.CalculateTextSimilarity(System.String,System.String)">
+            <summary>
+            Simple text similarity calculation (Jaccard index)
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Compression.TokenCounting.ApproximateTokenCounter">
+            <summary>
+            Approximation-based token counter for providers without specific tokenizers.
+            Uses character/word-based heuristics calibrated for common LLMs.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Compression.TokenCounting.ClaudeTokenCounter">
+            <summary>
+            Claude-specific approximation (3.8 chars/token)
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Compression.TokenCounting.GeminiTokenCounter">
+            <summary>
+            Gemini-specific approximation (4.2 chars/token)
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Compression.TokenCounting.OpenAITokenCounter">
+            <summary>
+            OpenAI-specific token counter using tiktoken (SharpToken)
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Compression.TokenCounting.TokenCounterFactory">
+            <summary>
+            Factory for creating provider-specific token counters
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Compression.TokenCounting.TokenCounterFactory.GetCounter(System.String)">
+            <summary>
+            Get token counter for a specific provider or model
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Compression.TokenCounting.TokenCounterFactory.RegisterCounter(System.String,Hazina.AI.Compression.Interfaces.ITokenCounter)">
+            <summary>
+            Register a custom token counter
+            </summary>
+        </member>
+    </members>
+</doc>

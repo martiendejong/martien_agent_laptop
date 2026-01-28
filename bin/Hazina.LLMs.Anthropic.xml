@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hazina.LLMs.Anthropic</name>
+    </assembly>
+    <members>
+        <member name="T:Hazina.LLMs.Anthropic.AnthropicConfig">
+            <summary>
+            Configuration for Anthropic Claude API.
+            </summary>
+        </member>
+        <member name="P:Hazina.LLMs.Anthropic.AnthropicConfig.ApiVersion">
+            <summary>
+            API version for Anthropic (e.g., "2023-06-01").
+            </summary>
+        </member>
+        <member name="P:Hazina.LLMs.Anthropic.AnthropicConfig.ConfigurationSectionName">
+            <inheritdoc />
+        </member>
+        <member name="P:Hazina.LLMs.Anthropic.AnthropicConfig.DefaultEndpoint">
+            <inheritdoc />
+        </member>
+        <member name="P:Hazina.LLMs.Anthropic.AnthropicConfig.DefaultModel">
+            <inheritdoc />
+        </member>
+        <member name="M:Hazina.LLMs.Anthropic.AnthropicConfig.Load">
+            <summary>
+            Loads configuration from appsettings.json.
+            </summary>
+        </member>
+        <member name="T:ClaudeClientWrapper">
+            <summary>
+            Anthropic Claude API client with full tool calling support.
+            Implements the Messages API with streaming and function calling.
+            </summary>
+        </member>
+    </members>
+</doc>

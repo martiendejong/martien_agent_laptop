@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hazina.Tools.Services.Store</name>
+    </assembly>
+    <members>
+        <member name="T:Hazina.Tools.Services.Store.AnalysisFieldConfigLoader">
+            <summary>
+            Centralized loader for analysis field configuration and prompt metadata.
+            Used by both the API controller and the data gathering services.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Store.AnalysisFieldConfigLoader.LoadFields(System.String,System.Boolean)">
+            <summary>
+            Load analysis field definitions from config or fall back to defaults.
+            Optionally writes a default config file when missing.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Store.AnalysisFieldConfigLoader.GetPromptFileName(Hazina.Tools.Services.Store.AnalysisFieldInfo)">
+            <summary>
+            Resolve the prompt file name (configFileName or default pattern) for a field.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Store.AnalysisFieldConfigLoader.LoadPrompt(System.String,Hazina.Tools.Services.Store.AnalysisFieldInfo)">
+            <summary>
+            Load a prompt for a field, accepting either { "prompt": "" } or { "systemPrompt": "" } shapes, or plain text.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Store.AnalysisFieldConfigLoader.ResolveTypeSignature(System.String)">
+            <summary>
+            Resolves the type signature for a GenericType by instantiating it and reading _signature.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Store.AnalysisFieldConfigLoader.ResolveType(System.String)">
+            <summary>
+            Resolves a type by name, searching all loaded assemblies.
+            </summary>
+        </member>
+        <member name="P:Hazina.Tools.Services.Store.AnalysisFieldInfo.ComponentName">
+            <summary>
+            Component name for base/analysis view rendering (e.g., "ItemsList", "ColorScheme")
+            </summary>
+        </member>
+        <member name="P:Hazina.Tools.Services.Store.AnalysisFieldInfo.RowComponentName">
+            <summary>
+            Component name for row/activity list rendering (e.g., "ItemsListRow", "ColorSchemeRow")
+            </summary>
+        </member>
+        <member name="P:Hazina.Tools.Services.Store.AnalysisFieldInfo.ChatComponentName">
+            <summary>
+            Component name for chat message rendering (e.g., "ItemsListChat", "ColorSchemeChat")
+            If not specified, convention is {ComponentName}Chat
+            </summary>
+        </member>
+        <member name="P:Hazina.Tools.Services.Store.AnalysisFieldInfo.GenericType">
+            <summary>
+            Optional generic type name for structured output (e.g., "ToneOfVoice").
+            When set, the content must be valid JSON matching this type's structure.
+            </summary>
+        </member>
+        <member name="P:Hazina.Tools.Services.Store.AnalysisFieldInfo.TypeSignature">
+            <summary>
+            JSON schema signature for the GenericType, used to instruct the LLM on expected format.
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Store.Extensions.ToolsContextWebSearchExtensions">
+            <summary>
+            Adds web search tools to the chat context.
+            Allows the AI to search the internet and fetch web pages for additional context.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Store.Extensions.ToolsContextWebSearchExtensions.AddWebSearchTools(Hazina.Tools.Services.Store.StoreToolsContext,Hazina.Tools.Services.Web.Abstractions.IWebSearchService)">
+            <summary>
+            Adds web search tools for gathering online information during chat.
+            </summary>
+            <param name="context">The tools context to extend</param>
+            <param name="searchService">The web search service instance</param>
+            <returns>The extended tools context</returns>
+        </member>
+        <member name="T:Hazina.Tools.Services.Store.ReadOnlyDocumentToolsContext">
+             <summary>
+             Tools context providing read-only document and web access for chat conversations.
+             This context explicitly excludes data gathering tools to separate concerns between
+             conversational AI and background data extraction.
+             </summary>
+             <remarks>
+             Tools included:
+             - Web search and page reading
+             - Project file reading
+             - PDF analysis
+             - BigQuery queries
+             - Analysis field tools (if enabled)
+            
+             Tools excluded:
+             - StoreGatheredData (handled by <see cref="!:DataGatheringToolsContext"/>)
+             </remarks>
+        </member>
+        <member name="P:Hazina.Tools.Services.Store.ReadOnlyDocumentToolsContext.Model">
+            <summary>
+            The AI model being used for tool execution.
+            </summary>
+        </member>
+        <member name="P:Hazina.Tools.Services.Store.ReadOnlyDocumentToolsContext.ProjectId">
+            <summary>
+            The project identifier.
+            </summary>
+        </member>
+        <member name="P:Hazina.Tools.Services.Store.ReadOnlyDocumentToolsContext.ChatId">
+            <summary>
+            The chat identifier.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Store.ReadOnlyDocumentToolsContext.#ctor(System.String,System.String,IDocumentStore,Hazina.Tools.Data.ProjectsRepository,Hazina.Tools.Data.IntakeRepository,System.String,System.String,System.Object,System.String,Hazina.Tools.Services.Store.IAnalysisFieldsProvider,Hazina.Tools.Services.Store.AnalysisToolsOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Hazina.Tools.Services.Store.ReadOnlyDocumentToolsContext"/> class.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Store.ReadOnlyDocumentToolsContext.ReadWholeWebsite(System.String)">
+            <summary>
+            Imports an entire website into the document store.
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Store.ToolsConfiguration">
+            <summary>
+            Configuration for which tools should be available in StoreToolsContext.
+            Each client can customize which tools they want to enable.
+            </summary>
+        </member>
+        <member name="P:Hazina.Tools.Services.Store.ToolsConfiguration.EnableWebSearch">
+            <summary>
+            Enable web search capability (PerformWebSearch tool)
+            </summary>
+        </member>
+        <member name="P:Hazina.Tools.Services.Store.ToolsConfiguration.EnableReasoning">
+            <summary>
+            Enable reasoning capability (PerformReasoning tool)
+            </summary>
+        </member>
+        <member name="P:Hazina.Tools.Services.Store.ToolsConfiguration.EnableWebScraping">
+            <summary>
+            Enable web scraping tools (PerformReadSitemap, PerformReadHtmlPage)
+            </summary>
+        </member>
+        <member name="P:Hazina.Tools.Services.Store.ToolsConfiguration.EnableFileOperations">
+            <summary>
+            Enable file operation tools (PerformReadProjectFile, AnalyseChatDocument, AnalyseChatPdfFile, PerformGetProjectFilesList)
+            </summary>
+        </member>
+        <member name="P:Hazina.Tools.Services.Store.ToolsConfiguration.EnableBigQuery">
+            <summary>
+            Enable BigQuery integration (PerformGetBigQueryResults tool)
+            </summary>
+        </member>
+        <member name="P:Hazina.Tools.Services.Store.ToolsConfiguration.EnableDataGathering">
+            <summary>
+            Enable data gathering tools (StoreGatheredData)
+            </summary>
+        </member>
+        <member name="P:Hazina.Tools.Services.Store.ToolsConfiguration.EnableAnalysisTools">
+            <summary>
+            Enable analysis field tools (PerformGetAnalysisFieldValue, PerformUpdateAnalysisField, PerformGenerateAnalysisFieldWithFeedback)
+            </summary>
+        </member>
+        <member name="P:Hazina.Tools.Services.Store.ToolsConfiguration.EnableWorkflowComponents">
+            <summary>
+            Enable workflow component tools (ShowLogoDecision, etc.)
+            </summary>
+        </member>
+        <member name="P:Hazina.Tools.Services.Store.ToolsConfiguration.EnableLayeredImages">
+            <summary>
+            Enable layered image generation tools (GenerateLayeredImage)
+            Allows AI to create multi-layer images (PDN/ORA/PSD format)
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Store.ToolsConfiguration.All">
+            <summary>
+            Returns a configuration with all tools enabled (default behavior)
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Store.ToolsConfiguration.Minimal">
+            <summary>
+            Returns a minimal configuration with only essential tools
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Store.ToolsConfiguration.Default">
+            <summary>
+            Returns default configuration (currently same as All)
+            </summary>
+        </member>
+    </members>
+</doc>

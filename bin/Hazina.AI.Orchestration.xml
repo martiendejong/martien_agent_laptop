@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hazina.AI.Orchestration</name>
+    </assembly>
+    <members>
+        <member name="T:Hazina.AI.Orchestration.Context.ContextManager">
+            <summary>
+            Manages conversation contexts
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.ContextManager.CreateContext(System.Int32)">
+            <summary>
+            Create new conversation context
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.ContextManager.GetContext(System.String)">
+            <summary>
+            Get existing context
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.ContextManager.DeleteContext(System.String)">
+            <summary>
+            Delete context
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.ContextManager.AddMessage(System.String,HazinaChatMessage)">
+            <summary>
+            Add message to context
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.ContextManager.GetMessages(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Get messages from context
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.ContextManager.SummarizeContextAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Summarize old messages to save tokens
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.ContextManager.ClearOldMessages(System.String,System.Int32)">
+            <summary>
+            Clear old messages from context
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Orchestration.Context.ConversationContext">
+            <summary>
+            Manages conversation context across multiple turns
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.ConversationContext.AddMessage(HazinaChatMessage)">
+            <summary>
+            Add message to context
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.ConversationContext.GetMessages(System.Int32)">
+            <summary>
+            Get messages within token limit
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.ConversationContext.ClearOldMessages(System.Int32)">
+            <summary>
+            Clear old messages
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.ConversationContext.EstimateTokens(System.String)">
+            <summary>
+            Simple token estimation (4 chars ≈ 1 token)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.ConversationContext.GetSystemMessages">
+            <summary>
+            Get system messages
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.ConversationContext.GetUserMessages">
+            <summary>
+            Get user messages
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.ConversationContext.GetAssistantMessages">
+            <summary>
+            Get assistant messages
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Orchestration.Context.IContextManager">
+            <summary>
+            Interface for managing conversation contexts
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.IContextManager.CreateContext(System.Int32)">
+            <summary>
+            Create new conversation context
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.IContextManager.GetContext(System.String)">
+            <summary>
+            Get existing context
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.IContextManager.DeleteContext(System.String)">
+            <summary>
+            Delete context
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.IContextManager.AddMessage(System.String,HazinaChatMessage)">
+            <summary>
+            Add message to context
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.IContextManager.GetMessages(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Get messages from context
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.IContextManager.SummarizeContextAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Summarize old messages to save tokens
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Context.IContextManager.ClearOldMessages(System.String,System.Int32)">
+            <summary>
+            Clear old messages from context
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Orchestration.Extensions.ContextManagerExtensions">
+            <summary>
+            Backward-compatible extensions for ContextManager to add compression capabilities
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Extensions.ContextManagerExtensions.GetOptimizedMessages(Hazina.AI.Orchestration.Context.IContextManager,System.String,System.String,Hazina.AI.Compression.Models.CompressionOptions,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Get optimized messages from context (compressed to fit budget)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Extensions.ContextManagerExtensions.AddMessageWithCompression(Hazina.AI.Orchestration.Context.IContextManager,System.String,HazinaChatMessage,Hazina.AI.Compression.Models.CompressionOptions,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Add message and auto-optimize if over budget
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Extensions.ContextManagerExtensions.GetStatistics(Hazina.AI.Orchestration.Context.IContextManager,System.String)">
+            <summary>
+            Get context statistics for monitoring
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Orchestration.Extensions.ContextStatistics">
+            <summary>
+            Context statistics model
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Orchestration.Tasks.ITaskOrchestrator">
+            <summary>
+            Interface for orchestrating multi-step AI tasks
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Tasks.ITaskOrchestrator.ExecuteTaskAsync(Hazina.AI.Orchestration.Tasks.TaskDefinition,System.Threading.CancellationToken)">
+            <summary>
+            Execute a task definition
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Tasks.ITaskOrchestrator.ExecuteTaskAsync(Hazina.AI.Orchestration.Tasks.TaskDefinition,System.Action{Hazina.AI.Orchestration.Tasks.StepResult},System.Threading.CancellationToken)">
+            <summary>
+            Execute a task with progress reporting
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Tasks.ITaskOrchestrator.GetTaskStatus(System.String)">
+            <summary>
+            Get task execution status
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Tasks.ITaskOrchestrator.CancelTask(System.String)">
+            <summary>
+            Cancel running task
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Orchestration.Tasks.TaskDefinition">
+            <summary>
+            Defines a multi-step AI task
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Orchestration.Tasks.TaskStep">
+            <summary>
+            Single step in a multi-step task
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Orchestration.Tasks.TaskStepType">
+            <summary>
+            Type of task step
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Orchestration.Tasks.TaskExecutionResult">
+            <summary>
+            Execution result for a task
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Orchestration.Tasks.StepResult">
+            <summary>
+            Result for a single step
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Orchestration.Tasks.TaskExecutionStatus">
+            <summary>
+            Task execution status
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Orchestration.Tasks.StepExecutionStatus">
+            <summary>
+            Step execution status
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Orchestration.Tasks.TaskOrchestrator">
+            <summary>
+            Orchestrates multi-step AI tasks with context management
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Tasks.TaskOrchestrator.ExecuteTaskAsync(Hazina.AI.Orchestration.Tasks.TaskDefinition,System.Threading.CancellationToken)">
+            <summary>
+            Execute a task definition
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Tasks.TaskOrchestrator.ExecuteTaskAsync(Hazina.AI.Orchestration.Tasks.TaskDefinition,System.Action{Hazina.AI.Orchestration.Tasks.StepResult},System.Threading.CancellationToken)">
+            <summary>
+            Execute a task with progress reporting
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Tasks.TaskOrchestrator.GetTaskStatus(System.String)">
+            <summary>
+            Get task execution status
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Orchestration.Tasks.TaskOrchestrator.CancelTask(System.String)">
+            <summary>
+            Cancel running task
+            </summary>
+        </member>
+    </members>
+</doc>

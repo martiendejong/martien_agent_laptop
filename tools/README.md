@@ -38,6 +38,11 @@
 | `toggle-workflow-triggers.ps1` | **NEW** Toggle CI triggers | `.\toggle-workflow-triggers.ps1 -Mode manual -DryRun` |
 | `email-export.js` | Export emails | `node email-export.js --query="..." --output="..."` |
 | `email-send.js` | Send emails via SMTP | `node email-send.js --to="..." --subject="..." --body-file="..."` |
+| **`hazina-ask.ps1`** | **🆕 Hazina LLM gateway** | **`.\hazina-ask.ps1 "What is DI?"`** |
+| **`hazina-rag.ps1`** | **🆕 Hazina RAG (init/index/query)** | **`.\hazina-rag.ps1 query "How?" -StoreName proj`** |
+| **`hazina-agent.ps1`** | **🆕 Hazina tool-calling agent** | **`.\hazina-agent.ps1 "Analyze codebase"`** |
+| **`hazina-reason.ps1`** | **🆕 Hazina multi-layer reasoning** | **`.\hazina-reason.ps1 "Is this safe?"`** |
+| **`hazina-longdoc.ps1`** | **🆕 Hazina massive doc processing** | **`.\hazina-longdoc.ps1 "src/" "Architecture?"`** |
 
 ---
 
@@ -752,6 +757,62 @@ cd C:\Projects\worker-agents\agent-003\client-manager
 - **Tool status:** `TOOLS_STATUS.md`
 - **Tool index:** `TOOLS_INDEX.md`
 - **Future ideas:** `FUTURE_TOOLS.md`
+
+---
+
+## 🤖 Hazina CLI - AI-Powered Development Tools
+
+**Location:** `C:\scripts\bin\hazina.exe`
+**Wrapper Scripts:** `C:\scripts\tools\hazina-*.ps1`
+**Full Documentation:** `C:\scripts\tools\HAZINA_CLI_GUIDE.md`
+
+### Overview
+
+The Hazina CLI exposes the core capabilities of the Hazina AI framework for command-line use:
+
+| Tool | Purpose | Example |
+|------|---------|---------|
+| **hazina-ask.ps1** | Universal LLM gateway with streaming | `hazina-ask.ps1 "What is DI?"` |
+| **hazina-rag.ps1** | RAG with full CRUD operations | `hazina-rag.ps1 query "How does auth work?" -StoreName project` |
+| **hazina-agent.ps1** | Tool-calling agent | `hazina-agent.ps1 "Analyze this codebase"` |
+| **hazina-reason.ps1** | Multi-layer reasoning | `hazina-reason.ps1 "Is this migration safe?"` |
+| **hazina-longdoc.ps1** | Process massive docs (10M+ tokens) | `hazina-longdoc.ps1 "src/" "What is the architecture?"` |
+
+### RAG Workflow - Project Knowledge Bases
+
+```powershell
+# 1. Initialize store for a project
+hazina-rag.ps1 init my-project
+
+# 2. Index codebase
+hazina-rag.ps1 index "**/*.cs" -StoreName my-project
+hazina-rag.ps1 index "**/*.md" -StoreName my-project
+
+# 3. Query the knowledge base
+hazina-rag.ps1 query "How does authentication work?" -StoreName my-project
+hazina-rag.ps1 query "Find all API endpoints" -StoreName my-project -TopK 10
+
+# 4. Check status
+hazina-rag.ps1 status -StoreName my-project
+hazina-rag.ps1 list
+
+# 5. Sync after changes
+hazina-rag.ps1 sync -StoreName my-project -DryRun
+```
+
+### Use Cases for Claude Agents
+
+- **Before starting work:** Query project RAG to understand existing patterns
+- **During development:** Find related code and implementations
+- **Complex decisions:** Use `hazina-reason.ps1` for verification
+- **Large codebase analysis:** Use `hazina-longdoc.ps1` for initial understanding
+
+### Environment Setup
+
+```powershell
+# Set OpenAI API key (required)
+$env:OPENAI_API_KEY = "sk-..."
+```
 
 ---
 

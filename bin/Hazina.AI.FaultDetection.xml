@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hazina.AI.FaultDetection</name>
+    </assembly>
+    <members>
+        <member name="T:Hazina.AI.FaultDetection.Analyzers.BasicConfidenceScorer">
+            <summary>
+            Basic confidence scorer using heuristics
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Analyzers.IConfidenceScorer">
+            <summary>
+            Interface for scoring confidence of LLM responses
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FaultDetection.Analyzers.IConfidenceScorer.ScoreAsync(System.String,Hazina.AI.FaultDetection.Core.ValidationContext,System.Threading.CancellationToken)">
+            <summary>
+            Calculate confidence score for a response
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Analyzers.ConfidenceScore">
+            <summary>
+            Confidence score result
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Analyzers.ConfidenceFactor">
+            <summary>
+            Factor affecting confidence
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Core.AdaptiveFaultHandler">
+            <summary>
+            Adaptive fault handler that automatically detects and corrects LLM errors
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FaultDetection.Core.AdaptiveFaultHandler.ExecuteWithFaultDetectionAsync(System.Collections.Generic.List{HazinaChatMessage},Hazina.AI.FaultDetection.Core.ValidationContext,System.Threading.CancellationToken)">
+            <summary>
+            Execute LLM request with automatic fault detection and correction
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FaultDetection.Core.AdaptiveFaultHandler.ValidateResponseAsync(System.String,Hazina.AI.FaultDetection.Core.ValidationContext,System.Threading.CancellationToken)">
+            <summary>
+            Validate a response using all available detectors
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FaultDetection.Core.AdaptiveFaultHandler.RefinePromptBasedOnIssues(System.Collections.Generic.List{HazinaChatMessage},Hazina.AI.FaultDetection.Core.ValidationResult)">
+            <summary>
+            Refine prompt based on validation issues
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FaultDetection.Core.AdaptiveFaultHandler.LearnFromErrorAsync(Hazina.AI.FaultDetection.Core.ValidationIssue,System.String)">
+            <summary>
+            Learn from error to improve future detection
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Core.IResponseValidator">
+            <summary>
+            Interface for validating LLM responses
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FaultDetection.Core.IResponseValidator.ValidateAsync(System.String,Hazina.AI.FaultDetection.Core.ValidationContext,System.Threading.CancellationToken)">
+            <summary>
+            Validate an LLM response
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FaultDetection.Core.IResponseValidator.ValidateAndCorrectAsync(System.String,Hazina.AI.FaultDetection.Core.ValidationContext,System.Threading.CancellationToken)">
+            <summary>
+            Validate and correct if needed
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Core.ValidationContext">
+            <summary>
+            Context for validation
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.FaultDetection.Core.ValidationContext.Prompt">
+            <summary>
+            Original user prompt/query
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.FaultDetection.Core.ValidationContext.ConversationHistory">
+            <summary>
+            Conversation history
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.FaultDetection.Core.ValidationContext.ExpectedFormat">
+            <summary>
+            Expected response format (if known)
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.FaultDetection.Core.ValidationContext.ResponseType">
+            <summary>
+            Expected response type (JSON, Code, Text, etc.)
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.FaultDetection.Core.ValidationContext.Domain">
+            <summary>
+            Domain-specific context
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.FaultDetection.Core.ValidationContext.GroundTruth">
+            <summary>
+            Ground truth facts (if available)
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.FaultDetection.Core.ValidationContext.Rules">
+            <summary>
+            Validation rules to apply
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.FaultDetection.Core.ValidationContext.MinConfidenceThreshold">
+            <summary>
+            Minimum confidence threshold (0-1)
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Core.ResponseType">
+            <summary>
+            Response type enum
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Core.ValidationRule">
+            <summary>
+            Validation rule
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Core.ValidationResult">
+            <summary>
+            Result of LLM response validation
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Core.ValidationIssue">
+            <summary>
+            Validation issue details
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Core.IssueSeverity">
+            <summary>
+            Severity of validation issue
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Core.IssueCategory">
+            <summary>
+            Category of validation issue
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Detectors.BasicErrorPatternRecognizer">
+            <summary>
+            Basic error pattern recognizer with learning capability
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Detectors.BasicHallucinationDetector">
+            <summary>
+            Basic hallucination detector using heuristics
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Detectors.IErrorPatternRecognizer">
+            <summary>
+            Interface for recognizing error patterns in LLM responses
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FaultDetection.Detectors.IErrorPatternRecognizer.RecognizeAsync(System.String,Hazina.AI.FaultDetection.Core.ValidationContext,System.Threading.CancellationToken)">
+            <summary>
+            Recognize error patterns in a response
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FaultDetection.Detectors.IErrorPatternRecognizer.LearnPatternAsync(Hazina.AI.FaultDetection.Detectors.ErrorPattern)">
+            <summary>
+            Learn from a new error pattern
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FaultDetection.Detectors.IErrorPatternRecognizer.GetKnownPatterns">
+            <summary>
+            Get all known error patterns
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Detectors.ErrorPatternResult">
+            <summary>
+            Result of error pattern recognition
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Detectors.MatchedErrorPattern">
+            <summary>
+            Matched error pattern
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Detectors.ErrorPattern">
+            <summary>
+            Error pattern definition
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Detectors.PatternType">
+            <summary>
+            Type of error pattern
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Detectors.IHallucinationDetector">
+            <summary>
+            Interface for detecting hallucinations in LLM responses
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.FaultDetection.Detectors.IHallucinationDetector.DetectAsync(System.String,Hazina.AI.FaultDetection.Core.ValidationContext,System.Threading.CancellationToken)">
+            <summary>
+            Detect potential hallucinations in a response
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Detectors.HallucinationDetectionResult">
+            <summary>
+            Result of hallucination detection
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Detectors.HallucinationInstance">
+            <summary>
+            Detected hallucination instance
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Detectors.HallucinationType">
+            <summary>
+            Types of hallucinations
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.FaultDetection.Validators.BasicResponseValidator">
+            <summary>
+            Basic response validator with common validation rules
+            </summary>
+        </member>
+    </members>
+</doc>

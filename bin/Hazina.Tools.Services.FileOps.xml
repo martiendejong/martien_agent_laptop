@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hazina.Tools.Services.FileOps</name>
+    </assembly>
+    <members>
+        <member name="T:Hazina.Tools.Services.FileOps.FileOperationsService">
+            <summary>
+            File operations for project/chat files. Refactored to avoid direct LLM calls.
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.FileOps.Helpers.DocumentLockManager">
+            <summary>
+            Thread-safe lock manager for document operations
+            Fixes memory leak issue by implementing cleanup
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.FileOps.Helpers.DocumentLockManager.AcquireLockAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Acquire a lock for a project with timeout
+            Automatically creates lock if it doesn't exist
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.FileOps.Helpers.DocumentLockManager.CleanupInactiveLocks(System.Object)">
+            <summary>
+            Cleanup locks that haven't been used recently
+            Prevents memory leak from accumulating locks
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.FileOps.Helpers.DocumentLockManager.RemoveLock(System.String)">
+            <summary>
+            Manually remove a lock for a project (e.g., when project is deleted)
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.FileOps.Helpers.DocumentLockManager.LockReleaser">
+            <summary>
+            Helper class to release lock when disposed
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.FileOps.Helpers.FilePathHelper">
+            <summary>
+            Helper class for file path operations
+            Eliminates duplicate file path manipulation code
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.FileOps.Helpers.FilePathHelper.GetTextFilePath(System.String)">
+            <summary>
+            Get the text file path for an uploaded file
+            Format: {filename}.{extension}.txt
+            Example: document.pdf -> document.pdf.txt
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.FileOps.Helpers.FilePathHelper.GetFileExtension(System.String)">
+            <summary>
+            Get file extension without the dot
+            Returns "txt" for files without extension
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.FileOps.Helpers.FilePathHelper.EnsureUniqueFileName(System.String,System.String)">
+            <summary>
+            Ensure filename is unique in folder by appending counter
+            Example: file.pdf -> file_1.pdf -> file_2.pdf
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.FileOps.Helpers.FilePathHelper.GetUploadsFolder(System.String)">
+            <summary>
+            Get the uploads folder path for a project
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.FileOps.Helpers.FilePathHelper.GetUploadedFilesMetadataPath(System.String)">
+            <summary>
+            Get the uploaded files metadata path for a project
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.FileOps.Helpers.FilePathHelper.EnsureDirectoryExists(System.String)">
+            <summary>
+            Ensure directory exists, create if it doesn't
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -914,12 +914,24 @@ Each session stored as `<UUID>.jsonl` containing:
 | **`session-restore.ps1`** | **🆕 SESSION RECOVERY: Generate context to continue crashed session** | `session-restore.ps1 -SessionId "abc..." -Clipboard` |
 | **`session-browser.ps1`** | **🆕 SESSION RECOVERY: Search/browse conversation history** | `session-browser.ps1 -Search "migration" -Days 30` |
 | **`session-export.ps1`** | **🆕 SESSION RECOVERY: Export session to markdown** | `session-export.ps1 -SessionId "abc..." -IncludeThinking` |
+| **`hazina-ask.ps1`** | **🆕 HAZINA CLI: Universal LLM gateway with streaming** | `hazina-ask.ps1 "What is dependency injection?"` |
+| **`hazina-rag.ps1`** | **🆕 HAZINA CLI: RAG with full CRUD (init/index/query/sync)** | `hazina-rag.ps1 query "How does auth work?" -StoreName project` |
+| **`hazina-agent.ps1`** | **🆕 HAZINA CLI: Tool-calling agent for complex tasks** | `hazina-agent.ps1 "Analyze this codebase" -MaxSteps 20` |
+| **`hazina-reason.ps1`** | **🆕 HAZINA CLI: Multi-layer reasoning with confidence** | `hazina-reason.ps1 "Is this migration safe?" -MinConfidence 0.9` |
+| **`hazina-longdoc.ps1`** | **🆕 HAZINA CLI: Process massive documents (10M+ tokens)** | `hazina-longdoc.ps1 "src/" "What is the architecture?"` |
 
-**Full documentation:** [tools/README.md](./tools/README.md)
+**Full documentation:** [tools/README.md](./tools/README.md) | [tools/HAZINA_CLI_GUIDE.md](./tools/HAZINA_CLI_GUIDE.md)
 
-**🎉 MILESTONE: 129 tools implemented! (47 original + 54 recommended + 6 Wave 1 + 10 Wave 2 + 2 custom + 2 UI automation + 4 fact verification + 4 session recovery)**
+**🎉 MILESTONE: 134 tools implemented! (47 original + 54 recommended + 6 Wave 1 + 10 Wave 2 + 2 custom + 2 UI automation + 4 fact verification + 4 session recovery + 5 Hazina CLI)**
 
 **Latest additions (2026-01-28):**
+- **🆕 HAZINA CLI TOOLS** - 5 AI-powered tools for project knowledge bases and advanced reasoning:
+  - `hazina-ask.ps1` - Universal LLM gateway with streaming
+  - `hazina-rag.ps1` - RAG with CRUD (init, index, query, sync, status, list) for project-local knowledge bases
+  - `hazina-agent.ps1` - Tool-calling agent for complex multi-step tasks
+  - `hazina-reason.ps1` - Multi-layer reasoning with confidence scoring (Neurochain)
+  - `hazina-longdoc.ps1` - Process massive documents (10M+ tokens) via recursive summarization
+  - Full docs: [tools/HAZINA_CLI_GUIDE.md](./tools/HAZINA_CLI_GUIDE.md)
 - **🆕 SESSION RECOVERY SYSTEM** - 4 tools for recovering crashed/interrupted sessions (get-crashed-sessions, session-restore, session-browser, session-export)
 
 **Previous additions (2026-01-26):**

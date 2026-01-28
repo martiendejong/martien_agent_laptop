@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hazina.Tools.Services</name>
+    </assembly>
+    <members>
+        <member name="T:Hazina.Tools.Services.Helpers.LegacySyncService">
+            <summary>
+            Service for synchronizing data between Core API and legacy file-based system
+            Maintains backward compatibility during transition period
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Helpers.LegacySyncService.SyncUploadedDocument(HazinaStore.Core.Project,System.String,System.Int32,System.Collections.Generic.List{System.String})">
+            <summary>
+            Synchronize uploaded document to legacy system
+            Updates uploadedFiles.json with new file metadata
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Helpers.LegacySyncService.SyncUploadedDocument(HazinaStore.Core.Project,System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Synchronize uploaded document to legacy system (overload for backward compatibility)
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Helpers.LegacySyncService.SyncDocumentMetadata(HazinaStore.Core.Project,System.String,System.String,System.Int32,System.Collections.Generic.List{System.String})">
+            <summary>
+            Synchronize document metadata after text extraction
+            Updates token counts and file parts for existing entry
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Helpers.LegacySyncService.SyncDeletedDocument(HazinaStore.Core.Project,System.String)">
+            <summary>
+            Synchronize deleted document to legacy system
+            Removes file from uploadedFiles.json
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Helpers.LegacySyncService.InitializeStore(System.String,System.Boolean)">
+            <summary>
+            Initialize or reinitialize the legacy vector store
+            Triggers embedding generation for all documents
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Helpers.LegacySyncService.SplitAndEmbedFile(System.String,System.String,System.Int32)">
+            <summary>
+            Split large files into smaller chunks for embedding
+            Legacy method for handling files that exceed token limits
+            Returns list of file paths (strings) for the split files
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Helpers.LegacySyncService.GetLegacyUploadedFiles(HazinaStore.Core.Project)">
+            <summary>
+            Get legacy uploadedFiles.json metadata for a project
+            Used for backward compatibility during transition
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Helpers.LegacySyncService.UpdateLegacyFileMetadata(HazinaStore.Core.Project,System.String,System.String)">
+            <summary>
+            Update legacy file metadata (e.g., label)
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Helpers.LegacySyncService.UpdateLegacyFileTags(HazinaStore.Core.Project,System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Update legacy file tags
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.UploadedDocumentsService">
+            <summary>
+            Service for handling document uploads with text extraction and processing
+            Refactored to use the new Core API
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.UploadedDocumentsService.UploadFile(Microsoft.AspNetCore.Http.IFormFile,System.String)">
+            <summary>
+            Upload a file from HTTP request
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.UploadedDocumentsService.AddOrUpdateFile(System.String,System.String,System.String)">
+            <summary>
+            Add or update a file with text content
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.UploadedDocumentsService.AddFile(System.String,System.String,System.String)">
+            <summary>
+            Add a new file with text content
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.UploadedDocumentsService.GetUploadedFiles(System.String)">
+            <summary>
+            Get all uploaded files for a project
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.UploadedDocumentsService.UploadFileInternal(System.String,System.String,System.Byte[],System.Boolean,System.Boolean)">
+            <summary>
+            Internal upload implementation using Core API
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.UploadedDocumentsService.ExtractTextInBackground(HazinaStore.Core.Project,System.String,System.String,System.Boolean)">
+            <summary>
+            Extract text from uploaded file in background
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.UploadedDocumentsService.SaveFileAsync(Microsoft.AspNetCore.Http.IFormFile,System.String)">
+            <summary>
+            Save an uploaded file to disk
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.UploadedDocumentsService.DetermineFileTags(System.String,System.Byte[])">
+            <summary>
+            Determine appropriate tags based on file name and content
+            </summary>
+        </member>
+    </members>
+</doc>

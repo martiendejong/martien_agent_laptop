@@ -1,0 +1,885 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hazina.Neurochain.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Hazina.Neurochain.Core.Analysis.AdaptiveBehaviorEngine">
+            <summary>
+            Adaptive Behavior Engine that adjusts reasoning strategy based on task complexity,
+            context, and learned patterns
+            </summary>
+        </member>
+        <member name="M:Hazina.Neurochain.Core.Analysis.AdaptiveBehaviorEngine.AnalyzeAndConfigureAsync(System.String,Hazina.Neurochain.Core.ReasoningContext,System.Threading.CancellationToken)">
+            <summary>
+            Analyze task and determine optimal configuration
+            </summary>
+        </member>
+        <member name="M:Hazina.Neurochain.Core.Analysis.AdaptiveBehaviorEngine.AnalyzeComplexityAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Analyze task complexity
+            </summary>
+        </member>
+        <member name="M:Hazina.Neurochain.Core.Analysis.AdaptiveBehaviorEngine.AdaptBasedOnFeedback(Hazina.Neurochain.Core.NeuroChainResult,System.Boolean,System.String)">
+            <summary>
+            Adapt configuration based on feedback
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Analysis.AdaptiveBehaviorConfig">
+            <summary>
+            Configuration for adaptive behavior
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Analysis.AdaptiveBehaviorConfig.UseAIComplexityAnalysis">
+            <summary>
+            Use AI to analyze task complexity
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Analysis.AdaptiveBehaviorConfig.AutoAdjust">
+            <summary>
+            Automatically adjust configuration based on results
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Analysis.AdaptiveBehaviorConfig.EnableLearning">
+            <summary>
+            Enable learning from feedback
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Analysis.AdaptiveConfiguration">
+            <summary>
+            Adaptive configuration result
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Analysis.ComplexityAnalysis">
+            <summary>
+            Complexity analysis result
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Analysis.ComplexityLevel">
+            <summary>
+            Task complexity levels
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.IReasoningLayer">
+            <summary>
+            Interface for reasoning layers in the Neurochain
+            Each layer provides independent reasoning with different characteristics
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.IReasoningLayer.Name">
+            <summary>
+            Layer name (e.g., "Fast", "Deep", "Verification")
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.IReasoningLayer.Type">
+            <summary>
+            Layer type
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.IReasoningLayer.Speed">
+            <summary>
+            Typical response time category
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.IReasoningLayer.Cost">
+            <summary>
+            Typical cost category
+            </summary>
+        </member>
+        <member name="M:Hazina.Neurochain.Core.IReasoningLayer.ReasonAsync(System.String,Hazina.Neurochain.Core.ReasoningContext,System.Threading.CancellationToken)">
+            <summary>
+            Execute reasoning on the given prompt
+            </summary>
+        </member>
+        <member name="M:Hazina.Neurochain.Core.IReasoningLayer.ValidateAsync(Hazina.Neurochain.Core.ReasoningResult,Hazina.Neurochain.Core.ReasoningContext,System.Threading.CancellationToken)">
+            <summary>
+            Validate another layer's reasoning
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.LayerType">
+            <summary>
+            Type of reasoning layer
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.LayerType.Fast">
+            <summary>
+            Fast, initial reasoning layer
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.LayerType.Deep">
+            <summary>
+            Deep, thorough reasoning layer
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.LayerType.Verification">
+            <summary>
+            Verification and cross-validation layer
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.ResponseSpeed">
+            <summary>
+            Response speed category
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.CostLevel">
+            <summary>
+            Cost level category
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.ValidationResult">
+            <summary>
+            Validation result from a layer
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ValidationResult.IsValid">
+            <summary>
+            Whether the reasoning is valid
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ValidationResult.Confidence">
+            <summary>
+            Confidence in the validation (0-1)
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ValidationResult.Issues">
+            <summary>
+            Issues identified
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ValidationResult.Suggestions">
+            <summary>
+            Suggestions for improvement
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.ValidationIssue">
+            <summary>
+            A validation issue
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ValidationIssue.Type">
+            <summary>
+            Issue type
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ValidationIssue.Description">
+            <summary>
+            Issue description
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ValidationIssue.Severity">
+            <summary>
+            Severity (0-1, where 1 is critical)
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ValidationIssue.StepIndex">
+            <summary>
+            Location in reasoning chain (if applicable)
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.ReasoningContext">
+            <summary>
+            Context for reasoning
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ReasoningContext.History">
+            <summary>
+            Conversation history
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ReasoningContext.GroundTruth">
+            <summary>
+            Ground truth facts
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ReasoningContext.MinConfidence">
+            <summary>
+            Required confidence threshold
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ReasoningContext.MaxSteps">
+            <summary>
+            Maximum reasoning steps
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ReasoningContext.IncludeReasoning">
+            <summary>
+            Whether to include reasoning chain
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ReasoningContext.Domain">
+            <summary>
+            Domain-specific context
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ReasoningContext.Metadata">
+            <summary>
+            Additional metadata
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.NeuroChainOrchestrator">
+            <summary>
+            Orchestrates multi-layer reasoning with the Neurochain architecture
+            Coordinates Fast, Deep, and Verification layers for robust reasoning
+            </summary>
+        </member>
+        <member name="M:Hazina.Neurochain.Core.NeuroChainOrchestrator.AddLayer(Hazina.Neurochain.Core.IReasoningLayer)">
+            <summary>
+            Add a reasoning layer
+            </summary>
+        </member>
+        <member name="M:Hazina.Neurochain.Core.NeuroChainOrchestrator.ClearLayers">
+            <summary>
+            Remove all layers
+            </summary>
+        </member>
+        <member name="M:Hazina.Neurochain.Core.NeuroChainOrchestrator.ReasonAsync(System.String,Hazina.Neurochain.Core.ReasoningContext,System.Threading.CancellationToken)">
+            <summary>
+            Execute multi-layer reasoning
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.NeuroChainConfig">
+            <summary>
+            Configuration for NeuroChain orchestration
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.NeuroChainConfig.ParallelExecution">
+            <summary>
+            Enable parallel execution of layers
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.NeuroChainConfig.EnableCrossValidation">
+            <summary>
+            Enable cross-validation between layers
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.NeuroChainConfig.EnableEarlyStop">
+            <summary>
+            Enable early stopping when confidence threshold is met
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.NeuroChainConfig.EarlyStopConfidenceThreshold">
+            <summary>
+            Confidence threshold for early stopping (0-1)
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.NeuroChainConfig.MinLayersBeforeEarlyStop">
+            <summary>
+            Minimum number of layers to execute before allowing early stop
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.NeuroChainResult">
+            <summary>
+            Result from NeuroChain multi-layer reasoning
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.NeuroChainResult.Prompt">
+            <summary>
+            Original prompt
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.NeuroChainResult.LayerResults">
+            <summary>
+            Results from each layer
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.NeuroChainResult.CrossValidation">
+            <summary>
+            Cross-validation result
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.NeuroChainResult.FinalAnswer">
+            <summary>
+            Final consensus answer
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.NeuroChainResult.FinalConfidence">
+            <summary>
+            Final confidence score (0-1)
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.NeuroChainResult.IsSuccessful">
+            <summary>
+            Whether execution was successful
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.NeuroChainResult.Error">
+            <summary>
+            Error message if unsuccessful
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.NeuroChainResult.TotalDurationMs">
+            <summary>
+            Total execution time (milliseconds)
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.NeuroChainResult.TotalCost">
+            <summary>
+            Total cost across all layers
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.NeuroChainResult.EarlyStopped">
+            <summary>
+            Whether early stopping was triggered
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.NeuroChainResult.EarlyStopReason">
+            <summary>
+            Reason for early stop
+            </summary>
+        </member>
+        <member name="M:Hazina.Neurochain.Core.NeuroChainResult.GetDetailedBreakdown">
+            <summary>
+            Get detailed reasoning breakdown
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.ReasoningResult">
+            <summary>
+            Result from a reasoning layer
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ReasoningResult.Response">
+            <summary>
+            The reasoning output
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ReasoningResult.Confidence">
+            <summary>
+            Confidence score (0-1)
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ReasoningResult.ReasoningChain">
+            <summary>
+            Reasoning chain - step-by-step thought process
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ReasoningResult.Evidence">
+            <summary>
+            Supporting evidence
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ReasoningResult.Assumptions">
+            <summary>
+            Identified assumptions
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ReasoningResult.Weaknesses">
+            <summary>
+            Potential flaws or weaknesses
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ReasoningResult.DurationMs">
+            <summary>
+            Time taken to reason (milliseconds)
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ReasoningResult.Provider">
+            <summary>
+            Provider used for reasoning
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ReasoningResult.Cost">
+            <summary>
+            Cost of reasoning
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ReasoningResult.IsValid">
+            <summary>
+            Whether this result passed validation
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.ReasoningResult.ValidationIssues">
+            <summary>
+            Validation issues if any
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Layers.DeepReasoningLayer">
+            <summary>
+            Deep reasoning layer using powerful models (e.g., GPT-4, Claude Opus)
+            Provides thorough, detailed reasoning with explicit assumptions and evidence
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Layers.FastReasoningLayer">
+            <summary>
+            Fast reasoning layer using efficient models (e.g., GPT-4o-mini, Claude Haiku)
+            Provides quick initial reasoning at low cost
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Layers.VerificationLayer">
+            <summary>
+            Verification layer for cross-validating reasoning from other layers
+            Uses different models to provide independent verification
+            </summary>
+        </member>
+        <member name="M:Hazina.Neurochain.Core.Layers.VerificationLayer.CrossValidateAsync(System.Collections.Generic.List{Hazina.Neurochain.Core.ReasoningResult},Hazina.Neurochain.Core.ReasoningContext,System.Threading.CancellationToken)">
+            <summary>
+            Cross-validate multiple reasoning results
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Layers.CrossValidationResult">
+            <summary>
+            Result of cross-validation
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Learning.FailureLearningEngine">
+            <summary>
+            Self-improving failure analysis and learning engine
+            Tracks failures, learns patterns, and generates improvement recommendations
+            </summary>
+        </member>
+        <member name="M:Hazina.Neurochain.Core.Learning.FailureLearningEngine.RecordFailure(Hazina.Neurochain.Core.Learning.FailureRecord)">
+            <summary>
+            Record a failure for learning
+            </summary>
+        </member>
+        <member name="M:Hazina.Neurochain.Core.Learning.FailureLearningEngine.AnalyzeFailureAsync(Hazina.Neurochain.Core.Learning.FailureRecord,System.Threading.CancellationToken)">
+            <summary>
+            Analyze a specific failure
+            </summary>
+        </member>
+        <member name="M:Hazina.Neurochain.Core.Learning.FailureLearningEngine.LearnPatternsAsync(System.Threading.CancellationToken)">
+            <summary>
+            Learn patterns from accumulated failures
+            </summary>
+        </member>
+        <member name="M:Hazina.Neurochain.Core.Learning.FailureLearningEngine.GetRecommendations(System.Int32)">
+            <summary>
+            Get improvement recommendations
+            </summary>
+        </member>
+        <member name="M:Hazina.Neurochain.Core.Learning.FailureLearningEngine.GetStatistics">
+            <summary>
+            Get statistics about failures and learning
+            </summary>
+        </member>
+        <member name="M:Hazina.Neurochain.Core.Learning.FailureLearningEngine.ApplyImprovements(Hazina.Neurochain.Core.ReasoningContext,System.String)">
+            <summary>
+            Apply learned improvements to a reasoning context
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Learning.FailureLearningConfig">
+            <summary>
+            Configuration for failure learning
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Learning.FailureAnalysis">
+            <summary>
+            Analysis result for a failure
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Learning.LearningStatistics">
+            <summary>
+            Learning statistics
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Learning.PatternSummary">
+            <summary>
+            Pattern summary for statistics
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Learning.FailurePattern">
+            <summary>
+            Learned pattern from failures
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailurePattern.Id">
+            <summary>
+            Pattern ID
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailurePattern.Name">
+            <summary>
+            Pattern name
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailurePattern.Description">
+            <summary>
+            Pattern description
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailurePattern.Category">
+            <summary>
+            Failure category this pattern applies to
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailurePattern.Triggers">
+            <summary>
+            Trigger conditions (what causes this pattern)
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailurePattern.Symptoms">
+            <summary>
+            Symptoms (how to detect this pattern)
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailurePattern.Occurrences">
+            <summary>
+            Number of times this pattern has been observed
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailurePattern.PreventionSuccessRate">
+            <summary>
+            Success rate of prevention strategies (0-1)
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailurePattern.PreventionStrategies">
+            <summary>
+            Recommended prevention strategies
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailurePattern.FirstObserved">
+            <summary>
+            First observed
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailurePattern.LastObserved">
+            <summary>
+            Last observed
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailurePattern.ExampleFailureIds">
+            <summary>
+            Examples of this pattern
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailurePattern.Confidence">
+            <summary>
+            Confidence in this pattern (0-1)
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailurePattern.IsActive">
+            <summary>
+            Whether this pattern is currently active
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Learning.PreventionStrategy">
+            <summary>
+            Strategy to prevent a failure pattern
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.PreventionStrategy.Name">
+            <summary>
+            Strategy name
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.PreventionStrategy.Description">
+            <summary>
+            Strategy description
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.PreventionStrategy.Type">
+            <summary>
+            Type of prevention
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.PreventionStrategy.Action">
+            <summary>
+            Specific action to take
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.PreventionStrategy.Parameters">
+            <summary>
+            Parameters for the action
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.PreventionStrategy.SuccessRate">
+            <summary>
+            Success rate of this strategy (0-1)
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.PreventionStrategy.TimesApplied">
+            <summary>
+            Number of times this strategy has been applied
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.PreventionStrategy.TimesSucceeded">
+            <summary>
+            Number of times this strategy succeeded
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.PreventionStrategy.CostImpact">
+            <summary>
+            Cost impact (relative, 0-1 where 1 is most expensive)
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.PreventionStrategy.LatencyImpact">
+            <summary>
+            Latency impact (relative, 0-1 where 1 is slowest)
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Learning.PreventionType">
+            <summary>
+            Types of prevention strategies
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.PreventionType.PromptModification">
+            <summary>
+            Modify the prompt
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.PreventionType.ProviderSwitch">
+            <summary>
+            Switch to different provider
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.PreventionType.LayerSelection">
+            <summary>
+            Use different reasoning layer
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.PreventionType.ConfidenceAdjustment">
+            <summary>
+            Adjust confidence threshold
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.PreventionType.ValidationEnhancement">
+            <summary>
+            Add validation rules
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.PreventionType.GroundTruthAddition">
+            <summary>
+            Add ground truth facts
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.PreventionType.CrossValidationEnable">
+            <summary>
+            Enable cross-validation
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.PreventionType.ReasoningDepthIncrease">
+            <summary>
+            Increase reasoning steps
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.PreventionType.ContextEnhancement">
+            <summary>
+            Add domain context
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Learning.ImprovementRecommendation">
+            <summary>
+            Improvement recommendation based on learned patterns
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.ImprovementRecommendation.Title">
+            <summary>
+            Recommendation title
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.ImprovementRecommendation.Description">
+            <summary>
+            Detailed description
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.ImprovementRecommendation.PatternId">
+            <summary>
+            Related failure pattern
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.ImprovementRecommendation.Priority">
+            <summary>
+            Priority (1-5, where 5 is highest)
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.ImprovementRecommendation.ExpectedImpact">
+            <summary>
+            Expected impact (0-1)
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.ImprovementRecommendation.Confidence">
+            <summary>
+            Confidence in this recommendation (0-1)
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.ImprovementRecommendation.RecommendedActions">
+            <summary>
+            Recommended actions
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.ImprovementRecommendation.Evidence">
+            <summary>
+            Supporting evidence
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.ImprovementRecommendation.AffectedScenarios">
+            <summary>
+            Affected scenarios
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Learning.FailureRecord">
+            <summary>
+            Record of a reasoning failure for learning purposes
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailureRecord.Id">
+            <summary>
+            Unique failure ID
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailureRecord.Timestamp">
+            <summary>
+            Timestamp of failure
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailureRecord.Prompt">
+            <summary>
+            Original prompt that led to failure
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailureRecord.Response">
+            <summary>
+            Failed response
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailureRecord.ExpectedResponse">
+            <summary>
+            Expected/correct response (if known)
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailureRecord.Category">
+            <summary>
+            Failure category
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailureRecord.Severity">
+            <summary>
+            Severity of the failure (0-1)
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailureRecord.FailedLayer">
+            <summary>
+            Layer that failed
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailureRecord.FailedProvider">
+            <summary>
+            Provider that failed
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailureRecord.ValidationIssues">
+            <summary>
+            Validation issues identified
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailureRecord.Context">
+            <summary>
+            Reasoning context at time of failure
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailureRecord.RootCause">
+            <summary>
+            Root cause analysis
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailureRecord.Resolved">
+            <summary>
+            Whether this failure has been resolved
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailureRecord.Resolution">
+            <summary>
+            Resolution details
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailureRecord.ResolutionMethod">
+            <summary>
+            How the failure was resolved
+            </summary>
+        </member>
+        <member name="P:Hazina.Neurochain.Core.Learning.FailureRecord.Tags">
+            <summary>
+            Tags for categorization
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Learning.FailureCategory">
+            <summary>
+            Categories of failures
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.FailureCategory.Hallucination">
+            <summary>
+            Hallucination - fabricated or false information
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.FailureCategory.LogicalError">
+            <summary>
+            Logical error in reasoning
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.FailureCategory.Contradiction">
+            <summary>
+            Contradiction with known facts
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.FailureCategory.LowConfidence">
+            <summary>
+            Low confidence result
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.FailureCategory.FormatError">
+            <summary>
+            Format error (invalid JSON, etc.)
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.FailureCategory.Performance">
+            <summary>
+            Timeout or performance issue
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.FailureCategory.ProviderFailure">
+            <summary>
+            Provider or API failure
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.FailureCategory.Other">
+            <summary>
+            Other/unknown failure
+            </summary>
+        </member>
+        <member name="T:Hazina.Neurochain.Core.Learning.ResolutionMethod">
+            <summary>
+            How a failure was resolved
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.ResolutionMethod.Retry">
+            <summary>
+            Retry with same parameters succeeded
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.ResolutionMethod.ProviderSwitch">
+            <summary>
+            Retry with different provider succeeded
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.ResolutionMethod.PromptRefinement">
+            <summary>
+            Retry with refined prompt succeeded
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.ResolutionMethod.LayerSwitch">
+            <summary>
+            Used different reasoning layer
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.ResolutionMethod.ConfidenceAdjustment">
+            <summary>
+            Increased confidence threshold
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.ResolutionMethod.Manual">
+            <summary>
+            Manual intervention
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.ResolutionMethod.CrossValidation">
+            <summary>
+            Cross-validation caught the issue
+            </summary>
+        </member>
+        <member name="F:Hazina.Neurochain.Core.Learning.ResolutionMethod.Unresolved">
+            <summary>
+            Not resolved
+            </summary>
+        </member>
+    </members>
+</doc>

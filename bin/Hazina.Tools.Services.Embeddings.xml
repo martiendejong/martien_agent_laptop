@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hazina.Tools.Services.Embeddings</name>
+    </assembly>
+    <members>
+        <member name="M:Hazina.Tools.Services.Embeddings.IEmbeddingsService.GenerateEmbeddingAsync(System.String)">
+            <summary>
+            Generate embedding for a single text string
+            </summary>
+        </member>
+    </members>
+</doc>

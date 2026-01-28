@@ -1,0 +1,273 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hazina.Tools.Services.Web</name>
+    </assembly>
+    <members>
+        <member name="T:Hazina.Tools.Services.Web.Abstractions.IFireCrawlService">
+            <summary>
+            Interface for FireCrawl MCP web scraping operations.
+            Enables autonomous web scraping, branding extraction, site mapping, and structured data extraction.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.Abstractions.IFireCrawlService.ScrapeAsync(System.String,System.Boolean)">
+            <summary>
+            Scrape a single webpage - pulls content + metadata.
+            Converts HTML to clean markdown suitable for LLM ingestion.
+            </summary>
+            <param name="url">URL to scrape</param>
+            <param name="includeHtml">Include raw HTML in response (default: false)</param>
+            <returns>Scraped content with markdown and metadata</returns>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.Abstractions.IFireCrawlService.MapAsync(System.String,System.Int32)">
+            <summary>
+            Map website structure - discovers all subpages and internal links.
+            Useful for understanding site architecture before crawling.
+            </summary>
+            <param name="baseUrl">Base URL to map</param>
+            <param name="maxDepth">Maximum depth to traverse (default: 2)</param>
+            <returns>Site structure with all discovered links</returns>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.Abstractions.IFireCrawlService.CrawlAsync(Hazina.Tools.Services.Web.Models.FireCrawlCrawlRequest)">
+            <summary>
+            Crawl multiple pages - traverses linked pages and collects content.
+            Use after Map to selectively crawl discovered pages.
+            </summary>
+            <param name="request">Crawl configuration (URL, depth, max pages, etc.)</param>
+            <returns>Collection of crawled pages with content</returns>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.Abstractions.IFireCrawlService.ExtractAsync(Hazina.Tools.Services.Web.Models.FireCrawlExtractRequest)">
+            <summary>
+            Extract structured data from webpage using AI.
+            Can extract branding (colors, fonts, logos), product data, contact info, etc.
+            </summary>
+            <param name="request">Extraction configuration with URL and optional schema</param>
+            <returns>Extracted structured data</returns>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.Abstractions.IFireCrawlService.ExtractBrandingAsync(System.String)">
+            <summary>
+            Extract branding data specifically (colors, fonts, typography, logo).
+            Convenience method for common use case of branding audits.
+            </summary>
+            <param name="url">URL to extract branding from</param>
+            <returns>Branding data (colors, fonts, logo)</returns>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.Abstractions.IFireCrawlService.ScreenshotAsync(Hazina.Tools.Services.Web.Models.FireCrawlScreenshotRequest)">
+            <summary>
+            Capture full-page screenshot of a webpage.
+            Returns base64-encoded PNG image.
+            </summary>
+            <param name="request">Screenshot configuration (URL, dimensions, full page)</param>
+            <returns>Base64-encoded screenshot image</returns>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.Abstractions.IFireCrawlService.SearchAsync(Hazina.Tools.Services.Web.Models.FireCrawlSearchRequest)">
+            <summary>
+            Search within a website or domain for specific content.
+            Uses AI to find relevant pages matching the query.
+            </summary>
+            <param name="request">Search configuration (query, domain, max results)</param>
+            <returns>Relevant search results with snippets</returns>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.Abstractions.IWebSearchService">
+            <summary>
+            Interface for web search operations.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.Abstractions.IWebSearchService.SearchAsync(System.String,System.Int32)">
+            <summary>
+            Search the web for information.
+            Uses Bing API if configured, otherwise falls back to DuckDuckGo HTML scraping.
+            </summary>
+            <param name="query">Search query</param>
+            <param name="count">Number of results (1-10)</param>
+            <returns>Search results</returns>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.Abstractions.IWebSearchService.FetchUrlAsync(System.String,System.Int32)">
+            <summary>
+            Fetch and read the content of a web page.
+            </summary>
+            <param name="url">URL to fetch</param>
+            <param name="maxChars">Maximum characters to return (default: 15000)</param>
+            <returns>Web page content</returns>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.FireCrawlService">
+            <summary>
+            Service for FireCrawl MCP web scraping operations.
+            Provides web scraping, branding extraction, site mapping, and structured data extraction.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.FireCrawlService.#ctor(Hazina.Tools.Services.Web.Models.FireCrawlConfig,System.Net.Http.HttpClient,System.Action{System.String},System.Action{System.Exception,System.String})">
+            <summary>
+            Creates a new FireCrawlService instance.
+            </summary>
+            <param name="config">FireCrawl configuration (API key, base URL)</param>
+            <param name="httpClient">Optional HttpClient. If null, creates a new one.</param>
+            <param name="logInfo">Optional info logger</param>
+            <param name="logError">Optional error logger</param>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.FireCrawlService.ScrapeAsync(System.String,System.Boolean)">
+            <summary>
+            Scrape a single webpage - pulls content + metadata.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.FireCrawlService.MapAsync(System.String,System.Int32)">
+            <summary>
+            Map website structure - discovers all subpages and internal links.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.FireCrawlService.CrawlAsync(Hazina.Tools.Services.Web.Models.FireCrawlCrawlRequest)">
+            <summary>
+            Crawl multiple pages - traverses linked pages and collects content.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.FireCrawlService.ExtractAsync(Hazina.Tools.Services.Web.Models.FireCrawlExtractRequest)">
+            <summary>
+            Extract structured data from webpage using AI.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.FireCrawlService.ExtractBrandingAsync(System.String)">
+            <summary>
+            Extract branding data specifically (colors, fonts, typography, logo).
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.FireCrawlService.ScreenshotAsync(Hazina.Tools.Services.Web.Models.FireCrawlScreenshotRequest)">
+            <summary>
+            Capture full-page screenshot of a webpage.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.FireCrawlService.SearchAsync(Hazina.Tools.Services.Web.Models.FireCrawlSearchRequest)">
+            <summary>
+            Search within a website or domain for specific content.
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.Models.FireCrawlConfig">
+            <summary>
+            Configuration for FireCrawl service
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.Models.FireCrawlResult">
+            <summary>
+            Base result class for all FireCrawl operations
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.Models.FireCrawlScrapeResult">
+            <summary>
+            Result of a scrape operation - fetches webpage content and metadata
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.Models.FireCrawlMapResult">
+            <summary>
+            Result of a map operation - discovers website structure
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.Models.FireCrawlCrawlRequest">
+            <summary>
+            Request for crawl operation - traverse multiple pages
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.Models.FireCrawlPageResult">
+            <summary>
+            Single page result from crawl operation
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.Models.FireCrawlCrawlResult">
+            <summary>
+            Result of crawl operation - multiple pages crawled
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.Models.FireCrawlExtractRequest">
+            <summary>
+            Request for extract operation - structured data extraction
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.Models.BrandingData">
+            <summary>
+            Branding data extracted from website
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.Models.FireCrawlExtractResult">
+            <summary>
+            Result of extract operation - structured data
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.Models.FireCrawlScreenshotRequest">
+            <summary>
+            Request for screenshot operation
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.Models.FireCrawlScreenshotResult">
+            <summary>
+            Result of screenshot operation
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.Models.FireCrawlSearchRequest">
+            <summary>
+            Request for search operation - query site content
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.Models.FireCrawlSearchResultItem">
+            <summary>
+            Single search result item
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.Models.FireCrawlSearchResult">
+            <summary>
+            Result of search operation
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.Models.WebSearchResult">
+            <summary>
+            Result of a web search operation.
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.Models.WebSearchResultItem">
+            <summary>
+            A single web search result item.
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.Models.WebPageContent">
+            <summary>
+            Content fetched from a web page.
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.WebScrapingService">
+            <summary>
+            Service responsible for web scraping operations including sitemap reading,
+            webpage scraping, and website import functionality.
+            This refactored version avoids direct LLM dependencies and hardcoded API keys.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.WebScrapingService.ImportWholeWebsiteAsync(System.String)">
+            <summary>
+            Imports a website: tries WordPress API import, falls back to parsing sitemap.xml and scraping top pages.
+            Writes pages to Uploads and updates uploadedFiles.json, splitting long files when needed.
+            </summary>
+        </member>
+        <member name="T:Hazina.Tools.Services.Web.WebSearchService">
+            <summary>
+            Service for performing web searches using DuckDuckGo or Bing.
+            Generic implementation suitable for any .NET application.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.WebSearchService.#ctor(System.String,System.Net.Http.HttpClient,System.Action{System.String},System.Action{System.Exception,System.String})">
+            <summary>
+            Creates a new WebSearchService instance.
+            </summary>
+            <param name="bingApiKey">Optional Bing Search API key. If null, uses DuckDuckGo fallback.</param>
+            <param name="httpClient">Optional HttpClient. If null, creates a new one.</param>
+            <param name="logInfo">Optional info logger</param>
+            <param name="logError">Optional error logger</param>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.WebSearchService.SearchAsync(System.String,System.Int32)">
+            <summary>
+            Search the web for information.
+            Uses Bing API if key is configured, otherwise falls back to DuckDuckGo HTML scraping.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.Web.WebSearchService.FetchUrlAsync(System.String,System.Int32)">
+            <summary>
+            Fetch and read the content of a web page.
+            </summary>
+        </member>
+    </members>
+</doc>

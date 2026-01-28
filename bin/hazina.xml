@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>hazina</name>
+    </assembly>
+    <members>
+        <member name="T:Hazina.CLI.Commands.AgentCommand">
+            <summary>
+            Agent command for tool-calling agent execution
+            </summary>
+        </member>
+        <member name="T:Hazina.CLI.Commands.AskCommand">
+            <summary>
+            Simple LLM query command
+            </summary>
+        </member>
+        <member name="T:Hazina.CLI.Commands.LongDocCommand">
+            <summary>
+            Long document processing command for massive files
+            </summary>
+        </member>
+        <member name="T:Hazina.CLI.Commands.RagCommand">
+            <summary>
+            RAG command with full CRUD operations for document stores
+            </summary>
+        </member>
+        <member name="T:Hazina.CLI.Commands.ReasonCommand">
+            <summary>
+            Multi-layer reasoning command
+            </summary>
+        </member>
+        <member name="T:Hazina.CLI.Infrastructure.HazinaConfig">
+            <summary>
+            Shared configuration and provider setup for Hazina CLI
+            </summary>
+        </member>
+        <member name="M:Hazina.CLI.Infrastructure.HazinaConfig.GetConfiguration">
+            <summary>
+            Load configuration from appsettings.json or environment
+            </summary>
+        </member>
+        <member name="M:Hazina.CLI.Infrastructure.HazinaConfig.GetLLMClient(System.String)">
+            <summary>
+            Get the default LLM client (OpenAI)
+            </summary>
+        </member>
+        <member name="M:Hazina.CLI.Infrastructure.HazinaConfig.GetStoresConfigPath">
+            <summary>
+            Get store configuration path
+            </summary>
+        </member>
+        <member name="T:Hazina.CLI.Infrastructure.StoreRegistry">
+            <summary>
+            Registry of configured document stores
+            </summary>
+        </member>
+        <member name="M:Hazina.CLI.Infrastructure.StoreRegistry.Load(System.String)">
+            <summary>
+            Load registry from disk
+            </summary>
+        </member>
+        <member name="M:Hazina.CLI.Infrastructure.StoreRegistry.Save(System.String)">
+            <summary>
+            Save registry to disk
+            </summary>
+        </member>
+        <member name="M:Hazina.CLI.Infrastructure.StoreRegistry.GetStore(System.String)">
+            <summary>
+            Get a store by name
+            </summary>
+        </member>
+        <member name="M:Hazina.CLI.Infrastructure.StoreRegistry.SetStore(System.String,Hazina.CLI.Infrastructure.CliStoreConfig)">
+            <summary>
+            Add or update a store
+            </summary>
+        </member>
+        <member name="T:Hazina.CLI.Infrastructure.CliStoreConfig">
+            <summary>
+            Configuration for a single document store
+            </summary>
+        </member>
+        <member name="P:Hazina.CLI.Infrastructure.CliStoreConfig.FileIndex">
+            <summary>
+            Index of files with their hashes for sync detection
+            </summary>
+        </member>
+        <member name="T:Hazina.CLI.Infrastructure.FileIndexEntry">
+            <summary>
+            Entry for a file in the index
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hazina.Tools.Services.BigQuery</name>
+    </assembly>
+    <members>
+        <member name="T:Hazina.Tools.Services.BigQuery.BigQueryService">
+            <summary>
+            BigQuery operations: list/import accounts and persist results under project folder.
+            Refactored to remove hardcoded project IDs and LLM dependencies.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.Services.BigQuery.BigQueryService.PerformBigQueryResultsAsync(System.String,System.String)">
+            <summary>
+            Performs BigQuery operations using AI to interpret and execute queries.
+            </summary>
+            <param name="prompt">The instruction for the BigQuery agent</param>
+            <param name="projectId">The project ID to work with</param>
+            <returns>The result of the BigQuery operation</returns>
+        </member>
+    </members>
+</doc>

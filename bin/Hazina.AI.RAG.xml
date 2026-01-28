@@ -1,0 +1,1582 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hazina.AI.RAG</name>
+    </assembly>
+    <members>
+        <member name="T:Hazina.AI.RAG.Configuration.GraphRAGConfig">
+            <summary>
+            Configuration for GraphRAG features.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Configuration.SemanticChunkingConfiguration">
+            <summary>
+            Configuration loader for semantic chunking from appsettings.json
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Configuration.SemanticChunkingConfiguration.LoadFromConfiguration(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Load semantic chunking options from configuration
+            Expected section: "DocumentStore:SemanticChunking"
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Configuration.SemanticChunkingConfiguration.LoadTextChunkingOptions(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Load text chunking options from configuration (including semantic options)
+            Expected section: "DocumentStore"
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Core.RAGEngine">
+            <summary>
+            Retrieval-Augmented Generation (RAG) engine
+            Combines vector search with AI generation for context-aware responses.
+            Supports metadata-first search with optional embeddings.
+            Supports composite scoring with tag relevance, recency, and position weighting.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Core.RAGEngine.#ctor(Hazina.AI.Providers.Core.IProviderOrchestrator,Hazina.AI.RAG.Core.IVectorStore,Hazina.Neurochain.Core.NeuroChainOrchestrator,Hazina.AI.RAG.Core.RAGConfig)">
+            <summary>
+            Create RAGEngine with vector store (backwards compatible).
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Core.RAGEngine.#ctor(Hazina.AI.Providers.Core.IProviderOrchestrator,IQueryableMetadataStore,Hazina.AI.RAG.Core.IVectorStore,Hazina.Neurochain.Core.NeuroChainOrchestrator,Hazina.AI.RAG.Core.RAGConfig)">
+            <summary>
+            Create RAGEngine with metadata store for metadata-first search.
+            Vector store is optional when using metadata-only search.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Core.RAGEngine.#ctor(Hazina.AI.Providers.Core.IProviderOrchestrator,IQueryableMetadataStore,Hazina.AI.RAG.Core.IVectorStore,ITagScoringService,ICompositeScorer,Hazina.Neurochain.Core.NeuroChainOrchestrator,Hazina.AI.RAG.Core.RAGConfig)">
+            <summary>
+            Create RAGEngine with composite scoring support.
+            This enables query-adaptive tag relevance scoring.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Core.RAGEngine.QueryAsync(System.String,Hazina.AI.RAG.Core.RAGQueryOptions,System.Threading.CancellationToken)">
+            <summary>
+            Query using RAG - retrieve relevant context and generate response.
+            Supports both embedding-based and metadata-only search.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Core.RAGEngine.RetrieveWithEmbeddingsAsync(System.String,Hazina.AI.RAG.Core.RAGQueryOptions,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve documents using embedding-based vector search.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Core.RAGEngine.RetrieveWithMetadataAsync(System.String,Hazina.AI.RAG.Core.RAGQueryOptions,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve documents using metadata filtering and keyword search.
+            No embeddings required.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Core.RAGEngine.CalculateKeywordRelevance(System.String,DocumentMetadata,System.Int32,System.Int32)">
+            <summary>
+            Calculate a relevance score for keyword search results.
+            Uses position-based ranking since results are already ordered by relevance.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Core.RAGEngine.IndexDocumentsAsync(System.Collections.Generic.List{Hazina.AI.RAG.Core.Document},System.Threading.CancellationToken)">
+            <summary>
+            Index documents for retrieval
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Core.RAGEngine.SearchAsync(System.String,System.Int32,System.Double,System.Threading.CancellationToken)">
+            <summary>
+            Search documents by similarity
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Core.RAGEngine.ApplyCompositeScoringAsync(System.Collections.Generic.List{Hazina.AI.RAG.Core.RetrievedDocument},System.String,Hazina.AI.RAG.Core.RAGQueryOptions,System.Threading.CancellationToken)">
+            <summary>
+            Apply composite scoring to retrieved documents.
+            Uses tag relevance, recency, and position to re-rank results.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Core.RAGEngine.ConvertToDocumentMetadata(Hazina.AI.RAG.Core.RetrievedDocument)">
+            <summary>
+            Convert RetrievedDocument to DocumentMetadata for scoring.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Core.RAGConfig">
+            <summary>
+            RAG configuration
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Core.RAGQueryOptions">
+            <summary>
+            RAG query options
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Core.RAGQueryOptions.UseEmbeddings">
+            <summary>
+            Whether to use embeddings for semantic search.
+            Default: true (backwards compatible).
+            When false, uses metadata filtering and keyword search only.
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Core.RAGQueryOptions.MetadataFilter">
+            <summary>
+            Optional metadata filter to apply before embedding search.
+            When UseEmbeddings=false, this is the primary filter.
+            When UseEmbeddings=true, this pre-filters before vector search.
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Core.RAGQueryOptions.KeywordSearchText">
+            <summary>
+            Text to search for when UseEmbeddings=false (keyword search).
+            If null, uses the query text.
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Core.RAGQueryOptions.UseCompositeScoring">
+            <summary>
+            Whether to apply composite scoring to retrieved documents.
+            Default: false (backwards compatible).
+            When true, re-ranks results using tag relevance, recency, and position.
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Core.RAGQueryOptions.ScoringOptions">
+            <summary>
+            Configuration for composite scoring weights.
+            If null, uses ScoringOptions.Default.
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Core.RAGQueryOptions.TagScoringContext">
+            <summary>
+            Context to use for tag scoring (e.g., system instruction or task description).
+            If null, uses the query text.
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Core.RAGQueryOptions.TagScoreCacheAge">
+            <summary>
+            Maximum age of cached tag scores to use.
+            If null, always uses cached scores regardless of age.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Core.RAGResponse">
+            <summary>
+            RAG response
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Core.Document">
+            <summary>
+            Document for indexing
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Core.RetrievedDocument">
+            <summary>
+            Retrieved document with similarity score
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Core.IndexingResult">
+            <summary>
+            Indexing result
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Core.IVectorStore">
+            <summary>
+            Vector store interface (simplified)
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Core.VectorSearchResult">
+            <summary>
+            Vector search result
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.BasicMetadataExtractor">
+            <summary>
+            Extracts basic metadata from text chunks using rule-based methods (no LLM required)
+            - TF-IDF keywords
+            - Extractive summaries
+            - Basic statistics
+            Cost: FREE
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.BasicMetadataExtractor.ExtractMetadata(System.String)">
+            <summary>
+            Extract basic metadata from a text chunk
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.BasicMetadataExtractor.ExtractKeywordsTFIDF(System.String,System.Int32)">
+            <summary>
+            Extract keywords using TF-IDF (Term Frequency-Inverse Document Frequency)
+            Simplified version: just uses term frequency within the chunk
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.BasicMetadataExtractor.ExtractSummary(System.String)">
+            <summary>
+            Generate extractive summary (first sentence or most representative sentence)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.BasicMetadataExtractor.CountWords(System.String)">
+            <summary>
+            Count words in text
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.BasicMetadataExtractor.CountSentences(System.String)">
+            <summary>
+            Count sentences in text
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.BasicMetadataExtractor.TokenizeAndClean(System.String)">
+            <summary>
+            Tokenize text and clean (remove punctuation, stop words, etc.)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.BasicMetadataExtractor.DetectCode(System.String)">
+            <summary>
+            Detect if text contains code (heuristic)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.BasicMetadataExtractor.DetectUrls(System.String)">
+            <summary>
+            Detect if text contains URLs
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.BasicMetadataExtractor.DetectNumbers(System.String)">
+            <summary>
+            Detect if text contains significant numbers/statistics
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.ContentTypeDetector">
+            <summary>
+            Detects the content type of text for specialized chunking strategies
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.ContentTypeDetector.Detect(System.String)">
+            <summary>
+            Detect content type from text using heuristics
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.ContentTypeDetector.HasCodePatterns(System.String)">
+            <summary>
+            Check if text contains code patterns
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.ContentTypeDetector.GetCodeScore(System.String)">
+            <summary>
+            Get code score (0-100)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.ContentTypeDetector.HasMarkdownPatterns(System.String)">
+            <summary>
+            Check if text contains markdown patterns
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.ContentTypeDetector.GetMarkdownScore(System.String)">
+            <summary>
+            Get markdown score (0-100)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.ContentTypeDetector.HasJsonPatterns(System.String)">
+            <summary>
+            Check if text contains JSON patterns
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.ContentTypeDetector.GetJsonScore(System.String)">
+            <summary>
+            Get JSON score (0-100)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.ContentTypeDetector.HasTechnicalPatterns(System.String)">
+            <summary>
+            Check if text contains technical documentation patterns
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.ContentTypeDetector.GetTechnicalScore(System.String)">
+            <summary>
+            Get technical documentation score (0-100)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.ContentTypeDetector.GetRecommendedSplitPattern(Hazina.AI.RAG.Embeddings.DocumentContentType)">
+            <summary>
+            Get recommended sentence split pattern for content type
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.ContentTypeDetector.GetRecommendedMinChunkSize(Hazina.AI.RAG.Embeddings.DocumentContentType)">
+            <summary>
+            Get recommended minimum chunk size for content type
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.ContentTypeDetector.GetRecommendedMaxChunkSize(Hazina.AI.RAG.Embeddings.DocumentContentType)">
+            <summary>
+            Get recommended maximum chunk size for content type
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.ContentTypeDetector.ApplyContentTypeOptimizations(Hazina.AI.RAG.Embeddings.SemanticChunkingOptions,System.String)">
+            <summary>
+            Apply content-type specific adjustments to chunking options
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.EmbeddingCache">
+            <summary>
+            In-memory cache for sentence embeddings to avoid redundant API calls
+            Significant cost savings when processing documents with repeated text
+            Key: Content hash (SHA256)
+            Value: Embedding vector
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.EmbeddingCache.TryGet(System.String,Embedding@)">
+            <summary>
+            Try to get a cached embedding for the given text
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.EmbeddingCache.Add(System.String,Embedding)">
+            <summary>
+            Add an embedding to the cache
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.EmbeddingCache.GetOrAdd(System.String,System.Func{System.String,Embedding})">
+            <summary>
+            Get or add an embedding (atomic operation)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.EmbeddingCache.GetOrAddAsync(System.String,System.Func{System.String,System.Threading.Tasks.Task{Embedding}})">
+            <summary>
+            Get or add an embedding async (atomic operation)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.EmbeddingCache.Clear">
+            <summary>
+            Clear all cached embeddings
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.EmbeddingCache.GetStats">
+            <summary>
+            Get cache statistics
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.EmbeddingCache.ComputeHash(System.String)">
+            <summary>
+            Compute SHA256 hash of text for cache key
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.EmbeddingCache.Trim(System.Int32)">
+            <summary>
+            Remove least recently used items if cache exceeds max size
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.CacheStats">
+            <summary>
+            Cache statistics
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.HierarchicalChunker">
+            <summary>
+            Hierarchical chunking for large documents
+            Splits large documents into sections, then chunks each section independently
+            Improves performance and quality for documents >5000 characters
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.HierarchicalChunker.ChunkAsync(System.String,Hazina.AI.RAG.Embeddings.SemanticChunkingOptions,System.Threading.CancellationToken)">
+            <summary>
+            Chunk large documents hierarchically
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.HierarchicalChunker.SplitIntoSections(System.String,Hazina.AI.RAG.Embeddings.SemanticChunkingOptions)">
+            <summary>
+            Split text into sections based on structural markers
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.HierarchicalChunker.SplitMarkdownSections(System.String)">
+            <summary>
+            Split markdown document into sections by headers
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.HierarchicalChunker.SplitCodeSections(System.String)">
+            <summary>
+            Split code document into sections by class/function definitions
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.HierarchicalChunker.SplitTechnicalDocSections(System.String)">
+            <summary>
+            Split technical documentation into sections
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.HierarchicalChunker.SplitGenericSections(System.String,System.Int32)">
+            <summary>
+            Split text into generic sections by size
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.DocumentSection">
+            <summary>
+            Represents a section of a document
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.HierarchicalChunkerExtensions">
+            <summary>
+            Extensions for HierarchicalChunker to support chunk set generation with summaries.
+            Provides methods to create ChunkSet objects from hierarchical sections.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.HierarchicalChunkerExtensions.ChunkWithSetsAsync(Hazina.AI.RAG.Embeddings.HierarchicalChunker,System.String,System.String,Hazina.AI.RAG.Embeddings.SemanticChunkingOptions,System.Threading.CancellationToken)">
+            <summary>
+            Chunk document hierarchically and generate chunk sets with summaries.
+            Returns both the individual chunks and the chunk sets.
+            </summary>
+            <param name="chunker">The hierarchical chunker instance.</param>
+            <param name="text">The text to chunk.</param>
+            <param name="documentId">The document ID for chunk set creation.</param>
+            <param name="options">Chunking options.</param>
+            <param name="ct">Cancellation token.</param>
+            <returns>Tuple of (chunks, chunkSets).</returns>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.HierarchicalChunkerExtensions.GenerateChunkSets(System.Collections.Generic.List{Hazina.AI.RAG.Embeddings.TextChunk},System.String,Hazina.AI.RAG.Embeddings.SemanticChunkingOptions)">
+            <summary>
+            Generate chunk sets from hierarchically chunked chunks.
+            Groups chunks by section and generates summaries.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.HierarchicalChunkerExtensions.GenerateSectionSummary(System.Collections.Generic.List{Hazina.AI.RAG.Embeddings.TextChunk},Hazina.AI.RAG.Embeddings.SemanticChunkingOptions)">
+            <summary>
+            Generate a summary for a section's chunks.
+            Uses Basic tier (extractive) or LLM tier if configured.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.LLMMetadataExtractor">
+            <summary>
+            Extracts rich metadata from text chunks using LLM
+            Premium tier: ~$0.0001 per chunk (using gpt-4o-mini)
+            Provides: summaries, topics, section types, importance scores, relationships
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.LLMMetadataExtractor.ExtractMetadataAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Extract metadata for a single chunk using LLM
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.LLMMetadataExtractor.ExtractBatchMetadataAsync(System.Collections.Generic.List{Hazina.AI.RAG.Embeddings.TextChunk},System.Threading.CancellationToken)">
+            <summary>
+            Extract metadata for multiple chunks in a batch (more efficient)
+            Reduces latency and can reduce costs by combining multiple chunks in one call
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.LLMMetadataExtractor.ProcessBatchAsync(System.Collections.Generic.List{Hazina.AI.RAG.Embeddings.TextChunk},System.Threading.CancellationToken)">
+            <summary>
+            Process a single batch of chunks
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.LLMMetadataExtractor.ExtractIndividuallyAsync(System.Collections.Generic.List{Hazina.AI.RAG.Embeddings.TextChunk},System.Threading.CancellationToken)">
+            <summary>
+            Fallback: extract metadata for each chunk individually
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.LLMMetadataExtractor.BuildSingleChunkPrompt(System.String)">
+            <summary>
+            Build prompt for single chunk metadata extraction
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.LLMMetadataExtractor.BuildBatchPrompt(System.Collections.Generic.List{Hazina.AI.RAG.Embeddings.TextChunk})">
+            <summary>
+            Build prompt for batch metadata extraction
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.LLMMetadataExtractor.CreateDefaultMetadata(System.String)">
+            <summary>
+            Create default metadata when LLM extraction fails
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.LLMMetadataExtractor.EnrichChunksAsync(System.Collections.Generic.List{Hazina.AI.RAG.Embeddings.TextChunk},System.Threading.CancellationToken)">
+            <summary>
+            Enrich text chunks with LLM-generated metadata (in-place)
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.Models.ChunkMetadata">
+            <summary>
+            LLM-generated metadata for a single text chunk
+            Used for premium metadata extraction (Tier: LLM)
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.Models.ChunkMetadata.Summary">
+            <summary>
+            One-sentence summary of the chunk's main idea
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.Models.ChunkMetadata.Topic">
+            <summary>
+            Primary topic or subject matter of the chunk
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.Models.ChunkMetadata.Keywords">
+            <summary>
+            List of 3-5 key terms or concepts
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.Models.ChunkMetadata.SectionType">
+            <summary>
+            Type of content section (e.g., Introduction, TechnicalDescription, Example, Configuration)
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.Models.ChunkMetadata.ImportanceScore">
+            <summary>
+            Importance score (1-10, where 10 is most important)
+            Used for relevance boosting in retrieval
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.Models.ChunkMetadata.ReferencedTopics">
+            <summary>
+            Topics or concepts this chunk references
+            Enables relationship tracking across chunks
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.Models.BatchChunkMetadata">
+            <summary>
+            Batch response for multiple chunks metadata extraction
+            More efficient than individual calls (reduces latency and can reduce costs)
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.Models.BatchChunkMetadata.Chunks">
+            <summary>
+            List of metadata for each chunk, in the same order as the input
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.Models.SectionTypes">
+            <summary>
+            Supported section types for content classification
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions">
+            <summary>
+            Configuration options for semantic similarity-based chunking
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.Enabled">
+            <summary>
+            Enable/disable semantic chunking entirely
+            Default: true
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.Mode">
+            <summary>
+            Chunking mode: Similarity (embedding-based), LLM (expensive), or Hybrid
+            Default: Similarity (cost-efficient)
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.SentenceSplitPattern">
+            <summary>
+            Regex pattern for sentence splitting
+            Default: split on periods, exclamation marks, question marks followed by whitespace
+            Example: @"(?&lt;=[.!?])\s+"
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.MinSentenceLength">
+            <summary>
+            Minimum sentence length to include (characters)
+            Sentences shorter than this will be merged with adjacent sentences
+            Default: 10
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.MaxSentenceLength">
+            <summary>
+            Maximum sentence length (split long sentences if exceeded)
+            null = no limit
+            Default: null
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.SimilarityThreshold">
+            <summary>
+            Cosine similarity threshold for hard topic boundaries
+            When similarity between adjacent sentences falls below this, create a chunk boundary
+            Range: 0.0-1.0
+            Lower values = more sensitive to topic shifts (more, smaller chunks)
+            Higher values = less sensitive (fewer, larger chunks)
+            Recommended: 0.65-0.75
+            Default: 0.70
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.SoftSimilarityThreshold">
+            <summary>
+            Soft similarity threshold (used with min chunk size constraint)
+            Only create boundary if chunk size >= MinChunkSize AND similarity below this threshold
+            Should be higher than SimilarityThreshold
+            Range: 0.0-1.0
+            Recommended: 0.75-0.85
+            Default: 0.80
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.UseRollingAverage">
+            <summary>
+            Use rolling average similarity (smooths out noise)
+            Averages similarity across a window of adjacent sentences
+            Reduces false positives from single outlier sentences
+            Default: false
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.RollingWindowSize">
+            <summary>
+            Window size for rolling average (number of adjacent sentence pairs)
+            Only used if UseRollingAverage = true
+            Default: 3
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.MinChunkSize">
+            <summary>
+            Minimum chunk size (characters)
+            Prevents creating very small chunks
+            Default: 300
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.MaxChunkSize">
+            <summary>
+            Maximum chunk size (characters)
+            Forces chunk split even if similarity is high
+            Default: 2000
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.ParagraphBoundaryTolerance">
+            <summary>
+            Prefer splitting at paragraph boundaries if chunk size is within this range of ideal size
+            null = don't prefer paragraph boundaries
+            Example: If target chunk is 1000 chars and tolerance is 200,
+                     split at paragraph if it creates chunks between 800-1200 chars
+            Default: 200
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.ExtractMetadata">
+            <summary>
+            Enable metadata extraction (keywords, summaries, etc.)
+            Default: true
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.MetadataTier">
+            <summary>
+            Metadata extraction tier: None, Basic (free), or LLM (premium)
+            - None: No metadata extraction
+            - Basic: Rule-based (TF-IDF keywords, extractive summaries) - FREE
+            - LLM: AI-generated metadata (topics, summaries, section types) - ~$0.0001 per chunk
+            Default: Basic (free)
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.UseLLMMetadata">
+            <summary>
+            Use LLM for rich metadata generation (summary, topics, section types)
+            Only used if MetadataTier = LLM
+            Cost: ~$0.0001 per chunk
+            Default: false
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.LLMMetadataModel">
+            <summary>
+            LLM model to use for metadata extraction (if UseLLMMetadata = true)
+            null = use default model from ILLMClient
+            Example: "gpt-4o-mini"
+            Default: null
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.BatchLLMMetadata">
+            <summary>
+            Batch LLM metadata calls for efficiency
+            Sends multiple chunks in a single LLM request
+            Reduces latency and can reduce costs
+            Default: true
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.MaxLLMBatchSize">
+            <summary>
+            Maximum chunks to include in a single LLM batch request
+            Prevents request size from exceeding token limits
+            Default: 10
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.UseHierarchicalChunking">
+            <summary>
+            Use hierarchical chunking for large documents
+            Splits document into sections first, then chunks each section independently
+            Improves performance for documents larger than HierarchicalThreshold
+            Default: false
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.HierarchicalThreshold">
+            <summary>
+            Document size threshold for hierarchical chunking (characters)
+            Documents larger than this will use hierarchical chunking
+            Default: 10000
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.HierarchicalSectionSize">
+            <summary>
+            Target section size for hierarchical chunking (characters)
+            Large documents will be split into sections of approximately this size
+            Default: 5000
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.GenerateChunkSets">
+            <summary>
+            Generate chunk sets with summaries for hierarchically chunked documents
+            Chunk sets represent logical groupings of chunks (e.g., document sections)
+            with collective summaries describing the group's content
+            Only applies when UseHierarchicalChunking = true
+            Default: true (enabled if hierarchical chunking is used)
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.ChunkSetSummaryTier">
+            <summary>
+            Metadata extraction tier for chunk set summaries
+            - Basic: Extractive summarization (first sentence from combined chunk text) - FREE
+            - LLM: AI-generated summary of the section content - ~$0.0005 per section
+            Default: Basic (free tier)
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.FallbackStrategy">
+            <summary>
+            Fallback strategy if semantic chunking fails (e.g., no embeddings available, error)
+            Default: Paragraph
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.CacheEmbeddings">
+            <summary>
+            Cache sentence embeddings for reuse within the same document
+            Reduces embedding API calls (cost savings)
+            Default: true
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.ContentType">
+            <summary>
+            Content type for specialized chunking behavior
+            null = auto-detect
+            Options: Prose, TechnicalDoc, Code, Markdown, Json, Mixed
+            Default: null (auto-detect)
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.SemanticChunkingOptions.TopKeywordsCount">
+            <summary>
+            Number of top keywords to extract (Basic metadata tier)
+            Default: 5
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.SemanticChunkingMode">
+            <summary>
+            Semantic chunking modes
+            </summary>
+        </member>
+        <member name="F:Hazina.AI.RAG.Embeddings.SemanticChunkingMode.Similarity">
+            <summary>
+            Embedding-based similarity detection (cost-efficient, recommended)
+            Uses cosine similarity between sentence embeddings to detect topic boundaries
+            Cost: Near-zero if embeddings are reused for retrieval
+            </summary>
+        </member>
+        <member name="F:Hazina.AI.RAG.Embeddings.SemanticChunkingMode.LLM">
+            <summary>
+            LLM-based boundary detection (expensive, highest quality)
+            Uses LLM to analyze document structure and propose boundaries
+            Cost: ~$0.0003 per document analysis
+            </summary>
+        </member>
+        <member name="F:Hazina.AI.RAG.Embeddings.SemanticChunkingMode.Hybrid">
+            <summary>
+            Hybrid approach: embedding detection + LLM validation
+            Uses embeddings for initial boundaries, LLM to validate and refine
+            Cost: ~$0.0002 per document
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.MetadataExtractionTier">
+            <summary>
+            Metadata extraction tiers
+            </summary>
+        </member>
+        <member name="F:Hazina.AI.RAG.Embeddings.MetadataExtractionTier.None">
+            <summary>
+            No metadata extraction
+            </summary>
+        </member>
+        <member name="F:Hazina.AI.RAG.Embeddings.MetadataExtractionTier.Basic">
+            <summary>
+            Rule-based metadata extraction (FREE)
+            - TF-IDF keywords
+            - Extractive summaries (first sentence)
+            - Basic statistics (word count, sentence count)
+            </summary>
+        </member>
+        <member name="F:Hazina.AI.RAG.Embeddings.MetadataExtractionTier.LLM">
+            <summary>
+            LLM-generated metadata (premium)
+            - AI-generated summaries
+            - Topic classification
+            - Section type detection
+            - Importance scoring
+            Cost: ~$0.0001 per chunk
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.DocumentContentType">
+            <summary>
+            Document content types for specialized chunking
+            </summary>
+        </member>
+        <member name="F:Hazina.AI.RAG.Embeddings.DocumentContentType.Prose">
+            <summary>
+            Natural language prose (articles, books, essays)
+            </summary>
+        </member>
+        <member name="F:Hazina.AI.RAG.Embeddings.DocumentContentType.TechnicalDoc">
+            <summary>
+            Technical documentation (API docs, manuals, guides)
+            </summary>
+        </member>
+        <member name="F:Hazina.AI.RAG.Embeddings.DocumentContentType.Code">
+            <summary>
+            Source code files
+            </summary>
+        </member>
+        <member name="F:Hazina.AI.RAG.Embeddings.DocumentContentType.Markdown">
+            <summary>
+            Markdown formatted documents
+            </summary>
+        </member>
+        <member name="F:Hazina.AI.RAG.Embeddings.DocumentContentType.Json">
+            <summary>
+            JSON or other structured data
+            </summary>
+        </member>
+        <member name="F:Hazina.AI.RAG.Embeddings.DocumentContentType.Mixed">
+            <summary>
+            Mixed content types
+            </summary>
+        </member>
+        <member name="F:Hazina.AI.RAG.Embeddings.DocumentContentType.Other">
+            <summary>
+            Unknown or other content type
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.SemanticSimilarityChunker">
+            <summary>
+            Semantic chunking using embedding similarity to detect topic boundaries
+            Cost-efficient: Uses embeddings instead of expensive LLM calls
+            Cost: Near-zero if embeddings are reused for retrieval
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.SemanticSimilarityChunker.ChunkAsync(System.String,Hazina.AI.RAG.Embeddings.SemanticChunkingOptions,System.Threading.CancellationToken)">
+            <summary>
+            Chunk text using semantic similarity analysis
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.SemanticSimilarityChunker.SplitIntoSentences(System.String,Hazina.AI.RAG.Embeddings.SemanticChunkingOptions)">
+            <summary>
+            Split text into sentences using configured pattern
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.SemanticSimilarityChunker.GenerateSentenceEmbeddingsAsync(System.Collections.Generic.List{System.String},System.Threading.CancellationToken)">
+            <summary>
+            Generate embeddings for all sentences in batch
+            Uses cache to avoid redundant API calls for duplicate content
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.SemanticSimilarityChunker.CalculatePairwiseSimilarities(System.Collections.Generic.List{Embedding})">
+            <summary>
+            Calculate cosine similarity between adjacent sentences
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.SemanticSimilarityChunker.DetectSemanticBoundaries(System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.String},Hazina.AI.RAG.Embeddings.SemanticChunkingOptions)">
+            <summary>
+            Detect semantic boundaries based on similarity drops
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.SemanticSimilarityChunker.ApplyRollingAverage(System.Collections.Generic.List{System.Double},System.Int32)">
+            <summary>
+            Apply rolling average to similarity scores to smooth out noise
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.SemanticSimilarityChunker.CreateChunksFromBoundaries(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Int32},System.String,Hazina.AI.RAG.Embeddings.SemanticChunkingOptions)">
+            <summary>
+            Create text chunks from detected boundaries
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.SemanticSimilarityChunker.EnrichWithMetadataAsync(System.Collections.Generic.List{Hazina.AI.RAG.Embeddings.TextChunk},Hazina.AI.RAG.Embeddings.SemanticChunkingOptions,System.Threading.CancellationToken)">
+            <summary>
+            Enrich chunks with metadata (basic and/or LLM-generated)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.SemanticSimilarityChunker.CreateSingleChunk(System.String,System.Int32,Hazina.AI.RAG.Embeddings.SemanticChunkingOptions)">
+            <summary>
+            Create a single chunk from entire text
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.SemanticSimilarityChunker.FallbackChunk(System.String,Hazina.AI.RAG.Embeddings.SemanticChunkingOptions)">
+            <summary>
+            Fallback to simpler chunking strategy if semantic chunking fails
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.SemanticSimilarityChunker.GetCacheStats">
+            <summary>
+            Get cache statistics
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.SemanticSimilarityChunker.ClearCache">
+            <summary>
+            Clear the embedding cache
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.SemanticSimilarityChunker.TrimCache(System.Int32)">
+            <summary>
+            Trim cache to maximum size
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.TextChunker">
+            <summary>
+            Splits text into chunks for embedding generation
+            Supports multiple strategies including semantic similarity-based chunking
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.TextChunker.ChunkText(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Split text into chunks with overlap (synchronous)
+            Note: Semantic chunking requires async API - use ChunkTextAsync for semantic strategy
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Embeddings.TextChunker.ChunkTextAsync(System.String,Hazina.AI.RAG.Embeddings.TextChunkingOptions,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Split text into chunks asynchronously (supports semantic chunking)
+            </summary>
+            <param name="text">Text to chunk</param>
+            <param name="options">Chunking options (overrides constructor options if provided)</param>
+            <param name="metadata">Base metadata to include in all chunks</param>
+            <param name="ct">Cancellation token</param>
+            <returns>List of text chunks</returns>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.TextChunk">
+            <summary>
+            Text chunk with metadata
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.TextChunkingOptions">
+            <summary>
+            Text chunking options
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.TextChunkingOptions.Strategy">
+            <summary>
+            Chunking strategy to use
+            Default: FixedSize (backwards compatible)
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.TextChunkingOptions.ChunkSize">
+            <summary>
+            Chunk size in characters (for FixedSize, Sentence, Paragraph strategies)
+            Default: 1000
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.TextChunkingOptions.OverlapSize">
+            <summary>
+            Overlap size in characters (for FixedSize strategy)
+            Default: 200
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Embeddings.TextChunkingOptions.SemanticOptions">
+            <summary>
+            Semantic chunking options (only used when Strategy = Semantic)
+            null = use default semantic options
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Embeddings.ChunkingStrategy">
+            <summary>
+            Chunking strategies
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Extensions.DocumentStoreSemanticExtensions">
+             <summary>
+             Extension methods to add semantic chunking support to DocumentStore
+             Phase 4: Semantic chunking integration
+            
+             Usage:
+             <code>
+             var options = new TextChunkingOptions
+             {
+                 Strategy = ChunkingStrategy.Semantic,
+                 SemanticOptions = new SemanticChunkingOptions { ... }
+             };
+            
+             await documentStore.StoreWithSemanticChunking(
+                 name: "my-document",
+                 content: text,
+                 embeddingGenerator: embeddingGenerator,
+                 chunkingOptions: options
+             );
+             </code>
+             </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Extensions.DocumentStoreSemanticExtensions.StoreWithSemanticChunking(DocumentStore,System.String,System.String,Hazina.Store.EmbeddingStore.IEmbeddingGenerator,Hazina.AI.RAG.Embeddings.TextChunkingOptions,Hazina.LLMs.ILLMClient,System.Collections.Generic.Dictionary{System.String,System.String},System.Threading.CancellationToken)">
+            <summary>
+            Store a document using semantic chunking
+            </summary>
+            <param name="documentStore">The document store</param>
+            <param name="name">Document name/key</param>
+            <param name="content">Document content</param>
+            <param name="embeddingGenerator">Embedding generator for semantic chunking</param>
+            <param name="chunkingOptions">Chunking options (optional, defaults to Semantic strategy)</param>
+            <param name="llmClient">LLM client for metadata extraction (optional)</param>
+            <param name="metadata">Document metadata</param>
+            <param name="ct">Cancellation token</param>
+            <returns>True if successful</returns>
+        </member>
+        <member name="M:Hazina.AI.RAG.Extensions.DocumentStoreSemanticExtensions.StoreChunkWithMetadata(DocumentStore,Hazina.Store.EmbeddingStore.IEmbeddingGenerator,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Store a chunk with its semantic metadata
+            Note: Currently stores chunks using legacy architecture (embeddings without metadata).
+            Future enhancement: Store metadata with embeddings when vector store supports it.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Extensions.DocumentStoreSemanticExtensions.StoreWithSemanticChunking(DocumentStore,System.String,System.Byte[],System.String,Hazina.Store.EmbeddingStore.IEmbeddingGenerator,Hazina.AI.RAG.Embeddings.TextChunkingOptions,Hazina.LLMs.ILLMClient,System.Collections.Generic.Dictionary{System.String,System.String},System.Threading.CancellationToken)">
+            <summary>
+            Store binary document with semantic chunking
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Extensions.RetrievalServiceExtensions">
+            <summary>
+            DI extension methods for registering retrieval pipeline components
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Extensions.RetrievalServiceExtensions.AddRetrievalPipeline(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Hazina.AI.RAG.Extensions.RetrievalPipelineOptions})">
+            <summary>
+            Register the default retrieval pipeline with vector store retriever and no-op reranker
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Extensions.RetrievalServiceExtensions.AddRetriever``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Register a custom retriever implementation
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Extensions.RetrievalServiceExtensions.AddReranker``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Register a custom reranker implementation
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Extensions.RetrievalServiceExtensions.AddCustomRetrievalPipeline``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Register a custom retrieval pipeline implementation
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Extensions.RetrievalPipelineOptions">
+            <summary>
+            Configuration options for retrieval pipeline
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Extensions.RetrievalPipelineOptions.RerankingStrategy">
+            <summary>
+            Reranking strategy to use
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Extensions.RetrievalPipelineOptions.LlmJudgeOptions">
+            <summary>
+            Options for LLM judge reranker (if using LlmJudge strategy)
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Extensions.RerankingStrategy">
+            <summary>
+            Reranking strategy enumeration
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Explainability.RetrievalTrace">
+            <summary>
+            Trace object showing the reasoning path for a retrieval result.
+            Provides explainability for hybrid vector + graph retrieval.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Explainability.RetrievalStep">
+            <summary>
+            Individual step in the retrieval process.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Explainability.ExplainabilityService">
+            <summary>
+            Service for generating explainable retrieval traces.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Explainability.ExplainabilityService.GenerateExplanation(Hazina.AI.RAG.Graph.Retrieval.HybridRetrievalResult)">
+            <summary>
+            Generates a human-readable explanation for a retrieval result.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Explainability.ExplainabilityService.CreateTrace(System.String,Hazina.AI.RAG.Graph.Retrieval.HybridRetrievalResult,System.Collections.Generic.List{Hazina.AI.RAG.Graph.Explainability.RetrievalStep})">
+            <summary>
+            Creates a complete retrieval trace with all steps.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Models.GraphEntity">
+            <summary>
+            Represents an entity node in the knowledge graph.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Models.GraphPath">
+            <summary>
+            Represents a path through the knowledge graph.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Models.GraphRelationship">
+            <summary>
+            Represents a directed relationship between two entities.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Models.GraphSchema">
+            <summary>
+            Defines the schema/ontology for the knowledge graph.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Pipeline.EntityNormalizationService">
+            <summary>
+            Entity normalization and deduplication service.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Pipeline.GraphConstructionPipeline">
+            <summary>
+            Orchestrates the complete graph construction pipeline from document to knowledge graph.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Pipeline.GraphConstructionPipeline.ProcessDocumentAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Processes a document through the complete graph construction pipeline.
+            </summary>
+            <param name="documentId">Unique identifier for the document</param>
+            <param name="documentText">Text content of the document</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Result containing statistics about the graph construction</returns>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Pipeline.GraphConstructionPipeline.ProcessDocumentsBatchAsync(System.Collections.Generic.Dictionary{System.String,System.String},System.Threading.CancellationToken)">
+            <summary>
+            Processes multiple documents in batch.
+            </summary>
+            <param name="documents">Dictionary of document ID to text content</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Results for each document</returns>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Pipeline.GraphConstructionResult">
+            <summary>
+            Result of graph construction process for a document.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Pipeline.IEntityExtractor">
+            <summary>
+            Extracts named entities from text using LLM-based analysis.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Pipeline.IEntityExtractor.ExtractEntitiesAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Extracts entities from the given text.
+            </summary>
+            <param name="text">The text to analyze</param>
+            <param name="documentId">Optional document ID for provenance tracking</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>List of extracted entities with confidence scores</returns>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Pipeline.IEntityNormalizer">
+            <summary>
+            Normalizes and deduplicates entities in the knowledge graph.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Pipeline.IEntityNormalizer.NormalizeEntityAsync(Hazina.AI.RAG.Graph.Models.GraphEntity,Hazina.AI.RAG.Graph.Storage.IGraphStore,System.Threading.CancellationToken)">
+            <summary>
+            Normalizes an entity by checking for duplicates and merging if necessary.
+            </summary>
+            <param name="entity">The entity to normalize</param>
+            <param name="graphStore">The graph store to check for existing entities</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Normalized entity (may be merged with existing entity)</returns>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Pipeline.ILLMTextService">
+            <summary>
+            Simplified text-in/text-out LLM service for graph construction.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Pipeline.ILLMTextService.GetResponseAsync(System.String,System.Int32,System.Single,System.Threading.CancellationToken)">
+            <summary>
+            Gets a text response from the LLM for a given prompt.
+            </summary>
+            <param name="prompt">The prompt text</param>
+            <param name="maxTokens">Maximum tokens for response</param>
+            <param name="temperature">Temperature for sampling (0.0-2.0)</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Text response from LLM</returns>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Pipeline.IRelationshipExtractor">
+            <summary>
+            Extracts relationships between entities from text.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Pipeline.IRelationshipExtractor.ExtractRelationshipsAsync(System.String,System.Collections.Generic.List{Hazina.AI.RAG.Graph.Models.GraphEntity},System.String,System.Threading.CancellationToken)">
+            <summary>
+            Extracts relationships between the given entities based on text context.
+            </summary>
+            <param name="text">The text to analyze</param>
+            <param name="entities">Entities already extracted from the text</param>
+            <param name="documentId">Optional document ID for provenance</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>List of relationships found between entities</returns>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Pipeline.LLMEntityExtractor">
+            <summary>
+            LLM-based entity extraction using structured prompts.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Pipeline.LLMRelationshipExtractor">
+            <summary>
+            LLM-based relationship extraction between entities.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Pipeline.LLMTextService">
+            <summary>
+            Simple text-in/text-out wrapper around IProviderOrchestrator.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Retrieval.HybridRetrievalService">
+            <summary>
+            Hybrid retrieval service combining vector similarity search with knowledge graph traversal.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Retrieval.HybridRetrievalService.RetrieveAsync(System.Single[],System.Int32,Hazina.AI.RAG.Graph.Retrieval.HybridRetrievalOptions,System.Threading.CancellationToken)">
+            <summary>
+            Performs hybrid retrieval combining vector search and graph traversal.
+            </summary>
+            <param name="queryEmbedding">Query embedding vector</param>
+            <param name="topK">Number of top results to return</param>
+            <param name="options">Hybrid retrieval options</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Ranked list of hybrid retrieval results</returns>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Retrieval.HybridRetrievalResult">
+            <summary>
+            Result from hybrid retrieval combining vector and graph search.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Retrieval.RetrievalSource">
+            <summary>
+            Source of retrieval result.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Retrieval.HybridRetrievalOptions">
+            <summary>
+            Options for hybrid retrieval.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Retrieval.FusionStrategy">
+            <summary>
+            Strategy for fusing vector and graph results.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Storage.GraphStoreFactory">
+            <summary>
+            Factory for creating appropriate IGraphStore implementations based on configuration.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Storage.GraphStoreFactory.Create(Hazina.AI.RAG.Configuration.GraphRAGConfig,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Creates a graph store based on the provided configuration.
+            </summary>
+            <param name="config">GraphRAG configuration</param>
+            <param name="logger">Logger instance</param>
+            <returns>Configured IGraphStore implementation</returns>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Storage.IGraphStore">
+            <summary>
+            Interface for graph storage and query operations.
+            Implementations can use SQLite, Neo4j, or in-memory storage.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Storage.IGraphStore.AddEntitiesAsync(System.Collections.Generic.List{Hazina.AI.RAG.Graph.Models.GraphEntity},System.Threading.CancellationToken)">
+            <summary>
+            Adds multiple entities to the graph store.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Storage.IGraphStore.GetEntityByIdAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves an entity by its ID.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Storage.IGraphStore.SearchEntitiesByNameAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Searches for entities by name and optional type.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Storage.IGraphStore.SearchEntitiesByEmbeddingAsync(System.Single[],System.Int32,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Searches for entities similar to the given embedding.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Storage.IGraphStore.GetEntitiesByDocumentAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Finds all entities associated with a specific document.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Storage.IGraphStore.AddRelationshipsAsync(System.Collections.Generic.List{Hazina.AI.RAG.Graph.Models.GraphRelationship},System.Threading.CancellationToken)">
+            <summary>
+            Adds multiple relationships to the graph store.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Storage.IGraphStore.GetRelationshipsAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Gets all relationships for a given entity.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Storage.IGraphStore.GetNeighborsAsync(System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Gets neighboring entities at a specified depth.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Storage.IGraphStore.FindPathsAsync(System.String,System.String,Hazina.AI.RAG.Graph.Models.PathFindingOptions,System.Threading.CancellationToken)">
+            <summary>
+            Finds paths between two entities.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Storage.IGraphStore.SearchByLinkageAsync(System.String,System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Searches entities connected to the given entity by a specific predicate.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Storage.IGraphStore.UpdateEntityAsync(Hazina.AI.RAG.Graph.Models.GraphEntity,System.Threading.CancellationToken)">
+            <summary>
+            Updates an existing entity.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Storage.IGraphStore.DeleteEntityAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Deletes an entity and its relationships.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Graph.Storage.IGraphStore.GetStatisticsAsync(System.Threading.CancellationToken)">
+            <summary>
+            Gets statistics about the graph (entity count, relationship count, etc.).
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Storage.GraphStatistics">
+            <summary>
+            Statistics about the knowledge graph.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Storage.InMemoryGraphStore">
+            <summary>
+            In-memory implementation of graph storage for testing and development.
+            NOT recommended for production use - data is lost when application restarts.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Graph.Storage.SQLiteGraphStore">
+            <summary>
+            SQLite-based graph storage implementation.
+            Provides persistent storage with full-text search and indexing.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Interfaces.IReranker">
+            <summary>
+            Abstraction for reranking retrieval candidates.
+            Rerankers can use different strategies (LLM-based, cross-encoder, hybrid, or no-op).
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Interfaces.IReranker.RerankAsync(System.String,System.Collections.Generic.List{Hazina.AI.RAG.Interfaces.IRetrievalCandidate},System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Rerank candidates and return top-N results
+            </summary>
+            <param name="query">User query text</param>
+            <param name="candidates">Candidates to rerank</param>
+            <param name="topN">Number of top results to return after reranking</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Reranked candidates with RerankScore populated</returns>
+        </member>
+        <member name="T:Hazina.AI.RAG.Interfaces.IRetrievalCandidate">
+            <summary>
+            Represents a single retrieval candidate from a document store.
+            Carries all information needed for reranking and answer composition.
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Interfaces.IRetrievalCandidate.ChunkId">
+            <summary>
+            Unique identifier for the chunk
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Interfaces.IRetrievalCandidate.SourceDocumentId">
+            <summary>
+            Identifier of the source document this chunk belongs to
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Interfaces.IRetrievalCandidate.OriginalScore">
+            <summary>
+            Original similarity score from vector search (0.0 to 1.0)
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Interfaces.IRetrievalCandidate.RerankScore">
+            <summary>
+            Rerank score if reranking was applied, null otherwise
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Interfaces.IRetrievalCandidate.Text">
+            <summary>
+            Text content of the chunk
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Interfaces.IRetrievalCandidate.Metadata">
+            <summary>
+            Optional metadata for extensibility
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Interfaces.RetrievalCandidate">
+            <summary>
+            Default implementation of IRetrievalCandidate
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Interfaces.IRetrievalPipeline">
+            <summary>
+            Orchestrates the full retrieval pipeline: retrieve → rerank → return
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Interfaces.IRetrievalPipeline.RetrieveAsync(System.String,System.Int32,System.Int32,System.Double,System.Threading.CancellationToken)">
+            <summary>
+            Execute the full retrieval pipeline
+            </summary>
+            <param name="query">User query</param>
+            <param name="retrievalTopK">Number of candidates to retrieve initially</param>
+            <param name="rerankTopN">Number of top results to return after reranking</param>
+            <param name="minSimilarity">Minimum similarity threshold for retrieval</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Final reranked candidates</returns>
+        </member>
+        <member name="T:Hazina.AI.RAG.Interfaces.IRetriever">
+            <summary>
+            Abstraction for retrieving candidate chunks from a document store or vector database.
+            Decouples retrieval from reranking and generation.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Interfaces.IRetriever.GetCandidatesAsync(System.String,System.Int32,System.Double,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve top-K candidates for a given query
+            </summary>
+            <param name="query">User query text</param>
+            <param name="topK">Number of candidates to retrieve</param>
+            <param name="minSimilarity">Minimum similarity threshold (optional)</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>List of retrieval candidates ordered by similarity</returns>
+        </member>
+        <member name="T:Hazina.AI.RAG.Retrieval.LlmJudgeReranker">
+            <summary>
+            Reranks candidates using LLM-based relevance scoring with a stable, deterministic prompt.
+            Each candidate is scored independently on a 0-10 scale for relevance to the query.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Retrieval.LlmJudgeRerankerOptions">
+            <summary>
+            Configuration options for LlmJudgeReranker
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Retrieval.LlmJudgeRerankerOptions.SystemPrompt">
+            <summary>
+            System prompt that instructs the LLM on its role
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Retrieval.LlmJudgeRerankerOptions.PromptTemplate">
+            <summary>
+            Template for the scoring prompt. Use {QUERY} and {DOCUMENT} placeholders.
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.RAG.Retrieval.LlmJudgeRerankerOptions.MaxDocumentLength">
+            <summary>
+            Maximum document length to include in the prompt (to avoid token limits)
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Retrieval.NoOpReranker">
+            <summary>
+            No-op reranker that simply returns candidates unchanged.
+            Useful for baseline comparisons and when reranking is not needed.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Retrieval.Reranker">
+            <summary>
+            Reranks retrieved documents using various strategies
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Retrieval.Reranker.RerankAsync(System.String,System.Collections.Generic.List{Hazina.AI.RAG.Core.RetrievedDocument},System.Threading.CancellationToken)">
+            <summary>
+            Rerank documents for better relevance
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Retrieval.Reranker.RerankWithLLMAsync(System.String,System.Collections.Generic.List{Hazina.AI.RAG.Core.RetrievedDocument},System.Threading.CancellationToken)">
+            <summary>
+            Rerank using LLM to assess relevance
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Retrieval.Reranker.RerankHybridAsync(System.String,System.Collections.Generic.List{Hazina.AI.RAG.Core.RetrievedDocument},System.Threading.CancellationToken)">
+            <summary>
+            Hybrid reranking combining similarity and LLM
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Retrieval.Reranker.ScoreRelevanceAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Score document relevance using LLM
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Retrieval.Reranker.FilterByRelevance(System.Collections.Generic.List{Hazina.AI.RAG.Core.RetrievedDocument},System.Double)">
+            <summary>
+            Filter documents by minimum relevance threshold
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Retrieval.Reranker.DiversifyResults(System.Collections.Generic.List{Hazina.AI.RAG.Core.RetrievedDocument},System.Int32,System.Double)">
+            <summary>
+            Diversify results to reduce redundancy
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Retrieval.Reranker.CalculateTextSimilarity(System.String,System.String)">
+            <summary>
+            Simple text similarity calculation
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Retrieval.RerankingOptions">
+            <summary>
+            Reranking options
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Retrieval.RerankingStrategy">
+            <summary>
+            Reranking strategies
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Retrieval.RetrievalPipeline">
+            <summary>
+            Default implementation of IRetrievalPipeline.
+            Orchestrates the retrieval → rerank → return flow with configurable components.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Retrieval.VectorStoreRetriever">
+            <summary>
+            Adapts IVectorSearchStore + IEmbeddingGenerator to IRetriever interface.
+            Handles query embedding generation and vector search in a single call.
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.RAG.Utilities.SentenceSplitter">
+            <summary>
+            Advanced sentence tokenization utility
+            Splits text into sentences using configurable patterns and rules
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Utilities.SentenceSplitter.Split(System.String,System.String,System.Int32,System.Nullable{System.Int32})">
+            <summary>
+            Split text into sentences using regex pattern
+            </summary>
+            <param name="text">Text to split</param>
+            <param name="pattern">Regex pattern for splitting (default: split on .!? followed by whitespace)</param>
+            <param name="minLength">Minimum sentence length to include</param>
+            <param name="maxLength">Maximum sentence length (split if exceeded)</param>
+            <returns>List of sentences</returns>
+        </member>
+        <member name="M:Hazina.AI.RAG.Utilities.SentenceSplitter.PostProcess(System.Collections.Generic.List{System.String},System.Int32)">
+            <summary>
+            Post-process sentences to handle abbreviations and merge short sentences
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Utilities.SentenceSplitter.EndsWithAbbreviation(System.String)">
+            <summary>
+            Check if sentence ends with known abbreviation
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Utilities.SentenceSplitter.MergeShortSentences(System.Collections.Generic.List{System.String},System.Int32)">
+            <summary>
+            Merge sentences shorter than minimum length with adjacent sentences
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Utilities.SentenceSplitter.EnforceMaxLength(System.Collections.Generic.List{System.String},System.Int32)">
+            <summary>
+            Enforce maximum sentence length by splitting long sentences
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Utilities.SentenceSplitter.SplitLongSentence(System.String,System.Int32)">
+            <summary>
+            Split a long sentence at natural boundaries
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.RAG.Utilities.SentenceSplitter.SplitDefault(System.String)">
+            <summary>
+            Split text into sentences with default settings
+            </summary>
+        </member>
+    </members>
+</doc>

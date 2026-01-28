@@ -1,0 +1,357 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hazina.Observability.LLMLogs</name>
+    </assembly>
+    <members>
+        <member name="T:Hazina.Observability.LLMLogs.Configuration.LLMLoggingOptions">
+            <summary>
+            Configuration options for LLM logging.
+            </summary>
+        </member>
+        <member name="F:Hazina.Observability.LLMLogs.Configuration.LLMLoggingOptions.SectionName">
+            <summary>
+            Configuration section name in appsettings.json.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Configuration.LLMLoggingOptions.Enabled">
+            <summary>
+            Whether LLM logging is enabled.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Configuration.LLMLoggingOptions.DatabasePath">
+            <summary>
+            Path to the SQLite database file.
+            If relative, will be resolved from application base directory.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Configuration.LLMLoggingOptions.RetentionDays">
+            <summary>
+            How many days to keep log entries. Older entries will be deleted automatically.
+            Set to 0 to keep logs indefinitely.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Configuration.LLMLoggingOptions.LogRequestMessages">
+            <summary>
+            Whether to log the full request messages (can be large).
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Configuration.LLMLoggingOptions.LogResponseData">
+            <summary>
+            Whether to log the full response data (can be large).
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Configuration.LLMLoggingOptions.EstimateCosts">
+            <summary>
+            Whether to estimate and log costs.
+            Requires cost estimation configuration per provider/model.
+            </summary>
+        </member>
+        <member name="T:Hazina.Observability.LLMLogs.Context.LLMLoggingContext">
+            <summary>
+            Provides ambient context for LLM logging metadata.
+            Uses AsyncLocal to ensure thread-safe context storage across async operations.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Context.LLMLoggingContext.Current">
+            <summary>
+            Gets or sets the current logging context for the current async flow.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Context.LLMLoggingContext.ProjectId">
+            <summary>
+            Username who initiated this LLM call chain.
+            </summary>
+            <summary>
+            Project ID/name for this LLM call chain.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Context.LLMLoggingContext.Feature">
+            <summary>
+            Feature/module that initiated this LLM call chain.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Context.LLMLoggingContext.Step">
+            <summary>
+            Current step within the feature.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Context.LLMLoggingContext.ParentCallId">
+            <summary>
+            Parent call ID if this is a nested/child LLM call.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Context.LLMLoggingContext.EmbeddedDocuments">
+            <summary>
+            Embedded documents added to the context via RAG/similarity search.
+            Each entry should contain document name, chunk, and relevance score.
+            </summary>
+        </member>
+        <member name="M:Hazina.Observability.LLMLogs.Context.LLMLoggingContext.BeginScope(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Creates a new logging context scope.
+            </summary>
+        </member>
+        <member name="M:Hazina.Observability.LLMLogs.Context.LLMLoggingContext.SetProjectId(System.String)">
+            <summary>
+            Updates the current step within the existing context.
+            </summary>
+            <summary>
+            Updates the project ID within the existing context.
+            </summary>
+        </member>
+        <member name="M:Hazina.Observability.LLMLogs.Context.LLMLoggingContext.SetParentCallId(System.String)">
+            <summary>
+            Sets the parent call ID for child/nested LLM calls.
+            </summary>
+        </member>
+        <member name="T:Hazina.Observability.LLMLogs.Context.EmbeddedDocument">
+            <summary>
+            Represents a document that was embedded into the LLM context via RAG/similarity search.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Context.EmbeddedDocument.DocumentName">
+            <summary>
+            Name or identifier of the document.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Context.EmbeddedDocument.Chunk">
+            <summary>
+            The text chunk that was embedded.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Context.EmbeddedDocument.RelevanceScore">
+            <summary>
+            Relevance score from similarity search (0.0 to 1.0).
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Context.EmbeddedDocument.Metadata">
+            <summary>
+            Optional metadata about the document (e.g., page number, section, etc.).
+            </summary>
+        </member>
+        <member name="T:Hazina.Observability.LLMLogs.Decorators.LLMLoggingClientDecorator">
+            <summary>
+            Decorator for ILLMClient that logs all LLM calls to a repository.
+            Provider-agnostic and works with any ILLMClient implementation.
+            </summary>
+        </member>
+        <member name="T:Hazina.Observability.LLMLogs.Extensions.LLMLoggingInitializationService">
+            <summary>
+            Background service that initializes the LLM logging database on startup
+            and periodically cleans up old logs.
+            </summary>
+        </member>
+        <member name="T:Hazina.Observability.LLMLogs.Extensions.LLMLoggingServiceExtensions">
+            <summary>
+            Extension methods for configuring LLM logging services.
+            </summary>
+        </member>
+        <member name="M:Hazina.Observability.LLMLogs.Extensions.LLMLoggingServiceExtensions.AddLLMLogging(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Adds LLM logging services to the service collection.
+            Call this before registering ILLMClient implementations.
+            </summary>
+            <param name="services">The service collection.</param>
+            <param name="configuration">Configuration containing LLMLogging section.</param>
+            <returns>The service collection for chaining.</returns>
+        </member>
+        <member name="M:Hazina.Observability.LLMLogs.Extensions.LLMLoggingServiceExtensions.DecorateWithLogging(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            Decorates an ILLMClient registration with logging.
+            Use this after registering your ILLMClient implementation.
+            </summary>
+            <param name="services">The service collection.</param>
+            <param name="providerName">Name of the LLM provider (e.g., "OpenAI", "Anthropic", "Google").</param>
+            <returns>The service collection for chaining.</returns>
+        </member>
+        <member name="T:Hazina.Observability.LLMLogs.Storage.ILLMLogRepository">
+            <summary>
+            Repository for storing and retrieving LLM call logs.
+            </summary>
+        </member>
+        <member name="M:Hazina.Observability.LLMLogs.Storage.ILLMLogRepository.InitializeAsync(System.Threading.CancellationToken)">
+            <summary>
+            Initializes the database schema if needed.
+            </summary>
+        </member>
+        <member name="M:Hazina.Observability.LLMLogs.Storage.ILLMLogRepository.LogCallAsync(Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog,System.Threading.CancellationToken)">
+            <summary>
+            Logs an LLM call to the database.
+            </summary>
+        </member>
+        <member name="M:Hazina.Observability.LLMLogs.Storage.ILLMLogRepository.GetLogsAsync(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.String,System.String,System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves logs matching the specified filters.
+            </summary>
+        </member>
+        <member name="M:Hazina.Observability.LLMLogs.Storage.ILLMLogRepository.GetTotalCostAsync(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Gets the total cost for a specific time period and optional filters.
+            </summary>
+        </member>
+        <member name="M:Hazina.Observability.LLMLogs.Storage.ILLMLogRepository.GetTokenUsageAsync(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Gets the total token usage for a specific time period and optional filters.
+            </summary>
+        </member>
+        <member name="M:Hazina.Observability.LLMLogs.Storage.ILLMLogRepository.CleanupOldLogsAsync(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Deletes logs older than the specified retention period.
+            </summary>
+        </member>
+        <member name="T:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog">
+            <summary>
+            Represents a complete log entry for an LLM API call.
+            Captures request metadata, messages, responses, token usage, and cost estimation.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.CallId">
+            <summary>
+            Unique identifier for this LLM call.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.ParentCallId">
+            <summary>
+            If this call was made as part of a function call or tool chain, this references the parent call.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.Username">
+            <summary>
+            Username of the user who initiated this request.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.ProjectId">
+            <summary>
+            Project ID/name for this request (if applicable).
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.ResponseMessage">
+            <summary>
+            The actual response message text from the LLM (for easy viewing/querying).
+            This is extracted from ResponseData for convenience.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.Feature">
+            <summary>
+            Feature/module that initiated this LLM call (e.g., "Chat", "Analysis", "BlogGeneration").
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.Step">
+            <summary>
+            Optional step within a feature (e.g., "ColorSchemeGeneration", "PromptEnhancement").
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.DateTimeUtc">
+            <summary>
+            Timestamp when the call was initiated (UTC).
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.Provider">
+            <summary>
+            LLM provider name (e.g., "OpenAI", "Anthropic", "Google").
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.Model">
+            <summary>
+            Model name (e.g., "gpt-4", "claude-3-opus", "gemini-pro").
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.IsToolCall">
+            <summary>
+            Indicates if this call was a tool/function call.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.ToolName">
+            <summary>
+            If IsToolCall is true, the name of the tool that was called.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.ToolArguments">
+            <summary>
+            If IsToolCall is true, the arguments passed to the tool (JSON format).
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.RequestMessages">
+            <summary>
+            Complete request messages sent to the LLM (serialized as JSON).
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.ResponseData">
+            <summary>
+            Complete response data from the LLM (serialized as JSON).
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.MessageCount">
+            <summary>
+            Number of messages in the request.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.EmbeddedDocuments">
+            <summary>
+            Embedded documents/context added via RAG/similarity search (serialized as JSON).
+            Includes document names, chunks, and relevance scores.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.EmbeddedDocumentCount">
+            <summary>
+            Number of documents/chunks added to context via embeddings.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.InputTokens">
+            <summary>
+            Number of tokens used in the input/request.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.OutputTokens">
+            <summary>
+            Number of tokens used in the output/response.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.TotalTokens">
+            <summary>
+            Total tokens used (typically InputTokens + OutputTokens).
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.InputCost">
+            <summary>
+            Estimated cost for input tokens (in USD).
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.OutputCost">
+            <summary>
+            Estimated cost for output tokens (in USD).
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.TotalCost">
+            <summary>
+            Total estimated cost (InputCost + OutputCost, in USD).
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.ExecutionTimeMs">
+            <summary>
+            Execution time in milliseconds.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.Success">
+            <summary>
+            Whether the call completed successfully.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.ErrorMessage">
+            <summary>
+            If Success is false, contains the error message.
+            </summary>
+        </member>
+        <member name="P:Hazina.Observability.LLMLogs.Storage.Models.LLMCallLog.CreatedAt">
+            <summary>
+            When this log entry was created in the database (UTC).
+            </summary>
+        </member>
+        <member name="T:Hazina.Observability.LLMLogs.Storage.SqliteLLMLogRepository">
+            <summary>
+            SQLite implementation of LLM log repository.
+            </summary>
+        </member>
+    </members>
+</doc>

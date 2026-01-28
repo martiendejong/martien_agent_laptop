@@ -1,0 +1,689 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hazina.AI.Agents</name>
+    </assembly>
+    <members>
+        <member name="T:Hazina.AI.Agents.Coordination.MultiAgentCoordinator">
+            <summary>
+            Coordinates multiple agents working together
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Coordination.MultiAgentCoordinator.RegisterAgent(Hazina.AI.Agents.Core.Agent)">
+            <summary>
+            Register an agent
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Coordination.MultiAgentCoordinator.ExecuteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Execute task with multiple agents
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Coordination.MultiAgentCoordinator.ExecuteSequentialAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Execute agents sequentially (pipeline)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Coordination.MultiAgentCoordinator.ExecuteParallelAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Execute agents in parallel
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Coordination.MultiAgentCoordinator.ExecuteDebateAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Execute agents in debate/discussion mode
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Coordination.MultiAgentCoordinator.ExecuteHierarchicalAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Execute with hierarchical coordination
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Coordination.MultiAgentCoordinator.BuildDebateTask(System.String,System.Int32,System.Collections.Generic.List{System.String})">
+            <summary>
+            Build debate task for a round
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Coordination.MultiAgentCoordinator.HasConsensusAsync(System.Collections.Generic.List{Hazina.AI.Agents.Core.AgentResponse},System.Threading.CancellationToken)">
+            <summary>
+            Check if agents have reached consensus
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Coordination.MultiAgentCoordinator.CalculateSimilarity(System.String,System.String)">
+            <summary>
+            Simple text similarity
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Coordination.MultiAgentCoordinator.AggregateResponsesAsync(Hazina.AI.Agents.Core.AgentResponse[],System.String,System.Threading.CancellationToken)">
+            <summary>
+            Aggregate parallel responses
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Coordination.MultiAgentCoordinator.SynthesizeDebateAsync(System.Collections.Generic.List{Hazina.AI.Agents.Core.AgentResponse},System.String,System.Threading.CancellationToken)">
+            <summary>
+            Synthesize debate results
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Coordination.MultiAgentCoordinator.ParseSubtasks(System.String)">
+            <summary>
+            Parse subtasks from coordinator response
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Coordination.CoordinationStrategy">
+            <summary>
+            Coordination strategies
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Coordination.CoordinationResult">
+            <summary>
+            Coordination result
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Core.Agent">
+            <summary>
+            Base agent class with tool calling capabilities
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Core.Agent.RegisterTool(Hazina.AI.Agents.Tools.AgentTool)">
+            <summary>
+            Register a tool for this agent to use
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Core.Agent.ExecuteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Execute agent task
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Core.Agent.ExecuteSimpleAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Execute simple task without tools
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Core.Agent.ExecuteWithToolsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Execute task with tool calling
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Core.Agent.ParseToolCalls(System.String)">
+            <summary>
+            Parse tool calls from LLM response
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Core.Agent.ParseToolSpec(System.String)">
+            <summary>
+            Parse tool specification
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Core.Agent.ExecuteToolAsync(Hazina.AI.Agents.Core.ToolCall,System.Threading.CancellationToken)">
+            <summary>
+            Execute a tool call
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Core.Agent.BuildSystemPrompt(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Build system prompt
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Core.Agent.BuildSystemPromptWithTools(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Build system prompt with tool descriptions
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Core.Agent.GetConversationHistory">
+            <summary>
+            Get conversation history
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Core.Agent.ClearHistory">
+            <summary>
+            Clear conversation history
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Core.AgentConfig">
+            <summary>
+            Agent configuration
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Core.AgentResponse">
+            <summary>
+            Agent response
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Core.AgentMessage">
+            <summary>
+            Agent message
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Core.AgentRole">
+            <summary>
+            Agent role
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Core.ToolCall">
+            <summary>
+            Tool call
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Planning.AgentPlan">
+            <summary>
+            Structured plan for a long-running agent task with step tracking.
+            Makes agent reasoning and progress explicit and inspectable.
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Planning.AgentPlan.PlanId">
+            <summary>
+            Unique identifier for this plan
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Planning.AgentPlan.Goal">
+            <summary>
+            High-level goal or task description
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Planning.AgentPlan.Steps">
+            <summary>
+            Ordered list of steps to achieve the goal
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Planning.AgentPlan.CreatedAt">
+            <summary>
+            When the plan was created
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Planning.AgentPlan.UpdatedAt">
+            <summary>
+            When the plan was last updated
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Planning.AgentPlan.Status">
+            <summary>
+            Overall plan status
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Planning.AgentPlan.Metadata">
+            <summary>
+            Optional metadata
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Planning.AgentPlan.GetPendingSteps">
+            <summary>
+            Get all pending steps
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Planning.AgentPlan.GetActiveStep">
+            <summary>
+            Get current active step
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Planning.AgentPlan.GetNextStep">
+            <summary>
+            Get next step to execute
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Planning.AgentPlan.ActivateStep(System.String)">
+            <summary>
+            Mark a step as active
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Planning.AgentPlan.CompleteStep(System.String,System.String)">
+            <summary>
+            Mark a step as completed
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Planning.AgentPlan.FailStep(System.String,System.String)">
+            <summary>
+            Mark a step as failed
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Planning.AgentPlan.GetProgress">
+            <summary>
+            Calculate plan progress (fraction of steps done)
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Planning.PlanStep">
+            <summary>
+            Individual step in an agent plan
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Planning.PlanStep.StepId">
+            <summary>
+            Unique identifier for this step
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Planning.PlanStep.Description">
+            <summary>
+            Description of what this step should accomplish
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Planning.PlanStep.Status">
+            <summary>
+            Current status of the step
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Planning.PlanStep.StartedAt">
+            <summary>
+            When step execution started
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Planning.PlanStep.CompletedAt">
+            <summary>
+            When step execution completed (success or failure)
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Planning.PlanStep.Result">
+            <summary>
+            Result or output from this step (if successful)
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Planning.PlanStep.Error">
+            <summary>
+            Error message (if failed)
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Planning.PlanStep.Dependencies">
+            <summary>
+            Dependencies - step IDs that must complete before this step
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Planning.PlanStep.Metadata">
+            <summary>
+            Optional metadata for the step
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Planning.StepStatus">
+            <summary>
+            Step execution status
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Planning.PlanStatus">
+            <summary>
+            Overall plan status
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Tools.AgentTool">
+            <summary>
+            Base class for agent tools
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tools.AgentTool.ExecuteAsync(System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Execute the tool
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tools.AgentTool.ValidateArguments(System.Collections.Generic.Dictionary{System.String,System.Object},System.String@)">
+            <summary>
+            Validate arguments
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Tools.ToolParameter">
+            <summary>
+            Tool parameter definition
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Tools.ToolResult">
+            <summary>
+            Tool execution result
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Tools.CalculatorTool">
+            <summary>
+            Calculator tool for mathematical operations
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Tracing.AgentTrace">
+            <summary>
+            Comprehensive trace of agent execution for debugging and auditing.
+            Records all tool calls, decisions, and retrieval operations.
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Tracing.AgentTrace.TraceId">
+            <summary>
+            Unique identifier for this trace
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Tracing.AgentTrace.AgentName">
+            <summary>
+            Agent name
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Tracing.AgentTrace.Task">
+            <summary>
+            Original task or goal
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Tracing.AgentTrace.StartTime">
+            <summary>
+            When tracing started
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Tracing.AgentTrace.EndTime">
+            <summary>
+            When tracing ended
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Tracing.AgentTrace.Events">
+            <summary>
+            Ordered list of trace events
+            </summary>
+        </member>
+        <member name="P:Hazina.AI.Agents.Tracing.AgentTrace.Metadata">
+            <summary>
+            Metadata for the trace
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tracing.AgentTrace.AddToolCall(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.String)">
+            <summary>
+            Add a tool call event
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tracing.AgentTrace.AddDecision(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Add a decision event
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tracing.AgentTrace.AddRetrieval(System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Add a retrieval event
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tracing.AgentTrace.AddLog(System.String,System.String)">
+            <summary>
+            Add a custom log event
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tracing.AgentTrace.GetToolCalls">
+            <summary>
+            Get all tool calls in the trace
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tracing.AgentTrace.GetDecisions">
+            <summary>
+            Get all decisions in the trace
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tracing.AgentTrace.GetRetrievals">
+            <summary>
+            Get all retrievals in the trace
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tracing.AgentTrace.GetDuration">
+            <summary>
+            Calculate total duration
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Tracing.TraceEvent">
+            <summary>
+            Base class for trace events
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Tracing.ToolCallEvent">
+            <summary>
+            Tool call event
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Tracing.DecisionEvent">
+            <summary>
+            Decision event
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Tracing.RetrievalEvent">
+            <summary>
+            Retrieval event
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Tracing.LogEvent">
+            <summary>
+            Log event
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Tracing.TraceSerialization">
+            <summary>
+            Serialization utilities for agent traces and plans.
+            Ensures traces are fully serializable for persistence and debugging.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tracing.TraceSerialization.SerializeTrace(Hazina.AI.Agents.Tracing.AgentTrace)">
+            <summary>
+            Serialize trace to JSON
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tracing.TraceSerialization.DeserializeTrace(System.String)">
+            <summary>
+            Deserialize trace from JSON
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tracing.TraceSerialization.SaveTraceAsync(Hazina.AI.Agents.Tracing.AgentTrace,System.String)">
+            <summary>
+            Save trace to file
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tracing.TraceSerialization.LoadTraceAsync(System.String)">
+            <summary>
+            Load trace from file
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tracing.TraceSerialization.SerializePlan(Hazina.AI.Agents.Planning.AgentPlan)">
+            <summary>
+            Serialize plan to JSON
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tracing.TraceSerialization.DeserializePlan(System.String)">
+            <summary>
+            Deserialize plan from JSON
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tracing.TraceSerialization.SavePlanAsync(Hazina.AI.Agents.Planning.AgentPlan,System.String)">
+            <summary>
+            Save plan to file
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tracing.TraceSerialization.LoadPlanAsync(System.String)">
+            <summary>
+            Load plan from file
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tracing.TraceSerialization.AppendTraceEventAsync(Hazina.AI.Agents.Tracing.TraceEvent,System.String)">
+            <summary>
+            Append trace event to JSONL file
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tracing.TraceSerialization.ExportTraceToMarkdown(Hazina.AI.Agents.Tracing.AgentTrace)">
+            <summary>
+            Export trace to Markdown for human readability
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Tracing.TraceSerialization.ExportPlanToMarkdown(Hazina.AI.Agents.Planning.AgentPlan)">
+            <summary>
+            Export plan to Markdown for human readability
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Workflows.WorkflowEngine">
+            <summary>
+            Orchestrates multi-step workflows
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workflows.WorkflowEngine.RegisterAgent(Hazina.AI.Agents.Core.Agent)">
+            <summary>
+            Register an agent
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workflows.WorkflowEngine.ExecuteWorkflowAsync(Hazina.AI.Agents.Workflows.Workflow,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Execute a workflow
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workflows.WorkflowEngine.ExecuteStepAsync(Hazina.AI.Agents.Workflows.WorkflowStep,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Execute a workflow step
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workflows.WorkflowEngine.ExecuteAgentStepAsync(Hazina.AI.Agents.Workflows.WorkflowStep,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Execute agent task step
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workflows.WorkflowEngine.ExecuteParallelStepAsync(Hazina.AI.Agents.Workflows.WorkflowStep,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Execute parallel steps
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workflows.WorkflowEngine.ExecuteConditionalStepAsync(Hazina.AI.Agents.Workflows.WorkflowStep,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Execute conditional step
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workflows.WorkflowEngine.ExecuteLoopStepAsync(Hazina.AI.Agents.Workflows.WorkflowStep,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Execute loop step
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workflows.WorkflowEngine.EvaluateCondition(Hazina.AI.Agents.Workflows.WorkflowCondition,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Evaluate a condition
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workflows.WorkflowEngine.ReplaceContextVariables(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Replace context variables in string
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Workflows.WorkflowConfig">
+            <summary>
+            Workflow configuration
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Workflows.Workflow">
+            <summary>
+            Workflow definition
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Workflows.WorkflowStep">
+            <summary>
+            Workflow step
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Workflows.StepType">
+            <summary>
+            Step types
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Workflows.WorkflowCondition">
+            <summary>
+            Workflow condition
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Workflows.ConditionOperator">
+            <summary>
+            Condition operators
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Workflows.WorkflowResult">
+            <summary>
+            Workflow result
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Workflows.StepResult">
+            <summary>
+            Step result
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Workspace.AgentWorkspace">
+            <summary>
+            Deterministic workspace for agent runs with isolated file storage.
+            Each agent run gets its own directory with predictable paths.
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workspace.AgentWorkspace.#ctor(System.String,System.String)">
+            <summary>
+            Create workspace for a specific agent run
+            </summary>
+            <param name="workspaceRoot">Base directory for all workspaces</param>
+            <param name="runId">Unique run identifier</param>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workspace.AgentWorkspace.Initialize">
+            <summary>
+            Initialize the workspace (create directories)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workspace.AgentWorkspace.WriteFileAsync(System.String,System.String)">
+            <summary>
+            Write a file to the workspace
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workspace.AgentWorkspace.ReadFileAsync(System.String)">
+            <summary>
+            Read a file from the workspace
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workspace.AgentWorkspace.FileExists(System.String)">
+            <summary>
+            Check if a file exists in the workspace
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workspace.AgentWorkspace.ListFiles(System.String)">
+            <summary>
+            List all files in the workspace
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workspace.AgentWorkspace.DeleteFile(System.String)">
+            <summary>
+            Delete a file from the workspace
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workspace.AgentWorkspace.GetFilePath(System.String)">
+            <summary>
+            Get full path for a relative file path
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workspace.AgentWorkspace.GetTracePath(System.String)">
+            <summary>
+            Get path for trace file
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workspace.AgentWorkspace.GetPlanPath(System.String)">
+            <summary>
+            Get path for plan file
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workspace.AgentWorkspace.GetOutputPath(System.String)">
+            <summary>
+            Get path for output file
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workspace.AgentWorkspace.Cleanup">
+            <summary>
+            Clean up workspace (delete all files)
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workspace.AgentWorkspace.GetSize">
+            <summary>
+            Get workspace size in bytes
+            </summary>
+        </member>
+        <member name="T:Hazina.AI.Agents.Workspace.AgentWorkspaceFactory">
+            <summary>
+            Factory for creating agent workspaces
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workspace.AgentWorkspaceFactory.CreateWorkspace(System.String)">
+            <summary>
+            Create a new workspace with a generated run ID
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workspace.AgentWorkspaceFactory.GetWorkspace(System.String)">
+            <summary>
+            Get an existing workspace by run ID
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workspace.AgentWorkspaceFactory.ListWorkspaces">
+            <summary>
+            List all workspaces
+            </summary>
+        </member>
+        <member name="M:Hazina.AI.Agents.Workspace.AgentWorkspaceFactory.CleanupOldWorkspaces(System.Int32)">
+            <summary>
+            Clean up old workspaces (older than specified days)
+            </summary>
+        </member>
+    </members>
+</doc>

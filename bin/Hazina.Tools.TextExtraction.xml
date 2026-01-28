@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hazina.Tools.TextExtraction</name>
+    </assembly>
+    <members>
+        <member name="T:PDFiumCoreDemo.UnmanagedMemoryManager`1">
+            <summary>
+            A MemoryManager over a raw pointer
+            </summary>
+            <remarks>The pointer is assumed to be fully unmanaged, or externally pinned - no attempt will be made to pin this data</remarks>
+        </member>
+        <member name="M:PDFiumCoreDemo.UnmanagedMemoryManager`1.#ctor(System.Span{`0})">
+            <summary>
+            Create a new UnmanagedMemoryManager instance at the given pointer and size
+            </summary>
+            <remarks>It is assumed that the span provided is already unmanaged or externally pinned</remarks>
+        </member>
+        <member name="M:PDFiumCoreDemo.UnmanagedMemoryManager`1.#ctor(`0*,System.Int32)">
+            <summary>
+            Create a new UnmanagedMemoryManager instance at the given pointer and size
+            </summary>
+        </member>
+        <member name="M:PDFiumCoreDemo.UnmanagedMemoryManager`1.GetSpan">
+            <summary>
+            Obtains a span that represents the region
+            </summary>
+        </member>
+        <member name="M:PDFiumCoreDemo.UnmanagedMemoryManager`1.Pin(System.Int32)">
+            <summary>
+            Provides access to a pointer that represents the data (note: no actual pin occurs)
+            </summary>
+        </member>
+        <member name="M:PDFiumCoreDemo.UnmanagedMemoryManager`1.Unpin">
+            <summary>
+            Has no effect
+            </summary>
+        </member>
+        <member name="M:PDFiumCoreDemo.UnmanagedMemoryManager`1.Dispose(System.Boolean)">
+            <summary>
+            Releases all resources associated with this object
+            </summary>
+        </member>
+        <member name="F:PDFiumCoreDemo.FPDFBitmapFormat.Unknown">
+            <summary>
+            Unknown or unsupported format.
+            </summary>
+        </member>
+        <member name="F:PDFiumCoreDemo.FPDFBitmapFormat.Gray">
+            <summary>
+            Gray scale bitmap, one byte per pixel.
+            </summary>
+        </member>
+        <member name="F:PDFiumCoreDemo.FPDFBitmapFormat.BGR">
+            <summary>
+            3 bytes per pixel, byte order: blue, green, red.
+            </summary>
+        </member>
+        <member name="F:PDFiumCoreDemo.FPDFBitmapFormat.BGRx">
+            <summary>
+            4 bytes per pixel, byte order: blue, green, red, unused.
+            </summary>
+        </member>
+        <member name="F:PDFiumCoreDemo.FPDFBitmapFormat.BGRA">
+            <summary>
+            4 bytes per pixel, byte order: blue, green, red, alpha.
+            </summary>
+        </member>
+    </members>
+</doc>
