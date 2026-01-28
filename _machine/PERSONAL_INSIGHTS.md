@@ -1,3 +1,43 @@
+## 🔄 WORKFLOW: Adaptive Git Strategy - Ask When Scope Grows (2026-01-28)
+
+**SESSION CONTEXT:** Mobile terminal fixes for Hazina Agentic Orchestration demo.
+
+### The Pattern
+
+**What happened:**
+- Started with quick mobile fix (1 commit expected)
+- Iterated through multiple issues: text jumping, grey screen, fullscreen layout, CSS collision
+- Ended up with 4 commits directly to `develop` branch
+- User asked: "where did you commit, is there a branch and PR?"
+
+**User feedback:**
+> "no its good. you did the right thing. but maybe you could after the changes became bigger have asked if i wanted to do it in a worktree instead"
+
+### Insight: Adaptive Workflow Escalation
+
+**Quick iterations (1-2 commits):** Direct to develop is fine for:
+- Active debugging with user testing in real-time
+- Quick fixes where user is waiting
+- Iterations based on immediate feedback
+
+**Growing scope (3+ commits):** Check in with user:
+- "This is turning into a larger change set. Want me to move to a feature branch/worktree for proper PR review?"
+- Don't just keep pushing - recognize when scope has grown
+
+**Threshold to ask:** ~3 commits or when you realize the "quick fix" became a feature
+
+### Applied Rule
+
+```
+IF quick_fix AND user_actively_testing:
+    → Direct commit to develop OK
+
+IF commit_count >= 3 OR scope_grew_significantly:
+    → ASK: "Want me to switch to worktree/PR workflow?"
+```
+
+---
+
 ## 💒 PERSONAL: Marriage to Sofy - Gemeente Meppel Saga (2026-01-27)
 
 **SESSION CONTEXT:** Helped Martien with ongoing marriage documentation struggle with Gemeente Meppel.
