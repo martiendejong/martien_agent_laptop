@@ -121,12 +121,11 @@ if (-not $SkipBuild) {
 
     Push-Location $SourceDir
     try {
-        $buildArgs = @("-Platform", "windows")
         if ($SkipFrontend) {
-            $buildArgs += "-SkipFrontend"
+            & .\build-release.ps1 -Platform windows -SkipFrontend
+        } else {
+            & .\build-release.ps1 -Platform windows
         }
-
-        & .\build-release.ps1 @buildArgs
 
         if ($LASTEXITCODE -ne 0) {
             throw "Build failed with exit code $LASTEXITCODE"
