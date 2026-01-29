@@ -1,0 +1,55 @@
+﻿{
+    "days_analyzed":  30,
+    "sample_preferences":  {
+
+                           },
+    "corrections_found":  0,
+    "top_tools":  [
+                      {
+                          "count":  76,
+                          "tool":  "clickup-sync.ps1"
+                      },
+                      {
+                          "count":  17,
+                          "tool":  "monitor-activity.ps1"
+                      },
+                      {
+                          "count":  13,
+                          "tool":  "impact-dashboard.ps1"
+                      },
+                      {
+                          "count":  13,
+                          "tool":  "agent-logger.ps1"
+                      },
+                      {
+                          "count":  11,
+                          "tool":  "sync-to-public-repo.ps1"
+                      },
+                      {
+                          "count":  10,
+                          "tool":  "validate-pr-base.ps1"
+                      },
+                      {
+                          "count":  8,
+                          "tool":  "browse-awareness.ps1"
+                      },
+                      {
+                          "count":  7,
+                          "tool":  "backup-brand2boost.ps1"
+                      },
+                      {
+                          "count":  6,
+                          "tool":  "pre-commit-hook.ps1"
+                      },
+                      {
+                          "count":  6,
+                          "tool":  "_usage-logger.ps1"
+                      }
+                  ],
+    "sessions_count":  398,
+    "preferences_found":  0,
+    "sample_corrections":  {
+
+                           },
+    "analyzed_date":  "2026-01-29 21:34"
+}
