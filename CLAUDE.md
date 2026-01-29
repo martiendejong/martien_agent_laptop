@@ -1143,6 +1143,9 @@ See **[bootstrap/README.md](./bootstrap/README.md)** for complete documentation.
 #### 🔧 Meta
 - **`skill-creator`** - Create new Claude Skills with proper format, YAML frontmatter, and best practices
 
+#### 📚 Content Creation
+- **`art-revisionist-case`** - **NEW (2026-01-29):** Complete workflow for creating Art Revisionist historical research cases. Covers pages.json structure, folder hierarchy (pages/details/evidence), content writing guidelines, and automated structure generation. Includes PowerShell script `create-case-structure.ps1` and JSON template.
+
 ### How Skills Work
 
 1. **Discovery** - Claude loads skill names and descriptions at startup
@@ -1177,6 +1180,12 @@ You: "Add Google Drive integration to Claude"
 → Guides OAuth setup, configures MCP server, sets environment variables
 
 You: "Create a skill for database migrations"
+→ Claude activates: skill-creator Skill
+→ Creates directory structure, SKILL.md with frontmatter, updates index
+
+You: "Create content for a new Art Revisionist case about Senufo"
+→ Claude activates: art-revisionist-case Skill
+→ Plans page structure, creates pages.json, generates folder hierarchy
 → Claude activates: skill-creator Skill
 → Creates directory structure, SKILL.md with frontmatter, updates index
 ```
