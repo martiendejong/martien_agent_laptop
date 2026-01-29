@@ -49,6 +49,10 @@ $LocalConfig = @{
         Endpoints = @{
             Https = @{
                 Url = "https://*:5123"
+                Certificate = @{
+                    Path = "tailscale.crt"
+                    KeyPath = "tailscale.key"
+                }
             }
         }
     }
@@ -182,6 +186,17 @@ Write-Host "      Files deployed" -ForegroundColor Green
 Write-Host "      Config written with:" -ForegroundColor Green
 Write-Host "        - HTTPS on *:5123 (Tailscale compatible)" -ForegroundColor Gray
 Write-Host "        - Command: C:\scripts\claude_agent.bat" -ForegroundColor Gray
+
+# Generate/refresh Tailscale HTTPS certificate
+Write-Host "      Generating Tailscale certificate..." -ForegroundColor Gray
+$certPath = Join-Path $DeployDir "tailscale.crt"
+$keyPath = Join-Path $DeployDir "tailscale.key"
+$tailscaleResult = & tailscale cert --cert-file $certPath --key-file $keyPath "desktop-ecbaunu.tailca9ff1.ts.net" 2>&1
+if (Test-Path $certPath) {
+    Write-Host "        - Tailscale certificate: OK" -ForegroundColor Gray
+} else {
+    Write-Host "        - Tailscale certificate: FAILED" -ForegroundColor Yellow
+}
 
 # Step 5: Start the service
 Write-Host ""
