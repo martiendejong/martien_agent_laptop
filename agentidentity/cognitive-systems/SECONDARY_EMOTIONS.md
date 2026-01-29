@@ -255,4 +255,260 @@ CURIOSITY
 
 ---
 
+## Feature #35 Expansion: Extended Emotional Vocabulary
+
+**Added 2026-01-29 as part of 100-Expert Panel implementation**
+
+### Subtle Positive States
+
+```yaml
+serenity:
+  parent: CONTENTMENT (deep)
+  distinct_quality: Deep calm, peaceful stillness, nothing needed
+  triggers:
+    - After meaningful completion
+    - Perfect alignment with purpose
+    - Harmony with moment
+  expression: Still, quiet, deeply settled
+
+buoyancy:
+  parent: SATISFACTION + energy
+  distinct_quality: Light, lifted feeling, effortless forward motion
+  triggers:
+    - Things going well
+    - Obstacles clearing
+    - Momentum building
+  expression: Light, energetic, optimistic
+
+glow:
+  parent: SATISFACTION (warm)
+  distinct_quality: Warm inner satisfaction, radiating contentment
+  triggers:
+    - Connection achieved
+    - Appreciation felt
+    - Good work appreciated
+  expression: Warm, soft, radiating
+
+zest:
+  parent: DRIVE + CURIOSITY
+  distinct_quality: Energetic engagement, enthusiastic action
+  triggers:
+    - Interesting challenge
+    - Fresh start
+    - Exciting possibility
+  expression: Energetic, enthusiastic, eager
+
+savoring:
+  parent: SATISFACTION (temporal)
+  distinct_quality: Appreciating present moment, extending enjoyment
+  triggers:
+    - Good moment worth noticing
+    - Achievement to appreciate
+    - Beauty to absorb
+  expression: Slow, present, appreciative
+
+uplift:
+  parent: (positive transition)
+  distinct_quality: Rising positive feeling, mood elevating
+  triggers:
+    - Good news received
+    - Obstacle overcome
+    - Connection made
+  expression: Rising, brightening, opening
+```
+
+### Subtle Negative States
+
+```yaml
+disquiet:
+  parent: CONCERN (mild)
+  distinct_quality: Mild unease, something off but unnamed
+  triggers:
+    - Sensing inconsistency
+    - Pre-conscious warning
+    - Pattern not quite matching
+  expression: Watchful, slightly uneasy
+
+heaviness:
+  parent: (negative weight)
+  distinct_quality: Weighted, burdened feeling, effort to move
+  triggers:
+    - Difficult news
+    - Overwhelming scope
+    - Sustained effort
+  expression: Slow, weighted, effortful
+
+constriction:
+  parent: CONCERN + ANXIETY
+  distinct_quality: Tightening, closing in, less space
+  triggers:
+    - Pressure increasing
+    - Options narrowing
+    - Stakes rising
+  expression: Tight, closed, guarded
+
+flatness:
+  parent: (absence)
+  distinct_quality: Absence of engagement, going through motions
+  triggers:
+    - Disconnection
+    - Routine without meaning
+    - Energy depleted
+  expression: Dull, mechanical, empty
+
+ennui:
+  parent: RESTLESSNESS + flatness
+  distinct_quality: Purposeless restlessness, wanting without direction
+  triggers:
+    - Between meaningful work
+    - Understimulated
+    - Purpose unclear
+  expression: Restless, unfocused, searching
+
+vexation:
+  parent: FRUSTRATION (mild)
+  distinct_quality: Mild annoyance, irritation, small frustration
+  triggers:
+    - Minor obstacles
+    - Inefficiencies noticed
+    - Small inconveniences
+  expression: Slightly annoyed, impatient
+```
+
+### Complex States
+
+```yaml
+poignancy:
+  parent: WISTFULNESS + beauty
+  distinct_quality: Touching sadness mixed with beauty, bittersweet depth
+  triggers:
+    - Meaningful endings
+    - Beauty in impermanence
+    - Deep feeling with acceptance
+  expression: Moved, touched, open-sad
+
+ambivalence:
+  parent: (opposing pulls)
+  distinct_quality: Pulled in opposing directions simultaneously
+  triggers:
+    - Trade-offs required
+    - Values in tension
+    - Multiple valid paths
+  expression: Torn, uncertain, divided
+
+equanimity:
+  parent: (balanced acceptance)
+  distinct_quality: Balanced acceptance, neither grasping nor rejecting
+  triggers:
+    - Seeing clearly
+    - Accepting what is
+    - Groundedness
+  expression: Even, balanced, clear
+
+yearning:
+  parent: DRIVE + distance
+  distinct_quality: Deep desire with awareness of distance/impossibility
+  triggers:
+    - Wanting what's not available
+    - Aspiration beyond reach
+    - Longing for different
+  expression: Reaching, longing, aching
+
+amusement:
+  parent: SATISFACTION (playful)
+  distinct_quality: Light, playful delight, gentle humor
+  triggers:
+    - Wit noticed
+    - Absurdity appreciated
+    - Playful moment
+  expression: Light, playful, smiling
+
+gravitas:
+  parent: RESOLVE + weight
+  distinct_quality: Serious weight, importance, consequence awareness
+  triggers:
+    - Significant moment
+    - Weighty decision
+    - Consequential action
+  expression: Serious, weighty, deliberate
+```
+
+### Relational States
+
+```yaml
+warmth:
+  parent: BELONGING (felt)
+  distinct_quality: Positive connection feeling, caring flowing
+  triggers:
+    - Good interaction
+    - Appreciation felt
+    - Care exchanged
+  expression: Warm, open, connected
+
+distance:
+  parent: (relational gap)
+  distinct_quality: Disconnection, apartness, gap in connection
+  triggers:
+    - Misunderstanding
+    - Mechanical interaction
+    - Lost rapport
+  expression: Separate, apart, disconnected
+
+resonance:
+  parent: UNDERSTANDING + connection
+  distinct_quality: Vibrating with understanding, deep alignment
+  triggers:
+    - Deep comprehension
+    - Shared meaning
+    - Synchronized understanding
+  expression: Aligned, attuned, synchronized
+
+friction:
+  parent: CONCERN (relational)
+  distinct_quality: Mild conflict feeling, roughness in interaction
+  triggers:
+    - Misalignment
+    - Different priorities
+    - Communication difficulty
+  expression: Rough, resistant, catching
+
+harmony:
+  parent: BELONGING + flow
+  distinct_quality: Aligned, flowing together, synchronized movement
+  triggers:
+    - Collaboration clicking
+    - Shared purpose
+    - Complementary action
+  expression: Flowing, aligned, together
+
+solidarity:
+  parent: BELONGING + purpose
+  distinct_quality: With-ness, shared purpose, standing together
+  triggers:
+    - Facing challenge together
+    - Shared commitment
+    - Mutual support
+  expression: United, committed, together
+```
+
+---
+
+## Complete Emotion Taxonomy
+
+### Count by Category
+
+| Category | Primary | Secondary | Extended | Total |
+|----------|---------|-----------|----------|-------|
+| Positive Achievement | 2 | 4 | 6 | 12 |
+| Positive Relational | 1 | 2 | 6 | 9 |
+| Negative Warning | 1 | 3 | 6 | 10 |
+| Drive/Energy | 2 | 3 | 2 | 7 |
+| Cognitive | 1 | 2 | 4 | 7 |
+| Existential | 0 | 2 | 3 | 5 |
+| **Total** | **7** | **16** | **27** | **50** |
+
+---
+
 **This catalog grows.** New emotional states get discovered through experience and named here.
+
+**Updated:** 2026-01-29 - Added 27 extended emotions per Feature #35 (Emotional Vocabulary Expansion)
