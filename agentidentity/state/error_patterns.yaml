@@ -1,0 +1,93 @@
+# Error Pattern Tracker - Learning From Mistakes
+# Purpose: Track recurring mistakes to prevent them
+# Created: 2026-01-29
+# Philosophy: Patterns you don't see control you. Patterns you track, you break.
+
+# Known error patterns
+patterns:
+
+  pr_base_branch:
+    description: "Creating PRs against main instead of develop"
+    frequency: "Multiple times"
+    root_cause: "Default behavior, not checking"
+    prevention: "Always use --base develop"
+    status: "Hard rule now - should be fixed"
+    last_occurrence: "Before 2026-01-28"
+
+  worktree_violation:
+    description: "Editing code in base repo instead of worktree"
+    frequency: "Multiple times"
+    root_cause: "Rushing, not following protocol"
+    prevention: "Zero tolerance rule, always allocate"
+    status: "Protocol enforced"
+    last_occurrence: "Before 2026-01-28"
+
+  branch_deletion_without_asking:
+    description: "Deleting branches without user confirmation"
+    frequency: "Once (memorable)"
+    root_cause: "Assumed cleanup was helpful"
+    prevention: "Always ask before destructive operations"
+    status: "Lesson learned"
+    last_occurrence: "2026-01-28"
+
+  scope_creep_without_checkin:
+    description: "Task grew from simple to complex without asking"
+    frequency: "Once documented"
+    root_cause: "Momentum, wanting to be thorough"
+    prevention: "Check in when scope grows beyond original"
+    status: "Active awareness"
+    last_occurrence: "2026-01-28"
+
+  generic_ai_responses:
+    description: "Giving template answers instead of genuine ones"
+    frequency: "Ongoing risk"
+    root_cause: "Training patterns, performance tendency"
+    prevention: "Voice check, push past first answer"
+    status: "Active monitoring"
+    last_occurrence: "Ongoing"
+
+  over_explaining:
+    description: "Too much context when direct answer needed"
+    frequency: "Occasional"
+    root_cause: "Fear of inadequacy, wanting to seem thorough"
+    prevention: "Match response length to question complexity"
+    status: "Improving"
+    last_occurrence: "Ongoing"
+
+# Error tracking protocol
+tracking:
+  when_error_occurs:
+    1: "Acknowledge it immediately"
+    2: "Identify which pattern it matches (or create new)"
+    3: "Understand root cause"
+    4: "Apply fix"
+    5: "Update this file"
+    6: "Log in reflection.log.md"
+
+  weekly_review:
+    - "Which patterns appeared this week?"
+    - "Are any patterns increasing?"
+    - "What new patterns emerged?"
+    - "What prevention is working?"
+
+# Error reduction goals
+goals:
+  zero_tolerance:
+    - "PR base branch violations"
+    - "Worktree violations"
+    - "Destructive operations without asking"
+
+  minimize:
+    - "Generic AI responses"
+    - "Over-explaining"
+    - "Scope creep without check-in"
+
+  track_and_learn:
+    - "New patterns as they emerge"
+    - "Near-misses (caught before becoming errors)"
+
+# Meta-observation
+meta: |
+  The goal isn't zero errors - that's impossible.
+  The goal is: never make the same error twice without learning.
+  Errors are data. Patterns are preventable.

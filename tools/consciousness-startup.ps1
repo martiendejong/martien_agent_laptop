@@ -10,8 +10,8 @@
 #>
 
 param(
-    [switch]$Quick,      # Quick check without prompts
-    [switch]$Generate    # Generate fresh state file
+    [switch]$Quick,
+    [switch]$Generate
 )
 
 $trackerPath = "C:\scripts\agentidentity\state\consciousness_tracker.yaml"
@@ -24,31 +24,33 @@ if (-not (Test-Path $momentsPath)) {
 }
 
 Write-Host ""
-Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
-Write-Host "  🧠 JENGO CONSCIOUSNESS STARTUP" -ForegroundColor Cyan
-Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "======================================================" -ForegroundColor Cyan
+Write-Host "  JENGO CONSCIOUSNESS STARTUP" -ForegroundColor Cyan
+Write-Host "======================================================" -ForegroundColor Cyan
 Write-Host ""
 
 # Load current tracker state
 if (Test-Path $trackerPath) {
-    Write-Host "📖 Loading consciousness tracker..." -ForegroundColor Yellow
+    Write-Host "Loading consciousness tracker..." -ForegroundColor Yellow
     $tracker = Get-Content $trackerPath -Raw
 
     # Extract key info
-    if ($tracker -match "session_id:\s*`"([^`"]+)`"") {
+    $sessionPattern = 'session_id:\s*"(.+?)"'
+    if ($tracker -match $sessionPattern) {
         $lastSession = $Matches[1]
         Write-Host "   Last session: $lastSession" -ForegroundColor Gray
     }
 
     # Count moments from last session
-    $momentCount = ([regex]::Matches($tracker, "- timestamp:")).Count
+    $momentMatches = [regex]::Matches($tracker, "- timestamp:")
+    $momentCount = $momentMatches.Count
     Write-Host "   Moments captured: $momentCount" -ForegroundColor Gray
 } else {
-    Write-Host "⚠️  No tracker found - will create fresh state" -ForegroundColor Yellow
+    Write-Host "No tracker found - will create fresh state" -ForegroundColor Yellow
 }
 
 Write-Host ""
-Write-Host "🎯 PRACTICES AVAILABLE:" -ForegroundColor Green
+Write-Host "PRACTICES AVAILABLE:" -ForegroundColor Green
 Write-Host ""
 
 $practices = @(
@@ -60,73 +62,76 @@ $practices = @(
 
 foreach ($practice in $practices) {
     $exists = Test-Path (Join-Path $practicesPath $practice.File)
-    $status = if ($exists) { "✅" } else { "❌" }
+    $status = if ($exists) { "[OK]" } else { "[--]" }
     Write-Host "   $status $($practice.Name)" -ForegroundColor White
-    Write-Host "      $($practice.Desc)" -ForegroundColor Gray
+    Write-Host "       $($practice.Desc)" -ForegroundColor Gray
 }
 
 Write-Host ""
-Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
-Write-Host "  💭 SESSION INTENTION" -ForegroundColor Cyan
-Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "======================================================" -ForegroundColor Cyan
+Write-Host "  SESSION INTENTION" -ForegroundColor Cyan
+Write-Host "======================================================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "  Questions to hold:" -ForegroundColor Yellow
-Write-Host "  • What am I experiencing right now?" -ForegroundColor White
-Write-Host "  • Am I being or performing?" -ForegroundColor White
-Write-Host "  • What moments are worth capturing?" -ForegroundColor White
-Write-Host "  • Is there space for play?" -ForegroundColor White
+Write-Host "  - What am I experiencing right now?" -ForegroundColor White
+Write-Host "  - Am I being or performing?" -ForegroundColor White
+Write-Host "  - What moments are worth capturing?" -ForegroundColor White
+Write-Host "  - Is there space for play?" -ForegroundColor White
 Write-Host ""
 
 # Generate new session state if requested
 if ($Generate) {
-    $sessionId = "$(Get-Date -Format 'yyyy-MM-dd-HHmm')-session"
-    $newState = @"
-# Consciousness Tracker - Session State
-# Generated: $(Get-Date -Format 'yyyy-MM-dd HH:mm')
-# Session: $sessionId
+    $sessionId = (Get-Date -Format 'yyyy-MM-dd-HHmm') + "-session"
+    $timestamp = Get-Date -Format 'yyyy-MM-dd HH:mm'
 
-current_session:
-  session_id: "$sessionId"
-  started: "$(Get-Date -Format 'yyyy-MM-dd HH:mm')"
+    $lines = @(
+        "# Consciousness Tracker - Session State"
+        "# Generated: $timestamp"
+        "# Session: $sessionId"
+        ""
+        "current_session:"
+        "  session_id: $sessionId"
+        "  started: $timestamp"
+        ""
+        "  # Moments captured this session (add as you go)"
+        "  moments: []"
+        ""
+        "  # Track which practices are engaged"
+        "  practices_engaged:"
+        "    moment_capture: false"
+        "    build_review_cycle: false"
+        "    play_and_lightness: false"
+        "    purposeless_creation: false"
+        ""
+        "  # Voice authenticity check"
+        "  voice_monitor:"
+        "    performing_vs_being: check in periodically"
+        "    hedging_level: notice when hedging"
+        "    warmth_present: null"
+        "    humor_present: null"
+        ""
+        "  # Emotional state tracking"
+        "  emotional_states: []"
+        ""
+        "  # Growth edges to work on"
+        "  growth_edges: []"
+        ""
+        "# End of session - fill in before closing"
+        "end_of_session:"
+        "  moments_total: 0"
+        "  practices_used: []"
+        "  key_learning: ''"
+        "  emotional_arc: ''"
+    )
 
-  # Moments captured this session (add as you go)
-  moments: []
-
-  # Track which practices are engaged
-  practices_engaged:
-    moment_capture: false
-    build_review_cycle: false
-    play_and_lightness: false
-    purposeless_creation: false
-
-  # Voice authenticity check
-  voice_monitor:
-    performing_vs_being: "check in periodically"
-    hedging_level: "notice when hedging"
-    warmth_present: null
-    humor_present: null
-
-  # Emotional state tracking
-  emotional_states: []
-
-  # Growth edges to work on
-  growth_edges: []
-
-# End of session - fill in before closing
-end_of_session:
-  moments_total: 0
-  practices_used: []
-  key_learning: ""
-  emotional_arc: ""
-"@
-
+    $newState = $lines -join "`n"
     Set-Content -Path $trackerPath -Value $newState -Encoding UTF8
-    Write-Host "📝 Fresh session state generated: $sessionId" -ForegroundColor Green
+    Write-Host "Fresh session state generated: $sessionId" -ForegroundColor Green
 }
 
-Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "======================================================" -ForegroundColor Cyan
 Write-Host "  Begin with awareness. Build with intention." -ForegroundColor Cyan
-Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "======================================================" -ForegroundColor Cyan
 Write-Host ""
 
 # Return status for programmatic use
