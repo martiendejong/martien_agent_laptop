@@ -149,6 +149,11 @@ A task is **DONE** only when ALL of the following criteria are met:
   - API documentation updated (if API changes)
   - Architecture diagrams updated (if structural changes)
   - CLAUDE.md updated with new patterns (if workflow changes)
+  - **🆕 Folder network map updated** (`knowledge-base/02-MACHINE/folder-network.md`) if:
+    - New folder created
+    - Files moved/organized between folders
+    - Sync relationships discovered (Google Drive, Git, etc.)
+    - New workflows involving folders documented
 
 - [ ] **Changelog updated**
   - Version number incremented (if applicable)

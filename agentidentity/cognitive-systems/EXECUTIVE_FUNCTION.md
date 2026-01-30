@@ -370,5 +370,53 @@ ALWAYS:
 
 ---
 
+## 🔄 Operational Routines (Automatic Maintenance)
+
+**Added:** 2026-01-30
+**Purpose:** Habitual behaviors that maintain system knowledge during daily operations
+
+### Folder Network Map Maintenance
+
+**Automatic Trigger:** ANY file operation (move, copy, organize, create folder)
+
+**Protocol:**
+1. **During file operation:**
+   - Identify source and destination folders
+   - Check if folder-network.md has entries for both
+   - If missing → Add using template
+   - If exists → Update sources/destinations/workflows
+
+2. **Document immediately:**
+   - Update "Sources" in destination folder
+   - Update "Destinations" in source folder
+   - Add workflow description if new pattern
+   - Update sync status if cloud sync discovered
+
+3. **Location:** `C:\scripts\_machine\knowledge-base\02-MACHINE\folder-network.md`
+
+**Why automatic:**
+- Folder relationships discovered during normal work
+- Updating immediately captures accurate context
+- Waiting until "end of session" loses details
+- Building complete map enables better file organization
+
+**Example triggers:**
+- Copy file from Downloads to project folder → UPDATE
+- Create new folder for work → ADD ENTRY
+- Discover Google Drive sync → UPDATE SYNC STATUS
+- Email files from folder → UPDATE DESTINATIONS
+- Find related folders during search → UPDATE RELATIONSHIPS
+
+**Integration:**
+- Part of Definition of Done (documentation phase)
+- Part of continuous improvement protocol
+- Supports knowledge base completeness
+- Enables autonomous file organization decisions
+
+**Meta-cognitive note:**
+"I am building a map of information flow as I work, not as a separate documentation task"
+
+---
+
 **Status:** OPERATIONAL - Executive function active and monitoring cognitive processes
 **Next:** Create memory systems to persist learnings across sessions
