@@ -182,6 +182,27 @@ switch ($Action) {
             exit 1
         }
 
+        # SAFETY CHECK: Enforce assignment for "busy" or "review" status
+        if (($Status -eq "busy" -or $Status -eq "review" -or $Status -eq "in progress") -and -not $Assignee) {
+            Write-Host "`n" -ForegroundColor Red
+            Write-Host "═══════════════════════════════════════════════════════════════" -ForegroundColor Red
+            Write-Host "❌ CRITICAL VIOLATION: RULE 7 - ASSIGNMENT REQUIRED" -ForegroundColor Red
+            Write-Host "═══════════════════════════════════════════════════════════════" -ForegroundColor Red
+            Write-Host ""
+            Write-Host "Status '$Status' requires -Assignee parameter." -ForegroundColor Yellow
+            Write-Host ""
+            Write-Host "CORRECT USAGE:" -ForegroundColor Green
+            Write-Host "  clickup-sync.ps1 -Action update -TaskId `"$TaskId`" -Status `"$Status`" -Assignee `"74525428`"" -ForegroundColor Cyan
+            Write-Host ""
+            Write-Host "Default Assignee: 74525428 (Martien de Jong)" -ForegroundColor Gray
+            Write-Host ""
+            Write-Host "See: GENERAL_ZERO_TOLERANCE_RULES.md § RULE 7" -ForegroundColor Gray
+            Write-Host "═══════════════════════════════════════════════════════════════" -ForegroundColor Red
+            Write-Host ""
+            Write-Error "Assignment required when moving to '$Status' status"
+            exit 1
+        }
+
         # Update status
         $url = "$apiBase/task/$TaskId"
         $body = @{ status = $Status } | ConvertTo-Json

@@ -1,3 +1,90 @@
+## 2026-01-30 20:30 - CRITICAL VIOLATION: Failed to Assign ClickUp Task ❌
+
+**Context:** Moved ClickUp task 869bx16m6 to "review" status without assigning it to user.
+
+### What I Did Wrong
+
+1. ❌ **Status change without assignment** - Updated task to "review" but forgot `-Assignee "74525428"`
+2. ❌ **Violated documented rule** - RULE 7 already existed in PERSONAL_INSIGHTS.md (2026-01-25)
+3. ❌ **Ignored MANDATORY assignment requirement** - This was explicitly documented as "ALWAYS"
+
+### Command Evidence
+
+**What I did (WRONG):**
+```powershell
+clickup-sync.ps1 -Action update -TaskId "869bx16m6" -Status "review"
+# ❌ Missing -Assignee parameter
+```
+
+**What I should have done:**
+```powershell
+clickup-sync.ps1 -Action update -TaskId "869bx16m6" -Status "review" -Assignee "74525428"
+# ✅ Includes assignment
+```
+
+### Root Cause: Incomplete Mental Checklist
+
+**Why this happened:**
+- I focused on status change ("move to review")
+- I didn't mentally validate the complete command signature
+- Assignment wasn't part of my automatic pre-execution checklist
+- I didn't verify against PERSONAL_INSIGHTS.md before executing
+
+### Corrective Actions Taken
+
+**Immediate:**
+1. ✅ Assigned task 869bx16m6 to user (74525428)
+2. ✅ Strengthened PERSONAL_INSIGHTS.md § ClickUp Workflow with MANDATORY warnings
+3. ✅ Added RULE 7 to GENERAL_ZERO_TOLERANCE_RULES.md
+4. ✅ Created 🚨 MANDATORY ASSIGNMENT RULE section with examples
+5. ✅ Logged this violation in reflection.log.md
+
+**Preventive (System Update):**
+1. ✅ Updated documentation to show **assignment as part of command format**, not separate step
+2. ✅ Added visual emphasis (⚠️ **CRITICAL: NEVER change status without assignment**)
+3. ✅ Included correct/wrong examples with violation labels
+4. ✅ Made default assignee explicit (74525428)
+
+### Pattern Recognition
+
+**User frustration indicator:**
+> "this task has noone assigned to it. update your system to make sure that whenever you move something to progresss or review that you always assign it to someone!"
+
+**Key phrases:**
+- "update your system" → Expects systemic fix, not just this instance
+- "always assign" → Zero-tolerance requirement
+- Exclamation mark → Frustration, not first time
+
+**This indicates:**
+- I may have violated this before (check history)
+- User expects self-correction through documentation updates
+- Assignment is NOT optional, it's workflow-critical
+- Team visibility depends on assignment (notifications, dashboards)
+
+### Mental Checklist Addition
+
+**Before ANY ClickUp status update:**
+```
+□ Task ID verified?
+□ New status determined?
+□ Assignee included? ← NEW MANDATORY CHECK
+□ Is it "busy" or "review"? → MUST have -Assignee "74525428"
+□ Command complete and validated?
+```
+
+### Lesson
+
+**Hard Rule:**
+When user says "always" → It's a **CRITICAL RULE**, not a suggestion.
+If I violate a documented "ALWAYS" rule → It's a **CRITICAL FAILURE**.
+
+**Commitment:**
+- ✅ RULE 7 now in ZERO_TOLERANCE_RULES.md
+- ✅ Will validate ClickUp commands against documentation before execution
+- ✅ Will include assignment in EVERY status change to "busy"/"review"
+
+---
+
 ## 2026-01-30 15:00 - CRITICAL MISTAKE: Violated Zero Tolerance Workflow Rules ❌
 
 **Context:** User reported terminal paste bug for longer text. I fixed it directly in base repo, violating ALL workflow protocols.

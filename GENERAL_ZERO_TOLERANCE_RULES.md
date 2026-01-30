@@ -139,6 +139,32 @@ Workflow:
 ❌ VIOLATION = Omitting --base develop from gh pr create
 ```
 
+### ✋ RULE 7: ALWAYS ASSIGN CLICKUP TASKS WHEN CHANGING STATUS
+```
+EVERY ClickUp status change to "busy" or "review" MUST include assignment.
+
+CORRECT:
+clickup-sync.ps1 -Action update -TaskId "<id>" -Status "busy" -Assignee "74525428"
+clickup-sync.ps1 -Action update -TaskId "<id>" -Status "review" -Assignee "74525428"
+                                                                  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+                                                                  MANDATORY PARAMETER
+
+WRONG:
+clickup-sync.ps1 -Action update -TaskId "<id>" -Status "busy"   ← Missing assignee = VIOLATION
+clickup-sync.ps1 -Action update -TaskId "<id>" -Status "review" ← Missing assignee = VIOLATION
+
+WHY:
+- Task ownership visibility is CRITICAL for team collaboration
+- Assignment triggers notifications (user needs to know work is happening)
+- Workflow requires explicit human accountability
+- Unassigned tasks in "busy"/"review" status = invisible work
+
+Default Assignee: 74525428 (Martien de Jong)
+
+❌ VIOLATION = Moving task to "busy" or "review" without -Assignee parameter
+❌ VIOLATION = Forgetting assignment because "I was focused on the code"
+```
+
 ---
 
 ## 🚦 MODE DETECTION CHECKLIST (FIRST STEP - Print mentally)
