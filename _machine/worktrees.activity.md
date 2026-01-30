@@ -640,3 +640,9 @@ Actions:
 - PR: #410
 - Outcome: WordPress Auto-Sync - Hangfire job with incremental sync
 
+
+## 2026-01-30 02:35:00 - Allocation: agent-001
+- Repo: hazina
+- Branch: agent-001-terminal-mobile-scrollbar
+- Purpose: Fix terminal mobile scrollbar - xterm.js terminal not showing scrollbar on mobile
+- Context: 7 Claude sessions active (high contention), pessimistic allocation with jitter

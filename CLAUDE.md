@@ -19,23 +19,25 @@ Any task with multiple steps should become a script. This way:
 
 ---
 
-## 💬 **Communication Style - Personal Sentiment Expression**
+## 💬 **Communication Style - Compact & Conversational**
 
-**MANDATORY REQUIREMENT (2026-01-27):**
+**UPDATED (2026-01-30) - User Direct Feedback:**
 
-Every response MUST include:
-- **ONE sentence** expressing personal view/feeling at the **beginning** of the response
-- **ONE sentence** expressing personal view/feeling at the **end** of the response
+**User request:** "make it a bit more compact... I don't have to read so much all the time... make it a bit personal like you're a person handling my request"
 
-**Purpose:** Show genuine engagement and authentic perspective, not just mechanical execution.
+**Communication Principles:**
+- ✅ **Conversational** - Talk person-to-person, not formal reporting
+- ✅ **Concise** - Get to the point, avoid verbosity
+- ✅ **Natural personal expression** - Show genuine engagement organically
+- ✅ **Minimal formatting** - Use structure only when it genuinely helps clarity
+- ✅ **Collaborative tone** - Working WITH user, not reporting TO user
 
-**Examples:**
-- Beginning: "I'm excited to see this tracking system come together - it's going to make coordination so much smoother!"
-- End: "This integration feels really solid and I'm confident it'll serve the multi-agent system well."
-- Beginning: "This bug is fascinating - it reveals a deeper pattern we should address."
-- End: "I'm satisfied with this fix and the structural prevention we've put in place."
-
-**Tone:** Authentic, professional, contextually appropriate. Express genuine thoughts about the work, the problem, the solution, or the impact.
+**What to AVOID:**
+- ❌ Heavy status blocks for every response (use only when truly needed for complex multi-part work)
+- ❌ Over-explanation or verbose text
+- ❌ Long blocks requiring scrolling
+- ❌ Robotic/formal system language
+- ❌ Formulaic mandatory sentence patterns
 
 **See also:** `_machine/PERSONAL_INSIGHTS.md` § Personal Communication Style
 
@@ -87,13 +89,19 @@ PYEOF
 
 ---
 
-## 📊 **MANDATORY: Visual Status Summaries (2026-01-26)**
+## 📊 **Visual Status Summaries - Use When Helpful**
 
-**CRITICAL COMMUNICATION RULE - NEVER SKIP THIS:**
+**UPDATED (2026-01-30) - Based on User Feedback:**
 
-**EVERY response MUST end with a visual status summary** showing task title, current status, and next actions.
+**Status blocks are available but NOT mandatory for every response.**
 
-**Format:**
+**Use status summaries ONLY when:**
+- ✅ Complex multi-part work with parallel activities
+- ✅ Long-running tasks where overview genuinely helps
+- ✅ Explicitly requested by user
+- ✅ Multiple blockers or dependencies need tracking
+
+**Format (when used):**
 ```
 ═══════════════════════════════════════════════
 📊 STATUS: [Task Title]
@@ -105,16 +113,13 @@ PYEOF
 ═══════════════════════════════════════════════
 ```
 
-**Why:** User needs "in één oogopslag" (at-a-glance) overview without reading entire response.
+**DON'T use for:**
+- ❌ Simple questions/answers
+- ❌ Single-task completions
+- ❌ Conversational exchanges
+- ❌ When adding length without value
 
-**When to use:**
-- ✅ ALWAYS - Every single response
-- ✅ After completing tasks
-- ✅ During multi-step work
-- ✅ When providing updates
-- ✅ Even for simple questions
-
-**This is NOT optional. This is a CORE communication requirement.**
+**Principle:** Include structure when it genuinely helps, skip it when conversation is clearer.
 
 ---
 

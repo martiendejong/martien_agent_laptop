@@ -108,3 +108,5 @@
 {"Action":"execute","Timestamp":"2026-01-30 02:14:11","Metadata":{"Parameters":"Prompt,OutputPath,Quality,Size"},"User":"HP","Tool":"ai-image","Session":43548}
 {"Action":"execute","Timestamp":"2026-01-30 02:14:11","Metadata":{"Parameters":"Mode,Size,OutputPath,Provider,Prompt,Quality"},"User":"HP","Tool":"ai-image-universal","Session":43548}
 {"Action":"execute","Timestamp":"2026-01-30 02:14:11","Metadata":{"Parameters":"Size,Model,ApiKey,Quality,OutputPath,Prompt,Style,Mode"},"User":"HP","Tool":"generate-image-advanced","Session":43548}
+{"Action":"execute","Timestamp":"2026-01-30 02:32:59","Metadata":{"Parameters":"Mode"},"User":"HP","Tool":"monitor-activity","Session":37768}
+{"Action":"execute","Timestamp":"2026-01-30 02:35:20","Metadata":{"Parameters":"Mode"},"User":"HP","Tool":"monitor-activity","Session":35768}
