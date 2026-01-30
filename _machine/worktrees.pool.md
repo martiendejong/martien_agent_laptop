@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-01-30T06:15:00Z | ✅ PR #416: Comment & Engagement Display Components (CommentViewer, EngagementMetrics) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager+hazina | agent-001-social-comments-backend | 2026-01-30T06:20:00Z | 🔄 Phase 2 Part 2: Generic backend for comment import (Hazina providers + API endpoints) |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | hazina | agent-002-archive-session-restore | 2026-01-29T10:00:00Z | 🔄 Feature: Session restore button in Terminal Orchestrator archive view |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-30T05:50:00Z | ✅ PR #415: Platform Connection Hub UI - centralized social media dashboard |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-30T12:00:00Z | ✅ PR #142: Reduce startup tokens 95k→15k (84% reduction) |

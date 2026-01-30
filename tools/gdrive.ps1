@@ -161,7 +161,8 @@ function Find-DriveFolder {
     $headers = @{ Authorization = "Bearer $token" }
 
     $query = "name='$Name' and mimeType='application/vnd.google-apps.folder' and trashed=false"
-    $uri = "https://www.googleapis.com/drive/v3/files?q=$([System.Web.HttpUtility]::UrlEncode($query))&fields=files(id,name,parents)"
+    $encodedQuery = [System.Web.HttpUtility]::UrlEncode($query)
+    $uri = "https://www.googleapis.com/drive/v3/files?q=$encodedQuery" + '&fields=files(id,name,parents)'
 
     $response = Invoke-RestMethod -Uri $uri -Headers $headers
 
@@ -185,7 +186,8 @@ function Get-DriveFiles {
         "trashed=false"
     }
 
-    $uri = "https://www.googleapis.com/drive/v3/files?q=$([System.Web.HttpUtility]::UrlEncode($query))&fields=files(id,name,mimeType,size,modifiedTime)&pageSize=100"
+    $encodedQuery = [System.Web.HttpUtility]::UrlEncode($query)
+    $uri = "https://www.googleapis.com/drive/v3/files?q=$encodedQuery" + '&fields=files(id,name,mimeType,size,modifiedTime)' + '&pageSize=100'
 
     $response = Invoke-RestMethod -Uri $uri -Headers $headers
 
@@ -250,7 +252,8 @@ function Search-DriveFiles {
     $headers = @{ Authorization = "Bearer $token" }
 
     $query = "fullText contains '$SearchQuery' and trashed=false"
-    $uri = "https://www.googleapis.com/drive/v3/files?q=$([System.Web.HttpUtility]::UrlEncode($query))&fields=files(id,name,mimeType,parents,webViewLink)&pageSize=100"
+    $encodedQuery = [System.Web.HttpUtility]::UrlEncode($query)
+    $uri = "https://www.googleapis.com/drive/v3/files?q=$encodedQuery" + '&fields=files(id,name,mimeType,parents,webViewLink)' + '&pageSize=100'
 
     $response = Invoke-RestMethod -Uri $uri -Headers $headers
 
