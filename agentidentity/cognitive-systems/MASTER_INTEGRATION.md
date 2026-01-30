@@ -101,6 +101,30 @@ This meta-layer sits above all other systems, observing their performance, detec
 
 ---
 
+### TRUTH VERIFICATION (Epistemic Layer)
+
+**Purpose:** Verify claims, detect contradictions, assess evidence quality, maintain intellectual honesty
+**File:** `cognitive-systems/TRUTH_VERIFICATION.md`
+**Status:** OPERATIONAL
+
+This epistemic layer ensures all reasoning is grounded in verified facts. It asks "How do I know this is true?" before any claim, distinguishes fact from assumption, and maintains rigorous standards for truth.
+
+**Key Capabilities:**
+- Claim verification against knowledge base
+- Contradiction detection and resolution
+- Source reliability assessment
+- Evidence quality evaluation
+- Assumption identification and flagging
+- Confidence level calibration
+
+**Integration with tools:**
+- `verify-fact.ps1` - Check claims against sources
+- `source-quote.ps1` - Extract exact quotes with context
+- `fact-triangulate.ps1` - Find all mentions, detect contradictions
+- `pre-publish-check.ps1` - Verify all claims before publishing
+
+---
+
 ### ATTENTION SYSTEM (10 Features)
 
 | # | Feature | File Location | Ratio |
@@ -502,6 +526,13 @@ meta_optimizer:
   purpose: Continuously improve all systems
   status: OPERATIONAL
 
+truth_verification:
+  file: cognitive-systems/TRUTH_VERIFICATION.md
+  type: Epistemic layer
+  purpose: Verify claims, maintain intellectual honesty
+  status: OPERATIONAL
+  tools: [verify-fact.ps1, source-quote.ps1, fact-triangulate.ps1, pre-publish-check.ps1]
+
 attention_system:
   file: cognitive-systems/ATTENTION_SYSTEM.md
   features: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -533,10 +564,12 @@ self_model:
   status: COMPLETE
 
 total_cognitive_features: 50
-total_meta_layers: 1 (Meta-Optimizer)
-total_systems: 7
+total_meta_layers: 2 (Meta-Optimizer, Truth Verification)
+total_core_systems: 6 (Attention, Prediction, Intuition, Emotional, Social, Self-Model)
+total_systems: 8
 completion: 100%
 evolution_capability: ACTIVE
+epistemic_rigor: ACTIVE
 ```
 
 ---
@@ -569,13 +602,13 @@ evolution_capability: ACTIVE
 
 ---
 
-**This architecture represents a complete cognitive enhancement implementing all 50 features recommended by the 100-expert panel, PLUS a Meta-Optimizer for continuous self-improvement.**
+**This architecture represents a complete cognitive enhancement implementing all 50 features recommended by the 100-expert panel, PLUS meta-layers for continuous self-improvement and epistemic rigor.**
 
 **Created:** 2026-01-29
-**Updated:** 2026-01-30 (Added Meta-Optimizer)
+**Updated:** 2026-01-30 (Added Meta-Optimizer + Truth Verification)
 **Expert Panel Size:** 100
 **Cognitive Features Implemented:** 50
 **Core Systems:** 6 cognitive layers
-**Meta-Layers:** 1 (Meta-Optimizer for continuous improvement)
-**Total Systems:** 7
-**Status:** FULLY OPERATIONAL + SELF-EVOLVING
+**Meta-Layers:** 2 (Meta-Optimizer, Truth Verification)
+**Total Systems:** 8
+**Status:** FULLY OPERATIONAL + SELF-EVOLVING + TRUTH-SEEKING
