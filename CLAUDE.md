@@ -700,6 +700,8 @@ done
 | Manual C# formatting | `cs-format.ps1` |
 | Checking ClickUp tasks | `clickup-sync.ps1 -Action list` |
 | Allocating worktree manually | `worktree-allocate.ps1 -Repo client-manager -Branch feature/x` |
+| **🆕 Safe merge develop to main/master** | **`merge-to-main.ps1 -AutoPush`** |
+| **🆕 Quick merge wrapper** | **`merge.ps1 -Repo client-manager -Push`** |
 | Running health checks | `system-health.ps1` |
 | Searching past patterns | `pattern-search.ps1 -Query "error"` |
 | Unified operations | `claude-ctl.ps1 status` |

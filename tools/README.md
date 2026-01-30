@@ -36,6 +36,8 @@
 | `pre-commit-hook.ps1` | Enforcement hooks | `.\pre-commit-hook.ps1 -Check` |
 | `merge-dependabot-prs.ps1` | **NEW** Batch merge PRs | `.\merge-dependabot-prs.ps1 -DryRun` |
 | `toggle-workflow-triggers.ps1` | **NEW** Toggle CI triggers | `.\toggle-workflow-triggers.ps1 -Mode manual -DryRun` |
+| **`merge-to-main.ps1`** | **🆕 Safe two-step merge to main** | **`.\merge-to-main.ps1 -AutoPush`** |
+| **`merge.ps1`** | **🆕 Quick merge wrapper** | **`.\merge.ps1 -Push`** |
 | `email-export.js` | Export emails | `node email-export.js --query="..." --output="..."` |
 | `email-send.js` | Send emails via SMTP | `node email-send.js --to="..." --subject="..." --body-file="..."` |
 | **`hazina-ask.ps1`** | **🆕 Hazina LLM gateway** | **`.\hazina-ask.ps1 "What is DI?"`** |
@@ -278,6 +280,58 @@ Shows status of open PRs across repos.
 ```bash
 ./pr-status.sh
 ```
+
+### merge-to-main.ps1 🆕 NEW
+
+**Safe two-step merge to main/master branch.**
+
+Merges the main branch into develop first (resolving conflicts in develop), then merges develop into main. This keeps main clean and conflict-free.
+
+**Created:** 2026-01-30
+**Use Case:** When you need to merge develop to main/master safely
+
+```powershell
+# Basic usage (current directory)
+.\merge-to-main.ps1
+
+# Specify repository
+.\merge-to-main.ps1 -RepoPath C:\Projects\client-manager
+
+# Auto-push after merge
+.\merge-to-main.ps1 -AutoPush
+
+# Preview what would happen
+.\merge-to-main.ps1 -DryRun
+
+# Quick wrapper with repo name mapping
+.\merge.ps1
+.\merge.ps1 -Repo client-manager -Push
+.\merge.ps1 -Repo hazina -Push
+```
+
+**Parameters:**
+- `-RepoPath` - Path to repository (defaults to current directory)
+- `-DryRun` - Show what would be done without making changes
+- `-AutoPush` - Automatically push both branches after successful merge
+
+**Process:**
+1. **Detects** main branch name (main or master)
+2. **Checks** for uncommitted changes (fails if any)
+3. **Fetches** latest from remote
+4. **STEP 1:** Merges main/master into develop (stops if conflicts)
+5. **STEP 2:** Merges develop into main/master (clean fast-forward)
+6. **Optionally** pushes both branches
+7. **Returns** to original branch
+
+**Error Handling:**
+- If conflicts occur in step 1, script stops and provides guidance
+- Conflicts must be resolved in develop before continuing
+- Step 2 should never have conflicts (because step 1 resolved them)
+
+**Repo name mapping (merge.ps1 wrapper):**
+- `client-manager` → `C:\Projects\client-manager`
+- `hazina` → `C:\Projects\hazina`
+- `scripts` → `C:\scripts`
 
 ### merge-dependabot-prs.ps1 ⭐ NEW
 
