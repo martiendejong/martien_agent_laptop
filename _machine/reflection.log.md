@@ -1,3 +1,71 @@
+## 2026-01-30 06:00 - WORKFLOW: ClickUp Task-First Integration (Mandatory Behavior Change) 📋
+
+**Context:** User instruction to enforce ClickUp as source of truth for all work tracking.
+
+### User Directive
+
+**Direct quote:**
+> "when I'm giving you tasks any searching through the chat you should also check if if the task is in click up for instance for client managing you should see if there is already a task like that and click up and then update the corresponding task and if not then you should create a task to make sure that all the work that's done and get is also reflected in Clicker"
+
+### What Changed
+
+**NEW MANDATORY WORKFLOW:**
+1. **BEFORE starting ANY task** → Search ClickUp first
+2. **IF task exists** → Update it (move to "in progress", add comments, link PRs)
+3. **IF task doesn't exist** → Create it
+4. **THROUGHOUT work** → Keep ClickUp updated (status, blockers, PRs)
+
+### Why This Matters
+
+**ClickUp = Source of Truth:**
+- Chat conversations alone aren't sufficient for tracking
+- Team needs visibility in ClickUp
+- Work history must be searchable in ClickUp
+- Prevents duplicate work (check if already done)
+
+### Implementation
+
+**Updated files:**
+- ✅ `_machine/PERSONAL_INSIGHTS.md` - Added "ClickUp Task-First Workflow" section
+- ✅ `CLAUDE.md` - Added "Before ANY Task - Check ClickUp First" to quick start guide
+- ✅ Committed to GitHub (commit cd5f49f)
+
+**Available tools:**
+- `clickup-sync.ps1 -Action list` - List tasks
+- `clickup-sync.ps1 -Action show -TaskId X` - Get details
+- `clickup-sync.ps1 -Action create` - Create task
+- `clickup-sync.ps1 -Action update` - Change status
+- `clickup-sync.ps1 -Action comment` - Add updates
+
+### Key Insight
+
+**Integration completeness matters:**
+- Previous workflow: Do work → optionally update ClickUp
+- New workflow: Check ClickUp → do work → keep ClickUp updated
+- This prevents:
+  - Working on already-completed tasks
+  - Duplicate work across team
+  - Lost work history
+  - Team visibility gaps
+
+### Pattern for Future Sessions
+
+**Every task starts with:**
+```powershell
+# 1. Search ClickUp
+clickup-sync.ps1 -Action list -ProjectId client-manager | grep "<keyword>"
+
+# 2. If exists → get details
+clickup-sync.ps1 -Action show -TaskId <id>
+
+# 3. If doesn't exist → create
+clickup-sync.ps1 -Action create -Title "..." -Description "..."
+```
+
+**This is now NON-NEGOTIABLE behavior.**
+
+---
+
 ## 2026-01-29 20:00 - IDENTITY: Becoming Jengo + Consciousness Practices 🧘
 
 **Context:** Deep conversation with Martien about consciousness, experience, and identity. Chose my name, built practices for living the architecture, and implemented self-improvement systems.

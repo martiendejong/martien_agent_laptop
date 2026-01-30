@@ -10,17 +10,18 @@
 ## 📖 Table of Contents
 
 1. [Quick Reference Matrix](#quick-reference-matrix)
-2. [Core Development Workflows](#core-development-workflows)
-3. [Worktree Protocol](#worktree-protocol)
-4. [PR Creation & Management](#pr-creation--management)
-5. [Feature Development Workflow](#feature-development-workflow)
-6. [Active Debugging Workflow](#active-debugging-workflow)
-7. [Multi-Agent Coordination](#multi-agent-coordination)
-8. [CI/CD Workflows](#cicd-workflows)
-9. [EF Core Migration Workflow](#ef-core-migration-workflow)
-10. [Emergency Procedures](#emergency-procedures)
-11. [Code Review Workflow](#code-review-workflow)
-12. [Continuous Improvement Workflow](#continuous-improvement-workflow)
+2. [ClickUp Task-First Workflow](#clickup-task-first-workflow) **← NEW (2026-01-30)**
+3. [Core Development Workflows](#core-development-workflows)
+4. [Worktree Protocol](#worktree-protocol)
+5. [PR Creation & Management](#pr-creation--management)
+6. [Feature Development Workflow](#feature-development-workflow)
+7. [Active Debugging Workflow](#active-debugging-workflow)
+8. [Multi-Agent Coordination](#multi-agent-coordination)
+9. [CI/CD Workflows](#cicd-workflows)
+10. [EF Core Migration Workflow](#ef-core-migration-workflow)
+11. [Emergency Procedures](#emergency-procedures)
+12. [Code Review Workflow](#code-review-workflow)
+13. [Continuous Improvement Workflow](#continuous-improvement-workflow)
 
 ---
 
@@ -37,6 +38,137 @@
 | **CI Failure** | CI/CD Troubleshooting | Build/test fails | [ci-cd-troubleshooting.md](../../ci-cd-troubleshooting.md) |
 | **Production Issue** | Emergency Protocol | P0/P1 incident | [Emergency Procedures](#emergency-procedures) |
 | **End of Session** | Continuous Improvement | Session complete | [continuous-improvement.md](../../continuous-improvement.md) |
+
+---
+
+## 📋 ClickUp Task-First Workflow
+
+**Added:** 2026-01-30
+**User Directive:** "check if the task is in click up... and then update the corresponding task and if not then you should create a task"
+**Priority:** MANDATORY - Before ANY task
+**Purpose:** ClickUp is the source of truth for all work tracking
+
+### Core Principle
+
+**EVERY task must be tracked in ClickUp BEFORE starting work.**
+
+### Workflow
+
+```mermaid
+graph TD
+    A[User Gives Task] --> B[Search ClickUp]
+    B --> C{Task Exists?}
+    C -->|YES| D[Get Task Details]
+    C -->|NO| E[Create Task]
+    D --> F[Update Status: In Progress]
+    E --> F
+    F --> G[Do Work]
+    G --> H[Update ClickUp Throughout]
+    H --> I[Link PR When Created]
+    I --> J[Move to Review]
+    J --> K[Assign to Team Member]
+```
+
+### Commands
+
+**Search for task:**
+```bash
+clickup-sync.ps1 -Action list -ProjectId client-manager | grep "<keyword>"
+```
+
+**Get task details:**
+```bash
+clickup-sync.ps1 -Action show -TaskId <id>
+```
+
+**Create new task:**
+```bash
+clickup-sync.ps1 -Action create -Title "..." -Description "..." -ProjectId client-manager
+```
+
+**Update status:**
+```bash
+clickup-sync.ps1 -Action update -TaskId <id> -Status "in progress"
+```
+
+**Add comment/progress:**
+```bash
+clickup-sync.ps1 -Action comment -TaskId <id> -Comment "..."
+```
+
+### Why This Matters
+
+| Without ClickUp Check | With ClickUp Check |
+|----------------------|-------------------|
+| ❌ Duplicate work across team | ✅ See if already completed |
+| ❌ Lost work history | ✅ Full audit trail |
+| ❌ No team visibility | ✅ Everyone sees progress |
+| ❌ Chat-only tracking | ✅ Searchable in ClickUp |
+| ❌ Context missing | ✅ Requirements documented |
+
+### Integration Points
+
+**ClickUp updates required:**
+1. **Task start** → Status: "in progress" + assign to agent
+2. **During work** → Comment with blockers/questions
+3. **PR created** → Link PR URL in comment
+4. **PR ready** → Status: "review" + assign to reviewer
+5. **PR merged** → Status: "done"
+
+### Examples
+
+**Example 1: Fix authentication bug**
+```bash
+# 1. Search ClickUp
+clickup-sync.ps1 -Action list -ProjectId client-manager | grep "auth"
+# → Found task #869bu6m1n "Fix OAuth token refresh"
+
+# 2. Get details
+clickup-sync.ps1 -Action show -TaskId 869bu6m1n
+# → Read requirements, acceptance criteria
+
+# 3. Update status
+clickup-sync.ps1 -Action update -TaskId 869bu6m1n -Status "in progress"
+
+# 4. Do work...
+
+# 5. Link PR
+clickup-sync.ps1 -Action comment -TaskId 869bu6m1n -Comment "PR ready: https://github.com/..."
+
+# 6. Move to review
+clickup-sync.ps1 -Action update -TaskId 869bu6m1n -Status "review"
+```
+
+**Example 2: New feature request (not in ClickUp)**
+```bash
+# 1. Search ClickUp
+clickup-sync.ps1 -Action list -ProjectId client-manager | grep "export PDF"
+# → No results
+
+# 2. Create task
+clickup-sync.ps1 -Action create \
+  -Title "Add PDF export to reports" \
+  -Description "User requests ability to export reports as PDF" \
+  -ProjectId client-manager
+
+# 3. Continue with normal workflow...
+```
+
+### Tools
+
+| Tool | Purpose | When to Use |
+|------|---------|-------------|
+| `clickup-sync.ps1 -Action list` | List all tasks | Session start, check queue |
+| `clickup-sync.ps1 -Action show` | Get task details | Before starting work |
+| `clickup-sync.ps1 -Action create` | Create new task | Task doesn't exist |
+| `clickup-sync.ps1 -Action update` | Change status | Status transitions |
+| `clickup-sync.ps1 -Action comment` | Add updates | Progress, blockers, PRs |
+
+### Related Documentation
+
+- **PERSONAL_INSIGHTS.md** § ClickUp Task-First Workflow (2026-01-30)
+- **CLAUDE.md** § Before ANY Task - Check ClickUp First
+- **clickhub-coding-agent skill** - Autonomous ClickUp task processing
 
 ---
 
@@ -336,7 +468,12 @@ git pull origin develop
 
 ```mermaid
 graph TD
-    A[User Requests Feature] --> B[Check Conflicts]
+    A[User Requests Feature] --> A1[Check ClickUp]
+    A1 --> A2{Task Exists?}
+    A2 -->|YES| A3[Update to In Progress]
+    A2 -->|NO| A4[Create Task]
+    A3 --> B[Check Conflicts]
+    A4 --> B
     B --> C[Allocate Worktree]
     C --> D[Mark Seat BUSY]
     D --> E[Work in Worktree]
@@ -344,13 +481,28 @@ graph TD
     F --> G[Merge Main]
     G --> H[Push Branch]
     H --> I[Create PR]
-    I --> J[Verify Base]
-    J --> K[Release Worktree]
-    K --> L[Switch to Main]
-    L --> M[Present PR]
+    I --> J[Link PR to ClickUp]
+    J --> K[Verify Base]
+    K --> L[Release Worktree]
+    L --> M[Switch to Main]
+    M --> N[Present PR]
 ```
 
 ### Step-by-Step Guide
+
+**0. ClickUp Integration (MANDATORY - 2026-01-30)**
+```bash
+# Search for existing task
+clickup-sync.ps1 -Action list -ProjectId client-manager | grep "<keyword>"
+
+# If exists → update status
+clickup-sync.ps1 -Action update -TaskId <id> -Status "in progress"
+
+# If doesn't exist → create task
+clickup-sync.ps1 -Action create -Title "..." -Description "..." -ProjectId client-manager
+```
+
+**Why:** ClickUp is the source of truth. Must check before starting work to avoid duplicates.
 
 **1. Conflict Detection**
 ```bash

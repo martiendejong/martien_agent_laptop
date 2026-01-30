@@ -666,3 +666,4 @@ Actions:
 - PR: #144
 - Outcome: Fix RAG vector search embeddings loading + filter logic (ClickUp #869bz3h86)
 
+2026-01-30T05:46:00Z — allocate — agent-003 — client-manager+hazina — agent-003-social-platform-hub — — claude-code — Phase 1: Platform Connection Hub UI - Centralized dashboard for managing all 15 social media connections (status, sync, connect/disconnect), enhanced connection wizard, account management
