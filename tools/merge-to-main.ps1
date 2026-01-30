@@ -25,11 +25,11 @@ param(
 $ErrorActionPreference = "Stop"
 
 # Color output
-function Write-Step { param($msg) Write-Host "🔄 $msg" -ForegroundColor Cyan }
-function Write-Success { param($msg) Write-Host "✅ $msg" -ForegroundColor Green }
-function Write-Warn { param($msg) Write-Host "⚠️  $msg" -ForegroundColor Yellow }
-function Write-Fail { param($msg) Write-Host "❌ $msg" -ForegroundColor Red }
-function Write-Info { param($msg) Write-Host "ℹ️  $msg" -ForegroundColor Blue }
+function Write-Step { param($msg) Write-Host "[*] $msg" -ForegroundColor Cyan }
+function Write-Success { param($msg) Write-Host "[OK] $msg" -ForegroundColor Green }
+function Write-Warn { param($msg) Write-Host "[WARN] $msg" -ForegroundColor Yellow }
+function Write-Fail { param($msg) Write-Host "[ERROR] $msg" -ForegroundColor Red }
+function Write-Info { param($msg) Write-Host "[INFO] $msg" -ForegroundColor Blue }
 
 # Navigate to repo
 Push-Location $RepoPath
@@ -86,7 +86,7 @@ try {
     if ($currentBranch -ne "develop") {
         Write-Info "Switching to develop..."
         if (-not $DryRun) {
-            git checkout develop 2>&1 | Out-Null
+            $null = git checkout develop 2>&1
             if ($LASTEXITCODE -ne 0) {
                 Write-Fail "Failed to checkout develop"
                 exit 1
@@ -103,7 +103,7 @@ try {
             Write-Warn "Please resolve conflicts manually:"
             Write-Host ""
             Write-Host "  1. Resolve conflicts in the files"
-            Write-Host "  2. git add <resolved-files>"
+            Write-Host "  2. git add [resolved-files]"
             Write-Host "  3. git commit"
             Write-Host "  4. Run this script again"
             Write-Host ""
@@ -117,7 +117,7 @@ try {
     Write-Step "STEP 2/2: Merging develop into $mainBranch..."
 
     if (-not $DryRun) {
-        git checkout $mainBranch 2>&1 | Out-Null
+        $null = git checkout $mainBranch 2>&1
         if ($LASTEXITCODE -ne 0) {
             Write-Fail "Failed to checkout $mainBranch"
             exit 1
@@ -142,8 +142,8 @@ try {
         Write-Step "Pushing changes to remote..."
 
         # Push develop
-        git checkout develop 2>&1 | Out-Null
-        git push origin develop 2>&1 | Out-Null
+        $null = git checkout develop 2>&1
+        $null = git push origin develop 2>&1
         if ($LASTEXITCODE -ne 0) {
             Write-Warn "Failed to push develop"
         } else {
@@ -151,8 +151,8 @@ try {
         }
 
         # Push main
-        git checkout $mainBranch 2>&1 | Out-Null
-        git push origin $mainBranch 2>&1 | Out-Null
+        $null = git checkout $mainBranch 2>&1
+        $null = git push origin $mainBranch 2>&1
         if ($LASTEXITCODE -ne 0) {
             Write-Warn "Failed to push $mainBranch"
         } else {
@@ -163,7 +163,7 @@ try {
     # Return to original branch
     if ($currentBranch -and $currentBranch -ne $mainBranch) {
         if (-not $DryRun) {
-            git checkout $currentBranch 2>&1 | Out-Null
+            $null = git checkout $currentBranch 2>&1
             Write-Info "Returned to branch: $currentBranch"
         }
     }
@@ -175,7 +175,7 @@ try {
     Write-Host ""
 
     if (-not $AutoPush) {
-        Write-Info "💡 Use -AutoPush to automatically push changes"
+        Write-Info "Tip: Use -AutoPush to automatically push changes"
     }
 
 } finally {

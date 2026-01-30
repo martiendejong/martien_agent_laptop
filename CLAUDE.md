@@ -1366,6 +1366,7 @@ Answer questions in priority order:
 **📖 KNOWLEDGE BASE QUICK REFERENCE (as needed during work):**
 - User psychology: `knowledge-base/01-USER/psychology-profile.md`
 - File locations: `knowledge-base/02-MACHINE/file-system-map.md`
+- **🆕 Folder relationships:** `knowledge-base/02-MACHINE/folder-network.md` - Where files come from/go to, sync status, workflows
 - API keys/secrets: `knowledge-base/09-SECRETS/api-keys-registry.md`
 - Workflows: `knowledge-base/06-WORKFLOWS/INDEX.md`
 - Tools: `knowledge-base/07-AUTOMATION/tool-selection-guide.md`

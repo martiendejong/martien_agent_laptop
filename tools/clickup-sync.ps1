@@ -234,7 +234,12 @@ switch ($Action) {
 
         $url = "$apiBase/list/$ListId/task"
         # Different lists use different status names
-        $defaultStatus = if ($Project -eq "art-revisionist") { "to do" } else { "todo" }
+        $defaultStatus = switch ($Project) {
+            "art-revisionist" { "to do" }
+            "hazina" { "to do" }
+            "client-manager" { "todo" }
+            default { "todo" }
+        }
         $body = @{
             name = $Name
             description = if ($Description) { $Description } else { "" }

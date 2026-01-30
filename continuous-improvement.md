@@ -45,6 +45,7 @@
 - ✅ Tool integrations and discoveries
 - ✅ User feedback and mandates
 - ✅ **NEW:** Reusable patterns that should become Skills
+- ✅ **🆕 Folder relationships and data flows** - Update folder-network.md during file operations
 
 ### HOW TO UPDATE (Immediately):
 
@@ -96,6 +97,136 @@ Commit and push
 - Continuous improvement: session-reflection, self-improvement
 
 **See:** `self-improvement` Skill for detailed Skill creation process
+
+---
+
+## 📁 FOLDER NETWORK MAP - CONTINUOUS MAINTENANCE (NEW: 2026-01-30)
+
+**Location:** `C:\scripts\_machine\knowledge-base\02-MACHINE\folder-network.md`
+
+**MANDATORY UPDATE TRIGGERS (Automatic during work):**
+
+### ✅ **ALWAYS Update When:**
+
+1. **Creating new folder:**
+   ```
+   - Add complete entry using template
+   - Document purpose, sources, destinations
+   - Identify related folders
+   - Document workflows
+   ```
+
+2. **Moving/copying files between folders:**
+   ```
+   - Update "Sources" section of destination folder
+   - Update "Destinations" section of source folder
+   - Document the workflow used
+   ```
+
+3. **Discovering sync relationships:**
+   ```
+   - Update "Sync Status" section
+   - Document sync mechanism (Google Drive, Git, backup)
+   - Note bidirectional vs unidirectional
+   ```
+
+4. **Using a folder repeatedly:**
+   ```
+   - Document the workflow in "Workflows" section
+   - Update "Access Patterns" with frequency
+   - Add any discovered relationships
+   ```
+
+5. **Finding related folders:**
+   ```
+   - Update "Related Folders" for both folders
+   - Explain the relationship
+   ```
+
+6. **Email operations with folder files:**
+   ```
+   - Add "Email" to destinations
+   - Document recipient (IND, gemeente, etc.)
+   - Note in workflows
+   ```
+
+7. **Cloud uploads (Google Drive, OneDrive, etc.):**
+   ```
+   - Document cloud destination
+   - Update sync status
+   - Note upload mechanism
+   ```
+
+### 📋 **Update Protocol:**
+
+```
+DURING FILE OPERATION:
+  ↓
+Identify source and destination folders
+  ↓
+Check: Does folder-network.md have these entries?
+  ↓ NO → Add using template
+  ↓ YES → Update sources/destinations/workflows
+  ↓
+Document the operation in "Workflows" section
+  ↓
+Update "Last Updated" timestamp
+  ↓
+DONE - Continue work
+```
+
+### ⚡ **Quick Update Examples:**
+
+**Example 1: Copying file from Downloads to project folder**
+```markdown
+# In folder-network.md:
+
+## C:\projects\mvv\
+**Sources:**
+- C:\Users\HP\Downloads - Initial downloads ← ADD THIS
+...
+
+## C:\Users\HP\Downloads\
+**Destinations:**
+- C:\projects\mvv - MVV documents ← ADD THIS
+...
+```
+
+**Example 2: Discovering Google Drive sync**
+```markdown
+## C:\projects\mvv\
+**Destinations:**
+- G:\Mijn Drive\MVV - Google Drive sync (automated) ← ADD THIS
+
+**Sync Status:**
+- ✅ Google Drive Desktop - Bidirectional sync ← ADD THIS
+```
+
+**Example 3: Email workflow**
+```markdown
+## C:\projects\mvv\
+**Destinations:**
+- Email - Naar IND, gemeente ← ADD THIS
+
+**Workflows:**
+1. Email workflow: Select files → attach → send to IND ← ADD THIS
+```
+
+### 🎯 **Integration Points:**
+
+- **Before moving files:** Check folder-network.md for existing relationships
+- **After creating folder:** Immediately add entry with known information
+- **During file organization:** Update sources/destinations as you learn them
+- **End of session:** Review recent file operations, ensure all documented
+
+### 🚫 **What NOT to do:**
+
+- ❌ Don't wait until "end of session" - update as you work
+- ❌ Don't skip temporary folders (Downloads, staging areas matter!)
+- ❌ Don't forget to document workflows (HOW files move, not just WHERE)
+- ❌ Don't leave entries incomplete (use template for structure)
+
+**See:** `C:\scripts\_machine\knowledge-base\02-MACHINE\folder-network.md` for full documentation
 
 ---
 

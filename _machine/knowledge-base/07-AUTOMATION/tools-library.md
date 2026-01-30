@@ -62,6 +62,8 @@
 | **Fix encoding issues** | `detect-encoding-issues.ps1` | `.\detect-encoding-issues.ps1 -ProjectPath . -Fix` |
 | **Detect mode** | `detect-mode.ps1` | `.\detect-mode.ps1 -UserMessage "..." -Analyze` |
 | **Merge PR sequence** | `merge-pr-sequence.ps1` | `.\merge-pr-sequence.ps1 -DryRun` |
+| **🆕 Safe merge to main** | **`merge-to-main.ps1`** | **`.\merge-to-main.ps1 -AutoPush`** |
+| **🆕 Quick merge (with repo map)** | **`merge.ps1`** | **`.\merge.ps1 -Repo client-manager -Push`** |
 | **Diagnose errors** | `diagnose-error.ps1` | `.\diagnose-error.ps1 -ErrorMessage "..."` |
 | **Scan for secrets** | `scan-secrets.ps1` | `.\scan-secrets.ps1 -Path . -Recursive` |
 | **EF migration check** | `ef-preflight-check.ps1` | `.\ef-preflight-check.ps1 -Context AppDbContext` |

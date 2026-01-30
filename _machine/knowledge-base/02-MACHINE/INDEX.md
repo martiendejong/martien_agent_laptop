@@ -50,6 +50,57 @@ C:\stores\brand2boost\              → Application store data
 
 ---
 
+### Folder Network Map
+**File:** `folder-network.md`
+**Purpose:** 🆕 Document folder relationships, data flows, and workflows - network graph of information flow
+**Size:** ~600 lines (~25 KB)
+**Status:** ✅ Complete
+**Key Topics:**
+- Folder sources and destinations (where files come from/go to)
+- Sync status (Google Drive, Git, cloud backup)
+- Related folders and workflows
+- Access patterns and usage frequency
+- Network visualization (Mermaid diagram)
+- Template for documenting new folders
+
+**Documented Folders:**
+```
+C:\projects\mvv\                    → MVV aanvraag docs (syncs to Google Drive)
+G:\Mijn Drive\MVV\                  → Cloud-synced MVV (bidirectional)
+C:\Users\HP\Downloads\              → Staging area (organize to projects)
+C:\bedrijf\mvv aanvraag\            → Business MVV backup
+C:\gemeente_emails\                 → Gemeente correspondence
+C:\scripts\                         → Control plane (git tracked)
+C:\projects\client-manager\         → Base repo (worktrees for features)
+C:\projects\hazina\                 → Framework base repo
+C:\Projects\worker-agents\agent-XXX\ → Isolated worktree seats
+C:\stores\brand2boost\              → App configuration store
+```
+
+**Usage:**
+- Check before file operations (understand sources/destinations)
+- Follow documented workflows for common tasks
+- Update when new folders created or relationships change
+- Reference when explaining file organization to user
+
+**Key Features:**
+- **Data flow tracking:** Know where files come from and where they go
+- **Sync awareness:** Document Google Drive, Git, backup sync status
+- **Workflow documentation:** Common operations for each folder
+- **Relationship mapping:** Related folders in same workflow
+- **Network visualization:** Mermaid diagram shows folder relationships
+
+**Example Entry:**
+```markdown
+## C:\projects\mvv\
+**Sources:** Downloads, email attachments, scans
+**Destinations:** G:\Mijn Drive\MVV (Google Drive sync), Email (IND)
+**Workflows:** Document intake, Google Drive upload, email workflow
+**Sync Status:** ✅ Google Drive Desktop (bidirectional)
+```
+
+---
+
 ### Software Inventory
 **File:** `software-inventory.md`
 **Purpose:** All installed development tools, versions, installation paths, disk usage
