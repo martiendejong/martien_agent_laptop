@@ -32,20 +32,20 @@
                                    },
                   "ai-image":  {
                                    "FirstUsed":  "2026-01-25 19:33:34",
-                                   "TotalCalls":  8,
-                                   "LastUsed":  "2026-01-30 02:14:11",
+                                   "TotalCalls":  17,
+                                   "LastUsed":  "2026-01-30 22:09:03",
                                    "RecentCalls":  0
                                },
                   "ai-image-universal":  {
                                              "FirstUsed":  "2026-01-25 19:33:34",
-                                             "TotalCalls":  8,
-                                             "LastUsed":  "2026-01-30 02:14:11",
+                                             "TotalCalls":  17,
+                                             "LastUsed":  "2026-01-30 22:09:03",
                                              "RecentCalls":  0
                                          },
                   "generate-image-advanced":  {
                                                   "FirstUsed":  "2026-01-25 19:33:34",
-                                                  "TotalCalls":  8,
-                                                  "LastUsed":  "2026-01-30 02:14:11",
+                                                  "TotalCalls":  17,
+                                                  "LastUsed":  "2026-01-30 22:09:03",
                                                   "RecentCalls":  0
                                               },
                   "ai-vision":  {
