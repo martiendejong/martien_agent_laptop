@@ -1,7 +1,7 @@
 # Folder Network Map
 
 **Purpose:** Document folder relationships, data flows, and workflows
-**Last Updated:** 2026-01-30
+**Last Updated:** 2026-01-30 (Added: Art Revisionist Senufo case structure)
 
 ---
 
