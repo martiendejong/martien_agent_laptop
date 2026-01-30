@@ -3106,11 +3106,11 @@ Don't assume environment checks are safe - understand tool internals before addi
    ```
 
 2. **If Task Exists** → Update it
-   - Move to "in progress" when starting work
+   - Move to "in progress" when starting work **+ ASSIGN TO 74525428 (MANDATORY)**
    - Add comments with progress updates
    - Link PRs when created
-   - Move to "review" when PR ready
-   - Assign to team member
+   - Move to "review" when PR ready **+ ASSIGN TO 74525428 (MANDATORY)**
+   - ⚠️ **CRITICAL: NEVER change status without assignment**
 
 3. **If Task Doesn't Exist** → Create it
    ```powershell
@@ -3118,10 +3118,28 @@ Don't assume environment checks are safe - understand tool internals before addi
    ```
 
 4. **Throughout Work** → Keep ClickUp updated
-   - Status changes (todo → in progress → review → done)
+   - Status changes (todo → in progress → review → done) **+ ALWAYS ASSIGN**
    - Progress comments
    - PR links
    - Blockers or questions
+
+### 🚨 MANDATORY ASSIGNMENT RULE (ZERO TOLERANCE)
+
+**HARD RULE: Every status change to "busy" or "review" MUST include assignment.**
+
+**Correct command format:**
+```powershell
+# ✅ CORRECT - includes assignee
+clickup-sync.ps1 -Action update -TaskId "<id>" -Status "busy" -Assignee "74525428"
+clickup-sync.ps1 -Action update -TaskId "<id>" -Status "review" -Assignee "74525428"
+
+# ❌ WRONG - missing assignee (VIOLATION)
+clickup-sync.ps1 -Action update -TaskId "<id>" -Status "busy"
+clickup-sync.ps1 -Action update -TaskId "<id>" -Status "review"
+```
+
+**Default Assignee:** 74525428 (Martien de Jong)
+**Reason:** Task ownership visibility, notification triggering, human accountability
 
 ### Why This Matters
 
