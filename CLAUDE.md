@@ -1368,6 +1368,19 @@ Answer questions in priority order:
 - Workflows: `knowledge-base/06-WORKFLOWS/INDEX.md`
 - Tools: `knowledge-base/07-AUTOMATION/tool-selection-guide.md`
 
+### Before ANY Task - Check ClickUp First:
+**MANDATORY (2026-01-30):** ClickUp is the source of truth for all work tracking.
+
+1. 🔍 **Search ClickUp** - Does this task already exist?
+   ```powershell
+   clickup-sync.ps1 -Action list -ProjectId client-manager | grep "<keyword>"
+   ```
+2. ✅ **If Task Exists** → Update it (move to "in progress", add comments, link PRs)
+3. ➕ **If Task Doesn't Exist** → Create it (`clickup-sync.ps1 -Action create`)
+4. 🔄 **Throughout Work** → Keep ClickUp updated (status, comments, PR links, blockers)
+
+**See:** `_machine/PERSONAL_INSIGHTS.md` § ClickUp Task-First Workflow
+
 ### Before ANY Code Edit - Determine Mode:
 1. 🚦 **Mode Detection** - **CRITICAL: Use `detect-mode.ps1` to prevent workflow violations**
    - **HARD RULE:** ClickUp URL present → ALWAYS Feature Development Mode

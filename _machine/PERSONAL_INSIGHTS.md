@@ -3089,6 +3089,60 @@ Don't assume environment checks are safe - understand tool internals before addi
 
 ---
 
+## 📋 CLICKUP TASK-FIRST WORKFLOW (2026-01-30)
+
+### User Directive
+
+**Direct Quote:**
+> "when I'm giving you tasks any searching through the chat you should also check if if the task is in click up for instance for client managing you should see if there is already a task like that and click up and then update the corresponding task and if not then you should create a task to make sure that all the work that's done and get is also reflected in Clicker"
+
+### Workflow: ALWAYS Check ClickUp First
+
+**BEFORE starting any task for client-manager or other tracked projects:**
+
+1. **Search ClickUp** - Check if task already exists
+   ```powershell
+   clickup-sync.ps1 -Action list -ProjectId <project> | grep "<keyword>"
+   ```
+
+2. **If Task Exists** → Update it
+   - Move to "in progress" when starting work
+   - Add comments with progress updates
+   - Link PRs when created
+   - Move to "review" when PR ready
+   - Assign to team member
+
+3. **If Task Doesn't Exist** → Create it
+   ```powershell
+   clickup-sync.ps1 -Action create -Title "..." -Description "..." -ProjectId <project>
+   ```
+
+4. **Throughout Work** → Keep ClickUp updated
+   - Status changes (todo → in progress → review → done)
+   - Progress comments
+   - PR links
+   - Blockers or questions
+
+### Why This Matters
+
+**ClickUp = Source of Truth**
+- All work must be tracked in ClickUp
+- Chat conversations alone aren't sufficient
+- Team visibility requires ClickUp updates
+- Work history must be searchable in ClickUp
+
+### Available Tools
+
+| Tool | Purpose | Example |
+|------|---------|---------|
+| `clickup-sync.ps1 -Action list` | List tasks | All tasks for project |
+| `clickup-sync.ps1 -Action show` | Get task details | Full task info |
+| `clickup-sync.ps1 -Action create` | Create new task | When task doesn't exist |
+| `clickup-sync.ps1 -Action update` | Update status | Move to in progress/review |
+| `clickup-sync.ps1 -Action comment` | Add comment | Progress updates, PR links |
+
+---
+
 ## 📝 CLICKUP TASK ASSIGNMENT REQUIREMENT (2026-01-25 20:30)
 
 ### User Request
