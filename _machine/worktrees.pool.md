@@ -6,7 +6,7 @@ Seat states:
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | artrevisionist-wordpress | agent-001-transparent-topic-cards-css | 2026-01-30T22:30:00Z | 🔄 Fix: Transparent background in b2bk-styles.css |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | hazina | agent-002-archive-session-restore | 2026-01-29T10:00:00Z | 🔄 Feature: Session restore button in Terminal Orchestrator archive view |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-30T21:45:00Z | ✅ PR #151: Generic Website Provider + WordPress NoAuth (Phases 2+3) |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-30T22:50:00Z | ✅ PR #2 (plugin): Smaller featured image on topic page (merged) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-30T12:00:00Z | ✅ PR #142: Reduce startup tokens 95k→15k (84% reduction) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | BUSY | client-manager | agent-005-website-connect-api | 2026-01-30T21:50:00Z | 🔄 Phase 4: Backend API - Connect Website (ClickUp #869bzf5pn) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-01-25T20:25:00Z | ✅ PR #369: Improve new project welcome screen UX |
