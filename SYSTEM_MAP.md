@@ -28,6 +28,7 @@ This is a **living cognitive topology** - not just documentation, but a network 
 
 | Category | Count | Status | Details |
 |----------|-------|--------|---------|
+| **🚨 Active Situations** | 3 | ⚠️ Critical | [§ Active Situations](#-active-situations--dossiers) |
 | **Projects** | 80+ | 🔍 Scanning | [§ Projects](#-projects) |
 | **Data Stores** | 12 | ✅ Mapped | [§ Data Stores](#-data-stores) |
 | **Connected Services** | 15+ | ✅ Mapped | [§ Services](#-connected-services) |
@@ -37,6 +38,96 @@ This is a **living cognitive topology** - not just documentation, but a network 
 | **Databases** | 3 | ✅ Mapped | [§ Databases](#-databases) |
 | **CI/CD** | 2 | ✅ Active | [§ CI/CD](#-cicd-systems) |
 | **Remote Servers** | 1 | ✅ Connected | [§ Servers](#-remote-servers) |
+
+---
+
+## 🚨 Active Situations / Dossiers
+
+**CRITICAL FOR CONTEXT DISAMBIGUATION**
+
+These are ongoing situations/matters that have dedicated documentation and require careful context separation.
+
+---
+
+### 1. Gemeente Meppel (Municipality) - Official Matters
+**Status:** 🔴 Active (11+ years, 2015-2026)
+**Primary Topics:** Marriage, MVV application, document legalization
+
+**Data Locations:**
+- `C:\gemeente_emails\` - Complete email archive (20+ emails)
+- `C:\Projects\mvv\` - MVV (residence permit) application files
+- Email inbox - Ongoing correspondence
+
+**Key Context:**
+- Marriage to Kenyan partner (Sofy)
+- MVV (Machtiging tot Voorlopig Verblijf) application
+- Document legalization issues
+- Verklaring burgelijke staat (marital status declaration)
+- Formal complaints filed (2024-01-15)
+- Multiple appointments scheduled/cancelled
+
+**Recent Activity:**
+- 2026-01-15: Herhaald verzoek schriftelijke reactie
+- 2025-12-22: Formeel verzoek legalisatie documenten
+- 2024-08-06: Last appointment
+
+**When user says "gemeente":** Default to THIS context unless explicitly about something else
+
+**Related Keywords:** MVV, trouwen, huwelijk, legalisatie, IND, burgerlijke staat, Meppel
+
+---
+
+### 2. Valsuani - Art Revisionist Case
+**Status:** 🟢 Active (Art history project)
+**Primary Topics:** Cultural debate, art authentication, historical research
+
+**Data Locations:**
+- `C:\stores\artrevisionist\` - Case data, validation service
+- `C:\stores\valsuani\` - Debate documentation
+- `C:\Projects\artrevisionist\` - Application code
+- `C:\Projects\martiendejongnl\Valsuani-dossier.txt` - Dossier summary
+
+**Key Context:**
+- Art Revisionist case study
+- Historical/cultural debate
+- PDF analysis ("Valsuani debate english.pdf")
+- Fact validation service in codebase
+- **NOT related to gemeente/municipality**
+
+**When user says "Valsuani":** This is an Art Revisionist project, NOT gemeente business
+
+**Related Keywords:** Art Revisionist, cultural debate, authentication, art history
+
+---
+
+### 3. Visa Application (Netherlands)
+**Status:** 🟡 Related to Gemeente dossier
+**Primary Topics:** Immigration, visa, residence permits
+
+**Data Locations:**
+- `C:\Projects\visa application\` - Documentation
+- `C:\Projects\vera bewijzen\` - Evidence/supporting docs
+
+**Key Context:**
+- Part of broader gemeente/MVV process
+- Supporting documents for partner visa
+- Evidence compilation
+
+---
+
+### ⚠️ Context Disambiguation Rules
+
+**CRITICAL:** When user mentions ambiguous terms, use these rules:
+
+| User Says | Default Context | Confirm With User If... |
+|-----------|----------------|------------------------|
+| "gemeente" | Gemeente Meppel (official matters) | Could be about another municipality |
+| "Valsuani" | Art Revisionist project | Could be about authentication vs debate |
+| "MVV" | Gemeente dossier (residence permit) | N/A - unambiguous |
+| "marriage" / "trouwen" | Gemeente dossier | N/A - linked to gemeente |
+| "art" / "case" | Art Revisionist | Specify which case |
+
+**NEVER confuse Valsuani (art project) with gemeente (official matters)** - these are completely separate!
 
 ---
 
