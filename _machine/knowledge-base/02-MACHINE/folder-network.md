@@ -446,3 +446,184 @@ graph TB
 - Review quarterly for accuracy
 - Archive/remove obsolete folders
 - Update visualization as network grows
+
+## C:\stores\artrevisionist\senufo\
+
+**Purpose:** Senufo Hornbill Art Revisionist research case - West African sacred art and spiritual significance
+
+**Sources:**
+- `C:\stores\senufo\` - Original research content (page texts, images, PDFs)
+- `C:\stores\senufo\additional-sources\` - Met Museum essays, Poro initiation docs, funeral rites, YSL collection
+- Internet research - WebSearch for contemporary sources
+- AI-generated images - Featured images for pages/details/evidence
+
+**Destinations:**
+- Art Revisionist application - Loads pages.json for web display
+- WordPress - Potential publication via API integration
+- Research archive - Preserved historical knowledge
+
+**Related Folders:**
+- `C:\stores\artrevisionist\Valsuani\` - Reference case (same structure pattern)
+- `C:\stores\artrevisionist\CV Martien\` - Another case example
+- `C:\Projects\artrevisionist\` - Application code consuming this data
+
+**Workflows:**
+
+1. **Content Creation:**
+   - Read source materials from `C:\stores\senufo\`
+   - Analyze all text files (page.txt throughout hierarchy)
+   - Read additional-sources PDFs and reference docs
+   - Structure into 5 main pages → 3 details each → 0-3 evidence each
+
+2. **Dual-File System (CRITICAL):**
+   - `pages.json` - Full nested content with complete text/images
+   - `pages/` folder structure - Navigation index files (id, title, summary only)
+   - BOTH must stay synchronized for app to work
+
+3. **Featured Images:**
+   - All pages/details/evidence need featuredImageFilename
+   - Images stored in `C:\stores\senufo\` hierarchy
+   - Upload missing images via Art Revisionist API (localhost, user: sjoerd, pass: Andersom)
+   - Image paths use double backslashes in JSON (Windows convention)
+
+**Data Model (TypeScript/C#):**
+
+```typescript
+// Main Page (top level)
+interface MainPage {
+  id: string;                    // "1", "2", "3"
+  title: string;                 // SEO-friendly, compelling
+  summary: string;               // 1-3 sentences
+  content: string;               // Full markdown
+  featuredImageFilename?: string;
+  wordPressMediaId?: number;
+  additionalImages?: PageImage[];
+  details: DetailPage[];         // Children
+}
+
+// Detail Page (second level)
+interface DetailPage {
+  id: string;                    // "1", "2", "3"
+  title: string;
+  summary: string;
+  content: string;
+  featuredImageFilename?: string;
+  wordPressMediaId?: number;
+  additionalImages?: PageImage[];
+  evidence: EvidencePage[];      // Children
+}
+
+// Evidence Page (third level)
+interface EvidencePage {
+  id: string;                    // "evidence-1", "evidence-2"
+  title: string;
+  summary: string;
+  content: string;
+  featuredImageFilename?: string;
+  wordPressMediaId?: number;
+  additionalImages?: PageImage[];
+  attachments?: EvidenceAttachment[];  // PDFs, DOCX, XLSX
+}
+```
+
+**File Structure:**
+```
+C:\stores\artrevisionist\senufo\
+├── pages.json                          # Full nested content (122KB, 2833 lines)
+└── pages\
+    ├── main.json                       # Page index (5 pages)
+    ├── 1\
+    │   ├── details.json                # 3 details
+    │   ├── 1\evidence.json             # 3 evidence items
+    │   ├── 2\evidence.json             # 2 evidence items
+    │   └── 3\evidence.json             # 3 evidence items
+    ├── 2\
+    │   ├── details.json                # 3 details
+    │   ├── 1\evidence.json             # 2 evidence items
+    │   ├── 2\evidence.json             # 1 evidence item
+    │   └── 3\evidence.json             # 2 evidence items
+    ├── 3\
+    │   ├── details.json                # 3 details
+    │   ├── 1\evidence.json             # 1 evidence item
+    │   ├── 2\evidence.json             # 1 evidence item
+    │   └── 3\evidence.json             # 1 evidence item
+    ├── 4\
+    │   ├── details.json                # 2 details
+    │   ├── 1\evidence.json             # 1 evidence item
+    │   └── 2\evidence.json             # Empty []
+    └── 5\
+        ├── details.json                # 2 details
+        ├── 1\evidence.json             # Empty []
+        └── 2\evidence.json             # Empty []
+```
+
+**Content Structure (Senufo Case):**
+
+**Page 1: The Senufo Hornbill: Sacred Symbol of Creation**
+- Detail 1: The Hornbill in Senufo Creation Mythology (3 evidence)
+- Detail 2: Intellectual Prowess and Elder Knowledge (2 evidence)
+- Detail 3: From Sacred Function to Aesthetic Object (3 evidence)
+
+**Page 2: Agricultural Fertility and the Cycle of Life**
+- Detail 1: The Hornbill's Earth-Probing Beak (2 evidence)
+- Detail 2: Seasonal Calls and Agricultural Timing (1 evidence)
+- Detail 3: The 'Pregnant' Form (2 evidence)
+
+**Page 3: Poro Initiation: Spiritual Education Through Art**
+- Detail 1: Knowledge Transmission Through Symbolic Language (1 evidence)
+- Detail 2: Masks, Spirits, and Ancestral Guidance (1 evidence)
+- Detail 3: Contemporary Challenges (1 evidence)
+
+**Page 4: From Sacred Grove to Western Gallery**
+- Detail 1: The Met Museum Paradox (1 evidence)
+- Detail 2: Yves Saint Laurent's Collection (0 evidence)
+
+**Page 5: The Senufo People: Guardians of Ancient Wisdom**
+- Detail 1: Geographic Distribution and Historical Kingdom (0 evidence)
+- Detail 2: Village Structure and Social Organization (0 evidence)
+
+**Sync Status:**
+- ✅ pages.json created and validated (valid JSON)
+- ✅ 19 JSON files created (1 main + 5 details + 13 evidence)
+- ⏳ Featured images need verification/upload (Task #3)
+- ❌ No git tracking (stores folder not in repo)
+- ❌ No automatic backup (manual copy recommended)
+
+**Access Patterns:**
+- Art Revisionist app - Reads pages.json on load
+- Claude sessions - Content creation, updates
+- Potential WordPress sync - Future integration
+
+**Key Learnings (Pattern for Future Cases):**
+
+1. **Research Phase:**
+   - Read ALL source material before writing
+   - Use Explore agent for codebase structure understanding
+   - Check reference cases (Valsuani, CV Martien) for structure patterns
+
+2. **Content Structure:**
+   - 5 pages optimal (hook, context, deep dive, critique, background)
+   - 2-3 details per page (comprehensive but not overwhelming)
+   - 0-3 evidence per detail (not all details need evidence)
+   - Evidence IDs use "evidence-N" format
+
+3. **Technical Requirements:**
+   - ALL image paths use double backslashes in JSON
+   - Evidence.json can be empty array [] (required even if no evidence)
+   - IDs are sequential strings ("1", "2", "3")
+   - Content uses markdown formatting
+   - Validate JSON syntax before deploying
+
+4. **Image Management:**
+   - Featured images required for pages, recommended for details/evidence
+   - Images can be in case root or subfolders
+   - Use Art Revisionist API for uploads if not in store
+   - Login: localhost, user: sjoerd, pass: Andersom
+
+**Notes:**
+- Created: 2026-01-30 (comprehensive Senufo case with 5 pages, 13 details, 19 evidence items)
+- Based on analysis of `C:\stores\senufo\` content + additional sources
+- Follows Art Revisionist Case Research Skill pattern
+- Total content: ~122KB, 2833 lines of comprehensive West African art scholarship
+
+---
