@@ -65,7 +65,7 @@ param(
     [int]$PrNumber,
     [string]$Repo = "martiendejong/client-manager",
     [string]$ListId,  # Resolved from Project or defaults to Brand Designer
-    [ValidateSet("client-manager", "art-revisionist", "hazina", "")]
+    [ValidateSet("client-manager", "art-revisionist", "hazina", "brand2boost-birdseye", "")]
     [string]$Project = ""  # Project name (resolves to ListId from config)
 )
 
@@ -258,6 +258,7 @@ switch ($Action) {
         $defaultStatus = switch ($Project) {
             "art-revisionist" { "to do" }
             "hazina" { "to do" }
+            "brand2boost-birdseye" { "to do" }
             "client-manager" { "todo" }
             default { "todo" }
         }
