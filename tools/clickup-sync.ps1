@@ -65,7 +65,7 @@ param(
     [int]$PrNumber,
     [string]$Repo = "martiendejong/client-manager",
     [string]$ListId,  # Resolved from Project or defaults to Brand Designer
-    [ValidateSet("client-manager", "art-revisionist", "")]
+    [ValidateSet("client-manager", "art-revisionist", "hazina", "")]
     [string]$Project = ""  # Project name (resolves to ListId from config)
 )
 

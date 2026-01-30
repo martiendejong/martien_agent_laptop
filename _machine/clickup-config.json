@@ -79,8 +79,15 @@
                   "id": "901214097647",
                   "name": "Brand Designer",
                   "task_count": 100,
-                  "maps_to": ["client-manager", "hazina"],
+                  "maps_to": ["client-manager"],
                   "statuses": ["todo", "busy", "review", "needs input", "needs refinement", "next sprint", "blocked", "done", "cancelled"]
+                },
+                "hazina_framework": {
+                  "id": "901215559249",
+                  "name": "Hazina Framework",
+                  "task_count": 0,
+                  "maps_to": ["hazina"],
+                  "statuses": ["to do", "planning", "in progress", "at risk", "update required", "on hold", "complete", "cancelled", "archive"]
                 }
               }
             },
@@ -117,8 +124,8 @@
       "workspace": "gigshub",
       "space": "team_tasks",
       "folder": "internal",
-      "list_id": "901214097647",
-      "list_name": "Brand Designer"
+      "list_id": "901215559249",
+      "list_name": "Hazina Framework"
     },
     "art-revisionist": {
       "workspace": "gigshub",
@@ -145,8 +152,17 @@
       "environment": "xampp",
       "local_path": "C:/xampp/htdocs/art-revisionist",
       "description": "WordPress-based document management and AI topic generation platform"
+    },
+    "hazina": {
+      "name": "Hazina Framework",
+      "list_id": "901215559249",
+      "repos": ["hazina"],
+      "type": "framework",
+      "environment": "visual-studio",
+      "local_path": "C:/Projects/hazina",
+      "description": "AI framework for RAG, LLM orchestration, embeddings, and agent tooling"
     }
   },
   "default_list_id": "901214097647",
-  "last_updated": "2026-01-28"
+  "last_updated": "2026-01-30"
 }
