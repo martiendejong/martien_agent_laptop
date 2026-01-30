@@ -4,6 +4,12 @@
         <name>Hazina.LLMs.Helpers</name>
     </assembly>
     <members>
+        <member name="T:EmbeddingJsonConverter">
+            <summary>
+            Custom JSON converter for Embedding class (which extends List&lt;double&gt;).
+            System.Text.Json cannot deserialize List-derived classes by default.
+            </summary>
+        </member>
         <member name="M:TokenCounter.CountTokens(System.String)">
             <summary>
             Counts tokens in a given text using SharpToken

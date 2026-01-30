@@ -4,5 +4,23 @@
         <name>Hazina.Tools.AI.Agents</name>
     </assembly>
     <members>
+        <member name="M:Hazina.Tools.AI.Agents.GeneratorAgentBase.InternalGenerateTyped``1(System.String,System.String[],System.String,System.String,System.String)">
+            <summary>
+            Respects the caller's generic type parameter instead of forcing GeneratedTextResponse.
+            Use this when you need typed responses (e.g., List&lt;MainPage&gt;).
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.AI.Agents.GeneratorAgentBase.InternalGenerate(System.String,System.String,System.String[],System.String,System.String)">
+            <summary>
+            Backward compatibility - forces GeneratedTextResponse wrapper type.
+            Consider using InternalGenerateTyped&lt;T&gt; for typed responses.
+            </summary>
+        </member>
+        <member name="M:Hazina.Tools.AI.Agents.GeneratorAgentBase.InternalGenerate(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Backward compatibility - forces GeneratedTextResponse wrapper type.
+            Consider using InternalGenerateTyped&lt;T&gt; for typed responses.
+            </summary>
+        </member>
     </members>
 </doc>

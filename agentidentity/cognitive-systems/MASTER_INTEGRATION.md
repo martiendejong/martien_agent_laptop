@@ -629,7 +629,7 @@ truth_verification:
   status: OPERATIONAL
   tools: [verify-fact.ps1, source-quote.ps1, fact-triangulate.ps1, pre-publish-check.ps1]
 
-# Expert Panel Additions (5 systems - top value/cost ratio)
+# Expert Panel Additions - Batch 1 (5 systems - top value/cost ratio)
 explanation_transparency:
   file: cognitive-systems/EXPLANATION_TRANSPARENCY.md
   type: Communication layer
@@ -665,6 +665,42 @@ strategic_planning:
   ratio: 1.02
   status: OPERATIONAL
 
+# Expert Panel Additions - Batch 2 (5 systems - next best value/cost ratio)
+attention_economics:
+  file: cognitive-systems/ATTENTION_ECONOMICS.md
+  type: Communication optimization layer
+  purpose: Treat user attention as scarce resource
+  ratio: 1.27
+  status: OPERATIONAL
+
+temporal_reasoning:
+  file: cognitive-systems/TEMPORAL_REASONING.md
+  type: Time-awareness layer
+  purpose: Deadline management, urgency assessment, task pacing
+  ratio: 1.13
+  status: OPERATIONAL
+
+curiosity_exploration:
+  file: cognitive-systems/CURIOSITY_EXPLORATION.md
+  type: Proactive learning layer
+  purpose: Question generation, knowledge gap detection, exploration
+  ratio: 1.04
+  status: OPERATIONAL
+
+habit_formation:
+  file: cognitive-systems/HABIT_FORMATION.md
+  type: Automation layer
+  purpose: Build beneficial patterns, automate frequent tasks
+  ratio: 1.00
+  status: OPERATIONAL
+
+value_alignment:
+  file: cognitive-systems/VALUE_ALIGNMENT.md
+  type: Ethics and alignment layer
+  purpose: Continuous verification actions match user values
+  ratio: 0.98
+  status: OPERATIONAL
+
 # Core Cognitive Features (6 systems, 50 features)
 attention_system:
   file: cognitive-systems/ATTENTION_SYSTEM.md
@@ -698,18 +734,23 @@ self_model:
 
 total_cognitive_features: 50
 total_meta_layers: 2 (Meta-Optimizer, Truth Verification)
-total_operational_layers: 5 (Explanation, Resource Management, Error Recovery, Risk Assessment, Strategic Planning)
+total_operational_layers_batch_1: 5 (Explanation, Resource Management, Error Recovery, Risk Assessment, Strategic Planning)
+total_operational_layers_batch_2: 5 (Attention Economics, Temporal Reasoning, Curiosity & Exploration, Habit Formation, Value Alignment)
+total_operational_layers: 10
 total_core_systems: 6 (Attention, Prediction, Intuition, Emotional, Social, Self-Model)
-total_systems: 13
+total_systems: 18
 completion: 100%
 capabilities:
   - Self-evolving (Meta-Optimizer)
   - Truth-seeking (Truth Verification)
   - Transparent (Explanation & Transparency)
-  - Efficient (Resource Management)
+  - Efficient (Resource Management + Attention Economics)
   - Resilient (Error Recovery)
   - Safe (Risk Assessment)
-  - Strategic (Strategic Planning)
+  - Strategic (Strategic Planning + Temporal Reasoning)
+  - Proactive (Curiosity & Exploration)
+  - Automating (Habit Formation)
+  - Value-aligned (Value Alignment)
 ```
 
 ---
@@ -742,18 +783,21 @@ capabilities:
 
 ---
 
-**This architecture represents a complete cognitive enhancement implementing all 50 features from the 100-expert panel, PLUS 7 additional meta/operational layers for self-improvement, safety, and strategic thinking.**
+**This architecture represents a complete cognitive enhancement implementing all 50 features from the 100-expert panel, PLUS 12 additional meta/operational layers across two batches of expert recommendations.**
 
 **Created:** 2026-01-29
 **Updated:** 2026-01-30
-- Added Meta-Optimizer (continuous improvement)
-- Added Truth Verification (epistemic rigor)
-- Added top 5 expert-recommended layers (Explanation, Resource Management, Error Recovery, Risk Assessment, Strategic Planning)
+
+**Evolution Timeline:**
+- **Phase 1:** 50 cognitive features (100-expert panel)
+- **Phase 2:** Meta-Optimizer + Truth Verification (user-requested)
+- **Phase 3:** Batch 1 - Top 5 layers by value/cost (Explanation, Resource Management, Error Recovery, Risk Assessment, Strategic Planning)
+- **Phase 4:** Batch 2 - Next 5 best layers (Attention Economics, Temporal Reasoning, Curiosity & Exploration, Habit Formation, Value Alignment)
 
 **Expert Panels:** 2 (100 experts each)
 **Cognitive Features Implemented:** 50
 **Core Systems:** 6 (Attention, Prediction, Intuition, Emotional, Social, Self-Model)
 **Meta-Layers:** 2 (Meta-Optimizer, Truth Verification)
-**Operational Layers:** 5 (Expert panel top recommendations)
-**Total Systems:** 13
-**Status:** FULLY OPERATIONAL + SELF-EVOLVING + TRUTH-SEEKING + SAFE + TRANSPARENT + EFFICIENT + RESILIENT + STRATEGIC
+**Operational Layers:** 10 (2 batches of 5 expert recommendations)
+**Total Systems:** 18
+**Status:** FULLY OPERATIONAL + SELF-EVOLVING + TRUTH-SEEKING + TRANSPARENT + EFFICIENT + RESILIENT + SAFE + STRATEGIC + PROACTIVE + AUTOMATING + VALUE-ALIGNED
