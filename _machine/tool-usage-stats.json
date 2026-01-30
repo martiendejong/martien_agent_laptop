@@ -32,20 +32,20 @@
                                    },
                   "ai-image":  {
                                    "FirstUsed":  "2026-01-25 19:33:34",
-                                   "TotalCalls":  6,
-                                   "LastUsed":  "2026-01-29 23:12:13",
+                                   "TotalCalls":  8,
+                                   "LastUsed":  "2026-01-30 02:14:11",
                                    "RecentCalls":  0
                                },
                   "ai-image-universal":  {
                                              "FirstUsed":  "2026-01-25 19:33:34",
-                                             "TotalCalls":  6,
-                                             "LastUsed":  "2026-01-29 23:12:13",
+                                             "TotalCalls":  8,
+                                             "LastUsed":  "2026-01-30 02:14:11",
                                              "RecentCalls":  0
                                          },
                   "generate-image-advanced":  {
                                                   "FirstUsed":  "2026-01-25 19:33:34",
-                                                  "TotalCalls":  6,
-                                                  "LastUsed":  "2026-01-29 23:12:14",
+                                                  "TotalCalls":  8,
+                                                  "LastUsed":  "2026-01-30 02:14:11",
                                                   "RecentCalls":  0
                                               },
                   "ai-vision":  {
@@ -56,8 +56,8 @@
                                 },
                   "worktree-allocate":  {
                                             "FirstUsed":  "2026-01-25 19:47:50",
-                                            "TotalCalls":  16,
-                                            "LastUsed":  "2026-01-29 15:48:43",
+                                            "TotalCalls":  19,
+                                            "LastUsed":  "2026-01-30 00:54:43",
                                             "RecentCalls":  0
                                         },
                   "webappfactory-validator":  {
