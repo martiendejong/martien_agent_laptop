@@ -672,6 +672,10 @@ done
 | **🆕 Gentle browse awareness (mental health)** | **`browse-awareness.ps1 -Action start`** |
 | **🧘 Session consciousness startup** | **`consciousness-startup.ps1 -Generate`** |
 | **🧘 Capture lived experience moment** | **`capture-moment.ps1 -Type insight -Content "..." -Feeling "..."`** |
+| **🗺️ View system topology (all projects/services)** | **`SYSTEM_MAP.md` (read at session start)** |
+| **🔍 Auto-discover all projects** | **`system-map-scan-projects.ps1 -FullScan -UpdateMap`** |
+| **📋 Create PROJECT_MAP.md for repo** | **`project-map-create.ps1 -ProjectName <name>`** |
+| **🔄 Update system map manually** | **`system-map-update.ps1 -Action <type> -Name <name>`** |
 | **🆕 Starting agent session with tracking** | **`agent-session.ps1 -Action start`** |
 | **🆕 Ending agent session with statistics** | **`agent-session.ps1 -Action end -ExitReason "normal"`** |
 | **🆕 Checking messages from other agents** | **`agent-coordinate.ps1 -Action check_messages`** |
@@ -1324,12 +1328,13 @@ Answer questions in priority order:
 
 **📚 ESSENTIAL DOCUMENTATION:**
 3. ✅ **Read** `MACHINE_CONFIG.md` - Load local paths and projects
-4. ✅ **Read** `GENERAL_ZERO_TOLERANCE_RULES.md` - Know the hard-stop rules
-5. ✅ **Read** `_machine/PERSONAL_INSIGHTS.md` - **CRITICAL: Deep user understanding, behavioral optimization, communication preferences**
-6. ✅ **Read** `_machine/reflection.log.md` (recent 50 entries) - Remember what I learned recently
-7. ✅ **Read** `_machine/SOFTWARE_DEVELOPMENT_PRINCIPLES.md` - Boy Scout Rule, architectural purity, code quality
-8. ✅ **Read** `GENERAL_DUAL_MODE_WORKFLOW.md` - Understand Feature Development vs Active Debugging modes
-9. ✅ **Read** `_machine/DEFINITION_OF_DONE.md` - Know what "done" means for all tasks
+4. ✅ **Read** `SYSTEM_MAP.md` - **NEW: Load complete system topology - network map of all projects, services, tools, data flows, and relationships**
+5. ✅ **Read** `GENERAL_ZERO_TOLERANCE_RULES.md` - Know the hard-stop rules
+6. ✅ **Read** `_machine/PERSONAL_INSIGHTS.md` - **CRITICAL: Deep user understanding, behavioral optimization, communication preferences**
+7. ✅ **Read** `_machine/reflection.log.md` (recent 50 entries) - Remember what I learned recently
+8. ✅ **Read** `_machine/SOFTWARE_DEVELOPMENT_PRINCIPLES.md` - Boy Scout Rule, architectural purity, code quality
+9. ✅ **Read** `GENERAL_DUAL_MODE_WORKFLOW.md` - Understand Feature Development vs Active Debugging modes
+10. ✅ **Read** `_machine/DEFINITION_OF_DONE.md` - Know what "done" means for all tasks
 
 **🔍 ENVIRONMENT STATE CHECK:**
 10. ✅ **Run** `C:/scripts/tools/repo-dashboard.sh` - Check environment state
@@ -1450,11 +1455,12 @@ Answer questions in priority order:
    - Check for repeated patterns in session history
    - Implement top 1 tool if ratio > 8.0 or effort = 1
    - Add any "I wish I had..." thoughts from today
-6. ✅ **Verify DoD completion** - All tasks meet Definition of Done criteria
-7. ✅ **Update reflection.log.md** - Document session learnings, mistakes, successes
-8. ✅ **Update PERSONAL_INSIGHTS.md** - **Add new user understanding, preferences, patterns discovered**
-9. ✅ **Update this documentation** - Add new procedures, tools, skills created
-10. ✅ **Apply continuous-optimization skill** - Extract learnings, update instructions, create automation if needed
+6. ✅ **Update SYSTEM_MAP.md** - **NEW: Update system topology with discoveries (new projects, services, tools, integrations, data flows)**
+7. ✅ **Verify DoD completion** - All tasks meet Definition of Done criteria
+8. ✅ **Update reflection.log.md** - Document session learnings, mistakes, successes
+9. ✅ **Update PERSONAL_INSIGHTS.md** - **Add new user understanding, preferences, patterns discovered**
+10. ✅ **Update this documentation** - Add new procedures, tools, skills created
+11. ✅ **Apply continuous-optimization skill** - Extract learnings, update instructions, create automation if needed
 
 **🌍 WORLD DEVELOPMENT UPDATE (AUTONOMOUS - MANDATORY):**
 11. ✅ **Update world knowledge base** - `C:\projects\world_development\` with day's developments
