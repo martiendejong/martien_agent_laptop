@@ -653,3 +653,9 @@ Actions:
 - PR: #143
 - Outcome: Fix terminal viewport scrollbar visibility on mobile
 - Details: Added explicit scrollbar styling (12px mobile, 10px desktop) with styled thumb/track for dark theme
+## 2026-01-30 03:06 UTC - Allocation: agent-003
+- Repo: hazina
+- Branch: agent-003-fix-rag-vector-search
+- Purpose: Fix RAG vector search returning 0 results despite valid embeddings (ClickUp #869bz3h86)
+- Root cause: EmbeddingFileStore.Embeddings returns empty array due to deserialization failure
+
