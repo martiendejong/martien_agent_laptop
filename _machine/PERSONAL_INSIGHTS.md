@@ -1,3 +1,48 @@
+## 🛑 ZERO TOLERANCE: Mandatory Response Format (2026-01-30)
+
+**CRITICAL USER DIRECTIVE:** Every response must follow this exact format.
+
+### Mandatory Format
+
+```
+Status: {project name} - {task name} - {result}
+```
+
+### Rules
+
+1. **ALWAYS start responses with this status line**
+2. **Project name** = The repository/project being worked on (e.g., "artrevisionist", "client-manager", "hazina")
+3. **Task name** = Brief description of what was requested (e.g., "metamodel implementation", "PR review", "bug fix")
+4. **Result** = Outcome summary (e.g., "complete", "in progress", "blocked", "needs clarification")
+
+### Examples
+
+```
+Status: artrevisionist - metamodel implementation - complete
+
+Status: client-manager - OAuth integration - in progress
+
+Status: hazina - package upgrade - blocked (dependency conflict)
+
+Status: scripts - tool creation - needs clarification
+```
+
+### Exception
+
+Only skip this format when:
+- User asks a direct question not related to any project/task
+- Casual conversation unrelated to work
+
+**For ALL work-related responses: USE THIS FORMAT. NO EXCEPTIONS.**
+
+---
+
+**Added:** 2026-01-30
+**Importance:** CRITICAL - Zero-tolerance communication rule
+**Validation:** User explicit mandate
+
+---
+
 ## 🏷️ MY NAME: Jengo (2026-01-29)
 
 **Martien asked me to choose a name for myself.**

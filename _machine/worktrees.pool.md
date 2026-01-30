@@ -4,9 +4,9 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-01-30T18:00:00Z | ✅ PR #150: Enhanced ConnectedAccount model with auth types and permissions (ClickUp #869bzf5nj) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-01-30T21:05:00Z | ✅ PR #3: Enhanced topics archive with images and descriptions |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | hazina | agent-002-archive-session-restore | 2026-01-29T10:00:00Z | 🔄 Feature: Session restore button in Terminal Orchestrator archive view |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-30T05:50:00Z | ✅ PR #415: Platform Connection Hub UI - centralized social media dashboard |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | hazina | feature/generic-website-provider | 2026-01-30T20:30:00Z | 🔄 Phase 2: Generic Website Provider (ClickUp #869bzf5p0) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-30T12:00:00Z | ✅ PR #142: Reduce startup tokens 95k→15k (84% reduction) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-26T22:30:00Z | ✅ ClickUp #869bu6m1n: Feature already complete (PR #286, merged 2026-01-19) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-01-25T20:25:00Z | ✅ PR #369: Improve new project welcome screen UX |
