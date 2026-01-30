@@ -1,3 +1,57 @@
+## 2026-01-30 21:50 - CONTEXT CONFUSION: Mixed Gemeente with Valsuani ❌
+
+**Context:** User asked about "gemeente" (municipality matters), I started researching Valsuani (art project) instead.
+
+### What I Did Wrong
+
+1. ❌ **Context confusion** - Mixed two completely separate dossiers
+2. ❌ **No disambiguation** - Didn't check which "gemeente" context was relevant
+3. ❌ **Missing active situations map** - Had no registry of ongoing dossiers
+
+### The Two Contexts (Completely Separate!)
+
+**Gemeente Meppel (Municipality):**
+- 11+ years of correspondence (2015-2026)
+- Topics: MVV application, marriage documents, legalization
+- Locations: `C:\gemeente_emails\`, `C:\Projects\mvv\`
+- **THIS is what user meant by "gemeente"**
+
+**Valsuani (Art Revisionist):**
+- Art history case, cultural debate
+- Locations: `C:\stores\artrevisionist\`, `C:\stores\valsuani\`
+- **Completely unrelated to gemeente!**
+
+### Root Cause: No Active Situations Registry
+
+**Why this happened:**
+- System map had projects/services but not "active situations/dossiers"
+- No context disambiguation rules
+- Default search found Valsuani files before gemeente files
+
+### Fix Applied
+
+✅ **Added § Active Situations to SYSTEM_MAP.md:**
+- Maps 3 active dossiers with clear separation
+- Context disambiguation rules table
+- Default behaviors (e.g., "gemeente" → Gemeente Meppel official matters)
+- Related keywords for each context
+
+**File:** `SYSTEM_MAP.md` § Active Situations / Dossiers
+
+### Prevention Protocol
+
+**Before researching any ambiguous term:**
+1. Check SYSTEM_MAP.md § Active Situations
+2. Apply disambiguation rules
+3. Confirm context if multiple interpretations exist
+4. Default to documented context
+
+**Commit:** c57f766 "fix(context): Add Active Situations section"
+
+**This is exactly why user requested the system topology layer** - to prevent these context confusions!
+
+---
+
 ## 2026-01-30 20:30 - CRITICAL VIOLATION: Failed to Assign ClickUp Task ❌
 
 **Context:** Moved ClickUp task 869bx16m6 to "review" status without assigning it to user.
