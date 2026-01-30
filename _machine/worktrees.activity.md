@@ -646,3 +646,10 @@ Actions:
 - Branch: agent-001-terminal-mobile-scrollbar
 - Purpose: Fix terminal mobile scrollbar - xterm.js terminal not showing scrollbar on mobile
 - Context: 7 Claude sessions active (high contention), pessimistic allocation with jitter
+
+## 2026-01-30 02:38:00 - Release: agent-001
+- Repo: hazina
+- Branch: agent-001-terminal-mobile-scrollbar
+- PR: #143
+- Outcome: Fix terminal viewport scrollbar visibility on mobile
+- Details: Added explicit scrollbar styling (12px mobile, 10px desktop) with styled thumb/track for dark theme
