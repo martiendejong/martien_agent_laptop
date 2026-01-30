@@ -6,7 +6,7 @@ Seat states:
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-01-30T02:38:00Z | ✅ PR #143: Terminal mobile scrollbar visibility fix |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | hazina | agent-002-archive-session-restore | 2026-01-29T10:00:00Z | 🔄 Feature: Session restore button in Terminal Orchestrator archive view |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | hazina | agent-003-fix-rag-vector-search | 2026-01-30T03:06:00Z | 🔄 Fix: RAG vector search returns 0 results (ClickUp #869bz3h86) |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-01-30T15:30:00Z | ✅ PR #144 (Hazina): RAG embeddings fix + PR #414 (client-manager): STEP_COMPLETE streaming fix |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-30T12:00:00Z | ✅ PR #142: Reduce startup tokens 95k→15k (84% reduction) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-26T22:30:00Z | ✅ ClickUp #869bu6m1n: Feature already complete (PR #286, merged 2026-01-19) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-01-25T20:25:00Z | ✅ PR #369: Improve new project welcome screen UX |

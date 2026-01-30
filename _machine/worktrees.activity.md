@@ -659,3 +659,9 @@ Actions:
 - Purpose: Fix RAG vector search returning 0 results despite valid embeddings (ClickUp #869bz3h86)
 - Root cause: EmbeddingFileStore.Embeddings returns empty array due to deserialization failure
 
+## 2026-01-30 04:30 UTC - Release: agent-003
+- Repo: hazina
+- Branch: agent-003-fix-rag-vector-search
+- PR: #144
+- Outcome: Fix RAG vector search embeddings loading + filter logic (ClickUp #869bz3h86)
+
