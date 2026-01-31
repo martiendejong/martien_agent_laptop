@@ -21,6 +21,8 @@ This category contains deep technical documentation for specific projects under 
 
 ```
 05-PROJECTS/
+├── art-revisionist/      # Historical research publication platform
+│   └── wordpress-setup.md
 ├── brand2boost/          # Marketing/brand materials (if needed)
 ├── client-manager/       # Primary SaaS application
 │   └── architecture.md
@@ -97,6 +99,55 @@ This category contains deep technical documentation for specific projects under 
 
 ---
 
+### art-revisionist (Historical Research Platform)
+**Subdirectory:** `art-revisionist/`
+**Repository:** github.com/martiendejong/artrevisionist
+**Location:** C:\Projects\artrevisionist\
+**Type:** Full-stack historical research publication platform (ASP.NET Core + React + WordPress)
+
+#### WordPress Setup Documentation
+**File:** `art-revisionist/wordpress-setup.md`
+**Purpose:** WordPress integration, custom plugin architecture, REST API, display queries
+**Size:** 359 lines (~14 KB)
+**Status:** ✅ Complete
+**Key Topics:**
+- **WordPress Installation:**
+  - Local XAMPP setup (C:\xampp\htdocs\)
+  - Local URL: http://localhost/
+  - Development and testing environment
+
+- **Custom Plugin:**
+  - Location: C:\xampp\htdocs\wp-content\plugins\artrevisionist-wordpress\
+  - Custom post types (b2bk_topic, b2bk_topic_page, b2bk_detail, b2bk_evidence)
+  - REST API endpoints (b2b-knowledge/v1)
+  - Display templates and queries
+  - Query ordering (menu_order, NOT alphabetical)
+
+- **Data Flow:**
+  - Source: C:\stores\artrevisionist\<topic>\pages.json
+  - API: WordPressPublishService.cs → WordPress REST API
+  - Database: wp_posts table (menu_order field)
+  - Plugin: class-b2bk-templates.php (orderby='menu_order')
+  - Frontend: Templates render in narrative sequence
+
+- **Publishing Workflow:**
+  - User publishes from Art Revisionist frontend
+  - "Publish to WordPress" or "Sync to WordPress" button
+  - API sends content + menu_order to WordPress
+  - WordPress stores and displays in correct narrative order
+
+**Critical WordPress Rules:**
+- ✅ ALWAYS query by 'orderby'=>'menu_order' (NOT 'title')
+- ✅ ALWAYS include menu_order in API payloads
+- ✅ Test display order after re-publishing: http://localhost/topic/<topic>/
+- ✅ WordPress location: C:\xampp\htdocs\ (local XAMPP)
+- ✅ Plugin location: C:\xampp\htdocs\wp-content\plugins\artrevisionist-wordpress\
+- ❌ NEVER assume WordPress is elsewhere
+- ❌ NEVER use direct SQL updates (always re-publish from frontend)
+- ❌ NEVER forget to update class-b2bk-templates.php for query changes
+
+---
+
 ### hazina (Framework Library)
 **Subdirectory:** `hazina/`
 **Repository:** github.com/martiendejong/Hazina
@@ -148,6 +199,8 @@ This category contains deep technical documentation for specific projects under 
 |----------|--------|
 | What's the backend stack? | ASP.NET Core 8 + EF Core + SQL Server - See client-manager/architecture.md § Backend |
 | What's the frontend stack? | React 18 + TypeScript + Vite - See client-manager/architecture.md § Frontend |
+| Where is WordPress installed? | C:\xampp\htdocs\ (local XAMPP) - See art-revisionist/wordpress-setup.md § WordPress Installation |
+| Where is the Art Revisionist WordPress plugin? | C:\xampp\htdocs\wp-content\plugins\artrevisionist-wordpress\ - See art-revisionist/wordpress-setup.md § Custom Plugin |
 | Where are API keys stored? | appsettings.Secrets.json (gitignored) - See client-manager/architecture.md § Configuration |
 | What's the service layer pattern? | Controller → Service → DbContext - See client-manager/architecture.md § Key Patterns |
 | How does hazina integrate? | NuGet package dependency - See hazina/framework-patterns.md § Integration |
