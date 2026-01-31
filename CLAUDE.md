@@ -757,6 +757,7 @@ done
 | **🎯 PHASE 4: Restore session context** | **`restore-context.ps1`** |
 | **🎯 PHASE 4: Create tool from pattern** | **`create-tool-from-pattern.ps1 -ToolName "name" -Description "..."`** |
 | **📊 Team activity dashboard (ClickUp + GitHub)** | **`team-activity-dashboard.ps1 -Days 7`** |
+| **📊 Per-person daily activity (GitHub + ClickUp correlation)** | **`team-daily-activity.ps1`** |
 | **📊 ClickUp team activity report** | **`team-activity-clickup.ps1 -Days 7 -Format html -OutputPath "..."`** |
 | **📊 GitHub team activity report** | **`team-activity-github.ps1 -Days 7 -AllRepos`** |
 
@@ -947,15 +948,16 @@ done
 
 **Full documentation:** [tools/README.md](./tools/README.md) | [tools/HAZINA_CLI_GUIDE.md](./tools/HAZINA_CLI_GUIDE.md)
 
-**🎉 MILESTONE: 137 tools implemented! (47 original + 54 recommended + 6 Wave 1 + 10 Wave 2 + 2 custom + 2 UI automation + 4 fact verification + 4 session recovery + 5 Hazina CLI + 3 team reporting)**
+**🎉 MILESTONE: 138 tools implemented! (47 original + 54 recommended + 6 Wave 1 + 10 Wave 2 + 2 custom + 2 UI automation + 4 fact verification + 4 session recovery + 5 Hazina CLI + 4 team reporting)**
 
 **Latest additions (2026-01-31):**
-- **🆕 TEAM ACTIVITY REPORTING** - 3 tools for instant team performance dashboards:
+- **🆕 TEAM ACTIVITY REPORTING** - 4 tools for instant team performance dashboards:
   - `team-activity-dashboard.ps1` - Unified ClickUp + GitHub team dashboard (auto-opens beautiful HTML)
+  - `team-daily-activity.ps1` - **Per-person daily activity with GitHub-ClickUp correlation** (yesterday + today summaries, task linking via branch names)
   - `team-activity-clickup.ps1` - ClickUp task metrics (completion, velocity, WIP analysis)
   - `team-activity-github.ps1` - GitHub contribution metrics (commits, PRs, reviews)
-  - Use case: Daily standups, weekly reviews, monthly reports, performance tracking
-  - Features: Console/JSON/HTML output, customizable time ranges, multi-project support
+  - Use case: Daily standups, weekly reviews, monthly reports, performance tracking, 1-on-1s
+  - Features: Console/JSON/HTML output, customizable time ranges, multi-project support, automatic task correlation
 
 **Previous additions (2026-01-28):**
 - **🆕 HAZINA CLI TOOLS** - 5 AI-powered tools for project knowledge bases and advanced reasoning:

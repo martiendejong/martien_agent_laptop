@@ -836,6 +836,31 @@ cd C:\Projects\worker-agents\agent-003\client-manager
 .\team-activity-dashboard.ps1 -AllGitHubRepos -Days 14
 ```
 
+### Per-Person Daily Activity (NEW!)
+
+**Detailed individual contributor reports with GitHub-ClickUp correlation**
+
+```powershell
+# Daily activity for all team members (yesterday + today)
+.\team-daily-activity.ps1
+
+# Specific user only
+.\team-daily-activity.ps1 -User "martiendejong"
+
+# Last 7 days with HTML report
+.\team-daily-activity.ps1 -Days 7 -Format html -OutputPath "C:\reports\daily-activity.html"
+
+# All GitHub repos
+.\team-daily-activity.ps1 -AllRepos
+```
+
+**What's Included Per Person:**
+- ✅ **Daily summaries:** "Yesterday: 5 commits, 2 PRs, 3 tasks" + "Today: 1 commit, 1 task"
+- ✅ **GitHub activity:** Commits, PRs, comments, reviews (with timestamps and links)
+- ✅ **ClickUp tasks:** All tasks worked on (with project and status)
+- ✅ **Task correlation:** Automatic linking of GitHub branches to ClickUp tasks (via branch naming: `feature/<task-id>-description`)
+- ✅ **Timeline view:** Chronological activity with direct links to GitHub/ClickUp
+
 ### Individual Platform Reports
 
 ```powershell
