@@ -75,6 +75,16 @@ if ($AllRepos) {
     $reposToAnalyze = @($GitHubRepo)
 }
 
+# Collect all team members first
+Write-Host "  → Collecting team members..." -ForegroundColor Gray
+$allTeamMembers = @{}
+
+# Known team members (hardcoded based on your team)
+$knownMembers = @("martiendejong", "Diko Mohamed", "Frank Kobaai ", "Lessy.", "Simitia Mpoe", "Timothy Opiyo")
+foreach ($member in $knownMembers) {
+    $allTeamMembers[$member] = $true
+}
+
 # Collect GitHub data per person per day
 Write-Host "  → Collecting GitHub activity..." -ForegroundColor Gray
 $userActivity = @{}
@@ -93,6 +103,8 @@ foreach ($repo in $reposToAnalyze) {
                 $commitDate = [DateTime]::Parse($commit.commit.author.date)
                 $dayKey = $commitDate.Date.ToString("yyyy-MM-dd")
 
+                $allTeamMembers[$author] = $true
+
                 if (-not $userActivity.ContainsKey($author)) {
                     $userActivity[$author] = @{}
                 }
@@ -102,9 +114,38 @@ foreach ($repo in $reposToAnalyze) {
                         prsCreated = 0
                         prsMerged = 0
                         tasks = @()
+                        branches = @()
+                        prs = @()
                     }
                 }
                 $userActivity[$author][$dayKey].commits++
+
+                # Get branches for this commit
+                try {
+                    $branchesJson = gh api "repos/$repo/commits/$($commit.sha)/branches-where-head" 2>$null
+                    if ($branchesJson) {
+                        $branches = $branchesJson | ConvertFrom-Json
+                        foreach ($branch in $branches) {
+                            $branchName = $branch.name
+                            # Add to branches list if not already there
+                            $branchExists = $false
+                            foreach ($b in $userActivity[$author][$dayKey].branches) {
+                                if ($b.name -eq $branchName) {
+                                    $branchExists = $true
+                                    break
+                                }
+                            }
+                            if (-not $branchExists) {
+                                $userActivity[$author][$dayKey].branches += [PSCustomObject]@{
+                                    name = $branchName
+                                    repo = $repo
+                                }
+                            }
+                        }
+                    }
+                } catch {
+                    # Silently continue
+                }
             }
         }
     } catch {
@@ -117,44 +158,90 @@ foreach ($repo in $reposToAnalyze) {
         if ($prsJson) {
             $prs = $prsJson | ConvertFrom-Json
             foreach ($pr in $prs) {
-                $author = $pr.user.login
-
-                # PR created
                 $createdDate = [DateTime]::Parse($pr.created_at)
-                if ($createdDate -ge $startDate) {
-                    $dayKey = $createdDate.Date.ToString("yyyy-MM-dd")
-                    if (-not $userActivity.ContainsKey($author)) {
-                        $userActivity[$author] = @{}
-                    }
-                    if (-not $userActivity[$author].ContainsKey($dayKey)) {
-                        $userActivity[$author][$dayKey] = @{
-                            commits = 0
-                            prsCreated = 0
-                            prsMerged = 0
-                            tasks = @()
+                $updatedDate = [DateTime]::Parse($pr.updated_at)
+
+                # Track PR involvement (author, commenter, reviewer)
+                $involvedUsers = @{}
+
+                # PR author
+                $author = $pr.user.login
+                $involvedUsers[$author] = $true
+                $allTeamMembers[$author] = $true
+
+                # PR reviewers - get reviews
+                try {
+                    $reviewsJson = gh api "repos/$repo/pulls/$($pr.number)/reviews" 2>$null
+                    if ($reviewsJson) {
+                        $reviews = $reviewsJson | ConvertFrom-Json
+                        foreach ($review in $reviews) {
+                            if ($review.user) {
+                                $reviewer = $review.user.login
+                                $involvedUsers[$reviewer] = $true
+                                $allTeamMembers[$reviewer] = $true
+                            }
                         }
                     }
-                    $userActivity[$author][$dayKey].prsCreated++
+                } catch {
+                    # Silently continue
                 }
 
-                # PR merged
-                if ($pr.merged_at) {
-                    $mergedDate = [DateTime]::Parse($pr.merged_at)
-                    if ($mergedDate -ge $startDate) {
-                        $dayKey = $mergedDate.Date.ToString("yyyy-MM-dd")
-                        $merger = $pr.merged_by.login
-                        if (-not $userActivity.ContainsKey($merger)) {
-                            $userActivity[$merger] = @{}
+                # Track PR for each involved user
+                foreach ($user in $involvedUsers.Keys) {
+                    # Determine the relevant day (created or updated)
+                    $relevantDates = @()
+                    if ($createdDate -ge $startDate) {
+                        $relevantDates += $createdDate.Date.ToString("yyyy-MM-dd")
+                    }
+                    if ($updatedDate -ge $startDate -and $updatedDate.Date -ne $createdDate.Date) {
+                        $relevantDates += $updatedDate.Date.ToString("yyyy-MM-dd")
+                    }
+
+                    foreach ($dayKey in $relevantDates) {
+                        if (-not $userActivity.ContainsKey($user)) {
+                            $userActivity[$user] = @{}
                         }
-                        if (-not $userActivity[$merger].ContainsKey($dayKey)) {
-                            $userActivity[$merger][$dayKey] = @{
+                        if (-not $userActivity[$user].ContainsKey($dayKey)) {
+                            $userActivity[$user][$dayKey] = @{
                                 commits = 0
                                 prsCreated = 0
                                 prsMerged = 0
                                 tasks = @()
+                                branches = @()
+                                prs = @()
                             }
                         }
-                        $userActivity[$merger][$dayKey].prsMerged++
+
+                        # Add PR if not already there
+                        $prExists = $false
+                        foreach ($p in $userActivity[$user][$dayKey].prs) {
+                            if ($p.number -eq $pr.number) {
+                                $prExists = $true
+                                break
+                            }
+                        }
+                        if (-not $prExists) {
+                            $userActivity[$user][$dayKey].prs += [PSCustomObject]@{
+                                number = $pr.number
+                                title = $pr.title
+                                url = $pr.html_url
+                                state = $pr.state
+                                merged = $pr.merged_at -ne $null
+                                repo = $repo
+                                isAuthor = ($user -eq $author)
+                            }
+                        }
+
+                        # Track stats
+                        if ($user -eq $author -and $createdDate.Date.ToString("yyyy-MM-dd") -eq $dayKey) {
+                            $userActivity[$user][$dayKey].prsCreated++
+                        }
+                        if ($pr.merged_at) {
+                            $mergedDate = [DateTime]::Parse($pr.merged_at)
+                            if ($mergedDate.Date.ToString("yyyy-MM-dd") -eq $dayKey -and $pr.merged_by -and $pr.merged_by.login -eq $user) {
+                                $userActivity[$user][$dayKey].prsMerged++
+                            }
+                        }
                     }
                 }
             }
