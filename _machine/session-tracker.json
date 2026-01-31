@@ -1,7 +1,7 @@
 ﻿{
-    "last_clean_exit_time":  "2026-01-31T12:58:57.9709138+01:00",
-    "last_clean_exit_session":  "e127aa2f-0e77-4deb-873b-36980ec06121",
-    "last_start_time":  "2026-01-31T12:54:50.3394597+01:00",
+    "last_clean_exit_time":  "2026-01-31T13:09:37.7397695+01:00",
+    "last_clean_exit_session":  "794a13b4-4697-433e-a93b-c35411a9e8f3",
+    "last_start_time":  "2026-01-31T13:07:17.0040771+01:00",
     "clean_exits":  [
                         {
                             "size_kb":  1794.1,
@@ -541,6 +541,15 @@
                             "session_id":  "e127aa2f-0e77-4deb-873b-36980ec06121",
                             "claude_pid":  10452,
                             "file_path":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\e127aa2f-0e77-4deb-873b-36980ec06121.jsonl",
+                            "project":  "C--scripts"
+                        },
+                        {
+                            "size_kb":  43.8,
+                            "timestamp":  "2026-01-31T13:09:37.7397695+01:00",
+                            "exit_method":  "sentinel",
+                            "session_id":  "794a13b4-4697-433e-a93b-c35411a9e8f3",
+                            "claude_pid":  1100,
+                            "file_path":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\794a13b4-4697-433e-a93b-c35411a9e8f3.jsonl",
                             "project":  "C--scripts"
                         }
                     ],
