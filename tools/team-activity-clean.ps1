@@ -257,6 +257,17 @@ foreach ($repo in $reposToAnalyze) {
 # Collect ClickUp data - only tasks with actual activity
 Write-Host "  → Collecting ClickUp activity (only actual work)..." -ForegroundColor Gray
 
+# Calculate timestamp ranges for each day we're tracking
+$dayRanges = @{}
+for ($i = 0; $i -lt $Days; $i++) {
+    $day = $todayStart.AddDays(-$i)
+    $dayKey = $day.ToString("yyyy-MM-dd")
+    $dayRanges[$dayKey] = @{
+        start = [DateTimeOffset]::new($day).ToUnixTimeMilliseconds()
+        end = [DateTimeOffset]::new($day.AddDays(1)).ToUnixTimeMilliseconds()
+    }
+}
+
 foreach ($proj in $config.projects.PSObject.Properties) {
     $listId = $proj.Value.list_id
     try {
@@ -264,83 +275,99 @@ foreach ($proj in $config.projects.PSObject.Properties) {
         $response = Invoke-RestMethod -Uri $url -Headers $headers
 
         foreach ($task in $response.tasks) {
-            $updatedDate = [DateTimeOffset]::FromUnixTimeMilliseconds([long]$task.date_updated)
+            # Get all relevant timestamps for this task
+            $dateUpdated = [long]$task.date_updated
+            $dateClosed = if ($task.date_closed) { [long]$task.date_closed } else { 0 }
+            $dateCreated = [long]$task.date_created
 
-            if ($updatedDate.DateTime -lt $startDate) {
-                continue
-            }
+            # Check which days this task had activity
+            $taskActivityDays = @{}
 
-            # Get task comments to see who actually worked on it
-            $taskCommenters = @{}
-            try {
-                $commentsUrl = "$apiBase/task/$($task.id)/comment"
-                $commentsResponse = Invoke-RestMethod -Uri $commentsUrl -Headers $headers
+            foreach ($dayKey in $dayRanges.Keys) {
+                $range = $dayRanges[$dayKey]
+                $hadActivity = $false
+                $activityTypes = @()
 
-                foreach ($comment in $commentsResponse.comments) {
-                    $commentDate = [DateTimeOffset]::FromUnixTimeMilliseconds([long]$comment.date)
-                    if ($commentDate.DateTime -ge $startDate) {
-                        $commenter = $comment.user.username
-                        $dayKey = $commentDate.DateTime.Date.ToString("yyyy-MM-dd")
-
-                        if (-not $taskCommenters.ContainsKey($commenter)) {
-                            $taskCommenters[$commenter] = @()
-                        }
-                        if ($dayKey -notin $taskCommenters[$commenter]) {
-                            $taskCommenters[$commenter] += $dayKey
-                        }
-                    }
+                # Check if task was created this day
+                if ($dateCreated -ge $range.start -and $dateCreated -lt $range.end) {
+                    $hadActivity = $true
+                    $activityTypes += "created"
                 }
-            } catch {
-                # If comments fail, fall back to assignees who updated recently
-                foreach ($assignee in $task.assignees) {
-                    $username = $assignee.username
-                    $dayKey = $updatedDate.DateTime.Date.ToString("yyyy-MM-dd")
-                    if (-not $taskCommenters.ContainsKey($username)) {
-                        $taskCommenters[$username] = @()
-                    }
-                    if ($dayKey -notin $taskCommenters[$username]) {
-                        $taskCommenters[$username] += $dayKey
-                    }
+
+                # Check if task was closed this day
+                if ($dateClosed -gt 0 -and $dateClosed -ge $range.start -and $dateClosed -lt $range.end) {
+                    $hadActivity = $true
+                    $activityTypes += "closed"
+                }
+
+                # Check if task was updated this day (and not just created)
+                if ($dateUpdated -ge $range.start -and $dateUpdated -lt $range.end -and $dateCreated -lt $range.start) {
+                    $hadActivity = $true
+                    $activityTypes += "updated"
+                }
+
+                if ($hadActivity) {
+                    $taskActivityDays[$dayKey] = $activityTypes -join ', '
                 }
             }
 
-            # Add task to users who actually worked on it
-            foreach ($username in $taskCommenters.Keys) {
-                foreach ($dayKey in $taskCommenters[$username]) {
-                    if (-not $userActivity.ContainsKey($username)) {
-                        $userActivity[$username] = @{}
-                    }
-                    if (-not $userActivity[$username].ContainsKey($dayKey)) {
-                        $userActivity[$username][$dayKey] = @{
-                            commits = 0
-                            prsCreated = 0
-                            prsMerged = 0
-                            tasks = @()
-                        }
-                    }
+            # If task had activity, assign it to the relevant people
+            if ($taskActivityDays.Count -gt 0) {
+                # Determine who to attribute this to - prioritize assignees
+                $peopleToAttribute = @()
 
-                    # Add task if not already added
-                    $taskExists = $false
-                    foreach ($t in $userActivity[$username][$dayKey].tasks) {
-                        if ($t.id -eq $task.id) {
-                            $taskExists = $true
-                            break
-                        }
+                if ($task.assignees -and $task.assignees.Count -gt 0) {
+                    foreach ($assignee in $task.assignees) {
+                        $peopleToAttribute += $assignee.username
+                        $allTeamMembers[$assignee.username] = $true
                     }
+                } else {
+                    # If no assignees, try to get creator
+                    if ($task.creator) {
+                        $peopleToAttribute += $task.creator.username
+                        $allTeamMembers[$task.creator.username] = $true
+                    }
+                }
 
-                    if (-not $taskExists) {
-                        $userActivity[$username][$dayKey].tasks += [PSCustomObject]@{
-                            id = $task.id
-                            name = $task.name
-                            status = $task.status.status
-                            url = $task.url
+                # Add task to each person's activity for each day
+                foreach ($username in $peopleToAttribute) {
+                    foreach ($dayKey in $taskActivityDays.Keys) {
+                        if (-not $userActivity.ContainsKey($username)) {
+                            $userActivity[$username] = @{}
+                        }
+                        if (-not $userActivity[$username].ContainsKey($dayKey)) {
+                            $userActivity[$username][$dayKey] = @{
+                                commits = 0
+                                prsCreated = 0
+                                prsMerged = 0
+                                tasks = @()
+                            }
+                        }
+
+                        # Add task if not already added
+                        $taskExists = $false
+                        foreach ($t in $userActivity[$username][$dayKey].tasks) {
+                            if ($t.id -eq $task.id) {
+                                $taskExists = $true
+                                break
+                            }
+                        }
+
+                        if (-not $taskExists) {
+                            $userActivity[$username][$dayKey].tasks += [PSCustomObject]@{
+                                id = $task.id
+                                name = $task.name
+                                status = $task.status.status
+                                url = $task.url
+                                activity = $taskActivityDays[$dayKey]
+                            }
                         }
                     }
                 }
             }
         }
     } catch {
-        Write-Warning "Failed to fetch ClickUp tasks from $($proj.Value.name)"
+        Write-Warning "Failed to fetch ClickUp tasks from $($proj.Value.name): $($_.Exception.Message)"
     }
 }
 
@@ -422,7 +449,8 @@ switch ($Format) {
                     if ($dayData.tasks.Count -gt 0) {
                         Write-Host "   Tasks:" -ForegroundColor White
                         foreach ($task in $dayData.tasks) {
-                            Write-Host "     • $($task.name) [$($task.status)]" -ForegroundColor Gray
+                            $activityInfo = if ($task.activity) { " ($($task.activity))" } else { "" }
+                            Write-Host "     • $($task.name) [$($task.status)]$activityInfo" -ForegroundColor Gray
                             Write-Host "       $($task.url)" -ForegroundColor DarkGray
                         }
                     }
@@ -636,7 +664,8 @@ switch ($Format) {
                         }
                         $html += "<ul class='tasks-list'>"
                         foreach ($task in $dayData.tasks) {
-                            $html += "<li><a href='$($task.url)' target='_blank'>$($task.name)</a> <span class='task-status'>$($task.status)</span></li>"
+                            $activityBadge = if ($task.activity) { " <span class='task-status' style='background: #e3f2fd; color: #1976d2;'>$($task.activity)</span>" } else { "" }
+                            $html += "<li><a href='$($task.url)' target='_blank'>$($task.name)</a> <span class='task-status'>$($task.status)</span>$activityBadge</li>"
                         }
                         $html += "</ul>"
                     }
