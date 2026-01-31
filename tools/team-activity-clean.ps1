@@ -34,11 +34,11 @@
 #>
 
 param(
-    [int]$Days = 2,
+    [int]$Days = 7,
     [ValidateSet("console", "html")]
     [string]$Format = "html",
     [string]$OutputPath = "C:\temp\team-activity-clean.html",
-    [string]$GitHubRepo = "martiendejong/client-manager",
+    [string]$GitHubRepo = "",
     [switch]$AllRepos
 )
 
@@ -72,7 +72,8 @@ if ($AllRepos) {
     $allRepos = gh repo list --json nameWithOwner --limit 100 2>$null | ConvertFrom-Json
     $reposToAnalyze = $allRepos | ForEach-Object { $_.nameWithOwner }
 } else {
-    $reposToAnalyze = @($GitHubRepo)
+    # Default to main repos
+    $reposToAnalyze = @("martiendejong/client-manager", "martiendejong/Hazina", "martiendejong/machine_agents")
 }
 
 # Collect all team members first
@@ -95,8 +96,9 @@ foreach ($repo in $reposToAnalyze) {
     # Get commits
     $since = $startDate.ToString("yyyy-MM-ddTHH:mm:ssZ")
     try {
-        $commitsJson = gh api "repos/$repo/commits?since=$since&per_page=100" 2>$null
-        if ($commitsJson) {
+        $commitsRaw = gh api "repos/$repo/commits?since=$since&per_page=100"
+        if ($commitsRaw) {
+            $commitsJson = ($commitsRaw -join "") -replace '\x1b\[[0-9;]*m', ''
             $commits = $commitsJson | ConvertFrom-Json
             foreach ($commit in $commits) {
                 $author = if ($commit.author) { $commit.author.login } else { "Unknown" }
@@ -154,8 +156,9 @@ foreach ($repo in $reposToAnalyze) {
 
     # Get pull requests
     try {
-        $prsJson = gh api "repos/$repo/pulls?state=all&per_page=100" 2>$null
-        if ($prsJson) {
+        $prsRaw = gh api "repos/$repo/pulls?state=all&per_page=100"
+        if ($prsRaw) {
+            $prsJson = ($prsRaw -join "") -replace '\x1b\[[0-9;]*m', ''
             $prs = $prsJson | ConvertFrom-Json
             foreach ($pr in $prs) {
                 $createdDate = [DateTime]::Parse($pr.created_at)
@@ -665,3 +668,4 @@ switch ($Format) {
         Start-Process $OutputPath
     }
 }
+
