@@ -836,12 +836,37 @@ cd C:\Projects\worker-agents\agent-003\client-manager
 .\team-activity-dashboard.ps1 -AllGitHubRepos -Days 14
 ```
 
-### Per-Person Daily Activity (NEW!)
+### Clean Activity Table (RECOMMENDED!)
 
-**Detailed individual contributor reports with GitHub-ClickUp correlation**
+**Per-person activity in clean table format - only actual work**
 
 ```powershell
-# Daily activity for all team members (yesterday + today)
+# Clean table view (yesterday + today) - DEFAULT
+.\team-activity-clean.ps1
+
+# Last 7 days
+.\team-activity-clean.ps1 -Days 7
+
+# Console output
+.\team-activity-clean.ps1 -Format console
+```
+
+**What's Shown:**
+- ✅ **Only actual work:** Tasks where person added comments, changed status, or made updates
+- ✅ **Table format:** Like the main dashboard but cleaner
+- ✅ **Per day columns:** Each day has its own column
+- ✅ **Task titles as links:** Click to go directly to ClickUp task
+- ✅ **GitHub stats:** Number of commits, PRs created, PRs merged per day
+- ✅ **Clean layout:** No clutter, only what matters
+
+**Perfect for:** Daily standups, quick team overview
+
+### Per-Person Detailed Activity
+
+**Detailed individual contributor reports with full timeline**
+
+```powershell
+# Detailed timeline for all team members (yesterday + today)
 .\team-daily-activity.ps1
 
 # Specific user only
@@ -860,6 +885,8 @@ cd C:\Projects\worker-agents\agent-003\client-manager
 - ✅ **ClickUp tasks:** All tasks worked on (with project and status)
 - ✅ **Task correlation:** Automatic linking of GitHub branches to ClickUp tasks (via branch naming: `feature/<task-id>-description`)
 - ✅ **Timeline view:** Chronological activity with direct links to GitHub/ClickUp
+
+**Perfect for:** 1-on-1 meetings, detailed performance reviews
 
 ### Individual Platform Reports
 
