@@ -18,9 +18,9 @@ This file captures **active, ongoing situations** that I need to be aware of acr
 
 ### 1. Arjan Stroeve / Social Media Hulp Situation
 
-**Status:** 🔴 ACTIVE - Evidence collection phase
+**Status:** 🔴 ACTIVE - Final demand phase (legal escalation imminent)
 **Location:** `C:\arjan_emails\`
-**Last Updated:** 2026-01-31
+**Last Updated:** 2026-01-31 (Final demand sent)
 
 **WHAT I MUST KNOW:**
 
@@ -29,34 +29,65 @@ This file captures **active, ongoing situations** that I need to be aware of acr
 - **Allan Drenth** - Co-director Social Media Hulp, pragmatic but unresponsive
 - **Martien** - Freelance developer/architect, extreme financial pressure (NL + Kenya)
 
+#### Outstanding Debt:
+- **Factuur 2025-17:** €902,50 (Facebook integration)
+- **Factuur 2025-19:** €2.722,50 (development work)
+- **Wettelijke incassokosten:** €532,63
+- **TOTAAL:** €4.157,63 (+ handelsrente since Dec 29, 2025)
+- **Days overdue:** 33 dagen (as of Jan 31, 2026)
+
 #### Key Facts:
-- ✅ Martien built Project Cassandra (AI chatbot for Eethuys de Steen) - delivered, in production
-- ✅ Martien built Brand Coach (€750 unpaid despite production use)
-- ✅ Multiple payment refusals by Arjan despite Martien's severe financial crisis
-- ✅ Martien worked for €3.500 bruto (minimumloon) while lead developer/architect
-- ✅ Arjan sent "wurgcontract" (16 Sept 2025) blocking Martien from entire field
-- ✅ Arjan refused Kenya team collaboration
-- ✅ Arjan blocked Martien completely
-- ✅ Allan falsely accused Martien of Google review, then went silent
+- ✅ Written payment commitment from Arjan + Allan (Oct 8, 2025 email)
+- ✅ Arjan paid MOST invoices but selectively withheld 2 (bad faith)
+- ✅ False claim: Facebook plugin "doesn't work" (was in production since May 2025)
+- ✅ Multiple reminders sent: Dec 5, Dec 10, Dec 22 (all ignored)
+- ✅ Martien's family in Kenya: currently no food, needs money for medicine
+- ✅ Arjan went with interns instead of Martien (now struggling with development)
 
-**Critical Evidence Found:**
-- ✅ Wurgcontract (16 sept 2025) = smoking gun for exploitation intent
-- ✅ Brief from Martien to Arjan (€25k/maand request) = shows desperate situation
-- ✅ Revised contract (17 sept 2025) = shows Martien pushed back successfully
+**CRITICAL STRATEGIC SHIFT (Jan 31, 2026):**
 
-**Current Status:**
-- PHASE 1 (Data Collection) - NOT STARTED
-- Email import pending: `python C:\scripts\tools\import-arjan-emails-v2.py`
-- No contact with Arjan (blocked) or Allan (unresponsive)
-- Openstaande betalingen: €750+ (exact amount TBD from emails)
+Martien's actual goal is NOT just payment - it's **psychological warfare through competence demonstration**:
 
-**User's Question:**
-> "Should I try contacting them again or write negative review?"
+> "Ik wil dat zij zien dat ik qua AI gebruik mijlenver op hen vooruit ben.
+> Want dat bewijst naar hen dat zij mij eigenlijk nodig hebben. Ze hebben
+> er nu een kutprogramma van gemaakt omdat ze met een paar stagairs verder
+> zijn gegaan ipv met mij. En ik wil dat ze voelen wat ze zichzelf hebben
+> aangedaan. Dat ze elke dag balen dat ik niet voor hen werk."
 
-**My Recommendation:**
-- ❌ NO to another contact attempt (Allan false accusation + silence, Arjan blocked)
-- ✅ YES to completing FASE 1 evidence collection FIRST
-- ✅ THEN decide between: publication (evidence-based story) vs juridisch vs laten rusten
+**Strategy:** AI-perfect communication to demonstrate competence gap + make them regret their decision.
+
+**Current Status (Jan 31, 2026):**
+
+✅ **FINAL DEMAND SENT** - Multi-channel approach:
+1. **Email** to 5 addresses (all Social Media Hulp + De Steen):
+   - info@socialmediahulp.nl
+   - arjan@socialmediahulp.nl
+   - allan@socialmediahulp.nl
+   - info@eetcafedesteen.nl
+   - info@logementdesteen.nl
+   - Ultra-professional, AI-polished, demonstrates competence
+   - 7-day deadline (Feb 7, 2026)
+   - Offers: Pay + get free AI consultancy (positive-sum game)
+
+2. **LinkedIn message** to Allan specifically:
+   - Direct competence flex ("ik bouw in fractie van tijd")
+   - "Die gap wordt elke dag groter" (FOMO)
+   - "kutproduct" / "stagair-level" (painful truth)
+   - P.S. flex: "deze email chain kostte 20 minuten met AI"
+   - Personal appeal to Allan's pragmatism
+
+**Next Steps:**
+- ⏳ Wait until Feb 7 (7-day deadline)
+- 📱 If no response: Incassobureau
+- 💬 If still nothing: Facebook post (public reputation damage)
+- ⚖️ If all fails: Kantonrechter (small claims court)
+
+**Escalation Ladder:**
+1. Email/LinkedIn (done - Jan 31)
+2. Follow-up LinkedIn if silence after 3-4 days
+3. Incassobureau (after Feb 7)
+4. Facebook public post (nuclear option)
+5. Legal action via Kantonrechter
 
 **Documentation:**
 - Timeline: `C:\arjan_emails\TIJDLIJN_ARJAN_STROEVE_COMPLEET.md` (to be completed)
