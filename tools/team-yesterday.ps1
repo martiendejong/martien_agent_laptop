@@ -111,7 +111,7 @@ Write-Host "  → Collecting ClickUp tasks..." -ForegroundColor Gray
 foreach ($proj in $config.projects.PSObject.Properties) {
     $listId = $proj.Value.list_id
     try {
-        $url = "$apiBase/list/$listId/task?archived=false&include_closed=true"
+        $url = $apiBase + "/list/" + $listId + "/task?archived=false&include_closed=true"
         $response = Invoke-RestMethod -Uri $url -Headers $headers
 
         foreach ($task in $response.tasks) {
@@ -124,7 +124,7 @@ foreach ($proj in $config.projects.PSObject.Properties) {
             # Get task comments to see who actually worked on it
             $taskCommenters = @{}
             try {
-                $commentsUrl = "$apiBase/task/$($task.id)/comment"
+                $commentsUrl = $apiBase + "/task/" + $task.id + "/comment"
                 $commentsResponse = Invoke-RestMethod -Uri $commentsUrl -Headers $headers
 
                 foreach ($comment in $commentsResponse.comments) {
@@ -182,173 +182,53 @@ Write-Host "✅ Data collected. Generating HTML..." -ForegroundColor Green
 $generatedAt = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
 $outputPath = "C:\temp\team-yesterday.html"
 
-$html = @"
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Team Activity - Yesterday ($yesterdayKey)</title>
-    <meta charset="UTF-8">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
-            min-height: 100vh;
-        }
-        .container {
-            width: 100%;
-            max-width: 100%;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            overflow: hidden;
-        }
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px;
-            text-align: center;
-        }
-        .header h1 { font-size: 36px; margin-bottom: 10px; }
-        .header p { font-size: 18px; opacity: 0.9; }
-        .content { padding: 40px; }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 18px;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        td {
-            padding: 20px;
-            border-bottom: 1px solid #eee;
-            vertical-align: top;
-            font-size: 15px;
-        }
-        tr:hover {
-            background: #f8f9fa;
-        }
-
-        .col-name { width: 20%; }
-        .col-tasks { width: 50%; }
-        .col-branches { width: 30%; }
-
-        .user-name {
-            font-weight: 700;
-            color: #667eea;
-            font-size: 18px;
-        }
-
-        .tasks-list {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-        .tasks-list li {
-            margin-bottom: 12px;
-            padding-left: 20px;
-            position: relative;
-        }
-        .tasks-list li:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
-        }
-        .tasks-list a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 14px;
-        }
-        .tasks-list a:hover {
-            text-decoration: underline;
-            color: #764ba2;
-        }
-        .task-status {
-            display: inline-block;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 11px;
-            margin-left: 8px;
-            background: #e9ecef;
-            color: #666;
-            font-weight: 600;
-        }
-
-        .branches-list {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-        .branches-list li {
-            margin-bottom: 8px;
-            padding: 8px 12px;
-            background: #f8f9fa;
-            border-left: 3px solid #667eea;
-            font-family: 'Courier New', monospace;
-            font-size: 13px;
-            border-radius: 4px;
-        }
-
-        .commit-count {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-
-        .no-activity {
-            color: #ccc;
-            font-style: italic;
-            text-align: center;
-        }
-
-        .timestamp {
-            text-align: center;
-            color: #999;
-            font-size: 12px;
-            padding: 20px;
-            border-top: 1px solid #eee;
-            margin-top: 40px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>📊 Team Activity - Yesterday</h1>
-            <p>$yesterdayKey (All activity from yesterday only)</p>
-        </div>
-
-        <div class="content">
-            <table>
-                <thead>
-                    <tr>
-                        <th class="col-name">Team Member</th>
-                        <th class="col-tasks">ClickUp Tasks</th>
-                        <th class="col-branches">Branches & Commits</th>
-                    </tr>
-                </thead>
-                <tbody>
-"@
+# Build HTML with string concatenation (no here-strings to avoid parsing issues)
+$html = "<!DOCTYPE html>`n<html>`n<head>`n"
+$html += "    <title>Team Activity - Yesterday ($yesterdayKey)</title>`n"
+$html += "    <meta charset='UTF-8'>`n"
+$html += "    <style>`n"
+$html += "        * { margin: 0; padding: 0; box-sizing: border-box; }`n"
+$html += "        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; min-height: 100vh; }`n"
+$html += "        .container { width: 100%; max-width: 100%; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); overflow: hidden; }`n"
+$html += "        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; text-align: center; }`n"
+$html += "        .header h1 { font-size: 36px; margin-bottom: 10px; }`n"
+$html += "        .header p { font-size: 18px; opacity: 0.9; }`n"
+$html += "        .content { padding: 40px; }`n"
+$html += "        table { width: 100%; border-collapse: collapse; margin: 20px 0; }`n"
+$html += "        th { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; text-align: left; font-weight: 600; font-size: 18px; position: sticky; top: 0; z-index: 10; }`n"
+$html += "        td { padding: 20px; border-bottom: 1px solid #eee; vertical-align: top; font-size: 15px; }`n"
+$html += "        tr:hover { background: #f8f9fa; }`n"
+$html += "        .col-name { width: 20%; }`n"
+$html += "        .col-tasks { width: 50%; }`n"
+$html += "        .col-branches { width: 30%; }`n"
+$html += "        .user-name { font-weight: 700; color: #667eea; font-size: 18px; }`n"
+$html += "        .tasks-list { margin: 0; padding: 0; list-style: none; }`n"
+$html += "        .tasks-list li { margin-bottom: 12px; padding-left: 20px; position: relative; }`n"
+$html += "        .tasks-list li:before { content: '→'; position: absolute; left: 0; color: #667eea; font-weight: bold; }`n"
+$html += "        .tasks-list a { color: #667eea; text-decoration: none; font-weight: 500; font-size: 14px; }`n"
+$html += "        .tasks-list a:hover { text-decoration: underline; color: #764ba2; }`n"
+$html += "        .task-status { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 8px; background: #e9ecef; color: #666; font-weight: 600; }`n"
+$html += "        .branches-list { margin: 0; padding: 0; list-style: none; }`n"
+$html += "        .branches-list li { margin-bottom: 8px; padding: 8px 12px; background: #f8f9fa; border-left: 3px solid #667eea; font-family: 'Courier New', monospace; font-size: 13px; border-radius: 4px; }`n"
+$html += "        .commit-count { display: inline-block; background: #667eea; color: white; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 16px; margin-bottom: 15px; }`n"
+$html += "        .no-activity { color: #ccc; font-style: italic; text-align: center; }`n"
+$html += "        .timestamp { text-align: center; color: #999; font-size: 12px; padding: 20px; border-top: 1px solid #eee; margin-top: 40px; }`n"
+$html += "    </style>`n</head>`n<body>`n"
+$html += "    <div class='container'>`n"
+$html += "        <div class='header'>`n"
+$html += "            <h1>📊 Team Activity - Yesterday</h1>`n"
+$html += "            <p>$yesterdayKey (All activity from yesterday only)</p>`n"
+$html += "        </div>`n"
+$html += "        <div class='content'>`n"
+$html += "            <table>`n"
+$html += "                <thead>`n"
+$html += "                    <tr>`n"
+$html += "                        <th class='col-name'>Team Member</th>`n"
+$html += "                        <th class='col-tasks'>ClickUp Tasks</th>`n"
+$html += "                        <th class='col-branches'>Branches & Commits</th>`n"
+$html += "                    </tr>`n"
+$html += "                </thead>`n"
+$html += "                <tbody>`n"
 
 foreach ($userEntry in ($userActivity.GetEnumerator() | Sort-Object Name)) {
     $username = $userEntry.Key
@@ -359,55 +239,52 @@ foreach ($userEntry in ($userActivity.GetEnumerator() | Sort-Object Name)) {
         continue
     }
 
-    $html += "<tr>"
+    $html += "                    <tr>`n"
 
     # Column 1: Name
-    $html += "<td class='user-name'>👤 $username</td>"
+    $html += "                        <td class='user-name'>👤 $username</td>`n"
 
     # Column 2: ClickUp Tasks
-    $html += "<td>"
+    $html += "                        <td>`n"
     if ($data.tasks.Count -gt 0) {
-        $html += "<ul class='tasks-list'>"
+        $html += "                            <ul class='tasks-list'>`n"
         foreach ($task in $data.tasks) {
-            $html += "<li><a href='$($task.url)' target='_blank'>$($task.name)</a> <span class='task-status'>$($task.status)</span></li>"
+            $taskUrl = $task.url
+            $taskName = $task.name
+            $taskStatus = $task.status
+            $html += "                                <li><a href='$taskUrl' target='_blank'>$taskName</a> <span class='task-status'>$taskStatus</span></li>`n"
         }
-        $html += "</ul>"
+        $html += "                            </ul>`n"
     } else {
-        $html += "<span class='no-activity'>No tasks</span>"
+        $html += "                            <span class='no-activity'>No tasks</span>`n"
     }
-    $html += "</td>"
+    $html += "                        </td>`n"
 
     # Column 3: Branches & Commits
-    $html += "<td>"
+    $html += "                        <td>`n"
     if ($data.commitCount -gt 0) {
-        $html += "<div class='commit-count'>$($data.commitCount) commits</div>"
+        $html += "                            <div class='commit-count'>$($data.commitCount) commits</div>`n"
     }
     if ($data.branches.Count -gt 0) {
-        $html += "<ul class='branches-list'>"
+        $html += "                            <ul class='branches-list'>`n"
         foreach ($branch in $data.branches) {
-            $html += "<li>$branch</li>"
+            $html += "                                <li>$branch</li>`n"
         }
-        $html += "</ul>"
+        $html += "                            </ul>`n"
     } elseif ($data.commitCount -eq 0) {
-        $html += "<span class='no-activity'>No commits</span>"
+        $html += "                            <span class='no-activity'>No commits</span>`n"
     }
-    $html += "</td>"
+    $html += "                        </td>`n"
 
-    $html += "</tr>"
+    $html += "                    </tr>`n"
 }
 
-$html += @"
-                </tbody>
-            </table>
-
-            <div class="timestamp">
-                Generated: $generatedAt
-            </div>
-        </div>
-    </div>
-</body>
-</html>
-"@
+$html += "                </tbody>`n"
+$html += "            </table>`n"
+$html += "            <div class='timestamp'>Generated: $generatedAt</div>`n"
+$html += "        </div>`n"
+$html += "    </div>`n"
+$html += "</body>`n</html>"
 
 $html | Out-File -FilePath $outputPath -Encoding UTF8
 Write-Host "`n✅ HTML report saved to: $outputPath" -ForegroundColor Green
