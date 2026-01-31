@@ -814,6 +814,78 @@ cd C:\Projects\worker-agents\agent-003\client-manager
 
 ---
 
+## 📊 Team Activity & Reporting
+
+**NEW (2026-01-31):** Comprehensive team activity reporting across ClickUp and GitHub.
+
+### Team Activity Dashboard
+
+**Instant team overview across all platforms - perfect for daily standups!**
+
+```powershell
+# Generate unified dashboard (ClickUp + GitHub)
+.\team-activity-dashboard.ps1 -Days 7
+
+# Custom time range
+.\team-activity-dashboard.ps1 -Days 30 -OutputPath "C:\reports\monthly.html"
+
+# Specific project/repo
+.\team-activity-dashboard.ps1 -ClickUpProject client-manager -GitHubRepo martiendejong/client-manager
+
+# All GitHub repos
+.\team-activity-dashboard.ps1 -AllGitHubRepos -Days 14
+```
+
+### Individual Platform Reports
+
+```powershell
+# ClickUp activity only
+.\team-activity-clickup.ps1 -Days 7
+.\team-activity-clickup.ps1 -Days 30 -Format html -OutputPath "clickup.html"
+.\team-activity-clickup.ps1 -ProjectId client-manager -Days 14
+
+# GitHub activity only
+.\team-activity-github.ps1 -Days 7
+.\team-activity-github.ps1 -Days 30 -Format html -OutputPath "github.html"
+.\team-activity-github.ps1 -Repo martiendejong/hazina -Days 14
+.\team-activity-github.ps1 -AllRepos -Days 7
+```
+
+### What's Included
+
+**ClickUp Metrics:**
+- Task completion stats by assignee
+- Status distribution (todo/busy/review/done)
+- Velocity metrics (tasks/day, completion rate)
+- Work-in-progress (WIP) analysis
+- Project breakdown
+- Recent activity timeline
+
+**GitHub Metrics:**
+- Commits by author
+- Pull requests created/reviewed/merged
+- Code review participation
+- Repository activity breakdown
+- Contribution timeline
+- Recent commits and PRs
+
+**Combined Dashboard:**
+- Unified team performance view
+- Cross-platform activity correlation
+- Beautiful HTML dashboard with charts
+- Auto-opens in browser
+- Exportable to JSON for custom analysis
+
+### Use Cases
+
+- **Daily Standups:** Quick team overview
+- **Weekly Reviews:** Track progress and blockers
+- **Monthly Reports:** Share with stakeholders
+- **Performance Reviews:** Individual contributor metrics
+- **Project Health:** Identify bottlenecks and velocity trends
+
+---
+
 ## 🤖 Hazina CLI - AI-Powered Development Tools
 
 **Location:** `C:\scripts\bin\hazina.exe`

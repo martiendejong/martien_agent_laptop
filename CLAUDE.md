@@ -756,6 +756,9 @@ done
 | **🎯 PHASE 4: Capture session context** | **`capture-context.ps1 -Task "current work" -Why "reason"`** |
 | **🎯 PHASE 4: Restore session context** | **`restore-context.ps1`** |
 | **🎯 PHASE 4: Create tool from pattern** | **`create-tool-from-pattern.ps1 -ToolName "name" -Description "..."`** |
+| **📊 Team activity dashboard (ClickUp + GitHub)** | **`team-activity-dashboard.ps1 -Days 7`** |
+| **📊 ClickUp team activity report** | **`team-activity-clickup.ps1 -Days 7 -Format html -OutputPath "..."`** |
+| **📊 GitHub team activity report** | **`team-activity-github.ps1 -Days 7 -AllRepos`** |
 
 **Goal:** Maximize uninterrupted thinking time by eliminating manual ceremony.
 
@@ -944,9 +947,17 @@ done
 
 **Full documentation:** [tools/README.md](./tools/README.md) | [tools/HAZINA_CLI_GUIDE.md](./tools/HAZINA_CLI_GUIDE.md)
 
-**🎉 MILESTONE: 134 tools implemented! (47 original + 54 recommended + 6 Wave 1 + 10 Wave 2 + 2 custom + 2 UI automation + 4 fact verification + 4 session recovery + 5 Hazina CLI)**
+**🎉 MILESTONE: 137 tools implemented! (47 original + 54 recommended + 6 Wave 1 + 10 Wave 2 + 2 custom + 2 UI automation + 4 fact verification + 4 session recovery + 5 Hazina CLI + 3 team reporting)**
 
-**Latest additions (2026-01-28):**
+**Latest additions (2026-01-31):**
+- **🆕 TEAM ACTIVITY REPORTING** - 3 tools for instant team performance dashboards:
+  - `team-activity-dashboard.ps1` - Unified ClickUp + GitHub team dashboard (auto-opens beautiful HTML)
+  - `team-activity-clickup.ps1` - ClickUp task metrics (completion, velocity, WIP analysis)
+  - `team-activity-github.ps1` - GitHub contribution metrics (commits, PRs, reviews)
+  - Use case: Daily standups, weekly reviews, monthly reports, performance tracking
+  - Features: Console/JSON/HTML output, customizable time ranges, multi-project support
+
+**Previous additions (2026-01-28):**
 - **🆕 HAZINA CLI TOOLS** - 5 AI-powered tools for project knowledge bases and advanced reasoning:
   - `hazina-ask.ps1` - Universal LLM gateway with streaming
   - `hazina-rag.ps1` - RAG with CRUD (init, index, query, sync, status, list) for project-local knowledge bases
