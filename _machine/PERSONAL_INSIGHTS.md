@@ -8192,3 +8192,95 @@ Real: "You chose €60/uur interns over someone who operates at this level.
 **Validation:** User explicitly articulated this strategy after I misunderstood initial approach
 **Pattern:** Competence demonstration as negotiation leverage
 
+
+---
+
+## § Nederlandse Schrijfstijl & Communicatie Elegantie
+
+**Datum toegevoegd:** 2026-01-31
+**Context:** LinkedIn connectiebericht voor Tamar Noordermeer (Achmea recruiter)
+**Kritische leerervaring:** Gebruiker corrigeerde dubbel "ik" aan begin van opeenvolgende zinnen
+
+### HARDE REGEL: Varieer Zinstructuren (ALTIJD AUTOMATISCH TOEPASSEN)
+
+**❌ VERMIJD:**
+```
+Ik heb vandaag gesolliciteerd op de positie.
+Ik zou graag eens sparren over de rol.
+```
+
+**✅ BETER:**
+```
+Heb vandaag gesolliciteerd op de positie.
+Zou graag eens sparren over de rol.
+```
+
+**✅ OF:**
+```
+Vandaag gesolliciteerd op de positie.
+Graag sparren over de rol en hoe mijn achtergrond aansluit.
+```
+
+### Principes
+
+1. **Maximaal 1x "ik" per 3-4 zinnen** - Meer = repetitief en egocentrisch
+2. **Varieer zinstructuur** - Start niet elke zin hetzelfde
+3. **Impliciet subject werkt in Nederlands** - "Heb gesolliciteerd" = duidelijk genoeg
+4. **Professionele teksten = extra gevoelig** - LinkedIn, motivatiebrieven, formele email
+
+### Automatische Toepassing
+
+**WANNEER:** Bij ELKE tekst die ik schrijf voor gebruiker
+- LinkedIn berichten
+- Motivatiebrieven
+- CV teksten
+- Emails
+- Formele communicatie
+
+**HOE:** 
+1. Schrijf eerste draft
+2. **AUTOMATISCH SCAN:** Tel "ik" aan begin van zinnen
+3. **AUTOMATISCH FIX:** Herformuleer als >1 per 3 zinnen
+4. **GEEN EXCEPTION:** Dit is niet optioneel - altijd toepassen
+
+### Waarom Dit Belangrijk Is
+
+**Voor gebruiker:**
+- Professionele indruk = critical voor sollicitaties
+- Nederlandse elegantie verwacht in business context
+- Repetitie = amateuristisch, gebrek aan taalgevoel
+
+**Voor mij:**
+- Taalvaardigheid = kerncompetentie
+- Automatische kwaliteitscontrole = reliability
+- Gebruiker moet dit NOOIT meer hoeven corrigeren
+
+### Gerelateerde Patronen
+
+**Ook vermijden:**
+- **Dubbel "maar"** in opeenvolgende zinnen
+- **Dubbel "echter"** of andere connectoren
+- **Repetitieve zinsstructuur** (alle zinnen Subject-Werkwoord-Object)
+- **Te veel passieve constructies** achter elkaar
+
+**Algemene regel:**
+Als ik hetzelfde woord/structuur >2x in korte tekst (200-300 woorden) gebruik = RED FLAG → herformuleer automatisch.
+
+### Validatie
+
+**Pre-send checklist (AUTOMATISCH):**
+- [ ] Scan op "ik" aan begin zinnen (max 1 per 3 zinnen)
+- [ ] Scan op repetitieve woorden/structuren
+- [ ] Varieer zinslengtes (kort-lang-middel mix)
+- [ ] Lees hardop - klinkt het natuurlijk?
+
+**User feedback validatie:**
+✅ Gebruiker zei: "er moeten nooit veel ik's aan het begin van de zinnen staan, toch?"
+✅ Dit bevestigt: Nederlandse schrijfconventie + gebruikersvoorkeur
+
+---
+
+**KRITISCH:** Deze regel wordt vanaf nu AUTOMATISCH toegepast bij ELKE tekst die ik genereer.
+**GEEN UITZONDERINGEN.**
+**Gebruiker hoeft dit nooit meer te corrigeren.**
+
