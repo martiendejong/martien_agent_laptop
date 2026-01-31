@@ -31,6 +31,7 @@ C:\
 ├── scripts\                # Control plane & tooling (THIS REPOSITORY)
 ├── stores\                 # Application data & configurations
 ├── backups\                # Backup storage
+├── martien_cv\             # CV & job application materials (personal)
 ├── Temp\                   # Temporary files
 └── [other system dirs]     # Windows system directories
 ```
@@ -304,6 +305,73 @@ C:\backups\
 - Automated nightly backups via `setup-backup-schedule.ps1`
 - Manual backups via `backup-restore.ps1`
 - Target: brand2boost store, machine state, critical configs
+
+---
+
+## 📄 C:\martien_cv - CV & Job Application Materials
+
+**Purpose:** Centralized repository for professional CV, portfolio, and job application materials.
+
+### Directory Structure
+
+```
+C:\martien_cv\
+├── README.md                                  # Overview and index
+├── cv.pdf                                     # Current CV (1.2MB)
+├── Martien de Jong - Teamlead Development CV.pdf  # Formatted CV
+├── CV_INSIGHTS.md                             # Key facts and differentiators
+├── PERSONALITY_PROFILE.md                     # Job application strategy guide
+├── SUMMARY.md                                 # Complete overview
+├── APPLICATION_INDEX.md                       # Application tracking
+├── personal_info\
+│   ├── professional_summary.md                # Professional overview
+│   └── contact_and_background.md              # Contact info, personal background
+├── projects\
+│   ├── technical_portfolio.md                 # Detailed project specifications
+│   └── all_platforms.md                       # All 5 platforms + enterprise systems
+├── market_intelligence\                       # Job market research (2026)
+│   ├── README.md                              # Quick reference
+│   ├── company_intelligence_2026.md           # Target companies
+│   ├── job_market_intelligence_2026.md        # Salaries, trends
+│   └── ai_market_trends_2026.md               # Industry landscape
+├── videos\
+│   ├── hazina_revolutionary_arguments.md      # Industry validation
+│   └── youtube_search_recommendations.md      # Content strategy
+├── anthropic_application\                     # Anthropic job application
+│   ├── README.md                              # Application overview
+│   ├── V4_CV.pdf                              # Final CV version
+│   ├── V4_LETTER.pdf                          # Final cover letter
+│   └── [40+ planning/iteration files]
+├── microsoft_application\                     # Microsoft job application
+├── applications\                              # Other applications
+│   └── brainpink_teamlead_cv.md
+├── pdf_templates\                             # PDF generation templates
+└── assets\                                    # Profile photos, logos
+```
+
+### Key Files
+- **Current CV:** `cv.pdf` (1.2MB, comprehensive)
+- **Insights:** `CV_INSIGHTS.md` - verified facts, technical depth, key differentiators
+- **Professional Summary:** `personal_info/professional_summary.md` - 20+ years experience, expertise areas
+- **Market Intelligence:** `market_intelligence/` - 2026 job market data, salaries, trends
+
+### Contents Summary
+- **Experience:** 20+ years software engineering, enterprise clients (Kadaster, Thales, VWPFS, healthcare)
+- **Current Role:** Founder & Technical Lead at Prospergenics (Dec 2021 - Present)
+- **Key Projects:** Hazina Framework (open source), Brand2Boost (SaaS), 15 developers trained (Kenya)
+- **Expertise:** LLM orchestration, RAG systems, .NET architecture, AI-assisted development tooling
+- **Education:** WO Computer Science (Hogeschool Windesheim, 2002-2006), 20+ certifications
+
+### Naming Conventions
+- **Applications:** `{company}_application/` subdirectories
+- **Versions:** `V1_`, `V2_`, `V3_`, `V4_` prefixes for iterations
+- **Documents:** Descriptive names in markdown and PDF
+
+### Storage Notes
+- PDFs are large (cv.pdf = 1.2MB)
+- Contains sensitive personal information
+- Multiple application iterations preserved for learning
+- Market intelligence updated regularly (2026 data current)
 
 ---
 

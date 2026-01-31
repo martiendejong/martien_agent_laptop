@@ -1,0 +1,11 @@
+﻿# Meta-Prediction Recursive Configuration
+# Target: 5-10 layers deep
+
+meta_depth_config:
+  max_depth: 10
+  min_information_gain: 0.01
+  typical_depth: 5-7
+
+quantum_observer_effects:
+  enabled: true
+  track_state_changes: true
