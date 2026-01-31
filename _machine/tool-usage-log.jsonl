@@ -153,3 +153,5 @@
 {"Action":"execute","Timestamp":"2026-01-30 23:24:07","Metadata":{"Parameters":"Prompt,OutputPath,Quality,Size"},"User":"HP","Tool":"ai-image","Session":9112}
 {"Action":"execute","Timestamp":"2026-01-30 23:24:07","Metadata":{"Parameters":"Mode,Size,OutputPath,Provider,Prompt,Quality"},"User":"HP","Tool":"ai-image-universal","Session":9112}
 {"Action":"execute","Timestamp":"2026-01-30 23:24:07","Metadata":{"Parameters":"Size,Model,ApiKey,Quality,OutputPath,Prompt,Style,Mode"},"User":"HP","Tool":"generate-image-advanced","Session":9112}
+{"Action":"execute","Timestamp":"2026-01-31 12:56:35","Metadata":{"Parameters":"Repo,Branch,Paired"},"User":"HP","Tool":"worktree-allocate","Session":21976}
+{"Action":"execute","Timestamp":"2026-01-31 12:56:43","Metadata":{"Parameters":"Repo,Branch"},"User":"HP","Tool":"worktree-allocate","Session":27020}
