@@ -109,137 +109,61 @@ function Index-Documentation {
         return
     }
 
-    # Find all documentation files
-    $docFiles = @()
+    # Key directories to index
+    $directoriesToIndex = @(
+        $ProjectPath  # Root (will get all README files)
+    )
 
-    # README files
-    $docFiles += Get-ChildItem -Path $ProjectPath -Filter "README*.md" -Recurse -ErrorAction SilentlyContinue
-
-    # Docs directory
+    # Add docs directory if exists
     $docsPath = Join-Path $ProjectPath "docs"
     if (Test-Path $docsPath) {
-        $docFiles += Get-ChildItem -Path $docsPath -Filter "*.md" -Recurse -ErrorAction SilentlyContinue
+        $directoriesToIndex += $docsPath
     }
 
-    # API documentation
+    # Add ClientManagerAPI docs if exists
     $apiDocsPath = Join-Path $ProjectPath "ClientManagerAPI\docs"
     if (Test-Path $apiDocsPath) {
-        $docFiles += Get-ChildItem -Path $apiDocsPath -Filter "*.md" -Recurse -ErrorAction SilentlyContinue
+        $directoriesToIndex += $apiDocsPath
     }
 
-    # Common issues / FAQ
-    $faqFiles = Get-ChildItem -Path $ProjectPath -Filter "*FAQ*.md" -Recurse -ErrorAction SilentlyContinue
-    $docFiles += $faqFiles
+    Write-Host "Indexing $($directoriesToIndex.Count) key directories..." -ForegroundColor Yellow
+    Write-Host ""
 
-    Write-Host "Found $($docFiles.Count) documentation files to index" -ForegroundColor Yellow
+    foreach ($dir in $directoriesToIndex) {
+        Write-Host "  Directory: $dir" -ForegroundColor Cyan
 
-    if ($docFiles.Count -eq 0) {
-        Write-Host "WARNING: No documentation files found" -ForegroundColor Yellow
-        Write-Host "Creating sample FAQ to get started..."
+        # Count markdown files
+        $mdFiles = Get-ChildItem -Path $dir -Filter "*.md" -File -ErrorAction SilentlyContinue
+        Write-Host "    Found: $($mdFiles.Count) markdown files" -ForegroundColor Gray
 
-        # Create sample FAQ
-        $sampleFaqPath = Join-Path $ProjectPath "docs\FAQ.md"
-        $sampleFaqDir = Split-Path $sampleFaqPath -Parent
-
-        if (-not (Test-Path $sampleFaqDir)) {
-            New-Item -ItemType Directory -Path $sampleFaqDir -Force | Out-Null
+        if ($mdFiles.Count -eq 0) {
+            Write-Host "    Skipping (no files)" -ForegroundColor Yellow
+            continue
         }
-
-        $sampleContent = @"
-# Client Manager FAQ
-
-## Authentication
-
-### How do I reset my password?
-1. Go to the login page
-2. Click "Forgot Password"
-3. Enter your email address
-4. Check your email for reset link
-5. Click link and create new password
-
-### Why can't I log in?
-Common causes:
-- Incorrect email/password
-- Account not activated (check email)
-- Browser cookies disabled
-- Caps Lock enabled
-
-## Billing
-
-### How do I update my payment method?
-1. Log into your account
-2. Go to Settings > Billing
-3. Click "Update Payment Method"
-4. Enter new card details
-5. Save changes
-
-### When will I be charged?
-- Monthly plans: Same day each month
-- Annual plans: Once per year on sign-up anniversary
-- Invoices sent 3 days before charge
-
-## Features
-
-### How do I add team members?
-1. Go to Settings > Team
-2. Click "Invite Member"
-3. Enter their email address
-4. Choose their role (Admin, Editor, Viewer)
-5. Click Send Invitation
-
-### Can I export my data?
-Yes! Go to Settings > Data Export
-- Export formats: CSV, JSON, PDF
-- Full data export within 24 hours
-- Sent to your email address
-
-## Support
-
-### How do I contact support?
-- Email: support@brand2boost.com
-- Response time: Within 24 hours
-- Priority support: Strategic Partners (<4 hours)
-
-### Where can I find tutorials?
-- Help Center: help.brand2boost.com
-- Video tutorials: youtube.com/brand2boost
-- Documentation: docs.brand2boost.com
-"@
-
-        Set-Content -Path $sampleFaqPath -Value $sampleContent -Encoding UTF8
-        Write-Host "Created sample FAQ: $sampleFaqPath" -ForegroundColor Green
-
-        $docFiles = @(Get-Item $sampleFaqPath)
-    }
-
-    # Index each file
-    Write-Host "`nIndexing files..." -ForegroundColor Yellow
-
-    foreach ($file in $docFiles) {
-        Write-Host "  Indexing: $($file.Name)" -ForegroundColor Gray
 
         try {
-            # Index this file into Hazina RAG
-            & $HazinaRagTool -Action index `
-                -StoreName $StorePath `
-                -FilePath $file.FullName
+            # Index this directory
+            Write-Host "    Indexing..." -ForegroundColor Gray
+            & $HazinaRagTool -Action index -StoreName $StorePath -Path $dir
 
-            Write-Log "Indexed: $($file.FullName)"
+            Write-Log "Indexed directory: $dir ($($mdFiles.Count) files)"
+            Write-Host "    SUCCESS" -ForegroundColor Green
         }
         catch {
-            Write-Host "    ERROR: Failed to index $($file.Name)" -ForegroundColor Red
-            Write-Log "Failed to index $($file.FullName): $_" "ERROR"
+            Write-Host "    ERROR: $_" -ForegroundColor Red
+            Write-Log "Failed to index $dir: $_" "ERROR"
         }
+
+        Write-Host ""
     }
 
-    Write-Host "`nIndexing complete!" -ForegroundColor Green
-    Write-Host "Total files indexed: $($docFiles.Count)" -ForegroundColor Cyan
+    Write-Host "Indexing complete!" -ForegroundColor Green
 
     # Get store status
     Write-Host "`nStore status:" -ForegroundColor Yellow
     & $HazinaRagTool -Action status -StoreName $StorePath
 
-    Write-Log "Indexing complete: $($docFiles.Count) files"
+    Write-Log "Indexing complete"
 
     Write-Host "`nNext step: Run with -Action test to test the bot"
 }
