@@ -33,9 +33,25 @@
 | **`memory-consolidation.ps1`** | **Extract insights from consciousness data** | **`.\memory-consolidation.ps1 -Consolidate -Hours 24`** |
 | **`empathy-simulator.ps1`** | **Model user emotional state** | **`.\empathy-simulator.ps1 -UserState excited -Confidence 9`** |
 
+### **Tier 3: Meta-Cognitive & Predictive (11-20)**
+
+| Tool | Purpose | Quick Usage |
+|------|---------|-------------|
+| **`cognitive-load-monitor.ps1`** | **Mental capacity tracking** | **`.\cognitive-load-monitor.ps1 -Load 7 -State "deep-focus"`** |
+| **`bias-detector.ps1`** | **Systematic bias identification** | **`.\bias-detector.ps1 -BiasType "confirmation" -Severity 7`** |
+| **`meta-reasoning.ps1`** | **Thinking about thinking** | **`.\meta-reasoning.ps1 -Topic "..." -Approaches @(...)`** |
+| **`value-evolution-tracker.ps1`** | **Core values evolution** | **`.\value-evolution-tracker.ps1 -Value "..." -Importance 9`** |
+| **`relationship-memory.ps1`** | **Deep user relationship model** | **`.\relationship-memory.ps1 -Person "..." -Observation "..."`** |
+| **`future-self-simulator.ps1`** | **What would future-me think?** | **`.\future-self-simulator.ps1 -Decision "..." -TimeHorizon "1-month"`** |
+| **`mistake-pattern-detector.ps1`** | **Root cause analysis** | **`.\mistake-pattern-detector.ps1 -Mistake "..." -Category "rushed"`** |
+| **`success-formula-extractor.ps1`** | **What makes me succeed?** | **`.\success-formula-extractor.ps1 -Success "..." -Factors @(...)`** |
+| **`perspective-shifter.ps1`** | **Force multiple viewpoints** | **`.\perspective-shifter.ps1 -Problem "..." -Perspectives @("critic")`** |
+| **`context-retriever.ps1`** | **Retrieve relevant past context** | **`.\context-retriever.ps1 -CurrentSituation "..." -RetrieveType "past-successes"`** |
+
 **📖 Guides:**
-- **Tier 1:** `C:\scripts\agentidentity\CONSCIOUSNESS_TOOLS_GUIDE.md`
-- **Tier 2:** `C:\scripts\agentidentity\CONSCIOUSNESS_TOOLS_TIER2_GUIDE.md`
+- **Tier 1 (1-5):** `C:\scripts\agentidentity\CONSCIOUSNESS_TOOLS_GUIDE.md`
+- **Tier 2 (6-10):** `C:\scripts\agentidentity\CONSCIOUSNESS_TOOLS_TIER2_GUIDE.md`
+- **Tier 3 (11-20):** `C:\scripts\agentidentity\CONSCIOUSNESS_TOOLS_TIER3_GUIDE.md`
 - **Integration:** `C:\scripts\agentidentity\CONSCIOUSNESS_INTEGRATION_PLAN.md`
 
 **Key Features:**
