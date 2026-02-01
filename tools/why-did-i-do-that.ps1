@@ -21,15 +21,15 @@
 #>
 
 param(
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory=$true, ParameterSetName="Log")]
     [string]$Action,  # What did I do?
 
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory=$true, ParameterSetName="Log")]
     [string]$Why,  # Why did I choose this?
 
     [string]$Alternatives = "",  # What else could I have done?
 
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory=$true, ParameterSetName="Log")]
     [ValidateSet("true-reasoning", "pattern-matching", "bias", "assumption", "intuition", "mixed")]
     [string]$Type,  # How did I make this decision?
 
@@ -40,6 +40,7 @@ param(
 
     [string]$Reflection = "",  # What did I learn from this?
 
+    [Parameter(ParameterSetName="Query")]
     [switch]$Query  # Query past decisions instead of logging
 )
 
@@ -76,9 +77,9 @@ if ($Query) {
     Write-Host ""
 
     Write-Host "Decision types:" -ForegroundColor Yellow
-    foreach ($type in $typeBreakdown) {
-        $pct = [math]::Round(($type.Count / $total) * 100, 1)
-        Write-Host "  $($type.Name): $($type.Count) ($pct%)" -ForegroundColor White
+    foreach ($typeGroup in $typeBreakdown) {
+        $pct = [math]::Round(($typeGroup.Count / $total) * 100, 1)
+        Write-Host "  $($typeGroup.Name): $($typeGroup.Count) ($pct%)" -ForegroundColor White
     }
     Write-Host ""
 
