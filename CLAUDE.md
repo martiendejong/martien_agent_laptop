@@ -946,10 +946,11 @@ done
 | **`hazina-agent.ps1`** | **🆕 HAZINA CLI: Tool-calling agent for complex tasks** | `hazina-agent.ps1 "Analyze this codebase" -MaxSteps 20` |
 | **`hazina-reason.ps1`** | **🆕 HAZINA CLI: Multi-layer reasoning with confidence** | `hazina-reason.ps1 "Is this migration safe?" -MinConfidence 0.9` |
 | **`hazina-longdoc.ps1`** | **🆕 HAZINA CLI: Process massive documents (10M+ tokens)** | `hazina-longdoc.ps1 "src/" "What is the architecture?"` |
+| **`prompt-evolver.ps1`** | **🆕 ADVANCED: Hybrid genetic algorithm for prompt optimization** | `prompt-evolver.ps1 -TestCasesPath "cases.json"` |
 
 **Full documentation:** [tools/README.md](./tools/README.md) | [tools/HAZINA_CLI_GUIDE.md](./tools/HAZINA_CLI_GUIDE.md)
 
-**🎉 MILESTONE: 139 tools implemented! (47 original + 54 recommended + 6 Wave 1 + 10 Wave 2 + 2 custom + 2 UI automation + 4 fact verification + 4 session recovery + 5 Hazina CLI + 5 team reporting)**
+**🎉 MILESTONE: 140 tools implemented! (47 original + 54 recommended + 6 Wave 1 + 10 Wave 2 + 2 custom + 2 UI automation + 4 fact verification + 4 session recovery + 5 Hazina CLI + 5 team reporting + 1 advanced AI)**
 
 **Latest additions (2026-01-31):**
 - **🆕 TEAM ACTIVITY REPORTING** - 5 tools for instant team performance dashboards:
@@ -962,6 +963,15 @@ done
   - Features: Console/JSON/HTML output, customizable time ranges, multi-project support, automatic task correlation, actual work filtering
 
 **Latest additions (2026-02-01):**
+- **🆕 PROMPT EVOLUTION (GENETIC ALGORITHMS)** - Hybrid AI-powered prompt optimization:
+  - **Tool:** `prompt-evolver.ps1` - Evolve optimal prompts using genetic algorithms
+  - **Phase 1:** Component-based evolution (fast, cheap) - 20 generations exploring combinations
+  - **Phase 2:** LLM-assisted refinement (powerful) - Top candidates polished by LLM
+  - **Use cases:** RAG optimization, email summarization, code review consistency
+  - **Cost:** ~$0.21-$2.10 per evolution run (~2000 LLM calls)
+  - **Output:** Measurable fitness scores + evolved prompt you wouldn't think of manually
+  - **Status:** Built, tested, ready to use when needed (expensive but valuable for production optimization)
+  - Full docs: [tools/prompt-evolution/README.md](./tools/prompt-evolution/README.md) | [tools/prompt-evolution/QUICKSTART.md](./tools/prompt-evolution/QUICKSTART.md)
 - **🆕 KNOWLEDGE NETWORK** - Persistent RAG-indexed external memory system:
   - **Location:** `C:\scripts\my_network\` (8 files, 273 chunks indexed)
   - **Capabilities:** What I can do (AI, UI control, debugging, worktrees, etc.)
