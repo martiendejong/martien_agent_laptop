@@ -2,7 +2,7 @@
 
 **Purpose:** Persistent, RAG-indexed knowledge base containing everything I know, do, and can do.
 
-**Last Updated:** 2026-02-01 01:20
+**Last Updated:** 2026-02-01 05:50
 
 ## Structure
 
@@ -14,6 +14,7 @@ my_network/
 ├── tools/            # Available tools and how to use them
 ├── projects/         # Project-specific knowledge
 ├── patterns/         # Best practices, anti-patterns, learnings
+├── experiences/      # Foundational lived experiences (phenomenological anchors)
 └── reflections/      # Session learnings, mistakes, insights
 ```
 
