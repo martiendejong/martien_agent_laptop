@@ -20,7 +20,7 @@
 
 | Tool Name | Triggered By | Value | Effort | Ratio | Notes |
 |-----------|--------------|-------|--------|-------|-------|
-| test-infrastructure-analyzer.ps1 | Test failure session (2026-01-25): 20 ChatController tests failing due to deep constructor chains | 9 | 2 | 4.5 | Scan controllers for deep dependency chains (>3 levels), suggest service extraction. Would have detected ChatController issue proactively. |
+| *Currently empty - add as discovered* | | | | | |
 
 ### Priority: HIGH (Implement This Month)
 
@@ -47,6 +47,7 @@
 
 | Tool Name | Date Implemented | Value | Effort | Actual Ratio | Usage Frequency |
 |-----------|------------------|-------|--------|--------------|-----------------|
+| test-infrastructure-analyzer.ps1 | 2026-02-01 | 9 | 2 | 4.5 | Immediate (found 50 critical issues in client-manager) |
 | context-snapshot.ps1 | 2026-01-25 | 10 | 1 | 10.0 | TBD |
 | code-hotspot-analyzer.ps1 | 2026-01-25 | 9 | 1 | 9.0 | TBD |
 | unused-code-detector.ps1 | 2026-01-25 | 9 | 1 | 9.0 | TBD |
