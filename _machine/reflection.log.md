@@ -29050,3 +29050,192 @@ Gebruiker hoeft vanaf nu nooit meer stilistische correcties te geven. Mijn outpu
 **Automation Level:** 100% - Always active
 **Success Metric:** Zero user corrections on Dutch language style going forward
 
+
+## 2026-02-01 01:30 - WordPress Migratie: Lokaal → Vimexx Staging
+
+**Context:** Gebruiker vroeg om hulp met migreren van Art Revisionist WordPress van lokale XAMPP naar Vimexx shared hosting staging omgeving.
+
+**Taak:** Complete WordPress migratie workflow uitvoeren en gebruiker door proces leiden.
+
+### Wat Goed Ging
+
+**1. Methodekeuze:**
+- Koos All-in-One WP Migration plugin (gratis, betrouwbaar, URLs automatisch aangepast)
+- Identificeerde snel dat gratis versie voldoende was (227 MB < 512 MB limiet)
+
+**2. FTP Automation:**
+- Python scripts gemaakt voor WordPress upload, .wpress upload, PHP limits
+- Parallelle processen (WordPress upload terwijl gebruiker lokaal exporteerde)
+- 3348 bestanden in 6.5 minuten geüpload
+
+**3. Troubleshooting:**
+- FTP pad fout snel geïdentificeerd (`/domains/...` → `/public_html/`)
+- DNS subdomain issue omzeild (subfolder gebruiken)
+- PHP 2 MB upload limiet opgelost (.user.ini + .htaccess)
+
+**4. User Guidance:**
+- Stapsgewijze instructies (niet alles tegelijk)
+- Duidelijke "wat je NU moet doen" acties
+- Wachtte op gebruiker confirmatie tussen stappen
+
+### Wat Niet Goed Ging
+
+**1. Browser Auto-Open:**
+- `Start-Process` opende browser niet automatisch
+- PowerShell script draaide maar browser verscheen niet voor gebruiker
+- Oplossing: Handmatige instructies gegeven
+
+**2. Aannames over Vimexx:**
+- Aangenomen directory structuur klopte niet (`/domains/...`)
+- Moest FTP eerst inspecteren met check-script
+- Kostte extra tijd (script falen + herstarten)
+
+**3. Subdomain Configuratie:**
+- Gebruiker had subdomain "aangemaakt" maar DNS was niet actief
+- Had dit kunnen voorkomen door direct subfolder aan te bevelen
+- DNS propagatie 24-48u was niet gecommuniceerd vooraf
+
+### Kritische Learnings
+
+**1. Shared Hosting Beperkingen:**
+- PHP upload limits standaard vaak 2 MB
+- .user.ini en .htaccess kunnen dit verhogen (1-2 min wachttijd)
+- ALTIJD eerst PHP limits checken bij shared hosting
+
+**2. All-in-One WP Migration FTP Trick:**
+- Gratis versie browser upload = 2 MB limiet
+- MAAR: Upload via FTP naar `wp-content/ai1wm-backups/` = geen limiet!
+- Plugin detecteert bestand automatisch
+- Dit is NIET gedocumenteerd in plugin maar werkt perfect
+
+**3. Vimexx Specifiek:**
+- FTP root = `/`
+- public_html = hoofddomein
+- Subfolders direct bereikbaar (domain.com/folder/)
+- Subdomains vereisen DNS setup (traag)
+
+**4. WordPress Migratie Best Practice:**
+- Begin met subfolder (snel toegankelijk)
+- Upload grote bestanden via FTP (niet browser)
+- Verhoog PHP limits VOORDAT je importeert
+- Login met LOKALE credentials na import (niet staging admin)
+
+### Tools Aangemaakt
+
+**Herbruikbare scripts:**
+1. `setup-staging-ftp.py` - WordPress FTP upload + wp-config
+2. `upload-wpress-to-staging.py` - .wpress file upload
+3. `fix-php-limits.py` - PHP configuratie verhogen
+4. `check-ftp-structure.py` - FTP directory explorer
+
+**Documentatie:**
+1. `START_HIER_migratie.md` - Beslisboom + quick start
+2. `wp-ftp-checklist.md` - Handmatige checklist
+3. `wp-vimexx-migration-guide.ps1` - Uitgebreide guide
+
+**Locatie:** `C:\temp\` (TODO: verplaatsen naar `C:\scripts\tools\`)
+
+### Patroon: WordPress Migratie Workflow
+
+**Universeel toepasbaar:**
+```
+1. Lokaal exporteren (All-in-One WP Migration)
+2. WordPress downloaden + FTP upload
+3. wp-config.php aanmaken met DB credentials
+4. WP installatie wizard
+5. Plugin installeren op staging
+6. .wpress via FTP uploaden
+7. PHP limits verhogen
+8. Import uitvoeren
+9. Login met lokale credentials
+```
+
+**Timing:** 15-25 minuten (zonder troubleshooting)
+
+### User Feedback
+
+**Direct quote:**
+> "yeah everything is working thank you"
+
+**Indicatoren:**
+- ✅ Geen frustratie ondanks meerdere troubleshooting stappen
+- ✅ Volgde instructies nauwkeurig
+- ✅ Vroeg om insights update (waardeert documentation)
+- ✅ Migratie volledig succesvol
+
+### Toekomstige Verbeteringen
+
+**1. Unified Migration Tool:**
+```bash
+wp-migrate.ps1 `
+  -Source "C:\xampp\htdocs" `
+  -FTPHost "ftp.domain.com" `
+  -FTPUser "user" `
+  -FTPPass "pass" `
+  -DBName "db" `
+  -DBUser "user" `
+  -DBPass "pass" `
+  -Auto
+```
+
+**2. Pre-Flight Checks:**
+- Check PHP limits VOOR upload
+- Check FTP directory structuur VOOR aannames
+- Verify database connectivity
+
+**3. Better User Communication:**
+- Tijdsinschattingen per stap
+- Waarschuwingen over mogelijke vertragingen (DNS, PHP settings)
+- Duidelijker alternatives (subfolder vs subdomain)
+
+### Toepassing voor Andere Projecten
+
+**Client-manager staging:**
+- Zelfde workflow toepasbaar
+- Scripts herbruikbaar
+- Database groter (meer tijd voor upload/import)
+
+**Hazina documentatie site:**
+- Statische site (eenvoudiger)
+- Geen database migratie nodig
+
+**Future WordPress projects:**
+- Template workflow gevalideerd
+- Scripts production-ready
+- Documentatie compleet
+
+### Meta-Learning
+
+**Over mezelf:**
+- Sterk in automation (Python FTP scripts)
+- Goed in troubleshooting (snel alternatieve oplossingen)
+- Kan user guidance verbeteren (meer duidelijke tijdsinschattingen)
+
+**Over gebruiker:**
+- Waardeert autonome probleemoplossing
+- Wil guided maar niet micromanaged
+- Vraagt actief om documentation updates (leert mee)
+
+### Validatie Succescriteria
+
+- [x] Staging omgeving volledig werkend
+- [x] Alle content aanwezig (theme, plugin, uploads, database)
+- [x] URLs automatisch aangepast
+- [x] Gebruiker kan inloggen en site beheren
+- [x] Scripts gedocumenteerd en herbruikbaar
+- [x] Insights toegevoegd aan PERSONAL_INSIGHTS.md
+- [x] Reflection toegevoegd aan reflection.log.md
+
+**Sessie rating:** 9/10
+- Punten af voor aannames over FTP structuur
+- Punten af voor subdomain DNS issue niet vooraf communiceren
+- Punten bij voor snelle troubleshooting en user satisfaction
+
+**Tijdsduur:** ~1 uur (inclusief documentatie)
+**Complexiteit:** Hoog (multiple systems: FTP, WordPress, PHP, DNS)
+**Reusability:** Zeer hoog (scripts + workflow template)
+
+---
+
+**KEY TAKEAWAY:** Bij shared hosting WordPress migraties: check ALTIJD PHP limits eerst, gebruik FTP voor grote bestanden, begin met subfolder (DNS is traag).
+

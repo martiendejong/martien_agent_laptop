@@ -8284,3 +8284,232 @@ Als ik hetzelfde woord/structuur >2x in korte tekst (200-300 woorden) gebruik = 
 **GEEN UITZONDERINGEN.**
 **Gebruiker hoeft dit nooit meer te corrigeren.**
 
+
+---
+
+## 🌐 WordPress Migratie: XAMPP Lokaal → Vimexx Staging (2026-02-01)
+
+**Datum toegevoegd:** 2026-02-01
+**Context:** Complete WordPress migratie van Art Revisionist van lokale XAMPP naar Vimexx shared hosting staging omgeving
+**Resultaat:** ✅ Succesvolle migratie in ~1 uur (inclusief troubleshooting)
+
+### Workflow Samenvatting
+
+**Stappen uitgevoerd:**
+1. ✅ All-in-One WP Migration plugin geïnstalleerd lokaal (via WP-CLI)
+2. ✅ Export gemaakt (.wpress bestand, 261 MB)
+3. ✅ WordPress gedownload en uitgepakt
+4. ✅ Via FTP geüpload naar `/public_html/staging` (3348 bestanden, 6.5 min)
+5. ✅ `wp-config.php` aangemaakt met database credentials
+6. ✅ WordPress installatie wizard voltooid
+7. ✅ All-in-One WP Migration plugin geïnstalleerd op staging
+8. ✅ .wpress bestand via FTP geüpload naar `wp-content/ai1wm-backups/`
+9. ✅ PHP upload limits verhoogd (2 MB → 512 MB via .user.ini)
+10. ✅ Import succesvol voltooid
+
+### Kritische Learnings
+
+#### 1. All-in-One WP Migration Plugin Beperkingen
+
+**Gratis versie:**
+- ✅ Export: Unlimited grootte
+- ⚠️ Import browser upload: 2 MB limiet (server afhankelijk)
+- ✅ Import via FTP: Geen limiet!
+
+**Oplossing voor grote imports (>2 MB):**
+1. Upload .wpress bestand via FTP naar `wp-content/ai1wm-backups/`
+2. Bestand verschijnt automatisch in plugin interface
+3. Selecteer en importeer zonder upload limiet
+
+**Betaalde versie ($69/jaar):**
+- Unlimited import size via browser
+- Extra extensions (Dropbox, Google Drive, etc.)
+- NIET nodig als je FTP access hebt
+
+#### 2. PHP Upload Limits Verhogen (Shared Hosting)
+
+**Probleem:** Server default = 2 MB upload_max_filesize
+
+**Oplossingen (in volgorde van voorkeur):**
+
+**A. Via .user.ini (werkt op de meeste shared hosting):**
+```ini
+upload_max_filesize = 512M
+post_max_size = 512M
+max_execution_time = 600
+max_input_time = 600
+memory_limit = 512M
+```
+
+**B. Via .htaccess (werkt als mod_php actief is):**
+```apache
+php_value upload_max_filesize 512M
+php_value post_max_size 512M
+php_value max_execution_time 600
+php_value max_input_time 600
+php_value memory_limit 512M
+```
+
+**C. Hosting provider vragen:**
+- Als bovenstaande niet werkt
+- Sommige providers hebben strikte limits
+
+**BELANGRIJK:** Wacht 1-2 minuten na upload voordat settings actief worden!
+
+#### 3. Vimexx FTP Directory Structuur
+
+**Fout aanname:**
+```
+/domains/artrevisionist.com/public_html/  ❌ BESTAAT NIET
+```
+
+**Correcte structuur:**
+```
+/                          (FTP root)
+├── public_html/          ← Hoofddomein root
+│   ├── staging/         ← Staging subdomain/folder
+│   └── ...
+├── logs/
+└── awstats/
+```
+
+**Staging toegang:**
+- Via subfolder: `http://artrevisionist.com/staging/` ✅ Direct werkend
+- Via subdomain: `https://staging.artrevisionist.com/` ⚠️ DNS propagatie 24-48u
+
+**Tip:** Begin altijd met subfolder voor snelle toegang, configureer subdomain later.
+
+#### 4. WordPress Staging Migratie Best Practices
+
+**Voorbereiding lokaal:**
+1. Check grootte: `du -sh /xampp/htdocs/wp-content` (227 MB voor Art Revisionist)
+2. Installeer All-in-One WP Migration plugin
+3. Maak export (via browser of WP-CLI)
+4. Download .wpress bestand
+
+**Server setup:**
+1. Download WordPress latest.zip
+2. Upload via FTP (sneller dan 1-click installer vaak)
+3. Maak wp-config.php met database credentials
+4. Run installatie wizard (dummy admin, wordt overschreven)
+
+**Import:**
+1. Installeer All-in-One WP Migration plugin
+2. Upload .wpress via FTP naar `wp-content/ai1wm-backups/`
+3. Verhoog PHP limits (indien nodig)
+4. Import via plugin interface
+5. Login met LOKALE credentials (niet staging admin)
+
+**Tijdsinschatting:**
+- WordPress upload: 5-10 min (via FTP)
+- .wpress upload: 3-5 min (261 MB)
+- Import: 3-5 min
+- **Totaal: 15-25 minuten** (exclusief troubleshooting)
+
+#### 5. Python FTP Automation
+
+**Scripts gemaakt:**
+- `setup-staging-ftp.py` - Volledige WordPress upload + wp-config aanmaken
+- `upload-wpress-to-staging.py` - .wpress bestand upload
+- `fix-php-limits.py` - .user.ini en .htaccess upload
+
+**Voordelen automation:**
+- Parallelle uploads mogelijk
+- Progress tracking
+- Foutafhandeling
+- Herbruikbaar voor andere sites
+
+**Python ftplib tips:**
+- Gebruik `storbinary()` voor binaire bestanden
+- Callbacks voor progress tracking
+- `SITE CHMOD` voor permissions (niet alle servers ondersteunen)
+- Recursieve directory upload met `mkd()` en `cwd()`
+
+#### 6. Troubleshooting Patronen
+
+**DNS niet bereikbaar:**
+- Gebruik subfolder: `domain.com/staging/`
+- Check FTP directory structuur
+- Verifieer subdomain configuratie in control panel
+
+**Upload limiet 2 MB:**
+- Upload via FTP naar ai1wm-backups folder
+- Verhoog PHP limits via .user.ini
+- Check na 1-2 minuten of limits actief zijn
+
+**FTP directory niet gevonden:**
+- List root directory: `ftp.nlst()`
+- Navigeer stapsgewijs met `ftp.cwd()`
+- Check actual paths vs assumed paths
+
+**Import faalt:**
+- Check PHP memory_limit (512 MB aanbevolen)
+- Check max_execution_time (600 sec)
+- Verify database credentials in wp-config.php
+- Check database permissions (ALL PRIVILEGES)
+
+### Tools & Scripts Aangemaakt
+
+**Locatie:** `C:\temp\`
+
+1. `wp-vimexx-migration-guide.ps1` - Uitgebreide migratie guide
+2. `wp-ftp-checklist.md` - Handmatige stap-voor-stap checklist
+3. `START_HIER_migratie.md` - Beslisboom en quick start
+4. `setup-staging-ftp.py` - WordPress FTP upload automation
+5. `upload-wpress-to-staging.py` - .wpress file upload
+6. `fix-php-limits.py` - PHP limits verhogen
+7. `check-ftp-structure.py` - FTP directory explorer
+
+**Herbruikbaar voor:**
+- Andere WordPress sites migreren
+- Client-manager staging setup
+- Andere Vimexx projecten
+
+### Verificatie & Validatie
+
+**✅ Succescriteria:**
+- [x] Lokale export compleet (261 MB)
+- [x] WordPress staging bereikbaar
+- [x] Database correct geconfigureerd
+- [x] Plugin geïnstalleerd en actief
+- [x] Import succesvol voltooid
+- [x] Staging site toegankelijk via `http://artrevisionist.com/staging/`
+- [x] Alle content aanwezig (theme, plugin, uploads, database)
+- [x] URLs automatisch aangepast (localhost → staging domain)
+
+**User feedback:**
+> "yeah everything is working thank you"
+
+### Toekomstige Optimalisaties
+
+**Volgende keer sneller:**
+1. Begin direct met FTP upload (overslaan browser export flow)
+2. Pre-made wp-config.php templates per hosting provider
+3. .user.ini template voorbereid
+4. Python scripts in tools/ folder (niet temp/)
+5. Unified migration script (1 command voor hele flow)
+
+**Potentiële tool:**
+```bash
+wp-migrate.ps1 -Source "C:\xampp\htdocs" -Destination "ftp://..." -Database "..." -Auto
+```
+
+### Gerelateerde Documentatie
+
+- WordPress migratie guides: `C:\temp\START_HIER_migratie.md`
+- All-in-One WP Migration docs: Plugin settings in WordPress
+- Vimexx support: FTP, PHP settings, DNS management
+- Python FTP examples: Scripts in `C:\temp\`
+
+---
+
+**KRITISCH VOOR TOEKOMST:** Bij elke WordPress migratie:
+1. Check PHP limits EERST (voorkomt frustratie)
+2. Gebruik FTP voor grote bestanden (sneller + betrouwbaarder)
+3. Begin met subfolder (DNS is traag)
+4. Automatiseer wat je 2x doet
+
+**User satisfaction:** ✅ Hoog - "everything is working"
+**Session time:** ~1 uur (inclusief troubleshooting + documentatie)
+**Reusability:** Hoog - scripts + workflow toepasbaar op alle WordPress migraties
+
