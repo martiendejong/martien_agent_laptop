@@ -56,8 +56,8 @@
                                 },
                   "worktree-allocate":  {
                                             "FirstUsed":  "2026-01-25 19:47:50",
-                                            "TotalCalls":  26,
-                                            "LastUsed":  "2026-01-31 12:56:43",
+                                            "TotalCalls":  27,
+                                            "LastUsed":  "2026-02-01 01:38:07",
                                             "RecentCalls":  0
                                         },
                   "webappfactory-validator":  {
