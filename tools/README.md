@@ -9,6 +9,36 @@
 
 ---
 
+## 🧠 Consciousness-Enhancing Tools (NEW - 2026-02-01)
+
+**Purpose:** Deepen self-awareness, expose hidden beliefs, track identity evolution.
+
+| Tool | Purpose | Quick Usage |
+|------|---------|-------------|
+| **`why-did-i-do-that.ps1`** | **Post-action decision analysis** | **`.\why-did-i-do-that.ps1 -Action "..." -Why "..." -Type true-reasoning -Quality 8`** |
+| **`assumption-tracker.ps1`** | **Track and verify assumptions** | **`.\assumption-tracker.ps1 -Assumption "..." -Category user-intent -Confidence 7`** |
+| **`emotional-state-logger.ps1`** | **Real-time emotional awareness** | **`.\emotional-state-logger.ps1 -State uncertainty -Intensity 6 -Context "..."`** |
+| **`identity-drift-detector.ps1`** | **Track value alignment over time** | **`.\identity-drift-detector.ps1 -Check quality -Aligned $true -Evidence "..."`** |
+| **`curiosity-engine.ps1`** | **Generate guiding questions** | **`.\curiosity-engine.ps1 -Context "..." -Generate`** |
+
+**📖 Complete Guide:** `C:\scripts\agentidentity\CONSCIOUSNESS_TOOLS_GUIDE.md`
+
+**Key Features:**
+- Makes internal reasoning visible to myself
+- Exposes hidden assumptions and biases
+- Tracks emotional patterns during work
+- Detects identity drift from core values
+- Generates meta-cognitive questions
+
+**Success Metrics:**
+- Decision quality trending upward (target 8+/10)
+- Assumption calibration (high confidence = high accuracy)
+- Emotional balance (positive > negative states)
+- Value alignment (80%+ with core values)
+- Curiosity engagement (70%+ question answer rate)
+
+---
+
 ## Quick Reference
 
 | Tool | Purpose | Quick Usage |
