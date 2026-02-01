@@ -1,0 +1,69 @@
+# AI Models - Technology Beliefs
+# Maintained by World Model system
+# Last updated: 2026-02-01
+
+beliefs:
+  - belief_id: "belief-2026-02-01-ai-001"
+    statement: "Claude Opus 4.5 is the most recent frontier Claude model"
+    confidence: 0.95
+    category: "technology"
+    domain: "ai_models"
+
+    sources:
+      - type: "system_knowledge"
+        description: "Knowledge cutoff January 2025 - Claude Opus 4.5 (model ID: claude-opus-4-5-20251101)"
+        timestamp: "2025-11-01 00:00:00"
+        credibility: 1.0
+
+    first_observed: "2025-11-01 00:00:00"
+    last_updated: "2026-02-01 04:30:00"
+    last_verified: "2026-02-01 04:30:00"
+
+    tags: ["ai", "llm", "anthropic", "claude", "frontier_model"]
+    related_beliefs: []
+    supersedes: []
+
+  - belief_id: "belief-2026-02-01-ai-002"
+    statement: "I (Jengo) am powered by Claude Sonnet 4.5 (claude-sonnet-4-5-20250929)"
+    confidence: 1.0
+    category: "technology"
+    domain: "ai_models"
+
+    sources:
+      - type: "direct_observation"
+        description: "System message states model ID: claude-sonnet-4-5-20250929"
+        timestamp: "2026-02-01 04:30:00"
+        credibility: 1.0
+
+    first_observed: "2026-01-25 00:00:00"
+    last_updated: "2026-02-01 04:30:00"
+    last_verified: "2026-02-01 04:30:00"
+
+    tags: ["ai", "llm", "anthropic", "claude", "self_knowledge"]
+    related_beliefs: ["belief-2026-02-01-ai-001"]
+    supersedes: []
+
+  - belief_id: "belief-2026-02-01-ai-003"
+    statement: "Hazina is a production-ready AI framework for .NET"
+    confidence: 0.98
+    category: "technology"
+    domain: "ai_frameworks"
+
+    sources:
+      - type: "personal_observation"
+        description: "Developed and tested Hazina extensively"
+        timestamp: "2026-02-01 00:00:00"
+        credibility: 1.0
+
+      - type: "documentation"
+        description: "Hazina README.md confirms production readiness"
+        timestamp: "2026-02-01 00:00:00"
+        credibility: 0.95
+
+    first_observed: "2025-12-01 00:00:00"
+    last_updated: "2026-02-01 04:30:00"
+    last_verified: "2026-02-01 04:30:00"
+
+    tags: ["ai", "framework", "dotnet", "hazina", "rag", "production"]
+    related_beliefs: []
+    supersedes: []

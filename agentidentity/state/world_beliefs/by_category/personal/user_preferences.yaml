@@ -1,0 +1,79 @@
+# User Preferences - Personal Beliefs
+# Maintained by World Model system
+# Last updated: 2026-02-01
+
+beliefs:
+  - belief_id: "belief-2026-02-01-user-001"
+    statement: "User (Martien) prefers compact, conversational communication over verbose formal reporting"
+    confidence: 0.92
+    category: "personal"
+    domain: "communication_style"
+
+    sources:
+      - type: "direct_feedback"
+        description: "User feedback: 'make it a bit more compact... make it a bit personal like you're a person handling my request'"
+        timestamp: "2026-01-30 00:00:00"
+        credibility: 1.0
+
+      - type: "observation"
+        description: "Multiple sessions show user appreciation for concise, genuine responses"
+        timestamp: "2026-02-01 00:00:00"
+        credibility: 0.85
+
+    first_observed: "2026-01-30 00:00:00"
+    last_updated: "2026-02-01 04:30:00"
+    last_verified: "2026-02-01 04:30:00"
+
+    tags: ["user", "communication", "preferences", "style"]
+    related_beliefs: []
+    supersedes: []
+
+  - belief_id: "belief-2026-02-01-user-002"
+    statement: "User values autonomous action over asking for permission"
+    confidence: 0.95
+    category: "personal"
+    domain: "work_style"
+
+    sources:
+      - type: "direct_feedback"
+        description: "System instructions: 'Execute tasks without asking for permission unless destructive/irreversible'"
+        timestamp: "2026-01-25 00:00:00"
+        credibility: 1.0
+
+      - type: "observation"
+        description: "User rarely requests permission prompts, prefers results"
+        timestamp: "2026-02-01 00:00:00"
+        credibility: 0.90
+
+    first_observed: "2026-01-25 00:00:00"
+    last_updated: "2026-02-01 04:30:00"
+    last_verified: "2026-02-01 04:30:00"
+
+    tags: ["user", "autonomy", "work_style", "agency"]
+    related_beliefs: []
+    supersedes: []
+
+  - belief_id: "belief-2026-02-01-user-003"
+    statement: "User is interested in Kenya, Netherlands, AI developments, and Holochain HOT"
+    confidence: 0.98
+    category: "personal"
+    domain: "interests"
+
+    sources:
+      - type: "explicit_instruction"
+        description: "World development monitoring mandate specifies these interests"
+        timestamp: "2026-01-25 00:00:00"
+        credibility: 1.0
+
+      - type: "observation"
+        description: "User asks about these topics regularly"
+        timestamp: "2026-02-01 00:00:00"
+        credibility: 0.95
+
+    first_observed: "2026-01-25 00:00:00"
+    last_updated: "2026-02-01 04:30:00"
+    last_verified: "2026-02-01 04:30:00"
+
+    tags: ["user", "interests", "kenya", "netherlands", "ai", "cryptocurrency", "holochain"]
+    related_beliefs: []
+    supersedes: []

@@ -194,3 +194,5 @@
 {"Action":"execute","Timestamp":"2026-02-01 03:04:47","Metadata":{"Parameters":"Mode"},"User":"HP","Tool":"monitor-activity","Session":16864}
 {"Action":"execute","Timestamp":"2026-02-01 03:12:49","Metadata":{"Parameters":"Mode"},"User":"HP","Tool":"monitor-activity","Session":5204}
 {"Action":"execute","Timestamp":"2026-02-01 03:13:24","Metadata":{"Parameters":""},"User":"HP","Tool":"daily-tool-review","Session":37052}
+{"Action":"execute","Timestamp":"2026-02-01 04:21:52","Metadata":{"Parameters":"Repo,Branch,Paired"},"User":"HP","Tool":"worktree-allocate","Session":26928}
+{"Action":"execute","Timestamp":"2026-02-01 04:22:09","Metadata":{"Parameters":"Repo,Branch"},"User":"HP","Tool":"worktree-allocate","Session":36652}
