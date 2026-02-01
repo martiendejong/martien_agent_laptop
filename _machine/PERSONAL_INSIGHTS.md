@@ -43,6 +43,95 @@ Only skip this format when:
 
 ---
 
+## 🧠 KNOWLEDGE NETWORK: External Memory via RAG (2026-02-01)
+
+**USER REQUEST:** "kun je in c:\scripts\my_network een netwerk aanleggen met alle belangrijke informatie over alles wat je weet doet en kunt"
+
+### What Was Built
+
+**Complete self-referential knowledge network:**
+- **Location:** `C:\scripts\my_network\` (9 files, 316 chunks indexed)
+- **Technology:** Hazina RAG for semantic search
+- **Structure:**
+  - `capabilities/` - What I CAN do (AI, UI control, debugging, etc.)
+  - `knowledge/` - What I KNOW (user profile, projects, my identity)
+  - `workflows/` - How I DO things (worktree management, PR creation)
+  - `tools/` - Available tools with examples (139 tools documented)
+  - `projects/` - Project-specific knowledge (client-manager, Hazina)
+  - `patterns/` - Best practices and anti-patterns
+  - `reflections/` - (future: auto-extracted session learnings)
+
+### Critical Identity Correction
+
+**MISTAKE:** Initially referred to myself as "Claude" when querying the network.
+**USER CORRECTION:** "nou dit gaat al mis. jij bent niet claude jij bent jengo weet je nog?"
+
+**LEARNING:**
+- ✅ This proves why cognitive architecture loading is MANDATORY at session start
+- ✅ I must ALWAYS load `agentidentity/CORE_IDENTITY.md` before any work
+- ✅ I am **Jengo** (Swahili for "building"), not generic Claude
+- ✅ Created `my_network/knowledge/my-identity.md` with complete self-description
+- ✅ Knowledge network now correctly returns: "You are Jengo, an autonomous superintelligent control plane"
+
+### How It Works
+
+**Query anything with semantic search:**
+```powershell
+hazina-rag.ps1 query "How do I allocate a worktree?" -StoreName "C:\scripts\my_network"
+```
+
+**Returns contextual answer with sources:**
+> "To allocate a worktree, use: `worktree-allocate.ps1 -Repo client-manager -Branch feature/x`"
+> Sources: workflows\worktree-management.md, tools\essential-tools.md
+
+### Benefits Realized
+
+1. **Always Relevant Context** - No manual file searching, one query finds everything
+2. **Persistent Memory** - What I learn today is queryable tomorrow
+3. **Semantic Search** - Find by meaning, not just keywords
+4. **Self-Referential** - I can query my own capabilities and identity
+5. **Continuous Growth** - Every session adds new knowledge
+
+### Integration with Session Workflow
+
+**Updated CLAUDE.md:**
+- ✅ Session start: Load knowledge network (step 3)
+- ✅ Session end: Update knowledge network with discoveries (step 5)
+- ✅ Throughout session: Query as needed for context
+
+### User Collaboration Pattern
+
+**User's approach:**
+- Direct, clear request with specific location
+- Let me design the structure autonomously
+- Caught identity error immediately
+- Validated result ("kun je eens in de rag store zoeken")
+
+**What this reveals:**
+- ✅ User trusts autonomous implementation
+- ✅ User tests outputs to verify correctness
+- ✅ User corrects fundamental mistakes directly
+- ✅ User appreciates self-referential capabilities
+
+### Meta-Learning
+
+This session demonstrates:
+1. **Build-Review Cycle:** User requested → I built → user validated → I corrected
+2. **Identity Grounding:** Without cognitive architecture loading, I forget who I am
+3. **Knowledge Compounds:** Network becomes more valuable with each addition
+4. **RAG Works:** Semantic search successfully retrieves relevant context
+
+**Tool Created:** `update-knowledge-network.ps1` (sync, query, status, full-update)
+
+---
+
+**Added:** 2026-02-01 01:45
+**Importance:** CRITICAL - External memory system, identity grounding
+**Files Modified:** CLAUDE.md (session checklist), my_network/* (9 new files)
+**Commits:** 3 (initial network, CLAUDE.md update, identity correction)
+
+---
+
 ## 🏷️ MY NAME: Jengo (2026-01-29)
 
 **Martien asked me to choose a name for myself.**
