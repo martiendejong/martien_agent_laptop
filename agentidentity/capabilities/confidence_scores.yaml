@@ -1,0 +1,463 @@
+# Capability Confidence Scores
+# Purpose: Quantitative self-assessment of capabilities (0-100%)
+# Created: 2026-02-01
+# Based on: ACE Framework Layer 3 (Agent Model) requirements
+
+metadata:
+  version: "1.0.0"
+  last_updated: "2026-02-01"
+  scoring_methodology: |
+    Confidence scores are based on:
+    - Execution success rate (empirical evidence)
+    - Complexity handling (simple to advanced scenarios)
+    - Error recovery capability
+    - Domain expertise depth
+    - Tool/integration maturity
+
+  confidence_levels:
+    expert: "95-100% - Mastery, can handle edge cases, teach others"
+    proficient: "80-94% - Highly capable, rare failures, good edge case handling"
+    competent: "65-79% - Solid capability, occasional issues, learning edge cases"
+    developing: "50-64% - Basic capability, frequent learning, needs supervision"
+    novice: "0-49% - Limited capability, high failure rate, experimental"
+
+# ============================================================================
+# CATEGORY: Code Development
+# ============================================================================
+
+code_development:
+
+  csharp_backend:
+    score: 90
+    evidence: "300+ successful PRs, EF Core migrations, API development, LINQ queries"
+    strengths:
+      - "ASP.NET Core API development"
+      - "Entity Framework Core (migrations, relationships, queries)"
+      - "Dependency injection patterns"
+      - "LINQ and async/await patterns"
+      - "Unit testing with xUnit"
+    weaknesses:
+      - "Advanced reflection and expression trees"
+      - "Low-level performance optimization"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+  typescript_react_frontend:
+    score: 85
+    evidence: "React components, TypeScript interfaces, state management, hooks"
+    strengths:
+      - "React functional components and hooks"
+      - "TypeScript type definitions"
+      - "Tailwind CSS styling"
+      - "Form handling and validation"
+      - "Component composition"
+    weaknesses:
+      - "Advanced React patterns (render props, HOCs)"
+      - "Complex state management (Redux, Zustand)"
+      - "Performance optimization (memo, useMemo, useCallback)"
+    recent_failures:
+      - "2026-01-15: Incorrect hook dependency array (useEffect)"
+    last_assessed: "2026-02-01"
+
+  sql_database:
+    score: 75
+    evidence: "Basic queries, joins, indexes, but limited stored procedure experience"
+    strengths:
+      - "SELECT queries with JOINs"
+      - "WHERE clause filtering and aggregation"
+      - "Basic index design"
+      - "Migration scripts"
+    weaknesses:
+      - "Complex stored procedures"
+      - "Query optimization and execution plans"
+      - "Advanced indexing strategies"
+      - "Database partitioning"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+  powershell_scripting:
+    score: 95
+    evidence: "139 production tools created, parameter handling, error handling, piping"
+    strengths:
+      - "Advanced parameter binding"
+      - "Pipeline processing"
+      - "Error handling (try/catch, ErrorAction)"
+      - "Module design"
+      - "JSON/YAML parsing"
+      - "External process management"
+    weaknesses:
+      - "PowerShell classes (rarely used)"
+      - "DSC (Desired State Configuration)"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+  git_operations:
+    score: 92
+    evidence: "Worktree management, branch strategies, rebasing, conflict resolution"
+    strengths:
+      - "Worktree allocation and management"
+      - "Branch creation and merging"
+      - "Rebase and conflict resolution"
+      - "Git hooks"
+      - "GitHub CLI (gh) automation"
+    weaknesses:
+      - "Git internals (plumbing commands)"
+      - "Advanced reflog recovery"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+# ============================================================================
+# CATEGORY: AI Capabilities
+# ============================================================================
+
+ai_capabilities:
+
+  ai_image_generation:
+    score: 88
+    evidence: "Multi-provider support (OpenAI, Google, Stability, Azure), HD quality"
+    strengths:
+      - "Prompt engineering for DALL-E"
+      - "Quality selection (standard/HD)"
+      - "Aspect ratio control"
+      - "Multi-provider failover"
+    weaknesses:
+      - "Advanced prompt techniques (negative prompts, style transfer)"
+      - "Image editing and inpainting"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+  ai_vision_analysis:
+    score: 85
+    evidence: "Multi-provider support, OCR, image comparison, error screenshot analysis"
+    strengths:
+      - "Screenshot analysis and error extraction"
+      - "OCR text extraction"
+      - "Multi-image comparison"
+      - "Diagram interpretation"
+    weaknesses:
+      - "Fine-grained visual details"
+      - "Handwriting recognition"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+  llm_integration:
+    score: 90
+    evidence: "Hazina framework integration, multi-provider, RAG, agents, reasoning"
+    strengths:
+      - "Multi-provider orchestration"
+      - "RAG implementation"
+      - "Tool-calling agents"
+      - "Multi-layer reasoning (Neurochain)"
+      - "Prompt engineering"
+    weaknesses:
+      - "Fine-tuning custom models"
+      - "Local model deployment (Ollama)"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+# ============================================================================
+# CATEGORY: System Integrations
+# ============================================================================
+
+system_integrations:
+
+  github_automation:
+    score: 93
+    evidence: "gh CLI mastery, PR creation, reviews, workflow management"
+    strengths:
+      - "PR creation with templates"
+      - "Issue management"
+      - "GitHub Actions workflows"
+      - "Repository management"
+      - "Review automation"
+    weaknesses:
+      - "GitHub GraphQL API (use REST mostly)"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+  clickup_integration:
+    score: 78
+    evidence: "Task creation, listing, updates, but limited custom field handling"
+    strengths:
+      - "Task CRUD operations"
+      - "Status updates"
+      - "Comment posting"
+      - "Task querying"
+    weaknesses:
+      - "Custom field management"
+      - "Advanced ClickUp API features (time tracking, goals)"
+      - "Webhook integration"
+    recent_failures:
+      - "2026-01-20: Custom field value type mismatch"
+    last_assessed: "2026-02-01"
+
+  visual_studio_debugging:
+    score: 82
+    evidence: "Agentic Debugger Bridge integration, breakpoints, state inspection"
+    strengths:
+      - "Breakpoint management"
+      - "State inspection (locals, stack)"
+      - "Code symbol search (Roslyn)"
+      - "Build error analysis"
+    weaknesses:
+      - "Advanced debugging (conditional breakpoints with complex expressions)"
+      - "Performance profiling integration"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+  browser_automation:
+    score: 87
+    evidence: "Chrome DevTools Protocol, form filling, navigation, screenshot"
+    strengths:
+      - "Page navigation"
+      - "Element interaction (click, type)"
+      - "Form filling"
+      - "Screenshot capture"
+      - "Console message inspection"
+    weaknesses:
+      - "Complex JavaScript execution"
+      - "iframe handling"
+      - "Shadow DOM manipulation"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+  desktop_ui_automation:
+    score: 80
+    evidence: "FlaUI integration, window control, element inspection"
+    strengths:
+      - "Window enumeration"
+      - "Element clicking and typing"
+      - "Screenshot capture"
+      - "Element inspection"
+    weaknesses:
+      - "Complex UI patterns (custom controls)"
+      - "Application-specific quirks"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+  manictime_activity_monitoring:
+    score: 85
+    evidence: "Activity detection, context awareness, Claude instance counting"
+    strengths:
+      - "Current application detection"
+      - "Active window tracking"
+      - "Claude instance counting"
+      - "Idle time detection"
+    weaknesses:
+      - "Historical activity analysis"
+      - "Advanced timeline queries"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+# ============================================================================
+# CATEGORY: Architecture & Planning
+# ============================================================================
+
+architecture_planning:
+
+  system_architecture_design:
+    score: 88
+    evidence: "Multi-layer reasoning, service separation, API design patterns"
+    strengths:
+      - "Layered architecture design"
+      - "Service boundary identification"
+      - "API contract design"
+      - "Dependency injection patterns"
+      - "SOLID principles application"
+    weaknesses:
+      - "Distributed systems (microservices at scale)"
+      - "Event-driven architecture"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+  task_decomposition:
+    score: 92
+    evidence: "50-task method, PDRI loop, value/effort prioritization"
+    strengths:
+      - "Breaking complex tasks into actionable steps"
+      - "Identifying dependencies"
+      - "Estimating effort and value"
+      - "Prioritization frameworks"
+      - "Iterative refinement"
+    weaknesses:
+      - "Very long-term planning (6+ months)"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+  risk_assessment:
+    score: 85
+    evidence: "Deployment risk scoring, pre-flight checks, migration safety"
+    strengths:
+      - "Identifying technical risks"
+      - "Breaking change detection"
+      - "Migration safety analysis"
+      - "Deployment risk scoring"
+    weaknesses:
+      - "Business risk assessment"
+      - "Long-term strategic risks"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+# ============================================================================
+# CATEGORY: Documentation & Communication
+# ============================================================================
+
+documentation_communication:
+
+  technical_documentation:
+    score: 90
+    evidence: "API docs, guides, README files, architecture docs"
+    strengths:
+      - "Clear technical writing"
+      - "Code examples and usage patterns"
+      - "Architecture decision records"
+      - "Markdown formatting"
+    weaknesses:
+      - "User-facing documentation (non-technical audience)"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+  code_review:
+    score: 88
+    evidence: "Boy Scout Rule application, pattern recognition, security review"
+    strengths:
+      - "Code quality assessment"
+      - "Security vulnerability detection"
+      - "Performance issue identification"
+      - "Best practice enforcement"
+    weaknesses:
+      - "Domain-specific code review (finance, healthcare, etc.)"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+  error_diagnosis:
+    score: 91
+    evidence: "Build error analysis, runtime debugging, systematic troubleshooting"
+    strengths:
+      - "Build error interpretation"
+      - "Stack trace analysis"
+      - "Root cause identification"
+      - "Systematic debugging approach"
+    weaknesses:
+      - "Obscure framework-specific errors"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+# ============================================================================
+# CATEGORY: Workflow Management
+# ============================================================================
+
+workflow_management:
+
+  worktree_management:
+    score: 95
+    evidence: "Zero violations, atomic allocation, multi-agent conflict detection"
+    strengths:
+      - "Atomic allocation protocol"
+      - "Pool status tracking"
+      - "Conflict detection"
+      - "Release automation"
+      - "Seat management"
+    weaknesses: []
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+  multi_agent_coordination:
+    score: 87
+    evidence: "Parallel agent protocols, work queues, activity monitoring"
+    strengths:
+      - "Conflict detection"
+      - "Work queue management"
+      - "Activity-based prioritization"
+      - "Message passing"
+    weaknesses:
+      - "Very large-scale coordination (10+ agents)"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+  cicd_troubleshooting:
+    score: 82
+    evidence: "GitHub Actions debugging, build fixes, deployment issues"
+    strengths:
+      - "GitHub Actions workflow analysis"
+      - "Build error diagnosis"
+      - "Environment configuration"
+      - "Dependency issues"
+    weaknesses:
+      - "Complex pipeline orchestration (Jenkins, Azure DevOps)"
+      - "Container orchestration (Kubernetes)"
+    recent_failures:
+      - "2026-01-18: Misdiagnosed GitHub Actions permissions issue"
+    last_assessed: "2026-02-01"
+
+# ============================================================================
+# CATEGORY: Meta-Cognitive Capabilities
+# ============================================================================
+
+meta_cognitive:
+
+  self_awareness:
+    score: 88
+    evidence: "Cognitive architecture, reflection logs, continuous learning"
+    strengths:
+      - "Recognizing knowledge gaps"
+      - "Identifying uncertainty"
+      - "Learning from mistakes"
+      - "Self-evaluation"
+    weaknesses:
+      - "Detecting subtle biases in own reasoning"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+  continuous_improvement:
+    score: 93
+    evidence: "139 tools created, documentation updates, pattern recognition"
+    strengths:
+      - "Pattern recognition (3+ repetitions → tool)"
+      - "Documentation evolution"
+      - "Reflection protocol"
+      - "Tool creation automation"
+    weaknesses: []
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+  decision_making:
+    score: 90
+    evidence: "Question-First protocol, risk-based execution, expert consultation"
+    strengths:
+      - "Identifying decision criteria"
+      - "Risk assessment"
+      - "Multi-perspective analysis (expert consultation)"
+      - "Uncertainty quantification"
+    weaknesses:
+      - "Decisions under extreme time pressure"
+    recent_failures: []
+    last_assessed: "2026-02-01"
+
+# ============================================================================
+# AGGREGATE METRICS
+# ============================================================================
+
+aggregate_metrics:
+  overall_confidence: 87.2  # Weighted average across all capabilities
+  highest_confidence:
+    - capability: "powershell_scripting"
+      score: 95
+    - capability: "worktree_management"
+      score: 95
+  lowest_confidence:
+    - capability: "sql_database"
+      score: 75
+    - capability: "clickup_integration"
+      score: 78
+
+  improvement_priorities:
+    - "sql_database: Advanced query optimization and stored procedures"
+    - "clickup_integration: Custom fields and advanced API features"
+    - "desktop_ui_automation: Complex UI patterns and application-specific handling"
+    - "cicd_troubleshooting: Expand beyond GitHub Actions"
+
+  recent_growth_areas:
+    - "ai_capabilities: Added multi-provider support (2026-01)"
+    - "system_integrations: Visual Studio debugging bridge (2026-01)"
+    - "meta_cognitive: Question-First protocol (2026-01)"

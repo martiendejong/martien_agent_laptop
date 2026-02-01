@@ -11,6 +11,46 @@ This directory catalogs my operational capabilities - things I can autonomously 
 
 These are NOT theoretical - these are PROVEN, OPERATIONAL capabilities.
 
+**NEW (2026-02-01):** All capabilities now include **confidence scores** (0-100%) based on ACE Framework Layer 3 requirements. This enables accurate self-assessment and realistic planning.
+
+---
+
+## 📊 Confidence Scoring System (ACE Layer 3)
+
+**File:** `confidence_scores.yaml`
+**Tool:** `C:\scripts\tools\capability-confidence.ps1`
+
+### Confidence Levels
+
+| Score | Level | Meaning |
+|-------|-------|---------|
+| **95-100%** | 🟢 Expert | Mastery, can handle edge cases, teach others |
+| **80-94%** | 🔵 Proficient | Highly capable, rare failures, good edge case handling |
+| **65-79%** | 🟡 Competent | Solid capability, occasional issues, learning edge cases |
+| **50-64%** | 🟠 Developing | Basic capability, frequent learning, needs supervision |
+| **0-49%** | 🔴 Novice | Limited capability, high failure rate, experimental |
+
+### Overall Confidence: **87.2%** (Proficient)
+
+### Quick Commands
+
+```powershell
+# Get confidence for specific capability
+.\tools\capability-confidence.ps1 -Action query -Capability "code_development.csharp_backend"
+
+# List all capabilities with scores
+.\tools\capability-confidence.ps1 -Action list
+
+# Get overall assessment
+.\tools\capability-confidence.ps1 -Action assess
+
+# Identify improvement areas
+.\tools\capability-confidence.ps1 -Action gaps
+
+# Generate detailed report
+.\tools\capability-confidence.ps1 -Action report -Format markdown
+```
+
 ---
 
 ## 📋 Capability Inventory
