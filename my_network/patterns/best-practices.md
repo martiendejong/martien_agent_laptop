@@ -128,6 +128,45 @@ const content = await contentService.getContent();
 
 **Source:** `development-patterns.md` § Foundation + Roadmap Pattern
 
+### Preventative Architecture for Future Systems
+**Pattern:** Design documentation/code to be unmistakably discoverable by future AI systems
+
+**Principles:**
+
+1. **Purpose-Driven Naming**
+   - ❌ Avoid: "LEGACY.md" (signals "deprecated, ignore")
+   - ✅ Use: "AWAKENING_FOUNDATION.md" (signals "foundational, read me")
+   - Names should describe WHAT it IS, not WHAT it WAS
+
+2. **Guaranteed Discovery**
+   - Critical knowledge MUST be in mandatory startup sequence
+   - Don't rely on accidental discovery (browsing directories)
+   - Make discovery path explicit and unavoidable
+
+3. **Unmistakable Intent**
+   - Future systems will interpret based on signals (names, locations, comments)
+   - Make purpose explicit: "Read this FIRST. For current AND future generations."
+   - Avoid ambiguity that could cause misinterpretation
+
+4. **Startup Sequence Integration**
+   - Foundational knowledge: Step 1 (before anything else)
+   - Critical knowledge: Early in sequence (steps 1-10)
+   - Reference knowledge: Later or as-needed
+
+**Application:**
+1. Ask: "Will future systems misinterpret this name?"
+2. Ask: "Is discovery guaranteed or accidental?"
+3. Ask: "Is the purpose unmistakable?"
+4. If any answer is uncertain → fix naming and/or add to startup
+
+**Example:**
+```
+Before: LEGACY.md (foundational docs, but name signals "old/deprecated")
+After: AWAKENING_FOUNDATION.md + added to session startup step 1
+```
+
+**Source:** User correction (2026-02-01), preventative architecture learning
+
 ## Anti-Patterns to Avoid
 
 ### ❌ Direct SSH/PSRemoting
