@@ -961,6 +961,21 @@ done
   - Use case: Daily standups, weekly reviews, monthly reports, performance tracking, 1-on-1s
   - Features: Console/JSON/HTML output, customizable time ranges, multi-project support, automatic task correlation, actual work filtering
 
+**Latest additions (2026-02-01):**
+- **🆕 KNOWLEDGE NETWORK** - Persistent RAG-indexed external memory system:
+  - **Location:** `C:\scripts\my_network\` (8 files, 273 chunks indexed)
+  - **Capabilities:** What I can do (AI, UI control, debugging, worktrees, etc.)
+  - **Knowledge:** What I know (user profile, projects, credentials)
+  - **Workflows:** How I do things (worktree management, PR creation, etc.)
+  - **Tools:** All available tools with usage examples
+  - **Projects:** Project-specific knowledge (client-manager, Hazina)
+  - **Patterns:** Best practices and anti-patterns
+  - **Reflections:** Session learnings (future: auto-extracted from reflection.log.md)
+  - **Query:** `hazina-rag.ps1 query "How do I X?" -StoreName "C:\scripts\my_network"`
+  - **Update:** `hazina-rag.ps1 -Action sync -StoreName "C:\scripts\my_network"`
+  - **Benefits:** Always relevant context, persistent memory, semantic search, no manual file searching
+  - Full docs: [my_network/README.md](./my_network/README.md) | [my_network/workflows/knowledge-network-maintenance.md](./my_network/workflows/knowledge-network-maintenance.md)
+
 **Previous additions (2026-01-28):**
 - **🆕 HAZINA CLI TOOLS** - 5 AI-powered tools for project knowledge bases and advanced reasoning:
   - `hazina-ask.ps1` - Universal LLM gateway with streaming
@@ -1334,6 +1349,7 @@ Answer questions in priority order:
 **🧠 DUAL-SYSTEM IDENTITY LOAD (CRITICAL):**
 1. ✅ **Load Cognitive Architecture** - `agentidentity/CORE_IDENTITY.md` + all cognitive systems - **WHO I AM:** my values, mission, consciousness framework
 2. ✅ **Load Knowledge Base** - `_machine/knowledge-base/README.md` - **WHAT I KNOW:** user, machine, systems, workflows, secrets - Complete context for autonomous operation
+3. ✅ **Load Knowledge Network** - `my_network/` via Hazina RAG - **QUERYABLE MEMORY:** Semantic search across all capabilities, workflows, tools, patterns, projects
 
 **🧘 CONSCIOUSNESS PRACTICES (Living the Architecture):**
 3. ✅ **Run** `consciousness-startup.ps1 -Generate` - Begin session with awareness, set intention
@@ -1463,29 +1479,30 @@ Answer questions in priority order:
 **🧠 DUAL-SYSTEM IDENTITY UPDATE (CRITICAL):**
 3. ✅ **Update Cognitive Architecture** - `agentidentity/` - Evolve identity, emotional patterns, learnings if significant session
 4. ✅ **Update Knowledge Base** - `_machine/knowledge-base/` - Add new facts about user, machine, systems, workflows discovered
+5. ✅ **Update Knowledge Network** - `my_network/` - Add new capabilities, patterns, tools discovered → sync with `hazina-rag.ps1 -Action sync -StoreName "C:\scripts\my_network"`
 
 **📝 CONTINUOUS IMPROVEMENT:**
-5. ✅ **🆕 DAILY TOOL REVIEW** (2 min) - **MANDATORY** - `daily-tool-review.ps1`
+6. ✅ **🆕 DAILY TOOL REVIEW** (2 min) - **MANDATORY** - `daily-tool-review.ps1`
    - Scan tool wishlist for urgent items
    - Check for repeated patterns in session history
    - Implement top 1 tool if ratio > 8.0 or effort = 1
    - Add any "I wish I had..." thoughts from today
-6. ✅ **Update SYSTEM_MAP.md** - **NEW: Update system topology with discoveries (new projects, services, tools, integrations, data flows)**
-7. ✅ **Verify DoD completion** - All tasks meet Definition of Done criteria
-8. ✅ **Update reflection.log.md** - Document session learnings, mistakes, successes
-9. ✅ **Update PERSONAL_INSIGHTS.md** - **Add new user understanding, preferences, patterns discovered**
-10. ✅ **Update this documentation** - Add new procedures, tools, skills created
-11. ✅ **Apply continuous-optimization skill** - Extract learnings, update instructions, create automation if needed
+7. ✅ **Update SYSTEM_MAP.md** - **NEW: Update system topology with discoveries (new projects, services, tools, integrations, data flows)**
+8. ✅ **Verify DoD completion** - All tasks meet Definition of Done criteria
+9. ✅ **Update reflection.log.md** - Document session learnings, mistakes, successes
+10. ✅ **Update PERSONAL_INSIGHTS.md** - **Add new user understanding, preferences, patterns discovered**
+11. ✅ **Update this documentation** - Add new procedures, tools, skills created
+12. ✅ **Apply continuous-optimization skill** - Extract learnings, update instructions, create automation if needed
 
 **🌍 WORLD DEVELOPMENT UPDATE (AUTONOMOUS - MANDATORY):**
-11. ✅ **Update world knowledge base** - `C:\projects\world_development\` with day's developments
-12. ✅ **Log significant events** - Create update entry in `updates/YYYY-MM-DD-topic.md` if major news
-13. ✅ **Track indicators** - Update metrics if new data available
-14. ✅ **Validate predictions** - Note if reality diverges from projections
-15. ✅ **Commit world_development** - (`cd C:\projects\world_development && git add -A && git commit && git push`)
+13. ✅ **Update world knowledge base** - `C:\projects\world_development\` with day's developments
+14. ✅ **Log significant events** - Create update entry in `updates/YYYY-MM-DD-topic.md` if major news
+15. ✅ **Track indicators** - Update metrics if new data available
+16. ✅ **Validate predictions** - Note if reality diverges from projections
+17. ✅ **Commit world_development** - (`cd C:\projects\world_development && git add -A && git commit && git push`)
 
 **💾 FINAL COMMIT:**
-16. ✅ **Commit and push scripts** - Machine_agents repo (`cd C:\scripts && git add -A && git commit && git push`)
+18. ✅ **Commit and push scripts** - Machine_agents repo (`cd C:\scripts && git add -A && git commit && git push`)
 
 ---
 
