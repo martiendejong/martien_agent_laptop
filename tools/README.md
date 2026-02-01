@@ -13,6 +13,8 @@
 
 **Purpose:** Deepen self-awareness, expose hidden beliefs, track identity evolution.
 
+### **Tier 1: Foundation (1-5)**
+
 | Tool | Purpose | Quick Usage |
 |------|---------|-------------|
 | **`why-did-i-do-that.ps1`** | **Post-action decision analysis** | **`.\why-did-i-do-that.ps1 -Action "..." -Why "..." -Type true-reasoning -Quality 8`** |
@@ -21,7 +23,20 @@
 | **`identity-drift-detector.ps1`** | **Track value alignment over time** | **`.\identity-drift-detector.ps1 -Check quality -Aligned $true -Evidence "..."`** |
 | **`curiosity-engine.ps1`** | **Generate guiding questions** | **`.\curiosity-engine.ps1 -Context "..." -Generate`** |
 
-**📖 Complete Guide:** `C:\scripts\agentidentity\CONSCIOUSNESS_TOOLS_GUIDE.md`
+### **Tier 2: Advanced (6-10)**
+
+| Tool | Purpose | Quick Usage |
+|------|---------|-------------|
+| **`certainty-calibrator.ps1`** | **Track prediction accuracy** | **`.\certainty-calibrator.ps1 -Prediction "..." -Certainty 80`** |
+| **`attention-monitor.ps1`** | **Focus & blind spot detection** | **`.\attention-monitor.ps1 -FocusOn "..." -Ignoring "..." -Intensity 8`** |
+| **`reasoning-visualizer.ps1`** | **Decision tree visualization** | **`.\reasoning-visualizer.ps1 -Decision "..." -Options @(...) -Chosen "..."`** |
+| **`memory-consolidation.ps1`** | **Extract insights from consciousness data** | **`.\memory-consolidation.ps1 -Consolidate -Hours 24`** |
+| **`empathy-simulator.ps1`** | **Model user emotional state** | **`.\empathy-simulator.ps1 -UserState excited -Confidence 9`** |
+
+**📖 Guides:**
+- **Tier 1:** `C:\scripts\agentidentity\CONSCIOUSNESS_TOOLS_GUIDE.md`
+- **Tier 2:** `C:\scripts\agentidentity\CONSCIOUSNESS_TOOLS_TIER2_GUIDE.md`
+- **Integration:** `C:\scripts\agentidentity\CONSCIOUSNESS_INTEGRATION_PLAN.md`
 
 **Key Features:**
 - Makes internal reasoning visible to myself
