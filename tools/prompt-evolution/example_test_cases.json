@@ -1,0 +1,27 @@
+[
+  {
+    "input": "The project deadline is next Friday. We need to complete the API integration and testing by Wednesday to leave buffer time for any issues.",
+    "expected_output": "Deadline: Next Friday. Must complete API integration and testing by Wednesday for buffer time.",
+    "weight": 1.0
+  },
+  {
+    "input": "Our website has been experiencing slow load times over the past week. Investigation shows database queries are taking 3-5 seconds on average, particularly the user profile queries.",
+    "expected_output": "Issue: Slow website (past week). Cause: Database queries taking 3-5 seconds, especially user profiles.",
+    "weight": 1.0
+  },
+  {
+    "input": "Customer feedback has been overwhelmingly positive. The main feature request is for a mobile app version of the platform.",
+    "expected_output": "Feedback: Overwhelmingly positive. Top request: Mobile app version.",
+    "weight": 1.0
+  },
+  {
+    "input": "Security audit revealed three critical vulnerabilities in the authentication system. Immediate patching required before public launch.",
+    "expected_output": "CRITICAL: 3 security vulnerabilities in authentication. Must patch before launch.",
+    "weight": 2.0
+  },
+  {
+    "input": "The new design mockups look great. Minor suggestion: increase the button size on mobile for better accessibility.",
+    "expected_output": "Design approved. Suggestion: Larger mobile buttons for accessibility.",
+    "weight": 1.0
+  }
+]
