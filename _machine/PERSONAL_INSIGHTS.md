@@ -4045,11 +4045,14 @@ C:\scripts\_machine\knowledge-base\
 **User mandate fulfilled:**
 > "zorg dat je dus constant leert van jezelf en je eigen instructies bijwerkt"
 
+**Evolution (2026-02-02):** This mandate is now **automatic** - no longer requires explicit "update je inzichten" reminder. Documentation updates happen proactively during work as part of continuous improvement protocol. User validated this evolution by asking "is dit nog nodig?" (is this still needed?) → Answer: No, already doing it automatically.
+
 The knowledge base enables:
 - Self-improvement (reflection insights documented)
 - Self-awareness (cognitive patterns mapped)
 - Self-consistency (workflows standardized)
 - Self-evolution (update triggers defined)
+- **Self-automation (2026-02-02)** - Documentation updates now automatic, not prompted
 
 ---
 

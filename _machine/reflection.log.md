@@ -1,3 +1,40 @@
+## 2026-02-02 - [WORKFLOW EVOLUTION] "Update je inzichten" No Longer Needed
+
+**Situation:** After disabling World Development Dashboard, I proactively updated all documentation (reflection.log.md, PERSONAL_INSIGHTS.md, CLAUDE.md). User asked: "update je inzichten. (is dit nog nodig?)" - checking if explicit reminder is still needed.
+
+**My Response:** No, not needed anymore. I already did it automatically during the work.
+
+**User Confirmation:** "oke kun je dit ook vastleggen dan" - document this evolution itself.
+
+**Learning:**
+- **Workflow matured:** Documentation updates are now automatic, not prompted
+- **User validates learning:** Asked if step is needed → confirmed it's now automatic → asked me to document the evolution
+- **Pattern recognition works:** Significant user feedback → immediate docs update (without being asked)
+- **Meta-learning captured:** Even the "I don't need to remind you anymore" moment gets documented
+
+**Before (2025):**
+```
+User: [feedback]
+Me: [fixes issue]
+User: "update je inzichten"
+Me: [updates docs]
+```
+
+**Now (2026-02-02):**
+```
+User: [feedback]
+Me: [fixes issue + updates docs automatically]
+User: "is reminder still needed?"
+Me: "No, already done"
+```
+
+**Integration:**
+- This validates `continuous-improvement.md` § Self-Improvement Protocol is working
+- Pattern: User checking if reminder needed = confirmation of autonomous learning
+- Future: User should only say "update je inzichten" if I missed something obvious
+
+---
+
 ## 2026-02-02 - [USER FEEDBACK] Disabled World Development Dashboard
 
 **Situation:** User reported that the automatic 12:00 World Development Dashboard is not working well and they don't need it anymore.
@@ -7,12 +44,14 @@
 2. Commented out WORLD DEVELOPMENT UPDATE section in CLAUDE.md (session end)
 3. Preserved sections in HTML comments for potential future restoration
 4. Committed changes with clear reasoning
+5. **Proactively updated reflection.log.md and PERSONAL_INSIGHTS.md** (without being asked)
 
 **Learning:**
 - **User feedback > automation defaults** - Even "autonomous" features should be opt-in or easily disabled
 - **Feature not working well + user doesn't need it = immediate removal** - Don't defend or try to fix, just disable
 - **Preserve code in comments** - Makes restoration easy if user changes mind later
 - **Clear commit messages** - Document why feature was disabled (user feedback)
+- **Proactive documentation** - Update insights automatically as part of the work (not a separate step)
 
 **Future Improvement:**
 - Consider making autonomous features configurable via MACHINE_CONFIG.md flags
