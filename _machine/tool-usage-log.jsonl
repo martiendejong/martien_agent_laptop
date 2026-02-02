@@ -214,3 +214,5 @@
 {"Action":"execute","Timestamp":"2026-02-01 14:04:40","Metadata":{"Parameters":"Repo,Branch"},"User":"HP","Tool":"worktree-allocate","Session":27152}
 {"Action":"execute","Timestamp":"2026-02-02 03:16:00","Metadata":{"Parameters":"Repo,Branch,Seat"},"User":"HP","Tool":"worktree-allocate","Session":22920}
 {"Action":"execute","Timestamp":"2026-02-02 03:16:14","Metadata":{"Parameters":"Repo,Branch,Seat"},"User":"HP","Tool":"worktree-allocate","Session":6244}
+{"Action":"execute","Timestamp":"2026-02-02 12:19:29","Metadata":{"Parameters":"Repo,Branch,Paired,Seat"},"User":"HP","Tool":"worktree-allocate","Session":9536}
+{"Action":"execute","Timestamp":"2026-02-02 12:19:36","Metadata":{"Parameters":"Repo,Branch"},"User":"HP","Tool":"worktree-allocate","Session":25364}
