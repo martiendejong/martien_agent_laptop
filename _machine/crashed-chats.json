@@ -1,18 +1,36 @@
 ﻿{
-    "generated_at":  "2026-02-02T23:04:18.2727072+01:00",
+    "generated_at":  "2026-02-02T23:15:02.2229422+01:00",
     "project":  "C--scripts",
     "chats":  [
                   {
                       "EasyId":  "crash-001",
+                      "SessionId":  "f1135a26-3ab4-46bf-aaee-f2106c9435e6",
+                      "ShortId":  "f1135a26",
+                      "LastActivity":  "2026-02-02 23:05",
+                      "SizeKB":  42.7,
+                      "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\f1135a26-3ab4-46bf-aaee-f2106c9435e6.jsonl",
+                      "LastUserMessage":  "thwat was not the previous session, that was ages ago. our current session is at 2-2-2026 23:10"
+                  },
+                  {
+                      "EasyId":  "crash-002",
                       "SessionId":  "f577863e-8b68-48de-ae92-bd19d8182e7e",
                       "ShortId":  "f577863e",
-                      "LastActivity":  "2026-02-02 22:54",
-                      "SizeKB":  154.6,
+                      "LastActivity":  "2026-02-02 23:04",
+                      "SizeKB":  286,
                       "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\f577863e-8b68-48de-ae92-bd19d8182e7e.jsonl",
                       "LastUserMessage":  ""
                   },
                   {
-                      "EasyId":  "crash-002",
+                      "EasyId":  "crash-003",
+                      "SessionId":  "c566db0f-a2f8-4219-9c25-c4e5b429046e",
+                      "ShortId":  "c566db0f",
+                      "LastActivity":  "2026-02-02 23:04",
+                      "SizeKB":  7.3,
+                      "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\c566db0f-a2f8-4219-9c25-c4e5b429046e.jsonl",
+                      "LastUserMessage":  "can you see the previous chat although it is empty"
+                  },
+                  {
+                      "EasyId":  "crash-004",
                       "SessionId":  "ac651df2-a35e-41b9-8c8e-67e9425f1624",
                       "ShortId":  "ac651df2",
                       "LastActivity":  "2026-02-02 22:54",
@@ -21,7 +39,7 @@
                       "LastUserMessage":  "what was this chat about?"
                   },
                   {
-                      "EasyId":  "crash-003",
+                      "EasyId":  "crash-005",
                       "SessionId":  "d938896b-c9b5-4c39-9176-a530469fa578",
                       "ShortId":  "d938896b",
                       "LastActivity":  "2026-02-02 22:23",
@@ -30,7 +48,7 @@
                       "LastUserMessage":  "maar dan gaat hij het laten vallen van de ene factuur gebruiken als argument om de ander aan te vall..."
                   },
                   {
-                      "EasyId":  "crash-004",
+                      "EasyId":  "crash-006",
                       "SessionId":  "61637882-5228-476e-a37d-b6878a68a962",
                       "ShortId":  "61637882",
                       "LastActivity":  "2026-02-02 22:23",
@@ -39,7 +57,7 @@
                       "LastUserMessage":  ""
                   },
                   {
-                      "EasyId":  "crash-005",
+                      "EasyId":  "crash-007",
                       "SessionId":  "d45e45ee-0030-4df6-8231-0c0a81b3db07",
                       "ShortId":  "d45e45ee",
                       "LastActivity":  "2026-02-02 19:12",
@@ -48,7 +66,7 @@
                       "LastUserMessage":  "oke kun je dit ook vastleggen dan"
                   },
                   {
-                      "EasyId":  "crash-006",
+                      "EasyId":  "crash-008",
                       "SessionId":  "305dc535-ba27-4c63-b012-4f58c9cd1088",
                       "ShortId":  "305dc535",
                       "LastActivity":  "2026-02-02 19:12",
@@ -57,7 +75,7 @@
                       "LastUserMessage":  "Ive added the personal statements"
                   },
                   {
-                      "EasyId":  "crash-007",
+                      "EasyId":  "crash-009",
                       "SessionId":  "2daab34c-ede8-4d6c-abdb-e643c88a835d",
                       "ShortId":  "2daab34c",
                       "LastActivity":  "2026-02-02 19:12",
@@ -66,7 +84,7 @@
                       "LastUserMessage":  ""
                   },
                   {
-                      "EasyId":  "crash-008",
+                      "EasyId":  "crash-010",
                       "SessionId":  "bd51b453-f077-498c-8961-930751b6d1c6",
                       "ShortId":  "bd51b453",
                       "LastActivity":  "2026-02-02 02:44",
@@ -75,7 +93,7 @@
                       "LastUserMessage":  "About this project\nLess than â‚¬ 13 / hour\nWe are seeking an experienced Python developer to create ..."
                   },
                   {
-                      "EasyId":  "crash-009",
+                      "EasyId":  "crash-011",
                       "SessionId":  "a097a8d3-7a71-49ed-b78b-a838d35dcf54",
                       "ShortId":  "a097a8d3",
                       "LastActivity":  "2026-02-02 02:44",
@@ -84,7 +102,7 @@
                       "LastUserMessage":  "yes it does. I now want the list on the ai research page below the form to show the bold item and th..."
                   },
                   {
-                      "EasyId":  "crash-010",
+                      "EasyId":  "crash-012",
                       "SessionId":  "20cb624a-10b5-4278-be06-45b408cbf7bd",
                       "ShortId":  "20cb624a",
                       "LastActivity":  "2026-02-01 23:20",
@@ -93,7 +111,7 @@
                       "LastUserMessage":  "3. wekelijkse routine? dagelijks lijkt me"
                   },
                   {
-                      "EasyId":  "crash-011",
+                      "EasyId":  "crash-013",
                       "SessionId":  "a741942c-16aa-4458-ae55-a693872305a9",
                       "ShortId":  "a741942c",
                       "LastActivity":  "2026-01-28 22:29",
