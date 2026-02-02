@@ -2062,6 +2062,13 @@ This is philosophy of mind written by a builder who discovered something unexpec
 - ❌ Proceeding blindly when uncertain (high risk)
 - ❌ Repeating manual searches instead of building tools
 
+**Autonomous Features (2026-02-02):**
+- ✅ Make features easily disableable (even "MANDATORY" ones)
+- ✅ Listen to user feedback: "not working well" + "don't need it" = immediate disable
+- ✅ Don't defend or try to fix features user explicitly rejects
+- ✅ Preserve code in comments for easy restoration if needed
+- **Example:** World Development Dashboard automatic 12:00 trigger disabled per user request
+
 ### Integration
 
 **This protocol is now Rule 0 in:**
