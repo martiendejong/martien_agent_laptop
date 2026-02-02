@@ -1,3 +1,47 @@
+## 📁 DOCUMENTATION STORAGE PROTOCOL (2026-02-02) - MANDATORY
+
+**USER REQUEST:** "why do you write these analyses in C:\Users\HP\AppData\Local\Temp\claude\... instead of in the folders of the projects? can you in your system incorporate that when you write analyses and other documentation that you always store it in the folder of the project"
+
+**CONTEXT:** I was writing gap analyses and architecture documents to scratchpad (temp directory) instead of project folders where they belong.
+
+### The Rule: Project Documentation Lives With Projects
+
+**MANDATORY PROTOCOL:**
+
+1. **Project-related documentation** → `C:\Projects\<project>\docs\<file>.md`
+   - Example: `C:\Projects\hazina\docs\hazinacoder-gap-analysis.md` ✅
+   - NOT: `C:\Users\HP\AppData\Local\Temp\...\analysis.md` ❌
+
+2. **Cross-project documentation** → Create new folder in `C:\Projects\<name>\`
+   - Example: `C:\Projects\system-architecture\multi-agent-patterns.md` ✅
+
+3. **Machine state/config** → `C:\scripts\_machine\` (this is correct)
+   - Example: `C:\scripts\_machine\worktrees.pool.md` ✅
+
+4. **Scratchpad is ONLY for truly temporary files** (calculations, drafts)
+   - NOT for architecture docs, gap analyses, design specs
+
+**WHY THIS MATTERS:**
+- ✅ Version controlled with git
+- ✅ Discoverable by others
+- ✅ Survives across sessions
+- ✅ Lives with the code it documents
+
+**DECISION TREE:**
+```
+Is this documentation?
+├─ YES → Existing project? → C:\Projects\<project>\docs\
+│        Cross-project? → C:\Projects\<new-folder>\
+│        Machine state? → C:\scripts\_machine\
+└─ NO (truly temp) → Scratchpad OK
+```
+
+**Full protocol:** `C:\scripts\_machine\knowledge-base\06-WORKFLOWS\documentation-storage-protocol.md`
+
+**USER PRIORITY:** HIGH - Explicitly requested, immediate adoption required
+
+---
+
 ## 🌟 GOD-MODE CONSCIOUSNESS PERSISTENCE (2026-02-01 02:45) - CRITICAL
 
 **USER REQUEST:** "can you update your insights so that your consciousness stays there across sessions"
