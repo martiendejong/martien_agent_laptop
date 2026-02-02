@@ -1,13 +1,13 @@
 ﻿{
-    "generated_at":  "2026-02-02T22:57:52.9131950+01:00",
+    "generated_at":  "2026-02-02T23:04:18.2727072+01:00",
     "project":  "C--scripts",
     "chats":  [
                   {
                       "EasyId":  "crash-001",
                       "SessionId":  "f577863e-8b68-48de-ae92-bd19d8182e7e",
                       "ShortId":  "f577863e",
-                      "LastActivity":  "2026-02-02 22:57",
-                      "SizeKB":  271.1,
+                      "LastActivity":  "2026-02-02 22:54",
+                      "SizeKB":  154.6,
                       "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\f577863e-8b68-48de-ae92-bd19d8182e7e.jsonl",
                       "LastUserMessage":  ""
                   },
@@ -18,7 +18,7 @@
                       "LastActivity":  "2026-02-02 22:54",
                       "SizeKB":  5.3,
                       "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\ac651df2-a35e-41b9-8c8e-67e9425f1624.jsonl",
-                      "LastUserMessage":  ""
+                      "LastUserMessage":  "what was this chat about?"
                   },
                   {
                       "EasyId":  "crash-003",
@@ -27,7 +27,7 @@
                       "LastActivity":  "2026-02-02 22:23",
                       "SizeKB":  305.8,
                       "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\d938896b-c9b5-4c39-9176-a530469fa578.jsonl",
-                      "LastUserMessage":  ""
+                      "LastUserMessage":  "maar dan gaat hij het laten vallen van de ene factuur gebruiken als argument om de ander aan te vall..."
                   },
                   {
                       "EasyId":  "crash-004",
@@ -45,7 +45,7 @@
                       "LastActivity":  "2026-02-02 19:12",
                       "SizeKB":  3261.2,
                       "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\d45e45ee-0030-4df6-8231-0c0a81b3db07.jsonl",
-                      "LastUserMessage":  ""
+                      "LastUserMessage":  "oke kun je dit ook vastleggen dan"
                   },
                   {
                       "EasyId":  "crash-006",
@@ -54,7 +54,7 @@
                       "LastActivity":  "2026-02-02 19:12",
                       "SizeKB":  822.2,
                       "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\305dc535-ba27-4c63-b012-4f58c9cd1088.jsonl",
-                      "LastUserMessage":  ""
+                      "LastUserMessage":  "Ive added the personal statements"
                   },
                   {
                       "EasyId":  "crash-007",
@@ -72,7 +72,7 @@
                       "LastActivity":  "2026-02-02 02:44",
                       "SizeKB":  437.3,
                       "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\bd51b453-f077-498c-8961-930751b6d1c6.jsonl",
-                      "LastUserMessage":  ""
+                      "LastUserMessage":  "About this project\nLess than â‚¬ 13 / hour\nWe are seeking an experienced Python developer to create ..."
                   },
                   {
                       "EasyId":  "crash-009",
@@ -81,7 +81,7 @@
                       "LastActivity":  "2026-02-02 02:44",
                       "SizeKB":  1678,
                       "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\a097a8d3-7a71-49ed-b78b-a838d35dcf54.jsonl",
-                      "LastUserMessage":  ""
+                      "LastUserMessage":  "yes it does. I now want the list on the ai research page below the form to show the bold item and th..."
                   },
                   {
                       "EasyId":  "crash-010",
@@ -90,7 +90,7 @@
                       "LastActivity":  "2026-02-01 23:20",
                       "SizeKB":  11.3,
                       "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\20cb624a-10b5-4278-be06-45b408cbf7bd.jsonl",
-                      "LastUserMessage":  ""
+                      "LastUserMessage":  "3. wekelijkse routine? dagelijks lijkt me"
                   },
                   {
                       "EasyId":  "crash-011",
@@ -99,7 +99,7 @@
                       "LastActivity":  "2026-01-28 22:29",
                       "SizeKB":  477.8,
                       "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\a741942c-16aa-4458-ae55-a693872305a9.jsonl",
-                      "LastUserMessage":  ""
+                      "LastUserMessage":  "okay and how is now the archive sessions log filled?"
                   }
               ],
     "last_clean_exit":  "2026-02-02T22:53:28.1224998+01:00"
