@@ -6,7 +6,7 @@ Seat states:
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | artrevisionist-wordpress | agent-001-transparent-topic-cards-css | 2026-01-30T22:30:00Z | 🔄 Fix: Transparent background in b2bk-styles.css |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | hazina | agent-002-archive-session-restore | 2026-01-29T10:00:00Z | 🔄 Feature: Session restore button in Terminal Orchestrator archive view |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-01T08:15:00Z | ✅ PR #422: Resilient auth validation + sliding expiration |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-02T14:30:00Z | ✅ PR #160: Session restore from archive with auto-paste (merged) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-30T23:10:00Z | ✅ PR #3 (plugin): Float topic image left like detail pages (merged) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-01-30T23:40:00Z | ✅ PR #419: Phase 5 - Website connect dialog with permissions UI (ClickUp #869bzf5q5) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-01-30T23:30:00Z | ✅ PR #7 (theme): Display first sentence in topics archive (merged) |
