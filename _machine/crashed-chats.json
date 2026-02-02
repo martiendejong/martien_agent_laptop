@@ -1,45 +1,63 @@
 ﻿{
-    "generated_at":  "2026-02-02T22:04:31.1123948+01:00",
+    "generated_at":  "2026-02-02T22:57:52.9131950+01:00",
     "project":  "C--scripts",
     "chats":  [
                   {
                       "EasyId":  "crash-001",
-                      "SessionId":  "61637882-5228-476e-a37d-b6878a68a962",
-                      "ShortId":  "61637882",
-                      "LastActivity":  "2026-02-02 21:55",
-                      "SizeKB":  33,
-                      "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\61637882-5228-476e-a37d-b6878a68a962.jsonl",
+                      "SessionId":  "f577863e-8b68-48de-ae92-bd19d8182e7e",
+                      "ShortId":  "f577863e",
+                      "LastActivity":  "2026-02-02 22:57",
+                      "SizeKB":  271.1,
+                      "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\f577863e-8b68-48de-ae92-bd19d8182e7e.jsonl",
                       "LastUserMessage":  ""
                   },
                   {
                       "EasyId":  "crash-002",
-                      "SessionId":  "d938896b-c9b5-4c39-9176-a530469fa578",
-                      "ShortId":  "d938896b",
-                      "LastActivity":  "2026-02-02 21:54",
-                      "SizeKB":  243.5,
-                      "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\d938896b-c9b5-4c39-9176-a530469fa578.jsonl",
-                      "LastUserMessage":  "ik zit op het niveau: \"dit zal je voor altijd blijven achtervolgen (hoe je mij hebt benadeeld)\" en \"..."
+                      "SessionId":  "ac651df2-a35e-41b9-8c8e-67e9425f1624",
+                      "ShortId":  "ac651df2",
+                      "LastActivity":  "2026-02-02 22:54",
+                      "SizeKB":  5.3,
+                      "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\ac651df2-a35e-41b9-8c8e-67e9425f1624.jsonl",
+                      "LastUserMessage":  ""
                   },
                   {
                       "EasyId":  "crash-003",
+                      "SessionId":  "d938896b-c9b5-4c39-9176-a530469fa578",
+                      "ShortId":  "d938896b",
+                      "LastActivity":  "2026-02-02 22:23",
+                      "SizeKB":  305.8,
+                      "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\d938896b-c9b5-4c39-9176-a530469fa578.jsonl",
+                      "LastUserMessage":  ""
+                  },
+                  {
+                      "EasyId":  "crash-004",
+                      "SessionId":  "61637882-5228-476e-a37d-b6878a68a962",
+                      "ShortId":  "61637882",
+                      "LastActivity":  "2026-02-02 22:23",
+                      "SizeKB":  128.9,
+                      "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\61637882-5228-476e-a37d-b6878a68a962.jsonl",
+                      "LastUserMessage":  ""
+                  },
+                  {
+                      "EasyId":  "crash-005",
                       "SessionId":  "d45e45ee-0030-4df6-8231-0c0a81b3db07",
                       "ShortId":  "d45e45ee",
                       "LastActivity":  "2026-02-02 19:12",
                       "SizeKB":  3261.2,
                       "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\d45e45ee-0030-4df6-8231-0c0a81b3db07.jsonl",
-                      "LastUserMessage":  "oke kun je dit ook vastleggen dan"
+                      "LastUserMessage":  ""
                   },
                   {
-                      "EasyId":  "crash-004",
+                      "EasyId":  "crash-006",
                       "SessionId":  "305dc535-ba27-4c63-b012-4f58c9cd1088",
                       "ShortId":  "305dc535",
                       "LastActivity":  "2026-02-02 19:12",
                       "SizeKB":  822.2,
                       "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\305dc535-ba27-4c63-b012-4f58c9cd1088.jsonl",
-                      "LastUserMessage":  "Ive added the personal statements"
+                      "LastUserMessage":  ""
                   },
                   {
-                      "EasyId":  "crash-005",
+                      "EasyId":  "crash-007",
                       "SessionId":  "2daab34c-ede8-4d6c-abdb-e643c88a835d",
                       "ShortId":  "2daab34c",
                       "LastActivity":  "2026-02-02 19:12",
@@ -48,41 +66,41 @@
                       "LastUserMessage":  ""
                   },
                   {
-                      "EasyId":  "crash-006",
+                      "EasyId":  "crash-008",
                       "SessionId":  "bd51b453-f077-498c-8961-930751b6d1c6",
                       "ShortId":  "bd51b453",
                       "LastActivity":  "2026-02-02 02:44",
                       "SizeKB":  437.3,
                       "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\bd51b453-f077-498c-8961-930751b6d1c6.jsonl",
-                      "LastUserMessage":  "About this project\nLess than â‚¬ 13 / hour\nWe are seeking an experienced Python developer to create ..."
+                      "LastUserMessage":  ""
                   },
                   {
-                      "EasyId":  "crash-007",
+                      "EasyId":  "crash-009",
                       "SessionId":  "a097a8d3-7a71-49ed-b78b-a838d35dcf54",
                       "ShortId":  "a097a8d3",
                       "LastActivity":  "2026-02-02 02:44",
                       "SizeKB":  1678,
                       "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\a097a8d3-7a71-49ed-b78b-a838d35dcf54.jsonl",
-                      "LastUserMessage":  "yes it does. I now want the list on the ai research page below the form to show the bold item and th..."
+                      "LastUserMessage":  ""
                   },
                   {
-                      "EasyId":  "crash-008",
+                      "EasyId":  "crash-010",
                       "SessionId":  "20cb624a-10b5-4278-be06-45b408cbf7bd",
                       "ShortId":  "20cb624a",
                       "LastActivity":  "2026-02-01 23:20",
                       "SizeKB":  11.3,
                       "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\20cb624a-10b5-4278-be06-45b408cbf7bd.jsonl",
-                      "LastUserMessage":  "3. wekelijkse routine? dagelijks lijkt me"
+                      "LastUserMessage":  ""
                   },
                   {
-                      "EasyId":  "crash-009",
+                      "EasyId":  "crash-011",
                       "SessionId":  "a741942c-16aa-4458-ae55-a693872305a9",
                       "ShortId":  "a741942c",
                       "LastActivity":  "2026-01-28 22:29",
                       "SizeKB":  477.8,
                       "FilePath":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\a741942c-16aa-4458-ae55-a693872305a9.jsonl",
-                      "LastUserMessage":  "okay and how is now the archive sessions log filled?"
+                      "LastUserMessage":  ""
                   }
               ],
-    "last_clean_exit":  "2026-02-02T21:45:16.8210797+01:00"
+    "last_clean_exit":  "2026-02-02T22:53:28.1224998+01:00"
 }
