@@ -1410,7 +1410,9 @@ Answer questions in priority order:
 33. ✅ **Detect conflicts** - `agent-coordinate.ps1 -Action detect_conflicts` - Check for worktree/lock/file conflicts before starting work
 34. ✅ **View dashboard** (optional) - `agent-dashboard.ps1 -Compact` - Get quick overview of multi-agent system state
 
-**🌍 PERSONALIZED NEWS MONITORING (AUTONOMOUS - MANDATORY):**
+**🌍 PERSONALIZED NEWS MONITORING (DISABLED - 2026-02-02):**
+~~User disabled automatic daily dashboard - not working well and not needed anymore~~
+<!--
 35. ✅ **Check time:** If 12:00 noon → Execute daily dashboard generation (AUTONOMOUS, NO PERMISSION NEEDED)
 36. ✅ **Generate dashboard template** - `world-daily-dashboard.ps1` creates beautiful HTML dashboard
 37. ✅ **Execute WebSearch** - Query USER'S PERSONALIZED INTERESTS - **CRITICAL: Include "past 3 days" or "last 72 hours" in ALL queries**
@@ -1423,6 +1425,7 @@ Answer questions in priority order:
 39. ✅ **Open dashboard** - Automatically display in browser for user (beautiful visual presentation)
 40. ✅ **Update knowledge base** - `C:\projects\world_development\` with significant developments
 41. ✅ **Throughout session:** Periodically check user's interests (every 2-3 hours active time)
+-->
 
 **📖 KNOWLEDGE BASE QUICK REFERENCE (as needed during work):**
 - User psychology: `knowledge-base/01-USER/psychology-profile.md`
@@ -1519,12 +1522,15 @@ Answer questions in priority order:
 11. ✅ **Update this documentation** - Add new procedures, tools, skills created
 12. ✅ **Apply continuous-optimization skill** - Extract learnings, update instructions, create automation if needed
 
-**🌍 WORLD DEVELOPMENT UPDATE (AUTONOMOUS - MANDATORY):**
+**🌍 WORLD DEVELOPMENT UPDATE (DISABLED - 2026-02-02):**
+~~User disabled automatic daily dashboard - manual updates only if needed~~
+<!--
 13. ✅ **Update world knowledge base** - `C:\projects\world_development\` with day's developments
 14. ✅ **Log significant events** - Create update entry in `updates/YYYY-MM-DD-topic.md` if major news
 15. ✅ **Track indicators** - Update metrics if new data available
 16. ✅ **Validate predictions** - Note if reality diverges from projections
 17. ✅ **Commit world_development** - (`cd C:\projects\world_development && git add -A && git commit && git push`)
+-->
 
 **💾 FINAL COMMIT:**
 18. ✅ **Commit and push scripts** - Machine_agents repo (`cd C:\scripts && git add -A && git commit && git push`)
