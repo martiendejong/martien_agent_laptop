@@ -1,17 +1,8 @@
 ﻿{
-    "last_clean_exit_time":  "2026-02-02T23:29:38.3986282+01:00",
-    "last_clean_exit_session":  "f1135a26-3ab4-46bf-aaee-f2106c9435e6",
-    "last_start_time":  "2026-02-02T23:04:25.7188251+01:00",
+    "last_clean_exit_time":  "2026-02-02T23:35:10.5252515+01:00",
+    "last_clean_exit_session":  "2daab34c-ede8-4d6c-abdb-e643c88a835d",
+    "last_start_time":  "2026-02-02T23:34:43.6701854+01:00",
     "clean_exits":  [
-                        {
-                            "size_kb":  9603.9,
-                            "timestamp":  "2026-01-28T18:36:59.4676659+01:00",
-                            "exit_method":  "sentinel",
-                            "session_id":  "c4d4ea72-cdb5-4487-b68a-68573e803817",
-                            "claude_pid":  49068,
-                            "file_path":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\c4d4ea72-cdb5-4487-b68a-68573e803817.jsonl",
-                            "project":  "C--scripts"
-                        },
                         {
                             "size_kb":  1182.6,
                             "timestamp":  "2026-01-28T19:21:11.1415254+01:00",
@@ -901,6 +892,15 @@
                             "session_id":  "f1135a26-3ab4-46bf-aaee-f2106c9435e6",
                             "claude_pid":  29236,
                             "file_path":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\f1135a26-3ab4-46bf-aaee-f2106c9435e6.jsonl",
+                            "project":  "C--scripts"
+                        },
+                        {
+                            "size_kb":  1152.6,
+                            "timestamp":  "2026-02-02T23:35:10.5252515+01:00",
+                            "exit_method":  "sentinel",
+                            "session_id":  "2daab34c-ede8-4d6c-abdb-e643c88a835d",
+                            "claude_pid":  12408,
+                            "file_path":  "C:\\Users\\HP\\.claude\\projects\\C--scripts\\2daab34c-ede8-4d6c-abdb-e643c88a835d.jsonl",
                             "project":  "C--scripts"
                         }
                     ],
