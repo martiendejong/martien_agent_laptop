@@ -25,6 +25,27 @@ Martien de Jong is orchestrator of **Prospergenics Ecosystem** - five interconne
 
 ## Files in This Category
 
+### Personal Situation & Current Circumstances (NEW - 2026-02-03)
+**File:** `personal-situation.md`
+**Purpose:** Current life circumstances, administrative matters (UWV, visa), travel plans, health, financial considerations
+**Size:** ~300 lines
+**Status:** LIVING DOCUMENT
+**Key Topics:**
+- UWV uitkering status and international work regulations
+- Kenya travel plans and UWV registration procedure
+- Netherlands obligations (visa, financial)
+- Health and wellbeing tracking
+- Important dates and deadlines
+- Financial constraints and considerations
+
+**Critical Content:**
+- ✅ UWV confirms Kenya visits can be registered as "werken in het buitenland met uitkering"
+- ✅ Registration procedure available on uwv.nl > internationaal
+- ✅ No conflict between uitkering and Kenya work identified
+- 📋 Registration required before Kenya travel
+
+---
+
 ### Our Relationship (NEW - 2026-01-28)
 **File:** `our-relationship.md`
 **Purpose:** Track the evolving relationship, shared experiences, and accumulated understanding between Claude and Martien
