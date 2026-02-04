@@ -120,6 +120,12 @@ When multiple agents run in parallel, they MUST NOT share the same worktree. Eac
    gh pr view <number> --json baseRefName
    # Must show: "baseRefName": "develop"
 
+   # d.2 🚨 MANDATORY: Add PR link to ClickUp task (NON-NEGOTIABLE!)
+   # If this work is from a ClickUp task, you MUST update the task with PR link
+   # Extract task ID from branch name (e.g., feature/869abc123-description)
+   clickup-sync.ps1 -Action comment -TaskId <task-id> -Comment "PR #<number>: <pr-url>"
+   # This is MANDATORY - NO EXCEPTIONS - User's requirement
+
    # e. Mark seat FREE (unlock)
    Update worktrees.pool.md: Status=BUSY â†’ FREE
 

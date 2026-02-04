@@ -194,26 +194,51 @@ gh pr edit <number> --base develop
 **BEFORE running `gh pr create`:**
 
 ```powershell
-# 1. Full build verification
+# 1. Merge develop into branch
 cd /c/Projects/worker-agents/agent-XXX/<repo>
+git fetch origin
+git merge origin/develop
+# Resolve any conflicts, commit if needed
+
+# 2. Full build verification
 dotnet build
 
-# 2. Check exit code
+# 3. Check exit code
 if ($LASTEXITCODE -ne 0) {
     Write-Host "❌ BUILD FAILED - Fix errors before PR" -ForegroundColor Red
     exit 1
 }
 
-# 3. Check for warnings (optional but recommended)
+# 4. Run all tests
+dotnet test
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "❌ TESTS FAILED - Fix failures before PR" -ForegroundColor Red
+    exit 1
+}
+
+# 5. Check for warnings (optional but recommended)
 dotnet build --no-incremental | Select-String "warning"
 
-# 4. If VSIX project, check version numbers
+# 6. If VSIX project, check version numbers
 # - source.extension.vsixmanifest
 # - Package.cs InstalledProductRegistration attribute
 # Must match!
 
-# 5. ONLY if build succeeds, create PR
-gh pr create --title "..." --body "..."
+# 7. Create PR
+gh pr create --base develop --title "..." --body "..."
+
+# 8. 🚨 MANDATORY: Add PR link to ClickUp task (NON-NEGOTIABLE!)
+# Extract task ID from branch name (e.g., feature/869abc123-description)
+$branch = git branch --show-current
+if ($branch -match '(\w{9})') {
+    $taskId = $matches[1]
+    $prNumber = (gh pr view --json number --jq .number)
+    $prUrl = (gh pr view --json url --jq .url)
+    clickup-sync.ps1 -Action comment -TaskId $taskId -Comment "PR #${prNumber}: ${prUrl}"
+    Write-Host "✅ ClickUp task $taskId updated with PR link" -ForegroundColor Green
+} else {
+    Write-Host "⚠️  No ClickUp task ID found in branch name - MANUAL UPDATE REQUIRED" -ForegroundColor Yellow
+}
 ```
 
 #### What to Verify

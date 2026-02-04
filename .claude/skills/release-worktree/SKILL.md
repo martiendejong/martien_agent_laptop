@@ -31,6 +31,30 @@ gh pr view <pr-number> --repo <owner>/<repo>
 
 **If no PR exists, CREATE IT FIRST before releasing.**
 
+### Step 1.5: 🚨 MANDATORY: Update ClickUp Task with PR Link (NON-NEGOTIABLE!)
+
+**CRITICAL: If this work originated from a ClickUp task, you MUST update it with the PR link.**
+
+```bash
+# Extract task ID from branch name (e.g., feature/869abc123-description)
+branch=$(git -C C:/Projects/worker-agents/agent-XXX/<repo> branch --show-current)
+taskId=$(echo $branch | grep -oP '\d\w{8}' | head -1)
+
+if [ -n "$taskId" ]; then
+  # Get PR number and URL
+  prNumber=$(gh pr view --json number --jq .number)
+  prUrl=$(gh pr view --json url --jq .url)
+
+  # Update ClickUp task with PR link
+  clickup-sync.ps1 -Action comment -TaskId $taskId -Comment "PR #${prNumber}: ${prUrl}"
+  echo "✅ ClickUp task $taskId updated with PR link"
+else
+  echo "⚠️  No ClickUp task ID found in branch name - MANUAL UPDATE REQUIRED"
+fi
+```
+
+**This step is MANDATORY and NON-NEGOTIABLE per user requirement.**
+
 ### Step 2: Clean Worktree Directory
 
 ```bash

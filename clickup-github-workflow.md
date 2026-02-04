@@ -108,21 +108,26 @@ After acceptance test:
 
 2. Pick a task, note the ID (e.g., 869bhfw7r)
 
-3. Update ClickUp status to "busy"
-   > clickup-sync.ps1 -Action update -TaskId 869bhfw7r -Status busy
+3. Create branch with ClickUp task ID
+   > Branch naming: feature/869bhfw7r-restaurant-menu
 
-4. Allocate worktree with task-based branch name
-   > Branch: feature/869bhfw7r-restaurant-menu
+4. Allocate worktree for branch
+   > Allocate agent seat and create worktree for this branch
 
-5. Work on the feature...
+5. Make changes to implement the feature
 
-6. Create PR with task reference
-   > gh pr create --title "feat: Restaurant menu [869bhfw7r]"
+6. Merge develop into branch before PR
+   > git fetch origin && git merge origin/develop
+   > Resolve conflicts, ensure build passes, tests pass
 
-7. Add PR link to ClickUp (keep status "busy")
+7. Create PR with task reference
+   > gh pr create --base develop --title "feat: Restaurant menu [869bhfw7r]"
+
+8. 🚨 MANDATORY (NON-NEGOTIABLE): Add PR link to ClickUp task
    > clickup-sync.ps1 -Action comment -TaskId 869bhfw7r -Comment "PR #148: https://github.com/martiendejong/client-manager/pull/148"
+   > THIS STEP IS REQUIRED - NO EXCEPTIONS
 
-8. Release worktree per zero-tolerance rules
+9. Release worktree per zero-tolerance rules
 ```
 
 ### When PR is Merged

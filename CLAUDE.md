@@ -89,6 +89,7 @@ Any task with multiple steps should become a script. This way:
 | **START: Session startup protocol** | **`docs/claude-system/STARTUP_PROTOCOL.md`** | - |
 | **DECIDE: Feature vs Debug Mode** | **`GENERAL_DUAL_MODE_WORKFLOW.md`** | - |
 | **VERIFY: Definition of Done** | **`_machine/DEFINITION_OF_DONE.md`** | - |
+| **🚨 MANDATORY: 7-Step Code Workflow** | **`MANDATORY_CODE_WORKFLOW.md`** (branch → worktree → changes → merge develop → build/test → PR → **ClickUp update**) | - |
 | Allocate worktree for code editing | `worktree-workflow.md` | ✅ `allocate-worktree` |
 | Release worktree after PR | `worktree-workflow.md` | ✅ `release-worktree` |
 | Create/review/merge PRs | `git-workflow.md` | ✅ `github-workflow` |
