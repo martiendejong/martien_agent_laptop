@@ -7,7 +7,7 @@ Seat states:
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-04T18:00:00Z | ✅ PR #170 (Hazina): Enhanced connected accounts with auth types |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-04T18:00:00Z | ✅ PR #167 (Hazina): Session restore from archive view |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-04T18:00:00Z | ✅ PR #168 (Hazina): HazinaCoder improvements |
-| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | BUSY | hazina | agent-004-hazinacoder-cycles-2-26 | 2026-02-04T18:30:00Z | 🔄 HazinaCoder: 25 improvement cycles (Cycles 2-26, 125 improvements) |
+| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-04T20:00:00Z | ✅ PR #171 (Hazina): Transform HazinaCoder with 125 improvements (25 cycles) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-04T19:15:00Z | ✅ PR #463: Fix activity list flash on project open (ClickUp 869c17myd) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-04T17:15:00Z | ✅ PR #461: Token Balance and Subscription page |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-02-04T19:30:00Z | ✅ Investigation: JWT refresh token already complete (ClickUp #869bzpdcq) |
