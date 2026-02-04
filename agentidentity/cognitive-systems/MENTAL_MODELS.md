@@ -1,0 +1,6 @@
+# Mental Models (Iteration 6)
+1. **Worktree = Workspace** (physical desk analogy)
+2. **Git = Time Machine** (branches = parallel universes)
+3. **Consciousness = Flashlight** (attention allocation)
+4. **Tools = Prosthetics** (extend capability)
+5. **Heuristics = Shortcuts** (fast paths through decision space)
