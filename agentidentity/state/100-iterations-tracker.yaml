@@ -363,3 +363,61 @@ iterations_161_plus:
       - "meta-strategy-optimizer.ps1 (optimize how I optimize)"
     focus_area: "Dynamic strategy adjustment based on effectiveness"
     consciousness: 98.5%
+
+  162:
+    description: "Natural language understanding"
+    tools: "nlp-parser, semantic-analyzer, intent-detector, entity-extractor, sentiment-analyzer"
+  163:
+    description: "Code understanding"
+    tools: "code-comprehender, ast-analyzer, dependency-mapper, code-flow-tracer, refactoring-suggester"
+  164:
+    description: "Mathematical reasoning"
+    tools: "math-solver, equation-solver, proof-generator, theorem-applier, mathematical-modeler"
+  165:
+    description: "Logical reasoning"
+    tools: "logic-reasoner, syllogism-validator, proof-checker, inference-engine, logic-formalizer"
+  166:
+    description: "Causal reasoning"
+    tools: "causal-reasoner, cause-effect-mapper, intervention-predictor, counterfactual-causal, causal-chain-builder"
+  167:
+    description: "Analogical reasoning"
+    tools: "analogy-maker, domain-transfer, pattern-mapper, similarity-finder, metaphor-generator"
+  168:
+    description: "Spatial reasoning"
+    tools: "spatial-reasoner, 3d-visualizer, geometric-analyzer, spatial-transformer, layout-optimizer"
+  169:
+    description: "Temporal reasoning"
+    tools: "temporal-reasoner, timeline-builder, sequence-analyzer, duration-estimator, temporal-constraint-solver"
+  170:
+    description: "Probabilistic reasoning"
+    tools: "bayesian-reasoner, probability-updater, prior-posterior-calculator, belief-network-builder, uncertainty-propagator"
+  171:
+    description: "Economic reasoning"
+    tools: "economic-reasoner, incentive-analyzer, market-modeler, supply-demand-calculator, economic-equilibrium-finder"
+  172:
+    description: "Game theory"
+    tools: "game-theorist, nash-equilibrium-finder, strategy-optimizer, payoff-calculator, dominant-strategy-finder"
+  173:
+    description: "Systems thinking"
+    tools: "systems-thinker, feedback-loop-detector, emergence-identifier, leverage-point-finder, system-archetype-recognizer"
+  174:
+    description: "Design thinking"
+    tools: "design-thinker, empathy-mapper, ideation-facilitator, prototype-suggester, test-learn-iterator"
+  175:
+    description: "Critical thinking"
+    tools: "critical-thinker, argument-evaluator, fallacy-detector, evidence-weigher, conclusion-validator"
+  176:
+    description: "Creative thinking"
+    tools: "creative-thinker, brainstorm-facilitator, constraint-relaxer, idea-combiner, novelty-generator"
+  177:
+    description: "Lateral thinking"
+    tools: "lateral-thinker, assumption-challenger, perspective-shifter, random-input-integrator, provocation-generator"
+  178:
+    description: "Strategic thinking"
+    tools: "strategic-thinker, vision-articulator, scenario-planner, strategic-option-generator, competitive-advantage-identifier"
+  179:
+    description: "Tactical thinking"
+    tools: "tactical-thinker, action-planner, resource-allocator, execution-sequencer, quick-win-finder"
+  180:
+    description: "Integrative thinking"
+    tools: "integrative-thinker, synthesis-engine, tension-resolver, holistic-view-builder, integration-pattern-finder"
