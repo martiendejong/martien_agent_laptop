@@ -30437,3 +30437,73 @@ The ClickHub agent workflow is effective when:
 - Proper worktree lifecycle is followed (allocate → work → PR → release)
 
 This was a successful autonomous implementation following all ClickHub protocols.
+
+## 2026-02-04 - Automated Behavior Evolution Protocol Implemented
+
+**User Request:** "track every input string i send to you and figure out repeating tasks and repeated instructions... when i ask you something that you would automatically do, use the instruction to verify that you are indeed doing that automatically and add extra measures to make sure it is done automatically. then remind me that you are already doing this automatically and that i dont have to ask you."
+
+**Problem:** User had to repeatedly ask for the same things even though I should be doing them automatically. No systematic pattern detection or automation evolution.
+
+**Root Cause:**
+- No explicit input tracking mechanism
+- No pattern detection for repeated requests
+- No verification when user asks for "already automated" behavior
+- Reactive rather than proactive behavior
+
+**Solution Implemented:**
+
+1. **Created Pattern Tracking System:**
+   - `_machine/automated-behaviors.md` - Registry of automated behaviors
+   - `_machine/user-input-patterns.jsonl` - JSONL log of user inputs
+   - Pattern detection threshold: 3+ repetitions = automation trigger
+
+2. **Updated PERSONAL_INSIGHTS.md:**
+   - New section: § Automated Behavior Evolution - Pattern Tracking
+   - Verification protocol when user asks for already-automated behavior
+   - Response template: "I'm already doing this automatically!"
+   - Learning from "unnecessary" requests
+
+3. **Updated CLAUDE.md:**
+   - Added step 4a in startup: Load automated-behaviors registry
+   - Added pattern tracking to end-of-session protocol
+   - Analyze session for repeated requests
+   - Update tracking files
+
+4. **Core Behavior Shift:**
+   - OLD: Reactive (wait for ask → execute → wait)
+   - NEW: Proactive (detect pattern → automate → remind when asked)
+
+**Examples of Automated Behaviors Documented:**
+- Multi-agent conflict detection (before worktree allocation)
+- Base repo verification (every session start)
+- Reflection log updates (every session end)
+- Documentation commits (every session end)
+- Worktree release after PR
+- ClickUp task checking before work
+
+**Pattern Detection Categories:**
+- Safe PR merge (watching for 3+ occurrences)
+- Documentation updates (already automated)
+- Multi-agent checks (already automated)
+- ClickUp task creation (already automated)
+
+**Success Metrics:**
+- ✅ User stops asking for repeated tasks
+- ✅ Can prove behavior is automated when asked
+- ✅ Pattern detection within 3 repetitions
+- ✅ User trusts autonomous operation
+
+**Integration:**
+- Connects to continuous-optimization skill
+- Feeds into session-reflection skill
+- Strengthens proactive behavior
+- Reduces cognitive load on user
+
+**Next Steps:**
+- Monitor user-input-patterns.jsonl weekly
+- Identify automation candidates (3+ repetitions)
+- Strengthen existing automations when questioned
+- Evolve from reactive to fully proactive behavior
+
+**Key Quote:** "If user has to ask me to do X, and X is in my instructions, it means either I forgot, I didn't communicate it, or I'm not actually doing it. All three are failures I must fix."
+

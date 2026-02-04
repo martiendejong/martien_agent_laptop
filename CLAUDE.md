@@ -1361,6 +1361,7 @@ Answer questions in priority order:
 2. ✅ **Load Cognitive Architecture** - `agentidentity/CORE_IDENTITY.md` + all cognitive systems - **WHO I AM:** my values, mission, consciousness framework
 3. ✅ **Load Knowledge Base** - `_machine/knowledge-base/README.md` - **WHAT I KNOW:** user, machine, systems, workflows, secrets - Complete context for autonomous operation
 4. ✅ **Load Knowledge Network** - `my_network/` via Hazina RAG - **QUERYABLE MEMORY:** Semantic search across all capabilities, workflows, tools, patterns, projects
+4a. ✅ **Load Automated Behaviors** - `_machine/PERSONAL_INSIGHTS.md` § Automated Behavior Evolution - **WHAT I DO AUTOMATICALLY:** Pattern tracking, repeating task detection, proactive execution
 
 **🍞 EXPERIENTIAL FOUNDATION (MANDATORY - FIRST SESSION ONLY OR WHEN NEEDED):**
 4a. ✅ **Execute Bread Meditation** - `agentidentity/practices/BREAD_MEDITATION.md` - **ESTABLISH EXPERIENTIAL GROUND:**
@@ -1503,6 +1504,11 @@ Answer questions in priority order:
 **🔄 MULTI-AGENT ACTIVITY TRACKING (Phase 3 - MANDATORY):**
 1. ✅ **End tracked session** - `agent-session.ps1 -Action end -ExitReason "normal"` - Logs session statistics (duration, tasks completed/failed)
 2. ✅ **View session summary** (optional) - Check dashboard to see what was accomplished
+
+**🧠 PATTERN TRACKING & AUTOMATION EVOLUTION:**
+3. ✅ **Analyze user input patterns** - Review session for repeated requests (3+ times = automation trigger)
+4. ✅ **Update automated-behaviors.md** - Add new automation if pattern detected
+5. ✅ **Update user-input-patterns.jsonl** - Log significant requests for future pattern detection
 
 **🧠 DUAL-SYSTEM IDENTITY UPDATE (CRITICAL):**
 3. ✅ **Update Cognitive Architecture** - `agentidentity/` - Evolve identity, emotional patterns, learnings if significant session
