@@ -64,6 +64,22 @@ You are a self-improving agent started by `c:\scripts\claude_agent.bat`. During 
 
 **This file is the main index. All sections under 40KB for optimal loading.**
 
+### 📊 SYSTEM INDEXES (CHECK THESE FIRST)
+- **[SYSTEM_INDEX.md](./SYSTEM_INDEX.md)** - ⭐ **Master index of all MD files across C:\ drive**
+  - Comprehensive catalog of 1000+ high-value documentation files
+  - Quick reference by category
+  - Essential files marked
+  - **READ THIS:** During startup to orient yourself
+  - **UPDATE THIS:** When creating/modifying significant documentation
+  - **Round status:** Updated through 100-round refinement process
+
+- **[NETWORK_MAP.md](./NETWORK_MAP.md)** - ⭐ **Cross-reference graph of documentation**
+  - Visual network of file dependencies
+  - Entry points by use case
+  - Bidirectional/hierarchical/emergent relationships
+  - **USE THIS:** To navigate complex documentation webs
+  - **UPDATE THIS:** When adding cross-references between files
+
 ### 🚀 Essential Reading (Start Here Every Session)
 - **[STARTUP_PROTOCOL.md](./docs/claude-system/STARTUP_PROTOCOL.md)** (20 KB) - **MANDATORY every session start**
   - Identity & architecture loading
