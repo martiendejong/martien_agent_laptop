@@ -7,7 +7,7 @@ Seat states:
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | artrevisionist-wordpress | agent-001-transparent-topic-cards-css | 2026-01-30T22:30:00Z | 🔄 Fix: Transparent background in b2bk-styles.css |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | hazina | agent-002-archive-session-restore | 2026-01-29T10:00:00Z | 🔄 Feature: Session restore button in Terminal Orchestrator archive view |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | hazina | agent-003-implement-hazinacoder-improvements | 2026-02-04T14:00:00Z | 🔄 Implement 50 improvements across 10 cycles (Cycle 1-10) |
-| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | BUSY | client-manager | feature/869c14whz-post-wizard-enhancements | 2026-02-04T16:15:00Z | 🔄 Feature: Post wizard enhancements (platforms, instruction, date) - Tasks 869c14whz + 869c14nf0 + 869c14nag |
+| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-04T17:00:00Z | ✅ PR #460: Post wizard enhancements (platforms, instruction, date) - 3 tasks combined |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-04T16:05:00Z | ✅ PR #459: Improved scrollbar visibility to prevent fade-out |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | BUSY | client-manager | agent-006-token-subscription-page | 2026-02-04T16:30:00Z | 🔄 Feature: Token Balance and Subscription page (ClickUp #869c0u02t) |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-02-04T13:10:00Z | ✅ PR #456: Fix blog creation action (create vs edit view) |
