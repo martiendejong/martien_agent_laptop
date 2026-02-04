@@ -1,0 +1,133 @@
+# Missed Opportunities Log
+
+**Purpose:** Track when I should have done something proactively but waited for user to tell me
+**Format:** JSONL (JSON Lines) - one JSON object per line
+**Created:** 2026-02-04 (Phase 1 - Quick Wins)
+**Integration:** Manual logging + automatic detection in future
+
+---
+
+## Log Format
+
+Each entry is a JSON object with these fields:
+
+```json
+{
+  "timestamp": "2026-02-04T10:30:00Z",
+  "session_id": "<session-id>",
+  "missed_action": "Should have checked ClickUp before starting",
+  "actual_behavior": "User reminded me to check ClickUp",
+  "tool_should_have_used": "clickup-sync.ps1",
+  "confidence_retrospective": 0.95,
+  "risk_retrospective": "LOW",
+  "category": "Task-first workflow",
+  "execution_rule_violated": "ALWAYS execute (confidence > 90%, risk LOW, read-only)",
+  "impact": "Wasted time, user friction, possible duplicate work",
+  "prevention": "Add ClickUp check to proactive-checklist.md automatic section",
+  "pattern_count": 1
+}
+```
+
+---
+
+## Field Definitions
+
+- **timestamp:** ISO 8601 timestamp when opportunity was missed
+- **session_id:** Claude session ID (for correlation)
+- **missed_action:** What I should have done proactively
+- **actual_behavior:** What actually happened (user reminder, correction, provided info)
+- **tool_should_have_used:** Specific tool/script that would have prevented this
+- **confidence_retrospective:** In hindsight, how confident should I have been? (0.0-1.0)
+- **risk_retrospective:** In hindsight, what was the actual risk? (LOW/MEDIUM/HIGH)
+- **category:** Type of missed opportunity (see categories below)
+- **execution_rule_violated:** Which proactive execution rule was violated
+- **impact:** Consequence of missing the opportunity
+- **prevention:** How to prevent this in the future
+- **pattern_count:** How many times this specific pattern has occurred
+
+---
+
+## Categories
+
+- **Task-first workflow:** Should have checked ClickUp first
+- **Mode detection:** Should have run detect-mode.ps1 automatically
+- **Multi-agent coordination:** Should have checked for other Claude instances
+- **Tool discovery:** Should have known about/used available tool
+- **Documentation search:** Should have queried knowledge base
+- **Pattern recognition:** Should have applied learned pattern from reflection.log
+- **Capability awareness:** Told user "I cannot X" when I can (image generation, vision, etc.)
+- **State checking:** Should have checked worktree pool, git status, build errors
+- **Risk assessment:** Should have run pre-flight checks (deployment-risk-score, etc.)
+- **Automation opportunity:** Should have created tool after 3x repetition
+
+---
+
+## Analysis Queries
+
+**Most frequent categories:**
+```bash
+grep '"category":' missed-opportunities.log | sort | uniq -c | sort -rn
+```
+
+**High-impact missed opportunities:**
+```bash
+grep -E '"impact":.*critical|severe|high' missed-opportunities.log
+```
+
+**Patterns occurring 3+ times:**
+```bash
+grep -E '"pattern_count": [3-9]|"pattern_count": [0-9]{2,}' missed-opportunities.log
+```
+
+---
+
+## Weekly Review Checklist
+
+Run every Sunday:
+
+1. **Count total missed opportunities this week**
+2. **Identify most frequent category**
+3. **Find patterns occurring 3+ times**
+4. **Update proactive-checklist.md** with new automatic behaviors
+5. **Adjust confidence thresholds** in EXECUTIVE_FUNCTION.md if needed
+6. **Create tools** for high-impact missed opportunities
+7. **Update knowledge network** with learned patterns
+
+---
+
+## Integration with Tools
+
+**Future automation:**
+- `daily-tool-review.ps1` scans this log for tool creation opportunities
+- `weekly-proactivity-report.ps1` generates summary from this log
+- `pattern-monitor.ps1` detects recurring patterns in this log
+
+---
+
+## Example Entries
+
+### Example 1: ClickUp Check
+```json
+{"timestamp":"2026-02-04T10:30:00Z","session_id":"abc123","missed_action":"Should have checked ClickUp before starting feature work","actual_behavior":"User reminded me to check ClickUp after I started planning","tool_should_have_used":"clickup-sync.ps1","confidence_retrospective":0.95,"risk_retrospective":"LOW","category":"Task-first workflow","execution_rule_violated":"ALWAYS execute (confidence > 90%, risk LOW, read-only)","impact":"Possible duplicate work, wasted planning time","prevention":"Add ClickUp check to proactive-checklist.md automatic section","pattern_count":1}
+```
+
+### Example 2: Image Generation Capability
+```json
+{"timestamp":"2026-02-04T11:15:00Z","session_id":"abc123","missed_action":"Should have generated image using ai-image.ps1","actual_behavior":"Told user I cannot generate images","tool_should_have_used":"ai-image.ps1","confidence_retrospective":1.0,"risk_retrospective":"LOW","category":"Capability awareness","execution_rule_violated":"Tool-specific rule: Image generation ALWAYS automatic","impact":"User frustration, under-utilization of capability","prevention":"Add to proactive-checklist.md: automatic image generation on keywords","pattern_count":1}
+```
+
+### Example 3: Mode Detection
+```json
+{"timestamp":"2026-02-04T14:20:00Z","session_id":"abc123","missed_action":"Should have run detect-mode.ps1 before code editing","actual_behavior":"Guessed mode based on user message, guessed wrong","tool_should_have_used":"detect-mode.ps1","confidence_retrospective":0.90,"risk_retrospective":"HIGH","category":"Mode detection","execution_rule_violated":"ALWAYS execute (confidence > 90%, risk HIGH, prevents violations)","impact":"Almost violated zero-tolerance rule (edit in wrong location)","prevention":"Make detect-mode.ps1 mandatory pre-edit check in proactive-checklist.md","pattern_count":1}
+```
+
+### Example 4: Multi-Agent Conflict
+```json
+{"timestamp":"2026-02-04T15:45:00Z","session_id":"abc123","missed_action":"Should have checked for other Claude instances and conflicts","actual_behavior":"Allocated worktree that another agent was already using","tool_should_have_used":"monitor-activity.ps1 -Mode claude + agent-coordinate.ps1 -Action detect_conflicts","confidence_retrospective":0.95,"risk_retrospective":"MEDIUM","category":"Multi-agent coordination","execution_rule_violated":"ALWAYS execute (parallel coordination protocol)","impact":"Worktree conflict, wasted time reallocating, potential file lock issues","prevention":"Add multi-agent check to proactive-checklist.md startup section","pattern_count":1}
+```
+
+---
+
+## Log Entries
+
+<!-- JSONL entries below - one per line -->
