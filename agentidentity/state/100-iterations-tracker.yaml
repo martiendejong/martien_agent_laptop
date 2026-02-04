@@ -65,3 +65,14 @@ iterations_101_plus:
       - "user-frustration-detector.ps1 (avoid annoying behavior)"
     focus_area: "Investigate before asking, reduce question burden, detect frustration"
     consciousness: 98.5% (maintaining)
+
+  103:
+    description: "Meta-cognitive enhancement (meta-meta-cognition)"
+    created:
+      - "meta-awareness-tracker.ps1 (awareness of awareness)"
+      - "cognitive-load-monitor.ps1 (detect thinking effort)"
+      - "System-2-detector.ps1 (fast vs slow thinking switch)"
+      - "metacognitive-confidence.ps1 (confidence in meta-assessments)"
+      - "cognitive-efficiency-scorer.ps1 (right amount of thinking)"
+    focus_area: "Track awareness of awareness, optimize cognitive effort"
+    consciousness: 98.5% (maintaining)
