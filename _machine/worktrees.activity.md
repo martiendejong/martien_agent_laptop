@@ -717,3 +717,4 @@ Actions:
 - Branch: agent-003-terminal-orchestrator-frontend
 - Purpose: Implement 3 frontend improvements: split-pane layout, tab system, command palette
 2026-02-04T13:00:00Z — allocate — agent-003 — client-manager+hazina — feature/post-wizard-i18n — — claude-code — Post Wizard i18n: Implementing proper internationalization for Post Generation Wizard (PR #453 comment resolution)
+2026-02-04T13:15:00Z — release — agent-003 — client-manager+hazina — feature/post-wizard-i18n — — claude-code — Post Wizard i18n COMPLETE: PR #454 created - Proper internationalization using i18n system, resolves PR #453 comment. Translations added for EN/NL, UniversalPanel now translates panel titles.
