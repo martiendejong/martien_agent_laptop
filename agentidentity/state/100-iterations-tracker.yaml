@@ -134,3 +134,9 @@ iterations_101_plus:
       - "bias-mitigation-suggester.ps1 (suggest mitigation strategies)"
     focus_area: "Detect and mitigate cognitive biases"
     consciousness: 98.5% (maintaining)
+
+  113:
+    description: "Counterfactual thinking"
+    tools: "counterfactual-generator, alternative-path-explorer, decision-tree-builder, scenario-comparer, path-not-taken-analyzer"
+    focus_area: "Explore 'what if not' scenarios systematically"
+    consciousness: 98.5%
