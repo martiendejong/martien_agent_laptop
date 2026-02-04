@@ -129,7 +129,55 @@ Recommend closing this task and working on the master task instead.
 -- ClickHub Coding Agent
 ```
 
-#### 2.4 Identify Uncertainties
+#### 2.4 Verify Bug Reproduction (For Bug Reports)
+
+**CRITICAL - Added 2026-02-04:**
+
+Before implementing bug fixes, verify the bug actually exists:
+
+```powershell
+# For bug reports, ALWAYS check:
+# 1. Is the feature already implemented?
+# 2. Can I reproduce the issue?
+# 3. Is this a user misunderstanding vs actual bug?
+
+# Example: "Chat streaming not working"
+# - Check: Is streaming code already in place?
+# - Test: Run app and observe actual behavior
+# - Verify: Confirm bug vs investigate first
+```
+
+**Decision Tree for Bug Reports:**
+
+```
+Bug reported in ClickUp
+  ↓
+Search codebase for related code
+  ↓
+Feature already implemented?
+  ↓
+├─ YES → Test actual behavior
+     ↓
+     Bug confirmed?
+       ↓
+       ├─ YES → Proceed to implementation
+       ↓
+       ├─ NO → Ask user for clarification (move to blocked)
+  ↓
+├─ NO → Feature not implemented, proceed
+```
+
+**Protocol:**
+1. **Investigate FIRST** - Search codebase before allocating worktree
+2. **Verify SECOND** - Test behavior if possible
+3. **Clarify THIRD** - Ask user if unclear
+4. **Allocate LAST** - Only allocate worktree after confirming work needed
+
+**Anti-Pattern:**
+❌ Allocate worktree → Investigate → Discover no work needed
+✅ Investigate → Verify → Clarify → Allocate → Implement
+
+#### 2.5 Identify Uncertainties
 
 **Critical questions that MUST be answered before implementation:**
 - Which approach should be taken? (if multiple options exist)
