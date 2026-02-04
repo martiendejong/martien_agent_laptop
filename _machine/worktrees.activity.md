@@ -694,3 +694,12 @@ Actions:
 - Repo: hazina
 - Branch: agent-004-terminal-orchestrator-top5
 - Purpose: Implement top 5 improvements from 100-expert analysis (tabs, input sanitization, split pane, Docker, command palette)
+## 2026-02-04 05:30:00 - Allocation: agent-005
+- Repos: client-manager + hazina (paired worktrees)
+- Branch: agent-005-fix-hazina-project-references
+- Purpose: Fix broken Hazina project references (..\hazina → ..\..\hazina in all .csproj files)
+## 2026-02-04T06:00:00Z - Release: agent-004
+- Repo: hazina
+- Branch: agent-004-terminal-orchestrator-top5
+- PR: #163
+- Outcome: Terminal Orchestrator security improvements (input sanitization) + Docker deployment
