@@ -49,20 +49,20 @@ $COLOR_ERROR = 'Red'
 
 # Load config
 if (-not (Test-Path $CONFIG_PATH)) {
-    Write-Host "[ERROR] Config not found: $CONFIG_PATH" -ForegroundColor $COLOR_ERROR
+    Write-Host "ERROR: Config not found: $CONFIG_PATH" -ForegroundColor $COLOR_ERROR
     exit 1
 }
 $config = Get-Content $CONFIG_PATH | ConvertFrom-Json
 
 # Get project config
 if (-not $config.projects.$Project) {
-    Write-Host "[ERROR] Project '$Project' not found in config" -ForegroundColor $COLOR_ERROR
+    Write-Host "ERROR: Project '$Project' not found in config" -ForegroundColor $COLOR_ERROR
     exit 1
 }
 $listId = $config.projects.$Project.list_id
 $assigneeId = "74525428"  # Default assignee (Martien de Jong)
 
-Write-Host "[*] ClickHub Single Cycle - $Project" -ForegroundColor $COLOR_INFO
+Write-Host "INFO: ClickHub Single Cycle - $Project" -ForegroundColor $COLOR_INFO
 Write-Host "   List ID: $listId" -ForegroundColor Gray
 Write-Host "   Max Tasks: $MaxTasks" -ForegroundColor Gray
 if ($DryRun) {
@@ -105,7 +105,7 @@ function Get-UnassignedTasks {
 
         return $tasks
     } catch {
-        Write-Host "[WARN]  Error fetching tasks: $_" -ForegroundColor $COLOR_WARNING
+        Write-Host "WARN:  Error fetching tasks: $_" -ForegroundColor $COLOR_WARNING
         return @()
     }
 }
@@ -146,7 +146,7 @@ function Get-TaskDetails {
 
         return $task
     } catch {
-        Write-Host "[WARN]  Error getting task details: $_" -ForegroundColor $COLOR_WARNING
+        Write-Host "WARN:  Error getting task details: $_" -ForegroundColor $COLOR_WARNING
         return $null
     }
 }
@@ -208,7 +208,7 @@ function Invoke-TaskImplementation {
         [string]$AgentSeat
     )
 
-    Write-Host "[IMPL] Implementing task $($Task.Id): $($Task.Name)" -ForegroundColor $COLOR_INFO
+    Write-Host "IMPLEMENTING: Implementing task $($Task.Id): $($Task.Name)" -ForegroundColor $COLOR_INFO
     Write-Host "   Agent seat: $AgentSeat" -ForegroundColor Gray
 
     if ($DryRun) {
@@ -223,7 +223,7 @@ function Invoke-TaskImplementation {
         $branchName = "feature/$($Task.Id)-$(($Task.Name -replace '[^a-zA-Z0-9]', '-').ToLower())"
 
         $workingComment = @"
-🤖 AGENT WORKING
+AGENT WORKING
 
 Agent ID: $agentId
 Session Start: $sessionTime
@@ -241,10 +241,10 @@ Other agents: Please do not pick up this task.
         # Update status to busy and assign
         & $SYNC_SCRIPT -Action update -TaskId $Task.Id -Status "busy" -Assignee $assigneeId
 
-        Write-Host "   [OK] Task marked as busy and assigned" -ForegroundColor $COLOR_SUCCESS
+        Write-Host "   OK: Task marked as busy and assigned" -ForegroundColor $COLOR_SUCCESS
 
     } catch {
-        Write-Host "   [ERROR] Error updating task status: $_" -ForegroundColor $COLOR_ERROR
+        Write-Host "   ERROR: Error updating task status: $_" -ForegroundColor $COLOR_ERROR
         return $false
     }
 
@@ -254,7 +254,7 @@ Other agents: Please do not pick up this task.
     # 2. Call external script/tool for implementation
     # 3. Manual implementation step
 
-    Write-Host "   [WARN]  TODO: Actual implementation logic not yet implemented" -ForegroundColor $COLOR_WARNING
+    Write-Host "   WARN:  TODO: Actual implementation logic not yet implemented" -ForegroundColor $COLOR_WARNING
     Write-Host "   This would:" -ForegroundColor Gray
     Write-Host "   - Allocate worktree ($AgentSeat)" -ForegroundColor Gray
     Write-Host "   - Analyze codebase and implement changes" -ForegroundColor Gray
@@ -271,7 +271,7 @@ function Invoke-PostQuestions {
         [array]$Uncertainties
     )
 
-    Write-Host "[Q] Posting questions for task $($Task.Id)" -ForegroundColor $COLOR_WARNING
+    Write-Host "QUESTION: Posting questions for task $($Task.Id)" -ForegroundColor $COLOR_WARNING
 
     if ($DryRun) {
         Write-Host "   [DRY RUN] Would post these uncertainties:" -ForegroundColor $COLOR_WARNING
@@ -304,10 +304,10 @@ Please clarify before I proceed with implementation.
         & $SYNC_SCRIPT -Action comment -TaskId $Task.Id -Comment $questionsComment
         & $SYNC_SCRIPT -Action update -TaskId $Task.Id -Status "blocked"
 
-        Write-Host "   [OK] Questions posted and task moved to blocked" -ForegroundColor $COLOR_SUCCESS
+        Write-Host "   OK: Questions posted and task moved to blocked" -ForegroundColor $COLOR_SUCCESS
         return $true
     } catch {
-        Write-Host "   [ERROR] Error posting questions: $_" -ForegroundColor $COLOR_ERROR
+        Write-Host "   ERROR: Error posting questions: $_" -ForegroundColor $COLOR_ERROR
         return $false
     }
 }
@@ -316,15 +316,15 @@ Please clarify before I proceed with implementation.
 # Main Cycle Logic
 # ============================================================================
 
-Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor $COLOR_INFO
+Write-Host "-----------------------------------------------------" -ForegroundColor $COLOR_INFO
 Write-Host "STEP 1: Fetch Unassigned Tasks" -ForegroundColor $COLOR_INFO
-Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor $COLOR_INFO
+Write-Host "-----------------------------------------------------" -ForegroundColor $COLOR_INFO
 
 $todoTasks = Get-UnassignedTasks -Status "todo"
 Write-Host "Found $($todoTasks.Count) unassigned 'todo' tasks" -ForegroundColor $COLOR_SUCCESS
 
 if ($todoTasks.Count -eq 0) {
-    Write-Host "[OK] No todo tasks to process" -ForegroundColor $COLOR_SUCCESS
+    Write-Host "OK: No todo tasks to process" -ForegroundColor $COLOR_SUCCESS
     Write-Host ""
     exit 0
 }
@@ -340,7 +340,7 @@ $blockedCount = 0
 $errorCount = 0
 
 foreach ($task in $tasksToProcess) {
-    Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor Gray
+    Write-Host "-----------------------------------------------------" -ForegroundColor Gray
     Write-Host "Processing Task: $($task.Id)" -ForegroundColor $COLOR_INFO
     Write-Host "Name: $($task.Name)" -ForegroundColor White
     Write-Host ""
@@ -348,7 +348,7 @@ foreach ($task in $tasksToProcess) {
     # Get full task details
     $taskDetails = Get-TaskDetails -TaskId $task.Id
     if (-not $taskDetails) {
-        Write-Host "[ERROR] Could not fetch task details" -ForegroundColor $COLOR_ERROR
+        Write-Host "ERROR: Could not fetch task details" -ForegroundColor $COLOR_ERROR
         $errorCount++
         continue
     }
@@ -359,7 +359,7 @@ foreach ($task in $tasksToProcess) {
     $uncertainties = Test-TaskHasUncertainties -Task $taskDetails
 
     if ($uncertainties.Count -gt 0) {
-        Write-Host "[WARN]  Found $($uncertainties.Count) uncertainties:" -ForegroundColor $COLOR_WARNING
+        Write-Host "WARN:  Found $($uncertainties.Count) uncertainties:" -ForegroundColor $COLOR_WARNING
         foreach ($u in $uncertainties) {
             Write-Host "   - $u" -ForegroundColor Gray
         }
@@ -376,19 +376,19 @@ foreach ($task in $tasksToProcess) {
         continue
     }
 
-    Write-Host "[OK] Task appears clear - proceeding with implementation" -ForegroundColor $COLOR_SUCCESS
+    Write-Host "OK: Task appears clear - proceeding with implementation" -ForegroundColor $COLOR_SUCCESS
     Write-Host ""
 
     Write-Host "STEP 3: Find Free Agent Seat" -ForegroundColor $COLOR_INFO
     $agentSeat = Get-FreeAgentSeat
 
     if (-not $agentSeat) {
-        Write-Host "[WARN]  No free agent seats - skipping task" -ForegroundColor $COLOR_WARNING
+        Write-Host "WARN:  No free agent seats - skipping task" -ForegroundColor $COLOR_WARNING
         Write-Host ""
         continue
     }
 
-    Write-Host "[OK] Using agent seat: $agentSeat" -ForegroundColor $COLOR_SUCCESS
+    Write-Host "OK: Using agent seat: $agentSeat" -ForegroundColor $COLOR_SUCCESS
     Write-Host ""
 
     Write-Host "STEP 4: Execute Task Implementation" -ForegroundColor $COLOR_INFO
@@ -408,9 +408,9 @@ foreach ($task in $tasksToProcess) {
 # Summary
 # ============================================================================
 
-Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor $COLOR_INFO
+Write-Host "-----------------------------------------------------" -ForegroundColor $COLOR_INFO
 Write-Host "Cycle Complete - Summary" -ForegroundColor $COLOR_INFO
-Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor $COLOR_INFO
+Write-Host "-----------------------------------------------------" -ForegroundColor $COLOR_INFO
 Write-Host ""
 Write-Host "Tasks processed:    $processedCount" -ForegroundColor White
 Write-Host "Tasks implemented:  $implementedCount" -ForegroundColor $COLOR_SUCCESS

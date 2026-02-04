@@ -6,9 +6,9 @@ Seat states:
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-04T23:30:00Z | ✅ Fixed PR #450 CI/CD failures (frontend: package-lock.json sync, backend: dependency on Hazina PR #170) |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | client-manager+hazina | agent-002-offer-logo-in-chat | 2026-02-04T19:35:00Z | 🔄 Feature: Offer logo generation in chat (ClickUp #869bx163y) |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-04T18:00:00Z | ✅ PR #168 (Hazina): HazinaCoder improvements |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | hazina | agent-003-2hr-sprint-improvements | 2026-02-04T23:30:00Z | 🔄 2-Hour Sprint: 60-90 rapid improvements |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-04T20:00:00Z | ✅ PR #171 (Hazina): Transform HazinaCoder with 125 improvements (25 cycles) |
-| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | BUSY | hazina | agent-005-hazinacoder-iteration-2-cycles-26-50 | 2026-02-04T20:30:00Z | 🔄 HazinaCoder Iteration 2: 125 improvements (Cycles 26-50) - 5 iterations total |
+| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-04T23:00:00Z | ✅ Cleaned up after technical issues |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-04T17:15:00Z | ✅ PR #461: Token Balance and Subscription page |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-02-04T23:15:00Z | ✅ PR #464: Tag display + popup modals for category/hook selection |
 | agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | - | - | 2026-02-04T13:25:00Z | ✅ PR #457: Fix first message no response (pendingMessageSentRef timing) |
