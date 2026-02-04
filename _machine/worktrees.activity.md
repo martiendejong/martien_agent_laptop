@@ -688,3 +688,4 @@ Actions:
 2026-02-01T04:42:00Z — release — agent-003 — hazina+client-manager — feature/generic-blog-storage-publishing — — claude-code — Generic Blog Storage + Multi-Platform Publishing COMPLETE: PRs #153 (Hazina) + #420 (client-manager) created - IBlogStorageService abstraction (File/Database providers), IPublishingService for multi-platform (WordPress), DatabaseBlogStorageService with EF Core, BlogStorageOptions configuration, ScheduledBlogPublishingJob (Hangfire), fulfills user requirement: "ik wil dat beide kan, dat je dat in de appsettings.config kunt instellen"
 2026-02-04T01:14:31Z | agent-003 | RELEASE | feature/869bz3gyp-phase4-draft-management | PR #445 created - Phase 4 Draft Management complete
 2026-02-04T01:40:41Z | agent-003 | ALLOCATE | agent-003-wordpress-calendar | WordPress Calendar Integration (ClickUp 869buxcpe)
+2026-02-04T01:48:04Z | agent-003 | RELEASE | agent-003-wordpress-calendar | PR #448 created, worktrees cleaned
