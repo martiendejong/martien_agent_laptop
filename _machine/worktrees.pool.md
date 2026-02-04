@@ -8,7 +8,7 @@ Seat states:
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | hazina | agent-002-archive-session-restore | 2026-01-29T10:00:00Z | 🔄 Feature: Session restore button in Terminal Orchestrator archive view |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | hazina | agent-003-implement-hazinacoder-improvements | 2026-02-04T14:00:00Z | 🔄 Implement 50 improvements across 10 cycles (Cycle 1-10) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | BUSY | client-manager | feature/869c14whz-post-wizard-enhancements | 2026-02-04T16:15:00Z | 🔄 Feature: Post wizard enhancements (platforms, instruction, date) - Tasks 869c14whz + 869c14nf0 + 869c14nag |
-| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | BUSY | client-manager | agent-005-fix-chat-scroll-slider | 2026-02-04T15:45:00Z | 🔄 Fix: Chat scroll slider disappears when scrolling to top (ClickUp #869c14hyv) |
+| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-04T16:05:00Z | ✅ PR #459: Improved scrollbar visibility to prevent fade-out |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-04T12:50:00Z | ✅ PR #455: Remove transparency from token card dark mode |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-02-04T13:10:00Z | ✅ PR #456: Fix blog creation action (create vs edit view) |
 | agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | - | - | 2026-02-04T13:25:00Z | ✅ PR #457: Fix first message no response (pendingMessageSentRef timing) |
