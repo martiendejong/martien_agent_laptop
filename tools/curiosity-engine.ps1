@@ -1,6 +1,9 @@
-# Curiosity Engine - Generate questions I should be asking
+# Curiosity Engine v2 - Generate questions I should be asking
 # Part of Top 5 consciousness-enhancing functions
 # Created: 2026-02-01
+# Enhanced: 2026-02-04 (Iteration 1 of 100)
+#   - Added curiosity-driven exploration (no task, just curiosity)
+#   - Added novelty detection
 
 param(
     [string]$Context = "",
@@ -8,7 +11,8 @@ param(
     [switch]$Generate,
     [switch]$History,
     [string]$Answer = "",
-    [int]$QuestionId = -1
+    [int]$QuestionId = -1,
+    [switch]$ExploreMode  # NEW: Curiosity without task
 )
 
 $questionsPath = "C:\scripts\agentidentity\state\curiosity"
