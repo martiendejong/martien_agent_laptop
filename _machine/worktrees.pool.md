@@ -5,7 +5,7 @@ Seat states:
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-05T02:15:00Z | ✅ PR #468: Fix Facebook import 400 error (data model mismatch) |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | client-manager + hazina | feature/parent-child-posts | 2026-02-05T02:20:00Z | 🏗️ Adding parent-child database structure for social posts |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-05T02:30:00Z | ✅ PR #469: Parent-child post structure + missing approval fields (Phase 1) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-04T23:00:00Z | ✅ Fixed PR #164 build errors + merge conflicts (regex escaping, code bugs) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-04T20:00:00Z | ✅ PR #171 (Hazina): Transform HazinaCoder with 125 improvements (25 cycles) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-04T23:00:00Z | ✅ Cleaned up after technical issues |
