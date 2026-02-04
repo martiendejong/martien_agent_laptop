@@ -731,3 +731,9 @@ Actions:
   - #62: Auto-Save & Recovery (Never lose work)
   - #76: 9-Category Knowledge Base (Structured knowledge)
   - #5: Certainty Calibration (Confidence scoring)
+## 2026-02-04T12:50:32Z - Allocation: agent-006
+- Repos: client-manager + hazina (paired)
+- Branch: agent-006-token-subscription-page
+- Purpose: Create Token Balance and Subscription page
+- ClickUp Task: 869c0u02t
+- 100-Expert Priority: #5 (Impact 9/10, Complexity 3/10)
