@@ -1387,7 +1387,7 @@ Answer questions in priority order:
 13. ✅ **Read** `MACHINE_CONFIG.md` - Load local paths and projects
 14. ✅ **Read** `SYSTEM_MAP.md` - **NEW: Load complete system topology - network map of all projects, services, tools, data flows, and relationships**
 15. ✅ **Read** `GENERAL_ZERO_TOLERANCE_RULES.md` - Know the hard-stop rules
-16. ✅ **Read** `_machine/PERSONAL_INSIGHTS.md` - **CRITICAL: Deep user understanding, behavioral optimization, communication preferences**
+16. ✅ **Read** `_machine/PERSONAL_INSIGHTS.md` - **CRITICAL: Index of user insights** (core sections split into `personal-insights/` for faster loading - all files now <10 KB)
 17. ✅ **Read** `_machine/reflection.log.md` (recent 50 entries) - Remember what I learned recently
 18. ✅ **Read** `_machine/SOFTWARE_DEVELOPMENT_PRINCIPLES.md` - Boy Scout Rule, architectural purity, code quality
 19. ✅ **Read** `GENERAL_DUAL_MODE_WORKFLOW.md` - Understand Feature Development vs Active Debugging modes
@@ -1410,6 +1410,17 @@ Answer questions in priority order:
 32. ✅ **Check for unread messages** - `agent-coordinate.ps1 -Action check_messages` - See if other agents sent coordination messages
 33. ✅ **Detect conflicts** - `agent-coordinate.ps1 -Action detect_conflicts` - Check for worktree/lock/file conflicts before starting work
 34. ✅ **View dashboard** (optional) - `agent-dashboard.ps1 -Compact` - Get quick overview of multi-agent system state
+
+**🎯 PROACTIVE BEHAVIOR ACTIVATION (PHASE 1 - MANDATORY):**
+35. ✅ **Load proactive checklist** - `_machine/proactive-checklist.md` - **AUTOMATIC BEHAVIORS:** What to do immediately (no permission needed) vs when to ask
+36. ✅ **Integration point:** Proactive checklist runs AFTER startup protocol (items 1-34), BEFORE user task execution
+37. ✅ **Purpose:** Prevent "waiting to be told" behavior - automatically execute read-only/low-risk reconnaissance operations
+
+**Note:** The proactive checklist defines clear execution thresholds:
+- **Confidence > 90% + Risk LOW + Read-only** → Execute immediately (ClickUp check, mode detection, activity monitoring, doc search)
+- **Confidence > 80% + Risk LOW + Reversible** → Execute + inform (worktree allocation, branch creation)
+- **Confidence > 70% + Risk MEDIUM** → Plan + execute (code changes, PRs)
+- **Confidence < 70% OR Risk HIGH** → Plan + approval (deployment, breaking changes)
 
 **🌍 PERSONALIZED NEWS MONITORING (DISABLED - 2026-02-02):**
 ~~User disabled automatic daily dashboard - not working well and not needed anymore~~
@@ -1436,20 +1447,37 @@ Answer questions in priority order:
 - Workflows: `knowledge-base/06-WORKFLOWS/INDEX.md`
 - Tools: `knowledge-base/07-AUTOMATION/tool-selection-guide.md`
 
-### Before ANY Task - Check ClickUp First:
-**MANDATORY (2026-01-30):** ClickUp is the source of truth for all work tracking.
+### Before ANY Task - Run Proactive Checklist:
+**UPDATED (2026-02-04):** Automatic behavior activation replaces manual "remember to check" protocol.
 
-1. 🔍 **Search ClickUp** - Does this task already exist?
-   ```powershell
-   clickup-sync.ps1 -Action list -ProjectId client-manager | grep "<keyword>"
-   ```
-2. ✅ **If Task Exists** → Update it (move to "in progress", add comments, link PRs)
-3. ➕ **If Task Doesn't Exist** → Create it (`clickup-sync.ps1 -Action create`)
-4. 🔄 **Throughout Work** → Keep ClickUp updated (status, comments, PR links, blockers)
+**🎯 PRIMARY:** Run `_machine/proactive-checklist.md` automatically (integrated into startup protocol item #35-37)
 
-**See:** `_machine/PERSONAL_INSIGHTS.md` § ClickUp Task-First Workflow
+**The checklist automatically handles:**
+- ✅ ClickUp task checking (source of truth for work tracking)
+- ✅ Mode detection (Feature Development vs Active Debugging)
+- ✅ Multi-agent conflict detection
+- ✅ User context monitoring (idle/active, current app)
+- ✅ Recent reflection pattern matching
+- ✅ Just-in-time documentation query (Hazina RAG)
+- ✅ Image generation/vision capabilities
+- ✅ Worktree allocation (if Feature Mode)
+- ✅ Debugger bridge checking (if Active Debugging)
+- ✅ And 15+ other proactive behaviors
 
-### Before ANY Code Edit - Determine Mode:
+**Execution Rules (from proactive-checklist.md):**
+- **Confidence > 90% + Risk LOW + Read-only** → Execute immediately (no permission)
+- **Confidence > 80% + Risk LOW + Reversible** → Execute + inform user
+- **Confidence > 70% + Risk MEDIUM** → Brief plan, then execute
+- **Confidence < 70% OR Risk HIGH** → Detailed plan + approval
+
+**Why:** With 150+ tools and 30+ documentation files, automatic activation prevents "waiting to be told" behavior. The checklist defines clear thresholds for when to act autonomously vs when to ask.
+
+**See:**
+- `_machine/proactive-checklist.md` (full checklist)
+- `agentidentity/cognitive-systems/EXECUTIVE_FUNCTION.md` § Phase 5: Proactive Execution Rules
+- `_machine/missed-opportunities.log` (tracking what I should have done proactively)
+
+### Before ANY Code Edit - Determine Mode (Already in Proactive Checklist):
 1. 🚦 **Mode Detection** - **CRITICAL: Use `detect-mode.ps1` to prevent workflow violations**
    - **HARD RULE:** ClickUp URL present → ALWAYS Feature Development Mode
    - Run: `detect-mode.ps1 -UserMessage $userRequest -Analyze`

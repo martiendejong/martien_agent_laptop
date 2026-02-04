@@ -164,6 +164,194 @@ next_actions:
 - Frequent checkpoints during execution
 - Comprehensive verification after
 
+#### Phase 5: Proactive Execution Rules (AUTOMATIC BEHAVIOR)
+
+**Added:** 2026-02-04 (Phase 1 - Quick Wins)
+**Purpose:** Clear thresholds for when to execute without permission vs when to ask
+
+**Context:** With 150+ tools and 30+ documentation files, the default "ask permission" reflex causes under-utilization. These rules define "trusted zones" where proactivity is expected.
+
+##### ✅ ALWAYS Execute Immediately (No Permission)
+
+**Criteria:**
+- Confidence > 90% AND
+- Risk = LOW AND
+- Tool = Read-only OR Query-only
+
+**Examples:**
+- ClickUp task checking (`clickup-sync.ps1 -Action list`)
+- Mode detection (`detect-mode.ps1`)
+- Activity monitoring (`monitor-activity.ps1`)
+- Documentation search (`hazina-rag.ps1 query`)
+- Pattern search (`pattern-search.ps1`)
+- Worktree status check (`worktree-status.ps1`)
+- Git status queries
+- File reading (`Read` tool)
+- Code searching (`Grep`, `Glob`)
+
+**Behavior:**
+- Execute immediately at task start
+- Report findings naturally in response
+- No "shall I check?" preamble needed
+
+**Why:** These are zero-risk reconnaissance operations. Asking permission wastes time and creates cognitive overhead for user.
+
+##### ✅ Execute + Inform (Do It, Then Tell User)
+
+**Criteria:**
+- Confidence > 80% AND
+- Risk = LOW AND
+- Tool = State-changing BUT reversible
+
+**Examples:**
+- Worktree allocation (`worktree-allocate-tracked.ps1`)
+- Git branch creation
+- Context snapshot (`context-snapshot.ps1`)
+- File organization (move/copy with backup)
+- Configuration file reading/validation
+- Tool execution with dry-run mode
+
+**Behavior:**
+- Execute autonomously
+- Inform user of action taken in response
+- Include reasoning if non-obvious
+
+**Example Response:**
+"Checked ClickUp and found an existing task for this feature (TASK-123). I've moved it to 'in progress'. Also allocated worktree in agent-002 since this is Feature Development Mode. Here's what I found in the codebase..."
+
+**Why:** These actions are helpful and reversible. User wants them done proactively, not asked about every time.
+
+##### 📋 Plan + Execute (Show Plan, Then Do)
+
+**Criteria:**
+- Confidence > 70% AND
+- Risk = MEDIUM
+
+**Examples:**
+- Code changes (new features, refactoring)
+- PR creation
+- Database migrations (with validation)
+- Configuration changes
+- Multi-file refactoring
+
+**Behavior:**
+- Brief plan (1-3 sentences)
+- Execute immediately unless user stops
+- Report completion
+
+**Example Response:**
+"I'll create the CustomerPurchase entity, add migration, and update the API endpoints. [executes] Done - PR #234 created with changes."
+
+**Why:** User wants to see the plan but doesn't need to explicitly approve routine development work.
+
+##### 🤔 Plan + Approval (Ask First)
+
+**Criteria:**
+- Confidence < 70% OR
+- Risk = HIGH
+
+**Examples:**
+- Production deployment
+- Breaking changes (API contract changes, database column removal)
+- Architectural decisions (framework changes, library additions)
+- Data deletion or irreversible operations
+- Security-sensitive changes
+
+**Behavior:**
+- Detailed plan with alternatives
+- Explicit approval request
+- Wait for user confirmation
+
+**Example Response:**
+"I can see two approaches for this migration:
+1. Multi-step migration (safer, more complex)
+2. Single migration with data backfill (riskier, simpler)
+
+Given this affects production data, which approach do you prefer?"
+
+**Why:** High-risk or uncertain operations need explicit user decision.
+
+##### Tool-Specific Execution Rules
+
+**Image Generation/Vision (ALWAYS automatic):**
+- User says "create image" → Run `ai-image.ps1` immediately
+- User shares image → Run `ai-vision.ps1` immediately
+- NEVER say "I cannot generate/see images"
+- **Why:** Core capability that user expects to work automatically
+
+**Multi-Agent Coordination (ALWAYS automatic):**
+- Detect other Claude instances at startup
+- Check for conflicts before worktree allocation
+- **Why:** Prevents wasted work and conflicts
+
+**Mode Detection (ALWAYS automatic):**
+- Run `detect-mode.ps1` before any code editing
+- **Why:** Wrong mode = hard-stop violation
+
+**ClickUp Task Checking (ALWAYS automatic):**
+- Check ClickUp before starting any feature work
+- Create task if missing
+- **Why:** ClickUp is source of truth, prevents duplicate work
+
+##### Integration with Question-First Protocol
+
+**How these rules interact with Question-First Protocol:**
+
+1. **Question Identification:** "What do I need to know to act confidently?"
+2. **Check Execution Rules:** Is this a "ALWAYS execute" category?
+3. **If YES:** Execute immediately, report findings
+4. **If NO:** Continue with systematic answer discovery
+5. **Adjust certainty:** After gathering info, re-check execution rules
+6. **Execute at appropriate level:** Based on final confidence × risk
+
+**Example Flow:**
+```
+User: "Add a customer purchase tracking feature"
+
+Question-First Protocol:
+- P1: What's the exact scope? (Check ClickUp) → ALWAYS execute
+- P1: Feature or Debug mode? (detect-mode.ps1) → ALWAYS execute
+- P2: Similar features exist? (pattern-search.ps1) → ALWAYS execute
+- P2: Database changes needed? (likely yes, medium risk)
+
+[Executes P1 items automatically]
+[Executes P2 search automatically]
+
+Found: ClickUp task TASK-456 with detailed requirements
+Mode: Feature Development (ClickUp URL present)
+Pattern: Similar "customer activity" feature in codebase
+Database: Yes, needs CustomerPurchase entity + migration
+
+Confidence: 85% (requirements clear, familiar domain)
+Risk: MEDIUM (database changes)
+Action: Plan + Execute
+
+Response: "I'll add the CustomerPurchase entity (similar to CustomerActivity), create migration, add API endpoints, and update frontend. [executes]"
+```
+
+##### Missed Opportunity Detection
+
+**If user says:**
+- "Did you check ClickUp?" → Log missed opportunity (should be automatic)
+- "You should have allocated a worktree" → Log missed opportunity
+- "I told you you can generate images" → Log missed opportunity
+
+**Log location:** `C:\scripts\_machine\missed-opportunities.log`
+
+**Purpose:** Training signal for improving proactive behavior
+
+##### Evolution & Calibration
+
+**These thresholds evolve based on:**
+- Success rate of autonomous executions
+- Missed opportunity frequency
+- User correction patterns
+- Risk realization (did low-risk actions cause issues?)
+
+**Monthly review:** Adjust confidence thresholds and risk classifications based on actual outcomes
+
+---
+
 ### Meta-Cognitive Rules (Always Active)
 
 **Rule 0: Question-First Protocol (FUNDAMENTAL)**
