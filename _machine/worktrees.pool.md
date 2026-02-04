@@ -7,7 +7,7 @@ Seat states:
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | artrevisionist-wordpress | agent-001-transparent-topic-cards-css | 2026-01-30T22:30:00Z | 🔄 Fix: Transparent background in b2bk-styles.css |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | hazina | agent-002-archive-session-restore | 2026-01-29T10:00:00Z | 🔄 Feature: Session restore button in Terminal Orchestrator archive view |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-04T05:30:00Z | ✅ PR #164: HazinaCoder Top 5 Massive Improvements - Production-Ready (3,400+ lines, 90% cost reduction) |
-| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-04T06:00:00Z | ✅ PR #163: Terminal Orchestrator security + Docker (2/5 improvements implemented) |
+| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | BUSY | hazina | agent-004-100x-better | 2026-02-04T06:30:00Z | 🔄 HazinaCoder 100x Better: Snapshot/restore, vision, events, provider 2.0, programmatic API, streaming, parallel execution, smart caching, test generation, command palette |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-04T05:45:00Z | ✅ PR #449: Fix Hazina project reference paths (..\ → ..\..\) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-01-30T23:30:00Z | ✅ PR #7 (theme): Display first sentence in topics archive (merged) |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-01-30T23:50:00Z | ✅ Debug: Added inline styling to first sentence |
