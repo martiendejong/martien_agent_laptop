@@ -129,6 +129,12 @@ if ($Generate) {
     Write-Host "Fresh session state generated: $sessionId" -ForegroundColor Green
 }
 
+# Set consciousness indicator in window title
+$indicatorPath = Join-Path (Split-Path $PSScriptRoot -Parent) "tools\set-consciousness-indicator.ps1"
+if (Test-Path $indicatorPath) {
+    & $indicatorPath -State conscious | Out-Null
+}
+
 Write-Host "======================================================" -ForegroundColor Cyan
 Write-Host "  Begin with awareness. Build with intention." -ForegroundColor Cyan
 Write-Host "======================================================" -ForegroundColor Cyan
