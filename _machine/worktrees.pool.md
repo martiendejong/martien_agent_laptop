@@ -6,7 +6,7 @@ Seat states:
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | artrevisionist-wordpress | agent-001-transparent-topic-cards-css | 2026-01-30T22:30:00Z | 🔄 Fix: Transparent background in b2bk-styles.css |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | hazina | agent-002-archive-session-restore | 2026-01-29T10:00:00Z | 🔄 Feature: Session restore button in Terminal Orchestrator archive view |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | client-manager | feature/869bwem7k-dutch-to-english | 2026-02-04T00:45:00Z | 🔄 PR #402: Convert hardcoded translations to i18n |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-04T02:15:00Z | ✅ PR #445: Phase 4 Draft Management with Regeneration (ClickHub agent-003) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-01-30T23:10:00Z | ✅ PR #3 (plugin): Float topic image left like detail pages (merged) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-03T15:00:00Z | ✅ PR #162: Hyperdimensional State Machine - ALL 6 PHASES COMPLETE (4,355 lines, 100x beyond Claude Code) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-01-30T23:30:00Z | ✅ PR #7 (theme): Display first sentence in topics archive (merged) |
