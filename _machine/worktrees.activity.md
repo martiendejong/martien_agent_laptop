@@ -703,3 +703,8 @@ Actions:
 - Branch: agent-004-terminal-orchestrator-top5
 - PR: #163
 - Outcome: Terminal Orchestrator security improvements (input sanitization) + Docker deployment
+## 2026-02-04 05:45:00 - Release: agent-005
+- Repo: client-manager
+- Branch: agent-005-fix-hazina-project-references
+- PR: #449
+- Outcome: Fixed Hazina project reference paths (all .csproj files)
