@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager+hazina | feature/post-connection-flow | 2026-02-04T06:00:00Z | 🔧 Fixing PR #467: Facebook/Instagram SDK integration review fixes |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-04T06:30:00Z | ✅ PR #467: Facebook/Instagram SDK integration - Merged with review fixes |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-05T01:45:00Z | ✅ PR #465: Offer logo generation in chat with automatic display (ClickUp #869bx163y) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-04T23:00:00Z | ✅ Fixed PR #164 build errors + merge conflicts (regex escaping, code bugs) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-04T20:00:00Z | ✅ PR #171 (Hazina): Transform HazinaCoder with 125 improvements (25 cycles) |
