@@ -716,3 +716,4 @@ Actions:
 - Repo: hazina
 - Branch: agent-003-terminal-orchestrator-frontend
 - Purpose: Implement 3 frontend improvements: split-pane layout, tab system, command palette
+2026-02-04T13:00:00Z — allocate — agent-003 — client-manager+hazina — feature/post-wizard-i18n — — claude-code — Post Wizard i18n: Implementing proper internationalization for Post Generation Wizard (PR #453 comment resolution)
