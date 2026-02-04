@@ -140,32 +140,32 @@ function Search-Branches {
 }
 
 # Main execution
-Write-Host "🔍 Task Discovery Scan for Task $TaskId" -ForegroundColor Cyan
+Write-Host "[SCAN] Task Discovery Scan for Task $TaskId" -ForegroundColor Cyan
 Write-Host "Description: $TaskDescription" -ForegroundColor Gray
 Write-Host ""
 
 # Extract keywords
 $keywords = Extract-Keywords -text $TaskDescription
-Write-Host "📌 Keywords extracted: $($keywords -join ', ')" -ForegroundColor Yellow
+Write-Host "[INFO] Keywords extracted: $($keywords -join ', ')" -ForegroundColor Yellow
 Write-Host ""
 
 # Collect evidence
 $allEvidence = @()
 
 # Search code files
-Write-Host "🔎 Searching code files..." -ForegroundColor Cyan
+Write-Host "[CHECK] Searching code files..." -ForegroundColor Cyan
 $codeEvidence = Search-Code -keywords $keywords -paths $SearchPaths
 $allEvidence += $codeEvidence
 Write-Host "   Found $($codeEvidence.Count) matching files" -ForegroundColor Gray
 
 # Search PRs
-Write-Host "🔎 Searching pull requests..." -ForegroundColor Cyan
+Write-Host "[CHECK] Searching pull requests..." -ForegroundColor Cyan
 $prEvidence = Search-PRs -keywords $keywords -repo "martiendejong/client-manager"
 $allEvidence += $prEvidence
 Write-Host "   Found $($prEvidence.Count) matching PRs" -ForegroundColor Gray
 
 # Search branches
-Write-Host "🔎 Searching branches..." -ForegroundColor Cyan
+Write-Host "[CHECK] Searching branches..." -ForegroundColor Cyan
 $branchEvidence = Search-Branches -keywords $keywords -path "C:\Projects\client-manager"
 $allEvidence += $branchEvidence
 Write-Host "   Found $($branchEvidence.Count) matching branches" -ForegroundColor Gray
@@ -207,20 +207,20 @@ $result = @{
     recommendation = $recommendation
 }
 
-Write-Host "📊 RESULTS" -ForegroundColor Cyan
+Write-Host "[RESULTS] RESULTS" -ForegroundColor Cyan
 Write-Host "   Confidence: $($result.confidence)%" -ForegroundColor $(if ($result.confidence -ge 80) { "Green" } elseif ($result.confidence -ge 40) { "Yellow" } else { "Red" })
 Write-Host "   Evidence: $($result.evidenceCount) items found" -ForegroundColor Gray
 Write-Host "   Recommendation: $recommendation" -ForegroundColor $(if ($recommendation -eq "close") { "Green" } elseif ($recommendation -eq "verify") { "Yellow" } else { "Red" })
 Write-Host ""
 
 if ($recommendation -eq "close") {
-    Write-Host "✅ HIGH CONFIDENCE: This task appears to be already implemented." -ForegroundColor Green
+    Write-Host "[OK] HIGH CONFIDENCE: This task appears to be already implemented." -ForegroundColor Green
     Write-Host "   → Verify manually, then close or move to review" -ForegroundColor Green
 } elseif ($recommendation -eq "verify") {
-    Write-Host "⚠️ MEDIUM CONFIDENCE: Some evidence of existing work found." -ForegroundColor Yellow
+    Write-Host "[WARN] MEDIUM CONFIDENCE: Some evidence of existing work found." -ForegroundColor Yellow
     Write-Host "   → Check code/PRs manually before allocating worktree" -ForegroundColor Yellow
 } else {
-    Write-Host "🚀 READY TO IMPLEMENT: No significant evidence of existing work." -ForegroundColor Cyan
+    Write-Host "[READY] READY TO IMPLEMENT: No significant evidence of existing work." -ForegroundColor Cyan
     Write-Host "   → Safe to allocate worktree and proceed" -ForegroundColor Cyan
 }
 
