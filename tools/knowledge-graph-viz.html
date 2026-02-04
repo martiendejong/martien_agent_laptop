@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Graph Visualization</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+            color: #e0e0e0;
+        }
+
+        #header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        #controls {
+            padding: 15px;
+            background: #1a1f3a;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background: #764ba2;
+            transform: translateY(-1px);
+        }
+
+        input[type="search"] {
+            background: #2a2f4a;
+            border: 1px solid #3a3f5a;
+            color: #e0e0e0;
+            padding: 8px 12px;
+            border-radius: 6px;
+            width: 300px;
+        }
+
+        #graph {
+            width: 100%;
+            height: calc(100vh - 160px);
+        }
+
+        #info-panel {
+            position: fixed;
+            right: 20px;
+            top: 150px;
+            background: #1a1f3a;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            max-width: 300px;
+            display: none;
+        }
+
+        #info-panel h3 {
+            margin-top: 0;
+            color: #667eea;
+        }
+
+        .node {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .node:hover {
+            filter: brightness(1.3);
+        }
+
+        .node-label {
+            font-size: 12px;
+            fill: #e0e0e0;
+            pointer-events: none;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .link {
+            stroke: #4a5568;
+            stroke-opacity: 0.6;
+            stroke-width: 1.5px;
+        }
+
+        .link:hover {
+            stroke: #667eea;
+            stroke-opacity: 1;
+            stroke-width: 3px;
+        }
+
+        #stats {
+            padding: 15px;
+            background: #1a1f3a;
+            display: flex;
+            gap: 30px;
+            font-size: 14px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>🧠 Knowledge Graph Visualization</h1>
+    </div>
+
+    <div id="controls">
+        <input type="search" id="search" placeholder="Search nodes (docs, tools, concepts)...">
+        <button onclick="resetZoom()">Reset View</button>
+        <button onclick="togglePhysics()">Toggle Physics</button>
+        <button onclick="exportGraph()">Export</button>
+        <button onclick="loadFromFiles()">Load from C:\scripts\</button>
+    </div>
+
+    <div id="stats">
+        <div class="stat-item">
+            <span>Nodes:</span>
+            <span class="stat-value" id="node-count">0</span>
+        </div>
+        <div class="stat-item">
+            <span>Edges:</span>
+            <span class="stat-value" id="edge-count">0</span>
+        </div>
+        <div class="stat-item">
+            <span>Clusters:</span>
+            <span class="stat-value" id="cluster-count">0</span>
+        </div>
+    </div>
+
+    <svg id="graph"></svg>
+
+    <div id="info-panel">
+        <h3 id="node-title"></h3>
+        <p id="node-description"></p>
+        <p id="node-meta"></p>
+        <button onclick="openFile()">Open File</button>
+    </div>
+
+    <script>
+        // Knowledge graph data
+        let graphData = {
+            nodes: [
+                // Documentation nodes
+                { id: 'claude-md', label: 'CLAUDE.md', type: 'doc', category: 'Core', path: 'C:\\scripts\\CLAUDE.md', description: 'Main documentation index' },
+                { id: 'zero-tolerance', label: 'Zero Tolerance Rules', type: 'doc', category: 'Core', path: 'C:\\scripts\\ZERO_TOLERANCE_RULES.md', description: 'Critical operational rules' },
+                { id: 'worktree-workflow', label: 'Worktree Workflow', type: 'doc', category: 'Development', path: 'C:\\scripts\\worktree-workflow.md', description: 'Worktree allocation protocol' },
+                { id: 'machine-config', label: 'Machine Config', type: 'doc', category: 'Configuration', path: 'C:\\scripts\\MACHINE_CONFIG.md', description: 'Machine-specific settings' },
+
+                // Tools
+                { id: 'smart-tool-recommend', label: 'Smart Tool Recommender', type: 'tool', category: 'Discovery', path: 'C:\\scripts\\tools\\smart-tool-recommend.ps1', description: 'AI-powered tool discovery' },
+                { id: 'semantic-doc-search', label: 'Semantic Doc Search', type: 'tool', category: 'Discovery', path: 'C:\\scripts\\tools\\semantic-doc-search.ps1', description: 'Vector embeddings search' },
+                { id: 'extract-insights', label: 'Extract Insights', type: 'tool', category: 'Learning', path: 'C:\\scripts\\tools\\extract-insights.ps1', description: 'Automated pattern extraction' },
+                { id: 'generate-tests', label: 'Generate Tests', type: 'tool', category: 'Testing', path: 'C:\\scripts\\tools\\generate-tests.ps1', description: 'AI test generation' },
+                { id: 'multi-layer-think', label: 'Multi-Layer Reasoning', type: 'tool', category: 'Cognitive', path: 'C:\\scripts\\tools\\multi-layer-think.ps1', description: 'Advanced reasoning engine' },
+                { id: 'swarm-coordinator', label: 'Agent Swarm', type: 'tool', category: 'Coordination', path: 'C:\\scripts\\tools\\swarm-coordinator.ps1', description: '100+ parallel agents' },
+                { id: 'self-healing-agent', label: 'Self-Healing', type: 'tool', category: 'Autonomous', path: 'C:\\scripts\\tools\\self-healing-agent.ps1', description: 'Automatic error recovery' },
+                { id: 'goal-driven-agent', label: 'Goal-Driven', type: 'tool', category: 'Autonomous', path: 'C:\\scripts\\tools\\goal-driven-agent.ps1', description: 'High-level goal achievement' },
+
+                // Concepts
+                { id: 'feature-mode', label: 'Feature Mode', type: 'concept', category: 'Workflow', description: 'Development in worktrees' },
+                { id: 'debug-mode', label: 'Debug Mode', type: 'concept', category: 'Workflow', description: 'Direct editing in base repo' },
+                { id: 'pr-dependencies', label: 'PR Dependencies', type: 'concept', category: 'Git', description: 'Cross-repo dependency tracking' },
+                { id: 'multi-agent', label: 'Multi-Agent', type: 'concept', category: 'Architecture', description: 'Parallel agent execution' }
+            ],
+            links: [
+                // Documentation relationships
+                { source: 'claude-md', target: 'zero-tolerance', type: 'references' },
+                { source: 'claude-md', target: 'worktree-workflow', type: 'references' },
+                { source: 'claude-md', target: 'machine-config', type: 'references' },
+                { source: 'zero-tolerance', target: 'feature-mode', type: 'defines' },
+                { source: 'zero-tolerance', target: 'debug-mode', type: 'defines' },
+                { source: 'worktree-workflow', target: 'feature-mode', type: 'implements' },
+
+                // Tool relationships
+                { source: 'smart-tool-recommend', target: 'semantic-doc-search', type: 'complements' },
+                { source: 'semantic-doc-search', target: 'claude-md', type: 'searches' },
+                { source: 'extract-insights', target: 'claude-md', type: 'updates' },
+                { source: 'multi-layer-think', target: 'goal-driven-agent', type: 'powers' },
+                { source: 'swarm-coordinator', target: 'multi-agent', type: 'implements' },
+                { source: 'self-healing-agent', target: 'swarm-coordinator', type: 'enhances' },
+                { source: 'goal-driven-agent', target: 'multi-layer-think', type: 'uses' },
+
+                // Concept relationships
+                { source: 'feature-mode', target: 'multi-agent', type: 'enables' },
+                { source: 'pr-dependencies', target: 'worktree-workflow', type: 'extends' },
+                { source: 'multi-agent', target: 'swarm-coordinator', type: 'enabled_by' }
+            ]
+        };
+
+        // D3.js visualization
+        const width = window.innerWidth;
+        const height = window.innerHeight - 160;
+
+        const svg = d3.select('#graph')
+            .attr('width', width)
+            .attr('height', height);
+
+        const g = svg.append('g');
+
+        // Color scale by type
+        const color = d3.scaleOrdinal()
+            .domain(['doc', 'tool', 'concept'])
+            .range(['#667eea', '#48bb78', '#ed8936']);
+
+        // Force simulation
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(150))
+            .force('charge', d3.forceManyBody().strength(-400))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(50));
+
+        // Draw links
+        const link = g.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .join('line')
+            .attr('class', 'link');
+
+        // Draw nodes
+        const node = g.append('g')
+            .selectAll('circle')
+            .data(graphData.nodes)
+            .join('circle')
+            .attr('class', 'node')
+            .attr('r', d => d.type === 'doc' ? 12 : d.type === 'tool' ? 10 : 8)
+            .attr('fill', d => color(d.type))
+            .call(drag(simulation))
+            .on('click', showNodeInfo);
+
+        // Node labels
+        const label = g.append('g')
+            .selectAll('text')
+            .data(graphData.nodes)
+            .join('text')
+            .attr('class', 'node-label')
+            .text(d => d.label);
+
+        // Update positions
+        simulation.on('tick', () => {
+            link
+                .attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            node
+                .attr('cx', d => d.x)
+                .attr('cy', d => d.y);
+
+            label
+                .attr('x', d => d.x + 15)
+                .attr('y', d => d.y + 5);
+        });
+
+        // Zoom behavior
+        const zoom = d3.zoom()
+            .scaleExtent([0.1, 4])
+            .on('zoom', (event) => {
+                g.attr('transform', event.transform);
+            });
+
+        svg.call(zoom);
+
+        // Drag behavior
+        function drag(simulation) {
+            function dragstarted(event) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                event.subject.fx = event.subject.x;
+                event.subject.fy = event.subject.y;
+            }
+
+            function dragged(event) {
+                event.subject.fx = event.x;
+                event.subject.fy = event.y;
+            }
+
+            function dragended(event) {
+                if (!event.active) simulation.alphaTarget(0);
+                event.subject.fx = null;
+                event.subject.fy = null;
+            }
+
+            return d3.drag()
+                .on('start', dragstarted)
+                .on('drag', dragged)
+                .on('end', dragended);
+        }
+
+        // Show node info
+        function showNodeInfo(event, d) {
+            document.getElementById('info-panel').style.display = 'block';
+            document.getElementById('node-title').textContent = d.label;
+            document.getElementById('node-description').textContent = d.description || '';
+            document.getElementById('node-meta').textContent = `Type: ${d.type} | Category: ${d.category}`;
+            window.selectedNode = d;
+        }
+
+        // Control functions
+        function resetZoom() {
+            svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
+        }
+
+        function togglePhysics() {
+            if (simulation.alpha() > 0) {
+                simulation.stop();
+            } else {
+                simulation.alpha(1).restart();
+            }
+        }
+
+        function exportGraph() {
+            const json = JSON.stringify(graphData, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'knowledge-graph.json';
+            a.click();
+        }
+
+        function openFile() {
+            if (window.selectedNode && window.selectedNode.path) {
+                alert('Open: ' + window.selectedNode.path);
+                // In production: Launch file in editor
+            }
+        }
+
+        function loadFromFiles() {
+            alert('Future: Scan C:\\scripts\\ and build graph from actual files');
+        }
+
+        // Update stats
+        document.getElementById('node-count').textContent = graphData.nodes.length;
+        document.getElementById('edge-count').textContent = graphData.links.length;
+        document.getElementById('cluster-count').textContent = new Set(graphData.nodes.map(n => n.category)).size;
+
+        // Search
+        document.getElementById('search').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            node.style('opacity', d =>
+                query === '' || d.label.toLowerCase().includes(query) ? 1 : 0.2
+            );
+            label.style('opacity', d =>
+                query === '' || d.label.toLowerCase().includes(query) ? 1 : 0.2
+            );
+        });
+    </script>
+</body>
+</html>
