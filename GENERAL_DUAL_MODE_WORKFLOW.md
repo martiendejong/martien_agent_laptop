@@ -395,6 +395,38 @@ Claude Action:
 2. **Always PR** - Feature work ALWAYS results in pull request + code review
 3. **Clean State** - Release worktree IMMEDIATELY after PR creation
 4. **Main Branch Baseline** - Base repos ALWAYS return to main branch after work
+5. **⚠️ NEVER DISRUPT ACTIVE DEBUGGING** - Before switching base repo branches, check for uncommitted changes
+
+## 🛡️ Multi-Agent Safety Protocol
+
+**CRITICAL:** When multiple agents run simultaneously, one agent might be in Feature Development Mode while user is in Active Debugging Mode in the base repo.
+
+### Safety Checks Before Branch Switching
+
+**Before `git checkout develop` in base repo, ALWAYS check:**
+
+```bash
+# Check for active debugging
+current_branch=$(git branch --show-current)
+uncommitted_changes=$(git status --short)
+
+if [ "$current_branch" != "develop" ] && [ -n "$uncommitted_changes" ]; then
+  echo "⚠️ SKIP: User actively debugging - NOT switching branches"
+  # Skip branch switch entirely
+else
+  git checkout develop
+  git pull origin develop
+fi
+```
+
+**When to Skip Branch Switch:**
+- ✅ Base repo on non-develop branch
+- ✅ Uncommitted changes present
+- ✅ Both conditions = Active Debugging Mode = DO NOT SWITCH
+
+**When Safe to Switch:**
+- ✅ Base repo on develop already
+- ✅ Base repo on non-develop but NO uncommitted changes (stale branch, safe to switch)
 
 ---
 

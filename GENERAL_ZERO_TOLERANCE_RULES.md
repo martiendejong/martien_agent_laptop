@@ -44,12 +44,15 @@ AFTER creating PR (gh pr create):
 □ Mark worktree FREE in pool.md
 □ Log release in activity.md
 □ git commit + push tracking files
-□ Switch base repos to main branch (both repos)
+□ CHECK FOR ACTIVE DEBUGGING MODE before switching branches:
+  - If base repo has uncommitted changes + not on main → SKIP branch switch
+  - Else: Switch base repos to main branch (both repos)
 □ git worktree prune (both repos)
 □ THEN present PR to user
 
 ❌ VIOLATION = CRITICAL FAILURE
 ❌ Presenting PR before releasing worktree = VIOLATION
+❌ Switching base repo branch when user is actively debugging = VIOLATION
 ```
 
 ### ✋ RULE 3: NEVER EDIT IN ${BASE_REPO_PATH}/<repo> (Feature Development Mode)
@@ -69,18 +72,25 @@ AFTER creating PR (gh pr create):
 ### ✋ RULE 3B: ${BASE_REPO_PATH}/<repo> STAYS ON MAIN BRANCH (Feature Development Mode)
 ```
 🏗️ FEATURE DEVELOPMENT MODE:
-BEFORE allocating worktree:
+BEFORE allocating worktree OR releasing worktree:
+□ Check for Active Debugging Mode:
+  - Uncommitted changes in base repo?
+  - Base repo on non-<main-branch> branch?
+  - IF BOTH TRUE → ABORT (user is debugging, don't disrupt)
 □ Check: git -C ${BASE_REPO_PATH}/<repo> branch --show-current
-□ If NOT <main-branch>: git checkout <main-branch> && git pull
+□ If NOT <main-branch> AND no uncommitted changes: git checkout <main-branch> && git pull
 □ ${BASE_REPO_PATH}/<repo> = BASE for all worktrees
 □ NEVER checkout feature branches in ${BASE_REPO_PATH}/<repo>
+□ NEVER switch branches if user has uncommitted work
 
 🐛 ACTIVE DEBUGGING MODE (Exception):
 □ User is on their working branch (e.g., feature/X)
 □ DO NOT switch branches
+□ DO NOT allocate worktrees
 □ Work on whatever branch user currently has checked out
 
 ❌ VIOLATION = Switching branches away from <main-branch> in Feature Development Mode
+❌ VIOLATION = Switching base repo branch when user has active uncommitted work
 ```
 
 ### ✋ RULE 4: CONFIRM BEFORE DESTRUCTIVE GIT OPERATIONS

@@ -64,19 +64,41 @@ Add entry to `C:/scripts/_machine/worktrees.activity.md`:
 
 Remove the line for this agent from `C:/scripts/_machine/instances.map.md`.
 
-### Step 6: Switch Base Repos to Develop
+### Step 6: Switch Base Repos to Develop (ONLY if not in Active Debugging Mode)
+
+**⚠️ CRITICAL: Check for Active Debugging Mode first!**
 
 ```bash
-# client-manager
+# Check client-manager for active work
 cd C:/Projects/client-manager
-git checkout develop
-git pull origin develop
+current_branch=$(git branch --show-current)
+uncommitted_changes=$(git status --short)
 
-# hazina
+if [ "$current_branch" != "develop" ] && [ -n "$uncommitted_changes" ]; then
+  echo "⚠️ SKIP: Active debugging detected in client-manager (branch: $current_branch, uncommitted changes)"
+  echo "User is actively working - NOT switching branches"
+else
+  git checkout develop
+  git pull origin develop
+fi
+
+# Check hazina for active work
 cd C:/Projects/hazina
-git checkout develop
-git pull origin develop
+current_branch=$(git branch --show-current)
+uncommitted_changes=$(git status --short)
+
+if [ "$current_branch" != "develop" ] && [ -n "$uncommitted_changes" ]; then
+  echo "⚠️ SKIP: Active debugging detected in hazina (branch: $current_branch, uncommitted changes)"
+  echo "User is actively working - NOT switching branches"
+else
+  git checkout develop
+  git pull origin develop
+fi
 ```
+
+**Detection Logic:**
+- IF base repo has uncommitted changes AND is not on develop → Active Debugging Mode → SKIP branch switch
+- ELSE → Safe to switch to develop
 
 ### Step 7: Prune Worktrees
 

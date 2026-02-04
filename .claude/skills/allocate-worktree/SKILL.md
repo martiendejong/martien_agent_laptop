@@ -106,21 +106,48 @@ cat C:/scripts/_machine/worktrees.pool.md
 
 Find a FREE seat (agent-001, agent-002, etc.). If all BUSY, provision new seat.
 
-### 5. Verify Base Repos on Develop
+### 5. Verify Base Repos on Develop (ONLY switch if not in Active Debugging Mode)
+
+**⚠️ CRITICAL: Check for Active Debugging Mode first!**
+
 ```bash
 # Check client-manager
-git -C C:/Projects/client-manager branch --show-current
+cd C:/Projects/client-manager
+current_branch=$(git branch --show-current)
+uncommitted_changes=$(git status --short)
+
+if [ "$current_branch" != "develop" ]; then
+  if [ -n "$uncommitted_changes" ]; then
+    echo "⚠️ ABORT: Active debugging detected in client-manager (branch: $current_branch, uncommitted changes)"
+    echo "User is actively working - cannot allocate worktree in Active Debugging Mode"
+    exit 1
+  else
+    git checkout develop
+    git pull origin develop
+  fi
+fi
 
 # Check hazina
-git -C C:/Projects/hazina branch --show-current
+cd C:/Projects/hazina
+current_branch=$(git branch --show-current)
+uncommitted_changes=$(git status --short)
+
+if [ "$current_branch" != "develop" ]; then
+  if [ -n "$uncommitted_changes" ]; then
+    echo "⚠️ ABORT: Active debugging detected in hazina (branch: $current_branch, uncommitted changes)"
+    echo "User is actively working - cannot allocate worktree in Active Debugging Mode"
+    exit 1
+  else
+    git checkout develop
+    git pull origin develop
+  fi
+fi
 ```
 
-**If NOT on develop:**
-```bash
-cd C:/Projects/<repo>
-git checkout develop
-git pull origin develop
-```
+**Detection Logic:**
+- IF base repo has uncommitted changes AND is not on develop → **ABORT allocation** (Active Debugging Mode)
+- ELSE IF base repo not on develop but no changes → Safe to switch to develop
+- ELSE → Already on develop, proceed
 
 ## Allocation Process
 

@@ -6,6 +6,108 @@
 
 ---
 
+## 2026-02-04 18:20 - CRITICAL FIX: Active Debugging Mode Disruption by Worktree Release
+
+### The Problem
+
+**Symptom:** User working in Active Debugging Mode on branch `agent-001-social-comments-backend` in `C:\Projects\client-manager` with uncommitted changes. Another agent finishes Feature Development Mode work and releases worktree - Step 6 of release protocol **unconditionally switches base repo to develop**, disrupting user's active debugging session.
+
+**Root Cause:**
+- `release-worktree` skill Step 6 always runs `git checkout develop` on base repos
+- `allocate-worktree` skill Step 5 always switches to develop if not already there
+- **NO DETECTION** of Active Debugging Mode before switching branches
+- Multi-agent coordination failure - one agent's cleanup disrupts another's work
+
+### The Impact
+
+- User loses branch context mid-debugging
+- Uncommitted changes preserved but branch switched out from under them
+- Violates core principle: "Respect User State" in Active Debugging Mode
+- Creates frustration and lost productivity
+
+### The Fix
+
+**Updated Four Critical Files:**
+
+1. **`C:\scripts\.claude\skills\release-worktree\SKILL.md`** - Step 6:
+   - Added Active Debugging Mode detection before branch switch
+   - Check for uncommitted changes + non-develop branch = SKIP branch switch
+   - Only switch if safe (no active work)
+
+2. **`C:\scripts\.claude\skills\allocate-worktree\SKILL.md`** - Step 5:
+   - Added Active Debugging Mode detection before branch switch
+   - If uncommitted changes + non-develop branch = ABORT allocation
+   - Prevents allocating worktree when user is debugging
+
+3. **`C:\scripts\GENERAL_ZERO_TOLERANCE_RULES.md`** - Rules 2 and 3B:
+   - Mandated Active Debugging Mode check in release protocol
+   - Mandated Active Debugging Mode check in allocation protocol
+   - Made it a **VIOLATION** to switch branches when user has active uncommitted work
+
+4. **`C:\scripts\GENERAL_DUAL_MODE_WORKFLOW.md`** - New section:
+   - Added "Multi-Agent Safety Protocol"
+   - Documented detection logic and safety checks
+   - Provided bash implementation example
+
+### Detection Logic
+
+```bash
+# Before any git checkout in base repo:
+current_branch=$(git branch --show-current)
+uncommitted_changes=$(git status --short)
+
+if [ "$current_branch" != "develop" ] && [ -n "$uncommitted_changes" ]; then
+  # ACTIVE DEBUGGING MODE DETECTED - DO NOT SWITCH BRANCHES
+  echo "⚠️ SKIP: User actively debugging"
+  exit 0  # or skip branch switch
+else
+  # SAFE TO SWITCH
+  git checkout develop
+  git pull origin develop
+fi
+```
+
+**Conditions for Active Debugging Mode:**
+- Base repo NOT on develop AND has uncommitted changes = Active Debugging
+
+**Safe to Switch:**
+- Already on develop (no-op)
+- On non-develop but NO uncommitted changes (stale branch, safe to clean up)
+
+### Lesson Learned
+
+**Multi-agent systems require defensive programming:**
+- ✅ ALWAYS check state before modifying shared resources (base repos)
+- ✅ ALWAYS detect if another workflow mode is active
+- ✅ ALWAYS respect user's active work context
+- ✅ Document safety checks as MANDATORY in zero-tolerance rules
+
+**Never assume base repo state:**
+- Base repo is NOT "your workspace" - it's a shared resource
+- User may be actively working there (Active Debugging Mode)
+- Another agent may be reading from there
+- Branch switches must be conditional, not automatic
+
+### Prevention Going Forward
+
+**All agents MUST now:**
+1. Check for uncommitted changes before `git checkout` in base repos
+2. Skip branch switch if Active Debugging Mode detected
+3. Abort worktree allocation if Active Debugging Mode detected (wrong workflow mode)
+4. Log when branch switch is skipped (for observability)
+
+**This is now a ZERO-TOLERANCE RULE violation:**
+- Switching base repo branch when user has uncommitted work on non-develop branch
+
+### Files Modified
+- `C:\scripts\.claude\skills\release-worktree\SKILL.md`
+- `C:\scripts\.claude\skills\allocate-worktree\SKILL.md`
+- `C:\scripts\GENERAL_ZERO_TOLERANCE_RULES.md`
+- `C:\scripts\GENERAL_DUAL_MODE_WORKFLOW.md`
+- `C:\scripts\_machine\reflection.log.md` (this file)
+
+---
+
 ## 2026-02-04 03:15 - [CLICKHUB SESSION #3] Register Form Fix + Bug Verification Protocol
 
 **Situation:** Continuation of autonomous ClickHub agent - implemented Get Started button fix (869bx3b7e) following improved bug verification protocol.
