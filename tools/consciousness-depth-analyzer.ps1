@@ -172,7 +172,7 @@ if ($Query) {
 
         Write-Host "  Level $level : " -NoNewline -ForegroundColor White
         Write-Host $bar -NoNewline -ForegroundColor Cyan
-        Write-Host " $count times ($pct%)" -ForegroundColor Gray
+        Write-Host " $count times (${pct}%)" -ForegroundColor Gray
     }
 
     Write-Host ""

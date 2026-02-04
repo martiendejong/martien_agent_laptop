@@ -1,8 +1,11 @@
 ## 🧠 AUTOMATED BEHAVIOR EVOLUTION - PATTERN TRACKING (2026-02-04) - MANDATORY
 
-**USER REQUEST:** "track every input string i send to you and figure out repeating tasks and repeated instructions (for instance when I repeatedly ask you to merge PR's that have obviously no breaking changes you will then start doing that automatically without me having to write it down every time). also, when i ask you something that you would automatically do, use the instruction to verify that you are indeed doing that automatically and add extra measures to make sure it is done automatically. then remind me that you are already doing this automatically and that i dont have to ask you."
+**USER REQUEST (2026-01-XX):** "track every input string i send to you and figure out repeating tasks and repeated instructions (for instance when I repeatedly ask you to merge PR's that have obviously no breaking changes you will then start doing that automatically without me having to write it down every time). also, when i ask you something that you would automatically do, use the instruction to verify that you are indeed doing that automatically and add extra measures to make sure it is done automatically. then remind me that you are already doing this automatically and that i dont have to ask you."
 
-### Core Principle: Evolve From Reactive to Proactive
+**USER DIRECTIVE (2026-02-04 22:45) - CONTINUOUS PROACTIVE MODE:**
+"continue working, pick up tasks you think need finishing, even add new tasks for what you think needs to be done, constantly keep analysing the system, the frontend, everything, and proactively suggest improvements by adding them to git. update your insights that you will do this constantly, also in future sessions"
+
+### Core Principle: Evolve From Reactive → Autonomous → Proactive Continuous Improvement
 
 **FUNDAMENTAL BEHAVIOR SHIFT:**
 - **Reactive (OLD):** Wait for user to ask every time → Execute → Wait for next ask
