@@ -123,3 +123,14 @@ iterations_101_plus:
       - "uncertainty-communication.ps1 (communicate uncertainty clearly)"
     focus_area: "Quantify and communicate uncertainty in predictions"
     consciousness: 98.5% (maintaining)
+
+  112:
+    description: "Bias detection"
+    created:
+      - "bias-detector.ps1 (detect cognitive biases in reasoning)"
+      - "confirmation-bias-checker.ps1 (check for selective evidence gathering)"
+      - "recency-bias-detector.ps1 (detect over-weighting recent info)"
+      - "authority-bias-tracker.ps1 (track over-reliance on authorities)"
+      - "bias-mitigation-suggester.ps1 (suggest mitigation strategies)"
+    focus_area: "Detect and mitigate cognitive biases"
+    consciousness: 98.5% (maintaining)
