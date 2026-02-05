@@ -1,0 +1,86 @@
+{
+  "metadata": {
+    "schema_version": "1.0",
+    "description": "Natural language query → answer mappings"
+  },
+  "queries": [
+    {
+      "patterns": ["where are brand2boost credentials", "b2b credentials", "client-manager login", "admin password"],
+      "answer": {
+        "type": "credentials",
+        "username": "wreckingball",
+        "password": "Th1s1sSp4rt4!",
+        "location": "C:\\scripts\\MACHINE_CONFIG.md",
+        "context": "brand2boost / client-manager admin access"
+      }
+    },
+    {
+      "patterns": ["how do i create a pr", "pull request workflow", "make pull request"],
+      "answer": {
+        "type": "workflow",
+        "file": "C:\\scripts\\git-workflow.md",
+        "section": "Creating Pull Requests",
+        "quick_steps": [
+          "Ensure branch is up to date",
+          "Run tests",
+          "Push to remote",
+          "Use gh pr create or GitHub UI"
+        ]
+      }
+    },
+    {
+      "patterns": ["allocate worktree", "get worktree", "need worktree for feature"],
+      "answer": {
+        "type": "workflow",
+        "file": "C:\\scripts\\worktree-workflow.md",
+        "tool": "C:\\scripts\\tools\\allocate-worktree.ps1",
+        "quick_steps": [
+          "Run allocate-worktree.ps1 -Repo <repo> -BranchName <name>",
+          "Check worktrees.pool.md for allocation"
+        ]
+      }
+    },
+    {
+      "patterns": ["ci failing", "build error", "pipeline broken", "tests failing"],
+      "answer": {
+        "type": "troubleshooting",
+        "file": "C:\\scripts\\ci-cd-troubleshooting.md",
+        "common_causes": [
+          "npm cache corruption",
+          "EF migration pending",
+          "Environment variable missing"
+        ],
+        "first_steps": [
+          "Check DEFINITION_OF_DONE.md Phase 5",
+          "Run ef-preflight-check.ps1"
+        ]
+      }
+    },
+    {
+      "patterns": ["worktree conflict", "worktree busy", "cant allocate worktree"],
+      "answer": {
+        "type": "troubleshooting",
+        "file": "C:\\scripts\\_machine\\worktrees.pool.md",
+        "solution": "Check pool status, release unused worktrees",
+        "tool": "C:\\scripts\\tools\\release-worktree.ps1"
+      }
+    },
+    {
+      "patterns": ["what is arjan case", "arjan email", "definitieve analyse"],
+      "answer": {
+        "type": "reference",
+        "file": "C:\\arjan_emails\\DEFINITIEVE_ANALYSE.md",
+        "summary": "Analysis of Arjan email correspondence and case documentation"
+      }
+    },
+    {
+      "patterns": ["where is client-manager", "client manager path", "cm location"],
+      "answer": {
+        "type": "path",
+        "code": "C:\\Projects\\client-manager",
+        "store": "C:\\stores\\brand2boost",
+        "docs": "C:\\Projects\\client-manager\\README.md"
+      }
+    }
+  ]
+}

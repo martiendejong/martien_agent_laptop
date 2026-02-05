@@ -102,15 +102,15 @@ if (Test-Path $aliasFile) {
             -Message "Only found $foundAliases/$($testAliases.Count) test aliases"
     }
 
-    # Test 1.3: Performance benchmark (<100ms requirement)
+    # Test 1.3: Performance benchmark (under 100ms requirement)
     if ($loadTimeMs -lt 100) {
         Write-TestResult `
-            -TestName "1.3 Performance benchmark (<100ms)" `
+            -TestName "1.3 Performance benchmark (under 100ms)" `
             -Status "PASS" `
             -Message "Load time ${loadTimeMs}ms is under 100ms threshold"
     } else {
         Write-TestResult `
-            -TestName "1.3 Performance benchmark (<100ms)" `
+            -TestName "1.3 Performance benchmark (under 100ms)" `
             -Status "WARN" `
             -Message "Load time ${loadTimeMs}ms exceeds 100ms threshold"
     }

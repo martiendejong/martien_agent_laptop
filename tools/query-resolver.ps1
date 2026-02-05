@@ -6,25 +6,25 @@ param(
     [string]$Query
 )
 
-$mappingsFile = "C:\scripts\_machine\QUERY_MAPPINGS.yaml"
+$mappingsFile = "C:\scripts\_machine\QUERY_MAPPINGS.json"
 
 if (-not (Test-Path $mappingsFile)) {
     Write-Host "[ERROR] Query mappings file not found" -ForegroundColor Red
     exit 1
 }
 
-$mappings = Get-Content $mappingsFile -Raw | ConvertFrom-Yaml
+$mappings = Get-Content $mappingsFile -Raw | ConvertFrom-Json
 
 function Find-BestMatch {
     param(
         [string]$Query,
-        [array]$Queries
+        [object]$Mappings
     )
 
     $bestMatch = $null
     $bestScore = 0
 
-    foreach ($item in $Queries.queries) {
+    foreach ($item in $Mappings.queries) {
         foreach ($pattern in $item.patterns) {
             # Simple similarity: count matching words
             $queryWords = $Query.ToLower() -split '\s+'
@@ -50,7 +50,7 @@ function Find-BestMatch {
     }
 }
 
-$result = Find-BestMatch -Query $Query -Queries $mappings
+$result = Find-BestMatch -Query $Query -Mappings $mappings
 
 if ($result.match) {
     Write-Host "`n=== QUERY RESOLUTION ===" -ForegroundColor Cyan
