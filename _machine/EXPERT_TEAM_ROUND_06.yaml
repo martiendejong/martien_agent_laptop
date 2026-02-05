@@ -1,0 +1,68 @@
+# Expert Team Round 06: Auto-Documentation Generation
+# Theme: Generate documentation automatically from code and conversations
+# Date: 2026-02-05
+
+expert_team:
+  round: 6
+  theme: "Auto-Documentation Generation"
+  focus: "Documentation that writes itself"
+
+  experts:
+    - name: "Dr. Donald Knuth"
+      role: "Literate Programming Inventor"
+      background: "Created WEB, interweaving code and documentation"
+      perspective: "Code and docs should be unified"
+
+    - name: "Ward Cunningham"
+      role: "Wiki Inventor"
+      background: "Created first wiki, patterns community"
+      perspective: "Living documentation evolves with code"
+
+    - name: "Daniele Procida"
+      role: "Documentation Systems Architect"
+      background: "Created Diátaxis framework for documentation"
+      perspective: "4 types: tutorials, how-to, reference, explanation"
+
+    - name: "Dr. Yoav Goldberg"
+      role: "Code Understanding ML Researcher"
+      background: "Studies neural models for code summarization"
+      perspective: "LLMs can generate docs from code"
+
+    - name: "Sarah Drasner"
+      role: "Developer Experience Engineer"
+      background: "Built auto-doc pipelines at Netlify"
+      perspective: "Documentation as part of CI/CD"
+
+    - name: "Prof. Michael Ernst"
+      role: "Program Analysis Expert"
+      background: "Created Daikon invariant detector"
+      perspective: "Infer documentation from program behavior"
+
+    - name: "Sandi Metz"
+      role: "Object-Oriented Design Educator"
+      background: "Teaches maintainable code, self-documenting design"
+      perspective: "Good code documents itself through clarity"
+
+    - name: "Dr. Martin Fowler"
+      role: "Software Architecture Documenter"
+      background: "Refactoring, patterns, architecture descriptions"
+      perspective: "Architecture decision records capture rationale"
+
+    - name: "Julia Evans"
+      role: "Technical Explainer"
+      background: "Writes zines making complex topics accessible"
+      perspective: "Good docs are visual, concrete, friendly"
+
+    - name: "Dr. Gregorio Robles"
+      role: "Open Source Evolution Researcher"
+      background: "Studies how documentation evolves in FOSS"
+      perspective: "Documentation decay must be detected and fixed"
+
+methodology:
+  approach: "Multi-source documentation synthesis"
+  principles:
+    - "Extract docs from code comments, signatures, tests"
+    - "Generate from conversation summaries"
+    - "Detect documentation drift and auto-update"
+    - "Different doc types for different audiences"
+    - "Living documentation versioned with code"

@@ -1,0 +1,68 @@
+# Expert Team Round 07: Conflict Detection
+# Theme: Detect when multiple sources contradict each other
+# Date: 2026-02-05
+
+expert_team:
+  round: 7
+  theme: "Conflict Detection"
+  focus: "Finding contradictions in knowledge base"
+
+  experts:
+    - name: "Dr. Leslie Lamport"
+      role: "Distributed Systems Consensus Expert"
+      background: "Paxos algorithm, TLA+ specification language"
+      perspective: "Detect conflicting states through formal verification"
+
+    - name: "Sophia Martinez"
+      role: "Knowledge Graph Consistency Researcher"
+      background: "Studies constraint satisfaction in semantic networks"
+      perspective: "Graph constraints detect contradictions"
+
+    - name: "Dr. Raymond Reiter"
+      role: "Logic Programming Pioneer"
+      background: "Closed-world assumption, logic-based AI"
+      perspective: "Inconsistency is provable through logical inference"
+
+    - name: "Maya Patel"
+      role: "Configuration Management Engineer"
+      background: "Built config validation for Kubernetes"
+      perspective: "Schema validation prevents contradictory config"
+
+    - name: "Prof. Judea Pearl"
+      role: "Causal Reasoning Expert"
+      background: "Bayesian networks, causal inference"
+      perspective: "Conflicts emerge when causal chains contradict"
+
+    - name: "Dr. Nancy Lynch"
+      role: "Concurrency Theory Expert"
+      background: "Studies distributed algorithms, race conditions"
+      perspective: "Concurrent updates cause state conflicts"
+
+    - name: "Erik Meijer"
+      role: "Functional Programming Type Theorist"
+      background: "Created LINQ, Rx - type systems prevent errors"
+      perspective: "Types encode invariants, violations are conflicts"
+
+    - name: "Dr. Barbara Grosz"
+      role: "Dialogue and Collaboration Researcher"
+      background: "Studies multi-agent coordination"
+      perspective: "Agents need shared context to avoid conflicts"
+
+    - name: "Andrei Broder"
+      role: "Duplicate Detection Researcher"
+      background: "MinHash, locality-sensitive hashing"
+      perspective: "Near-duplicate content suggests conflicts"
+
+    - name: "Dr. Pat Helland"
+      role: "Distributed Data Architect"
+      background: "Eventual consistency, life beyond transactions"
+      perspective: "Accept temporary conflicts, resolve via policies"
+
+methodology:
+  approach: "Multi-layer conflict detection"
+  principles:
+    - "Schema violations (type conflicts)"
+    - "Logical contradictions (A and NOT A)"
+    - "Temporal conflicts (obsolete vs current)"
+    - "Consensus violations (multiple sources disagree)"
+    - "Graceful resolution strategies"

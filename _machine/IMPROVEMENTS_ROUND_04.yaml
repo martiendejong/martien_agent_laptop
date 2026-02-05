@@ -1,0 +1,45 @@
+# Knowledge System Improvements - Round 04
+# Theme: Cross-Session Memory
+
+improvements:
+  round: 4
+  top_5:
+    - id: "R04-001"
+      value: 10
+      effort: 2
+      ratio: 5.00
+      title: "Session Snapshot System"
+      description: "Snapshot full session state on exit, restore on startup"
+      implementation: "C:\\scripts\\_machine\\session-snapshots\\ with JSON files"
+
+    - id: "R04-002"
+      value: 9
+      effort: 2
+      ratio: 4.50
+      title: "Working Memory Persistence"
+      description: "Save in-progress tasks, context, decisions across sessions"
+      implementation: "working-memory.yaml with auto-save/restore"
+
+    - id: "R04-003"
+      value: 9
+      effort: 3
+      ratio: 3.00
+      title: "Session History Index"
+      description: "Searchable index of all past sessions"
+      implementation: "SQLite database with full-text search"
+
+    - id: "R04-004"
+      value: 8
+      effort: 2
+      ratio: 4.00
+      title: "Session Consolidation Service"
+      description: "Merge session learnings into permanent knowledge base"
+      implementation: "Nightly job extracting patterns from sessions"
+
+    - id: "R04-005"
+      value: 8
+      effort: 3
+      ratio: 2.67
+      title: "Cross-Session Task Continuity"
+      description: "Pick up incomplete tasks from previous session"
+      implementation: "tasks.yaml with status tracking across sessions"

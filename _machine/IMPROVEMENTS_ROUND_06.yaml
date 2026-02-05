@@ -1,0 +1,45 @@
+# Knowledge System Improvements - Round 06
+# Theme: Auto-Documentation Generation
+
+improvements:
+  round: 6
+  top_5:
+    - id: "R06-001"
+      value: 9
+      effort: 3
+      ratio: 3.00
+      title: "Conversation to Documentation Pipeline"
+      description: "Extract key decisions from conversations, append to relevant docs"
+      implementation: "Script analyzing conversation logs for doc-worthy content"
+
+    - id: "R06-002"
+      value: 8
+      effort: 3
+      ratio: 2.67
+      title: "Code Comment Extractor"
+      description: "Extract XML docs, JSDoc comments into reference documentation"
+      implementation: "Parser for C#/JS comments → Markdown"
+
+    - id: "R06-003"
+      value: 8
+      effort: 4
+      ratio: 2.00
+      title: "Architecture Decision Record Generator"
+      description: "Auto-generate ADRs from major architectural conversations"
+      implementation: "Template-based ADR creation from patterns"
+
+    - id: "R06-004"
+      value: 7
+      effort: 3
+      ratio: 2.33
+      title: "Documentation Drift Detector"
+      description: "Compare docs to code, flag outdated documentation"
+      implementation: "Hash-based change detection"
+
+    - id: "R06-005"
+      value: 7
+      effort: 4
+      ratio: 1.75
+      title: "Visual Documentation Generator"
+      description: "Auto-generate diagrams from code structure"
+      implementation: "Mermaid diagram generation from analysis"

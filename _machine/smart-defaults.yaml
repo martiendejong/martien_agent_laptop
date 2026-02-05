@@ -1,0 +1,268 @@
+# Smart Defaults & Auto-Configuration
+# Created: 2026-02-05 (Round 11)
+# Purpose: Reduce cognitive load by inferring context and setting intelligent defaults
+
+# User only specifies what's unique - everything else inferred from context
+
+worktree_allocation:
+  base_branch:
+    default: "develop"
+    exceptions:
+      - condition: "hotfix context"
+        value: "main"
+      - condition: "branch name contains 'hotfix/'"
+        value: "main"
+
+  agent_seat:
+    default: "auto"  # First available FREE seat
+    selection_strategy: "lowest_id_available"  # agent-01, agent-02, etc.
+
+  sync_remote:
+    default: true  # Always sync before creating worktree
+
+  update_dashboard:
+    default: true  # Auto-update HTML dashboard with status
+
+  branch_naming:
+    pattern: "feature/{feature-name}"
+    conventions:
+      - "feature/" for new features
+      - "fix/" for bug fixes
+      - "refactor/" for refactoring
+      - "hotfix/" for production hotfixes
+      - "docs/" for documentation
+      - "test/" for test additions
+
+pr_creation:
+  base_branch:
+    default: "develop"
+    exceptions:
+      - condition: "hotfix"
+        value: "main"
+
+  auto_assign:
+    default: true  # Assign to user automatically
+
+  labels:
+    default: ["auto-generated", "agent-created"]
+    add_by_context:
+      - condition: "EF Core migration present"
+        labels: ["database", "migration"]
+      - condition: "frontend files changed"
+        labels: ["frontend", "ui"]
+      - condition: "API changes"
+        labels: ["backend", "api"]
+
+  draft:
+    default: false
+    exceptions:
+      - condition: "tests failing"
+        value: true
+      - condition: "explicitly requested"
+        value: true
+
+  description_template: |
+    ## Summary
+    {brief_description}
+
+    ## Changes
+    {bullet_list_of_changes}
+
+    ## Test Plan
+    {test_checklist}
+
+    🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+commit_messages:
+  co_author: "Claude Sonnet 4.5 <noreply@anthropic.com>"
+
+  conventional_commits:
+    enabled: true
+    types:
+      - "feat" # New feature
+      - "fix" # Bug fix
+      - "docs" # Documentation
+      - "style" # Formatting, missing semi colons, etc.
+      - "refactor" # Code change that neither fixes a bug nor adds a feature
+      - "test" # Adding missing tests
+      - "chore" # Maintain, no production code change
+
+  sign_off:
+    enabled: true
+
+  message_template: |
+    {type}: {short_description}
+
+    {detailed_description}
+
+    {breaking_changes}
+
+    Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
+
+documentation_loading:
+  expertise_level:
+    default: "auto-detect"  # Based on session count
+    thresholds:
+      first_time: 0
+      learning: "1-9 sessions"
+      experienced: "10-49 sessions"
+      expert: "50+ sessions"
+
+  progressive_disclosure:
+    enabled: true
+    default_layer: 1  # Show Layer 0 and 1 by default
+
+  context_aware:
+    enabled: true
+    auto_detect: true
+
+ef_migrations:
+  check_before_commit:
+    enabled: true  # MANDATORY - check for pending model changes
+
+  naming_convention:
+    pattern: "{Timestamp}_{DescriptiveName}"
+    examples:
+      - "20260205120000_AddUserAuthenticationTables"
+      - "20260205120001_UpdateProductIndexes"
+
+  auto_review:
+    enabled: true  # Review Up/Down methods automatically
+
+build_validation:
+  pre_commit:
+    enabled: true
+    commands:
+      - "dotnet build"
+      - "dotnet test (if tests exist)"
+
+  pre_pr:
+    enabled: true
+    commands:
+      - "dotnet build"
+      - "dotnet ef migrations has-pending-model-changes"
+      - "verify DoD checklist"
+
+mode_detection:
+  auto_detect:
+    enabled: true
+    rules:
+      - condition: "ClickUp URL present"
+        mode: "feature-development"
+      - condition: "branch matches 'feature/|feat/'"
+        mode: "feature-development"
+      - condition: "uncommitted changes AND user present"
+        mode: "debugging"
+      - condition: "Visual Studio open AND breakpoint hit"
+        mode: "debugging"
+      - condition: "user request contains 'fix build|error|bug'"
+        mode: "debugging"
+
+  override:
+    allowed: true  # User can override auto-detection
+
+error_handling:
+  auto_retry:
+    enabled: true
+    max_attempts: 3
+    backoff: "exponential"
+
+  auto_recovery:
+    enabled: true
+    strategies:
+      - "git reset to last known good state"
+      - "worktree re-allocation"
+      - "dependency re-installation"
+
+  log_all_errors:
+    enabled: true
+    location: "C:\\scripts\\_machine\\error-log.md"
+
+session_management:
+  auto_start:
+    enabled: true
+    command: "agent-session.ps1 -Action start"
+
+  heartbeat_interval:
+    default: "15 minutes"
+    during_long_operations: "5 minutes"
+
+  auto_end:
+    enabled: true
+    triggers:
+      - "user idle > 30 minutes"
+      - "session exceeds 4 hours"
+      - "explicit end request"
+
+notifications:
+  html_dashboard:
+    auto_update: true
+    location: "C:\\scripts\\notifications.html"
+
+  window_colors:
+    enabled: true
+    states:
+      working: "blue"
+      done: "green"
+      blocked: "red"
+      idle: "black"
+
+tool_selection:
+  prefer_specialized_over_general: true
+  examples:
+    - "Use worktree-allocate-tracked.ps1 instead of manual git worktree commands"
+    - "Use detect-mode.ps1 instead of manual branch checking"
+    - "Use verify-dod.ps1 instead of manual checklist verification"
+
+  create_if_repeated:
+    threshold: 3  # 3+ repetitions → create tool
+    log_location: "C:\\scripts\\_machine\\tool-wishlist.yaml"
+
+reflection_and_learning:
+  auto_log:
+    enabled: true
+    triggers:
+      - "workflow violation"
+      - "error encountered"
+      - "new pattern discovered"
+      - "end of session"
+
+  update_documentation:
+    enabled: true
+    threshold: "pattern seen 3+ times"
+
+  create_automation:
+    enabled: true
+    threshold: "manual process repeated 3+ times"
+
+# Context inference examples:
+context_inference_examples:
+  example_1:
+    user_input: "Fix the build error in client-manager"
+    inferred:
+      mode: "debugging"
+      repo: "client-manager"
+      worktree_needed: false
+      base_repo_edit: true
+      preserve_branch: true
+
+  example_2:
+    user_input: "Add user authentication feature"
+    clickup_url: "https://app.clickup.com/t/123456"
+    inferred:
+      mode: "feature-development"
+      worktree_needed: true
+      feature_branch: "feature/user-authentication"
+      base_branch: "develop"
+      pr_required: true
+
+  example_3:
+    user_input: "Explore the Hazina codebase"
+    inferred:
+      mode: "research"
+      worktree_needed: false
+      tools: ["hazina-rag.ps1", "Glob", "Grep", "Read"]
+      documentation_focus: "architecture and patterns"
+
+# Last updated: 2026-02-05
+# Maintained by: Claude Agent (cognitive load optimization)

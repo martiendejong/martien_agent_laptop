@@ -1,0 +1,68 @@
+# Expert Team Round 05: Semantic Search & Embeddings
+# Theme: Find context by meaning, not just keywords
+# Date: 2026-02-05
+
+expert_team:
+  round: 5
+  theme: "Semantic Search & Embeddings"
+  focus: "Vector-based similarity search across all context"
+
+  experts:
+    - name: "Dr. Tomas Mikolov"
+      role: "Word Embedding Pioneer"
+      background: "Created Word2Vec, revolutionized NLP"
+      perspective: "Words with similar meaning cluster in vector space"
+
+    - name: "Jeff Dean"
+      role: "Large-Scale ML Infrastructure Architect"
+      background: "Google Brain, TensorFlow, built massive embedding systems"
+      perspective: "Scale embeddings to billions of documents"
+
+    - name: "Dr. Pinecone Huang"
+      role: "Vector Database Architect"
+      background: "Built Pinecone, specialized vector search DB"
+      perspective: "Dedicated infra for similarity search"
+
+    - name: "Anya Petrova"
+      role: "Information Retrieval Researcher"
+      background: "Studied hybrid search (keyword + semantic)"
+      perspective: "Combine lexical and semantic signals"
+
+    - name: "Dr. Sebastian Ruder"
+      role: "Transfer Learning Expert"
+      background: "Studies multi-task learning, domain adaptation"
+      perspective: "Pre-trained embeddings adapt to specific domains"
+
+    - name: "Kai Zhang"
+      role: "Approximate Nearest Neighbor Specialist"
+      background: "FAISS library contributor, ANN algorithms"
+      perspective: "Fast similarity search via approximation"
+
+    - name: "Dr. Emily Bender"
+      role: "Computational Linguistics Professor"
+      background: "Studies meaning representation in NLP"
+      perspective: "Embeddings capture distributional semantics"
+
+    - name: "Marcus Aurelius Chen"
+      role: "Dense Retrieval Researcher"
+      background: "ColBERT, learned sparse/dense retrieval"
+      perspective: "Fine-tuned models for domain-specific retrieval"
+
+    - name: "Dr. Ilya Sutskever"
+      role: "Deep Learning Visionary"
+      background: "Co-founder OpenAI, attention mechanisms"
+      perspective: "Self-attention enables contextual embeddings"
+
+    - name: "Priya Sharma"
+      role: "Production ML Systems Engineer"
+      background: "Deployed embedding-based search at Airbnb"
+      perspective: "Embeddings must be maintained and updated"
+
+methodology:
+  approach: "Hybrid search with cached embeddings"
+  principles:
+    - "Embed all context files using sentence transformers"
+    - "Store embeddings with efficient indexing (FAISS)"
+    - "Combine keyword + semantic search"
+    - "Re-embed when files change"
+    - "Cache embeddings for fast lookup"

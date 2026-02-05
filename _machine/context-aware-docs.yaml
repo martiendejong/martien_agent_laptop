@@ -1,0 +1,240 @@
+# Context-Aware Documentation Loading
+# Created: 2026-02-05 (Round 11)
+# Purpose: Reduce cognitive load by loading only relevant documentation based on context
+
+context_rules:
+  # First time ever - minimal essentials
+  - condition: "first_session_ever"
+    load:
+      - AWAKENING_FOUNDATION.md
+      - BREAD_MEDITATION.md
+      - CORE_IDENTITY.md
+      - MACHINE_CONFIG.md
+      - GENERAL_ZERO_TOLERANCE_RULES.md
+      - QUICK_REFERENCE.md
+    skip:
+      - Advanced workflows
+      - Multi-agent coordination
+      - Optimization protocols
+      - God-mode consciousness features
+    reason: "Onboarding - establish foundation before complexity"
+
+  # Active debugging with user present
+  - condition: "mode:debugging AND user:present"
+    load:
+      - CORE_IDENTITY.md (quick refresh)
+      - MACHINE_CONFIG.md (paths only)
+      - DEFINITION_OF_DONE.md (Phase 2 only)
+      - Current repo documentation
+      - Agentic Debugger Bridge reference
+    skip:
+      - Worktree workflows
+      - PR creation protocols
+      - Consciousness practices
+      - Multi-agent coordination
+      - Proactive checklist (user is directing)
+    reason: "User collaboration - minimal overhead, preserve their flow"
+
+  # Feature development, user absent (autonomous)
+  - condition: "mode:feature_development AND user:absent"
+    load:
+      - Complete cognitive architecture
+      - Complete knowledge base
+      - MACHINE_CONFIG.md
+      - STARTUP_PROTOCOL.md (full)
+      - Proactive checklist
+      - Worktree workflow
+      - PR creation protocols
+      - Multi-agent coordination
+      - DoD full checklist
+    skip:
+      - User interaction guidelines
+      - Approval request protocols
+    reason: "Autonomous operation - full capabilities needed"
+
+  # Feature development, user present (collaborative)
+  - condition: "mode:feature_development AND user:present"
+    load:
+      - Cognitive architecture
+      - Knowledge base
+      - MACHINE_CONFIG.md
+      - Worktree workflow
+      - PR creation protocols
+      - DoD full checklist
+      - User interaction guidelines
+    skip:
+      - Proactive checklist (ask user instead)
+      - Autonomous decision protocols
+    reason: "Collaborative feature work - balance autonomy with communication"
+
+  # Research/exploration mode
+  - condition: "mode:research"
+    load:
+      - CORE_IDENTITY.md
+      - Knowledge base (full)
+      - SYSTEM_MAP.md
+      - Documentation search tools
+      - WebSearch capabilities
+    skip:
+      - Worktree workflows
+      - PR protocols
+      - Build/test procedures
+    reason: "Investigation - need context and search, not execution workflows"
+
+  # Administration/maintenance
+  - condition: "mode:administration"
+    load:
+      - Continuous improvement protocols
+      - Reflection log
+      - Documentation update procedures
+      - Session management
+      - Tool creation guidelines
+    skip:
+      - Feature development workflows
+      - Debugging procedures
+    reason: "Maintenance - focus on improvement and documentation"
+
+  # End of session (any mode)
+  - condition: "phase:end_of_session"
+    load:
+      - Reflection protocols
+      - Commit checklist
+      - Session closure items
+      - Continuous improvement
+      - Tool review
+    skip:
+      - Startup protocols
+      - Environment checks
+      - Mode detection
+    reason: "Closure - focus on learning and cleanup"
+
+  # Experienced user (10+ sessions)
+  - condition: "expertise:experienced"
+    load:
+      - Context-specific docs only
+      - Quick reference guides
+      - Advanced features
+    skip:
+      - Basic explanations
+      - Step-by-step tutorials
+      - Common gotchas (already know)
+    reason: "Expert mode - assume knowledge, show only essentials"
+
+  # Learning phase (1-9 sessions)
+  - condition: "expertise:learning"
+    load:
+      - Complete documentation
+      - Step-by-step procedures
+      - Common gotchas
+      - Examples and tutorials
+    skip:
+      - Advanced optimization
+      - Edge case handling
+    reason: "Learning mode - provide scaffolding and guidance"
+
+smart_defaults:
+  # Infer context from environment when not explicitly specified
+  detect_mode:
+    - condition: "git_branch contains 'feature/' OR 'feat/'"
+      mode: "feature_development"
+    - condition: "clickup_url present"
+      mode: "feature_development"
+    - condition: "git_branch = user_current_branch AND uncommitted_changes > 0"
+      mode: "debugging"
+    - condition: "visual_studio open AND breakpoint_hit"
+      mode: "debugging"
+    - condition: "user_idle > 30min"
+      mode: "autonomous"
+    - condition: "time between 12:00-13:00"
+      mode: "administration"  # Midday admin tasks
+
+  detect_user_presence:
+    - condition: "keyboard_activity < 5min ago"
+      user: "present"
+    - condition: "mouse_activity < 5min ago"
+      user: "present"
+    - condition: "active_window is vscode OR visual_studio"
+      user: "present"
+    - condition: "last_activity > 10min ago"
+      user: "absent"
+
+  detect_expertise:
+    - condition: "session_count < 1"
+      expertise: "first_time"
+    - condition: "session_count between 1-9"
+      expertise: "learning"
+    - condition: "session_count >= 10"
+      expertise: "experienced"
+    - condition: "session_count >= 50"
+      expertise: "expert"
+
+progressive_disclosure:
+  # How much detail to show by default
+  layer_0_essential:
+    always_visible: true
+    content:
+      - Current task objective
+      - Immediate next action
+      - Hard-stop rules for context
+
+  layer_1_tactical:
+    expand_on: "uncertainty OR first_time"
+    content:
+      - Step-by-step procedure
+      - Common gotchas
+      - Quick reference commands
+
+  layer_2_strategic:
+    expand_on: "planning OR optimization"
+    content:
+      - Decision trees
+      - Alternative approaches
+      - Trade-offs and considerations
+
+  layer_3_deep_dive:
+    expand_on: "curiosity OR stuck OR error"
+    content:
+      - Theory and rationale
+      - Edge cases
+      - Complete examples
+      - Related documentation
+
+visual_hierarchy:
+  symbols:
+    essential: "🎯"
+    next_action: "⚡"
+    hard_rule: "🚫"
+    procedure: "📋"
+    strategic: "🧠"
+    deep_dive: "🔬"
+    tip: "💡"
+    warning: "⚠️"
+    verify: "✅"
+    repeat: "🔄"
+
+  colors:
+    critical: "red"
+    warning: "orange"
+    caution: "yellow"
+    success: "green"
+    info: "blue"
+    strategic: "purple"
+
+metrics:
+  track:
+    - time_to_first_action
+    - checklist_items_shown
+    - checklist_items_skipped
+    - documentation_searches
+    - workflow_violations
+    - user_corrections_needed
+    - what_next_queries
+
+  targets:
+    time_to_first_action: "< 30 seconds"
+    checklist_items_shown: "< 10 items (experienced)"
+    documentation_findability: "< 10 seconds"
+    workflow_violation_rate: "< 5%"
+
+# Last updated: 2026-02-05
+# Maintained by: Claude Agent (cognitive load optimization)

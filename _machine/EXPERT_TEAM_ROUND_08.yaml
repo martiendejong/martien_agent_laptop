@@ -1,0 +1,68 @@
+# Expert Team Round 08: Version Control for Knowledge
+# Theme: Track how context evolves over time
+# Date: 2026-02-05
+
+expert_team:
+  round: 8
+  theme: "Version Control for Knowledge"
+  focus: "Git-like versioning for context files"
+
+  experts:
+    - name: "Linus Torvalds"
+      role: "Git Creator"
+      background: "Designed Git for Linux kernel development"
+      perspective: "Content-addressable storage, merkle trees"
+
+    - name: "Dr. Marc Shapiro"
+      role: "CRDT Researcher"
+      background: "Conflict-free replicated data types"
+      perspective: "Automatic merge without coordination"
+
+    - name: "Shawn Pearce"
+      role: "JGit/Git Internals Expert"
+      background: "Implemented Git in Java, Gerrit code review"
+      perspective: "Git object model applies beyond code"
+
+    - name: "Dr. Klint Finley"
+      role: "Distributed Wiki Researcher"
+      background: "Studies version control for collaborative documents"
+      perspective: "Wiki history is knowledge evolution"
+
+    - name: "Maria Nezhinsky"
+      role: "Data Lineage Expert"
+      background: "Tracks data provenance in pipelines"
+      perspective: "Every data transformation needs lineage"
+
+    - name: "Prof. David Karger"
+      role: "Personal Information Management Researcher"
+      background: "Studies how people organize knowledge"
+      perspective: "Version history aids recall and understanding"
+
+    - name: "Bastian Blank"
+      role: "Debian Package Maintainer"
+      background: "Manages complex dependency evolution"
+      perspective: "Track why changes happened, not just what"
+
+    - name: "Dr. Jennifer Widom"
+      role: "Database Version Control Researcher"
+      background: "Temporal databases, time-travel queries"
+      perspective: "Query past states of data"
+
+    - name: "Chris Lattner"
+      role: "LLVM/Swift Creator"
+      background: "Compiler infrastructure with IR versioning"
+      perspective: "Intermediate representations evolve compatibly"
+
+    - name: "Dr. Miryung Kim"
+      role: "Software Evolution Researcher"
+      background: "Studies how code changes impact systems"
+      perspective: "Change impact analysis prevents breakage"
+
+methodology:
+  approach: "Git-backed knowledge with rich metadata"
+  principles:
+    - "Every context change is a commit"
+    - "Meaningful commit messages explain WHY"
+    - "Branch/merge for experimental knowledge"
+    - "Tags for milestone knowledge states"
+    - "Blame shows who/when/why for each line"

@@ -1,0 +1,163 @@
+# Expert Team Round 21: Emergent Properties
+# Theme: What emerges from 20 rounds of improvements
+# Date: 2026-02-05
+
+expert_team:
+  round: 21
+  theme: "Emergent Properties"
+  focus: "Discovering non-obvious behaviors from system integration"
+  size: 1000
+
+  expert_categories:
+    complexity_science:
+      count: 150
+      examples:
+        - "Dr. Stuart Kauffman - Origins of order, NK landscapes"
+        - "Prof. Melanie Mitchell - Genetic algorithms, emergence"
+        - "Dr. Murray Gell-Mann - Fundamental particles to complexity"
+      perspective: "Simple rules → complex behaviors"
+
+    self_organization:
+      count: 150
+      examples:
+        - "Prof. Ilya Prigogine - Dissipative structures, far-from-equilibrium"
+        - "Dr. Ricard Solé - Self-organized criticality"
+        - "Prof. Steven Strogatz - Sync, spontaneous order"
+      perspective: "Order without central control"
+
+    network_dynamics:
+      count: 100
+      examples:
+        - "Prof. Albert-László Barabási - Scale-free networks"
+        - "Prof. Mark Newman - Network structure and dynamics"
+        - "Dr. Duncan Watts - Small-world networks, cascades"
+      perspective: "Network topology shapes emergent behavior"
+
+    collective_intelligence:
+      count: 100
+      examples:
+        - "Prof. Jessica Flack - Collective computation in nature"
+        - "Dr. Deborah Gordon - Ant colony algorithms"
+        - "Prof. Thomas Seeley - Honeybee democracy"
+      perspective: "Group intelligence > sum of parts"
+
+    systems_biology:
+      count: 80
+      examples:
+        - "Dr. Uri Alon - Network motifs, biological circuits"
+        - "Prof. James Ferrell - Bistability, cell fate decisions"
+        - "Dr. Michael Elowitz - Synthetic biology, gene circuits"
+      perspective: "Biological systems as computation"
+
+    phase_transitions:
+      count: 80
+      examples:
+        - "Prof. Per Bak - Self-organized criticality, sandpiles"
+        - "Dr. Yaneer Bar-Yam - Multi-scale dynamics"
+        - "Prof. Henrik Jensen - Critical phenomena"
+      perspective: "Qualitative shifts at thresholds"
+
+    scaling_laws:
+      count: 70
+      examples:
+        - "Dr. Geoffrey West - Universal scaling laws"
+        - "Prof. Luís Bettencourt - Cities as superorganisms"
+        - "Dr. Jim Brown - Metabolic theory of ecology"
+      perspective: "Power laws reveal deep structure"
+
+    agent_based_modeling:
+      count: 70
+      examples:
+        - "Prof. Joshua Epstein - Generative social science"
+        - "Prof. Doyne Farmer - Agent-based economics"
+        - "Dr. Uri Wilensky - NetLogo, educational modeling"
+      perspective: "Bottom-up simulation reveals emergence"
+
+    feedback_loops:
+      count: 60
+      examples:
+        - "Prof. John Sterman - System dynamics, business cycles"
+        - "Dr. Donella Meadows - Leverage points in systems"
+        - "Prof. Peter Senge - Learning organizations"
+      perspective: "Feedback creates unexpected dynamics"
+
+    evolutionary_systems:
+      count: 50
+      examples:
+        - "Prof. John Holland - Genetic algorithms, adaptation"
+        - "Dr. Richard Lenski - Long-term evolution experiment"
+        - "Prof. Marc Feldman - Cultural evolution"
+      perspective: "Variation + selection = emergent adaptation"
+
+    swarm_intelligence:
+      count: 40
+      examples:
+        - "Prof. Marco Dorigo - Ant colony optimization"
+        - "Dr. Craig Reynolds - Boids, flocking behavior"
+        - "Prof. Eric Bonabeau - Swarm intelligence applications"
+      perspective: "Local rules create global patterns"
+
+    chaos_theory:
+      count: 30
+      examples:
+        - "Prof. Edward Lorenz - Butterfly effect"
+        - "Prof. Robert May - Chaos in ecology"
+        - "Dr. Mitchell Feigenbaum - Period-doubling route to chaos"
+      perspective: "Sensitivity to initial conditions"
+
+    information_theory:
+      count: 20
+      examples:
+        - "Prof. Seth Lloyd - Quantum information, universe as computer"
+        - "Dr. Christoph Adami - Information theory in biology"
+        - "Prof. James Crutchfield - Computational mechanics"
+      perspective: "Information flow drives emergence"
+
+methodology:
+  approach: "Multi-scale analysis of 20 rounds of improvements"
+  
+  analysis_framework:
+    micro_level:
+      - "Individual improvement interactions"
+      - "Component-to-component feedback"
+      - "Local optimization patterns"
+    
+    meso_level:
+      - "Round-to-round synergies"
+      - "Cluster formation (related improvements)"
+      - "Subsystem emergence"
+    
+    macro_level:
+      - "System-wide behavior patterns"
+      - "Global optimization landscape"
+      - "Phase transitions (when did behavior shift?)"
+    
+    cross_scale:
+      - "Micro → macro causation"
+      - "Top-down constraints on components"
+      - "Scale-invariant patterns"
+
+  key_questions:
+    - "What capabilities exist now that couldn't be predicted from round 1?"
+    - "Which improvements amplify each other non-linearly?"
+    - "Are there bottlenecks limiting further emergence?"
+    - "What patterns repeat across different scales?"
+    - "Where are phase transitions in system behavior?"
+    - "What feedback loops have formed?"
+    - "What collective intelligence has emerged?"
+
+  detection_methods:
+    - "Network analysis: component dependency graphs"
+    - "Time-series analysis: behavior evolution across rounds"
+    - "Information flow: what signals what?"
+    - "Correlation analysis: which improvements co-activate?"
+    - "Scaling analysis: power laws, size-performance relationships"
+    - "Bifurcation analysis: where do behaviors split?"
+    - "Attractor analysis: what stable states exist?"
+
+diversity_dimensions:
+  - "Geographic: Global representation across 50+ countries"
+  - "Domain: Physics, Biology, CS, Ecology, Social Science, Economics"
+  - "Scale: Molecular to societal"
+  - "Methodology: Theory, Simulation, Empirical, Mathematical"
+  - "Timeframe: Evolutionary (slow) to Critical transitions (fast)"

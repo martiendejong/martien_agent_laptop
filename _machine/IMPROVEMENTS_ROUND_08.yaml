@@ -1,0 +1,45 @@
+# Knowledge System Improvements - Round 08
+# Theme: Version Control for Knowledge
+
+improvements:
+  round: 8
+  top_5:
+    - id: "R08-001"
+      value: 9
+      effort: 2
+      ratio: 4.50
+      title: "Knowledge Git Hooks"
+      description: "Auto-commit context changes with descriptive messages"
+      implementation: "Git hooks that trigger on context file changes"
+
+    - id: "R08-002"
+      value: 8
+      effort: 3
+      ratio: 2.67
+      title: "Context Change Blame View"
+      description: "See who/when/why each line of context was added"
+      implementation: "git blame wrapper with rich formatting"
+
+    - id: "R08-003"
+      value: 8
+      effort: 3
+      ratio: 2.67
+      title: "Knowledge Time Travel"
+      description: "Query context as it existed at any past date"
+      implementation: "git checkout @ {date} for context files"
+
+    - id: "R08-004"
+      value: 7
+      effort: 3
+      ratio: 2.33
+      title: "Context Evolution Visualization"
+      description: "Visual timeline of how context evolved"
+      implementation: "Git log parsing → HTML timeline"
+
+    - id: "R08-005"
+      value: 7
+      effort: 4
+      ratio: 1.75
+      title: "Knowledge Branching for Experiments"
+      description: "Create context branches for trying new approaches"
+      implementation: "Git branch management for _machine/ directory"

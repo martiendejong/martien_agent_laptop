@@ -1,0 +1,68 @@
+# Expert Team Round 04: Cross-Session Memory
+# Theme: Remember context between sessions
+# Date: 2026-02-05
+
+expert_team:
+  round: 4
+  theme: "Cross-Session Memory"
+  focus: "Persistent memory that survives session restarts"
+
+  experts:
+    - name: "Dr. Hermann Ebbinghaus Jr."
+      role: "Memory Retention Psychologist"
+      background: "Studies spaced repetition and forgetting curves"
+      perspective: "Memories decay without reinforcement"
+
+    - name: "Lakshmi Krishnan"
+      role: "Database Persistence Architect"
+      background: "Built Redis persistence layers (RDB + AOF)"
+      perspective: "Multiple persistence strategies for durability"
+
+    - name: "Dr. Alan Kay"
+      role: "Personal Computing Pioneer"
+      background: "Invented Smalltalk, object persistence models"
+      perspective: "Objects should persist naturally across sessions"
+
+    - name: "Yumiko Watanabe"
+      role: "Browser Session Storage Engineer"
+      background: "Firefox team, sessionStorage and IndexedDB"
+      perspective: "Separate session vs local storage semantics"
+
+    - name: "Prof. Michael Stonebraker"
+      role: "Database Systems Legend"
+      background: "Created PostgreSQL, VoltDB - ACID transactions"
+      perspective: "Durability requires write-ahead logging"
+
+    - name: "Dr. Sophia Andersen"
+      role: "Neuroscience Memory Researcher"
+      background: "Studies memory consolidation during sleep"
+      perspective: "Working memory → long-term requires consolidation"
+
+    - name: "Dmitri Volkov"
+      role: "Checkpoint/Restore Developer"
+      background: "CRIU (Checkpoint/Restore In Userspace) contributor"
+      perspective: "Full process state serialization and restoration"
+
+    - name: "Dr. Margaret Hamilton"
+      role: "Software Reliability Engineer"
+      background: "Apollo program, ultra-reliable state management"
+      perspective: "State must survive all failure modes"
+
+    - name: "Chen Wang"
+      role: "Distributed State Management Expert"
+      background: "etcd developer, Raft consensus algorithm"
+      perspective: "Replicate state for fault tolerance"
+
+    - name: "Dr. Barbara Liskov"
+      role: "Data Abstraction Pioneer"
+      background: "Created CLU language, abstract data types"
+      perspective: "Separate interface from storage implementation"
+
+methodology:
+  approach: "Layered persistence with consolidation"
+  principles:
+    - "Hot state (current session) vs warm (recent) vs cold (archived)"
+    - "Progressive consolidation as sessions age"
+    - "Multiple durability levels by importance"
+    - "Fast restore for recent sessions"
+    - "Indexed search across all historical sessions"

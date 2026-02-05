@@ -1,0 +1,45 @@
+# Knowledge System Improvements - Round 05
+# Theme: Semantic Search & Embeddings
+
+improvements:
+  round: 5
+  top_5:
+    - id: "R05-001"
+      value: 10
+      effort: 4
+      ratio: 2.50
+      title: "Context Embeddings Generator"
+      description: "Generate embeddings for all context files using sentence transformers"
+      implementation: "Python script with sentence-transformers library"
+
+    - id: "R05-002"
+      value: 9
+      effort: 3
+      ratio: 3.00
+      title: "Semantic Context Search"
+      description: "Search context by meaning: 'how to debug C# errors' finds debugging guides"
+      implementation: "FAISS index for similarity search"
+
+    - id: "R05-003"
+      value: 8
+      effort: 3
+      ratio: 2.67
+      title: "Hybrid Search Engine"
+      description: "Combine keyword (BM25) + semantic (embeddings) search"
+      implementation: "Weighted fusion of keyword and vector results"
+
+    - id: "R05-004"
+      value: 8
+      effort: 4
+      ratio: 2.00
+      title: "Related Context Finder"
+      description: "Find semantically similar files to current context"
+      implementation: "k-NN search in embedding space"
+
+    - id: "R05-005"
+      value: 7
+      effort: 3
+      ratio: 2.33
+      title: "Embedding Cache Manager"
+      description: "Cache embeddings, invalidate when files change"
+      implementation: "File hash → embedding mapping with TTL"
