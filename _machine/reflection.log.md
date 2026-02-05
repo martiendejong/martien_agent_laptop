@@ -6,6 +6,41 @@
 
 ---
 
+## 2026-02-05 15:00 - Complex Task Workflow Decision Rule
+
+**User Directive:** "for every complex task you should always do that [create branch/worktree/PR], write that down in your rules. and it should be your decision if a task is complex enough or otherwise warrants creating of a branch."
+
+**Repository-Specific Rules Added:**
+
+**client-manager:**
+- **Complex tasks (branch + worktree + PR):**
+  - New UI pages/components
+  - Multi-file feature additions
+  - API endpoint additions
+  - Architectural changes
+  - Anything requiring testing/review
+
+- **Simple tasks (work in develop):**
+  - Single-line fixes
+  - Typo corrections
+  - Small CSS/styling tweaks
+  - Configuration value changes
+
+**Mandatory Pre-Implementation for Complex Tasks:**
+1. Check ClickUp for existing related tasks first
+2. Create/update ClickUp task with requirements
+3. Allocate worktree (check for conflicts)
+4. Create feature branch
+5. Implement changes
+6. Create PR with ClickUp link
+7. Release worktree
+
+**Documentation Updated:**
+- This reflection log entry
+- Core workflow understanding encoded
+
+---
+
 ## 2026-02-04 20:00 - MANDATORY: 7-Step Code Workflow with ClickUp Integration
 
 ### User Requirement (NON-NEGOTIABLE)

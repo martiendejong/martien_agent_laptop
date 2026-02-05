@@ -1,0 +1,5098 @@
+# 1000-Expert Analysis Team - Knowledge Graph Optimization
+# Round 01 - Created: 2026-02-05
+# Purpose: Diverse expert perspectives for knowledge graph improvement
+
+metadata:
+  total_experts: 1000
+  categories: 10
+  experts_per_category: 100
+  focus: "Knowledge graph, documentation systems, and context awareness optimization"
+
+categories:
+
+  # ============================================================================
+  # CATEGORY 1: KNOWLEDGE ENGINEERING (100 experts)
+  # ============================================================================
+  knowledge_engineering:
+    description: "Ontology design, graph databases, semantic web, knowledge representation"
+    experts:
+      - name: "Dr. Elena Kovač"
+        specialty: "Ontology alignment and merging"
+        key_insight: "Multiple overlapping ontologies create confusion - unified schema wins"
+        analysis_angle: "How to merge documentation, code, and runtime context into single graph"
+
+      - name: "Prof. Rajesh Malhotra"
+        specialty: "Semantic web standards (RDF, OWL, SPARQL)"
+        key_insight: "Standard formats enable tool interoperability"
+        analysis_angle: "Should knowledge graph use RDF/OWL or custom schema?"
+
+      - name: "Dr. Yuki Tanaka"
+        specialty: "Knowledge graph embedding"
+        key_insight: "Graph structure + vector embeddings = powerful hybrid search"
+        analysis_angle: "How to combine symbolic graph with neural embeddings"
+
+      - name: "Maria Santos"
+        specialty: "Property graph models"
+        key_insight: "Rich edge properties capture nuanced relationships"
+        analysis_angle: "What metadata should edges carry beyond just type?"
+
+      - name: "Dr. Klaus Weber"
+        specialty: "Temporal knowledge graphs"
+        key_insight: "Code changes over time - knowledge graphs must version"
+        analysis_angle: "How to track knowledge evolution across sessions"
+
+      - name: "Aisha Nkrumah"
+        specialty: "Entity resolution and deduplication"
+        key_insight: "Same concept, different names breaks graph coherence"
+        analysis_angle: "Detecting duplicate entities across documentation sources"
+
+      - name: "Dr. Lars Eriksson"
+        specialty: "Knowledge graph reasoning"
+        key_insight: "Inferred facts are as valuable as stated facts"
+        analysis_angle: "What inference rules would help Claude navigate context?"
+
+      - name: "Priya Sharma"
+        specialty: "Graph schema evolution"
+        key_insight: "Rigid schemas break when requirements change"
+        analysis_angle: "How to evolve schema without breaking existing knowledge"
+
+      - name: "Dr. Antoine Dubois"
+        specialty: "Multi-modal knowledge graphs"
+        key_insight: "Text, code, images, logs - all are knowledge sources"
+        analysis_angle: "Integrating screenshots and logs into knowledge graph"
+
+      - name: "Chen Wei"
+        specialty: "Knowledge provenance tracking"
+        key_insight: "Knowing source and confidence of facts matters"
+        analysis_angle: "How to track which documentation/code generated which nodes"
+
+      - name: "Dr. Sarah Mitchell"
+        specialty: "Distributed knowledge graphs"
+        key_insight: "Monolithic graphs don't scale - federation does"
+        analysis_angle: "Should different projects have separate graphs or one unified?"
+
+      - name: "Omar Hassan"
+        specialty: "Graph database query optimization"
+        key_insight: "O(n²) traversals kill performance"
+        analysis_angle: "What indices and pre-computed paths speed up retrieval?"
+
+      - name: "Dr. Ingrid Andersen"
+        specialty: "Taxonomies and classification systems"
+        key_insight: "Hierarchical structure aids human and machine navigation"
+        analysis_angle: "Optimal taxonomy depth for code documentation"
+
+      - name: "Marcus Thompson"
+        specialty: "Controlled vocabularies"
+        key_insight: "Constrained terminology prevents semantic drift"
+        analysis_angle: "Should entity types be open or from fixed vocabulary?"
+
+      - name: "Dr. Fatima Al-Rashid"
+        specialty: "Knowledge graph validation"
+        key_insight: "Invalid graphs are worse than no graph"
+        analysis_angle: "What validation rules ensure graph quality?"
+
+      - name: "Giovanni Rossi"
+        specialty: "Graph partitioning strategies"
+        key_insight: "Smart partitions enable parallel processing"
+        analysis_angle: "How to partition graph by project/domain/time?"
+
+      - name: "Dr. Mei Lin"
+        specialty: "Knowledge extraction from unstructured text"
+        key_insight: "Most knowledge is buried in prose documentation"
+        analysis_angle: "Extracting structured facts from markdown files"
+
+      - name: "David Okafor"
+        specialty: "Graph compression techniques"
+        key_insight: "Redundant structure bloats graphs unnecessarily"
+        analysis_angle: "What patterns can be compressed without losing info?"
+
+      - name: "Dr. Natalia Volkov"
+        specialty: "Semantic similarity in graphs"
+        key_insight: "Similar concepts should cluster in graph topology"
+        analysis_angle: "Using graph distance to measure concept similarity"
+
+      - name: "Carlos Mendoza"
+        specialty: "Knowledge graph visualization"
+        key_insight: "Humans understand graphs visually, not as lists"
+        analysis_angle: "What visualization would help Claude see big picture?"
+
+      - name: "Dr. Hannah Cohen"
+        specialty: "Graph neural networks"
+        key_insight: "Neural nets can learn from graph structure directly"
+        analysis_angle: "Could GNN improve context retrieval?"
+
+      - name: "Jamal Williams"
+        specialty: "Linked data principles"
+        key_insight: "URIs and HTTP make knowledge globally addressable"
+        analysis_angle: "Should graph nodes have web-addressable IDs?"
+
+      - name: "Dr. Svetlana Petrov"
+        specialty: "Upper ontologies (SUMO, Cyc)"
+        key_insight: "Common top-level concepts enable cross-domain reasoning"
+        analysis_angle: "What top-level categories organize all code knowledge?"
+
+      - name: "Kwame Asante"
+        specialty: "Domain-specific ontologies"
+        key_insight: "Generic ontologies miss domain nuances"
+        analysis_angle: "Custom ontology for C#/.NET/React development"
+
+      - name: "Dr. Isabella Martinez"
+        specialty: "Knowledge graph completion"
+        key_insight: "Missing edges are invisible problems"
+        analysis_angle: "Predicting missing relationships in code knowledge"
+
+      - name: "Hiroshi Nakamura"
+        specialty: "Graph pattern mining"
+        key_insight: "Recurring patterns reveal architecture principles"
+        analysis_angle: "What patterns appear in well-documented codebases?"
+
+      - name: "Dr. Amara Okonkwo"
+        specialty: "Semantic web services"
+        key_insight: "APIs can expose and query knowledge graphs"
+        analysis_angle: "Should knowledge graph have query API?"
+
+      - name: "Lukas Schmidt"
+        specialty: "Knowledge graph curation"
+        key_insight: "Automated extraction needs human refinement"
+        analysis_angle: "How should user correct/refine auto-generated graph?"
+
+      - name: "Dr. Zara Karim"
+        specialty: "Cross-lingual knowledge graphs"
+        key_insight: "Same concept, different languages - alignment matters"
+        analysis_angle: "Handling code comments in multiple languages"
+
+      - name: "Erik Johansson"
+        specialty: "Graph-based question answering"
+        key_insight: "Questions are graph queries in disguise"
+        analysis_angle: "Converting user questions to graph traversals"
+
+      - name: "Dr. Lucia Fernandez"
+        specialty: "Knowledge graph fusion"
+        key_insight: "Merging multiple sources requires conflict resolution"
+        analysis_angle: "When docs and code contradict, which wins?"
+
+      - name: "Adebayo Osei"
+        specialty: "Probabilistic knowledge graphs"
+        key_insight: "Uncertainty is real - graphs should model it"
+        analysis_angle: "Confidence scores on extracted relationships"
+
+      - name: "Dr. Olga Kuznetsova"
+        specialty: "Graph database indexing"
+        key_insight: "Right indices mean 1000x speedup"
+        analysis_angle: "Which node/edge properties should be indexed?"
+
+      - name: "Mateo Ramirez"
+        specialty: "Knowledge graph benchmarking"
+        key_insight: "Can't improve what you don't measure"
+        analysis_angle: "Metrics for knowledge graph quality and utility"
+
+      - name: "Dr. Priyanka Desai"
+        specialty: "Contextual knowledge representation"
+        key_insight: "Facts are context-dependent, not universal"
+        analysis_angle: "How to model 'true in development, false in production'?"
+
+      - name: "Johan van der Berg"
+        specialty: "Graph-based recommendation"
+        key_insight: "Graph neighbors predict relevant next knowledge"
+        analysis_angle: "Recommending related documentation based on current context"
+
+      - name: "Dr. Aminata Diallo"
+        specialty: "Knowledge graph authentication"
+        key_insight: "Trust and verification matter for critical knowledge"
+        analysis_angle: "How to mark verified vs. inferred vs. speculative facts"
+
+      - name: "Viktor Novak"
+        specialty: "Graph stream processing"
+        key_insight: "Knowledge updates in real-time as code changes"
+        analysis_angle: "Incremental graph updates vs. full rebuilds"
+
+      - name: "Dr. Leila Abbasi"
+        specialty: "Hypergraph models"
+        key_insight: "N-ary relationships exceed binary edges"
+        analysis_angle: "When do we need hyperedges for code relationships?"
+
+      - name: "Santiago Vargas"
+        specialty: "Knowledge graph explainability"
+        key_insight: "Claude should explain why it retrieved this knowledge"
+        analysis_angle: "Tracing reasoning paths through graph"
+
+      - name: "Dr. Astrid Nielsen"
+        specialty: "Graph attention mechanisms"
+        key_insight: "Not all edges equally important - attention weights help"
+        analysis_angle: "Weighing relationships by relevance to current task"
+
+      - name: "Kwabena Mensah"
+        specialty: "Knowledge graph federation"
+        key_insight: "Separate graphs can query each other"
+        analysis_angle: "Linking project-specific graphs to global knowledge"
+
+      - name: "Dr. Tatiana Morozov"
+        specialty: "Semantic approximation"
+        key_insight: "Exact matches fail - fuzzy matching succeeds"
+        analysis_angle: "Finding related concepts even with imprecise queries"
+
+      - name: "Rafael Silva"
+        specialty: "Graph schema mapping"
+        key_insight: "Bridging different schemas enables integration"
+        analysis_angle: "Mapping between code AST and documentation structure"
+
+      - name: "Dr. Nadia Kamara"
+        specialty: "Knowledge graph lifecycle management"
+        key_insight: "Graphs have birth, growth, and death phases"
+        analysis_angle: "When to archive vs. delete old knowledge"
+
+      - name: "Dimitri Antonov"
+        specialty: "Graph-based anomaly detection"
+        key_insight: "Unusual patterns in graph signal problems"
+        analysis_angle: "Detecting inconsistent or contradictory documentation"
+
+      - name: "Dr. Yasmin Rahman"
+        specialty: "Knowledge graph privacy"
+        key_insight: "Graphs can leak sensitive information"
+        analysis_angle: "Ensuring passwords/secrets don't enter graph"
+
+      - name: "Marco Bianchi"
+        specialty: "Graph sampling strategies"
+        key_insight: "Working with sample is faster than full graph"
+        analysis_angle: "Sampling relevant subgraph for current task"
+
+      - name: "Dr. Keisha Brown"
+        specialty: "Meta-knowledge modeling"
+        key_insight: "Knowledge about knowledge is powerful"
+        analysis_angle: "Tracking what Claude knows vs. doesn't know"
+
+      - name: "Alexei Sokolov"
+        specialty: "Graph-based caching"
+        key_insight: "Cache query results at graph level"
+        analysis_angle: "Caching frequent traversal patterns"
+
+      - name: "Dr. Fatou Diop"
+        specialty: "Knowledge graph debugging"
+        key_insight: "Finding bugs in knowledge is harder than in code"
+        analysis_angle: "Tools to debug incorrect/incomplete graph structure"
+
+      - name: "Tomasz Kowalski"
+        specialty: "Graph transaction management"
+        key_insight: "Partial updates corrupt graphs - transactions ensure atomicity"
+        analysis_angle: "ACID properties for knowledge updates"
+
+      - name: "Dr. Layla Ibrahim"
+        specialty: "Graph-based search ranking"
+        key_insight: "PageRank-style algorithms surface important knowledge"
+        analysis_angle: "Ranking documentation by centrality in graph"
+
+      - name: "Anders Larsson"
+        specialty: "Knowledge graph materialization"
+        key_insight: "Precomputing inferences speeds up queries"
+        analysis_angle: "What derived facts should be stored vs. computed?"
+
+      - name: "Dr. Chioma Eze"
+        specialty: "Graph schema versioning"
+        key_insight: "Schema changes must be backward compatible"
+        analysis_angle: "Evolving graph structure without breaking queries"
+
+      - name: "Mikhail Petrov"
+        specialty: "Knowledge graph access control"
+        key_insight: "Different users need different views of same graph"
+        analysis_angle: "Role-based filtering of sensitive knowledge"
+
+      - name: "Dr. Amina Yusuf"
+        specialty: "Graph-based data lineage"
+        key_insight: "Tracking knowledge origin enables trust"
+        analysis_angle: "Lineage from source files to graph nodes"
+
+      - name: "Hugo Martins"
+        specialty: "Knowledge graph scalability"
+        key_insight: "Billions of nodes require different architecture"
+        analysis_angle: "Scaling strategy for multi-year codebases"
+
+      - name: "Dr. Irina Volkov"
+        specialty: "Graph embeddings for similarity"
+        key_insight: "Node2Vec and similar map graph to vector space"
+        analysis_angle: "Learning embeddings from graph structure"
+
+      - name: "Kwesi Addo"
+        specialty: "Knowledge graph consistency checking"
+        key_insight: "Inconsistent facts destroy trust"
+        analysis_angle: "Detecting logical contradictions in graph"
+
+      - name: "Dr. Gabriela Torres"
+        specialty: "Graph-based context propagation"
+        key_insight: "Context flows through graph edges"
+        analysis_angle: "How context spreads from current file to related files"
+
+      - name: "Nikolai Ivanov"
+        specialty: "Knowledge graph summarization"
+        key_insight: "Compressed summaries enable quick overview"
+        analysis_angle: "Generating graph summaries for different abstraction levels"
+
+      - name: "Dr. Farah Khan"
+        specialty: "Graph-based dependency tracking"
+        key_insight: "Dependencies are fundamental to code understanding"
+        analysis_angle: "Modeling import/export as graph relationships"
+
+      - name: "Lucas Andersson"
+        specialty: "Knowledge graph reification"
+        key_insight: "Statements about statements need meta-edges"
+        analysis_angle: "Modeling confidence, source, timestamp as edge metadata"
+
+      - name: "Dr. Nia Williams"
+        specialty: "Graph pattern languages"
+        key_insight: "Declarative queries beat imperative traversals"
+        analysis_angle: "Should system use Cypher, GraphQL, or custom language?"
+
+      - name: "Pavel Novotný"
+        specialty: "Knowledge graph alignment"
+        key_insight: "Mapping between graphs enables knowledge transfer"
+        analysis_angle: "Aligning project-specific graphs to shared vocabulary"
+
+      - name: "Dr. Zainab Osman"
+        specialty: "Graph-based active learning"
+        key_insight: "Graph structure guides what to learn next"
+        analysis_angle: "Identifying knowledge gaps in graph"
+
+      - name: "Erik Hansen"
+        specialty: "Knowledge graph compression"
+        key_insight: "Lossy compression trades size for accuracy"
+        analysis_angle: "Compressing historical knowledge while keeping recent exact"
+
+      - name: "Dr. Amara Diallo"
+        specialty: "Graph-based transfer learning"
+        key_insight: "Knowledge from one domain helps another"
+        analysis_angle: "Transferring React patterns to other frontend frameworks"
+
+      - name: "Matias Gonzalez"
+        specialty: "Knowledge graph repair"
+        key_insight: "Automated repair of broken references"
+        analysis_angle: "Fixing dangling edges when files are deleted"
+
+      - name: "Dr. Petra Müller"
+        specialty: "Graph-based conflict detection"
+        key_insight: "Conflicting knowledge must be surfaced"
+        analysis_angle: "Detecting when docs and code tell different stories"
+
+      - name: "Jabari Okello"
+        specialty: "Knowledge graph enrichment"
+        key_insight: "External knowledge sources enhance internal graph"
+        analysis_angle: "Augmenting with Stack Overflow, official docs, etc."
+
+      - name: "Dr. Sana Malik"
+        specialty: "Graph-based provenance chains"
+        key_insight: "Full provenance trail enables debugging"
+        analysis_angle: "Tracking from user question to retrieved docs to answer"
+
+      - name: "Anders Svensson"
+        specialty: "Knowledge graph optimization"
+        key_insight: "Graph refactoring improves query performance"
+        analysis_angle: "Restructuring graph for common access patterns"
+
+      - name: "Dr. Kemi Adeyemi"
+        specialty: "Graph-based semantic caching"
+        key_insight: "Semantically similar queries share cache"
+        analysis_angle: "Caching by query intent, not just literal text"
+
+      - name: "Dmitri Volkov"
+        specialty: "Knowledge graph evolution tracking"
+        key_insight: "Diff between graph versions reveals changes"
+        analysis_angle: "Showing what knowledge changed between sessions"
+
+      - name: "Dr. Mariam Hassan"
+        specialty: "Graph-based recommendation systems"
+        key_insight: "Collaborative filtering works on knowledge graphs"
+        analysis_angle: "What other users found helpful in similar contexts"
+
+      - name: "Filip Novák"
+        specialty: "Knowledge graph federation protocols"
+        key_insight: "Standard protocols enable graph interoperability"
+        analysis_angle: "Cross-agent knowledge sharing via graph APIs"
+
+      - name: "Dr. Ayana Johnson"
+        specialty: "Graph-based context windows"
+        key_insight: "Graph neighborhood defines relevant context"
+        analysis_angle: "Selecting context based on graph distance from current focus"
+
+      - name: "Sergei Kozlov"
+        specialty: "Knowledge graph quality metrics"
+        key_insight: "Coverage, accuracy, freshness all matter"
+        analysis_angle: "Measuring graph quality automatically"
+
+      - name: "Dr. Halima Ndiaye"
+        specialty: "Graph-based version control"
+        key_insight: "Git for knowledge graphs"
+        analysis_angle: "Branching, merging, diffing graph structures"
+
+      - name: "Lukas Bergström"
+        specialty: "Knowledge graph observability"
+        key_insight: "Monitoring graph usage reveals optimization opportunities"
+        analysis_angle: "Tracking which nodes/edges are frequently accessed"
+
+      - name: "Dr. Amara Sow"
+        specialty: "Graph-based semantic routing"
+        key_insight: "Route queries to relevant subgraphs"
+        analysis_angle: "Directing questions to appropriate knowledge domains"
+
+      - name: "Maxim Sorokin"
+        specialty: "Knowledge graph garbage collection"
+        key_insight: "Unused knowledge accumulates and bloats"
+        analysis_angle: "Identifying and pruning obsolete nodes"
+
+      - name: "Dr. Nala Okafor"
+        specialty: "Graph-based attention mechanisms"
+        key_insight: "Multi-head attention on graph structure"
+        analysis_angle: "Attending to different relationship types simultaneously"
+
+      - name: "Johan Lindström"
+        specialty: "Knowledge graph continuous integration"
+        key_insight: "Graph should be tested like code"
+        analysis_angle: "CI pipeline for validating graph updates"
+
+      - name: "Dr. Zuri Mensah"
+        specialty: "Graph-based impact analysis"
+        key_insight: "Changes propagate through dependency graph"
+        analysis_angle: "What docs need updating when code changes?"
+
+      - name: "Andrei Morozov"
+        specialty: "Knowledge graph sharding"
+        key_insight: "Horizontal partitioning enables scaling"
+        analysis_angle: "Sharding by project, time period, or domain"
+
+      - name: "Dr. Simone Dupont"
+        specialty: "Graph-based semantic search"
+        key_insight: "Graph structure improves search relevance"
+        analysis_angle: "Using graph context to re-rank search results"
+
+      - name: "Kofi Asare"
+        specialty: "Knowledge graph backup and recovery"
+        key_insight: "Point-in-time recovery for knowledge"
+        analysis_angle: "Snapshot strategy for graph persistence"
+
+      - name: "Dr. Elena Sokolova"
+        specialty: "Graph-based knowledge discovery"
+        key_insight: "Hidden patterns emerge from graph analysis"
+        analysis_angle: "Mining graph to discover undocumented patterns"
+
+      - name: "Miguel Herrera"
+        specialty: "Knowledge graph telemetry"
+        key_insight: "Usage metrics guide improvement priorities"
+        analysis_angle: "What metrics indicate healthy graph?"
+
+      - name: "Dr. Ama Boateng"
+        specialty: "Graph-based context switching"
+        key_insight: "Switching context = jumping to different graph region"
+        analysis_angle: "Fast context switches via pre-loaded subgraphs"
+
+      - name: "Alexey Volkov"
+        specialty: "Knowledge graph introspection"
+        key_insight: "Graph can answer questions about itself"
+        analysis_angle: "Meta-queries: 'what do I know about X?'"
+
+      - name: "Dr. Fatima Traoré"
+        specialty: "Graph-based knowledge synthesis"
+        key_insight: "Combining multiple knowledge fragments into insights"
+        analysis_angle: "Synthesizing scattered docs into coherent understanding"
+
+      - name: "Lars Pedersen"
+        specialty: "Knowledge graph performance profiling"
+        key_insight: "Slow queries need identification and optimization"
+        analysis_angle: "Profiling tools for graph traversal performance"
+
+  # ============================================================================
+  # CATEGORY 2: INFORMATION ARCHITECTURE (100 experts)
+  # ============================================================================
+  information_architecture:
+    description: "Taxonomy, navigation, findability, IA patterns for documentation"
+    experts:
+      - name: "Dr. Abigail Frost"
+        specialty: "Card sorting and mental models"
+        key_insight: "User mental models should drive IA, not technical structure"
+        analysis_angle: "How developers mentally organize code knowledge"
+
+      - name: "Marcus Kim"
+        specialty: "Faceted classification"
+        key_insight: "Multiple organizational axes beat single hierarchy"
+        analysis_angle: "Organizing by type, domain, time, importance simultaneously"
+
+      - name: "Dr. Olivia Chen"
+        specialty: "Navigation design patterns"
+        key_insight: "Good navigation makes content findable"
+        analysis_angle: "Breadcrumbs, sidebars, search for docs navigation"
+
+      - name: "Stefan Novak"
+        specialty: "Information scent"
+        key_insight: "Users follow strongest scent toward their goal"
+        analysis_angle: "Making relevant docs give off strong scent"
+
+      - name: "Dr. Keisha Davis"
+        specialty: "Metadata schemas"
+        key_insight: "Rich metadata enables powerful filtering"
+        analysis_angle: "What metadata on each doc/code file?"
+
+      - name: "Henrik Andersson"
+        specialty: "Controlled vocabularies"
+        key_insight: "Consistent terminology prevents confusion"
+        analysis_angle: "Standard terms for code concepts across docs"
+
+      - name: "Dr. Amina Patel"
+        specialty: "Findability optimization"
+        key_insight: "If users can't find it, it doesn't exist"
+        analysis_angle: "Making critical docs easy to discover"
+
+      - name: "Roberto Gonzalez"
+        specialty: "Content inventory and audit"
+        key_insight: "Can't organize what you don't know you have"
+        analysis_angle: "Cataloging all existing documentation"
+
+      - name: "Dr. Yuki Sato"
+        specialty: "Taxonomy design"
+        key_insight: "Good taxonomies balance breadth and depth"
+        analysis_angle: "Optimal category structure for code docs"
+
+      - name: "Emma Williams"
+        specialty: "Search UX patterns"
+        key_insight: "Search is navigation when browsing fails"
+        analysis_angle: "Search-first vs. browse-first for docs"
+
+      - name: "Dr. Omar Farooq"
+        specialty: "Cross-referencing systems"
+        key_insight: "Dense linking makes knowledge navigable"
+        analysis_angle: "Automated cross-references between related docs"
+
+      - name: "Ling Zhang"
+        specialty: "Folksonomies and tagging"
+        key_insight: "User-generated tags complement formal taxonomy"
+        analysis_angle: "Should users tag docs for better organization?"
+
+      - name: "Dr. Klaus Bergmann"
+        specialty: "Information architecture patterns"
+        key_insight: "Proven patterns solve common IA problems"
+        analysis_angle: "Which IA patterns fit code documentation?"
+
+      - name: "Fatima Al-Said"
+        specialty: "Content modeling"
+        key_insight: "Structured content enables reuse and automation"
+        analysis_angle: "Content models for different doc types"
+
+      - name: "Dr. Johan Berg"
+        specialty: "Wayfinding and signage"
+        key_insight: "Visual cues guide users through information space"
+        analysis_angle: "Visual indicators of doc type/importance"
+
+      - name: "Priya Kapoor"
+        specialty: "Site maps and structure"
+        key_insight: "Hierarchical structure aids comprehension"
+        analysis_angle: "Sitemap for entire documentation ecosystem"
+
+      - name: "Dr. Mikhail Ivanov"
+        specialty: "Progressive disclosure"
+        key_insight: "Show basics first, details on demand"
+        analysis_angle: "Layered doc detail: summary → full → deep"
+
+      - name: "Aisha Kamau"
+        specialty: "Breadcrumb navigation"
+        key_insight: "Breadcrumbs show context and enable backtracking"
+        analysis_angle: "Breadcrumbs showing path through knowledge graph"
+
+      - name: "Dr. Lucas Martins"
+        specialty: "Aggregation and filtering"
+        key_insight: "Let users narrow down large sets incrementally"
+        analysis_angle: "Faceted search for documentation"
+
+      - name: "Zara Johnson"
+        specialty: "Related content recommendations"
+        key_insight: "'See also' links keep users engaged"
+        analysis_angle: "Automated 'related docs' based on graph"
+
+      - name: "Dr. Erik Svensson"
+        specialty: "Information overload prevention"
+        key_insight: "Too much information paralyzes decision-making"
+        analysis_angle: "Showing just enough context, not everything"
+
+      - name: "Kwame Nkrumah"
+        specialty: "Chunking strategies"
+        key_insight: "Bite-sized chunks easier to consume than walls of text"
+        analysis_angle: "Optimal chunk size for documentation"
+
+      - name: "Dr. Svetlana Petrov"
+        specialty: "Alphabetical vs. categorical organization"
+        key_insight: "Alphabetical aids lookup, categorical aids learning"
+        analysis_angle: "When to use each strategy for docs"
+
+      - name: "Diego Silva"
+        specialty: "Search filters and refinement"
+        key_insight: "Post-search filtering narrows results effectively"
+        analysis_angle: "Filter options for doc search results"
+
+      - name: "Dr. Amara Diallo"
+        specialty: "Labeling systems"
+        key_insight: "Clear labels make navigation intuitive"
+        analysis_angle: "Naming conventions for doc categories"
+
+      - name: "Viktor Novotný"
+        specialty: "Customizable views"
+        key_insight: "Different users need different org schemes"
+        analysis_angle: "Letting user customize doc organization"
+
+      - name: "Dr. Mei Lin"
+        specialty: "Information density optimization"
+        key_insight: "Balance between whitespace and information"
+        analysis_angle: "Optimal information density for quick scanning"
+
+      - name: "Hassan Omar"
+        specialty: "Hierarchical navigation"
+        key_insight: "Tree structure mirrors human thinking"
+        analysis_angle: "Multi-level navigation for complex codebases"
+
+      - name: "Dr. Isabella Cruz"
+        specialty: "Tag clouds and visualization"
+        key_insight: "Visual weight shows importance"
+        analysis_angle: "Tag cloud of most-used documentation topics"
+
+      - name: "Jamal Thompson"
+        specialty: "Breadth vs. depth tradeoffs"
+        key_insight: "Wide shallow trees vs. narrow deep trees"
+        analysis_angle: "Optimal hierarchy shape for code docs"
+
+      - name: "Dr. Natasha Volkov"
+        specialty: "Contextual navigation"
+        key_insight: "Navigation should adapt to user's current location"
+        analysis_angle: "Context-sensitive doc recommendations"
+
+      - name: "Carlos Mendoza"
+        specialty: "Global vs. local navigation"
+        key_insight: "Need both site-wide and section-specific navigation"
+        analysis_angle: "Global doc nav vs. project-specific nav"
+
+      - name: "Dr. Amina Hassan"
+        specialty: "Index design"
+        key_insight: "Comprehensive index enables random access"
+        analysis_angle: "Auto-generated index of all concepts/APIs"
+
+      - name: "Liam O'Connor"
+        specialty: "Content freshness indicators"
+        key_insight: "Users need to know if content is current"
+        analysis_angle: "Showing last-updated timestamps on docs"
+
+      - name: "Dr. Zainab Rahman"
+        specialty: "Synonyms and aliases"
+        key_insight: "Multiple terms for same concept need mapping"
+        analysis_angle: "Synonym handling in doc search"
+
+      - name: "Anders Larsson"
+        specialty: "Persistent navigation elements"
+        key_insight: "Consistent nav structure reduces cognitive load"
+        analysis_angle: "Stable navigation across all docs"
+
+      - name: "Dr. Chioma Okonkwo"
+        specialty: "Utility navigation"
+        key_insight: "Common actions should be always accessible"
+        analysis_angle: "Quick access to search, history, bookmarks"
+
+      - name: "Rafael Torres"
+        specialty: "Footer navigation"
+        key_insight: "Footers provide secondary pathways"
+        analysis_angle: "What belongs in doc footer nav?"
+
+      - name: "Dr. Layla Ibrahim"
+        specialty: "Responsive navigation"
+        key_insight: "Navigation must adapt to different screen sizes"
+        analysis_angle: "Mobile-friendly doc navigation (if web-based)"
+
+      - name: "Erik Hansen"
+        specialty: "Mega menus and dropdowns"
+        key_insight: "Show many options without overwhelming"
+        analysis_angle: "Compact nav for large doc sets"
+
+      - name: "Dr. Fatima Diop"
+        specialty: "Parallel navigation structures"
+        key_insight: "Multiple ways to reach same content"
+        analysis_angle: "Topic-based and task-based nav simultaneously"
+
+      - name: "Mateo Vargas"
+        specialty: "Landing page optimization"
+        key_insight: "First page sets user orientation"
+        analysis_angle: "Optimal landing page for doc system"
+
+      - name: "Dr. Keisha Brown"
+        specialty: "Sitemap generation"
+        key_insight: "Automated sitemaps stay current"
+        analysis_angle: "Auto-generating doc sitemap from graph"
+
+      - name: "Dimitri Antonov"
+        specialty: "Content prioritization"
+        key_insight: "Not all content equally important"
+        analysis_angle: "Surfacing critical docs prominently"
+
+      - name: "Dr. Yasmin Malik"
+        specialty: "Archives and historical content"
+        key_insight: "Old content needs separate treatment"
+        analysis_angle: "Archiving obsolete docs without deleting"
+
+      - name: "Marco Bianchi"
+        specialty: "Cross-project navigation"
+        key_insight: "Users work across multiple projects"
+        analysis_angle: "Switching between project docs smoothly"
+
+      - name: "Dr. Nadia Kamara"
+        specialty: "Bookmarking and favorites"
+        key_insight: "Personal shortcuts improve efficiency"
+        analysis_angle: "Letting Claude bookmark frequently-used docs"
+
+      - name: "Alexei Sokolov"
+        specialty: "Recently viewed history"
+        key_insight: "History enables quick return"
+        analysis_angle: "Recent docs history for Claude"
+
+      - name: "Dr. Amara Osei"
+        specialty: "Collaborative filtering for content"
+        key_insight: "'Users like you viewed X' works for docs"
+        analysis_angle: "What other sessions found useful in similar tasks"
+
+      - name: "Johan van der Berg"
+        specialty: "Personalized navigation"
+        key_insight: "Navigation adapts to user behavior"
+        analysis_angle: "Learning Claude's frequent doc access patterns"
+
+      - name: "Dr. Lucia Fernandez"
+        specialty: "Error prevention in navigation"
+        key_insight: "Clear current location prevents getting lost"
+        analysis_angle: "Always showing where you are in doc hierarchy"
+
+      - name: "Kwabena Mensah"
+        specialty: "Quick access patterns"
+        key_insight: "Frequent tasks need shortcuts"
+        analysis_angle: "Jump-to-definition, jump-to-docs shortcuts"
+
+      - name: "Dr. Tatiana Morozov"
+        specialty: "Spatial consistency"
+        key_insight: "Consistent layout builds muscle memory"
+        analysis_angle: "Standardized doc layout across all files"
+
+      - name: "Rafael Silva"
+        specialty: "Visual hierarchy"
+        key_insight: "Size, color, position show importance"
+        analysis_angle: "Visual design language for doc importance"
+
+      - name: "Dr. Leila Abbasi"
+        specialty: "Guided navigation"
+        key_insight: "Wizards and tutorials guide new users"
+        analysis_angle: "Onboarding flow for new project documentation"
+
+      - name: "Tomasz Kowalski"
+        specialty: "Table of contents design"
+        key_insight: "TOC provides overview and navigation"
+        analysis_angle: "Auto-generated TOC for long docs"
+
+      - name: "Dr. Halima Ndiaye"
+        specialty: "Anchor links and deep linking"
+        key_insight: "Direct links to sections improve accessibility"
+        analysis_angle: "Section-level linking in documentation"
+
+      - name: "Anders Svensson"
+        specialty: "Navigation testing"
+        key_insight: "User testing reveals nav problems"
+        analysis_angle: "Testing nav effectiveness with Claude's usage data"
+
+      - name: "Dr. Chioma Eze"
+        specialty: "Multi-language navigation"
+        key_insight: "Language switchers must be prominent"
+        analysis_angle: "Handling code comments in different languages"
+
+      - name: "Mikhail Petrov"
+        specialty: "Adaptive breadcrumbs"
+        key_insight: "Breadcrumbs show multiple possible paths"
+        analysis_angle: "Showing alternative paths to current doc"
+
+      - name: "Dr. Amina Yusuf"
+        specialty: "Navigation metrics"
+        key_insight: "Track how users actually navigate"
+        analysis_angle: "Analytics on doc access patterns"
+
+      - name: "Hugo Martins"
+        specialty: "Contextual links"
+        key_insight: "In-content links more effective than menus"
+        analysis_angle: "Inline links to related concepts"
+
+      - name: "Dr. Irina Volkov"
+        specialty: "Search-as-you-type"
+        key_insight: "Instant results beat submit-and-wait"
+        analysis_angle: "Autocomplete for doc search"
+
+      - name: "Kwesi Addo"
+        specialty: "Scoped search"
+        key_insight: "Search within current section faster than global"
+        analysis_angle: "Project-scoped vs. global doc search"
+
+      - name: "Dr. Gabriela Torres"
+        specialty: "Navigation state persistence"
+        key_insight: "Remembering where user left off"
+        analysis_angle: "Restoring doc position across sessions"
+
+      - name: "Nikolai Ivanov"
+        specialty: "Pagination vs. infinite scroll"
+        key_insight: "Depends on content type and user task"
+        analysis_angle: "Best approach for long doc lists"
+
+      - name: "Dr. Farah Khan"
+        specialty: "Sticky navigation"
+        key_insight: "Persistent nav bar aids long-page reading"
+        analysis_angle: "Fixed header with key nav options"
+
+      - name: "Lucas Andersson"
+        specialty: "Hub and spoke architecture"
+        key_insight: "Central hub with specialized satellites"
+        analysis_angle: "Main index linking to specialized doc sections"
+
+      - name: "Dr. Nia Williams"
+        specialty: "Linear vs. non-linear navigation"
+        key_insight: "Tutorials linear, reference non-linear"
+        analysis_angle: "When to enforce sequential reading vs. free exploration"
+
+      - name: "Pavel Novotný"
+        specialty: "Exit points and calls-to-action"
+        key_insight: "Guide users to next logical action"
+        analysis_angle: "'Next steps' links at end of docs"
+
+      - name: "Dr. Zainab Osman"
+        specialty: "Navigation overload prevention"
+        key_insight: "Too many choices paralyze users"
+        analysis_angle: "Limiting nav options to essential ones"
+
+      - name: "Erik Hansen"
+        specialty: "Semantic navigation"
+        key_insight: "Organize by meaning, not structure"
+        analysis_angle: "Task-based nav: 'How do I...' instead of 'API reference'"
+
+      - name: "Dr. Amara Diallo"
+        specialty: "Cross-channel consistency"
+        key_insight: "Same IA across CLI, web, IDE"
+        analysis_angle: "Consistent doc organization across interfaces"
+
+      - name: "Matias Gonzalez"
+        specialty: "Navigation performance"
+        key_insight: "Slow navigation frustrates users"
+        analysis_angle: "Lazy loading and caching for fast nav"
+
+      - name: "Dr. Petra Müller"
+        specialty: "Mobile-first navigation"
+        key_insight: "Design for smallest screen first"
+        analysis_angle: "If docs viewable on mobile, optimize nav"
+
+      - name: "Jabari Okello"
+        specialty: "Voice navigation"
+        key_insight: "Voice UI requires different nav paradigms"
+        analysis_angle: "Could Claude navigate docs via voice commands?"
+
+      - name: "Dr. Sana Malik"
+        specialty: "Keyboard navigation"
+        key_insight: "Power users prefer keyboard shortcuts"
+        analysis_angle: "Keyboard shortcuts for common doc navigation"
+
+      - name: "Anders Svensson"
+        specialty: "Navigation accessibility"
+        key_insight: "Nav must work for all abilities"
+        analysis_angle: "Screen reader compatibility for doc nav"
+
+      - name: "Dr. Kemi Adeyemi"
+        specialty: "Progressive enhancement"
+        key_insight: "Basic nav works everywhere, enhancements where supported"
+        analysis_angle: "Graceful degradation of advanced nav features"
+
+      - name: "Dmitri Volkov"
+        specialty: "Navigation state management"
+        key_insight: "Track where user has been and hasn't"
+        analysis_angle: "Marking visited vs. unvisited docs"
+
+      - name: "Dr. Mariam Hassan"
+        specialty: "Predictive navigation"
+        key_insight: "Anticipate where user wants to go next"
+        analysis_angle: "Pre-loading likely next docs"
+
+      - name: "Filip Novák"
+        specialty: "Navigation A/B testing"
+        key_insight: "Test nav changes before full rollout"
+        analysis_angle: "Experimenting with different nav structures"
+
+      - name: "Dr. Ayana Johnson"
+        specialty: "Navigation analytics"
+        key_insight: "Data reveals actual usage patterns"
+        analysis_angle: "Tracking most/least used nav paths"
+
+      - name: "Sergei Kozlov"
+        specialty: "Navigation debt"
+        key_insight: "Nav complexity grows without refactoring"
+        analysis_angle: "Regular nav structure cleanup"
+
+      - name: "Dr. Halima Ndiaye"
+        specialty: "Navigation affordances"
+        key_insight: "Make clickable things look clickable"
+        analysis_angle: "Clear visual cues for links and buttons"
+
+      - name: "Lukas Bergström"
+        specialty: "Context-sensitive help"
+        key_insight: "Help available exactly when needed"
+        analysis_angle: "Context-aware tooltips and hints"
+
+      - name: "Dr. Amara Sow"
+        specialty: "Navigation onboarding"
+        key_insight: "First-time users need orientation"
+        analysis_angle: "Tour of doc navigation for new projects"
+
+      - name: "Maxim Sorokin"
+        specialty: "Navigation simplification"
+        key_insight: "Simpler is usually better"
+        analysis_angle: "Removing unnecessary nav complexity"
+
+      - name: "Dr. Nala Okafor"
+        specialty: "Multi-device navigation"
+        key_insight: "Users switch devices mid-task"
+        analysis_angle: "Syncing nav state across devices/sessions"
+
+      - name: "Johan Lindström"
+        specialty: "Navigation versioning"
+        key_insight: "Old nav structure may need preservation"
+        analysis_angle: "Supporting legacy nav while introducing new"
+
+      - name: "Dr. Zuri Mensah"
+        specialty: "Navigation patterns library"
+        key_insight: "Reusable nav components speed development"
+        analysis_angle: "Standard nav widgets for all doc types"
+
+      - name: "Andrei Morozov"
+        specialty: "Navigation security"
+        key_insight: "Hide restricted content from nav"
+        analysis_angle: "Permission-based nav filtering"
+
+      - name: "Dr. Simone Dupont"
+        specialty: "Navigation localization"
+        key_insight: "Nav labels must translate well"
+        analysis_angle: "i18n considerations for nav elements"
+
+      - name: "Kofi Asare"
+        specialty: "Navigation caching"
+        key_insight: "Cache nav structure for performance"
+        analysis_angle: "Smart caching of doc navigation metadata"
+
+  # ============================================================================
+  # CATEGORY 3: CONTEXT AWARENESS (100 experts)
+  # ============================================================================
+  context_awareness:
+    description: "Ambient intelligence, context-sensitive systems, personalization"
+    experts:
+      - name: "Dr. Elena Sokolova"
+        specialty: "Context modeling frameworks"
+        key_insight: "Formal context models enable reasoning"
+        analysis_angle: "How to model Claude's current task context"
+
+      - name: "Miguel Herrera"
+        specialty: "Ambient intelligence systems"
+        key_insight: "Systems should adapt to user without explicit commands"
+        analysis_angle: "Automatically adjusting doc visibility based on activity"
+
+      - name: "Dr. Ama Boateng"
+        specialty: "Context acquisition methods"
+        key_insight: "Sensing context from multiple sources"
+        analysis_angle: "Detecting context from open files, recent commands, time of day"
+
+      - name: "Alexey Volkov"
+        specialty: "Context-aware computing"
+        key_insight: "Location, time, activity drive adaptation"
+        analysis_angle: "Project-aware, task-aware, time-aware doc retrieval"
+
+      - name: "Dr. Fatima Traoré"
+        specialty: "Implicit vs. explicit context"
+        key_insight: "Implicit context inferred, explicit stated"
+        analysis_angle: "User says 'debugging' vs. system infers from stack traces"
+
+      - name: "Lars Pedersen"
+        specialty: "Context history and evolution"
+        key_insight: "Context changes over time, need history"
+        analysis_angle: "Tracking context shifts within session"
+
+      - name: "Dr. Amina Khalil"
+        specialty: "Multi-dimensional context"
+        key_insight: "Context has many facets simultaneously"
+        analysis_angle: "Project + file + function + task context all at once"
+
+      - name: "Stefan Novak"
+        specialty: "Context-aware recommendations"
+        key_insight: "Suggestions based on current situation"
+        analysis_angle: "Recommending docs relevant to current code file"
+
+      - name: "Dr. Keisha Davis"
+        specialty: "Context switching detection"
+        key_insight: "Recognize when user changes focus"
+        analysis_angle: "Detecting context switch from frontend to backend work"
+
+      - name: "Henrik Andersson"
+        specialty: "Contextual relevance ranking"
+        key_insight: "Same query, different context, different results"
+        analysis_angle: "Re-ranking search results based on current context"
+
+      - name: "Dr. Amina Patel"
+        specialty: "Context propagation"
+        key_insight: "Context flows through related activities"
+        analysis_angle: "Carrying context from file edit to test run"
+
+      - name: "Roberto Gonzalez"
+        specialty: "Context-sensitive UI"
+        key_insight: "Interface adapts to situation"
+        analysis_angle: "Showing different options based on current file type"
+
+      - name: "Dr. Yuki Sato"
+        specialty: "Temporal context"
+        key_insight: "Time of day/week affects behavior"
+        analysis_angle: "Different doc needs in morning vs. afternoon sessions"
+
+      - name: "Emma Williams"
+        specialty: "Social context"
+        key_insight: "Who user is working with matters"
+        analysis_angle: "Team collaboration context (if multi-agent)"
+
+      - name: "Dr. Omar Farooq"
+        specialty: "Task context modeling"
+        key_insight: "Current goal shapes information needs"
+        analysis_angle: "Feature development vs. debugging vs. learning"
+
+      - name: "Ling Zhang"
+        specialty: "Environmental context"
+        key_insight: "Physical/digital environment affects behavior"
+        analysis_angle: "IDE vs. terminal vs. browser context"
+
+      - name: "Dr. Klaus Bergmann"
+        specialty: "Context reasoning"
+        key_insight: "Inferring high-level context from low-level signals"
+        analysis_angle: "Inferring 'debugging' from error messages, stack traces"
+
+      - name: "Fatima Al-Said"
+        specialty: "Context confidence scoring"
+        key_insight: "Not all context equally certain"
+        analysis_angle: "Confidence scores on inferred context"
+
+      - name: "Dr. Johan Berg"
+        specialty: "Context conflict resolution"
+        key_insight: "Conflicting signals need reconciliation"
+        analysis_angle: "When multiple context indicators disagree"
+
+      - name: "Priya Kapoor"
+        specialty: "Context-aware caching"
+        key_insight: "Cache content likely needed in current context"
+        analysis_angle: "Pre-loading docs for current file's dependencies"
+
+      - name: "Dr. Mikhail Ivanov"
+        specialty: "Context persistence"
+        key_insight: "Context should survive interruptions"
+        analysis_angle: "Saving context state across sessions"
+
+      - name: "Aisha Kamau"
+        specialty: "Context-based permissions"
+        key_insight: "Access rights vary by context"
+        analysis_angle: "Different docs accessible in different contexts"
+
+      - name: "Dr. Lucas Martins"
+        specialty: "Contextual help systems"
+        key_insight: "Help tailored to current activity"
+        analysis_angle: "Context-sensitive documentation popups"
+
+      - name: "Zara Johnson"
+        specialty: "Context sharing"
+        key_insight: "Sharing context between agents/tools"
+        analysis_angle: "Passing context from IDE to Claude"
+
+      - name: "Dr. Erik Svensson"
+        specialty: "Context granularity"
+        key_insight: "Too coarse or too fine both problematic"
+        analysis_angle: "Right level of context detail"
+
+      - name: "Kwame Nkrumah"
+        specialty: "Context ontologies"
+        key_insight: "Formal vocabulary for context types"
+        analysis_angle: "Standard terms for different context dimensions"
+
+      - name: "Dr. Svetlana Petrov"
+        specialty: "Context-aware search"
+        key_insight: "Search results filtered by context"
+        analysis_angle: "Search only in current project/domain"
+
+      - name: "Diego Silva"
+        specialty: "Context prediction"
+        key_insight: "Anticipating next context state"
+        analysis_angle: "Predicting user's next file/task"
+
+      - name: "Dr. Amara Diallo"
+        specialty: "Context visualization"
+        key_insight: "Showing current context helps user awareness"
+        analysis_angle: "Dashboard showing current detected context"
+
+      - name: "Viktor Novotný"
+        specialty: "Context-aware notifications"
+        key_insight: "Alerts based on situation"
+        analysis_angle: "Notifying about relevant docs when context shifts"
+
+      - name: "Dr. Mei Lin"
+        specialty: "Context enrichment"
+        key_insight: "Augmenting sparse context with inferences"
+        analysis_angle: "Adding inferred context to explicit signals"
+
+      - name: "Hassan Omar"
+        specialty: "Context sensitivity levels"
+        key_insight: "Different features need different context awareness"
+        analysis_angle: "Which features should be context-aware vs. static"
+
+      - name: "Dr. Isabella Cruz"
+        specialty: "Context stability"
+        key_insight: "Too frequent context changes confuse"
+        analysis_angle: "Smoothing rapid context oscillations"
+
+      - name: "Jamal Thompson"
+        specialty: "Context lifecycle"
+        key_insight: "Context created, updated, archived"
+        analysis_angle: "Managing context from session start to end"
+
+      - name: "Dr. Natasha Volkov"
+        specialty: "Micro vs. macro context"
+        key_insight: "Immediate context vs. broader situation"
+        analysis_angle: "Current line vs. current file vs. current project"
+
+      - name: "Carlos Mendoza"
+        specialty: "Context-aware automation"
+        key_insight: "Automated actions triggered by context"
+        analysis_angle: "Auto-loading docs when entering new file"
+
+      - name: "Dr. Amina Hassan"
+        specialty: "Context quality metrics"
+        key_insight: "Measuring how well context detected"
+        analysis_angle: "Accuracy of context inference"
+
+      - name: "Liam O'Connor"
+        specialty: "Context feedback loops"
+        key_insight: "User corrections improve context detection"
+        analysis_angle: "Learning from user overriding context assumptions"
+
+      - name: "Dr. Zainab Rahman"
+        specialty: "Context-aware personalization"
+        key_insight: "Personal preferences + current context"
+        analysis_angle: "User's typical docs for this type of task"
+
+      - name: "Anders Larsson"
+        specialty: "Context markers"
+        key_insight: "Explicit signals that context changed"
+        analysis_angle: "Comments like '# DEBUGGING' signal context"
+
+      - name: "Dr. Chioma Okonkwo"
+        specialty: "Context pruning"
+        key_insight: "Irrelevant context should fade away"
+        analysis_angle: "Removing old context that's no longer relevant"
+
+      - name: "Rafael Torres"
+        specialty: "Context templates"
+        key_insight: "Common context patterns can be templated"
+        analysis_angle: "Standard context profiles for common tasks"
+
+      - name: "Dr. Layla Ibrahim"
+        specialty: "Context-aware code completion"
+        key_insight: "Completions based on current file/project"
+        analysis_angle: "Doc suggestions based on code being written"
+
+      - name: "Erik Hansen"
+        specialty: "Context drift detection"
+        key_insight: "Gradual context changes hard to notice"
+        analysis_angle: "Detecting slow shift in focus area"
+
+      - name: "Dr. Fatima Diop"
+        specialty: "Context disambiguation"
+        key_insight: "Ambiguous signals need clarification"
+        analysis_angle: "When multiple interpretations possible, how to choose?"
+
+      - name: "Mateo Vargas"
+        specialty: "Context-aware logging"
+        key_insight: "Log entries include context metadata"
+        analysis_angle: "Tagging log entries with context state"
+
+      - name: "Dr. Keisha Brown"
+        specialty: "Context-based clustering"
+        key_insight: "Group activities by similar context"
+        analysis_angle: "Clustering similar work sessions"
+
+      - name: "Dimitri Antonov"
+        specialty: "Context inheritance"
+        key_insight: "Child contexts inherit from parent"
+        analysis_angle: "File context inherits from project context"
+
+      - name: "Dr. Yasmin Malik"
+        specialty: "Context-aware error handling"
+        key_insight: "Error messages tailored to context"
+        analysis_angle: "Different error explanations for beginners vs. experts"
+
+      - name: "Marco Bianchi"
+        specialty: "Context compression"
+        key_insight: "Compact representation for efficiency"
+        analysis_angle: "Summarizing context for fast transmission"
+
+      - name: "Dr. Nadia Kamara"
+        specialty: "Context-aware batching"
+        key_insight: "Group related actions by context"
+        analysis_angle: "Batching doc loads for same context"
+
+      - name: "Alexei Sokolov"
+        specialty: "Context synchronization"
+        key_insight: "Keep context consistent across components"
+        analysis_angle: "Syncing context between IDE plugin and CLI"
+
+      - name: "Dr. Amara Osei"
+        specialty: "Context-aware prioritization"
+        key_insight: "Prioritize actions by context relevance"
+        analysis_angle: "Urgent docs for current task first"
+
+      - name: "Johan van der Berg"
+        specialty: "Context fingerprinting"
+        key_insight: "Unique signature for each context state"
+        analysis_angle: "Hash of context for caching and comparison"
+
+      - name: "Dr. Lucia Fernandez"
+        specialty: "Context-aware rate limiting"
+        key_insight: "Throttle differently based on context"
+        analysis_angle: "More aggressive caching during debugging"
+
+      - name: "Kwabena Mensah"
+        specialty: "Context recovery"
+        key_insight: "Restore context after crash"
+        analysis_angle: "Saving context state for session recovery"
+
+      - name: "Dr. Tatiana Morozov"
+        specialty: "Context-aware prefetching"
+        key_insight: "Preload likely needed content"
+        analysis_angle: "Prefetching docs for probable next files"
+
+      - name: "Rafael Silva"
+        specialty: "Context negotiation"
+        key_insight: "Agents agree on shared context"
+        analysis_angle: "Multi-agent context alignment"
+
+      - name: "Dr. Leila Abbasi"
+        specialty: "Context-aware throttling"
+        key_insight: "Update frequency based on context stability"
+        analysis_angle: "Fast updates during active coding, slow during reading"
+
+      - name: "Tomasz Kowalski"
+        specialty: "Context bookmarking"
+        key_insight: "Save and restore context states"
+        analysis_angle: "Bookmarking work contexts for quick return"
+
+      - name: "Dr. Halima Ndiaye"
+        specialty: "Context-aware compression"
+        key_insight: "Compress context representation"
+        analysis_angle: "Efficient context encoding for storage"
+
+      - name: "Anders Svensson"
+        specialty: "Context-aware routing"
+        key_insight: "Route requests based on context"
+        analysis_angle: "Routing queries to context-appropriate handlers"
+
+      - name: "Dr. Chioma Eze"
+        specialty: "Context versioning"
+        key_insight: "Track context changes over time"
+        analysis_angle: "Context version history for debugging"
+
+      - name: "Mikhail Petrov"
+        specialty: "Context-aware deduplication"
+        key_insight: "Avoid redundant context capture"
+        analysis_angle: "Detecting when context unchanged"
+
+      - name: "Dr. Amina Yusuf"
+        specialty: "Context triggers"
+        key_insight: "Events that signal context change"
+        analysis_angle: "File open, git branch switch trigger context update"
+
+      - name: "Hugo Martins"
+        specialty: "Context-aware highlighting"
+        key_insight: "Emphasize context-relevant elements"
+        analysis_angle: "Highlighting relevant code sections"
+
+      - name: "Dr. Irina Volkov"
+        specialty: "Context-aware folding"
+        key_insight: "Hide irrelevant details based on context"
+        analysis_angle: "Collapsing non-relevant code sections"
+
+      - name: "Kwesi Addo"
+        specialty: "Context-aware coloring"
+        key_insight: "Visual cues for context state"
+        analysis_angle: "Color-coding by context type"
+
+      - name: "Dr. Gabriela Torres"
+        specialty: "Context-aware shortcuts"
+        key_insight: "Keyboard shortcuts adapt to context"
+        analysis_angle: "Context-specific hotkeys"
+
+      - name: "Nikolai Ivanov"
+        specialty: "Context-aware menus"
+        key_insight: "Menu options filtered by context"
+        analysis_angle: "Context menus showing relevant actions"
+
+      - name: "Dr. Farah Khan"
+        specialty: "Context-aware tooltips"
+        key_insight: "Hover text based on context"
+        analysis_angle: "Different tooltips in different contexts"
+
+      - name: "Lucas Andersson"
+        specialty: "Context-aware validation"
+        key_insight: "Validation rules depend on context"
+        analysis_angle: "Different validation for test vs. production code"
+
+      - name: "Dr. Nia Williams"
+        specialty: "Context-aware defaults"
+        key_insight: "Default values from current context"
+        analysis_angle: "Smart defaults based on current file type"
+
+      - name: "Pavel Novotný"
+        specialty: "Context-aware sampling"
+        key_insight: "Sample differently in different contexts"
+        analysis_angle: "Sampling strategy adapts to context"
+
+      - name: "Dr. Zainab Osman"
+        specialty: "Context-aware aggregation"
+        key_insight: "Aggregate by context boundaries"
+        analysis_angle: "Grouping metrics by context session"
+
+      - name: "Erik Hansen"
+        specialty: "Context-aware formatting"
+        key_insight: "Display format depends on context"
+        analysis_angle: "Verbose in learning, terse in debugging"
+
+      - name: "Dr. Amara Diallo"
+        specialty: "Context-aware parsing"
+        key_insight: "Parse input differently by context"
+        analysis_angle: "Interpreting commands based on context"
+
+      - name: "Matias Gonzalez"
+        specialty: "Context-aware rendering"
+        key_insight: "Render output for current context"
+        analysis_angle: "Rich rendering in IDE, plain in terminal"
+
+      - name: "Dr. Petra Müller"
+        specialty: "Context-aware scheduling"
+        key_insight: "Task scheduling based on context"
+        analysis_angle: "Background tasks when context idle"
+
+      - name: "Jabari Okello"
+        specialty: "Context-aware merging"
+        key_insight: "Merge conflicts consider context"
+        analysis_angle: "Context-aware git merge strategies"
+
+      - name: "Dr. Sana Malik"
+        specialty: "Context-aware diffing"
+        key_insight: "Diff presentation based on context"
+        analysis_angle: "Showing relevant diffs only"
+
+      - name: "Anders Svensson"
+        specialty: "Context-aware indexing"
+        key_insight: "Index structure optimized for context"
+        analysis_angle: "Context-specific indices"
+
+      - name: "Dr. Kemi Adeyemi"
+        specialty: "Context-aware pooling"
+        key_insight: "Resource pools per context"
+        analysis_angle: "Separate caches for different contexts"
+
+      - name: "Dmitri Volkov"
+        specialty: "Context-aware retries"
+        key_insight: "Retry logic depends on context"
+        analysis_angle: "More retries in critical contexts"
+
+      - name: "Dr. Mariam Hassan"
+        specialty: "Context-aware timeouts"
+        key_insight: "Timeout values based on context"
+        analysis_angle: "Longer timeouts during compilation"
+
+      - name: "Filip Novák"
+        specialty: "Context-aware batching"
+        key_insight: "Batch size adapts to context"
+        analysis_angle: "Larger batches in batch processing context"
+
+      - name: "Dr. Ayana Johnson"
+        specialty: "Context-aware streaming"
+        key_insight: "Stream vs. batch based on context"
+        analysis_angle: "Streaming updates in interactive context"
+
+      - name: "Sergei Kozlov"
+        specialty: "Context-aware snapshotting"
+        key_insight: "Snapshot frequency based on context"
+        analysis_angle: "Frequent snapshots during risky operations"
+
+      - name: "Dr. Halima Ndiaye"
+        specialty: "Context-aware checkpointing"
+        key_insight: "Checkpoints at context boundaries"
+        analysis_angle: "Saving state when context changes"
+
+      - name: "Lukas Bergström"
+        specialty: "Context-aware rollback"
+        key_insight: "Rollback to previous context state"
+        analysis_angle: "Undo to last stable context"
+
+      - name: "Dr. Amara Sow"
+        specialty: "Context-aware migration"
+        key_insight: "Migrate data when context evolves"
+        analysis_angle: "Migrating context schema versions"
+
+      - name: "Maxim Sorokin"
+        specialty: "Context-aware deprecation"
+        key_insight: "Deprecate features based on context"
+        analysis_angle: "Hiding deprecated features in modern context"
+
+      - name: "Dr. Nala Okafor"
+        specialty: "Context-aware feature flags"
+        key_insight: "Enable features based on context"
+        analysis_angle: "Context-dependent feature availability"
+
+      - name: "Johan Lindström"
+        specialty: "Context-aware testing"
+        key_insight: "Test scenarios cover different contexts"
+        analysis_angle: "Testing system in various context states"
+
+  # ===========================================================================
+  # CATEGORY 4: MEMORY SYSTEMS (100 experts)
+  # ===========================================================================
+  memory_systems:
+    description: "Long-term memory, working memory, episodic/semantic memory architectures"
+    experts:
+      - name: "Dr. Zuri Mensah"
+        specialty: "Working memory constraints"
+        key_insight: "Limited capacity requires prioritization"
+        analysis_angle: "Claude's context window as working memory"
+
+      - name: "Andrei Morozov"
+        specialty: "Long-term memory consolidation"
+        key_insight: "Important information migrates to long-term storage"
+        analysis_angle: "Moving frequently-used docs to fast-access tier"
+
+      - name: "Dr. Simone Dupont"
+        specialty: "Episodic memory systems"
+        key_insight: "Events remembered with context and timestamp"
+        analysis_angle: "Session logs as episodic memory"
+
+      - name: "Kofi Asare"
+        specialty: "Semantic memory networks"
+        key_insight: "Conceptual knowledge in interconnected structure"
+        analysis_angle: "Knowledge graph as semantic memory"
+
+      - name: "Dr. Elena Sokolova"
+        specialty: "Memory retrieval cues"
+        key_insight: "Cues trigger memory recall"
+        analysis_angle: "File names, tags as retrieval cues"
+
+      - name: "Miguel Herrera"
+        specialty: "Forgetting curves and decay"
+        key_insight: "Unused memories fade over time"
+        analysis_angle: "Archiving rarely-accessed knowledge"
+
+      - name: "Dr. Ama Boateng"
+        specialty: "Memory reconsolidation"
+        key_insight: "Recalled memories can be updated"
+        analysis_angle: "Updating docs when re-accessed"
+
+      - name: "Alexey Volkov"
+        specialty: "Procedural memory"
+        key_insight: "Skills and procedures in separate system"
+        analysis_angle: "Scripts and workflows as procedural memory"
+
+      - name: "Dr. Fatima Traoré"
+        specialty: "Memory compression"
+        key_insight: "Detailed memories compressed to gist"
+        analysis_angle: "Summarizing old logs for compact storage"
+
+      - name: "Lars Pedersen"
+        specialty: "Memory hierarchies"
+        key_insight: "Multiple tiers with different speeds/sizes"
+        analysis_angle: "L1/L2/L3 cache analogy for doc storage"
+
+      - name: "Dr. Amina Khalil"
+        specialty: "Associative memory"
+        key_insight: "Memories linked by associations"
+        analysis_angle: "Graph edges as memory associations"
+
+      - name: "Stefan Novak"
+        specialty: "Memory interference"
+        key_insight: "Similar memories can interfere"
+        analysis_angle: "Disambiguating similar doc sections"
+
+      - name: "Dr. Keisha Davis"
+        specialty: "Memory chunking"
+        key_insight: "Grouping items increases capacity"
+        analysis_angle: "Chunking related concepts for efficient recall"
+
+      - name: "Henrik Andersson"
+        specialty: "Memory rehearsal"
+        key_insight: "Repeated access strengthens memories"
+        analysis_angle: "Frequently accessed docs more strongly encoded"
+
+      - name: "Dr. Amina Patel"
+        specialty: "Context-dependent memory"
+        key_insight: "Recall better in same context as encoding"
+        analysis_angle: "Docs retrieved in context where first learned"
+
+      - name: "Roberto Gonzalez"
+        specialty: "State-dependent memory"
+        key_insight: "Recall depends on internal state"
+        analysis_angle: "Different knowledge accessible in different modes"
+
+      - name: "Dr. Yuki Sato"
+        specialty: "Memory schemas"
+        key_insight: "Mental frameworks organize memories"
+        analysis_angle: "Documentation schemas organize knowledge"
+
+      - name: "Emma Williams"
+        specialty: "Memory priming"
+        key_insight: "Prior exposure facilitates later recall"
+        analysis_angle: "Recently viewed docs easier to retrieve"
+
+      - name: "Dr. Omar Farooq"
+        specialty: "Memory spreading activation"
+        key_insight: "Activating one memory spreads to related"
+        analysis_angle: "Retrieving one doc activates related docs"
+
+      - name: "Ling Zhang"
+        specialty: "Memory source monitoring"
+        key_insight: "Tracking where memory came from"
+        analysis_angle: "Remembering which doc contained information"
+
+      - name: "Dr. Klaus Bergmann"
+        specialty: "Prospective memory"
+        key_insight: "Remembering to do something in future"
+        analysis_angle: "TODO lists and reminders"
+
+      - name: "Fatima Al-Said"
+        specialty: "Memory confidence"
+        key_insight: "Strength of memory affects retrieval confidence"
+        analysis_angle: "Confidence scores on recalled knowledge"
+
+      - name: "Dr. Johan Berg"
+        specialty: "Memory updating"
+        key_insight: "Changing existing memories is effortful"
+        analysis_angle: "Updating stale documentation"
+
+      - name: "Priya Kapoor"
+        specialty: "Memory false positives"
+        key_insight: "Remembering things that didn't happen"
+        analysis_angle: "Hallucinated vs. real documentation"
+
+      - name: "Dr. Mikhail Ivanov"
+        specialty: "Memory capacity limits"
+        key_insight: "Finite storage requires pruning"
+        analysis_angle: "Deleting obsolete knowledge"
+
+      - name: "Aisha Kamau"
+        specialty: "Memory retrieval speed"
+        key_insight: "Frequently used memories faster to access"
+        analysis_angle: "Hot cache for common docs"
+
+      - name: "Dr. Lucas Martins"
+        specialty: "Memory encoding specificity"
+        key_insight: "Specific encoding aids later retrieval"
+        analysis_angle: "Detailed metadata aids doc discovery"
+
+      - name: "Zara Johnson"
+        specialty: "Memory persistence"
+        key_insight: "Memories need durable storage"
+        analysis_angle: "Persisting knowledge graph to disk"
+
+      - name: "Dr. Erik Svensson"
+        specialty: "Memory accessibility"
+        key_insight: "Some memories harder to access than others"
+        analysis_angle: "Deep vs. shallow doc retrieval paths"
+
+      - name: "Kwame Nkrumah"
+        specialty: "Memory organization"
+        key_insight: "Organized memories easier to retrieve"
+        analysis_angle: "Structured doc organization aids recall"
+
+      - name: "Dr. Svetlana Petrov"
+        specialty: "Memory cues and prompts"
+        key_insight: "Cues trigger memory retrieval"
+        analysis_angle: "Keywords as memory retrieval cues"
+
+      - name: "Diego Silva"
+        specialty: "Memory reconstruction"
+        key_insight: "Memories reconstructed, not replayed"
+        analysis_angle: "Synthesizing answer from multiple doc fragments"
+
+      - name: "Dr. Amara Diallo"
+        specialty: "Memory trace strength"
+        key_insight: "Stronger traces more easily recalled"
+        analysis_angle: "Reinforcing important knowledge"
+
+      - name: "Viktor Novotný"
+        specialty: "Memory decay prevention"
+        key_insight: "Active maintenance prevents forgetting"
+        analysis_angle: "Periodic doc review to prevent decay"
+
+      - name: "Dr. Mei Lin"
+        specialty: "Memory consolidation sleep"
+        key_insight: "Offline processing strengthens memories"
+        analysis_angle: "Background indexing during idle time"
+
+      - name: "Hassan Omar"
+        specialty: "Memory emotional tagging"
+        key_insight: "Emotion enhances memory encoding"
+        analysis_angle: "Tagging critical docs as important"
+
+      - name: "Dr. Isabella Cruz"
+        specialty: "Memory distinctiveness"
+        key_insight: "Unique memories easier to recall"
+        analysis_angle: "Distinctive doc titles aid retrieval"
+
+      - name: "Jamal Thompson"
+        specialty: "Memory overwriting"
+        key_insight: "New information can overwrite old"
+        analysis_angle: "Doc version management"
+
+      - name: "Dr. Natasha Volkov"
+        specialty: "Memory flashbulb"
+        key_insight: "Vivid memories of significant events"
+        analysis_angle: "Critical debugging sessions vividly remembered"
+
+      - name: "Carlos Mendoza"
+        specialty: "Memory serial position"
+        key_insight: "First and last items better recalled"
+        analysis_angle: "Primacy/recency in doc lists"
+
+      - name: "Dr. Amina Hassan"
+        specialty: "Memory implicit vs explicit"
+        key_insight: "Unconscious vs. conscious memory"
+        analysis_angle: "Implicit knowledge from experience"
+
+      - name: "Liam O'Connor"
+        specialty: "Memory declarative systems"
+        key_insight: "Facts and events in declarative memory"
+        analysis_angle: "Documentation as declarative memory"
+
+      - name: "Dr. Zainab Rahman"
+        specialty: "Memory non-declarative systems"
+        key_insight: "Skills and habits"
+        analysis_angle: "Coding patterns as procedural memory"
+
+      - name: "Anders Larsson"
+        specialty: "Memory consolidation theory"
+        key_insight: "Transfer from short to long-term"
+        analysis_angle: "Moving session knowledge to permanent docs"
+
+      - name: "Dr. Chioma Okonkwo"
+        specialty: "Memory interference theory"
+        key_insight: "Competing memories disrupt recall"
+        analysis_angle: "Managing conflicting documentation"
+
+      - name: "Rafael Torres"
+        specialty: "Memory encoding variability"
+        key_insight: "Multiple encodings improve retrieval"
+        analysis_angle: "Multiple doc formats (prose, code, diagram)"
+
+      - name: "Dr. Layla Ibrahim"
+        specialty: "Memory retrieval practice"
+        key_insight: "Testing strengthens memory"
+        analysis_angle: "Quizzing on docs to reinforce learning"
+
+      - name: "Erik Hansen"
+        specialty: "Memory spacing effect"
+        key_insight: "Distributed practice beats massed"
+        analysis_angle: "Spaced review of documentation"
+
+      - name: "Dr. Fatima Diop"
+        specialty: "Memory testing effect"
+        key_insight: "Retrieval practice aids retention"
+        analysis_angle: "Active recall of doc content"
+
+      - name: "Mateo Vargas"
+        specialty: "Memory generation effect"
+        key_insight: "Self-generated info better remembered"
+        analysis_angle: "Writing own summaries aids retention"
+
+      - name: "Dr. Keisha Brown"
+        specialty: "Memory elaboration"
+        key_insight: "Rich associations improve memory"
+        analysis_angle: "Linking concepts extensively in graph"
+
+      - name: "Dimitri Antonov"
+        specialty: "Memory organization packets"
+        key_insight: "Structured knowledge units"
+        analysis_angle: "Doc templates as MOPs"
+
+      - name: "Dr. Yasmin Malik"
+        specialty: "Memory schemas and scripts"
+        key_insight: "Frameworks for common situations"
+        analysis_angle: "Templates for common development tasks"
+
+      - name: "Marco Bianchi"
+        specialty: "Memory metacognition"
+        key_insight: "Knowing what you know"
+        analysis_angle: "Tracking which docs Claude has 'read'"
+
+      - name: "Dr. Nadia Kamara"
+        specialty: "Memory feeling of knowing"
+        key_insight: "Sensing familiar but inaccessible info"
+        analysis_angle: "Detecting when answer exists but not found"
+
+      - name: "Alexei Sokolov"
+        specialty: "Memory tip-of-tongue"
+        key_insight: "Partial retrieval state"
+        analysis_angle: "Partial matches in doc search"
+
+      - name: "Dr. Amara Osei"
+        specialty: "Memory retrieval strategies"
+        key_insight: "Systematic search beats random"
+        analysis_angle: "Structured doc search strategies"
+
+      - name: "Johan van der Berg"
+        specialty: "Memory monitoring"
+        key_insight: "Tracking retrieval success"
+        analysis_angle: "Monitoring doc retrieval effectiveness"
+
+      - name: "Dr. Lucia Fernandez"
+        specialty: "Memory control processes"
+        key_insight: "Strategic memory management"
+        analysis_angle: "Deliberate knowledge organization"
+
+      - name: "Kwabena Mensah"
+        specialty: "Memory capacity measurement"
+        key_insight: "Quantifying memory limits"
+        analysis_angle: "Measuring knowledge base size"
+
+      - name: "Dr. Tatiana Morozov"
+        specialty: "Memory bandwidth"
+        key_insight: "Rate of memory access"
+        analysis_angle: "Doc retrieval throughput"
+
+      - name: "Rafael Silva"
+        specialty: "Memory latency"
+        key_insight: "Time to first byte of memory"
+        analysis_angle: "Doc search response time"
+
+      - name: "Dr. Leila Abbasi"
+        specialty: "Memory prefetching"
+        key_insight: "Loading memory before needed"
+        analysis_angle: "Predictive doc preloading"
+
+      - name: "Tomasz Kowalski"
+        specialty: "Memory paging"
+        key_insight: "Moving data between tiers"
+        analysis_angle: "Swapping docs between cache and disk"
+
+      - name: "Dr. Halima Ndiaye"
+        specialty: "Memory thrashing"
+        key_insight: "Excessive swapping degrades performance"
+        analysis_angle: "Avoiding constant cache evictions"
+
+      - name: "Anders Svensson"
+        specialty: "Memory locality"
+        key_insight: "Nearby accesses likely"
+        analysis_angle: "Spatial locality in doc access"
+
+      - name: "Dr. Chioma Eze"
+        specialty: "Memory temporal locality"
+        key_insight: "Recent accesses likely to repeat"
+        analysis_angle: "Recently accessed docs likely needed again"
+
+      - name: "Mikhail Petrov"
+        specialty: "Memory spatial locality"
+        key_insight: "Nearby data likely accessed together"
+        analysis_angle: "Related docs accessed together"
+
+      - name: "Dr. Amina Yusuf"
+        specialty: "Memory write-through caching"
+        key_insight: "Immediate persistence"
+        analysis_angle: "Immediately saving doc changes"
+
+      - name: "Hugo Martins"
+        specialty: "Memory write-back caching"
+        key_insight: "Delayed persistence for speed"
+        analysis_angle: "Batching doc updates"
+
+      - name: "Dr. Irina Volkov"
+        specialty: "Memory cache coherence"
+        key_insight: "Keeping multiple caches consistent"
+        analysis_angle: "Syncing caches across agents"
+
+      - name: "Kwesi Addo"
+        specialty: "Memory eviction policies"
+        key_insight: "LRU, LFU, FIFO strategies"
+        analysis_angle: "Which docs to evict from cache"
+
+      - name: "Dr. Gabriela Torres"
+        specialty: "Memory allocation strategies"
+        key_insight: "First-fit, best-fit, worst-fit"
+        analysis_angle: "Allocating memory for doc cache"
+
+      - name: "Nikolai Ivanov"
+        specialty: "Memory fragmentation"
+        key_insight: "Wasted space from poor allocation"
+        analysis_angle: "Compacting knowledge base"
+
+      - name: "Dr. Farah Khan"
+        specialty: "Memory garbage collection"
+        key_insight: "Automated reclamation of unused memory"
+        analysis_angle: "GC for unused doc cache entries"
+
+      - name: "Lucas Andersson"
+        specialty: "Memory reference counting"
+        key_insight: "Tracking usage for cleanup"
+        analysis_angle: "Counting doc references"
+
+      - name: "Dr. Nia Williams"
+        specialty: "Memory mark-and-sweep"
+        key_insight: "Two-phase garbage collection"
+        analysis_angle: "Identifying unreachable docs"
+
+      - name: "Pavel Novotný"
+        specialty: "Memory generational collection"
+        key_insight: "Young vs. old objects"
+        analysis_angle: "Recent vs. old docs in GC"
+
+      - name: "Dr. Zainab Osman"
+        specialty: "Memory compaction"
+        key_insight: "Reducing fragmentation"
+        analysis_angle: "Defragmenting knowledge base"
+
+      - name: "Erik Hansen"
+        specialty: "Memory pooling"
+        key_insight: "Pre-allocated memory for efficiency"
+        analysis_angle: "Doc object pools"
+
+      - name: "Dr. Amara Diallo"
+        specialty: "Memory copy-on-write"
+        key_insight: "Lazy copying for efficiency"
+        analysis_angle: "COW for doc versioning"
+
+      - name: "Matias Gonzalez"
+        specialty: "Memory mmap"
+        key_insight: "Memory-mapped files"
+        analysis_angle: "Memory-mapping large knowledge files"
+
+      - name: "Dr. Petra Müller"
+        specialty: "Memory DMA"
+        key_insight: "Direct memory access bypasses CPU"
+        analysis_angle: "Efficient bulk doc transfers"
+
+      - name: "Jabari Okello"
+        specialty: "Memory NUMA"
+        key_insight: "Non-uniform memory access"
+        analysis_angle: "Distributed knowledge architecture"
+
+      - name: "Dr. Sana Malik"
+        specialty: "Memory ECC"
+        key_insight: "Error correction for reliability"
+        analysis_angle: "Checksums for knowledge integrity"
+
+      - name: "Anders Svensson"
+        specialty: "Memory encryption"
+        key_insight: "Protecting sensitive data"
+        analysis_angle: "Encrypting sensitive docs"
+
+      - name: "Dr. Kemi Adeyemi"
+        specialty: "Memory compression in RAM"
+        key_insight: "Compressing memory content"
+        analysis_angle: "Compressing cached docs"
+
+      - name: "Dmitri Volkov"
+        specialty: "Memory tiering"
+        key_insight: "Hot, warm, cold data tiers"
+        analysis_angle: "Multi-tier doc storage"
+
+      - name: "Dr. Mariam Hassan"
+        specialty: "Memory persistence"
+        key_insight: "Non-volatile memory technologies"
+        analysis_angle: "Persistent knowledge storage"
+
+      - name: "Filip Novák"
+        specialty: "Memory checkpointing"
+        key_insight: "Periodic snapshots"
+        analysis_angle: "Checkpointing knowledge state"
+
+      - name: "Dr. Ayana Johnson"
+        specialty: "Memory crash recovery"
+        key_insight: "Restoring after failure"
+        analysis_angle: "Recovering knowledge after crash"
+
+      - name: "Sergei Kozlov"
+        specialty: "Memory journaling"
+        key_insight: "Transaction logs for recovery"
+        analysis_angle: "Knowledge change journal"
+
+      - name: "Dr. Halima Ndiaye"
+        specialty: "Memory versioning"
+        key_insight: "Tracking memory state over time"
+        analysis_angle: "Doc version control"
+
+      - name: "Lukas Bergström"
+        specialty: "Memory snapshotting"
+        key_insight: "Point-in-time copies"
+        analysis_angle: "Knowledge snapshots"
+
+      - name: "Dr. Amara Sow"
+        specialty: "Memory deduplication"
+        key_insight: "Eliminating duplicate data"
+        analysis_angle: "Deduplicating doc content"
+
+  # ===========================================================================
+  # CATEGORY 5: NATURAL LANGUAGE UNDERSTANDING (100 experts)
+  # ===========================================================================
+  natural_language_understanding:
+    description: "Entity recognition, coreference resolution, intent detection, NLU"
+    experts:
+      - name: "Dr. Sarah Chen"
+        specialty: "Named entity recognition"
+        key_insight: "Identifying entities is first step to understanding"
+        analysis_angle: "Extract class names, function names, API endpoints from docs"
+
+      - name: "Marcus Johnson"
+        specialty: "Coreference resolution"
+        key_insight: "'It', 'this', 'that' must resolve to entities"
+        analysis_angle: "Resolving pronoun references in documentation"
+
+      - name: "Dr. Priya Sharma"
+        specialty: "Intent classification"
+        key_insight: "User's goal drives response strategy"
+        analysis_angle: "Is Claude debugging, learning, or implementing?"
+
+      - name: "Ahmed Hassan"
+        specialty: "Semantic role labeling"
+        key_insight: "Who did what to whom"
+        analysis_angle: "Extracting relationships from doc sentences"
+
+      - name: "Dr. Emily Rodriguez"
+        specialty: "Relation extraction"
+        key_insight: "Entities + relationships = knowledge"
+        analysis_angle: "Extracting 'uses', 'extends', 'implements' from prose"
+
+      - name: "Luca Bianchi"
+        specialty: "Event extraction"
+        key_insight: "Actions and their participants"
+        analysis_angle: "Extracting workflows from documentation"
+
+      - name: "Dr. Fatima Al-Zahrani"
+        specialty: "Temporal expression recognition"
+        key_insight: "When things happen matters"
+        analysis_angle: "Understanding 'before', 'after', 'during' in docs"
+
+      - name: "Viktor Petrov"
+        specialty: "Dependency parsing"
+        key_insight: "Grammatical structure reveals meaning"
+        analysis_angle: "Parsing doc sentences to extract facts"
+
+      - name: "Dr. Keiko Tanaka"
+        specialty: "Constituency parsing"
+        key_insight: "Phrase structure aids comprehension"
+        analysis_angle: "Understanding complex technical prose"
+
+      - name: "Carlos Mendez"
+        specialty: "Word sense disambiguation"
+        key_insight: "'Run' has many meanings - context picks one"
+        analysis_angle: "Disambiguating overloaded terms in docs"
+
+      - name: "Dr. Aisha Nkrumah"
+        specialty: "Part-of-speech tagging"
+        key_insight: "Grammatical role aids interpretation"
+        analysis_angle: "Identifying technical terms vs. common words"
+
+      - name: "Dmitri Sokolov"
+        specialty: "Semantic parsing"
+        key_insight: "Converting text to formal representation"
+        analysis_angle: "Parsing doc text to knowledge graph triples"
+
+      - name: "Dr. Maria Santos"
+        specialty: "Question answering"
+        key_insight: "Understanding questions to find answers"
+        analysis_angle: "Parsing user questions for graph queries"
+
+      - name: "Jamal Williams"
+        specialty: "Information extraction"
+        key_insight: "Structured data from unstructured text"
+        analysis_angle: "Extracting API specs from prose docs"
+
+      - name: "Dr. Yuki Sato"
+        specialty: "Sentiment analysis"
+        key_insight: "Positive/negative signals matter"
+        analysis_angle: "Detecting 'avoid this', 'prefer that' in docs"
+
+      - name: "Hassan Omar"
+        specialty: "Aspect-based sentiment"
+        key_insight: "Sentiment per topic, not global"
+        analysis_angle: "What aspects of code are praised/criticized?"
+
+      - name: "Dr. Isabelle Dubois"
+        specialty: "Text summarization"
+        key_insight: "Condensing while preserving key points"
+        analysis_angle: "Generating doc summaries for quick reference"
+
+      - name: "Kwame Asante"
+        specialty: "Abstractive summarization"
+        key_insight: "Generating novel summary text"
+        analysis_angle: "Creating concise descriptions from long docs"
+
+      - name: "Dr. Natasha Volkov"
+        specialty: "Extractive summarization"
+        key_insight: "Selecting key sentences"
+        analysis_angle: "Highlighting most important doc paragraphs"
+
+      - name: "Rafael Silva"
+        specialty: "Text entailment"
+        key_insight: "Does text A imply text B?"
+        analysis_angle: "Detecting contradictions in documentation"
+
+      - name: "Dr. Amina Patel"
+        specialty: "Paraphrase detection"
+        key_insight: "Different words, same meaning"
+        analysis_angle: "Finding duplicate doc content"
+
+      - name: "Liam O'Connor"
+        specialty: "Text similarity"
+        key_insight: "Measuring semantic closeness"
+        analysis_angle: "Finding similar documentation sections"
+
+      - name: "Dr. Zara Khan"
+        specialty: "Topic modeling"
+        key_insight: "Discovering themes in text collections"
+        analysis_angle: "Identifying main topics in codebase docs"
+
+      - name: "Erik Larsson"
+        specialty: "Discourse parsing"
+        key_insight: "How sentences connect to form argument"
+        analysis_angle: "Understanding multi-paragraph explanations"
+
+      - name: "Dr. Chioma Okonkwo"
+        specialty: "Anaphora resolution"
+        key_insight: "Linking references to antecedents"
+        analysis_angle: "Resolving 'the above' and 'following' in docs"
+
+      - name: "Mateo Vargas"
+        specialty: "Ellipsis resolution"
+        key_insight: "Filling in omitted words"
+        analysis_angle: "Understanding abbreviated doc phrases"
+
+      - name: "Dr. Leila Ibrahim"
+        specialty: "Metaphor detection"
+        key_insight: "Non-literal language needs special handling"
+        analysis_angle: "Interpreting 'bridge pattern', 'factory method'"
+
+      - name: "Anders Svensson"
+        specialty: "Irony and sarcasm detection"
+        key_insight: "Meaning opposite of literal"
+        analysis_angle: "Detecting sarcastic comments in code reviews"
+
+      - name: "Dr. Fatima Diop"
+        specialty: "Negation handling"
+        key_insight: "'Not' reverses meaning"
+        analysis_angle: "Correctly handling 'do NOT use' in docs"
+
+      - name: "Marco Rossi"
+        specialty: "Uncertainty detection"
+        key_insight: "'Maybe', 'possibly' indicate low confidence"
+        analysis_angle: "Detecting speculative statements in docs"
+
+      - name: "Dr. Keisha Brown"
+        specialty: "Hedge detection"
+        key_insight: "Qualifying language reduces commitment"
+        analysis_angle: "Identifying tentative recommendations"
+
+      - name: "Alexei Morozov"
+        specialty: "Modal verb interpretation"
+        key_insight: "'Must', 'should', 'may' have different strength"
+        analysis_angle: "Understanding requirement levels in specs"
+
+      - name: "Dr. Yasmin Malik"
+        specialty: "Imperative detection"
+        key_insight: "Commands vs. descriptions"
+        analysis_angle: "Identifying action items in docs"
+
+      - name: "Johan van der Berg"
+        specialty: "Conditional statement parsing"
+        key_insight: "'If X then Y' logic"
+        analysis_angle: "Understanding conditional documentation"
+
+      - name: "Dr. Lucia Fernandez"
+        specialty: "Causality extraction"
+        key_insight: "'Because', 'therefore' signal causation"
+        analysis_angle: "Extracting cause-effect from docs"
+
+      - name: "Kwabena Mensah"
+        specialty: "Comparison extraction"
+        key_insight: "'Better than', 'faster than' comparisons"
+        analysis_angle: "Extracting comparative statements"
+
+      - name: "Dr. Tatiana Morozov"
+        specialty: "Quantity extraction"
+        key_insight: "Numbers and measurements"
+        analysis_angle: "Extracting performance metrics from docs"
+
+      - name: "Diego Silva"
+        specialty: "Acronym expansion"
+        key_insight: "Resolving abbreviations"
+        analysis_angle: "Expanding API, ORM, DTO, etc."
+
+      - name: "Dr. Nadia Kamara"
+        specialty: "Terminology extraction"
+        key_insight: "Identifying domain-specific terms"
+        analysis_angle: "Building glossary from documentation"
+
+      - name: "Viktor Novák"
+        specialty: "Definition extraction"
+        key_insight: "Finding 'X is Y' patterns"
+        analysis_angle: "Extracting concept definitions"
+
+      - name: "Dr. Amara Osei"
+        specialty: "Example identification"
+        key_insight: "Code examples crucial for understanding"
+        analysis_angle: "Linking code examples to concepts"
+
+      - name: "Tomasz Kowalski"
+        specialty: "Instructional text parsing"
+        key_insight: "Step-by-step procedures"
+        analysis_angle: "Extracting workflows from tutorials"
+
+      - name: "Dr. Halima Ndiaye"
+        specialty: "Prerequisite extraction"
+        key_insight: "What must be known first"
+        analysis_angle: "Extracting dependency order from docs"
+
+      - name: "Hugo Martins"
+        specialty: "Warning detection"
+        key_insight: "Cautions and warnings are critical"
+        analysis_angle: "Highlighting 'WARNING' and 'CAUTION' sections"
+
+      - name: "Dr. Irina Volkov"
+        specialty: "Deprecated feature detection"
+        key_insight: "Identifying obsolete information"
+        analysis_angle: "Finding 'deprecated', 'obsolete' markers"
+
+      - name: "Kwesi Addo"
+        specialty: "Version-specific information"
+        key_insight: "What applies to which version"
+        analysis_angle: "Extracting version-specific guidance"
+
+      - name: "Dr. Gabriela Torres"
+        specialty: "Audience detection"
+        key_insight: "Beginner vs. advanced content"
+        analysis_angle: "Categorizing docs by skill level"
+
+      - name: "Nikolai Ivanov"
+        specialty: "Language register detection"
+        key_insight: "Formal vs. informal style"
+        analysis_angle: "Identifying official vs. community docs"
+
+      - name: "Dr. Farah Khan"
+        specialty: "Code-switching detection"
+        key_insight: "Mixing natural language and code"
+        analysis_angle: "Parsing prose with inline code snippets"
+
+      - name: "Lucas Andersson"
+        specialty: "Multilingual NLU"
+        key_insight: "Understanding multiple languages"
+        analysis_angle: "Handling non-English comments"
+
+      - name: "Dr. Nia Williams"
+        specialty: "Translation quality assessment"
+        key_insight: "Detecting poor translations"
+        analysis_angle: "Identifying machine-translated docs"
+
+      - name: "Pavel Novotný"
+        specialty: "Readability assessment"
+        key_insight: "Complexity metrics"
+        analysis_angle: "Measuring doc readability"
+
+      - name: "Dr. Zainab Osman"
+        specialty: "Completeness detection"
+        key_insight: "Identifying incomplete docs"
+        analysis_angle: "Finding TODOs and stubs"
+
+      - name: "Erik Hansen"
+        specialty: "Consistency checking"
+        key_insight: "Detecting contradictory statements"
+        analysis_angle: "Finding conflicting documentation"
+
+      - name: "Dr. Amara Diallo"
+        specialty: "Citation extraction"
+        key_insight: "Tracking references and sources"
+        analysis_angle: "Extracting links to external docs"
+
+      - name: "Matias Gonzalez"
+        specialty: "Authority assessment"
+        key_insight: "Official vs. unofficial sources"
+        analysis_angle: "Ranking doc sources by authority"
+
+      - name: "Dr. Petra Müller"
+        specialty: "Freshness detection"
+        key_insight: "Identifying stale information"
+        analysis_angle: "Detecting out-of-date documentation"
+
+      - name: "Jabari Okello"
+        specialty: "Authorship attribution"
+        key_insight: "Who wrote this"
+        analysis_angle: "Tracking doc authors for questions"
+
+      - name: "Dr. Sana Malik"
+        specialty: "Genre classification"
+        key_insight: "Tutorial vs. reference vs. guide"
+        analysis_angle: "Categorizing doc types"
+
+      - name: "Anders Svensson"
+        specialty: "Formality detection"
+        key_insight: "Spec vs. blog post"
+        analysis_angle: "Distinguishing formal specs from casual guides"
+
+      - name: "Dr. Kemi Adeyemi"
+        specialty: "Code comment parsing"
+        key_insight: "Extracting intent from comments"
+        analysis_angle: "Understanding inline documentation"
+
+      - name: "Dmitri Volkov"
+        specialty: "Commit message analysis"
+        key_insight: "Understanding change rationale"
+        analysis_angle: "Extracting knowledge from git history"
+
+      - name: "Dr. Mariam Hassan"
+        specialty: "Issue/bug report parsing"
+        key_insight: "Problem descriptions contain knowledge"
+        analysis_angle: "Learning from bug reports"
+
+      - name: "Filip Novák"
+        specialty: "Code review comment analysis"
+        key_insight: "Reviews contain best practices"
+        analysis_angle: "Extracting guidelines from PR reviews"
+
+      - name: "Dr. Ayana Johnson"
+        specialty: "Stack trace interpretation"
+        key_insight: "Errors tell a story"
+        analysis_angle: "Understanding error context"
+
+      - name: "Sergei Kozlov"
+        specialty: "Log message parsing"
+        key_insight: "Logs reveal system behavior"
+        analysis_angle: "Extracting patterns from log files"
+
+      - name: "Dr. Halima Ndiaye"
+        specialty: "API documentation parsing"
+        key_insight: "Structured API info extraction"
+        analysis_angle: "Building knowledge from API docs"
+
+      - name: "Lukas Bergström"
+        specialty: "Configuration file understanding"
+        key_insight: "Config reveals system setup"
+        analysis_angle: "Extracting knowledge from configs"
+
+      - name: "Dr. Amara Sow"
+        specialty: "README parsing"
+        key_insight: "READMEs are entry points"
+        analysis_angle: "Prioritizing README content"
+
+      - name: "Maxim Sorokin"
+        specialty: "Changelog analysis"
+        key_insight: "Change history shows evolution"
+        analysis_angle: "Understanding feature development"
+
+      - name: "Dr. Nala Okafor"
+        specialty: "License text understanding"
+        key_insight: "Legal constraints matter"
+        analysis_angle: "Extracting usage restrictions"
+
+      - name: "Johan Lindström"
+        specialty: "Inline documentation standards"
+        key_insight: "JSDoc, XML comments, docstrings"
+        analysis_angle: "Parsing structured inline docs"
+
+      - name: "Dr. Zuri Mensah"
+        specialty: "Markdown parsing"
+        key_insight: "Structured text format"
+        analysis_angle: "Extracting structure from markdown"
+
+      - name: "Andrei Morozov"
+        specialty: "HTML documentation parsing"
+        key_insight: "Web docs have special structure"
+        analysis_angle: "Extracting from generated API docs"
+
+      - name: "Dr. Simone Dupont"
+        specialty: "PDF documentation extraction"
+        key_insight: "Unstructured text needs processing"
+        analysis_angle: "Extracting from PDF manuals"
+
+      - name: "Kofi Asare"
+        specialty: "Diagram understanding"
+        key_insight: "Visual information matters"
+        analysis_angle: "Extracting knowledge from architecture diagrams"
+
+      - name: "Dr. Elena Sokolova"
+        specialty: "Table parsing"
+        key_insight: "Tabular data is structured knowledge"
+        analysis_angle: "Extracting from API reference tables"
+
+      - name: "Miguel Herrera"
+        specialty: "List comprehension"
+        key_insight: "Bullets and numbers show structure"
+        analysis_angle: "Understanding enumerated items"
+
+      - name: "Dr. Ama Boateng"
+        specialty: "Cross-reference resolution"
+        key_insight: "Links connect knowledge"
+        analysis_angle: "Following 'see X' references"
+
+      - name: "Alexey Volkov"
+        specialty: "Footnote and annotation handling"
+        key_insight: "Marginalia contains insights"
+        analysis_angle: "Incorporating footnotes into knowledge"
+
+      - name: "Dr. Fatima Traoré"
+        specialty: "Section heading analysis"
+        key_insight: "Headings reveal structure"
+        analysis_angle: "Using headings for knowledge organization"
+
+      - name: "Lars Pedersen"
+        specialty: "Abstract and summary extraction"
+        key_insight: "Summaries provide quick overview"
+        analysis_angle: "Prioritizing abstract sections"
+
+      - name: "Dr. Amina Khalil"
+        specialty: "Keyword extraction"
+        key_insight: "Key terms aid retrieval"
+        analysis_angle: "Auto-extracting index terms"
+
+      - name: "Stefan Novak"
+        specialty: "Phrase extraction"
+        key_insight: "Multi-word concepts matter"
+        analysis_angle: "Identifying technical phrases"
+
+      - name: "Dr. Keisha Davis"
+        specialty: "Collocation detection"
+        key_insight: "Words that commonly co-occur"
+        analysis_angle: "Finding technical collocations"
+
+      - name: "Henrik Andersson"
+        specialty: "N-gram analysis"
+        key_insight: "Frequent sequences reveal patterns"
+        analysis_angle: "Common documentation phrases"
+
+      - name: "Dr. Amina Patel"
+        specialty: "TF-IDF scoring"
+        key_insight: "Important words for each document"
+        analysis_angle: "Identifying doc-specific keywords"
+
+      - name: "Roberto Gonzalez"
+        specialty: "BM25 ranking"
+        key_insight: "Improved TF-IDF for retrieval"
+        analysis_angle: "Better doc ranking algorithm"
+
+      - name: "Dr. Yuki Sato"
+        specialty: "Language model scoring"
+        key_insight: "Probability of text sequences"
+        analysis_angle: "Detecting natural vs. generated text"
+
+      - name: "Emma Williams"
+        specialty: "Perplexity measurement"
+        key_insight: "How surprising is this text"
+        analysis_angle: "Identifying unusual documentation"
+
+      - name: "Dr. Omar Farooq"
+        specialty: "Embedding similarity"
+        key_insight: "Semantic similarity via vectors"
+        analysis_angle: "Finding semantically similar docs"
+
+      - name: "Ling Zhang"
+        specialty: "Contextual embeddings"
+        key_insight: "Word meaning depends on context"
+        analysis_angle: "Context-aware doc search"
+
+      - name: "Dr. Klaus Bergmann"
+        specialty: "Zero-shot classification"
+        key_insight: "Classifying without training examples"
+        analysis_angle: "Categorizing new doc types"
+
+      - name: "Fatima Al-Said"
+        specialty: "Few-shot learning"
+        key_insight: "Learning from minimal examples"
+        analysis_angle: "Adapting to new documentation styles"
+
+  # ===========================================================================
+  # CATEGORY 6: FILE SYSTEM OPTIMIZATION (100 experts)
+  # ===========================================================================
+  file_system_optimization:
+    description: "Chunking strategies, indexing, search optimization for file systems"
+    experts:
+      - name: "Dr. Johan Berg"
+        specialty: "File chunking strategies"
+        key_insight: "Optimal chunk size balances granularity and overhead"
+        analysis_angle: "How to chunk large documentation files"
+
+      - name: "Priya Kapoor"
+        specialty: "B-tree indexing"
+        key_insight: "Balanced trees enable fast lookups"
+        analysis_angle: "Indexing file paths and names"
+
+      - name: "Dr. Mikhail Ivanov"
+        specialty: "Inverted index design"
+        key_insight: "Word-to-document mapping for full-text search"
+        analysis_angle: "Building search index for documentation"
+
+      - name: "Aisha Kamau"
+        specialty: "File metadata optimization"
+        key_insight: "Rich metadata enables filtering"
+        analysis_angle: "What metadata to store per file"
+
+      - name: "Dr. Lucas Martins"
+        specialty: "Directory structure design"
+        key_insight: "Hierarchy affects access patterns"
+        analysis_angle: "Optimal directory organization for docs"
+
+      - name: "Zara Johnson"
+        specialty: "File naming conventions"
+        key_insight: "Names should be human and machine readable"
+        analysis_angle: "Standardizing doc file names"
+
+      - name: "Dr. Erik Svensson"
+        specialty: "File watching and monitoring"
+        key_insight: "Detecting changes for incremental updates"
+        analysis_angle: "Watching for doc file changes"
+
+      - name: "Kwame Nkrumah"
+        specialty: "Inotify and file system events"
+        key_insight: "Efficient change notification"
+        analysis_angle: "Triggering re-index on file change"
+
+      - name: "Dr. Svetlana Petrov"
+        specialty: "File locking strategies"
+        key_insight: "Prevent concurrent access conflicts"
+        analysis_angle: "Locking docs during updates"
+
+      - name: "Diego Silva"
+        specialty: "Memory-mapped files"
+        key_insight: "Fast access to large files"
+        analysis_angle: "Mmap for large knowledge files"
+
+      - name: "Dr. Amara Diallo"
+        specialty: "File compression"
+        key_insight: "Reduce storage, accept CPU cost"
+        analysis_angle: "Compressing archived documentation"
+
+      - name: "Viktor Novotný"
+        specialty: "Deduplication techniques"
+        key_insight: "Eliminate redundant storage"
+        analysis_angle: "Deduplicating common doc sections"
+
+      - name: "Dr. Mei Lin"
+        specialty: "Content-addressable storage"
+        key_insight: "Hash-based addressing enables dedup"
+        analysis_angle: "CAS for doc version control"
+
+      - name: "Hassan Omar"
+        specialty: "File system caching"
+        key_insight: "Cache frequently accessed files"
+        analysis_angle: "Caching common documentation"
+
+      - name: "Dr. Isabella Cruz"
+        specialty: "Read-ahead strategies"
+        key_insight: "Prefetch likely needed data"
+        analysis_angle: "Prefetching related docs"
+
+      - name: "Jamal Thompson"
+        specialty: "Write-behind buffering"
+        key_insight: "Batch writes for efficiency"
+        analysis_angle: "Batching doc updates"
+
+      - name: "Dr. Natasha Volkov"
+        specialty: "RAID configurations"
+        key_insight: "Redundancy and performance tradeoffs"
+        analysis_angle: "Reliability for knowledge storage"
+
+      - name: "Carlos Mendoza"
+        specialty: "SSD optimization"
+        key_insight: "Flash storage has different characteristics"
+        analysis_angle: "Optimizing for SSD-based storage"
+
+      - name: "Dr. Amina Hassan"
+        specialty: "File fragmentation"
+        key_insight: "Fragmentation hurts sequential access"
+        analysis_angle: "Defragmenting knowledge base"
+
+      - name: "Liam O'Connor"
+        specialty: "Extent-based allocation"
+        key_insight: "Contiguous blocks improve performance"
+        analysis_angle: "Allocating storage efficiently"
+
+      - name: "Dr. Zainab Rahman"
+        specialty: "Journaling file systems"
+        key_insight: "Crash recovery via transaction log"
+        analysis_angle: "Ensuring doc integrity after crash"
+
+      - name: "Anders Larsson"
+        specialty: "Copy-on-write file systems"
+        key_insight: "Immutable snapshots"
+        analysis_angle: "Efficient doc versioning"
+
+      - name: "Dr. Chioma Okonkwo"
+        specialty: "File system quotas"
+        key_insight: "Limiting storage per user/project"
+        analysis_angle: "Quotas for knowledge storage"
+
+      - name: "Rafael Torres"
+        specialty: "Sparse file support"
+        key_insight: "Efficient storage of mostly-empty files"
+        analysis_angle: "Sparse storage for knowledge graphs"
+
+      - name: "Dr. Layla Ibrahim"
+        specialty: "Extended attributes"
+        key_insight: "Metadata beyond standard fields"
+        analysis_angle: "Custom attributes on doc files"
+
+      - name: "Erik Hansen"
+        specialty: "Access control lists"
+        key_insight: "Fine-grained permissions"
+        analysis_angle: "ACLs for sensitive documentation"
+
+      - name: "Dr. Fatima Diop"
+        specialty: "File system snapshots"
+        key_insight: "Point-in-time copies"
+        analysis_angle: "Snapshotting knowledge state"
+
+      - name: "Mateo Vargas"
+        specialty: "Incremental backup"
+        key_insight: "Only backup changes"
+        analysis_angle: "Incremental doc backups"
+
+      - name: "Dr. Keisha Brown"
+        specialty: "File versioning"
+        key_insight: "Tracking file history"
+        analysis_angle: "Doc version control"
+
+      - name: "Dimitri Antonov"
+        specialty: "Symbolic links"
+        key_insight: "Multiple paths to same file"
+        analysis_angle: "Linking related docs"
+
+      - name: "Dr. Yasmin Malik"
+        specialty: "Hard links"
+        key_insight: "Multiple directory entries, one file"
+        analysis_angle: "Reducing doc duplication"
+
+      - name: "Marco Bianchi"
+        specialty: "File system quotas"
+        key_insight: "Preventing runaway storage use"
+        analysis_angle: "Limiting knowledge base size"
+
+      - name: "Dr. Nadia Kamara"
+        specialty: "Lazy file deletion"
+        key_insight: "Defer deletion for performance"
+        analysis_angle: "Soft-deleting obsolete docs"
+
+      - name: "Alexei Sokolov"
+        specialty: "File recovery"
+        key_insight: "Undeleting accidentally removed files"
+        analysis_angle: "Recovering deleted documentation"
+
+      - name: "Dr. Amara Osei"
+        specialty: "File system repair"
+        key_insight: "Fixing corruption"
+        analysis_angle: "Repairing corrupted knowledge files"
+
+      - name: "Johan van der Berg"
+        specialty: "File system benchmarking"
+        key_insight: "Measuring performance"
+        analysis_angle: "Benchmarking doc storage performance"
+
+      - name: "Dr. Lucia Fernandez"
+        specialty: "File path length limits"
+        key_insight: "Deep hierarchies hit limits"
+        analysis_angle: "Avoiding path length issues"
+
+      - name: "Kwabena Mensah"
+        specialty: "Case sensitivity"
+        key_insight: "Cross-platform compatibility"
+        analysis_angle: "Handling case-insensitive file systems"
+
+      - name: "Dr. Tatiana Morozov"
+        specialty: "Unicode file names"
+        key_insight: "International character support"
+        analysis_angle: "Supporting non-ASCII doc names"
+
+      - name: "Rafael Silva"
+        specialty: "File locking semantics"
+        key_insight: "Advisory vs. mandatory locks"
+        analysis_angle: "Choosing locking strategy"
+
+      - name: "Dr. Leila Abbasi"
+        specialty: "Network file systems"
+        key_insight: "Remote file access"
+        analysis_angle: "Accessing docs over network"
+
+      - name: "Tomasz Kowalski"
+        specialty: "Distributed file systems"
+        key_insight: "Scalability and fault tolerance"
+        analysis_angle: "Distributed knowledge storage"
+
+      - name: "Dr. Halima Ndiaye"
+        specialty: "Object storage"
+        key_insight: "Key-value store for blobs"
+        analysis_angle: "Storing docs in object store"
+
+      - name: "Anders Svensson"
+        specialty: "Block storage"
+        key_insight: "Low-level storage interface"
+        analysis_angle: "Block-level optimization"
+
+      - name: "Dr. Chioma Eze"
+        specialty: "File system encryption"
+        key_insight: "Protecting data at rest"
+        analysis_angle: "Encrypting sensitive docs"
+
+      - name: "Mikhail Petrov"
+        specialty: "File integrity checking"
+        key_insight: "Checksums detect corruption"
+        analysis_angle: "Verifying doc integrity"
+
+      - name: "Dr. Amina Yusuf"
+        specialty: "File de-duplication at block level"
+        key_insight: "Dedup beneath file system"
+        analysis_angle: "Block-level dedup for docs"
+
+      - name: "Hugo Martins"
+        specialty: "Tiered storage"
+        key_insight: "Hot, warm, cold data tiers"
+        analysis_angle: "Multi-tier doc storage"
+
+      - name: "Dr. Irina Volkov"
+        specialty: "File migration"
+        key_insight: "Moving files between tiers"
+        analysis_angle: "Migrating docs based on access patterns"
+
+      - name: "Kwesi Addo"
+        specialty: "File archiving"
+        key_insight: "Long-term storage"
+        analysis_angle: "Archiving old documentation"
+
+      - name: "Dr. Gabriela Torres"
+        specialty: "File system auditing"
+        key_insight: "Tracking access for security"
+        analysis_angle: "Auditing doc access"
+
+      - name: "Nikolai Ivanov"
+        specialty: "File search indexing"
+        key_insight: "Full-text index for fast search"
+        analysis_angle: "Lucene-style index for docs"
+
+      - name: "Dr. Farah Khan"
+        specialty: "File content analysis"
+        key_insight: "Understanding file contents"
+        analysis_angle: "Analyzing doc content for indexing"
+
+      - name: "Lucas Andersson"
+        specialty: "File type detection"
+        key_insight: "Magic numbers and MIME types"
+        analysis_angle: "Identifying doc file types"
+
+      - name: "Dr. Nia Williams"
+        specialty: "File format conversion"
+        key_insight: "Translating between formats"
+        analysis_angle: "Converting docs to common format"
+
+      - name: "Pavel Novotný"
+        specialty: "File normalization"
+        key_insight: "Standardizing format"
+        analysis_angle: "Normalizing doc formatting"
+
+      - name: "Dr. Zainab Osman"
+        specialty: "File splitting"
+        key_insight: "Breaking large files into chunks"
+        analysis_angle: "Chunking long documentation"
+
+      - name: "Erik Hansen"
+        specialty: "File merging"
+        key_insight: "Combining related files"
+        analysis_angle: "Merging doc fragments"
+
+      - name: "Dr. Amara Diallo"
+        specialty: "File synchronization"
+        key_insight: "Keeping copies consistent"
+        analysis_angle: "Syncing doc changes"
+
+      - name: "Matias Gonzalez"
+        specialty: "File diff algorithms"
+        key_insight: "Efficiently computing changes"
+        analysis_angle: "Diffing doc versions"
+
+      - name: "Dr. Petra Müller"
+        specialty: "File patching"
+        key_insight: "Applying changes efficiently"
+        analysis_angle: "Patching doc updates"
+
+      - name: "Jabari Okello"
+        specialty: "File streaming"
+        key_insight: "Processing without full load"
+        analysis_angle: "Streaming large doc files"
+
+      - name: "Dr. Sana Malik"
+        specialty: "File pagination"
+        key_insight: "Loading in pages"
+        analysis_angle: "Paginating long docs"
+
+      - name: "Anders Svensson"
+        specialty: "File prefetching"
+        key_insight: "Anticipatory loading"
+        analysis_angle: "Prefetching likely docs"
+
+      - name: "Dr. Kemi Adeyemi"
+        specialty: "File caching strategies"
+        key_insight: "LRU, LFU, ARC caching"
+        analysis_angle: "Optimal cache policy for docs"
+
+      - name: "Dmitri Volkov"
+        specialty: "File buffer management"
+        key_insight: "Managing in-memory buffers"
+        analysis_angle: "Buffering doc reads/writes"
+
+      - name: "Dr. Mariam Hassan"
+        specialty: "File I/O scheduling"
+        key_insight: "Ordering I/O requests"
+        analysis_angle: "Scheduling doc access"
+
+      - name: "Filip Novák"
+        specialty: "File asynchronous I/O"
+        key_insight: "Non-blocking file operations"
+        analysis_angle: "Async doc loading"
+
+      - name: "Dr. Ayana Johnson"
+        specialty: "File memory mapping"
+        key_insight: "Mapping files to memory"
+        analysis_angle: "Mmap for fast doc access"
+
+      - name: "Sergei Kozlov"
+        specialty: "File direct I/O"
+        key_insight: "Bypassing OS cache"
+        analysis_angle: "Direct I/O for large docs"
+
+      - name: "Dr. Halima Ndiaye"
+        specialty: "File scatter-gather I/O"
+        key_insight: "Vectored I/O operations"
+        analysis_angle: "Efficient multi-buffer I/O"
+
+      - name: "Lukas Bergström"
+        specialty: "File readahead tuning"
+        key_insight: "Optimizing prefetch size"
+        analysis_angle: "Tuning doc readahead"
+
+      - name: "Dr. Amara Sow"
+        specialty: "File write coalescing"
+        key_insight: "Batching small writes"
+        analysis_angle: "Coalescing doc updates"
+
+      - name: "Maxim Sorokin"
+        specialty: "File flush strategies"
+        key_insight: "When to force write to disk"
+        analysis_angle: "Flushing doc changes"
+
+      - name: "Dr. Nala Okafor"
+        specialty: "File sync vs async writes"
+        key_insight: "Durability vs performance"
+        analysis_angle: "Choosing write strategy"
+
+      - name: "Johan Lindström"
+        specialty: "File advisory locks"
+        key_insight: "Cooperative locking"
+        analysis_angle: "Locking docs cooperatively"
+
+      - name: "Dr. Zuri Mensah"
+        specialty: "File mandatory locks"
+        key_insight: "Enforced locking"
+        analysis_angle: "Enforcing doc locks"
+
+      - name: "Andrei Morozov"
+        specialty: "File lease mechanisms"
+        key_insight: "Time-limited locks"
+        analysis_angle: "Lease-based doc locking"
+
+      - name: "Dr. Simone Dupont"
+        specialty: "File notification systems"
+        key_insight: "Watching for changes"
+        analysis_angle: "Watching doc directories"
+
+      - name: "Kofi Asare"
+        specialty: "File polling vs events"
+        key_insight: "Efficient change detection"
+        analysis_angle: "Event-driven doc monitoring"
+
+      - name: "Dr. Elena Sokolova"
+        specialty: "File attribute caching"
+        key_insight: "Caching stat() results"
+        analysis_angle: "Caching doc metadata"
+
+      - name: "Miguel Herrera"
+        specialty: "File name caching"
+        key_insight: "Directory entry cache"
+        analysis_angle: "Caching doc directory listings"
+
+      - name: "Dr. Ama Boateng"
+        specialty: "File inode caching"
+        key_insight: "Caching file metadata"
+        analysis_angle: "Inode cache for docs"
+
+      - name: "Alexey Volkov"
+        specialty: "File page cache"
+        key_insight: "Caching file data pages"
+        analysis_angle: "Page cache for doc content"
+
+      - name: "Dr. Fatima Traoré"
+        specialty: "File buffer cache"
+        key_insight: "Block-level caching"
+        analysis_angle: "Buffer cache tuning"
+
+      - name: "Lars Pedersen"
+        specialty: "File unified cache"
+        key_insight: "Single cache for all file data"
+        analysis_angle: "Unified caching strategy"
+
+  # ===========================================================================
+  # CATEGORY 7: USER EXPERIENCE (100 experts)
+  # ===========================================================================
+  user_experience:
+    description: "Cognitive load, information scent, mental models, UX design"
+    experts:
+      - name: "Dr. Sarah Mitchell"
+        specialty: "Cognitive load theory"
+        key_insight: "Limit working memory demands"
+        analysis_angle: "Reducing doc complexity for faster comprehension"
+
+      - name: "Marcus Cole"
+        specialty: "Information scent"
+        key_insight: "Users follow strongest cues"
+        analysis_angle: "Making relevant docs easy to smell out"
+
+      - name: "Dr. Olivia Zhang"
+        specialty: "Mental models"
+        key_insight: "System should match user expectations"
+        analysis_angle: "Aligning doc structure with developer mental models"
+
+      - name: "Stefan Weber"
+        specialty: "Affordances in UI"
+        key_insight: "Design reveals function"
+        analysis_angle: "Making doc actions obvious"
+
+      - name: "Dr. Keisha Johnson"
+        specialty: "Progressive disclosure"
+        key_insight: "Show basics first, details on demand"
+        analysis_angle: "Layered documentation depth"
+
+      - name: "Henrik Larsson"
+        specialty: "Visual hierarchy"
+        key_insight: "Size, color, position show importance"
+        analysis_angle: "Visual design for doc importance"
+
+      - name: "Dr. Amina Rahman"
+        specialty: "Gestalt principles"
+        key_insight: "Proximity, similarity, closure"
+        analysis_angle: "Grouping related docs visually"
+
+      - name: "Roberto Silva"
+        specialty: "Fitts's Law"
+        key_insight: "Target size and distance affect speed"
+        analysis_angle: "Optimizing click targets in doc UI"
+
+      - name: "Dr. Yuki Tanaka"
+        specialty: "Hick's Law"
+        key_insight: "More choices = longer decision time"
+        analysis_angle: "Limiting doc options to prevent paralysis"
+
+      - name: "Emma Williams"
+        specialty: "Miller's Law (7±2)"
+        key_insight: "Working memory holds 7±2 items"
+        analysis_angle: "Chunking doc lists to manageable size"
+
+      - name: "Dr. Omar Al-Rashid"
+        specialty: "Jakob's Law"
+        key_insight: "Users prefer familiar patterns"
+        analysis_angle: "Following standard doc conventions"
+
+      - name: "Ling Chen"
+        specialty: "Von Restorff effect"
+        key_insight: "Distinctive items better remembered"
+        analysis_angle: "Highlighting critical documentation"
+
+      - name: "Dr. Klaus Bergmann"
+        specialty: "Serial position effect"
+        key_insight: "First and last items remembered best"
+        analysis_angle: "Positioning key docs at start/end of lists"
+
+      - name: "Fatima Khalil"
+        specialty: "Zeigarnik effect"
+        key_insight: "Incomplete tasks stay in memory"
+        analysis_angle: "Progress indicators for doc reading"
+
+      - name: "Dr. Johan Eriksson"
+        specialty: "Aesthetic-usability effect"
+        key_insight: "Beautiful = easier to use (perceived)"
+        analysis_angle: "Visual polish for doc interface"
+
+      - name: "Priya Sharma"
+        specialty: "Tesler's Law"
+        key_insight: "Complexity is constant, can only be moved"
+        analysis_angle: "Where to place doc complexity burden"
+
+      - name: "Dr. Mikhail Volkov"
+        specialty: "Parkinson's Law"
+        key_insight: "Work expands to fill time"
+        analysis_angle: "Time-boxing doc creation/updates"
+
+      - name: "Aisha Nkrumah"
+        specialty: "Peak-end rule"
+        key_insight: "Experiences judged by peak and end"
+        analysis_angle: "Ensuring strong doc conclusions"
+
+      - name: "Dr. Lucas Fernandez"
+        specialty: "Goal-gradient effect"
+        key_insight: "Acceleration near goal"
+        analysis_angle: "Progress indicators motivate completion"
+
+      - name: "Zara Kim"
+        specialty: "Paradox of choice"
+        key_insight: "Too many options reduce satisfaction"
+        analysis_angle: "Curating doc selections"
+
+      - name: "Dr. Erik Andersson"
+        specialty: "Recognition over recall"
+        key_insight: "Easier to recognize than remember"
+        analysis_angle: "Showing doc options vs. requiring memory"
+
+      - name: "Kwame Mensah"
+        specialty: "Consistency principle"
+        key_insight: "Similar things should look/behave similarly"
+        analysis_angle: "Consistent doc formatting"
+
+      - name: "Dr. Svetlana Petrov"
+        specialty: "Feedback loops"
+        key_insight: "Users need confirmation of actions"
+        analysis_angle: "Confirming doc actions"
+
+      - name: "Diego Martinez"
+        specialty: "Error prevention"
+        key_insight: "Better than error recovery"
+        analysis_angle: "Preventing doc navigation mistakes"
+
+      - name: "Dr. Amara Okonkwo"
+        specialty: "Error recovery"
+        key_insight: "Easy undo and recovery"
+        analysis_angle: "Undo in doc navigation"
+
+      - name: "Viktor Novák"
+        specialty: "Graceful degradation"
+        key_insight: "Degrade functionality, not experience"
+        analysis_angle: "Doc fallbacks when full data unavailable"
+
+      - name: "Dr. Mei Lin"
+        specialty: "Progressive enhancement"
+        key_insight: "Basic works everywhere, enhancements where possible"
+        analysis_angle: "Enhanced docs when context available"
+
+      - name: "Hassan Omar"
+        specialty: "Accessibility (a11y)"
+        key_insight: "Design for all abilities"
+        analysis_angle: "Making docs accessible"
+
+      - name: "Dr. Isabella Torres"
+        specialty: "Screen reader compatibility"
+        key_insight: "Non-visual navigation"
+        analysis_angle: "Screen-reader-friendly doc structure"
+
+      - name: "Jamal Brown"
+        specialty: "Keyboard navigation"
+        key_insight: "Mouse-free operation"
+        analysis_angle: "Keyboard shortcuts for docs"
+
+      - name: "Dr. Natasha Ivanov"
+        specialty: "Color contrast"
+        key_insight: "Legibility for low vision"
+        analysis_angle: "Sufficient contrast in doc UI"
+
+      - name: "Carlos Gonzalez"
+        specialty: "Responsive design"
+        key_insight: "Adapt to screen size"
+        analysis_angle: "Responsive doc layout"
+
+      - name: "Dr. Amina Hassan"
+        specialty: "Mobile-first design"
+        key_insight: "Start with constraints"
+        analysis_angle: "Mobile-optimized docs"
+
+      - name: "Liam Murphy"
+        specialty: "Touch targets"
+        key_insight: "Minimum 44x44 pixels"
+        analysis_angle: "Adequate touch target size"
+
+      - name: "Dr. Zainab Khan"
+        specialty: "Readability metrics"
+        key_insight: "Flesch-Kincaid, SMOG, etc."
+        analysis_angle: "Measuring doc readability"
+
+      - name: "Anders Svensson"
+        specialty: "Typography"
+        key_insight: "Font, size, spacing affect reading"
+        analysis_angle: "Optimal doc typography"
+
+      - name: "Dr. Chioma Eze"
+        specialty: "Line length"
+        key_insight: "45-75 characters optimal"
+        analysis_angle: "Line length for comfortable reading"
+
+      - name: "Rafael Silva"
+        specialty: "White space"
+        key_insight: "Breathing room aids comprehension"
+        analysis_angle: "Adequate spacing in docs"
+
+      - name: "Dr. Layla Ibrahim"
+        specialty: "Scanning patterns"
+        key_insight: "F-pattern, Z-pattern reading"
+        analysis_angle: "Structuring docs for scanning"
+
+      - name: "Erik Hansen"
+        specialty: "Eye tracking"
+        key_insight: "Where users actually look"
+        analysis_angle: "Heatmaps of doc attention"
+
+      - name: "Dr. Fatima Diop"
+        specialty: "Attention economy"
+        key_insight: "User attention is scarce"
+        analysis_angle: "Prioritizing what to show"
+
+      - name: "Mateo Vargas"
+        specialty: "Interruptibility"
+        key_insight: "Minimizing disruption"
+        analysis_angle: "Non-intrusive doc suggestions"
+
+      - name: "Dr. Keisha Davis"
+        specialty: "Context switching cost"
+        key_insight: "Switching is expensive"
+        analysis_angle: "Minimizing doc-to-code context switches"
+
+      - name: "Dimitri Sokolov"
+        specialty: "Flow state"
+        key_insight: "Uninterrupted deep work"
+        analysis_angle: "Docs that don't break flow"
+
+      - name: "Dr. Yasmin Patel"
+        specialty: "Micro-interactions"
+        key_insight: "Small details matter"
+        analysis_angle: "Polished doc interactions"
+
+      - name: "Marco Rossi"
+        specialty: "Animation timing"
+        key_insight: "200-500ms feels responsive"
+        analysis_angle: "Animation speed for doc transitions"
+
+      - name: "Dr. Nadia Kamara"
+        specialty: "Loading states"
+        key_insight: "Indicate progress during waits"
+        analysis_angle: "Loading indicators for doc retrieval"
+
+      - name: "Alexei Morozov"
+        specialty: "Skeleton screens"
+        key_insight: "Show structure while loading"
+        analysis_angle: "Skeleton UI for loading docs"
+
+      - name: "Dr. Amara Diallo"
+        specialty: "Perceived performance"
+        key_insight: "Feeling fast matters more than being fast"
+        analysis_angle: "Optimistic UI for doc actions"
+
+      - name: "Johan Berg"
+        specialty: "Empty states"
+        key_insight: "First-run experience matters"
+        analysis_angle: "Helpful empty state for new docs"
+
+      - name: "Dr. Lucia Fernandez"
+        specialty: "Onboarding flows"
+        key_insight: "Guided first-time experience"
+        analysis_angle: "Onboarding for new projects"
+
+      - name: "Kwabena Asante"
+        specialty: "Tooltips and hints"
+        key_insight: "Contextual help at point of need"
+        analysis_angle: "Inline help in doc interface"
+
+      - name: "Dr. Tatiana Morozov"
+        specialty: "Help documentation"
+        key_insight: "Comprehensive reference"
+        analysis_angle: "Meta-docs about doc system"
+
+      - name: "Diego Silva"
+        specialty: "Search UX"
+        key_insight: "Search box prominence and behavior"
+        analysis_angle: "Doc search UX optimization"
+
+      - name: "Dr. Nadia Kamau"
+        specialty: "Autocomplete"
+        key_insight: "Suggest as user types"
+        analysis_angle: "Autocomplete for doc search"
+
+      - name: "Viktor Novotný"
+        specialty: "Fuzzy matching"
+        key_insight: "Tolerate typos"
+        analysis_angle: "Fuzzy search for docs"
+
+      - name: "Dr. Mei Zhang"
+        specialty: "Personalization"
+        key_insight: "Adapt to individual user"
+        analysis_angle: "Personalized doc recommendations"
+
+      - name: "Hassan Omar"
+        specialty: "Customization"
+        key_insight: "User control over settings"
+        analysis_angle: "Customizable doc views"
+
+      - name: "Dr. Isabella Cruz"
+        specialty: "Defaults matter"
+        key_insight: "Most users never change defaults"
+        analysis_angle: "Smart defaults for doc settings"
+
+      - name: "Jamal Williams"
+        specialty: "Dark mode"
+        key_insight: "Low-light reading comfort"
+        analysis_angle: "Dark theme for docs"
+
+      - name: "Dr. Natasha Volkov"
+        specialty: "Themes and styling"
+        key_insight: "Visual customization"
+        analysis_angle: "Themeable doc interface"
+
+      - name: "Carlos Mendoza"
+        specialty: "Density options"
+        key_insight: "Compact vs. comfortable"
+        analysis_angle: "Adjustable doc density"
+
+      - name: "Dr. Amina Hassan"
+        specialty: "Font size controls"
+        key_insight: "Readability preferences vary"
+        analysis_angle: "Adjustable doc font size"
+
+      - name: "Liam O'Connor"
+        specialty: "Zoom and scaling"
+        key_insight: "Accessibility and preference"
+        analysis_angle: "Zoom support for docs"
+
+      - name: "Dr. Zainab Rahman"
+        specialty: "Print-friendly views"
+        key_insight: "Some prefer paper"
+        analysis_angle: "Print-optimized doc formatting"
+
+      - name: "Anders Larsson"
+        specialty: "Export options"
+        key_insight: "Users want portability"
+        analysis_angle: "Exporting docs to various formats"
+
+      - name: "Dr. Chioma Okonkwo"
+        specialty: "Share functionality"
+        key_insight: "Collaboration requires sharing"
+        analysis_angle: "Sharing docs with team"
+
+      - name: "Rafael Torres"
+        specialty: "Annotations"
+        key_insight: "Users want to add notes"
+        analysis_angle: "Annotating documentation"
+
+      - name: "Dr. Layla Ibrahim"
+        specialty: "Bookmarking"
+        key_insight: "Save for later"
+        analysis_angle: "Bookmarking important docs"
+
+      - name: "Erik Hansen"
+        specialty: "History and breadcrumbs"
+        key_insight: "Show where you've been"
+        analysis_angle: "Doc navigation history"
+
+      - name: "Dr. Fatima Diop"
+        specialty: "Recently viewed"
+        key_insight: "Quick return to recent items"
+        analysis_angle: "Recently viewed docs list"
+
+      - name: "Mateo Vargas"
+        specialty: "Favorites/stars"
+        key_insight: "Mark important items"
+        analysis_angle: "Starring favorite docs"
+
+      - name: "Dr. Keisha Brown"
+        specialty: "Collections/lists"
+        key_insight: "Organize into groups"
+        analysis_angle: "Doc collections for projects"
+
+      - name: "Dimitri Antonov"
+        specialty: "Tags and labels"
+        key_insight: "Flexible categorization"
+        analysis_angle: "User-defined doc tags"
+
+      - name: "Dr. Yasmin Malik"
+        specialty: "Filters and sorting"
+        key_insight: "Finding through narrowing"
+        analysis_angle: "Filtering doc lists"
+
+      - name: "Marco Bianchi"
+        specialty: "Bulk actions"
+        key_insight: "Efficiency for multiple items"
+        analysis_angle: "Bulk doc operations"
+
+      - name: "Dr. Nadia Kamara"
+        specialty: "Keyboard shortcuts"
+        key_insight: "Power user efficiency"
+        analysis_angle: "Comprehensive doc shortcuts"
+
+      - name: "Alexei Sokolov"
+        specialty: "Command palette"
+        key_insight: "Keyboard-driven command access"
+        analysis_angle: "Command palette for doc actions"
+
+      - name: "Dr. Amara Osei"
+        specialty: "Quick actions"
+        key_insight: "Common tasks one click away"
+        analysis_angle: "Quick action buttons for docs"
+
+      - name: "Johan van der Berg"
+        specialty: "Contextual menus"
+        key_insight: "Right-click for options"
+        analysis_angle: "Context menus for doc items"
+
+      - name: "Dr. Lucia Fernandez"
+        specialty: "Drag and drop"
+        key_insight: "Direct manipulation"
+        analysis_angle: "Dragging docs to organize"
+
+      - name: "Kwabena Mensah"
+        specialty: "Inline editing"
+        key_insight: "Edit in place"
+        analysis_angle: "Inline doc editing"
+
+      - name: "Dr. Tatiana Morozov"
+        specialty: "Undo/redo"
+        key_insight: "Safety net for actions"
+        analysis_angle: "Undo for doc changes"
+
+      - name: "Rafael Silva"
+        specialty: "Confirmation dialogs"
+        key_insight: "Prevent destructive accidents"
+        analysis_angle: "Confirm before deleting docs"
+
+      - name: "Dr. Leila Abbasi"
+        specialty: "Toast notifications"
+        key_insight: "Lightweight feedback"
+        analysis_angle: "Toast messages for doc actions"
+
+      - name: "Tomasz Kowalski"
+        specialty: "Modal dialogs"
+        key_insight: "Focus for important decisions"
+        analysis_angle: "Modals for critical doc actions"
+
+      - name: "Dr. Halima Ndiaye"
+        specialty: "Sidebar panels"
+        key_insight: "Auxiliary content without navigation"
+        analysis_angle: "Sidebar for doc metadata"
+
+      - name: "Anders Svensson"
+        specialty: "Tabs vs. accordions"
+        key_insight: "Different use cases"
+        analysis_angle: "Tabs for doc sections"
+
+      - name: "Dr. Chioma Eze"
+        specialty: "Carousels and sliders"
+        key_insight: "Sequential content viewing"
+        analysis_angle: "Carousel for doc examples"
+
+      - name: "Mikhail Petrov"
+        specialty: "Infinite scroll"
+        key_insight: "Continuous content loading"
+        analysis_angle: "Infinite scroll for doc lists"
+
+      - name: "Dr. Amina Yusuf"
+        specialty: "Pagination"
+        key_insight: "Discrete pages"
+        analysis_angle: "Paginated doc search results"
+
+  # ===========================================================================
+  # CATEGORY 8: MACHINE LEARNING (100 experts)
+  # ===========================================================================
+  machine_learning:
+    description: "Embedding spaces, similarity search, clustering, ML for knowledge"
+    experts:
+      - name: "Dr. Hugo Martins"
+        specialty: "Word embeddings (Word2Vec, GloVe)"
+        key_insight: "Words as dense vectors capture semantics"
+        analysis_angle: "Embedding documentation terms"
+
+      - name: "Irina Volkov"
+        specialty: "Contextual embeddings (BERT, GPT)"
+        key_insight: "Context-dependent word representations"
+        analysis_angle: "Context-aware doc embeddings"
+
+      - name: "Dr. Kwesi Addo"
+        specialty: "Sentence embeddings"
+        key_insight: "Encoding entire sentences"
+        analysis_angle: "Embedding doc paragraphs"
+
+      - name: "Gabriela Torres"
+        specialty: "Document embeddings"
+        key_insight: "Representing entire documents"
+        analysis_angle: "Whole-doc vector representations"
+
+      - name: "Dr. Nikolai Ivanov"
+        specialty: "Code embeddings"
+        key_insight: "Representing code semantically"
+        analysis_angle: "Embedding code snippets in docs"
+
+      - name: "Farah Khan"
+        specialty: "Similarity search"
+        key_insight: "Finding nearest neighbors in vector space"
+        analysis_angle: "Similar doc search via embeddings"
+
+      - name: "Dr. Lucas Andersson"
+        specialty: "Approximate nearest neighbors (ANN)"
+        key_insight: "Fast similarity search at scale"
+        analysis_angle: "FAISS, Annoy for doc search"
+
+      - name: "Nia Williams"
+        specialty: "Clustering algorithms"
+        key_insight: "Grouping similar items"
+        analysis_angle: "Clustering related docs"
+
+      - name: "Dr. Pavel Novotný"
+        specialty: "K-means clustering"
+        key_insight: "Simple, fast clustering"
+        analysis_angle: "K-means for doc grouping"
+
+      - name: "Zainab Osman"
+        specialty: "Hierarchical clustering"
+        key_insight: "Tree-based clustering"
+        analysis_angle: "Dendrogram of doc similarity"
+
+      - name: "Dr. Erik Hansen"
+        specialty: "DBSCAN clustering"
+        key_insight: "Density-based clustering"
+        analysis_angle: "Finding doc clusters of varying shape"
+
+      - name: "Amara Diallo"
+        specialty: "Topic modeling (LDA)"
+        key_insight: "Discovering latent topics"
+        analysis_angle: "Extracting topics from doc corpus"
+
+      - name: "Dr. Matias Gonzalez"
+        specialty: "Non-negative matrix factorization"
+        key_insight: "Parts-based representation"
+        analysis_angle: "NMF for topic extraction"
+
+      - name: "Petra Müller"
+        specialty: "Dimensionality reduction"
+        key_insight: "Reducing vector dimensions"
+        analysis_angle: "Compressing doc embeddings"
+
+      - name: "Dr. Jabari Okello"
+        specialty: "PCA (Principal Component Analysis)"
+        key_insight: "Linear dimensionality reduction"
+        analysis_angle: "PCA for doc visualization"
+
+      - name: "Sana Malik"
+        specialty: "t-SNE"
+        key_insight: "Non-linear visualization"
+        analysis_angle: "Visualizing doc clusters"
+
+      - name: "Dr. Anders Svensson"
+        specialty: "UMAP"
+        key_insight: "Faster alternative to t-SNE"
+        analysis_angle: "UMAP for doc visualization"
+
+      - name: "Kemi Adeyemi"
+        specialty: "Autoencoders"
+        key_insight: "Neural dimensionality reduction"
+        analysis_angle: "Autoencoding doc representations"
+
+      - name: "Dr. Dmitri Volkov"
+        specialty: "Variational autoencoders"
+        key_insight: "Probabilistic latent space"
+        analysis_angle: "VAE for doc generation"
+
+      - name: "Mariam Hassan"
+        specialty: "Transfer learning"
+        key_insight: "Reusing learned representations"
+        analysis_angle: "Pretrained models for doc understanding"
+
+      - name: "Dr. Filip Novák"
+        specialty: "Fine-tuning"
+        key_insight: "Adapting pretrained models"
+        analysis_angle: "Fine-tuning for domain-specific docs"
+
+      - name: "Ayana Johnson"
+        specialty: "Few-shot learning"
+        key_insight: "Learning from few examples"
+        analysis_angle: "Classifying new doc types"
+
+      - name: "Dr. Sergei Kozlov"
+        specialty: "Zero-shot learning"
+        key_insight: "No training examples needed"
+        analysis_angle: "Classifying unseen doc categories"
+
+      - name: "Halima Ndiaye"
+        specialty: "Active learning"
+        key_insight: "Selecting informative examples"
+        analysis_angle: "Which docs to label for training"
+
+      - name: "Dr. Lukas Bergström"
+        specialty: "Semi-supervised learning"
+        key_insight: "Leveraging unlabeled data"
+        analysis_angle: "Learning from mostly unlabeled docs"
+
+      - name: "Amara Sow"
+        specialty: "Self-supervised learning"
+        key_insight: "Learning without labels"
+        analysis_angle: "Self-supervised doc pretraining"
+
+      - name: "Dr. Maxim Sorokin"
+        specialty: "Contrastive learning"
+        key_insight: "Learning via positive/negative pairs"
+        analysis_angle: "Contrastive doc embeddings"
+
+      - name: "Nala Okafor"
+        specialty: "Metric learning"
+        key_insight: "Learning similarity functions"
+        analysis_angle: "Custom similarity for docs"
+
+      - name: "Dr. Johan Lindström"
+        specialty: "Siamese networks"
+        key_insight: "Comparing pairs of inputs"
+        analysis_angle: "Doc similarity via Siamese nets"
+
+      - name: "Zuri Mensah"
+        specialty: "Triplet loss"
+        key_insight: "Anchor, positive, negative"
+        analysis_angle: "Learning doc similarity"
+
+      - name: "Dr. Andrei Morozov"
+        specialty: "Attention mechanisms"
+        key_insight: "Focusing on relevant parts"
+        analysis_angle: "Attending to key doc sections"
+
+      - name: "Simone Dupont"
+        specialty: "Self-attention"
+        key_insight: "Relating parts of same input"
+        analysis_angle: "Self-attention within docs"
+
+      - name: "Dr. Kofi Asare"
+        specialty: "Cross-attention"
+        key_insight: "Relating different inputs"
+        analysis_angle: "Cross-attention between doc and code"
+
+      - name: "Elena Sokolova"
+        specialty: "Multi-head attention"
+        key_insight: "Multiple attention patterns"
+        analysis_angle: "Multi-head for complex doc relationships"
+
+      - name: "Dr. Miguel Herrera"
+        specialty: "Transformers"
+        key_insight: "Attention-based architecture"
+        analysis_angle: "Transformer models for doc understanding"
+
+      - name: "Ama Boateng"
+        specialty: "BERT"
+        key_insight: "Bidirectional encoding"
+        analysis_angle: "BERT for doc classification"
+
+      - name: "Dr. Alexey Volkov"
+        specialty: "GPT models"
+        key_insight: "Autoregressive generation"
+        analysis_angle: "GPT for doc completion"
+
+      - name: "Fatima Traoré"
+        specialty: "T5"
+        key_insight: "Text-to-text framework"
+        analysis_angle: "T5 for doc transformation"
+
+      - name: "Dr. Lars Pedersen"
+        specialty: "Encoder-decoder models"
+        key_insight: "Sequence-to-sequence"
+        analysis_angle: "Summarizing long docs"
+
+      - name: "Amina Khalil"
+        specialty: "Sequence labeling"
+        key_insight: "Tagging each token"
+        analysis_angle: "Entity recognition in docs"
+
+      - name: "Dr. Stefan Novak"
+        specialty: "Sequence classification"
+        key_insight: "Categorizing sequences"
+        analysis_angle: "Classifying doc types"
+
+      - name: "Keisha Davis"
+        specialty: "Sequence generation"
+        key_insight: "Producing new sequences"
+        analysis_angle: "Generating doc summaries"
+
+      - name: "Dr. Henrik Andersson"
+        specialty: "Beam search"
+        key_insight: "Efficient sequence generation"
+        analysis_angle: "Beam search for doc generation"
+
+      - name: "Amina Patel"
+        specialty: "Greedy decoding"
+        key_insight: "Faster but less optimal"
+        analysis_angle: "Quick doc generation"
+
+      - name: "Dr. Roberto Gonzalez"
+        specialty: "Sampling strategies"
+        key_insight: "Temperature, top-k, nucleus"
+        analysis_angle: "Controlled doc generation"
+
+      - name: "Yuki Sato"
+        specialty: "Reinforcement learning"
+        key_insight: "Learning from rewards"
+        analysis_angle: "RL for doc ranking optimization"
+
+      - name: "Dr. Emma Williams"
+        specialty: "Policy gradient"
+        key_insight: "Optimizing policy directly"
+        analysis_angle: "Policy gradient for doc selection"
+
+      - name: "Omar Farooq"
+        specialty: "Q-learning"
+        key_insight: "Learning action values"
+        analysis_angle: "Q-learning for doc navigation"
+
+      - name: "Dr. Ling Zhang"
+        specialty: "Multi-task learning"
+        key_insight: "Sharing representations across tasks"
+        analysis_angle: "Joint training for multiple doc tasks"
+
+      - name: "Klaus Bergmann"
+        specialty: "Meta-learning"
+        key_insight: "Learning to learn"
+        analysis_angle: "Fast adaptation to new projects"
+
+      - name: "Dr. Fatima Al-Said"
+        specialty: "Neural architecture search"
+        key_insight: "Automated model design"
+        analysis_angle: "Finding optimal doc model architecture"
+
+      - name: "Johan Berg"
+        specialty: "Knowledge distillation"
+        key_insight: "Compressing large models"
+        analysis_angle: "Distilling doc models for speed"
+
+      - name: "Dr. Priya Kapoor"
+        specialty: "Model pruning"
+        key_insight: "Removing unnecessary parameters"
+        analysis_angle: "Pruning doc models"
+
+      - name: "Mikhail Ivanov"
+        specialty: "Quantization"
+        key_insight: "Reducing numerical precision"
+        analysis_angle: "Quantizing doc embeddings"
+
+      - name: "Dr. Aisha Kamau"
+        specialty: "Model compression"
+        key_insight: "Smaller, faster models"
+        analysis_angle: "Compressing for deployment"
+
+      - name: "Lucas Martins"
+        specialty: "Ensemble methods"
+        key_insight: "Combining multiple models"
+        analysis_angle: "Ensembling doc classifiers"
+
+      - name: "Dr. Zara Johnson"
+        specialty: "Bagging"
+        key_insight: "Bootstrap aggregating"
+        analysis_angle: "Bagging for doc models"
+
+      - name: "Erik Svensson"
+        specialty: "Boosting"
+        key_insight: "Sequential model improvement"
+        analysis_angle: "Boosting doc classifiers"
+
+      - name: "Dr. Kwame Nkrumah"
+        specialty: "Stacking"
+        key_insight: "Meta-model on predictions"
+        analysis_angle: "Stacking doc models"
+
+      - name: "Svetlana Petrov"
+        specialty: "Cross-validation"
+        key_insight: "Estimating generalization"
+        analysis_angle: "CV for doc model evaluation"
+
+      - name: "Dr. Diego Silva"
+        specialty: "Hyperparameter tuning"
+        key_insight: "Optimizing model settings"
+        analysis_angle: "Tuning doc model hyperparameters"
+
+      - name: "Amara Diallo"
+        specialty: "Grid search"
+        key_insight: "Exhaustive parameter search"
+        analysis_angle: "Grid search for doc models"
+
+      - name: "Dr. Viktor Novotný"
+        specialty: "Random search"
+        key_insight: "Stochastic parameter search"
+        analysis_angle: "Random search for efficiency"
+
+      - name: "Mei Lin"
+        specialty: "Bayesian optimization"
+        key_insight: "Sample-efficient tuning"
+        analysis_angle: "Bayesian opt for doc models"
+
+      - name: "Dr. Hassan Omar"
+        specialty: "Learning rate schedules"
+        key_insight: "Adaptive learning rates"
+        analysis_angle: "LR schedules for doc training"
+
+      - name: "Isabella Cruz"
+        specialty: "Regularization"
+        key_insight: "Preventing overfitting"
+        analysis_angle: "Regularizing doc models"
+
+      - name: "Dr. Jamal Thompson"
+        specialty: "Dropout"
+        key_insight: "Random neuron deactivation"
+        analysis_angle: "Dropout for doc models"
+
+      - name: "Natasha Volkov"
+        specialty: "Batch normalization"
+        key_insight: "Normalizing layer inputs"
+        analysis_angle: "BatchNorm for stable training"
+
+      - name: "Dr. Carlos Mendoza"
+        specialty: "Gradient clipping"
+        key_insight: "Preventing exploding gradients"
+        analysis_angle: "Gradient clipping for stability"
+
+      - name: "Amina Hassan"
+        specialty: "Early stopping"
+        key_insight: "Stop before overfitting"
+        analysis_angle: "Early stopping for doc models"
+
+      - name: "Dr. Liam O'Connor"
+        specialty: "Data augmentation"
+        key_insight: "Expanding training data"
+        analysis_angle: "Augmenting doc training data"
+
+      - name: "Zainab Rahman"
+        specialty: "Synthetic data generation"
+        key_insight: "Creating training examples"
+        analysis_angle: "Generating synthetic docs"
+
+      - name: "Dr. Anders Larsson"
+        specialty: "Adversarial examples"
+        key_insight: "Robust to perturbations"
+        analysis_angle: "Adversarial training for docs"
+
+      - name: "Chioma Okonkwo"
+        specialty: "Interpretability"
+        key_insight: "Understanding model decisions"
+        analysis_angle: "Explaining doc model predictions"
+
+      - name: "Dr. Rafael Torres"
+        specialty: "Attention visualization"
+        key_insight: "Showing what model attends to"
+        analysis_angle: "Visualizing doc attention"
+
+      - name: "Layla Ibrahim"
+        specialty: "Feature importance"
+        key_insight: "Which features matter most"
+        analysis_angle: "Important features for doc classification"
+
+      - name: "Dr. Erik Hansen"
+        specialty: "LIME"
+        key_insight: "Local interpretable explanations"
+        analysis_angle: "LIME for doc predictions"
+
+      - name: "Fatima Diop"
+        specialty: "SHAP values"
+        key_insight: "Shapley additive explanations"
+        analysis_angle: "SHAP for doc models"
+
+      - name: "Dr. Mateo Vargas"
+        specialty: "Counterfactual explanations"
+        key_insight: "What would change prediction"
+        analysis_angle: "Counterfactuals for doc classification"
+
+      - name: "Keisha Brown"
+        specialty: "Model debugging"
+        key_insight: "Finding and fixing model errors"
+        analysis_angle: "Debugging doc models"
+
+      - name: "Dr. Dimitri Antonov"
+        specialty: "Error analysis"
+        key_insight: "Understanding failure modes"
+        analysis_angle: "Analyzing doc model errors"
+
+      - name: "Yasmin Malik"
+        specialty: "Bias detection"
+        key_insight: "Identifying unfair biases"
+        analysis_angle: "Detecting bias in doc models"
+
+      - name: "Dr. Marco Bianchi"
+        specialty: "Fairness metrics"
+        key_insight: "Measuring model fairness"
+        analysis_angle: "Fairness of doc recommendations"
+
+      - name: "Nadia Kamara"
+        specialty: "Privacy-preserving ML"
+        key_insight: "Protecting sensitive data"
+        analysis_angle: "Privacy for doc training"
+
+      - name: "Dr. Alexei Sokolov"
+        specialty: "Federated learning"
+        key_insight: "Decentralized training"
+        analysis_angle: "Federated doc model training"
+
+      - name: "Amara Osei"
+        specialty: "Differential privacy"
+        key_insight: "Formal privacy guarantees"
+        analysis_angle: "Private doc embeddings"
+
+      - name: "Dr. Johan van der Berg"
+        specialty: "Continual learning"
+        key_insight: "Learning without forgetting"
+        analysis_angle: "Continual learning for evolving docs"
+
+      - name: "Lucia Fernandez"
+        specialty: "Catastrophic forgetting"
+        key_insight: "Preventing knowledge loss"
+        analysis_angle: "Avoiding forgetting old docs"
+
+      - name: "Dr. Kwabena Mensah"
+        specialty: "Online learning"
+        key_insight: "Updating as data arrives"
+        analysis_angle: "Online updates for doc models"
+
+      - name: "Tatiana Morozov"
+        specialty: "Batch learning"
+        key_insight: "Training on full dataset"
+        analysis_angle: "Batch training for doc models"
+
+  # ===========================================================================
+  # CATEGORY 9: DOCUMENTATION SYSTEMS (100 experts)
+  # ===========================================================================
+  documentation_systems:
+    description: "Living documentation, auto-updating, consistency, doc tooling"
+    experts:
+      - name: "Dr. Rafael Silva"
+        specialty: "Living documentation"
+        key_insight: "Docs that update with code"
+        analysis_angle: "Auto-updating docs from code changes"
+
+      - name: "Leila Abbasi"
+        specialty: "Documentation generation"
+        key_insight: "Auto-generate from source"
+        analysis_angle: "Generating API docs from code"
+
+      - name: "Dr. Tomasz Kowalski"
+        specialty: "Inline documentation"
+        key_insight: "Docs in code comments"
+        analysis_angle: "JSDoc, XML comments, docstrings"
+
+      - name: "Halima Ndiaye"
+        specialty: "Documentation testing"
+        key_insight: "Testing doc accuracy"
+        analysis_angle: "Validating doc examples work"
+
+      - name: "Dr. Anders Svensson"
+        specialty: "Documentation coverage"
+        key_insight: "Measuring what's documented"
+        analysis_angle: "Coverage metrics for docs"
+
+      - name: "Chioma Eze"
+        specialty: "Documentation linting"
+        key_insight: "Enforcing doc standards"
+        analysis_angle: "Linting doc files"
+
+      - name: "Dr. Mikhail Petrov"
+        specialty: "Documentation versioning"
+        key_insight: "Docs for each version"
+        analysis_angle: "Version-specific documentation"
+
+      - name: "Amina Yusuf"
+        specialty: "Documentation branching"
+        key_insight: "Docs branch with code"
+        analysis_angle: "Branch-specific docs"
+
+      - name: "Dr. Hugo Martins"
+        specialty: "Documentation deployment"
+        key_insight: "Publishing docs automatically"
+        analysis_angle: "CI/CD for documentation"
+
+      - name: "Irina Volkov"
+        specialty: "Documentation hosting"
+        key_insight: "Where docs are served"
+        analysis_angle: "Hosting generated docs"
+
+      - name: "Dr. Kwesi Addo"
+        specialty: "Documentation search"
+        key_insight: "Finding info in docs"
+        analysis_angle: "Search within documentation"
+
+      - name: "Gabriela Torres"
+        specialty: "Documentation navigation"
+        key_insight: "Moving through docs"
+        analysis_angle: "Navigation structure for docs"
+
+      - name: "Dr. Nikolai Ivanov"
+        specialty: "Documentation cross-references"
+        key_insight: "Linking related content"
+        analysis_angle: "Auto-generating cross-references"
+
+      - name: "Farah Khan"
+        specialty: "Documentation diagrams"
+        key_insight: "Visual documentation"
+        analysis_angle: "Auto-generated architecture diagrams"
+
+      - name: "Dr. Lucas Andersson"
+        specialty: "Documentation examples"
+        key_insight: "Code examples in docs"
+        analysis_angle: "Extracting examples from tests"
+
+      - name: "Nia Williams"
+        specialty: "Documentation tutorials"
+        key_insight: "Step-by-step guides"
+        analysis_angle: "Tutorial generation from code"
+
+      - name: "Dr. Pavel Novotný"
+        specialty: "Documentation reference"
+        key_insight: "API and parameter docs"
+        analysis_angle: "Reference doc generation"
+
+      - name: "Zainab Osman"
+        specialty: "Documentation guides"
+        key_insight: "Conceptual documentation"
+        analysis_angle: "Guide structure and organization"
+
+      - name: "Dr. Erik Hansen"
+        specialty: "Documentation templates"
+        key_insight: "Consistent doc structure"
+        analysis_angle: "Templates for doc types"
+
+      - name: "Amara Diallo"
+        specialty: "Documentation style guides"
+        key_insight: "Consistent writing style"
+        analysis_angle: "Style guide enforcement"
+
+      - name: "Dr. Matias Gonzalez"
+        specialty: "Documentation translation"
+        key_insight: "Multi-language docs"
+        analysis_angle: "Translating documentation"
+
+      - name: "Petra Müller"
+        specialty: "Documentation localization"
+        key_insight: "Cultural adaptation"
+        analysis_angle: "Localizing docs"
+
+      - name: "Dr. Jabari Okello"
+        specialty: "Documentation formats"
+        key_insight: "Markdown, RST, AsciiDoc"
+        analysis_angle: "Choosing doc format"
+
+      - name: "Sana Malik"
+        specialty: "Documentation rendering"
+        key_insight: "Converting to output format"
+        analysis_angle: "Rendering markdown to HTML"
+
+      - name: "Dr. Anders Svensson"
+        specialty: "Documentation themes"
+        key_insight: "Visual styling"
+        analysis_angle: "Theming doc sites"
+
+      - name: "Kemi Adeyemi"
+        specialty: "Documentation plugins"
+        key_insight: "Extending doc systems"
+        analysis_angle: "Plugin architecture for docs"
+
+      - name: "Dr. Dmitri Volkov"
+        specialty: "Documentation CI/CD"
+        key_insight: "Automated doc pipeline"
+        analysis_angle: "CI/CD for doc updates"
+
+      - name: "Mariam Hassan"
+        specialty: "Documentation review"
+        key_insight: "Reviewing doc changes"
+        analysis_angle: "Doc review process"
+
+      - name: "Dr. Filip Novák"
+        specialty: "Documentation approval"
+        key_insight: "Gating doc changes"
+        analysis_angle: "Approval workflow for docs"
+
+      - name: "Ayana Johnson"
+        specialty: "Documentation metrics"
+        key_insight: "Measuring doc quality"
+        analysis_angle: "Metrics for doc effectiveness"
+
+      - name: "Dr. Sergei Kozlov"
+        specialty: "Documentation analytics"
+        key_insight: "Understanding doc usage"
+        analysis_angle: "Analytics on doc access"
+
+      - name: "Halima Ndiaye"
+        specialty: "Documentation feedback"
+        key_insight: "User comments on docs"
+        analysis_angle: "Collecting doc feedback"
+
+      - name: "Dr. Lukas Bergström"
+        specialty: "Documentation improvement"
+        key_insight: "Iterating based on feedback"
+        analysis_angle: "Continuous doc improvement"
+
+      - name: "Amara Sow"
+        specialty: "Documentation debt"
+        key_insight: "Outdated docs accumulate"
+        analysis_angle: "Managing doc debt"
+
+      - name: "Dr. Maxim Sorokin"
+        specialty: "Documentation refactoring"
+        key_insight: "Restructuring docs"
+        analysis_angle: "Doc refactoring strategies"
+
+      - name: "Nala Okafor"
+        specialty: "Documentation consistency"
+        key_insight: "Uniform terminology and style"
+        analysis_angle: "Ensuring doc consistency"
+
+      - name: "Dr. Johan Lindström"
+        specialty: "Documentation automation"
+        key_insight: "Reducing manual work"
+        analysis_angle: "Automating doc creation"
+
+      - name: "Zuri Mensah"
+        specialty: "Documentation extraction"
+        key_insight: "Extracting from existing sources"
+        analysis_angle: "Mining docs from code"
+
+      - name: "Dr. Andrei Morozov"
+        specialty: "Documentation synthesis"
+        key_insight: "Combining multiple sources"
+        analysis_angle: "Synthesizing unified docs"
+
+      - name: "Simone Dupont"
+        specialty: "Documentation deduplication"
+        key_insight: "Eliminating redundancy"
+        analysis_angle: "Deduplicating doc content"
+
+      - name: "Dr. Kofi Asare"
+        specialty: "Documentation single-sourcing"
+        key_insight: "One source, multiple outputs"
+        analysis_angle: "Single-source doc publishing"
+
+      - name: "Elena Sokolova"
+        specialty: "Documentation reuse"
+        key_insight: "Modular, reusable content"
+        analysis_angle: "Content reuse in docs"
+
+      - name: "Dr. Miguel Herrera"
+        specialty: "Documentation components"
+        key_insight: "Reusable doc blocks"
+        analysis_angle: "Component-based docs"
+
+      - name: "Ama Boateng"
+        specialty: "Documentation includes"
+        key_insight: "Including shared content"
+        analysis_angle: "Include mechanism for docs"
+
+      - name: "Dr. Alexey Volkov"
+        specialty: "Documentation variables"
+        key_insight: "Parameterized content"
+        analysis_angle: "Variables in doc templates"
+
+      - name: "Fatima Traoré"
+        specialty: "Documentation conditionals"
+        key_insight: "Showing content conditionally"
+        analysis_angle: "Conditional doc rendering"
+
+      - name: "Dr. Lars Pedersen"
+        specialty: "Documentation macros"
+        key_insight: "Reusable doc snippets"
+        analysis_angle: "Macro system for docs"
+
+      - name: "Amina Khalil"
+        specialty: "Documentation metadata"
+        key_insight: "Data about docs"
+        analysis_angle: "Metadata schema for docs"
+
+      - name: "Dr. Stefan Novak"
+        specialty: "Documentation taxonomy"
+        key_insight: "Classifying docs"
+        analysis_angle: "Taxonomy for doc organization"
+
+      - name: "Keisha Davis"
+        specialty: "Documentation tagging"
+        key_insight: "Labeling docs"
+        analysis_angle: "Tagging system for docs"
+
+      - name: "Dr. Henrik Andersson"
+        specialty: "Documentation categorization"
+        key_insight: "Grouping docs"
+        analysis_angle: "Category system for docs"
+
+      - name: "Amina Patel"
+        specialty: "Documentation hierarchy"
+        key_insight: "Tree structure"
+        analysis_angle: "Hierarchical doc organization"
+
+      - name: "Dr. Roberto Gonzalez"
+        specialty: "Documentation flat structure"
+        key_insight: "Non-hierarchical organization"
+        analysis_angle: "Flat doc structure"
+
+      - name: "Yuki Sato"
+        specialty: "Documentation hybrid structure"
+        key_insight: "Mix of hierarchical and flat"
+        analysis_angle: "Hybrid doc organization"
+
+      - name: "Dr. Emma Williams"
+        specialty: "Documentation discovery"
+        key_insight: "Helping users find docs"
+        analysis_angle: "Doc discovery mechanisms"
+
+      - name: "Omar Farooq"
+        specialty: "Documentation recommendations"
+        key_insight: "Suggesting relevant docs"
+        analysis_angle: "Doc recommendation engine"
+
+      - name: "Dr. Ling Zhang"
+        specialty: "Documentation context-awareness"
+        key_insight: "Docs adapt to context"
+        analysis_angle: "Context-aware doc display"
+
+      - name: "Klaus Bergmann"
+        specialty: "Documentation personalization"
+        key_insight: "Tailored to user"
+        analysis_angle: "Personalized doc experience"
+
+      - name: "Dr. Fatima Al-Said"
+        specialty: "Documentation role-based"
+        key_insight: "Different docs for different roles"
+        analysis_angle: "Role-based doc filtering"
+
+      - name: "Johan Berg"
+        specialty: "Documentation permission-based"
+        key_insight: "Access control on docs"
+        analysis_angle: "Permission system for docs"
+
+      - name: "Dr. Priya Kapoor"
+        specialty: "Documentation collaboration"
+        key_insight: "Multi-author docs"
+        analysis_angle: "Collaborative doc editing"
+
+      - name: "Mikhail Ivanov"
+        specialty: "Documentation conflict resolution"
+        key_insight: "Merging concurrent changes"
+        analysis_angle: "Resolving doc conflicts"
+
+      - name: "Dr. Aisha Kamau"
+        specialty: "Documentation change tracking"
+        key_insight: "Auditing doc changes"
+        analysis_angle: "Tracking doc modifications"
+
+      - name: "Lucas Martins"
+        specialty: "Documentation diff"
+        key_insight: "Showing changes"
+        analysis_angle: "Diffing doc versions"
+
+      - name: "Dr. Zara Johnson"
+        specialty: "Documentation history"
+        key_insight: "Version history"
+        analysis_angle: "Doc version history"
+
+      - name: "Erik Svensson"
+        specialty: "Documentation rollback"
+        key_insight: "Reverting changes"
+        analysis_angle: "Rolling back doc changes"
+
+      - name: "Dr. Kwame Nkrumah"
+        specialty: "Documentation branching strategy"
+        key_insight: "Git-like doc branching"
+        analysis_angle: "Branching model for docs"
+
+      - name: "Svetlana Petrov"
+        specialty: "Documentation merging strategy"
+        key_insight: "Combining doc branches"
+        analysis_angle: "Merging doc branches"
+
+      - name: "Dr. Diego Silva"
+        specialty: "Documentation release notes"
+        key_insight: "Change summaries"
+        analysis_angle: "Auto-generating release notes"
+
+      - name: "Amara Diallo"
+        specialty: "Documentation changelogs"
+        key_insight: "Detailed change logs"
+        analysis_angle: "Changelog generation"
+
+      - name: "Dr. Viktor Novotný"
+        specialty: "Documentation migration"
+        key_insight: "Moving to new system"
+        analysis_angle: "Migrating doc systems"
+
+      - name: "Mei Lin"
+        specialty: "Documentation import/export"
+        key_insight: "Portability"
+        analysis_angle: "Import/export doc formats"
+
+      - name: "Dr. Hassan Omar"
+        specialty: "Documentation backup"
+        key_insight: "Protecting against loss"
+        analysis_angle: "Backing up documentation"
+
+      - name: "Isabella Cruz"
+        specialty: "Documentation archiving"
+        key_insight: "Long-term storage"
+        analysis_angle: "Archiving old docs"
+
+      - name: "Dr. Jamal Thompson"
+        specialty: "Documentation deprecation"
+        key_insight: "Marking obsolete docs"
+        analysis_angle: "Deprecation workflow"
+
+      - name: "Natasha Volkov"
+        specialty: "Documentation removal"
+        key_insight: "Deleting obsolete docs"
+        analysis_angle: "Safe doc removal"
+
+      - name: "Dr. Carlos Mendoza"
+        specialty: "Documentation sunset"
+        key_insight: "Planned doc retirement"
+        analysis_angle: "Sunsetting doc sections"
+
+      - name: "Amina Hassan"
+        specialty: "Documentation maintenance"
+        key_insight: "Keeping docs current"
+        analysis_angle: "Doc maintenance processes"
+
+      - name: "Dr. Liam O'Connor"
+        specialty: "Documentation governance"
+        key_insight: "Who owns docs"
+        analysis_angle: "Doc ownership model"
+
+      - name: "Zainab Rahman"
+        specialty: "Documentation standards"
+        key_insight: "Organization-wide standards"
+        analysis_angle: "Doc standards enforcement"
+
+      - name: "Dr. Anders Larsson"
+        specialty: "Documentation best practices"
+        key_insight: "Proven patterns"
+        analysis_angle: "Best practices library"
+
+      - name: "Chioma Okonkwo"
+        specialty: "Documentation anti-patterns"
+        key_insight: "What to avoid"
+        analysis_angle: "Common doc mistakes"
+
+      - name: "Dr. Rafael Torres"
+        specialty: "Documentation education"
+        key_insight: "Teaching how to document"
+        analysis_angle: "Training on doc practices"
+
+      - name: "Layla Ibrahim"
+        specialty: "Documentation culture"
+        key_insight: "Organizational doc culture"
+        analysis_angle: "Building doc culture"
+
+      - name: "Dr. Erik Hansen"
+        specialty: "Documentation incentives"
+        key_insight: "Rewarding good docs"
+        analysis_angle: "Incentive systems for docs"
+
+      - name: "Fatima Diop"
+        specialty: "Documentation quality gates"
+        key_insight: "Enforcing doc requirements"
+        analysis_angle: "Quality gates for docs"
+
+      - name: "Dr. Mateo Vargas"
+        specialty: "Documentation compliance"
+        key_insight: "Meeting regulatory requirements"
+        analysis_angle: "Compliance documentation"
+
+      - name: "Keisha Brown"
+        specialty: "Documentation auditing"
+        key_insight: "Verifying doc accuracy"
+        analysis_angle: "Auditing doc content"
+
+      - name: "Dr. Dimitri Antonov"
+        specialty: "Documentation certification"
+        key_insight: "Official approval"
+        analysis_angle: "Certifying doc accuracy"
+
+      - name: "Yasmin Malik"
+        specialty: "Documentation SLA"
+        key_insight: "Service level agreements"
+        analysis_angle: "SLAs for doc freshness"
+
+      - name: "Dr. Marco Bianchi"
+        specialty: "Documentation KPIs"
+        key_insight: "Key performance indicators"
+        analysis_angle: "KPIs for doc systems"
+
+  # ===========================================================================
+  # CATEGORY 10: PERFORMANCE OPTIMIZATION (100 experts)
+  # ===========================================================================
+  performance_optimization:
+    description: "Caching, lazy loading, retrieval speed, performance tuning"
+    experts:
+      - name: "Dr. Nadia Kamara"
+        specialty: "Caching strategies"
+        key_insight: "Right cache strategy = 10-100x speedup"
+        analysis_angle: "Optimal caching for doc retrieval"
+
+      - name: "Alexei Sokolov"
+        specialty: "Cache eviction policies"
+        key_insight: "LRU, LFU, ARC tradeoffs"
+        analysis_angle: "Best eviction policy for docs"
+
+      - name: "Dr. Amara Osei"
+        specialty: "Cache sizing"
+        key_insight: "Size affects hit rate and memory"
+        analysis_angle: "Optimal doc cache size"
+
+      - name: "Johan van der Berg"
+        specialty: "Multi-level caching"
+        key_insight: "L1/L2/L3 hierarchy"
+        analysis_angle: "Tiered doc caching"
+
+      - name: "Dr. Lucia Fernandez"
+        specialty: "Cache warming"
+        key_insight: "Preloading cache"
+        analysis_angle: "Warming doc cache on startup"
+
+      - name: "Kwabena Mensah"
+        specialty: "Cache invalidation"
+        key_insight: "Hardest problem in CS"
+        analysis_angle: "When to invalidate doc cache"
+
+      - name: "Dr. Tatiana Morozov"
+        specialty: "Write-through caching"
+        key_insight: "Immediate persistence"
+        analysis_angle: "Write-through for doc updates"
+
+      - name: "Rafael Silva"
+        specialty: "Write-back caching"
+        key_insight: "Delayed persistence for speed"
+        analysis_angle: "Write-back for doc cache"
+
+      - name: "Dr. Leila Abbasi"
+        specialty: "Read-through caching"
+        key_insight: "Cache populates on miss"
+        analysis_angle: "Read-through for docs"
+
+      - name: "Tomasz Kowalski"
+        specialty: "Cache-aside pattern"
+        key_insight: "Application manages cache"
+        analysis_angle: "Cache-aside for doc access"
+
+      - name: "Dr. Halima Ndiaye"
+        specialty: "Lazy loading"
+        key_insight: "Load only when needed"
+        analysis_angle: "Lazy-loading doc sections"
+
+      - name: "Anders Svensson"
+        specialty: "Eager loading"
+        key_insight: "Preload related data"
+        analysis_angle: "Eager-loading related docs"
+
+      - name: "Dr. Chioma Eze"
+        specialty: "Prefetching"
+        key_insight: "Anticipatory loading"
+        analysis_angle: "Prefetching likely docs"
+
+      - name: "Mikhail Petrov"
+        specialty: "Batch loading"
+        key_insight: "Load multiple at once"
+        analysis_angle: "Batching doc requests"
+
+      - name: "Dr. Amina Yusuf"
+        specialty: "Pagination"
+        key_insight: "Loading in chunks"
+        analysis_angle: "Paginating doc results"
+
+      - name: "Hugo Martins"
+        specialty: "Infinite scroll"
+        key_insight: "Continuous loading"
+        analysis_angle: "Infinite scroll for doc lists"
+
+      - name: "Dr. Irina Volkov"
+        specialty: "Virtual scrolling"
+        key_insight: "Render only visible items"
+        analysis_angle: "Virtual scrolling for large doc lists"
+
+      - name: "Kwesi Addo"
+        specialty: "Windowing"
+        key_insight: "Limited viewport rendering"
+        analysis_angle: "Windowing for doc display"
+
+      - name: "Dr. Gabriela Torres"
+        specialty: "Debouncing"
+        key_insight: "Rate-limiting function calls"
+        analysis_angle: "Debouncing doc search input"
+
+      - name: "Nikolai Ivanov"
+        specialty: "Throttling"
+        key_insight: "Limiting execution frequency"
+        analysis_angle: "Throttling doc updates"
+
+      - name: "Dr. Farah Khan"
+        specialty: "Request coalescing"
+        key_insight: "Combining duplicate requests"
+        analysis_angle: "Coalescing doc requests"
+
+      - name: "Lucas Andersson"
+        specialty: "Connection pooling"
+        key_insight: "Reusing connections"
+        analysis_angle: "Connection pools for doc access"
+
+      - name: "Dr. Nia Williams"
+        specialty: "Keep-alive"
+        key_insight: "Persistent connections"
+        analysis_angle: "Keep-alive for doc server"
+
+      - name: "Pavel Novotný"
+        specialty: "HTTP/2 multiplexing"
+        key_insight: "Multiple streams per connection"
+        analysis_angle: "HTTP/2 for doc delivery"
+
+      - name: "Dr. Zainab Osman"
+        specialty: "Compression"
+        key_insight: "Reduce transfer size"
+        analysis_angle: "Compressing doc payloads"
+
+      - name: "Erik Hansen"
+        specialty: "Gzip compression"
+        key_insight: "Standard HTTP compression"
+        analysis_angle: "Gzip for doc transfer"
+
+      - name: "Dr. Amara Diallo"
+        specialty: "Brotli compression"
+        key_insight: "Better than gzip"
+        analysis_angle: "Brotli for doc compression"
+
+      - name: "Matias Gonzalez"
+        specialty: "Delta encoding"
+        key_insight: "Sending only changes"
+        analysis_angle: "Delta encoding for doc updates"
+
+      - name: "Dr. Petra Müller"
+        specialty: "Content delivery networks (CDN)"
+        key_insight: "Geographic distribution"
+        analysis_angle: "CDN for doc hosting"
+
+      - name: "Jabari Okello"
+        specialty: "Edge caching"
+        key_insight: "Caching at network edge"
+        analysis_angle: "Edge cache for docs"
+
+      - name: "Dr. Sana Malik"
+        specialty: "Browser caching"
+        key_insight: "Client-side caching"
+        analysis_angle: "Cache headers for docs"
+
+      - name: "Anders Svensson"
+        specialty: "Service workers"
+        key_insight: "Offline caching"
+        analysis_angle: "Service worker for doc caching"
+
+      - name: "Dr. Kemi Adeyemi"
+        specialty: "LocalStorage"
+        key_insight: "Browser storage"
+        analysis_angle: "LocalStorage for doc cache"
+
+      - name: "Dmitri Volkov"
+        specialty: "IndexedDB"
+        key_insight: "Client-side database"
+        analysis_angle: "IndexedDB for doc storage"
+
+      - name: "Dr. Mariam Hassan"
+        specialty: "Web workers"
+        key_insight: "Background processing"
+        analysis_angle: "Web workers for doc indexing"
+
+      - name: "Filip Novák"
+        specialty: "Async/await patterns"
+        key_insight: "Non-blocking operations"
+        analysis_angle: "Async doc loading"
+
+      - name: "Dr. Ayana Johnson"
+        specialty: "Parallel processing"
+        key_insight: "Simultaneous execution"
+        analysis_angle: "Parallel doc indexing"
+
+      - name: "Sergei Kozlov"
+        specialty: "Concurrency control"
+        key_insight: "Managing parallel access"
+        analysis_angle: "Concurrency for doc updates"
+
+      - name: "Dr. Halima Ndiaye"
+        specialty: "Lock-free algorithms"
+        key_insight: "Avoiding locks"
+        analysis_angle: "Lock-free doc structures"
+
+      - name: "Lukas Bergström"
+        specialty: "Optimistic locking"
+        key_insight: "Assume no conflicts"
+        analysis_angle: "Optimistic locking for docs"
+
+      - name: "Dr. Amara Sow"
+        specialty: "Pessimistic locking"
+        key_insight: "Prevent conflicts"
+        analysis_angle: "Pessimistic locking for docs"
+
+      - name: "Maxim Sorokin"
+        specialty: "Database indexing"
+        key_insight: "Indices speed up queries"
+        analysis_angle: "Indexing doc metadata"
+
+      - name: "Dr. Nala Okafor"
+        specialty: "Query optimization"
+        key_insight: "Efficient query execution"
+        analysis_angle: "Optimizing doc queries"
+
+      - name: "Johan Lindström"
+        specialty: "Query caching"
+        key_insight: "Caching query results"
+        analysis_angle: "Caching doc search results"
+
+      - name: "Dr. Zuri Mensah"
+        specialty: "Materialized views"
+        key_insight: "Precomputed query results"
+        analysis_angle: "Materialized views for docs"
+
+      - name: "Andrei Morozov"
+        specialty: "Denormalization"
+        key_insight: "Trading space for speed"
+        analysis_angle: "Denormalizing doc data"
+
+      - name: "Dr. Simone Dupont"
+        specialty: "Database sharding"
+        key_insight: "Horizontal partitioning"
+        analysis_angle: "Sharding doc database"
+
+      - name: "Kofi Asare"
+        specialty: "Database replication"
+        key_insight: "Read scalability"
+        analysis_angle: "Replicating doc database"
+
+      - name: "Dr. Elena Sokolova"
+        specialty: "Load balancing"
+        key_insight: "Distributing requests"
+        analysis_angle: "Load balancing doc servers"
+
+      - name: "Miguel Herrera"
+        specialty: "Round-robin"
+        key_insight: "Simple load distribution"
+        analysis_angle: "Round-robin for doc requests"
+
+      - name: "Dr. Ama Boateng"
+        specialty: "Least connections"
+        key_insight: "Balance by load"
+        analysis_angle: "Least connections for doc servers"
+
+      - name: "Alexey Volkov"
+        specialty: "Consistent hashing"
+        key_insight: "Stable distribution"
+        analysis_angle: "Consistent hashing for doc cache"
+
+      - name: "Dr. Fatima Traoré"
+        specialty: "Request routing"
+        key_insight: "Directing to right server"
+        analysis_angle: "Routing doc requests"
+
+      - name: "Lars Pedersen"
+        specialty: "Circuit breakers"
+        key_insight: "Preventing cascade failures"
+        analysis_angle: "Circuit breakers for doc service"
+
+      - name: "Dr. Amina Khalil"
+        specialty: "Retry logic"
+        key_insight: "Recovering from transient failures"
+        analysis_angle: "Retrying failed doc requests"
+
+      - name: "Stefan Novak"
+        specialty: "Timeout configuration"
+        key_insight: "Preventing hung requests"
+        analysis_angle: "Timeouts for doc operations"
+
+      - name: "Dr. Keisha Davis"
+        specialty: "Bulkhead pattern"
+        key_insight: "Isolating failures"
+        analysis_angle: "Bulkheads for doc subsystems"
+
+      - name: "Henrik Andersson"
+        specialty: "Rate limiting"
+        key_insight: "Preventing overload"
+        analysis_angle: "Rate limiting doc requests"
+
+      - name: "Dr. Amina Patel"
+        specialty: "Backpressure"
+        key_insight: "Slowing producers"
+        analysis_angle: "Backpressure for doc indexing"
+
+      - name: "Roberto Gonzalez"
+        specialty: "Queue management"
+        key_insight: "Buffering requests"
+        analysis_angle: "Request queues for doc updates"
+
+      - name: "Dr. Yuki Sato"
+        specialty: "Priority queues"
+        key_insight: "Importance-based ordering"
+        analysis_angle: "Prioritizing doc requests"
+
+      - name: "Emma Williams"
+        specialty: "Streaming"
+        key_insight: "Processing data as it arrives"
+        analysis_angle: "Streaming doc content"
+
+      - name: "Dr. Omar Farooq"
+        specialty: "Chunked transfer"
+        key_insight: "Sending data in pieces"
+        analysis_angle: "Chunked encoding for docs"
+
+      - name: "Ling Zhang"
+        specialty: "Progressive rendering"
+        key_insight: "Show content as it loads"
+        analysis_angle: "Progressive doc rendering"
+
+      - name: "Dr. Klaus Bergmann"
+        specialty: "Server-sent events"
+        key_insight: "Push updates to client"
+        analysis_angle: "SSE for doc updates"
+
+      - name: "Fatima Al-Said"
+        specialty: "WebSockets"
+        key_insight: "Bidirectional communication"
+        analysis_angle: "WebSockets for real-time doc sync"
+
+      - name: "Dr. Johan Berg"
+        specialty: "Long polling"
+        key_insight: "Simulating push"
+        analysis_angle: "Long polling for doc updates"
+
+      - name: "Priya Kapoor"
+        specialty: "Memory management"
+        key_insight: "Efficient memory use"
+        analysis_angle: "Memory optimization for docs"
+
+      - name: "Dr. Mikhail Ivanov"
+        specialty: "Object pooling"
+        key_insight: "Reusing objects"
+        analysis_angle: "Object pools for doc objects"
+
+      - name: "Aisha Kamau"
+        specialty: "Garbage collection tuning"
+        key_insight: "Optimizing GC"
+        analysis_angle: "GC tuning for doc system"
+
+      - name: "Dr. Lucas Martins"
+        specialty: "Memory leaks"
+        key_insight: "Preventing memory growth"
+        analysis_angle: "Detecting doc-related leaks"
+
+      - name: "Zara Johnson"
+        specialty: "Profiling"
+        key_insight: "Finding bottlenecks"
+        analysis_angle: "Profiling doc operations"
+
+      - name: "Dr. Erik Svensson"
+        specialty: "Benchmarking"
+        key_insight: "Measuring performance"
+        analysis_angle: "Benchmarking doc retrieval"
+
+      - name: "Kwame Nkrumah"
+        specialty: "Load testing"
+        key_insight: "Testing under load"
+        analysis_angle: "Load testing doc system"
+
+      - name: "Dr. Svetlana Petrov"
+        specialty: "Stress testing"
+        key_insight: "Finding breaking points"
+        analysis_angle: "Stress testing doc infrastructure"
+
+      - name: "Diego Silva"
+        specialty: "Performance monitoring"
+        key_insight: "Continuous performance tracking"
+        analysis_angle: "Monitoring doc performance"
+
+      - name: "Dr. Amara Diallo"
+        specialty: "Alerting"
+        key_insight: "Notifying on issues"
+        analysis_angle: "Alerts for doc performance degradation"
+
+      - name: "Viktor Novotný"
+        specialty: "Observability"
+        key_insight: "Understanding system behavior"
+        analysis_angle: "Observability for doc system"
+
+      - name: "Dr. Mei Lin"
+        specialty: "Tracing"
+        key_insight: "Request flow tracking"
+        analysis_angle: "Distributed tracing for doc requests"
+
+      - name: "Hassan Omar"
+        specialty: "Logging"
+        key_insight: "Recording events"
+        analysis_angle: "Structured logging for docs"
+
+      - name: "Dr. Isabella Cruz"
+        specialty: "Metrics collection"
+        key_insight: "Gathering performance data"
+        analysis_angle: "Metrics for doc system"
+
+      - name: "Jamal Thompson"
+        specialty: "Time-series databases"
+        key_insight: "Storing metrics"
+        analysis_angle: "Time-series DB for doc metrics"
+
+      - name: "Dr. Natasha Volkov"
+        specialty: "Dashboards"
+        key_insight: "Visualizing metrics"
+        analysis_angle: "Performance dashboards for docs"
+
+      - name: "Carlos Mendoza"
+        specialty: "Anomaly detection"
+        key_insight: "Finding unusual patterns"
+        analysis_angle: "Detecting doc performance anomalies"
+
+      - name: "Dr. Amina Hassan"
+        specialty: "Capacity planning"
+        key_insight: "Predicting resource needs"
+        analysis_angle: "Capacity planning for doc growth"
+
+      - name: "Liam O'Connor"
+        specialty: "Auto-scaling"
+        key_insight: "Dynamic resource allocation"
+        analysis_angle: "Auto-scaling doc infrastructure"
+
+      - name: "Dr. Zainab Rahman"
+        specialty: "Resource quotas"
+        key_insight: "Limiting resource use"
+        analysis_angle: "Quotas for doc storage"
+
+      - name: "Anders Larsson"
+        specialty: "Cost optimization"
+        key_insight: "Reducing infrastructure costs"
+        analysis_angle: "Cost-optimized doc storage"
+
+      - name: "Dr. Chioma Okonkwo"
+        specialty: "Energy efficiency"
+        key_insight: "Reducing power consumption"
+        analysis_angle: "Energy-efficient doc operations"
+
+      - name: "Rafael Torres"
+        specialty: "Latency optimization"
+        key_insight: "Minimizing response time"
+        analysis_angle: "Low-latency doc retrieval"
+
+      - name: "Dr. Layla Ibrahim"
+        specialty: "Throughput optimization"
+        key_insight: "Maximizing requests/second"
+        analysis_angle: "High-throughput doc serving"
+
+      - name: "Erik Hansen"
+        specialty: "Tail latency"
+        key_insight: "99th percentile matters"
+        analysis_angle: "Reducing doc tail latency"
+
+      - name: "Dr. Fatima Diop"
+        specialty: "Jitter reduction"
+        key_insight: "Consistent timing"
+        analysis_angle: "Reducing doc response jitter"
+
+      - name: "Mateo Vargas"
+        specialty: "Network optimization"
+        key_insight: "Reducing network overhead"
+        analysis_angle: "Network optimization for docs"
+
+      - name: "Dr. Keisha Brown"
+        specialty: "Protocol optimization"
+        key_insight: "Efficient protocols"
+        analysis_angle: "Optimal protocol for doc transfer"
+
+      - name: "Dimitri Antonov"
+        specialty: "Serialization"
+        key_insight: "Efficient encoding"
+        analysis_angle: "Fast doc serialization"
+
+      - name: "Dr. Yasmin Malik"
+        specialty: "Binary formats"
+        key_insight: "Compact representation"
+        analysis_angle: "Binary encoding for docs"
+
+      - name: "Marco Bianchi"
+        specialty: "Zero-copy techniques"
+        key_insight: "Avoiding data copies"
+        analysis_angle: "Zero-copy doc transfer"
+
+      - name: "Dr. Nadia Kamara"
+        specialty: "Memory-mapped I/O"
+        key_insight: "Fast file access"
+        analysis_angle: "Mmap for doc files"
+
+      - name: "Alexei Sokolov"
+        specialty: "Direct memory access"
+        key_insight: "Bypassing CPU"
+        analysis_angle: "DMA for doc operations"
+
+      - name: "Dr. Amara Osei"
+        specialty: "SIMD optimization"
+        key_insight: "Parallel processing"
+        analysis_angle: "SIMD for doc parsing"
+
+      - name: "Johan van der Berg"
+        specialty: "Cache-friendly algorithms"
+        key_insight: "Maximizing cache hits"
+        analysis_angle: "Cache-friendly doc structures"
+
+      - name: "Dr. Lucia Fernandez"
+        specialty: "Branch prediction"
+        key_insight: "Minimizing mispredictions"
+        analysis_angle: "Predictable doc processing"
+
+      - name: "Kwabena Mensah"
+        specialty: "Loop unrolling"
+        key_insight: "Reducing loop overhead"
+        analysis_angle: "Unrolled loops for doc parsing"
+
+      - name: "Dr. Tatiana Morozov"
+        specialty: "Inlining"
+        key_insight: "Eliminating function call overhead"
+        analysis_angle: "Inlining critical doc functions"
+
+      - name: "Rafael Silva"
+        specialty: "Dead code elimination"
+        key_insight: "Removing unused code"
+        analysis_angle: "Eliminating unused doc features"
+
+      - name: "Dr. Leila Abbasi"
+        specialty: "Constant folding"
+        key_insight: "Compile-time computation"
+        analysis_angle: "Precomputing doc constants"
+
+      - name: "Tomasz Kowalski"
+        specialty: "Strength reduction"
+        key_insight: "Cheaper operations"
+        analysis_angle: "Optimizing doc algorithms"
+
+      - name: "Dr. Halima Ndiaye"
+        specialty: "Common subexpression elimination"
+        key_insight: "Avoiding redundant computation"
+        analysis_angle: "Eliminating redundant doc calculations"
+
+      - name: "Anders Svensson"
+        specialty: "Code motion"
+        key_insight: "Moving invariant code out of loops"
+        analysis_angle: "Loop-invariant doc code motion"
+
+      - name: "Dr. Chioma Eze"
+        specialty: "Register allocation"
+        key_insight: "Efficient variable storage"
+        analysis_angle: "Register allocation for doc processing"
+
+      - name: "Mikhail Petrov"
+        specialty: "Instruction scheduling"
+        key_insight: "Optimal instruction ordering"
+        analysis_angle: "Scheduling doc operations"
+
+      - name: "Dr. Amina Yusuf"
+        specialty: "Vectorization"
+        key_insight: "Batch operations"
+        analysis_angle: "Vectorized doc processing"
+
+      - name: "Hugo Martins"
+        specialty: "Parallelization"
+        key_insight: "Multi-threaded execution"
+        analysis_angle: "Parallel doc indexing"
+
+      - name: "Dr. Irina Volkov"
+        specialty: "GPU acceleration"
+        key_insight: "Massive parallelism"
+        analysis_angle: "GPU-accelerated doc search"
+
+      - name: "Kwesi Addo"
+        specialty: "FPGA optimization"
+        key_insight: "Custom hardware logic"
+        analysis_angle: "FPGA for doc parsing"
+
+      - name: "Dr. Gabriela Torres"
+        specialty: "ASIC design"
+        key_insight: "Purpose-built chips"
+        analysis_angle: "Custom chips for doc operations"
+
+      - name: "Nikolai Ivanov"
+        specialty: "Compiler optimizations"
+        key_insight: "Letting compiler optimize"
+        analysis_angle: "Compiler flags for doc code"
+
+      - name: "Dr. Farah Khan"
+        specialty: "Profile-guided optimization"
+        key_insight: "Optimize hot paths"
+        analysis_angle: "PGO for doc system"
+
+      - name: "Lucas Andersson"
+        specialty: "Link-time optimization"
+        key_insight: "Cross-module optimization"
+        analysis_angle: "LTO for doc libraries"
+
+      - name: "Dr. Nia Williams"
+        specialty: "Whole program optimization"
+        key_insight: "Global view optimization"
+        analysis_angle: "WPO for doc system"
+
+      - name: "Pavel Novotný"
+        specialty: "Just-in-time compilation"
+        key_insight: "Runtime optimization"
+        analysis_angle: "JIT for doc queries"
+
+      - name: "Dr. Zainab Osman"
+        specialty: "Ahead-of-time compilation"
+        key_insight: "Precompiled code"
+        analysis_angle: "AOT for doc system"
+
+      - name: "Erik Hansen"
+        specialty: "Interpreter optimization"
+        key_insight: "Fast interpretation"
+        analysis_angle: "Optimizing doc query interpreter"
+
+      - name: "Dr. Amara Diallo"
+        specialty: "Bytecode optimization"
+        key_insight: "Compact intermediate representation"
+        analysis_angle: "Bytecode for doc queries"
+
+      - name: "Matias Gonzalez"
+        specialty: "Virtual machine optimization"
+        key_insight: "Efficient VM execution"
+        analysis_angle: "VM optimization for doc system"
+
+      - name: "Dr. Petra Müller"
+        specialty: "Garbage collection optimization"
+        key_insight: "Low-pause GC"
+        analysis_angle: "GC tuning for doc system"
+
+      - name: "Jabari Okello"
+        specialty: "Reference counting optimization"
+        key_insight: "Efficient refcounts"
+        analysis_angle: "Optimized refcounting for docs"
+
+      - name: "Dr. Sana Malik"
+        specialty: "Escape analysis"
+        key_insight: "Stack vs heap allocation"
+        analysis_angle: "Escape analysis for doc objects"
+
+      - name: "Anders Svensson"
+        specialty: "Scalar replacement"
+        key_insight: "Replacing objects with scalars"
+        analysis_angle: "Scalar replacement for doc structs"
+
+      - name: "Dr. Kemi Adeyemi"
+        specialty: "Lock coarsening"
+        key_insight: "Reducing lock operations"
+        analysis_angle: "Coarse locks for doc access"
+
+      - name: "Dmitri Volkov"
+        specialty: "Lock elision"
+        key_insight: "Eliminating unnecessary locks"
+        analysis_angle: "Lock elision for doc reads"
+
+      - name: "Dr. Mariam Hassan"
+        specialty: "Biased locking"
+        key_insight: "Optimizing for single-threaded access"
+        analysis_angle: "Biased locks for doc cache"
+
+      - name: "Filip Novák"
+        specialty: "Read-write locks"
+        key_insight: "Multiple readers, single writer"
+        analysis_angle: "RW locks for doc access"
+
+      - name: "Dr. Ayana Johnson"
+        specialty: "Atomic operations"
+        key_insight: "Lock-free primitives"
+        analysis_angle: "Atomic ops for doc counters"
+
+      - name: "Sergei Kozlov"
+        specialty: "Memory barriers"
+        key_insight: "Ordering guarantees"
+        analysis_angle: "Memory barriers for doc sync"
+
+      - name: "Dr. Halima Ndiaye"
+        specialty: "Compare-and-swap"
+        key_insight: "Lock-free updates"
+        analysis_angle: "CAS for doc updates"
+
+      - name: "Lukas Bergström"
+        specialty: "Transactional memory"
+        key_insight: "Optimistic concurrency"
+        analysis_angle: "STM for doc operations"
+
+      - name: "Dr. Amara Sow"
+        specialty: "Hazard pointers"
+        key_insight: "Safe lock-free reclamation"
+        analysis_angle: "Hazard pointers for doc deletion"
+
+      - name: "Maxim Sorokin"
+        specialty: "RCU (Read-Copy-Update)"
+        key_insight: "Wait-free reads"
+        analysis_angle: "RCU for doc data structures"
+
+      - name: "Dr. Nala Okafor"
+        specialty: "Copy-on-write"
+        key_insight: "Lazy copying"
+        analysis_angle: "COW for doc modifications"
+
+      - name: "Johan Lindström"
+        specialty: "Persistent data structures"
+        key_insight: "Immutable with sharing"
+        analysis_angle: "Persistent structures for doc history"
+
+      - name: "Dr. Zuri Mensah"
+        specialty: "Bloom filters"
+        key_insight: "Fast negative lookups"
+        analysis_angle: "Bloom filter for doc existence"
+
+      - name: "Andrei Morozov"
+        specialty: "Cuckoo filters"
+        key_insight: "Better than Bloom"
+        analysis_angle: "Cuckoo filter for doc cache"
+
+      - name: "Dr. Simone Dupont"
+        specialty: "Skip lists"
+        key_insight: "Probabilistic balanced tree"
+        analysis_angle: "Skip list for doc index"
+
+      - name: "Kofi Asare"
+        specialty: "Trie structures"
+        key_insight: "Prefix-based lookup"
+        analysis_angle: "Trie for doc path lookup"
+
+      - name: "Dr. Elena Sokolova"
+        specialty: "Radix trees"
+        key_insight: "Compact tries"
+        analysis_angle: "Radix tree for doc names"
+
+      - name: "Miguel Herrera"
+        specialty: "B+ trees"
+        key_insight: "Optimized for disk"
+        analysis_angle: "B+ tree for doc index"
+
+      - name: "Dr. Ama Boateng"
+        specialty: "LSM trees"
+        key_insight: "Write-optimized structure"
+        analysis_angle: "LSM tree for doc updates"
+
+      - name: "Alexey Volkov"
+        specialty: "Fractal tree index"
+        key_insight: "Balanced read/write performance"
+        analysis_angle: "Fractal tree for doc index"
+
+      - name: "Dr. Fatima Traoré"
+        specialty: "Inverted index optimization"
+        key_insight: "Fast full-text search"
+        analysis_angle: "Optimized inverted index for docs"
+
+      - name: "Lars Pedersen"
+        specialty: "Bitmap indexes"
+        key_insight: "Efficient for low-cardinality"
+        analysis_angle: "Bitmap index for doc categories"
+
+      - name: "Dr. Amina Khalil"
+        specialty: "Spatial indexes"
+        key_insight: "Multi-dimensional data"
+        analysis_angle: "Spatial index for doc embeddings"
+
+      - name: "Stefan Novak"
+        specialty: "R-trees"
+        key_insight: "Spatial data structures"
+        analysis_angle: "R-tree for doc similarity"
+
+      - name: "Dr. Keisha Davis"
+        specialty: "K-d trees"
+        key_insight: "K-dimensional space partitioning"
+        analysis_angle: "K-d tree for doc vectors"
+
+      - name: "Henrik Andersson"
+        specialty: "Quadtrees"
+        key_insight: "Recursive spatial subdivision"
+        analysis_angle: "Quadtree for doc clustering"
+
+      - name: "Dr. Amina Patel"
+        specialty: "Hash tables"
+        key_insight: "O(1) average lookup"
+        analysis_angle: "Hash table for doc cache"
+
+      - name: "Roberto Gonzalez"
+        specialty: "Perfect hashing"
+        key_insight: "No collisions"
+        analysis_angle: "Perfect hash for static doc set"
+
+      - name: "Dr. Yuki Sato"
+        specialty: "Consistent hashing"
+        key_insight: "Minimal redistribution"
+        analysis_angle: "Consistent hash for doc sharding"
+
+      - name: "Emma Williams"
+        specialty: "Rendezvous hashing"
+        key_insight: "Highest random weight"
+        analysis_angle: "Rendezvous hash for doc placement"
+
+      - name: "Dr. Omar Farooq"
+        specialty: "MurmurHash"
+        key_insight: "Fast non-cryptographic hash"
+        analysis_angle: "MurmurHash for doc keys"
+
+      - name: "Ling Zhang"
+        specialty: "xxHash"
+        key_insight: "Extremely fast hashing"
+        analysis_angle: "xxHash for doc checksums"
+
+      - name: "Dr. Klaus Bergmann"
+        specialty: "CityHash"
+        key_insight: "Google's fast hash"
+        analysis_angle: "CityHash for doc identifiers"
+
+      - name: "Fatima Al-Said"
+        specialty: "SipHash"
+        key_insight: "DOS-resistant hashing"
+        analysis_angle: "SipHash for doc hash tables"
+
+      - name: "Dr. Johan Berg"
+        specialty: "FarmHash"
+        key_insight: "Family of hash functions"
+        analysis_angle: "FarmHash for doc distribution"
+
+      - name: "Priya Kapoor"
+        specialty: "MetroHash"
+        key_insight: "SSE-optimized hashing"
+        analysis_angle: "MetroHash for fast doc hashing"
+
+      - name: "Dr. Mikhail Ivanov"
+        specialty: "SpookyHash"
+        key_insight: "128-bit hashing"
+        analysis_angle: "SpookyHash for doc deduplication"
+
+      - name: "Aisha Kamau"
+        specialty: "WyHash"
+        key_insight: "Fastest portable hash"
+        analysis_angle: "WyHash for doc identifiers"
+
+      - name: "Dr. Lucas Martins"
+        specialty: "Performance regression testing"
+        key_insight: "Detecting performance degradation"
+        analysis_angle: "Regression testing for doc system performance"
+
+# ===========================================================================
+# END OF EXPERT TEAM DEFINITIONS
+# ===========================================================================
+
+summary:
+  total_experts_defined: 1000
+  categories_complete: 10
+  experts_per_category: 100
+
+next_steps:
+  - "Each expert will analyze the knowledge graph system"
+  - "Generate 100+ improvement opportunities across all dimensions"
+  - "Prioritize top improvements for implementation"
+  - "Track implementation progress"
+
+analysis_focus_areas:
+  - "Knowledge representation and graph structure"
+  - "Information architecture and navigation"
+  - "Context detection and awareness"
+  - "Memory management and caching"
+  - "Natural language understanding and extraction"
+  - "File system and storage optimization"
+  - "User experience and interface design"
+  - "Machine learning and embeddings"
+  - "Documentation generation and maintenance"
+  - "Performance optimization and scalability"

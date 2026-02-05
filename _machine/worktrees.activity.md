@@ -790,3 +790,4 @@ Actions:
 - PR: #466
 - Outcome: Fixed chat message streaming to display word-by-word instead of all at once
 - ClickUp: https://app.clickup.com/t/869bx12w6
+2026-02-05T02:05:22Z | agent-005 | ALLOCATE | feature/869c1dmmq-post-details-platform-generation | client-manager + hazina | ClickUp #869c1dmmq: Post Details Page with Multi-Platform Generation

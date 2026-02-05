@@ -8,7 +8,7 @@ Seat states:
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-05T02:30:00Z | ✅ PR #469: Parent-child post structure + missing approval fields (Phase 1) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-05T02:50:00Z | ✅ PR #470: PostStateMachine service for status transitions (Phase 2) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-05T03:10:00Z | ✅ PR #471: Wizard creates parent posts + platform children (Phase 3) |
-| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-05T04:00:00Z | ✅ PR #472: ParentPostManager UI + Complete Facebook Fix (Phase 4) |
+| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | BUSY | client-manager + hazina | feature/869c1dmmq-post-details-platform-generation | 2026-02-05T14:15:00Z | 🚧 ClickUp #869c1dmmq: Post Details Page with Multi-Platform Generation |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-04T17:15:00Z | ✅ PR #461: Token Balance and Subscription page |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-02-04T23:15:00Z | ✅ PR #464: Tag display + popup modals for category/hook selection |
 | agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | - | - | 2026-02-04T13:25:00Z | ✅ PR #457: Fix first message no response (pendingMessageSentRef timing) |

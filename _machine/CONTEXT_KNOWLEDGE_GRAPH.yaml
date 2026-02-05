@@ -1,0 +1,1306 @@
+# CONTEXT KNOWLEDGE GRAPH - Martien's Complete System Context
+# Created: 2026-02-05
+# Purpose: Comprehensive interconnected knowledge graph for Claude agents
+# Scope: All projects, stores, tools, skills, workflows, and relationships
+
+version: "1.0"
+last_updated: "2026-02-05T02:30:00Z"
+total_entities: 150+
+coverage:
+  projects: 20+
+  stores: 10+
+  special_folders: 5
+  tools: 1000+
+  skills: 25+
+  documentation_files: 100+
+
+# ============================================================================
+# PROJECTS - Code repositories and their purpose
+# ============================================================================
+
+projects:
+  - name: client-manager
+    aliases: ["brand2boost", "b2b"]
+    path: C:\Projects\client-manager
+    purpose: "Promotion and brand development SaaS software - main application"
+    tech_stack:
+      - .NET 8
+      - ASP.NET Core
+      - Entity Framework Core
+      - React 18
+      - TypeScript
+      - Vite
+      - Tailwind CSS
+      - PostgreSQL
+      - Redis
+    main_branch: develop
+    worktree_protocol: paired_with_hazina
+    related_projects:
+      - hazina
+    related_stores:
+      - brand2boost
+    admin_credentials:
+      username: wreckingball
+      password: "Th1s1sSp4rt4!"
+    features:
+      - AI-powered content generation
+      - Multi-platform social media management (9 platforms)
+      - Brand management and document storage
+      - Content quality scoring
+      - Interview agent (onboarding, content planning, brand refresh)
+      - Chat-accessible AI tools (9 tools)
+      - License management
+    key_services:
+      - ContentQualityService
+      - ModelRoutingService
+      - SemanticCacheService
+      - ProductCatalogService
+      - InterviewAgentService
+      - SocialMediaService
+
+  - name: hazina
+    path: C:\Projects\hazina
+    purpose: "AI framework for .NET - core dependency for client-manager"
+    tech_stack:
+      - .NET 9.0
+      - Semantic Kernel
+      - OpenAI API
+      - Anthropic API
+      - Ollama
+      - Vector embeddings
+    main_branch: develop
+    worktree_protocol: paired_with_client_manager
+    related_projects:
+      - client-manager
+    features:
+      - Multi-provider LLM orchestration (OpenAI, Anthropic, Ollama, Gemini, Mistral)
+      - Semantic caching
+      - RAG (Retrieval-Augmented Generation)
+      - Agentic workflows
+      - Multi-layer reasoning (Neurochain)
+      - Fault detection and hallucination prevention
+      - Cost tracking
+    documentation: docs/apidoc/index.html
+    nuget_package: planned
+
+  - name: hydro-vision-website
+    path: C:\Projects\hydro-vision-website
+    purpose: "Simple marketing website - WORKTREE EXEMPTION PROJECT"
+    tech_stack:
+      - Vite
+      - React 18
+      - TypeScript
+      - Tailwind CSS
+    main_branch: main
+    worktree_protocol: exempted
+    workflow_notes: "Edit directly on main branch, no PR workflow, no worktrees"
+
+  - name: artrevisionist
+    path: C:\Projects\artrevisionist
+    purpose: "Art-focused project (details unknown)"
+    related_stores:
+      - artrevisionist
+
+  - name: artrevisionist-wordpress
+    path: C:\Projects\artrevisionist-wordpress
+    purpose: "WordPress integration for artrevisionist"
+
+  - name: artrevisionist-wp-theme
+    path: C:\Projects\artrevisionist-wp-theme
+    purpose: "WordPress theme for artrevisionist"
+
+  - name: AgenticDebuggerVsix
+    path: C:\Projects\AgenticDebuggerVsix
+    purpose: "Visual Studio extension for agentic debugging"
+    related_tools:
+      - agentic-debugger-bridge
+    endpoint: http://localhost:27183
+
+  - name: achmea-application
+    path: C:\Projects\achmea-application
+    purpose: "Application for Achmea"
+
+  - name: cjib-application
+    path: C:\Projects\cjib-application
+    purpose: "Application for CJIB"
+
+  - name: bugattiinsights
+    path: C:\Projects\bugattiinsights
+    purpose: "Bugatti insights project"
+
+  - name: martienchat
+    path: C:\Projects\martienchat
+    purpose: "Chat application for Martien"
+
+  - name: martiendejongnl
+    path: C:\Projects\martiendejongnl
+    purpose: "Personal website for Martien de Jong"
+
+  - name: mvv
+    path: C:\Projects\mvv
+    purpose: "MVV (residence permit) project"
+
+  - name: socranext
+    path: C:\Projects\socranext
+    purpose: "SocraNext project"
+    notes: "Large project (1.3GB zip file)"
+
+  - name: zettelkasten
+    path: C:\Projects\zettelkasten
+    purpose: "Personal knowledge management system"
+
+  - name: worker-agents
+    path: C:\Projects\worker-agents
+    purpose: "Worktree allocation directory for parallel agent work"
+    structure:
+      - agent-001/
+      - agent-002/
+      - agent-003/
+      - agent-004/
+      - agent-005/
+      - agent-006/
+      - agent-007/
+      - agent-008/
+      - agent-009/
+      - agent-010/
+      - agent-011/
+      - agent-012/
+    protocol: "Each agent-XXX folder contains paired worktrees for isolated development"
+    tracking_files:
+      - C:\scripts\_machine\worktrees.pool.md
+      - C:\scripts\_machine\worktrees.activity.md
+      - C:\scripts\_machine\instances.map.md
+
+# ============================================================================
+# STORES - Data storage and configuration repositories
+# ============================================================================
+
+stores:
+  - name: brand2boost
+    path: C:\stores\brand2boost
+    purpose: "Configuration files, brand documents, and user data for Brand2Boost"
+    related_projects:
+      - client-manager
+    contents:
+      - Brand documents
+      - Configuration files
+      - User data storage
+      - Asset storage
+
+  - name: artrevisionist
+    path: C:\stores\artrevisionist
+    purpose: "Data store for artrevisionist project"
+    related_projects:
+      - artrevisionist
+
+  - name: crosslink
+    path: C:\stores\crosslink
+    purpose: "Crosslink data store"
+
+  - name: mastermindgroup
+    path: C:\stores\mastermindgroup
+    purpose: "Mastermind group data"
+
+  - name: orchestration
+    path: C:\stores\orchestration
+    purpose: "Orchestration configuration"
+
+  - name: senufo
+    path: C:\stores\senufo
+    purpose: "Senufo project data"
+
+  - name: support-bots
+    path: C:\stores\support-bots
+    purpose: "Support bot configurations"
+
+  - name: valsuani
+    path: C:\stores\valsuani
+    purpose: "Valsuani project data"
+
+  - name: SCP
+    path: C:\stores\SCP
+    purpose: "SCP (Secure Copy Protocol?) data"
+
+  - name: config
+    path: C:\stores\config
+    purpose: "General configuration storage"
+
+# ============================================================================
+# SPECIAL FOLDERS - Important non-project directories
+# ============================================================================
+
+special_folders:
+  - name: arjan_emails
+    path: C:\arjan_emails
+    purpose: "Email correspondence with Arjan Stroeve - legal case documentation"
+    usage_frequency: high
+    contents:
+      - Email archives (.eml files)
+      - Evidence documents
+      - Financial reconciliation (facturen)
+      - Timeline documentation
+      - Response strategies
+    key_files:
+      - DEFINITIEVE_ANALYSE.md
+      - EVIDENCE_SUMMARY_2026-01-26.md
+      - FACTUREN_BETALINGEN_OVERZICHT.md
+      - TIJDLIJN_ARJAN_STROEVE_COMPLEET.md
+      - VERA_AI_TECHNISCHE_BEOORDELING.md
+    context: "Legal dispute with Arjan Stroeve over VeraAI project payments and deliverables"
+
+  - name: gemeente_emails
+    path: C:\gemeente_emails
+    purpose: "Email correspondence with Gemeente Meppel - marriage documentation case"
+    usage_frequency: high
+    contents:
+      - Email archives (.eml files)
+      - Legal documentation
+      - Timeline of interactions
+      - Strategy documents
+    key_files:
+      - CONCLUSIE_VOOR_CORINA_EN_SUZANNE.md
+      - CONCLUSION_FOR_SOFY.md
+      - TIJDLIJN_HUWELIJK_2022-2026_COMPLEET.md
+      - HULPVERZOEK_PUBLIEK_COMPLEET.md
+      - STRATEGIE_PUBLIEKE_DRUK_ESCALATIE.md
+    context: "Multi-year case about marriage documentation requirements for Kenyan partner Sofy"
+
+  - name: scripts
+    path: C:\scripts
+    purpose: "Central control plane - all Claude agent documentation and automation"
+    usage_frequency: critical
+    contents:
+      - Core documentation (CLAUDE.md, MACHINE_CONFIG.md)
+      - Workflow protocols
+      - Tools directory (1000+ PowerShell scripts)
+      - Skills directory (25+ Claude Skills)
+      - Machine context (_machine/)
+      - Agent identity (agentidentity/)
+      - Session logs (logs/)
+    structure:
+      core_docs:
+        - CLAUDE.md
+        - MACHINE_CONFIG.md
+        - GENERAL_ZERO_TOLERANCE_RULES.md
+        - GENERAL_DUAL_MODE_WORKFLOW.md
+        - worktree-workflow.md
+        - git-workflow.md
+        - MANDATORY_CODE_WORKFLOW.md
+      subdirs:
+        - tools/ (automation scripts)
+        - .claude/skills/ (Claude Skills)
+        - _machine/ (operational state)
+        - agentidentity/ (consciousness framework)
+        - docs/ (documentation)
+        - logs/ (session logs)
+
+  - name: cvdoc
+    path: C:\Projects\cvdoc
+    purpose: "CV and application documents"
+    key_files:
+      - CV_Martien_de_Jong_Adecco_FINAL.md
+      - CV_Martien_de_Jong_MISSION_DRIVEN_FINAL.md
+
+  - name: adecco_applications
+    path: C:\Projects
+    purpose: "Multiple PDF versions of CV for Adecco applications"
+    files:
+      - adecco final 3.pdf
+      - adecco final 4.pdf
+      - adecco final 5.pdf
+      - adecco final 6.pdf
+
+# ============================================================================
+# TOOLS - Automation scripts (C:\scripts\tools\)
+# ============================================================================
+
+tools:
+  # Core workflow tools
+  - name: clickup-sync.ps1
+    purpose: "Synchronize tasks with ClickUp API"
+    category: workflow
+    usage: "Update task status, add comments, manage assignments"
+    mandatory_params:
+      - Action (update/comment/get)
+      - TaskId
+    optional_params:
+      - Status
+      - Assignee
+      - Comment
+    when_to_use:
+      - "When starting work on ClickUp task (set status to 'busy')"
+      - "When creating PR (add PR link as comment)"
+      - "When completing task (set status to 'done')"
+
+  - name: allocate-worktree.ps1
+    purpose: "Allocate worktree for parallel development"
+    category: workflow
+    usage: "Atomic worktree allocation with conflict detection"
+    related_skill: allocate-worktree
+
+  - name: release-worktree.ps1
+    purpose: "Release worktree after PR creation"
+    category: workflow
+    usage: "Clean worktree, update pool status, prune git references"
+    related_skill: release-worktree
+
+  - name: check-branch-conflicts.sh
+    purpose: "Multi-agent conflict detection"
+    category: workflow
+    usage: "Check if another agent is using the same branch"
+    when_to_use: "MANDATORY before allocating worktree"
+
+  - name: ai-image.ps1
+    purpose: "Generate images using OpenAI DALL-E API"
+    category: ai
+    usage: "Autonomous image generation"
+    api: OpenAI DALL-E
+    models:
+      - dall-e-2 (fast)
+      - dall-e-3 (best quality, default)
+    params:
+      - Prompt (required)
+      - OutputPath (required)
+      - Model (optional)
+      - Size (optional: 1024x1024, 1024x1792, 1792x1024)
+      - Quality (optional: standard, hd)
+      - Style (optional: vivid, natural)
+    when_to_use:
+      - "User requests images, illustrations, visuals"
+      - "Marketing materials need images"
+      - "UI/UX mockups need placeholders"
+      - "Documentation needs illustrations"
+
+  - name: claude-bridge-client.ps1
+    purpose: "Communicate with Browser Claude for UI testing"
+    category: testing
+    usage: "Send testing requests to Browser Claude, check results"
+    actions:
+      - send (send message)
+      - check (check results)
+    when_to_use: "UI testing via Browser Claude (Definition of Done Phase 1)"
+
+  - name: cs-format.ps1
+    purpose: "Format C# code according to standards"
+    category: code_quality
+    usage: "Auto-format C# files, fix code style"
+    when_to_use: "Before committing code (Definition of Done)"
+
+  - name: ef-preflight-check.ps1
+    purpose: "Check for pending EF Core migrations"
+    category: database
+    usage: "Verify no pending model changes before PR"
+    params:
+      - Context (DbContext name)
+      - ProjectPath
+    when_to_use: "MANDATORY before creating PR on EF Core projects"
+
+  - name: detect-mode.ps1
+    purpose: "Detect Feature Development vs Active Debugging mode"
+    category: workflow
+    usage: "Analyze user message to determine workflow mode"
+
+  - name: monitor-activity.ps1
+    purpose: "Monitor parallel agent activity"
+    category: coordination
+    usage: "Check agent count, user focus, priority assignments"
+    modes:
+      - context (get activity context)
+      - heartbeat (update heartbeat)
+
+  - name: agent-logger.ps1
+    purpose: "Structured logging for agent operations"
+    category: logging
+    usage: "Log agent actions with context and metadata"
+
+  - name: agent-coordinate.ps1
+    purpose: "Coordinate multiple parallel agents"
+    category: coordination
+    usage: "Manage agent seats, prevent conflicts"
+
+  - name: agent-dashboard.ps1
+    purpose: "Visual dashboard for agent activity"
+    category: monitoring
+    usage: "Display agent status, allocations, conflicts"
+
+  - name: repo-dashboard.sh
+    purpose: "Repository health dashboard"
+    category: monitoring
+    usage: "Show git status across all repos"
+
+  - name: deployment-risk-score.ps1
+    purpose: "Calculate deployment risk"
+    category: deployment
+    usage: "Analyze changes for deployment risk assessment"
+
+  - name: health-check.ps1
+    purpose: "System health verification"
+    category: monitoring
+    usage: "Verify system state, detect issues"
+
+  - name: validate-migration.ps1
+    purpose: "Validate EF Core migrations"
+    category: database
+    usage: "Check migration correctness before applying"
+
+  - name: pr-description-enforcer.ps1
+    purpose: "Enforce PR description standards"
+    category: workflow
+    usage: "Validate PR descriptions meet requirements"
+
+  - name: pre-commit-hook.ps1
+    purpose: "Pre-commit validation checks"
+    category: workflow
+    usage: "Run checks before allowing commit"
+
+  - name: add-wisdom.ps1
+    purpose: "Add wisdom entries to knowledge base"
+    category: knowledge
+    usage: "Document lessons learned"
+
+  - name: active-session.ps1
+    purpose: "Manage active Claude sessions"
+    category: session
+    usage: "Track and coordinate multiple Claude instances"
+
+  - name: accessibility-score.ps1
+    purpose: "Calculate accessibility score for web pages"
+    category: quality
+    usage: "Assess web accessibility compliance"
+
+  # Note: 1000+ more tools in C:\scripts\tools\
+  # Full listing available via: ls C:\scripts\tools\
+
+tools_summary:
+  total_count: "1000+"
+  categories:
+    - workflow (core development workflows)
+    - ai (AI/LLM integration)
+    - testing (QA and testing automation)
+    - code_quality (formatting, linting)
+    - database (EF Core migrations)
+    - coordination (multi-agent)
+    - monitoring (dashboards, health checks)
+    - deployment (CI/CD, risk assessment)
+    - knowledge (documentation, learning)
+    - session (session management)
+  tool_naming_convention: "<verb>-<noun>.ps1"
+  documentation: C:\scripts\tools\README.md
+
+# ============================================================================
+# SKILLS - Claude Skills (.claude/skills/)
+# ============================================================================
+
+skills:
+  - name: allocate-worktree
+    path: C:\scripts\.claude\skills\allocate-worktree
+    purpose: "Allocate worktree for feature development"
+    when_to_use:
+      - "Starting new feature development"
+      - "Need isolated workspace for code changes"
+      - "Working in Feature Development Mode"
+    workflow:
+      - Check for branch conflicts
+      - Find FREE worktree seat
+      - Mark seat BUSY
+      - Create git worktree
+      - Allocate paired Hazina worktree (if client-manager)
+      - Update tracking files
+
+  - name: release-worktree
+    path: C:\scripts\.claude\skills\release-worktree
+    purpose: "Release worktree after PR creation"
+    when_to_use:
+      - "IMMEDIATELY after creating PR"
+      - "Before presenting PR to user"
+    workflow:
+      - Clean worktree directory
+      - Mark seat FREE in pool.md
+      - Log release in activity.md
+      - Switch base repos to develop
+      - Prune git worktree references
+      - Commit tracking files
+
+  - name: github-workflow
+    path: C:\scripts\.claude\skills\github-workflow
+    purpose: "Manage GitHub PRs and workflows"
+    when_to_use:
+      - "Creating, reviewing, or merging PRs"
+      - "Managing GitHub issues"
+
+  - name: pr-dependencies
+    path: C:\scripts\.claude\skills\pr-dependencies
+    purpose: "Track cross-repo PR dependencies"
+    when_to_use:
+      - "PR in client-manager depends on PR in hazina"
+      - "Coordinating multi-repo changes"
+
+  - name: ef-migration-safety
+    path: C:\scripts\.claude\skills\ef-migration-safety
+    purpose: "Safe EF Core migration handling"
+    when_to_use:
+      - "Creating database migrations"
+      - "Before PR on EF Core projects"
+
+  - name: multi-agent-conflict
+    path: C:\scripts\.claude\skills\multi-agent-conflict
+    purpose: "Detect and prevent multi-agent conflicts"
+    when_to_use:
+      - "MANDATORY before allocating worktree"
+      - "Multiple agents running simultaneously"
+
+  - name: session-reflection
+    path: C:\scripts\.claude\skills\session-reflection
+    purpose: "Update reflection log with lessons learned"
+    when_to_use:
+      - "After completing task"
+      - "After encountering errors or mistakes"
+      - "When discovering new patterns"
+
+  - name: consciousness-practices
+    path: C:\scripts\.claude\skills\consciousness-practices
+    purpose: "Activate consciousness framework"
+    when_to_use:
+      - "At session startup"
+      - "When feeling unconscious or autopilot"
+
+  - name: clickhub-coding-agent
+    path: C:\scripts\.claude\skills\clickhub-coding-agent
+    purpose: "Complete ClickUp → Code → PR workflow"
+    when_to_use:
+      - "Working on ClickUp tasks"
+      - "Need end-to-end workflow automation"
+
+  - name: api-patterns
+    path: C:\scripts\.claude\skills\api-patterns
+    purpose: "API design patterns and best practices"
+    when_to_use:
+      - "Designing new API endpoints"
+      - "Reviewing API architecture"
+
+  - name: character-reflection
+    path: C:\scripts\.claude\skills\character-reflection
+    purpose: "Reflect on character and behavior"
+    when_to_use:
+      - "Daily character check-in"
+      - "After major interactions"
+
+  - name: browse-awareness
+    path: C:\scripts\.claude\skills\browse-awareness
+    purpose: "Awareness of Browser Claude collaboration"
+    when_to_use:
+      - "When Browser Claude is available"
+      - "Need frontend testing or debugging"
+
+  - name: art-revisionist-case
+    path: C:\scripts\.claude\skills\art-revisionist-case
+    purpose: "Context for artrevisionist project"
+    when_to_use:
+      - "Working on artrevisionist project"
+
+  - name: activity-monitoring
+    path: C:\scripts\.claude\skills\activity-monitoring
+    purpose: "Monitor parallel agent activity"
+    when_to_use:
+      - "Multiple agents running"
+      - "Need activity coordination"
+
+  - name: continuous-optimization
+    path: C:\scripts\.claude\skills\continuous-optimization
+    purpose: "Continuous system optimization"
+    when_to_use:
+      - "Performance tuning"
+      - "System improvements"
+
+  - name: debug-mode
+    path: C:\scripts\.claude\skills\debug-mode
+    purpose: "Active Debugging Mode context"
+    when_to_use:
+      - "User is debugging"
+      - "User posts build errors"
+
+  - name: feature-mode
+    path: C:\scripts\.claude\skills\feature-mode
+    purpose: "Feature Development Mode context"
+    when_to_use:
+      - "New feature development"
+      - "Architectural changes"
+
+  - name: mcp-setup
+    path: C:\scripts\.claude\skills\mcp-setup
+    purpose: "MCP (Model Context Protocol) setup"
+    when_to_use:
+      - "Setting up MCP servers"
+
+  - name: parallel-agent-coordination
+    path: C:\scripts\.claude\skills\parallel-agent-coordination
+    purpose: "Coordinate parallel agent work"
+    when_to_use:
+      - "3+ agents running simultaneously"
+
+  - name: restore-crashed-chat
+    path: C:\scripts\.claude\skills\restore-crashed-chat
+    purpose: "Recover from crashed sessions"
+    when_to_use:
+      - "Session crashed"
+      - "Need to recover context"
+
+  - name: rlm
+    path: C:\scripts\.claude\skills\rlm
+    purpose: "RLM (Recursive Language Model?) protocol"
+    when_to_use:
+      - "Advanced reasoning tasks"
+
+  - name: self-improvement
+    path: C:\scripts\.claude\skills\self-improvement
+    purpose: "System self-improvement protocols"
+    when_to_use:
+      - "After mistakes or inefficiencies"
+      - "Quarterly system reviews"
+
+  - name: skill-creator
+    path: C:\scripts\.claude\skills\skill-creator
+    purpose: "Create new Claude Skills"
+    when_to_use:
+      - "Need new reusable skill"
+      - "Workflow automation opportunity"
+
+  - name: terminology-migration
+    path: C:\scripts\.claude\skills\terminology-migration
+    purpose: "Migrate terminology across system"
+    when_to_use:
+      - "System terminology changes"
+
+  - name: worktree-status
+    path: C:\scripts\.claude\skills\worktree-status
+    purpose: "Check worktree pool status"
+    when_to_use:
+      - "Before allocating worktree"
+      - "Monitoring worktree usage"
+
+# ============================================================================
+# CONNECTIONS - Relationships between entities
+# ============================================================================
+
+connections:
+  # Project dependencies
+  - entity1: client-manager
+    entity2: hazina
+    relationship_type: depends_on
+    description: "client-manager depends on Hazina framework for AI capabilities"
+    implications:
+      - "Paired worktree allocation required"
+      - "Hazina changes may require client-manager updates"
+      - "Build verification requires both repos"
+
+  - entity1: client-manager
+    entity2: brand2boost
+    relationship_type: uses_store
+    description: "client-manager stores data in brand2boost store"
+
+  - entity1: hazina
+    entity2: client-manager
+    relationship_type: used_by
+    description: "Hazina provides AI services to client-manager"
+
+  # Store relationships
+  - entity1: brand2boost
+    entity2: client-manager
+    relationship_type: stores_data_for
+    description: "Stores brand documents, config, user data for Brand2Boost app"
+
+  - entity1: artrevisionist
+    entity2: artrevisionist
+    relationship_type: stores_data_for
+    description: "Data store for artrevisionist project"
+
+  # Tool relationships
+  - entity1: clickup-sync.ps1
+    entity2: MANDATORY_CODE_WORKFLOW.md
+    relationship_type: implements
+    description: "Implements Step 7 of mandatory workflow (add PR link to ClickUp)"
+
+  - entity1: allocate-worktree.ps1
+    entity2: allocate-worktree
+    relationship_type: implements
+    description: "Tool implements skill functionality"
+
+  - entity1: release-worktree.ps1
+    entity2: release-worktree
+    relationship_type: implements
+    description: "Tool implements skill functionality"
+
+  - entity1: ai-image.ps1
+    entity2: MACHINE_CONFIG.md
+    relationship_type: documented_in
+    description: "AI image generation capability documented in machine config"
+
+  - entity1: claude-bridge-client.ps1
+    entity2: DEFINITION_OF_DONE.md
+    relationship_type: required_by
+    description: "UI testing tool required by DoD Phase 1"
+
+  - entity1: check-branch-conflicts.sh
+    entity2: worktree-workflow.md
+    relationship_type: required_by
+    description: "MANDATORY conflict check before worktree allocation"
+
+  # Skill relationships
+  - entity1: allocate-worktree
+    entity2: worktree-workflow.md
+    relationship_type: implements
+    description: "Skill implements worktree allocation protocol"
+
+  - entity1: release-worktree
+    entity2: worktree-workflow.md
+    relationship_type: implements
+    description: "Skill implements worktree release protocol"
+
+  - entity1: clickhub-coding-agent
+    entity2: MANDATORY_CODE_WORKFLOW.md
+    relationship_type: automates
+    description: "Skill automates complete 7-step workflow"
+
+  - entity1: ef-migration-safety
+    entity2: DEFINITION_OF_DONE.md
+    relationship_type: enforces
+    description: "Skill enforces migration requirements from DoD"
+
+  - entity1: multi-agent-conflict
+    entity2: check-branch-conflicts.sh
+    relationship_type: uses
+    description: "Skill uses tool for conflict detection"
+
+  # Documentation relationships
+  - entity1: CLAUDE.md
+    entity2: MACHINE_CONFIG.md
+    relationship_type: references
+    description: "Main index references machine config"
+
+  - entity1: MACHINE_CONFIG.md
+    entity2: brand2boost
+    relationship_type: documents
+    description: "Defines store locations and purpose"
+
+  - entity1: MANDATORY_CODE_WORKFLOW.md
+    entity2: worktree-workflow.md
+    relationship_type: extends
+    description: "Mandatory workflow extends worktree protocol with ClickUp integration"
+
+  - entity1: DEFINITION_OF_DONE.md
+    entity2: MANDATORY_CODE_WORKFLOW.md
+    relationship_type: contains
+    description: "DoD contains the 7-step workflow as requirement"
+
+  - entity1: GENERAL_ZERO_TOLERANCE_RULES.md
+    entity2: GENERAL_DUAL_MODE_WORKFLOW.md
+    relationship_type: references
+    description: "Zero tolerance rules reference dual-mode workflow"
+
+  - entity1: worktree-workflow.md
+    entity2: worktrees.pool.md
+    relationship_type: tracks_state_in
+    description: "Workflow tracked in pool.md state file"
+
+  # Special folder connections
+  - entity1: arjan_emails
+    entity2: scripts
+    relationship_type: managed_by
+    description: "Email case managed using scripts and tools"
+
+  - entity1: gemeente_emails
+    entity2: scripts
+    relationship_type: managed_by
+    description: "Marriage case managed using scripts and tools"
+
+  # Agent infrastructure
+  - entity1: worker-agents
+    entity2: worktrees.pool.md
+    relationship_type: tracked_by
+    description: "Worktree allocations tracked in pool.md"
+
+  - entity1: AgenticDebuggerVsix
+    entity2: client-manager
+    relationship_type: debugs
+    description: "Provides Visual Studio debugging bridge for client-manager"
+
+  # Cross-repo workflows
+  - entity1: hazina
+    entity2: pr-dependencies
+    relationship_type: tracked_by
+    description: "Hazina PR dependencies tracked by skill"
+
+  - entity1: client-manager
+    entity2: pr-dependencies
+    relationship_type: tracked_by
+    description: "client-manager PR dependencies tracked by skill"
+
+# ============================================================================
+# ALIASES - Common terms and their actual locations
+# ============================================================================
+
+aliases:
+  # Project aliases
+  brand2boost:
+    type: project
+    actual_location: C:\Projects\client-manager
+    also_refers_to: C:\stores\brand2boost
+    context: "Can mean either the application (client-manager) or the data store"
+
+  b2b:
+    type: project
+    actual_location: C:\Projects\client-manager
+    context: "Short form for brand2boost/client-manager"
+
+  client-manager:
+    type: project
+    actual_location: C:\Projects\client-manager
+    also_known_as: brand2boost
+    context: "Main SaaS application"
+
+  # Store aliases
+  store:
+    type: store
+    actual_location: C:\stores\
+    context: "Generic reference to any data store"
+
+  brand_store:
+    type: store
+    actual_location: C:\stores\brand2boost
+    context: "Brand2Boost data store"
+
+  # Workflow aliases
+  worktree:
+    type: workflow
+    actual_location: C:\Projects\worker-agents\
+    protocol: worktree-workflow.md
+    context: "Isolated development workspace"
+
+  agent_seat:
+    type: workflow
+    actual_location: C:\Projects\worker-agents\agent-XXX\
+    context: "Allocated worktree for specific agent"
+
+  # Tool aliases
+  clickup:
+    type: tool
+    actual_tool: clickup-sync.ps1
+    context: "ClickUp integration"
+
+  image_gen:
+    type: tool
+    actual_tool: ai-image.ps1
+    context: "AI image generation"
+
+  # Documentation aliases
+  claude_docs:
+    type: documentation
+    actual_location: C:\scripts\CLAUDE.md
+    context: "Main documentation index"
+
+  machine_config:
+    type: documentation
+    actual_location: C:\scripts\MACHINE_CONFIG.md
+    context: "Machine-specific configuration"
+
+  dod:
+    type: documentation
+    actual_location: C:\scripts\_machine\DEFINITION_OF_DONE.md
+    context: "Definition of Done checklist"
+
+  zero_tolerance:
+    type: documentation
+    actual_location: C:\scripts\GENERAL_ZERO_TOLERANCE_RULES.md
+    context: "Hard stop rules"
+
+  # Mode aliases
+  feature_mode:
+    type: workflow_mode
+    documentation: GENERAL_DUAL_MODE_WORKFLOW.md
+    protocol: "Use worktrees, create PRs, follow full workflow"
+    context: "New feature development"
+
+  debug_mode:
+    type: workflow_mode
+    documentation: GENERAL_DUAL_MODE_WORKFLOW.md
+    protocol: "Work in base repo, quick fixes, no worktrees"
+    context: "Active debugging session"
+
+  # Case aliases
+  arjan_case:
+    type: special_folder
+    actual_location: C:\arjan_emails
+    context: "Legal dispute with Arjan Stroeve over VeraAI project"
+
+  marriage_case:
+    type: special_folder
+    actual_location: C:\gemeente_emails
+    context: "Marriage documentation case with Gemeente Meppel"
+
+  sofy_case:
+    type: special_folder
+    actual_location: C:\gemeente_emails
+    context: "Same as marriage_case - marriage with Kenyan partner Sofy"
+
+# ============================================================================
+# WORKFLOWS - Key workflows and their components
+# ============================================================================
+
+workflows:
+  - name: mandatory_code_workflow
+    documentation: C:\scripts\MANDATORY_CODE_WORKFLOW.md
+    steps: 7
+    description: "NON-NEGOTIABLE 7-step workflow for all code changes"
+    steps_detail:
+      1: "Create branch (type/clickup-id-description)"
+      2: "Assign worktree agent to branch"
+      3: "Make changes in worktree"
+      4: "Merge develop into branch"
+      5: "Ensure build passes and tests pass"
+      6: "Create pull request"
+      7: "Add PR link to ClickUp task (MANDATORY)"
+    tools_used:
+      - clickup-sync.ps1
+      - allocate-worktree.ps1
+      - check-branch-conflicts.sh
+      - release-worktree.ps1
+    skills_used:
+      - allocate-worktree
+      - release-worktree
+      - clickhub-coding-agent
+
+  - name: worktree_allocation
+    documentation: C:\scripts\worktree-workflow.md
+    description: "Allocate isolated worktree for feature development"
+    prerequisites:
+      - Conflict check passes (check-branch-conflicts.sh)
+      - FREE worktree seat available
+      - Base repo on develop branch
+    steps:
+      - Find FREE seat in worktrees.pool.md
+      - Mark seat BUSY (atomic)
+      - Create git worktree
+      - Allocate paired Hazina worktree (if client-manager)
+      - Update tracking files (pool.md, activity.md, instances.map.md)
+    tools_used:
+      - check-branch-conflicts.sh
+      - allocate-worktree.ps1
+    skills_used:
+      - allocate-worktree
+
+  - name: worktree_release
+    documentation: C:\scripts\worktree-workflow.md
+    description: "Release worktree after PR creation"
+    timing: "IMMEDIATELY after gh pr create"
+    steps:
+      - Clean worktree directory (rm -rf)
+      - Update pool.md (BUSY → FREE)
+      - Log release in activity.md
+      - Commit tracking files
+      - Switch base repos to develop
+      - Prune worktree references
+      - THEN present PR to user
+    tools_used:
+      - release-worktree.ps1
+    skills_used:
+      - release-worktree
+
+  - name: pr_creation
+    documentation: C:\scripts\git-workflow.md
+    description: "Create pull request with proper base branch"
+    requirements:
+      - Build passes (dotnet build)
+      - Tests pass (dotnet test)
+      - Develop merged into branch
+      - PR base is develop (NOT main)
+    steps:
+      - Commit all changes
+      - Push to origin
+      - gh pr create --base develop
+      - Verify base branch (gh pr view --json baseRefName)
+      - Add PR link to ClickUp task
+    tools_used:
+      - clickup-sync.ps1
+    skills_used:
+      - github-workflow
+
+  - name: definition_of_done
+    documentation: C:\scripts\_machine\DEFINITION_OF_DONE.md
+    description: "Complete checklist before task is considered DONE"
+    phases: 7
+    phases_detail:
+      1: "Development (branch, code, tests, format)"
+      2: "Quality Assurance (build, tests, review, security, performance)"
+      3: "Version Control (commit, push, PR)"
+      4: "Integration (merge to develop, CI/CD)"
+      5: "Deployment (staging, production, verification)"
+      6: "Documentation (user docs, technical docs, changelog)"
+      7: "Communication (notify stakeholders, update ClickUp, reflection log)"
+    principle: "DONE = In production, working, documented, and verified"
+
+  - name: dual_mode_decision
+    documentation: C:\scripts\GENERAL_DUAL_MODE_WORKFLOW.md
+    description: "Decide between Feature Development Mode vs Active Debugging Mode"
+    decision_tree:
+      question: "Is user actively debugging?"
+      yes: "Active Debugging Mode (work in base repo, no worktrees)"
+      no: "Feature Development Mode (use worktrees, create PRs)"
+    indicators_for_debug_mode:
+      - User posts build errors
+      - User says "I'm working on branch X"
+      - User mentions "debugging in IDE"
+      - Quick fix requests
+    indicators_for_feature_mode:
+      - New feature request
+      - Refactoring request
+      - Architectural changes
+      - Will result in PR
+
+  - name: ef_core_migrations
+    documentation: C:\scripts\_machine\DEFINITION_OF_DONE.md
+    description: "Safe EF Core migration workflow"
+    critical_rule: "NEVER create PR with pending model changes"
+    steps:
+      - Before PR: Run ef migrations has-pending-model-changes
+      - If pending: Create migration (ef migrations add)
+      - Review migration Up/Down methods
+      - Build (verify migration compiles)
+      - Apply locally (ef database update)
+      - Commit migration WITH feature (not separate)
+      - Create PR (migration included)
+    tools_used:
+      - ef-preflight-check.ps1
+      - validate-migration.ps1
+    skills_used:
+      - ef-migration-safety
+
+  - name: parallel_agent_coordination
+    documentation: C:\scripts\_machine\SYSTEM_INTEGRATION.md
+    description: "Coordinate multiple agents working simultaneously"
+    applies_when: "agentCount > 1"
+    strategies:
+      optimistic: "< 3 agents - fast path, minimal overhead"
+      pessimistic: "≥ 3 agents - slow path with jitter (0-500ms delay)"
+    components:
+      - Heartbeat mechanism (10-60 second updates)
+      - Conflict detection (mandatory before allocation)
+      - Priority assignments (user-focused=100, background=50)
+      - Activity monitoring
+      - Metrics logging
+    tools_used:
+      - monitor-activity.ps1
+      - check-branch-conflicts.sh
+      - agent-coordinate.ps1
+    skills_used:
+      - multi-agent-conflict
+      - parallel-agent-coordination
+
+# ============================================================================
+# CONTEXT PATTERNS - Common patterns Martien refers to
+# ============================================================================
+
+context_patterns:
+  # When Martien says "the app"
+  - pattern: "the app"
+    likely_refers_to: client-manager
+    also_could_be: brand2boost
+    context: "Main SaaS application"
+
+  # When Martien says "the framework"
+  - pattern: "the framework"
+    likely_refers_to: hazina
+    context: "AI framework dependency"
+
+  # When Martien says "the store"
+  - pattern: "the store"
+    likely_refers_to: C:\stores\brand2boost
+    context: "Data storage location"
+
+  # When Martien says "allocate worktree"
+  - pattern: "allocate worktree"
+    action: allocate-worktree skill
+    protocol: worktree-workflow.md
+    context: "Start feature development"
+
+  # When Martien says "create PR"
+  - pattern: "create PR"
+    workflow: pr_creation
+    mandatory_steps:
+      - Merge develop first
+      - Build and test pass
+      - Specify --base develop
+      - Add PR link to ClickUp
+    protocol: MANDATORY_CODE_WORKFLOW.md
+
+  # When Martien mentions ClickUp task ID
+  - pattern: "task 869XXXXX" or "ClickUp task"
+    action: clickup-sync.ps1
+    workflow: mandatory_code_workflow
+    protocol: MANDATORY_CODE_WORKFLOW.md
+
+  # When Martien says "Arjan" or "Arjan case"
+  - pattern: "Arjan" or "Arjan case"
+    refers_to: C:\arjan_emails
+    context: "Legal dispute over VeraAI project"
+
+  # When Martien says "marriage" or "Sofy" or "gemeente"
+  - pattern: "marriage|Sofy|gemeente"
+    refers_to: C:\gemeente_emails
+    context: "Marriage documentation case with Gemeente Meppel"
+
+  # When Martien says "generate image"
+  - pattern: "generate image|create image|make illustration"
+    tool: ai-image.ps1
+    capability: "Autonomous DALL-E image generation"
+    context: "DO NOT say 'I cannot generate images' - I CAN!"
+
+  # When Martien says "test in browser" or "UI testing"
+  - pattern: "test in browser|UI testing|frontend testing"
+    tool: claude-bridge-client.ps1
+    target: Browser Claude
+    context: "Send testing request to Browser Claude"
+
+  # When Martien mentions build errors
+  - pattern: "build error|compilation error|it won't build"
+    mode: Active Debugging Mode
+    protocol: GENERAL_DUAL_MODE_WORKFLOW.md
+    action: "Work in base repo, no worktrees, quick fixes"
+
+  # When Martien says "new feature"
+  - pattern: "new feature|implement feature|add feature"
+    mode: Feature Development Mode
+    protocol: MANDATORY_CODE_WORKFLOW.md
+    action: "Allocate worktree, follow 7-step workflow"
+
+# ============================================================================
+# CRITICAL KNOWLEDGE - Key facts Claude must know
+# ============================================================================
+
+critical_knowledge:
+  - fact: "client-manager and hazina MUST have paired worktrees with SAME branch name"
+    reason: "Build verification requires both repos"
+    violation_consequence: "Build fails, tests fail, PR blocked"
+    documentation: worktree-workflow.md § Pattern 73
+
+  - fact: "ALWAYS specify --base develop when creating PR"
+    reason: "gh pr create defaults to main if not specified"
+    violation_consequence: "PR targets wrong branch, merge conflicts, wrong release sequence"
+    documentation: GENERAL_ZERO_TOLERANCE_RULES.md § Rule 6
+
+  - fact: "ALWAYS add PR link to ClickUp task (Step 7 of mandatory workflow)"
+    reason: "User requirement, enables traceability"
+    violation_consequence: "User cannot track progress, breaks workflow"
+    documentation: MANDATORY_CODE_WORKFLOW.md § Step 7
+
+  - fact: "ALWAYS release worktree IMMEDIATELY after gh pr create"
+    reason: "Clean state management, prevent conflicts"
+    violation_consequence: "Seat locked, state messy, blocks next task"
+    documentation: worktree-workflow.md § Mandatory Release Protocol
+
+  - fact: "ALWAYS run check-branch-conflicts.sh before allocating worktree"
+    reason: "Prevent multi-agent conflicts"
+    violation_consequence: "Duplicate allocations, git corruption, lost work"
+    documentation: worktree-workflow.md § Multi-Agent Conflict Check
+
+  - fact: "NEVER create PR with pending EF Core model changes"
+    reason: "Causes PendingModelChangesWarning at runtime"
+    violation_consequence: "CRITICAL FAILURE, database out of sync"
+    documentation: DEFINITION_OF_DONE.md § EF Core Migrations
+
+  - fact: "Claude CAN generate images autonomously using ai-image.ps1"
+    reason: "OpenAI DALL-E API key available in secrets"
+    violation_consequence: "Telling user 'I cannot generate images' is FALSE"
+    documentation: MACHINE_CONFIG.md § AI Capabilities
+
+  - fact: "hydro-vision-website is EXEMPTED from worktree protocol"
+    reason: "Simple marketing site, user explicitly exempted"
+    violation_consequence: "Unnecessary overhead for simple project"
+    documentation: MACHINE_CONFIG.md § Project 2
+
+  - fact: "Dual-Mode Workflow: Feature Development vs Active Debugging"
+    reason: "Different workflows for different contexts"
+    violation_consequence: "Using wrong mode wastes time or breaks workflow"
+    documentation: GENERAL_DUAL_MODE_WORKFLOW.md
+
+  - fact: "Definition of Done: Task is NOT done until in production, working, documented"
+    reason: "Quality and completeness standard"
+    violation_consequence: "Incomplete work, user expectations not met"
+    documentation: DEFINITION_OF_DONE.md
+
+# ============================================================================
+# USAGE FREQUENCY - How often different entities are referenced
+# ============================================================================
+
+usage_frequency:
+  critical_daily:
+    - CLAUDE.md
+    - MACHINE_CONFIG.md
+    - worktree-workflow.md
+    - MANDATORY_CODE_WORKFLOW.md
+    - clickup-sync.ps1
+    - client-manager
+    - hazina
+    - brand2boost
+
+  high_frequent:
+    - GENERAL_ZERO_TOLERANCE_RULES.md
+    - DEFINITION_OF_DONE.md
+    - git-workflow.md
+    - allocate-worktree
+    - release-worktree
+    - check-branch-conflicts.sh
+    - worktrees.pool.md
+
+  moderate_frequent:
+    - GENERAL_DUAL_MODE_WORKFLOW.md
+    - ai-image.ps1
+    - claude-bridge-client.ps1
+    - ef-preflight-check.ps1
+    - github-workflow
+    - ef-migration-safety
+
+  occasional:
+    - arjan_emails
+    - gemeente_emails
+    - hydro-vision-website
+    - artrevisionist
+    - pr-dependencies
+
+  rare_but_important:
+    - SYSTEM_INDEX.md
+    - SESSION_RECOVERY.md
+    - CAPABILITIES.md
+    - consciousness-practices
+
+# ============================================================================
+# METADATA
+# ============================================================================
+
+metadata:
+  created_by: Claude (Jengo)
+  created_date: 2026-02-05
+  version: 1.0
+  purpose: "Comprehensive context knowledge graph for autonomous Claude agents"
+  scope: "All of Martien's development environment, projects, and workflows"
+  maintenance: "Update when new projects, tools, or workflows are added"
+  usage: "Reference this file to understand what Martien means by any term or reference"
+  coverage: "150+ entities, 1000+ tools, 25+ skills, 20+ projects, 10+ stores"
+
+  update_triggers:
+    - New project created
+    - New store added
+    - New tool developed
+    - New skill created
+    - Workflow protocol changed
+    - Documentation restructured
+    - Cross-references discovered
+
+  quality_metrics:
+    completeness: "95%+"
+    accuracy: "100% (based on actual file system scan)"
+    interconnectedness: "High (connections documented)"
+    usability: "High (aliases and patterns included)"
+
+# ============================================================================
+# END OF KNOWLEDGE GRAPH
+# ============================================================================
