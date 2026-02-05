@@ -132,6 +132,7 @@ function Invoke-Predict {
 
             $prediction = "Continue current work"
             $confidence = 0.5
+            $reason = "Default recommendation"
 
             if ($lastEvent -and $lastEvent.event_type -eq "code_edit") {
                 $prediction = "Run tests"
