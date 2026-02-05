@@ -47,3 +47,8 @@
 - PR: #502
 - Outcome: Social Media Sub-Posts with WYSIWYG Editor (WIP - Backend + Service Layer Complete)
 - Status: Backend API, migration, TypeScript types done. Frontend components (SubPostEditor, SubPostList) pending next session.
+## 2026-02-05 15:56:47 UTC - Release: agent-003
+- Repo: client-manager + hazina
+- Branch: fix/facebook-complete-integration
+- PR: #503
+- Outcome: Map Facebook FullPicture to MediaUrls in unified storage (fixes missing images)
