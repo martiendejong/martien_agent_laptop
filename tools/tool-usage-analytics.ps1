@@ -75,8 +75,10 @@ function Show-UsageReport {
 
     Write-Host "`nOVERALL STATISTICS:"
     Write-Host "  Total tools: $totalTools"
-    Write-Host "  Active (used in last 7 days): $activeTools ($([math]::Round(($activeTools/$totalTools)*100, 1))%)"
-    Write-Host "  Unused (>$UnusedDaysThreshold days): $unusedTools ($([math]::Round(($unusedTools/$totalTools)*100, 1))%)"
+    $activePct = [math]::Round(($activeTools/$totalTools)*100, 1)
+    $unusedPct = [math]::Round(($unusedTools/$totalTools)*100, 1)
+    Write-Host ("  Active (used in last 7 days): " + $activeTools + " (" + $activePct + '%)')
+    Write-Host ("  Unused (>$UnusedDaysThreshold days): " + $unusedTools + " (" + $unusedPct + '%)')
     Write-Host "  Average usage score: $([math]::Round($avgUsageScore, 1))"
 
     Write-Host "`nTOP 10 MOST USED TOOLS:"
@@ -92,7 +94,8 @@ function Show-UsageReport {
 
     Write-Host "`nRECOMMENDATIONS:"
     if ($unusedTools -gt ($totalTools * 0.3)) {
-        Write-Host "  ⚠️ HIGH TOOL BLOAT: $([math]::Round(($unusedTools/$totalTools)*100, 1))% of tools are unused" -ForegroundColor Yellow
+        $bloatPct = [math]::Round(($unusedTools/$totalTools)*100, 1)
+        Write-Host ("  ⚠️ HIGH TOOL BLOAT: " + $bloatPct + '% of tools are unused') -ForegroundColor Yellow
         Write-Host "  → Run with -PruneUnused to archive unused tools"
     }
     else {

@@ -5,11 +5,11 @@ Seat states:
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager + hazina | feature/infinite-improvement-v1 | 2026-02-05T20:00:00Z | 🔄 Infinite improvement loop (1000 iterations) |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-05T19:30:00Z | ✅ PR #479: Platform-Specific Previews Phase 1 (ClickUp #869c1dnxe) |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-05T02:50:00Z | ✅ PR #470: PostStateMachine service for status transitions (Phase 2) |
-| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-05T03:10:00Z | ✅ PR #471: Wizard creates parent posts + platform children (Phase 3) |
-| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-05T05:15:00Z | ✅ PR #475: Post Details Page (ClickUp #869c1dmmq) |
-| agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-05T16:00:00Z | ✅ PR #476: SVG download fix for ImageSet (ClickUp #869c1czjd) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | artrevisionist + hazina | feature/phase0-database-foundation | 2026-02-05T04:30:00Z | 🏗️ Phase 0: PostgreSQL + domain models (Artwork/Artist/Provenance) |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-05T05:30:00Z | ✅ PR #480: Rich Text Editor (TipTap) - Sprint #869c1dnx2 |
+| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-05T21:00:00Z | ⏸️ Search & filtering: Basics already implemented, noted advanced features needed |
+| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | BUSY | client-manager + hazina | agent-005-dark-mode | 2026-02-06T01:50:00Z | 🌙 Dark mode (ROI 4.00 - autonomous 3.5h) |
+| agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | BUSY | hazina | feature/iteration-001-foundation | 2026-02-06T04:30:00Z | 🔄 Iteration 1/1000: Foundation improvements |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-02-05T16:30:00Z | ⏸️ Platform previews: Too large for single session, detailed plan posted |
 | agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | - | - | 2026-02-04T13:25:00Z | ✅ PR #457: Fix first message no response (pendingMessageSentRef timing) |
 | agent-009 | agent009 | C:\Projects | C:\Projects\worker-agents\agent-009 | FREE | - | - | 2026-01-10T14:30:00Z | ✅ Cleaned up: Deleted obsolete branch test/integration-test-environment (PR #73 already merged) |

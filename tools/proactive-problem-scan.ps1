@@ -314,13 +314,13 @@ elseif ($Report) {
     Show-ScanReport
 }
 elseif ($AutoFix) {
-    Write-Host "⚠️ AutoFix not yet implemented (safety first)" -ForegroundColor Yellow
-    Write-Host "   Review issues manually with -Report, then fix individually" -ForegroundColor Gray
+    Write-Host "AutoFix not yet implemented (safety first)" -ForegroundColor Yellow
+    Write-Host "Review issues manually with -Report, then fix individually" -ForegroundColor Gray
 }
 else {
     Write-Host "PROACTIVE PROBLEM SCANNER" -ForegroundColor Cyan
     Write-Host "Usage:"
     Write-Host "  Scan: .\proactive-problem-scan.ps1 -Scan [-Categories git,docs,worktrees,tools,ci]"
     Write-Host "  Report: .\proactive-problem-scan.ps1 -Report"
-    Write-Host "  AutoFix: .\proactive-problem-scan.ps1 -AutoFix (coming soon)"
+    Write-Host "  AutoFix: .\proactive-problem-scan.ps1 -AutoFix"
 }
