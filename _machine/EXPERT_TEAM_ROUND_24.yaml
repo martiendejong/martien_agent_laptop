@@ -1,0 +1,177 @@
+# Expert Team Round 24: Meta-Learning
+# Theme: Learning to learn, improving the improvement process
+# Date: 2026-02-05
+
+expert_team:
+  round: 24
+  theme: "Meta-Learning"
+  focus: "How to improve the improvement process itself"
+  size: 1000
+
+  expert_categories:
+    meta_learning_research:
+      count: 150
+      examples:
+        - "Prof. Yoshua Bengio - Meta-learning, learning to learn"
+        - "Prof. Sebastian Thrun - Lifelong learning"
+        - "Prof. Chelsea Finn - Model-Agnostic Meta-Learning (MAML)"
+      perspective: "Learn learning strategies, not just tasks"
+
+    transfer_learning:
+      count: 120
+      examples:
+        - "Prof. Andrew Ng - Transfer learning, domain adaptation"
+        - "Prof. Qiang Yang - Transfer learning theory"
+        - "Dr. Jason Yosinski - Neural network transferability"
+      perspective: "Knowledge from one domain improves another"
+
+    curriculum_learning:
+      count: 100
+      examples:
+        - "Prof. Yoshua Bengio - Curriculum learning"
+        - "Prof. Daphne Koller - Intelligent tutoring systems"
+        - "Dr. Tamara Berg - Learning difficulty ordering"
+      perspective: "Order of learning matters"
+
+    learning_to_optimize:
+      count: 90
+      examples:
+        - "Prof. Marcin Andrychowicz - Learning to optimize"
+        - "Dr. Ke Li - Gradient-based meta-learning"
+        - "Prof. Pieter Abbeel - Learning from demonstrations"
+      perspective: "Optimize the optimizer"
+
+    reflective_practice:
+      count: 80
+      examples:
+        - "Donald Schön - Reflective practitioner"
+        - "Prof. Carol Dweck - Growth mindset, learning mindset"
+        - "David Kolb - Experiential learning cycle"
+      perspective: "Reflection enables improvement"
+
+    knowledge_distillation:
+      count: 70
+      examples:
+        - "Prof. Geoffrey Hinton - Knowledge distillation"
+        - "Dr. Rich Caruana - Model compression"
+        - "Prof. Nikos Komodakis - Attention transfer"
+      perspective: "Extract and transfer key insights"
+
+    active_learning:
+      count: 70
+      examples:
+        - "Prof. Burr Settles - Active learning"
+        - "Dr. Sanjoy Dasgupta - Theoretical foundations"
+        - "Prof. Ming-Wei Chang - Active learning for NLP"
+      perspective: "Strategic selection of what to learn"
+
+    few_shot_learning:
+      count: 60
+      examples:
+        - "Prof. Oriol Vinyals - Matching networks"
+        - "Prof. Hugo Larochelle - Few-shot learning"
+        - "Dr. Jake Snell - Prototypical networks"
+      perspective: "Learn from minimal examples"
+
+    continual_learning:
+      count: 60
+      examples:
+        - "Prof. Razvan Pascanu - Continual learning"
+        - "Prof. Stefan Wermter - Lifelong learning systems"
+        - "Dr. German Parisi - Catastrophic forgetting"
+      perspective: "Learn continuously without forgetting"
+
+    self_supervised:
+      count: 50
+      examples:
+        - "Prof. Yann LeCun - Self-supervised learning"
+        - "Dr. Alexei Efros - Unsupervised learning"
+        - "Prof. Andrew Zisserman - Self-supervision"
+      perspective: "Create your own learning signal"
+
+    reinforcement_meta:
+      count: 50
+      examples:
+        - "Prof. Pieter Abbeel - Meta-RL"
+        - "Prof. Sergey Levine - Learning to adapt"
+        - "Dr. Jane Wang - Meta-reinforcement learning"
+      perspective: "Learn exploration strategies"
+
+    neural_architecture:
+      count: 40
+      examples:
+        - "Dr. Quoc Le - Neural Architecture Search"
+        - "Prof. Frank Hutter - AutoML"
+        - "Dr. Barret Zoph - Learning model architectures"
+      perspective: "Learn the learning architecture"
+
+    hyperparameter_optimization:
+      count: 30
+      examples:
+        - "Prof. Frank Hutter - Hyperparameter optimization"
+        - "Dr. James Bergstra - Bayesian optimization"
+        - "Prof. Kevin Leyton-Brown - Algorithm configuration"
+      perspective: "Optimize learning parameters"
+
+    learning_theory:
+      count: 30
+      examples:
+        - "Prof. Leslie Valiant - Computational learning theory"
+        - "Prof. Shai Shalev-Shwartz - Online learning"
+        - "Prof. Peter Bartlett - Statistical learning theory"
+      perspective: "Theoretical foundations of learning"
+
+methodology:
+  approach: "Analyze improvement process to find meta-patterns"
+
+  analysis_levels:
+    improvement_effectiveness:
+      - "Which types of improvements have highest value/effort ratio?"
+      - "Which expert perspectives contribute most?"
+      - "Which analysis methods yield best insights?"
+
+    learning_patterns:
+      - "How do improvements in round N affect round N+1?"
+      - "What patterns repeat across rounds?"
+      - "Which improvements enable future improvements?"
+
+    process_optimization:
+      - "Is 1000-expert team optimal? Or 500? 2000?"
+      - "Is top-5 selection best? Or top-3? Top-10?"
+      - "Should rounds be themed or exploratory?"
+
+    knowledge_transfer:
+      - "How to transfer insights across domains?"
+      - "Can client-manager improvements help hazina?"
+      - "Can this process apply to other systems?"
+
+  key_questions:
+    - "What have we learned about learning?"
+    - "Which improvement strategies work best?"
+    - "How to accelerate future rounds?"
+    - "What meta-patterns exist across all rounds?"
+    - "How to transfer this process to new domains?"
+    - "What makes a good expert team?"
+    - "How to measure improvement quality?"
+
+  meta_insights_to_extract:
+    value_patterns:
+      - "High-value improvements often involve feedback loops"
+      - "Integration creates multiplicative value"
+      - "Resilience prevents value destruction"
+
+    effort_patterns:
+      - "PowerShell scripts: low effort, high value"
+      - "Integration work: medium effort, high value"
+      - "New concepts: high effort, medium value"
+
+    effectiveness_patterns:
+      - "Concrete implementations beat abstract frameworks"
+      - "Working examples beat documentation"
+      - "Incremental improvements beat rewrites"
+
+diversity_dimensions:
+  - "Geographic: Global representation"
+  - "Domain: ML, Psychology, Education, Theory"
+  - "Approach: Empirical vs Theoretical vs Practical"
+  - "Timeframe: Real-time learning vs Long-term learning"
