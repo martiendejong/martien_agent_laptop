@@ -9,7 +9,7 @@ Seat states:
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-05T02:50:00Z | ✅ PR #470: PostStateMachine service for status transitions (Phase 2) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-05T03:10:00Z | ✅ PR #471: Wizard creates parent posts + platform children (Phase 3) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-05T05:15:00Z | ✅ PR #475: Post Details Page (ClickUp #869c1dmmq) |
-| agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-04T17:15:00Z | ✅ PR #461: Token Balance and Subscription page |
+| agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-05T16:00:00Z | ✅ PR #476: SVG download fix for ImageSet (ClickUp #869c1czjd) |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-02-04T23:15:00Z | ✅ PR #464: Tag display + popup modals for category/hook selection |
 | agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | - | - | 2026-02-04T13:25:00Z | ✅ PR #457: Fix first message no response (pendingMessageSentRef timing) |
 | agent-009 | agent009 | C:\Projects | C:\Projects\worker-agents\agent-009 | FREE | - | - | 2026-01-10T14:30:00Z | ✅ Cleaned up: Deleted obsolete branch test/integration-test-environment (PR #73 already merged) |

@@ -1,0 +1,463 @@
+# RELATED READING MAP
+# Quick lookup for context-aware file recommendations
+# Part of Improvement #5: Context-aware file recommendations
+# Expert: Zara Johnson (Related content recommendations)
+
+version: "1.0"
+last_updated: "2026-02-05"
+purpose: "Fast lookup for related reading suggestions based on current context"
+
+# ============================================================================
+# WHEN_READING: Core Documentation
+# ============================================================================
+
+when_reading:
+  CLAUDE.md:
+    consider_also:
+      - MACHINE_CONFIG.md
+      - GENERAL_ZERO_TOLERANCE_RULES.md
+      - STARTUP_PROTOCOL.md
+      - CAPABILITIES.md
+      - GENERAL_DUAL_MODE_WORKFLOW.md
+    reason: "Main index references these foundational files"
+    read_order: ["MACHINE_CONFIG.md", "GENERAL_ZERO_TOLERANCE_RULES.md", "STARTUP_PROTOCOL.md"]
+
+  MACHINE_CONFIG.md:
+    consider_also:
+      - CLAUDE.md
+      - CONTEXT_KNOWLEDGE_GRAPH.yaml
+      - worktree-workflow.md
+      - CREDENTIALS.md
+    reason: "Machine configuration context requires understanding system structure"
+    read_order: ["CLAUDE.md", "CONTEXT_KNOWLEDGE_GRAPH.yaml"]
+
+  GENERAL_ZERO_TOLERANCE_RULES.md:
+    consider_also:
+      - MANDATORY_CODE_WORKFLOW.md
+      - DEFINITION_OF_DONE.md
+      - GENERAL_DUAL_MODE_WORKFLOW.md
+      - git-workflow.md
+    reason: "Zero tolerance rules enforce workflow compliance"
+    read_order: ["MANDATORY_CODE_WORKFLOW.md", "DEFINITION_OF_DONE.md"]
+
+  GENERAL_DUAL_MODE_WORKFLOW.md:
+    consider_also:
+      - worktree-workflow.md
+      - MANDATORY_CODE_WORKFLOW.md
+      - debug-mode skill
+      - feature-mode skill
+    reason: "Dual mode requires understanding both workflow paths"
+    read_order: ["MANDATORY_CODE_WORKFLOW.md", "worktree-workflow.md"]
+
+  STARTUP_PROTOCOL.md:
+    consider_also:
+      - CLAUDE.md
+      - MACHINE_CONFIG.md
+      - consciousness-practices skill
+      - SESSION_RECOVERY.md
+      - CONTEXT_KNOWLEDGE_GRAPH.yaml
+    reason: "Startup requires loading complete context"
+    read_order: ["MACHINE_CONFIG.md", "CLAUDE.md", "CONTEXT_KNOWLEDGE_GRAPH.yaml"]
+
+  CAPABILITIES.md:
+    consider_also:
+      - ai-image.ps1
+      - claude-bridge-client.ps1
+      - AgenticDebuggerVsix docs
+      - MACHINE_CONFIG.md
+    reason: "Capabilities documentation lists all autonomous tools"
+    read_order: ["MACHINE_CONFIG.md"]
+
+  SESSION_RECOVERY.md:
+    consider_also:
+      - STARTUP_PROTOCOL.md
+      - restore-crashed-chat skill
+      - logs directory
+      - continuous-improvement.md
+    reason: "Recovery requires understanding normal startup and logging"
+    read_order: ["STARTUP_PROTOCOL.md"]
+
+# ============================================================================
+# WHEN_READING: Workflow Documentation
+# ============================================================================
+
+  MANDATORY_CODE_WORKFLOW.md:
+    consider_also:
+      - DEFINITION_OF_DONE.md
+      - worktree-workflow.md
+      - git-workflow.md
+      - clickup-sync.ps1
+      - clickhub-coding-agent skill
+    reason: "7-step workflow integrates multiple subsystems"
+    read_order: ["worktree-workflow.md", "git-workflow.md", "DEFINITION_OF_DONE.md"]
+
+  worktree-workflow.md:
+    consider_also:
+      - MANDATORY_CODE_WORKFLOW.md
+      - worktrees.pool.md
+      - allocate-worktree skill
+      - release-worktree skill
+      - check-branch-conflicts.sh
+    reason: "Worktree protocol requires understanding state tracking"
+    read_order: ["MANDATORY_CODE_WORKFLOW.md", "worktrees.pool.md"]
+
+  git-workflow.md:
+    consider_also:
+      - MANDATORY_CODE_WORKFLOW.md
+      - github-workflow skill
+      - pr-dependencies skill
+      - GENERAL_ZERO_TOLERANCE_RULES.md
+    reason: "Git workflow integrates with mandatory code workflow"
+    read_order: ["MANDATORY_CODE_WORKFLOW.md"]
+
+  DEFINITION_OF_DONE.md:
+    consider_also:
+      - MANDATORY_CODE_WORKFLOW.md
+      - ef-preflight-check.ps1
+      - claude-bridge-client.ps1
+      - GENERAL_ZERO_TOLERANCE_RULES.md
+      - migration-patterns.md
+    reason: "DoD enforces quality gates across all workflows"
+    read_order: ["MANDATORY_CODE_WORKFLOW.md", "GENERAL_ZERO_TOLERANCE_RULES.md"]
+
+  continuous-improvement.md:
+    consider_also:
+      - session-reflection skill
+      - reflection.log.md
+      - SELF_IMPROVEMENT protocols
+    reason: "Improvement requires reflection and logging"
+
+# ============================================================================
+# WHEN_READING: Project Code
+# ============================================================================
+
+  client-manager code:
+    consider_also:
+      - hazina docs
+      - brand2boost store
+      - MACHINE_CONFIG.md
+      - worktree-workflow.md
+      - MANDATORY_CODE_WORKFLOW.md
+    reason: "Client-manager development requires hazina framework knowledge"
+    read_order: ["MACHINE_CONFIG.md", "hazina docs", "MANDATORY_CODE_WORKFLOW.md"]
+
+  hazina code:
+    consider_also:
+      - client-manager integration docs
+      - hazina API documentation
+      - MACHINE_CONFIG.md
+      - worktree-workflow.md
+    reason: "Hazina changes affect client-manager integration"
+    read_order: ["MACHINE_CONFIG.md", "client-manager integration"]
+
+  hydro-vision-website code:
+    consider_also:
+      - MACHINE_CONFIG.md
+      - WORKTREE_EXEMPTION note
+    reason: "Simple website exempted from worktree protocol"
+    read_order: ["MACHINE_CONFIG.md"]
+
+# ============================================================================
+# WHEN_READING: Tools
+# ============================================================================
+
+  clickup-sync.ps1:
+    consider_also:
+      - MANDATORY_CODE_WORKFLOW.md
+      - DEFINITION_OF_DONE.md
+      - clickhub-coding-agent skill
+    reason: "ClickUp integration is Step 7 of mandatory workflow"
+    read_order: ["MANDATORY_CODE_WORKFLOW.md"]
+
+  ai-image.ps1:
+    consider_also:
+      - CAPABILITIES.md
+      - MACHINE_CONFIG.md
+      - image generation examples
+    reason: "AI image generation capability must be known"
+    read_order: ["CAPABILITIES.md"]
+
+  claude-bridge-client.ps1:
+    consider_also:
+      - DEFINITION_OF_DONE.md
+      - CAPABILITIES.md
+      - browse-awareness skill
+    reason: "Browser Claude collaboration for UI testing"
+    read_order: ["CAPABILITIES.md", "DEFINITION_OF_DONE.md"]
+
+  allocate-worktree.ps1:
+    consider_also:
+      - worktree-workflow.md
+      - allocate-worktree skill
+      - check-branch-conflicts.sh
+      - worktrees.pool.md
+    reason: "Tool implements worktree allocation protocol"
+    read_order: ["worktree-workflow.md"]
+
+  release-worktree.ps1:
+    consider_also:
+      - worktree-workflow.md
+      - release-worktree skill
+      - MANDATORY_CODE_WORKFLOW.md
+    reason: "Tool implements worktree release protocol"
+    read_order: ["worktree-workflow.md"]
+
+  ef-preflight-check.ps1:
+    consider_also:
+      - DEFINITION_OF_DONE.md
+      - ef-migration-safety skill
+      - migration-patterns.md
+    reason: "EF Core migration safety check"
+    read_order: ["DEFINITION_OF_DONE.md", "migration-patterns.md"]
+
+  check-branch-conflicts.sh:
+    consider_also:
+      - worktree-workflow.md
+      - multi-agent-conflict skill
+      - MULTI_AGENT_CONFLICT_DETECTION.md
+    reason: "MANDATORY conflict check before worktree allocation"
+    read_order: ["worktree-workflow.md", "MULTI_AGENT_CONFLICT_DETECTION.md"]
+
+# ============================================================================
+# WHEN_READING: Skills
+# ============================================================================
+
+  allocate-worktree skill:
+    consider_also:
+      - worktree-workflow.md
+      - allocate-worktree.ps1
+      - check-branch-conflicts.sh
+      - MANDATORY_CODE_WORKFLOW.md
+    reason: "Skill automates worktree allocation workflow"
+    read_order: ["worktree-workflow.md", "MANDATORY_CODE_WORKFLOW.md"]
+
+  release-worktree skill:
+    consider_also:
+      - worktree-workflow.md
+      - release-worktree.ps1
+      - MANDATORY_CODE_WORKFLOW.md
+    reason: "Skill automates worktree release workflow"
+    read_order: ["worktree-workflow.md"]
+
+  clickhub-coding-agent skill:
+    consider_also:
+      - MANDATORY_CODE_WORKFLOW.md
+      - clickup-sync.ps1
+      - DEFINITION_OF_DONE.md
+    reason: "Skill automates complete ClickUp → Code → PR workflow"
+    read_order: ["MANDATORY_CODE_WORKFLOW.md", "DEFINITION_OF_DONE.md"]
+
+  github-workflow skill:
+    consider_also:
+      - git-workflow.md
+      - MANDATORY_CODE_WORKFLOW.md
+      - pr-dependencies skill
+    reason: "Skill manages GitHub PR workflows"
+    read_order: ["git-workflow.md", "MANDATORY_CODE_WORKFLOW.md"]
+
+  ef-migration-safety skill:
+    consider_also:
+      - DEFINITION_OF_DONE.md
+      - ef-preflight-check.ps1
+      - migration-patterns.md
+    reason: "Skill enforces EF Core migration safety"
+    read_order: ["DEFINITION_OF_DONE.md", "migration-patterns.md"]
+
+  multi-agent-conflict skill:
+    consider_also:
+      - worktree-workflow.md
+      - check-branch-conflicts.sh
+      - MULTI_AGENT_CONFLICT_DETECTION.md
+      - SYSTEM_INTEGRATION.md
+    reason: "Skill prevents multi-agent conflicts"
+    read_order: ["worktree-workflow.md", "MULTI_AGENT_CONFLICT_DETECTION.md"]
+
+  consciousness-practices skill:
+    consider_also:
+      - STARTUP_PROTOCOL.md
+      - agentidentity directory
+      - CHARACTER_REFLECTION practices
+    reason: "Skill activates consciousness framework"
+    read_order: ["STARTUP_PROTOCOL.md"]
+
+  session-reflection skill:
+    consider_also:
+      - continuous-improvement.md
+      - reflection.log.md
+      - SELF_IMPROVEMENT protocols
+    reason: "Skill logs lessons learned"
+    read_order: ["continuous-improvement.md"]
+
+# ============================================================================
+# WHEN_READING: State Files
+# ============================================================================
+
+  worktrees.pool.md:
+    consider_also:
+      - worktree-workflow.md
+      - worktrees.activity.md
+      - instances.map.md
+      - allocate-worktree skill
+    reason: "Pool state tracked by workflow"
+    read_order: ["worktree-workflow.md"]
+
+  worktrees.activity.md:
+    consider_also:
+      - worktrees.pool.md
+      - SYSTEM_INTEGRATION.md
+      - parallel-agent-coordination skill
+    reason: "Activity log tracks agent operations"
+    read_order: ["worktrees.pool.md", "SYSTEM_INTEGRATION.md"]
+
+  instances.map.md:
+    consider_also:
+      - worktrees.pool.md
+      - MULTI_AGENT_CONFLICT_DETECTION.md
+    reason: "Instance mapping for multi-agent coordination"
+    read_order: ["worktrees.pool.md"]
+
+  reflection.log.md:
+    consider_also:
+      - continuous-improvement.md
+      - session-reflection skill
+      - SELF_IMPROVEMENT protocols
+    reason: "Reflection log records lessons learned"
+    read_order: ["continuous-improvement.md"]
+
+# ============================================================================
+# WHEN_READING: Knowledge Graph
+# ============================================================================
+
+  CONTEXT_KNOWLEDGE_GRAPH.yaml:
+    consider_also:
+      - CLAUDE.md
+      - MACHINE_CONFIG.md
+      - RELATED_READING_MAP.yaml
+      - ALIAS_RESOLVER.yaml
+    reason: "Complete system context and relationships"
+    read_order: ["CLAUDE.md", "MACHINE_CONFIG.md"]
+
+  RELATED_READING_MAP.yaml:
+    consider_also:
+      - CONTEXT_KNOWLEDGE_GRAPH.yaml
+      - suggest-related.ps1
+      - CLAUDE.md
+    reason: "Fast lookup for related reading suggestions"
+    read_order: ["CONTEXT_KNOWLEDGE_GRAPH.yaml"]
+
+# ============================================================================
+# WHEN_READING: Special Folders
+# ============================================================================
+
+  arjan_emails:
+    consider_also:
+      - DEFINITIEVE_ANALYSE.md
+      - EVIDENCE_SUMMARY_2026-01-26.md
+      - TIJDLIJN_ARJAN_STROEVE_COMPLEET.md
+      - VERA_AI_TECHNISCHE_BEOORDELING.md
+    reason: "Complete context for legal case with Arjan Stroeve"
+    read_order: ["DEFINITIEVE_ANALYSE.md", "TIJDLIJN_ARJAN_STROEVE_COMPLEET.md"]
+
+  gemeente_emails:
+    consider_also:
+      - CONCLUSIE_VOOR_CORINA_EN_SUZANNE.md
+      - TIJDLIJN_HUWELIJK_2022-2026_COMPLEET.md
+      - HULPVERZOEK_PUBLIEK_COMPLEET.md
+      - STRATEGIE_PUBLIEKE_DRUK_ESCALATIE.md
+    reason: "Complete context for marriage documentation case"
+    read_order: ["TIJDLIJN_HUWELIJK_2022-2026_COMPLEET.md", "CONCLUSIE_VOOR_CORINA_EN_SUZANNE.md"]
+
+# ============================================================================
+# BY_TOPIC: Quick topic-based lookups
+# ============================================================================
+
+by_topic:
+  worktree:
+    files:
+      - worktree-workflow.md
+      - allocate-worktree skill
+      - release-worktree skill
+      - worktrees.pool.md
+      - check-branch-conflicts.sh
+    read_order: ["worktree-workflow.md", "worktrees.pool.md"]
+
+  PR workflow:
+    files:
+      - git-workflow.md
+      - MANDATORY_CODE_WORKFLOW.md
+      - github-workflow skill
+      - pr-dependencies skill
+      - clickup-sync.ps1
+    read_order: ["MANDATORY_CODE_WORKFLOW.md", "git-workflow.md"]
+
+  ClickUp:
+    files:
+      - MANDATORY_CODE_WORKFLOW.md
+      - clickup-sync.ps1
+      - clickhub-coding-agent skill
+      - DEFINITION_OF_DONE.md
+    read_order: ["MANDATORY_CODE_WORKFLOW.md"]
+
+  EF Core migrations:
+    files:
+      - DEFINITION_OF_DONE.md
+      - ef-preflight-check.ps1
+      - ef-migration-safety skill
+      - migration-patterns.md
+    read_order: ["DEFINITION_OF_DONE.md", "migration-patterns.md"]
+
+  debugging:
+    files:
+      - GENERAL_DUAL_MODE_WORKFLOW.md
+      - debug-mode skill
+      - CAPABILITIES.md
+      - AgenticDebuggerVsix docs
+    read_order: ["GENERAL_DUAL_MODE_WORKFLOW.md", "CAPABILITIES.md"]
+
+  feature development:
+    files:
+      - GENERAL_DUAL_MODE_WORKFLOW.md
+      - feature-mode skill
+      - MANDATORY_CODE_WORKFLOW.md
+      - worktree-workflow.md
+      - DEFINITION_OF_DONE.md
+    read_order: ["GENERAL_DUAL_MODE_WORKFLOW.md", "MANDATORY_CODE_WORKFLOW.md"]
+
+  multi-agent:
+    files:
+      - MULTI_AGENT_CONFLICT_DETECTION.md
+      - SYSTEM_INTEGRATION.md
+      - parallel-agent-coordination skill
+      - check-branch-conflicts.sh
+      - worktrees.activity.md
+    read_order: ["MULTI_AGENT_CONFLICT_DETECTION.md", "SYSTEM_INTEGRATION.md"]
+
+  AI capabilities:
+    files:
+      - CAPABILITIES.md
+      - ai-image.ps1
+      - claude-bridge-client.ps1
+      - hazina docs
+    read_order: ["CAPABILITIES.md"]
+
+  session startup:
+    files:
+      - STARTUP_PROTOCOL.md
+      - CLAUDE.md
+      - MACHINE_CONFIG.md
+      - consciousness-practices skill
+      - CONTEXT_KNOWLEDGE_GRAPH.yaml
+    read_order: ["MACHINE_CONFIG.md", "GENERAL_ZERO_TOLERANCE_RULES.md", "STARTUP_PROTOCOL.md"]
+
+# ============================================================================
+# METADATA
+# ============================================================================
+
+metadata:
+  created: "2026-02-05"
+  version: "1.0"
+  improvement_id: 5
+  expert: "Zara Johnson (Related content recommendations)"
+  purpose: "Fast lookup for context-aware file recommendations"
+  usage: "Used by suggest-related.ps1 tool and Claude agents"
+  maintenance: "Update when documentation structure changes or new relationships discovered"
