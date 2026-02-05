@@ -39,6 +39,19 @@ This file contains credentials for various services. Keep secure.
 
 ---
 
+---
+
+## WordPress
+
+### martiendejong.nl
+- **Site:** https://martiendejong.nl
+- **Admin URL:** https://martiendejong.nl/wp-admin/
+- **Username:** admin
+- **Application Password:** UtCI Mgr9 13EB mlBL 2S1L AY2e
+- **Note:** Application password for REST API access
+
+---
+
 ## Notes
 
 - ZXCS.nl appears to be Vimexx's mail server
