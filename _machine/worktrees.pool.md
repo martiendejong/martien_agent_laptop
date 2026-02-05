@@ -6,7 +6,7 @@ Seat states:
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager + hazina | feature/infinite-improvement-v1 | 2026-02-05T20:00:00Z | 🔄 Infinite improvement loop (1000 iterations) |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | artrevisionist + hazina | feature/phase0-database-foundation | 2026-02-05T04:30:00Z | 🏗️ Phase 0: PostgreSQL + domain models (Artwork/Artist/Provenance) |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | client-manager + hazina | feature/869c1dnxj-bulk-operations | 2026-02-05T05:35:00Z | 📦 Bulk Operations: Schedule/Approve/Regenerate - Sprint #869c1dnxj |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-05T06:25:00Z | ✅ PR #481: Bulk Operations (Schedule/Approve/Regenerate) - Sprint #869c1dnxj |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | BUSY | client-manager + hazina | feature/social-media-refactor-round-3 | 2026-02-06T05:10:00Z | 🔄 Round 3-1000: Social media module refactor marathon (split components, state machine, token refresh) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | BUSY | client-manager + hazina | agent-005-dark-mode | 2026-02-06T01:50:00Z | 🌙 Dark mode (ROI 4.00 - autonomous 3.5h) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | BUSY | hazina | feature/iteration-001-foundation | 2026-02-06T04:30:00Z | 🔄 Iteration 1/1000: Foundation improvements |
