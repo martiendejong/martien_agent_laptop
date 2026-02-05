@@ -25,3 +25,25 @@
 - Branch: fix/hazina-api-compatibility
 - PR: #51
 - Outcome: Hazina API compatibility fixes + EF Core migration generation enabled (ChatConversation/ConversationMessage, ChatImageService, design-time DbContext factory)
+
+## 2026-02-06T15:30:00Z - Allocation: agent-001
+- Repos: client-manager + hazina (paired worktrees)
+- Branch: feature/social-sub-posts-wysiwyg
+- Purpose: Implement social media parent-child sub-posts with WYSIWYG editor
+- Plan: 7 phases (backend schema, frontend components, WYSIWYG integration)
+## 2026-02-05T15:49:26Z - Allocation: agent-002
+- Repos: client-manager + hazina (paired)
+- Branch: cleanup/console-logs
+- Purpose: Systematic console.log cleanup (327 → ~77, 77% reduction)
+## 2026-02-05 15:52:54 UTC - Allocation: agent-003
+- Repos: client-manager + hazina (paired)
+- Branch: fix/facebook-complete-integration  
+- Purpose: Complete Facebook integration - Map FullPicture to MediaUrls + add unified storage support
+- Context: Consolidate correct parts from PRs #468, #472, #473-479 into single comprehensive fix
+
+## 2026-02-06T16:56:00Z - Release: agent-001
+- Repos: client-manager + hazina (paired worktrees)
+- Branch: feature/social-sub-posts-wysiwyg
+- PR: #502
+- Outcome: Social Media Sub-Posts with WYSIWYG Editor (WIP - Backend + Service Layer Complete)
+- Status: Backend API, migration, TypeScript types done. Frontend components (SubPostEditor, SubPostList) pending next session.

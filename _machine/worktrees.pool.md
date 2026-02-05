@@ -4,9 +4,9 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-05T08:15:00Z | ✅ PR #501: Round 12 - Request caching and deduplication (Rounds 10-12 complete) |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-06T09:45:00Z | ✅ PR #494: Iteration 23 - React Utilities (Performance, JSON, Transform, Errors, Encoding) - 1,256 lines |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-06T09:30:00Z | ✅ Batch fixed 3 failing PRs: #486 (GlobalConfig→HazinaStoreConfig), #482 (same), #483 (Azure KeyVault) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-06T16:56:00Z | ✅ PR #502: Social Media Sub-Posts with WYSIWYG Editor (WIP - Phases 1-3 complete, backend + service layer) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | client-manager + hazina | cleanup/console-logs | 2026-02-05T13:35:00Z | 🔄 Console.log cleanup: 327 → ~77 (77% reduction, Phase 1-3) |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | client-manager + hazina | fix/facebook-complete-integration | 2026-02-06T16:00:00Z | 🔄 Complete Facebook integration: FullPicture → MediaUrls mapping + unified storage |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | BUSY | client-manager | feature/social-media-refactor-round-5 | 2026-02-06T06:05:00Z | 🔄 Round 5: OAuth Token Refresh Strategy (CRITICAL - prevents broken connections) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-05T05:04:00Z | ✅ PR #491: Integrations Dashboard - Comprehensive platform connection overview |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-06T14:19:00Z | ✅ PR #173 MERGED: HazinaCoder Iterations 1-60 - Conflicts resolved & merged to develop |
