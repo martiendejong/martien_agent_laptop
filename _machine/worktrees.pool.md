@@ -4,10 +4,10 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-06T17:45:00Z | ✅ PR #502: Social Media Sub-Posts (Phases 1-5 complete - Backend, Service, SubPostEditor, SubPostList) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-05T17:55:19Z | ✅ PR #502 MERGED: Social Media Sub-Posts with WYSIWYG editor (Phases 1-6 complete) |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-06T17:45:00Z | ✅ PR #504: Console.log cleanup (327 → 58, 82% reduction - 269 logs removed) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-06T17:15:00Z | ✅ PR #503: Map Facebook FullPicture to MediaUrls in unified storage |
-| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | BUSY | client-manager | feature/social-media-refactor-round-5 | 2026-02-06T06:05:00Z | 🔄 Round 5: OAuth Token Refresh Strategy (CRITICAL - prevents broken connections) |
+| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-05T17:55:31Z | ✅ PR #493 MERGED: Round 5 - Automatic OAuth token refresh |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-05T05:04:00Z | ✅ PR #491: Integrations Dashboard - Comprehensive platform connection overview |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-06T14:19:00Z | ✅ PR #173 MERGED: HazinaCoder Iterations 1-60 - Conflicts resolved & merged to develop |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-02-06T08:00:00Z | ✅ PR #488: AI Image Alt Text Generator - Quick Win (ROI 3.50, ~1hr implementation) |
