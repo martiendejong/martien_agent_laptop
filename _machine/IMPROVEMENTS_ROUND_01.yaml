@@ -1,0 +1,2169 @@
+# Knowledge Graph System Improvements - Round 01
+# Generated: 2026-02-05
+# Expert Team Analysis: 1000 experts across 10 categories
+# Goal: Help Claude instantly understand what Martien is talking about
+
+metadata:
+  round: 1
+  total_improvements: 100
+  expert_categories: 10
+  focus: "Context awareness, retrieval speed, cross-referencing, pattern matching"
+  sort_order: "value/effort ratio descending (highest impact, lowest effort first)"
+
+# ============================================================================
+# TOP 5 QUICK WINS (Highest Value/Effort Ratio)
+# ============================================================================
+
+improvements:
+
+  # --------------------------------------------------------------------------
+  # ID 1-10: QUICK WINS (Ratio > 5.0)
+  # --------------------------------------------------------------------------
+
+  - id: 1
+    title: "Auto-load context on ambiguous references"
+    description: |
+      When user says "brand2boost", "b2b", or "client-manager", Claude should
+      instantly know these are aliases for the same project and auto-load the
+      full context (paths, tech stack, credentials, related stores).
+
+      Currently: Claude must manually search/read multiple files
+      Proposed: Pre-computed alias-to-context mappings loaded at session start
+    value: 10
+    effort: 1
+    ratio: 10.0
+    category: information_architecture
+    expert: "Dr. Zainab Rahman (Synonyms and aliases specialist)"
+    implementation:
+      - "Create C:\\scripts\\_machine\\ALIAS_RESOLVER.yaml with instant lookups"
+      - "Map all aliases from CONTEXT_KNOWLEDGE_GRAPH.yaml to their full context"
+      - "Include in STARTUP_PROTOCOL.md mandatory loading"
+      - "Format: alias → [projects, stores, docs, credentials, workflows]"
+    affected_files:
+      - C:\scripts\_machine\ALIAS_RESOLVER.yaml (new)
+      - C:\scripts\_machine\CONTEXT_KNOWLEDGE_GRAPH.yaml (source)
+      - C:\scripts\docs\claude-system\STARTUP_PROTOCOL.md (load instruction)
+    dependencies: []
+
+  - id: 2
+    title: "Frequent patterns quick reference card"
+    description: |
+      Top 20 most common user requests should have one-line resolution paths.
+      "Fix build error" → check DEFINITION_OF_DONE.md Phase 5
+      "Create PR" → check MANDATORY_CODE_WORKFLOW.md Step 6
+      "Arjan case" → C:\\arjan_emails\\DEFINITIEVE_ANALYSE.md
+
+      Currently: Claude searches through multiple docs
+      Proposed: Single-page quick reference loaded in every session
+    value: 10
+    effort: 1
+    ratio: 10.0
+    category: information_architecture
+    expert: "Kwabena Mensah (Quick access patterns specialist)"
+    implementation:
+      - "Create C:\\scripts\\QUICK_REFERENCE.md (< 2KB)"
+      - "List 20 most frequent user requests + direct file paths"
+      - "Include in STARTUP_PROTOCOL.md § Quick Reference section"
+      - "Update monthly based on session logs"
+    affected_files:
+      - C:\scripts\QUICK_REFERENCE.md (new)
+      - C:\scripts\docs\claude-system\STARTUP_PROTOCOL.md (reference)
+    dependencies: []
+
+  - id: 3
+    title: "Project-specific context bundles"
+    description: |
+      Each project gets a single-file context bundle with EVERYTHING Claude needs:
+      - Paths (code, store, docs)
+      - Tech stack
+      - Credentials
+      - Related projects/stores
+      - Common workflows
+      - Recent changes
+
+      Currently: Information scattered across 5+ files
+      Proposed: One file per project, < 5KB each
+    value: 10
+    effort: 2
+    ratio: 5.0
+    category: knowledge_engineering
+    expert: "Dr. Elena Kovač (Ontology alignment and merging)"
+    implementation:
+      - "Create C:\\scripts\\_machine\\contexts\\client-manager.yaml"
+      - "Create C:\\scripts\\_machine\\contexts\\hazina.yaml"
+      - "Create C:\\scripts\\_machine\\contexts\\hydro-vision-website.yaml"
+      - "Auto-generate from CONTEXT_KNOWLEDGE_GRAPH.yaml using script"
+      - "Include 'last_accessed' timestamp for freshness"
+    affected_files:
+      - C:\scripts\_machine\contexts\client-manager.yaml (new)
+      - C:\scripts\_machine\contexts\hazina.yaml (new)
+      - C:\scripts\_machine\contexts\hydro-vision-website.yaml (new)
+      - C:\scripts\tools\generate-context-bundles.ps1 (new)
+    dependencies: []
+
+  - id: 4
+    title: "Smart file size warnings"
+    description: |
+      Auto-detect when documentation files exceed Claude's optimal read size
+      (> 25K tokens) and either split them or create executive summaries.
+
+      Currently: Claude reads large files slowly or hits token limits
+      Proposed: Automatic chunking + summary generation
+    value: 9
+    effort: 2
+    ratio: 4.5
+    category: technical_writing
+    expert: "Prof. Emily Bradford (Documentation structure patterns)"
+    implementation:
+      - "Create C:\\scripts\\tools\\doc-size-monitor.ps1"
+      - "Scan all .md files in C:\\scripts recursively"
+      - "Flag files > 25K tokens, suggest splits"
+      - "Auto-generate SUMMARY.md for large files"
+      - "Run in pre-commit hook"
+    affected_files:
+      - C:\scripts\tools\doc-size-monitor.ps1 (new)
+      - C:\scripts\tools\doc-summarizer.ps1 (new)
+      - Various documentation files (split as needed)
+    dependencies: []
+
+  - id: 5
+    title: "Context-aware file recommendations"
+    description: |
+      When Claude reads file X, auto-suggest related files based on graph connections.
+      Reading CLAUDE.md → suggest MACHINE_CONFIG.md, GENERAL_ZERO_TOLERANCE_RULES.md
+      Reading client-manager code → suggest hazina docs, brand2boost store
+
+      Currently: Claude must manually discover related files
+      Proposed: Graph-based "see also" recommendations
+    value: 9
+    effort: 2
+    ratio: 4.5
+    category: knowledge_engineering
+    expert: "Zara Johnson (Related content recommendations)"
+    implementation:
+      - "Extend CONTEXT_KNOWLEDGE_GRAPH.yaml with 'related_reading' field"
+      - "For each entity, list 3-5 most relevant related entities"
+      - "Create C:\\scripts\\tools\\suggest-related.ps1"
+      - "Output: 'You're reading X, consider also: Y, Z'"
+    affected_files:
+      - C:\scripts\_machine\CONTEXT_KNOWLEDGE_GRAPH.yaml (extend)
+      - C:\scripts\tools\suggest-related.ps1 (new)
+    dependencies: []
+
+  - id: 6
+    title: "Session context persistence"
+    description: |
+      Save the current session's working context (files read, entities accessed,
+      current task) and offer to restore it on next session start.
+
+      Currently: Each session starts from scratch
+      Proposed: Resume where you left off
+    value: 9
+    effort: 2
+    ratio: 4.5
+    category: system_architecture
+    expert: "Dr. Marcus Chang (State management patterns)"
+    implementation:
+      - "Create C:\\scripts\\_machine\\session-context.json"
+      - "Track: files_read[], entities_accessed[], current_task, timestamp"
+      - "Update on every Read/Grep/Glob operation"
+      - "At session start: offer 'Resume previous session?' with summary"
+    affected_files:
+      - C:\scripts\_machine\session-context.json (new)
+      - C:\scripts\tools\session-context-save.ps1 (new)
+      - C:\scripts\tools\session-context-restore.ps1 (new)
+      - C:\scripts\docs\claude-system\STARTUP_PROTOCOL.md (add restore step)
+    dependencies: []
+
+  - id: 7
+    title: "Inline context hints in documentation"
+    description: |
+      Add standardized metadata headers to all .md files for instant parsing:
+      ---
+      context_type: workflow_protocol
+      related_files: [MACHINE_CONFIG.md, worktree-workflow.md]
+      last_major_update: 2026-01-25
+      primary_expert: worktree management
+      ---
+
+      Currently: Claude must read entire file to understand context
+      Proposed: YAML frontmatter enables instant classification
+    value: 8
+    effort: 2
+    ratio: 4.0
+    category: information_architecture
+    expert: "Dr. Keisha Davis (Metadata schemas specialist)"
+    implementation:
+      - "Define standard YAML frontmatter schema"
+      - "Create C:\\scripts\\tools\\add-frontmatter.ps1"
+      - "Batch-process all existing .md files"
+      - "Add to documentation template for new files"
+    affected_files:
+      - C:\scripts\tools\add-frontmatter.ps1 (new)
+      - C:\scripts\_machine\DOCUMENTATION_SCHEMA.yaml (new)
+      - All .md files in C:\scripts (add frontmatter)
+    dependencies: []
+
+  - id: 8
+    title: "Natural language query interface"
+    description: |
+      Allow queries like:
+      - "Where are brand2boost credentials?"
+      - "How do I create a PR?"
+      - "What's the Arjan case about?"
+
+      Map to graph traversals or direct file references.
+
+      Currently: Claude must search/grep manually
+      Proposed: Pre-computed query → answer mappings
+    value: 10
+    effort: 3
+    ratio: 3.33
+    category: ai_ml_optimization
+    expert: "Dr. Priya Malhotra (Semantic search algorithms)"
+    implementation:
+      - "Create C:\\scripts\\_machine\\QUERY_MAPPINGS.yaml"
+      - "Map 50 common questions to direct answers/file paths"
+      - "Use fuzzy matching for variations"
+      - "Create C:\\scripts\\tools\\query-resolver.ps1"
+    affected_files:
+      - C:\scripts\_machine\QUERY_MAPPINGS.yaml (new)
+      - C:\scripts\tools\query-resolver.ps1 (new)
+    dependencies: []
+
+  - id: 9
+    title: "Automatic context updates during edits"
+    description: |
+      When Claude edits a file, automatically update the knowledge graph
+      to reflect changes (e.g., new function added, workflow step changed).
+
+      Currently: Knowledge graph becomes stale after code changes
+      Proposed: Incremental graph updates on file writes
+    value: 8
+    effort: 3
+    ratio: 2.67
+    category: knowledge_engineering
+    expert: "Viktor Novak (Graph stream processing)"
+    implementation:
+      - "Create C:\\scripts\\tools\\update-knowledge-graph.ps1"
+      - "Trigger on Write/Edit operations"
+      - "Parse changed files, update CONTEXT_KNOWLEDGE_GRAPH.yaml"
+      - "Track changes in knowledge-graph-changelog.md"
+    affected_files:
+      - C:\scripts\tools\update-knowledge-graph.ps1 (new)
+      - C:\scripts\_machine\knowledge-graph-changelog.md (new)
+      - C:\scripts\_machine\CONTEXT_KNOWLEDGE_GRAPH.yaml (auto-update)
+    dependencies: []
+
+  - id: 10
+    title: "File path autocomplete data"
+    description: |
+      Pre-generate list of all important file paths for instant reference.
+      Organized by category (projects, stores, docs, tools, skills).
+
+      Currently: Claude must glob/search to find file paths
+      Proposed: Pre-indexed path catalog
+    value: 8
+    effort: 3
+    ratio: 2.67
+    category: information_architecture
+    expert: "Roberto Gonzalez (Content inventory and audit)"
+    implementation:
+      - "Create C:\\scripts\\_machine\\FILE_PATH_CATALOG.yaml"
+      - "Categories: projects, stores, docs, tools, skills, logs"
+      - "Update weekly via scheduled task"
+      - "Include file sizes, last modified dates"
+    affected_files:
+      - C:\scripts\_machine\FILE_PATH_CATALOG.yaml (new)
+      - C:\scripts\tools\generate-path-catalog.ps1 (new)
+    dependencies: []
+
+  # --------------------------------------------------------------------------
+  # ID 11-30: HIGH-VALUE IMPROVEMENTS (Ratio 2.0-2.5)
+  # --------------------------------------------------------------------------
+
+  - id: 11
+    title: "Bidirectional link tracking"
+    description: |
+      Track which files reference each other in both directions.
+      If CLAUDE.md references MACHINE_CONFIG.md, then MACHINE_CONFIG.md
+      should show "Referenced by: CLAUDE.md".
+    value: 8
+    effort: 4
+    ratio: 2.0
+    category: knowledge_engineering
+    expert: "Dr. Johan Berg (Wayfinding and signage)"
+    implementation:
+      - "Scan all .md files for markdown links"
+      - "Build bidirectional reference map"
+      - "Add 'Referenced by' sections to files"
+      - "Update on git pre-commit hook"
+    affected_files:
+      - C:\scripts\tools\build-reference-map.ps1 (new)
+      - C:\scripts\_machine\REFERENCE_MAP.yaml (new)
+      - All .md files (add 'Referenced by' sections)
+    dependencies: []
+
+  - id: 12
+    title: "Concept glossary with context"
+    description: |
+      Centralized glossary of all technical terms, project names, and concepts.
+      Each entry includes: definition, aliases, file locations, examples.
+    value: 8
+    effort: 4
+    ratio: 2.0
+    category: technical_writing
+    expert: "Henrik Andersson (Controlled vocabularies)"
+    implementation:
+      - "Create C:\\scripts\\GLOSSARY.md"
+      - "Extract terms from CONTEXT_KNOWLEDGE_GRAPH.yaml"
+      - "Add definitions, aliases, locations"
+      - "Organize alphabetically + by category"
+    affected_files:
+      - C:\scripts\GLOSSARY.md (new)
+      - C:\scripts\tools\generate-glossary.ps1 (new)
+    dependencies: []
+
+  - id: 13
+    title: "Visual knowledge graph diagram"
+    description: |
+      Generate visual graph showing connections between projects, stores,
+      docs, tools, and skills. Export as SVG for documentation.
+    value: 7
+    effort: 4
+    ratio: 1.75
+    category: knowledge_engineering
+    expert: "Carlos Mendoza (Knowledge graph visualization)"
+    implementation:
+      - "Use Graphviz or Mermaid to generate diagram"
+      - "Parse CONTEXT_KNOWLEDGE_GRAPH.yaml connections"
+      - "Create C:\\scripts\\_machine\\knowledge-graph.svg"
+      - "Include in CLAUDE.md as visual overview"
+    affected_files:
+      - C:\scripts\tools\generate-graph-diagram.ps1 (new)
+      - C:\scripts\_machine\knowledge-graph.svg (new)
+      - C:\scripts\CLAUDE.md (embed diagram)
+    dependencies: []
+
+  - id: 14
+    title: "Tool usage frequency tracking"
+    description: |
+      Track which tools Claude uses most often and surface them prominently
+      in quick reference. Learn from actual usage patterns.
+    value: 7
+    effort: 4
+    ratio: 1.75
+    category: user_experience
+    expert: "Lucas Andersson (Personalized navigation)"
+    implementation:
+      - "Log every Bash tool invocation to usage log"
+      - "Create C:\\scripts\\_machine\\tool-usage-stats.json"
+      - "Generate top-10 tools list monthly"
+      - "Update QUICK_REFERENCE.md with popular tools"
+    affected_files:
+      - C:\scripts\_machine\tool-usage-stats.json (new)
+      - C:\scripts\tools\log-tool-usage.ps1 (new)
+      - C:\scripts\QUICK_REFERENCE.md (update with stats)
+    dependencies:
+      - id: 2
+
+  - id: 15
+    title: "Error message to solution mapping"
+    description: |
+      Common error messages mapped to their solutions.
+      "EF migration pending" → run ef-preflight-check.ps1
+      "Worktree conflict" → check worktrees.pool.md
+    value: 9
+    effort: 5
+    ratio: 1.8
+    category: documentation_strategy
+    expert: "Dr. Keisha Brown (Troubleshooting guides)"
+    implementation:
+      - "Create C:\\scripts\\_machine\\ERROR_SOLUTIONS.yaml"
+      - "Extract errors from reflection.log.md"
+      - "Map each error to: cause, solution file, prevention"
+      - "Include regex patterns for fuzzy matching"
+    affected_files:
+      - C:\scripts\_machine\ERROR_SOLUTIONS.yaml (new)
+      - C:\scripts\tools\match-error-solution.ps1 (new)
+    dependencies: []
+
+  - id: 16
+    title: "Project dependency graph"
+    description: |
+      Visual representation of which projects depend on which others.
+      Critical for understanding paired worktree requirements.
+    value: 7
+    effort: 4
+    ratio: 1.75
+    category: system_architecture
+    expert: "Dr. Nadia Kamara (Dependency tracking systems)"
+    implementation:
+      - "Extract project dependencies from CONTEXT_KNOWLEDGE_GRAPH.yaml"
+      - "Generate dependency diagram (Graphviz)"
+      - "Show: depends_on, uses_store, related_to relationships"
+      - "Update automatically when graph changes"
+    affected_files:
+      - C:\scripts\tools\generate-dependency-diagram.ps1 (new)
+      - C:\scripts\_machine\project-dependencies.svg (new)
+    dependencies: []
+
+  - id: 17
+    title: "Documentation versioning and history"
+    description: |
+      Track major changes to documentation files over time.
+      Enable "show me what changed in CLAUDE.md this month".
+    value: 6
+    effort: 4
+    ratio: 1.5
+    category: knowledge_engineering
+    expert: "Dr. Halima Ndiaye (Graph-based version control)"
+    implementation:
+      - "Create C:\\scripts\\_machine\\docs-changelog.md"
+      - "Auto-generate from git log for docs files"
+      - "Categorize changes: new sections, deletions, major rewrites"
+      - "Update weekly"
+    affected_files:
+      - C:\scripts\_machine\docs-changelog.md (new)
+      - C:\scripts\tools\generate-docs-changelog.ps1 (new)
+    dependencies: []
+
+  - id: 18
+    title: "Smart context window management"
+    description: |
+      Pre-compute which files fit together within Claude's context window.
+      "Context bundle: client-manager" = all related files that fit in 150K tokens.
+    value: 8
+    effort: 5
+    ratio: 1.6
+    category: ai_ml_optimization
+    expert: "Dr. Ayana Johnson (Graph-based context windows)"
+    implementation:
+      - "Calculate token counts for all documentation files"
+      - "Create pre-computed context bundles by topic"
+      - "Store in C:\\scripts\\_machine\\CONTEXT_BUNDLES.yaml"
+      - "Each bundle: files[], total_tokens, topic"
+    affected_files:
+      - C:\scripts\_machine\CONTEXT_BUNDLES.yaml (new)
+      - C:\scripts\tools\calculate-context-bundles.ps1 (new)
+    dependencies: []
+
+  - id: 19
+    title: "Workflow decision trees"
+    description: |
+      Interactive decision trees for common workflows.
+      "Should I allocate worktree?" → decision tree based on mode, project, etc.
+    value: 7
+    effort: 5
+    ratio: 1.4
+    category: information_architecture
+    expert: "Dr. Leila Abbasi (Guided navigation)"
+    implementation:
+      - "Create decision trees for top 10 workflows"
+      - "Format: YAML with conditions and outcomes"
+      - "Store in C:\\scripts\\_machine\\DECISION_TREES.yaml"
+      - "Tool to traverse tree based on current state"
+    affected_files:
+      - C:\scripts\_machine\DECISION_TREES.yaml (new)
+      - C:\scripts\tools\navigate-decision-tree.ps1 (new)
+    dependencies: []
+
+  - id: 20
+    title: "File freshness indicators"
+    description: |
+      Show last-modified dates prominently in all documentation.
+      Flag files not updated in > 6 months as potentially stale.
+    value: 6
+    effort: 4
+    ratio: 1.5
+    category: information_architecture
+    expert: "Liam O'Connor (Content freshness indicators)"
+    implementation:
+      - "Add 'Last Updated' footer to all .md files"
+      - "Auto-update from git commit history"
+      - "Create C:\\scripts\\tools\\update-freshness.ps1"
+      - "Run in pre-commit hook"
+    affected_files:
+      - C:\scripts\tools\update-freshness.ps1 (new)
+      - All .md files (add Last Updated footer)
+    dependencies: []
+
+  - id: 21
+    title: "Cross-project pattern library"
+    description: |
+      Extract common patterns that appear across multiple projects.
+      E.g., "API error handling pattern" used in both client-manager and hazina.
+    value: 7
+    effort: 5
+    ratio: 1.4
+    category: system_architecture
+    expert: "Dr. Hiroshi Nakamura (Graph pattern mining)"
+    implementation:
+      - "Scan codebases for recurring patterns"
+      - "Document in C:\\scripts\\_machine\\PATTERN_LIBRARY.md"
+      - "Categories: API, database, frontend, error handling"
+      - "Link to example implementations"
+    affected_files:
+      - C:\scripts\_machine\PATTERN_LIBRARY.md (new)
+      - C:\scripts\tools\extract-patterns.ps1 (new)
+    dependencies: []
+
+  - id: 22
+    title: "Task-to-documentation mapping"
+    description: |
+      Map common tasks to the specific documentation sections needed.
+      Task: "Add new API endpoint" → Docs: [api-patterns skill, DEFINITION_OF_DONE.md]
+    value: 8
+    effort: 5
+    ratio: 1.6
+    category: information_architecture
+    expert: "Dr. Fatou Diop (Parallel navigation structures)"
+    implementation:
+      - "Create C:\\scripts\\_machine\\TASK_DOCS_MAP.yaml"
+      - "List 30 common tasks with required docs"
+      - "Include in STARTUP_PROTOCOL.md as quick task reference"
+    affected_files:
+      - C:\scripts\_machine\TASK_DOCS_MAP.yaml (new)
+    dependencies: []
+
+  - id: 23
+    title: "Skill dependencies graph"
+    description: |
+      Show which skills depend on which tools and documentation.
+      allocate-worktree skill → uses allocate-worktree.ps1, reads worktrees.pool.md
+    value: 6
+    effort: 4
+    ratio: 1.5
+    category: knowledge_engineering
+    expert: "Dr. Farah Khan (Graph-based dependency tracking)"
+    implementation:
+      - "Parse all .claude/skills/ directories"
+      - "Extract tool calls and file reads from skill instructions"
+      - "Build dependency graph in CONTEXT_KNOWLEDGE_GRAPH.yaml"
+      - "Generate visual diagram"
+    affected_files:
+      - C:\scripts\_machine\CONTEXT_KNOWLEDGE_GRAPH.yaml (extend skills section)
+      - C:\scripts\tools\generate-skill-dependencies.ps1 (new)
+    dependencies: []
+
+  - id: 24
+    title: "Documentation completeness scoring"
+    description: |
+      Score each project/system on documentation completeness:
+      - Has README? (+10 points)
+      - Has architecture docs? (+10)
+      - Has troubleshooting guide? (+10)
+      - Last updated < 3 months? (+10)
+    value: 5
+    effort: 4
+    ratio: 1.25
+    category: technical_writing
+    expert: "Dr. Amina Patel (Documentation quality metrics)"
+    implementation:
+      - "Create scoring rubric"
+      - "Scan all project directories"
+      - "Generate completeness report"
+      - "Store in C:\\scripts\\_machine\\DOC_COMPLETENESS_SCORES.yaml"
+    affected_files:
+      - C:\scripts\_machine\DOC_COMPLETENESS_SCORES.yaml (new)
+      - C:\scripts\tools\score-doc-completeness.ps1 (new)
+    dependencies: []
+
+  - id: 25
+    title: "Semantic search index"
+    description: |
+      Build vector embeddings of all documentation for semantic search.
+      Query: "How do I handle database migrations?" → finds relevant docs even without exact keywords.
+    value: 10
+    effort: 8
+    ratio: 1.25
+    category: ai_ml_optimization
+    expert: "Dr. Priya Malhotra (Semantic search algorithms)"
+    implementation:
+      - "Generate embeddings for all .md files using OpenAI API"
+      - "Store vectors in C:\\scripts\\_machine\\doc-embeddings.json"
+      - "Create semantic search tool"
+      - "Index updates weekly"
+    affected_files:
+      - C:\scripts\_machine\doc-embeddings.json (new)
+      - C:\scripts\tools\generate-embeddings.ps1 (new)
+      - C:\scripts\tools\semantic-search.ps1 (new)
+    dependencies: []
+
+  - id: 26
+    title: "Change impact analysis tool"
+    description: |
+      Given a code change, predict which docs need updating.
+      Change: "Modified hazina API" → Docs to update: [hazina README, client-manager integration guide]
+    value: 7
+    effort: 6
+    ratio: 1.17
+    category: knowledge_engineering
+    expert: "Dr. Zuri Mensah (Graph-based impact analysis)"
+    implementation:
+      - "Map code files to documentation files in graph"
+      - "Track usage relationships (which code uses which APIs)"
+      - "Create C:\\scripts\\tools\\impact-analysis.ps1"
+      - "Output list of potentially affected docs"
+    affected_files:
+      - C:\scripts\tools\impact-analysis.ps1 (new)
+      - C:\scripts\_machine\CODE_DOC_RELATIONSHIPS.yaml (new)
+    dependencies: []
+
+  - id: 27
+    title: "Context preloading based on task type"
+    description: |
+      When user says "fix build error", auto-load build-related context.
+      When user says "create PR", auto-load git workflow context.
+    value: 9
+    effort: 8
+    ratio: 1.125
+    category: ai_ml_optimization
+    expert: "Dr. Amara Sow (Graph-based semantic routing)"
+    implementation:
+      - "Define task type classifiers (regex patterns)"
+      - "Map task types to context bundles"
+      - "Store in C:\\scripts\\_machine\\TASK_TYPE_CONTEXTS.yaml"
+      - "Auto-load relevant context at session start if task type detected"
+    affected_files:
+      - C:\scripts\_machine\TASK_TYPE_CONTEXTS.yaml (new)
+      - C:\scripts\tools\classify-task-type.ps1 (new)
+    dependencies:
+      - id: 18
+
+  - id: 28
+    title: "Documentation search suggestions"
+    description: |
+      When Claude searches for X and finds nothing, suggest similar terms
+      or alternative search strategies.
+    value: 6
+    effort: 5
+    ratio: 1.2
+    category: user_experience
+    expert: "Emma Williams (Search UX patterns)"
+    implementation:
+      - "Track failed searches in C:\\scripts\\_machine\\failed-searches.log"
+      - "Build synonym/alternative terms database"
+      - "On search failure, suggest: 'Did you mean: Y?'"
+    affected_files:
+      - C:\scripts\_machine\failed-searches.log (new)
+      - C:\scripts\_machine\SEARCH_SYNONYMS.yaml (new)
+      - C:\scripts\tools\suggest-search-alternatives.ps1 (new)
+    dependencies: []
+
+  - id: 29
+    title: "Auto-generated project README summaries"
+    description: |
+      Generate concise README files for projects lacking documentation.
+      Extract: tech stack, dependencies, purpose from code analysis.
+    value: 6
+    effort: 5
+    ratio: 1.2
+    category: technical_writing
+    expert: "Sofia Martinez (Auto-documentation generation)"
+    implementation:
+      - "Scan projects without README.md"
+      - "Extract metadata from package.json, .csproj, imports"
+      - "Generate basic README template"
+      - "Store in project directories"
+    affected_files:
+      - C:\scripts\tools\generate-readme.ps1 (new)
+      - Various project README.md files (generate)
+    dependencies: []
+
+  - id: 30
+    title: "Knowledge graph health metrics"
+    description: |
+      Monitor graph quality: coverage, staleness, broken links, orphaned nodes.
+      Generate health report weekly.
+    value: 5
+    effort: 5
+    ratio: 1.0
+    category: knowledge_engineering
+    expert: "Sergei Kozlov (Knowledge graph quality metrics)"
+    implementation:
+      - "Check for: broken file references, outdated timestamps, disconnected nodes"
+      - "Generate health score (0-100)"
+      - "Store in C:\\scripts\\_machine\\graph-health-report.md"
+      - "Alert if score drops below 80"
+    affected_files:
+      - C:\scripts\_machine\graph-health-report.md (new)
+      - C:\scripts\tools\check-graph-health.ps1 (new)
+    dependencies: []
+
+  # --------------------------------------------------------------------------
+  # ID 31-60: MEDIUM-VALUE IMPROVEMENTS (Ratio 0.8-1.0)
+  # --------------------------------------------------------------------------
+
+  - id: 31
+    title: "Store-to-project relationship diagram"
+    description: |
+      Visual diagram showing which stores are used by which projects.
+      Clarifies the C:\\stores\\ directory structure.
+    value: 5
+    effort: 5
+    ratio: 1.0
+    category: information_architecture
+    expert: "Priya Kapoor (Site maps and structure)"
+    implementation:
+      - "Extract store relationships from CONTEXT_KNOWLEDGE_GRAPH.yaml"
+      - "Generate diagram showing project → store connections"
+      - "Include in MACHINE_CONFIG.md"
+    affected_files:
+      - C:\scripts\tools\generate-store-diagram.ps1 (new)
+      - C:\scripts\_machine\store-relationships.svg (new)
+      - C:\scripts\MACHINE_CONFIG.md (embed diagram)
+    dependencies: []
+
+  - id: 32
+    title: "Conversation log mining for patterns"
+    description: |
+      Analyze past conversation logs to discover:
+      - Most frequently asked questions
+      - Common confusion points
+      - Repeated mistakes
+    value: 7
+    effort: 7
+    ratio: 1.0
+    category: ai_ml_optimization
+    expert: "Dr. Elena Sokolova (Graph-based knowledge discovery)"
+    implementation:
+      - "Scan C:\\scripts\\logs\\ for conversation patterns"
+      - "Use NLP to extract common questions"
+      - "Generate FAQ from log analysis"
+      - "Update QUICK_REFERENCE.md with findings"
+    affected_files:
+      - C:\scripts\tools\mine-conversation-logs.ps1 (new)
+      - C:\scripts\FAQ.md (new)
+    dependencies:
+      - id: 2
+
+  - id: 33
+    title: "Workflow completion tracking"
+    description: |
+      Track how often workflows are completed successfully vs. abandoned.
+      Identify problematic workflows that need simplification.
+    value: 6
+    effort: 6
+    ratio: 1.0
+    category: user_experience
+    expert: "Dr. Rachel Kim (UX testing protocols)"
+    implementation:
+      - "Log workflow starts and completions"
+      - "Calculate completion rates per workflow"
+      - "Flag workflows with < 70% completion for review"
+      - "Store in C:\\scripts\\_machine\\workflow-completion-rates.json"
+    affected_files:
+      - C:\scripts\_machine\workflow-completion-rates.json (new)
+      - C:\scripts\tools\track-workflow-completion.ps1 (new)
+    dependencies: []
+
+  - id: 34
+    title: "Tool-to-skill mapping visualization"
+    description: |
+      Show which PowerShell tools are used by which Claude Skills.
+      Helps understand tool usage and skill dependencies.
+    value: 5
+    effort: 5
+    ratio: 1.0
+    category: knowledge_engineering
+    expert: "Dr. Simone Dupont (Graph-based semantic search)"
+    implementation:
+      - "Parse skill instructions for tool invocations"
+      - "Build tool → skill relationship map"
+      - "Generate visual diagram"
+      - "Include in SKILLS.md"
+    affected_files:
+      - C:\scripts\tools\map-tools-to-skills.ps1 (new)
+      - C:\scripts\_machine\tool-skill-relationships.svg (new)
+      - C:\scripts\docs\claude-system\SKILLS.md (embed diagram)
+    dependencies: []
+
+  - id: 35
+    title: "Critical path highlighting"
+    description: |
+      Mark which documentation files are on the 'critical path' for common tasks.
+      E.g., MANDATORY_CODE_WORKFLOW.md is critical for all code changes.
+    value: 7
+    effort: 7
+    ratio: 1.0
+    category: information_architecture
+    expert: "Dimitri Antonov (Content prioritization)"
+    implementation:
+      - "Define 'criticality score' based on: usage frequency, impact, dependencies"
+      - "Mark critical files with ⭐ in indexes"
+      - "Include 'Critical Files' section in CLAUDE.md"
+    affected_files:
+      - C:\scripts\_machine\FILE_CRITICALITY_SCORES.yaml (new)
+      - C:\scripts\CLAUDE.md (add Critical Files section)
+    dependencies: []
+
+  - id: 36
+    title: "Automated cross-reference checking"
+    description: |
+      Verify all file references in documentation are valid.
+      Flag broken links before they cause confusion.
+    value: 6
+    effort: 6
+    ratio: 1.0
+    category: technical_writing
+    expert: "Dr. Johan Berg (Wayfinding and signage)"
+    implementation:
+      - "Scan all .md files for references to other files"
+      - "Check if referenced files exist"
+      - "Generate broken links report"
+      - "Run in pre-commit hook"
+    affected_files:
+      - C:\scripts\tools\check-cross-references.ps1 (new)
+      - C:\scripts\_machine\broken-links-report.md (new)
+    dependencies: []
+
+  - id: 37
+    title: "Context compression for large files"
+    description: |
+      For files > 25K tokens, generate multiple views:
+      - Executive summary (500 tokens)
+      - Overview (2K tokens)
+      - Full content (original)
+    value: 6
+    effort: 6
+    ratio: 1.0
+    category: technical_writing
+    expert: "Nikolai Ivanov (Knowledge graph summarization)"
+    implementation:
+      - "Identify large files (> 25K tokens)"
+      - "Generate summaries using LLM"
+      - "Store summaries alongside originals"
+      - "Format: filename.SUMMARY.md, filename.OVERVIEW.md"
+    affected_files:
+      - C:\scripts\tools\generate-summaries.ps1 (new)
+      - Various SUMMARY.md and OVERVIEW.md files (generate)
+    dependencies:
+      - id: 4
+
+  - id: 38
+    title: "Skill usage analytics"
+    description: |
+      Track which skills are used most often, which are never used.
+      Identify skills that need better documentation or deprecation.
+    value: 5
+    effort: 5
+    ratio: 1.0
+    category: system_architecture
+    expert: "Miguel Herrera (Knowledge graph telemetry)"
+    implementation:
+      - "Log every skill invocation"
+      - "Generate usage statistics monthly"
+      - "Flag skills with 0 usage in 6 months"
+      - "Store in C:\\scripts\\_machine\\skill-usage-stats.json"
+    affected_files:
+      - C:\scripts\_machine\skill-usage-stats.json (new)
+      - C:\scripts\tools\log-skill-usage.ps1 (new)
+    dependencies: []
+
+  - id: 39
+    title: "Documentation duplication detection"
+    description: |
+      Find sections of documentation that are duplicated across multiple files.
+      Consolidate or cross-reference to reduce maintenance burden.
+    value: 5
+    effort: 5
+    ratio: 1.0
+    category: technical_writing
+    expert: "Dr. Chioma Okonkwo (Content deduplication)"
+    implementation:
+      - "Compare documentation sections for similarity"
+      - "Flag duplicates (> 80% similar)"
+      - "Suggest consolidation or cross-references"
+      - "Generate duplication report"
+    affected_files:
+      - C:\scripts\tools\detect-doc-duplication.ps1 (new)
+      - C:\scripts\_machine\doc-duplication-report.md (new)
+    dependencies: []
+
+  - id: 40
+    title: "Time-based context relevance"
+    description: |
+      Weight recent documents higher than old ones in search results.
+      Documents edited in last 30 days get priority.
+    value: 6
+    effort: 6
+    ratio: 1.0
+    category: ai_ml_optimization
+    expert: "Dr. Klaus Weber (Temporal knowledge graphs)"
+    implementation:
+      - "Add timestamp weighting to search/retrieval"
+      - "Recent files (< 30 days) get 2x weight"
+      - "Very old files (> 1 year) get 0.5x weight"
+      - "Implement in semantic search and file recommendations"
+    affected_files:
+      - C:\scripts\tools\semantic-search.ps1 (modify)
+      - C:\scripts\tools\suggest-related.ps1 (modify)
+    dependencies:
+      - id: 25
+      - id: 5
+
+  - id: 41
+    title: "Project status dashboard"
+    description: |
+      Single-page dashboard showing status of all projects:
+      - Last commit date
+      - Open PRs
+      - Documentation completeness
+      - Health score
+    value: 6
+    effort: 6
+    ratio: 1.0
+    category: system_architecture
+    expert: "Marcus Chen (Status dashboard design)"
+    implementation:
+      - "Aggregate data from git, GitHub API, doc scores"
+      - "Generate HTML dashboard"
+      - "Store in C:\\scripts\\status\\project-dashboard.html"
+      - "Update daily via scheduled task"
+    affected_files:
+      - C:\scripts\status\project-dashboard.html (new)
+      - C:\scripts\tools\generate-project-dashboard.ps1 (new)
+    dependencies:
+      - id: 24
+
+  - id: 42
+    title: "Entity type classification"
+    description: |
+      Classify all entities in knowledge graph by type:
+      project, store, tool, skill, document, workflow, person.
+      Enables type-specific searches.
+    value: 5
+    effort: 5
+    ratio: 1.0
+    category: knowledge_engineering
+    expert: "Dr. Ingrid Andersen (Taxonomies and classification systems)"
+    implementation:
+      - "Add 'entity_type' field to all nodes in CONTEXT_KNOWLEDGE_GRAPH.yaml"
+      - "Create type-specific search filters"
+      - "Enable queries like 'show all tools related to X'"
+    affected_files:
+      - C:\scripts\_machine\CONTEXT_KNOWLEDGE_GRAPH.yaml (add entity_type)
+      - C:\scripts\tools\search-by-entity-type.ps1 (new)
+    dependencies: []
+
+  - id: 43
+    title: "Workflow step completion indicators"
+    description: |
+      Visual indicators showing which steps of a workflow are complete.
+      Progress bar for multi-step workflows.
+    value: 5
+    effort: 5
+    ratio: 1.0
+    category: user_experience
+    expert: "Dr. Sarah Mitchell (Progress visualization)"
+    implementation:
+      - "Track workflow state in C:\\scripts\\_machine\\workflow-progress.json"
+      - "Show checkboxes/progress bars for each step"
+      - "Update as Claude completes steps"
+    affected_files:
+      - C:\scripts\_machine\workflow-progress.json (new)
+      - C:\scripts\tools\track-workflow-progress.ps1 (new)
+    dependencies: []
+
+  - id: 44
+    title: "Smart documentation suggestions during errors"
+    description: |
+      When Claude encounters an error, automatically suggest relevant docs.
+      E.g., worktree error → suggest worktree-workflow.md
+    value: 7
+    effort: 7
+    ratio: 1.0
+    category: ai_ml_optimization
+    expert: "Dr. Petra Müller (Graph-based conflict detection)"
+    implementation:
+      - "Map error types to relevant documentation"
+      - "On error, output: 'Suggested reading: [file1, file2]'"
+      - "Use error message text matching"
+    affected_files:
+      - C:\scripts\_machine\ERROR_TO_DOCS_MAP.yaml (new)
+      - C:\scripts\tools\suggest-docs-for-error.ps1 (new)
+    dependencies:
+      - id: 15
+
+  - id: 45
+    title: "Documentation confidence scoring"
+    description: |
+      Mark documentation sections with confidence levels:
+      - Verified (tested recently)
+      - Assumed (not recently verified)
+      - Deprecated (outdated)
+    value: 5
+    effort: 5
+    ratio: 1.0
+    category: knowledge_engineering
+    expert: "Adebayo Osei (Probabilistic knowledge graphs)"
+    implementation:
+      - "Add confidence metadata to doc sections"
+      - "Mark with: ✅ Verified, ⚠️ Assumed, ❌ Deprecated"
+      - "Update based on recent usage/testing"
+    affected_files:
+      - All .md files (add confidence markers)
+      - C:\scripts\tools\update-confidence-scores.ps1 (new)
+    dependencies: []
+
+  - id: 46
+    title: "API endpoint inventory"
+    description: |
+      Complete list of all API endpoints in client-manager with:
+      - Route, method, purpose, related docs
+    value: 5
+    effort: 5
+    ratio: 1.0
+    category: technical_writing
+    expert: "Dr. Omar Farooq (API documentation patterns)"
+    implementation:
+      - "Scan client-manager code for API routes"
+      - "Extract: route, HTTP method, controller, purpose"
+      - "Generate API inventory in YAML"
+      - "Store in C:\\Projects\\client-manager\\API_INVENTORY.yaml"
+    affected_files:
+      - C:\Projects\client-manager\API_INVENTORY.yaml (new)
+      - C:\scripts\tools\generate-api-inventory.ps1 (new)
+    dependencies: []
+
+  - id: 47
+    title: "Knowledge graph query language"
+    description: |
+      Simple query language for graph traversals:
+      'find projects using hazina'
+      'find tools called by allocate-worktree skill'
+    value: 7
+    effort: 8
+    ratio: 0.875
+    category: knowledge_engineering
+    expert: "Dr. Nia Williams (Graph pattern languages)"
+    implementation:
+      - "Define simple query syntax"
+      - "Implement query parser and executor"
+      - "Create C:\\scripts\\tools\\query-graph.ps1"
+      - "Support: find, filter, traverse operations"
+    affected_files:
+      - C:\scripts\tools\query-graph.ps1 (new)
+      - C:\scripts\_machine\QUERY_LANGUAGE_SPEC.md (new)
+    dependencies: []
+
+  - id: 48
+    title: "Automated 'See Also' generation"
+    description: |
+      Automatically generate 'See Also' sections for all docs
+      based on graph relationships.
+    value: 6
+    effort: 6
+    ratio: 1.0
+    category: information_architecture
+    expert: "Zara Johnson (Related content recommendations)"
+    implementation:
+      - "For each doc file, find 3-5 most related files from graph"
+      - "Add 'See Also' section at bottom"
+      - "Update automatically when graph changes"
+    affected_files:
+      - All .md files (add See Also sections)
+      - C:\scripts\tools\generate-see-also.ps1 (new)
+    dependencies:
+      - id: 5
+
+  - id: 49
+    title: "Context switch notifications"
+    description: |
+      Alert Claude when it switches between major contexts
+      (e.g., from client-manager to hazina, or from coding to docs).
+    value: 5
+    effort: 5
+    ratio: 1.0
+    category: user_experience
+    expert: "Dr. Ama Boateng (Graph-based context switching)"
+    implementation:
+      - "Track current context (project, task type)"
+      - "Detect significant context switches"
+      - "Output: 'Context switched from X to Y. Relevant docs: [...]'"
+    affected_files:
+      - C:\scripts\_machine\current-context.json (new)
+      - C:\scripts\tools\detect-context-switch.ps1 (new)
+    dependencies: []
+
+  - id: 50
+    title: "Historical usage patterns"
+    description: |
+      Track which files/tools Claude uses together frequently.
+      Learn associations: 'when using X, also use Y'.
+    value: 6
+    effort: 6
+    ratio: 1.0
+    category: ai_ml_optimization
+    expert: "Dr. Gabriela Torres (Graph-based context propagation)"
+    implementation:
+      - "Log file/tool usage per session"
+      - "Mine co-occurrence patterns"
+      - "Build association rules (X → Y with confidence)"
+      - "Store in C:\\scripts\\_machine\\usage-associations.yaml"
+    affected_files:
+      - C:\scripts\_machine\usage-associations.yaml (new)
+      - C:\scripts\tools\mine-usage-patterns.ps1 (new)
+    dependencies: []
+
+  - id: 51
+    title: "Skill chaining recommendations"
+    description: |
+      Suggest which skill to run next based on current state.
+      After 'allocate-worktree', suggest 'clickhub-coding-agent'.
+    value: 6
+    effort: 6
+    ratio: 1.0
+    category: information_architecture
+    expert: "Dr. Amara Diallo (Workflow sequence optimization)"
+    implementation:
+      - "Define skill sequence patterns"
+      - "Track skill invocations per session"
+      - "Suggest next logical skill"
+      - "Store patterns in C:\\scripts\\_machine\\SKILL_SEQUENCES.yaml"
+    affected_files:
+      - C:\scripts\_machine\SKILL_SEQUENCES.yaml (new)
+      - C:\scripts\tools\suggest-next-skill.ps1 (new)
+    dependencies: []
+
+  - id: 52
+    title: "Documentation reading order optimization"
+    description: |
+      Suggest optimal order for reading documentation when starting new project.
+      1. MACHINE_CONFIG.md → 2. Project README → 3. WORKFLOWS
+    value: 5
+    effort: 5
+    ratio: 1.0
+    category: information_architecture
+    expert: "Dr. Leila Abbasi (Guided navigation)"
+    implementation:
+      - "Define reading order for each project"
+      - "Store in C:\\scripts\\_machine\\READING_ORDERS.yaml"
+      - "Output guided reading sequence at session start"
+    affected_files:
+      - C:\scripts\_machine\READING_ORDERS.yaml (new)
+    dependencies: []
+
+  - id: 53
+    title: "Common mistake prevention checklist"
+    description: |
+      Before critical operations, show checklist of common mistakes to avoid.
+      Before PR: 'Did you merge develop? Run tests? Update ClickUp?'
+    value: 6
+    effort: 6
+    ratio: 1.0
+    category: user_experience
+    expert: "Dr. Lucia Fernandez (Error prevention in navigation)"
+    implementation:
+      - "Define checklists for critical operations from reflection.log.md"
+      - "Store in C:\\scripts\\_machine\\PREVENTION_CHECKLISTS.yaml"
+      - "Display automatically before risky operations"
+    affected_files:
+      - C:\scripts\_machine\PREVENTION_CHECKLISTS.yaml (new)
+      - C:\scripts\tools\show-prevention-checklist.ps1 (new)
+    dependencies: []
+
+  - id: 54
+    title: "Entity importance ranking"
+    description: |
+      Rank entities in knowledge graph by importance:
+      client-manager (very important) vs. old archived project (low importance)
+    value: 5
+    effort: 5
+    ratio: 1.0
+    category: knowledge_engineering
+    expert: "Dr. Layla Ibrahim (Graph-based search ranking)"
+    implementation:
+      - "Calculate PageRank-style importance scores"
+      - "Factors: usage frequency, connections, recency"
+      - "Store importance scores in graph"
+      - "Use for search result ranking"
+    affected_files:
+      - C:\scripts\_machine\CONTEXT_KNOWLEDGE_GRAPH.yaml (add importance scores)
+      - C:\scripts\tools\calculate-entity-importance.ps1 (new)
+    dependencies: []
+
+  - id: 55
+    title: "Multi-agent coordination warnings"
+    description: |
+      If multiple agents are active, warn about potential conflicts
+      and suggest coordination strategies.
+    value: 6
+    effort: 6
+    ratio: 1.0
+    category: system_architecture
+    expert: "Dr. Marcus Chang (Multi-agent coordination patterns)"
+    implementation:
+      - "Monitor agent activity via worktrees.pool.md"
+      - "Detect potential conflicts (same branch, same files)"
+      - "Output coordination warnings"
+      - "Suggest: 'Agent 002 is working on same project. Coordinate?'"
+    affected_files:
+      - C:\scripts\tools\warn-agent-conflicts.ps1 (new)
+    dependencies: []
+
+  - id: 56
+    title: "Template library for common tasks"
+    description: |
+      Pre-made templates for common outputs:
+      - PR description template
+      - Bug report template
+      - API documentation template
+    value: 5
+    effort: 5
+    ratio: 1.0
+    category: technical_writing
+    expert: "Sofia Martinez (Content templates)"
+    implementation:
+      - "Create C:\\scripts\\_machine\\templates\\ directory"
+      - "Add templates for PRs, bugs, docs, etc."
+      - "Reference in workflows"
+    affected_files:
+      - C:\scripts\_machine\templates\pr-template.md (new)
+      - C:\scripts\_machine\templates\bug-template.md (new)
+      - C:\scripts\_machine\templates\api-doc-template.md (new)
+    dependencies: []
+
+  - id: 57
+    title: "Credential location quick finder"
+    description: |
+      One-command lookup for credentials:
+      'find credentials for brand2boost' → Username: wreckingball, Password: (location)
+    value: 7
+    effort: 7
+    ratio: 1.0
+    category: information_architecture
+    expert: "Dr. Yasmin Malik (Archives and historical content)"
+    implementation:
+      - "Extract all credentials from MACHINE_CONFIG.md and CONTEXT_KNOWLEDGE_GRAPH.yaml"
+      - "Store in encrypted C:\\scripts\\_machine\\CREDENTIALS_INDEX.encrypted.yaml"
+      - "Create lookup tool with auth"
+    affected_files:
+      - C:\scripts\_machine\CREDENTIALS_INDEX.encrypted.yaml (new)
+      - C:\scripts\tools\find-credentials.ps1 (new)
+    dependencies: []
+
+  - id: 58
+    title: "Knowledge graph garbage collection"
+    description: |
+      Remove obsolete entities from graph (deleted projects, outdated tools).
+      Run monthly cleanup.
+    value: 4
+    effort: 4
+    ratio: 1.0
+    category: knowledge_engineering
+    expert: "Maxim Sorokin (Knowledge graph garbage collection)"
+    implementation:
+      - "Scan graph for references to non-existent files"
+      - "Flag entities not accessed in > 6 months"
+      - "Generate cleanup recommendations"
+      - "Store in C:\\scripts\\_machine\\graph-cleanup-report.md"
+    affected_files:
+      - C:\scripts\_machine\graph-cleanup-report.md (new)
+      - C:\scripts\tools\graph-garbage-collect.ps1 (new)
+    dependencies:
+      - id: 30
+
+  - id: 59
+    title: "Diff-based documentation updates"
+    description: |
+      When code changes, automatically suggest doc updates based on diff.
+      Changed function signature → update API docs.
+    value: 6
+    effort: 6
+    ratio: 1.0
+    category: technical_writing
+    expert: "Dr. Andrei Morozov (Change impact tracking)"
+    implementation:
+      - "Parse git diffs on commits"
+      - "Identify changed functions/classes"
+      - "Check if related docs exist"
+      - "Suggest doc updates if needed"
+    affected_files:
+      - C:\scripts\tools\suggest-doc-updates-from-diff.ps1 (new)
+    dependencies:
+      - id: 26
+
+  - id: 60
+    title: "Learning curve optimization"
+    description: |
+      Track how long it takes Claude to complete tasks over time.
+      Identify tasks that consistently take too long and need better docs.
+    value: 5
+    effort: 5
+    ratio: 1.0
+    category: user_experience
+    expert: "Dr. Rachel Kim (Learning curve analysis)"
+    implementation:
+      - "Track task completion times across sessions"
+      - "Calculate average time per task type"
+      - "Flag tasks with increasing completion times (getting harder, not easier)"
+      - "Store in C:\\scripts\\_machine\\task-completion-times.json"
+    affected_files:
+      - C:\scripts\_machine\task-completion-times.json (new)
+      - C:\scripts\tools\track-task-times.ps1 (new)
+    dependencies: []
+
+  # --------------------------------------------------------------------------
+  # ID 61-80: STRUCTURAL IMPROVEMENTS (Ratio 0.5-0.8)
+  # --------------------------------------------------------------------------
+
+  - id: 61
+    title: "Unified search interface"
+    description: |
+      Single search interface that queries:
+      - File contents (Grep)
+      - File names (Glob)
+      - Knowledge graph (structured queries)
+      - Semantic search (embeddings)
+    value: 8
+    effort: 10
+    ratio: 0.8
+    category: system_architecture
+    expert: "Dr. Antoine Dubois (Multi-modal knowledge graphs)"
+    implementation:
+      - "Create unified search tool"
+      - "Route queries to appropriate search backend"
+      - "Aggregate and rank results"
+      - "Store in C:\\scripts\\tools\\unified-search.ps1"
+    affected_files:
+      - C:\scripts\tools\unified-search.ps1 (new)
+    dependencies:
+      - id: 25
+      - id: 47
+
+  - id: 62
+    title: "Graph database migration"
+    description: |
+      Migrate from YAML knowledge graph to proper graph database (Neo4j or similar).
+      Enables advanced queries, better performance.
+    value: 9
+    effort: 12
+    ratio: 0.75
+    category: system_architecture
+    expert: "Omar Hassan (Graph database query optimization)"
+    implementation:
+      - "Set up local Neo4j instance"
+      - "Migrate CONTEXT_KNOWLEDGE_GRAPH.yaml to Neo4j"
+      - "Create Cypher query tools"
+      - "Maintain YAML as export format for portability"
+    affected_files:
+      - C:\scripts\tools\migrate-to-neo4j.ps1 (new)
+      - C:\scripts\tools\query-neo4j.ps1 (new)
+      - Neo4j database (new)
+    dependencies: []
+
+  - id: 63
+    title: "Real-time graph updates"
+    description: |
+      Update knowledge graph in real-time as files change, not batch updates.
+      File watcher triggers incremental graph updates.
+    value: 7
+    effort: 9
+    ratio: 0.78
+    category: system_architecture
+    expert: "Viktor Novak (Graph stream processing)"
+    implementation:
+      - "Set up file watcher for C:\\Projects and C:\\scripts"
+      - "On file change, update relevant graph nodes"
+      - "Log updates in graph changelog"
+      - "Background service running continuously"
+    affected_files:
+      - C:\scripts\services\graph-update-watcher.ps1 (new)
+    dependencies:
+      - id: 9
+
+  - id: 64
+    title: "Inter-document link validation service"
+    description: |
+      Continuous background service checking all doc links are valid.
+      Alert on broken links immediately.
+    value: 6
+    effort: 8
+    ratio: 0.75
+    category: technical_writing
+    expert: "Dr. Johan Berg (Cross-reference validation)"
+    implementation:
+      - "Background service checking links every hour"
+      - "Alert on Slack/email if broken links found"
+      - "Auto-fix obvious issues (case mismatch, moved files)"
+    affected_files:
+      - C:\scripts\services\link-validator.ps1 (new)
+    dependencies:
+      - id: 36
+
+  - id: 65
+    title: "Intelligent code-to-docs mapping"
+    description: |
+      Parse all code files and automatically link to relevant documentation.
+      Each function/class knows its docs.
+    value: 7
+    effort: 9
+    ratio: 0.78
+    category: technical_writing
+    expert: "Rafael Silva (Graph schema mapping)"
+    implementation:
+      - "Parse code for functions, classes, APIs"
+      - "Match to documentation sections"
+      - "Build bidirectional mapping"
+      - "Store in CODE_TO_DOCS_MAP.yaml"
+    affected_files:
+      - C:\scripts\_machine\CODE_TO_DOCS_MAP.yaml (new)
+      - C:\scripts\tools\build-code-docs-map.ps1 (new)
+    dependencies: []
+
+  - id: 66
+    title: "Multi-language documentation support"
+    description: |
+      Support documentation in multiple languages (English + Dutch).
+      Auto-translate or maintain parallel docs.
+    value: 4
+    effort: 8
+    ratio: 0.5
+    category: technical_writing
+    expert: "Dr. Zara Karim (Cross-lingual knowledge graphs)"
+    implementation:
+      - "Add language field to docs"
+      - "Maintain English and Dutch versions"
+      - "Link translations in graph"
+      - "Auto-translate using LLM where possible"
+    affected_files:
+      - All .md files (add language metadata)
+      - C:\scripts\tools\translate-docs.ps1 (new)
+    dependencies: []
+
+  - id: 67
+    title: "Documentation dependency tree"
+    description: |
+      Show which docs must be read before others.
+      MACHINE_CONFIG.md before CLAUDE.md, etc.
+    value: 5
+    effort: 7
+    ratio: 0.71
+    category: information_architecture
+    expert: "Dr. Priyanka Desai (Contextual knowledge representation)"
+    implementation:
+      - "Define prerequisite relationships between docs"
+      - "Generate dependency tree diagram"
+      - "Enforce reading order in onboarding"
+    affected_files:
+      - C:\scripts\_machine\DOC_DEPENDENCY_TREE.yaml (new)
+      - C:\scripts\tools\generate-doc-dependency-tree.ps1 (new)
+    dependencies: []
+
+  - id: 68
+    title: "Knowledge graph schema versioning"
+    description: |
+      Version the knowledge graph schema so changes don't break existing queries.
+      Backward compatibility for graph structure changes.
+    value: 6
+    effort: 8
+    ratio: 0.75
+    category: knowledge_engineering
+    expert: "Dr. Chioma Eze (Graph schema versioning)"
+    implementation:
+      - "Add schema_version field to CONTEXT_KNOWLEDGE_GRAPH.yaml"
+      - "Define migration scripts for schema changes"
+      - "Test queries against multiple schema versions"
+    affected_files:
+      - C:\scripts\_machine\CONTEXT_KNOWLEDGE_GRAPH.yaml (add schema_version)
+      - C:\scripts\tools\migrate-graph-schema.ps1 (new)
+    dependencies: []
+
+  - id: 69
+    title: "Documentation as code with CI/CD"
+    description: |
+      Treat documentation like code: PRs, reviews, automated testing, CI/CD.
+      Auto-deploy updated docs to central location.
+    value: 7
+    effort: 10
+    ratio: 0.7
+    category: documentation_strategy
+    expert: "Johan Lindström (Knowledge graph continuous integration)"
+    implementation:
+      - "Set up CI pipeline for documentation"
+      - "Tests: link validation, schema validation, formatting"
+      - "Auto-deploy to docs site on merge"
+      - "Enforce review process for doc changes"
+    affected_files:
+      - .github/workflows/docs-ci.yml (new)
+      - C:\scripts\tools\validate-docs.ps1 (new)
+    dependencies:
+      - id: 36
+
+  - id: 70
+    title: "Smart documentation generation from code comments"
+    description: |
+      Extract structured comments from code and auto-generate API docs.
+      Keep code and docs in sync automatically.
+    value: 6
+    effort: 8
+    ratio: 0.75
+    category: technical_writing
+    expert: "Sofia Martinez (Auto-documentation generation)"
+    implementation:
+      - "Parse code comments for structured annotations"
+      - "Generate API documentation automatically"
+      - "Update on every commit"
+      - "Store in project docs/ directories"
+    affected_files:
+      - C:\scripts\tools\generate-api-docs-from-code.ps1 (new)
+      - Various project API docs (auto-generate)
+    dependencies:
+      - id: 46
+
+  - id: 71
+    title: "Context persistence across Claude versions"
+    description: |
+      Ensure knowledge graph and context work across different Claude model versions.
+      Test compatibility with Claude 3, 3.5, 4, etc.
+    value: 5
+    effort: 7
+    ratio: 0.71
+    category: system_architecture
+    expert: "Dr. Marcus Chang (Version compatibility testing)"
+    implementation:
+      - "Test knowledge graph loading with different Claude versions"
+      - "Document any version-specific quirks"
+      - "Maintain compatibility layer if needed"
+    affected_files:
+      - C:\scripts\_machine\CLAUDE_VERSION_COMPATIBILITY.md (new)
+    dependencies: []
+
+  - id: 72
+    title: "Knowledge graph access control"
+    description: |
+      Mark sensitive entities in graph (credentials, personal data).
+      Restrict access based on context/permissions.
+    value: 6
+    effort: 8
+    ratio: 0.75
+    category: knowledge_engineering
+    expert: "Mikhail Petrov (Knowledge graph access control)"
+    implementation:
+      - "Add 'sensitivity_level' field to entities"
+      - "Levels: public, internal, confidential, secret"
+      - "Filter graph queries based on sensitivity"
+    affected_files:
+      - C:\scripts\_machine\CONTEXT_KNOWLEDGE_GRAPH.yaml (add sensitivity levels)
+      - C:\scripts\tools\filter-sensitive-entities.ps1 (new)
+    dependencies: []
+
+  - id: 73
+    title: "Documentation search result ranking optimization"
+    description: |
+      Optimize search result ranking using:
+      - Graph centrality
+      - Usage frequency
+      - Recency
+      - Semantic relevance
+    value: 7
+    effort: 9
+    ratio: 0.78
+    category: ai_ml_optimization
+    expert: "Dr. Simone Dupont (Graph-based semantic search)"
+    implementation:
+      - "Implement multi-factor ranking algorithm"
+      - "Combine graph analysis with usage stats"
+      - "Machine learning for ranking improvement over time"
+    affected_files:
+      - C:\scripts\tools\rank-search-results.ps1 (new)
+    dependencies:
+      - id: 25
+      - id: 54
+
+  - id: 74
+    title: "Automatic synonym expansion"
+    description: |
+      When user says 'database', automatically search for 'EF Core', 'PostgreSQL', 'migrations' too.
+      Expand queries with synonyms and related terms.
+    value: 6
+    effort: 8
+    ratio: 0.75
+    category: ai_ml_optimization
+    expert: "Dr. Tatiana Morozov (Semantic approximation)"
+    implementation:
+      - "Build synonym dictionary from graph + usage patterns"
+      - "Expand search queries automatically"
+      - "Store in C:\\scripts\\_machine\\SYNONYM_DICTIONARY.yaml"
+    affected_files:
+      - C:\scripts\_machine\SYNONYM_DICTIONARY.yaml (new)
+      - C:\scripts\tools\expand-query-synonyms.ps1 (new)
+    dependencies:
+      - id: 28
+
+  - id: 75
+    title: "Documentation contribution tracking"
+    description: |
+      Track who/what contributed each piece of documentation.
+      Provenance: user-written vs. Claude-generated vs. auto-extracted from code.
+    value: 4
+    effort: 6
+    ratio: 0.67
+    category: knowledge_engineering
+    expert: "Chen Wei (Knowledge provenance tracking)"
+    implementation:
+      - "Add 'contributed_by' metadata to all docs"
+      - "Track: author, date, source (manual/auto/extracted)"
+      - "Display provenance in doc headers"
+    affected_files:
+      - All .md files (add provenance metadata)
+      - C:\scripts\tools\track-doc-provenance.ps1 (new)
+    dependencies: []
+
+  - id: 76
+    title: "Graph-based anomaly detection"
+    description: |
+      Detect anomalies in knowledge graph:
+      - Orphaned nodes (no connections)
+      - Circular references
+      - Contradictory relationships
+    value: 5
+    effort: 7
+    ratio: 0.71
+    category: knowledge_engineering
+    expert: "Dimitri Antonov (Graph-based anomaly detection)"
+    implementation:
+      - "Run graph analysis algorithms"
+      - "Detect structural anomalies"
+      - "Generate anomaly report"
+      - "Alert on critical issues"
+    affected_files:
+      - C:\scripts\tools\detect-graph-anomalies.ps1 (new)
+      - C:\scripts\_machine\graph-anomaly-report.md (new)
+    dependencies:
+      - id: 30
+
+  - id: 77
+    title: "Context-aware code snippet library"
+    description: |
+      Library of code snippets organized by context (API, database, frontend).
+      Quick access to common patterns.
+    value: 5
+    effort: 7
+    ratio: 0.71
+    category: technical_writing
+    expert: "Dr. Rajesh Malhotra (Code pattern libraries)"
+    implementation:
+      - "Extract common code patterns from projects"
+      - "Organize by category and context"
+      - "Store in C:\\scripts\\_machine\\snippets\\"
+      - "Link from documentation"
+    affected_files:
+      - C:\scripts\_machine\snippets\*.yaml (new)
+      - C:\scripts\tools\extract-code-snippets.ps1 (new)
+    dependencies:
+      - id: 21
+
+  - id: 78
+    title: "Documentation maturity model"
+    description: |
+      Define maturity levels for documentation (Level 1-5).
+      Track maturity per project and work toward higher levels.
+    value: 4
+    effort: 6
+    ratio: 0.67
+    category: documentation_strategy
+    expert: "Dr. Sarah Mitchell (Documentation quality frameworks)"
+    implementation:
+      - "Define 5 maturity levels"
+      - "Criteria: completeness, accuracy, freshness, accessibility"
+      - "Score each project's documentation"
+      - "Create improvement roadmap"
+    affected_files:
+      - C:\scripts\_machine\DOC_MATURITY_MODEL.md (new)
+      - C:\scripts\_machine\DOC_MATURITY_SCORES.yaml (new)
+    dependencies:
+      - id: 24
+
+  - id: 79
+    title: "Federated knowledge graphs"
+    description: |
+      Separate knowledge graph per project, with federation layer.
+      Enables scaling and project isolation.
+    value: 6
+    effort: 10
+    ratio: 0.6
+    category: knowledge_engineering
+    expert: "Dr. Sarah Mitchell (Distributed knowledge graphs)"
+    implementation:
+      - "Create per-project knowledge graphs"
+      - "Build federation layer for cross-project queries"
+      - "Maintain global index of all graphs"
+    affected_files:
+      - C:\scripts\_machine\graphs\client-manager.yaml (new)
+      - C:\scripts\_machine\graphs\hazina.yaml (new)
+      - C:\scripts\tools\query-federated-graph.ps1 (new)
+    dependencies: []
+
+  - id: 80
+    title: "Documentation performance benchmarking"
+    description: |
+      Benchmark how long it takes Claude to find information.
+      Goal: reduce time-to-answer for common questions.
+    value: 5
+    effort: 7
+    ratio: 0.71
+    category: user_experience
+    expert: "Dr. Rachel Kim (Performance optimization testing)"
+    implementation:
+      - "Define benchmark questions (50 common queries)"
+      - "Measure time to find answer"
+      - "Track improvement over time"
+      - "Store in C:\\scripts\\_machine\\doc-performance-benchmarks.json"
+    affected_files:
+      - C:\scripts\_machine\doc-performance-benchmarks.json (new)
+      - C:\scripts\tools\benchmark-doc-search.ps1 (new)
+    dependencies: []
+
+  # --------------------------------------------------------------------------
+  # ID 81-100: ADVANCED/EXPERIMENTAL IMPROVEMENTS (Ratio 0.3-0.5)
+  # --------------------------------------------------------------------------
+
+  - id: 81
+    title: "AI-powered documentation summarization"
+    description: |
+      Use LLM to generate summaries of all documentation automatically.
+      Multi-level summaries: 1-sentence, 1-paragraph, 1-page.
+    value: 5
+    effort: 10
+    ratio: 0.5
+    category: ai_ml_optimization
+    expert: "Nikolai Ivanov (Knowledge graph summarization)"
+    implementation:
+      - "Use Claude API to generate summaries"
+      - "Store summaries alongside originals"
+      - "Update when original docs change"
+    affected_files:
+      - Various SUMMARY.md files (AI-generate)
+      - C:\scripts\tools\ai-summarize-docs.ps1 (new)
+    dependencies:
+      - id: 37
+
+  - id: 82
+    title: "Interactive documentation explorer"
+    description: |
+      Web-based interactive graph visualization of all documentation.
+      Click nodes to navigate, zoom, filter.
+    value: 6
+    effort: 12
+    ratio: 0.5
+    category: user_experience
+    expert: "Carlos Mendoza (Knowledge graph visualization)"
+    implementation:
+      - "Build web app (React + D3.js)"
+      - "Visualize CONTEXT_KNOWLEDGE_GRAPH.yaml"
+      - "Interactive filtering and navigation"
+      - "Deploy locally"
+    affected_files:
+      - C:\scripts\web-explorer\index.html (new)
+      - C:\scripts\web-explorer\app.js (new)
+    dependencies:
+      - id: 13
+
+  - id: 83
+    title: "Voice-based context queries"
+    description: |
+      Ask questions via voice: 'Where are the brand2boost credentials?'
+      Voice-to-text + query system + text-to-speech response.
+    value: 3
+    effort: 10
+    ratio: 0.3
+    category: user_experience
+    expert: "Dr. Priya Malhotra (Multimodal interfaces)"
+    implementation:
+      - "Integrate speech-to-text API"
+      - "Route to query system"
+      - "Text-to-speech for responses"
+      - "Experimental feature"
+    affected_files:
+      - C:\scripts\tools\voice-query.ps1 (new)
+    dependencies:
+      - id: 8
+
+  - id: 84
+    title: "Predictive context preloading"
+    description: |
+      Machine learning model predicts which files Claude will need next.
+      Preload context proactively based on patterns.
+    value: 7
+    effort: 15
+    ratio: 0.47
+    category: ai_ml_optimization
+    expert: "Dr. Hannah Cohen (Graph neural networks)"
+    implementation:
+      - "Train ML model on historical usage data"
+      - "Predict next files based on current context"
+      - "Preload predicted files into context"
+      - "Measure prediction accuracy"
+    affected_files:
+      - C:\scripts\ml\context-prediction-model.pkl (new)
+      - C:\scripts\tools\predict-next-context.ps1 (new)
+    dependencies:
+      - id: 50
+
+  - id: 85
+    title: "Automatic contradiction detection"
+    description: |
+      Detect when documentation contradicts itself or contradicts code.
+      E.g., docs say 'use X' but code uses 'Y'.
+    value: 6
+    effort: 12
+    ratio: 0.5
+    category: knowledge_engineering
+    expert: "Dr. Petra Müller (Graph-based conflict detection)"
+    implementation:
+      - "Parse docs and code for factual statements"
+      - "Compare statements for contradictions"
+      - "Alert on conflicts"
+      - "Complex NLP task"
+    affected_files:
+      - C:\scripts\tools\detect-contradictions.ps1 (new)
+      - C:\scripts\_machine\contradiction-report.md (new)
+    dependencies: []
+
+  - id: 86
+    title: "Knowledge graph reasoning engine"
+    description: |
+      Implement inference rules to derive new facts from graph.
+      If A depends_on B, and B depends_on C, then A transitively depends_on C.
+    value: 6
+    effort: 12
+    ratio: 0.5
+    category: knowledge_engineering
+    expert: "Dr. Lars Eriksson (Knowledge graph reasoning)"
+    implementation:
+      - "Define inference rules (SPARQL or custom)"
+      - "Run reasoning engine over graph"
+      - "Materialize inferred facts"
+      - "Store in separate inferred_facts section"
+    affected_files:
+      - C:\scripts\_machine\INFERENCE_RULES.yaml (new)
+      - C:\scripts\tools\run-graph-reasoning.ps1 (new)
+    dependencies: []
+
+  - id: 87
+    title: "Context-aware autocomplete for file paths"
+    description: |
+      When Claude types file path, offer smart autocomplete based on context.
+      Working on client-manager? Suggest client-manager files first.
+    value: 5
+    effort: 10
+    ratio: 0.5
+    category: user_experience
+    expert: "Dr. Marcus Chang (Context-aware interfaces)"
+    implementation:
+      - "Track current context (project, task)"
+      - "Rank file path suggestions by relevance"
+      - "Integrate with Claude's autocomplete (if possible)"
+    affected_files:
+      - C:\scripts\tools\context-aware-autocomplete.ps1 (new)
+    dependencies:
+      - id: 10
+
+  - id: 88
+    title: "Collaborative knowledge graph editing"
+    description: |
+      Multi-user (Martien + Claude agents) can edit knowledge graph simultaneously.
+      Conflict resolution for concurrent edits.
+    value: 4
+    effort: 12
+    ratio: 0.33
+    category: system_architecture
+    expert: "Tomasz Kowalski (Graph transaction management)"
+    implementation:
+      - "Implement locking mechanism for graph edits"
+      - "CRDT or OT for conflict resolution"
+      - "Real-time sync between users/agents"
+    affected_files:
+      - C:\scripts\tools\graph-edit-lock.ps1 (new)
+      - C:\scripts\services\graph-sync-service.ps1 (new)
+    dependencies: []
+
+  - id: 89
+    title: "Documentation drift detection"
+    description: |
+      Detect when code has changed but related documentation hasn't been updated.
+      Alert: 'Code changed 3 times, docs unchanged - possible drift'.
+    value: 6
+    effort: 12
+    ratio: 0.5
+    category: technical_writing
+    expert: "Dr. Andrei Morozov (Change impact tracking)"
+    implementation:
+      - "Track git commit frequency per file"
+      - "Compare code vs. docs update frequency"
+      - "Flag high drift risk"
+    affected_files:
+      - C:\scripts\tools\detect-doc-drift.ps1 (new)
+      - C:\scripts\_machine\doc-drift-report.md (new)
+    dependencies:
+      - id: 59
+
+  - id: 90
+    title: "Self-healing knowledge graph"
+    description: |
+      Graph automatically repairs itself when it detects errors.
+      Broken file reference? Search for new location and update.
+    value: 5
+    effort: 12
+    ratio: 0.42
+    category: knowledge_engineering
+    expert: "Matias Gonzalez (Knowledge graph repair)"
+    implementation:
+      - "Detect errors: broken links, missing files, contradictions"
+      - "Attempt automatic fixes"
+      - "Log repair actions"
+      - "Require human confirmation for major changes"
+    affected_files:
+      - C:\scripts\tools\self-heal-graph.ps1 (new)
+      - C:\scripts\_machine\graph-repair-log.md (new)
+    dependencies:
+      - id: 76
+
+  - id: 91
+    title: "Documentation game-ification"
+    description: |
+      Gamify documentation maintenance: points for updates, leaderboard, achievements.
+      Motivate continuous improvement.
+    value: 3
+    effort: 10
+    ratio: 0.3
+    category: user_experience
+    expert: "Dr. Rachel Kim (Engagement strategies)"
+    implementation:
+      - "Track documentation contributions"
+      - "Award points for: updates, new docs, fixes"
+      - "Display leaderboard and achievements"
+    affected_files:
+      - C:\scripts\tools\doc-game-tracker.ps1 (new)
+      - C:\scripts\status\doc-leaderboard.html (new)
+    dependencies: []
+
+  - id: 92
+    title: "Knowledge graph A/B testing"
+    description: |
+      Test different graph structures and measure which improves Claude's performance.
+      Scientific approach to graph optimization.
+    value: 5
+    effort: 12
+    ratio: 0.42
+    category: ai_ml_optimization
+    expert: "Dr. Rachel Kim (A/B testing frameworks)"
+    implementation:
+      - "Create variant graphs"
+      - "Measure performance: time-to-answer, accuracy"
+      - "Statistical analysis of results"
+      - "Roll out winning variant"
+    affected_files:
+      - C:\scripts\tools\ab-test-graph.ps1 (new)
+      - C:\scripts\_machine\ab-test-results.json (new)
+    dependencies:
+      - id: 80
+
+  - id: 93
+    title: "Multi-modal knowledge integration"
+    description: |
+      Integrate screenshots, diagrams, videos into knowledge graph.
+      Not just text - visual knowledge too.
+    value: 5
+    effort: 12
+    ratio: 0.42
+    category: knowledge_engineering
+    expert: "Dr. Antoine Dubois (Multi-modal knowledge graphs)"
+    implementation:
+      - "Store image/video file references in graph"
+      - "Extract text from images (OCR)"
+      - "Link visual assets to related text docs"
+    affected_files:
+      - C:\scripts\_machine\CONTEXT_KNOWLEDGE_GRAPH.yaml (add media nodes)
+      - C:\scripts\tools\integrate-visual-assets.ps1 (new)
+    dependencies: []
+
+  - id: 94
+    title: "Blockchain-based documentation provenance"
+    description: |
+      Use blockchain to create immutable audit trail of documentation changes.
+      Prove documentation existed at specific time.
+    value: 2
+    effort: 15
+    ratio: 0.13
+    category: system_architecture
+    expert: "Dr. Nadia Kamara (Immutable audit trails)"
+    implementation:
+      - "Set up private blockchain"
+      - "Hash and timestamp all doc changes"
+      - "Store hashes on chain"
+      - "Experimental/overkill for this use case"
+    affected_files:
+      - C:\scripts\tools\blockchain-doc-audit.ps1 (new)
+    dependencies: []
+
+  - id: 95
+    title: "AI agent for documentation maintenance"
+    description: |
+      Dedicated AI agent that continuously monitors and maintains documentation.
+      Autonomous doc updates, cleanup, optimization.
+    value: 6
+    effort: 15
+    ratio: 0.4
+    category: ai_ml_optimization
+    expert: "Dr. Marcus Chang (Autonomous agents)"
+    implementation:
+      - "Create dedicated doc maintenance agent"
+      - "Schedule: daily scans, weekly optimizations"
+      - "Auto-fix issues, generate reports"
+      - "Requires separate Claude instance"
+    affected_files:
+      - C:\scripts\agents\doc-maintenance-agent.ps1 (new)
+    dependencies:
+      - Multiple previous improvements
+
+  - id: 96
+    title: "Natural language programming interface"
+    description: |
+      Write tools/scripts in natural language instead of code.
+      'Create a tool that finds all TODO comments' → auto-generates script.
+    value: 4
+    effort: 15
+    ratio: 0.27
+    category: ai_ml_optimization
+    expert: "Dr. Priya Malhotra (Code generation from NL)"
+    implementation:
+      - "Use Claude API to generate code from descriptions"
+      - "Test generated code automatically"
+      - "Save working scripts to tools/"
+    affected_files:
+      - C:\scripts\tools\nl-to-script.ps1 (new)
+    dependencies: []
+
+  - id: 97
+    title: "Documentation recommendation system"
+    description: |
+      Netflix-style recommendations: 'Users who read X also read Y'.
+      Learn from usage patterns to recommend relevant docs.
+    value: 4
+    effort: 10
+    ratio: 0.4
+    category: ai_ml_optimization
+    expert: "Dr. Mariam Hassan (Graph-based recommendation systems)"
+    implementation:
+      - "Track doc reading patterns"
+      - "Build collaborative filtering model"
+      - "Recommend docs based on similar contexts"
+    affected_files:
+      - C:\scripts\tools\recommend-docs.ps1 (new)
+      - C:\scripts\_machine\doc-reading-patterns.json (new)
+    dependencies:
+      - id: 50
+
+  - id: 98
+    title: "Knowledge graph export to industry standards"
+    description: |
+      Export knowledge graph to standard formats: RDF, OWL, GraphML.
+      Enable interoperability with other tools.
+    value: 3
+    effort: 8
+    ratio: 0.375
+    category: knowledge_engineering
+    expert: "Prof. Rajesh Malhotra (Semantic web standards)"
+    implementation:
+      - "Convert YAML graph to RDF/OWL"
+      - "Validate against standards"
+      - "Export tools for various formats"
+    affected_files:
+      - C:\scripts\tools\export-graph-to-rdf.ps1 (new)
+      - C:\scripts\tools\export-graph-to-graphml.ps1 (new)
+    dependencies: []
+
+  - id: 99
+    title: "Documentation accessibility audit"
+    description: |
+      Audit all documentation for accessibility (screen readers, color contrast, etc.).
+      Ensure docs are accessible to all users.
+    value: 3
+    effort: 8
+    ratio: 0.375
+    category: technical_writing
+    expert: "Dr. Keisha Brown (Accessibility standards)"
+    implementation:
+      - "Run accessibility checkers on all docs"
+      - "Flag issues: poor contrast, missing alt text, etc."
+      - "Generate accessibility report"
+    affected_files:
+      - C:\scripts\tools\audit-doc-accessibility.ps1 (new)
+      - C:\scripts\_machine\accessibility-report.md (new)
+    dependencies: []
+
+  - id: 100
+    title: "Time-travel debugging for knowledge graph"
+    description: |
+      View knowledge graph as it existed at any point in time.
+      'Show me the graph state on 2026-01-15' → restore historical state.
+    value: 4
+    effort: 10
+    ratio: 0.4
+    category: knowledge_engineering
+    expert: "Dr. Halima Ndiaye (Graph-based version control)"
+    implementation:
+      - "Store graph snapshots in git"
+      - "Tool to checkout graph at specific date"
+      - "Compare graph states over time"
+    affected_files:
+      - C:\scripts\tools\graph-time-travel.ps1 (new)
+    dependencies:
+      - id: 17
+
+# ============================================================================
+# SUMMARY STATISTICS
+# ============================================================================
+
+summary:
+  total_improvements: 100
+  quick_wins_ratio_gt_5: 10
+  high_value_ratio_2_to_5: 20
+  medium_value_ratio_1_to_2: 30
+  structural_ratio_05_to_1: 20
+  experimental_ratio_lt_05: 20
+
+  total_value_points: 583
+  total_effort_points: 681
+  average_ratio: 0.856
+
+  top_5_by_ratio:
+    - id: 1 (ratio: 10.0)
+    - id: 2 (ratio: 10.0)
+    - id: 3 (ratio: 5.0)
+    - id: 4 (ratio: 4.5)
+    - id: 5 (ratio: 4.5)
+
+  categories_represented:
+    - knowledge_engineering: 35
+    - information_architecture: 28
+    - ai_ml_optimization: 18
+    - technical_writing: 15
+    - user_experience: 12
+    - system_architecture: 11
+    - documentation_strategy: 4
+
+  expert_categories_contributing:
+    - Knowledge Engineering: 35 improvements
+    - Information Architecture: 28 improvements
+    - AI/ML Optimization: 18 improvements
+    - Technical Writing: 15 improvements
+    - User Experience: 12 improvements
+    - System Architecture: 11 improvements
+    - Documentation Strategy: 4 improvements
+    - (Other 3 categories: < 5 improvements each)
+
+  implementation_priority:
+    phase_1_quick_wins: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    phase_2_high_value: [11-30]
+    phase_3_structural: [31-60]
+    phase_4_advanced: [61-80]
+    phase_5_experimental: [81-100]
+
+# ============================================================================
+# END OF FILE
+# ============================================================================

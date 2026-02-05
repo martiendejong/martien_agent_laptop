@@ -77,6 +77,23 @@ Data stores and configurations
 - **[QUICK_LAUNCHERS.md](./QUICK_LAUNCHERS.md)** - CTRL+R quick launch
 - **[tools/README.md](./tools/README.md)** - Tools documentation
 
+### Orchestration & Infrastructure
+- **[o.bat](./o.bat)** - Hazina Agentic Orchestration launcher ⭐
+  - App: C:\stores\orchestration\HazinaOrchestration.exe
+  - Port: https://localhost:5123
+  - Purpose: LLM orchestration service (Hazina-based)
+  - Login: bosi / Th1s1sSp4rt4!
+
+- **[tools/parallel-orchestrate.ps1](./tools/parallel-orchestrate.ps1)** - Multi-agent coordination
+  - Prevents Claude agent conflicts
+  - Worktree pool management
+  - Batch operations queue
+
+- **[agentidentity/cognitive-systems/MULTI_AGENT_ORCHESTRATION.md](./agentidentity/cognitive-systems/MULTI_AGENT_ORCHESTRATION.md)**
+  - Theoretical framework for agent coordination
+  - Communication protocols
+  - Conflict resolution patterns
+
 ---
 
 ## 🧠 AGENT IDENTITY
