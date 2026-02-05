@@ -1,0 +1,74 @@
+# Expert Team Round 03: Predictive Context Loading
+# Theme: Anticipating what context Martien will need next
+# Date: 2026-02-05
+
+expert_team:
+  round: 3
+  theme: "Predictive Context Loading"
+  focus: "Anticipating user needs before they're stated"
+
+  experts:
+    - name: "Dr. Elena Petrov"
+      role: "Predictive Analytics ML Engineer"
+      background: "Built recommendation systems for Netflix, YouTube"
+      perspective: "User behavior patterns predict next actions"
+
+    - name: "Prof. Kwame Nkrumah"
+      role: "Natural Language Intent Researcher"
+      background: "Studies how conversation flow predicts future topics"
+      perspective: "Linguistic cues signal upcoming needs"
+
+    - name: "Sasha Volkov"
+      role: "Browser Prefetch Architect"
+      background: "Chrome team, designed DNS prefetch and resource hints"
+      perspective: "Speculative loading with graceful failure"
+
+    - name: "Dr. Miriam Cohen"
+      role: "Cognitive Task Analysis Expert"
+      background: "Studies developer workflow patterns and task sequences"
+      perspective: "Tasks follow predictable sequences"
+
+    - name: "Raj Patel"
+      role: "Time-Series Forecasting Specialist"
+      background: "Financial market prediction, ARIMA models"
+      perspective: "Historical patterns predict future behavior"
+
+    - name: "Dr. Isabella Rossi"
+      role: "Context-Aware Systems Researcher"
+      background: "Mobile OS that adapts to user location/time/activity"
+      perspective: "Environmental context predicts needs"
+
+    - name: "Zhang Li"
+      role: "Caching Strategy Expert"
+      background: "CDN optimization, predictive cache warming"
+      perspective: "Preload likely paths, evict unlikely ones"
+
+    - name: "Dr. Aisha Mohammed"
+      role: "Human-Computer Interaction Researcher"
+      background: "Studies anticipatory interfaces and proactive agents"
+      perspective: "Best predictions feel invisible"
+
+    - name: "Marcus Johnson"
+      role: "Search Query Understanding Engineer"
+      background: "Google Search team, query intent classification"
+      perspective: "Partial queries reveal full intent"
+
+    - name: "Dr. Nadia Ivanova"
+      role: "Workflow Automation Specialist"
+      background: "Designed Zapier-style automation chains"
+      perspective: "One action triggers predictable cascade"
+
+methodology:
+  approach: "Pattern recognition with probabilistic loading"
+  principles:
+    - "Learn from historical session patterns"
+    - "Use conversation context to predict next needs"
+    - "Preload high-probability context speculatively"
+    - "Fail gracefully when predictions miss"
+    - "Track prediction accuracy and adapt"
+
+diversity_dimensions:
+  - "Geographic: Russia, Ghana, Russia, Israel, India, Italy, China, Somalia, USA, Russia"
+  - "Domain: Recommendations, Linguistics, Browsers, Psychology, Finance, Mobile OS, CDN, HCI, Search, Automation"
+  - "Approach: ML-based vs Rule-based vs Heuristic vs Probabilistic"
+  - "Scale: Real-time (prefetch) to historical (time-series)"

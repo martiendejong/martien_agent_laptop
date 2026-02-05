@@ -1,0 +1,51 @@
+# Time-Based Context Profiles
+# Different context loaded based on time of day
+
+profiles:
+  debug_context:
+    name: "Debugging Session"
+    active_hours: "06:00-11:00"
+    priority_files:
+      - "C:\\scripts\\docs\\claude-system\\CAPABILITIES.md"
+      - "C:\\scripts\\_machine\\best-practices\\debugging-patterns.md"
+      - "C:\\Projects\\client-manager\\README.md"
+      - "C:\\scripts\\MACHINE_CONFIG.md"
+    preload_directories:
+      - "C:\\Projects\\client-manager"
+      - "C:\\Projects\\hazina"
+
+  feature_context:
+    name: "Feature Development"
+    active_hours: "11:00-17:00"
+    priority_files:
+      - "C:\\scripts\\development-patterns.md"
+      - "C:\\scripts\\worktree-workflow.md"
+      - "C:\\scripts\\git-workflow.md"
+      - "C:\\scripts\\GENERAL_DUAL_MODE_WORKFLOW.md"
+      - "C:\\scripts\\_machine\\DEFINITION_OF_DONE.md"
+    preload_directories:
+      - "C:\\scripts\\_machine\\worktrees"
+
+  docs_context:
+    name: "Documentation"
+    active_hours: "17:00-22:00"
+    priority_files:
+      - "C:\\scripts\\CLAUDE.md"
+      - "C:\\scripts\\docs\\claude-system\\STARTUP_PROTOCOL.md"
+      - "C:\\scripts\\continuous-improvement.md"
+      - "C:\\scripts\\_machine\\reflection.log.md"
+    preload_directories:
+      - "C:\\scripts\\docs"
+
+  maintenance_context:
+    name: "System Maintenance"
+    active_hours: "22:00-02:00"
+    priority_files:
+      - "C:\\scripts\\ci-cd-troubleshooting.md"
+      - "C:\\scripts\\_machine\\best-practices"
+      - "C:\\scripts\\session-management.md"
+    preload_directories:
+      - "C:\\scripts\\tools"
+
+current_profile: null
+last_updated: null

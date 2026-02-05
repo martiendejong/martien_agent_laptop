@@ -1,0 +1,77 @@
+# Context Prediction Rules
+# Auto-generated from session pattern analysis
+# Last updated: 2026-02-05
+
+rules:
+  # Keyword-based predictions
+  - trigger: "client-manager"
+    preload:
+      - "C:\\Projects\\client-manager\\README.md"
+      - "C:\\stores\\brand2boost\\config.yaml"
+      - "C:\\scripts\\MACHINE_CONFIG.md"
+    confidence: 95
+
+  - trigger: "hazina"
+    preload:
+      - "C:\\Projects\\hazina\\README.md"
+      - "C:\\Projects\\hazina\\docs\\architecture.md"
+    confidence: 90
+
+  - trigger: "worktree"
+    preload:
+      - "C:\\scripts\\worktree-workflow.md"
+      - "C:\\scripts\\_machine\\worktrees.protocol.md"
+      - "C:\\scripts\\_machine\\worktree-pool.yaml"
+    confidence: 95
+
+  - trigger: "debug"
+    preload:
+      - "C:\\scripts\\docs\\claude-system\\CAPABILITIES.md"
+      - "C:\\scripts\\_machine\\best-practices\\debugging-patterns.md"
+    confidence: 85
+
+  - trigger: "feature"
+    preload:
+      - "C:\\scripts\\development-patterns.md"
+      - "C:\\scripts\\git-workflow.md"
+      - "C:\\scripts\\GENERAL_DUAL_MODE_WORKFLOW.md"
+    confidence: 90
+
+  - trigger: "PR|pull request"
+    preload:
+      - "C:\\scripts\\git-workflow.md"
+      - "C:\\scripts\\_machine\\DEFINITION_OF_DONE.md"
+    confidence: 92
+
+  - trigger: "migration"
+    preload:
+      - "C:\\scripts\\_machine\\migration-patterns.md"
+    confidence: 88
+
+  # Time-based predictions
+  time_of_day_rules:
+    - hours: "06:00-11:00"
+      likely_activity: "debugging"
+      preload_profile: "debug_context"
+
+    - hours: "11:00-17:00"
+      likely_activity: "feature_development"
+      preload_profile: "feature_context"
+
+    - hours: "17:00-22:00"
+      likely_activity: "documentation"
+      preload_profile: "docs_context"
+
+  # Sequence-based predictions
+  sequence_rules:
+    - after: "CLAUDE.md"
+      preload: "STARTUP_PROTOCOL.md"
+      confidence: 90
+
+    - after: "MACHINE_CONFIG.md"
+      preload: "GENERAL_ZERO_TOLERANCE_RULES.md"
+      confidence: 85
+
+    - after: "worktree-workflow.md"
+      preload: "git-workflow.md"
+      confidence: 80
