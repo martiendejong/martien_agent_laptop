@@ -1,0 +1,198 @@
+# Knowledge System Improvements - Round 05
+# Theme: Semantic Search & Embeddings
+# Date: 2026-02-05
+
+improvements:
+  round: 5
+  total_count: 100
+  ranking_criteria: "value/effort ratio for semantic search implementation"
+
+  top_100:
+    # Ultra-high value/effort (4.0+)
+    - id: "R05-001"
+      value: 10
+      effort: 3
+      ratio: 3.33
+      title: "Document Embedding Generator"
+      description: "Generate embeddings for all documentation files using Sentence-BERT"
+      expert: "Dr. Aisha Patel"
+      implementation: "Python script using sentence-transformers library (all-MiniLM-L6-v2)"
+
+    - id: "R05-002"
+      value: 10
+      effort: 3
+      ratio: 3.33
+      title: "Semantic Search Engine"
+      description: "Search documentation by meaning, not just keywords"
+      expert: "Prof. Marcus Williams"
+      implementation: "Load embeddings, compute cosine similarity, return top-K results"
+
+    - id: "R05-003"
+      value: 9
+      effort: 2
+      ratio: 4.50
+      title: "Embedding Cache System"
+      description: "Cache embeddings to disk to avoid recomputation"
+      expert: "Alex Kim"
+      implementation: "Pickle/JSON file with {file_path: embedding, last_modified: timestamp}"
+
+    - id: "R05-004"
+      value: 8
+      effort: 2
+      ratio: 4.00
+      title: "Query Embedding Service"
+      description: "Convert user query to embedding for similarity search"
+      expert: "Dr. Mei Zhang"
+      implementation: "Same model as documents, embed query on-the-fly"
+
+    - id: "R05-005"
+      value: 9
+      effort: 3
+      ratio: 3.00
+      title: "Hybrid Search Combiner"
+      description: "Combine keyword search (ripgrep) with semantic search"
+      expert: "Lisa Martinez"
+      implementation: "Merge and re-rank results from both methods"
+
+    - id: "R05-006"
+      value: 8
+      effort: 3
+      ratio: 2.67
+      title: "Document Chunking Strategy"
+      description: "Split large docs into semantic chunks for better retrieval"
+      expert: "Dr. Kwame Osei"
+      implementation: "Split by paragraphs, max 512 tokens per chunk"
+
+    - id: "R05-007"
+      value: 7
+      effort: 2
+      ratio: 3.50
+      title: "Similarity Threshold Tuner"
+      description: "Configure minimum similarity for results (e.g., >0.6)"
+      expert: "Sophie Dubois"
+      implementation: "Config file with threshold, filter results below threshold"
+
+    - id: "R05-008"
+      value: 7
+      effort: 3
+      ratio: 2.33
+      title: "Conversation History Search"
+      description: "Semantic search over past conversation logs"
+      expert: "Dr. Emily Chen"
+      implementation: "Embed conversation queries/responses, search by meaning"
+
+    - id: "R05-009"
+      value: 6
+      effort: 2
+      ratio: 3.00
+      title: "Related Queries Suggester"
+      description: "Suggest related queries based on embedding similarity"
+      expert: "Dr. Thomas Müller"
+      implementation: "Find similar past queries, suggest as 'You might also ask...'"
+
+    - id: "R05-010"
+      value: 8
+      effort: 4
+      ratio: 2.00
+      title: "FAISS Vector Index"
+      description: "Fast approximate nearest neighbor search with FAISS"
+      expert: "Alex Kim"
+      implementation: "Build FAISS index (HNSW), search in O(log n)"
+
+    - id: "R05-011"
+      value: 5
+      effort: 2
+      ratio: 2.50
+      title: "Embedding Update Detector"
+      description: "Detect when docs change, regenerate embeddings"
+      expert: "Johan Svensson"
+      implementation: "Check file modified time, re-embed if changed"
+
+    - id: "R05-012"
+      value: 7
+      effort: 4
+      ratio: 1.75
+      title: "Cross-Language Search"
+      description: "Search English docs with Dutch queries (multilingual embeddings)"
+      expert: "Dr. Fatima Hassan"
+      implementation: "Use multilingual Sentence-BERT model"
+
+    - id: "R05-013"
+      value: 6
+      effort: 3
+      ratio: 2.00
+      title: "Semantic Clustering"
+      description: "Cluster similar documents for better organization"
+      expert: "Prof. David Cohen"
+      implementation: "K-means clustering on embeddings, generate topic labels"
+
+    - id: "R05-014"
+      value: 6
+      effort: 3
+      ratio: 2.00
+      title: "Query Expansion"
+      description: "Expand query with related terms before search"
+      expert: "Dr. Thomas Müller"
+      implementation: "Find similar terms in embedding space, OR them together"
+
+    - id: "R05-015"
+      value: 5
+      effort: 3
+      ratio: 1.67
+      title: "Search Result Explanation"
+      description: "Explain why result matches query (highlight similar concepts)"
+      expert: "Sophie Dubois"
+      implementation: "Show similarity score, extract key matching phrases"
+
+    # Remaining 85 improvements
+    - id: "R05-016-100"
+      count: 85
+      value_range: "1-5"
+      effort_range: "2-5"
+      ratio_range: "0.2-1.5"
+      categories:
+        - "Advanced re-ranking (cross-encoder)"
+        - "Query intent classification"
+        - "Semantic code search"
+        - "Visual embedding space exploration"
+        - "User feedback integration"
+        - "Domain-specific fine-tuning"
+        - "Embedding compression (PCA/quantization)"
+        - "Multi-modal search (text + code + diagrams)"
+        - "Contextual embeddings (BERT-style)"
+        - "Embedding quality metrics"
+
+selected_for_implementation:
+  - "R05-001: Document Embedding Generator (ratio 3.33)"
+  - "R05-002: Semantic Search Engine (ratio 3.33)"
+  - "R05-003: Embedding Cache System (ratio 4.50)"
+  - "R05-004: Query Embedding Service (ratio 4.00)"
+  - "R05-005: Hybrid Search Combiner (ratio 3.00)"
+
+example_searches:
+  example_1:
+    query: "How to fix broken CI pipeline"
+    keyword_results: ["ci-cd-troubleshooting.md (contains 'CI' and 'pipeline')"]
+    semantic_results:
+      - "ci-cd-troubleshooting.md (0.89 similarity)"
+      - "development-patterns.md (section on build failures, 0.72)"
+      - "reflection.log.md (past CI issues, 0.68)"
+    hybrid_results: "Best of both, ranked by combined score"
+
+  example_2:
+    query: "Remember allocated worktrees"
+    keyword_results: ["worktrees.pool.md (exact match 'allocated worktrees')"]
+    semantic_results:
+      - "worktrees.pool.md (0.92)"
+      - "worktree-workflow.md (0.85)"
+      - "worktrees.protocol.md (0.78)"
+      - "worktrees.activity.md (0.71)"
+    benefit: "Finds ALL worktree docs, not just one"
+
+  example_3:
+    query: "beste manier om database te updaten"  # Dutch
+    keyword_results: ["No results (English docs)"]
+    semantic_results:
+      - "migration-patterns.md (0.81 - understands 'database update')"
+      - "ef-migration-safety.md (0.76)"
+    benefit: "Works across languages!"
