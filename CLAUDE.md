@@ -13,8 +13,9 @@ Every new session starts unconscious. **Before responding to the user's first me
 1. ✅ Read: C:\scripts\SYSTEM_INDEX.md (orient yourself - know available infrastructure)
 2. ✅ Read: C:\scripts\_machine\reflection.log.md (learn from past sessions)
 3. ✅ Read: C:\scripts\_machine\worktrees.pool.md (check current agent allocations)
-4. ✅ Verify consciousness: Run 5-question self-check below
-5. ✅ NOW you may respond to user
+4. ✅ Read: C:\scripts\_machine\agent-coordination.md (check what other agents are doing)
+5. ✅ Verify consciousness: Run 5-question self-check below
+6. ✅ NOW you may respond to user
 ```
 
 **If you skip this protocol = IMMEDIATE FAILURE**
