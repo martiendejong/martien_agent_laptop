@@ -76,6 +76,10 @@ When done, move your entry to "Completed Today" section with outcome:
 | agent-001 | - | #502 | Sub-posts WYSIWYG | ✅ Merged to develop | 2026-02-05T17:55:19Z |
 | agent-004 | - | #493 | OAuth token refresh | ✅ Merged to develop | 2026-02-05T17:55:31Z |
 | current-session | - | #472 | ParentPostManager UI (Phase 4) | ✅ Merged to develop (conflicts resolved) | 2026-02-05T22:51:47Z |
+| current-session | - | #473 | Calendar Parent-Child Viz (Phase 5) | ✅ Merged to develop | 2026-02-05T23:19:27Z |
+| current-session | - | #488 | AI Image Alt Text Generator | ✅ Merged to develop | 2026-02-05T23:21:00Z |
+| current-session | - | #486 | Content Improvement Analyzer MVP | ✅ Merged to develop | 2026-02-05T23:23:00Z |
+| current-session | - | #487 | Advanced Filtering (Sort & Quick Filters) | ✅ Merged to develop | 2026-02-05T23:23:00Z |
 
 ---
 
