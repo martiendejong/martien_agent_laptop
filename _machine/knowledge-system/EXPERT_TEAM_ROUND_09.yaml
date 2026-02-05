@@ -1,0 +1,76 @@
+# Expert Team Round 09: Performance Optimization
+# Theme: Faster lookups, reduced latency, efficient retrieval
+# Date: 2026-02-05
+
+expert_team:
+  round: 9
+  theme: "Performance Optimization"
+  focus: "Systems that make knowledge retrieval and processing fast and efficient"
+
+  experts:
+    - name: "Dr. Alexei Petrov"
+      role: "Database Query Optimization Expert"
+      background: "PostgreSQL core contributor, query planner specialist"
+      perspective: "Right index on right column = 1000x speedup"
+
+    - name: "Maria Santos"
+      role: "Caching Strategy Architect"
+      background: "Built Redis-based caching for high-traffic web applications"
+      perspective: "Cache hot data, invalidate intelligently, measure hit rates"
+
+    - name: "Dr. Chen Wei"
+      role: "Search Engine Performance Engineer"
+      background: "Elasticsearch internals expert, lucene contributor"
+      perspective: "Inverted indexes + proper sharding = millisecond searches"
+
+    - name: "Lars Johansson"
+      role: "Memory Optimization Specialist"
+      background: "Built low-latency trading systems with microsecond requirements"
+      perspective: "Keep working set in RAM, minimize allocations, use memory mapping"
+
+    - name: "Dr. Priya Sharma"
+      role: "Algorithm Complexity Analyst"
+      background: "PhD in computational complexity, algorithm design expert"
+      perspective: "O(n²) is never acceptable - optimize to O(log n) or O(1)"
+
+    - name: "Marcus Washington"
+      role: "I/O Performance Architect"
+      background: "Optimized disk I/O for database systems and file servers"
+      perspective: "Disk seeks are expensive - batch reads, use SSDs, prefetch"
+
+    - name: "Dr. Yuki Tanaka"
+      role: "Compression Algorithm Expert"
+      background: "Created compression algorithms for large-scale data systems"
+      perspective: "Compress cold data, decompress on-demand, balance CPU vs space"
+
+    - name: "Fatima Hassan"
+      role: "Parallel Processing Designer"
+      background: "Built distributed computing systems for big data processing"
+      perspective: "Parallelize everything possible, but mind synchronization costs"
+
+    - name: "Dr. James O'Sullivan"
+      role: "Profiling and Benchmarking Expert"
+      background: "Performance engineering for high-traffic web services"
+      perspective: "Measure first, optimize bottlenecks, measure again"
+
+    - name: "Raj Patel"
+      role: "Lazy Loading and Streaming Specialist"
+      background: "Built progressive web apps with optimized loading strategies"
+      perspective: "Load only what's needed, when it's needed, asynchronously"
+
+methodology:
+  approach: "Profile, optimize hotspots, cache aggressively"
+  principles:
+    - "Measure performance before and after optimization"
+    - "Optimize the 20% that matters, not premature optimization"
+    - "Use appropriate data structures (hash maps, trees, tries)"
+    - "Cache frequently accessed data with smart invalidation"
+    - "Parallelize independent operations"
+    - "Minimize disk I/O and network latency"
+
+diversity_dimensions:
+  - "Systems thinking: Databases vs Caching vs Search vs Memory vs Algorithms vs I/O"
+  - "Geographic: Russia, Brazil, China, Sweden, India, USA, Japan, Egypt, Ireland, India"
+  - "Domain: Databases, Web apps, Search engines, Trading, Algorithms, File systems, Compression, Distributed computing, Profiling, Progressive loading"
+  - "Optimization targets: Latency vs Throughput vs Memory vs Disk space"
+  - "Trade-offs: Speed vs Accuracy, Memory vs Disk, CPU vs I/O"

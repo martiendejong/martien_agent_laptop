@@ -1,0 +1,213 @@
+# Knowledge System Improvements - Round 08
+# Theme: Version Control for Knowledge
+# Date: 2026-02-05
+
+improvements:
+  round: 8
+  total_count: 100
+  ranking_criteria: "value/effort ratio for version control and change tracking"
+
+  top_100:
+    - id: "R08-001"
+      value: 10
+      effort: 2
+      ratio: 5.00
+      title: "Knowledge Change Logger"
+      description: "Log every modification to knowledge files with timestamp, author, and reason"
+      expert: "Fatima Al-Rashid"
+      implementation: "Extend git hooks to capture metadata in separate change log"
+
+    - id: "R08-002"
+      value: 10
+      effort: 2
+      ratio: 5.00
+      title: "Point-in-Time Knowledge Query"
+      description: "Query what was known at specific date/time using git history"
+      expert: "Dr. Marco Vitale"
+      implementation: "Git checkout at timestamp + file reader = historical view"
+
+    - id: "R08-003"
+      value: 9
+      effort: 2
+      ratio: 4.50
+      title: "Knowledge Diff Generator"
+      description: "Generate human-readable diffs of knowledge changes between two points in time"
+      expert: "Dr. Yuki Sato"
+      implementation: "Git diff with markdown-aware formatting"
+
+    - id: "R08-004"
+      value: 9
+      effort: 2
+      ratio: 4.50
+      title: "Change Reason Tracker"
+      description: "Capture WHY each knowledge change was made, not just what changed"
+      expert: "Aisha Okonkwo"
+      implementation: "Commit message template enforcing reason documentation"
+
+    - id: "R08-005"
+      value: 8
+      effort: 2
+      ratio: 4.00
+      title: "Knowledge Evolution Timeline"
+      description: "Visualize how specific knowledge topics evolved over time"
+      expert: "Dr. Emily Watson"
+      implementation: "Git log analysis for specific files, generate timeline"
+
+    - id: "R08-006"
+      value: 10
+      effort: 3
+      ratio: 3.33
+      title: "Snapshot and Restore System"
+      description: "Create named snapshots of entire knowledge base, restore to any snapshot"
+      expert: "Carlos Rodriguez"
+      implementation: "Git tag-based snapshots with metadata"
+
+    - id: "R08-007"
+      value: 8
+      effort: 3
+      ratio: 2.67
+      title: "Semantic Diff Tool"
+      description: "Show conceptual changes (added concept, removed relationship) not just line diffs"
+      expert: "Dr. Yuki Sato"
+      implementation: "Parse YAML/markdown structure, compare semantic elements"
+
+    - id: "R08-008"
+      value: 9
+      effort: 4
+      ratio: 2.25
+      title: "Knowledge Branching System"
+      description: "Create experimental knowledge branches, merge successful experiments to main"
+      expert: "Linus van der Berg"
+      implementation: "Git branches for knowledge experimentation"
+
+    - id: "R08-009"
+      value: 7
+      effort: 3
+      ratio: 2.33
+      title: "Bi-Temporal Knowledge Tracking"
+      description: "Track both when fact was true (valid-time) and when we learned it (transaction-time)"
+      expert: "Dr. Margaret Chen"
+      implementation: "Extended metadata in knowledge files with dual timestamps"
+
+    - id: "R08-010"
+      value: 8
+      effort: 4
+      ratio: 2.00
+      title: "Change Attribution System"
+      description: "Show which agent/session made each knowledge modification"
+      expert: "Raj Kumar"
+      implementation: "Git author + session_id tracking"
+
+    - id: "R08-011"
+      value: 6
+      effort: 2
+      ratio: 3.00
+      title: "Rollback Mechanism"
+      description: "Quickly rollback knowledge changes that caused issues"
+      expert: "Carlos Rodriguez"
+      implementation: "Git revert with validation checks"
+
+    - id: "R08-012"
+      value: 7
+      effort: 3
+      ratio: 2.33
+      title: "Knowledge Changelog Generator"
+      description: "Auto-generate human-readable changelog of knowledge changes"
+      expert: "Prof. James Miller"
+      implementation: "Parse git log, format as changelog with categories"
+
+    - id: "R08-013"
+      value: 8
+      effort: 4
+      ratio: 2.00
+      title: "Version Comparison Tool"
+      description: "Compare two versions of knowledge side-by-side with highlighting"
+      expert: "Dr. Yuki Sato"
+      implementation: "HTML diff viewer for knowledge files"
+
+    - id: "R08-014"
+      value: 6
+      effort: 3
+      ratio: 2.00
+      title: "Change Frequency Analyzer"
+      description: "Identify which knowledge areas change most frequently"
+      expert: "Dr. Emily Watson"
+      implementation: "Git log stats grouped by file/directory"
+
+    - id: "R08-015"
+      value: 7
+      effort: 4
+      ratio: 1.75
+      title: "Knowledge Provenance Tracker"
+      description: "Track source of each piece of knowledge (learned from error, user input, research)"
+      expert: "Aisha Okonkwo"
+      implementation: "Metadata tags indicating knowledge source"
+
+    - id: "R08-016"
+      value: 5
+      effort: 2
+      ratio: 2.50
+      title: "Version Size Tracker"
+      description: "Track growth of knowledge base over time"
+      expert: "Carlos Rodriguez"
+      implementation: "Git log with file size analysis"
+
+    - id: "R08-017"
+      value: 6
+      effort: 3
+      ratio: 2.00
+      title: "Conflict Resolution History"
+      description: "Track how merge conflicts in knowledge were resolved"
+      expert: "Linus van der Berg"
+      implementation: "Log merge conflict resolutions with rationale"
+
+    - id: "R08-018"
+      value: 7
+      effort: 4
+      ratio: 1.75
+      title: "Knowledge Blame Tool"
+      description: "Git blame equivalent showing who added each knowledge element"
+      expert: "Raj Kumar"
+      implementation: "Git blame with session context"
+
+    - id: "R08-019"
+      value: 5
+      effort: 3
+      ratio: 1.67
+      title: "Version Annotation System"
+      description: "Add annotations to specific versions explaining significance"
+      expert: "Aisha Okonkwo"
+      implementation: "Git notes attached to commits"
+
+    - id: "R08-020"
+      value: 6
+      effort: 4
+      ratio: 1.50
+      title: "Knowledge Archaeology Tool"
+      description: "Explore historical states of knowledge with time-slider interface"
+      expert: "Dr. Marco Vitale"
+      implementation: "Web UI with git time-travel"
+
+    - id: "R08-021-100"
+      count: 80
+      value_range: "1-5"
+      effort_range: "3-7"
+      ratio_range: "0.2-1.5"
+      categories:
+        - "Compressed version storage"
+        - "Version deduplication"
+        - "Change velocity metrics"
+        - "Knowledge stability scoring"
+        - "Temporal query optimization"
+        - "Version migration tools"
+        - "Historical full-text search"
+        - "Version comparison APIs"
+        - "Change notification webhooks"
+        - "Version access control"
+
+selected_for_implementation:
+  - "R08-001: Knowledge Change Logger"
+  - "R08-002: Point-in-Time Knowledge Query"
+  - "R08-003: Knowledge Diff Generator"
+  - "R08-005: Knowledge Evolution Timeline"
+  - "R08-006: Snapshot and Restore System"

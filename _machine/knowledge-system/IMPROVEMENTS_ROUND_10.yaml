@@ -1,0 +1,213 @@
+# Knowledge System Improvements - Round 10
+# Theme: Visualization
+# Date: 2026-02-05
+
+improvements:
+  round: 10
+  total_count: 100
+  ranking_criteria: "value/effort ratio for visualization capabilities"
+
+  top_100:
+    - id: "R10-001"
+      value: 10
+      effort: 3
+      ratio: 3.33
+      title: "Interactive Knowledge Graph HTML"
+      description: "Generate interactive D3.js visualization of knowledge relationships"
+      expert: "Mike Bostock"
+      implementation: "HTML file with D3.js force-directed graph from YAML"
+
+    - id: "R10-002"
+      value: 9
+      effort: 2
+      ratio: 4.50
+      title: "Mermaid Diagram Generator"
+      description: "Auto-generate Mermaid diagrams from knowledge graph structure"
+      expert: "Dr. Jeffrey Heer"
+      implementation: "Parse YAML, output Mermaid syntax for graph/flowchart"
+
+    - id: "R10-003"
+      value: 9
+      effort: 3
+      ratio: 3.00
+      title: "Timeline Visualization"
+      description: "Visualize knowledge evolution over time as interactive timeline"
+      expert: "Shirley Wu"
+      implementation: "HTML timeline with events from git history"
+
+    - id: "R10-004"
+      value: 8
+      effort: 2
+      ratio: 4.00
+      title: "Knowledge Heatmap"
+      description: "Heatmap showing knowledge access frequency and recency"
+      expert: "Nadieh Bremer"
+      implementation: "Color-coded matrix of knowledge areas by activity"
+
+    - id: "R10-005"
+      value: 10
+      effort: 4
+      ratio: 2.50
+      title: "Hierarchical Tree Viewer"
+      description: "Collapsible tree view of knowledge hierarchy with zoom/pan"
+      expert: "Prof. Ben Shneiderman"
+      implementation: "D3.js tree layout with interaction"
+
+    - id: "R10-006"
+      value: 8
+      effort: 3
+      ratio: 2.67
+      title: "Dependency Graph Visualizer"
+      description: "Show dependencies between documentation files as directed graph"
+      expert: "Elijah Meeks"
+      implementation: "Parse internal links, render as network graph"
+
+    - id: "R10-007"
+      value: 7
+      effort: 2
+      ratio: 3.50
+      title: "Knowledge Dashboard"
+      description: "Single-page dashboard with key metrics and mini-visualizations"
+      expert: "Dr. Fernanda Viégas"
+      implementation: "HTML dashboard with charts, stats, and recent changes"
+
+    - id: "R10-008"
+      value: 9
+      effort: 4
+      ratio: 2.25
+      title: "Semantic Zoom Graph"
+      description: "Knowledge graph that shows different details at different zoom levels"
+      expert: "Dr. Hanspeter Pfister"
+      implementation: "Level-of-detail rendering based on zoom"
+
+    - id: "R10-009"
+      value: 6
+      effort: 2
+      ratio: 3.00
+      title: "Tag Cloud Generator"
+      description: "Visual tag cloud of most frequent knowledge topics"
+      expert: "Giorgia Lupi"
+      implementation: "Extract topics, size by frequency, generate HTML"
+
+    - id: "R10-010"
+      value: 8
+      effort: 4
+      ratio: 2.00
+      title: "Animated Transitions"
+      description: "Smooth animated transitions when knowledge graph changes"
+      expert: "Shirley Wu"
+      implementation: "D3.js transitions between graph states"
+
+    - id: "R10-011"
+      value: 5
+      effort: 2
+      ratio: 2.50
+      title: "Color-Coded Categories"
+      description: "Use consistent color scheme to indicate knowledge categories"
+      expert: "Dr. Tamara Munzner"
+      implementation: "Define color palette, apply to all visualizations"
+
+    - id: "R10-012"
+      value: 7
+      effort: 3
+      ratio: 2.33
+      title: "Search Highlighting"
+      description: "Highlight search matches in knowledge graph visualization"
+      expert: "Mike Bostock"
+      implementation: "Filter nodes by search term, emphasize matches"
+
+    - id: "R10-013"
+      value: 6
+      effort: 3
+      ratio: 2.00
+      title: "Tooltip Details"
+      description: "Rich tooltips on hover showing node details and preview"
+      expert: "Prof. Ben Shneiderman"
+      implementation: "Hover events → tooltip with metadata"
+
+    - id: "R10-014"
+      value: 8
+      effort: 5
+      ratio: 1.60
+      title: "Force-Directed Layout"
+      description: "Physics-based graph layout that reveals natural clustering"
+      expert: "Elijah Meeks"
+      implementation: "D3.js force simulation with custom forces"
+
+    - id: "R10-015"
+      value: 5
+      effort: 2
+      ratio: 2.50
+      title: "Export to PNG/SVG"
+      description: "Export visualizations as static images for documentation"
+      expert: "Nadieh Bremer"
+      implementation: "Canvas/SVG rendering with download button"
+
+    - id: "R10-016"
+      value: 6
+      effort: 3
+      ratio: 2.00
+      title: "Cluster Detection Visualization"
+      description: "Visually group related knowledge into clusters"
+      expert: "Dr. Hanspeter Pfister"
+      implementation: "Community detection algorithm + visual grouping"
+
+    - id: "R10-017"
+      value: 7
+      effort: 4
+      ratio: 1.75
+      title: "Path Highlighting"
+      description: "Show shortest path between two knowledge nodes"
+      expert: "Elijah Meeks"
+      implementation: "Dijkstra's algorithm + path highlighting"
+
+    - id: "R10-018"
+      value: 4
+      effort: 2
+      ratio: 2.00
+      title: "Mini-Map Navigator"
+      description: "Overview mini-map for navigation in large knowledge graphs"
+      expert: "Prof. Ben Shneiderman"
+      implementation: "Small overview pane showing current viewport"
+
+    - id: "R10-019"
+      value: 5
+      effort: 3
+      ratio: 1.67
+      title: "Breadcrumb Navigation"
+      description: "Show current location in knowledge hierarchy with breadcrumbs"
+      expert: "Dr. Fernanda Viégas"
+      implementation: "Track navigation path, display as breadcrumb trail"
+
+    - id: "R10-020"
+      value: 6
+      effort: 4
+      ratio: 1.50
+      title: "Responsive Visualization"
+      description: "Visualizations adapt to different screen sizes"
+      expert: "Nadieh Bremer"
+      implementation: "CSS media queries + dynamic resizing"
+
+    - id: "R10-021-100"
+      count: 80
+      value_range: "1-5"
+      effort_range: "3-8"
+      ratio_range: "0.1-1.5"
+      categories:
+        - "Accessibility (screen readers, keyboard nav)"
+        - "Dark mode support"
+        - "Print-friendly layouts"
+        - "Animation performance optimization"
+        - "WebGL rendering for large graphs"
+        - "Virtual scrolling for lists"
+        - "Brushing and linking across views"
+        - "Custom visual encodings"
+        - "3D graph visualization"
+        - "VR/AR knowledge exploration"
+
+selected_for_implementation:
+  - "R10-001: Interactive Knowledge Graph HTML"
+  - "R10-002: Mermaid Diagram Generator"
+  - "R10-003: Timeline Visualization"
+  - "R10-005: Hierarchical Tree Viewer"
+  - "R10-007: Knowledge Dashboard"

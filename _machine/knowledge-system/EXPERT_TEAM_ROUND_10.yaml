@@ -1,0 +1,108 @@
+# Expert Team Round 10: Visualization
+# Theme: Visual representations of knowledge graph
+# Date: 2026-02-05
+
+expert_team:
+  round: 10
+  theme: "Visualization"
+  focus: "Systems that create intuitive visual representations of knowledge structure and relationships"
+
+  experts:
+    - name: "Dr. Tamara Munzner"
+      role: "Information Visualization Researcher"
+      background: "Professor at UBC, wrote definitive textbook on visualization design"
+      perspective: "Visualization is about showing structure, not just making things pretty"
+
+    - name: "Mike Bostock"
+      role: "Interactive Visualization Creator"
+      background: "Created D3.js, NYT graphics editor"
+      perspective: "Best visualizations are interactive and tell stories"
+
+    - name: "Dr. Fernanda Viégas"
+      role: "Social Data Visualization Expert"
+      background: "Created Many Eyes, studied collaborative visualization"
+      perspective: "Visualization should enable discovery and conversation"
+
+    - name: "Prof. Ben Shneiderman"
+      role: "Visual Analytics Pioneer"
+      background: "Created treemap visualization, information visualization principles"
+      perspective: "Overview first, zoom and filter, details on demand"
+
+    - name: "Nadieh Bremer"
+      role: "Data Art and Visualization Designer"
+      background: "Award-winning data visualization designer and developer"
+      perspective: "Beautiful visualizations engage users emotionally"
+
+    - name: "Dr. Jeffrey Heer"
+      role: "Visualization Systems Architect"
+      background: "Created Vega/Vega-Lite, professor at UW"
+      perspective: "Declarative visualization specifications enable reusability"
+
+    - name: "Shirley Wu"
+      role: "Creative Visualization Developer"
+      background: "Built innovative interactive visualizations for FiveThirtyEight"
+      perspective: "Animation and interaction make data come alive"
+
+    - name: "Dr. Hanspeter Pfister"
+      role: "Visual Analytics for Large Data"
+      background: "Harvard professor, large-scale visualization systems"
+      perspective: "Visualizing millions of nodes requires aggregation and LOD"
+
+    - name: "Elijah Meeks"
+      role: "Network Visualization Specialist"
+      background: "Senior data visualization engineer at Netflix, graph visualization expert"
+      perspective: "Networks need force-directed layouts, clustering, and semantic zooming"
+
+    - name: "Giorgia Lupi"
+      role: "Data Humanism Advocate"
+      background: "Co-founder Accurat, Dear Data creator"
+      perspective: "Visualizations should be human-centered, not just machine-optimal"
+
+methodology:
+  approach: "Multi-level interactive graph visualization"
+  principles:
+    - "Show structure at multiple levels of detail"
+    - "Enable interaction (zoom, filter, search, select)"
+    - "Use visual encoding effectively (position, size, color, shape)"
+    - "Provide context and tooltips for details"
+    - "Support both exploration and explanation"
+    - "Make visualizations accessible and performant"
+
+diversity_dimensions:
+  - "Systems thinking: Academic research vs Web graphics vs Collaboration vs Visual analytics vs Data art"
+  - "Geographic: Canada, USA, Brazil, USA (2), Netherlands, USA (3), USA (4), USA (5), USA (6), Italy"
+  - "Domain: Research, Web journalism, Social platforms, HCI, Data art, Programming languages, Interactive storytelling, Scientific visualization, Networks, Information design"
+  - "Visualization types: Node-link graphs, Treemaps, Heatmaps, Timelines, Dashboards"
+  - "Interaction paradigms: Overview+detail, Focus+context, Brushing+linking"
+
+core_questions:
+  - "What visual encoding best represents knowledge relationships?"
+  - "How do we show hierarchy and network structure simultaneously?"
+  - "How do we handle large graphs (1000+ nodes)?"
+  - "What interactions are most useful for knowledge exploration?"
+  - "How do we visualize temporal evolution of knowledge?"
+  - "How do we make visualizations accessible to all users?"
+  - "What metrics should be visually encoded (importance, recency, connections)?"
+
+visualization_types:
+  graph_layouts:
+    - "Force-directed layout (physics simulation)"
+    - "Hierarchical tree layout (top-down)"
+    - "Circular layout (ring visualization)"
+    - "Matrix view (adjacency matrix)"
+
+  time_based:
+    - "Timeline (linear progression)"
+    - "Stream graph (flowing evolution)"
+    - "Animated transitions (morphing)"
+
+  aggregation:
+    - "Clustering (group related nodes)"
+    - "Heat maps (density visualization)"
+    - "Treemaps (hierarchical space-filling)"
+
+  interactive:
+    - "Semantic zoom (different details at different scales)"
+    - "Filtering (show/hide based on criteria)"
+    - "Search highlighting (find in visualization)"
+    - "Detail on hover (tooltips)"

@@ -1,0 +1,124 @@
+# Expert Teams for Rounds 11-25
+# Batch format for efficiency
+# Date: 2026-02-05
+
+rounds:
+  round_11:
+    theme: "Multi-Modal Context"
+    focus: "Images, diagrams, audio in knowledge base"
+    sample_experts:
+      - "Dr. Fei-Fei Li (Computer Vision)"
+      - "Yann LeCun (Deep Learning for Vision)"
+      - "Dr. Devi Parikh (Visual Question Answering)"
+
+  round_12:
+    theme: "Context Compression"
+    focus: "Efficient storage of large knowledge bases"
+    sample_experts:
+      - "Dr. David Huffman (Huffman coding)"
+      - "Yann Collet (Zstandard compression)"
+      - "Dr. Jarek Duda (ANS coding)"
+
+  round_13:
+    theme: "Federated Context"
+    focus: "Distributed knowledge across multiple machines"
+    sample_experts:
+      - "Dr. Leslie Lamport (Distributed consensus)"
+      - "Martin Kleppmann (CRDTs, distributed data)"
+      - "Dr. Barbara Liskov (Distributed abstractions)"
+
+  round_14:
+    theme: "Context Privacy & Security"
+    focus: "Encrypting sensitive context, access control"
+    sample_experts:
+      - "Bruce Schneier (Security engineering)"
+      - "Dr. Ross Anderson (Security economics)"
+      - "Whitfield Diffie (Public key cryptography)"
+
+  round_15:
+    theme: "Active Learning"
+    focus: "System asks questions to fill knowledge gaps"
+    sample_experts:
+      - "Dr. Burr Settles (Active learning researcher)"
+      - "Dr. Andrew McCallum (ML for NLP)"
+      - "Dr. Daphne Koller (Probabilistic models)"
+
+  round_16:
+    theme: "Context Reasoning"
+    focus: "Logical inference over knowledge base"
+    sample_experts:
+      - "Dr. Judea Pearl (Causal reasoning)"
+      - "Dr. Stuart Russell (AI reasoning systems)"
+      - "Prof. Peter Norvig (AI textbook author)"
+
+  round_17:
+    theme: "Temporal Context"
+    focus: "Time-aware knowledge with decay/reinforcement"
+    sample_experts:
+      - "Dr. Allen Newell (Cognitive architectures)"
+      - "Dr. John Anderson (ACT-R cognitive model)"
+      - "Dr. Gary Marcus (Memory and learning)"
+
+  round_18:
+    theme: "Context Transfer Learning"
+    focus: "Apply learnings from one project to another"
+    sample_experts:
+      - "Dr. Andrew Ng (Transfer learning)"
+      - "Dr. Rich Caruana (Multitask learning)"
+      - "Dr. Yoshua Bengio (Deep learning foundations)"
+
+  round_19:
+    theme: "Conversational Context"
+    focus: "Dialogue management and turn-taking"
+    sample_experts:
+      - "Dr. Dilek Hakkani-Tür (Dialogue systems)"
+      - "Dr. Jason Williams (Dialogue state tracking)"
+      - "Dr. Zhou Yu (Interactive dialogue)"
+
+  round_20:
+    theme: "Context Explanation"
+    focus: "Explain why context is relevant"
+    sample_experts:
+      - "Dr. Been Kim (Interpretable ML)"
+      - "Dr. Cynthia Rudin (Explainable models)"
+      - "Dr. Marco Tulio Ribeiro (LIME, SHAP)"
+
+  round_21:
+    theme: "Meta-Learning for Context"
+    focus: "Learn how to learn context efficiently"
+    sample_experts:
+      - "Dr. Chelsea Finn (Meta-learning)"
+      - "Dr. Sergey Levine (RL and adaptation)"
+      - "Dr. Pieter Abbeel (Learning to learn)"
+
+  round_22:
+    theme: "Context Debugging"
+    focus: "Debug why context isn't working as expected"
+    sample_experts:
+      - "Andreas Zeller (Debugging research)"
+      - "Dr. Mark Harman (Search-based SE)"
+      - "Dr. Claire Le Goues (Program repair)"
+
+  round_23:
+    theme: "Social Context"
+    focus: "Team coordination and shared context"
+    sample_experts:
+      - "Dr. Judith Olson (Computer-supported cooperative work)"
+      - "Dr. Gary Olson (Groupware research)"
+      - "Dr. Gloria Mark (Collaboration and interruption)"
+
+  round_24:
+    theme: "Context Adaptation"
+    focus: "Adapt to user's changing needs and style"
+    sample_experts:
+      - "Dr. Pattie Maes (Software agents)"
+      - "Dr. Henry Lieberman (End-user programming)"
+      - "Dr. Brad Myers (Human-computer interaction)"
+
+  round_25:
+    theme: "Self-Improving Context"
+    focus: "System that improves its own context mechanisms"
+    sample_experts:
+      - "Dr. Jürgen Schmidhuber (Self-improving AI)"
+      - "Dr. Marcus Hutter (Universal AI)"
+      - "Dr. Demis Hassabis (Artificial general intelligence)"

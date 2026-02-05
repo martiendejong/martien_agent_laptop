@@ -1,0 +1,18 @@
+# Expert Team Round 09: Performance Optimization
+# Theme: Faster context loading and search
+# Date: 2026-02-05
+
+expert_team:
+  round: 9
+  theme: "Performance Optimization"
+  experts:
+    - { name: "Brendan Gregg", role: "Performance Analysis Expert", background: "DTrace, flame graphs, Linux perf" }
+    - { name: "Alexey Kopytov", role: "Sysbench Creator", background: "Database performance benchmarking" }
+    - { name: "Dr. Martin Thompson", role: "Mechanical Sympathy Advocate", background: "Low-latency systems, LMAX Disruptor" }
+    - { name: "Julia Evans", role: "Systems Performance Educator", background: "Makes performance profiling accessible" }
+    - { name: "Gil Tene", role: "JVM Performance Expert", background: "Created Azul Zing JVM, studies GC pauses" }
+    - { name: "Dr. Emery Berger", role: "Memory Allocator Researcher", background: "Created Hoard allocator, performance tools" }
+    - { name: "Igor Sysoev", role: "Nginx Creator", background: "Event-driven high-performance web server" }
+    - { name: "Bryan Cantrill", role: "Systems Observability Pioneer", background: "DTrace creator, Joyent CTO" }
+    - { name: "Dr. Barbara Liskov", role: "Distributed Systems Efficiency Expert", background: "Thor system, efficient RPC" }
+    - { name: "Cliff Click", role: "HotSpot JVM Architect", background: "JIT compilation, lock-free algorithms" }

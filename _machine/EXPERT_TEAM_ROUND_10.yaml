@@ -1,0 +1,18 @@
+# Expert Team Round 10: Visualization & Mind Maps
+# Theme: Visual representation of knowledge
+# Date: 2026-02-05
+
+expert_team:
+  round: 10
+  theme: "Visualization & Mind Maps"
+  experts:
+    - { name: "Edward Tufte", role: "Information Design Pioneer", background: "Beautiful Evidence, visual explanation" }
+    - { name: "Dr. Ben Shneiderman", role: "Information Visualization Researcher", background: "Treemaps, visual analytics" }
+    - { name: "Mike Bostock", role: "D3.js Creator", background: "Data-driven documents, interactive viz" }
+    - { name: "Tony Buzan", role: "Mind Mapping Inventor", background: "Radial thinking, visual memory" }
+    - { name: "Dr. Tamara Munzner", role: "Visualization Design Expert", background: "What: Why: How framework" }
+    - { name: "Nadieh Bremer", role: "Data Visualization Designer", background: "Beautiful, insightful visualizations" }
+    - { name: "Alberto Cairo", role: "Infographic Designer", background: "Functional Art, truthful visualization" }
+    - { name: "Dr. Jeffrey Heer", role: "Interactive Visualization Researcher", background: "Vega, Tableau foundations" }
+    - { name: "Manuel Lima", role: "Knowledge Visualization Expert", background: "Visual Complexity, network diagrams" }
+    - { name: "Dr. Jessica Hullman", role: "Uncertainty Visualization Researcher", background: "Communicating data uncertainty" }
