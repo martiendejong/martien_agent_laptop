@@ -14,3 +14,9 @@
 - Branch: feature/infinite-improvement-v3
 - PR: #494
 - Outcome: Iteration 23 - 5 critical React utilities (reactPerformance, safeJson, dataTransform, errorBoundary, encoding) - 1,256 lines
+
+## 2026-02-05 13:12:00Z - Release: agent-001
+- Repo: artrevisionist + hazina
+- Branch: fix/hazina-api-compatibility
+- PR: #51
+- Outcome: Hazina API compatibility fixes + EF Core migration generation enabled (ChatConversation/ConversationMessage, ChatImageService, design-time DbContext factory)
