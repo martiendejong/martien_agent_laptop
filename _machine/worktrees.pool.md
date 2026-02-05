@@ -8,7 +8,7 @@ Seat states:
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-05T06:51:00Z | ✅ PR #50: Phase 0 PostgreSQL database foundation - Provenance-first architecture |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | client-manager + hazina | feature/infinite-improvement-v2 | 2026-02-05T04:40:00Z | 🔄 Infinite Improvement v2: 3.5hr autonomous session (Iterations 4+) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | BUSY | client-manager + hazina | feature/social-media-refactor-round-3 | 2026-02-06T05:10:00Z | 🔄 Round 3-1000: Social media module refactor marathon (split components, state machine, token refresh) |
-| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | BUSY | client-manager | fix/pr479-twitter-preview-syntax | 2026-02-05T04:50:00Z | 🔧 Fix TwitterPreview.tsx syntax error blocking PR #479 frontend build |
+| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-05T04:52:00Z | ✅ Fixed PR #479 TwitterPreview.tsx syntax error (removed malformed XML tag) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | BUSY | hazina | feature/iteration-001-foundation | 2026-02-06T04:30:00Z | 🔄 Iteration 1/1000: Foundation improvements |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | BUSY | client-manager + hazina | agent-007-ai-alt-text | 2026-02-06T07:10:00Z | 🖼️ AI Image Alt Text Generator (ROI 3.50 - Sprint 2/5) |
 | agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | - | - | 2026-02-06T07:35:00Z | ✅ Hazina PR #174: Polly retry logic for LinkedInPublisher (Sprint 1 Task 3 enhancement) |
