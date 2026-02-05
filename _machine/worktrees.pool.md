@@ -5,7 +5,7 @@ Seat states:
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-05T11:00:00Z | ✅ PR #478: Post Scheduling UI (ClickUp #869c1dnwp) |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | client-manager + hazina | feature/869c1dnxe-platform-preview | 2026-02-05T19:00:00Z | 🚧 ClickUp #869c1dnxe: Platform-Specific Post Preview (Phase 1: MVP) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-05T19:30:00Z | ✅ PR #479: Platform-Specific Previews Phase 1 (ClickUp #869c1dnxe) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-05T02:50:00Z | ✅ PR #470: PostStateMachine service for status transitions (Phase 2) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-05T03:10:00Z | ✅ PR #471: Wizard creates parent posts + platform children (Phase 3) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-05T05:15:00Z | ✅ PR #475: Post Details Page (ClickUp #869c1dmmq) |
