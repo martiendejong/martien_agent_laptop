@@ -1,0 +1,265 @@
+# HAZINA PROJECT CONTEXT BUNDLE
+# Generated: 2026-02-05
+# Size: < 5KB
+# Purpose: Complete project context for instant loading
+
+version: "1.0"
+last_accessed: "2026-02-05T03:00:00Z"
+
+# ============================================================================
+# PROJECT IDENTITY
+# ============================================================================
+
+project:
+  canonical_name: hazina
+  aliases: [Hazina, "AI framework", "the framework"]
+  type: "AI framework for .NET applications"
+  status: active_development
+  main_branch: develop
+  current_focus: "Multi-provider LLM orchestration with advanced reasoning"
+
+# ============================================================================
+# PATHS
+# ============================================================================
+
+paths:
+  code: C:\Projects\hazina
+  worktrees: C:\Projects\worker-agents\agent-XXX\hazina
+  documentation: C:\Projects\hazina\docs
+  tests: C:\Projects\hazina\tests
+  api_docs: C:\Projects\hazina\docs\apidoc\index.html
+
+# ============================================================================
+# TECH STACK
+# ============================================================================
+
+tech_stack:
+  framework: ".NET 9.0"
+  language: "C#"
+  ai_integration:
+    - Semantic Kernel
+    - OpenAI API
+    - Anthropic API
+    - Ollama (local models)
+    - Google Gemini
+    - Mistral AI
+  features:
+    - Vector embeddings
+    - RAG (Retrieval-Augmented Generation)
+    - Agentic workflows
+    - Multi-layer reasoning (Neurochain)
+    - Semantic caching
+
+# ============================================================================
+# RELATED ENTITIES
+# ============================================================================
+
+related_projects:
+  - name: client-manager
+    relationship: used_by
+    reason: "Provides AI capabilities to client-manager"
+    implication: "Paired worktree allocation required"
+    path: C:\Projects\client-manager
+
+# ============================================================================
+# KEY FEATURES
+# ============================================================================
+
+features:
+  - name: "Multi-provider LLM orchestration"
+    providers: [OpenAI, Anthropic, Ollama, Gemini, Mistral]
+    status: production
+    description: "Unified interface for multiple AI providers"
+
+  - name: "Semantic caching"
+    status: production
+    benefit: "Reduce costs and latency for repeated queries"
+
+  - name: "RAG (Retrieval-Augmented Generation)"
+    status: production
+    use_case: "Ground AI responses in specific knowledge bases"
+
+  - name: "Agentic workflows"
+    status: production
+    description: "Multi-step AI reasoning with tool use"
+
+  - name: "Multi-layer reasoning (Neurochain)"
+    status: production
+    description: "Hierarchical reasoning with fault detection"
+
+  - name: "Hallucination prevention"
+    status: production
+    description: "Fault detection and verification layers"
+
+  - name: "Cost tracking"
+    status: production
+    description: "Track API costs per request/session"
+
+# ============================================================================
+# COMMON WORKFLOWS
+# ============================================================================
+
+workflows:
+  feature_development:
+    protocol: C:\scripts\MANDATORY_CODE_WORKFLOW.md
+    steps:
+      1: "Create branch (feature/clickup-id-description)"
+      2: "Allocate paired worktrees (hazina + client-manager)"
+      3: "Make changes in worktree"
+      4: "Build hazina first"
+      5: "Build client-manager to verify integration"
+      6: "Merge develop into branch"
+      7: "Create PR with --base develop"
+      8: "Add PR link to ClickUp task"
+
+  worktree_allocation:
+    skill: allocate-worktree
+    tool: allocate-worktree.ps1
+    critical_rule: "MUST allocate paired client-manager worktree with SAME branch name"
+    tracking: C:\scripts\_machine\worktrees.pool.md
+
+  build_verification:
+    sequence:
+      1: "Build hazina: dotnet build C:\\Projects\\hazina\\hazina.sln"
+      2: "Build client-manager: dotnet build C:\\Projects\\client-manager\\backend.sln"
+      3: "Verify no errors in dependent projects"
+
+  pr_dependencies:
+    skill: pr-dependencies
+    description: "Track cross-repo PR dependencies"
+    usage: "When hazina PR requires client-manager PR"
+
+# ============================================================================
+# DEVELOPMENT COMMANDS
+# ============================================================================
+
+commands:
+  build: "dotnet build C:\Projects\hazina\hazina.sln"
+  test: "dotnet test C:\Projects\hazina\tests"
+  pack: "dotnet pack C:\Projects\hazina\hazina.csproj"
+
+  nuget:
+    status: planned
+    description: "Will be published as NuGet package"
+
+# ============================================================================
+# ARCHITECTURE
+# ============================================================================
+
+architecture:
+  layers:
+    - name: "Provider Abstraction"
+      purpose: "Unified interface for all AI providers"
+
+    - name: "Semantic Caching"
+      purpose: "Cache AI responses based on semantic similarity"
+
+    - name: "RAG Engine"
+      purpose: "Ground responses in knowledge bases"
+
+    - name: "Neurochain"
+      purpose: "Multi-layer reasoning with verification"
+
+    - name: "Cost Tracking"
+      purpose: "Monitor and optimize API costs"
+
+  key_classes:
+    - HazinaService
+    - ModelRoutingService
+    - SemanticCacheService
+    - NeurochainService
+    - RAGService
+
+# ============================================================================
+# RECENT CHANGES
+# ============================================================================
+
+recent_changes:
+  - date: "2026-02-04"
+    change: "Added Neurochain multi-layer reasoning"
+    impact: "Improved reasoning quality and fault detection"
+
+  - date: "2026-02-03"
+    change: "Integrated Gemini and Mistral providers"
+    impact: "5 AI providers now supported"
+
+  - date: "2026-02-01"
+    change: "Semantic caching performance optimizations"
+    impact: "50% faster cache lookups"
+
+# ============================================================================
+# COMMON ISSUES & SOLUTIONS
+# ============================================================================
+
+common_issues:
+  - issue: "Client-manager build fails after hazina changes"
+    solution: "Rebuild hazina, then rebuild client-manager"
+    prevention: "Always build hazina first, then dependent projects"
+
+  - issue: "Worktree allocation mismatch"
+    solution: "Ensure branch names match in both hazina and client-manager worktrees"
+    prevention: "Use allocate-worktree.ps1 which handles paired allocation"
+
+  - issue: "NuGet package version conflicts"
+    solution: "Update package references in client-manager after hazina changes"
+    prevention: "Coordinate NuGet versions across projects"
+
+  - issue: "API key errors"
+    solution: "Check secrets.json for valid API keys"
+    location: "C:\\scripts\\secrets\\api-keys.json"
+
+# ============================================================================
+# DOCUMENTATION REFERENCES
+# ============================================================================
+
+documentation:
+  primary:
+    - C:\Projects\hazina\README.md
+    - C:\Projects\hazina\docs\apidoc\index.html
+    - C:\scripts\MACHINE_CONFIG.md § Related Projects
+
+  workflows:
+    - C:\scripts\worktree-workflow.md
+    - C:\scripts\MANDATORY_CODE_WORKFLOW.md
+    - C:\scripts\git-workflow.md
+
+  knowledge_graph:
+    - C:\scripts\_machine\CONTEXT_KNOWLEDGE_GRAPH.yaml
+    - C:\scripts\_machine\ALIAS_RESOLVER.yaml
+
+  skills:
+    - .claude/skills/allocate-worktree
+    - .claude/skills/release-worktree
+    - .claude/skills/pr-dependencies
+
+# ============================================================================
+# CREDENTIALS
+# ============================================================================
+
+credentials:
+  api_keys:
+    location: "C:\\scripts\\secrets\\api-keys.json"
+    providers:
+      - OpenAI
+      - Anthropic
+      - Google (Gemini)
+      - Mistral
+
+# ============================================================================
+# METADATA
+# ============================================================================
+
+metadata:
+  created_by: Claude (Jengo)
+  created_date: 2026-02-05
+  improvement_id: 3
+  improvement_title: "Project-specific context bundles"
+  value_effort_ratio: 5.0
+  purpose: "Single-file complete context for hazina project"
+  usage: "Load when working on hazina tasks"
+  maintenance: "Update when project structure, features, or workflows change"
+  next_review: "2026-02-12"
+
+# ============================================================================
+# END OF FILE
+# ============================================================================

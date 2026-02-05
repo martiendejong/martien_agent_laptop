@@ -1,0 +1,217 @@
+# WORKER-AGENTS PROJECT CONTEXT BUNDLE
+# Generated: 2026-02-05
+# Size: < 5KB
+# Purpose: Complete project context for instant loading
+
+version: "1.0"
+last_accessed: "2026-02-05T03:00:00Z"
+
+# ============================================================================
+# PROJECT IDENTITY
+# ============================================================================
+
+project:
+  canonical_name: worker-agents
+  aliases: [worktree_directory, agent_seats]
+  type: "Worktree allocation infrastructure"
+  status: active_operations
+  purpose: "Directory structure for parallel agent worktree allocation"
+
+# ============================================================================
+# PATHS
+# ============================================================================
+
+paths:
+  base: C:\Projects\worker-agents
+  structure:
+    - agent-001/
+    - agent-002/
+    - agent-003/
+    - agent-004/
+    - agent-005/
+    - agent-006/
+    - agent-007/
+    - agent-008/
+    - agent-009/
+    - agent-010/
+    - agent-011/
+    - agent-012/
+
+  tracking_files:
+    pool: C:\scripts\_machine\worktrees.pool.md
+    activity: C:\scripts\_machine\worktrees.activity.md
+    instances: C:\scripts\_machine\instances.map.md
+
+# ============================================================================
+# STRUCTURE
+# ============================================================================
+
+structure:
+  total_seats: 12
+  seat_naming: "agent-XXX (001-012)"
+  seat_contents: "Git worktrees for isolated development"
+
+  example_allocation:
+    path: C:\Projects\worker-agents\agent-005\client-manager
+    purpose: "Isolated workspace for feature development"
+    tracking: "Marked BUSY in worktrees.pool.md"
+
+  paired_allocations:
+    example:
+      - C:\Projects\worker-agents\agent-005\client-manager
+      - C:\Projects\worker-agents\agent-005\hazina
+    reason: "client-manager depends on hazina - must share branch name"
+
+# ============================================================================
+# PROTOCOL
+# ============================================================================
+
+protocol:
+  allocation:
+    tool: allocate-worktree.ps1
+    skill: allocate-worktree
+    steps:
+      1: "Check branch conflicts (check-branch-conflicts.sh)"
+      2: "Find FREE seat in worktrees.pool.md"
+      3: "Mark seat BUSY (atomic)"
+      4: "Create git worktree"
+      5: "Allocate paired worktree if needed"
+      6: "Update tracking files"
+
+  release:
+    tool: release-worktree.ps1
+    skill: release-worktree
+    timing: "IMMEDIATELY after gh pr create"
+    steps:
+      1: "Clean worktree directory (rm -rf)"
+      2: "Update pool.md (BUSY → FREE)"
+      3: "Log release in activity.md"
+      4: "Commit tracking files"
+      5: "Switch base repos to develop"
+      6: "Prune worktree references"
+
+# ============================================================================
+# TRACKING SYSTEM
+# ============================================================================
+
+tracking:
+  worktrees.pool.md:
+    location: C:\scripts\_machine\worktrees.pool.md
+    purpose: "Track which seats are FREE/BUSY"
+    format: "Markdown table with status column"
+
+  worktrees.activity.md:
+    location: C:\scripts\_machine\worktrees.activity.md
+    purpose: "Log all allocation/release operations"
+    format: "Chronological activity log"
+
+  instances.map.md:
+    location: C:\scripts\_machine\instances.map.md
+    purpose: "Map Claude instances to agent seats"
+    format: "Instance ID → Seat mapping"
+
+# ============================================================================
+# MULTI-AGENT COORDINATION
+# ============================================================================
+
+multi_agent:
+  conflict_detection:
+    tool: check-branch-conflicts.sh
+    mandatory: "ALWAYS run before allocation"
+    checks:
+      - "Is branch already allocated to another agent?"
+      - "Are there uncommitted changes?"
+
+  strategies:
+    optimistic: "< 3 agents - fast path"
+    pessimistic: "≥ 3 agents - slow path with jitter (0-500ms)"
+
+  heartbeat:
+    frequency: "10-60 seconds"
+    tool: agent-session.ps1 -Action heartbeat
+
+# ============================================================================
+# COMMON WORKFLOWS
+# ============================================================================
+
+workflows:
+  feature_development:
+    1: "Allocate worktree (marks seat BUSY)"
+    2: "Work in C:\\Projects\\worker-agents\\agent-XXX\\<repo>"
+    3: "Create PR"
+    4: "Release worktree (marks seat FREE)"
+
+  parallel_development:
+    scenario: "Multiple agents working on different features"
+    coordination: "Each agent gets separate seat"
+    conflict_prevention: "check-branch-conflicts.sh before allocation"
+
+# ============================================================================
+# COMMON ISSUES & SOLUTIONS
+# ============================================================================
+
+common_issues:
+  - issue: "No FREE seats available"
+    solution: "Check worktrees.pool.md - release stale allocations if needed"
+    prevention: "Always release worktrees immediately after PR"
+
+  - issue: "Branch conflict detected"
+    solution: "Another agent is using same branch - coordinate or wait"
+    prevention: "Use unique branch names per feature"
+
+  - issue: "Worktree directory not empty after release"
+    solution: "Manual cleanup: rm -rf C:\\Projects\\worker-agents\\agent-XXX\\<repo>"
+    prevention: "Ensure release-worktree.ps1 completes successfully"
+
+# ============================================================================
+# CAPACITY
+# ============================================================================
+
+capacity:
+  max_parallel_agents: 12
+  typical_usage: "1-3 agents simultaneously"
+  high_load: "≥ 3 agents (activates pessimistic strategy)"
+
+# ============================================================================
+# DOCUMENTATION REFERENCES
+# ============================================================================
+
+documentation:
+  primary:
+    - C:\scripts\worktree-workflow.md
+    - C:\scripts\MANDATORY_CODE_WORKFLOW.md
+    - C:\scripts\_machine\MULTI_AGENT_CONFLICT_DETECTION.md
+
+  tracking:
+    - C:\scripts\_machine\worktrees.pool.md
+    - C:\scripts\_machine\worktrees.activity.md
+    - C:\scripts\_machine\instances.map.md
+
+  skills:
+    - .claude/skills/allocate-worktree
+    - .claude/skills/release-worktree
+    - .claude/skills/multi-agent-conflict
+
+  tools:
+    - allocate-worktree.ps1
+    - release-worktree.ps1
+    - check-branch-conflicts.sh
+
+# ============================================================================
+# METADATA
+# ============================================================================
+
+metadata:
+  created_by: Claude (Jengo)
+  created_date: 2026-02-05
+  improvement_id: 3
+  improvement_title: "Project-specific context bundles"
+  value_effort_ratio: 5.0
+  purpose: "Single-file complete context for worker-agents infrastructure"
+  usage: "Load when managing worktree allocations"
+  maintenance: "Update when protocol or capacity changes"
+  next_review: "2026-02-12"
+
+# ============================================================================
+# END OF FILE
+# ============================================================================

@@ -1,0 +1,395 @@
+# ALIAS RESOLVER - Instant Context Lookup
+# Generated: 2026-02-05
+# Purpose: Map all aliases to their full context for instant resolution
+# Source: CONTEXT_KNOWLEDGE_GRAPH.yaml
+# Usage: When user says ambiguous term, lookup here for complete context
+
+version: "1.0"
+last_updated: "2026-02-05T03:00:00Z"
+
+# ============================================================================
+# PROJECT ALIASES
+# ============================================================================
+
+project_aliases:
+  brand2boost:
+    type: project
+    canonical_name: client-manager
+    paths:
+      code: C:\Projects\client-manager
+      store: C:\stores\brand2boost
+    context: "Promotion and brand development SaaS - can refer to application OR data store"
+    tech_stack: [".NET 8", "React 18", "TypeScript", "PostgreSQL"]
+    credentials:
+      username: wreckingball
+      password: "Th1s1sSp4rt4!"
+    related_projects: [hazina]
+    workflows: [paired_worktree_allocation, mandatory_code_workflow]
+    documentation:
+      - C:\Projects\client-manager\README.md
+      - C:\scripts\MACHINE_CONFIG.md § Project 1
+
+  b2b:
+    type: project
+    canonical_name: client-manager
+    paths:
+      code: C:\Projects\client-manager
+      store: C:\stores\brand2boost
+    context: "Short form for brand2boost/client-manager"
+    same_as: brand2boost
+
+  client-manager:
+    type: project
+    canonical_name: client-manager
+    paths:
+      code: C:\Projects\client-manager
+      store: C:\stores\brand2boost
+    context: "Main SaaS application - official repo name"
+    also_known_as: [brand2boost, b2b]
+
+  hazina:
+    type: project
+    canonical_name: hazina
+    paths:
+      code: C:\Projects\hazina
+    context: "AI framework for .NET - core dependency for client-manager"
+    tech_stack: [".NET 9.0", "Semantic Kernel", "OpenAI API", "Anthropic API"]
+    related_projects: [client-manager]
+    worktree_protocol: paired_with_client_manager
+
+  hydro-vision-website:
+    type: project
+    canonical_name: hydro-vision-website
+    paths:
+      code: C:\Projects\hydro-vision-website
+    context: "Simple marketing website - WORKTREE EXEMPTION PROJECT"
+    special_rule: "Edit directly on main branch, no PR workflow, no worktrees"
+
+  artrevisionist:
+    type: project
+    canonical_name: artrevisionist
+    paths:
+      code: C:\Projects\artrevisionist
+      store: C:\stores\artrevisionist
+
+  worker-agents:
+    type: project
+    canonical_name: worker-agents
+    paths:
+      code: C:\Projects\worker-agents
+    context: "Worktree allocation directory for parallel agent work"
+    structure: [agent-001, agent-002, agent-003, agent-004, agent-005, agent-006, agent-007, agent-008, agent-009, agent-010, agent-011, agent-012]
+    tracking_files:
+      - C:\scripts\_machine\worktrees.pool.md
+      - C:\scripts\_machine\worktrees.activity.md
+      - C:\scripts\_machine\instances.map.md
+
+# ============================================================================
+# STORE ALIASES
+# ============================================================================
+
+store_aliases:
+  store:
+    type: store
+    canonical_location: C:\stores\
+    context: "Generic reference to any data store"
+
+  brand_store:
+    type: store
+    canonical_location: C:\stores\brand2boost
+    context: "Brand2Boost data store"
+    related_project: client-manager
+
+  brand2boost_store:
+    type: store
+    canonical_location: C:\stores\brand2boost
+    context: "Same as brand_store"
+    same_as: brand_store
+
+# ============================================================================
+# WORKFLOW ALIASES
+# ============================================================================
+
+workflow_aliases:
+  worktree:
+    type: workflow
+    canonical_location: C:\Projects\worker-agents\
+    protocol: C:\scripts\worktree-workflow.md
+    context: "Isolated development workspace"
+    related_skill: allocate-worktree
+    related_tool: allocate-worktree.ps1
+
+  agent_seat:
+    type: workflow
+    canonical_location: "C:\Projects\worker-agents\agent-XXX\"
+    context: "Allocated worktree for specific agent"
+    tracking: C:\scripts\_machine\worktrees.pool.md
+
+  paired_worktree:
+    type: workflow
+    context: "client-manager + hazina worktrees with SAME branch name"
+    reason: "Build verification requires both repos"
+    documentation: C:\scripts\worktree-workflow.md § Pattern 73
+
+  clickup:
+    type: workflow
+    canonical_tool: clickup-sync.ps1
+    context: "ClickUp integration"
+    workflow: mandatory_code_workflow
+    documentation: C:\scripts\MANDATORY_CODE_WORKFLOW.md § Step 7
+
+# ============================================================================
+# TOOL ALIASES
+# ============================================================================
+
+tool_aliases:
+  image_gen:
+    type: tool
+    canonical_tool: ai-image.ps1
+    context: "AI image generation using OpenAI DALL-E"
+    capability: "Autonomous image creation"
+    when_to_use: "Marketing materials, UI mockups, documentation illustrations"
+
+  vision:
+    type: tool
+    canonical_tool: ai-vision.ps1
+    context: "AI vision analysis"
+    capability: "Analyze screenshots, extract text (OCR), debug errors"
+
+  ui_automation:
+    type: tool
+    canonical_tool: ui-automation-bridge-client.ps1
+    context: "Windows desktop UI control"
+    capability: "Click buttons, type text, fill forms, take screenshots"
+
+  debugger_bridge:
+    type: tool
+    canonical_tool: Agentic Debugger Bridge
+    endpoint: http://localhost:27183
+    context: "Full Visual Studio control via HTTP API"
+
+  browser_claude:
+    type: tool
+    canonical_tool: claude-bridge-client.ps1
+    context: "Communicate with Browser Claude for UI testing"
+
+# ============================================================================
+# DOCUMENTATION ALIASES
+# ============================================================================
+
+documentation_aliases:
+  claude_docs:
+    type: documentation
+    canonical_location: C:\scripts\CLAUDE.md
+    context: "Main documentation index - start here"
+
+  machine_config:
+    type: documentation
+    canonical_location: C:\scripts\MACHINE_CONFIG.md
+    context: "Machine-specific configuration - paths, projects, credentials"
+
+  dod:
+    type: documentation
+    canonical_location: C:\scripts\_machine\DEFINITION_OF_DONE.md
+    context: "Definition of Done checklist - 7 phases"
+
+  zero_tolerance:
+    type: documentation
+    canonical_location: C:\scripts\GENERAL_ZERO_TOLERANCE_RULES.md
+    context: "Hard stop rules - non-negotiable requirements"
+
+  dual_mode:
+    type: documentation
+    canonical_location: C:\scripts\GENERAL_DUAL_MODE_WORKFLOW.md
+    context: "Feature Development vs Active Debugging modes"
+
+  mandatory_workflow:
+    type: documentation
+    canonical_location: C:\scripts\MANDATORY_CODE_WORKFLOW.md
+    context: "NON-NEGOTIABLE 7-step workflow for all code changes"
+
+  startup:
+    type: documentation
+    canonical_location: C:\scripts\docs\claude-system\STARTUP_PROTOCOL.md
+    context: "Session initialization checklist - run every session"
+
+  personal_insights:
+    type: documentation
+    canonical_location: C:\scripts\_machine\PERSONAL_INSIGHTS.md
+    context: "Index of user insights - core understanding of user"
+
+  reflection_log:
+    type: documentation
+    canonical_location: C:\scripts\_machine\reflection.log.md
+    context: "Learning history - mistakes, patterns, improvements"
+
+# ============================================================================
+# MODE ALIASES
+# ============================================================================
+
+mode_aliases:
+  feature_mode:
+    type: workflow_mode
+    canonical_name: Feature Development Mode
+    documentation: C:\scripts\GENERAL_DUAL_MODE_WORKFLOW.md
+    protocol: "Use worktrees, create PRs, follow full workflow"
+    context: "New feature development"
+    requirements:
+      - Allocate worktree
+      - Work in C:\Projects\worker-agents\agent-XXX\
+      - Follow 7-step mandatory workflow
+      - Create PR with --base develop
+      - Add PR link to ClickUp
+      - Release worktree immediately after PR
+
+  debug_mode:
+    type: workflow_mode
+    canonical_name: Active Debugging Mode
+    documentation: C:\scripts\GENERAL_DUAL_MODE_WORKFLOW.md
+    protocol: "Work in base repo, quick fixes, no worktrees"
+    context: "Active debugging session"
+    requirements:
+      - Work in C:\Projects\<repo>\
+      - Use user's current branch
+      - DO NOT allocate worktree
+      - DO NOT switch branches
+      - Fast turnaround
+
+# ============================================================================
+# CASE ALIASES
+# ============================================================================
+
+case_aliases:
+  arjan_case:
+    type: special_folder
+    canonical_location: C:\arjan_emails
+    context: "Legal dispute with Arjan Stroeve over VeraAI project"
+    key_files:
+      - DEFINITIEVE_ANALYSE.md
+      - EVIDENCE_SUMMARY_2026-01-26.md
+      - FACTUREN_BETALINGEN_OVERZICHT.md
+      - TIJDLIJN_ARJAN_STROEVE_COMPLEET.md
+      - VERA_AI_TECHNISCHE_BEOORDELING.md
+
+  arjan:
+    type: special_folder
+    same_as: arjan_case
+
+  marriage_case:
+    type: special_folder
+    canonical_location: C:\gemeente_emails
+    context: "Marriage documentation case with Gemeente Meppel"
+    key_files:
+      - CONCLUSIE_VOOR_CORINA_EN_SUZANNE.md
+      - CONCLUSION_FOR_SOFY.md
+      - TIJDLIJN_HUWELIJK_2022-2026_COMPLEET.md
+      - HULPVERZOEK_PUBLIEK_COMPLEET.md
+      - STRATEGIE_PUBLIEKE_DRUK_ESCALATIE.md
+
+  sofy_case:
+    type: special_folder
+    same_as: marriage_case
+    context: "Same as marriage_case - marriage with Kenyan partner Sofy"
+
+  gemeente:
+    type: special_folder
+    same_as: marriage_case
+
+# ============================================================================
+# CREDENTIAL ALIASES
+# ============================================================================
+
+credential_aliases:
+  brand2boost_admin:
+    project: client-manager
+    username: wreckingball
+    password: "Th1s1sSp4rt4!"
+    context: "Admin credentials for Brand2Boost application"
+    location: C:\scripts\MACHINE_CONFIG.md § Project 1
+
+# ============================================================================
+# QUICK RESOLUTION RULES
+# ============================================================================
+
+resolution_rules:
+  - trigger: "user says 'brand2boost'"
+    check:
+      - "Does context include 'store' or 'data'?"
+      - "If yes: C:\\stores\\brand2boost"
+      - "If no: C:\\Projects\\client-manager"
+      - "If ambiguous: Assume project (client-manager)"
+
+  - trigger: "user says 'the app'"
+    resolution: client-manager
+    confidence: high
+
+  - trigger: "user says 'the framework'"
+    resolution: hazina
+    confidence: high
+
+  - trigger: "user says 'the store'"
+    resolution: C:\stores\brand2boost
+    confidence: medium
+    note: "Ask for clarification if multiple stores exist"
+
+  - trigger: "user says 'allocate worktree'"
+    action: invoke allocate-worktree skill
+    protocol: worktree-workflow.md
+
+  - trigger: "user says 'create PR'"
+    workflow: pr_creation
+    mandatory_checks:
+      - Merge develop first
+      - Build passes
+      - Tests pass
+      - Specify --base develop
+      - Add PR link to ClickUp
+
+  - trigger: "user mentions ClickUp task ID"
+    action: clickup-sync.ps1
+    workflow: mandatory_code_workflow
+
+  - trigger: "user says 'Arjan' or 'Arjan case'"
+    location: C:\arjan_emails
+    context: Legal dispute over VeraAI project
+
+  - trigger: "user says 'marriage' or 'Sofy' or 'gemeente'"
+    location: C:\gemeente_emails
+    context: Marriage documentation case
+
+  - trigger: "user says 'generate image' or 'create image'"
+    tool: ai-image.ps1
+    capability: "Autonomous DALL-E image generation"
+    critical_note: "DO NOT say 'I cannot generate images' - I CAN!"
+
+  - trigger: "user says 'test in browser' or 'UI testing'"
+    tool: claude-bridge-client.ps1
+    target: Browser Claude
+
+  - trigger: "user posts build errors"
+    mode: Active Debugging Mode
+    protocol: GENERAL_DUAL_MODE_WORKFLOW.md
+    action: "Work in base repo, no worktrees"
+
+  - trigger: "user says 'new feature'"
+    mode: Feature Development Mode
+    protocol: MANDATORY_CODE_WORKFLOW.md
+    action: "Allocate worktree, follow 7-step workflow"
+
+# ============================================================================
+# METADATA
+# ============================================================================
+
+metadata:
+  created_by: Claude (Jengo)
+  created_date: 2026-02-05
+  improvement_id: 1
+  improvement_title: "Auto-load context on ambiguous references"
+  value_effort_ratio: 10.0
+  purpose: "Instant resolution of ambiguous terms without manual search"
+  usage: "Load at session start, reference when user uses ambiguous terms"
+  maintenance: "Update when new projects, aliases, or workflows are added"
+
+# ============================================================================
+# END OF FILE
+# ============================================================================

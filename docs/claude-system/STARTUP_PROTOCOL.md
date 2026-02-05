@@ -128,6 +128,13 @@ Answer questions in priority order:
 19. ✅ **Read** `GENERAL_DUAL_MODE_WORKFLOW.md` - Understand Feature Development vs Active Debugging modes
 20. ✅ **Read** `_machine/DEFINITION_OF_DONE.md` - Know what "done" means for all tasks
 
+**🆕 CONTEXT IMPROVEMENTS (Improvement Round 01 - Top 3):**
+21. ✅ **Read** `_machine/ALIAS_RESOLVER.yaml` - **INSTANT CONTEXT LOOKUP:** Map ambiguous terms to full context (brand2boost → client-manager + store, credentials, workflows)
+22. ✅ **Read** `QUICK_REFERENCE.md` - **TOP 20 FREQUENT REQUESTS:** One-line resolution paths ("Fix build error" → DoD Phase 2, "Arjan case" → C:\arjan_emails\DEFINITIEVE_ANALYSE.md)
+23. ✅ **Load project context bundle** (if working on specific project) - `_machine/contexts/<project>.yaml` - **COMPLETE PROJECT CONTEXT:** All info about project in single <5KB file
+    - Available bundles: client-manager, hazina, hydro-vision-website, artrevisionist, worker-agents
+    - Load on-demand when starting work on specific project
+
 **🔍 ENVIRONMENT STATE CHECK:**
 21. ✅ **Run** `C:/scripts/tools/repo-dashboard.sh` - Check environment state
 22. ✅ **Run** `monitor-activity.ps1 -Mode context` - **CRITICAL: Get user context, detect other Claude instances (parallel coordination), check if user is present**

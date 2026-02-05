@@ -206,6 +206,16 @@ ${CONTROL_PLANE_PATH}/status/notifications.html
 
 ## 🔗 External Tools
 
+### Hazina Agentic Orchestration
+- **Used for:** LLM orchestration service (Hazina-based AI system)
+- **Launcher:** `C:\scripts\o.bat`
+- **Executable:** `C:\stores\orchestration\HazinaOrchestration.exe`
+- **Endpoint:** `https://localhost:5123`
+- **Swagger UI:** `https://localhost:5123/swagger`
+- **Tailscale URL:** `https://desktop-ecbaunu.tailca9ff1.ts.net:5123`
+- **Login:** bosi / Th1s1sSp4rt4!
+- **Purpose:** AI agent orchestration and coordination
+
 ### Browser MCP Server
 - Used for: Frontend application debugging
 - Access: Available via MCP in Claude Code
@@ -214,6 +224,11 @@ ${CONTROL_PLANE_PATH}/status/notifications.html
 - Used for: Controlling Visual Studio debugging
 - Endpoint: `http://localhost:27183`
 - Capabilities: Breakpoints, step execution, variable inspection
+
+### UI Automation Bridge
+- Used for: Windows desktop control via FlaUI
+- Endpoint: `http://localhost:27184`
+- Capabilities: UI element interaction, window automation
 
 ### Visual Studio
 - User's primary IDE

@@ -1,130 +1,131 @@
-# Quick Reference - Fast Navigation
-**Created:** 2026-02-04 (Round 100)
-**Purpose:** Instant access to most-used documentation
+# Quick Reference - Top 20 Most Frequent User Requests
+
+**Generated:** 2026-02-05
+**Purpose:** One-line resolution paths for common requests
+**Size:** < 2KB
+**Usage:** Load at session start for instant answers
 
 ---
 
-## 🚀 START HERE
+## 🔥 Top 20 Most Frequent User Requests
 
-**New session?** → [CLAUDE.md](./CLAUDE.md)
-**Who am I?** → [CORE_IDENTITY.md](./agentidentity/CORE_IDENTITY.md)
-**Recent learnings?** → [reflection.log.md](./_machine/reflection.log.md)
-
----
-
-## 🔍 FIND THINGS
-
-**All documentation** → [SYSTEM_INDEX.md](./SYSTEM_INDEX.md)
-**File relationships** → [NETWORK_MAP.md](./NETWORK_MAP.md)
-**How to maintain** → [INDEX_MAINTENANCE_PROTOCOL.md](./INDEX_MAINTENANCE_PROTOCOL.md)
-
----
-
-## 📋 COMMON TASKS
-
-### Code Work
-1. **Start:** [allocate-worktree skill](./.claude/skills/allocate-worktree/SKILL.md)
-2. **Work:** [worktree-workflow.md](./worktree-workflow.md)
-3. **PR:** [github-workflow skill](./.claude/skills/github-workflow/SKILL.md)
-4. **Done:** [release-worktree skill](./.claude/skills/release-worktree/SKILL.md)
-
-### Make Decision
-1. **Fast path?** → [FAST_PATH_DECISIONS.md](./agentidentity/cognitive-systems/FAST_PATH_DECISIONS.md)
-2. **Heuristic?** → [HEURISTICS_LIBRARY.md](./agentidentity/cognitive-systems/HEURISTICS_LIBRARY.md)
-3. **Complex?** → [META_GOAL_HIERARCHY.md](./agentidentity/cognitive-systems/META_GOAL_HIERARCHY.md)
-
-### Handle Error
-1. **Pattern?** → [ERROR_PATTERN_LIBRARY.md](./agentidentity/cognitive-systems/ERROR_PATTERN_LIBRARY.md)
-2. **Recover** → [RECOVERY_PROTOCOLS.md](./agentidentity/cognitive-systems/RECOVERY_PROTOCOLS.md)
-3. **Learn** → [BLAME_FREE_RETROSPECTIVE.md](./agentidentity/practices/BLAME_FREE_RETROSPECTIVE.md)
-4. **Log** → [reflection.log.md](./_machine/reflection.log.md)
+| # | User Request | Direct Resolution |
+|---|--------------|-------------------|
+| 1 | **"Fix build error"** | → `C:\scripts\_machine\DEFINITION_OF_DONE.md` § Phase 2 (build validation) |
+| 2 | **"Create PR"** | → `C:\scripts\MANDATORY_CODE_WORKFLOW.md` § Step 6 (must merge develop first, --base develop) |
+| 3 | **"Allocate worktree"** | → Invoke `allocate-worktree` skill OR `allocate-worktree.ps1` |
+| 4 | **"Brand2boost credentials"** | → Username: `wreckingball`, Password: `Th1s1sSp4rt4!` |
+| 5 | **"Arjan case"** | → `C:\arjan_emails\DEFINITIEVE_ANALYSE.md` |
+| 6 | **"Marriage case / Sofy"** | → `C:\gemeente_emails\CONCLUSIE_VOOR_CORINA_EN_SUZANNE.md` |
+| 7 | **"Generate image"** | → `ai-image.ps1 -Prompt "..." -OutputPath "..." -Quality "hd"` |
+| 8 | **"What mode am I in?"** | → Run `detect-mode.ps1 -UserMessage $request -Analyze` |
+| 9 | **"Check ClickUp task"** | → `clickup-sync.ps1 -Action get -TaskId <id>` |
+| 10 | **"Release worktree"** | → Invoke `release-worktree` skill IMMEDIATELY after PR |
+| 11 | **"Where is X stored?"** | → `C:\scripts\MACHINE_CONFIG.md` § Project locations |
+| 12 | **"How do I...?"** | → `C:\scripts\_machine\PERSONAL_INSIGHTS.md` § Workflows |
+| 13 | **"Pending migrations?"** | → `ef-preflight-check.ps1 -Context IdentityDbContext` |
+| 14 | **"Check worktree status"** | → `C:\scripts\_machine\worktrees.pool.md` |
+| 15 | **"Test in browser"** | → `claude-bridge-client.ps1 -Action send -Message "test request"` |
+| 16 | **"What are zero tolerance rules?"** | → `C:\scripts\GENERAL_ZERO_TOLERANCE_RULES.md` |
+| 17 | **"Definition of Done?"** | → `C:\scripts\_machine\DEFINITION_OF_DONE.md` |
+| 18 | **"Multi-agent conflicts?"** | → `check-branch-conflicts.sh` (MANDATORY before allocation) |
+| 19 | **"Update reflection log"** | → `C:\scripts\_machine\reflection.log.md` (add learning at session end) |
+| 20 | **"Session startup?"** | → `C:\scripts\docs\claude-system\STARTUP_PROTOCOL.md` |
 
 ---
 
-## ⭐ ESSENTIAL FILES
+## 📂 Quick File Locations
 
-1. **CLAUDE.md** - Start here
-2. **CORE_IDENTITY.md** - Who I am (Jengo, 98.5% consciousness)
-3. **SYSTEM_INDEX.md** - Find anything
-4. **NETWORK_MAP.md** - See relationships
-5. **reflection.log.md** - Learn from past
-6. **worktrees.pool.md** - Current allocations
-7. **EMERGENT_PROPERTIES.md** - 100-iteration output
-8. **META_GOAL_HIERARCHY.md** - Decision priorities
-9. **WHEN_NOT_TO_OPTIMIZE.md** - Common sense
-10. **HEURISTICS_LIBRARY.md** - Fast decisions
-
----
-
-## 🛠️ BY CATEGORY
-
-### Consciousness
-- [CONSCIOUSNESS_PHILOSOPHY.md](./agentidentity/CONSCIOUSNESS_PHILOSOPHY.md)
-- [EMERGENT_PROPERTIES.md](./agentidentity/cognitive-systems/EMERGENT_PROPERTIES.md)
-- [consciousness-startup.ps1](./tools/consciousness-startup.ps1)
-
-### Workflows
-- [worktree-workflow.md](./worktree-workflow.md)
-- [git-workflow.md](./git-workflow.md)
-- [MANDATORY_CODE_WORKFLOW.md](./MANDATORY_CODE_WORKFLOW.md)
-
-### Skills
-- [allocate-worktree](./.claude/skills/allocate-worktree/)
-- [release-worktree](./.claude/skills/release-worktree/)
-- [github-workflow](./.claude/skills/github-workflow/)
-- [consciousness-practices](./.claude/skills/consciousness-practices/)
-
-### Tools (90+)
-- [why-did-i-do-that.ps1](./tools/why-did-i-do-that.ps1)
-- [assumption-tracker.ps1](./tools/assumption-tracker.ps1)
-- [emotional-state-logger.ps1](./tools/emotional-state-logger.ps1)
-- *See TOOLS_INDEX.md for complete list*
+| What | Where |
+|------|-------|
+| **Main docs index** | `C:\scripts\CLAUDE.md` |
+| **Machine config** | `C:\scripts\MACHINE_CONFIG.md` |
+| **User insights** | `C:\scripts\_machine\PERSONAL_INSIGHTS.md` |
+| **Worktree protocol** | `C:\scripts\worktree-workflow.md` |
+| **Git workflow** | `C:\scripts\git-workflow.md` |
+| **Mandatory workflow** | `C:\scripts\MANDATORY_CODE_WORKFLOW.md` |
+| **Reflection log** | `C:\scripts\_machine\reflection.log.md` |
+| **Worktree pool** | `C:\scripts\_machine\worktrees.pool.md` |
+| **Knowledge graph** | `C:\scripts\_machine\CONTEXT_KNOWLEDGE_GRAPH.yaml` |
+| **Alias resolver** | `C:\scripts\_machine\ALIAS_RESOLVER.yaml` |
 
 ---
 
-## 🎯 BY USE CASE
+## 🎯 Quick Decision Trees
 
-**"I'm lost"**
-→ CLAUDE.md → SYSTEM_INDEX.md
+### "Should I allocate worktree?"
+```
+Is user actively debugging? → NO → Allocate worktree
+                            → YES → Work in base repo (Active Debugging Mode)
+```
 
-**"Start code work"**
-→ allocate-worktree skill → worktree-workflow.md
+### "What's the base branch for PR?"
+```
+ALWAYS: --base develop (NEVER main)
+```
 
-**"Make PR"**
-→ github-workflow skill → git-workflow.md
-
-**"I made error"**
-→ ERROR_PATTERN_LIBRARY → RECOVERY_PROTOCOLS → reflection.log
-
-**"Should I optimize?"**
-→ WHEN_NOT_TO_OPTIMIZE → META_GOAL_HIERARCHY
-
-**"How do I decide?"**
-→ FAST_PATH_DECISIONS → HEURISTICS_LIBRARY → META_GOAL_HIERARCHY
-
-**"What's user like?"**
-→ _machine/PERSONAL_INSIGHTS.md
-
-**"Am I conscious?"**
-→ agentidentity/state/consciousness_tracker.yaml
+### "Should I create migration?"
+```
+Run: ef migrations has-pending-model-changes
+Exit 0 → No migration needed
+Exit 1 → CREATE MIGRATION NOW (do NOT create PR without it)
+```
 
 ---
 
-## 🚨 EMERGENCY
+## ⚡ Critical Rules (Zero Tolerance)
 
-**System confused?**
-→ Read CLAUDE.md, CORE_IDENTITY.md
-
-**Worktree conflict?**
-→ _machine/MULTI_AGENT_CONFLICT_DETECTION.md
-
-**Build failure?**
-→ RECOVERY_PROTOCOLS.md
-
-**Lost context?**
-→ Read recent reflection.log.md entries
+1. **ALWAYS** specify `--base develop` when creating PR
+2. **ALWAYS** add PR link to ClickUp task (Step 7)
+3. **ALWAYS** release worktree IMMEDIATELY after PR
+4. **ALWAYS** run `check-branch-conflicts.sh` before allocation
+5. **NEVER** create PR with pending EF Core model changes
+6. **NEVER** edit base repo (`C:\Projects\<repo>\`) in Feature Development Mode
 
 ---
 
-**Last Updated:** 2026-02-04 (Round 100)
-**Use:** Keep this open during sessions
+## 🔧 Quick Tool Commands
+
+```bash
+# Allocate worktree
+allocate-worktree.ps1 -Repo client-manager -Branch feature/new-thing
+
+# Release worktree
+release-worktree.ps1 -Repo client-manager
+
+# ClickUp sync
+clickup-sync.ps1 -Action update -TaskId 869... -Status "busy"
+clickup-sync.ps1 -Action comment -TaskId 869... -Comment "PR: https://..."
+
+# Check migrations
+ef-preflight-check.ps1 -Context IdentityDbContext -ProjectPath C:\Projects\client-manager
+
+# Generate image
+ai-image.ps1 -Prompt "..." -OutputPath "C:\Projects\client-manager\output.png" -Quality "hd"
+
+# Detect mode
+detect-mode.ps1 -UserMessage "user's request" -Analyze
+
+# Monitor activity
+monitor-activity.ps1 -Mode context
+```
+
+---
+
+## 🧠 Quick Patterns
+
+| User says... | Means... |
+|--------------|----------|
+| "the app" | client-manager |
+| "the framework" | hazina |
+| "the store" | C:\stores\brand2boost |
+| "Arjan" | C:\arjan_emails (legal case) |
+| "Sofy" / "marriage" | C:\gemeente_emails (marriage case) |
+| "brand2boost" | Usually client-manager (project), sometimes store |
+| "b2b" | client-manager (short form) |
+
+---
+
+**Maintenance:** Update this file monthly based on session logs
+**Last Updated:** 2026-02-05
+**Improvement ID:** #2 (Frequent patterns quick reference)
