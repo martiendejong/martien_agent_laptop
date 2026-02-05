@@ -4,9 +4,9 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-05T12:56:00Z | ✅ Fixed PR #491 CI (merged develop for Facebook Shares fix) |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | client-manager | batch-ci-fixes | 2026-02-05T12:57:00Z | 🔧 Batch fix PRs #486, #483, #482 - merge develop for Facebook fix |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-05T05:13:00Z | ✅ PR #492: Infinite Improvement v2 - Performance, Resilience & Monitoring (Iterations 4-7, 1486+ lines) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | artrevisionist + hazina | fix/hazina-api-compatibility | 2026-02-05T13:05:00Z | 🔧 Fix Hazina API compatibility (ChatController, Program.cs) to enable EF migration |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-06T09:45:00Z | ✅ PR #494: Iteration 23 - React Utilities (Performance, JSON, Transform, Errors, Encoding) - 1,256 lines |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-06T09:30:00Z | ✅ Batch fixed 3 failing PRs: #486 (GlobalConfig→HazinaStoreConfig), #482 (same), #483 (Azure KeyVault) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | BUSY | client-manager | feature/social-media-refactor-round-5 | 2026-02-06T06:05:00Z | 🔄 Round 5: OAuth Token Refresh Strategy (CRITICAL - prevents broken connections) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-05T05:04:00Z | ✅ PR #491: Integrations Dashboard - Comprehensive platform connection overview |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-05T05:15:00Z | ✅ Released: Hazina PR #173 created (HazinaCoder Iterations 1-60/1000) |
