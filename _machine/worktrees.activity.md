@@ -87,3 +87,10 @@
 - Branch: feature/parent-post-manager-ui
 - PR: #505
 - Outcome: ParentPostManager UI + Service Layer (merged latest develop)
+
+## 2026-02-06T19:12:00Z - Release: agent-003
+- Repos: client-manager + hazina (paired worktrees)
+- Branch: fix/facebook-complete-integration
+- Outcome: Merged latest develop into fix/facebook-complete-integration (bringing in PR #502 sub-posts work and other recent changes)
+- Note: Original PR #503 was already merged; this was a consolidation merge
+
