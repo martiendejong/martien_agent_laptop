@@ -4,10 +4,10 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-05T04:59:00Z | ✅ PR #489: CI fix - Use Hazina develop branch (unblocks 7+ PRs) |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-05T05:10:00Z | ✅ Fixed PR #474 frontend build (added missing ParentPostManager component) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-05T12:56:00Z | ✅ Fixed PR #491 CI (merged develop for Facebook Shares fix) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | client-manager | batch-ci-fixes | 2026-02-05T12:57:00Z | 🔧 Batch fix PRs #486, #483, #482 - merge develop for Facebook fix |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-05T05:13:00Z | ✅ PR #492: Infinite Improvement v2 - Performance, Resilience & Monitoring (Iterations 4-7, 1486+ lines) |
-| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-06T06:00:00Z | ✅ PR #490: Social refactor Rounds 3-4 (component extraction -30%, state foundation) |
+| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | BUSY | client-manager | feature/social-media-refactor-round-5 | 2026-02-06T06:05:00Z | 🔄 Round 5: OAuth Token Refresh Strategy (CRITICAL - prevents broken connections) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-05T05:04:00Z | ✅ PR #491: Integrations Dashboard - Comprehensive platform connection overview |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-05T05:15:00Z | ✅ Released: Hazina PR #173 created (HazinaCoder Iterations 1-60/1000) |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-02-06T08:00:00Z | ✅ PR #488: AI Image Alt Text Generator - Quick Win (ROI 3.50, ~1hr implementation) |
