@@ -1,0 +1,187 @@
+# Expert Team Round 23: Robustness & Resilience
+# Theme: Fault tolerance, graceful degradation, anti-fragility
+# Date: 2026-02-05
+
+expert_team:
+  round: 23
+  theme: "Robustness & Resilience"
+  focus: "What if something breaks? How to fail gracefully"
+  size: 1000
+
+  expert_categories:
+    fault_tolerance:
+      count: 150
+      examples:
+        - "Dr. Jim Gray - Fault tolerant computing, ACID transactions"
+        - "Prof. Nancy Lynch - Distributed consensus, failure models"
+        - "Leslie Lamport - Byzantine fault tolerance, Paxos"
+      perspective: "Systems must work despite failures"
+
+    graceful_degradation:
+      count: 120
+      examples:
+        - "Werner Vogels - Eventually consistent, BASE"
+        - "Prof. Armando Fox - Microreboot, failure recovery"
+        - "Michael Nygard - Release It, stability patterns"
+      perspective: "Degrade functionality, not availability"
+
+    anti_fragility:
+      count: 100
+      examples:
+        - "Nassim Taleb - Antifragile, gains from disorder"
+        - "Richard Cook - How Complex Systems Fail"
+        - "Sidney Dekker - Safety Differently, resilience engineering"
+      perspective: "Systems should improve from stress"
+
+    error_handling:
+      count: 90
+      examples:
+        - "Joe Armstrong - Let it crash philosophy (Erlang)"
+        - "Prof. Barbara Liskov - Exception handling design"
+        - "Martin Fowler - Fail fast, circuit breaker"
+      perspective: "Errors are data, not disasters"
+
+    redundancy_design:
+      count: 80
+      examples:
+        - "Prof. Daniel Siewiorek - Reliable computer systems"
+        - "Subra Suresh - Fatigue and fracture, redundant load paths"
+        - "Prof. Eugene Spafford - Defense in depth"
+      perspective: "Multiple backup paths for critical functions"
+
+    chaos_engineering:
+      count: 70
+      examples:
+        - "Casey Rosenthal - Chaos Engineering (Netflix)"
+        - "Nora Jones - Learning from failure"
+        - "Ali Basiri - Chaos Monkey creator"
+      perspective: "Break things intentionally to learn"
+
+    self_healing:
+      count: 70
+      examples:
+        - "Prof. Kephart & Chess - Autonomic computing"
+        - "Dr. Salim Hariri - Self-configuring systems"
+        - "Prof. Roy Sterritt - Autonomic systems"
+      perspective: "Systems that repair themselves"
+
+    defensive_programming:
+      count: 60
+      examples:
+        - "Steve McConnell - Code Complete, defensive coding"
+        - "Prof. Bertrand Meyer - Design by contract"
+        - "John Carmack - Assertions, invariants"
+      perspective: "Assume nothing, validate everything"
+
+    fallback_strategies:
+      count: 60
+      examples:
+        - "Martin Kleppmann - Designing Data-Intensive Apps"
+        - "Sam Newman - Building Microservices, fallbacks"
+        - "Chris Richardson - Saga pattern, compensation"
+      perspective: "Always have Plan B (and C)"
+
+    monitoring_observability:
+      count: 50
+      examples:
+        - "Charity Majors - Observability Engineering"
+        - "Baron Schwartz - Monitoring distributed systems"
+        - "Cindy Sridharan - Distributed systems observability"
+      perspective: "Can't fix what you can't see"
+
+    resource_limits:
+      count: 50
+      examples:
+        - "Prof. Butler Lampson - Hints for systems design"
+        - "Rob Pike - The Practice of Programming, limits"
+        - "Jon Bentley - Programming Pearls, resource bounds"
+      perspective: "Bounded resources prevent cascades"
+
+    circuit_breakers:
+      count: 40
+      examples:
+        - "Michael Nygard - Circuit Breaker pattern"
+        - "Netflix Hystrix team - Fault isolation"
+        - "Martin Fowler - Stability patterns"
+      perspective: "Fail fast, recover fast"
+
+    data_integrity:
+      count: 30
+      examples:
+        - "Prof. Michael Stonebraker - Transaction processing"
+        - "Pat Helland - Life beyond distributed transactions"
+        - "Dr. Peter Bailis - Eventual consistency"
+      perspective: "Data survives all failures"
+
+    recovery_procedures:
+      count: 30
+      examples:
+        - "Dr. Margaret Hamilton - Apollo recovery procedures"
+        - "Google SRE team - Incident response playbooks"
+        - "Etsy Engineering - Blameless postmortems"
+      perspective: "Recovery is planned, not improvised"
+
+methodology:
+  approach: "Systematic failure mode analysis and mitigation"
+
+  failure_analysis:
+    component_failures:
+      - "What if prediction service fails?"
+      - "What if knowledge store is corrupted?"
+      - "What if event bus fills up?"
+
+    resource_failures:
+      - "What if token limit is hit?"
+      - "What if disk is full?"
+      - "What if memory is exhausted?"
+
+    data_failures:
+      - "What if YAML is malformed?"
+      - "What if event log is corrupt?"
+      - "What if circular dependencies exist?"
+
+    integration_failures:
+      - "What if one improvement blocks others?"
+      - "What if feedback loop runs away?"
+      - "What if orchestrator crashes mid-execution?"
+
+  mitigation_strategies:
+    prevention:
+      - "Input validation"
+      - "Resource limits"
+      - "Dependency checking"
+
+    detection:
+      - "Health checks"
+      - "Monitoring"
+      - "Anomaly detection"
+
+    containment:
+      - "Circuit breakers"
+      - "Bulkheads"
+      - "Rate limiting"
+
+    recovery:
+      - "Automatic retry"
+      - "Fallback values"
+      - "Self-healing"
+
+    learning:
+      - "Failure logging"
+      - "Pattern analysis"
+      - "Proactive prevention"
+
+  key_questions:
+    - "What are single points of failure?"
+    - "How does system behave under load?"
+    - "What happens when external deps fail?"
+    - "Can system recover automatically?"
+    - "How to prevent cascade failures?"
+    - "What data must never be lost?"
+    - "How to test failure scenarios?"
+
+diversity_dimensions:
+  - "Geographic: Global representation"
+  - "Domain: Distributed systems, Safety engineering, Biology, Aerospace"
+  - "Philosophy: Prevent vs Tolerate vs Learn from failure"
+  - "Scale: Component to system-wide resilience"
