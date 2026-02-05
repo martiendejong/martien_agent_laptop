@@ -1,0 +1,111 @@
+# Expert Team Round 07: Conflict Detection
+# Theme: Detecting multiple sources of truth and inconsistencies
+# Date: 2026-02-05
+
+expert_team:
+  round: 7
+  theme: "Conflict Detection"
+  focus: "Systems that identify contradictions, duplications, and inconsistent information across knowledge base"
+
+  experts:
+    - name: "Dr. Sarah Katz"
+      role: "Data Quality Engineering Lead"
+      background: "Built data validation systems for financial trading firms (zero tolerance for inconsistency)"
+      perspective: "Inconsistency is a bug - detect it early, fix it automatically"
+
+    - name: "Prof. Wei Zhang"
+      role: "Semantic Consistency Researcher"
+      background: "PhD in knowledge representation, studies logical inconsistencies in ontologies"
+      perspective: "Contradictions can be formally detected using logic programming"
+
+    - name: "Amara Johnson"
+      role: "Documentation Deduplication Expert"
+      background: "Built content deduplication systems for Wikipedia and Stack Overflow"
+      perspective: "Duplicate information degrades faster - single source of truth always"
+
+    - name: "Dr. Lars Eriksson"
+      role: "Version Conflict Resolution Architect"
+      background: "Git merge algorithm designer, distributed system consistency expert"
+      perspective: "Conflicts are merge points - they need resolution strategies"
+
+    - name: "Priya Nair"
+      role: "Schema Evolution Specialist"
+      background: "Database schema migration expert, backward compatibility guru"
+      perspective: "Data evolves - old and new schemas must coexist without contradiction"
+
+    - name: "Dr. James O'Brien"
+      role: "Fact Verification System Designer"
+      background: "Built automated fact-checking systems for news organizations"
+      perspective: "Every claim should be traceable to authoritative source"
+
+    - name: "Fatima Hassan"
+      role: "Multi-Source Reconciliation Expert"
+      background: "Data warehouse ETL specialist, master data management consultant"
+      perspective: "When sources disagree, establish precedence rules"
+
+    - name: "Dr. Chen Liu"
+      role: "Fuzzy Matching Algorithm Researcher"
+      background: "Natural language processing expert, studies semantic similarity detection"
+      perspective: "Same concept, different words - detect semantically equivalent duplicates"
+
+    - name: "Marcus Thompson"
+      role: "Configuration Drift Detection Engineer"
+      background: "DevOps infrastructure drift detection (Terraform, Ansible)"
+      perspective: "Intended state vs actual state - detect and report divergence"
+
+    - name: "Dr. Elena Popova"
+      role: "Knowledge Graph Consistency Validator"
+      background: "Built semantic validation rules for medical knowledge graphs"
+      perspective: "Graph relationships have invariants - validate them continuously"
+
+methodology:
+  approach: "Multi-layered consistency validation"
+  principles:
+    - "Single Source of Truth (SSOT) - one canonical location for each fact"
+    - "Detect conflicts early before they compound"
+    - "Classify conflicts: duplicate, contradiction, staleness, ambiguity"
+    - "Provide resolution recommendations, not just detection"
+    - "Track conflict history to prevent recurrence"
+    - "Automate simple conflicts, escalate complex ones"
+
+diversity_dimensions:
+  - "Systems thinking: Data quality vs Logic vs Deduplication vs Version control vs Schema evolution"
+  - "Geographic: USA, China, USA (2), Sweden, India, Ireland, Egypt, China, USA (3), Russia"
+  - "Domain: Finance, Knowledge representation, Content platforms, Version control, Databases, Journalism, Data warehousing, NLP, DevOps, Medical informatics"
+  - "Conflict types: Duplicates vs Contradictions vs Drift vs Semantic equivalence"
+  - "Resolution strategies: Automatic vs Manual vs Precedence rules"
+
+core_questions:
+  - "How do we detect when the same information exists in multiple places?"
+  - "How do we identify semantic contradictions (A says X, B says not-X)?"
+  - "How do we determine which source is authoritative when they conflict?"
+  - "How do we detect staleness (information that was true but no longer is)?"
+  - "How do we measure 'distance' between semantically similar concepts?"
+  - "What's the acceptable tolerance for inconsistency?"
+  - "How do we prevent resolved conflicts from recurring?"
+
+conflict_categories:
+  duplication:
+    - "Exact duplicates (copy-paste)"
+    - "Semantic duplicates (different words, same meaning)"
+    - "Partial duplicates (overlapping information)"
+
+  contradiction:
+    - "Direct contradiction (A says X, B says not-X)"
+    - "Implicit contradiction (A and B together are illogical)"
+    - "Temporal contradiction (outdated information still present)"
+
+  staleness:
+    - "Information correct when written, now outdated"
+    - "References to deprecated systems/tools"
+    - "Old best practices superseded by new ones"
+
+  ambiguity:
+    - "Same term used with different meanings"
+    - "Unclear which source is authoritative"
+    - "Missing context makes interpretation unclear"
+
+  drift:
+    - "Documentation says one thing, system does another"
+    - "Configuration intended vs actual state divergence"
+    - "Process documentation vs actual workflow mismatch"
