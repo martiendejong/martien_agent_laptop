@@ -1,0 +1,92 @@
+# File Path Catalog
+# Pre-indexed catalog of all important file paths for instant reference
+
+schema_version: "1.0"
+last_updated: "2026-02-05"
+description: "Organized catalog of file paths by category"
+
+categories:
+  projects:
+    client-manager:
+      path: "C:\\Projects\\client-manager"
+      type: "ASP.NET Core + Angular SaaS"
+      readme: "C:\\Projects\\client-manager\\README.md"
+      store: "C:\\stores\\brand2boost"
+
+    hazina:
+      path: "C:\\Projects\\hazina"
+      type: "Framework library"
+      readme: "C:\\Projects\\hazina\\README.md"
+
+    hydro-vision-website:
+      path: "C:\\Projects\\hydro-vision-website"
+      type: "Website"
+
+  stores:
+    brand2boost:
+      path: "C:\\stores\\brand2boost"
+      project: "client-manager"
+      type: "Application data + configuration"
+
+  docs:
+    core_system:
+      - "C:\\scripts\\CLAUDE.md"
+      - "C:\\scripts\\MACHINE_CONFIG.md"
+      - "C:\\scripts\\GENERAL_ZERO_TOLERANCE_RULES.md"
+      - "C:\\scripts\\GENERAL_DUAL_MODE_WORKFLOW.md"
+
+    startup_essential:
+      - "C:\\scripts\\docs\\claude-system\\STARTUP_PROTOCOL.md"
+      - "C:\\scripts\\docs\\claude-system\\CAPABILITIES.md"
+      - "C:\\scripts\\docs\\claude-system\\SESSION_RECOVERY.md"
+
+    workflows:
+      - "C:\\scripts\\worktree-workflow.md"
+      - "C:\\scripts\\git-workflow.md"
+      - "C:\\scripts\\development-patterns.md"
+      - "C:\\scripts\\ci-cd-troubleshooting.md"
+
+    machine_state:
+      - "C:\\scripts\\_machine\\worktrees.pool.md"
+      - "C:\\scripts\\_machine\\worktrees.activity.md"
+      - "C:\\scripts\\_machine\\CONTEXT_KNOWLEDGE_GRAPH.yaml"
+
+  tools:
+    worktree_management:
+      - "C:\\scripts\\tools\\allocate-worktree.ps1"
+      - "C:\\scripts\\tools\\release-worktree.ps1"
+      - "C:\\scripts\\tools\\check-worktree-pool.ps1"
+
+    ef_migrations:
+      - "C:\\scripts\\tools\\ef-preflight-check.ps1"
+      - "C:\\scripts\\tools\\migration-validator.ps1"
+
+    session_management:
+      - "C:\\scripts\\tools\\session-context-save.ps1"
+      - "C:\\scripts\\tools\\session-context-restore.ps1"
+
+    query_resolution:
+      - "C:\\scripts\\tools\\query-resolver.ps1"
+
+  skills:
+    location: "C:\\scripts\\.claude\\skills"
+    available:
+      - "allocate-worktree"
+      - "release-worktree"
+      - "github-workflow"
+      - "pr-dependencies"
+      - "ef-migration-safety"
+      - "session-reflection"
+
+  logs:
+    conversation: "C:\\scripts\\logs\\conversations"
+    reflection: "C:\\scripts\\_machine\\reflection.log.md"
+    activity: "C:\\scripts\\_machine\\worktrees.activity.md"
+
+statistics:
+  total_projects: 3
+  total_stores: 1
+  total_core_docs: 4
+  total_workflow_docs: 4
+  total_tools: 10+
+  total_skills: 6+

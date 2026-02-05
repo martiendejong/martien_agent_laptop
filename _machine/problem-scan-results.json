@@ -1,0 +1,33 @@
+{
+    "medium":  4,
+    "timestamp":  "2026-02-05T03:35:22Z",
+    "high":  0,
+    "low":  0,
+    "issues":  [
+                   {
+                       "issue":  "Large file: PERSONAL_INSIGHTS.md (258.2 KB)",
+                       "path":  "C:\\scripts\\_machine\\checkpoints\\before-feature-implementation-20260127-015402\\PERSONAL_INSIGHTS.md",
+                       "category":  "docs",
+                       "severity":  "medium"
+                   },
+                   {
+                       "issue":  "Large file: reflection.log.md (1048.4 KB)",
+                       "path":  "C:\\scripts\\_machine\\checkpoints\\before-feature-implementation-20260127-015402\\reflection.log.md",
+                       "category":  "docs",
+                       "severity":  "medium"
+                   },
+                   {
+                       "issue":  "Large file: PERSONAL_INSIGHTS-full-2026-02-04.md (336 KB)",
+                       "path":  "C:\\scripts\\_machine\\personal-insights\\archive\\PERSONAL_INSIGHTS-full-2026-02-04.md",
+                       "category":  "docs",
+                       "severity":  "medium"
+                   },
+                   {
+                       "issue":  "Large file: reflection-2026-01.md (1057.2 KB)",
+                       "path":  "C:\\scripts\\_machine\\reflection-archive\\reflection-2026-01.md",
+                       "category":  "docs",
+                       "severity":  "medium"
+                   }
+               ],
+    "total_issues":  4
+}

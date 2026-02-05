@@ -1,0 +1,159 @@
+# Error Message to Solution Mapping
+# Common errors mapped to their solutions
+
+schema_version: "1.0"
+description: "Error patterns and solutions extracted from experience"
+last_updated: "2026-02-05"
+
+errors:
+  # EF Core / Database
+  - pattern: "pending.*migration|migration.*pending|model.*database.*differ"
+    regex: true
+    error_type: "ef_migration_pending"
+    cause: "Database schema out of sync with EF Core model"
+    solution:
+      primary: "Apply pending migrations"
+      steps:
+        - "Run: C:\\scripts\\tools\\ef-preflight-check.ps1"
+        - "Review pending migrations"
+        - "Apply with: dotnet ef database update"
+      prevention: "Always run ef-preflight-check before PR"
+    docs:
+      - "C:\\scripts\\_machine\\migration-patterns.md"
+      - "C:\\scripts\\_machine\\DEFINITION_OF_DONE.md (Phase 5)"
+
+  # Worktree Issues
+  - pattern: "worktree.*exists|worktree.*already|fatal.*worktree"
+    regex: true
+    error_type: "worktree_conflict"
+    cause: "Worktree already allocated or path conflict"
+    solution:
+      primary: "Check worktree pool status"
+      steps:
+        - "Check: C:\\scripts\\_machine\\worktrees.pool.md"
+        - "If allocated to different agent: coordinate or wait"
+        - "If stuck: release with release-worktree.ps1"
+      prevention: "Always check pool before allocation"
+    docs:
+      - "C:\\scripts\\worktree-workflow.md"
+      - "C:\\scripts\\_machine\\MULTI_AGENT_CONFLICT_DETECTION.md"
+
+  # CI/CD Failures
+  - pattern: "npm.*cache|cache.*corruption|package-lock.*conflict"
+    regex: true
+    error_type: "npm_cache_corruption"
+    cause: "npm cache corrupted or package-lock conflict"
+    solution:
+      primary: "Clear npm cache and reinstall"
+      steps:
+        - "Run: npm cache clean --force"
+        - "Delete node_modules"
+        - "Run: npm install"
+      prevention: "Use npm ci instead of npm install in CI"
+    docs:
+      - "C:\\scripts\\ci-cd-troubleshooting.md"
+
+  - pattern: "test.*fail|tests.*fail|spec.*fail"
+    regex: true
+    error_type: "test_failure"
+    cause: "Tests failing (various reasons)"
+    solution:
+      primary: "Check test output for specific failure"
+      steps:
+        - "Review test output carefully"
+        - "Check DEFINITION_OF_DONE.md Phase 5"
+        - "Run tests locally to reproduce"
+        - "Fix failing tests before PR"
+      prevention: "Always run tests before pushing"
+    docs:
+      - "C:\\scripts\\_machine\\DEFINITION_OF_DONE.md"
+
+  # Git Issues
+  - pattern: "merge.*conflict|conflict.*merge|both.*modified"
+    regex: true
+    error_type: "merge_conflict"
+    cause: "Git merge conflict"
+    solution:
+      primary: "Resolve conflicts manually"
+      steps:
+        - "Review conflict markers in files"
+        - "Choose correct version or merge manually"
+        - "Mark resolved: git add <file>"
+        - "Continue: git merge --continue or git rebase --continue"
+      prevention: "Pull latest changes before starting work"
+    docs:
+      - "C:\\scripts\\git-workflow.md"
+
+  - pattern: "branch.*not.*found|no.*such.*branch"
+    regex: true
+    error_type: "branch_not_found"
+    cause: "Branch doesn't exist locally or remotely"
+    solution:
+      primary: "Fetch latest branches or create new one"
+      steps:
+        - "Fetch all branches: git fetch --all"
+        - "List remote branches: git branch -r"
+        - "Create if needed: git checkout -b <branch>"
+      prevention: "Always fetch before checking out branches"
+    docs:
+      - "C:\\scripts\\git-workflow.md"
+
+  # Build Errors
+  - pattern: "cannot.*find.*module|module.*not.*found"
+    regex: true
+    error_type: "module_not_found"
+    cause: "Missing dependency or import path error"
+    solution:
+      primary: "Install missing dependency or fix import path"
+      steps:
+        - "Check package.json for dependency"
+        - "Run: npm install <package>"
+        - "Verify import path is correct"
+      prevention: "Use npm install --save to add dependencies properly"
+    docs: []
+
+  - pattern: "port.*already.*use|EADDRINUSE"
+    regex: true
+    error_type: "port_in_use"
+    cause: "Port already in use by another process"
+    solution:
+      primary: "Kill process using port or use different port"
+      steps:
+        - "Find process: netstat -ano | findstr <port>"
+        - "Kill process: taskkill /PID <pid> /F"
+        - "Or: Change port in configuration"
+      prevention: "Always stop dev server before restarting"
+    docs: []
+
+  # Environment Issues
+  - pattern: "environment.*variable|env.*not.*defined"
+    regex: true
+    error_type: "env_variable_missing"
+    cause: "Required environment variable not set"
+    solution:
+      primary: "Set missing environment variable"
+      steps:
+        - "Check .env.example for required variables"
+        - "Create/update .env file"
+        - "Restart application to load new values"
+      prevention: "Document required env vars in README"
+    docs:
+      - "C:\\scripts\\MACHINE_CONFIG.md"
+
+# Fuzzy matching configuration
+matching:
+  use_regex: true
+  case_sensitive: false
+  min_pattern_match: 0.6
+
+# Statistics
+statistics:
+  total_error_patterns: 10
+  categories:
+    - ef_core: 1
+    - worktree: 1
+    - npm: 1
+    - tests: 1
+    - git: 2
+    - build: 2
+    - environment: 1
