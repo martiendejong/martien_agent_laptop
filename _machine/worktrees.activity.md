@@ -825,3 +825,24 @@ Actions:
 - Branch: feature/869c1dny3-content-library-ui
 - PR: #484
 - Outcome: Content Library UI Phase 1
+## 2026-02-05 04:47 UTC - Allocation: agent-001 (CORRECTED)
+- Repos: client-manager + hazina (paired)
+- Branch: fix/facebook-shares-property
+- Purpose: CRITICAL HOTFIX - ConnectedFacebookPost.Shares property missing - ALL PRs failing to build
+- Note: Correcting pool entry - another agent updated pool while worktrees were being created
+- Actual worktrees confirmed via git worktree list
+2026-02-05T03:46:36Z | agent-003 | RELEASE | feature/869c1dnyb-content-improvement-mvp | PR #486 created
+
+## 2026-02-05 06:51:00Z - Release: agent-002
+- Repo: artrevisionist
+- Branch: feature/phase0-database-foundation
+- PR: #50
+- Outcome: Phase 0 PostgreSQL database foundation with provenance-first domain model (13 entities)
+
+## 2026-02-06T07:35:00Z - Release: agent-008
+- Repo: hazina
+- Branch: feature/869c1dnww-platform-publishing
+- PR: #174 (Hazina)
+- Outcome: Add Polly retry logic to LinkedInPublisher (Sprint 1 Task 3 enhancement)
+- ClickUp: #869c1dnww (updated with PR link)
+- Changes: Polly 8.6.4 + exponential backoff retry policy for rate limiting
