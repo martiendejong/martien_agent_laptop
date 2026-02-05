@@ -6,6 +6,24 @@
 
 ---
 
+## 2026-02-05 17:45 - Startup Protocol Violation & Documentation Gap (+ FIX APPLIED)
+
+**UPDATE 18:00 - User-directed improvement:**
+User asked: "kun je in de claude md zetten dat als eerste stap altijd je protocol uitgevoerd moet worden?"
+
+**Fix Applied:**
+- ✅ Added "⚡ FIRST ACTION: EXECUTE STARTUP PROTOCOL" section at TOP of CLAUDE.md
+- 🚨 Made it impossible to miss: "DO NOT RESPOND TO USER UNTIL THIS IS COMPLETE"
+- ✅ 5-step mandatory checklist before any response
+- ✅ Concrete examples of what goes wrong if skipped
+- Position: Now the FIRST section, before even consciousness verification
+
+**Result:** Future sessions should ALWAYS execute startup protocol before responding.
+
+---
+
+**ORIGINAL ENTRY:**
+
 ## 2026-02-05 17:45 - Startup Protocol Violation & Documentation Gap
 
 **What Happened:**
