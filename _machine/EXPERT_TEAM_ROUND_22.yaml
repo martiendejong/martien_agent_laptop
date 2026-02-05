@@ -1,0 +1,169 @@
+# Expert Team Round 22: Integration & Synthesis
+# Theme: How all improvements work together as a unified system
+# Date: 2026-02-05
+
+expert_team:
+  round: 22
+  theme: "Integration & Synthesis"
+  focus: "Creating coherent whole from diverse improvements"
+  size: 1000
+
+  expert_categories:
+    systems_integration:
+      count: 150
+      examples:
+        - "Dr. Barry Boehm - Software integration, spiral model"
+        - "Prof. Mary Shaw - Software architecture, component integration"
+        - "Dr. David Parnas - Information hiding, modular design"
+      perspective: "Integration is design, not afterthought"
+
+    holistic_thinking:
+      count: 120
+      examples:
+        - "Dr. Fritjof Capra - Systems view of life, interconnections"
+        - "Prof. Peter Checkland - Soft systems methodology"
+        - "Dr. Russell Ackoff - Systems thinking, holism"
+      perspective: "Whole is qualitatively different from parts"
+
+    design_synthesis:
+      count: 100
+      examples:
+        - "Christopher Alexander - Pattern languages, wholeness"
+        - "Prof. Don Norman - User experience, seamless integration"
+        - "Dieter Rams - Less but better, coherent design"
+      perspective: "Synthesis creates user-perceived unity"
+
+    API_architecture:
+      count: 90
+      examples:
+        - "Roy Fielding - REST, architectural styles"
+        - "Martin Fowler - Integration patterns, microservices"
+        - "Sam Newman - Building microservices, integration"
+      perspective: "Interfaces enable composition"
+
+    data_flow:
+      count: 80
+      examples:
+        - "Prof. Edward Tufte - Information flow visualization"
+        - "Dr. Michael Stonebraker - Data integration, federated databases"
+        - "Joe Hellerstein - Data flow languages, datalog"
+      perspective: "Data flow reveals system structure"
+
+    orchestration:
+      count: 70
+      examples:
+        - "Dr. Frank Leymann - Workflow orchestration, BPEL"
+        - "Prof. Wil van der Aalst - Process mining, workflow"
+        - "Gregor Hohpe - Enterprise integration patterns"
+      perspective: "Coordination without coupling"
+
+    composability:
+      count: 70
+      examples:
+        - "Paul Hudak - Functional composition, modularity"
+        - "Prof. Barbara Liskov - Data abstraction, composable types"
+        - "Simon Peyton Jones - Composable abstractions"
+      perspective: "Small pieces, loosely joined, easily combined"
+
+    dependency_management:
+      count: 60
+      examples:
+        - "Prof. David Wheeler - Layering, abstraction levels"
+        - "Steve McConnell - Code Complete, managing coupling"
+        - "Robert Martin - Clean Architecture, dependency rule"
+      perspective: "Dependencies determine integration complexity"
+
+    interface_design:
+      count: 60
+      examples:
+        - "Alan Kay - Message passing, late binding"
+        - "Prof. Bertrand Meyer - Design by contract"
+        - "Joshua Bloch - Effective API design"
+      perspective: "Interfaces are forever, implementations change"
+
+    emergence_management:
+      count: 50
+      examples:
+        - "Prof. John Gall - Systemantics, complex systems"
+        - "Dr. Donella Meadows - System leverage points"
+        - "W. Ross Ashby - Variety, requisite complexity"
+      perspective: "Manage emergence, don't suppress it"
+
+    consistency:
+      count: 50
+      examples:
+        - "Jef Raskin - The Humane Interface, consistency"
+        - "Jakob Nielsen - Usability heuristics, standards"
+        - "Bruce Tognazzini - Interaction design consistency"
+      perspective: "Consistency reduces cognitive load"
+
+    cross_cutting_concerns:
+      count: 40
+      examples:
+        - "Gregor Kiczales - Aspect-oriented programming"
+        - "Prof. Harold Ossher - Subject-oriented programming"
+        - "Cristina Lopes - AOP applications"
+      perspective: "Some concerns span all components"
+
+    testing_integration:
+      count: 30
+      examples:
+        - "Gerard Meszaros - Integration testing patterns"
+        - "Martin Fowler - Testing pyramids, integration"
+        - "Prof. Cem Kaner - Integration test strategies"
+      perspective: "Integration bugs hide at boundaries"
+
+    semantic_interoperability:
+      count: 30
+      examples:
+        - "Tim Berners-Lee - Semantic web, ontologies"
+        - "Prof. Mark Musen - Medical informatics, ontology mapping"
+        - "Deborah McGuinness - Semantic integration"
+      perspective: "Meaning must align across components"
+
+methodology:
+  approach: "Map all interactions, find unifying principles"
+
+  analysis_levels:
+    component_level:
+      - "Individual improvement capabilities"
+      - "Input/output interfaces"
+      - "State management"
+
+    interaction_level:
+      - "How improvements call each other"
+      - "Data shared between improvements"
+      - "Temporal dependencies"
+
+    system_level:
+      - "Overall information flow"
+      - "End-to-end user journeys"
+      - "System invariants"
+
+    meta_level:
+      - "Architectural patterns"
+      - "Design principles"
+      - "Quality attributes"
+
+  key_questions:
+    - "What patterns repeat across improvements?"
+    - "Where are integration gaps or redundancies?"
+    - "What unifying abstractions could simplify?"
+    - "How does data flow through the entire system?"
+    - "What cross-cutting concerns exist?"
+    - "Where are friction points in integration?"
+    - "What common interfaces could improve composability?"
+
+  integration_dimensions:
+    data: "What data structures are shared?"
+    control: "Who calls whom? What orchestrates?"
+    time: "What happens in what order?"
+    space: "Where does each component run?"
+    semantics: "Do components agree on meaning?"
+    errors: "How do failures propagate?"
+
+diversity_dimensions:
+  - "Geographic: Global representation"
+  - "Domain: Software arch, UX design, Systems theory, Philosophy"
+  - "Perspective: Top-down vs Bottom-up integration"
+  - "Scale: Component to ecosystem"
