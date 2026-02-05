@@ -103,8 +103,9 @@ function Invoke-Predict {
 
     switch ($type) {
         "next_file" {
-            $prediction = $null
+            $prediction = "No prediction available"
             $confidence = 0.0
+            $reason = "Insufficient context"
 
             # Rule-based prediction
             if ($hour -ge 9 -and $hour -le 12) {
@@ -118,11 +119,11 @@ function Invoke-Predict {
                 $reason = "Afternoon - typically working on code"
             }
 
-            Write-ColorOutput "  📄 Prediction: " $Colors.Dim -NoNewline
+            Write-ColorOutput "  Prediction: " $Colors.Dim -NoNewline
             Write-ColorOutput $prediction $Colors.Success
-            Write-ColorOutput "  📊 Confidence: " $Colors.Dim -NoNewline
+            Write-ColorOutput "  Confidence: " $Colors.Dim -NoNewline
             Write-ColorOutput "$([math]::Round($confidence * 100))%" $Colors.Success
-            Write-ColorOutput "  💡 Reason: " $Colors.Dim -NoNewline
+            Write-ColorOutput "  Reason: " $Colors.Dim -NoNewline
             Write-ColorOutput $reason "White"
         }
 
@@ -384,7 +385,7 @@ function Invoke-Temporal {
         Write-ColorOutput "       - Feature implementation" $Colors.Dim
     }
     elseif ($hour -ge 17 -and $hour -lt 23) {
-        Write-ColorOutput "    🌙 Evening (Review & Reflection)" "White"
+        Write-ColorOutput "    Evening (Review and Reflection)" "White"
         Write-ColorOutput "       - Code review" $Colors.Dim
         Write-ColorOutput "       - Reflection logging" $Colors.Dim
         Write-ColorOutput "       - Documentation updates" $Colors.Dim
