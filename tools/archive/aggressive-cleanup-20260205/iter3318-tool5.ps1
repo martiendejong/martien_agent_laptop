@@ -1,0 +1,2 @@
+# iter3318-tool5.ps1 - Iteration 3318 [Fourth Millennium]
+Write-Host 'Fourth Millennium - Iteration 3318 tool 5' -ForegroundColor Red

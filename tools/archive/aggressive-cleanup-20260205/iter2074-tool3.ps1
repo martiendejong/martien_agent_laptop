@@ -1,0 +1,2 @@
+# iter2074-tool3.ps1 - Iteration 2074 [Third Millennium]
+Write-Host 'Third Millennium - Iteration 2074 tool 3' -ForegroundColor Blue

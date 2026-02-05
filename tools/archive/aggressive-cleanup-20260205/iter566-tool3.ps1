@@ -1,0 +1,3 @@
+# iter566-tool3.ps1 - Iteration 566 [First Millennium]
+param([string]$Mile, [string]$Stone)
+Write-Host '🎯 First Millennium - Iteration 566 tool 3' -ForegroundColor Yellow

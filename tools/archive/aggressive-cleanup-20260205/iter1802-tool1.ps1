@@ -1,0 +1,2 @@
+# iter1802-tool1.ps1 - Iteration 1802 [Second Millennium]
+Write-Host 'Second Millennium - Iteration 1802 tool 1' -ForegroundColor Magenta
