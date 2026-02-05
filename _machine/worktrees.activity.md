@@ -58,3 +58,8 @@
 - Branch: fix/facebook-complete-integration
 - PR: #503
 - Outcome: Map Facebook FullPicture to MediaUrls in unified storage (fixes missing images)
+
+## 2026-02-06T17:02:00Z - Allocation: agent-001
+- Repos: client-manager + hazina (paired worktrees)
+- Branch: feature/social-sub-posts-wysiwyg (existing branch)
+- Purpose: Complete frontend components (Phases 4-6) - SubPostEditor, SubPostList, SocialMediaPosts integration

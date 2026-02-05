@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-06T16:56:00Z | ✅ PR #502: Social Media Sub-Posts with WYSIWYG Editor (WIP - Phases 1-3 complete, backend + service layer) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager + hazina | feature/social-sub-posts-wysiwyg | 2026-02-06T17:02:00Z | 🔄 Sub-Posts: Frontend Components (Phases 4-6) - SubPostEditor, SubPostList, integration |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-06T17:45:00Z | ✅ PR #504: Console.log cleanup (327 → 58, 82% reduction - 269 logs removed) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-06T17:15:00Z | ✅ PR #503: Map Facebook FullPicture to MediaUrls in unified storage |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | BUSY | client-manager | feature/social-media-refactor-round-5 | 2026-02-06T06:05:00Z | 🔄 Round 5: OAuth Token Refresh Strategy (CRITICAL - prevents broken connections) |
