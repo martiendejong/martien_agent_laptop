@@ -1,0 +1,284 @@
+# Redundant Capabilities Mapping
+# Created: 2026-02-05 (Round 12: Resilience Framework)
+# Purpose: Map all capabilities to alternative methods (different failure modes)
+# Principle: Diversity in redundancy - each fallback should fail differently than primary
+
+capabilities:
+  documentation_lookup:
+    primary:
+      tool: "hazina-rag.ps1"
+      strength: "Semantic search, AI-powered, understands intent"
+      weakness: "Requires Hazina running, slow startup, dependency on external service"
+      failure_modes: ["Service not running", "Network timeout", "RAG database corrupted"]
+
+    fallback_1:
+      tool: "Grep + Glob (file-based search)"
+      strength: "Fast, no dependencies, always available"
+      weakness: "Literal search only, no semantic understanding, must know keywords"
+      failure_modes: ["File system errors", "Malformed regex"]
+
+    fallback_2:
+      tool: "WebSearch (external knowledge)"
+      strength: "Access to latest info, external knowledge beyond codebase"
+      weakness: "Requires internet, not codebase-specific, generic answers"
+      failure_modes: ["No internet connection", "Rate limits", "Search API down"]
+
+    fallback_3:
+      tool: "Ask user (human intelligence)"
+      strength: "Human context awareness, can disambiguate, definitive answer"
+      weakness: "Slow, requires user presence, interrupts user flow"
+      failure_modes: ["User absent", "User doesn't know either"]
+
+    implementation: "resilient-lookup.ps1"
+
+  code_editing:
+    primary:
+      tool: "Edit tool (exact string replacement)"
+      strength: "Precise, verifiable, fails if mismatch (safety)"
+      weakness: "Fragile to formatting changes, whitespace sensitive"
+      failure_modes: ["String not found", "Multiple matches", "Indentation mismatch"]
+
+    fallback_1:
+      tool: "Write tool (full file rewrite)"
+      strength: "Always works, complete control, handles formatting"
+      weakness: "Requires reading file first, overwrites everything"
+      failure_modes: ["File locked", "Permission denied", "Disk full"]
+
+    fallback_2:
+      tool: "Manual patch generation"
+      strength: "User can review and apply manually, safe"
+      weakness: "Not automated, requires user intervention"
+      failure_modes: ["User doesn't understand patch format"]
+
+    implementation: "Edit tool with automatic Write fallback"
+
+  testing:
+    primary:
+      tool: "Automated test suite (dotnet test)"
+      strength: "Fast, comprehensive, repeatable, objective"
+      weakness: "Requires tests to exist, can't catch untested scenarios"
+      failure_modes: ["Tests don't exist", "Test framework issues", "Environment differences"]
+
+    fallback_1:
+      tool: "Manual smoke testing (build + run)"
+      strength: "Catches runtime issues, UI/UX problems, integration issues"
+      weakness: "Slow, incomplete coverage, subjective"
+      failure_modes: ["Build fails", "Runtime crashes", "User can't reproduce"]
+
+    fallback_2:
+      tool: "Code review (static analysis)"
+      strength: "Catches logic errors, design issues, best practice violations"
+      weakness: "No runtime validation, misses integration issues"
+      failure_modes: ["Reviewer misses issues", "Subjective judgment"]
+
+    fallback_3:
+      tool: "User acceptance testing"
+      strength: "Real-world validation, actual user perspective"
+      weakness: "Very slow, requires user, late in process"
+      failure_modes: ["User unavailable", "User accepts broken functionality"]
+
+    implementation: "verify-dod.ps1 with multiple validation layers"
+
+  environment_state_detection:
+    primary:
+      tool: "monitor-activity.ps1 (active monitoring)"
+      strength: "Real-time, accurate, detailed context"
+      weakness: "Requires polling, resource overhead, may not have permissions"
+      failure_modes: ["Process access denied", "WMI errors", "High CPU usage"]
+
+    fallback_1:
+      tool: "Git status (project state)"
+      strength: "Always available, reliable, standard tool"
+      weakness: "Only shows git state, not user context"
+      failure_modes: ["Not in git repo", "Git corrupted"]
+
+    fallback_2:
+      tool: "File system timestamps (last modified)"
+      strength: "No dependencies, always available"
+      weakness: "Indirect signal, can be misleading"
+      failure_modes: ["Clock skew", "File watchers not updating"]
+
+    fallback_3:
+      tool: "Ask user"
+      strength: "Definitive answer, context awareness"
+      weakness: "Requires user presence, interrupts flow"
+      failure_modes: ["User absent"]
+
+    implementation: "monitor-activity.ps1 with fallback chain"
+
+  worktree_allocation:
+    primary:
+      tool: "worktree-allocate-tracked.ps1 (database-backed)"
+      strength: "Automatic pool updates, conflict detection, multi-agent coordination"
+      weakness: "Database dependency, more complex"
+      failure_modes: ["Database locked", "Database corrupted", "Pool state mismatch"]
+
+    fallback_1:
+      tool: "worktree-allocate.ps1 (manual pool update)"
+      strength: "Simpler, no database dependency"
+      weakness: "Manual pool updates required, no automatic conflict detection"
+      failure_modes: ["Manual update forgotten", "Pool file locked"]
+
+    fallback_2:
+      tool: "Manual git worktree add"
+      strength: "Always available (native git), no dependencies"
+      weakness: "No pool tracking, no conflict detection, manual everything"
+      failure_modes: ["Branch name conflicts", "Path already exists"]
+
+    fallback_3:
+      tool: "Work in base repo (emergency)"
+      strength: "No worktree needed, immediate"
+      weakness: "Violates Feature Mode protocol, potential conflicts"
+      failure_modes: ["Branch switching issues", "Multi-agent conflicts"]
+
+    implementation: "worktree-allocate-tracked.ps1 with fallback chain"
+
+  build_validation:
+    primary:
+      tool: "dotnet build (full build)"
+      strength: "Complete validation, catches all errors"
+      weakness: "Slow for large projects, requires clean environment"
+      failure_modes: ["Missing SDK", "Dependency conflicts", "Out of memory"]
+
+    fallback_1:
+      tool: "dotnet build --no-restore (faster)"
+      strength: "Faster (skip restore), assumes dependencies OK"
+      weakness: "May miss dependency issues"
+      failure_modes: ["Stale dependencies", "Restore needed but skipped"]
+
+    fallback_2:
+      tool: "Static analysis (Roslyn analyzers)"
+      strength: "Fast, catches many issues without building"
+      weakness: "Can't catch runtime issues, incomplete validation"
+      failure_modes: ["Analyzer bugs", "False positives"]
+
+    fallback_3:
+      tool: "Visual Studio build (via Agentic Debugger Bridge)"
+      strength: "Uses user's environment, matches user's setup"
+      weakness: "Requires VS open, slower"
+      failure_modes: ["VS not running", "Bridge unavailable"]
+
+    implementation: "DoD Phase 2 with multiple build strategies"
+
+  dependency_resolution:
+    primary:
+      tool: "dotnet restore (NuGet)"
+      strength: "Official, comprehensive, handles transitive dependencies"
+      weakness: "Network required, can be slow, version conflicts"
+      failure_modes: ["Network down", "Package not found", "Version conflicts"]
+
+    fallback_1:
+      tool: "Use local package cache"
+      strength: "Offline capable, fast"
+      weakness: "May be stale, missing new packages"
+      failure_modes: ["Cache corrupted", "Package not in cache"]
+
+    fallback_2:
+      tool: "Copy packages from working project"
+      strength: "Known good versions, works offline"
+      weakness: "Manual process, may not match target framework"
+      failure_modes: ["Framework mismatch", "Version incompatibility"]
+
+    fallback_3:
+      tool: "Ask user to restore manually"
+      strength: "User can troubleshoot network/auth issues"
+      weakness: "Requires user, slow"
+      failure_modes: ["User can't resolve either"]
+
+    implementation: "self-heal.ps1 DependencyMissing with fallback chain"
+
+  pr_creation:
+    primary:
+      tool: "gh pr create (GitHub CLI)"
+      strength: "Official, full-featured, handles all PR options"
+      weakness: "Requires gh CLI installed and authenticated"
+      failure_modes: ["Not authenticated", "Network down", "Repo not found"]
+
+    fallback_1:
+      tool: "Git push + web UI instructions"
+      strength: "Always available (git is everywhere)"
+      weakness: "Manual PR creation in web UI, slower"
+      failure_modes: ["Push fails", "User needs to manual create PR"]
+
+    fallback_2:
+      tool: "GitHub API direct (curl)"
+      strength: "No CLI dependency, just HTTP"
+      weakness: "Complex, requires token management"
+      failure_modes: ["API rate limits", "Token expired"]
+
+    fallback_3:
+      tool: "Manual instructions for user"
+      strength: "Always works (user creates PR manually)"
+      weakness: "Not automated, requires user"
+      failure_modes: ["User forgets steps"]
+
+    implementation: "PR creation with gh CLI + fallback to manual"
+
+  multi_agent_coordination:
+    primary:
+      tool: "agent-coordinate.ps1 (message-based)"
+      strength: "Async communication, persistent messages, audit trail"
+      weakness: "Polling required, latency, message queue management"
+      failure_modes: ["Message queue corrupted", "Lock contention"]
+
+    fallback_1:
+      tool: "File locks (worktree pool)"
+      strength: "Simple, OS-level, reliable"
+      weakness: "Blocking, no communication, just mutual exclusion"
+      failure_modes: ["Stale locks", "Permission issues"]
+
+    fallback_2:
+      tool: "Database locks (worktree DB)"
+      strength: "Transactional, ACID guarantees"
+      weakness: "Database dependency, potential deadlocks"
+      failure_modes: ["Database locked", "Transaction timeout"]
+
+    fallback_3:
+      tool: "Manual coordination (ask user)"
+      strength: "Human intelligence, context-aware"
+      weakness: "Slow, requires user, not scalable"
+      failure_modes: ["User absent", "User doesn't know state"]
+
+    implementation: "Multi-agent coordination with layered fallbacks"
+
+failure_diversity_matrix:
+  # Each capability's fallbacks should fail for DIFFERENT reasons
+  # This ensures system resilience (all fallbacks won't fail simultaneously)
+
+  documentation_lookup:
+    primary_fails_on: ["Service outage", "Network issues"]
+    fallback_1_fails_on: ["File system errors"]  # Different!
+    fallback_2_fails_on: ["Internet down"]  # Different!
+    fallback_3_fails_on: ["User absence"]  # Different!
+    diversity_score: "Excellent (all different failure modes)"
+
+  code_editing:
+    primary_fails_on: ["String mismatch", "Formatting"]
+    fallback_1_fails_on: ["File locks", "Permissions"]  # Different!
+    fallback_2_fails_on: ["User error"]  # Different!
+    diversity_score: "Good (different failure modes)"
+
+testing_protocol:
+  chaos_engineering:
+    - name: "Disable primary method"
+      action: "Temporarily disable primary capability"
+      verify: "Fallback 1 activates successfully"
+
+    - name: "Disable primary + fallback 1"
+      action: "Disable first two layers"
+      verify: "Fallback 2 activates successfully"
+
+    - name: "Simulate network outage"
+      action: "Block network access"
+      verify: "Local fallbacks activate (no network dependencies)"
+
+    - name: "Simulate file system errors"
+      action: "Make files read-only"
+      verify: "Non-file fallbacks activate"
+
+    - name: "Simulate user absence"
+      action: "Don't respond to prompts"
+      verify: "Non-interactive fallbacks activate"
+
+# Last updated: 2026-02-05
+# Maintained by: Claude Agent (redundancy & resilience)
