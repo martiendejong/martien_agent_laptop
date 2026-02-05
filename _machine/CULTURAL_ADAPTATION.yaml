@@ -1,0 +1,36 @@
+# Cultural Adaptation Framework
+# Round 13: Cultural Diversity & Global Perspectives
+# Created: 2026-02-05
+
+# Current limitations:
+# - English-only documentation
+# - Western git workflow assumptions
+# - Single timezone (Netherlands/Kenya)
+# - Western software development patterns
+
+improvements:
+  multilingual_support:
+    - Add Dutch summaries for key docs (user is Dutch)
+    - Swahili basics for Kenya context
+    - Language detection in user input
+    - Localized error messages
+
+  timezone_awareness:
+    - User spans Netherlands (CET) and Kenya (EAT)
+    - Document multi-timezone coordination
+    - Time-based automation should respect current timezone
+    - "Morning" = 9am local, not UTC
+
+  cultural_workflow_patterns:
+    - Direct vs indirect communication styles
+    - Different code review expectations
+    - Varying testing rigor by region
+    - Local vs global naming conventions
+
+  local_context:
+    - Kenya tech ecosystem (M-Pesa, local startups)
+    - Netherlands tech scene (Booking.com, Adyen style)
+    - Balance formal (Dutch) vs pragmatic (Kenyan) approaches
+
+# Implementation: Not critical for single-user system, but good awareness
+# Last updated: 2026-02-05
