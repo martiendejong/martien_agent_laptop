@@ -1,3 +1,0 @@
-# iter1692-tool2.ps1 - Iteration 1692 [Toward 2000]
-param([string]$Journey, [string]$Destination)
-Write-Host '🎯 Toward 2000 - Iteration 1692 tool 2' -ForegroundColor Cyan

@@ -1,14 +1,15 @@
 {
-    "timestamp": "2026-02-06T05:00:00Z",
-    "iteration": 21,
-    "description": "AFTER cleanup execution (iterations 21-25)",
+    "timestamp": "2026-02-05T05:20:00Z",
+    "iteration": 22,
+    "description": "Session 2 continued - CI fixes and cleanup",
     "tools": {
         "before": 3838,
         "after": 374,
         "archived": 3464,
         "reduction_percent": 90.3,
         "target": 30,
-        "status": "MAJOR PROGRESS"
+        "status": "MAJOR PROGRESS",
+        "note": "Tool count discrepancy under investigation"
     },
     "documentation": {
         "before": 619,
@@ -21,26 +22,38 @@
     "git_branches": {
         "client_manager": {
             "before": 94,
-            "after": 44,
-            "deleted": 50,
-            "reduction_percent": 53.2,
+            "current": 48,
+            "deleted": 51,
+            "reduction_percent": 49,
             "target": 20,
             "status": "GOOD PROGRESS"
+        },
+        "hazina": {
+            "prs_open": 2,
+            "ci_status": "FAILING - needs package fix"
         }
     },
     "worktrees": {
-        "total": 17,
-        "free": 9,
-        "busy": 8,
-        "utilization_percent": 47,
-        "status": "HEALTHY"
+        "total": 12,
+        "free": 12,
+        "busy": 0,
+        "utilization_percent": 0,
+        "status": "ALL AVAILABLE"
     },
-    "value_delivered": {
-        "tools_archived_mb": 6.9,
-        "docs_archived_count": 132,
-        "branches_deleted": 50,
-        "execution_time_minutes": 30,
-        "status": "PROVING VALUE"
+    "prs": {
+        "client_manager_open": 25,
+        "client_manager_passing_ci": 17,
+        "client_manager_failing_ci": 2,
+        "client_manager_running_ci": 6,
+        "hazina_open": 2
+    },
+    "session_accomplishments": {
+        "ci_fix": "Pushed Hazina develop branch ref to CI workflow",
+        "prs_unblocked": 6,
+        "worktrees_released": 2,
+        "branches_deleted": 1,
+        "hazina_pushed": true,
+        "issues_identified": "Hazina LLMLogs missing package references"
     },
     "comparison": {
         "session_1": {
@@ -49,7 +62,8 @@
         },
         "session_2": {
             "tools_archived": 3464,
-            "result": "ACTUALLY REDUCED as intended"
+            "ci_fixed": 6,
+            "result": "EXECUTION not CREATION"
         }
     }
 }

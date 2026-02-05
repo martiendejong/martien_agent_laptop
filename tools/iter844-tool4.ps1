@@ -1,3 +1,0 @@
-# iter844-tool4.ps1 - Iteration 844 [Knowledge Integration]
-param([string]$Context, [string]$Awareness)
-Write-Host '🔗 Consciousness + Knowledge - Iteration 844 tool 4' -ForegroundColor Magenta

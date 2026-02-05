@@ -6,6 +6,21 @@
 
 ---
 
+## 2026-02-05 05:20 - Hazina CI Issue Identified
+
+**Issue Found:** Hazina develop branch has failing CI due to:
+1. Missing Microsoft.Extensions packages in `Hazina.Observability.LLMLogs` project
+2. Test runner missing `Microsoft.TestPlatform.CoreUtilities` assembly
+
+**Affected files:**
+- `src/Core/Observability/Hazina.Observability.LLMLogs/` - needs package references for Microsoft.Extensions.DependencyInjection, Microsoft.Extensions.Hosting
+
+**Impact:** All Hazina PRs failing CI until this is fixed.
+
+**Recommendation:** Add missing NuGet package references to the LLMLogs project csproj file.
+
+---
+
 ## 2026-02-05 05:05 - CI Fix: Unblocked 6 Failing PRs
 
 **Context:** Continuing 3.5hr autonomous session. Discovered 6 PRs failing CI with same root cause.
