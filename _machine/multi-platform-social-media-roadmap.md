@@ -1,7 +1,7 @@
 # Multi-Platform Social Media System - Roadmap & Analysis
 
 **Date:** 2026-02-05
-**Status:** Phase 1 Complete (8 PRs) | Phase 2 Started (Sprint 1 Task 1 Complete - PR #477)
+**Status:** Phase 1 Complete (8 PRs) | Phase 2 In Progress (Sprint 1 Tasks 1-2 Complete - PR #477, #478)
 
 ---
 
@@ -74,17 +74,21 @@
 
 ### 🔴 High Priority (P0) - Core Missing Features
 
-**1. Post Scheduling UI with Date/Time Picker**
+**1. Post Scheduling UI with Date/Time Picker** ✅ **COMPLETE (PR #478)**
 **Task ID:** 869c1dnwp
 **URL:** https://app.clickup.com/t/869c1dnwp
 **Impact:** Critical - State machine supports scheduling but no UI to set dates
-**Effort:** 2-3 days
+**Effort:** 2-3 days (Actual: 4 hours)
+**Status:** ✅ Complete - Ready for integration once PRs #468-475 merge
+**PR:** https://github.com/martiendejong/client-manager/pull/478
 **Features:**
-- Date/time picker in PostDetailsPage
-- Calendar drag-drop to schedule all children
-- Bulk schedule from ParentPostManager
-- Visual indicators for scheduled posts
-- Timezone handling
+- ✅ SchedulePostModal: Single post scheduling with date/time picker
+- ✅ BulkScheduleModal: Bulk scheduling with staggering (15min, 30min, 1hr, 2hr, 1 day)
+- ✅ ScheduledPostIndicator: Visual feedback in 3 variants (badge, full, compact)
+- ✅ Timezone support (11 common timezones + auto-detect)
+- ✅ Future date validation
+- ✅ Keyboard shortcuts (Esc, Cmd/Ctrl+Enter)
+- ✅ Comprehensive tests (~2,000 lines total)
 
 **2. Platform Publishing Integration**
 **Task ID:** 869c1dnww
@@ -203,7 +207,7 @@
 
 ### Sprint 1 (2 weeks) - Publishing Foundation
 1. ✅ **Character Limit Validation** (1-2 days) - **COMPLETE (PR #477)** - Quick win, high value
-2. **Post Scheduling UI** (2-3 days) - Completes existing state machine
+2. ✅ **Post Scheduling UI** (2-3 days) - **COMPLETE (PR #478)** - Completes existing state machine
 3. **Platform Publishing Integration** (5-7 days) - Core functionality
    - Start with LinkedIn (easiest API)
    - Add Facebook, Twitter, Instagram
