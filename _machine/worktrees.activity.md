@@ -810,3 +810,5 @@ Actions:
 - Duration: 3.5 hours autonomous implementation (target 08:00)
 2026-02-05T11:30:00Z — allocate — agent-002 — client-manager+hazina — feature/869c1dnww-platform-publishing — 869c1dnww — claude-code — Platform Publishing Integration (ClickUp #869c1dnww): LinkedIn API + OAuth, Facebook Graph API, Twitter API v2, Instagram Graph API, rate limiting, retry logic. Starting with LinkedIn.
 2026-02-05T05:30:00Z — release — agent-003 — client-manager+hazina — feature/869c1dnx2-rich-text-editor — 869c1dnx2 — claude-code — Rich Text Editor COMPLETE: PR #480 created. 60-minute implementation.
+2026-02-05T05:35:00Z — allocate — agent-003 — client-manager+hazina — feature/869c1dnxj-bulk-operations — 869c1dnxj — claude-code — Bulk Operations (Schedule/Approve/Regenerate): Extend BulkEditModal with bulk actions
+2026-02-05T11:30:00Z — allocate — agent-008 — client-manager+hazina — feature/869c1dnww-platform-publishing — 869c1dnww — claude-code — Platform Publishing Integration: LinkedIn OAuth + API, Facebook, Twitter, Instagram. 3.5 hours work starting with LinkedIn.

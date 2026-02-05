@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "schema_version": "1.0",
+    "last_updated": null,
+    "session_id": null,
+    "description": "Session context persistence - resume where you left off"
+  },
+  "current_session": {
+    "session_id": null,
+    "started_at": null,
+    "current_task": null,
+    "files_read": [],
+    "entities_accessed": [],
+    "worktrees_allocated": [],
+    "recent_queries": [],
+    "context_loaded": []
+  },
+  "last_session": {
+    "session_id": null,
+    "ended_at": null,
+    "summary": null,
+    "completed_tasks": [],
+    "files_modified": [],
+    "context_snapshot": {}
+  }
+}

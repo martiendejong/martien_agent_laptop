@@ -1,0 +1,78 @@
+# Documentation YAML Frontmatter Schema
+# Standardized metadata for all markdown files
+
+schema_version: "1.0"
+description: "Inline context hints in documentation files"
+
+# Frontmatter template for all .md files:
+# ---
+# context_type: [workflow_protocol | reference | pattern_library | system_config | troubleshooting]
+# related_files: [list of related file paths]
+# last_major_update: YYYY-MM-DD
+# primary_expert: [worktree_management | git_workflow | ef_migrations | etc.]
+# tags: [list of searchable tags]
+# importance: [critical | high | medium | low]
+# ---
+
+field_definitions:
+  context_type:
+    type: enum
+    required: true
+    values:
+      - workflow_protocol    # Step-by-step workflow instructions
+      - reference           # Quick reference / lookup tables
+      - pattern_library     # Code patterns and best practices
+      - system_config       # Machine/environment configuration
+      - troubleshooting     # Error solutions and debugging guides
+      - architecture        # System design and architecture docs
+      - skill_definition    # Claude skill definitions
+
+  related_files:
+    type: array[string]
+    required: false
+    description: "Paths to related documentation files"
+
+  last_major_update:
+    type: date
+    required: true
+    format: "YYYY-MM-DD"
+
+  primary_expert:
+    type: string
+    required: false
+    description: "Primary domain area (e.g., 'worktree management', 'database migrations')"
+
+  tags:
+    type: array[string]
+    required: false
+    description: "Searchable tags for categorization"
+
+  importance:
+    type: enum
+    required: false
+    values: [critical, high, medium, low]
+    default: medium
+
+examples:
+  workflow:
+    ---
+    context_type: workflow_protocol
+    related_files:
+      - C:\scripts\MACHINE_CONFIG.md
+      - C:\scripts\_machine\worktrees.pool.md
+    last_major_update: 2026-02-05
+    primary_expert: worktree management
+    tags: [workflow, worktree, git, allocation]
+    importance: critical
+    ---
+
+  reference:
+    ---
+    context_type: reference
+    related_files:
+      - C:\scripts\CLAUDE.md
+    last_major_update: 2026-01-30
+    primary_expert: quick_reference
+    tags: [reference, commands, shortcuts]
+    importance: high
+    ---

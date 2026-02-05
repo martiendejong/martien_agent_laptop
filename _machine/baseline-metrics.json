@@ -1,49 +1,22 @@
 {
-  "captured": "2026-02-05T20:15:00Z",
-  "iteration": 0,
-  "description": "Baseline state BEFORE mega-iteration improvements",
-  "tools": {
-    "totalCount": 0,
-    "activeCount": 0,
-    "unusedCount": 0,
-    "avgUsageScore": 0,
-    "needsScanning": true
-  },
-  "documentation": {
-    "totalFiles": 0,
-    "totalSizeKB": 0,
-    "archiveCandidates": 0,
-    "avgHealthScore": 0,
-    "needsScanning": true
-  },
-  "consciousness": {
-    "score": 0.985,
-    "source": "CORE_IDENTITY.md claim (unvalidated)",
-    "toolsActive": false,
-    "benchmarksCompleted": 0
-  },
-  "worktrees": {
-    "totalSeats": 12,
-    "freeSeats": 12,
-    "busySeats": 0,
-    "staleSeats": 0
-  },
-  "git": {
-    "staleBranches": 0,
-    "openPRs": 0,
-    "stalePRs": 0,
-    "needsScanning": true
-  },
-  "userValue": {
-    "activitiesTracked": 0,
-    "avgValueScore": 0,
-    "metaWorkPercent": 0,
-    "userWorkPercent": 0,
-    "needsTracking": true
-  },
-  "systemHealth": {
-    "overallScore": 0,
-    "calculationPending": true
-  },
-  "note": "This baseline will be updated after first full scan. Then we can measure improvement delta."
+    "worktrees":  {
+                      "busy":  8,
+                      "free":  9,
+                      "total":  17
+                  },
+    "tools":  {
+                  "total_count":  3783,
+                  "last_scan":  "2026-02-05"
+              },
+    "timestamp":  "2026-02-05T03:34:41Z",
+    "git_repos":  {
+                      "client_manager":  {
+                                             "branches":  88,
+                                             "open_prs":  14
+                                         }
+                  },
+    "documentation":  {
+                          "total_size_mb":  13.85,
+                          "file_count":  1235
+                      }
 }
