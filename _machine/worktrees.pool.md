@@ -5,7 +5,7 @@ Seat states:
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-05T04:59:00Z | ✅ PR #489: CI fix - Use Hazina develop branch (unblocks 7+ PRs) |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-05T04:56:00Z | ✅ Fixed PR #474 frontend build (added missing ParentPostManager component) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | client-manager | feature/test-coverage-improvement | 2026-02-05T05:08:00Z | 🧪 Add tests for Rich Text Editor, Bulk Operations, and Integrations Page |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | client-manager + hazina | feature/infinite-improvement-v2 | 2026-02-05T04:40:00Z | 🔄 Infinite Improvement v2: 3.5hr autonomous session (Iterations 4+) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-06T06:00:00Z | ✅ PR #490: Social refactor Rounds 3-4 (component extraction -30%, state foundation) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-05T05:04:00Z | ✅ PR #491: Integrations Dashboard - Comprehensive platform connection overview |
