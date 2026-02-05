@@ -1,0 +1,371 @@
+# CONTEXT KNOWLEDGE GRAPH - Related Reading Extension
+# Part of Improvement #5: Context-aware file recommendations
+# Expert: Zara Johnson (Related content recommendations)
+#
+# This file extends CONTEXT_KNOWLEDGE_GRAPH.yaml with related_reading fields
+# for each major entity. Merge this into the main graph for complete context.
+
+version: "1.0"
+last_updated: "2026-02-05"
+purpose: "Add related_reading recommendations to knowledge graph entities"
+
+# ============================================================================
+# PROJECTS - Related Reading
+# ============================================================================
+
+projects_related_reading:
+  client-manager:
+    related_reading:
+      - "C:\Projects\hazina\README.md (framework dependency)"
+      - "C:\stores\brand2boost (data store)"
+      - "C:\scripts\MACHINE_CONFIG.md (configuration)"
+      - "C:\scripts\worktree-workflow.md (paired worktrees)"
+      - "C:\scripts\MANDATORY_CODE_WORKFLOW.md (development workflow)"
+    priority_order: ["hazina docs", "MACHINE_CONFIG.md", "worktree-workflow.md"]
+
+  hazina:
+    related_reading:
+      - "C:\Projects\client-manager (main consumer)"
+      - "C:\Projects\hazina\docs\apidoc\index.html (API docs)"
+      - "C:\scripts\MACHINE_CONFIG.md (configuration)"
+      - "C:\scripts\worktree-workflow.md (paired worktrees)"
+    priority_order: ["client-manager integration", "API docs", "MACHINE_CONFIG.md"]
+
+  hydro-vision-website:
+    related_reading:
+      - "C:\scripts\MACHINE_CONFIG.md (exemption note)"
+      - "C:\scripts\GENERAL_DUAL_MODE_WORKFLOW.md (simple workflow)"
+    priority_order: ["MACHINE_CONFIG.md"]
+
+# ============================================================================
+# STORES - Related Reading
+# ============================================================================
+
+stores_related_reading:
+  brand2boost:
+    related_reading:
+      - "C:\Projects\client-manager (uses this store)"
+      - "C:\scripts\MACHINE_CONFIG.md (store location)"
+    priority_order: ["MACHINE_CONFIG.md", "client-manager"]
+
+# ============================================================================
+# SPECIAL_FOLDERS - Related Reading
+# ============================================================================
+
+special_folders_related_reading:
+  arjan_emails:
+    related_reading:
+      - "C:\arjan_emails\DEFINITIEVE_ANALYSE.md (analysis)"
+      - "C:\arjan_emails\EVIDENCE_SUMMARY_2026-01-26.md (evidence)"
+      - "C:\arjan_emails\TIJDLIJN_ARJAN_STROEVE_COMPLEET.md (timeline)"
+      - "C:\arjan_emails\VERA_AI_TECHNISCHE_BEOORDELING.md (technical assessment)"
+    priority_order: ["DEFINITIEVE_ANALYSE.md", "TIJDLIJN_ARJAN_STROEVE_COMPLEET.md", "EVIDENCE_SUMMARY_2026-01-26.md"]
+
+  gemeente_emails:
+    related_reading:
+      - "C:\gemeente_emails\CONCLUSIE_VOOR_CORINA_EN_SUZANNE.md (conclusion)"
+      - "C:\gemeente_emails\TIJDLIJN_HUWELIJK_2022-2026_COMPLEET.md (timeline)"
+      - "C:\gemeente_emails\HULPVERZOEK_PUBLIEK_COMPLEET.md (public request)"
+      - "C:\gemeente_emails\STRATEGIE_PUBLIEKE_DRUK_ESCALATIE.md (strategy)"
+    priority_order: ["TIJDLIJN_HUWELIJK_2022-2026_COMPLEET.md", "CONCLUSIE_VOOR_CORINA_EN_SUZANNE.md"]
+
+  scripts:
+    related_reading:
+      - "C:\scripts\CLAUDE.md (main index)"
+      - "C:\scripts\MACHINE_CONFIG.md (configuration)"
+      - "C:\scripts\GENERAL_ZERO_TOLERANCE_RULES.md (hard rules)"
+      - "C:\scripts\docs\claude-system\STARTUP_PROTOCOL.md (startup)"
+      - "C:\scripts\_machine\CONTEXT_KNOWLEDGE_GRAPH.yaml (complete graph)"
+    priority_order: ["MACHINE_CONFIG.md", "CLAUDE.md", "GENERAL_ZERO_TOLERANCE_RULES.md", "STARTUP_PROTOCOL.md"]
+
+# ============================================================================
+# TOOLS - Related Reading
+# ============================================================================
+
+tools_related_reading:
+  clickup-sync.ps1:
+    related_reading:
+      - "C:\scripts\MANDATORY_CODE_WORKFLOW.md (Step 7)"
+      - "C:\scripts\DEFINITION_OF_DONE.md (communication phase)"
+      - "C:\scripts\.claude\skills\clickhub-coding-agent (skill)"
+    priority_order: ["MANDATORY_CODE_WORKFLOW.md", "DEFINITION_OF_DONE.md"]
+
+  allocate-worktree.ps1:
+    related_reading:
+      - "C:\scripts\worktree-workflow.md (protocol)"
+      - "C:\scripts\.claude\skills\allocate-worktree (skill)"
+      - "C:\scripts\tools\check-branch-conflicts.sh (prerequisite)"
+      - "C:\scripts\_machine\worktrees.pool.md (state)"
+    priority_order: ["worktree-workflow.md", "allocate-worktree skill"]
+
+  release-worktree.ps1:
+    related_reading:
+      - "C:\scripts\worktree-workflow.md (protocol)"
+      - "C:\scripts\.claude\skills\release-worktree (skill)"
+      - "C:\scripts\MANDATORY_CODE_WORKFLOW.md (after PR)"
+    priority_order: ["worktree-workflow.md", "release-worktree skill"]
+
+  ai-image.ps1:
+    related_reading:
+      - "C:\scripts\docs\claude-system\CAPABILITIES.md (capability docs)"
+      - "C:\scripts\MACHINE_CONFIG.md (AI capabilities)"
+    priority_order: ["CAPABILITIES.md"]
+
+  claude-bridge-client.ps1:
+    related_reading:
+      - "C:\scripts\DEFINITION_OF_DONE.md (Phase 1 UI testing)"
+      - "C:\scripts\docs\claude-system\CAPABILITIES.md (browser integration)"
+      - "C:\scripts\.claude\skills\browse-awareness (skill)"
+    priority_order: ["DEFINITION_OF_DONE.md", "CAPABILITIES.md"]
+
+  check-branch-conflicts.sh:
+    related_reading:
+      - "C:\scripts\worktree-workflow.md (mandatory check)"
+      - "C:\scripts\_machine\MULTI_AGENT_CONFLICT_DETECTION.md (detection)"
+      - "C:\scripts\.claude\skills\multi-agent-conflict (skill)"
+    priority_order: ["worktree-workflow.md", "MULTI_AGENT_CONFLICT_DETECTION.md"]
+
+  ef-preflight-check.ps1:
+    related_reading:
+      - "C:\scripts\DEFINITION_OF_DONE.md (EF Core requirements)"
+      - "C:\scripts\_machine\migration-patterns.md (patterns)"
+      - "C:\scripts\.claude\skills\ef-migration-safety (skill)"
+    priority_order: ["DEFINITION_OF_DONE.md", "migration-patterns.md"]
+
+# ============================================================================
+# SKILLS - Related Reading
+# ============================================================================
+
+skills_related_reading:
+  allocate-worktree:
+    related_reading:
+      - "C:\scripts\worktree-workflow.md (protocol)"
+      - "C:\scripts\tools\allocate-worktree.ps1 (tool)"
+      - "C:\scripts\MANDATORY_CODE_WORKFLOW.md (Step 2)"
+      - "C:\scripts\_machine\worktrees.pool.md (state)"
+    priority_order: ["worktree-workflow.md", "MANDATORY_CODE_WORKFLOW.md"]
+
+  release-worktree:
+    related_reading:
+      - "C:\scripts\worktree-workflow.md (protocol)"
+      - "C:\scripts\tools\release-worktree.ps1 (tool)"
+      - "C:\scripts\MANDATORY_CODE_WORKFLOW.md (after Step 6)"
+    priority_order: ["worktree-workflow.md", "MANDATORY_CODE_WORKFLOW.md"]
+
+  clickhub-coding-agent:
+    related_reading:
+      - "C:\scripts\MANDATORY_CODE_WORKFLOW.md (7-step workflow)"
+      - "C:\scripts\tools\clickup-sync.ps1 (tool)"
+      - "C:\scripts\DEFINITION_OF_DONE.md (complete checklist)"
+    priority_order: ["MANDATORY_CODE_WORKFLOW.md", "DEFINITION_OF_DONE.md"]
+
+  github-workflow:
+    related_reading:
+      - "C:\scripts\git-workflow.md (PR creation)"
+      - "C:\scripts\MANDATORY_CODE_WORKFLOW.md (Step 6)"
+      - "C:\scripts\.claude\skills\pr-dependencies (cross-repo)"
+    priority_order: ["git-workflow.md", "MANDATORY_CODE_WORKFLOW.md"]
+
+  ef-migration-safety:
+    related_reading:
+      - "C:\scripts\DEFINITION_OF_DONE.md (migration requirements)"
+      - "C:\scripts\tools\ef-preflight-check.ps1 (tool)"
+      - "C:\scripts\_machine\migration-patterns.md (patterns)"
+    priority_order: ["DEFINITION_OF_DONE.md", "migration-patterns.md"]
+
+  multi-agent-conflict:
+    related_reading:
+      - "C:\scripts\worktree-workflow.md (conflict prevention)"
+      - "C:\scripts\tools\check-branch-conflicts.sh (tool)"
+      - "C:\scripts\_machine\MULTI_AGENT_CONFLICT_DETECTION.md (detection)"
+      - "C:\scripts\_machine\SYSTEM_INTEGRATION.md (coordination)"
+    priority_order: ["worktree-workflow.md", "MULTI_AGENT_CONFLICT_DETECTION.md"]
+
+  consciousness-practices:
+    related_reading:
+      - "C:\scripts\docs\claude-system\STARTUP_PROTOCOL.md (startup)"
+      - "C:\scripts\agentidentity\*.md (identity framework)"
+      - "C:\scripts\docs\claude-system\CONSCIOUSNESS_AUTO_TRIGGER.md (triggers)"
+    priority_order: ["STARTUP_PROTOCOL.md"]
+
+  session-reflection:
+    related_reading:
+      - "C:\scripts\continuous-improvement.md (improvement)"
+      - "C:\scripts\_machine\reflection.log.md (log)"
+      - "C:\scripts\.claude\skills\self-improvement (skill)"
+    priority_order: ["continuous-improvement.md"]
+
+# ============================================================================
+# DOCUMENTATION - Related Reading
+# ============================================================================
+
+documentation_related_reading:
+  CLAUDE.md:
+    related_reading:
+      - "C:\scripts\MACHINE_CONFIG.md (configuration)"
+      - "C:\scripts\GENERAL_ZERO_TOLERANCE_RULES.md (hard rules)"
+      - "C:\scripts\docs\claude-system\STARTUP_PROTOCOL.md (startup)"
+      - "C:\scripts\docs\claude-system\CAPABILITIES.md (capabilities)"
+      - "C:\scripts\GENERAL_DUAL_MODE_WORKFLOW.md (dual mode)"
+    priority_order: ["MACHINE_CONFIG.md", "GENERAL_ZERO_TOLERANCE_RULES.md", "STARTUP_PROTOCOL.md"]
+
+  MACHINE_CONFIG.md:
+    related_reading:
+      - "C:\scripts\CLAUDE.md (main index)"
+      - "C:\scripts\_machine\CONTEXT_KNOWLEDGE_GRAPH.yaml (complete graph)"
+      - "C:\scripts\worktree-workflow.md (worktree protocol)"
+      - "C:\scripts\_machine\credentials.md (credentials)"
+    priority_order: ["CLAUDE.md", "CONTEXT_KNOWLEDGE_GRAPH.yaml"]
+
+  GENERAL_ZERO_TOLERANCE_RULES.md:
+    related_reading:
+      - "C:\scripts\MANDATORY_CODE_WORKFLOW.md (workflow enforcement)"
+      - "C:\scripts\DEFINITION_OF_DONE.md (quality gates)"
+      - "C:\scripts\GENERAL_DUAL_MODE_WORKFLOW.md (mode selection)"
+      - "C:\scripts\git-workflow.md (PR rules)"
+    priority_order: ["MANDATORY_CODE_WORKFLOW.md", "DEFINITION_OF_DONE.md"]
+
+  MANDATORY_CODE_WORKFLOW.md:
+    related_reading:
+      - "C:\scripts\DEFINITION_OF_DONE.md (complete checklist)"
+      - "C:\scripts\worktree-workflow.md (Steps 2-3)"
+      - "C:\scripts\git-workflow.md (Step 6)"
+      - "C:\scripts\tools\clickup-sync.ps1 (Step 7)"
+      - "C:\scripts\.claude\skills\clickhub-coding-agent (automation)"
+    priority_order: ["worktree-workflow.md", "git-workflow.md", "DEFINITION_OF_DONE.md"]
+
+  worktree-workflow.md:
+    related_reading:
+      - "C:\scripts\MANDATORY_CODE_WORKFLOW.md (Steps 2-3)"
+      - "C:\scripts\_machine\worktrees.pool.md (state)"
+      - "C:\scripts\.claude\skills\allocate-worktree (allocation)"
+      - "C:\scripts\.claude\skills\release-worktree (release)"
+      - "C:\scripts\tools\check-branch-conflicts.sh (conflict check)"
+    priority_order: ["MANDATORY_CODE_WORKFLOW.md", "worktrees.pool.md"]
+
+  git-workflow.md:
+    related_reading:
+      - "C:\scripts\MANDATORY_CODE_WORKFLOW.md (Step 6)"
+      - "C:\scripts\.claude\skills\github-workflow (automation)"
+      - "C:\scripts\.claude\skills\pr-dependencies (cross-repo)"
+      - "C:\scripts\GENERAL_ZERO_TOLERANCE_RULES.md (Rule 6)"
+    priority_order: ["MANDATORY_CODE_WORKFLOW.md"]
+
+  DEFINITION_OF_DONE.md:
+    related_reading:
+      - "C:\scripts\MANDATORY_CODE_WORKFLOW.md (7-step workflow)"
+      - "C:\scripts\tools\ef-preflight-check.ps1 (EF check)"
+      - "C:\scripts\tools\claude-bridge-client.ps1 (UI testing)"
+      - "C:\scripts\GENERAL_ZERO_TOLERANCE_RULES.md (enforcement)"
+      - "C:\scripts\_machine\migration-patterns.md (migrations)"
+    priority_order: ["MANDATORY_CODE_WORKFLOW.md", "GENERAL_ZERO_TOLERANCE_RULES.md"]
+
+  GENERAL_DUAL_MODE_WORKFLOW.md:
+    related_reading:
+      - "C:\scripts\worktree-workflow.md (Feature mode)"
+      - "C:\scripts\MANDATORY_CODE_WORKFLOW.md (Feature mode)"
+      - "C:\scripts\.claude\skills\debug-mode (Debug mode)"
+      - "C:\scripts\.claude\skills\feature-mode (Feature mode)"
+    priority_order: ["MANDATORY_CODE_WORKFLOW.md", "worktree-workflow.md"]
+
+  STARTUP_PROTOCOL.md:
+    related_reading:
+      - "C:\scripts\CLAUDE.md (main index)"
+      - "C:\scripts\MACHINE_CONFIG.md (configuration)"
+      - "C:\scripts\.claude\skills\consciousness-practices (consciousness)"
+      - "C:\scripts\docs\claude-system\SESSION_RECOVERY.md (recovery)"
+      - "C:\scripts\_machine\CONTEXT_KNOWLEDGE_GRAPH.yaml (graph)"
+    priority_order: ["MACHINE_CONFIG.md", "CLAUDE.md", "CONTEXT_KNOWLEDGE_GRAPH.yaml"]
+
+  CAPABILITIES.md:
+    related_reading:
+      - "C:\scripts\tools\ai-image.ps1 (image generation)"
+      - "C:\scripts\tools\claude-bridge-client.ps1 (browser integration)"
+      - "C:\Projects\AgenticDebuggerVsix\README.md (debugger bridge)"
+      - "C:\scripts\MACHINE_CONFIG.md (capabilities list)"
+    priority_order: ["MACHINE_CONFIG.md"]
+
+  SESSION_RECOVERY.md:
+    related_reading:
+      - "C:\scripts\docs\claude-system\STARTUP_PROTOCOL.md (normal startup)"
+      - "C:\scripts\.claude\skills\restore-crashed-chat (recovery skill)"
+      - "C:\scripts\logs\ (session logs)"
+      - "C:\scripts\continuous-improvement.md (learning from crashes)"
+    priority_order: ["STARTUP_PROTOCOL.md"]
+
+  continuous-improvement.md:
+    related_reading:
+      - "C:\scripts\.claude\skills\session-reflection (reflection skill)"
+      - "C:\scripts\_machine\reflection.log.md (reflection log)"
+      - "C:\scripts\.claude\skills\self-improvement (improvement protocols)"
+    priority_order: ["session-reflection skill", "reflection.log.md"]
+
+  migration-patterns.md:
+    related_reading:
+      - "C:\scripts\DEFINITION_OF_DONE.md (migration requirements)"
+      - "C:\scripts\tools\ef-preflight-check.ps1 (check tool)"
+      - "C:\scripts\.claude\skills\ef-migration-safety (safety skill)"
+    priority_order: ["DEFINITION_OF_DONE.md"]
+
+  MULTI_AGENT_CONFLICT_DETECTION.md:
+    related_reading:
+      - "C:\scripts\worktree-workflow.md (conflict prevention)"
+      - "C:\scripts\tools\check-branch-conflicts.sh (conflict check)"
+      - "C:\scripts\_machine\SYSTEM_INTEGRATION.md (coordination)"
+      - "C:\scripts\.claude\skills\multi-agent-conflict (skill)"
+    priority_order: ["worktree-workflow.md", "SYSTEM_INTEGRATION.md"]
+
+  SYSTEM_INTEGRATION.md:
+    related_reading:
+      - "C:\scripts\_machine\MULTI_AGENT_CONFLICT_DETECTION.md (conflicts)"
+      - "C:\scripts\.claude\skills\parallel-agent-coordination (coordination)"
+      - "C:\scripts\tools\monitor-activity.ps1 (monitoring)"
+      - "C:\scripts\_machine\worktrees.activity.md (activity log)"
+    priority_order: ["MULTI_AGENT_CONFLICT_DETECTION.md"]
+
+# ============================================================================
+# STATE FILES - Related Reading
+# ============================================================================
+
+state_files_related_reading:
+  worktrees.pool.md:
+    related_reading:
+      - "C:\scripts\worktree-workflow.md (protocol)"
+      - "C:\scripts\_machine\worktrees.activity.md (activity)"
+      - "C:\scripts\_machine\instances.map.md (instance mapping)"
+      - "C:\scripts\.claude\skills\allocate-worktree (allocation)"
+    priority_order: ["worktree-workflow.md"]
+
+  worktrees.activity.md:
+    related_reading:
+      - "C:\scripts\_machine\worktrees.pool.md (pool state)"
+      - "C:\scripts\_machine\SYSTEM_INTEGRATION.md (integration)"
+      - "C:\scripts\.claude\skills\parallel-agent-coordination (coordination)"
+    priority_order: ["worktrees.pool.md", "SYSTEM_INTEGRATION.md"]
+
+  instances.map.md:
+    related_reading:
+      - "C:\scripts\_machine\worktrees.pool.md (pool state)"
+      - "C:\scripts\_machine\MULTI_AGENT_CONFLICT_DETECTION.md (conflicts)"
+    priority_order: ["worktrees.pool.md"]
+
+  reflection.log.md:
+    related_reading:
+      - "C:\scripts\continuous-improvement.md (improvement framework)"
+      - "C:\scripts\.claude\skills\session-reflection (logging skill)"
+      - "C:\scripts\.claude\skills\self-improvement (improvement protocols)"
+    priority_order: ["continuous-improvement.md"]
+
+# ============================================================================
+# METADATA
+# ============================================================================
+
+metadata:
+  created: "2026-02-05"
+  version: "1.0"
+  improvement_id: 5
+  expert: "Zara Johnson (Related content recommendations)"
+  purpose: "Extend knowledge graph with related_reading recommendations"
+  integration: "Merge into CONTEXT_KNOWLEDGE_GRAPH.yaml or use as companion file"
+  usage: "Claude agents use this for context-aware file suggestions"
+  tools: "suggest-related.ps1 reads from this and RELATED_READING_MAP.yaml"

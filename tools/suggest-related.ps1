@@ -64,16 +64,16 @@ function Load-RelatedReadingMap {
 
 # Extract file name from path
 function Get-NormalizedFileName {
-    param([string]$Input)
+    param([string]$InputPath)
 
-    if (Test-Path $Input) {
-        return [System.IO.Path]::GetFileName($Input)
+    if (Test-Path $InputPath) {
+        return [System.IO.Path]::GetFileName($InputPath)
     }
-    elseif ($Input -match '\.md$') {
-        return [System.IO.Path]::GetFileName($Input)
+    elseif ($InputPath -match '\.md$') {
+        return [System.IO.Path]::GetFileName($InputPath)
     }
     else {
-        return $Input
+        return $InputPath
     }
 }
 
@@ -187,7 +187,7 @@ Write-Host ""
 # Determine query
 $query = ""
 if ($File) {
-    $query = Get-NormalizedFileName -Input $File
+    $query = Get-NormalizedFileName -InputPath $File
     Write-Host "Looking for files related to: $query" -ForegroundColor White
 }
 elseif ($Topic) {

@@ -194,7 +194,7 @@ Generated: $(Get-Date -Format "yyyy-MM-dd HH:mm:ss")
 $(
     $critical = $results | Where-Object { $_.Category -eq "CRITICAL" }
     if ($critical) {
-        ($critical | ForEach-Object { "- Split ``$($_.File)`` ($($ _.Tokens) tokens)" }) -join "`n"
+        ($critical | ForEach-Object { "- Split ``$($_.File)`` ($($_.Tokens) tokens)" }) -join "`n"
     } else {
         "None"
     }
