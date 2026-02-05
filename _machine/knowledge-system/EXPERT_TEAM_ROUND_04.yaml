@@ -1,0 +1,257 @@
+# Expert Team Round 04: Cross-Session Memory
+# Theme: Remembering context between sessions
+# Date: 2026-02-05
+
+expert_team:
+  round: 4
+  theme: "Cross-Session Memory"
+  focus: "Persistent memory systems that maintain context across agent restarts"
+
+  experts:
+    - name: "Dr. Margaret Foster"
+      role: "Long-term Memory Systems Researcher"
+      background: "Cognitive neuroscience, studies human memory consolidation and recall"
+      perspective: "Short-term → working → long-term memory pipeline"
+
+    - name: "Chen Wei"
+      role: "Database Architect"
+      background: "Designed persistent storage for Google Brain checkpoints"
+      perspective: "Memory is data that must survive process termination"
+
+    - name: "Dr. Amara Johnson"
+      role: "Session Management Expert"
+      background: "Built Redis session store, distributed session management"
+      perspective: "Sessions should be resumable from any point"
+
+    - name: "Prof. Yuki Sato"
+      role: "Episodic Memory Specialist"
+      background: "Studies how humans remember specific events and conversations"
+      perspective: "Store conversations as episodes with rich retrieval cues"
+
+    - name: "Maria Garcia"
+      role: "State Machine Designer"
+      background: "Built Erlang/OTP supervisor trees, fault-tolerant state"
+      perspective: "State must be externalized and recoverable"
+
+    - name: "Dr. Ibrahim Al-Rashid"
+      role: "Temporal Database Expert"
+      background: "Bitemporal databases, audit trails, time-travel queries"
+      perspective: "Memory needs timestamps - when learned, when accessed"
+
+    - name: "Lisa Chen"
+      role: "Context Switching Specialist"
+      background: "Operating systems researcher, context save/restore"
+      perspective: "Session switch is like process context switch"
+
+    - name: "Dr. Raj Kumar"
+      role: "Knowledge Graph Architect"
+      background: "Built Wikipedia knowledge graph, entity relationships"
+      perspective: "Memory is graph: entities, relationships, facts"
+
+    - name: "Emma Schmidt"
+      role: "Checkpoint/Restart Systems Engineer"
+      background: "HPC checkpointing, SLURM job resume from checkpoint"
+      perspective: "Periodic snapshots enable restart from last good state"
+
+    - name: "Dr. Kwame Osei"
+      role: "Semantic Memory Researcher"
+      background: "Studies how humans store and retrieve general knowledge"
+      perspective: "Distinguish episodic (events) from semantic (facts) memory"
+
+    - name: "Sophie Dubois"
+      role: "Version Control Theorist"
+      background: "Mercurial contributor, branching and merging expert"
+      perspective: "Memory history is like git - branch, merge, revert"
+
+    - name: "Dr. Akira Tanaka"
+      role: "Spaced Repetition Expert"
+      background: "Created Anki-style learning systems, memory retention"
+      perspective: "Accessed memories strengthen, unused ones fade"
+
+    - name: "Marcus Williams"
+      role: "Distributed Consensus Specialist"
+      background: "Raft/Paxos implementations, consistent replication"
+      perspective: "Multi-agent needs consistent shared memory"
+
+    - name: "Dr. Fatima Hassan"
+      role: "Memory Palace Techniques Researcher"
+      background: "Studies ancient memory techniques, spatial memory"
+      perspective: "Associate memories with locations/structures for recall"
+
+    - name: "Tom Jensen"
+      role: "Blockchain Architect"
+      background: "Immutable ledger design, cryptographic verification"
+      perspective: "Memory should be tamper-proof and auditable"
+
+methodology:
+  approach: "Hierarchical memory system with automatic consolidation"
+  principles:
+    - "Separate volatile (session) from persistent (long-term) memory"
+    - "Auto-save critical state before session end"
+    - "Fast session resume with last-known state"
+    - "Memory decay: frequently accessed stays, unused fades"
+    - "Semantic + episodic: facts AND conversation episodes"
+
+memory_hierarchy:
+  level_1_working:
+    description: "Current conversation context (in-memory)"
+    duration: "Active session only"
+    size: "100KB - 1MB"
+    examples: ["Last 10 queries", "Hot cache", "Session buffer"]
+
+  level_2_session:
+    description: "Entire session state (disk, fast access)"
+    duration: "Until session explicitly closed"
+    size: "1MB - 10MB"
+    examples: ["Conversation log", "Delta tracker", "Event log"]
+
+  level_3_recent:
+    description: "Last N sessions (weekly memory)"
+    duration: "7 days"
+    size: "10MB - 100MB"
+    examples: ["This week's activity", "Recent patterns", "Open tasks"]
+
+  level_4_longterm:
+    description: "Consolidated knowledge (persistent)"
+    duration: "Forever (with decay)"
+    size: "100MB - 1GB"
+    examples: ["Best practices", "User preferences", "Historical patterns"]
+
+consolidation_process:
+  session_end:
+    - "Flush working memory to session storage"
+    - "Log important events to episodic memory"
+    - "Update pattern frequencies"
+    - "Archive conversation log"
+
+  daily:
+    - "Consolidate day's sessions into daily summary"
+    - "Extract new patterns and facts"
+    - "Update knowledge graph"
+    - "Compress old sessions"
+
+  weekly:
+    - "Identify frequently accessed memories → strengthen"
+    - "Mark unused memories for potential decay"
+    - "Generate weekly insights"
+    - "Update user preference model"
+
+  monthly:
+    - "Archive old episodic memories"
+    - "Prune low-value memories"
+    - "Rebuild indices"
+    - "Performance optimization"
+
+retrieval_strategies:
+  temporal:
+    description: "What happened on 2026-01-15?"
+    method: "Query episodic memory by timestamp"
+
+  semantic:
+    description: "What do I know about worktree allocation?"
+    method: "Search knowledge graph for related concepts"
+
+  episodic:
+    description: "Last time user asked about CI/CD issues?"
+    method: "Search conversation history for similar episodes"
+
+  associative:
+    description: "What else is related to this context?"
+    method: "Follow knowledge graph edges"
+
+  recent:
+    description: "What was I just working on?"
+    method: "Load last session state"
+
+session_resume:
+  fast_path:
+    - "Load session state file (last 5 queries, open files)"
+    - "Restore hot cache contents"
+    - "Resume from last checkpoint"
+    - "Time: <1 second"
+
+  full_path:
+    - "Reconstruct from conversation log"
+    - "Rebuild context from event log"
+    - "Recompute predictions"
+    - "Time: 5-10 seconds"
+
+memory_types:
+  episodic:
+    description: "Specific conversation episodes"
+    format: "Timestamped query-response pairs"
+    retrieval: "Temporal or similarity-based"
+    storage: "conversation-episodes.db (SQLite)"
+
+  semantic:
+    description: "General facts and knowledge"
+    format: "Knowledge graph (entity-relation-entity)"
+    retrieval: "Graph traversal or keyword search"
+    storage: "knowledge-graph.json or Neo4j"
+
+  procedural:
+    description: "How to do tasks (workflows)"
+    format: "State machines or recipes"
+    retrieval: "By task name or trigger condition"
+    storage: "workflows/*.yaml"
+
+  preference:
+    description: "User preferences and habits"
+    format: "Key-value with confidence scores"
+    retrieval: "Direct lookup or pattern matching"
+    storage: "user-preferences.json"
+
+decay_model:
+  access_boost:
+    description: "Recently accessed memories get boosted"
+    formula: "strength = base_strength + (access_count * recency_weight)"
+
+  time_decay:
+    description: "Unused memories gradually fade"
+    formula: "strength = strength * exp(-lambda * days_since_access)"
+
+  importance_factor:
+    description: "Important memories resist decay"
+    criteria: ["User explicitly saved", "Referenced multiple times", "High impact decision"]
+
+  pruning_threshold:
+    description: "Memories below threshold get archived"
+    threshold: "strength < 0.1"
+
+persistence_format:
+  session_state:
+    file: "C:\\scripts\\_machine\\sessions\\session-{id}.json"
+    contents: ["Query history", "Context files accessed", "Decisions made", "Open tasks"]
+
+  episodic_memory:
+    file: "C:\\scripts\\_machine\\memory\\episodes.db"
+    schema: "Table: episodes(id, timestamp, query, response, context_files, session_id)"
+
+  knowledge_graph:
+    file: "C:\\scripts\\_machine\\memory\\knowledge-graph.json"
+    format: "{nodes: [{id, type, properties}], edges: [{from, to, relation, weight}]}"
+
+  user_preferences:
+    file: "C:\\scripts\\_machine\\memory\\user-preferences.json"
+    format: "{preference: {value, confidence, last_updated, access_count}}"
+
+multi_agent_sync:
+  problem: "Multiple agents need shared memory"
+  solutions:
+    - "File-based locking for concurrent access"
+    - "Last-write-wins for conflict resolution"
+    - "Append-only logs for audit trail"
+    - "Periodic sync from central store"
+
+diversity_dimensions:
+  - "Geographic: USA, China, Nigeria, Japan, Mexico, Dubai, Sweden, India, Germany, Ghana, France, Denmark, South Africa"
+  - "Domain: Neuroscience, Databases, Session management, Psychology, State machines, Temporal DBs, OS, Knowledge graphs, HPC, Memory research, VCS, Learning systems, Distributed systems, Ancient techniques, Blockchain"
+  - "Approach: Biological inspiration, Engineering pragmatism, Theoretical foundations"
+  - "Expertise: Research (7) + Industry (8)"
+
+success_metrics:
+  resume_speed: "Session resume in <2 seconds"
+  memory_recall: "Can answer 'what happened last time' questions"
+  context_continuity: "New session feels like continuation, not restart"
+  knowledge_growth: "Long-term memory accumulates useful patterns"
+  multi_session_tasks: "Tasks can span multiple sessions"

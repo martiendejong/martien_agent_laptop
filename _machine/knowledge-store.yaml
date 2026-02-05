@@ -1,0 +1,74 @@
+# Central Knowledge Store (R22-001)
+# Unified data storage for all context intelligence
+# Updated: 2026-02-05
+
+metadata:
+  version: "1.0"
+  created: "2026-02-05"
+  last_updated: "2026-02-05"
+  description: "Centralized storage for all context intelligence data"
+
+predictions:
+  weights:
+    time_of_day: 1.0
+    recent_files: 1.5
+    conversation_intent: 1.2
+    markov_chain: 1.0
+    project_context: 1.3
+    semantic_similarity: 1.1
+
+  accuracy:
+    total_predictions: 0
+    correct_predictions: 0
+    overall_accuracy: 0.0
+
+  history: []
+    # Format: { timestamp, method, predicted, actual, correct }
+
+patterns:
+  temporal: {}
+    # Format: { day_of_week: { count, common_events } }
+
+  sequential: []
+    # Format: [ { sequence, count } ]
+
+  contextual: []
+    # Format: [ { context, count } ]
+
+  workflow:
+    debug: 0
+    feature: 0
+    refactor: 0
+    docs: 0
+
+clusters:
+  groups: {}
+    # Format: { cluster_id: { files: [], strength: N } }
+
+  metadata:
+    total_sessions_analyzed: 0
+    last_cluster_build: null
+
+confidence:
+  thresholds:
+    proactive_mode: 0.8
+    high_confidence: 0.7
+    medium_confidence: 0.5
+    low_confidence: 0.3
+
+  contexts: {}
+    # Format: { context_name: { confidence, signals: {} } }
+
+events:
+  queue: []
+    # Format: [ { timestamp, event_type, data, processed } ]
+
+  subscribers: {}
+    # Format: { event_type: [ subscriber_list ] }
+
+statistics:
+  total_sessions: 0
+  total_file_accesses: 0
+  total_predictions: 0
+  total_events: 0
+  system_start_time: "2026-02-05"

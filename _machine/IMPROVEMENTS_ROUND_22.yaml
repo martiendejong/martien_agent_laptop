@@ -1,0 +1,100 @@
+# Knowledge System Improvements - Round 22
+# Theme: Integration & Synthesis
+# Date: 2026-02-05
+
+improvements:
+  round: 22
+  total_count: 100
+  ranking_criteria: "integration value / implementation effort"
+
+  context_analysis:
+    current_state:
+      - "21 rounds created many specialized improvements"
+      - "Components operate independently"
+      - "Need unifying architecture for coherence"
+      - "Integration creates multiplicative value"
+
+    integration_gaps:
+      - "Predictions don't inform semantic search yet"
+      - "Clusters aren't used by pattern mining"
+      - "Cross-session patterns don't update proactive mode"
+      - "Each tool has separate data storage"
+
+  top_5:
+    - id: "R22-001"
+      value: 10
+      effort: 3
+      ratio: 3.33
+      category: "unified_data_layer"
+      title: "Central Knowledge Store"
+      description: "Single YAML database for all context intelligence data"
+      integration: "All tools read/write from central store instead of isolated files"
+      implementation: "Create C:\\scripts\\_machine\\knowledge-store.yaml with sections for predictions, patterns, clusters, confidence"
+      benefit: "Consistency, easier cross-tool queries, atomic updates"
+
+    - id: "R22-002"
+      value: 10
+      effort: 2
+      ratio: 5.00
+      category: "event_bus"
+      title: "Context Event Bus"
+      description: "Publish-subscribe for context events, tools subscribe to relevant events"
+      integration: "When prediction succeeds, event triggers cluster update and pattern mining"
+      implementation: "Simple file-based event queue: tools write events, others read and process"
+      benefit: "Loose coupling, automatic propagation of insights"
+
+    - id: "R22-003"
+      value: 9
+      effort: 3
+      ratio: 3.00
+      category: "unified_interface"
+      title: "Context Intelligence API"
+      description: "Single PowerShell module exposing all context functions"
+      integration: "Import-Module ContextIntelligence, then use Get-Prediction, Find-Cluster, etc"
+      implementation: "ContextIntelligence.psm1 wrapping all individual tools with consistent interface"
+      benefit: "Discoverability, consistent parameter naming, easier composition"
+
+    - id: "R22-004"
+      value: 9
+      effort: 2
+      ratio: 4.50
+      category: "feedback_loops"
+      title: "Explicit Feedback Routing"
+      description: "Prediction accuracy feeds back to pattern mining, which updates clusters"
+      integration: "Create explicit data flow: prediction -> accuracy -> pattern weight -> cluster strength"
+      implementation: "After each prediction, trigger downstream updates via event bus"
+      benefit: "Self-reinforcing learning, compound improvements"
+
+    - id: "R22-005"
+      value: 8
+      effort: 2
+      ratio: 4.00
+      category: "orchestration"
+      title: "Context Loading Orchestrator"
+      description: "Coordinates all context intelligence: checks mode, runs predictions, loads clusters"
+      integration: "Single entry point that orchestrates all 21 improvements in optimal order"
+      implementation: "Start-ContextIntelligence.ps1 that calls tools in dependency order"
+      benefit: "Simplified user experience, guaranteed correct execution order"
+
+selected_for_implementation:
+  - "R22-001: Central Knowledge Store"
+  - "R22-002: Context Event Bus"
+  - "R22-003: Context Intelligence API"
+  - "R22-004: Explicit Feedback Routing"
+  - "R22-005: Context Loading Orchestrator"
+
+implementation_notes:
+  architecture:
+    - "Event-driven architecture with central data store"
+    - "Tools become loosely-coupled subscribers"
+    - "API provides unified facade"
+    - "Orchestrator manages complex workflows"
+
+  data_flow:
+    - "User request -> Orchestrator -> Check mode -> Run predictions -> Load clusters -> Update patterns -> Feedback loop"
+
+  benefits:
+    - "From 21 separate tools to 1 coherent system"
+    - "Emergent behaviors become explicit and controllable"
+    - "Easier to reason about system behavior"
+    - "New improvements integrate more easily"

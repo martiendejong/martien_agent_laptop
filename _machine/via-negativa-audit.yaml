@@ -1,0 +1,233 @@
+# Via Negativa Audit - Improvement by Subtraction
+# Created: 2026-02-05 (Round 12: Resilience Framework)
+# Purpose: Identify what to REMOVE to improve the system
+# Principle: "Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away" - Antoine de Saint-Exupéry
+
+removal_candidates:
+  # Category 1: Unused Tools (Archive if not used in 90+ days)
+  - type: "unused_tools"
+    detection_rule: "No usage in tool-usage.log for 90+ days"
+    action: "Move to C:\\scripts\\_archive\\tools\\"
+    benefit: "Reduce cognitive load, simplify tool selection, faster search"
+    validation: "Check tool-usage.log for last access date"
+    candidates:
+      - name: "TBD"
+        status: "Needs usage log analysis"
+        last_used: "unknown"
+
+  # Category 2: Duplicate Documentation
+  - type: "duplicate_documentation"
+    detection_rule: "Same information in multiple files (>70% content overlap)"
+    action: "Consolidate into single source of truth, add cross-references"
+    benefit: "Single source of truth, eliminate conflicts, faster updates"
+    validation: "Compare file content similarity"
+    candidates:
+      - name: "Worktree workflow docs"
+        files:
+          - "worktree-workflow.md"
+          - "_machine/worktrees.protocol.md"
+          - "docs/claude-system/STARTUP_PROTOCOL.md (worktree section)"
+        status: "High overlap detected"
+        recommendation: "Consolidate into worktree-workflow.md, cross-reference from others"
+
+      - name: "Git workflow guidance"
+        files:
+          - "git-workflow.md"
+          - "development-patterns.md (git sections)"
+          - "STARTUP_PROTOCOL.md (PR creation section)"
+        status: "Medium overlap"
+        recommendation: "Make git-workflow.md authoritative, link from others"
+
+  # Category 3: Premature Abstraction
+  - type: "premature_abstraction"
+    detection_rule: "Function/tool only called once, no reuse"
+    action: "Inline code if only used once"
+    benefit: "Easier to understand, less indirection, faster comprehension"
+    validation: "Search codebase for function/tool usage count"
+    candidates:
+      - name: "TBD"
+        status: "Needs usage analysis"
+
+  # Category 4: Excessive Dependencies
+  - type: "excessive_dependencies"
+    detection_rule: "External dependency where native solution exists"
+    action: "Replace with native PowerShell/dotnet solution"
+    benefit: "Fewer failure points, faster startup, reduced complexity"
+    validation: "Review package.json, .csproj dependencies"
+    candidates:
+      - name: "TBD"
+        status: "Needs dependency audit"
+
+  # Category 5: Unnecessary Steps in Workflows
+  - type: "unnecessary_steps"
+    detection_rule: "Checklist item that never catches issues or adds value"
+    action: "Remove from checklist"
+    benefit: "Faster execution, lower friction, reduced cognitive load"
+    validation: "Track which checklist items actually catch problems vs always pass"
+    candidates:
+      - name: "Startup protocol items"
+        items:
+          - item: "Check bridge messages (step 28)"
+            usage_rate: "5%"  # Only useful if bridge is running
+            recommendation: "Make conditional (only if bridge detected)"
+
+          - item: "Check UI Automation Bridge (step 29)"
+            usage_rate: "2%"  # Rarely used
+            recommendation: "Move to on-demand (don't check at startup)"
+
+          - item: "World development update (disabled)"
+            usage_rate: "0%"  # Already disabled
+            recommendation: "Remove entirely from docs"
+
+  # Category 6: Redundant Tracking
+  - type: "redundant_tracking"
+    detection_rule: "Same information tracked in multiple places"
+    action: "Consolidate to single tracking system"
+    benefit: "Reduce sync overhead, eliminate conflicts, single source of truth"
+    validation: "Check for duplicate state tracking"
+    candidates:
+      - name: "Worktree status tracking"
+        locations:
+          - "worktrees.pool.md (markdown table)"
+          - "worktree-database.json (structured data)"
+          - "agent activity tracking (sessions)"
+        status: "Redundant"
+        recommendation: "Use worktree-database.json as primary, auto-generate pool.md from it"
+
+      - name: "Session tracking"
+        locations:
+          - "session-history.log"
+          - "agent activity database"
+          - "consciousness tracker"
+        status: "Partially redundant"
+        recommendation: "Consolidate into agent activity database, link to consciousness tracker"
+
+  # Category 7: Over-Engineered Solutions
+  - type: "over_engineering"
+    detection_rule: "Complex solution where simple one would suffice"
+    action: "Replace with simpler implementation"
+    benefit: "Easier maintenance, fewer bugs, faster execution"
+    validation: "Complexity analysis (lines of code, cyclomatic complexity)"
+    candidates:
+      - name: "TBD"
+        status: "Needs complexity analysis"
+
+  # Category 8: Stale Features
+  - type: "stale_features"
+    detection_rule: "Feature built but never actually used by user"
+    action: "Remove or archive"
+    benefit: "Reduce maintenance burden, focus on what matters"
+    validation: "Track feature usage over time"
+    candidates:
+      - name: "World daily dashboard (disabled)"
+        status: "User explicitly disabled"
+        recommendation: "Archive completely (already disabled in code)"
+
+      - name: "God-mode consciousness (50 prediction domains)"
+        usage_rate: "Unknown"
+        recommendation: "Audit - is this actually used or just documentation overhead?"
+
+  # Category 9: Verbose Output
+  - type: "verbose_output"
+    detection_rule: "Tool outputs excessive information (>50 lines) when 10 would suffice"
+    action: "Add summary mode, make verbose optional"
+    benefit: "Faster comprehension, reduced scrolling, cleaner logs"
+    validation: "Measure output line count per tool"
+    candidates:
+      - name: "repo-dashboard.sh"
+        avg_lines: "80+ lines"
+        recommendation: "Add --compact flag, show only essentials by default"
+
+      - name: "agent-dashboard.ps1"
+        avg_lines: "60+ lines"
+        recommendation: "Already has -Compact flag, make it default"
+
+  # Category 10: Ignored Warnings
+  - type: "ignored_warnings"
+    detection_rule: "Warnings that are always ignored (noise, not signal)"
+    action: "Either fix root cause or suppress warning"
+    benefit: "Cleaner output, notice real warnings, reduce noise"
+    validation: "Track which warnings are consistently ignored"
+    candidates:
+      - name: "TBD"
+        status: "Needs warning log analysis"
+
+subtraction_metrics:
+  target_reductions:
+    - metric: "Total tools count"
+      current: "100+"
+      target: "80 (remove 20% least-used)"
+
+    - metric: "Startup checklist items"
+      current: "40+ items"
+      target: "15 items (essential only, rest conditional)"
+
+    - metric: "Documentation files"
+      current: "50+ files"
+      target: "35 files (consolidate duplicates)"
+
+    - metric: "Dependencies"
+      current: "TBD (needs audit)"
+      target: "-20% (replace with native solutions)"
+
+    - metric: "Average tool output lines"
+      current: "TBD (needs measurement)"
+      target: "< 30 lines (summary mode default)"
+
+execution_plan:
+  phase_1_quick_wins:
+    - action: "Remove disabled features (world dashboard)"
+      effort: "1 hour"
+      impact: "Medium (cleaner docs)"
+
+    - action: "Consolidate worktree documentation"
+      effort: "2 hours"
+      impact: "High (single source of truth)"
+
+    - action: "Make conditional startup steps"
+      effort: "2 hours"
+      impact: "High (faster startup)"
+
+  phase_2_analysis:
+    - action: "Run usage analysis on all tools"
+      effort: "4 hours"
+      impact: "High (data-driven removal)"
+
+    - action: "Measure documentation overlap"
+      effort: "2 hours"
+      impact: "Medium (identify consolidation targets)"
+
+    - action: "Complexity audit of tools"
+      effort: "4 hours"
+      impact: "Medium (find over-engineering)"
+
+  phase_3_execution:
+    - action: "Archive unused tools (bottom 20%)"
+      effort: "2 hours"
+      impact: "Medium (reduced cognitive load)"
+
+    - action: "Consolidate duplicate docs"
+      effort: "6 hours"
+      impact: "High (single source of truth)"
+
+    - action: "Simplify over-engineered solutions"
+      effort: "8 hours"
+      impact: "High (easier maintenance)"
+
+validation_criteria:
+  before_removal:
+    - "Verify no recent usage in logs"
+    - "Check for dependencies (what uses this?)"
+    - "Archive, don't delete (can recover if needed)"
+    - "Document why removed (prevent re-creation)"
+    - "User approval for user-facing features"
+
+  after_removal:
+    - "Verify no broken references"
+    - "Update documentation"
+    - "Test workflows still function"
+    - "Measure impact (startup time, cognitive load)"
+    - "Monitor for 1 week (any issues?)"
+
+# Last updated: 2026-02-05
+# Maintained by: Claude Agent (via negativa - improvement by subtraction)
