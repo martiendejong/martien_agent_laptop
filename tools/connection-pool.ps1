@@ -1,0 +1,6 @@
+# connection-pool.ps1 - Connection pooling for efficiency
+param([string]$Action,[string]$Target,[int]$PoolSize=10)
+$poolFile="/c/scripts/_machine/connection-pool.json"
+function Get-Pool{if(Test-Path $poolFile){return Get-Content $poolFile|ConvertFrom-Json}return @{Connections=@{};Created=(Get-Date).ToString("o")}}
+function Get-PooledConnection{param([string]$Target)$pool=Get-Pool;$avail=$pool.Connections.$Target|Where-Object{-not $_.InUse};if($avail){$avail[0].InUse=$true;$avail[0].LastUsed=(Get-Date).ToString("o");$pool|ConvertTo-Json -Depth 10|Set-Content $poolFile;Write-Host "Reusing connection to $Target" -ForegroundColor Green;return $avail[0]}$existing=($pool.Connections.$Target|Measure-Object).Count;if($existing -lt $PoolSize){$conn=@{Id=[guid]::NewGuid().ToString();Target=$Target;Created=(Get-Date).ToString("o");InUse=$true;LastUsed=(Get-Date).ToString("o");UsageCount=1};if(-not $pool.Connections.$Target){$pool.Connections.$Target=@()};$pool.Connections.$Target+=$conn;$pool|ConvertTo-Json -Depth 10|Set-Content $poolFile;Write-Host "Created connection to $Target" -ForegroundColor Cyan;return $conn}Write-Host "Pool full, waiting..." -ForegroundColor Yellow;Start-Sleep -Seconds 1;return Get-PooledConnection -Target $Target}
+switch($Action){"Get"{Get-PooledConnection -Target $Target}}

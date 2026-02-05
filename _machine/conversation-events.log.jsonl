@@ -1,1 +1,1 @@
-{"timestamp":"2026-02-05T00:00:00Z","event":"system_init","round":2,"description":"Conversation event logging initialized"}
+{"metadata":{"schema_version":"1.0","created":"2026-02-05","description":"Append-only log of conversation events for context tracking"}}
