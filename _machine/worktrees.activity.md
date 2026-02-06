@@ -1,3 +1,14 @@
+## 2026-02-06 21:15 UTC - Release: agent-002
+- Repo: hazina
+- Branch: fix/onstatechanged-debounce
+- PR: #177
+- Outcome: Debounce OnStateChanged events (500ms) to prevent focus loss during typing - REAL fix for terminal refresh issue
+
+## 2026-02-06 21:00 UTC - Allocation: agent-002
+- Repo: hazina
+- Branch: fix/onstatechanged-debounce
+- Purpose: Fix OnStateChanged spam causing focus loss - debounce state change events to prevent React re-renders during user typing
+
 ## 2026-02-06 20:45 UTC - Release: agent-001
 - Repo: hazina
 - Branch: fix/terminal-refresh-regression
