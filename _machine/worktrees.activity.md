@@ -1,3 +1,14 @@
+## 2026-02-06 20:45 UTC - Release: agent-001
+- Repo: hazina
+- Branch: fix/terminal-refresh-regression
+- PR: #176
+- Outcome: Fix terminal refresh regression - removed focus() useEffect causing flickering (introduced in 71a9e2e, fixed)
+
+## 2026-02-06 20:30 UTC - Allocation: agent-001
+- Repo: hazina
+- Branch: fix/terminal-refresh-regression
+- Purpose: Fix terminal refresh regression - remove problematic focus() useEffect that causes screen refreshes every few seconds
+
 ## 2026-02-06 15:30 UTC - Release: agent-001
 - Repo: artrevisionist-wordpress
 - Branch: feature/869bz901c-topic-page-image
