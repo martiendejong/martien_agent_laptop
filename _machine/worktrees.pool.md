@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-06T03:00:00Z | ✅ PR #507: Pre-select all categories/hooks in wizard (ClickUp #869c1w210) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-06T03:15:00Z | ✅ PR #508: Wizard success page with post list + calendar link (ClickUp #869c1w38h) |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-06T18:45:00Z | ✅ PR #505: ParentPostManager UI + Service Layer (merged develop, ready for review) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-06T19:12:00Z | ✅ Merged develop into fix/facebook-complete-integration (PR #503 already merged) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-05T17:55:31Z | ✅ PR #493 MERGED: Round 5 - Automatic OAuth token refresh |
