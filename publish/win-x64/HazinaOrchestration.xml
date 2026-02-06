@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HazinaOrchestration</name>
+    </assembly>
+    <members>
+        <member name="T:Hazina.Demo.AgenticOrchestration.Authentication.BasicAuthenticationHandler">
+            <summary>
+            Basic HTTP Authentication handler.
+            Validates credentials from the Authorization header against configuration.
+            </summary>
+        </member>
+        <member name="T:Hazina.Demo.AgenticOrchestration.Authentication.BasicAuthenticationOptions">
+            <summary>
+            Configuration options for basic authentication
+            </summary>
+        </member>
+        <member name="P:Hazina.Demo.AgenticOrchestration.Authentication.BasicAuthenticationOptions.Enabled">
+            <summary>
+            Whether authentication is enabled. If false, all requests are allowed.
+            </summary>
+        </member>
+        <member name="P:Hazina.Demo.AgenticOrchestration.Authentication.BasicAuthenticationOptions.Username">
+            <summary>
+            The username required for authentication
+            </summary>
+        </member>
+        <member name="P:Hazina.Demo.AgenticOrchestration.Authentication.BasicAuthenticationOptions.Password">
+            <summary>
+            The password required for authentication
+            </summary>
+        </member>
+        <member name="P:Hazina.Demo.AgenticOrchestration.Authentication.BasicAuthenticationOptions.Realm">
+            <summary>
+            The realm shown in the browser's login dialog
+            </summary>
+        </member>
+        <member name="T:Hazina.Demo.AgenticOrchestration.Authentication.BasicAuthenticationExtensions">
+            <summary>
+            Extension methods for registering basic authentication
+            </summary>
+        </member>
+        <member name="T:Hazina.Demo.AgenticOrchestration.Controllers.ChatController">
+            <summary>
+            Chat API controller for AI-powered terminal orchestration assistant.
+            Provides a conversational interface with tools for managing terminal sessions.
+            </summary>
+        </member>
+        <member name="M:Hazina.Demo.AgenticOrchestration.Controllers.ChatController.SendMessage(Hazina.Demo.AgenticOrchestration.Controllers.ChatRequest,System.Threading.CancellationToken)">
+            <summary>
+            Send a chat message and receive a streaming response.
+            The AI assistant can use tools to manage terminal sessions.
+            </summary>
+        </member>
+        <member name="M:Hazina.Demo.AgenticOrchestration.Controllers.ChatController.GetConversation(System.String)">
+            <summary>
+            Get conversation history
+            </summary>
+        </member>
+        <member name="M:Hazina.Demo.AgenticOrchestration.Controllers.ChatController.DeleteConversation(System.String)">
+            <summary>
+            Delete a conversation
+            </summary>
+        </member>
+        <member name="T:Hazina.Demo.AgenticOrchestration.Security.InputSanitizer">
+            <summary>
+            Input sanitization utilities to prevent command injection and other security vulnerabilities.
+            </summary>
+        </member>
+        <member name="M:Hazina.Demo.AgenticOrchestration.Security.InputSanitizer.TryValidateSessionId(System.String,System.String@)">
+            <summary>
+            Validates and sanitizes a session ID.
+            </summary>
+            <param name="sessionId">The session ID to validate</param>
+            <param name="sanitized">The sanitized session ID</param>
+            <returns>True if valid and sanitized successfully</returns>
+        </member>
+        <member name="M:Hazina.Demo.AgenticOrchestration.Security.InputSanitizer.TrySanitizeCommand(System.String,System.Int32,System.String@)">
+            <summary>
+            Sanitizes a command string for terminal execution.
+            IMPORTANT: This does NOT make arbitrary user input safe for shell execution.
+            Use only for validated, limited command sets.
+            </summary>
+            <param name="command">The command to sanitize</param>
+            <param name="maxLength">Maximum allowed command length</param>
+            <param name="sanitized">The sanitized command</param>
+            <returns>True if sanitization succeeded</returns>
+        </member>
+        <member name="M:Hazina.Demo.AgenticOrchestration.Security.InputSanitizer.TrySanitizeString(System.String,System.Int32,System.String@)">
+            <summary>
+            Sanitizes a general string parameter (for archive IDs, titles, etc.)
+            </summary>
+            <param name="input">The input string</param>
+            <param name="maxLength">Maximum allowed length</param>
+            <param name="sanitized">The sanitized output</param>
+            <returns>True if sanitization succeeded</returns>
+        </member>
+        <member name="M:Hazina.Demo.AgenticOrchestration.Security.InputSanitizer.TryValidateInteger(System.String,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Validates an integer parameter is within safe bounds.
+            </summary>
+        </member>
+        <member name="M:Hazina.Demo.AgenticOrchestration.Security.InputSanitizer.EscapeForLogging(System.String)">
+            <summary>
+            Escapes a string for safe logging (prevents log injection).
+            </summary>
+        </member>
+    </members>
+</doc>
