@@ -1,3 +1,14 @@
+## 2026-02-06 15:30 UTC - Release: agent-001
+- Repo: artrevisionist-wordpress
+- Branch: feature/869bz901c-topic-page-image
+- PR: #5
+- Outcome: Topic page/hero image field (separate from featured image for thumbnails) - ClickUp #869bz901c
+
+## 2026-02-06 15:00 UTC - Allocation: agent-001
+- Repo: artrevisionist-wordpress
+- Branch: feature/869bz901c-topic-page-image
+- Purpose: Add page/hero image field to Topics (separate from featured image/thumbnail) - ClickUp #869bz901c
+
 ## 2026-02-06 17:45 UTC - Release: agent-002
 - Repo: client-manager
 - Branch: cleanup/console-logs

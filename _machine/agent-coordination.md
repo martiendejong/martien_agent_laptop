@@ -13,6 +13,7 @@
 | current-session | DONE | 869c1w3d4 | - | - | Fix 404 error editing posts | ✅ Blocked - clarification requested | 2026-02-06T02:50:00Z |
 | current-session | DONE | 869c1w210 | #507 | fix/post-edit-404-error | Pre-select categories/hooks | ✅ PR #507 created, worktree released | 2026-02-06T03:00:00Z |
 | current-session | DONE | 869c1w38h | #508 | feature/wizard-success-page | Wizard success page | ✅ PR #508 created, worktree released | 2026-02-06T03:15:00Z |
+| agent-001 | DONE | 869bz901c | #5 | feature/869bz901c-topic-page-image | Topic page image field | ✅ PR #5 created, ClickUp updated, worktree released | 2026-02-06T15:30:00Z |
 
 **Legend:**
 - **Agent**: agent-001, agent-002, etc.
