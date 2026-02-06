@@ -94,3 +94,5 @@
 - Outcome: Merged latest develop into fix/facebook-complete-integration (bringing in PR #502 sub-posts work and other recent changes)
 - Note: Original PR #503 was already merged; this was a consolidation merge
 
+2026-02-06T02:48:32Z | agent-001 | ALLOCATE | fix/post-edit-404-error | ClickUp #869c1w3d4: Fix 404 error editing posts (paired: client-manager + hazina)
+2026-02-06T02:53:52Z | agent-001 | RELEASE | fix/post-edit-404-error | PR #507: Pre-select all categories/hooks in wizard (ClickUp #869c1w210)
