@@ -10,6 +10,9 @@
 
 | Agent | Status | ClickUp Task | GitHub PR | Branch | Objective | Phase | Updated (UTC) |
 |-------|--------|--------------|-----------|--------|-----------|-------|---------------|
+| current-session | DONE | 869c1w3d4 | - | - | Fix 404 error editing posts | ✅ Blocked - clarification requested | 2026-02-06T02:50:00Z |
+| current-session | DONE | 869c1w210 | #507 | fix/post-edit-404-error | Pre-select categories/hooks | ✅ PR #507 created, worktree released | 2026-02-06T03:00:00Z |
+| current-session | PLANNING | 869c1w38h | - | - | Wizard success page with post list + calendar link | Investigation | 2026-02-06T03:00:00Z |
 
 **Legend:**
 - **Agent**: agent-001, agent-002, etc.
