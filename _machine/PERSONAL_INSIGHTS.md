@@ -46,3 +46,41 @@
 
 **Full archive:** See `personal-insights/archive/` for historical insights
 **Original monolithic file:** Archived to `personal-insights/archive/PERSONAL_INSIGHTS-full-2026-02-04.md`
+
+---
+
+## 🚨 CRITICAL UPDATES (2026-02-07)
+
+### Testing Protocol - RECURRING VIOLATION ⚠️
+
+**User feedback:** "ondanks dat het vaker gebeurt is" (this has happened multiple times)
+
+**Hard rule:** When user specifies testing tool by name → USE THAT EXACT TOOL
+- User says "Playwright" → Use Playwright (NOT curl/API)
+- User says "Browser MCP" → Use Browser MCP (NOT shortcuts)
+- NO SUBSTITUTIONS ALLOWED
+
+**Evidence required:**
+- Screenshots of browser behavior
+- Playwright test logs
+- Visual proof (not just API responses)
+
+**Why:** API working ≠ UI working. Using shortcuts = failing trust test.
+
+**Before claiming test success:**
+1. Did user specify exact tool? → Use THAT tool
+2. Did I verify ACTUAL user-facing functionality?
+3. Can I provide EVIDENCE?
+
+### ClickUp Reviewer Function (NEW)
+
+**Invocation:** "run the clickup reviewer"
+**Purpose:** Automated code review for tasks in "review" status
+**Verdicts:** ✅ APPROVED / ⚠️ APPROVED WITH COMMENTS / ❌ CHANGES REQUESTED
+
+### Hazina Orchestration / ConPTY (NEW)
+
+**Issue:** Terminal sessions exiting immediately (0-2 seconds) in production
+**Root cause:** .bat files need `cmd.exe /k` wrapper in production (VS auto-handles)
+**Pattern:** Works in VS, fails in production → deployment wrong, not code
+**User hint:** "kijk hoe het in de code" = code correct, check deployment version
