@@ -96,11 +96,66 @@ C:\scripts\tools\clickup-sync.ps1 -Action list -Project "art-revisionist" |
    Moving task back to 'to do' status.
    ```
 
-5. **Analyze Changes**
+5. **🚨 CRITICAL: Build & Test Before Approval**
+
+   **MANDATORY: Pull latest develop, build, and test BEFORE approval**
+
+   ```bash
+   # Allocate worktree
+   # Use allocate-worktree skill or manual allocation
+
+   # For projects requiring paired worktrees (client-manager, artrevisionist):
+   # - client-manager requires hazina worktree
+   # - artrevisionist requires hazina worktree
+
+   cd /c/Projects/worker-agents/agent-XXX/<repo>
+
+   # Pull latest develop into branch
+   git fetch origin develop
+   git merge origin/develop --no-edit
+
+   # If conflicts arise:
+   # - Resolve conflicts
+   # - Commit resolution
+   # - Push to branch
+   # - Continue testing
+
+   # Build backend (if applicable)
+   dotnet build --configuration Release
+
+   # Build frontend (if applicable)
+   cd frontend-dir
+   npm install  # If node_modules missing
+   npm run build
+
+   # Run Playwright tests (if they exist)
+   npx playwright test
+
+   # Fix any errors found
+   # - Build errors: Fix code issues
+   # - Test failures: Fix failing tests or update tests if behavior intentionally changed
+   # - Commit and push fixes
+   ```
+
+   **If build or tests fail:**
+   1. ❌ DO NOT approve PR
+   2. ❌ Comment on PR explaining failures
+   3. ❌ Move ClickUp task to "blocked" or keep in "review"
+   4. ✅ Provide specific error messages and fix suggestions
+   5. ⏸️ Wait for developer to fix issues
+
+   **Only proceed to approval if:**
+   - ✅ Latest develop merged successfully
+   - ✅ Backend builds without errors
+   - ✅ Frontend builds without errors
+   - ✅ All Playwright tests pass (if tests exist)
+   - ✅ No new errors introduced
+
+6. **Analyze Code Quality**
    - Review file changes
    - Check for code quality issues
    - Verify MoSCoW requirements met
-   - Ensure tests included
+   - Ensure tests included (or acknowledge if no tests exist yet)
    - Check documentation updates
 
 5. **Generate Review**
