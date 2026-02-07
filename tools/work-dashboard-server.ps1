@@ -3,7 +3,7 @@
 # Serves files from C:\scripts\_machine on http://localhost:8080
 
 param(
-    [int]$Port = 8080
+    [int]$Port = 4242
 )
 
 $basePath = "C:\scripts\_machine"

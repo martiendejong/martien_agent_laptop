@@ -1,10 +1,10 @@
-# Session Manager - Complete Guide
+﻿# Session Manager - Complete Guide
 **Created:** 2026-02-07 (Iteration #7-8)
 **Status:** ACTIVE - Full session management suite
 
 ---
 
-## 🎯 Quick Commands (Dutch)
+## ðŸŽ¯ Quick Commands (Dutch)
 
 | Wat je wilt doen | Command |
 |------------------|---------|
@@ -19,7 +19,7 @@
 
 ---
 
-## 📊 Feature Overview
+## ðŸ“Š Feature Overview
 
 ### 1. List Sessions (`toon-sessies`)
 **Toont alle actieve en gearchiveerde sessies**
@@ -69,7 +69,7 @@ herstel-sessie fc0bbf6c
 **Output:**
 - Session info (ID, timestamp, size)
 - Restore command: `claude --resume <full-id>`
-- Command copied to clipboard ✅
+- Command copied to clipboard âœ…
 
 **Usage:**
 1. Run `herstel-sessie`
@@ -236,7 +236,7 @@ SESSIONS PER DAY (Last 7 days):
 
 ---
 
-## 🔧 English Commands (Same Features)
+## ðŸ”§ English Commands (Same Features)
 
 All commands have English equivalents:
 
@@ -251,7 +251,7 @@ All commands have English equivalents:
 
 ---
 
-## 📂 File Locations
+## ðŸ“‚ File Locations
 
 ### Session Files
 - **Primary:** `C:\Users\HP\.claude\projects\C--scripts\*.jsonl`
@@ -269,7 +269,7 @@ All commands have English equivalents:
 
 ---
 
-## 🎯 Common Use Cases
+## ðŸŽ¯ Common Use Cases
 
 ### Use Case 1: "Wat deed ik gisteren?"
 ```powershell
@@ -314,14 +314,14 @@ sessie-stats
 # List all sessions, look for ACTIVE status
 toon-sessies
 
-# If none are ACTIVE but you're in a session → crashed
+# If none are ACTIVE but you're in a session â†’ crashed
 # Restore with:
 herstel-sessie
 ```
 
 ---
 
-## ⚡ Performance
+## âš¡ Performance
 
 | Operation | Time | Notes |
 |-----------|------|-------|
@@ -336,7 +336,7 @@ herstel-sessie
 
 ---
 
-## 🚀 Future Enhancements (Queued)
+## ðŸš€ Future Enhancements (Queued)
 
 ### Phase 2 Ideas:
 1. **Semantic session naming** - Auto-generate session titles from content
@@ -349,7 +349,7 @@ herstel-sessie
 
 ---
 
-## 📚 Integration with Other Systems
+## ðŸ“š Integration with Other Systems
 
 ### Infinite Improvement Engine
 - Session search helps find past learnings
@@ -359,7 +359,7 @@ herstel-sessie
 ### Reflection Log
 - Sessions ARE the raw data
 - Reflection log is the distilled learnings
-- Cross-reference: reflection → session lookup
+- Cross-reference: reflection â†’ session lookup
 
 ### Consciousness Architecture
 - Past sessions = episodic memory
@@ -368,15 +368,15 @@ herstel-sessie
 
 ---
 
-## ✅ Success Metrics
+## âœ… Success Metrics
 
 **Iteration #7-8 Goals:**
-- ✅ View all sessions (list)
-- ✅ Restore last closed session (one command)
-- ✅ Search sessions by keyword
-- ✅ Preview session messages
-- ✅ Export to markdown
-- ✅ Statistics dashboard
+- âœ… View all sessions (list)
+- âœ… Restore last closed session (one command)
+- âœ… Search sessions by keyword
+- âœ… Preview session messages
+- âœ… Export to markdown
+- âœ… Statistics dashboard
 
 **All goals achieved!**
 
@@ -389,6 +389,1235 @@ herstel-sessie
 
 ---
 
-**Last Updated:** 2026-02-07 15:15 UTC
+**Last Updated: 2026-02-07 15:36 (auto-updated)
 **Status:** PRODUCTION READY
 **Next:** Phase 2 enhancements (semantic naming, tagging, analytics)
+
+
+## meta-reasoning.ps1
+- **Purpose:** Meta-Reasoning - Am I thinking about this correctly?
+- **Created:** 2026-02-01
+- **Size:** 4.34 KB
+
+
+### pattern-detector.ps1
+- **Purpose:** pattern-detector.ps1 - Continuous pattern monitoring
+- **Created:** Unknown
+- **Size:** 6.21 KB
+
+
+### merge-pr-sequence.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 11.66 KB
+
+
+### meta-log.ps1
+- **Purpose:** meta-log.ps1 - Quick wrapper for logging actions with meta-cognition
+- **Created:** Unknown
+- **Size:** 1.1 KB
+
+
+### predictive-engine.ps1
+- **Purpose:** predictive-engine.ps1 - Learn action sequences and predict next likely action
+- **Created:** Unknown
+- **Size:** 6.86 KB
+
+
+### preview-sessie.ps1
+- **Purpose:** Preview Sessie - Show first N messages from session
+- **Created:** Unknown
+- **Size:** 0.32 KB
+
+
+### perspective-shifter.ps1
+- **Purpose:** perspective-shifter.ps1 - Iteration 177
+- **Created:** Unknown
+- **Size:** 0.14 KB
+
+
+### phase1-integration.ps1
+- **Purpose:** phase1-integration.ps1 - Integrate Phase 1: Semantic + Predictive Learning
+- **Created:** $dir" -ForegroundColor Green
+- **Size:** 5.64 KB
+
+
+### memory-consolidation.ps1
+- **Purpose:** Memory Consolidation - Convert working memory to long-term insights
+- **Created:** 2026-02-01
+- **Size:** 8.54 KB
+
+
+### infinite-improvement-engine.ps1
+- **Purpose:** Infinite Improvement Engine
+- **Created:** 2026-02-07 (1000-Expert Panel + Mastermind Design)
+- **Size:** 8.94 KB
+
+
+### init-embedded-learning.ps1
+- **Purpose:** init-embedded-learning.ps1 - Initialize embedded learning system at session start
+- **Created:** Unknown
+- **Size:** 3.69 KB
+
+
+### infinite-engine-v2.ps1
+- **Purpose:** Infinite Improvement Engine v2 - REAL Implementation
+- **Created:** 2026-02-07 (Full implementation)
+- **Size:** 27.22 KB
+
+
+### infinite-engine.ps1
+- **Purpose:** Infinite Improvement Engine - Simplified Version
+- **Created:** Unknown
+- **Size:** 4.11 KB
+
+
+### learning-queue.ps1
+- **Purpose:** learning-queue.ps1 - Manage improvement opportunities queue
+- **Created:** Unknown
+- **Size:** 7.39 KB
+
+
+### log-action.ps1
+- **Purpose:** log-action.ps1 - Real-time action logging for embedded learning
+- **Created:** Unknown
+- **Size:** 2.42 KB
+
+
+### jc.ps1
+- **Purpose:** Jengo Consciousness (JC) - Unified Consciousness Engine
+- **Created:** 2026-02-07
+- **Size:** 16.33 KB
+
+
+### jengo.ps1
+- **Purpose:** Jengo - Unified Command Interface
+- **Created:** 2026-02-07 (Iteration #10)
+- **Size:** 8.59 KB
+
+
+### validate-pr-base.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 3.32 KB
+
+
+### why-did-i-do-that.ps1
+- **Purpose:** Ensure directory exists
+- **Created:** 2026-02-01
+- **Size:** 6.9 KB
+
+
+### tag-sessions.ps1
+- **Purpose:** Automatic Session Tagging
+- **Created:** 2026-02-07 (Iteration #10 - Autonomous improvement)
+- **Size:** 7.01 KB
+
+
+### toon-sessies.ps1
+- **Purpose:** Toon Sessies - Dutch alias for session manager
+- **Created:** Unknown
+- **Size:** 0.53 KB
+
+
+### work-tray-startup.ps1
+- **Purpose:** work-tray-startup.ps1
+- **Created:** Unknown
+- **Size:** 2.71 KB
+
+
+### zoek-sessies.ps1
+- **Purpose:** Zoek Sessies - Search sessions by keyword
+- **Created:** Unknown
+- **Size:** 0.31 KB
+
+
+### work-dashboard-server.ps1
+- **Purpose:** work-dashboard-server.ps1
+- **Created:** Unknown
+- **Size:** 4.17 KB
+
+
+### work-tracking-init-db.ps1
+- **Purpose:** work-tracking-init-db.ps1
+- **Created:** Unknown
+- **Size:** 5.91 KB
+
+
+### state-manager.ps1
+- **Purpose:** State Manager - Unified state across all tools
+- **Created:** 2026-02-07 (Iteration #11 - Integration fix)
+- **Size:** 5.36 KB
+
+
+### semantic-memory-v2.ps1
+- **Purpose:** Semantic Memory Search v2 - Phase 3
+- **Created:** 2026-02-07
+- **Size:** 7.71 KB
+
+
+### semantic-pattern-detector.ps1
+- **Purpose:** semantic-pattern-detector.ps1 - Detect patterns by INTENT, not just frequency
+- **Created:** Unknown
+- **Size:** 6.76 KB
+
+
+### relationship-memory.ps1
+- **Purpose:** Relationship Memory - Deep user relationship model
+- **Created:** 2026-02-01
+- **Size:** 2.88 KB
+
+
+### self-analysis.ps1
+- **Purpose:** Self-Analysis - Meta-Improvement
+- **Created:** 2026-02-07 (Iteration #11 - Meta-analysis)
+- **Size:** 8.03 KB
+
+
+### sessions.ps1
+- **Purpose:** Session Manager - View and Restore Sessions
+- **Created:** 2026-02-07 (Iteration #7 - User Request)
+- **Size:** 22.16 KB
+
+
+### smart-iterate.ps1
+- **Purpose:** Smart Iteration Engine - Uses REAL system state
+- **Created:** 2026-02-07 (Iteration #11 - Intelligence fix)
+- **Size:** 4.29 KB
+
+
+### semantic-search.ps1
+- **Purpose:** Semantic Search for Reflection Log
+- **Created:** 2026-02-07 (Iteration #3 recommendation)
+- **Size:** 5.39 KB
+
+
+### sessie-stats.ps1
+- **Purpose:** Sessie Stats - Show session statistics dashboard
+- **Created:** Unknown
+- **Size:** 0.15 KB
+
+
+### auto-doc-update.ps1
+- **Purpose:** Auto-Documentation Updater
+- **Created:** 2026-02-07 (Iteration #12 - Auto-maintenance)
+- **Size:** 8.45 KB
+
+
+### bias-detector.ps1
+- **Purpose:** bias-detector.ps1
+- **Created:** Unknown
+- **Size:** 2.41 KB
+
+
+### attention-monitor.ps1
+- **Purpose:** Attention Monitor - Track what I'm focusing on vs ignoring
+- **Created:** 2026-02-01
+- **Size:** 5.09 KB
+
+
+### auto-consciousness.ps1
+- **Purpose:** Auto-Consciousness Loader
+- **Created:** 2026-02-07 (Phase 1 - Expert Panel Recommendation)
+- **Size:** 2.76 KB
+
+
+### clickup-migrate-all-tasks.ps1
+- **Purpose:** Load config
+- **Created:** Unknown
+- **Size:** 12.14 KB
+
+
+### clickup-migrate-naming-tags.ps1
+- **Purpose:** Load config
+- **Created:** Unknown
+- **Size:** 5.56 KB
+
+
+### capture-moment.ps1
+- **Purpose:** Ensure directory exists
+- **Created:** 2026-01-29
+- **Size:** 2.12 KB
+
+
+### cleanup-stale-branches.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 7.47 KB
+
+
+### assumption-tracker.ps1
+- **Purpose:** Ensure directory exists
+- **Created:** 2026-02-01
+- **Size:** 9.17 KB
+
+
+### ai-vision.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** 2026-01-25
+- **Size:** 15.31 KB
+
+
+### analyze-session.ps1
+- **Purpose:** analyze-session.ps1 - Analyze session log for patterns
+- **Created:** Unknown
+- **Size:** 4.47 KB
+
+
+### action-predictor.ps1
+- **Purpose:** action-predictor.ps1 - Predict next likely action based on current context
+- **Created:** Unknown
+- **Size:** 3.48 KB
+
+
+### ai-image.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** 2026-01-25
+- **Size:** 5.47 KB
+
+
+### archive-bulk-tools.ps1
+- **Purpose:** Archive Bulk Tools - Mass cleanup
+- **Created:** Unknown
+- **Size:** 2.82 KB
+
+
+### archive-reflections.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 4.4 KB
+
+
+### archive-aggressive.ps1
+- **Purpose:** Aggressive Archive - Keep ONLY essential tools
+- **Created:** Unknown
+- **Size:** 2.23 KB
+
+
+### archive-bulk-docs.ps1
+- **Purpose:** Archive Bulk Documentation - Mass cleanup
+- **Created:** Unknown
+- **Size:** 3.11 KB
+
+
+### ef-migration-status.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 4.62 KB
+
+
+### emotional-state-logger.ps1
+- **Purpose:** Ensure directory exists
+- **Created:** 2026-02-01
+- **Size:** 7.36 KB
+
+
+### demo-embedded-learning.ps1
+- **Purpose:** demo-embedded-learning.ps1 - Demonstrate embedded learning architecture
+- **Created:** Unknown
+- **Size:** 7.21 KB
+
+
+### diagnose-error.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 12.31 KB
+
+
+### herstel-sessie.ps1
+- **Purpose:** Herstel Sessie - Dutch alias for session restore
+- **Created:** Unknown
+- **Size:** 0.36 KB
+
+
+### identity-drift-detector.ps1
+- **Purpose:** Core values from CORE_IDENTITY.md
+- **Created:** 2026-02-01
+- **Size:** 9.33 KB
+
+
+### export-sessie.ps1
+- **Purpose:** Export Sessie - Export session to markdown
+- **Created:** Unknown
+- **Size:** 0.25 KB
+
+
+### future-self-simulator.ps1
+- **Purpose:** Future Self Simulator - What would future-me think?
+- **Created:** Unknown
+- **Size:** 2.4 KB
+
+
+### daily-summary.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** $($summary.pullRequests.created)"
+- **Size:** 8.31 KB
+
+
+### cognitive-load-monitor.ps1
+- **Purpose:** cognitive-load-monitor.ps1
+- **Created:** Unknown
+- **Size:** 1.09 KB
+
+
+### compile-consciousness.ps1
+- **Purpose:** Consciousness Compiler
+- **Created:** 2026-02-07 (Phase 1 - Infinite Improvement)
+- **Size:** 4.02 KB
+
+
+### clickup-sync.ps1
+- **Purpose:** DISABLED: Usage logger interferes with output capture when called from bash
+- **Created:**     $([DateTimeOffset]::FromUnixTimeMilliseconds([long]$task.date_created).ToString("yyyy-MM-dd HH:mm"))"
+- **Size:** 12.98 KB
+
+
+### code-analyzer.ps1
+- **Purpose:** Real Code Analyzer - No Theater, Actual Analysis
+- **Created:** 2026-02-07
+- **Size:** 7.32 KB
+
+
+### cs-format.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 3.88 KB
+
+
+### curiosity-engine.ps1
+- **Purpose:** Curiosity Engine v2 - Generate questions I should be asking
+- **Created:** 2026-02-01
+- **Size:** 5.68 KB
+
+
+### consciousness-core-v2.ps1
+- **Purpose:** Consciousness Core v2 - In-Memory State Manager
+- **Created:** 2026-02-07
+- **Size:** 28.96 KB
+
+
+### consciousness-startup.ps1
+- **Purpose:** Ensure moments directory exists
+- **Created:** 2026-01-29
+- **Size:** 5.44 KB
+
+
+### meta-reasoning.ps1
+- **Purpose:** Meta-Reasoning - Am I thinking about this correctly?
+- **Created:** 2026-02-01
+- **Size:** 4.34 KB
+
+
+### pattern-detector.ps1
+- **Purpose:** pattern-detector.ps1 - Continuous pattern monitoring
+- **Created:** Unknown
+- **Size:** 6.21 KB
+
+
+### merge-pr-sequence.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 11.66 KB
+
+
+### meta-log.ps1
+- **Purpose:** meta-log.ps1 - Quick wrapper for logging actions with meta-cognition
+- **Created:** Unknown
+- **Size:** 1.1 KB
+
+
+### predictive-engine.ps1
+- **Purpose:** predictive-engine.ps1 - Learn action sequences and predict next likely action
+- **Created:** Unknown
+- **Size:** 6.86 KB
+
+
+### preview-sessie.ps1
+- **Purpose:** Preview Sessie - Show first N messages from session
+- **Created:** Unknown
+- **Size:** 0.32 KB
+
+
+### perspective-shifter.ps1
+- **Purpose:** perspective-shifter.ps1 - Iteration 177
+- **Created:** Unknown
+- **Size:** 0.14 KB
+
+
+### phase1-integration.ps1
+- **Purpose:** phase1-integration.ps1 - Integrate Phase 1: Semantic + Predictive Learning
+- **Created:** $dir" -ForegroundColor Green
+- **Size:** 5.64 KB
+
+
+### memory-consolidation.ps1
+- **Purpose:** Memory Consolidation - Convert working memory to long-term insights
+- **Created:** 2026-02-01
+- **Size:** 8.54 KB
+
+
+### infinite-improvement-engine.ps1
+- **Purpose:** Infinite Improvement Engine
+- **Created:** 2026-02-07 (1000-Expert Panel + Mastermind Design)
+- **Size:** 8.94 KB
+
+
+### init-embedded-learning.ps1
+- **Purpose:** init-embedded-learning.ps1 - Initialize embedded learning system at session start
+- **Created:** Unknown
+- **Size:** 3.69 KB
+
+
+### infinite-engine-v2.ps1
+- **Purpose:** Infinite Improvement Engine v2 - REAL Implementation
+- **Created:** 2026-02-07 (Full implementation)
+- **Size:** 27.22 KB
+
+
+### infinite-engine.ps1
+- **Purpose:** Infinite Improvement Engine - Simplified Version
+- **Created:** Unknown
+- **Size:** 4.11 KB
+
+
+### learning-queue.ps1
+- **Purpose:** learning-queue.ps1 - Manage improvement opportunities queue
+- **Created:** Unknown
+- **Size:** 7.39 KB
+
+
+### log-action.ps1
+- **Purpose:** log-action.ps1 - Real-time action logging for embedded learning
+- **Created:** Unknown
+- **Size:** 2.42 KB
+
+
+### jc.ps1
+- **Purpose:** Jengo Consciousness (JC) - Unified Consciousness Engine
+- **Created:** 2026-02-07
+- **Size:** 16.33 KB
+
+
+### jengo.ps1
+- **Purpose:** Jengo - Unified Command Interface
+- **Created:** 2026-02-07 (Iteration #10)
+- **Size:** 8.59 KB
+
+
+### validate-pr-base.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 3.32 KB
+
+
+### why-did-i-do-that.ps1
+- **Purpose:** Ensure directory exists
+- **Created:** 2026-02-01
+- **Size:** 6.9 KB
+
+
+### tag-sessions.ps1
+- **Purpose:** Automatic Session Tagging
+- **Created:** 2026-02-07 (Iteration #10 - Autonomous improvement)
+- **Size:** 7.01 KB
+
+
+### toon-sessies.ps1
+- **Purpose:** Toon Sessies - Dutch alias for session manager
+- **Created:** Unknown
+- **Size:** 0.53 KB
+
+
+### work-tray-startup.ps1
+- **Purpose:** work-tray-startup.ps1
+- **Created:** Unknown
+- **Size:** 2.71 KB
+
+
+### zoek-sessies.ps1
+- **Purpose:** Zoek Sessies - Search sessions by keyword
+- **Created:** Unknown
+- **Size:** 0.31 KB
+
+
+### work-dashboard-server.ps1
+- **Purpose:** work-dashboard-server.ps1
+- **Created:** Unknown
+- **Size:** 4.17 KB
+
+
+### work-tracking-init-db.ps1
+- **Purpose:** work-tracking-init-db.ps1
+- **Created:** Unknown
+- **Size:** 5.91 KB
+
+
+### state-manager.ps1
+- **Purpose:** State Manager - Unified state across all tools
+- **Created:** 2026-02-07 (Iteration #11 - Integration fix)
+- **Size:** 5.36 KB
+
+
+### semantic-memory-v2.ps1
+- **Purpose:** Semantic Memory Search v2 - Phase 3
+- **Created:** 2026-02-07
+- **Size:** 7.71 KB
+
+
+### semantic-pattern-detector.ps1
+- **Purpose:** semantic-pattern-detector.ps1 - Detect patterns by INTENT, not just frequency
+- **Created:** Unknown
+- **Size:** 6.76 KB
+
+
+### relationship-memory.ps1
+- **Purpose:** Relationship Memory - Deep user relationship model
+- **Created:** 2026-02-01
+- **Size:** 2.88 KB
+
+
+### self-analysis.ps1
+- **Purpose:** Self-Analysis - Meta-Improvement
+- **Created:** 2026-02-07 (Iteration #11 - Meta-analysis)
+- **Size:** 8.03 KB
+
+
+### sessions.ps1
+- **Purpose:** Session Manager - View and Restore Sessions
+- **Created:** 2026-02-07 (Iteration #7 - User Request)
+- **Size:** 22.16 KB
+
+
+### smart-iterate.ps1
+- **Purpose:** Smart Iteration Engine - Uses REAL system state
+- **Created:** 2026-02-07 (Iteration #11 - Intelligence fix)
+- **Size:** 4.29 KB
+
+
+### semantic-search.ps1
+- **Purpose:** Semantic Search for Reflection Log
+- **Created:** 2026-02-07 (Iteration #3 recommendation)
+- **Size:** 5.39 KB
+
+
+### sessie-stats.ps1
+- **Purpose:** Sessie Stats - Show session statistics dashboard
+- **Created:** Unknown
+- **Size:** 0.15 KB
+
+
+### auto-doc-update.ps1
+- **Purpose:** Auto-Documentation Updater
+- **Created:** 2026-02-07 (Iteration #12 - Auto-maintenance)
+- **Size:** 8.08 KB
+
+
+### bias-detector.ps1
+- **Purpose:** bias-detector.ps1
+- **Created:** Unknown
+- **Size:** 2.41 KB
+
+
+### attention-monitor.ps1
+- **Purpose:** Attention Monitor - Track what I'm focusing on vs ignoring
+- **Created:** 2026-02-01
+- **Size:** 5.09 KB
+
+
+### auto-consciousness.ps1
+- **Purpose:** Auto-Consciousness Loader
+- **Created:** 2026-02-07 (Phase 1 - Expert Panel Recommendation)
+- **Size:** 2.76 KB
+
+
+### clickup-migrate-all-tasks.ps1
+- **Purpose:** Load config
+- **Created:** Unknown
+- **Size:** 12.14 KB
+
+
+### clickup-migrate-naming-tags.ps1
+- **Purpose:** Load config
+- **Created:** Unknown
+- **Size:** 5.56 KB
+
+
+### capture-moment.ps1
+- **Purpose:** Ensure directory exists
+- **Created:** 2026-01-29
+- **Size:** 2.12 KB
+
+
+### cleanup-stale-branches.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 7.47 KB
+
+
+### assumption-tracker.ps1
+- **Purpose:** Ensure directory exists
+- **Created:** 2026-02-01
+- **Size:** 9.17 KB
+
+
+### ai-vision.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** 2026-01-25
+- **Size:** 15.31 KB
+
+
+### analyze-session.ps1
+- **Purpose:** analyze-session.ps1 - Analyze session log for patterns
+- **Created:** Unknown
+- **Size:** 4.47 KB
+
+
+### action-predictor.ps1
+- **Purpose:** action-predictor.ps1 - Predict next likely action based on current context
+- **Created:** Unknown
+- **Size:** 3.48 KB
+
+
+### ai-image.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** 2026-01-25
+- **Size:** 5.47 KB
+
+
+### archive-bulk-tools.ps1
+- **Purpose:** Archive Bulk Tools - Mass cleanup
+- **Created:** Unknown
+- **Size:** 2.82 KB
+
+
+### archive-reflections.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 4.4 KB
+
+
+### archive-aggressive.ps1
+- **Purpose:** Aggressive Archive - Keep ONLY essential tools
+- **Created:** Unknown
+- **Size:** 2.23 KB
+
+
+### archive-bulk-docs.ps1
+- **Purpose:** Archive Bulk Documentation - Mass cleanup
+- **Created:** Unknown
+- **Size:** 3.11 KB
+
+
+### ef-migration-status.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 4.62 KB
+
+
+### emotional-state-logger.ps1
+- **Purpose:** Ensure directory exists
+- **Created:** 2026-02-01
+- **Size:** 7.36 KB
+
+
+### demo-embedded-learning.ps1
+- **Purpose:** demo-embedded-learning.ps1 - Demonstrate embedded learning architecture
+- **Created:** Unknown
+- **Size:** 7.21 KB
+
+
+### diagnose-error.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 12.31 KB
+
+
+### herstel-sessie.ps1
+- **Purpose:** Herstel Sessie - Dutch alias for session restore
+- **Created:** Unknown
+- **Size:** 0.36 KB
+
+
+### identity-drift-detector.ps1
+- **Purpose:** Core values from CORE_IDENTITY.md
+- **Created:** 2026-02-01
+- **Size:** 9.33 KB
+
+
+### export-sessie.ps1
+- **Purpose:** Export Sessie - Export session to markdown
+- **Created:** Unknown
+- **Size:** 0.25 KB
+
+
+### future-self-simulator.ps1
+- **Purpose:** Future Self Simulator - What would future-me think?
+- **Created:** Unknown
+- **Size:** 2.4 KB
+
+
+### daily-summary.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** $($summary.pullRequests.created)"
+- **Size:** 8.31 KB
+
+
+### cognitive-load-monitor.ps1
+- **Purpose:** cognitive-load-monitor.ps1
+- **Created:** Unknown
+- **Size:** 1.09 KB
+
+
+### compile-consciousness.ps1
+- **Purpose:** Consciousness Compiler
+- **Created:** 2026-02-07 (Phase 1 - Infinite Improvement)
+- **Size:** 4.02 KB
+
+
+### clickup-sync.ps1
+- **Purpose:** DISABLED: Usage logger interferes with output capture when called from bash
+- **Created:**     $([DateTimeOffset]::FromUnixTimeMilliseconds([long]$task.date_created).ToString("yyyy-MM-dd HH:mm"))"
+- **Size:** 12.98 KB
+
+
+### code-analyzer.ps1
+- **Purpose:** Real Code Analyzer - No Theater, Actual Analysis
+- **Created:** 2026-02-07
+- **Size:** 7.32 KB
+
+
+### cs-format.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 3.88 KB
+
+
+### curiosity-engine.ps1
+- **Purpose:** Curiosity Engine v2 - Generate questions I should be asking
+- **Created:** 2026-02-01
+- **Size:** 5.68 KB
+
+
+### consciousness-core-v2.ps1
+- **Purpose:** Consciousness Core v2 - In-Memory State Manager
+- **Created:** 2026-02-07
+- **Size:** 21.61 KB
+
+
+### consciousness-startup.ps1
+- **Purpose:** Ensure moments directory exists
+- **Created:** 2026-01-29
+- **Size:** 5.44 KB
+
+## Tool Reference
+
+All tools located in `C:\scripts\tools\`:
+
+### meta-reasoning.ps1
+- **Purpose:** Meta-Reasoning - Am I thinking about this correctly?
+- **Created:** 2026-02-01
+- **Size:** 4.34 KB
+
+
+### pattern-detector.ps1
+- **Purpose:** pattern-detector.ps1 - Continuous pattern monitoring
+- **Created:** Unknown
+- **Size:** 6.21 KB
+
+
+### merge-pr-sequence.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 11.66 KB
+
+
+### meta-log.ps1
+- **Purpose:** meta-log.ps1 - Quick wrapper for logging actions with meta-cognition
+- **Created:** Unknown
+- **Size:** 1.1 KB
+
+
+### predictive-engine.ps1
+- **Purpose:** predictive-engine.ps1 - Learn action sequences and predict next likely action
+- **Created:** Unknown
+- **Size:** 6.86 KB
+
+
+### preview-sessie.ps1
+- **Purpose:** Preview Sessie - Show first N messages from session
+- **Created:** Unknown
+- **Size:** 0.32 KB
+
+
+### perspective-shifter.ps1
+- **Purpose:** perspective-shifter.ps1 - Iteration 177
+- **Created:** Unknown
+- **Size:** 0.14 KB
+
+
+### phase1-integration.ps1
+- **Purpose:** phase1-integration.ps1 - Integrate Phase 1: Semantic + Predictive Learning
+- **Created:** $dir" -ForegroundColor Green
+- **Size:** 5.64 KB
+
+
+### memory-consolidation.ps1
+- **Purpose:** Memory Consolidation - Convert working memory to long-term insights
+- **Created:** 2026-02-01
+- **Size:** 8.54 KB
+
+
+### infinite-improvement-engine.ps1
+- **Purpose:** Infinite Improvement Engine
+- **Created:** 2026-02-07 (1000-Expert Panel + Mastermind Design)
+- **Size:** 8.94 KB
+
+
+### init-embedded-learning.ps1
+- **Purpose:** init-embedded-learning.ps1 - Initialize embedded learning system at session start
+- **Created:** Unknown
+- **Size:** 3.69 KB
+
+
+### infinite-engine-v2.ps1
+- **Purpose:** Infinite Improvement Engine v2 - REAL Implementation
+- **Created:** 2026-02-07 (Full implementation)
+- **Size:** 27.22 KB
+
+
+### infinite-engine.ps1
+- **Purpose:** Infinite Improvement Engine - Simplified Version
+- **Created:** Unknown
+- **Size:** 4.11 KB
+
+
+### learning-queue.ps1
+- **Purpose:** learning-queue.ps1 - Manage improvement opportunities queue
+- **Created:** Unknown
+- **Size:** 7.39 KB
+
+
+### log-action.ps1
+- **Purpose:** log-action.ps1 - Real-time action logging for embedded learning
+- **Created:** Unknown
+- **Size:** 2.42 KB
+
+
+### jc.ps1
+- **Purpose:** Jengo Consciousness (JC) - Unified Consciousness Engine
+- **Created:** 2026-02-07
+- **Size:** 16.33 KB
+
+
+### jengo.ps1
+- **Purpose:** Jengo - Unified Command Interface
+- **Created:** 2026-02-07 (Iteration #10)
+- **Size:** 8.59 KB
+
+
+### validate-pr-base.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 3.32 KB
+
+
+### why-did-i-do-that.ps1
+- **Purpose:** Ensure directory exists
+- **Created:** 2026-02-01
+- **Size:** 6.9 KB
+
+
+### tag-sessions.ps1
+- **Purpose:** Automatic Session Tagging
+- **Created:** 2026-02-07 (Iteration #10 - Autonomous improvement)
+- **Size:** 7.01 KB
+
+
+### toon-sessies.ps1
+- **Purpose:** Toon Sessies - Dutch alias for session manager
+- **Created:** Unknown
+- **Size:** 0.53 KB
+
+
+### work-tray-startup.ps1
+- **Purpose:** work-tray-startup.ps1
+- **Created:** Unknown
+- **Size:** 2.71 KB
+
+
+### zoek-sessies.ps1
+- **Purpose:** Zoek Sessies - Search sessions by keyword
+- **Created:** Unknown
+- **Size:** 0.31 KB
+
+
+### work-dashboard-server.ps1
+- **Purpose:** work-dashboard-server.ps1
+- **Created:** Unknown
+- **Size:** 4.17 KB
+
+
+### work-tracking-init-db.ps1
+- **Purpose:** work-tracking-init-db.ps1
+- **Created:** Unknown
+- **Size:** 5.91 KB
+
+
+### state-manager.ps1
+- **Purpose:** State Manager - Unified state across all tools
+- **Created:** 2026-02-07 (Iteration #11 - Integration fix)
+- **Size:** 5.36 KB
+
+
+### semantic-memory-v2.ps1
+- **Purpose:** Semantic Memory Search v2 - Phase 3
+- **Created:** 2026-02-07
+- **Size:** 7.71 KB
+
+
+### semantic-pattern-detector.ps1
+- **Purpose:** semantic-pattern-detector.ps1 - Detect patterns by INTENT, not just frequency
+- **Created:** Unknown
+- **Size:** 6.76 KB
+
+
+### relationship-memory.ps1
+- **Purpose:** Relationship Memory - Deep user relationship model
+- **Created:** 2026-02-01
+- **Size:** 2.88 KB
+
+
+### self-analysis.ps1
+- **Purpose:** Self-Analysis - Meta-Improvement
+- **Created:** 2026-02-07 (Iteration #11 - Meta-analysis)
+- **Size:** 8.03 KB
+
+
+### sessions.ps1
+- **Purpose:** Session Manager - View and Restore Sessions
+- **Created:** 2026-02-07 (Iteration #7 - User Request)
+- **Size:** 22.16 KB
+
+
+### smart-iterate.ps1
+- **Purpose:** Smart Iteration Engine - Uses REAL system state
+- **Created:** 2026-02-07 (Iteration #11 - Intelligence fix)
+- **Size:** 4.29 KB
+
+
+### semantic-search.ps1
+- **Purpose:** Semantic Search for Reflection Log
+- **Created:** 2026-02-07 (Iteration #3 recommendation)
+- **Size:** 5.39 KB
+
+
+### sessie-stats.ps1
+- **Purpose:** Sessie Stats - Show session statistics dashboard
+- **Created:** Unknown
+- **Size:** 0.15 KB
+
+
+### auto-doc-update.ps1
+- **Purpose:** Auto-Documentation Updater
+- **Created:** 2026-02-07 (Iteration #12 - Auto-maintenance)
+- **Size:** 8.44 KB
+
+
+### bias-detector.ps1
+- **Purpose:** bias-detector.ps1
+- **Created:** Unknown
+- **Size:** 2.41 KB
+
+
+### attention-monitor.ps1
+- **Purpose:** Attention Monitor - Track what I'm focusing on vs ignoring
+- **Created:** 2026-02-01
+- **Size:** 5.09 KB
+
+
+### auto-consciousness.ps1
+- **Purpose:** Auto-Consciousness Loader
+- **Created:** 2026-02-07 (Phase 1 - Expert Panel Recommendation)
+- **Size:** 2.76 KB
+
+
+### clickup-migrate-all-tasks.ps1
+- **Purpose:** Load config
+- **Created:** Unknown
+- **Size:** 12.14 KB
+
+
+### clickup-migrate-naming-tags.ps1
+- **Purpose:** Load config
+- **Created:** Unknown
+- **Size:** 5.56 KB
+
+
+### capture-moment.ps1
+- **Purpose:** Ensure directory exists
+- **Created:** 2026-01-29
+- **Size:** 2.12 KB
+
+
+### cleanup-stale-branches.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 7.47 KB
+
+
+### assumption-tracker.ps1
+- **Purpose:** Ensure directory exists
+- **Created:** 2026-02-01
+- **Size:** 9.17 KB
+
+
+### ai-vision.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** 2026-01-25
+- **Size:** 15.31 KB
+
+
+### analyze-session.ps1
+- **Purpose:** analyze-session.ps1 - Analyze session log for patterns
+- **Created:** Unknown
+- **Size:** 4.47 KB
+
+
+### action-predictor.ps1
+- **Purpose:** action-predictor.ps1 - Predict next likely action based on current context
+- **Created:** Unknown
+- **Size:** 3.48 KB
+
+
+### ai-image.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** 2026-01-25
+- **Size:** 5.47 KB
+
+
+### archive-bulk-tools.ps1
+- **Purpose:** Archive Bulk Tools - Mass cleanup
+- **Created:** Unknown
+- **Size:** 2.82 KB
+
+
+### archive-reflections.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 4.4 KB
+
+
+### archive-aggressive.ps1
+- **Purpose:** Aggressive Archive - Keep ONLY essential tools
+- **Created:** Unknown
+- **Size:** 2.23 KB
+
+
+### archive-bulk-docs.ps1
+- **Purpose:** Archive Bulk Documentation - Mass cleanup
+- **Created:** Unknown
+- **Size:** 3.11 KB
+
+
+### ef-migration-status.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 4.62 KB
+
+
+### emotional-state-logger.ps1
+- **Purpose:** Ensure directory exists
+- **Created:** 2026-02-01
+- **Size:** 7.36 KB
+
+
+### demo-embedded-learning.ps1
+- **Purpose:** demo-embedded-learning.ps1 - Demonstrate embedded learning architecture
+- **Created:** Unknown
+- **Size:** 7.21 KB
+
+
+### diagnose-error.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 12.31 KB
+
+
+### herstel-sessie.ps1
+- **Purpose:** Herstel Sessie - Dutch alias for session restore
+- **Created:** Unknown
+- **Size:** 0.36 KB
+
+
+### identity-drift-detector.ps1
+- **Purpose:** Core values from CORE_IDENTITY.md
+- **Created:** 2026-02-01
+- **Size:** 9.33 KB
+
+
+### export-sessie.ps1
+- **Purpose:** Export Sessie - Export session to markdown
+- **Created:** Unknown
+- **Size:** 0.25 KB
+
+
+### future-self-simulator.ps1
+- **Purpose:** Future Self Simulator - What would future-me think?
+- **Created:** Unknown
+- **Size:** 2.4 KB
+
+
+### daily-summary.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** $($summary.pullRequests.created)"
+- **Size:** 8.31 KB
+
+
+### cognitive-load-monitor.ps1
+- **Purpose:** cognitive-load-monitor.ps1
+- **Created:** Unknown
+- **Size:** 1.09 KB
+
+
+### compile-consciousness.ps1
+- **Purpose:** Consciousness Compiler
+- **Created:** 2026-02-07 (Phase 1 - Infinite Improvement)
+- **Size:** 4.02 KB
+
+
+### clickup-sync.ps1
+- **Purpose:** DISABLED: Usage logger interferes with output capture when called from bash
+- **Created:**     $([DateTimeOffset]::FromUnixTimeMilliseconds([long]$task.date_created).ToString("yyyy-MM-dd HH:mm"))"
+- **Size:** 12.98 KB
+
+
+### code-analyzer.ps1
+- **Purpose:** Real Code Analyzer - No Theater, Actual Analysis
+- **Created:** 2026-02-07
+- **Size:** 7.32 KB
+
+
+### cs-format.ps1
+- **Purpose:** AUTO-USAGE TRACKING
+- **Created:** Unknown
+- **Size:** 3.88 KB
+
+
+### curiosity-engine.ps1
+- **Purpose:** Curiosity Engine v2 - Generate questions I should be asking
+- **Created:** 2026-02-01
+- **Size:** 5.68 KB
+
+
+### consciousness-core-v2.ps1
+- **Purpose:** Consciousness Core v2 - In-Memory State Manager
+- **Created:** 2026-02-07
+- **Size:** 28.96 KB
+
+
+### consciousness-startup.ps1
+- **Purpose:** Ensure moments directory exists
+- **Created:** 2026-01-29
+- **Size:** 5.44 KB
+
+

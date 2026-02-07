@@ -10,8 +10,6 @@
 
 | Agent | Status | ClickUp Task | GitHub PR | Branch | Objective | Phase | Updated (UTC) |
 |-------|--------|--------------|-----------|--------|-----------|-------|---------------|
-| current-session | CODING | 869c29zua | - | fix/869c29zua-topiclearn-backend | TopicLearn backend API | Development | 2026-02-07T15:26:00Z |
-| current-session | PLANNING | 869c29zv6 | - | - | TopicUsers route fix | Investigation | 2026-02-07T15:26:00Z |
 
 **Legend:**
 - **Agent**: agent-001, agent-002, etc.
@@ -236,3 +234,4 @@ Common phase values to use:
 **Maintained By:** All autonomous agents
 
 **Critical Rule:** ALWAYS check this file before starting work. Failure to coordinate = wasted effort and merge conflicts.
+| current-session | DONE | 869c29zua, 869c29zv6 | #52 | fix/869c29zua-topiclearn-backend | TopicLearn config + TopicUsers fix | ✅ PR #52 created, both tasks updated | 2026-02-07T15:35:00Z |

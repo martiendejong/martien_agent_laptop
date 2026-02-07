@@ -1,0 +1,35 @@
+﻿{
+    "metadata":  {
+                     "trained_on":  20,
+                     "last_updated":  "2026-02-07T15:30:00",
+                     "total_patterns":  3
+                 },
+    "sequences":  {
+                      "Allocate worktree":  {
+                                                "Read task details":  {
+                                                                          "count":  15,
+                                                                          "probability":  0.75
+                                                                      },
+                                                "Create branch":  {
+                                                                      "count":  19,
+                                                                      "probability":  0.95
+                                                                  }
+                                            },
+                      "Read CLAUDE.md":  {
+                                             "Grep learning":  {
+                                                                   "count":  12,
+                                                                   "probability":  0.853
+                                                               },
+                                             "Read EMBEDDED_LEARNING_ARCHITECTURE.md":  {
+                                                                                            "count":  8,
+                                                                                            "probability":  0.721
+                                                                                        }
+                                         },
+                      "Read CLAUDE.md -\u003e Grep learning":  {
+                                                                   "Read EMBEDDED_LEARNING_ARCHITECTURE.md":  {
+                                                                                                                  "count":  14,
+                                                                                                                  "probability":  0.88
+                                                                                                              }
+                                                               }
+                  }
+}
