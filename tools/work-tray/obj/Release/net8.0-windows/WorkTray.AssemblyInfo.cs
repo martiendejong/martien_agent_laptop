@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WorkTray")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b3ba3744db05c54363a27079d36e0fe8dc557d55")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f38a6d390c54ec304e6bbb9772d8d63dc7a8521")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorkTray")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorkTray")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

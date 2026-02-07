@@ -1,0 +1,163 @@
+# Intent Taxonomy - Semantic categories for pattern detection
+# Updated automatically as new patterns emerge
+
+authentication:
+  - auth
+  - login
+  - credential
+  - token
+  - jwt
+  - password
+  - api-key
+  - secret
+  - oauth
+  - bearer
+
+testing:
+  - test
+  - spec
+  - assert
+  - mock
+  - fixture
+  - coverage
+  - unit test
+  - integration test
+  - e2e
+
+debugging:
+  - error
+  - debug
+  - trace
+  - log
+  - exception
+  - fail
+  - bug
+  - stacktrace
+  - breakpoint
+
+deployment:
+  - deploy
+  - build
+  - ci
+  - cd
+  - release
+  - publish
+  - docker
+  - kubernetes
+  - pipeline
+
+database:
+  - migration
+  - db
+  - database
+  - entity
+  - schema
+  - query
+  - sql
+  - postgres
+  - sqlite
+  - ef core
+
+git_operations:
+  - commit
+  - branch
+  - merge
+  - pr
+  - pull request
+  - push
+  - checkout
+  - worktree
+  - rebase
+
+documentation:
+  - readme
+  - docs
+  - documentation
+  - comment
+  - guide
+  - manual
+  - wiki
+  - tutorial
+
+api_development:
+  - api
+  - endpoint
+  - route
+  - controller
+  - service
+  - dto
+  - rest
+  - graphql
+
+frontend:
+  - component
+  - react
+  - ui
+  - css
+  - html
+  - jsx
+  - tsx
+  - tailwind
+  - styling
+
+configuration:
+  - config
+  - settings
+  - env
+  - appsettings
+  - yaml
+  - json
+  - environment
+
+architecture:
+  - design
+  - pattern
+  - refactor
+  - structure
+  - architecture
+  - solid
+  - clean code
+
+performance:
+  - optimize
+  - performance
+  - cache
+  - speed
+  - latency
+  - memory
+  - profiling
+
+security:
+  - security
+  - vulnerability
+  - encryption
+  - xss
+  - sql injection
+  - cors
+  - https
+
+clickup_workflow:
+  - clickup
+  - task
+  - ticket
+  - feature request
+  - requirement
+  - moscow
+
+code_quality:
+  - lint
+  - format
+  - code style
+  - prettier
+  - eslint
+  - warning
+  - cs-format
+
+learning_improvement:
+  - reflection
+  - pattern
+  - learning
+  - improvement
+  - optimization
+  - skill
+  - automation

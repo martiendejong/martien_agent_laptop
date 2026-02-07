@@ -26,7 +26,7 @@ namespace WorkTray
         public WorkTrayContext()
         {
             _statePath = @"C:\scripts\_machine\work-state.json";
-            _dashboardPath = @"C:\scripts\_machine\work-dashboard.html";
+            _dashboardPath = "http://localhost:8080/work-dashboard.html";
 
             InitializeTrayIcon();
             InitializeTimer();

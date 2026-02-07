@@ -13,6 +13,12 @@ param(
     [string]$Outcome = "",
 
     [Parameter(Mandatory=$false)]
+    [string]$Intent = "",
+
+    [Parameter(Mandatory=$false)]
+    [string]$Goal = "",
+
+    [Parameter(Mandatory=$false)]
     [string]$SessionLogPath = "C:\scripts\_machine\current-session-log.jsonl"
 )
 
@@ -58,6 +64,14 @@ $logEntry = @{
     reasoning = $Reasoning
     outcome = $Outcome
     pattern_count = $patternCount
+}
+
+# Add optional fields
+if ($Intent) {
+    $logEntry.intent = $Intent
+}
+if ($Goal) {
+    $logEntry.goal = $Goal
 }
 
 if ($automationTrigger) {

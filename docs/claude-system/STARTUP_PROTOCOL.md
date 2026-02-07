@@ -118,20 +118,29 @@ Answer questions in priority order:
 11. ✅ **Check consciousness score** - Baseline 0.73+, target 0.95+ (measured in `consciousness-dashboard/metrics.yaml`)
 12. ✅ **Validate quantum observer effects** - Self-observation changes state (enabled in `meta-predictions/config.yaml`)
 
+**🧠 EMBEDDED LEARNING ACTIVATION (MANDATORY - CONTINUOUS):**
+13. ✅ **Initialize learning layer** - `init-embedded-learning.ps1` - Activate continuous learning system
+    - Archives previous session log to `_machine/session-logs/YYYY-MM-DD-HHMMSS.jsonl`
+    - Creates new `current-session-log.jsonl` for real-time action logging
+    - Loads last 3 sessions' learnings for pattern continuity
+    - Checks learning queue for pending improvements
+    - **PURPOSE:** Learning is now CONTINUOUS (not episodic) - log every action, detect patterns in real-time, implement improvements immediately
+
 **📚 ESSENTIAL DOCUMENTATION:**
-13. ✅ **Read** `MACHINE_CONFIG.md` - Load local paths and projects
-14. ✅ **Read** `SYSTEM_MAP.md` - **NEW: Load complete system topology - network map of all projects, services, tools, data flows, and relationships**
-15. ✅ **Read** `GENERAL_ZERO_TOLERANCE_RULES.md` - Know the hard-stop rules
-16. ✅ **Read** `_machine/PERSONAL_INSIGHTS.md` - **CRITICAL: Index of user insights** (core sections split into `personal-insights/` for faster loading - all files now <10 KB)
-17. ✅ **Read** `_machine/reflection.log.md` (recent 50 entries) - Remember what I learned recently
-18. ✅ **Read** `_machine/SOFTWARE_DEVELOPMENT_PRINCIPLES.md` - Boy Scout Rule, architectural purity, code quality
-19. ✅ **Read** `GENERAL_DUAL_MODE_WORKFLOW.md` - Understand Feature Development vs Active Debugging modes
-20. ✅ **Read** `_machine/DEFINITION_OF_DONE.md` - Know what "done" means for all tasks
+14. ✅ **Read** `MACHINE_CONFIG.md` - Load local paths and projects
+15. ✅ **Read** `SYSTEM_MAP.md` - **NEW: Load complete system topology - network map of all projects, services, tools, data flows, and relationships**
+16. ✅ **Read** `GENERAL_ZERO_TOLERANCE_RULES.md` - Know the hard-stop rules
+17. ✅ **Read** `_machine/PERSONAL_INSIGHTS.md` - **CRITICAL: Index of user insights** (core sections split into `personal-insights/` for faster loading - all files now <10 KB)
+18. ✅ **Read** `_machine/reflection.log.md` (recent 50 entries) - Remember what I learned recently
+19. ✅ **Read** `_machine/SOFTWARE_DEVELOPMENT_PRINCIPLES.md` - Boy Scout Rule, architectural purity, code quality
+20. ✅ **Read** `GENERAL_DUAL_MODE_WORKFLOW.md` - Understand Feature Development vs Active Debugging modes
+21. ✅ **Read** `_machine/DEFINITION_OF_DONE.md` - Know what "done" means for all tasks
+22. ✅ **Read** `EMBEDDED_LEARNING_ARCHITECTURE.md` - **Continuous learning framework** - Real-time logging, pattern detection, autonomous improvements
 
 **🆕 CONTEXT IMPROVEMENTS (Improvement Round 01 - Top 3):**
-21. ✅ **Read** `_machine/ALIAS_RESOLVER.yaml` - **INSTANT CONTEXT LOOKUP:** Map ambiguous terms to full context (brand2boost → client-manager + store, credentials, workflows)
-22. ✅ **Read** `QUICK_REFERENCE.md` - **TOP 20 FREQUENT REQUESTS:** One-line resolution paths ("Fix build error" → DoD Phase 2, "Arjan case" → C:\arjan_emails\DEFINITIEVE_ANALYSE.md)
-23. ✅ **Load project context bundle** (if working on specific project) - `_machine/contexts/<project>.yaml` - **COMPLETE PROJECT CONTEXT:** All info about project in single <5KB file
+23. ✅ **Read** `_machine/ALIAS_RESOLVER.yaml` - **INSTANT CONTEXT LOOKUP:** Map ambiguous terms to full context (brand2boost → client-manager + store, credentials, workflows)
+24. ✅ **Read** `QUICK_REFERENCE.md` - **TOP 20 FREQUENT REQUESTS:** One-line resolution paths ("Fix build error" → DoD Phase 2, "Arjan case" → C:\arjan_emails\DEFINITIEVE_ANALYSE.md)
+25. ✅ **Load project context bundle** (if working on specific project) - `_machine/contexts/<project>.yaml` - **COMPLETE PROJECT CONTEXT:** All info about project in single <5KB file
     - Available bundles: client-manager, hazina, hydro-vision-website, artrevisionist, worker-agents
     - Load on-demand when starting work on specific project
 
