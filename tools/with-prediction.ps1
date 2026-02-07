@@ -1,6 +1,18 @@
-# With-Prediction - Execute action and show next-action predictions
+﻿# With-Prediction - Execute action and show next-action predictions
 # Wrapper for integrating predictions into workflow
 # Created: 2026-02-07 (Integration layer)
+
+<#
+.SYNOPSIS
+    With-Prediction - Execute action and show next-action predictions
+
+.DESCRIPTION
+    With-Prediction - Execute action and show next-action predictions
+
+.NOTES
+    File: with-prediction.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [Parameter(Mandatory=$true)]

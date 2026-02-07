@@ -1,4 +1,16 @@
-﻿$ErrorActionPreference = "Stop"
+﻿<#
+.SYNOPSIS
+    Self-Analysis - Meta-Improvement
+
+.DESCRIPTION
+    Self-Analysis - Meta-Improvement
+
+.NOTES
+    File: self-analysis.ps1
+    Auto-generated help documentation
+#>
+
+$ErrorActionPreference = "Stop"
 
 # Self-Analysis - Meta-Improvement
 # Analyze all improvements made in this session

@@ -1,5 +1,17 @@
 ﻿# Toon Sessies - Dutch alias for session manager
 # Usage: toon-sessies [actief|gearchiveerd|alles]
+<#
+.SYNOPSIS
+    Toon Sessies - Dutch alias for session manager
+
+.DESCRIPTION
+    Toon Sessies - Dutch alias for session manager
+
+.NOTES
+    File: toon-sessies.ps1
+    Auto-generated help documentation
+#>
+
 param(
     [Parameter(Position=0)]
 

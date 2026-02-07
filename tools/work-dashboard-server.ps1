@@ -2,6 +2,18 @@
 # Simple HTTP server for Work Tracking Dashboard
 # Serves files from C:\scripts\_machine on http://localhost:8080
 
+<#
+.SYNOPSIS
+    work-dashboard-server.ps1
+
+.DESCRIPTION
+    work-dashboard-server.ps1
+
+.NOTES
+    File: work-dashboard-server.ps1
+    Auto-generated help documentation
+#>
+
 param(
     [int]$Port = 4242
 )

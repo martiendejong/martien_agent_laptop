@@ -1,6 +1,18 @@
-# Add Parameter Validation - Bulk improvement
+﻿# Add Parameter Validation - Bulk improvement
 # Adds [ValidateSet] and other validation to parameters
 # Created: 2026-02-07 (Continuing improvements)
+
+<#
+.SYNOPSIS
+    Add Parameter Validation - Bulk improvement
+
+.DESCRIPTION
+    Add Parameter Validation - Bulk improvement
+
+.NOTES
+    File: add-param-validation.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [Parameter(Mandatory=$false)]

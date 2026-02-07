@@ -1,6 +1,18 @@
-# Automatic Session Tagging
+﻿# Automatic Session Tagging
 # Auto-categorize sessions by content analysis
 # Created: 2026-02-07 (Iteration #10 - Autonomous improvement)
+
+<#
+.SYNOPSIS
+    Automatic Session Tagging
+
+.DESCRIPTION
+    Automatic Session Tagging
+
+.NOTES
+    File: tag-sessions.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [Parameter(Mandatory=$false)]
@@ -152,7 +164,7 @@ function Show-TagsSummary {
 
     foreach ($tag in $sortedTags) {
         $barLength = [Math]::Min(40, $tag.Value)
-        $bar = "█" * $barLength
+        $bar = "â–ˆ" * $barLength
 
         Write-Host "  #$($tag.Key)" -NoNewline -ForegroundColor Cyan
         Write-Host " [$($tag.Value) sessions]" -NoNewline -ForegroundColor Gray

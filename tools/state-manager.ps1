@@ -1,6 +1,18 @@
-# State Manager - Unified state across all tools
+﻿# State Manager - Unified state across all tools
 # Central coordination for all Jengo tools
 # Created: 2026-02-07 (Iteration #11 - Integration fix)
+
+<#
+.SYNOPSIS
+    State Manager - Unified state across all tools
+
+.DESCRIPTION
+    State Manager - Unified state across all tools
+
+.NOTES
+    File: state-manager.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [Parameter(Mandatory=$false)]

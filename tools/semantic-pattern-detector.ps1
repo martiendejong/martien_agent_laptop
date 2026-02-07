@@ -3,6 +3,18 @@
 # Phase 1: Embedded Learning Architecture v2
 # Clusters actions semantically to find higher-order patterns
 
+<#
+.SYNOPSIS
+    !/usr/bin/env pwsh
+
+.DESCRIPTION
+    !/usr/bin/env pwsh
+
+.NOTES
+    File: semantic-pattern-detector.ps1
+    Auto-generated help documentation
+#>
+
 param(
     [Parameter(Mandatory=$false)]
 

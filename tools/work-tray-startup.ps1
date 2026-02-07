@@ -1,6 +1,18 @@
 ﻿# work-tray-startup.ps1
 # Configure Work Tracker System Tray App to start with Windows
 
+<#
+.SYNOPSIS
+    work-tray-startup.ps1
+
+.DESCRIPTION
+    work-tray-startup.ps1
+
+.NOTES
+    File: work-tray-startup.ps1
+    Auto-generated help documentation
+#>
+
 param(
     [ValidateSet('Enable', 'Disable', 'Status')]
 

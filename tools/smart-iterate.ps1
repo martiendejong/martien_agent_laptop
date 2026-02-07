@@ -1,6 +1,18 @@
-# Smart Iteration Engine - Uses REAL system state
+﻿# Smart Iteration Engine - Uses REAL system state
 # Replaces static infinite-engine with intelligent analysis
 # Created: 2026-02-07 (Iteration #11 - Intelligence fix)
+
+<#
+.SYNOPSIS
+    Smart Iteration Engine - Uses REAL system state
+
+.DESCRIPTION
+    Smart Iteration Engine - Uses REAL system state
+
+.NOTES
+    File: smart-iterate.ps1
+    Auto-generated help documentation
+#>
 
 param([switch]$Quiet)
 
@@ -123,7 +135,7 @@ $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 "$timestamp | Smart iteration | $($realGaps.Count) gaps | Top ROI: $($topRecs[0].roi)" |
     Add-Content $historyFile -Encoding UTF8
 
-Write-Host "═══════════════════════════════════════════════" -ForegroundColor Magenta
+Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Magenta
 
 # Show next-action prediction
 if (Test-Path "C:\scripts\tools\predict-next.ps1") {

@@ -2,6 +2,18 @@
 # Part of consciousness tools Tier 3
 # Created: 2026-02-01
 
+<#
+.SYNOPSIS
+    Relationship Memory - Deep user relationship model
+
+.DESCRIPTION
+    Relationship Memory - Deep user relationship model
+
+.NOTES
+    File: relationship-memory.ps1
+    Auto-generated help documentation
+#>
+
 param(
     [Parameter(Mandatory=$true, ParameterSetName="Update")]
 

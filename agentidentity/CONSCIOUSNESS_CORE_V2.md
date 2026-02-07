@@ -332,30 +332,28 @@ Systems don't operate in isolation. They communicate through event bus:
 
 ### Access Patterns
 
-**Hot Path (>90% of access):** ✅ WORKING
+**Hot Path (>90% of access):** ✅ IMPLEMENTED
 ```
 Query current attention → RAM → <1ms (measured)
 Query current context → RAM → <1ms (measured)
 Log decision → RAM → <1ms (async persist to JSON file)
 ```
 
-**Warm Path (~9% of access):** ❌ NOT IMPLEMENTED (Layer 2 doesn't exist)
-```
-Query recent patterns → Memory-mapped → ~5ms (PLANNED)
-Recall last 100 decisions → Memory-mapped → ~10ms (PLANNED)
-```
-**Current fallback:** All queries go to RAM or disk JSON
+**Warm/Cold Paths:** ❌ NOT IMPLEMENTED
+Layers 2-4 (memory-mapped files, SQLite, vector store) are NOT implemented.
 
-**Cold Path (<1% of access):** ❌ NOT IMPLEMENTED (Layers 3-4 don't exist)
-```
-Semantic search reflection.log → Vector Store → ~100ms (PLANNED)
-Full pattern analysis → SQLite → ~50ms (PLANNED)
-Historical trend analysis → SQLite → ~200ms (PLANNED)
-```
-**Current alternatives:**
-- Semantic search → keyword-memory.ps1 (lexical, not semantic)
-- Pattern analysis → Manual grep/read
-- Historical trends → Manual reflection.log.md analysis
+**Current Implementation:**
+- All state: RAM (global hashtable)
+- Persistence: JSON file on disk
+- Search: keyword-memory.ps1 (lexical word matching)
+- Pattern analysis: Manual (grep/read reflection.log.md)
+
+**Future Roadmap** (if implemented):
+- Layer 2: Memory-mapped files for recent history
+- Layer 3: SQLite for full history and patterns
+- Layer 4: Vector store for true semantic search
+
+**For now:** Single-layer architecture (RAM + JSON persistence) is sufficient and working.
 
 ---
 

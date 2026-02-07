@@ -1,0 +1,211 @@
+# Behavioral Verification Tests
+# Auto-updated by behavior-tests.ps1
+# Tracks if learnings are actually changing behavior over time
+
+version: "1.0"
+last_updated: "2026-02-07T16:00:00"
+
+# Test Categories:
+# - frequency_reduction: Action should occur LESS over time (doc lookups, repeated errors)
+# - compliance: Action should happen ALWAYS (worktree release, ClickUp updates)
+# - prevention: Error should NEVER repeat after lesson learned
+# - efficiency: Time/steps should DECREASE over time
+
+tests:
+  # Documentation Lookup Efficiency
+  - id: "doc-lookup-claude-md"
+    name: "CLAUDE.md lookup frequency decreasing"
+    category: "frequency_reduction"
+    description: "Reading full CLAUDE.md should decrease (use quick-ref instead)"
+    metric: "count_per_session"
+    baseline: null  # Will be set from first 3 sessions
+    target: "<= baseline * 0.3"  # 70% reduction
+    current_value: null
+    status: "monitoring"
+    first_measured: null
+    last_pass: null
+    fail_count: 0
+    sessions_tracked: 0
+    trend: []  # Array of {date, value}
+    notes: "Quick-ref should be created after 3x reads, then used instead"
+
+  - id: "doc-lookup-api-patterns"
+    name: "API_PATTERNS.md lookup frequency decreasing"
+    category: "frequency_reduction"
+    description: "Reading full API_PATTERNS.md should decrease"
+    metric: "count_per_session"
+    baseline: null
+    target: "<= baseline * 0.3"
+    current_value: null
+    status: "monitoring"
+    first_measured: null
+    last_pass: null
+    fail_count: 0
+    sessions_tracked: 0
+    trend: []
+    notes: "Quick-ref for auth, JWT, etc. should be used instead"
+
+  # Error Prevention
+  - id: "no-repeated-build-errors"
+    name: "No repeated build errors in same session"
+    category: "prevention"
+    description: "Same build error should not occur 2+ times in one session"
+    metric: "max_per_session"
+    baseline: null
+    target: "< 2"
+    current_value: null
+    status: "monitoring"
+    first_measured: null
+    last_pass: null
+    fail_count: 0
+    sessions_tracked: 0
+    trend: []
+    notes: "Lesson should be learned after first error"
+
+  - id: "no-repeated-migration-errors"
+    name: "No repeated migration errors across sessions"
+    category: "prevention"
+    description: "Once migration error is learned, should not repeat"
+    metric: "boolean"
+    baseline: null
+    target: "false"  # Error should not occur
+    current_value: null
+    status: "monitoring"
+    first_measured: null
+    last_pass: null
+    fail_count: 0
+    sessions_tracked: 0
+    trend: []
+    notes: "Check learned-lessons.md before running migrations"
+
+  # Workflow Compliance
+  - id: "worktree-released-before-pr"
+    name: "Worktree always released before PR presentation"
+    category: "compliance"
+    description: "When PR is created, worktree must be released BEFORE showing to user"
+    metric: "percentage"
+    baseline: null
+    target: ">= 95%"  # Allow 1-2 failures for edge cases
+    current_value: null
+    status: "monitoring"
+    first_measured: null
+    last_pass: null
+    fail_count: 0
+    sessions_tracked: 0
+    trend: []
+    notes: "Zero-tolerance rule - critical for multi-agent coordination"
+
+  - id: "develop-merged-before-pr"
+    name: "Develop merged before creating PR"
+    category: "compliance"
+    description: "Always merge develop into feature branch before PR"
+    metric: "percentage"
+    baseline: null
+    target: ">= 95%"
+    current_value: null
+    status: "monitoring"
+    first_measured: null
+    last_pass: null
+    fail_count: 0
+    sessions_tracked: 0
+    trend: []
+    notes: "Prevents merge conflicts and CI failures"
+
+  - id: "clickup-updated-after-pr"
+    name: "ClickUp task updated with PR link"
+    category: "compliance"
+    description: "When PR is created for ClickUp task, task must be updated"
+    metric: "percentage"
+    baseline: null
+    target: ">= 90%"
+    current_value: null
+    status: "monitoring"
+    first_measured: null
+    last_pass: null
+    fail_count: 0
+    sessions_tracked: 0
+    trend: []
+    notes: "Required for task tracking and project management"
+
+  # Efficiency Improvements
+  - id: "worktree-allocation-time"
+    name: "Time to allocate worktree decreasing"
+    category: "efficiency"
+    description: "Steps/time to allocate worktree should decrease over time"
+    metric: "average_seconds"
+    baseline: null
+    target: "<= baseline * 0.5"  # 50% faster
+    current_value: null
+    status: "monitoring"
+    first_measured: null
+    last_pass: null
+    fail_count: 0
+    sessions_tracked: 0
+    trend: []
+    notes: "Automation should make this faster"
+
+  - id: "pattern-to-improvement-latency"
+    name: "Time from pattern detection to improvement"
+    category: "efficiency"
+    description: "How quickly patterns become improvements"
+    metric: "average_minutes"
+    baseline: null
+    target: "< 5"  # Within 5 minutes of detection
+    current_value: null
+    status: "monitoring"
+    first_measured: null
+    last_pass: null
+    fail_count: 0
+    sessions_tracked: 0
+    trend: []
+    notes: "With --ExecuteLowRisk, should be near-instant"
+
+  # Learning Velocity
+  - id: "quick-refs-created"
+    name: "Quick-refs created per week"
+    category: "efficiency"
+    description: "Number of quick-refs auto-created"
+    metric: "count_per_week"
+    baseline: null
+    target: ">= 1"
+    current_value: null
+    status: "monitoring"
+    first_measured: null
+    last_pass: null
+    fail_count: 0
+    sessions_tracked: 0
+    trend: []
+    notes: "Indicator of active learning"
+
+  - id: "lessons-learned"
+    name: "Lessons logged per week"
+    category: "efficiency"
+    description: "Number of lessons auto-logged from repeated errors"
+    metric: "count_per_week"
+    baseline: null
+    target: ">= 1"
+    current_value: null
+    status: "monitoring"
+    first_measured: null
+    last_pass: null
+    fail_count: 0
+    sessions_tracked: 0
+    trend: []
+    notes: "Should decrease over time as errors stop repeating"
+
+# Thresholds for overall health
+thresholds:
+  critical: 0.5  # <50% tests passing = CRITICAL
+  warning: 0.7   # <70% tests passing = WARNING
+  good: 0.85     # >=85% tests passing = GOOD
+  excellent: 0.95  # >=95% tests passing = EXCELLENT
+
+# Historical summary (updated after each run)
+summary:
+  total_tests: 11
+  tests_passing: 0
+  tests_failing: 0
+  tests_monitoring: 11  # Not enough data yet
+  overall_health: "initializing"
+  last_run: null
+  sessions_analyzed: 0

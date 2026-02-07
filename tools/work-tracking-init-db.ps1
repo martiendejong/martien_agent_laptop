@@ -1,6 +1,18 @@
 ﻿# work-tracking-init-db.ps1
 # Initialize SQLite database for work tracking analytics
 
+<#
+.SYNOPSIS
+    work-tracking-init-db.ps1
+
+.DESCRIPTION
+    work-tracking-init-db.ps1
+
+.NOTES
+    File: work-tracking-init-db.ps1
+    Auto-generated help documentation
+#>
+
 param(
     [string]$DatabasePath = "C:\scripts\_machine\work-state.db"
 )

@@ -747,26 +747,87 @@ function Show-Status {
     Write-Host ""
 }
 
+function Execute-Recommendation {
+    param($Recommendation)  # Accept PSCustomObject from JSON
+
+    Write-Host "  [*] $($Recommendation.Title)" -ForegroundColor Cyan
+    Write-Host "      ROI: $($Recommendation.ROI) | Category: $($Recommendation.Category)" -ForegroundColor Gray
+
+    # Analyze if auto-execution is possible
+    $canAutoExecute = $false
+    $reason = "Complex change requires manual implementation"
+
+    switch ($Recommendation.Category) {
+        "Maintainability" {
+            if ($Recommendation.Title -match "error handling") {
+                $reason = "Error handling requires AST manipulation"
+            }
+        }
+        "Documentation" {
+            $reason = "Documentation updates require context understanding"
+        }
+        "Performance" {
+            $reason = "Performance changes require architecture decisions"
+        }
+        default {
+            $reason = "No auto-execution pattern for category: $($Recommendation.Category)"
+        }
+    }
+
+    Write-Host "      Status: Manual implementation required" -ForegroundColor Yellow
+    Write-Host "      Reason: $reason" -ForegroundColor DarkGray
+
+    return @{
+        Recommendation = $Recommendation
+        Executed = $canAutoExecute
+        Reason = $reason
+        Timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ssZ"
+    }
+}
+
 function Execute-Queue {
     if (-not (Test-Path $Config.QueueFile)) {
         Write-Host "[!] No queued recommendations. Run with -Command run first." -ForegroundColor Red
         return
     }
 
-    Write-Host "[*] Loading queued recommendations..." -ForegroundColor Cyan
-    $queue = Get-Content $Config.QueueFile -Raw | ConvertFrom-Json
-
-    Write-Host "[*] Queued recommendations from Iteration #$($queue.Iteration):" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "=======================================" -ForegroundColor Magenta
+    Write-Host "  EXECUTING QUEUED RECOMMENDATIONS" -ForegroundColor Magenta
+    Write-Host "=======================================" -ForegroundColor Magenta
     Write-Host ""
 
+    $queue = Get-Content $Config.QueueFile -Raw | ConvertFrom-Json
+    Write-Host "[*] Iteration #$($queue.Iteration) - $($queue.QueuedRecommendations.Count) recommendations" -ForegroundColor Yellow
+    Write-Host ""
+
+    $results = @()
     foreach ($rec in $queue.QueuedRecommendations) {
-        Write-Host "  - $($rec.Title)" -ForegroundColor White
-        Write-Host "    ROI: $($rec.ROI) | Category: $($rec.Category)" -ForegroundColor Gray
+        $result = Execute-Recommendation -Recommendation $rec
+        $results += $result
     }
 
+    # Save execution log
+    $executionLog = @{
+        Iteration = $queue.Iteration
+        Timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ssZ"
+        Results = $results
+        ExecutedCount = ($results | Where-Object { $_.Executed }).Count
+        TotalCount = $results.Count
+    }
+
+    $executionLog | ConvertTo-Json -Depth 10 | Out-File $Config.ExecutedFile -Encoding UTF8
+
     Write-Host ""
-    Write-Host "[*] Execution requires manual implementation of these improvements." -ForegroundColor Yellow
-    Write-Host "[*] Future versions will support automatic execution." -ForegroundColor Gray
+    Write-Host "=======================================" -ForegroundColor Magenta
+    Write-Host "  EXECUTION SUMMARY" -ForegroundColor Magenta
+    Write-Host "=======================================" -ForegroundColor Magenta
+    Write-Host ""
+    Write-Host "  Auto-executed: $($executionLog.ExecutedCount) / $($executionLog.TotalCount)" -ForegroundColor Gray
+    Write-Host "  Manual needed: $($executionLog.TotalCount - $executionLog.ExecutedCount)" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "  Note: Most recommendations require manual implementation" -ForegroundColor DarkYellow
+    Write-Host "  Log saved to: $($Config.ExecutedFile)" -ForegroundColor DarkGray
     Write-Host ""
 }
 

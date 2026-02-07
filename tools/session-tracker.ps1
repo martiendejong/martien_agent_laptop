@@ -1,6 +1,18 @@
-# Session Tracker - Real-time action logging + predictions
+﻿# Session Tracker - Real-time action logging + predictions
 # Tracks what I'm doing, shows next-action predictions
 # Created: 2026-02-07 (Real integration example)
+
+<#
+.SYNOPSIS
+    Session Tracker - Real-time action logging + predictions
+
+.DESCRIPTION
+    Session Tracker - Real-time action logging + predictions
+
+.NOTES
+    File: session-tracker.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [Parameter(Mandatory=$true)]

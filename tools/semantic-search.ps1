@@ -1,6 +1,18 @@
-# Semantic Search for Reflection Log
+﻿# Semantic Search for Reflection Log
 # Query past learnings instantly: "show me all worktree mistakes"
 # Created: 2026-02-07 (Iteration #3 recommendation)
+
+<#
+.SYNOPSIS
+    Semantic Search for Reflection Log
+
+.DESCRIPTION
+    Semantic Search for Reflection Log
+
+.NOTES
+    File: semantic-search.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [Parameter(Mandatory=$true, Position=0)]

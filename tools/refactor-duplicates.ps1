@@ -1,6 +1,18 @@
-# Refactor Duplicates - Find and consolidate duplicate code
+﻿# Refactor Duplicates - Find and consolidate duplicate code
 # Focuses on sessions.ps1 which has 95-100% similar functions
 # Created: 2026-02-07 (Real refactoring with measurements)
+
+<#
+.SYNOPSIS
+    Refactor Duplicates - Find and consolidate duplicate code
+
+.DESCRIPTION
+    Refactor Duplicates - Find and consolidate duplicate code
+
+.NOTES
+    File: refactor-duplicates.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [Parameter(Mandatory=$false)]
@@ -113,7 +125,7 @@ if ($Action -eq 'analyze') {
         # Calculate potential savings
         $totalDuplicateLines = ($duplicates | ForEach-Object { [Math]::Min($_.lines1, $_.lines2) } | Measure-Object -Sum).Sum
         Write-Host "Potential line reduction: ~$totalDuplicateLines lines" -ForegroundColor Green
-        Write-Host "Current: $($lines.Count) → After refactor: ~$($lines.Count - $totalDuplicateLines)" -ForegroundColor Green
+        Write-Host "Current: $($lines.Count) â†’ After refactor: ~$($lines.Count - $totalDuplicateLines)" -ForegroundColor Green
     }
 
     Write-Host ""

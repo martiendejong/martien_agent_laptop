@@ -1,6 +1,18 @@
-# Session Manager - View and Restore Sessions
+﻿# Session Manager - View and Restore Sessions
 # Simple interface for session management
 # Created: 2026-02-07 (Iteration #7 - User Request)
+
+<#
+.SYNOPSIS
+    Session Manager - View and Restore Sessions
+
+.DESCRIPTION
+    Session Manager - View and Restore Sessions
+
+.NOTES
+    File: sessions.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [Parameter(Mandatory=$false, Position=0)]

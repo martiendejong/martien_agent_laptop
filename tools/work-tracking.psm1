@@ -41,6 +41,55 @@ foreach ($dir in $directories) {
 # UTILITY FUNCTIONS
 # ============================================================================
 
+function Send-WorkNotification {
+    <#
+    .SYNOPSIS
+        Send Windows toast notification
+    #>
+    param(
+        [Parameter(Mandatory)]
+        [string]$Title,
+
+        [Parameter(Mandatory)]
+        [string]$Message,
+
+        [ValidateSet('Info', 'Warning', 'Success', 'Error')]
+        [string]$Type = 'Info'
+    )
+
+    try {
+        # Use BurntToast if available, otherwise fallback to basic notification
+        if (Get-Command 'New-BurntToastNotification' -ErrorAction SilentlyContinue) {
+            $icon = switch ($Type) {
+                'Success' { '✅' }
+                'Warning' { '⚠️' }
+                'Error' { '❌' }
+                default { '📊' }
+            }
+
+            New-BurntToastNotification -Text "$icon $Title", $Message -Silent
+        }
+        else {
+            # Fallback: PowerShell balloon tip (requires WinForms)
+            Add-Type -AssemblyName System.Windows.Forms -ErrorAction SilentlyContinue
+
+            $balloon = New-Object System.Windows.Forms.NotifyIcon
+            $balloon.Icon = [System.Drawing.SystemIcons]::Information
+            $balloon.BalloonTipIcon = $Type
+            $balloon.BalloonTipText = $Message
+            $balloon.BalloonTipTitle = $Title
+            $balloon.Visible = $true
+            $balloon.ShowBalloonTip(5000)
+
+            Start-Sleep -Milliseconds 500
+            $balloon.Dispose()
+        }
+    }
+    catch {
+        Write-TrackingLog "Failed to send notification: $_" -Level WARN
+    }
+}
+
 function Write-TrackingLog {
     param(
         [string]$Message,
@@ -444,6 +493,9 @@ function Start-Work {
     if ($ClickUpTask) {
         Write-Host "   ClickUp: $ClickUpTask" -ForegroundColor Gray
     }
+
+    # Send notification
+    Send-WorkNotification -Title "Work Started" -Message "$Agent started: $Objective" -Type 'Info'
 }
 
 function Update-Work {
@@ -684,6 +736,12 @@ function Complete-Work {
     if ($event.duration_seconds -gt 0) {
         Write-Host "   Duration: $($completion.duration_minutes) minutes" -ForegroundColor Gray
     }
+
+    # Send notification
+    $notifType = if ($Success) { 'Success' } else { 'Warning' }
+    $notifMsg = "$Agent completed: $Outcome"
+    if ($PR) { $notifMsg += " ($PR)" }
+    Send-WorkNotification -Title "Work Completed" -Message $notifMsg -Type $notifType
 }
 
 function Get-WorkState {
