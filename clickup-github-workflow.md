@@ -108,26 +108,37 @@ After acceptance test:
 
 2. Pick a task, note the ID (e.g., 869bhfw7r)
 
-3. Create branch with ClickUp task ID
+3. 📊 PERFORM MOSCOW PRIORITIZATION (MANDATORY - 2026-02-07)
+   > Analyze task requirements: Must/Should/Could/Won't Have
+   > Post MoSCoW analysis as comment in ClickUp task
+   > Reference: C:\scripts\MOSCOW_PRIORITIZATION.md
+   > User mandate: Task #869bu91e5
+
+4. Create branch with ClickUp task ID
    > Branch naming: feature/869bhfw7r-restaurant-menu
 
-4. Allocate worktree for branch
+5. Allocate worktree for branch
    > Allocate agent seat and create worktree for this branch
 
-5. Make changes to implement the feature
+6. Make changes to implement the feature (MoSCoW-guided)
+   > Phase 1: MUST HAVE items (100% complete)
+   > Phase 2: SHOULD HAVE items (if time allows)
+   > Phase 3: COULD HAVE items (only if trivial)
+   > Document WON'T HAVE as TODOs
 
-6. Merge develop into branch before PR
+7. Merge develop into branch before PR
    > git fetch origin && git merge origin/develop
    > Resolve conflicts, ensure build passes, tests pass
 
-7. Create PR with task reference
+8. Create PR with task reference (include MoSCoW in description)
    > gh pr create --base develop --title "feat: Restaurant menu [869bhfw7r]"
+   > Include implemented MUST/SHOULD/COULD and deferred items in PR body
 
-8. 🚨 MANDATORY (NON-NEGOTIABLE): Add PR link to ClickUp task
+9. 🚨 MANDATORY (NON-NEGOTIABLE): Add PR link to ClickUp task
    > clickup-sync.ps1 -Action comment -TaskId 869bhfw7r -Comment "PR #148: https://github.com/martiendejong/client-manager/pull/148"
    > THIS STEP IS REQUIRED - NO EXCEPTIONS
 
-9. Release worktree per zero-tolerance rules
+10. Release worktree per zero-tolerance rules
 ```
 
 ### When PR is Merged
@@ -205,15 +216,19 @@ $taskId = [regex]::Match($title, '\[([a-z0-9]+)\]').Groups[1].Value
 - [ ] Task ID exists in ClickUp
 - [ ] Task is in Brand Designer list
 - [ ] Task status is appropriate (todo, needs refinement, etc.)
+- [ ] **MoSCoW prioritization analysis performed** ⭐ MANDATORY (2026-02-07)
 
 ### Before Creating PR
 - [ ] Branch name contains valid ClickUp ID
 - [ ] ClickUp task updated to "busy"
 - [ ] PR title includes task ID in brackets
+- [ ] **MoSCoW analysis posted as ClickUp comment** ⭐ MANDATORY (2026-02-07)
+- [ ] **PR description includes implemented MUST/SHOULD/COULD items** ⭐ MANDATORY (2026-02-07)
 
 ### Before Merging
 - [ ] ClickUp status is "review"
 - [ ] PR has ClickUp link in description
+- [ ] **All MUST HAVE items implemented** ⭐ MANDATORY (2026-02-07)
 
 ---
 
@@ -263,4 +278,25 @@ clickup-sync.ps1 -Action update -TaskId 869bhfw7r -Status done
 
 ---
 
+## 10. MoSCoW Prioritization Integration (2026-02-07)
+
+**User Mandate:** ClickUp Task #869bu91e5 requires MoSCoW prioritization for all ClickUp work.
+
+### MoSCoW Framework
+- **Must Have:** Critical requirements (cannot skip)
+- **Should Have:** Important but can defer
+- **Could Have:** Nice-to-have (lower priority)
+- **Won't Have:** Explicitly out of scope
+
+### Integration Points
+1. **Task Analysis:** Categorize requirements before starting
+2. **ClickUp Comments:** Post MoSCoW analysis for visibility
+3. **Implementation:** Strict priority order (Must → Should → Could)
+4. **PR Documentation:** Include MoSCoW breakdown in description
+
+**See:** `C:\scripts\MOSCOW_PRIORITIZATION.md` for complete framework
+
+---
+
 **Maintained by:** Claude Agent
+**Last Updated:** 2026-02-07 (MoSCoW integration)

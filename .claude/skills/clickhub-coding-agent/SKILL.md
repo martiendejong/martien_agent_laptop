@@ -40,6 +40,7 @@ user-invocable: true
 - `clickup-sync.ps1` tool available in `C:\scripts\tools\`
 - Worktree pool system initialized
 - Access to client-manager and hazina repositories
+- **MoSCoW prioritization framework** (`C:\scripts\MOSCOW_PRIORITIZATION.md`) ⭐ MANDATORY
 
 ## Workflow Steps
 
@@ -72,16 +73,40 @@ C:/scripts/tools/clickup-sync.ps1 -Action list
 
 For each unassigned task, perform comprehensive analysis:
 
-#### 2.1 Understand Requirements
+#### 2.1 Understand Requirements & Apply MoSCoW Prioritization ⭐ MANDATORY
+
+**CRITICAL (2026-02-07): MoSCoW prioritization is REQUIRED for all ClickUp tasks**
+**Reference:** `C:\scripts\MOSCOW_PRIORITIZATION.md` (User mandate from task #869bu91e5)
 
 ```markdown
 Questions to ask yourself:
 - What is the exact feature/fix being requested?
+- **What are the MUST HAVE requirements? (Critical - cannot skip)**
+- **What are SHOULD HAVE requirements? (Important but can defer)**
+- **What are COULD HAVE requirements? (Nice-to-have only)**
+- **What are WON'T HAVE requirements? (Explicitly out of scope)**
 - What parts of the codebase will this affect?
 - Are there dependencies on other tasks/PRs?
 - What technical decisions need to be made?
 - Are there any architectural implications?
 - What testing is required?
+```
+
+**MoSCoW Analysis Template:**
+
+```
+MUST HAVE (Critical - Will implement):
+- [Core requirement 1]
+- [Core requirement 2]
+
+SHOULD HAVE (Important - Include if time allows):
+- [Enhanced feature 1]
+
+COULD HAVE (Nice-to-have - Lower priority):
+- [Optional improvement 1]
+
+WON'T HAVE (Out of scope for this iteration):
+- [Future consideration 1]
 ```
 
 #### 2.2 Search for Existing Code
@@ -209,20 +234,48 @@ Recommend closing this task and consolidating work on the master task.
 C:/scripts/tools/clickup-sync.ps1 -Action update -TaskId "<duplicate-task-id>" -Status "blocked"
 ```
 
-#### 3.2 Post Questions as Comments
+#### 3.2 Post MoSCoW Analysis & Questions as Comments ⭐ MANDATORY
 
-If **ANY** uncertainty exists that absolutely must be answered:
+**ALWAYS post MoSCoW analysis BEFORE starting implementation:**
 
 ```powershell
-# Post question as comment on ClickUp task
+# Post MoSCoW analysis as comment on ClickUp task
+C:/scripts/tools/clickup-sync.ps1 -Action comment -TaskId "<task-id>" -Comment "
+📊 MOSCOW PRIORITIZATION ANALYSIS
+
+MUST HAVE (Critical - Will implement):
+- [Core feature/requirement]
+- [Critical functionality]
+
+SHOULD HAVE (Important - Will implement if time allows):
+- [Enhanced feature]
+- [Important improvement]
+
+COULD HAVE (Nice-to-have - Lower priority):
+- [Optional enhancement]
+
+WON'T HAVE (Out of scope for this iteration):
+- [Future consideration]
+
+If you disagree with this prioritization, please clarify before I continue.
+
+-- ClickHub Coding Agent
+"
+```
+
+**If uncertainties exist about MUST HAVE scope:**
+
+```powershell
+# Post questions as comment on ClickUp task
 C:/scripts/tools/clickup-sync.ps1 -Action comment -TaskId "<task-id>" -Comment "
 QUESTIONS BEFORE IMPLEMENTATION:
 
-1. [Architecture] Should we use Repository pattern or direct DbContext access?
-2. [UI/UX] Should the modal be full-screen or centered overlay?
-3. [Business Logic] What happens if user has no active subscription?
+MoSCoW Analysis Questions:
+1. [Must Have?] Is [feature X] critical for this iteration?
+2. [Architecture] Should we use Repository pattern or direct DbContext access?
+3. [UI/UX] Should the modal be full-screen or centered overlay?
 
-Please clarify before I proceed with implementation.
+Please clarify the MUST HAVE scope before I proceed with implementation.
 
 -- ClickHub Coding Agent
 "
@@ -430,7 +483,7 @@ git worktree add "C:/Projects/worker-agents/$AGENT_SEAT/hazina" "$BRANCH_NAME"
 echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) | $AGENT_SEAT | ALLOCATE | $BRANCH_NAME | ClickHub task <task-id>" >> C:/scripts/_machine/worktrees.activity.md
 ```
 
-#### 4.3 Implement the Task
+#### 4.3 Implement the Task (MoSCoW-Guided) ⭐
 
 ```bash
 # Work in worktree directory
@@ -438,11 +491,19 @@ cd "C:/Projects/worker-agents/$AGENT_SEAT/client-manager"
 
 # Read existing code, understand patterns
 # Use Task/Explore agent for complex analysis
+
 # Implement changes following:
+# - **MoSCoW Priority Order: MUST → SHOULD → COULD (skip WON'T)** ⭐
 # - Boy Scout Rule (clean as you go)
 # - Existing code patterns
 # - Architecture principles from SOFTWARE_DEVELOPMENT_PRINCIPLES.md
 # - Definition of Done from DEFINITION_OF_DONE.md
+
+# Implementation Phases:
+# Phase 1: All MUST HAVE items (100% complete)
+# Phase 2: SHOULD HAVE items (if time/complexity allows)
+# Phase 3: COULD HAVE items (only if trivial to add)
+# Phase 4: Document WON'T HAVE as TODOs for future work
 ```
 
 #### 4.4 Update ClickUp Task Status and Assign
