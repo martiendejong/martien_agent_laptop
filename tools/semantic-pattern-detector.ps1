@@ -1,10 +1,12 @@
-#!/usr/bin/env pwsh
+﻿#!/usr/bin/env pwsh
 # semantic-pattern-detector.ps1 - Detect patterns by INTENT, not just frequency
 # Phase 1: Embedded Learning Architecture v2
 # Clusters actions semantically to find higher-order patterns
 
 param(
     [Parameter(Mandatory=$false)]
+
+$ErrorActionPreference = "Stop"
     [string]$SessionLogPath = "C:\scripts\_machine\current-session-log.jsonl",
 
     [Parameter(Mandatory=$false)]
@@ -103,7 +105,7 @@ foreach ($entry in $classified) {
 
 # Find semantic patterns
 Write-Host ""
-Write-Host "🧠 SEMANTIC PATTERN DETECTION" -ForegroundColor Magenta
+Write-Host "ðŸ§  SEMANTIC PATTERN DETECTION" -ForegroundColor Magenta
 Write-Host "=============================" -ForegroundColor Magenta
 Write-Host ""
 
@@ -115,19 +117,19 @@ foreach ($intent in $intentClusters.Keys | Sort-Object) {
     if ($cluster.Count -ge $MinClusterSize) {
         $patternsFound = $true
 
-        Write-Host "📊 Intent: $intent ($($cluster.Count) actions)" -ForegroundColor Yellow
+        Write-Host "ðŸ“Š Intent: $intent ($($cluster.Count) actions)" -ForegroundColor Yellow
 
         # List unique actions in this cluster
         $uniqueActions = $cluster | Select-Object -ExpandProperty action -Unique
 
         foreach ($action in $uniqueActions) {
             $count = ($cluster | Where-Object { $_.action -eq $action }).Count
-            Write-Host "   • $action ($count×)" -ForegroundColor Gray
+            Write-Host "   â€¢ $action ($countÃ—)" -ForegroundColor Gray
         }
 
         # Suggest improvement
         if ($cluster.Count -ge 3) {
-            Write-Host "   💡 Suggestion: Create $intent-quick-ref.md (consolidate all $intent info)" -ForegroundColor Cyan
+            Write-Host "   ðŸ’¡ Suggestion: Create $intent-quick-ref.md (consolidate all $intent info)" -ForegroundColor Cyan
         }
 
         if ($Detailed) {
@@ -142,7 +144,7 @@ foreach ($intent in $intentClusters.Keys | Sort-Object) {
 }
 
 # Cross-intent patterns (actions spanning multiple intents)
-Write-Host "🔗 Cross-Intent Patterns:" -ForegroundColor Cyan
+Write-Host "ðŸ”— Cross-Intent Patterns:" -ForegroundColor Cyan
 $multiIntentActions = $classified | Where-Object { $_.intents.Count -gt 1 }
 
 if ($multiIntentActions.Count -gt 0) {
@@ -150,13 +152,13 @@ if ($multiIntentActions.Count -gt 0) {
 
     foreach ($entry in $multiIntentActions) {
         $intentList = $entry.intents -join " + "
-        Write-Host "   • $($entry.action) → [$intentList]" -ForegroundColor Cyan
+        Write-Host "   â€¢ $($entry.action) â†’ [$intentList]" -ForegroundColor Cyan
     }
     Write-Host ""
 }
 
 # Temporal patterns (sequences within same intent)
-Write-Host "⏱️  Temporal Sequences:" -ForegroundColor Green
+Write-Host "â±ï¸  Temporal Sequences:" -ForegroundColor Green
 
 foreach ($intent in $intentClusters.Keys | Sort-Object) {
     $cluster = $intentClusters[$intent]
@@ -193,7 +195,7 @@ foreach ($intent in $intentClusters.Keys | Sort-Object) {
             Write-Host "   Intent: $intent" -ForegroundColor Green
 
             foreach ($seq in $sequences) {
-                $actionChain = ($seq | Select-Object -ExpandProperty action) -join " → "
+                $actionChain = ($seq | Select-Object -ExpandProperty action) -join " â†’ "
                 Write-Host "      Sequence: $actionChain" -ForegroundColor Gray
             }
         }
@@ -201,7 +203,7 @@ foreach ($intent in $intentClusters.Keys | Sort-Object) {
 }
 
 if (-not $patternsFound) {
-    Write-Host "✅ No significant semantic patterns detected yet" -ForegroundColor Green
+    Write-Host "âœ… No significant semantic patterns detected yet" -ForegroundColor Green
 }
 
 Write-Host ""

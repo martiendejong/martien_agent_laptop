@@ -1,8 +1,22 @@
-# bias-detector.ps1
+﻿# bias-detector.ps1
 # Detect cognitive biases in reasoning
+
+<#
+.SYNOPSIS
+    bias-detector.ps1
+
+.DESCRIPTION
+    bias-detector.ps1
+
+.NOTES
+    File: bias-detector.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [Parameter(Mandatory=$true)]
+
+$ErrorActionPreference = "Stop"
     [string]$Reasoning,
 
     [string[]]$SuspectedBiases = @(),
@@ -41,20 +55,20 @@ foreach ($biasType in $biasPatterns.Keys) {
 $detected = $detected | Select-Object -Unique
 
 if ($Analyze) {
-    Write-Host "`n🔍 BIAS DETECTION ANALYSIS" -ForegroundColor Cyan
-    Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor DarkGray
+    Write-Host "`nðŸ” BIAS DETECTION ANALYSIS" -ForegroundColor Cyan
+    Write-Host "â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”" -ForegroundColor DarkGray
 
     if ($detected.Count -gt 0) {
-        Write-Host "⚠️  Potential biases detected: $($detected.Count)" -ForegroundColor Yellow
+        Write-Host "âš ï¸  Potential biases detected: $($detected.Count)" -ForegroundColor Yellow
         foreach ($bias in $detected) {
-            Write-Host "  • " -NoNewline -ForegroundColor DarkGray
+            Write-Host "  â€¢ " -NoNewline -ForegroundColor DarkGray
             Write-Host $bias -ForegroundColor Red
         }
     } else {
-        Write-Host "✅ No obvious bias patterns detected" -ForegroundColor Green
+        Write-Host "âœ… No obvious bias patterns detected" -ForegroundColor Green
     }
 
-    Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor DarkGray
+    Write-Host "â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”" -ForegroundColor DarkGray
 }
 
 $data = Get-Content $detectorPath -Raw | ConvertFrom-Yaml

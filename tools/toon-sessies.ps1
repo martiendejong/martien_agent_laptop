@@ -1,7 +1,9 @@
-# Toon Sessies - Dutch alias for session manager
+﻿# Toon Sessies - Dutch alias for session manager
 # Usage: toon-sessies [actief|gearchiveerd|alles]
 param(
     [Parameter(Position=0)]
+
+$ErrorActionPreference = "Stop"
     [string]$Filter = 'alles',
 
     [int]$Aantal = 15

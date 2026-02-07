@@ -225,6 +225,7 @@ Any task with multiple steps should become a script. This way:
 | Safe EF Core migrations | `_machine/migration-patterns.md` | ✅ `ef-migration-safety` |
 | Update reflection log | `continuous-improvement.md` | ✅ `session-reflection` |
 | Multi-agent conflict detection | `_machine/MULTI_AGENT_CONFLICT_DETECTION.md` | ✅ `multi-agent-conflict` |
+| Review ClickUp tasks in "review" status | `docs/workflows/CLICKUP_REVIEWER_WORKFLOW.md` | ✅ `clickup-reviewer` |
 
 **Full workflows table:** See `docs/claude-system/STARTUP_PROTOCOL.md` § Common Workflows
 

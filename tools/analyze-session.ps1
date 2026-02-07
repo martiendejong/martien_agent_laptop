@@ -1,9 +1,23 @@
-#!/usr/bin/env pwsh
+﻿#!/usr/bin/env pwsh
 # analyze-session.ps1 - Analyze session log for patterns
 # Part of Embedded Learning Architecture
 
+<#
+.SYNOPSIS
+    !/usr/bin/env pwsh
+
+.DESCRIPTION
+    !/usr/bin/env pwsh
+
+.NOTES
+    File: analyze-session.ps1
+    Auto-generated help documentation
+#>
+
 param(
     [Parameter(Mandatory=$false)]
+
+$ErrorActionPreference = "Stop"
     [string]$SessionLogPath = "C:\scripts\_machine\current-session-log.jsonl",
 
     [Parameter(Mandatory=$false)]
@@ -14,7 +28,7 @@ param(
 )
 
 if (-not (Test-Path $SessionLogPath)) {
-    Write-Host "❌ No session log found at: $SessionLogPath" -ForegroundColor Red
+    Write-Host "âŒ No session log found at: $SessionLogPath" -ForegroundColor Red
     Write-Host "   Session logging may not be active yet." -ForegroundColor Yellow
     exit 1
 }
@@ -25,12 +39,12 @@ $logEntries = Get-Content $SessionLogPath | Where-Object { $_.Trim() -ne "" } | 
 }
 
 if ($logEntries.Count -eq 0) {
-    Write-Host "❌ Session log is empty" -ForegroundColor Red
+    Write-Host "âŒ Session log is empty" -ForegroundColor Red
     exit 1
 }
 
 Write-Host ""
-Write-Host "📊 SESSION ANALYSIS" -ForegroundColor Cyan
+Write-Host "ðŸ“Š SESSION ANALYSIS" -ForegroundColor Cyan
 Write-Host "===================" -ForegroundColor Cyan
 Write-Host ""
 
@@ -39,14 +53,14 @@ Write-Host "Total Actions Logged: $($logEntries.Count)" -ForegroundColor White
 Write-Host ""
 
 # Action frequency
-Write-Host "📈 Action Frequency:" -ForegroundColor Yellow
+Write-Host "ðŸ“ˆ Action Frequency:" -ForegroundColor Yellow
 $actionFreq = $logEntries | Group-Object -Property action | Sort-Object Count -Descending
 $actionFreq | ForEach-Object {
     $color = "White"
     $marker = "  "
     if ($_.Count -ge $AutomationThreshold) {
         $color = "Yellow"
-        $marker = "⚠️ "
+        $marker = "âš ï¸ "
     }
     Write-Host "$marker$($_.Count)x - $($_.Name)" -ForegroundColor $color
 }
@@ -55,9 +69,9 @@ Write-Host ""
 # Automation candidates
 $automationCandidates = $actionFreq | Where-Object { $_.Count -ge $AutomationThreshold }
 if ($automationCandidates) {
-    Write-Host "🤖 Automation Candidates (≥${AutomationThreshold}x):" -ForegroundColor Green
+    Write-Host "ðŸ¤– Automation Candidates (â‰¥${AutomationThreshold}x):" -ForegroundColor Green
     $automationCandidates | ForEach-Object {
-        Write-Host "   • $($_.Name) - occurred $($_.Count) times" -ForegroundColor Green
+        Write-Host "   â€¢ $($_.Name) - occurred $($_.Count) times" -ForegroundColor Green
     }
     Write-Host ""
 }
@@ -65,11 +79,11 @@ if ($automationCandidates) {
 # Error patterns
 $errors = $logEntries | Where-Object { $_.outcome -like "*error*" -or $_.outcome -like "*fail*" }
 if ($errors) {
-    Write-Host "❌ Errors Detected:" -ForegroundColor Red
+    Write-Host "âŒ Errors Detected:" -ForegroundColor Red
     $errorFreq = $errors | Group-Object -Property action | Sort-Object Count -Descending
     $errorFreq | ForEach-Object {
         $color = if ($_.Count -ge 2) { "Red" } else { "Yellow" }
-        $urgency = if ($_.Count -ge 2) { "🚨 CRITICAL" } else { "⚠️ " }
+        $urgency = if ($_.Count -ge 2) { "ðŸš¨ CRITICAL" } else { "âš ï¸ " }
         Write-Host "   $urgency $($_.Count)x - $($_.Name)" -ForegroundColor $color
     }
     Write-Host ""
@@ -78,28 +92,28 @@ if ($errors) {
 # Automation triggers
 $triggers = $logEntries | Where-Object { $_.automation_trigger -eq $true }
 if ($triggers) {
-    Write-Host "🔔 Automation Triggers Fired:" -ForegroundColor Magenta
+    Write-Host "ðŸ”” Automation Triggers Fired:" -ForegroundColor Magenta
     $triggers | ForEach-Object {
-        Write-Host "   • $($_.timestamp) - $($_.suggestion)" -ForegroundColor Magenta
+        Write-Host "   â€¢ $($_.timestamp) - $($_.suggestion)" -ForegroundColor Magenta
     }
     Write-Host ""
 }
 
 # Detailed mode - show timeline
 if ($Detailed) {
-    Write-Host "📋 Session Timeline:" -ForegroundColor Cyan
+    Write-Host "ðŸ“‹ Session Timeline:" -ForegroundColor Cyan
     $logEntries | ForEach-Object {
         $color = "Gray"
-        $marker = "•"
+        $marker = "â€¢"
 
         if ($_.automation_trigger) {
             $color = "Yellow"
-            $marker = "⚠️"
+            $marker = "âš ï¸"
         }
 
         if ($_.outcome -like "*error*") {
             $color = "Red"
-            $marker = "❌"
+            $marker = "âŒ"
         }
 
         Write-Host "$marker $($_.timestamp) - $($_.action)" -ForegroundColor $color
@@ -112,7 +126,7 @@ if ($Detailed) {
 }
 
 # Summary recommendations
-Write-Host "💡 Recommendations:" -ForegroundColor Cyan
+Write-Host "ðŸ’¡ Recommendations:" -ForegroundColor Cyan
 $recommendations = @()
 
 if ($automationCandidates) {
@@ -132,7 +146,7 @@ if ($recommendations.Count -eq 0) {
 }
 
 $recommendations | ForEach-Object {
-    Write-Host "   • $_" -ForegroundColor Cyan
+    Write-Host "   â€¢ $_" -ForegroundColor Cyan
 }
 Write-Host ""
 

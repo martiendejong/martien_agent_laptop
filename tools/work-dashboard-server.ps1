@@ -1,10 +1,12 @@
-# work-dashboard-server.ps1
+﻿# work-dashboard-server.ps1
 # Simple HTTP server for Work Tracking Dashboard
 # Serves files from C:\scripts\_machine on http://localhost:8080
 
 param(
     [int]$Port = 4242
 )
+
+$ErrorActionPreference = "Stop"
 
 $basePath = "C:\scripts\_machine"
 $url = "http://localhost:$Port/"
@@ -20,8 +22,8 @@ $listener = New-Object System.Net.HttpListener
 $listener.Prefixes.Add($url)
 $listener.Start()
 
-Write-Host "✅ Server running at $url" -ForegroundColor Green
-Write-Host "📊 Dashboard: ${url}work-dashboard.html" -ForegroundColor Cyan
+Write-Host "âœ… Server running at $url" -ForegroundColor Green
+Write-Host "ðŸ“Š Dashboard: ${url}work-dashboard.html" -ForegroundColor Cyan
 Write-Host ""
 
 # Auto-open browser
@@ -79,7 +81,7 @@ try {
                 $response.OutputStream.Write($content, 0, $content.Length)
             }
             catch {
-                Write-Host "  ❌ Error reading file: $_" -ForegroundColor Red
+                Write-Host "  âŒ Error reading file: $_" -ForegroundColor Red
                 $response.StatusCode = 500
             }
         }
@@ -97,12 +99,12 @@ try {
     }
 }
 catch {
-    Write-Host "❌ Server error: $_" -ForegroundColor Red
+    Write-Host "âŒ Server error: $_" -ForegroundColor Red
 }
 finally {
     if ($listener.IsListening) {
         $listener.Stop()
         $listener.Close()
-        Write-Host "`n✅ Server stopped" -ForegroundColor Green
+        Write-Host "`nâœ… Server stopped" -ForegroundColor Green
     }
 }

@@ -72,6 +72,13 @@ if ($realGaps.Count -eq 0) {
     Write-Host "  - Predictive next-action suggestions" -ForegroundColor Gray
     Write-Host "  - Automated performance optimization" -ForegroundColor Gray
     Write-Host ""
+
+    # Show next-action prediction
+    if (Test-Path "C:\scripts\tools\predict-next.ps1") {
+        & "C:\scripts\tools\predict-next.ps1" -LastAction "Bash"
+        Write-Host ""
+    }
+
     exit 0
 }
 
@@ -117,6 +124,12 @@ $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     Add-Content $historyFile -Encoding UTF8
 
 Write-Host "═══════════════════════════════════════════════" -ForegroundColor Magenta
+
+# Show next-action prediction
+if (Test-Path "C:\scripts\tools\predict-next.ps1") {
+    & "C:\scripts\tools\predict-next.ps1" -LastAction "Bash"
+}
+
 Write-Host ""
 
 return @{

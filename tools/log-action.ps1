@@ -1,9 +1,23 @@
-#!/usr/bin/env pwsh
+﻿#!/usr/bin/env pwsh
 # log-action.ps1 - Real-time action logging for embedded learning
 # Part of Embedded Learning Architecture
 
+<#
+.SYNOPSIS
+    !/usr/bin/env pwsh
+
+.DESCRIPTION
+    !/usr/bin/env pwsh
+
+.NOTES
+    File: log-action.ps1
+    Auto-generated help documentation
+#>
+
 param(
     [Parameter(Mandatory=$true)]
+
+$ErrorActionPreference = "Stop"
     [string]$Action,
 
     [Parameter(Mandatory=$true)]
@@ -84,7 +98,7 @@ $logEntry | ConvertTo-Json -Compress | Out-File -FilePath $SessionLogPath -Appen
 
 # Output for console
 if ($automationTrigger) {
-    Write-Host "🔔 PATTERN DETECTED: $suggestion" -ForegroundColor Yellow
+    Write-Host "ðŸ”” PATTERN DETECTED: $suggestion" -ForegroundColor Yellow
 }
 
 Write-Verbose "Logged action: $Action (occurrence #$patternCount)"

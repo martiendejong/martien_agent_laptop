@@ -1,0 +1,1536 @@
+﻿{
+    "total_issues":  101,
+    "metrics":  [
+                    {
+                        "size_kb":  3.53,
+                        "comment_lines":  11,
+                        "total_lines":  116,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  88,
+                        "file":  "action-predictor.ps1"
+                    },
+                    {
+                        "size_kb":  3.91,
+                        "comment_lines":  12,
+                        "total_lines":  123,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  99,
+                        "file":  "add-error-handling.ps1"
+                    },
+                    {
+                        "size_kb":  5.47,
+                        "comment_lines":  11,
+                        "total_lines":  183,
+                        "param_validation":  true,
+                        "functions":  0,
+                        "quality_score":  100,
+                        "help_comments":  true,
+                        "issues":  [
+
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  137,
+                        "file":  "ai-image.ps1"
+                    },
+                    {
+                        "size_kb":  15.31,
+                        "comment_lines":  26,
+                        "total_lines":  500,
+                        "param_validation":  true,
+                        "functions":  1,
+                        "quality_score":  100,
+                        "help_comments":  true,
+                        "issues":  [
+
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  408,
+                        "file":  "ai-vision.ps1"
+                    },
+                    {
+                        "size_kb":  4.59,
+                        "comment_lines":  12,
+                        "total_lines":  147,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  123,
+                        "file":  "analyze-session.ps1"
+                    },
+                    {
+                        "size_kb":  2.27,
+                        "comment_lines":  10,
+                        "total_lines":  81,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  85,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  69,
+                        "file":  "archive-aggressive.ps1"
+                    },
+                    {
+                        "size_kb":  3.14,
+                        "comment_lines":  12,
+                        "total_lines":  106,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  85,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  91,
+                        "file":  "archive-bulk-docs.ps1"
+                    },
+                    {
+                        "size_kb":  2.85,
+                        "comment_lines":  14,
+                        "total_lines":  103,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  85,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  87,
+                        "file":  "archive-bulk-tools.ps1"
+                    },
+                    {
+                        "size_kb":  4.44,
+                        "comment_lines":  10,
+                        "total_lines":  158,
+                        "param_validation":  false,
+                        "functions":  2,
+                        "quality_score":  85,
+                        "help_comments":  true,
+                        "issues":  [
+                                       "Parameters lack validation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  125,
+                        "file":  "archive-reflections.ps1"
+                    },
+                    {
+                        "size_kb":  10.34,
+                        "comment_lines":  13,
+                        "total_lines":  211,
+                        "param_validation":  true,
+                        "functions":  0,
+                        "quality_score":  100,
+                        "help_comments":  true,
+                        "issues":  [
+
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  176,
+                        "file":  "assumption-tracker.ps1"
+                    },
+                    {
+                        "size_kb":  5.14,
+                        "comment_lines":  10,
+                        "total_lines":  165,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  129,
+                        "file":  "attention-monitor.ps1"
+                    },
+                    {
+                        "size_kb":  2.76,
+                        "comment_lines":  7,
+                        "total_lines":  60,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  53,
+                        "file":  "auto-consciousness.ps1"
+                    },
+                    {
+                        "size_kb":  8.56,
+                        "comment_lines":  23,
+                        "total_lines":  269,
+                        "param_validation":  true,
+                        "functions":  5,
+                        "quality_score":  85,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  215,
+                        "file":  "auto-doc-update.ps1"
+                    },
+                    {
+                        "size_kb":  2.84,
+                        "comment_lines":  2,
+                        "total_lines":  72,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  55,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation",
+                                       "Low comment ratio (3.4%)"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  58,
+                        "file":  "bias-detector.ps1"
+                    },
+                    {
+                        "size_kb":  2.16,
+                        "comment_lines":  7,
+                        "total_lines":  78,
+                        "param_validation":  true,
+                        "functions":  0,
+                        "quality_score":  100,
+                        "help_comments":  true,
+                        "issues":  [
+
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  64,
+                        "file":  "capture-moment.ps1"
+                    },
+                    {
+                        "size_kb":  7.5,
+                        "comment_lines":  10,
+                        "total_lines":  248,
+                        "param_validation":  false,
+                        "functions":  3,
+                        "quality_score":  85,
+                        "help_comments":  true,
+                        "issues":  [
+                                       "Parameters lack validation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  195,
+                        "file":  "cleanup-stale-branches.ps1"
+                    },
+                    {
+                        "size_kb":  5.32,
+                        "comment_lines":  10,
+                        "total_lines":  164,
+                        "param_validation":  true,
+                        "functions":  3,
+                        "quality_score":  85,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  132,
+                        "file":  "cleanup-unused.ps1"
+                    },
+                    {
+                        "size_kb":  12.18,
+                        "comment_lines":  36,
+                        "total_lines":  352,
+                        "param_validation":  true,
+                        "functions":  7,
+                        "quality_score":  100,
+                        "help_comments":  true,
+                        "issues":  [
+
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  276,
+                        "file":  "clickup-migrate-all-tasks.ps1"
+                    },
+                    {
+                        "size_kb":  5.6,
+                        "comment_lines":  8,
+                        "total_lines":  146,
+                        "param_validation":  true,
+                        "functions":  1,
+                        "quality_score":  100,
+                        "help_comments":  true,
+                        "issues":  [
+
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  125,
+                        "file":  "clickup-migrate-naming-tags.ps1"
+                    },
+                    {
+                        "size_kb":  7.49,
+                        "comment_lines":  22,
+                        "total_lines":  250,
+                        "param_validation":  true,
+                        "functions":  0,
+                        "quality_score":  100,
+                        "help_comments":  true,
+                        "issues":  [
+
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  208,
+                        "file":  "clickup-review-automation-v2.ps1"
+                    },
+                    {
+                        "size_kb":  5.96,
+                        "comment_lines":  20,
+                        "total_lines":  208,
+                        "param_validation":  true,
+                        "functions":  0,
+                        "quality_score":  100,
+                        "help_comments":  true,
+                        "issues":  [
+
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  171,
+                        "file":  "clickup-review-automation.ps1"
+                    },
+                    {
+                        "size_kb":  13.01,
+                        "comment_lines":  23,
+                        "total_lines":  341,
+                        "param_validation":  true,
+                        "functions":  1,
+                        "quality_score":  100,
+                        "help_comments":  true,
+                        "issues":  [
+
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  291,
+                        "file":  "clickup-sync.ps1"
+                    },
+                    {
+                        "size_kb":  7.32,
+                        "comment_lines":  21,
+                        "total_lines":  220,
+                        "param_validation":  true,
+                        "functions":  3,
+                        "quality_score":  85,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  187,
+                        "file":  "code-analyzer.ps1"
+                    },
+                    {
+                        "size_kb":  1.17,
+                        "comment_lines":  2,
+                        "total_lines":  40,
+                        "param_validation":  true,
+                        "functions":  0,
+                        "quality_score":  85,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  32,
+                        "file":  "cognitive-load-monitor.ps1"
+                    },
+                    {
+                        "size_kb":  4.02,
+                        "comment_lines":  11,
+                        "total_lines":  123,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  106,
+                        "file":  "compile-consciousness.ps1"
+                    },
+                    {
+                        "size_kb":  33.32,
+                        "comment_lines":  95,
+                        "total_lines":  965,
+                        "param_validation":  true,
+                        "functions":  16,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation",
+                                       "File too long (965 lines) - consider splitting"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  792,
+                        "file":  "consciousness-core-v2.ps1"
+                    },
+                    {
+                        "size_kb":  5.48,
+                        "comment_lines":  8,
+                        "total_lines":  151,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  85,
+                        "help_comments":  true,
+                        "issues":  [
+                                       "Parameters lack validation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  133,
+                        "file":  "consciousness-startup.ps1"
+                    },
+                    {
+                        "size_kb":  3.88,
+                        "comment_lines":  9,
+                        "total_lines":  139,
+                        "param_validation":  false,
+                        "functions":  2,
+                        "quality_score":  85,
+                        "help_comments":  true,
+                        "issues":  [
+                                       "Parameters lack validation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  115,
+                        "file":  "cs-format.ps1"
+                    },
+                    {
+                        "size_kb":  5.71,
+                        "comment_lines":  10,
+                        "total_lines":  177,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  147,
+                        "file":  "curiosity-engine.ps1"
+                    },
+                    {
+                        "size_kb":  8.34,
+                        "comment_lines":  11,
+                        "total_lines":  255,
+                        "param_validation":  true,
+                        "functions":  4,
+                        "quality_score":  85,
+                        "help_comments":  true,
+                        "issues":  [
+                                       "Low comment ratio (4.9%)"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  223,
+                        "file":  "daily-summary.ps1"
+                    },
+                    {
+                        "size_kb":  9.58,
+                        "comment_lines":  18,
+                        "total_lines":  139,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  85,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  122,
+                        "file":  "demo-embedded-learning.ps1"
+                    },
+                    {
+                        "size_kb":  12.34,
+                        "comment_lines":  24,
+                        "total_lines":  361,
+                        "param_validation":  false,
+                        "functions":  5,
+                        "quality_score":  85,
+                        "help_comments":  true,
+                        "issues":  [
+                                       "Parameters lack validation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  296,
+                        "file":  "diagnose-error.ps1"
+                    },
+                    {
+                        "size_kb":  4.65,
+                        "comment_lines":  12,
+                        "total_lines":  133,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  85,
+                        "help_comments":  true,
+                        "issues":  [
+                                       "Parameters lack validation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  112,
+                        "file":  "ef-migration-status.ps1"
+                    },
+                    {
+                        "size_kb":  7.8,
+                        "comment_lines":  10,
+                        "total_lines":  190,
+                        "param_validation":  true,
+                        "functions":  0,
+                        "quality_score":  100,
+                        "help_comments":  true,
+                        "issues":  [
+
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  157,
+                        "file":  "emotional-state-logger.ps1"
+                    },
+                    {
+                        "size_kb":  0.29,
+                        "comment_lines":  2,
+                        "total_lines":  11,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  9,
+                        "file":  "export-sessie.ps1"
+                    },
+                    {
+                        "size_kb":  2.44,
+                        "comment_lines":  2,
+                        "total_lines":  81,
+                        "param_validation":  true,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation",
+                                       "Low comment ratio (2.9%)"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  69,
+                        "file":  "future-self-simulator.ps1"
+                    },
+                    {
+                        "size_kb":  6.06,
+                        "comment_lines":  9,
+                        "total_lines":  149,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  85,
+                        "help_comments":  true,
+                        "issues":  [
+                                       "Parameters lack validation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  128,
+                        "file":  "generate-improvements.ps1"
+                    },
+                    {
+                        "size_kb":  0.4,
+                        "comment_lines":  3,
+                        "total_lines":  17,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  14,
+                        "file":  "herstel-sessie.ps1"
+                    },
+                    {
+                        "size_kb":  10.15,
+                        "comment_lines":  13,
+                        "total_lines":  216,
+                        "param_validation":  true,
+                        "functions":  0,
+                        "quality_score":  100,
+                        "help_comments":  true,
+                        "issues":  [
+
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  177,
+                        "file":  "identity-drift-detector.ps1"
+                    },
+                    {
+                        "size_kb":  29.87,
+                        "comment_lines":  56,
+                        "total_lines":  790,
+                        "param_validation":  true,
+                        "functions":  11,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation",
+                                       "File too long (790 lines) - consider splitting"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  677,
+                        "file":  "infinite-engine-v2.ps1"
+                    },
+                    {
+                        "size_kb":  4.15,
+                        "comment_lines":  9,
+                        "total_lines":  103,
+                        "param_validation":  false,
+                        "functions":  3,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  89,
+                        "file":  "infinite-engine.ps1"
+                    },
+                    {
+                        "size_kb":  8.94,
+                        "comment_lines":  18,
+                        "total_lines":  252,
+                        "param_validation":  true,
+                        "functions":  7,
+                        "quality_score":  100,
+                        "help_comments":  true,
+                        "issues":  [
+
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  212,
+                        "file":  "infinite-improvement-engine.ps1"
+                    },
+                    {
+                        "size_kb":  3.78,
+                        "comment_lines":  12,
+                        "total_lines":  105,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  85,
+                        "help_comments":  true,
+                        "issues":  [
+                                       "Parameters lack validation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  86,
+                        "file":  "init-embedded-learning.ps1"
+                    },
+                    {
+                        "size_kb":  16.37,
+                        "comment_lines":  44,
+                        "total_lines":  487,
+                        "param_validation":  true,
+                        "functions":  11,
+                        "quality_score":  100,
+                        "help_comments":  true,
+                        "issues":  [
+
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  424,
+                        "file":  "jc.ps1"
+                    },
+                    {
+                        "size_kb":  8.59,
+                        "comment_lines":  12,
+                        "total_lines":  207,
+                        "param_validation":  false,
+                        "functions":  2,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  187,
+                        "file":  "jengo.ps1"
+                    },
+                    {
+                        "size_kb":  8.02,
+                        "comment_lines":  23,
+                        "total_lines":  270,
+                        "param_validation":  true,
+                        "functions":  6,
+                        "quality_score":  85,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  209,
+                        "file":  "keyword-memory.ps1"
+                    },
+                    {
+                        "size_kb":  7.48,
+                        "comment_lines":  11,
+                        "total_lines":  225,
+                        "param_validation":  true,
+                        "functions":  2,
+                        "quality_score":  100,
+                        "help_comments":  true,
+                        "issues":  [
+
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  186,
+                        "file":  "learning-queue.ps1"
+                    },
+                    {
+                        "size_kb":  2.47,
+                        "comment_lines":  13,
+                        "total_lines":  95,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  75,
+                        "file":  "log-action.ps1"
+                    },
+                    {
+                        "size_kb":  9.68,
+                        "comment_lines":  22,
+                        "total_lines":  300,
+                        "param_validation":  true,
+                        "functions":  6,
+                        "quality_score":  85,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  244,
+                        "file":  "markov-predictor.ps1"
+                    },
+                    {
+                        "size_kb":  8.58,
+                        "comment_lines":  16,
+                        "total_lines":  244,
+                        "param_validation":  true,
+                        "functions":  0,
+                        "quality_score":  85,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  205,
+                        "file":  "memory-consolidation.ps1"
+                    },
+                    {
+                        "size_kb":  11.7,
+                        "comment_lines":  22,
+                        "total_lines":  392,
+                        "param_validation":  false,
+                        "functions":  6,
+                        "quality_score":  85,
+                        "help_comments":  true,
+                        "issues":  [
+                                       "Parameters lack validation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  314,
+                        "file":  "merge-pr-sequence.ps1"
+                    },
+                    {
+                        "size_kb":  1.17,
+                        "comment_lines":  5,
+                        "total_lines":  30,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  24,
+                        "file":  "meta-log.ps1"
+                    },
+                    {
+                        "size_kb":  4.38,
+                        "comment_lines":  9,
+                        "total_lines":  136,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  112,
+                        "file":  "meta-reasoning.ps1"
+                    },
+                    {
+                        "size_kb":  6.3,
+                        "comment_lines":  14,
+                        "total_lines":  164,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  139,
+                        "file":  "pattern-detector.ps1"
+                    },
+                    {
+                        "size_kb":  0.19,
+                        "comment_lines":  1,
+                        "total_lines":  5,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  4,
+                        "file":  "perspective-shifter.ps1"
+                    },
+                    {
+                        "size_kb":  5.64,
+                        "comment_lines":  12,
+                        "total_lines":  131,
+                        "param_validation":  true,
+                        "functions":  0,
+                        "quality_score":  85,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  104,
+                        "file":  "phase1-integration.ps1"
+                    },
+                    {
+                        "size_kb":  2.07,
+                        "comment_lines":  11,
+                        "total_lines":  73,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  59,
+                        "file":  "predict-next.ps1"
+                    },
+                    {
+                        "size_kb":  6.94,
+                        "comment_lines":  15,
+                        "total_lines":  215,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  168,
+                        "file":  "predictive-engine.ps1"
+                    },
+                    {
+                        "size_kb":  0.36,
+                        "comment_lines":  2,
+                        "total_lines":  13,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  10,
+                        "file":  "preview-sessie.ps1"
+                    },
+                    {
+                        "size_kb":  2.92,
+                        "comment_lines":  3,
+                        "total_lines":  104,
+                        "param_validation":  true,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation",
+                                       "Low comment ratio (3.8%)"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  79,
+                        "file":  "relationship-memory.ps1"
+                    },
+                    {
+                        "size_kb":  8.71,
+                        "comment_lines":  13,
+                        "total_lines":  222,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  85,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  186,
+                        "file":  "self-analysis.ps1"
+                    },
+                    {
+                        "size_kb":  6.85,
+                        "comment_lines":  18,
+                        "total_lines":  216,
+                        "param_validation":  false,
+                        "functions":  1,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  174,
+                        "file":  "semantic-pattern-detector.ps1"
+                    },
+                    {
+                        "size_kb":  5.39,
+                        "comment_lines":  13,
+                        "total_lines":  178,
+                        "param_validation":  false,
+                        "functions":  2,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  147,
+                        "file":  "semantic-search.ps1"
+                    },
+                    {
+                        "size_kb":  0.19,
+                        "comment_lines":  2,
+                        "total_lines":  6,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  85,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  5,
+                        "file":  "sessie-stats.ps1"
+                    },
+                    {
+                        "size_kb":  2.46,
+                        "comment_lines":  6,
+                        "total_lines":  92,
+                        "param_validation":  true,
+                        "functions":  3,
+                        "quality_score":  85,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  80,
+                        "file":  "session-tracker.ps1"
+                    },
+                    {
+                        "size_kb":  22.16,
+                        "comment_lines":  24,
+                        "total_lines":  631,
+                        "param_validation":  true,
+                        "functions":  10,
+                        "quality_score":  55,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation",
+                                       "File too long (631 lines) - consider splitting",
+                                       "Low comment ratio (4.5%)"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  534,
+                        "file":  "sessions.ps1"
+                    },
+                    {
+                        "size_kb":  4.77,
+                        "comment_lines":  16,
+                        "total_lines":  139,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  111,
+                        "file":  "smart-iterate.ps1"
+                    },
+                    {
+                        "size_kb":  5.36,
+                        "comment_lines":  10,
+                        "total_lines":  136,
+                        "param_validation":  true,
+                        "functions":  3,
+                        "quality_score":  85,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  116,
+                        "file":  "state-manager.ps1"
+                    },
+                    {
+                        "size_kb":  11.63,
+                        "comment_lines":  28,
+                        "total_lines":  356,
+                        "param_validation":  true,
+                        "functions":  9,
+                        "quality_score":  100,
+                        "help_comments":  true,
+                        "issues":  [
+
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  285,
+                        "file":  "system-analyzer.ps1"
+                    },
+                    {
+                        "size_kb":  7.01,
+                        "comment_lines":  9,
+                        "total_lines":  219,
+                        "param_validation":  false,
+                        "functions":  4,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  179,
+                        "file":  "tag-sessions.ps1"
+                    },
+                    {
+                        "size_kb":  0.56,
+                        "comment_lines":  2,
+                        "total_lines":  19,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  15,
+                        "file":  "toon-sessies.ps1"
+                    },
+                    {
+                        "size_kb":  3.36,
+                        "comment_lines":  3,
+                        "total_lines":  112,
+                        "param_validation":  false,
+                        "functions":  1,
+                        "quality_score":  70,
+                        "help_comments":  true,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Low comment ratio (3.4%)"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  88,
+                        "file":  "validate-pr-base.ps1"
+                    },
+                    {
+                        "size_kb":  7.69,
+                        "comment_lines":  9,
+                        "total_lines":  168,
+                        "param_validation":  true,
+                        "functions":  0,
+                        "quality_score":  100,
+                        "help_comments":  true,
+                        "issues":  [
+
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  141,
+                        "file":  "why-did-i-do-that.ps1"
+                    },
+                    {
+                        "size_kb":  0.58,
+                        "comment_lines":  5,
+                        "total_lines":  26,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  19,
+                        "file":  "with-prediction.ps1"
+                    },
+                    {
+                        "size_kb":  3.88,
+                        "comment_lines":  14,
+                        "total_lines":  110,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  93,
+                        "file":  "work-dashboard-server.ps1"
+                    },
+                    {
+                        "size_kb":  5.96,
+                        "comment_lines":  7,
+                        "total_lines":  177,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  55,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation",
+                                       "Low comment ratio (4.6%)"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  152,
+                        "file":  "work-tracking-init-db.ps1"
+                    },
+                    {
+                        "size_kb":  2.77,
+                        "comment_lines":  3,
+                        "total_lines":  91,
+                        "param_validation":  true,
+                        "functions":  4,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Missing help documentation",
+                                       "Low comment ratio (3.8%)"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  78,
+                        "file":  "work-tray-startup.ps1"
+                    },
+                    {
+                        "size_kb":  0.35,
+                        "comment_lines":  2,
+                        "total_lines":  13,
+                        "param_validation":  false,
+                        "functions":  0,
+                        "quality_score":  70,
+                        "help_comments":  false,
+                        "issues":  [
+                                       "Parameters lack validation",
+                                       "Missing help documentation"
+                                   ],
+                        "error_handling":  true,
+                        "code_lines":  10,
+                        "file":  "zoek-sessies.ps1"
+                    }
+                ],
+    "avg_quality":  80.6,
+    "duplicates":  [
+                       {
+                           "func1":  "Initialize-ConsciousnessCore",
+                           "file2":  "consciousness-core-v2.ps1",
+                           "similarity":  71,
+                           "func2":  "Dump-ConsciousnessState",
+                           "file1":  "consciousness-core-v2.ps1"
+                       },
+                       {
+                           "func1":  "Show-ConsciousnessHealth",
+                           "file2":  "consciousness-core-v2.ps1",
+                           "similarity":  75,
+                           "func2":  "Dump-ConsciousnessState",
+                           "file1":  "consciousness-core-v2.ps1"
+                       },
+                       {
+                           "func1":  "Search-ReflectionLog",
+                           "file2":  "keyword-memory.ps1",
+                           "similarity":  80,
+                           "func2":  "Search-Patterns",
+                           "file1":  "keyword-memory.ps1"
+                       },
+                       {
+                           "func1":  "Search-CICDTroubleshooting",
+                           "file2":  "keyword-memory.ps1",
+                           "similarity":  80,
+                           "func2":  "Search-Patterns",
+                           "file1":  "diagnose-error.ps1"
+                       },
+                       {
+                           "func1":  "Search-CICDTroubleshooting",
+                           "file2":  "merge-pr-sequence.ps1",
+                           "similarity":  80,
+                           "func2":  "Parse-Dependencies",
+                           "file1":  "diagnose-error.ps1"
+                       },
+                       {
+                           "func1":  "Show-History",
+                           "file2":  "session-tracker.ps1",
+                           "similarity":  71,
+                           "func2":  "Show-Status",
+                           "file1":  "infinite-improvement-engine.ps1"
+                       },
+                       {
+                           "func1":  "Show-CurrentSession",
+                           "file2":  "sessions.ps1",
+                           "similarity":  92,
+                           "func2":  "Restore-LastSession",
+                           "file1":  "sessions.ps1"
+                       },
+                       {
+                           "func1":  "Restore-LastSession",
+                           "file2":  "sessions.ps1",
+                           "similarity":  80,
+                           "func2":  "Restore-SpecificSession",
+                           "file1":  "sessions.ps1"
+                       },
+                       {
+                           "func1":  "Show-CurrentSession",
+                           "file2":  "sessions.ps1",
+                           "similarity":  83,
+                           "func2":  "Restore-SpecificSession",
+                           "file1":  "sessions.ps1"
+                       },
+                       {
+                           "func1":  "Restore-LastSession",
+                           "file2":  "sessions.ps1",
+                           "similarity":  80,
+                           "func2":  "Show-SessionPreview",
+                           "file1":  "sessions.ps1"
+                       },
+                       {
+                           "func1":  "Restore-SpecificSession",
+                           "file2":  "sessions.ps1",
+                           "similarity":  95,
+                           "func2":  "Show-SessionPreview",
+                           "file1":  "sessions.ps1"
+                       },
+                       {
+                           "func1":  "Show-CurrentSession",
+                           "file2":  "sessions.ps1",
+                           "similarity":  83,
+                           "func2":  "Show-SessionPreview",
+                           "file1":  "sessions.ps1"
+                       },
+                       {
+                           "func1":  "Restore-LastSession",
+                           "file2":  "sessions.ps1",
+                           "similarity":  80,
+                           "func2":  "Export-SessionToMarkdown",
+                           "file1":  "sessions.ps1"
+                       },
+                       {
+                           "func1":  "Restore-SpecificSession",
+                           "file2":  "sessions.ps1",
+                           "similarity":  100,
+                           "func2":  "Export-SessionToMarkdown",
+                           "file1":  "sessions.ps1"
+                       },
+                       {
+                           "func1":  "Show-SessionPreview",
+                           "file2":  "sessions.ps1",
+                           "similarity":  90,
+                           "func2":  "Export-SessionToMarkdown",
+                           "file1":  "sessions.ps1"
+                       },
+                       {
+                           "func1":  "Show-CurrentSession",
+                           "file2":  "sessions.ps1",
+                           "similarity":  83,
+                           "func2":  "Export-SessionToMarkdown",
+                           "file1":  "sessions.ps1"
+                       }
+                   ],
+    "scan_time_ms":  3394,
+    "unused":  [
+                   {
+                       "function":  "Show-TagsSummary",
+                       "file":  "tag-sessions.ps1"
+                   },
+                   {
+                       "function":  "Start-InfiniteImprovement",
+                       "file":  "infinite-improvement-engine.ps1"
+                   },
+                   {
+                       "function":  "Parse-Dependencies",
+                       "file":  "merge-pr-sequence.ps1"
+                   },
+                   {
+                       "function":  "Disable-Startup",
+                       "file":  "work-tray-startup.ps1"
+                   },
+                   {
+                       "function":  "Get-AllSessions",
+                       "file":  "sessions.ps1"
+                   },
+                   {
+                       "function":  "Get-CurrentSessionId",
+                       "file":  "sessions.ps1"
+                   },
+                   {
+                       "function":  "Invoke-ExpertPanelAnalysis",
+                       "file":  "infinite-improvement-engine.ps1"
+                   },
+                   {
+                       "function":  "Test-Predictor",
+                       "file":  "markov-predictor.ps1"
+                   },
+                   {
+                       "function":  "Run-Iteration",
+                       "file":  "infinite-engine-v2.ps1"
+                   },
+                   {
+                       "function":  "Get-ToolInventory",
+                       "file":  "auto-doc-update.ps1"
+                   },
+                   {
+                       "function":  "Load-SessionState",
+                       "file":  "jc.ps1"
+                   },
+                   {
+                       "function":  "Show-Help",
+                       "file":  "jc.ps1"
+                   },
+                   {
+                       "function":  "Save-ConsciousnessState",
+                       "file":  "consciousness-core-v2.ps1"
+                   },
+                   {
+                       "function":  "Show-Tools",
+                       "file":  "jc.ps1"
+                   },
+                   {
+                       "function":  "Show-CurrentSession",
+                       "file":  "sessions.ps1"
+                   },
+                   {
+                       "function":  "Show-SessionStats",
+                       "file":  "sessions.ps1"
+                   },
+                   {
+                       "function":  "Show-ConsciousnessHealth",
+                       "file":  "consciousness-core-v2.ps1"
+                   },
+                   {
+                       "function":  "Measure-RealTime",
+                       "file":  "markov-predictor.ps1"
+                   },
+                   {
+                       "function":  "Detect-Environment",
+                       "file":  "consciousness-core-v2.ps1"
+                   },
+                   {
+                       "function":  "definitions",
+                       "file":  "system-analyzer.ps1"
+                   },
+                   {
+                       "function":  "Invoke-Perception",
+                       "file":  "consciousness-core-v2.ps1"
+                   },
+                   {
+                       "function":  "Execute-Queue",
+                       "file":  "infinite-engine-v2.ps1"
+                   },
+                   {
+                       "function":  "Scan-System",
+                       "file":  "system-analyzer.ps1"
+                   },
+                   {
+                       "function":  "Write-Status",
+                       "file":  "cs-format.ps1"
+                   },
+                   {
+                       "function":  "Write-ColorOutput",
+                       "file":  "jc.ps1"
+                   },
+                   {
+                       "function":  "Get-NextIterationNumber",
+                       "file":  "infinite-improvement-engine.ps1"
+                   },
+                   {
+                       "function":  "Get-ConsciousnessHealth",
+                       "file":  "jc.ps1"
+                   },
+                   {
+                       "function":  "Calculate-ConsciousnessScore",
+                       "file":  "consciousness-core-v2.ps1"
+                   },
+                   {
+                       "function":  "Restore-LastSession",
+                       "file":  "sessions.ps1"
+                   },
+                   {
+                       "function":  "Register-DefaultHandlers",
+                       "file":  "consciousness-core-v2.ps1"
+                   },
+                   {
+                       "function":  "Dump-ConsciousnessState",
+                       "file":  "consciousness-core-v2.ps1"
+                   },
+                   {
+                       "function":  "Tag-AllSessions",
+                       "file":  "tag-sessions.ps1"
+                   },
+                   {
+                       "function":  "Analyze-SystemState",
+                       "file":  "infinite-engine-v2.ps1"
+                   },
+                   {
+                       "function":  "Get-StartupStatus",
+                       "file":  "work-tray-startup.ps1"
+                   },
+                   {
+                       "function":  "Get-IterationNumber",
+                       "file":  "infinite-engine-v2.ps1"
+                   },
+                   {
+                       "function":  "Build-SemanticIndex",
+                       "file":  "semantic-search.ps1"
+                   },
+                   {
+                       "function":  "Invoke-Memory",
+                       "file":  "consciousness-core-v2.ps1"
+                   },
+                   {
+                       "function":  "Detect-Mode",
+                       "file":  "consciousness-core-v2.ps1"
+                   },
+                   {
+                       "function":  "Enable-Startup",
+                       "file":  "work-tray-startup.ps1"
+                   },
+                   {
+                       "function":  "Show-Stats",
+                       "file":  "markov-predictor.ps1"
+                   },
+                   {
+                       "function":  "Detect-Context",
+                       "file":  "jc.ps1"
+                   },
+                   {
+                       "function":  "Clear-Session",
+                       "file":  "session-tracker.ps1"
+                   },
+                   {
+                       "function":  "Format-TaskTable",
+                       "file":  "clickup-sync.ps1"
+                   },
+                   {
+                       "function":  "definition",
+                       "file":  "cleanup-unused.ps1"
+                   },
+                   {
+                       "function":  "Get-SystemState",
+                       "file":  "state-manager.ps1"
+                   },
+                   {
+                       "function":  "Show-Status",
+                       "file":  "infinite-engine-v2.ps1"
+                   },
+                   {
+                       "function":  "Get-Queue",
+                       "file":  "learning-queue.ps1"
+                   },
+                   {
+                       "function":  "Show-History",
+                       "file":  "infinite-improvement-engine.ps1"
+                   },
+                   {
+                       "function":  "Invoke-Control",
+                       "file":  "consciousness-core-v2.ps1"
+                   },
+                   {
+                       "function":  "bodies",
+                       "file":  "system-analyzer.ps1"
+                   },
+                   {
+                       "function":  "Start-AutoSave",
+                       "file":  "consciousness-core-v2.ps1"
+                   }
+               ]
+}

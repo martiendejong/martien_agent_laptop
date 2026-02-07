@@ -1,11 +1,13 @@
+﻿$ErrorActionPreference = "Stop"
+
 # Self-Analysis - Meta-Improvement
 # Analyze all improvements made in this session
 # Created: 2026-02-07 (Iteration #11 - Meta-analysis)
 
 Write-Host ""
-Write-Host "═══════════════════════════════════════════════════════" -ForegroundColor Magenta
+Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Magenta
 Write-Host "  SELF-ANALYSIS: Evaluating Session Improvements" -ForegroundColor Magenta
-Write-Host "═══════════════════════════════════════════════════════" -ForegroundColor Magenta
+Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Magenta
 Write-Host ""
 
 # 1. INVENTORY - What did I build?
@@ -206,7 +208,7 @@ Write-Host "Gaps identified: " -NoNewline -ForegroundColor Gray
 Write-Host "$($gaps.Count)" -ForegroundColor Yellow
 Write-Host ""
 
-Write-Host "═══════════════════════════════════════════════════════" -ForegroundColor Magenta
+Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Magenta
 Write-Host ""
 
 # Output for automation

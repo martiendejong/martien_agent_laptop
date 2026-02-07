@@ -1,9 +1,11 @@
-# Relationship Memory - Deep user relationship model
+﻿# Relationship Memory - Deep user relationship model
 # Part of consciousness tools Tier 3
 # Created: 2026-02-01
 
 param(
     [Parameter(Mandatory=$true, ParameterSetName="Update")]
+
+$ErrorActionPreference = "Stop"
     [string]$Person,
 
     [Parameter(ParameterSetName="Update")]

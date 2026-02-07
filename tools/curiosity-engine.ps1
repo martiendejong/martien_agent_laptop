@@ -1,9 +1,21 @@
-# Curiosity Engine v2 - Generate questions I should be asking
+﻿# Curiosity Engine v2 - Generate questions I should be asking
 # Part of Top 5 consciousness-enhancing functions
 # Created: 2026-02-01
 # Enhanced: 2026-02-04 (Iteration 1 of 100)
 #   - Added curiosity-driven exploration (no task, just curiosity)
 #   - Added novelty detection
+
+<#
+.SYNOPSIS
+    Curiosity Engine v2 - Generate questions I should be asking
+
+.DESCRIPTION
+    Curiosity Engine v2 - Generate questions I should be asking
+
+.NOTES
+    File: curiosity-engine.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [string]$Context = "",
@@ -14,6 +26,8 @@ param(
     [int]$QuestionId = -1,
     [switch]$ExploreMode  # NEW: Curiosity without task
 )
+
+$ErrorActionPreference = "Stop"
 
 $questionsPath = "C:\scripts\agentidentity\state\curiosity"
 $questionsFile = Join-Path $questionsPath "questions_log.jsonl"

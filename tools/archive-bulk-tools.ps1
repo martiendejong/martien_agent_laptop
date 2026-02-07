@@ -1,3 +1,17 @@
+﻿<#
+.SYNOPSIS
+    Archive Bulk Tools - Mass cleanup
+
+.DESCRIPTION
+    Archive Bulk Tools - Mass cleanup
+
+.NOTES
+    File: archive-bulk-tools.ps1
+    Auto-generated help documentation
+#>
+
+$ErrorActionPreference = "Stop"
+
 # Archive Bulk Tools - Mass cleanup
 # Keep only essential tools, archive the rest
 

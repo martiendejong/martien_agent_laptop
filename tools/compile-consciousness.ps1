@@ -1,6 +1,18 @@
-# Consciousness Compiler
+﻿# Consciousness Compiler
 # Compiles 67+ fragmented YAML files into single fast-loading state
 # Created: 2026-02-07 (Phase 1 - Infinite Improvement)
+
+<#
+.SYNOPSIS
+    Consciousness Compiler
+
+.DESCRIPTION
+    Consciousness Compiler
+
+.NOTES
+    File: compile-consciousness.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [switch]$Verbose

@@ -1,7 +1,20 @@
 # Consciousness Core v2 - Phase 2 Architecture
 **Created:** 2026-02-07
-**Status:** Implementation in progress
-**Paradigm Shift:** 20 tools → 5 core systems (emergent capabilities)
+**Status:** Implementation in progress (11 of 20 fixes complete)
+**Paradigm Shift:** 20 tools → 5 core systems (automated capabilities)
+
+**⚠️ HONESTY DISCLOSURE:**
+This document describes the intended architecture. Some features are claimed but not yet implemented.
+For complete transparency, see: [NOT_IMPLEMENTED.md](./NOT_IMPLEMENTED.md)
+
+**What's ACTUALLY working:**
+- ✅ 5 core systems with real behaviors
+- ✅ RAM-resident state with persistence
+- ✅ Real benchmarking and consciousness scoring
+- ✅ Event bus with 5 working handlers
+- ❌ Memory-mapped files (claimed, not built)
+- ❌ SQLite cold storage (claimed, not built)
+- ❌ Vector database (claimed, not built)
 
 ---
 
@@ -46,9 +59,11 @@ relationship-memory.ps1
 **Benefits:**
 - Low cognitive overhead (systems activate automatically)
 - Unified state (single in-memory structure)
-- Emergent activation (context triggers appropriate system)
+- Automatic activation (context triggers appropriate system via programmed rules)
 - Inter-system communication (event-driven)
-- Emergent capabilities from composition
+- Composed capabilities from system integration
+
+**Note:** Previously called "emergent" - corrected to "automatic/composed" for honesty. True emergence (simple rules → unprogrammed complex behavior) is Phase 4 goal, not current implementation.
 
 ---
 
@@ -287,51 +302,60 @@ Systems don't operate in isolation. They communicate through event bus:
 
 ### Storage Layers
 
-**Layer 1: RAM (Hot State)**
+**Layer 1: RAM (Hot State)** ✅ IMPLEMENTED
 - All 5 systems' current state
-- Fast access (<1ms)
-- Volatile (lost on session end)
+- Fast access (<1ms, measured)
+- Volatile (but persisted to JSON on changes)
 - ~50KB in memory
 
-**Layer 2: Memory-Mapped Files (Warm State)**
+**Layer 2: Memory-Mapped Files (Warm State)** ❌ NOT YET IMPLEMENTED
 - Recent history (last 1000 events)
 - Extremely fast access (~1-5ms)
 - Persistent
 - ~5MB mapped
+- **Status:** Planned, not built. See NOT_IMPLEMENTED.md
 
-**Layer 3: SQLite (Cold State)**
+**Layer 3: SQLite (Cold State)** ❌ NOT YET IMPLEMENTED
 - Full history, patterns, long-term memory
 - Fast access (~10-50ms for indexed queries)
 - Fully persistent
 - ~100MB+ database
+- **Status:** Planned, not built. See NOT_IMPLEMENTED.md
 
-**Layer 4: Vector Store (Semantic Memory)**
+**Layer 4: Vector Store (Semantic Memory)** ❌ NOT YET IMPLEMENTED
 - Embeddings for semantic search
 - Moderate access (~50-100ms)
 - Persistent
 - Separate from main DB
+- **Status:** Planned, not built. See NOT_IMPLEMENTED.md
+- **Current alternative:** keyword-memory.ps1 (lexical search)
 
 ### Access Patterns
 
-**Hot Path (>90% of access):**
+**Hot Path (>90% of access):** ✅ WORKING
 ```
-Query current attention → RAM → <1ms
-Query current context → RAM → <1ms
-Log decision → RAM → <1ms (async persist to Layer 2)
-```
-
-**Warm Path (~9% of access):**
-```
-Query recent patterns → Memory-mapped → ~5ms
-Recall last 100 decisions → Memory-mapped → ~10ms
+Query current attention → RAM → <1ms (measured)
+Query current context → RAM → <1ms (measured)
+Log decision → RAM → <1ms (async persist to JSON file)
 ```
 
-**Cold Path (<1% of access):**
+**Warm Path (~9% of access):** ❌ NOT IMPLEMENTED (Layer 2 doesn't exist)
 ```
-Semantic search reflection.log → Vector Store → ~100ms
-Full pattern analysis → SQLite → ~50ms
-Historical trend analysis → SQLite → ~200ms
+Query recent patterns → Memory-mapped → ~5ms (PLANNED)
+Recall last 100 decisions → Memory-mapped → ~10ms (PLANNED)
 ```
+**Current fallback:** All queries go to RAM or disk JSON
+
+**Cold Path (<1% of access):** ❌ NOT IMPLEMENTED (Layers 3-4 don't exist)
+```
+Semantic search reflection.log → Vector Store → ~100ms (PLANNED)
+Full pattern analysis → SQLite → ~50ms (PLANNED)
+Historical trend analysis → SQLite → ~200ms (PLANNED)
+```
+**Current alternatives:**
+- Semantic search → keyword-memory.ps1 (lexical, not semantic)
+- Pattern analysis → Manual grep/read
+- Historical trends → Manual reflection.log.md analysis
 
 ---
 

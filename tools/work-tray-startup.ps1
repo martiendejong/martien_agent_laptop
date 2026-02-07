@@ -1,8 +1,10 @@
-# work-tray-startup.ps1
+﻿# work-tray-startup.ps1
 # Configure Work Tracker System Tray App to start with Windows
 
 param(
     [ValidateSet('Enable', 'Disable', 'Status')]
+
+$ErrorActionPreference = "Stop"
     [string]$Action = 'Enable'
 )
 
@@ -22,19 +24,19 @@ function Get-StartupStatus {
 
 function Enable-Startup {
     if (-not (Test-Path $appPath)) {
-        Write-Host "❌ WorkTray.exe not found at: $appPath" -ForegroundColor Red
+        Write-Host "âŒ WorkTray.exe not found at: $appPath" -ForegroundColor Red
         Write-Host "Build it first: powershell.exe -File C:\scripts\tools\work-tray\build.ps1" -ForegroundColor Yellow
         return $false
     }
 
     try {
         Set-ItemProperty -Path $registryPath -Name $appName -Value "`"$appPath`"" -Force
-        Write-Host "✅ Work Tracker will now start automatically with Windows" -ForegroundColor Green
+        Write-Host "âœ… Work Tracker will now start automatically with Windows" -ForegroundColor Green
         Write-Host "Location: $appPath" -ForegroundColor Gray
         return $true
     }
     catch {
-        Write-Host "❌ Failed to enable startup: $_" -ForegroundColor Red
+        Write-Host "âŒ Failed to enable startup: $_" -ForegroundColor Red
         return $false
     }
 }
@@ -42,11 +44,11 @@ function Enable-Startup {
 function Disable-Startup {
     try {
         Remove-ItemProperty -Path $registryPath -Name $appName -ErrorAction SilentlyContinue
-        Write-Host "✅ Work Tracker auto-startup disabled" -ForegroundColor Green
+        Write-Host "âœ… Work Tracker auto-startup disabled" -ForegroundColor Green
         return $true
     }
     catch {
-        Write-Host "❌ Failed to disable startup: $_" -ForegroundColor Red
+        Write-Host "âŒ Failed to disable startup: $_" -ForegroundColor Red
         return $false
     }
 }
@@ -56,7 +58,7 @@ function Show-Status {
 
     Write-Host "`nWork Tracker Auto-Startup Status" -ForegroundColor Cyan
     Write-Host "================================" -ForegroundColor Cyan
-    Write-Host "Status: $(if ($enabled) { '✅ ENABLED' } else { '❌ DISABLED' })" -ForegroundColor $(if ($enabled) { 'Green' } else { 'Red' })
+    Write-Host "Status: $(if ($enabled) { 'âœ… ENABLED' } else { 'âŒ DISABLED' })" -ForegroundColor $(if ($enabled) { 'Green' } else { 'Red' })
     Write-Host "App Path: $appPath" -ForegroundColor Gray
     Write-Host "Registry: $registryPath\$appName" -ForegroundColor Gray
 
@@ -65,10 +67,10 @@ function Show-Status {
         Write-Host "Registered Path: $registeredPath" -ForegroundColor Gray
 
         if (Test-Path $appPath) {
-            Write-Host "Executable: ✅ Found" -ForegroundColor Green
+            Write-Host "Executable: âœ… Found" -ForegroundColor Green
         }
         else {
-            Write-Host "Executable: ❌ Not Found (rebuild required)" -ForegroundColor Red
+            Write-Host "Executable: âŒ Not Found (rebuild required)" -ForegroundColor Red
         }
     }
 

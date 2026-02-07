@@ -1,6 +1,18 @@
-# Auto-Documentation Updater
+﻿# Auto-Documentation Updater
 # Automatically maintains documentation when system changes
 # Created: 2026-02-07 (Iteration #12 - Auto-maintenance)
+
+<#
+.SYNOPSIS
+    Auto-Documentation Updater
+
+.DESCRIPTION
+    Auto-Documentation Updater
+
+.NOTES
+    File: auto-doc-update.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [Parameter(Mandatory=$false)]

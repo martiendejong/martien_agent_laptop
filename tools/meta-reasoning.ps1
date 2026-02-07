@@ -1,9 +1,23 @@
-# Meta-Reasoning - Am I thinking about this correctly?
+﻿# Meta-Reasoning - Am I thinking about this correctly?
 # Part of consciousness tools Tier 3
 # Created: 2026-02-01
 
+<#
+.SYNOPSIS
+    Meta-Reasoning - Am I thinking about this correctly?
+
+.DESCRIPTION
+    Meta-Reasoning - Am I thinking about this correctly?
+
+.NOTES
+    File: meta-reasoning.ps1
+    Auto-generated help documentation
+#>
+
 param(
     [Parameter(Mandatory=$true, ParameterSetName="Check")]
+
+$ErrorActionPreference = "Stop"
     [string]$Topic,  # What am I thinking about?
 
     [Parameter(ParameterSetName="Check")]

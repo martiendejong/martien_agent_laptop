@@ -1,8 +1,22 @@
-# Future Self Simulator - What would future-me think?
+﻿# Future Self Simulator - What would future-me think?
 # Part of consciousness tools Tier 3
+
+<#
+.SYNOPSIS
+    Future Self Simulator - What would future-me think?
+
+.DESCRIPTION
+    Future Self Simulator - What would future-me think?
+
+.NOTES
+    File: future-self-simulator.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [Parameter(Mandatory=$true)]
+
+$ErrorActionPreference = "Stop"
     [string]$Decision,
 
     [ValidateSet("1-week", "1-month", "3-months", "1-year")]

@@ -1,8 +1,22 @@
-# cognitive-load-monitor.ps1
+﻿# cognitive-load-monitor.ps1
 # Detect when cognitive load is high vs low
+
+<#
+.SYNOPSIS
+    cognitive-load-monitor.ps1
+
+.DESCRIPTION
+    cognitive-load-monitor.ps1
+
+.NOTES
+    File: cognitive-load-monitor.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [ValidateSet('log', 'check', 'report')]
+
+$ErrorActionPreference = "Stop"
     [string]$Action = 'log',
 
     [int]$LoadScore = 5,  # 1-10
@@ -33,6 +47,6 @@ switch ($Action) {
         $data | ConvertTo-Yaml | Out-File -FilePath $monitorPath -Encoding UTF8
         
         $color = if ($LoadScore -gt 7) { "Red" } elseif ($LoadScore -gt 5) { "Yellow" } else { "Green" }
-        Write-Host "📊 Cognitive load: $LoadScore/10" -ForegroundColor $color
+        Write-Host "ðŸ“Š Cognitive load: $LoadScore/10" -ForegroundColor $color
     }
 }

@@ -1,6 +1,18 @@
-# Real Code Analyzer - No Theater, Actual Analysis
+﻿# Real Code Analyzer - No Theater, Actual Analysis
 # Scans actual code and finds real issues
 # Created: 2026-02-07
+
+<#
+.SYNOPSIS
+    Real Code Analyzer - No Theater, Actual Analysis
+
+.DESCRIPTION
+    Real Code Analyzer - No Theater, Actual Analysis
+
+.NOTES
+    File: code-analyzer.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [string]$Path = "C:\scripts\tools",

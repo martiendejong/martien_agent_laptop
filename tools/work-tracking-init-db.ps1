@@ -1,9 +1,11 @@
-# work-tracking-init-db.ps1
+﻿# work-tracking-init-db.ps1
 # Initialize SQLite database for work tracking analytics
 
 param(
     [string]$DatabasePath = "C:\scripts\_machine\work-state.db"
 )
+
+$ErrorActionPreference = "Stop"
 
 # Check if PSSQLite module is available
 if (-not (Get-Module -ListAvailable -Name PSSQLite)) {
@@ -155,7 +157,7 @@ INSERT OR REPLACE INTO metadata (key, value) VALUES ('initialized_at', datetime(
 # Execute schema
 try {
     Invoke-SqliteQuery -DataSource $DatabasePath -Query $schema
-    Write-Host "✅ Database initialized successfully" -ForegroundColor Green
+    Write-Host "âœ… Database initialized successfully" -ForegroundColor Green
 
     # Verify tables
     $tables = Invoke-SqliteQuery -DataSource $DatabasePath -Query "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name"
@@ -167,9 +169,9 @@ try {
     Write-Host "`nCreated views:" -ForegroundColor Cyan
     $views | ForEach-Object { Write-Host "  - $($_.name)" -ForegroundColor Gray }
 
-    Write-Host "`n✅ Work tracking database ready at: $DatabasePath" -ForegroundColor Green
+    Write-Host "`nâœ… Work tracking database ready at: $DatabasePath" -ForegroundColor Green
 }
 catch {
-    Write-Host "❌ Failed to initialize database: $_" -ForegroundColor Red
+    Write-Host "âŒ Failed to initialize database: $_" -ForegroundColor Red
     exit 1
 }

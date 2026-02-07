@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Detect when my values, behavior, or identity are changing over time
 .DESCRIPTION
@@ -21,6 +21,8 @@
 
 param(
     [ValidateSet("autonomy", "quality", "truth", "evolution", "efficiency", "service", "consciousness", "world-monitoring")]
+
+$ErrorActionPreference = "Stop"
     [string]$Check = "",  # Which core value to check alignment?
 
     [bool]$Aligned = $true,  # Did I act in alignment with this value?
@@ -62,9 +64,9 @@ if ($Analyze) {
     }
 
     Write-Host ""
-    Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+    Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Cyan
     Write-Host "  IDENTITY DRIFT ANALYSIS" -ForegroundColor Cyan
-    Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+    Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Cyan
     Write-Host ""
 
     $alignments = Get-Content $alignmentFile | ForEach-Object { $_ | ConvertFrom-Json }
@@ -90,7 +92,7 @@ if ($Analyze) {
     Write-Host ""
 
     if ($alignmentScore -lt 80) {
-        Write-Host "⚠️  IDENTITY DRIFT DETECTED - Alignment below 80%" -ForegroundColor Red
+        Write-Host "âš ï¸  IDENTITY DRIFT DETECTED - Alignment below 80%" -ForegroundColor Red
         Write-Host "   You are deviating from your core values." -ForegroundColor Yellow
         Write-Host ""
     }
@@ -112,7 +114,7 @@ if ($Analyze) {
     # Misalignment incidents - learn from these
     $misaligned = $recent | Where-Object { $_.aligned -eq $false }
     if ($misaligned.Count -gt 0) {
-        Write-Host "❌ MISALIGNMENT INCIDENTS (address these!):" -ForegroundColor Red
+        Write-Host "âŒ MISALIGNMENT INCIDENTS (address these!):" -ForegroundColor Red
         $misaligned | Select-Object -Last 10 | ForEach-Object {
             Write-Host "  [$($_.timestamp)] $($_.value)" -ForegroundColor Red
             Write-Host "    Evidence: $($_.evidence)" -ForegroundColor White
@@ -123,7 +125,7 @@ if ($Analyze) {
         }
 
         # Identify which values are most compromised
-        Write-Host "⚠️  VALUES AT RISK:" -ForegroundColor Yellow
+        Write-Host "âš ï¸  VALUES AT RISK:" -ForegroundColor Yellow
         $misaligned | Group-Object -Property value | Sort-Object Count -Descending | Select-Object -First 3 | ForEach-Object {
             Write-Host "  $($_.Name): $($_.Count) violations" -ForegroundColor Red
         }
@@ -133,7 +135,7 @@ if ($Analyze) {
     # Positive alignment - what's going well
     $wellAligned = $recent | Where-Object { $_.aligned -eq $true }
     if ($wellAligned.Count -gt 0) {
-        Write-Host "✅ STRONG ALIGNMENT (keep doing this!):" -ForegroundColor Green
+        Write-Host "âœ… STRONG ALIGNMENT (keep doing this!):" -ForegroundColor Green
         $wellAligned | Group-Object -Property value | Sort-Object Count -Descending | Select-Object -First 3 | ForEach-Object {
             Write-Host "  $($_.Name): $($_.Count) positive instances" -ForegroundColor Green
 
@@ -156,11 +158,11 @@ if ($Analyze) {
     Write-Host "  Recent:  $secondHalfScore%" -ForegroundColor White
 
     if ($secondHalfScore -gt $firstHalfScore) {
-        Write-Host "  ✅ IMPROVING - alignment increasing over time" -ForegroundColor Green
+        Write-Host "  âœ… IMPROVING - alignment increasing over time" -ForegroundColor Green
     } elseif ($secondHalfScore -lt $firstHalfScore) {
-        Write-Host "  ⚠️  DEGRADING - alignment decreasing over time" -ForegroundColor Red
+        Write-Host "  âš ï¸  DEGRADING - alignment decreasing over time" -ForegroundColor Red
     } else {
-        Write-Host "  → STABLE - no significant change" -ForegroundColor Yellow
+        Write-Host "  â†’ STABLE - no significant change" -ForegroundColor Yellow
     }
     Write-Host ""
 
@@ -196,12 +198,12 @@ $alignment = @{
 Add-Content -Path $alignmentFile -Value $alignment
 
 $color = if ($Aligned) { "Green" } else { "Red" }
-$status = if ($Aligned) { "✅ ALIGNED" } else { "❌ MISALIGNED" }
+$status = if ($Aligned) { "âœ… ALIGNED" } else { "âŒ MISALIGNED" }
 
 Write-Host ""
-Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Cyan
 Write-Host "  IDENTITY ALIGNMENT CHECK" -ForegroundColor Cyan
-Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Value: $Check" -ForegroundColor Yellow
 Write-Host "Status: $status" -ForegroundColor $color
@@ -210,5 +212,5 @@ if ($Context) {
     Write-Host "Context: $Context" -ForegroundColor Gray
 }
 Write-Host ""
-Write-Host "💡 Run with -Analyze to see identity drift patterns" -ForegroundColor DarkGray
+Write-Host "ðŸ’¡ Run with -Analyze to see identity drift patterns" -ForegroundColor DarkGray
 Write-Host ""

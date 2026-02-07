@@ -1,252 +1,382 @@
 ﻿{
     "transitions":  {
-                        "Glob":  {
-                                     "Grep":  {
-                                                  "count":  1,
-                                                  "probability":  0.036
-                                              },
-                                     "Write":  {
-                                                   "count":  4,
-                                                   "probability":  0.143
+                        "Skill":  {
+                                      "Read":  {
+                                                   "count":  6,
+                                                   "probability":  0.167
                                                },
+                                      "Bash":  {
+                                                   "count":  29,
+                                                   "probability":  0.806
+                                               },
+                                      "Skill":  {
+                                                    "count":  1,
+                                                    "probability":  0.028
+                                                }
+                                  },
+                        "Grep":  {
+                                     "Glob":  {
+                                                  "count":  6,
+                                                  "probability":  0.047
+                                              },
+                                     "WebFetch":  {
+                                                      "count":  1,
+                                                      "probability":  0.008
+                                                  },
                                      "Read":  {
-                                                  "count":  11,
-                                                  "probability":  0.393
+                                                  "count":  45,
+                                                  "probability":  0.354
                                               },
                                      "Bash":  {
-                                                  "count":  4,
-                                                  "probability":  0.143
-                                              },
-                                     "Glob":  {
-                                                  "count":  8,
-                                                  "probability":  0.286
-                                              }
-                                 },
-                        "Read":  {
-                                     "Glob":  {
-                                                  "count":  9,
-                                                  "probability":  0.054
-                                              },
-                                     "Read":  {
-                                                  "count":  53,
-                                                  "probability":  0.317
-                                              },
-                                     "Bash":  {
-                                                  "count":  27,
-                                                  "probability":  0.162
+                                                  "count":  31,
+                                                  "probability":  0.244
                                               },
                                      "Write":  {
-                                                   "count":  9,
-                                                   "probability":  0.054
+                                                   "count":  1,
+                                                   "probability":  0.008
                                                },
                                      "Grep":  {
-                                                  "count":  9,
-                                                  "probability":  0.054
+                                                  "count":  33,
+                                                  "probability":  0.26
                                               },
                                      "Edit":  {
-                                                  "count":  56,
-                                                  "probability":  0.335
+                                                  "count":  7,
+                                                  "probability":  0.055
                                               },
                                      "TaskOutput":  {
                                                         "count":  1,
-                                                        "probability":  0.006
+                                                        "probability":  0.008
                                                     },
-                                     "TaskUpdate":  {
+                                     "Skill":  {
+                                                   "count":  2,
+                                                   "probability":  0.016
+                                               }
+                                 },
+                        "WebSearch":  {
+                                          "Write":  {
                                                         "count":  1,
+                                                        "probability":  0.333
+                                                    },
+                                          "Bash":  {
+                                                       "count":  1,
+                                                       "probability":  0.333
+                                                   },
+                                          "WebSearch":  {
+                                                            "count":  1,
+                                                            "probability":  0.333
+                                                        }
+                                      },
+                        "Bash":  {
+                                     "Skill":  {
+                                                   "count":  24,
+                                                   "probability":  0.013
+                                               },
+                                     "Grep":  {
+                                                  "count":  28,
+                                                  "probability":  0.015
+                                              },
+                                     "WebSearch":  {
+                                                       "count":  1,
+                                                       "probability":  0.001
+                                                   },
+                                     "Bash":  {
+                                                  "count":  1281,
+                                                  "probability":  0.703
+                                              },
+                                     "TaskCreate":  {
+                                                        "count":  1,
+                                                        "probability":  0.001
+                                                    },
+                                     "Glob":  {
+                                                  "count":  35,
+                                                  "probability":  0.019
+                                              },
+                                     "TaskOutput":  {
+                                                        "count":  11,
                                                         "probability":  0.006
                                                     },
-                                     "TaskCreate":  {
-                                                        "count":  2,
-                                                        "probability":  0.012
-                                                    }
+                                     "Write":  {
+                                                   "count":  59,
+                                                   "probability":  0.032
+                                               },
+                                     "TaskUpdate":  {
+                                                        "count":  8,
+                                                        "probability":  0.004
+                                                    },
+                                     "Task":  {
+                                                  "count":  2,
+                                                  "probability":  0.001
+                                              },
+                                     "Edit":  {
+                                                  "count":  94,
+                                                  "probability":  0.052
+                                              },
+                                     "Read":  {
+                                                  "count":  275,
+                                                  "probability":  0.151
+                                              },
+                                     "WebFetch":  {
+                                                      "count":  3,
+                                                      "probability":  0.002
+                                                  }
                                  },
                         "TaskCreate":  {
                                            "Write":  {
                                                          "count":  1,
-                                                         "probability":  0.071
+                                                         "probability":  0.067
                                                      },
                                            "TaskUpdate":  {
-                                                              "count":  2,
-                                                              "probability":  0.143
+                                                              "count":  3,
+                                                              "probability":  0.2
                                                           },
                                            "TaskCreate":  {
                                                               "count":  11,
-                                                              "probability":  0.786
+                                                              "probability":  0.733
                                                           }
                                        },
-                        "TaskList":  {
-                                         "TaskUpdate":  {
-                                                            "count":  1,
-                                                            "probability":  1
-                                                        }
-                                     },
-                        "Bash":  {
+                        "Glob":  {
                                      "Glob":  {
-                                                  "count":  9,
-                                                  "probability":  0.032
+                                                  "count":  21,
+                                                  "probability":  0.239
                                               },
                                      "Read":  {
-                                                  "count":  47,
-                                                  "probability":  0.166
+                                                  "count":  35,
+                                                  "probability":  0.398
                                               },
+                                     "WebFetch":  {
+                                                      "count":  1,
+                                                      "probability":  0.011
+                                                  },
                                      "Bash":  {
-                                                  "count":  160,
-                                                  "probability":  0.565
+                                                  "count":  19,
+                                                  "probability":  0.216
                                               },
                                      "Grep":  {
-                                                  "count":  3,
+                                                  "count":  6,
+                                                  "probability":  0.068
+                                              },
+                                     "Edit":  {
+                                                  "count":  1,
                                                   "probability":  0.011
                                               },
-                                     "Edit":  {
-                                                  "count":  26,
-                                                  "probability":  0.092
-                                              },
                                      "Write":  {
-                                                   "count":  30,
-                                                   "probability":  0.106
-                                               },
-                                     "TaskUpdate":  {
-                                                        "count":  6,
-                                                        "probability":  0.021
-                                                    },
-                                     "Skill":  {
-                                                   "count":  2,
-                                                   "probability":  0.007
-                                               }
-                                 },
-                        "Write":  {
-                                      "Read":  {
-                                                   "count":  10,
-                                                   "probability":  0.104
-                                               },
-                                      "TaskList":  {
-                                                       "count":  1,
-                                                       "probability":  0.01
-                                                   },
-                                      "Bash":  {
-                                                   "count":  40,
-                                                   "probability":  0.417
-                                               },
-                                      "Grep":  {
-                                                   "count":  1,
-                                                   "probability":  0.01
-                                               },
-                                      "Edit":  {
-                                                   "count":  6,
-                                                   "probability":  0.062
-                                               },
-                                      "Write":  {
-                                                    "count":  34,
-                                                    "probability":  0.354
-                                                },
-                                      "TaskUpdate":  {
-                                                         "count":  3,
-                                                         "probability":  0.031
-                                                     },
-                                      "TaskCreate":  {
-                                                         "count":  1,
-                                                         "probability":  0.01
-                                                     }
-                                  },
-                        "Grep":  {
-                                     "Grep":  {
-                                                  "count":  10,
-                                                  "probability":  0.333
-                                              },
-                                     "Read":  {
-                                                  "count":  14,
-                                                  "probability":  0.467
-                                              },
-                                     "Bash":  {
-                                                  "count":  3,
-                                                  "probability":  0.1
-                                              },
-                                     "Glob":  {
-                                                  "count":  1,
-                                                  "probability":  0.033
-                                              },
-                                     "Edit":  {
-                                                  "count":  2,
-                                                  "probability":  0.067
-                                              }
-                                 },
-                        "Edit":  {
-                                     "Glob":  {
-                                                  "count":  1,
-                                                  "probability":  0.005
-                                              },
-                                     "Read":  {
-                                                  "count":  22,
-                                                  "probability":  0.107
-                                              },
-                                     "Bash":  {
-                                                  "count":  48,
-                                                  "probability":  0.233
-                                              },
-                                     "Grep":  {
-                                                  "count":  7,
-                                                  "probability":  0.034
-                                              },
-                                     "Edit":  {
-                                                  "count":  117,
-                                                  "probability":  0.568
-                                              },
-                                     "Write":  {
-                                                   "count":  9,
-                                                   "probability":  0.044
-                                               },
-                                     "TaskUpdate":  {
-                                                        "count":  1,
-                                                        "probability":  0.005
-                                                    },
-                                     "Skill":  {
-                                                   "count":  1,
-                                                   "probability":  0.005
+                                                   "count":  5,
+                                                   "probability":  0.057
                                                }
                                  },
                         "TaskOutput":  {
                                            "Read":  {
-                                                        "count":  1,
-                                                        "probability":  1
-                                                    }
-                                       },
-                        "TaskUpdate":  {
-                                           "Write":  {
-                                                         "count":  9,
-                                                         "probability":  0.375
-                                                     },
-                                           "TaskUpdate":  {
-                                                              "count":  10,
-                                                              "probability":  0.417
-                                                          },
-                                           "Read":  {
-                                                        "count":  2,
-                                                        "probability":  0.083
+                                                        "count":  3,
+                                                        "probability":  0.2
                                                     },
                                            "Bash":  {
-                                                        "count":  2,
-                                                        "probability":  0.083
+                                                        "count":  10,
+                                                        "probability":  0.667
+                                                    },
+                                           "Glob":  {
+                                                        "count":  1,
+                                                        "probability":  0.067
                                                     },
                                            "Edit":  {
                                                         "count":  1,
-                                                        "probability":  0.042
+                                                        "probability":  0.067
                                                     }
                                        },
-                        "Skill":  {
+                        "Write":  {
                                       "Read":  {
-                                                   "count":  1,
-                                                   "probability":  0.333
+                                                   "count":  17,
+                                                   "probability":  0.097
                                                },
                                       "Bash":  {
+                                                   "count":  84,
+                                                   "probability":  0.48
+                                               },
+                                      "TaskList":  {
+                                                       "count":  1,
+                                                       "probability":  0.006
+                                                   },
+                                      "WebSearch":  {
+                                                        "count":  1,
+                                                        "probability":  0.006
+                                                    },
+                                      "Grep":  {
+                                                   "count":  1,
+                                                   "probability":  0.006
+                                               },
+                                      "Edit":  {
+                                                   "count":  8,
+                                                   "probability":  0.046
+                                               },
+                                      "Write":  {
+                                                    "count":  58,
+                                                    "probability":  0.331
+                                                },
+                                      "TaskUpdate":  {
+                                                         "count":  4,
+                                                         "probability":  0.023
+                                                     },
+                                      "TaskCreate":  {
+                                                         "count":  1,
+                                                         "probability":  0.006
+                                                     }
+                                  },
+                        "TaskUpdate":  {
+                                           "Read":  {
+                                                        "count":  2,
+                                                        "probability":  0.067
+                                                    },
+                                           "Grep":  {
+                                                        "count":  2,
+                                                        "probability":  0.067
+                                                    },
+                                           "Bash":  {
+                                                        "count":  2,
+                                                        "probability":  0.067
+                                                    },
+                                           "Task":  {
+                                                        "count":  1,
+                                                        "probability":  0.033
+                                                    },
+                                           "Edit":  {
+                                                        "count":  1,
+                                                        "probability":  0.033
+                                                    },
+                                           "Write":  {
+                                                         "count":  11,
+                                                         "probability":  0.367
+                                                     },
+                                           "TaskUpdate":  {
+                                                              "count":  10,
+                                                              "probability":  0.333
+                                                          },
+                                           "Skill":  {
+                                                         "count":  1,
+                                                         "probability":  0.033
+                                                     }
+                                       },
+                        "Task":  {
+                                     "Write":  {
                                                    "count":  2,
                                                    "probability":  0.667
+                                               },
+                                     "Read":  {
+                                                  "count":  1,
+                                                  "probability":  0.333
+                                              }
+                                 },
+                        "Edit":  {
+                                     "Glob":  {
+                                                  "count":  3,
+                                                  "probability":  0.006
+                                              },
+                                     "Read":  {
+                                                  "count":  66,
+                                                  "probability":  0.133
+                                              },
+                                     "Bash":  {
+                                                  "count":  195,
+                                                  "probability":  0.392
+                                              },
+                                     "Grep":  {
+                                                  "count":  16,
+                                                  "probability":  0.032
+                                              },
+                                     "Edit":  {
+                                                  "count":  200,
+                                                  "probability":  0.402
+                                              },
+                                     "Write":  {
+                                                   "count":  13,
+                                                   "probability":  0.026
+                                               },
+                                     "TaskUpdate":  {
+                                                        "count":  3,
+                                                        "probability":  0.006
+                                                    },
+                                     "Skill":  {
+                                                   "count":  2,
+                                                   "probability":  0.004
                                                }
-                                  }
+                                 },
+                        "TaskList":  {
+                                         "Skill":  {
+                                                       "count":  1,
+                                                       "probability":  0.5
+                                                   },
+                                         "TaskUpdate":  {
+                                                            "count":  1,
+                                                            "probability":  0.5
+                                                        }
+                                     },
+                        "Read":  {
+                                     "Glob":  {
+                                                  "count":  23,
+                                                  "probability":  0.032
+                                              },
+                                     "Read":  {
+                                                  "count":  247,
+                                                  "probability":  0.343
+                                              },
+                                     "TaskList":  {
+                                                      "count":  1,
+                                                      "probability":  0.001
+                                                  },
+                                     "Bash":  {
+                                                  "count":  185,
+                                                  "probability":  0.257
+                                              },
+                                     "Skill":  {
+                                                   "count":  5,
+                                                   "probability":  0.007
+                                               },
+                                     "Write":  {
+                                                   "count":  23,
+                                                   "probability":  0.032
+                                               },
+                                     "Grep":  {
+                                                  "count":  41,
+                                                  "probability":  0.057
+                                              },
+                                     "Edit":  {
+                                                  "count":  189,
+                                                  "probability":  0.262
+                                              },
+                                     "TaskOutput":  {
+                                                        "count":  3,
+                                                        "probability":  0.004
+                                                    },
+                                     "TaskUpdate":  {
+                                                        "count":  1,
+                                                        "probability":  0.001
+                                                    },
+                                     "TaskCreate":  {
+                                                        "count":  2,
+                                                        "probability":  0.003
+                                                    }
+                                 },
+                        "WebFetch":  {
+                                         "Grep":  {
+                                                      "count":  1,
+                                                      "probability":  0.2
+                                                  },
+                                         "Read":  {
+                                                      "count":  2,
+                                                      "probability":  0.4
+                                                  },
+                                         "Bash":  {
+                                                      "count":  1,
+                                                      "probability":  0.2
+                                                  },
+                                         "Write":  {
+                                                       "count":  1,
+                                                       "probability":  0.2
+                                                   }
+                                     }
                     },
     "metadata":  {
-                     "transitions_extracted":  853,
-                     "sessions_analyzed":  10,
-                     "unique_actions":  11,
-                     "built":  "2026-02-07 15:44:47"
+                     "transitions_extracted":  3539,
+                     "sessions_analyzed":  50,
+                     "unique_actions":  14,
+                     "built":  "2026-02-07 16:09:54"
                  }
 }

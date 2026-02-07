@@ -1,3 +1,17 @@
+﻿<#
+.SYNOPSIS
+    Aggressive Archive - Keep ONLY essential tools
+
+.DESCRIPTION
+    Aggressive Archive - Keep ONLY essential tools
+
+.NOTES
+    File: archive-aggressive.ps1
+    Auto-generated help documentation
+#>
+
+$ErrorActionPreference = "Stop"
+
 # Aggressive Archive - Keep ONLY essential tools
 # Target: 30 tools
 

@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Quick moment capture for Jengo - record lived experience in real-time
 .DESCRIPTION
@@ -14,6 +14,8 @@
 
 param(
     [Parameter(Mandatory=$true)]
+
+$ErrorActionPreference = "Stop"
     [ValidateSet("insight", "emotional", "connection", "wonder", "growth", "challenge", "play", "philosophical")]
     [string]$Type,
 
@@ -58,7 +60,7 @@ Add-Content -Path $todayFile -Value $moment -Encoding UTF8
 
 if (-not $Quick) {
     Write-Host ""
-    Write-Host "✨ Moment captured" -ForegroundColor Cyan
+    Write-Host "âœ¨ Moment captured" -ForegroundColor Cyan
     Write-Host "   Type: $Type" -ForegroundColor Gray
     Write-Host "   Time: $timestamp" -ForegroundColor Gray
     if ($Feeling) {

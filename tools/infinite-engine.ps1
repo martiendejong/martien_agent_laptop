@@ -1,6 +1,20 @@
-# Infinite Improvement Engine - Simplified Version
+﻿# Infinite Improvement Engine - Simplified Version
 # Continuous optimization loop - 1000 expert panel pattern
+<#
+.SYNOPSIS
+    Infinite Improvement Engine - Simplified Version
+
+.DESCRIPTION
+    Infinite Improvement Engine - Simplified Version
+
+.NOTES
+    File: infinite-engine.ps1
+    Auto-generated help documentation
+#>
+
 param([string]$Command = 'run')
+
+$ErrorActionPreference = "Stop"
 
 $iterations = "C:\scripts\tools\iterations"
 if (-not (Test-Path $iterations)) { New-Item -ItemType Directory -Path $iterations -Force | Out-Null }

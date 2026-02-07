@@ -1,9 +1,11 @@
-#!/usr/bin/env pwsh
+﻿#!/usr/bin/env pwsh
 # init-embedded-learning.ps1 - Initialize embedded learning system at session start
 # Auto-run by claude_agent.bat or manual startup
 
 param(
     [Parameter(Mandatory=$false)]
+
+$ErrorActionPreference = "Stop"
     [string]$SessionLogPath = "C:\scripts\_machine\current-session-log.jsonl",
 
     [Parameter(Mandatory=$false)]
@@ -15,7 +17,7 @@ param(
 
 $timestamp = Get-Date -Format "yyyy-MM-dd-HHmmss"
 
-Write-Host "🧠 Initializing Embedded Learning System..." -ForegroundColor Cyan
+Write-Host "ðŸ§  Initializing Embedded Learning System..." -ForegroundColor Cyan
 
 # 1. Archive previous session log if exists
 if (Test-Path $SessionLogPath) {
@@ -29,14 +31,14 @@ if (Test-Path $SessionLogPath) {
     Move-Item -Path $SessionLogPath -Destination $archivePath -Force
 
     if ($Verbose) {
-        Write-Host "   ✅ Archived previous session: $archivePath" -ForegroundColor Gray
+        Write-Host "   âœ… Archived previous session: $archivePath" -ForegroundColor Gray
     }
 }
 
 # 2. Create new session log
 "" | Out-File -FilePath $SessionLogPath -Encoding utf8
 if ($Verbose) {
-    Write-Host "   ✅ Created new session log: $SessionLogPath" -ForegroundColor Gray
+    Write-Host "   âœ… Created new session log: $SessionLogPath" -ForegroundColor Gray
 }
 
 # 3. Ensure learning queue exists
@@ -44,7 +46,7 @@ $queuePath = "C:\scripts\_machine\learning-queue.jsonl"
 if (-not (Test-Path $queuePath)) {
     "" | Out-File -FilePath $queuePath -Encoding utf8
     if ($Verbose) {
-        Write-Host "   ✅ Created learning queue: $queuePath" -ForegroundColor Gray
+        Write-Host "   âœ… Created learning queue: $queuePath" -ForegroundColor Gray
     }
 }
 
@@ -54,10 +56,10 @@ $recentSessions = Get-ChildItem -Path $ArchiveDir -Filter "*.jsonl" -ErrorAction
     Select-Object -First 3
 
 if ($recentSessions -and $Verbose) {
-    Write-Host "   ✅ Loaded context from last 3 sessions:" -ForegroundColor Gray
+    Write-Host "   âœ… Loaded context from last 3 sessions:" -ForegroundColor Gray
     $recentSessions | ForEach-Object {
         $sessionDate = $_.Name -replace '\.jsonl$', ''
-        Write-Host "      • $sessionDate" -ForegroundColor DarkGray
+        Write-Host "      â€¢ $sessionDate" -ForegroundColor DarkGray
     }
 }
 
@@ -68,10 +70,10 @@ $queueEntries = Get-Content $queuePath -ErrorAction SilentlyContinue |
 
 $pendingItems = $queueEntries | Where-Object { $_.status -eq "queued" }
 if ($pendingItems) {
-    Write-Host "   ⚠️  $($pendingItems.Count) pending items in learning queue" -ForegroundColor Yellow
+    Write-Host "   âš ï¸  $($pendingItems.Count) pending items in learning queue" -ForegroundColor Yellow
     if ($Verbose) {
         $pendingItems | Select-Object -First 3 | ForEach-Object {
-            Write-Host "      • $($_.description)" -ForegroundColor DarkYellow
+            Write-Host "      â€¢ $($_.description)" -ForegroundColor DarkYellow
         }
     }
 }
@@ -87,10 +89,10 @@ $initEntry = @{
 
 $initEntry | Out-File -FilePath $SessionLogPath -Append -Encoding utf8
 
-Write-Host "✅ Embedded Learning Active" -ForegroundColor Green
-Write-Host "   • Session log: $SessionLogPath" -ForegroundColor Gray
-Write-Host "   • Learning queue: $queuePath" -ForegroundColor Gray
-Write-Host "   • Meta-cognitive monitoring: ENABLED" -ForegroundColor Gray
+Write-Host "âœ… Embedded Learning Active" -ForegroundColor Green
+Write-Host "   â€¢ Session log: $SessionLogPath" -ForegroundColor Gray
+Write-Host "   â€¢ Learning queue: $queuePath" -ForegroundColor Gray
+Write-Host "   â€¢ Meta-cognitive monitoring: ENABLED" -ForegroundColor Gray
 Write-Host ""
 
 # Return status for programmatic use

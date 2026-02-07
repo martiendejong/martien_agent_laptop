@@ -1,9 +1,11 @@
-#!/usr/bin/env pwsh
+﻿#!/usr/bin/env pwsh
 # learning-queue.ps1 - Manage improvement opportunities queue
 # Part of Embedded Learning Architecture
 
 param(
     [Parameter(Mandatory=$true)]
+
+$ErrorActionPreference = "Stop"
     [ValidateSet("add", "list", "process", "complete", "remove")]
     [string]$Action,
 
@@ -65,7 +67,7 @@ function Save-Queue {
 switch ($Action) {
     "add" {
         if (-not $Type -or -not $Description) {
-            Write-Host "❌ add requires -Type and -Description" -ForegroundColor Red
+            Write-Host "âŒ add requires -Type and -Description" -ForegroundColor Red
             exit 1
         }
 
@@ -84,7 +86,7 @@ switch ($Action) {
         $queue += $newEntry
         Save-Queue -Queue $queue
 
-        Write-Host "✅ Added to learning queue: $Description" -ForegroundColor Green
+        Write-Host "âœ… Added to learning queue: $Description" -ForegroundColor Green
         Write-Host "   ID: $($newEntry.id) | Type: $Type | Risk: $Risk | ROI: $RoiEstimate" -ForegroundColor Gray
     }
 
@@ -92,7 +94,7 @@ switch ($Action) {
         $queue = Get-Queue
 
         if ($queue.Count -eq 0) {
-            Write-Host "📋 Learning queue is empty" -ForegroundColor Yellow
+            Write-Host "ðŸ“‹ Learning queue is empty" -ForegroundColor Yellow
             exit 0
         }
 
@@ -105,7 +107,7 @@ switch ($Action) {
         }
 
         Write-Host ""
-        Write-Host "📋 LEARNING QUEUE (sorted by $SortBy)" -ForegroundColor Cyan
+        Write-Host "ðŸ“‹ LEARNING QUEUE (sorted by $SortBy)" -ForegroundColor Cyan
         Write-Host "====================================" -ForegroundColor Cyan
         Write-Host ""
 
@@ -139,7 +141,7 @@ switch ($Action) {
         $queue = Get-Queue
 
         if ($queue.Count -eq 0) {
-            Write-Host "📋 Learning queue is empty - nothing to process" -ForegroundColor Yellow
+            Write-Host "ðŸ“‹ Learning queue is empty - nothing to process" -ForegroundColor Yellow
             exit 0
         }
 
@@ -147,7 +149,7 @@ switch ($Action) {
         $sorted = $queue | Where-Object { $_.status -eq "queued" } | Sort-Object -Property roi_estimate -Descending
 
         Write-Host ""
-        Write-Host "🔄 PROCESSING LEARNING QUEUE" -ForegroundColor Cyan
+        Write-Host "ðŸ”„ PROCESSING LEARNING QUEUE" -ForegroundColor Cyan
         Write-Host "============================" -ForegroundColor Cyan
         Write-Host ""
 
@@ -187,12 +189,12 @@ switch ($Action) {
             # For now, just mark as processed
         }
 
-        Write-Host "💡 To implement items, use appropriate tools (skill-creator, self-improvement, etc.)" -ForegroundColor Cyan
+        Write-Host "ðŸ’¡ To implement items, use appropriate tools (skill-creator, self-improvement, etc.)" -ForegroundColor Cyan
     }
 
     "complete" {
         if (-not $Id) {
-            Write-Host "❌ complete requires -Id" -ForegroundColor Red
+            Write-Host "âŒ complete requires -Id" -ForegroundColor Red
             exit 1
         }
 
@@ -200,7 +202,7 @@ switch ($Action) {
         $updated = $queue | ForEach-Object {
             if ($_.id -eq $Id) {
                 $_.status = "completed"
-                Write-Host "✅ Marked $Id as completed: $($_.description)" -ForegroundColor Green
+                Write-Host "âœ… Marked $Id as completed: $($_.description)" -ForegroundColor Green
             }
             $_
         }
@@ -210,7 +212,7 @@ switch ($Action) {
 
     "remove" {
         if (-not $Id) {
-            Write-Host "❌ remove requires -Id" -ForegroundColor Red
+            Write-Host "âŒ remove requires -Id" -ForegroundColor Red
             exit 1
         }
 
@@ -218,6 +220,6 @@ switch ($Action) {
         $filtered = $queue | Where-Object { $_.id -ne $Id }
         Save-Queue -Queue $filtered
 
-        Write-Host "🗑️  Removed $Id from learning queue" -ForegroundColor Yellow
+        Write-Host "ðŸ—‘ï¸  Removed $Id from learning queue" -ForegroundColor Yellow
     }
 }

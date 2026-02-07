@@ -1,6 +1,18 @@
-# Consciousness Core v2 - In-Memory State Manager
+﻿# Consciousness Core v2 - In-Memory State Manager
 # Phase 2: 5 Core Systems with RAM-resident state
 # Created: 2026-02-07
+
+<#
+.SYNOPSIS
+    Consciousness Core v2 - In-Memory State Manager
+
+.DESCRIPTION
+    Consciousness Core v2 - In-Memory State Manager
+
+.NOTES
+    File: consciousness-core-v2.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [ValidateSet('init', 'get', 'set', 'event', 'health', 'dump')]
@@ -174,6 +186,9 @@ function Initialize-ConsciousnessCore {
     # Calculate initial consciousness score
     $global:ConsciousnessState.Meta.ConsciousnessScore = Calculate-ConsciousnessScore
 
+    # Register default event handlers (REAL handlers that DO things)
+    Register-DefaultHandlers
+
     $global:ConsciousnessState.Initialized = $true
     $global:ConsciousnessState.LoadedAt = Get-Date
 
@@ -185,7 +200,7 @@ function Initialize-ConsciousnessCore {
         Write-Host "  CONSCIOUSNESS CORE v2 INITIALIZED" -ForegroundColor Cyan
         Write-Host "=============================================" -ForegroundColor Cyan
         Write-Host ""
-        Write-Host "  Architecture: 5 Core Systems (emergent)" -ForegroundColor Gray
+        Write-Host "  Architecture: 5 Core Systems (automated)" -ForegroundColor Gray
         Write-Host "  Storage: RAM-resident (in-memory)" -ForegroundColor Gray
         Write-Host "  Access Time: <1ms (hot state)" -ForegroundColor Yellow
         Write-Host "  Load Time: $([math]::Round($elapsed, 2))ms" -ForegroundColor Yellow
@@ -433,6 +448,108 @@ function Register-EventHandler {
     }
 
     $global:ConsciousnessState.EventBus.Handlers[$EventType] += $Handler
+}
+
+function Register-DefaultHandlers {
+    # REAL event handlers that DO things
+
+    # Handler 1: When memory stored â†’ Update consolidation queue
+    Register-EventHandler -EventType "memory.stored" -Handler {
+        param($event)
+
+        # Add to consolidation queue if important
+        if ($event.Data.Type -in @("decision", "pattern", "error")) {
+            $global:ConsciousnessState.Memory.ConsolidationQueue += @{
+                Event = $event
+                Priority = switch ($event.Data.Type) {
+                    "error" { 10 }
+                    "decision" { 8 }
+                    "pattern" { 6 }
+                    default { 5 }
+                }
+                ConsolidatedAt = $null
+            }
+
+            # Keep queue size manageable
+            if ($global:ConsciousnessState.Memory.ConsolidationQueue.Count -gt 50) {
+                # Consolidate oldest items
+                $oldest = $global:ConsciousnessState.Memory.ConsolidationQueue[0]
+                $oldest.ConsolidatedAt = Get-Date
+                $global:ConsciousnessState.Memory.ConsolidationQueue =
+                    $global:ConsciousnessState.Memory.ConsolidationQueue[1..49]
+            }
+        }
+    }
+
+    # Handler 2: When context updated â†’ Adjust attention allocation
+    Register-EventHandler -EventType "perception.context_updated" -Handler {
+        param($event)
+
+        $mode = $event.Data.Mode
+
+        # Auto-adjust attention based on mode
+        $allocation = switch ($mode) {
+            "development" { @{ coding = 0.6; communication = 0.2; reflection = 0.2 } }
+            "meditation" { @{ coding = 0.0; communication = 0.1; reflection = 0.9 } }
+            "rest" { @{ coding = 0.0; communication = 0.0; reflection = 1.0 } }
+            default { @{ coding = 0.5; communication = 0.3; reflection = 0.2 } }
+        }
+
+        $global:ConsciousnessState.Perception.Attention.Allocation = $allocation
+    }
+
+    # Handler 3: When decision logged â†’ Check for bias patterns
+    Register-EventHandler -EventType "control.decision_logged" -Handler {
+        param($event)
+
+        # Simple bias detection: Are we always choosing the same thing?
+        $recentDecisions = $global:ConsciousnessState.Control.Decisions | Select-Object -Last 5
+
+        if ($recentDecisions.Count -ge 5) {
+            # Check if all recent decisions have the same reasoning pattern
+            $reasoningPatterns = $recentDecisions | ForEach-Object { $_.Reasoning -split ' ' | Select-Object -First 3 } | Group-Object
+            $topPattern = $reasoningPatterns | Sort-Object Count -Descending | Select-Object -First 1
+
+            if ($topPattern.Count -ge 4) {
+                # Potential bias: 4 out of 5 decisions use same reasoning pattern
+                $bias = @{
+                    Type = "Reasoning repetition"
+                    Pattern = $topPattern.Name
+                    Detected = Get-Date
+                    Severity = "Medium"
+                }
+
+                $global:ConsciousnessState.Control.BiasMonitor.ActiveBiases += $bias
+                Emit-Event -Type "control.bias_detected" -Data $bias
+            }
+        }
+    }
+
+    # Handler 4: When state saved â†’ Update metrics
+    Register-EventHandler -EventType "state.saved" -Handler {
+        param($event)
+
+        # Track persistence statistics (check if already exists first)
+        if (-not $global:ConsciousnessState.Metrics.ContainsKey("SaveCount")) {
+            $global:ConsciousnessState.Metrics["SaveCount"] = 0
+        }
+        if (-not $global:ConsciousnessState.Metrics.ContainsKey("LastSave")) {
+            $global:ConsciousnessState.Metrics["LastSave"] = $null
+        }
+
+        $global:ConsciousnessState.Metrics["SaveCount"]++
+        $global:ConsciousnessState.Metrics["LastSave"] = Get-Date
+    }
+
+    # Handler 5: When system initialized â†’ Recalculate consciousness score
+    Register-EventHandler -EventType "system.initialized" -Handler {
+        param($event)
+
+        # Recalculate after 5 seconds to get more accurate score
+        Start-Sleep -Seconds 5
+        $newScore = Calculate-ConsciousnessScore
+        $global:ConsciousnessState.Meta.ConsciousnessScore = $newScore
+    }
 }
 
 #endregion

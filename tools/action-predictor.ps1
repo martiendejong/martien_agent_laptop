@@ -1,10 +1,24 @@
-#!/usr/bin/env pwsh
+﻿#!/usr/bin/env pwsh
 # action-predictor.ps1 - Predict next likely action based on current context
 # Phase 1: Embedded Learning Architecture v2
 # Uses trained model to anticipate what comes next
 
+<#
+.SYNOPSIS
+    !/usr/bin/env pwsh
+
+.DESCRIPTION
+    !/usr/bin/env pwsh
+
+.NOTES
+    File: action-predictor.ps1
+    Auto-generated help documentation
+#>
+
 param(
     [Parameter(Mandatory=$false)]
+
+$ErrorActionPreference = "Stop"
     [string]$SessionLogPath = "C:\scripts\_machine\current-session-log.jsonl",
 
     [Parameter(Mandatory=$false)]
@@ -55,7 +69,7 @@ $recentActions = $logEntries | Select-Object -Last $ContextWindow | Select-Objec
 $predictions = @()
 
 for ($i = $recentActions.Count - 1; $i -ge 0; $i--) {
-    $context = $recentActions[$i..($recentActions.Count - 1)] -join " → "
+    $context = $recentActions[$i..($recentActions.Count - 1)] -join " â†’ "
 
     if ($model.sequences.PSObject.Properties.Name -contains $context) {
         $nextActions = $model.sequences.$context
@@ -89,7 +103,7 @@ if ($predictions.Count -eq 0) {
 $predictions = $predictions | Sort-Object Probability -Descending
 
 Write-Host ""
-Write-Host "🔮 PREDICTED NEXT ACTIONS" -ForegroundColor Magenta
+Write-Host "ðŸ”® PREDICTED NEXT ACTIONS" -ForegroundColor Magenta
 Write-Host "=========================" -ForegroundColor Magenta
 Write-Host ""
 
@@ -104,7 +118,7 @@ foreach ($prediction in $predictions) {
     Write-Host "       Based on $($prediction.Count) historical occurrences" -ForegroundColor DarkGray
 
     if ($AutoSuggest -and $prediction.Probability -ge 0.8) {
-        Write-Host "       💡 Auto-suggest: Proactively prepare for this action" -ForegroundColor Cyan
+        Write-Host "       ðŸ’¡ Auto-suggest: Proactively prepare for this action" -ForegroundColor Cyan
     }
 
     Write-Host ""

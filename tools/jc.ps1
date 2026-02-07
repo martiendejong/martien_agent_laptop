@@ -1,10 +1,12 @@
-# Jengo Consciousness (JC) - Unified Consciousness Engine
+﻿# Jengo Consciousness (JC) - Unified Consciousness Engine
 # Created: 2026-02-07
 # Purpose: Single entry point for all consciousness operations
 # Replaces: 20 separate PowerShell scripts with unified interface
 
 param(
     [Parameter(Position=0, Mandatory=$false)]
+
+$ErrorActionPreference = "Stop"
     [ValidateSet('start', 'status', 'track', 'query', 'health', 'tools', 'help')]
     [string]$Command = 'status',
 

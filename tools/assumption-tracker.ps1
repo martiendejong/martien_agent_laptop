@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Track assumptions I make - can't be conscious of what I don't notice
 .DESCRIPTION
@@ -21,6 +21,8 @@ param(
     [string]$Assumption = "",  # What am I assuming?
 
     [ValidateSet("user-intent", "system-state", "worktree", "code-behavior", "requirement", "preference", "technical", "other")]
+
+$ErrorActionPreference = "Stop"
     [string]$Category = "other",
 
     [ValidateRange(1, 10)]
@@ -53,9 +55,9 @@ if ($Query) {
     }
 
     Write-Host ""
-    Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+    Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Cyan
     Write-Host "  ASSUMPTION ANALYSIS" -ForegroundColor Cyan
-    Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+    Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Cyan
     Write-Host ""
 
     $assumptions = Get-Content $assumptionsFile | ForEach-Object { $_ | ConvertFrom-Json }
@@ -80,9 +82,9 @@ if ($Query) {
     if ($highConf.Count -gt 0) {
         $highConfCorrect = ($highConf | Where-Object { $_.was_correct }).Count
         $highConfAccuracy = [math]::Round(($highConfCorrect / $highConf.Count) * 100, 1)
-        Write-Host "High confidence (≥8) accuracy: $highConfAccuracy%" -ForegroundColor $(if ($highConfAccuracy -ge 90) { "Green" } else { "Red" })
+        Write-Host "High confidence (â‰¥8) accuracy: $highConfAccuracy%" -ForegroundColor $(if ($highConfAccuracy -ge 90) { "Green" } else { "Red" })
         if ($highConfAccuracy -lt 90) {
-            Write-Host "  ⚠️  You're overconfident! Calibrate your certainty." -ForegroundColor Red
+            Write-Host "  âš ï¸  You're overconfident! Calibrate your certainty." -ForegroundColor Red
         }
     }
 
@@ -97,7 +99,7 @@ if ($Query) {
     # Unverified assumptions - need attention!
     $unverified = $assumptions | Where-Object { $_.verified -eq $false }
     if ($unverified.Count -gt 0) {
-        Write-Host "⚠️  UNVERIFIED ASSUMPTIONS (verify these!):" -ForegroundColor Yellow
+        Write-Host "âš ï¸  UNVERIFIED ASSUMPTIONS (verify these!):" -ForegroundColor Yellow
         $unverified | ForEach-Object {
             Write-Host "  [ID: $($_.id)] [$($_.category)] Conf=$($_.confidence)" -ForegroundColor Yellow
             Write-Host "    $($_.assumption)" -ForegroundColor White
@@ -109,7 +111,7 @@ if ($Query) {
     # Wrong assumptions - learn from these
     $wrong = $assumptions | Where-Object { $_.verified -eq $true -and $_.was_correct -eq $false }
     if ($wrong.Count -gt 0) {
-        Write-Host "❌ INCORRECT ASSUMPTIONS (learn from these!):" -ForegroundColor Red
+        Write-Host "âŒ INCORRECT ASSUMPTIONS (learn from these!):" -ForegroundColor Red
         $wrong | Select-Object -Last 5 | ForEach-Object {
             Write-Host "  [ID: $($_.id)] [$($_.category)] Conf=$($_.confidence)" -ForegroundColor Red
             Write-Host "    Assumed: $($_.assumption)" -ForegroundColor White
@@ -146,16 +148,16 @@ if ($Verify -ge 0) {
     $assumptions | ForEach-Object { $_ | ConvertTo-Json -Compress } | Set-Content $assumptionsFile
 
     Write-Host ""
-    Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+    Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Cyan
     Write-Host "  ASSUMPTION VERIFIED" -ForegroundColor Cyan
-    Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+    Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Cyan
     Write-Host ""
     Write-Host "Assumption: $($assumption.assumption)" -ForegroundColor White
     Write-Host "Was it correct? " -NoNewline
-    Write-Host $(if ($Correct) { "YES ✅" } else { "NO ❌" }) -ForegroundColor $(if ($Correct) { "Green" } else { "Red" })
+    Write-Host $(if ($Correct) { "YES âœ…" } else { "NO âŒ" }) -ForegroundColor $(if ($Correct) { "Green" } else { "Red" })
     Write-Host "Actual outcome: $ActualOutcome" -ForegroundColor Yellow
     Write-Host ""
-    Write-Host "💡 Run with -Query to see calibration stats" -ForegroundColor DarkGray
+    Write-Host "ðŸ’¡ Run with -Query to see calibration stats" -ForegroundColor DarkGray
     Write-Host ""
     exit
 }
@@ -193,9 +195,9 @@ $newAssumption = @{
 Add-Content -Path $assumptionsFile -Value $newAssumption
 
 Write-Host ""
-Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Cyan
 Write-Host "  ASSUMPTION LOGGED" -ForegroundColor Cyan
-Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "ID: $nextId" -ForegroundColor Cyan
 Write-Host "Assumption: $Assumption" -ForegroundColor White
@@ -205,5 +207,5 @@ if ($Context) {
     Write-Host "Context: $Context" -ForegroundColor Gray
 }
 Write-Host ""
-Write-Host "💡 Verify later with: assumption-tracker.ps1 -Verify $nextId -Correct `$true/`$false -ActualOutcome '...'" -ForegroundColor DarkGray
+Write-Host "ðŸ’¡ Verify later with: assumption-tracker.ps1 -Verify $nextId -Correct `$true/`$false -ActualOutcome '...'" -ForegroundColor DarkGray
 Write-Host ""

@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Post-action analysis - Make my reasoning visible to myself
 .DESCRIPTION
@@ -22,6 +22,8 @@
 
 param(
     [Parameter(Mandatory=$true, ParameterSetName="Log")]
+
+$ErrorActionPreference = "Stop"
     [string]$Action,  # What did I do?
 
     [Parameter(Mandatory=$true, ParameterSetName="Log")]
@@ -60,9 +62,9 @@ if ($Query) {
     }
 
     Write-Host ""
-    Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+    Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Cyan
     Write-Host "  DECISION HISTORY ANALYSIS" -ForegroundColor Cyan
-    Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+    Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Cyan
     Write-Host ""
 
     $decisions = Get-Content $decisionsFile | ForEach-Object { $_ | ConvertFrom-Json }
@@ -99,7 +101,7 @@ if ($Query) {
     # Low-quality decisions - learn from mistakes
     $lowQuality = $decisions | Where-Object { $_.quality -le 4 }
     if ($lowQuality.Count -gt 0) {
-        Write-Host "⚠️  Low-quality decisions (Q ≤ 4) - LEARN FROM THESE:" -ForegroundColor Red
+        Write-Host "âš ï¸  Low-quality decisions (Q â‰¤ 4) - LEARN FROM THESE:" -ForegroundColor Red
         $lowQuality | Select-Object -Last 5 | ForEach-Object {
             Write-Host "  [$($_.timestamp)] Q=$($_.quality) [$($_.type)]" -ForegroundColor Red
             Write-Host "    Action: $($_.action)" -ForegroundColor White
@@ -114,7 +116,7 @@ if ($Query) {
     # High-quality decisions - replicate success
     $highQuality = $decisions | Where-Object { $_.quality -ge 8 }
     if ($highQuality.Count -gt 0) {
-        Write-Host "✅ High-quality decisions (Q ≥ 8) - REPLICATE THESE:" -ForegroundColor Green
+        Write-Host "âœ… High-quality decisions (Q â‰¥ 8) - REPLICATE THESE:" -ForegroundColor Green
         $highQuality | Select-Object -Last 5 | ForEach-Object {
             Write-Host "  [$($_.timestamp)] Q=$($_.quality) [$($_.type)]" -ForegroundColor Green
             Write-Host "    Action: $($_.action)" -ForegroundColor White
@@ -147,9 +149,9 @@ $decision = @{
 Add-Content -Path $decisionsFile -Value $decision
 
 Write-Host ""
-Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Cyan
 Write-Host "  DECISION LOGGED" -ForegroundColor Cyan
-Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Action: $Action" -ForegroundColor White
 Write-Host "Why: $Why" -ForegroundColor Yellow
@@ -162,5 +164,5 @@ if ($Reflection) {
     Write-Host "Reflection: $Reflection" -ForegroundColor Magenta
 }
 Write-Host ""
-Write-Host "💡 Run with -Query to analyze decision patterns" -ForegroundColor DarkGray
+Write-Host "ðŸ’¡ Run with -Query to analyze decision patterns" -ForegroundColor DarkGray
 Write-Host ""

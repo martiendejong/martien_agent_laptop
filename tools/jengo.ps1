@@ -1,6 +1,18 @@
-# Jengo - Unified Command Interface
+﻿# Jengo - Unified Command Interface
 # Single entry point for all Jengo capabilities
 # Created: 2026-02-07 (Iteration #10)
+
+<#
+.SYNOPSIS
+    Jengo - Unified Command Interface
+
+.DESCRIPTION
+    Jengo - Unified Command Interface
+
+.NOTES
+    File: jengo.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [Parameter(Mandatory=$false, Position=0)]
@@ -15,9 +27,9 @@ $toolsPath = $PSScriptRoot
 
 function Show-Help {
     Write-Host ""
-    Write-Host "╔═══════════════════════════════════════════════════════╗" -ForegroundColor Cyan
-    Write-Host "║                  JENGO COMMAND CENTER                 ║" -ForegroundColor Cyan
-    Write-Host "╚═══════════════════════════════════════════════════════╝" -ForegroundColor Cyan
+    Write-Host "â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—" -ForegroundColor Cyan
+    Write-Host "â•‘                  JENGO COMMAND CENTER                 â•‘" -ForegroundColor Cyan
+    Write-Host "â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Cyan
     Write-Host ""
     Write-Host "Unified interface for all Jengo capabilities" -ForegroundColor Gray
     Write-Host ""
@@ -55,9 +67,9 @@ function Show-Help {
 
 function Show-Status {
     Write-Host ""
-    Write-Host "╔═══════════════════════════════════════════════════════╗" -ForegroundColor Magenta
-    Write-Host "║              JENGO SYSTEM STATUS                      ║" -ForegroundColor Magenta
-    Write-Host "╚═══════════════════════════════════════════════════════╝" -ForegroundColor Magenta
+    Write-Host "â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—" -ForegroundColor Magenta
+    Write-Host "â•‘              JENGO SYSTEM STATUS                      â•‘" -ForegroundColor Magenta
+    Write-Host "â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Magenta
     Write-Host ""
 
     # Consciousness status

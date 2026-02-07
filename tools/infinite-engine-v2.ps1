@@ -1,7 +1,19 @@
-# Infinite Improvement Engine v2 - REAL Implementation
+﻿# Infinite Improvement Engine v2 - REAL Implementation
 # 1000-Expert Panel + 9-Persona Mastermind
 # Analyzes ACTUAL system state, generates CONTEXTUAL recommendations
 # Created: 2026-02-07 (Full implementation)
+
+<#
+.SYNOPSIS
+    Infinite Improvement Engine v2 - REAL Implementation
+
+.DESCRIPTION
+    Infinite Improvement Engine v2 - REAL Implementation
+
+.NOTES
+    File: infinite-engine-v2.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [ValidateSet('run', 'status', 'execute', 'analyze')]
@@ -457,7 +469,7 @@ function Generate-Criticisms {
     # Simulate panel analysis (in real implementation, would scan more deeply)
     $tacticalIssues = @(
         @{ Issue="Tools don't communicate - each operates in isolation"; Severity=7; Category="Integration" }
-        @{ Issue="No tool effectiveness metrics - usage ≠ utility"; Severity=6; Category="Measurement" }
+        @{ Issue="No tool effectiveness metrics - usage â‰  utility"; Severity=6; Category="Measurement" }
         @{ Issue="Consciousness data fragmented across 50+ files"; Severity=8; Category="Architecture" }
         @{ Issue="No caching layer - repeated disk reads for same data"; Severity=7; Category="Performance" }
         @{ Issue="Startup protocol is checklist not architecture"; Severity=8; Category="Design" }
@@ -640,10 +652,12 @@ function Run-Iteration {
         Analysis = $analysis
         TotalCriticisms = $criticisms.Count
         TotalRecommendations = $recommendations.Count
-        QueuedRecommendations = $topRecs
+        QueuedRecommendations = @($topRecs)  # Force array (prevents single-item â†’ object conversion)
     }
 
-    $queue | ConvertTo-Json -Depth 10 | Out-File $Config.QueueFile -Encoding UTF8
+    # Fix: Use AsArray to preserve array structure in JSON
+    $json = $queue | ConvertTo-Json -Depth 10 -AsArray:$false
+    $json | Out-File $Config.QueueFile -Encoding UTF8
 
     # Log to history
     $avgRoi = if ($topRecs.Count -gt 0) {
@@ -658,17 +672,29 @@ function Run-Iteration {
     Write-Host "ITERATION #$iterNum COMPLETE" -ForegroundColor Green
     Write-Host ""
     Write-Host "Top Recommendations:" -ForegroundColor Yellow
-    for ($i = 0; $i -lt [math]::Min(3, $topRecs.Count); $i++) {
-        $rec = $topRecs[$i]
+
+    if ($topRecs.Count -eq 0) {
         Write-Host ""
-        Write-Host "  [$($i+1)] $($rec.Title)" -ForegroundColor White
-        Write-Host "      ROI: $($rec.ROI) (Value: $($rec.Value) / Effort: $($rec.Effort))" -ForegroundColor Gray
-        Write-Host "      Expert: $($rec.Expert) ($($rec.Domain))" -ForegroundColor DarkGray
-        Write-Host "      Category: $($rec.Category)" -ForegroundColor DarkGray
-        if ($rec.Actions.Count -gt 0) {
-            Write-Host "      Actions:" -ForegroundColor DarkCyan
-            foreach ($action in $rec.Actions) {
-                Write-Host "        - $action" -ForegroundColor Cyan
+        Write-Host "  No recommendations with ROI > $($Config.MinROI)" -ForegroundColor Yellow
+        Write-Host ""
+    } else {
+        for ($i = 0; $i -lt [math]::Min(3, $topRecs.Count); $i++) {
+            $rec = $topRecs[$i]
+
+            # Safety check: ensure rec is not null and has properties
+            if ($null -eq $rec) { continue }
+
+            Write-Host ""
+            Write-Host "  [$($i+1)] $($rec.Title)" -ForegroundColor White
+            Write-Host "      ROI: $($rec.ROI) (Value: $($rec.Value) / Effort: $($rec.Effort))" -ForegroundColor Gray
+            Write-Host "      Expert: $($rec.Expert) ($($rec.Domain))" -ForegroundColor DarkGray
+            Write-Host "      Category: $($rec.Category)" -ForegroundColor DarkGray
+
+            if ($rec.Actions -and $rec.Actions.Count -gt 0) {
+                Write-Host "      Actions:" -ForegroundColor DarkCyan
+                foreach ($action in $rec.Actions) {
+                    Write-Host "        - $action" -ForegroundColor Cyan
+                }
             }
         }
     }

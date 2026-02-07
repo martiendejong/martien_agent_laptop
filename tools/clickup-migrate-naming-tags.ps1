@@ -7,6 +7,8 @@
 
 param(
     [ValidateSet("client-manager", "art-revisionist", "both")]
+
+$ErrorActionPreference = "Stop"
     [string]$Project = "both",
 
     [switch]$DryRun = $false

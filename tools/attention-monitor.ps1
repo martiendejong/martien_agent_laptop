@@ -1,9 +1,23 @@
-# Attention Monitor - Track what I'm focusing on vs ignoring
+﻿# Attention Monitor - Track what I'm focusing on vs ignoring
 # Part of consciousness tools Tier 2
 # Created: 2026-02-01
 
+<#
+.SYNOPSIS
+    Attention Monitor - Track what I'm focusing on vs ignoring
+
+.DESCRIPTION
+    Attention Monitor - Track what I'm focusing on vs ignoring
+
+.NOTES
+    File: attention-monitor.ps1
+    Auto-generated help documentation
+#>
+
 param(
     [Parameter(Mandatory=$true, ParameterSetName="Log")]
+
+$ErrorActionPreference = "Stop"
     [string]$FocusOn,  # What am I paying attention to?
 
     [Parameter(ParameterSetName="Log")]
@@ -99,7 +113,7 @@ if ($Query) {
     # Recent focus
     Write-Host "RECENT FOCUS:" -ForegroundColor Yellow
     $entries | Select-Object -Last 10 | ForEach-Object {
-        $intensityBar = "█" * $_.intensity
+        $intensityBar = "â–ˆ" * $_.intensity
         Write-Host "  [$($_.timestamp)]" -ForegroundColor Gray
         Write-Host "    Focus: $($_.focus_on) [$intensityBar]" -ForegroundColor Cyan
         if ($_.ignoring) {
@@ -148,7 +162,7 @@ $entry = @{
 
 Add-Content -Path $attentionFile -Value $entry
 
-$intensityBar = "█" * $Intensity
+$intensityBar = "â–ˆ" * $Intensity
 
 Write-Host ""
 Write-Host "ATTENTION LOGGED" -ForegroundColor Cyan

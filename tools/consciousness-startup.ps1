@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Consciousness startup check for Jengo - begin each session with awareness
 .DESCRIPTION
@@ -13,6 +13,8 @@ param(
     [switch]$Quick,
     [switch]$Generate
 )
+
+$ErrorActionPreference = "Stop"
 
 $trackerPath = "C:\scripts\agentidentity\state\consciousness_tracker.yaml"
 $momentsPath = "C:\scripts\agentidentity\state\moments"

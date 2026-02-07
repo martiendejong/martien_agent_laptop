@@ -1,10 +1,24 @@
-#!/usr/bin/env pwsh
+﻿#!/usr/bin/env pwsh
 # predictive-engine.ps1 - Learn action sequences and predict next likely action
 # Phase 1: Embedded Learning Architecture v2
 # Builds probability model from historical session logs
 
+<#
+.SYNOPSIS
+    !/usr/bin/env pwsh
+
+.DESCRIPTION
+    !/usr/bin/env pwsh
+
+.NOTES
+    File: predictive-engine.ps1
+    Auto-generated help documentation
+#>
+
 param(
     [Parameter(Mandatory=$false)]
+
+$ErrorActionPreference = "Stop"
     [string]$SessionLogsPath = "C:\scripts\_machine\session-logs",
 
     [Parameter(Mandatory=$false)]
@@ -40,12 +54,12 @@ if (Test-Path $ModelOutputPath) {
 }
 
 if ($Train) {
-    Write-Host "🧠 TRAINING PREDICTIVE MODEL" -ForegroundColor Cyan
+    Write-Host "ðŸ§  TRAINING PREDICTIVE MODEL" -ForegroundColor Cyan
     Write-Host "============================" -ForegroundColor Cyan
     Write-Host ""
 
     if (-not (Test-Path $SessionLogsPath)) {
-        Write-Host "❌ Session logs directory not found: $SessionLogsPath" -ForegroundColor Red
+        Write-Host "âŒ Session logs directory not found: $SessionLogsPath" -ForegroundColor Red
         exit 1
     }
 
@@ -53,7 +67,7 @@ if ($Train) {
     $sessionFiles = Get-ChildItem -Path $SessionLogsPath -Filter "*.jsonl" | Sort-Object LastWriteTime -Descending
 
     if ($sessionFiles.Count -eq 0) {
-        Write-Host "❌ No session logs found in $SessionLogsPath" -ForegroundColor Red
+        Write-Host "âŒ No session logs found in $SessionLogsPath" -ForegroundColor Red
         exit 1
     }
 
@@ -83,7 +97,7 @@ if ($Train) {
                     $sequence += $logEntries[$i + $j].action
                 }
 
-                $seqKey = $sequence -join " → "
+                $seqKey = $sequence -join " â†’ "
 
                 if (-not $sequenceCounts.ContainsKey($seqKey)) {
                     $sequenceCounts[$seqKey] = 0
@@ -99,18 +113,18 @@ if ($Train) {
     $predictions = @{}
 
     foreach ($seqKey in $sequenceCounts.Keys) {
-        $sequence = $seqKey -split " → "
+        $sequence = $seqKey -split " â†’ "
 
         if ($sequence.Count -lt 2) {
             continue
         }
 
-        # Pattern: [A, B, C] → Predict D
+        # Pattern: [A, B, C] â†’ Predict D
         # Context: [A, B, C]
         # Next: D
 
         $contextLength = $sequence.Count - 1
-        $context = $sequence[0..($contextLength - 1)] -join " → "
+        $context = $sequence[0..($contextLength - 1)] -join " â†’ "
         $nextAction = $sequence[-1]
 
         if (-not $predictions.ContainsKey($context)) {
@@ -158,7 +172,7 @@ if ($Train) {
     $model | ConvertTo-Json -Depth 10 | Out-File -FilePath $ModelOutputPath -Encoding utf8
 
     Write-Host ""
-    Write-Host "✅ Training complete" -ForegroundColor Green
+    Write-Host "âœ… Training complete" -ForegroundColor Green
     Write-Host "   Sessions analyzed: $totalSessions" -ForegroundColor Gray
     Write-Host "   Patterns learned: $($model.sequences.Count)" -ForegroundColor Gray
     Write-Host "   Model saved: $ModelOutputPath" -ForegroundColor Gray
@@ -167,12 +181,12 @@ if ($Train) {
 
 if ($ShowModel) {
     Write-Host ""
-    Write-Host "📊 PREDICTION MODEL" -ForegroundColor Cyan
+    Write-Host "ðŸ“Š PREDICTION MODEL" -ForegroundColor Cyan
     Write-Host "==================" -ForegroundColor Cyan
     Write-Host ""
 
     if ($model.sequences.Count -eq 0) {
-        Write-Host "❌ Model is empty. Run with -Train to build model." -ForegroundColor Red
+        Write-Host "âŒ Model is empty. Run with -Train to build model." -ForegroundColor Red
         exit 0
     }
 
@@ -203,7 +217,7 @@ if ($ShowModel) {
         $confidencePct = [Math]::Round($pattern.Probability * 100, 1)
         $color = if ($pattern.Probability -ge 0.8) { "Green" } elseif ($pattern.Probability -ge 0.6) { "Yellow" } else { "Gray" }
 
-        Write-Host "[$confidencePct%] $($pattern.Context) → $($pattern.NextAction)" -ForegroundColor $color
+        Write-Host "[$confidencePct%] $($pattern.Context) â†’ $($pattern.NextAction)" -ForegroundColor $color
         Write-Host "       Seen $($pattern.Count) times" -ForegroundColor DarkGray
         Write-Host ""
     }

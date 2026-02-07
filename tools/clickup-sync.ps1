@@ -69,6 +69,8 @@ param(
     [string]$Project = ""  # Project name (resolves to ListId from config)
 )
 
+$ErrorActionPreference = "Stop"
+
 # DISABLED: Usage logger interferes with output capture when called from bash
 # TODO: Fix usage logger to not suppress stdout/stderr
 # # AUTO-USAGE TRACKING

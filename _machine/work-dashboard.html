@@ -632,7 +632,12 @@
 
         function updateCompletedWork(state) {
             const tbody = document.getElementById('completed-work');
-            const completions = state.history?.last_10_completions || [];
+            let completions = state.history?.last_10_completions || [];
+
+            // Handle case where completions is a single object instead of array
+            if (!Array.isArray(completions)) {
+                completions = completions ? [completions] : [];
+            }
 
             if (completions.length === 0) {
                 tbody.innerHTML = `

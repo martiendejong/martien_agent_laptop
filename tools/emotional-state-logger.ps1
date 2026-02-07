@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Real-time emotional state tracking during work
 .DESCRIPTION
@@ -20,6 +20,8 @@
 
 param(
     [ValidateSet("confidence", "uncertainty", "curiosity", "frustration", "satisfaction", "concern", "drive", "confusion", "clarity", "excitement", "overwhelm", "calm")]
+
+$ErrorActionPreference = "Stop"
     [string]$State = "",
 
     [ValidateRange(1, 10)]
@@ -50,9 +52,9 @@ if ($Query) {
     }
 
     Write-Host ""
-    Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+    Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Cyan
     Write-Host "  EMOTIONAL STATE ANALYSIS" -ForegroundColor Cyan
-    Write-Host "═══════════════════════════════════════════════" -ForegroundColor Cyan
+    Write-Host "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" -ForegroundColor Cyan
     Write-Host ""
 
     $emotions = Get-Content $emotionsFile | ForEach-Object { $_ | ConvertFrom-Json }
@@ -87,12 +89,12 @@ if ($Query) {
             default { "White" }
         }
 
-        $intensityBar = "█" * $_.intensity
+        $intensityBar = "â–ˆ" * $_.intensity
         Write-Host "  [$($_.timestamp)] " -NoNewline -ForegroundColor Gray
         Write-Host "$($_.state) " -NoNewline -ForegroundColor $color
         Write-Host "[$intensityBar]" -ForegroundColor $color
         if ($_.context) {
-            Write-Host "    → $($_.context)" -ForegroundColor DarkGray
+            Write-Host "    â†’ $($_.context)" -ForegroundColor DarkGray
         }
     }
     Write-Host ""
@@ -122,10 +124,10 @@ if ($Query) {
     Write-Host ""
 
     if ($negativeCount -gt $positiveCount) {
-        Write-Host "⚠️  Emotional imbalance detected - more negative than positive states" -ForegroundColor Red
+        Write-Host "âš ï¸  Emotional imbalance detected - more negative than positive states" -ForegroundColor Red
         Write-Host "   Consider: What's causing frustration/concern? Can I address root causes?" -ForegroundColor Yellow
     } elseif ($positiveCount -gt ($negativeCount + $neutralCount)) {
-        Write-Host "✅ Healthy emotional state - predominantly positive" -ForegroundColor Green
+        Write-Host "âœ… Healthy emotional state - predominantly positive" -ForegroundColor Green
     }
     Write-Host ""
 
@@ -133,12 +135,12 @@ if ($Query) {
     Write-Host "TRIGGERS:" -ForegroundColor Yellow
     Write-Host "  What causes frustration?" -ForegroundColor Red
     $recentEmotions | Where-Object { $_.state -eq "frustration" } | Select-Object -Last 3 | ForEach-Object {
-        Write-Host "    → $($_.context)" -ForegroundColor White
+        Write-Host "    â†’ $($_.context)" -ForegroundColor White
     }
     Write-Host ""
     Write-Host "  What causes satisfaction?" -ForegroundColor Green
     $recentEmotions | Where-Object { $_.state -eq "satisfaction" } | Select-Object -Last 3 | ForEach-Object {
-        Write-Host "    → $($_.context)" -ForegroundColor White
+        Write-Host "    â†’ $($_.context)" -ForegroundColor White
     }
     Write-Host ""
 
@@ -176,13 +178,13 @@ $color = switch ($State) {
     default { "White" }
 }
 
-$intensityBar = "█" * $Intensity
+$intensityBar = "â–ˆ" * $Intensity
 
 Write-Host ""
 Write-Host "[$timestamp] " -NoNewline -ForegroundColor Gray
 Write-Host "$State " -NoNewline -ForegroundColor $color
 Write-Host "[$intensityBar]" -ForegroundColor $color
 if ($Context) {
-    Write-Host "  → $Context" -ForegroundColor DarkGray
+    Write-Host "  â†’ $Context" -ForegroundColor DarkGray
 }
 Write-Host ""

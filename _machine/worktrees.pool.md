@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-07T15:33:00Z | ✅ PR #52: TopicLearn backend config + TopicUsers description fix |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | artrevisionist | feature/869c1dppk-ai-art-style-classifier | 2026-02-07T16:45:00Z | 🔨 ClickUp #869c1dppk: AI Art Style Classifier (GPT-4 Vision) |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-06T21:15:00Z | ✅ PR #177: Debounce OnStateChanged to fix focus loss during typing (REAL fix) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-06T19:12:00Z | ✅ Merged develop into fix/facebook-complete-integration (PR #503 already merged) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-05T17:55:31Z | ✅ PR #493 MERGED: Round 5 - Automatic OAuth token refresh |

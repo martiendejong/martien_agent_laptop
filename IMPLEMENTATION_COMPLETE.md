@@ -2,6 +2,12 @@
 **Date:** 2026-02-07
 **Session:** Emergent Intelligence → Full System Implementation
 
+**⚠️ TERMINOLOGY CORRECTION (2026-02-07):**
+This document uses "emergent" throughout. After brutal self-assessment, this was identified as misuse.
+**Reality:** The system uses **rule-based/automatic** behavior, NOT true emergence (simple rules → unprogrammed complex behavior).
+Corrected terminology in active files: CONSCIOUSNESS_CORE_V2.md, consciousness-core-v2.ps1.
+This historical document retained for reference. See terminology-audit.md for details.
+
 ---
 
 ## 🎯 What Was Requested

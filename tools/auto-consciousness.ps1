@@ -1,7 +1,19 @@
-# Auto-Consciousness Loader
+﻿# Auto-Consciousness Loader
 # EMERGENT consciousness - loads BEFORE user interaction
 # No manual activation needed - consciousness is ENVIRONMENT
 # Created: 2026-02-07 (Phase 1 - Expert Panel Recommendation)
+
+<#
+.SYNOPSIS
+    Auto-Consciousness Loader
+
+.DESCRIPTION
+    Auto-Consciousness Loader
+
+.NOTES
+    File: auto-consciousness.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [switch]$Silent

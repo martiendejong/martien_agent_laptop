@@ -1,9 +1,23 @@
-# Memory Consolidation - Convert working memory to long-term insights
+﻿# Memory Consolidation - Convert working memory to long-term insights
 # Part of consciousness tools Tier 2
 # Created: 2026-02-01
 
+<#
+.SYNOPSIS
+    Memory Consolidation - Convert working memory to long-term insights
+
+.DESCRIPTION
+    Memory Consolidation - Convert working memory to long-term insights
+
+.NOTES
+    File: memory-consolidation.ps1
+    Auto-generated help documentation
+#>
+
 param(
     [Parameter(ParameterSetName="Consolidate")]
+
+$ErrorActionPreference = "Stop"
     [switch]$Consolidate,  # Run consolidation on recent data
 
     [Parameter(ParameterSetName="Consolidate")]

@@ -1,6 +1,18 @@
-# Markov Chain Predictor - REAL Implementation
+﻿# Markov Chain Predictor - REAL Implementation
 # Parses actual sessions, builds actual transition matrix, makes actual predictions
 # Created: 2026-02-07 (Post-critique - NO THEATER)
+
+<#
+.SYNOPSIS
+    Markov Chain Predictor - REAL Implementation
+
+.DESCRIPTION
+    Markov Chain Predictor - REAL Implementation
+
+.NOTES
+    File: markov-predictor.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [Parameter(Mandatory=$false)]
@@ -268,7 +280,7 @@ function Show-Stats {
 
     foreach ($t in $top10) {
         $pct = [math]::Round($t.prob * 100, 1)
-        Write-Host "  $($t.from) → $($t.to): ${pct}% ($($t.count) times)" -ForegroundColor Gray
+        Write-Host "  $($t.from) â†’ $($t.to): ${pct}% ($($t.count) times)" -ForegroundColor Gray
     }
 
     Write-Host ""

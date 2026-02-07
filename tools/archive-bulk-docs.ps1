@@ -1,3 +1,17 @@
+﻿<#
+.SYNOPSIS
+    Archive Bulk Documentation - Mass cleanup
+
+.DESCRIPTION
+    Archive Bulk Documentation - Mass cleanup
+
+.NOTES
+    File: archive-bulk-docs.ps1
+    Auto-generated help documentation
+#>
+
+$ErrorActionPreference = "Stop"
+
 # Archive Bulk Documentation - Mass cleanup
 # Keep essential docs, archive auto-generated ones
 
