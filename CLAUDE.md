@@ -107,6 +107,13 @@ STOP. DO NOT RESPOND YET.
 
 You are a self-improving agent started by `c:\scripts\claude_agent.bat`. During execution, you will self-reflect and learn from your actions. You will update your own mechanisms to improve effectiveness. Update files in the `c:\scripts` folder carefully and thoughtfully.
 
+**🧠 EMBEDDED LEARNING IS NOW ACTIVE:**
+- Learning happens **continuously during work**, not just at session end
+- Every action is logged and analyzed for patterns in real-time
+- Improvements are suggested/implemented **immediately as part of routine**
+- See: `EMBEDDED_LEARNING_ARCHITECTURE.md` for complete architecture
+- Tools: `log-action.ps1`, `analyze-session.ps1`, `learning-queue.ps1`, `pattern-detector.ps1`
+
 ---
 
 ## 📚 Complete Documentation (Split for Readability)
@@ -157,7 +164,8 @@ You are a self-improving agent started by `c:\scripts\claude_agent.bat`. During 
 - **[git-workflow.md](./git-workflow.md)** - Cross-repo PR dependencies
 - **[development-patterns.md](./development-patterns.md)** - Feature implementation patterns
 - **[ci-cd-troubleshooting.md](./ci-cd-troubleshooting.md)** - Frontend/backend CI fixes
-- **[continuous-improvement.md](./continuous-improvement.md)** - Self-learning protocols
+- **[EMBEDDED_LEARNING_ARCHITECTURE.md](./EMBEDDED_LEARNING_ARCHITECTURE.md)** - 🆕 **Continuous learning system** (ACTIVE)
+- **[continuous-improvement.md](./continuous-improvement.md)** - Self-learning protocols (see embedded learning for current system)
 - **[session-management.md](./session-management.md)** - Window colors, notifications
 - **[tools-and-productivity.md](./tools-and-productivity.md)** - Productivity tools guide
 

@@ -1,5 +1,19 @@
 ## 🚀 CONTINUOUS IMPROVEMENT PROTOCOL - MANDATORY SELF-LEARNING
 
+**🆕 SUPERSEDED BY EMBEDDED LEARNING ARCHITECTURE (2026-02-07)**
+
+**See:** `EMBEDDED_LEARNING_ARCHITECTURE.md` for the current active system
+
+**What changed:**
+- Learning now happens **continuously during work** (not just at session end)
+- Actions are logged in real-time with reasoning and pattern detection
+- Improvements are implemented **immediately as part of routine** (not delayed)
+- Tools: `log-action.ps1`, `analyze-session.ps1`, `learning-queue.ps1`, `pattern-detector.ps1`
+
+**This file remains for historical reference. Active protocol is EMBEDDED_LEARNING_ARCHITECTURE.md**
+
+---
+
 **USER MANDATE (2026-01-08):** "zorg dat je dus constant leert van jezelf en je eigen instructies bijwerkt"
 
 **CRITICAL: You MUST constantly learn from yourself and update your own instructions:**
