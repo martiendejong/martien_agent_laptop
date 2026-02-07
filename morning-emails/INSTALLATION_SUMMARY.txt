@@ -1,0 +1,125 @@
+================================================================================
+MORNING EMAIL BRIEFING SYSTEM - INSTALLATION COMPLETE
+================================================================================
+
+Location: C:\scripts\morning-emails\
+
+FILES CREATED:
+--------------
+Core Scripts:
+  ✓ morning-briefing.ps1      - Main orchestrator (runs everything)
+  ✓ fetch-emails.js           - Gmail API integration & filtering
+  ✓ speak-summary.py          - TTS engine (edge-tts + Windows fallback)
+
+Setup & Configuration:
+  ✓ quick-setup.ps1           - Interactive setup wizard
+  ✓ setup-oauth.js            - One-time OAuth authentication
+  ✓ register-scheduled-task.ps1 - Task scheduler registration
+  ✓ test-tts.ps1              - TTS functionality test
+
+Configuration Files:
+  ✓ package.json              - Node.js dependencies
+  ✓ .env.example              - Environment variables template
+  ✓ .gitignore                - Git ignore rules
+
+Documentation:
+  ✓ README.md                 - Complete documentation
+  ✓ QUICKSTART.md             - Quick start guide
+  ✓ INSTALLATION_SUMMARY.txt  - This file
+
+Runtime Files (auto-generated):
+  - node_modules/             - Installed dependencies (47 packages)
+  - summary.txt               - Generated email summary (temporary)
+  - briefing.log              - Execution logs
+  - last-run.txt              - Last run timestamp
+  - token.json                - OAuth token (after setup)
+
+DEPENDENCIES INSTALLED:
+-----------------------
+✓ googleapis@137.0.0   - Gmail API client
+✓ dotenv@16.4.1        - Environment variable management
+✓ 45 additional packages (transitive dependencies)
+
+TESTING COMPLETED:
+------------------
+✓ Node.js dependencies installed successfully
+✓ fetch-emails.js tested in test mode
+✓ Email filtering working correctly (filtered 1 noise, kept 2 important)
+✓ Summary generation working correctly
+✓ PowerShell orchestrator working correctly
+✓ Logging system working correctly
+
+NEXT STEPS:
+-----------
+1. Set up Gmail OAuth credentials:
+
+   Option A: Use existing Gmail MCP credentials
+     Edit .env and set paths to your existing credentials
+
+   Option B: Create new credentials
+     - Go to https://console.cloud.google.com/
+     - Create OAuth 2.0 credentials (Desktop app)
+     - Download JSON as credentials.json
+     - Run: node setup-oauth.js
+
+2. Test the system:
+   .\morning-briefing.ps1 -Test -Silent
+
+3. Install Python edge-tts (optional, for better voice):
+   pip install edge-tts
+
+4. Register scheduled task (run as admin):
+   .\register-scheduled-task.ps1
+
+QUICK START:
+------------
+For interactive setup wizard:
+  .\quick-setup.ps1
+
+For manual test:
+  .\morning-briefing.ps1 -Test
+
+For production run:
+  .\morning-briefing.ps1
+
+For TTS test:
+  .\test-tts.ps1
+
+SCHEDULED TASK:
+---------------
+Task Name: MorningEmailBriefing
+Trigger: At user login
+Frequency: Once per day (first login only)
+Action: Fetch emails, filter noise, speak summary
+
+FEATURES:
+---------
+✓ Gmail API integration with OAuth2
+✓ Smart noise filtering (ClickUp, auto-reviews, migrations)
+✓ Natural language summary generation
+✓ High-quality TTS with edge-tts (en-US-AriaNeural)
+✓ Fallback to Windows System.Speech
+✓ Once-per-day execution control
+✓ Comprehensive logging
+✓ Silent mode support
+✓ Test mode support
+✓ Force run capability
+
+CUSTOMIZATION:
+--------------
+- Add custom email filters: Edit fetch-emails.js
+- Change TTS voice: Edit speak-summary.py (VOICE variable)
+- Adjust speech rate: Edit speak-summary.py (RATE variable)
+- Modify noise filters: Edit fetch-emails.js (NOISE_FILTERS)
+
+SUPPORT:
+--------
+- Full documentation: README.md
+- Quick start guide: QUICKSTART.md
+- Check logs: Get-Content briefing.log -Tail 50
+- Test TTS: .\test-tts.ps1
+
+================================================================================
+Installation Date: 2026-02-07
+Created By: Jengo (Claude Agent)
+================================================================================

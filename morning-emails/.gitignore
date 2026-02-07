@@ -1,0 +1,23 @@
+# Sensitive OAuth files
+credentials.json
+token.json
+oauth-keys.json
+
+# Environment variables
+.env
+
+# Runtime files
+summary.txt
+last-run.txt
+briefing.log
+temp_*.mp3
+temp_*.ps1
+
+# Node modules
+node_modules/
+package-lock.json
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo

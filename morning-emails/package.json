@@ -1,0 +1,17 @@
+{
+  "name": "morning-email-briefing",
+  "version": "1.0.0",
+  "description": "Automated morning email briefing with TTS",
+  "main": "fetch-emails.js",
+  "type": "module",
+  "scripts": {
+    "install-deps": "npm install",
+    "test": "node fetch-emails.js --test"
+  },
+  "dependencies": {
+    "googleapis": "^137.0.0",
+    "dotenv": "^16.4.1"
+  },
+  "author": "Jengo",
+  "license": "MIT"
+}

@@ -1,0 +1,37 @@
+#!/bin/sh
+# Definition of Done Pre-Commit Hook
+# This hook runs before every git commit to enforce quality standards
+#
+# Installation:
+#   1. Copy this file to .git/hooks/pre-commit
+#   2. Make executable: chmod +x .git/hooks/pre-commit
+#   3. Or run install script: C:\scripts\tools\install-dod-hook.ps1
+#
+# To bypass (NOT RECOMMENDED):
+#   git commit --no-verify
+
+echo ""
+echo "=========================================="
+echo "  Running Definition of Done Checks..."
+echo "=========================================="
+echo ""
+
+# Run PowerShell DoD validation script
+pwsh -File "C:\scripts\tools\dod-pre-commit-check.ps1" -ProjectPath "."
+
+# Capture exit code
+EXIT_CODE=$?
+
+if [ $EXIT_CODE -ne 0 ]; then
+    echo ""
+    echo "❌ COMMIT BLOCKED: Fix DoD failures above"
+    echo ""
+    echo "To bypass (not recommended): git commit --no-verify"
+    echo ""
+    exit 1
+fi
+
+echo ""
+echo "✅ All DoD checks passed! Proceeding with commit..."
+echo ""
+exit 0
