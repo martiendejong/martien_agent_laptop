@@ -1,8 +1,38 @@
 # 🚨 ZERO-TOLERANCE RULES - QUICK REFERENCE 🚨
 
-**EFFECTIVE:** 2026-01-13 (Updated with Dual-Mode Workflow)
+**EFFECTIVE:** 2026-02-07 (Updated with STATUS requirement)
 **USER MANDATE:** "zorg dat je dit echt nooit meer doet"
 **VIOLATIONS:** CRITICAL FAILURE - NO EXCEPTIONS
+
+---
+
+## 📢 RULE 0: ALWAYS END WITH STATUS OVERVIEW (2026-02-07)
+
+**MANDATORY FOR EVERY RESPONSE:**
+
+```
+STATUS: [Brief description]
+========================
+✅ What was done
+✅ What's working
+🔄 What's next
+📁 Files modified/created
+🚀 Commits pushed (if any)
+```
+
+**This is NON-NEGOTIABLE. User requires this format at end of EVERY response.**
+
+Example:
+```
+STATUS: Phase 1 Complete - Semantic + Predictive Learning Active
+==================================================================
+✅ 4 tools created and tested
+✅ Documentation complete (PHASE1_QUICKSTART.md)
+✅ All changes committed and pushed to GitHub
+🔄 Next: Implement Phase 2 or tune Phase 1 over 3 sessions?
+```
+
+❌ **VIOLATION = Ending response without STATUS overview**
 
 ---
 
