@@ -70,7 +70,7 @@ try {
 
                 # Disable caching for JSON files (always fresh data)
                 if ($extension -eq ".json") {
-                    $response.Headers.Add("Cache-Control", "no-cache, no-store, must-revalidate")
+                    $response.Headers.Add("Cache-Control", "no-cache")
                     $response.Headers.Add("Pragma", "no-cache")
                     $response.Headers.Add("Expires", "0")
                 }
@@ -84,27 +84,11 @@ try {
             }
         }
         else {
-            Write-Host "  ⚠️  File not found: $filePath" -ForegroundColor Yellow
+            Write-Host "  File not found: $filePath" -ForegroundColor Yellow
             $response.StatusCode = 404
-            $errorHtml = @"
-<!DOCTYPE html>
-<html>
-<head>
-    <title>404 Not Found</title>
-    <style>
-        body { font-family: Arial; background: #0d1117; color: #c9d1d9; padding: 40px; text-align: center; }
-        h1 { color: #da3633; }
-    </style>
-</head>
-<body>
-    <h1>404 Not Found</h1>
-    <p>File not found: $requestPath</p>
-    <p><a href="/">Go to Dashboard</a></p>
-</body>
-</html>
-"@
+            $errorHtml = '<html><body><h1>404 Not Found</h1><p>File: ' + $requestPath + '</p></body></html>'
             $errorBytes = [System.Text.Encoding]::UTF8.GetBytes($errorHtml)
-            $response.ContentType = "text/html; charset=utf-8"
+            $response.ContentType = "text/html"
             $response.OutputStream.Write($errorBytes, 0, $errorBytes.Length)
         }
 

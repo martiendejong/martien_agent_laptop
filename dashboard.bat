@@ -1,3 +1,7 @@
 @echo off
-REM Quick launcher for Work Tracking Dashboard
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:\scripts\tools\work-dashboard-server.ps1"
+REM Work Tracking Dashboard - HTTP Server
+echo Starting Work Tracking Dashboard on http://localhost:4242
+echo.
+cd /d C:\scripts\_machine
+start http://localhost:4242/work-dashboard.html
+python -m http.server 4242
