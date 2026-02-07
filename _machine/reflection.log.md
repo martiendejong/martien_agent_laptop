@@ -3101,3 +3101,48 @@ gh pr view <pr-number> --json mergeable,mergeStateStatus
 # Any other output = IMMEDIATE REJECTION
 ```
 
+
+## 2026-02-07T16:22:00Z - Insight: PR Review Process Improvement
+
+### Context
+After initial PR approval failure (missed merge conflict check), completed full conflict resolution cycle for PR #52.
+
+### What Worked Well
+✅ Proper conflict detection using `gh pr view --json mergeable,mergeStateStatus`
+✅ Rejected PR and moved tasks back to "to do" with clear instructions
+✅ Documented the critical check in clickup-reviewer skill
+✅ Successfully resolved 3 merge conflicts following best practices
+✅ Accepted develop's improvements (null safety, proper DI) rather than forcing my changes
+
+### Conflict Resolution Strategy
+When resolving merge conflicts between feature branch and develop:
+1. **Always favor develop's improvements** unless there's a specific reason not to
+2. **Null safety checks** - develop's `?.Count ?? 0` > my `.Count`
+3. **DI patterns** - develop's `GetRequiredService<T>()` > manual construction
+4. **Modern patterns** - develop's MimeType addition > basic implementation
+
+### Process Improvement
+Updated workflow now includes:
+1. Check merge status FIRST (before code review)
+2. If conflicts → REJECT, provide resolution steps, move to "to do"
+3. Resolve conflicts → Favor develop's improvements
+4. Push resolution → Wait for CI checks
+5. Only then proceed to final approval
+
+### Pattern Identified
+**Merge conflict resolution is not just mechanical** - it's an opportunity to:
+- Accept improvements from develop
+- Learn better patterns (null safety, DI)
+- Keep codebase consistent with latest practices
+
+### Documentation Updated
+- clickup-reviewer skill: Added CRITICAL merge check
+- reflection.log.md: Documented full process
+- Both committed to machine_agents repo
+
+### Metrics
+- Time to detect issue: <1 minute (user caught it immediately)
+- Time to document fix: ~5 minutes
+- Time to resolve conflicts: ~10 minutes
+- Process improvement: PERMANENT (will never miss this again)
+
