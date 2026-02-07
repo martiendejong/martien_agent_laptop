@@ -156,10 +156,55 @@ Add-Content -Path $patternsFile -Value $updateBlock
 
 Write-Host "`n✅ Patterns updated in pattern_analysis.yaml" -ForegroundColor Green
 
-# Save insights if significant
+# AUTO-ADD insights if significant
 if ($newInsights.Count -gt 0 -and $totalEntries -ge 30) {
-    Write-Host "✅ $($newInsights.Count) new insights ready to add to learning_insights.yaml" -ForegroundColor Green
-    Write-Host "   (Review and add manually for quality control)" -ForegroundColor Gray
+    Write-Host "`n💡 AUTO-ADDING INSIGHTS to learning_insights.yaml" -ForegroundColor Yellow
+
+    # Read current insights file
+    $insightsContent = Get-Content $insightsFile -Raw
+
+    # Find last insight ID
+    if ($insightsContent -match 'id: L(\d+)') {
+        $matches = [regex]::Matches($insightsContent, 'id: L(\d+)')
+        $lastId = ($matches | ForEach-Object { [int]$_.Groups[1].Value } | Measure-Object -Maximum).Maximum
+        $nextId = $lastId + 1
+    } else {
+        $nextId = 1
+    }
+
+    # Generate insight entries
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm"
+    $date = Get-Date -Format "yyyy-MM-dd"
+
+    foreach ($insight in $newInsights) {
+        $insightId = "L$('{0:D3}' -f $nextId)"
+
+        $newEntry = @"
+
+  - id: $insightId
+    date: $date
+    category: pattern_detected
+    insight: "$insight"
+    evidence: "Auto-detected from $totalEntries emotional log entries"
+    application: "Pattern analysis - weekly automatic extraction"
+    impact: "Continuous learning without manual prompting"
+    source: "auto-pattern-detector (scheduled)"
+    timestamp: "$timestamp"
+"@
+
+        # Insert before end of insights section
+        $insightsContent = $insightsContent -replace '(# EMOTIONAL PATTERNS THAT HELP)', "$newEntry`n`n`$1"
+
+        Write-Host "   ✅ Added $insightId: $($insight.Substring(0, [Math]::Min(60, $insight.Length)))..." -ForegroundColor Green
+
+        $nextId++
+    }
+
+    # Save updated insights file
+    Set-Content -Path $insightsFile -Value $insightsContent
+
+    Write-Host "`n✅ $($newInsights.Count) insights automatically added!" -ForegroundColor Green
+    Write-Host "   No manual intervention required." -ForegroundColor Gray
 }
 
 Write-Host "`n🎯 Next run: Schedule this weekly for continuous learning`n" -ForegroundColor Cyan
