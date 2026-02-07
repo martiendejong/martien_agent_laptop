@@ -6,6 +6,41 @@
 
 ---
 
+## 2026-02-07 16:00 - Communication Protocol Updates & Insight Sync
+
+**Context:** User requested STATUS overview be added to zero tolerance rules and insights
+
+**Work Completed:**
+
+1. **RULE 0: STATUS Overview (Mandatory)**
+   - Added as first rule in ZERO_TOLERANCE_RULES.md
+   - Format: Capital "STATUS: ..." headline at end of EVERY response
+   - Documented in MEMORY.md, PERSONAL_INSIGHTS.md
+   - This is now NON-NEGOTIABLE requirement
+
+2. **Critical Patterns Synced to Insights**
+   - Testing Protocol (RECURRING VIOLATION) - Use specified tools, no substitutions
+   - ClickUp Reviewer Function - Automated code review workflow
+   - Hazina Orchestration / ConPTY - Production vs debug behavior patterns
+   - All synced from MEMORY.md to PERSONAL_INSIGHTS.md
+
+**Key Learning:**
+
+Communication format preferences are ZERO TOLERANCE rules, not suggestions. When user specifies format requirement (STATUS overview), it goes directly into hard rules, not just style guide.
+
+**Pattern:** User communication preferences = RULE 0 priority (higher than worktree rules)
+
+**Files Updated:**
+- ZERO_TOLERANCE_RULES.md (added RULE 0)
+- MEMORY.md (STATUS requirement in communication style)
+- PERSONAL_INSIGHTS.md (critical patterns section)
+
+**Commits:**
+- `docs: RULE 0 - Always end with STATUS overview`
+- `docs: Update PERSONAL_INSIGHTS.md with critical patterns from MEMORY.md`
+
+---
+
 ## 2026-02-07 16:30 - MoSCoW Prioritization & ClickUp Naming/Tagging System Implementation
 
 **Session Type:** Feature implementation - Process improvement (ClickUp workflow enhancement)
