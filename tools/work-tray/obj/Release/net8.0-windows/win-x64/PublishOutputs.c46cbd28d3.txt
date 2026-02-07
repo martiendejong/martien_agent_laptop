@@ -1,0 +1,2 @@
+C:\scripts\tools\work-tray\bin\Release\net8.0-windows\win-x64\publish\WorkTray.pdb
+C:\scripts\tools\work-tray\bin\Release\net8.0-windows\win-x64\publish\WorkTray.exe

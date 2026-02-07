@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Overview - Live Dashboard</title>
+    <style>
+        /* GitHub Dark Theme */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --border-color: #30363d;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --accent-blue: #58a6ff;
+            --accent-green: #238636;
+            --accent-red: #da3633;
+            --accent-orange: #d29922;
+            --accent-purple: #8957e5;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-size: 2em;
+            font-weight: 600;
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+        }
+
+        .auto-refresh {
+            background: var(--bg-secondary);
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+
+        .last-update {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--accent-blue);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-trend {
+            font-size: 0.85em;
+            color: var(--accent-green);
+            margin-top: 8px;
+        }
+
+        .stat-trend.down {
+            color: var(--accent-red);
+        }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .section-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--border-color);
+        }
+
+        /* Tables */
+        .table-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: var(--bg-tertiary);
+        }
+
+        th {
+            padding: 14px;
+            text-align: left;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            padding: 14px;
+            border-bottom: 1px solid var(--bg-tertiary);
+        }
+
+        tbody tr:hover {
+            background: var(--bg-tertiary);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .empty-state {
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-icon {
+            font-size: 4em;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        /* Status Badges */
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .status-planning { background: #1f6feb; color: #fff; }
+        .status-coding { background: #1f6feb; color: #fff; }
+        .status-testing { background: #d29922; color: #000; }
+        .status-reviewing { background: #8957e5; color: #fff; }
+        .status-merging { background: #a371f7; color: #fff; }
+        .status-blocked { background: #da3633; color: #fff; }
+        .status-done { background: #238636; color: #fff; }
+
+        /* Links */
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Time Display */
+        .time-ago {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        /* Phase Counts */
+        .phase-breakdown {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .phase-chip {
+            background: var(--bg-tertiary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+
+        /* Success Icon */
+        .success-icon {
+            color: var(--accent-green);
+        }
+
+        .pr-link {
+            font-weight: 600;
+        }
+
+        /* Duration Display */
+        .duration {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            font-style: italic;
+        }
+
+        /* Repository Tag */
+        .repo-tag {
+            background: var(--bg-tertiary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            color: var(--text-secondary);
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Error State */
+        .error-state {
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent-red);
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: var(--accent-red);
+        }
+
+        /* Search box (Improvement #3) */
+        .search-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 10px 16px;
+            color: var(--text-primary);
+            font-size: 0.95em;
+            width: 300px;
+            transition: border-color 0.2s;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+        }
+
+        .search-box::placeholder {
+            color: var(--text-secondary);
+        }
+
+        mark {
+            background: var(--accent-blue);
+            color: #fff;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>
+                <span>🚀</span>
+                <span>Work Overview - Live Dashboard</span>
+            </h1>
+            <div class="header-meta">
+                <input type="text" class="search-box" id="search-box" placeholder="🔍 Search agents, tasks, objectives..." oninput="filterDashboard(this.value)" />
+                <div class="auto-refresh">⟳ Auto-refresh: <span id="countdown">3</span>s</div>
+                <div class="last-update">Last updated: <span id="last-updated">Loading...</span></div>
+            </div>
+        </header>
+
+        <div id="error-container"></div>
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <div>Loading work state...</div>
+        </div>
+
+        <div id="content" style="display: none;">
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-active-agents">0</div>
+                    <div class="stat-label">Active Agents</div>
+                    <div class="stat-trend" id="trend-agents"></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-total-tasks">0</div>
+                    <div class="stat-label">Tasks Today</div>
+                    <div class="stat-trend" id="trend-tasks"></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-prs-created">0</div>
+                    <div class="stat-label">PRs Created</div>
+                    <div class="stat-trend" id="trend-prs"></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-avg-duration">0m</div>
+                    <div class="stat-label">Avg Duration</div>
+                    <div class="stat-trend" id="trend-duration"></div>
+                </div>
+            </div>
+
+            <!-- Phase Breakdown -->
+            <div id="phase-breakdown-container" style="margin-bottom: 30px;"></div>
+
+            <!-- Active Work -->
+            <div class="section-header">
+                <h2>🔥 Active Work</h2>
+                <div class="section-actions">
+                    <button class="btn" onclick="refreshNow()">Refresh Now</button>
+                    <button class="btn" onclick="openStateFile()">View State File</button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Agent</th>
+                            <th>Status</th>
+                            <th>Repository</th>
+                            <th>Task</th>
+                            <th>Objective</th>
+                            <th>Phase</th>
+                            <th>Updated</th>
+                        </tr>
+                    </thead>
+                    <tbody id="active-work">
+                        <!-- Populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Completed Today -->
+            <div class="section-header">
+                <h2>✅ Completed Today</h2>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Agent</th>
+                            <th>Task</th>
+                            <th>Objective</th>
+                            <th>PR</th>
+                            <th>Duration</th>
+                            <th>Completed</th>
+                        </tr>
+                    </thead>
+                    <tbody id="completed-work">
+                        <!-- Populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let countdown = 3;
+        let previousState = null;
+
+        async function loadDashboard() {
+            try {
+                const response = await fetch('work-state.json?' + new Date().getTime());
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const state = await response.json();
+
+                // Hide loading, show content
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+                document.getElementById('error-container').innerHTML = '';
+
+                // Update stats
+                updateStats(state);
+
+                // Update phase breakdown
+                updatePhaseBreakdown(state);
+
+                // Update active work table
+                updateActiveWork(state);
+
+                // Update completed work table
+                updateCompletedWork(state);
+
+                // Update last updated timestamp
+                const lastUpdated = state.metadata?.last_updated || new Date().toISOString();
+                document.getElementById('last-updated').textContent = formatTime(lastUpdated);
+
+                previousState = state;
+
+            } catch (error) {
+                console.error('Failed to load dashboard:', error);
+                showError(error.message);
+            }
+        }
+
+        function updateStats(state) {
+            const summary = state.summary || {};
+
+            document.getElementById('stat-active-agents').textContent = summary.active_agents || 0;
+            document.getElementById('stat-total-tasks').textContent = summary.total_tasks_today || 0;
+            document.getElementById('stat-prs-created').textContent = summary.prs_created_today || 0;
+
+            // Calculate average duration from completed work
+            const completions = state.history?.last_10_completions || [];
+            const avgDuration = completions.length > 0
+                ? completions.reduce((sum, c) => sum + (c.duration_minutes || 0), 0) / completions.length
+                : 0;
+
+            document.getElementById('stat-avg-duration').textContent =
+                avgDuration > 0 ? Math.round(avgDuration) + 'm' : '-';
+
+            // Show trends (compare with previous state)
+            if (previousState) {
+                const prevSummary = previousState.summary || {};
+
+                updateTrend('trend-agents', summary.active_agents, prevSummary.active_agents);
+                updateTrend('trend-tasks', summary.total_tasks_today, prevSummary.total_tasks_today);
+                updateTrend('trend-prs', summary.prs_created_today, prevSummary.prs_created_today);
+            }
+        }
+
+        function updateTrend(elementId, current, previous) {
+            if (previous === undefined) return;
+
+            const element = document.getElementById(elementId);
+            const diff = current - previous;
+
+            if (diff > 0) {
+                element.textContent = `+${diff} since last refresh`;
+                element.className = 'stat-trend';
+            } else if (diff < 0) {
+                element.textContent = `${diff} since last refresh`;
+                element.className = 'stat-trend down';
+            } else {
+                element.textContent = 'No change';
+                element.className = 'stat-trend';
+            }
+        }
+
+        function updatePhaseBreakdown(state) {
+            const phaseCounts = state.summary?.current_phase_counts || {};
+            const container = document.getElementById('phase-breakdown-container');
+
+            if (Object.keys(phaseCounts).length === 0) {
+                container.innerHTML = '';
+                return;
+            }
+
+            const chips = Object.entries(phaseCounts)
+                .map(([phase, count]) => `
+                    <div class="phase-chip">
+                        <strong>${phase}:</strong> ${count}
+                    </div>
+                `)
+                .join('');
+
+            container.innerHTML = `
+                <div class="section-header" style="margin-bottom: 8px;">
+                    <h3 style="font-size: 1.1em; color: var(--text-secondary);">Phase Breakdown</h3>
+                </div>
+                <div class="phase-breakdown">${chips}</div>
+            `;
+        }
+
+        function updateActiveWork(state) {
+            const tbody = document.getElementById('active-work');
+            const agents = state.agents || {};
+
+            const activeAgents = Object.entries(agents)
+                .filter(([_, agent]) => agent.status !== 'DONE' && agent.status !== 'IDLE')
+                .sort((a, b) => {
+                    // Sort by updated timestamp (most recent first)
+                    const timeA = new Date(a[1].updated || 0);
+                    const timeB = new Date(b[1].updated || 0);
+                    return timeB - timeA;
+                });
+
+            if (activeAgents.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="empty-state">
+                            <div class="empty-state-icon">😴</div>
+                            <div>No active work</div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = activeAgents.map(([agentId, agent]) => {
+                const task = agent.task || {};
+                const status = agent.status || 'UNKNOWN';
+                const statusClass = `status-${status.toLowerCase()}`;
+
+                const clickupLink = task.clickup
+                    ? `<a href="https://app.clickup.com/t/${task.clickup}" target="_blank">${task.clickup}</a>`
+                    : '-';
+
+                const prLink = task.pr
+                    ? `<a href="#" class="pr-link">${task.pr}</a>`
+                    : '-';
+
+                return `
+                    <tr>
+                        <td><strong>${agentId}</strong></td>
+                        <td><span class="status-badge ${statusClass}">${status}</span></td>
+                        <td>${task.repository ? `<span class="repo-tag">${task.repository}</span>` : '-'}</td>
+                        <td>${clickupLink}</td>
+                        <td>${escapeHtml(task.objective || 'Unknown')}</td>
+                        <td>${escapeHtml(agent.phase || '-')}</td>
+                        <td class="time-ago">${formatTimeAgo(agent.updated)}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function updateCompletedWork(state) {
+            const tbody = document.getElementById('completed-work');
+            const completions = state.history?.last_10_completions || [];
+
+            if (completions.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="empty-state">
+                            <div class="empty-state-icon">📋</div>
+                            <div>No completions today</div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = completions.map(completion => {
+                const prLink = completion.pr && completion.pr !== '-'
+                    ? `<a href="#" class="pr-link">${completion.pr}</a>`
+                    : '-';
+
+                const duration = completion.duration_minutes > 0
+                    ? `<span class="duration">${completion.duration_minutes.toFixed(1)}m</span>`
+                    : '-';
+
+                const icon = completion.success !== false ? '✅' : '⚠️';
+
+                return `
+                    <tr>
+                        <td><strong>${completion.agent}</strong></td>
+                        <td>${completion.task || '-'}</td>
+                        <td>${escapeHtml(completion.objective || '-')}</td>
+                        <td>${prLink}</td>
+                        <td>${duration}</td>
+                        <td class="time-ago">${icon} ${formatTime(completion.completed)}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function showError(message) {
+            const container = document.getElementById('error-container');
+            container.innerHTML = `
+                <div class="error-state">
+                    <strong>⚠️ Error loading dashboard</strong>
+                    <div style="margin-top: 8px;">${escapeHtml(message)}</div>
+                    <div style="margin-top: 8px; font-size: 0.9em;">
+                        Make sure work-state.json exists at: C:\\scripts\\_machine\\work-state.json
+                    </div>
+                </div>
+            `;
+        }
+
+        function formatTime(isoString) {
+            if (!isoString) return '-';
+            const date = new Date(isoString);
+            return date.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+        }
+
+        function formatTimeAgo(isoString) {
+            if (!isoString) return '-';
+
+            const date = new Date(isoString);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffSec = Math.floor(diffMs / 1000);
+            const diffMin = Math.floor(diffSec / 60);
+            const diffHour = Math.floor(diffMin / 60);
+            const diffDay = Math.floor(diffHour / 24);
+
+            if (diffSec < 60) return 'just now';
+            if (diffMin < 60) return `${diffMin}m ago`;
+            if (diffHour < 24) return `${diffHour}h ago`;
+            return `${diffDay}d ago`;
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function refreshNow() {
+            countdown = 0;
+            document.getElementById('countdown').textContent = 'refreshing...';
+        }
+
+        function openStateFile() {
+            window.open('work-state.json', '_blank');
+        }
+
+        // Search/Filter (Improvement #3)
+        function filterDashboard(query) {
+            if (!query) {
+                // Clear filter - show all rows
+                document.querySelectorAll('#active-work tr, #completed-work tr').forEach(row => {
+                    row.style.display = '';
+                    // Remove highlights
+                    row.querySelectorAll('td').forEach(cell => {
+                        if (cell.dataset.originalText) {
+                            cell.textContent = cell.dataset.originalText;
+                            delete cell.dataset.originalText;
+                        }
+                    });
+                });
+                return;
+            }
+
+            const lowerQuery = query.toLowerCase();
+
+            document.querySelectorAll('#active-work tr, #completed-work tr').forEach(row => {
+                const text = row.textContent.toLowerCase();
+                const match = text.includes(lowerQuery);
+
+                row.style.display = match ? '' : 'none';
+
+                if (match) {
+                    // Highlight matching text
+                    row.querySelectorAll('td').forEach(cell => {
+                        if (!cell.dataset.originalText) {
+                            cell.dataset.originalText = cell.textContent;
+                        }
+
+                        const originalText = cell.dataset.originalText;
+                        const regex = new RegExp(`(${escapeRegex(query)})`, 'gi');
+                        cell.innerHTML = originalText.replace(regex, '<mark>$1</mark>');
+                    });
+                }
+            });
+        }
+
+        function escapeRegex(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        // Auto-refresh countdown
+        setInterval(() => {
+            countdown--;
+            document.getElementById('countdown').textContent = countdown;
+
+            if (countdown <= 0) {
+                loadDashboard();
+                countdown = 3;
+            }
+        }, 1000);
+
+        // Initial load
+        loadDashboard();
+    </script>
+</body>
+</html>
