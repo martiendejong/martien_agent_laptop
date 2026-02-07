@@ -10,6 +10,10 @@
 
 | Agent | Status | ClickUp Task | GitHub PR | Branch | Objective | Phase | Updated (UTC) |
 |-------|--------|--------------|-----------|--------|-----------|-------|---------------|
+| current-session | DONE | 869c1dnwp | #512 | feature/869c1dnwp-post-scheduling-ui | Post Scheduling UI | ✅ PR #512 linked, moved to review | 2026-02-08T02:15:00Z |
+| current-session | DONE | 869bz3h0w | #517 | feature/869bz3h0w-social-login-integration | Social Login Phase 1 (Google) | ✅ PR #517 created, Google OAuth complete | 2026-02-08T03:00:00Z |
+| current-session | DONE | 869c29zua, 869c29zv6 | #52 | fix/869c29zua-topiclearn-backend | TopicLearn Backend + TopicUsers Fix | ✅ PR #52 linked, both tasks complete | 2026-02-08T03:30:00Z |
+| current-session | PLANNING | 869bz901c | - | - | Topics Featured Image (Art Revisionist) | Investigation | 2026-02-08T03:45:00Z |
 
 **Legend:**
 - **Agent**: agent-001, agent-002, etc.
