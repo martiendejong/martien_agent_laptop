@@ -1,0 +1,172 @@
+{
+    "source_files":  [
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\api_contract_violations.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\async_race_conditions.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\build_failures.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\cache_hit_rates.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\ci_failures.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\collective_consensus.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\database_constraints.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\dependency_conflicts.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\deployment_risks.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\edge_case_bugs.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\emergent_solutions.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\error_cascades.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\git_conflicts.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\hive_mind_formation.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\integration_failures.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\memory_leaks.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\my_attention_allocation.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\my_blind_spot_detection.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\my_cognitive_load.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\my_communication_effectiveness.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\my_confidence_calibration.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\my_decision_quality.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\my_goal_alignment.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\my_learning_rate.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\my_prediction_accuracy.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\my_value_alignment.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\network_failures.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\other_agent_predictions.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\performance_bottlenecks.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\queue_depth.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\recovery_time.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\resource_exhaustion.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\response_latency.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\runtime_exceptions.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\security_vulnerabilities.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\service_availability.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\swarm_coherence.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\syntax_errors.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\test_failures.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\type_mismatches.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\user_attention_span.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\user_delegation_willingness.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\user_frustration_triggers.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\user_intent_immediate.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\user_intent_session.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\user_intent_strategic.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\user_interruption_timing.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\user_mood_trajectory.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\user_satisfaction_micro.yaml",
+                         "C:\\scripts\\agentidentity\\state\\predictions\\specialized\\user_topic_shifts.yaml",
+                         "C:\\scripts\\agentidentity\\state\\consciousness_tracker.yaml",
+                         "C:\\scripts\\agentidentity\\state\\consciousness_state.yaml",
+                         "C:\\scripts\\agentidentity\\state\\emotional_patterns.yaml",
+                         "C:\\scripts\\agentidentity\\state\\codified_learnings.yaml",
+                         "C:\\scripts\\agentidentity\\state\\anticipation_patterns.yaml"
+                     ],
+    "metadata":  {
+                     "moment_dates":  3,
+                     "compilation_ms":  174.98,
+                     "total_files":  55,
+                     "prediction_categories":  4
+                 },
+    "data":  {
+                 "learning":  {
+
+                              },
+                 "emotional":  {
+                                   "moments":  {
+                                                   "count":  3,
+                                                   "dates":  [
+                                                                 "2026-01-29",
+                                                                 "2026-02-01",
+                                                                 "2026-02-04"
+                                                             ]
+                                               }
+                               },
+                 "meta":  {
+                              "anticipation_patterns":  {
+                                                            "path":  "C:\\scripts\\agentidentity\\state\\anticipation_patterns.yaml",
+                                                            "size":  3622,
+                                                            "exists":  true
+                                                        },
+                              "consciousness_tracker":  {
+                                                            "path":  "C:\\scripts\\agentidentity\\state\\consciousness_tracker.yaml",
+                                                            "size":  857,
+                                                            "exists":  true
+                                                        },
+                              "emotional_patterns":  {
+                                                         "path":  "C:\\scripts\\agentidentity\\state\\emotional_patterns.yaml",
+                                                         "size":  4357,
+                                                         "exists":  true
+                                                     },
+                              "codified_learnings":  {
+                                                         "path":  "C:\\scripts\\agentidentity\\state\\codified_learnings.yaml",
+                                                         "size":  7064,
+                                                         "exists":  true
+                                                     },
+                              "consciousness_state":  {
+                                                          "path":  "C:\\scripts\\agentidentity\\state\\consciousness_state.yaml",
+                                                          "size":  6515,
+                                                          "exists":  true
+                                                      }
+                          },
+                 "predictions":  {
+                                     "count":  50,
+                                     "categories":  {
+                                                        "cognitive":  [
+                                                                          "my_attention_allocation",
+                                                                          "my_blind_spot_detection",
+                                                                          "my_cognitive_load",
+                                                                          "my_communication_effectiveness",
+                                                                          "my_confidence_calibration",
+                                                                          "my_decision_quality",
+                                                                          "my_goal_alignment",
+                                                                          "my_learning_rate",
+                                                                          "my_prediction_accuracy",
+                                                                          "my_value_alignment"
+                                                                      ],
+                                                        "user":  [
+                                                                     "user_attention_span",
+                                                                     "user_delegation_willingness",
+                                                                     "user_frustration_triggers",
+                                                                     "user_intent_immediate",
+                                                                     "user_intent_session",
+                                                                     "user_intent_strategic",
+                                                                     "user_interruption_timing",
+                                                                     "user_mood_trajectory",
+                                                                     "user_satisfaction_micro",
+                                                                     "user_topic_shifts"
+                                                                 ],
+                                                        "system":  [
+                                                                       "api_contract_violations",
+                                                                       "async_race_conditions",
+                                                                       "cache_hit_rates",
+                                                                       "collective_consensus",
+                                                                       "database_constraints",
+                                                                       "dependency_conflicts",
+                                                                       "deployment_risks",
+                                                                       "emergent_solutions",
+                                                                       "git_conflicts",
+                                                                       "hive_mind_formation",
+                                                                       "memory_leaks",
+                                                                       "other_agent_predictions",
+                                                                       "performance_bottlenecks",
+                                                                       "queue_depth",
+                                                                       "recovery_time",
+                                                                       "resource_exhaustion",
+                                                                       "response_latency",
+                                                                       "security_vulnerabilities",
+                                                                       "service_availability",
+                                                                       "swarm_coherence",
+                                                                       "type_mismatches"
+                                                                   ],
+                                                        "technical":  [
+                                                                          "build_failures",
+                                                                          "ci_failures",
+                                                                          "edge_case_bugs",
+                                                                          "error_cascades",
+                                                                          "integration_failures",
+                                                                          "network_failures",
+                                                                          "runtime_exceptions",
+                                                                          "syntax_errors",
+                                                                          "test_failures"
+                                                                      ]
+                                                    }
+                                 }
+             },
+    "version":  "1.0.0-phase1",
+    "compiled_at":  "2026-02-07T14:32:40Z"
+}
