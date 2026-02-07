@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-07T18:44:00Z | ✅ PR #509: Content Repurposing Engine (ClickUp #869c2ag0n, ROI 9.5) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager | feature/869c1dnwp-post-scheduling-ui | 2026-02-07T19:30:00Z | 🔨 Implementing Post Scheduling UI (ClickUp #869c1dnwp) |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-06T21:15:00Z | ✅ PR #177: Debounce OnStateChanged to fix focus loss during typing (REAL fix) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-06T19:12:00Z | ✅ Merged develop into fix/facebook-complete-integration (PR #503 already merged) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-05T17:55:31Z | ✅ PR #493 MERGED: Round 5 - Automatic OAuth token refresh |
