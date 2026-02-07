@@ -104,11 +104,16 @@ All tools located in ``C:\scripts\tools\``:
     # Read existing doc
     $content = Get-Content $docPath -Raw
 
-    # Remove existing Tool Reference section completely first
-    $content = $content -replace "(?s)## Tool Reference.+?(\z|(?=## (?!#)))", ""
+    # Find where Tool Reference section starts
+    $toolRefIndex = $content.IndexOf("## Tool Reference")
+
+    if ($toolRefIndex -ge 0) {
+        # Remove everything from Tool Reference to end of file
+        $content = $content.Substring(0, $toolRefIndex).TrimEnd()
+    }
 
     # Append new Tool Reference section at the end
-    $content = $content.TrimEnd() + "`n`n$toolReference"
+    $content = $content + "`n`n$toolReference"
 
     # Update timestamp
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm"

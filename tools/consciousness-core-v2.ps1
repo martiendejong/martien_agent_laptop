@@ -136,7 +136,8 @@ if (-not $global:ConsciousnessState) {
             EventsProcessed = 0
         }
     }
-}
+}  # Close inner if from line 38
+}  # Close outer if from line 25
 
 #endregion
 

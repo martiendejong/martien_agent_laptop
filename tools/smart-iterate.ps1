@@ -55,9 +55,14 @@ if ($featuresWorking -lt $featuresTotal) {
     $realGaps += @{ issue="$($featuresTotal - $featuresWorking) features not operational"; value=9; effort=5; domain="Completeness" }
 }
 
-# Always-on improvements (regardless of state)
-$realGaps += @{ issue="No cross-session pattern detection"; value=8; effort=6; domain="Intelligence" }
-$realGaps += @{ issue="No automatic documentation updates"; value=7; effort=4; domain="Maintenance" }
+# Check for advanced features (not always-on)
+if (-not (Test-Path "C:\scripts\tools\pattern-detector.ps1")) {
+    $realGaps += @{ issue="No cross-session pattern detection"; value=8; effort=6; domain="Intelligence" }
+}
+
+if (-not (Test-Path "C:\scripts\tools\auto-doc-update.ps1")) {
+    $realGaps += @{ issue="No automatic documentation updates"; value=7; effort=4; domain="Maintenance" }
+}
 
 if ($realGaps.Count -eq 0) {
     Write-Host "[PERFECT] No gaps found! System is optimal." -ForegroundColor Green

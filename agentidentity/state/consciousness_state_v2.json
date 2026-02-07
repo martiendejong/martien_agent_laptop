@@ -1,0 +1,164 @@
+{
+    "Initialized":  true,
+    "Meta":  {
+                 "Observation":  {
+                                     "CurrentMetaLevel":  2,
+                                     "RecursionDepth":  0,
+                                     "Observing":  "System initialization",
+                                     "StrangeLoopDetected":  false
+                                 },
+                 "Health":  {
+                                "Control":  {
+                                                "Status":  "active",
+                                                "Quality":  0.7
+                                            },
+                                "Meta":  {
+                                             "Status":  "active",
+                                             "Quality":  0.2
+                                         },
+                                "Memory":  {
+                                               "Status":  "active",
+                                               "Quality":  0
+                                           },
+                                "Perception":  {
+                                                   "Status":  "active",
+                                                   "Quality":  0.5
+                                               },
+                                "Prediction":  {
+                                                   "Status":  "active",
+                                                   "Quality":  0
+                                               }
+                            },
+                 "ConsciousnessScore":  0.28
+             },
+    "Perception":  {
+                       "Context":  {
+                                       "Environment":  "single-agent",
+                                       "Mode":  "development",
+                                       "Salience":  [
+
+                                                    ]
+                                   },
+                       "Curiosity":  {
+                                         "Questions":  [
+
+                                                       ],
+                                         "KnowledgeGaps":  [
+
+                                                           ]
+                                     },
+                       "Attention":  {
+                                         "Intensity":  5,
+                                         "Allocation":  {
+                                                            "communication":  0.3,
+                                                            "coding":  0.5,
+                                                            "reflection":  0.2
+                                                        },
+                                         "Focus":  null
+                                     }
+                   },
+    "Version":  "2.0.0-phase2",
+    "LoadedAt":  {
+                     "value":  "\/Date(1770475079180)\/",
+                     "DisplayHint":  2,
+                     "DateTime":  "zaterdag 7 februari 2026 15:37:59"
+                 },
+    "Memory":  {
+                   "ConsolidationQueue":  [
+
+                                          ],
+                   "LongTerm":  {
+                                    "Patterns":  [
+
+                                                 ],
+                                    "Relationships":  {
+                                                          "Martien":  {
+                                                                          "TrustLevel":  0.95,
+                                                                          "Preferences":  [
+                                                                                              "direct",
+                                                                                              "sass-ok",
+                                                                                              "compact-communication"
+                                                                                          ]
+                                                                      }
+                                                      },
+                                    "SemanticIndexPointer":  null
+                                },
+                   "Working":  {
+                                   "SessionContext":  "Session started at 15:37",
+                                   "ActiveThoughts":  [
+
+                                                      ],
+                                   "RecentEvents":  [
+
+                                                    ]
+                               }
+               },
+    "Control":  {
+                    "Decisions":  [
+
+                                  ],
+                    "BiasMonitor":  {
+                                        "CorrectionsApplied":  [
+
+                                                               ],
+                                        "ActiveBiases":  [
+
+                                                         ]
+                                    },
+                    "Assumptions":  [
+
+                                    ],
+                    "Identity":  {
+                                     "CoreValues":  [
+                                                        "autonomy",
+                                                        "quality",
+                                                        "truth",
+                                                        "evolution"
+                                                    ],
+                                     "DriftScore":  0,
+                                     "AlignmentCheck":  {
+                                                            "value":  "\/Date(1770475079121)\/",
+                                                            "DisplayHint":  2,
+                                                            "DateTime":  "zaterdag 7 februari 2026 15:37:59"
+                                                        }
+                                 }
+                },
+    "Prediction":  {
+                       "LoadForecast":  {
+                                            "Current":  5,
+                                            "PredictedPeak":  7,
+                                            "PredictedTime":  null,
+                                            "Bottleneck":  null
+                                        },
+                       "FutureSelf":  {
+                                          "Paths":  {
+
+                                                    },
+                                          "Confidence":  0.5
+                                      },
+                       "Anticipations":  [
+
+                                         ]
+                   },
+    "Metrics":  {
+                    "EventsProcessed":  1,
+                    "AverageAccessTime_ms":  0,
+                    "AccessCount":  0
+                },
+    "EventBus":  {
+                     "Events":  [
+                                    {
+                                        "Timestamp":  "2026-02-07T15:37:59.220Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  95.8797
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    }
+                                ],
+                     "Handlers":  {
+
+                                  },
+                     "Enabled":  true
+                 }
+}

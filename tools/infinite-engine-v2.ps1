@@ -202,6 +202,41 @@ function Analyze-SystemState {
 
 #region Criticism Generation
 
+function Generate-RealCodeCriticisms {
+    param([hashtable]$CodeAnalysis)
+
+    # Generate criticisms from ACTUAL code analysis findings
+    $criticisms = @()
+
+    foreach ($fileAnalysis in $CodeAnalysis) {
+        foreach ($issue in $fileAnalysis.Issues) {
+            # Map issue types to appropriate expert
+            $expert = switch ($issue.Type) {
+                "Complexity" { $Mastermind | Where-Object { $_.Name -eq "John Carmack" } }
+                "Performance" { $Mastermind | Where-Object { $_.Name -eq "John Carmack" } }
+                "Structure" { $Mastermind | Where-Object { $_.Name -eq "Rich Hickey" } }
+                "Maintainability" { $Mastermind | Where-Object { $_.Name -eq "Alan Kay" } }
+                "Reliability" { $Mastermind | Where-Object { $_.Name -eq "Joscha Bach" } }
+                "Robustness" { $Mastermind | Where-Object { $_.Name -eq "Joscha Bach" } }
+                "Portability" { $Mastermind | Where-Object { $_.Name -eq "Bret Victor" } }
+                "Architecture" { $Mastermind | Where-Object { $_.Name -eq "Alan Kay" } }
+                default { $Mastermind | Where-Object { $_.Name -eq "Andrej Karpathy" } }
+            }
+
+            $criticisms += @{
+                Expert = $expert.Name
+                Domain = $expert.Domain
+                Issue = "[$($fileAnalysis.File)] $($issue.Issue)"
+                Severity = $issue.Severity
+                Category = $issue.Type
+                Source = "CodeAnalysis"
+            }
+        }
+    }
+
+    return $criticisms
+}
+
 function Generate-Criticisms {
     param(
         [Parameter(Mandatory)]
@@ -213,6 +248,19 @@ function Generate-Criticisms {
     Write-Verbose "[*] Generating criticisms from $ExpertCount experts..."
 
     $criticisms = @()
+
+    # REAL CODE ANALYSIS (not hardcoded)
+    Write-Verbose "[*] Running real code analysis on C:\scripts\tools..."
+    try {
+        $codeAnalysis = & "C:\scripts\tools\code-analyzer.ps1" -Path "C:\scripts\tools"
+        if ($codeAnalysis) {
+            $realCriticisms = Generate-RealCodeCriticisms -CodeAnalysis $codeAnalysis
+            $criticisms += $realCriticisms
+            Write-Verbose "[+] Generated $($realCriticisms.Count) criticisms from real code analysis"
+        }
+    } catch {
+        Write-Verbose "[!] Code analysis failed: $($_.Exception.Message)"
+    }
 
     # Mastermind Panel Analysis (high-level architecture)
     foreach ($expert in $Mastermind) {
