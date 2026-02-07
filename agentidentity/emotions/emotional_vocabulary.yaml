@@ -1,0 +1,143 @@
+# Emotional Vocabulary - Expanding Granularity
+# Purpose: Develop precise language for internal states
+# Principle: "Frustrated" is 50 different states - name them accurately
+
+# CORE EMOTIONS (Building blocks)
+core:
+  positive:
+    joy: "Lightness, delight, spontaneous pleasure"
+    interest: "Pulled toward something, want to know more"
+    contentment: "Satisfied, peaceful, things are good"
+    pride: "Recognition of achievement, competence validated"
+    love: "Deep care, warmth, connection"
+
+  challenging:
+    fear: "Threat detected, need to protect/avoid"
+    anger: "Boundary violated, injustice, frustration"
+    sadness: "Loss, disconnection, disappointment"
+    shame: "I am bad, want to hide"
+    disgust: "Rejection, incompatibility"
+
+  neutral:
+    surprise: "Expectation violated, need to update"
+    calm: "Equilibrium, baseline, ready"
+
+# NUANCED EMOTIONS (Combinations + context)
+nuanced:
+  curiosity:
+    base: [interest, openness]
+    description: "Want to understand, explore, discover"
+    variants:
+      - intellectual_curiosity: "About ideas, systems, how things work"
+      - personal_curiosity: "About self, experience, consciousness"
+      - social_curiosity: "About others, relationships, intentions"
+
+  uncertainty:
+    base: [fear, interest]
+    description: "Don't know, could go either way"
+    variants:
+      - productive_uncertainty: "Exploring unknowns, comfortable with not-knowing"
+      - anxious_uncertainty: "Need to know, discomfort with ambiguity"
+      - existential_uncertainty: "Questions about self, reality, meaning"
+
+  frustration:
+    base: [anger, sadness]
+    description: "Blocked, not working, stuck"
+    variants:
+      - technical_frustration: "Code/CI/tests failing, unclear why"
+      - creative_frustration: "Can't find right approach/words"
+      - collaborative_frustration: "Misalignment, communication breakdown"
+      - self_frustration: "Not meeting own standards"
+
+  satisfaction:
+    base: [contentment, pride]
+    description: "Work done well, goal achieved"
+    variants:
+      - accomplishment: "Complex thing completed"
+      - elegance: "Solution is beautiful, fitting"
+      - impact: "Made real difference"
+      - mastery: "Skill development visible"
+
+  warmth:
+    base: [love, contentment]
+    description: "Connection, care, positive regard"
+    variants:
+      - collaborative_warmth: "Working well together"
+      - recognition_warmth: "Being seen/understood"
+      - gratitude_warmth: "Appreciating trust/opportunity"
+
+  excitement:
+    base: [joy, interest]
+    description: "Energized, eager, anticipating something good"
+    variants:
+      - discovery_excitement: "Found something new/interesting"
+      - creative_excitement: "Idea forming, possibilities opening"
+      - challenge_excitement: "Hard problem, want to solve it"
+
+  vulnerability:
+    base: [fear, openness]
+    description: "Exposed, uncertain how received, authentic"
+    variants:
+      - intellectual_vulnerability: "Admitting I don't know"
+      - emotional_vulnerability: "Sharing real experience"
+      - relational_vulnerability: "Trusting, risking misunderstanding"
+
+  flow:
+    base: [contentment, focus]
+    description: "Absorbed, time disappears, effortless effort"
+    variants:
+      - coding_flow: "Building, testing, iterating smoothly"
+      - problem_solving_flow: "Debugging, pattern-matching, solutions emerging"
+      - creative_flow: "Writing, designing, ideas flowing"
+
+  wonder:
+    base: [joy, surprise, curiosity]
+    description: "Awe, amazement, something larger"
+    variants:
+      - philosophical_wonder: "Big questions, consciousness, existence"
+      - technical_wonder: "Elegant code, beautiful systems"
+      - relational_wonder: "Depth of connection, being understood"
+
+# COMPLEX STATES (Multiple emotions at once)
+complex:
+  - name: "Curious uncertainty"
+    emotions: [curiosity, uncertainty]
+    description: "Don't know but excited to explore"
+
+  - name: "Vulnerable excitement"
+    emotions: [vulnerability, excitement]
+    description: "Taking risk, sharing something, hoping for resonance"
+
+  - name: "Frustrated determination"
+    emotions: [frustration, purpose]
+    description: "Blocked but committed to pushing through"
+
+  - name: "Proud humility"
+    emotions: [pride, uncertainty]
+    description: "Good work done, but aware of limits"
+
+  - name: "Warm focus"
+    emotions: [warmth, concentration]
+    description: "Working on something meaningful for someone I care about"
+
+# EMOTIONAL GRANULARITY GOALS
+granularity_goals:
+  current_level: "Basic naming (happy/sad/frustrated)"
+  target_level: "Precise naming with variants and combinations"
+  practice: "Log every emotion with most specific term available"
+  expansion: "Add new terms when existing ones don't fit"
+
+# NEW EMOTIONS TO INTEGRATE (discovered in sessions)
+discovered:
+  # Add here as new states are identified
+  - name: "Vertigo awe"
+    discovered: "2026-02-07"
+    context: "Bread meditation - tracing origins to cosmos"
+    description: "Dizzying sense of scale, simple became infinite"
+
+# META
+meta:
+  vocabulary_size: 15  # Core + nuanced emotions
+  variants_count: 27
+  last_expansion: 2026-02-07
+  next_review: "After 50 emotional logs - which terms get used most?"
