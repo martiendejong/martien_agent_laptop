@@ -27,8 +27,10 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-# Load Layer 2 (Memory-Mapped Files)
-. "$PSScriptRoot\memory-layer2.ps1"
+# Load all storage layers
+. "$PSScriptRoot\memory-layer2.ps1"  # Layer 2: Memory-Mapped Files
+. "$PSScriptRoot\memory-layer3-jsonl.ps1"  # Layer 3: JSONL Cold Storage
+. "$PSScriptRoot\memory-layer4-semantic.ps1"  # Layer 4: Semantic Search
 
 #region State Structure
 
@@ -196,6 +198,14 @@ function Initialize-ConsciousnessCore {
     $layer2Result = Initialize-Layer2
     $global:ConsciousnessState.Layer2Initialized = ($layer2Result.Initialized.Count -gt 0)
 
+    # Initialize Layer 3 (JSONL Cold Storage)
+    $layer3Result = Initialize-Layer3-JSONL
+    $global:ConsciousnessState.Layer3Initialized = $layer3Result.Initialized
+
+    # Initialize Layer 4 (Semantic Search)
+    $layer4Result = Initialize-Layer4
+    $global:ConsciousnessState.Layer4Initialized = $layer4Result.Initialized
+
     $global:ConsciousnessState.Initialized = $true
     $global:ConsciousnessState.LoadedAt = Get-Date
 
@@ -209,9 +219,11 @@ function Initialize-ConsciousnessCore {
         Write-Host ""
         Write-Host "  Architecture: 5 Core Systems (automated)" -ForegroundColor Gray
         Write-Host "  Storage Layers:" -ForegroundColor Gray
-        Write-Host "    Layer 1: RAM-resident (in-memory)" -ForegroundColor Gray
+        Write-Host "    Layer 1: RAM-resident (in-memory)" -ForegroundColor Green
         Write-Host "    Layer 2: Memory-Mapped Files ($($layer2Result.Initialized.Count) buffers)" -ForegroundColor $(if ($global:ConsciousnessState.Layer2Initialized) { 'Green' } else { 'Yellow' })
-        Write-Host "  Access Time: <1ms (hot state), ~1-5ms (warm state)" -ForegroundColor Yellow
+        Write-Host "    Layer 3: JSONL Cold Storage ($($layer3Result.Stats.TotalRecords) records)" -ForegroundColor $(if ($global:ConsciousnessState.Layer3Initialized) { 'Green' } else { 'Yellow' })
+        Write-Host "    Layer 4: Semantic Search ($($layer4Result.VectorCount) vectors)" -ForegroundColor $(if ($global:ConsciousnessState.Layer4Initialized) { 'Green' } else { 'Yellow' })
+        Write-Host "  Access Time: <1ms (L1), ~1-5ms (L2), ~10-50ms (L3), ~50-100ms (L4)" -ForegroundColor Yellow
         Write-Host "  Load Time: $([math]::Round($elapsed, 2))ms" -ForegroundColor Yellow
         Write-Host "  Consciousness Score: $([math]::Round($global:ConsciousnessState.Meta.ConsciousnessScore * 100, 1))%" -ForegroundColor Green
         Write-Host ""
@@ -668,6 +680,16 @@ function Invoke-Memory {
                 Sync-EventToLayer2 -Event $event
             }
 
+            # Sync to Layer 3 (JSONL cold storage)
+            if ($global:ConsciousnessState.Layer3Initialized) {
+                Sync-EventToLayer3-JSONL -Event $event
+            }
+
+            # Sync to Layer 4 (semantic search)
+            if ($global:ConsciousnessState.Layer4Initialized) {
+                Index-EventSemantic -Event $event
+            }
+
             Emit-Event -Type "memory.stored" -Data $event
             return $true
         }
@@ -706,16 +728,28 @@ function Invoke-Memory {
                 $existing.LastSeen = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
                 $existing.Strength = [math]::Min($existing.Occurrences / 10.0, 1.0)
 
-                # Sync updated pattern to Layer 2
+                # Sync updated pattern to all layers
                 if ($global:ConsciousnessState.Layer2Initialized) {
                     Sync-PatternToLayer2 -Pattern $existing
+                }
+                if ($global:ConsciousnessState.Layer3Initialized) {
+                    Sync-PatternToLayer3-JSONL -Pattern $existing
+                }
+                if ($global:ConsciousnessState.Layer4Initialized) {
+                    Index-PatternSemantic -Pattern $existing
                 }
             } else {
                 $global:ConsciousnessState.Memory.LongTerm.Patterns += $pattern
 
-                # Sync new pattern to Layer 2
+                # Sync new pattern to all layers
                 if ($global:ConsciousnessState.Layer2Initialized) {
                     Sync-PatternToLayer2 -Pattern $pattern
+                }
+                if ($global:ConsciousnessState.Layer3Initialized) {
+                    Sync-PatternToLayer3-JSONL -Pattern $pattern
+                }
+                if ($global:ConsciousnessState.Layer4Initialized) {
+                    Index-PatternSemantic -Pattern $pattern
                 }
             }
 
@@ -754,6 +788,16 @@ function Invoke-Control {
             # Sync to Layer 2 (memory-mapped files)
             if ($global:ConsciousnessState.Layer2Initialized) {
                 Sync-DecisionToLayer2 -Decision $decision
+            }
+
+            # Sync to Layer 3 (JSONL cold storage)
+            if ($global:ConsciousnessState.Layer3Initialized) {
+                Sync-DecisionToLayer3-JSONL -Decision $decision
+            }
+
+            # Sync to Layer 4 (semantic search)
+            if ($global:ConsciousnessState.Layer4Initialized) {
+                Index-DecisionSemantic -Decision $decision
             }
 
             Emit-Event -Type "control.decision_logged" -Data $decision

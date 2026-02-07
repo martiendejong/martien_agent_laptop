@@ -143,6 +143,40 @@ git commit -m "chore: Release agent-XXX after <brief description> (PR #<number>)
 git push origin main
 ```
 
+### Step 8.5: 🎯 Verify Definition of Done
+
+**CRITICAL: Before presenting work as complete, verify ALL DoD criteria are met.**
+
+Quick DoD Verification Checklist:
+- [ ] ✅ **Code quality:** Build passes, tests pass, no warnings
+- [ ] ✅ **Version control:** Committed, pushed, PR created with proper base (`develop`)
+- [ ] ✅ **PR details:** Clear title, description, test plan included
+- [ ] ✅ **ClickUp updated:** PR link added to task (if applicable)
+- [ ] ✅ **Documentation:** Technical docs updated if needed
+- [ ] ✅ **Worktree cleanup:** All 8 steps above completed
+
+**Full DoD reference:** `C:/scripts/_machine/DEFINITION_OF_DONE.md`
+
+**If ANY criteria not met:**
+- ⚠️ Work is NOT complete
+- 🔄 Go back and complete missing items
+- ❌ DO NOT present to user until DoD satisfied
+
+**Validation commands:**
+```bash
+# Verify PR base branch is develop
+gh pr view --json baseRefName --jq .baseRefName
+# Should output: "develop"
+
+# Verify ClickUp updated (check last comment)
+clickup-sync.ps1 -Action show -TaskId <task-id>
+# Should show PR link in recent comments
+
+# Verify build passed (check CI status)
+gh pr checks --watch
+# All checks should be green
+```
+
 ### Step 9: Verify Release Complete
 
 ```bash
@@ -171,7 +205,10 @@ git -C C:/Projects/hazina worktree list
 - Both base repos on develop branch
 - Worktrees pruned (git worktree prune)
 - Tracking files committed and pushed
+- **🎯 Definition of Done verified** (Step 8.5 - all DoD criteria met)
 - THEN (and only then) present PR to user
+
+**See:** `C:/scripts/_machine/DEFINITION_OF_DONE.md` for complete quality checklist
 
 ## Critical Rules
 

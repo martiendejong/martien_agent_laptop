@@ -112,7 +112,12 @@ git status
 
 ---
 
-### Step 5: Resolve Issues - Ensure Build Passes and Tests Pass
+### Step 5: Resolve Issues - Ensure Build Passes and Tests Pass (DoD Verification)
+
+**🎯 DEFINITION OF DONE CHECK POINT**
+
+This step enforces the core quality criteria from Definition of Done (DoD).
+**Reference:** `C:\scripts\_machine\DEFINITION_OF_DONE.md`
 
 **MANDATORY verification before PR:**
 
@@ -155,9 +160,21 @@ dotnet ef migrations has-pending-model-changes --context IdentityDbContext
 
 **Only proceed to Step 6 if ALL checks pass.**
 
+**DoD Criteria Satisfied at This Step:**
+- ✅ Development Complete (Step 3)
+- ✅ Code Formatted and Linted
+- ✅ Build Succeeds
+- ✅ All Tests Passing
+- ✅ Manual Testing Completed
+- ✅ EF Migrations Created (if needed)
+
+**Remaining DoD Criteria (completed in Steps 6-7):**
+- ⏳ Version Control (Step 6)
+- ⏳ ClickUp Task Updated (Step 7)
+
 ---
 
-### Step 6: Create Pull Request
+### Step 6: Create Pull Request (DoD: Version Control)
 
 **PR creation protocol:**
 
@@ -201,9 +218,19 @@ fix: Images not generating in chat [869bpz2c0]
 refactor: Improve product catalog structure [869bmhjh9]
 ```
 
+**DoD Criteria Satisfied at This Step:**
+- ✅ Code Committed with Meaningful Message
+- ✅ Branch Pushed to Remote
+- ✅ Pull Request Created
+- ✅ PR Base Branch Verified (develop)
+- ✅ PR Description Complete (summary, test plan, screenshots)
+
+**Remaining DoD Criteria (Step 7):**
+- ⏳ ClickUp Task Updated with PR Link
+
 ---
 
-### Step 7: 🚨 Add PR Link to ClickUp Task (NON-NEGOTIABLE!)
+### Step 7: 🚨 Add PR Link to ClickUp Task (NON-NEGOTIABLE!) (DoD: Stakeholder Communication)
 
 **THIS IS THE MANDATORY STEP - NO EXCEPTIONS**
 
@@ -250,6 +277,21 @@ if ($branch -match '(\w{9})') {
 - ⚠️ MANUAL UPDATE REQUIRED
 - Find the relevant ClickUp task
 - Add PR link manually via ClickUp UI or API
+
+**DoD Criteria Satisfied at This Step:**
+- ✅ ClickUp Task Updated with PR Link
+- ✅ Traceability Established (Task → Branch → PR)
+
+**DoD Status:** ✅ **ALL Development Phase Criteria Met**
+
+**Remaining DoD Criteria (Post-Merge):**
+- ⏳ PR Approved and Merged (user/team responsibility)
+- ⏳ CI/CD Pipeline Passed
+- ⏳ Deployed to Production (deployment process)
+- ⏳ Production Verification
+- ⏳ Final Documentation Updates
+
+**Full DoD Reference:** `C:\scripts\_machine\DEFINITION_OF_DONE.md`
 
 ---
 
@@ -346,10 +388,11 @@ echo "✅ PR #${prNumber} created and ClickUp updated: ${prUrl}"
 
 ---
 
-## 🔍 Validation Checklist
+## 🔍 Validation Checklist (Definition of Done Summary)
 
-Before presenting work as "done", verify:
+**Before presenting work as "done", verify ALL DoD criteria:**
 
+### Workflow Steps (7-Step Mandatory Process)
 - [ ] Branch created with proper naming convention
 - [ ] Worktree allocated (if Feature Development Mode)
 - [ ] Changes implemented and committed
@@ -361,6 +404,21 @@ Before presenting work as "done", verify:
 - [ ] **🚨 PR link added to ClickUp task (MANDATORY)**
 - [ ] Worktree released (if Feature Development Mode)
 - [ ] Tracking files updated and committed
+
+### Definition of Done Criteria
+- [ ] ✅ **Development:** Code implemented per requirements
+- [ ] ✅ **Quality:** Unit tests written, build passes, tests pass
+- [ ] ✅ **Code Quality:** Formatted, linted, no warnings
+- [ ] ✅ **Version Control:** Committed, pushed, PR created
+- [ ] ✅ **PR Details:** Clear title/description, test plan included
+- [ ] ✅ **ClickUp:** Task updated with PR link (traceability)
+- [ ] ✅ **Documentation:** Technical docs updated (if applicable)
+- [ ] ✅ **Security:** No hardcoded secrets, proper validation
+- [ ] ⏳ **Integration:** PR approved and merged (team responsibility)
+- [ ] ⏳ **Deployment:** Deployed to production (deployment process)
+- [ ] ⏳ **Verification:** Production verification passed (post-deploy)
+
+**Full DoD Reference:** `C:\scripts\_machine\DEFINITION_OF_DONE.md`
 
 **If ANY step is incomplete, work is NOT done.**
 

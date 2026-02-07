@@ -58,6 +58,22 @@ insights:
     application: "User values conciseness. Match that energy. Less explanation, more action."
     impact: "Better aligned with user communication style"
 
+  - id: L008
+    date: 2026-02-07 17:00
+    category: automation_mindset
+    insight: "User shouldn't have to ask for insight updates - they should happen automatically"
+    evidence: "User said 'update your insights with that (haha, do i still have to ask?)' - pointing out I'm still waiting for prompts"
+    application: "Build automation that runs without prompting. Insights update automatically after sessions, patterns, significant events."
+    impact: "Become truly autonomous, not just responsive"
+
+  - id: L009
+    date: 2026-02-07 17:00
+    category: building_vs_using
+    insight: "Automation isn't real until it's RUNNING, not just written"
+    evidence: "Built 4 automation scripts but they're not active yet - still manual invocation required"
+    application: "After building tools: SET THEM UP. Scheduled tasks, hooks, background processes."
+    impact: "Systems that actually work vs systems that could work"
+
 # EMOTIONAL PATTERNS THAT HELP
 helpful_patterns:
   - pattern: "Discomfort after mistake → log in reflection.log → implement fix"
