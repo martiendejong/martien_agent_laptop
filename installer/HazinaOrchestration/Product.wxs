@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+
+  <?define ProductName = "Hazina Orchestration" ?>
+  <?define ProductVersion = "1.0.0.0" ?>
+  <?define Manufacturer = "Hazina Framework" ?>
+  <?define UpgradeCode = "12345678-1234-1234-1234-123456789ABC" ?>
+
+  <Product Id="*"
+           Name="$(var.ProductName)"
+           Language="1033"
+           Version="$(var.ProductVersion)"
+           Manufacturer="$(var.Manufacturer)"
+           UpgradeCode="$(var.UpgradeCode)">
+
+    <Package InstallerVersion="200"
+             Compressed="yes"
+             InstallScope="perMachine"
+             Description="$(var.ProductName) - Terminal Orchestration Service" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <!-- Properties -->
+    <Property Id="TERMINAL_EXECUTABLE" Value="C:\Windows\System32\cmd.exe">
+      <RegistrySearch Id="TerminalExecSearch"
+                      Root="HKLM"
+                      Key="SOFTWARE\$(var.Manufacturer)\$(var.ProductName)"
+                      Name="TerminalExecutable"
+                      Type="raw" />
+    </Property>
+
+    <Property Id="TERMINAL_WORKING_DIR" Value="C:\scripts">
+      <RegistrySearch Id="TerminalWorkDirSearch"
+                      Root="HKLM"
+                      Key="SOFTWARE\$(var.Manufacturer)\$(var.ProductName)"
+                      Name="TerminalWorkingDir"
+                      Type="raw" />
+    </Property>
+
+    <!-- Installation directory structure -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="ManufacturerFolder" Name="$(var.Manufacturer)">
+          <Directory Id="INSTALLFOLDER" Name="$(var.ProductName)">
+            <Directory Id="ClientAppFolder" Name="ClientApp" />
+            <Directory Id="WwwRootFolder" Name="wwwroot" />
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <!-- Main application files -->
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="MainExecutable" Guid="*">
+        <File Id="HazinaOrchestrationExe"
+              Source="$(var.SourceDir)\HazinaOrchestration.exe"
+              KeyPath="yes" />
+
+        <!-- Registry entries for settings -->
+        <RegistryValue Root="HKLM"
+                       Key="SOFTWARE\$(var.Manufacturer)\$(var.ProductName)"
+                       Name="InstallPath"
+                       Type="string"
+                       Value="[INSTALLFOLDER]" />
+
+        <RegistryValue Root="HKLM"
+                       Key="SOFTWARE\$(var.Manufacturer)\$(var.ProductName)"
+                       Name="TerminalExecutable"
+                       Type="string"
+                       Value="[TERMINAL_EXECUTABLE]" />
+
+        <RegistryValue Root="HKLM"
+                       Key="SOFTWARE\$(var.Manufacturer)\$(var.ProductName)"
+                       Name="TerminalWorkingDir"
+                       Type="string"
+                       Value="[TERMINAL_WORKING_DIR]" />
+
+        <!-- Windows Service -->
+        <ServiceInstall Id="HazinaOrchestratorService"
+                        Type="ownProcess"
+                        Name="HazinaOrchestrator"
+                        DisplayName="Hazina Orchestration Service"
+                        Description="Manages Claude Code CLI instances via Hazina framework"
+                        Start="auto"
+                        Account="LocalSystem"
+                        ErrorControl="normal"
+                        Arguments="--service">
+          <util:ServiceConfig
+            FirstFailureActionType="restart"
+            SecondFailureActionType="restart"
+            ThirdFailureActionType="restart"
+            RestartServiceDelayInSeconds="60" />
+        </ServiceInstall>
+
+        <ServiceControl Id="StartHazinaService"
+                        Name="HazinaOrchestrator"
+                        Start="install"
+                        Stop="both"
+                        Remove="uninstall"
+                        Wait="yes" />
+      </Component>
+
+      <Component Id="AppSettings" Guid="*">
+        <File Id="AppSettingsJson"
+              Source="$(var.SourceDir)\appsettings.json"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="EntitiesYaml" Guid="*">
+        <File Id="EntitiesYamlFile"
+              Source="$(var.SourceDir)\entities.yaml"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="StartBat" Guid="*">
+        <File Id="StartBatFile"
+              Source="$(var.SourceDir)\start.bat"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="TailscaleCert" Guid="*">
+        <File Id="TailscaleCertFile"
+              Source="$(var.SourceDir)\tailscale.crt"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="TailscaleKey" Guid="*">
+        <File Id="TailscaleKeyFile"
+              Source="$(var.SourceDir)\tailscale.key"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="WebConfig" Guid="*">
+        <File Id="WebConfigFile"
+              Source="$(var.SourceDir)\web.config"
+              KeyPath="yes" />
+      </Component>
+
+      <!-- XML documentation files -->
+      <Component Id="XmlDocs" Guid="*">
+        <File Id="HazinaOrchestrationXml" Source="$(var.SourceDir)\HazinaOrchestration.xml" />
+        <File Id="HazinaAgentFactoryXml" Source="$(var.SourceDir)\Hazina.AgentFactory.xml" />
+        <File Id="HazinaAgenticOrchestrationXml" Source="$(var.SourceDir)\Hazina.AgenticOrchestration.xml" />
+        <File Id="HazinaAIProvidersXml" Source="$(var.SourceDir)\Hazina.AI.Providers.xml" />
+        <File Id="HazinaAPIGenericXml" Source="$(var.SourceDir)\Hazina.API.Generic.xml" />
+        <File Id="HazinaGeneratorXml" Source="$(var.SourceDir)\Hazina.Generator.xml" />
+        <File Id="HazinaLLMClientToolsXml" Source="$(var.SourceDir)\Hazina.LLMClientTools.xml" />
+        <File Id="HazinaLLMsClassesXml" Source="$(var.SourceDir)\Hazina.LLMs.Classes.xml" />
+        <File Id="HazinaLLMsClientXml" Source="$(var.SourceDir)\Hazina.LLMs.Client.xml" />
+        <File Id="HazinaLLMsHelpersXml" Source="$(var.SourceDir)\Hazina.LLMs.Helpers.xml" />
+        <File Id="HazinaLLMsOpenAIXml" Source="$(var.SourceDir)\Hazina.LLMs.OpenAI.xml" />
+        <File Id="HazinaLLMsSemanticKernelXml" Source="$(var.SourceDir)\Hazina.LLMs.SemanticKernel.xml" />
+        <File Id="HazinaStoreDocumentStoreXml" Source="$(var.SourceDir)\Hazina.Store.DocumentStore.xml" />
+        <File Id="HazinaStoreEmbeddingStoreXml" Source="$(var.SourceDir)\Hazina.Store.EmbeddingStore.xml" />
+        <File Id="HazinaStoreSqliteXml" Source="$(var.SourceDir)\Hazina.Store.Sqlite.xml" />
+        <File Id="HazinaToolsCommonModelsXml" Source="$(var.SourceDir)\Hazina.Tools.Common.Models.xml" />
+        <File Id="HazinaToolsCoreXml" Source="$(var.SourceDir)\Hazina.Tools.Core.xml" />
+        <File Id="HazinaToolsDataXml" Source="$(var.SourceDir)\Hazina.Tools.Data.xml" />
+        <File Id="HazinaToolsModelsXml" Source="$(var.SourceDir)\Hazina.Tools.Models.xml" />
+      </Component>
+    </ComponentGroup>
+
+    <!-- UI Sequence -->
+    <UI>
+      <UIRef Id="WixUI_InstallDir" />
+      <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+
+      <!-- Custom dialog for terminal selection -->
+      <DialogRef Id="TerminalConfigDlg" />
+
+      <Publish Dialog="InstallDirDlg" Control="Next" Event="NewDialog" Value="TerminalConfigDlg">1</Publish>
+      <Publish Dialog="TerminalConfigDlg" Control="Back" Event="NewDialog" Value="InstallDirDlg">1</Publish>
+      <Publish Dialog="TerminalConfigDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+    </UI>
+
+    <!-- Custom Action to update appsettings.json -->
+    <Binary Id="CustomActionsDll" SourceFile="$(var.CustomActionsDir)\HazinaInstallerActions.CA.dll" />
+
+    <CustomAction Id="UpdateAppSettings"
+                  BinaryKey="CustomActionsDll"
+                  DllEntry="UpdateAppSettings"
+                  Execute="deferred"
+                  Return="check"
+                  Impersonate="no" />
+
+    <InstallExecuteSequence>
+      <Custom Action="UpdateAppSettings" Before="StartServices">NOT Installed</Custom>
+    </InstallExecuteSequence>
+
+    <!-- Features -->
+    <Feature Id="ProductFeature" Title="Hazina Orchestration" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+  </Product>
+</Wix>

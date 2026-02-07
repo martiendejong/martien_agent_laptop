@@ -1,0 +1,13 @@
+C:\scripts\installer\HazinaOrchestration\HazinaInstallerActions\bin\Release\net8.0\HazinaInstallerActions.deps.json
+C:\scripts\installer\HazinaOrchestration\HazinaInstallerActions\bin\Release\net8.0\HazinaInstallerActions.dll
+C:\scripts\installer\HazinaOrchestration\HazinaInstallerActions\bin\Release\net8.0\HazinaInstallerActions.pdb
+C:\scripts\installer\HazinaOrchestration\HazinaInstallerActions\obj\Release\net8.0\HazinaInstallerActions.csproj.AssemblyReference.cache
+C:\scripts\installer\HazinaOrchestration\HazinaInstallerActions\obj\Release\net8.0\HazinaInstallerActions.GeneratedMSBuildEditorConfig.editorconfig
+C:\scripts\installer\HazinaOrchestration\HazinaInstallerActions\obj\Release\net8.0\HazinaInstallerActions.AssemblyInfoInputs.cache
+C:\scripts\installer\HazinaOrchestration\HazinaInstallerActions\obj\Release\net8.0\HazinaInstallerActions.AssemblyInfo.cs
+C:\scripts\installer\HazinaOrchestration\HazinaInstallerActions\obj\Release\net8.0\HazinaInstallerActions.csproj.CoreCompileInputs.cache
+C:\scripts\installer\HazinaOrchestration\HazinaInstallerActions\obj\Release\net8.0\HazinaInstallerActions.sourcelink.json
+C:\scripts\installer\HazinaOrchestration\HazinaInstallerActions\obj\Release\net8.0\HazinaInstallerActions.dll
+C:\scripts\installer\HazinaOrchestration\HazinaInstallerActions\obj\Release\net8.0\refint\HazinaInstallerActions.dll
+C:\scripts\installer\HazinaOrchestration\HazinaInstallerActions\obj\Release\net8.0\HazinaInstallerActions.pdb
+C:\scripts\installer\HazinaOrchestration\HazinaInstallerActions\obj\Release\net8.0\ref\HazinaInstallerActions.dll
