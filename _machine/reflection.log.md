@@ -6,6 +6,298 @@
 
 ---
 
+## 2026-02-07 16:30 - MoSCoW Prioritization & ClickUp Naming/Tagging System Implementation
+
+**Session Type:** Feature implementation - Process improvement (ClickUp workflow enhancement)
+**Context:** User requested MoSCoW prioritization integration for all ClickUp work (Task #869bu91e5)
+**Outcome:** ✅ SUCCESS - Complete framework implemented, 74 tasks migrated across both projects
+
+### Problem Statement
+
+User provided ClickUp task #869bu91e5 requiring MoSCoW prioritization (Must Have, Should Have, Could Have, Won't Have) be applied to all ClickUp tasks. Existing workflow had no formal prioritization framework, leading to scope creep and unclear implementation priorities.
+
+Additionally, user requested standardized naming and tagging system for ClickUp tasks to improve scannability, searchability, and automation capabilities.
+
+### Solution Implemented
+
+**Phase 1: MoSCoW Prioritization Framework**
+
+Created comprehensive documentation (`MOSCOW_PRIORITIZATION.md`) including:
+- Complete MoSCoW framework definition
+- Integration with existing ClickUp workflows
+- Decision trees for uncertain tasks
+- Anti-patterns to avoid
+- Examples for both client-manager and art-revisionist projects
+
+**Integration points:**
+1. **Task Analysis:** Categorize requirements before starting (Must/Should/Could/Won't)
+2. **ClickUp Comments:** Post MoSCoW analysis for user visibility and correction
+3. **Implementation:** Strict priority order (Must → Should → Could)
+4. **PR Documentation:** Include MoSCoW breakdown in PR descriptions
+
+**Phase 2: Naming & Tagging System**
+
+Created standardized format (`CLICKUP_NAMING_AND_TAGGING.md`):
+
+**Naming Convention:**
+```
+[Type] [MoSCoW] Task Description (Component)
+```
+
+**Example transformations:**
+```
+Before: "Post Duplication & Cloning System"
+After:  "FEAT [M] Post Duplication System (Social Media)"
+
+Before: "AI Art Style Classifier"
+After:  "FEAT [M] AI Art Style Classifier (Metadata)"
+```
+
+**Type Codes:** FEAT, FIX, ENH, REFACTOR, DOC, TEST, INFRA
+**MoSCoW Codes:** [M] Must, [S] Should, [C] Could, [W] Won't
+
+**Tag Taxonomy (7 Categories):**
+1. **moscow:** must-have, should-have, could-have, wont-have
+2. **type:** feature, bug, enhancement, refactor, documentation, test, infrastructure
+3. **domain:** Project-specific (9 for client-manager, 8 for art-revisionist)
+4. **complexity:** simple (<4hrs), moderate (4-16hrs), complex (16-40hrs), epic (>40hrs)
+5. **impact:** critical, high, medium, low
+6. **blocked:** scope, dependency, external, decision, technical
+7. **arch:** breaking-change, api-change, database-schema, performance, security
+
+**Phase 3: Demonstration & Implementation**
+
+1. Posted MoSCoW analysis to 5 representative tasks as demonstration
+2. Created migration scripts:
+   - `clickup-migrate-naming-tags.ps1` - Manual migrations for pre-analyzed tasks
+   - `clickup-migrate-all-tasks.ps1` - Intelligent bulk migration with auto-detection
+
+3. Migrated **74 tasks total:**
+   - 5 manual (with detailed MoSCoW analysis already posted)
+   - 69 bulk (auto-detected type, MoSCoW, domains, complexity)
+
+**Detection Algorithms:**
+- **Task Type:** Keywords analysis (fix/bug/error → FIX, phase/mvp/system → FEAT, improve/enhance → ENH)
+- **MoSCoW Priority:** Description analysis (critical/essential → Must, important → Should, nice-to-have → Could)
+- **Domain:** Content analysis (social media, ai-vision, metadata, provenance, etc.)
+- **Complexity:** Feature count analysis (<3 items → simple, 3-6 → moderate, >6 → complex)
+- **Component:** Domain mapping (social-media → "Social Media", ai-vision → "AI Vision")
+
+### Files Created/Modified
+
+**Created:**
+- `C:\scripts\MOSCOW_PRIORITIZATION.md` (270 lines) - Complete MoSCoW framework
+- `C:\scripts\CLICKUP_NAMING_AND_TAGGING.md` (615 lines) - Naming/tagging specification
+- `C:\scripts\tools\clickup-migrate-naming-tags.ps1` - Manual migration script
+- `C:\scripts\tools\clickup-migrate-all-tasks.ps1` - Bulk auto-migration script
+
+**Updated:**
+- `C:\scripts\.claude\skills\clickhub-coding-agent\SKILL.md` - Added MoSCoW requirements
+- `C:\scripts\clickup-github-workflow.md` - Added MoSCoW validation steps
+- `C:\Users\HP\.claude\projects\C--scripts\memory\MEMORY.md` - Added MoSCoW section
+- `C:\scripts\CLAUDE.md` - Added MoSCoW to workflows table
+- `C:\scripts\_machine\reflection.log.md` - This entry
+
+### Migration Results
+
+**Client-Manager (38 tasks):**
+- 4 busy (active development)
+- 8 blocked (scope issues flagged with blocked:scope tag)
+- 26 review (ready for merge)
+
+**Art-Revisionist (36 tasks):**
+- 15 refined (Valsuani project phases)
+- 20 to do (feature backlog)
+- 1 review
+
+**Example migrations:**
+```
+869c1dnyd: "Post Duplication & Cloning System"
+  → "FEAT [M] Post Duplication System (Social Media)"
+  → Tags: moscow:must-have, type:feature, domain:social-media, complexity:complex
+
+869c1dppk: "AI Art Style Classifier"
+  → "FEAT [M] AI Art Style Classifier (Metadata)"
+  → Tags: moscow:must-have, type:feature, domain:ai-vision, domain:metadata, complexity:moderate, impact:high
+
+869c1dnx7: "Media Upload & Management System" (blocked)
+  → "FEAT [S] Media Upload & Management (Content)"
+  → Tags: moscow:should-have, type:feature, domain:frontend, domain:backend, complexity:complex, blocked:scope
+```
+
+### Key Learnings
+
+**Pattern 52: MoSCoW Prioritization for Scope Management**
+
+**When:** Starting any ClickUp task implementation
+**Problem:** Scope creep, unclear priorities, over-engineering
+**Solution:** Categorize requirements as Must/Should/Could/Won't BEFORE implementation
+
+**Implementation steps:**
+1. Read task description thoroughly
+2. Categorize each requirement by MoSCoW
+3. Post analysis as ClickUp comment (allows user correction)
+4. Implement in strict priority order: Must (100%) → Should (if time) → Could (if trivial)
+5. Document Won't Have items as TODOs for future work
+6. Include MoSCoW breakdown in PR description
+
+**Example MoSCoW analysis format:**
+```
+📊 MOSCOW PRIORITIZATION ANALYSIS
+
+MUST HAVE (Critical - Will implement):
+- [Core requirement 1]
+- [Core requirement 2]
+
+SHOULD HAVE (Important - Include if time allows):
+- [Enhanced feature 1]
+
+COULD HAVE (Nice-to-have - Lower priority):
+- [Optional improvement 1]
+
+WON'T HAVE (Out of scope for this iteration):
+- [Future consideration 1]
+```
+
+**Benefits:**
+- ✅ Faster delivery (focus on critical items)
+- ✅ Better scope management (explicit Won't Have list)
+- ✅ User alignment (MoSCoW posted for review before coding)
+- ✅ Reduced rework (priorities clarified upfront)
+- ✅ Easier testing (smaller, focused PRs)
+
+**Pattern 53: Task Naming & Tagging for Automation**
+
+**When:** Creating or updating ClickUp tasks
+**Problem:** Tasks hard to find, filter, prioritize; no automation possible
+**Solution:** Standardized naming convention + comprehensive tagging taxonomy
+
+**Format:** `[Type] [MoSCoW] Description (Component)`
+
+**Tag categories (minimum 2 required):**
+- moscow:* (after analysis)
+- type:*
+- domain:* (1-2 tags)
+- Optional: complexity:*, impact:*, blocked:*, arch:*
+
+**Benefits:**
+- ✅ Scannability: Identify type, priority, scope at a glance
+- ✅ Searchability: Filter by moscow:must-have, domain:ai-vision, etc.
+- ✅ Automation: Agent can filter autonomously (moscow:must-have + complexity:simple = quick wins)
+- ✅ Consistency: Same structure across all projects
+
+**Search examples:**
+```
+moscow:must-have + type:feature → Critical features only
+domain:ai-vision → All AI vision tasks
+complexity:simple + impact:high → Quick wins
+blocked:scope → Tasks needing clarification
+```
+
+**Pattern 54: Intelligent Bulk Migration with Auto-Detection**
+
+**When:** Need to standardize large number of existing tasks
+**Problem:** Manual migration tedious, error-prone for 70+ tasks
+**Solution:** Build detection algorithms based on keywords and content analysis
+
+**Detection algorithm design:**
+```powershell
+function Detect-TaskType {
+    # Bug keywords: fix, bug, error, broken, not working, issue, crash
+    if ($name -match '\b(fix|bug|error)\b') { return "FIX" }
+
+    # Enhancement: improve, enhance, better, optimize
+    if ($name -match '\b(improve|enhance)\b') { return "ENH" }
+
+    # Phase/Feature indicators: phase, mvp, system, feature, add, create
+    if ($name -match '\b(phase|mvp|system)\b') { return "FEAT" }
+
+    # Default to FEAT (most common)
+    return "FEAT"
+}
+
+function Detect-Domain {
+    # Domain-specific keywords
+    if ($text -match '\b(social media|post|linkedin)\b') { return "social-media" }
+    if ($text -match '\b(ai|vision|classifier)\b') { return "ai-vision" }
+    if ($text -match '\b(provenance|ownership|history)\b') { return "provenance" }
+    # ... etc
+}
+
+function Detect-Complexity {
+    # Count features mentioned (1) 2) 3) pattern)
+    $itemCount = ([regex]::Matches($desc, '\d\)')).Count
+    if ($itemCount -gt 6) { return "complex" }
+    if ($itemCount -gt 3) { return "moderate" }
+    return "simple"
+}
+```
+
+**Key insight:** Algorithm doesn't need to be perfect. Migration adds comment with detected values, allowing user to correct tags in ClickUp if needed.
+
+### Integration with Existing Workflows
+
+**Updated skills:**
+- `clickhub-coding-agent` - Step 2.1 now includes mandatory MoSCoW analysis
+- `allocate-worktree` - Implicitly uses MoSCoW (prioritize Must Have tasks)
+- `github-workflow` - PR descriptions must include MoSCoW breakdown
+
+**Updated documentation:**
+- `CLAUDE.md` - Added MoSCoW to mandatory workflows table
+- `clickup-github-workflow.md` - Added MoSCoW as Step 3, updated validation rules
+- `MEMORY.md` - Added MoSCoW section under "Critical Patterns & Rules"
+
+### Lessons for Future Sessions
+
+**DO:**
+- ✅ Post MoSCoW analysis as comment BEFORE implementing any ClickUp task
+- ✅ Use strict priority order: Must (100%) → Should → Could
+- ✅ Apply naming convention to all new tasks: `[Type] [MoSCoW] Description (Component)`
+- ✅ Add minimum 2 tags: moscow:* + type:*
+- ✅ Use detection algorithms for bulk operations (fast, good-enough accuracy)
+- ✅ Include migration comments explaining detected values
+
+**DON'T:**
+- ❌ Implement Could Have items before Must Have items (scope creep)
+- ❌ Skip MoSCoW analysis for "simple" tasks (even simple tasks have priorities)
+- ❌ Assume all requirements are Must Have (challenge assumptions)
+- ❌ Implement Won't Have items "while I'm there" (strict scope discipline)
+
+**Key insight:** MoSCoW is a forcing function for clear communication. By posting analysis as ClickUp comment, user can correct priorities BEFORE implementation starts, preventing wasted effort.
+
+### Success Criteria
+
+✅ **Implementation successful because:**
+- All 74 active tasks now follow naming convention
+- All tasks have minimum 2 tags (moscow + type)
+- Tasks searchable by MoSCoW priority, domain, complexity
+- MoSCoW framework integrated into clickhub-coding-agent skill
+- Documentation updated across 7 files
+- Persistent memory updated (will carry to future sessions)
+- User can now filter: moscow:must-have, domain:ai-vision, complexity:simple
+- Agent can autonomously filter tasks for intelligent work selection
+
+### User Mandate
+
+**From ClickUp Task #869bu91e5:**
+> "Make sure MoSCoW prioritization is applied when you work in ClickUp."
+
+**Status:** ✅ IMPLEMENTED - Now MANDATORY for all ClickUp work
+
+**Reference files:**
+- Framework: `C:\scripts\MOSCOW_PRIORITIZATION.md`
+- Naming/Tagging: `C:\scripts\CLICKUP_NAMING_AND_TAGGING.md`
+- Memory: `C:\Users\HP\.claude\projects\C--scripts\memory\MEMORY.md`
+
+### Commits
+
+```
+3b8336ca5 - feat: Integrate MoSCoW prioritization for ClickUp workflows
+4b66c853f - feat: Implement ClickUp naming and tagging system
+```
+
+---
+
 ## 2026-02-07 14:30 - Orchestration App Deployment & Critical Testing Pattern Fix
 
 **Session Type:** Deployment + Bug fix + Process learning
