@@ -12,6 +12,7 @@
             box-sizing: border-box;
         }
 
+        /* Dark theme (default) */
         :root {
             --bg-primary: #0d1117;
             --bg-secondary: #161b22;
@@ -24,6 +25,21 @@
             --accent-red: #da3633;
             --accent-orange: #d29922;
             --accent-purple: #8957e5;
+        }
+
+        /* Light theme */
+        :root[data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f6f8fa;
+            --bg-tertiary: #eaeef2;
+            --border-color: #d0d7de;
+            --text-primary: #24292f;
+            --text-secondary: #57606a;
+            --accent-blue: #0969da;
+            --accent-green: #1a7f37;
+            --accent-red: #cf222e;
+            --accent-orange: #9a6700;
+            --accent-purple: #8250df;
         }
 
         body {
@@ -366,9 +382,120 @@
             padding: 2px 4px;
             border-radius: 3px;
         }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .theme-toggle:hover {
+            background: var(--border-color);
+            transform: scale(1.05);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
+        /* Keyboard shortcuts help modal */
+        .shortcuts-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .shortcuts-modal.show {
+            display: flex;
+        }
+
+        .shortcuts-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 500px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        .shortcuts-content h3 {
+            margin-bottom: 20px;
+            color: var(--accent-blue);
+        }
+
+        .shortcut-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--bg-tertiary);
+        }
+
+        .shortcut-item:last-child {
+            border-bottom: none;
+        }
+
+        .shortcut-key {
+            background: var(--bg-tertiary);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: var(--accent-blue);
+            border: 1px solid var(--border-color);
+        }
+
+        .shortcut-desc {
+            color: var(--text-secondary);
+        }
     </style>
 </head>
 <body>
+    <!-- Keyboard Shortcuts Help Modal -->
+    <div class="shortcuts-modal" id="shortcuts-modal" onclick="hideShortcutsHelp(event)">
+        <div class="shortcuts-content" onclick="event.stopPropagation()">
+            <h3>⌨️ Keyboard Shortcuts</h3>
+            <div class="shortcut-item">
+                <span class="shortcut-desc">Focus search</span>
+                <span class="shortcut-key">Ctrl+K</span>
+            </div>
+            <div class="shortcut-item">
+                <span class="shortcut-desc">Refresh now</span>
+                <span class="shortcut-key">Ctrl+R</span>
+            </div>
+            <div class="shortcut-item">
+                <span class="shortcut-desc">Toggle theme</span>
+                <span class="shortcut-key">Ctrl+D</span>
+            </div>
+            <div class="shortcut-item">
+                <span class="shortcut-desc">Clear search</span>
+                <span class="shortcut-key">Esc</span>
+            </div>
+            <div class="shortcut-item">
+                <span class="shortcut-desc">Show this help</span>
+                <span class="shortcut-key">?</span>
+            </div>
+            <div style="margin-top: 20px; text-align: center; color: var(--text-secondary); font-size: 0.9em;">
+                Press <strong>Esc</strong> or click outside to close
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <header>
             <h1>
@@ -376,7 +503,12 @@
                 <span>Work Overview - Live Dashboard</span>
             </h1>
             <div class="header-meta">
-                <input type="text" class="search-box" id="search-box" placeholder="🔍 Search agents, tasks, objectives..." oninput="filterDashboard(this.value)" />
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <input type="text" class="search-box" id="search-box" placeholder="🔍 Search agents, tasks, objectives..." oninput="filterDashboard(this.value)" />
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light theme">
+                        <span id="theme-icon">🌙</span>
+                    </button>
+                </div>
                 <div class="auto-refresh">⟳ Auto-refresh: <span id="countdown">3</span>s</div>
                 <div class="last-update">Last updated: <span id="last-updated">Loading...</span></div>
             </div>
@@ -470,6 +602,12 @@
     <script>
         let countdown = 3;
         let previousState = null;
+        let ws = null;
+        let wsConnected = false;
+        let reconnectInterval = null;
+
+        // Expose to window for testing
+        window.wsConnected = false;
 
         async function loadDashboard() {
             try {
@@ -799,18 +937,187 @@
             return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         }
 
-        // Auto-refresh countdown
-        setInterval(() => {
-            countdown--;
-            document.getElementById('countdown').textContent = countdown;
+        // Theme toggle (Improvement #4)
+        function toggleTheme() {
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-            if (countdown <= 0) {
-                loadDashboard();
-                countdown = 3;
+            applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+
+            // Update theme icon
+            const icon = document.getElementById('theme-icon');
+            icon.textContent = theme === 'dark' ? '🌙' : '☀️';
+        }
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            applyTheme(savedTheme);
+        }
+
+        // Keyboard shortcuts (Improvement #5)
+        function showShortcutsHelp() {
+            document.getElementById('shortcuts-modal').classList.add('show');
+        }
+
+        function hideShortcutsHelp(event) {
+            if (!event || event.target.id === 'shortcuts-modal') {
+                document.getElementById('shortcuts-modal').classList.remove('show');
+            }
+        }
+
+        // Global keyboard event handler
+        document.addEventListener('keydown', (e) => {
+            // Ctrl+K: Focus search
+            if (e.ctrlKey && e.key === 'k') {
+                e.preventDefault();
+                const searchBox = document.getElementById('search-box');
+                searchBox.focus();
+                searchBox.select();
+                return;
+            }
+
+            // Ctrl+R: Force refresh
+            if (e.ctrlKey && e.key === 'r') {
+                e.preventDefault();
+                refreshNow();
+                return;
+            }
+
+            // Ctrl+D: Toggle theme
+            if (e.ctrlKey && e.key === 'd') {
+                e.preventDefault();
+                toggleTheme();
+                return;
+            }
+
+            // Esc: Clear search or close modal
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('shortcuts-modal');
+                if (modal.classList.contains('show')) {
+                    hideShortcutsHelp();
+                } else {
+                    const searchBox = document.getElementById('search-box');
+                    searchBox.value = '';
+                    filterDashboard('');
+                    searchBox.blur();
+                }
+                return;
+            }
+
+            // ?: Show shortcuts help
+            if (e.key === '?' && !e.ctrlKey && !e.altKey && !e.metaKey) {
+                // Don't trigger if typing in search box
+                if (document.activeElement.id === 'search-box') return;
+                e.preventDefault();
+                showShortcutsHelp();
+                return;
+            }
+        });
+
+        // WebSocket real-time updates (Phase B - Improvement #1)
+        function connectWebSocket() {
+            try {
+                ws = new WebSocket('ws://localhost:4243');
+
+                ws.onopen = () => {
+                    wsConnected = true;
+                    window.wsConnected = true;
+                    console.log('🔌 WebSocket connected');
+
+                    // Update status indicator
+                    const autoRefresh = document.querySelector('.auto-refresh');
+                    autoRefresh.innerHTML = '🔴 Live • <span style="color: var(--accent-green);">Real-time</span>';
+
+                    // Clear reconnect interval if exists
+                    if (reconnectInterval) {
+                        clearInterval(reconnectInterval);
+                        reconnectInterval = null;
+                    }
+                };
+
+                ws.onmessage = (event) => {
+                    try {
+                        const state = JSON.parse(event.data);
+
+                        // Hide loading, show content
+                        document.getElementById('loading').style.display = 'none';
+                        document.getElementById('content').style.display = 'block';
+                        document.getElementById('error-container').innerHTML = '';
+
+                        // Update dashboard with new state
+                        updateStats(state);
+                        updatePhaseBreakdown(state);
+                        updateActiveWork(state);
+                        updateCompletedWork(state);
+
+                        // Update last updated timestamp
+                        const lastUpdated = state.metadata?.last_updated || new Date().toISOString();
+                        document.getElementById('last-updated').textContent = formatTime(lastUpdated);
+
+                        previousState = state;
+                    } catch (error) {
+                        console.error('❌ Error parsing WebSocket message:', error);
+                    }
+                };
+
+                ws.onclose = () => {
+                    wsConnected = false;
+                    window.wsConnected = false;
+                    console.log('🔌 WebSocket disconnected');
+
+                    // Update status indicator - fall back to polling
+                    const autoRefresh = document.querySelector('.auto-refresh');
+                    autoRefresh.innerHTML = '⟳ Auto-refresh: <span id="countdown">3</span>s';
+
+                    // Try to reconnect every 5 seconds
+                    if (!reconnectInterval) {
+                        reconnectInterval = setInterval(() => {
+                            console.log('🔄 Attempting to reconnect WebSocket...');
+                            connectWebSocket();
+                        }, 5000);
+                    }
+                };
+
+                ws.onerror = (error) => {
+                    console.error('❌ WebSocket error:', error);
+                    wsConnected = false;
+                    window.wsConnected = false;
+                };
+            } catch (error) {
+                console.error('❌ Failed to connect WebSocket:', error);
+                wsConnected = false;
+                window.wsConnected = false;
+            }
+        }
+
+        // Auto-refresh countdown (fallback when WebSocket disconnected)
+        setInterval(() => {
+            if (!wsConnected) {
+                countdown--;
+                const countdownEl = document.getElementById('countdown');
+                if (countdownEl) {
+                    countdownEl.textContent = countdown;
+                }
+
+                if (countdown <= 0) {
+                    loadDashboard();
+                    countdown = 3;
+                }
             }
         }, 1000);
 
-        // Initial load
+        // Initialize theme BEFORE loading dashboard (prevents flash)
+        initTheme();
+
+        // Try WebSocket first (real-time), fall back to polling if not available
+        connectWebSocket();
+
+        // Initial load (in case WebSocket takes time to connect)
         loadDashboard();
     </script>
 </body>

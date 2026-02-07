@@ -80,7 +80,8 @@
                   "name": "Brand Designer",
                   "task_count": 100,
                   "maps_to": ["client-manager"],
-                  "statuses": ["todo", "busy", "review", "needs input", "needs refinement", "next sprint", "blocked", "done", "cancelled"]
+                  "statuses": ["todo", "busy", "review", "testing", "needs input", "needs refinement", "next sprint", "blocked", "done", "cancelled"],
+                  "workflow": ["todo", "busy", "review", "testing", "done"]
                 },
                 "hazina_framework": {
                   "id": "901215559249",

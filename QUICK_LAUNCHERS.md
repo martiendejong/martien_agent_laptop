@@ -4,10 +4,11 @@ All launchers are in `C:\scripts\` and work immediately with CTRL+R.
 
 ## Available Commands
 
-### AI Agents & Notifications
+### AI Agents & Dashboards
 | Command | Description | Full Path |
 |---------|-------------|-----------|
 | **`n`** | Notifications dashboard | `C:\scripts\n.bat` |
+| **`d`** | Work Tracking dashboard (real-time) | `C:\scripts\d.bat` |
 | **`c`** | Claude Agent control plane | `C:\scripts\c.bat` |
 | **`oc`** | OpenCode Agent control plane | `C:\scripts\oc.bat` |
 
@@ -31,6 +32,7 @@ All launchers are in `C:\scripts\` and work immediately with CTRL+R.
 
 **Examples:**
 - `C:\scripts\n.bat` → Opens notifications dashboard
+- `C:\scripts\d.bat` → Opens work tracking dashboard (with WebSocket)
 - `C:\scripts\c.bat` → Starts Claude Agent
 - `C:\scripts\cm.bat` → Starts Client Manager frontend (npm run dev)
 - `C:\scripts\ar.bat` → Starts ArtRevisionist frontend
@@ -43,6 +45,7 @@ All launchers are in `C:\scripts\` and work immediately with CTRL+R.
 After adding `C:\scripts` to PATH, you can just type the short commands:
 
 **CTRL+R → `n`** (notifications)
+**CTRL+R → `d`** (work tracking dashboard)
 **CTRL+R → `c`** (claude agent)
 **CTRL+R → `cm`** (client manager)
 **CTRL+R → `ar`** (artrevisionist)
@@ -73,6 +76,20 @@ echo %PATH% | findstr scripts
 - Opens `C:\Users\HP\notifications.html` in your default browser
 - Shows all PRs, tasks, and items requiring your attention
 - Auto-refreshes every 30 seconds
+
+### `d` - Work Tracking Dashboard
+- Starts **WebSocket server** (ws://localhost:4243) for real-time updates
+- Starts **HTTP server** (http://localhost:4242)
+- Opens work tracking dashboard in your default browser
+- **Features:**
+  - Real-time updates (<100ms latency) via WebSocket
+  - Dark/light theme toggle (`Ctrl+D`)
+  - Keyboard shortcuts (press `?` to see all)
+  - Search/filter agents and tasks (`Ctrl+K`)
+  - Active work monitoring
+  - Completed work history
+  - Performance metrics
+- Graceful fallback to 3s polling if WebSocket unavailable
 
 ### `c` - Claude Agent
 - Opens new CMD window with **dynamic title**
@@ -247,10 +264,10 @@ start "Hazina Tests" cmd /k "cd /d C:\Projects\hazina && dotnet test"
 
 ## Summary
 
-✅ **6 quick launchers created**
+✅ **7 quick launchers created**
 ✅ **All work with CTRL+R immediately**
 ✅ **Short commands available after adding to PATH**
 ✅ **Each opens in its own window with proper title**
 ✅ **Automatically navigates to correct directory**
 
-**Most used:** `n` (notifications), `c` (claude agent), `oc` (opencode agent), `cm` (client manager)
+**Most used:** `n` (notifications), `d` (work tracking), `c` (claude agent), `oc` (opencode agent), `cm` (client manager)

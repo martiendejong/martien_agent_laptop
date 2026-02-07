@@ -978,6 +978,185 @@ function Clear-WorkState {
 }
 
 # ============================================================================
+# REPORTING FUNCTIONS
+# ============================================================================
+
+<#
+.SYNOPSIS
+    Generate daily work report
+
+.DESCRIPTION
+    Creates a comprehensive markdown report of all work completed on a specific date.
+    Includes summary statistics, completed work list, and productivity insights.
+
+.PARAMETER Date
+    Date to generate report for (defaults to today)
+
+.PARAMETER OutputPath
+    Path to save report (defaults to C:\scripts\_machine\reports\daily-YYYY-MM-DD.md)
+
+.PARAMETER Email
+    Email address to send report to (optional, requires Send-MailMessage setup)
+
+.EXAMPLE
+    New-DailyReport
+    # Generates report for today
+
+.EXAMPLE
+    New-DailyReport -Date "2026-02-07" -Email "user@example.com"
+    # Generates report for specific date and emails it
+#>
+function New-DailyReport {
+    [CmdletBinding()]
+    param(
+        [Parameter()]
+        [string]$Date = (Get-Date -Format 'yyyy-MM-dd'),
+
+        [Parameter()]
+        [string]$OutputPath,
+
+        [Parameter()]
+        [string]$Email = $env:WORK_TRACKING_EMAIL
+    )
+
+    Write-Host "Generating daily work report for $Date..." -ForegroundColor Cyan
+
+    # Load events for the day
+    $events = Get-WorkHistory -Date $Date
+
+    if (-not $events) {
+        Write-Warning "No events found for $Date"
+        return
+    }
+
+    # Filter completions
+    $completions = $events | Where-Object { $_.event_type -eq 'work.completed' }
+
+    # Calculate metrics
+    $totalCompletions = $completions.Count
+    $prsCreated = ($completions | Where-Object { $_.event_data.pr -and $_.event_data.pr -ne '-' }).Count
+    $avgDuration = if ($completions.Count -gt 0) {
+        ($completions | ForEach-Object { $_.event_data.duration_seconds } | Measure-Object -Average).Average
+    } else { 0 }
+    $avgDurationMinutes = [math]::Round($avgDuration / 60, 1)
+
+    $successCount = ($completions | Where-Object { $_.event_data.success -ne $false }).Count
+    $successRate = if ($completions.Count -gt 0) {
+        [math]::Round(($successCount / $completions.Count) * 100, 1)
+    } else { 0 }
+
+    # Most productive hour
+    $hourCounts = $completions | Group-Object {
+        ([datetime]::Parse($_.event_data.completed)).ToString("HH:00")
+    } | Sort-Object Count -Descending | Select-Object -First 1
+
+    $productiveHour = if ($hourCounts) { $hourCounts.Name } else { "N/A" }
+
+    # Longest task
+    $longestTask = $completions | Sort-Object { $_.event_data.duration_seconds } -Descending | Select-Object -First 1
+    $longestDuration = if ($longestTask) {
+        [math]::Round($longestTask.event_data.duration_seconds / 60, 1)
+    } else { 0 }
+
+    # Quick wins (completed in < 15 minutes)
+    $quickWins = ($completions | Where-Object { $_.event_data.duration_seconds -lt 900 }).Count
+
+    # Build report (no emojis to avoid encoding issues in PowerShell 5.1)
+    $reportLines = [System.Collections.ArrayList]::new()
+    [void]$reportLines.Add("# Daily Work Report - $Date")
+    [void]$reportLines.Add("")
+    [void]$reportLines.Add("## Summary")
+    [void]$reportLines.Add("")
+    [void]$reportLines.Add("- **Total Tasks Completed:** $totalCompletions")
+    [void]$reportLines.Add("- **PRs Created:** $prsCreated")
+    [void]$reportLines.Add("- **Average Duration:** $avgDurationMinutes minutes")
+    [void]$reportLines.Add("- **Success Rate:** $successRate%")
+    [void]$reportLines.Add("")
+    [void]$reportLines.Add("## Completed Work")
+    [void]$reportLines.Add("")
+
+    $report = $reportLines -join "`n"
+
+    foreach ($completion in $completions) {
+        $agent = $completion.agent
+        $objective = $completion.event_data.objective
+        $outcome = $completion.event_data.outcome
+        $pr = $completion.event_data.pr
+        $duration = [math]::Round($completion.event_data.duration_seconds / 60, 1)
+        $time = ([datetime]::Parse($completion.event_data.completed)).ToString("HH:mm")
+
+        $prInfo = if ($pr -and $pr -ne '-') { " → PR: $pr" } else { "" }
+
+        $report += "`n- **[$time]** [$agent] $objective$prInfo ($duration min)"
+        if ($outcome) {
+            $report += "`n  - Outcome: $outcome"
+        }
+    }
+
+    $report += "`n`n"
+    $report += "## Insights`n"
+    $report += "`n"
+    $report += "- **Most Productive Hour:** $productiveHour`n"
+    $report += "- **Longest Task:** $longestDuration minutes`n"
+    $report += "- **Quick Wins (<15min):** $quickWins tasks`n"
+    $report += "`n"
+    $report += "## Active Agents`n"
+    $report += "`n"
+
+    # Get current state for active agents
+    $state = Get-WorkState
+    $activeAgents = $state.agents.GetEnumerator() | Where-Object {
+        $_.Value.status -ne 'DONE' -and $_.Value.status -ne 'IDLE'
+    }
+
+    if ($activeAgents.Count -gt 0) {
+        foreach ($agent in $activeAgents) {
+            $report += "`n- **$($agent.Key):** $($agent.Value.task.objective) (Status: $($agent.Value.status))"
+        }
+    } else {
+        $report += "`n- No active work in progress"
+    }
+
+    $report += "`n`n"
+    $report += "---`n"
+    $report += "`n"
+    $report += "*Generated: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')*`n"
+    $report += "*Work Tracking System v$script:ModuleVersion*"
+
+    # Determine output path
+    if (-not $OutputPath) {
+        $reportsDir = "C:\scripts\_machine\reports"
+        if (-not (Test-Path $reportsDir)) {
+            New-Item -ItemType Directory -Path $reportsDir -Force | Out-Null
+        }
+        $OutputPath = Join-Path $reportsDir "daily-$Date.md"
+    }
+
+    # Save report
+    $report | Out-File $OutputPath -Encoding UTF8
+    Write-Host "✅ Report saved to: $OutputPath" -ForegroundColor Green
+
+    # Email if configured
+    if ($Email) {
+        try {
+            Send-MailMessage `
+                -To $Email `
+                -Subject "Daily Work Report - $Date" `
+                -Body $report `
+                -SmtpServer $env:SMTP_SERVER `
+                -From $env:SMTP_FROM
+
+            Write-Host "Report emailed to: $Email" -ForegroundColor Green
+        }
+        catch {
+            Write-Warning "Failed to send email: $_"
+        }
+    }
+
+    return $OutputPath
+}
+
+# ============================================================================
 # MODULE INITIALIZATION
 # ============================================================================
 
@@ -996,7 +1175,8 @@ Export-ModuleMember -Function @(
     'Get-WorkState',
     'Get-WorkHistory',
     'Get-WorkMetrics',
-    'Clear-WorkState'
+    'Clear-WorkState',
+    'New-DailyReport'
 )
 
 Write-TrackingLog "Work tracking module loaded (v$script:ModuleVersion)" -Level INFO

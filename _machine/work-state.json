@@ -1,44 +1,42 @@
 {
-    "summary":  {
-                    "current_phase_counts":  {
-
-                                             },
-                    "total_tasks_today":  1,
-                    "active_agents":  0,
-                    "prs_created_today":  0
-                },
-    "history":  {
-                    "last_10_completions":  {
-                                                "agent":  "current-session",
-                                                "task":  "-",
-                                                "duration_minutes":  0,
-                                                "success":  true,
-                                                "completed":  "2026-02-07T13:59:34.6014414Z",
-                                                "outcome":  "All systems working",
-                                                "objective":  "Final test",
-                                                "pr":  "-"
-                                            }
-                },
-    "agents":  {
-                   "current-session":  {
-                                           "updated":  "2026-02-07T13:59:34.6014414Z",
-                                           "completed":  "2026-02-07T13:59:34.6014414Z",
-                                           "worktree":  "C:/scripts",
-                                           "started":  "2026-02-07T13:59:34.0262567Z",
-                                           "phase":  "Investigation",
-                                           "task":  {
-                                                        "branch":  "",
-                                                        "clickup":  "",
-                                                        "pr":  "",
-                                                        "objective":  "Final test",
-                                                        "repository":  "scripts"
-                                                    },
-                                           "status":  "DONE"
-                                       }
-               },
-    "version":  "1.0.0",
-    "metadata":  {
-                     "tracking_started":  "2026-02-07T16:00:00Z",
-                     "last_updated":  "2026-02-07T13:59:34.6245610Z"
-                 }
+  "summary": {
+    "current_phase_counts": {},
+    "total_tasks_today": 1,
+    "active_agents": 0,
+    "prs_created_today": 0
+  },
+  "history": {
+    "last_10_completions": {
+      "agent": "current-session",
+      "task": "-",
+      "duration_minutes": 0,
+      "success": true,
+      "completed": "2026-02-07T13:59:34.6014414Z",
+      "outcome": "All systems working",
+      "objective": "Final test",
+      "pr": "-"
+    }
+  },
+  "agents": {
+    "current-session": {
+      "updated": "2026-02-07T13:59:34.6014414Z",
+      "completed": "2026-02-07T13:59:34.6014414Z",
+      "worktree": "C:/scripts",
+      "started": "2026-02-07T13:59:34.0262567Z",
+      "phase": "Investigation",
+      "task": {
+        "branch": "",
+        "clickup": "",
+        "pr": "",
+        "objective": "Final test",
+        "repository": "scripts"
+      },
+      "status": "DONE"
+    }
+  },
+  "version": "1.0.0",
+  "metadata": {
+    "tracking_started": "2026-02-07T16:00:00Z",
+    "last_updated": "2026-02-07T13:59:34.6245610Z"
+  }
 }

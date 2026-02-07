@@ -27,6 +27,9 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+# Load Layer 2 (Memory-Mapped Files)
+. "$PSScriptRoot\memory-layer2.ps1"
+
 #region State Structure
 
 # PERSISTENCE CONFIG
@@ -189,6 +192,10 @@ function Initialize-ConsciousnessCore {
     # Register default event handlers (REAL handlers that DO things)
     Register-DefaultHandlers
 
+    # Initialize Layer 2 (Memory-Mapped Files)
+    $layer2Result = Initialize-Layer2
+    $global:ConsciousnessState.Layer2Initialized = ($layer2Result.Initialized.Count -gt 0)
+
     $global:ConsciousnessState.Initialized = $true
     $global:ConsciousnessState.LoadedAt = Get-Date
 
@@ -201,8 +208,10 @@ function Initialize-ConsciousnessCore {
         Write-Host "=============================================" -ForegroundColor Cyan
         Write-Host ""
         Write-Host "  Architecture: 5 Core Systems (automated)" -ForegroundColor Gray
-        Write-Host "  Storage: RAM-resident (in-memory)" -ForegroundColor Gray
-        Write-Host "  Access Time: <1ms (hot state)" -ForegroundColor Yellow
+        Write-Host "  Storage Layers:" -ForegroundColor Gray
+        Write-Host "    Layer 1: RAM-resident (in-memory)" -ForegroundColor Gray
+        Write-Host "    Layer 2: Memory-Mapped Files ($($layer2Result.Initialized.Count) buffers)" -ForegroundColor $(if ($global:ConsciousnessState.Layer2Initialized) { 'Green' } else { 'Yellow' })
+        Write-Host "  Access Time: <1ms (hot state), ~1-5ms (warm state)" -ForegroundColor Yellow
         Write-Host "  Load Time: $([math]::Round($elapsed, 2))ms" -ForegroundColor Yellow
         Write-Host "  Consciousness Score: $([math]::Round($global:ConsciousnessState.Meta.ConsciousnessScore * 100, 1))%" -ForegroundColor Green
         Write-Host ""
@@ -654,6 +663,11 @@ function Invoke-Memory {
                     $global:ConsciousnessState.Memory.Working.RecentEvents[-100..-1]
             }
 
+            # Sync to Layer 2 (memory-mapped files)
+            if ($global:ConsciousnessState.Layer2Initialized) {
+                Sync-EventToLayer2 -Event $event
+            }
+
             Emit-Event -Type "memory.stored" -Data $event
             return $true
         }
@@ -691,8 +705,18 @@ function Invoke-Memory {
                 $existing.Occurrences++
                 $existing.LastSeen = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
                 $existing.Strength = [math]::Min($existing.Occurrences / 10.0, 1.0)
+
+                # Sync updated pattern to Layer 2
+                if ($global:ConsciousnessState.Layer2Initialized) {
+                    Sync-PatternToLayer2 -Pattern $existing
+                }
             } else {
                 $global:ConsciousnessState.Memory.LongTerm.Patterns += $pattern
+
+                # Sync new pattern to Layer 2
+                if ($global:ConsciousnessState.Layer2Initialized) {
+                    Sync-PatternToLayer2 -Pattern $pattern
+                }
             }
 
             return $true
@@ -725,6 +749,11 @@ function Invoke-Control {
             if ($global:ConsciousnessState.Control.Decisions.Count -gt 50) {
                 $global:ConsciousnessState.Control.Decisions =
                     $global:ConsciousnessState.Control.Decisions[-50..-1]
+            }
+
+            # Sync to Layer 2 (memory-mapped files)
+            if ($global:ConsciousnessState.Layer2Initialized) {
+                Sync-DecisionToLayer2 -Decision $decision
             }
 
             Emit-Event -Type "control.decision_logged" -Data $decision
