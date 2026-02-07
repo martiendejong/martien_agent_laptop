@@ -265,9 +265,10 @@ function Search-Sessions {
                 $lines = $content -split "`n"
                 $snippets = @()
                 for ($i = 0; $i -lt $lines.Count; $i++) {
-                    if ($lines[$i] -match "(?i)$Query") {
-                        $context = $lines[$i].Substring(0, [Math]::Min(100, $lines[$i].Length))
-                        if ($lines[$i].Length -gt 100) { $context += "..." }
+                    if ($lines[$i] -and $lines[$i] -match "(?i)$Query") {
+                        $lineText = $lines[$i].ToString()
+                        $context = $lineText.Substring(0, [Math]::Min(100, $lineText.Length))
+                        if ($lineText.Length -gt 100) { $context += "..." }
                         $snippets += $context
                         if ($snippets.Count -ge 3) { break }
                     }
@@ -291,21 +292,29 @@ function Search-Sessions {
 
     foreach ($match in $displayMatches) {
         $s = $match.Session
+        if (-not $s) { continue }
+
         $statusText = if ($s.IsCurrent) { "[ACTIVE]" } else { "[ARCHIVED]" }
         $statusColor = if ($s.IsCurrent) { "Green" } else { "Gray" }
 
         Write-Host "$statusText " -NoNewline -ForegroundColor $statusColor
         Write-Host "$($s.ShortId)" -NoNewline -ForegroundColor White
         Write-Host " | " -NoNewline -ForegroundColor DarkGray
-        Write-Host "$($s.Timestamp.ToString('yyyy-MM-dd HH:mm'))" -NoNewline -ForegroundColor Yellow
+
+        if ($s.Timestamp) {
+            Write-Host "$($s.Timestamp.ToString('yyyy-MM-dd HH:mm'))" -NoNewline -ForegroundColor Yellow
+        }
+
         Write-Host " | " -NoNewline -ForegroundColor DarkGray
         Write-Host "$($match.MatchCount) matches" -ForegroundColor Cyan
 
-        if ($match.Snippets.Count -gt 0) {
+        if ($match.Snippets -and $match.Snippets.Count -gt 0) {
             Write-Host "  Context:" -ForegroundColor DarkGray
             foreach ($snippet in $match.Snippets) {
-                $highlighted = $snippet -replace "(?i)($Query)", ">>$1<<"
-                Write-Host "    $highlighted" -ForegroundColor Gray
+                if ($snippet) {
+                    $highlighted = $snippet -replace "(?i)($Query)", ">>$1<<"
+                    Write-Host "    $highlighted" -ForegroundColor Gray
+                }
             }
         }
         Write-Host ""

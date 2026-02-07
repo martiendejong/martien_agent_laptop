@@ -473,13 +473,12 @@
 
         async function loadDashboard() {
             try {
-                const response = await fetch('work-state.json?' + new Date().getTime());
+                // Use XMLHttpRequest for file:// protocol (CORS workaround)
+                const state = await loadStateFile();
 
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                if (!state) {
+                    throw new Error('Failed to load state');
                 }
-
-                const state = await response.json();
 
                 // Hide loading, show content
                 document.getElementById('loading').style.display = 'none';
@@ -725,6 +724,30 @@
 
         function openStateFile() {
             window.open('work-state.json', '_blank');
+        }
+
+        // Load state file (CORS-safe for file:// protocol)
+        function loadStateFile() {
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', 'work-state.json?' + new Date().getTime(), true);
+                xhr.onload = function() {
+                    if (xhr.status === 200 || xhr.status === 0) { // 0 = file:// protocol
+                        try {
+                            const state = JSON.parse(xhr.responseText);
+                            resolve(state);
+                        } catch (e) {
+                            reject(new Error('Invalid JSON: ' + e.message));
+                        }
+                    } else {
+                        reject(new Error(`HTTP ${xhr.status}: ${xhr.statusText}`));
+                    }
+                };
+                xhr.onerror = function() {
+                    reject(new Error('Failed to load work-state.json. Make sure the file exists.'));
+                };
+                xhr.send();
+            });
         }
 
         // Search/Filter (Improvement #3)
