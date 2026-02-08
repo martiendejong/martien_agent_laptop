@@ -233,3 +233,9 @@
 - Scope: MUST HAVE items - Core service, platform adapters, repurposing dashboard
 
 2026-02-08T08:15:00Z | agent-001 | RELEASE | feature/869c2ag0n-content-repurposing | PR #518 created: Content Repurposing Engine (ClickUp #869c2ag0n)
+
+## 2026-02-08T11:00:00Z - Release: agent-001
+- Repo: hazina
+- Branch: agent-001-msi-installer
+- PR: #178
+- Outcome: MSI installer with Windows Service support - no privilege errors
