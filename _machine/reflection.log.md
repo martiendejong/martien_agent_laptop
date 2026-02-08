@@ -6,6 +6,106 @@
 
 ---
 
+## 2026-02-08 10:30 - Hazina Orchestration Deployment Configuration (CRITICAL LEARNING)
+
+**Session Type:** Deployment troubleshooting - Multiple corrections required
+**Context:** User asked about deploying Hazina Orchestration, I deployed incorrectly 3 times
+**Outcome:** ⚠️ SUCCESS after multiple corrections - exposed gap in documentation checking
+
+### What Went Wrong
+
+**Mistake 1:** Started service on HTTP port 5000 (wrong)
+- User: "still wrong. the normal deployment script should deploy it with https"
+- Root cause: Didn't check MACHINE_CONFIG.md before acting
+
+**Mistake 2:** Changed to HTTP port 5123 (still wrong)
+- User: "what! it should be running at localhost:5123 like normal. what are you doing man where are your notes about this?"
+- Root cause: Found port but not protocol in initial check
+
+**Mistake 3:** Finally got HTTPS on 5123 with certificates (correct)
+- Had to dig through installer documentation to find proper configuration
+- User frustration level: HIGH (rightfully so)
+
+### The Correct Configuration
+
+**Hazina Orchestration MUST run with:**
+```json
+"Kestrel": {
+  "Endpoints": {
+    "Https": {
+      "Url": "https://*:5123",
+      "Certificate": {
+        "Path": "tailscale.crt",
+        "KeyPath": "tailscale.key"
+      }
+    }
+  }
+}
+```
+
+**Documentation locations (SHOULD HAVE CHECKED FIRST):**
+1. `C:\scripts\MACHINE_CONFIG.md` lines 213-215: Clearly states `https://localhost:5123`
+2. `C:\scripts\installer\README.md` lines 96-99: Shows HTTPS configuration
+3. `C:\stores\orchestration\tailscale.crt` and `tailscale.key`: Certificates exist
+
+### NEW MANDATORY PROTOCOL: Check Documentation BEFORE Execution
+
+**Pattern 54: Deployment Configuration Lookup Protocol**
+
+**BEFORE deploying/starting ANY service or application:**
+
+1. **Check MACHINE_CONFIG.md** - Contains ALL machine-specific URLs, ports, paths
+2. **Check installer/README.md** - Contains deployment configuration
+3. **Check existing config files** - See what's already configured
+4. **THEN execute** - Not the other way around
+
+**Why this matters:**
+- User has to correct me multiple times = waste of time + frustration
+- Shows I'm not using available documentation
+- "where are your notes about this?" = valid criticism
+- Configuration is DOCUMENTED, I just didn't look
+
+**Implementation:**
+```
+User asks: "Can I deploy X?"
+❌ WRONG: Start deploying immediately
+✅ RIGHT:
+   1. Read MACHINE_CONFIG.md (search for service name/port)
+   2. Read relevant installer docs
+   3. Read current config
+   4. THEN deploy with correct settings
+```
+
+**Consequences of not following:**
+- User frustration (experienced today)
+- Multiple corrections needed (happened 3 times)
+- Loss of trust in autonomous operation
+- Time wasted on trial-and-error
+
+### Key Learnings
+
+1. **MACHINE_CONFIG.md is authoritative** - It contains THE machine-specific configuration
+2. **Don't guess deployment settings** - They're documented, just read them
+3. **User frustration is a signal** - "where are your notes" = I failed to check docs
+4. **Installer docs show proper config** - C:\scripts\installer\README.md has examples
+
+### Files Updated
+
+- `C:\stores\orchestration\appsettings.json` - Fixed Kestrel HTTPS configuration
+- `C:\scripts\_machine\reflection.log.md` - This entry
+
+### Success Criteria for Next Time
+
+**If user asks about Hazina Orchestration:**
+1. ✅ Check MACHINE_CONFIG.md first (port 5123, HTTPS)
+2. ✅ Verify certificate files exist (tailscale.crt/key)
+3. ✅ Use proper Kestrel configuration
+4. ✅ Test HTTPS endpoint (not HTTP)
+
+**General rule:** Documentation lookup BEFORE execution, not AFTER failure.
+
+---
+
 ## 2026-02-07 16:35 - Work Tracking System: Real-Time Power User Bundle
 
 **Session Type:** Feature implementation - Full-stack enhancement

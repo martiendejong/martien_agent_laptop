@@ -96,7 +96,37 @@ AFTER creating PR (gh pr create):
 ❌ VIOLATION = Editing C:\Projects\<repo> in Feature Development Mode
 ```
 
-### ✋ RULE 3B: C:\Projects\<repo> STAYS ON DEVELOP (Feature Development Mode)
+### ✋ RULE 3B: DOCUMENTATION-FIRST DEPLOYMENT (NEW - 2026-02-08)
+```
+BEFORE deploying, starting, or configuring ANY service/application:
+
+MANDATORY SEQUENCE:
+1. Read C:\scripts\MACHINE_CONFIG.md (search for service name/port)
+2. Read C:\scripts\installer\README.md (if applicable)
+3. Read existing config files (appsettings.json, etc.)
+4. VERIFY configuration matches documentation
+5. THEN AND ONLY THEN execute deployment
+
+DO NOT:
+❌ Guess ports, protocols, or settings
+❌ Use default/example configurations
+❌ Deploy and fix errors afterward
+❌ Trial-and-error approach
+
+VIOLATION EXAMPLE (2026-02-08):
+- Hazina Orchestration deployed 3x wrong
+- HTTP/5000 → HTTP/5123 → HTTPS/5123 (correct)
+- User: "where are your notes about this?"
+- Documentation existed, was not checked
+
+CONSEQUENCE:
+- STOP immediately if you catch yourself guessing
+- Read MACHINE_CONFIG.md
+- Read installer docs
+- Start over with correct config
+```
+
+### ✋ RULE 3C: C:\Projects\<repo> STAYS ON DEVELOP (Feature Development Mode)
 ```
 🏗️ FEATURE DEVELOPMENT MODE:
 BEFORE allocating worktree:
