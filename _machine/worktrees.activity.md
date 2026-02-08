@@ -1,3 +1,9 @@
+## 2026-02-08T18:30:00Z - Release: agent-001
+- Repo: client-manager + hazina
+- Branch: feature/social-media-unified-flow-steps-9-20
+- PR: #520
+- Outcome: Social Media Unified Flow - Steps 9-14 - ImagePicker integration in wizard, image display in ParentPostManager/SubPostList
+
 ## 2026-02-08T16:00:00Z - Release: agent-001
 - Repo: client-manager + hazina
 - Branch: feature/social-media-unified-flow
