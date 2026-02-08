@@ -1,3 +1,10 @@
+## 2026-02-08T15:00:00Z - Allocation: agent-002
+- Repo: hazina
+- Branch: feature/faq-generation-artrevisionist
+- Purpose: Implement AI-powered FAQ generation for Art Revisionist (71 pages × 5 Q&A pairs)
+- Implementation: Replace GenerateQuestions stub with SemanticKernel/GPT-4o integration
+- Estimated cost: ~$0.27 for bulk generation
+
 ## 2026-02-06 21:15 UTC - Release: agent-002
 - Repo: hazina
 - Branch: fix/onstatechanged-debounce
