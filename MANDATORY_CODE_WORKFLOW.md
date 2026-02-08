@@ -10,7 +10,66 @@
 
 This workflow is **NON-NEGOTIABLE** and applies to **ALL code changes** that create a branch.
 
-### Step 1: Create Branch
+### Step 1: Create/Link ClickUp Task (MANDATORY - NEW 2026-02-08)
+
+**⚠️ CRITICAL: ClickUp task creation is MANDATORY for ALL feature work**
+
+**User feedback:** "branch maken gaat al heel goed maar clickup tasks nog niet zo"
+**Pattern:** Branch creation works perfectly, ClickUp task creation fails
+**Fix:** Make ClickUp task creation the FIRST step (before branch)
+
+**Decision tree:**
+```
+Feature Development Mode?
+├─ NO (Debug Mode) → No ClickUp task needed → Skip to Step 1b
+└─ YES (Feature work)
+    ↓
+    User provided ClickUp task ID/URL?
+    ├─ YES → Extract and verify task exists
+    │   └─ Update status to "in progress"
+    └─ NO  → CREATE NEW TASK NOW
+        ↓
+        Auto-detect project:
+        ├─ Hazina-only work → Project: hazina (List: 901215559249)
+        ├─ Client-manager features → Project: client-manager (List: 901214097647)
+        ├─ Art Revisionist → Project: art-revisionist (List: 901211612245)
+        └─ Multi-repo strategic → Project: brand2boost-birdseye (List: 901215573347)
+```
+
+**Create ClickUp task:**
+```powershell
+# Detect project based on repos
+$project = "client-manager"  # Default
+if (hazina-only work) { $project = "hazina" }
+if (artrevisionist work) { $project = "art-revisionist" }
+
+# Create task
+$taskName = "<Feature description from user request>"
+$taskDescription = "Technical details, repos involved, scope"
+
+clickup-sync.ps1 -Action create -Project $project -Name $taskName -Description $taskDescription
+
+# Capture task ID from output (e.g., 869c2e796)
+$taskId = "<extracted from output>"
+
+Write-Host "✅ ClickUp task $taskId created in $project board"
+```
+
+**Update existing task:**
+```powershell
+# If user provided task ID
+clickup-sync.ps1 -Action update -TaskId $taskId -Status "in progress"
+```
+
+**Why this is Step 1:**
+- ClickUp task ID needed for branch name (Step 1b)
+- Task must exist before any work starts
+- Same pattern that makes branch creation work (mandatory, automatic)
+- Prevents retroactive task creation (like LLM chat 869c2e796)
+
+---
+
+### Step 1b: Create Branch (Using ClickUp Task ID)
 
 **Branch naming convention:**
 ```
@@ -22,6 +81,7 @@ This workflow is **NON-NEGOTIABLE** and applies to **ALL code changes** that cre
 feature/869bhfw7r-restaurant-menu
 fix/869bpz2c0-images-not-generating
 refactor/869bmhjh9-product-catalog
+feature/869c2e796-llm-chat-orchestration
 ```
 
 **Types:**
@@ -31,10 +91,10 @@ refactor/869bmhjh9-product-catalog
 - `docs/` - Documentation only
 - `test/` - Test additions
 
-**If ClickUp task exists:**
-- Extract task ID (e.g., `869bhfw7r`)
+**Use ClickUp task ID from Step 1:**
+- Extract task ID (e.g., `869bhfw7r` or `869c2e796`)
 - Include in branch name
-- Update ClickUp status to "busy": `clickup-sync.ps1 -Action update -TaskId 869bhfw7r -Status busy`
+- Task status already set to "in progress" in Step 1
 
 ---
 
@@ -468,6 +528,7 @@ echo "✅ PR #${prNumber} created and ClickUp updated: ${prUrl}"
 
 ---
 
-**Last Updated:** 2026-02-04
-**Maintained By:** Claude Agent
+**Last Updated:** 2026-02-08 (Added Step 1: ClickUp Task Creation - now MANDATORY before branch)
+**Maintained By:** Claude Agent (Jengo)
 **User Mandate:** "this process needs to be followed whenever any task is worked on"
+**User Feedback:** "branch maken gaat al heel goed maar clickup tasks nog niet zo" → Fixed by making ClickUp Step 1
