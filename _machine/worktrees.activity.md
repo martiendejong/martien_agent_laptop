@@ -294,3 +294,10 @@
 - Branch: agent-003-llm-chat-frontend
 - PR: #181
 - Outcome: Frontend Chat UI for LLM Orchestration (SignalR integration complete)
+
+## 2026-02-08T21:15:00Z - Release: agent-001
+- Repo: hazina
+- Branch: feature/orchestration-session-list-fixes
+- PR: #182
+- ClickUp: #869c2e97a
+- Outcome: Session list sidebar with scrolling, fixed height blocks, and auto-removal after terminate
