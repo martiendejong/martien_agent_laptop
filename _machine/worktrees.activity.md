@@ -1,3 +1,9 @@
+## 2026-02-08T16:00:00Z - Release: agent-001
+- Repo: client-manager + hazina
+- Branch: feature/social-media-unified-flow
+- PR: #519
+- Outcome: Social Media Unified Flow - Foundation (Steps 1-8/20) - Database schema, image suggestion service, ImagePicker component
+
 ## 2026-02-08T15:45:00Z - Release: agent-002
 - Repo: hazina
 - Branch: feature/faq-generation-artrevisionist
