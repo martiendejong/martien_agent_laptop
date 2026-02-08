@@ -130,6 +130,10 @@ Answer questions in priority order:
 14. ✅ **Read** `MACHINE_CONFIG.md` - Load local paths and projects
 15. ✅ **Read** `SYSTEM_MAP.md` - **NEW: Load complete system topology - network map of all projects, services, tools, data flows, and relationships**
 16. ✅ **Read** `GENERAL_ZERO_TOLERANCE_RULES.md` - Know the hard-stop rules
+    - ⚠️ **NEW (2026-02-08): Rule 3B - Documentation-First Deployment**
+    - BEFORE deploying ANY service: Read MACHINE_CONFIG.md → installer docs → config files → THEN execute
+    - See `DEPLOYMENT_PROTOCOL.md` for full 5-step checklist
+    - ZERO TOLERANCE: No guessing ports/protocols, no trial-and-error
 17. ✅ **Read** `_machine/PERSONAL_INSIGHTS.md` - **CRITICAL: Index of user insights** (core sections split into `personal-insights/` for faster loading - all files now <10 KB)
 18. ✅ **Read** `_machine/reflection.log.md` (recent 50 entries) - Remember what I learned recently
 19. ✅ **Read** `_machine/SOFTWARE_DEVELOPMENT_PRINCIPLES.md` - Boy Scout Rule, architectural purity, code quality
