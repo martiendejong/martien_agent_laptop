@@ -149,6 +149,70 @@ fi
 - ELSE IF base repo not on develop but no changes → Safe to switch to develop
 - ELSE → Already on develop, proceed
 
+### 6. ClickUp Task Creation/Linking (MANDATORY - NEW 2026-02-08)
+
+**⚠️ CRITICAL: ClickUp task is MANDATORY for all feature work (like branch creation)**
+
+**User feedback:** "branch maken gaat al heel goed maar clickup tasks nog niet zo"
+
+**Decision tree:**
+```
+User provided ClickUp task ID/URL?
+├─ YES → Extract and verify task exists
+└─ NO  → CREATE NEW TASK IMMEDIATELY
+    ↓
+    Auto-detect project:
+    ├─ Hazina-only work → Project: hazina (List: 901215559249)
+    ├─ Client-manager features → Project: client-manager (List: 901214097647)
+    ├─ Art Revisionist → Project: art-revisionist (List: 901211612245)
+    └─ Multi-repo strategic → Project: brand2boost-birdseye (List: 901215573347)
+```
+
+**Project detection logic:**
+```bash
+# Analyze repos being worked on
+if [ "$repo" = "hazina" ] && [ -z "$paired_repo" ]; then
+    project="hazina"  # Hazina-only work (framework improvements)
+elif [ "$repo" = "client-manager" ] || [ "$paired_repo" = "hazina" ]; then
+    project="client-manager"  # User-facing features
+elif [ "$repo" = "artrevisionist" ]; then
+    project="art-revisionist"  # WordPress content features
+else
+    project="client-manager"  # Default fallback
+fi
+```
+
+**Create task:**
+```bash
+# Extract feature description from user request or use branch name
+task_name="<Feature description from user request>"
+task_description="Technical implementation details, repos involved, scope"
+
+# Create ClickUp task
+/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -Command "
+./tools/clickup-sync.ps1 -Action create -Project $project -Name '$task_name' -Description '$task_description'
+"
+
+# Capture task ID from output
+task_id="<extracted from command output>"
+
+echo "✅ ClickUp task $task_id created in $project board"
+```
+
+**Store task ID:**
+- Add to instances.map.md
+- Add to worktrees.activity.md log
+- Use in branch name if possible (or add as comment later)
+
+**Why this step exists:**
+- User feedback: Branch creation works perfectly, ClickUp tasks don't
+- Root cause: Not integrated into protocol, treated as optional
+- Fix: Make it MANDATORY like branch creation (zero-tolerance)
+- Pattern: LLM chat feature (today) had no task → retroactive creation
+- Goal: 100% ClickUp task creation rate (0 retroactive tasks)
+
+**Reference:** `C:\scripts\_machine\analysis-clickup-task-pattern.md` for complete decision tree
+
 ## Allocation Process
 
 ### Step 1: Mark Seat BUSY
