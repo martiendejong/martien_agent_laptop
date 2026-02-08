@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>4_Instagram_API_Verification</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.1.0/github-markdown.min.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Instagram API Verification</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#instagram-api-verification-guide"
+id="toc-instagram-api-verification-guide">Instagram API Verification
+Guide</a>
+<ul>
+<li><a href="#overview" id="toc-overview">📋 Overview</a></li>
+<li><a href="#important-instagram-meta-platform"
+id="toc-important-instagram-meta-platform">⚠️ IMPORTANT: Instagram =
+Meta Platform</a></li>
+<li><a href="#what-you-need" id="toc-what-you-need">🎯 What You Need</a>
+<ul>
+<li><a href="#required" id="toc-required">Required:</a></li>
+</ul></li>
+<li><a href="#step-1-instagram-business-account-setup"
+id="toc-step-1-instagram-business-account-setup">📱 Step 1: Instagram
+Business Account Setup</a>
+<ul>
+<li><a href="#convert-instagram-account-to-business"
+id="toc-convert-instagram-account-to-business">Convert Instagram Account
+to Business</a></li>
+</ul></li>
+<li><a href="#step-2-configure-meta-app-for-instagram"
+id="toc-step-2-configure-meta-app-for-instagram">🔧 Step 2: Configure
+Meta App for Instagram</a>
+<ul>
+<li><a href="#process" id="toc-process">Process</a></li>
+</ul></li>
+<li><a href="#step-3-understand-instagram-apis"
+id="toc-step-3-understand-instagram-apis">📊 Step 3: Understand
+Instagram APIs</a>
+<ul>
+<li><a href="#instagram-graph-api-recommended"
+id="toc-instagram-graph-api-recommended">Instagram Graph API
+(Recommended) ✅</a></li>
+</ul></li>
+<li><a href="#step-4-request-permissions"
+id="toc-step-4-request-permissions">🔑 Step 4: Request Permissions</a>
+<ul>
+<li><a href="#important-instagram-permissions"
+id="toc-important-instagram-permissions">Important Instagram
+Permissions</a></li>
+</ul></li>
+<li><a href="#step-5-app-review-submission"
+id="toc-step-5-app-review-submission">🎬 Step 5: App Review
+Submission</a>
+<ul>
+<li><a href="#process-1" id="toc-process-1">Process</a></li>
+</ul></li>
+<li><a href="#step-6-understand-rate-limits"
+id="toc-step-6-understand-rate-limits">📏 Step 6: Understand Rate
+Limits</a>
+<ul>
+<li><a href="#instagram-graph-api-rate-limits"
+id="toc-instagram-graph-api-rate-limits">Instagram Graph API Rate
+Limits</a></li>
+</ul></li>
+<li><a href="#common-mistakes" id="toc-common-mistakes">🚨 Common
+Mistakes</a>
+<ul>
+<li><a href="#mistake-1-personal-account-used"
+id="toc-mistake-1-personal-account-used">❌ Mistake 1: Personal Account
+Used</a></li>
+<li><a href="#mistake-2-not-linked-to-facebook-page"
+id="toc-mistake-2-not-linked-to-facebook-page">❌ Mistake 2: Not Linked
+to Facebook Page</a></li>
+<li><a href="#mistake-3-skipped-business-verification"
+id="toc-mistake-3-skipped-business-verification">❌ Mistake 3: Skipped
+Business Verification</a></li>
+</ul></li>
+<li><a href="#complete-timeline" id="toc-complete-timeline">⏱️ Complete
+Timeline</a></li>
+<li><a href="#content-posting-specifications"
+id="toc-content-posting-specifications">📊 Content Posting
+Specifications</a>
+<ul>
+<li><a href="#photo-posts" id="toc-photo-posts">Photo Posts</a></li>
+<li><a href="#video-posts" id="toc-video-posts">Video Posts</a></li>
+<li><a href="#stories" id="toc-stories">Stories</a></li>
+<li><a href="#reels" id="toc-reels">Reels</a></li>
+</ul></li>
+<li><a href="#complete-checklist" id="toc-complete-checklist">✅
+Complete Checklist</a>
+<ul>
+<li><a href="#prerequisites"
+id="toc-prerequisites">Prerequisites:</a></li>
+<li><a href="#app-setup" id="toc-app-setup">App Setup:</a></li>
+<li><a href="#permissions" id="toc-permissions">Permissions:</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="instagram-api-verification-guide">Instagram API Verification
+Guide</h1>
+<p><strong>Date:</strong> February 8, 2026 <strong>Platform:</strong>
+Instagram Graph API (via Meta) <strong>Portal:</strong>
+https://developers.facebook.com/</p>
+<hr />
+<h2 id="overview">📋 Overview</h2>
+<p>Instagram API is part of Meta’s developer platform. You do
+<strong>NOT need a separate Instagram developer account</strong> -
+everything is managed via Facebook’s developer portal.</p>
+<hr />
+<h2 id="important-instagram-meta-platform">⚠️ IMPORTANT: Instagram =
+Meta Platform</h2>
+<p><strong>What this means:</strong> - Instagram API is managed via
+developers.facebook.com - You need Meta Business Verification (see
+Facebook guide) - Instagram permissions are requested via Meta App
+Review - Same process as Facebook, but with Instagram-specific
+permissions</p>
+<p><strong>Prerequisites:</strong> - ✅ Meta developer account - ✅
+Facebook Business Verification (MANDATORY) - ✅ Instagram Business
+Account (MANDATORY) - ✅ Instagram account linked to Facebook Page</p>
+<hr />
+<h2 id="what-you-need">🎯 What You Need</h2>
+<h3 id="required">Required:</h3>
+<ol type="1">
+<li><strong>Meta Developer Account</strong>
+<ul>
+<li>Account on developers.facebook.com</li>
+<li>See: Facebook Verification Guide for complete setup</li>
+</ul></li>
+<li><strong>Business Verification (Meta)</strong>
+<ul>
+<li>Business documentation</li>
+<li>Business email address</li>
+<li>See: Facebook Verification Guide § Business Verification</li>
+</ul></li>
+<li><strong>Instagram Business Account</strong>
+<ul>
+<li>⚠️ NOT personal account - must be Business/Creator</li>
+<li>Free to convert in Instagram app</li>
+</ul></li>
+<li><strong>Facebook Page</strong>
+<ul>
+<li>Instagram Business account must be linked to Facebook Page</li>
+<li>Managed via Facebook Business Manager</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="step-1-instagram-business-account-setup">📱 Step 1: Instagram
+Business Account Setup</h2>
+<h3 id="convert-instagram-account-to-business">Convert Instagram Account
+to Business</h3>
+<ol type="1">
+<li><strong>Open Instagram App</strong>
+<ul>
+<li>Log in with your Instagram account</li>
+</ul></li>
+<li><strong>Go to Settings</strong>
+<ul>
+<li>Profile → Menu (☰) → Settings</li>
+</ul></li>
+<li><strong>Switch to Professional Account</strong>
+<ul>
+<li>Account → “Switch to Professional Account”</li>
+<li>Choose “Business” (not Creator)</li>
+</ul></li>
+<li><strong>Link to Facebook Page</strong>
+<ul>
+<li>Settings → Account → Linked accounts → Facebook</li>
+<li>Log in with Facebook</li>
+<li>Select or create Facebook Page</li>
+<li>⚠️ You must be Admin of the Facebook Page</li>
+</ul></li>
+<li><strong>Verify Linking</strong>
+<ul>
+<li>Go to Facebook Page settings</li>
+<li>Check that Instagram account is linked</li>
+<li>Both sides must be connected</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="step-2-configure-meta-app-for-instagram">🔧 Step 2: Configure
+Meta App for Instagram</h2>
+<h3 id="process">Process</h3>
+<ol type="1">
+<li><strong>Go to Meta Developer Portal</strong>
+<ul>
+<li>URL: https://developers.facebook.com/</li>
+<li>Log in with your account</li>
+</ul></li>
+<li><strong>Select or Create App</strong>
+<ul>
+<li>“My Apps” → Select existing app</li>
+<li>Or create new app: “Create App” → “Business” type</li>
+</ul></li>
+<li><strong>Add Instagram Product</strong>
+<ul>
+<li>Dashboard → “+ Add Products”</li>
+<li>Select “Instagram”</li>
+<li>Click “Set Up”</li>
+</ul></li>
+<li><strong>OAuth Redirect URIs</strong>
+<ul>
+<li>Settings → Basic → “Add Platform”</li>
+<li>Choose “Website”</li>
+<li>Add redirect URIs:
+<ul>
+<li>Development:
+<code>https://localhost:5173/auth/instagram/callback</code></li>
+<li>Production:
+<code>https://your-app.com/auth/instagram/callback</code></li>
+</ul></li>
+</ul></li>
+<li><strong>Add Test Users</strong>
+<ul>
+<li>Instagram → “Instagram Testers”</li>
+<li>Add Instagram accounts for testing</li>
+<li>Testers must accept via Instagram app</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="step-3-understand-instagram-apis">📊 Step 3: Understand
+Instagram APIs</h2>
+<h3 id="instagram-graph-api-recommended">Instagram Graph API
+(Recommended) ✅</h3>
+<p><strong>For:</strong> Business accounts only</p>
+<p><strong>What you can do:</strong> - Publish content (posts, stories,
+reels) - Media management - Manage comments - Insights &amp; analytics -
+Fetch mentions - Hashtag research</p>
+<p><strong>Scopes:</strong> - <code>instagram_basic</code> - Profile +
+media access - <code>instagram_content_publish</code> - Post content -
+<code>instagram_manage_comments</code> - Manage comments -
+<code>instagram_manage_insights</code> - Fetch analytics</p>
+<hr />
+<h2 id="step-4-request-permissions">🔑 Step 4: Request Permissions</h2>
+<p>Instagram permissions are requested via Meta’s App Review (same
+process as Facebook).</p>
+<h3 id="important-instagram-permissions">Important Instagram
+Permissions</h3>
+<h4 id="instagram_basic"><code>instagram_basic</code></h4>
+<p><strong>Grants:</strong> - Basic profile info (username, account ID)
+- Media feed (photos, videos) - Media metadata</p>
+<h4
+id="instagram_content_publish"><code>instagram_content_publish</code></h4>
+<p><strong>Grants:</strong> - Publish photos - Publish videos - Post
+stories - Publish reels</p>
+<h4
+id="instagram_manage_comments"><code>instagram_manage_comments</code></h4>
+<p><strong>Grants:</strong> - Read comments - Reply to comments -
+Hide/delete comments</p>
+<h4
+id="instagram_manage_insights"><code>instagram_manage_insights</code></h4>
+<p><strong>Grants:</strong> - Post analytics (likes, comments, reach) -
+Account analytics (followers, impressions) - Story insights - Reel
+performance</p>
+<hr />
+<h2 id="step-5-app-review-submission">🎬 Step 5: App Review
+Submission</h2>
+<h3 id="process-1">Process</h3>
+<ol type="1">
+<li><p><strong>Go to App Review</strong></p>
+<ul>
+<li>Dashboard → “App Review” → “Permissions and Features”</li>
+</ul></li>
+<li><p><strong>Request Instagram Permissions</strong></p>
+<ul>
+<li>Click “+ Request Advanced Access”</li>
+<li>Select Instagram permissions</li>
+</ul></li>
+<li><p><strong>For Each Permission: Video Walkthrough</strong></p>
+<p><strong>Must include:</strong></p>
+<ul>
+<li>Instagram login flow</li>
+<li>Permission usage</li>
+<li>Data management</li>
+<li>Security</li>
+</ul>
+<p><strong>Technical requirements:</strong></p>
+<ul>
+<li>Max 10 minutes per permission</li>
+<li>Screen recording</li>
+<li>Use test accounts</li>
+<li>No music/voice-over needed</li>
+</ul></li>
+<li><p><strong>Describe Use Case</strong></p></li>
+<li><p><strong>Provide Test Credentials</strong></p></li>
+<li><p><strong>Submit</strong></p>
+<ul>
+<li><strong>Wait time: 2-14 days</strong></li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="step-6-understand-rate-limits">📏 Step 6: Understand Rate
+Limits</h2>
+<h3 id="instagram-graph-api-rate-limits">Instagram Graph API Rate
+Limits</h3>
+<p><strong>Per Instagram Account:</strong> - 200 API calls per hour -
+Scales linearly: 10 accounts = 2000 calls/hour</p>
+<p><strong>Per Endpoint:</strong> - Posting: 25 posts per day per
+account - Comments: 60 replies per hour - Insights: 200 requests per
+hour</p>
+<hr />
+<h2 id="common-mistakes">🚨 Common Mistakes</h2>
+<h3 id="mistake-1-personal-account-used">❌ Mistake 1: Personal Account
+Used</h3>
+<p><strong>Problem:</strong> Instagram Graph API works ONLY with
+Business accounts <strong>Solution:</strong> Convert to Business account
+(see Step 1)</p>
+<h3 id="mistake-2-not-linked-to-facebook-page">❌ Mistake 2: Not Linked
+to Facebook Page</h3>
+<p><strong>Problem:</strong> API calls fail with “No linked Facebook
+Page” <strong>Solution:</strong> Link Instagram Business account to
+Facebook Page</p>
+<h3 id="mistake-3-skipped-business-verification">❌ Mistake 3: Skipped
+Business Verification</h3>
+<p><strong>Problem:</strong> Permissions rejection - “Business
+verification required” <strong>Solution:</strong> Complete Meta Business
+Verification first (see Facebook guide)</p>
+<hr />
+<h2 id="complete-timeline">⏱️ Complete Timeline</h2>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Duration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Instagram Business Account</strong></td>
+<td>10 min</td>
+</tr>
+<tr>
+<td><strong>Facebook Page Linking</strong></td>
+<td>5 min</td>
+</tr>
+<tr>
+<td><strong>Meta Business Verification</strong></td>
+<td>3-7 days</td>
+</tr>
+<tr>
+<td><strong>Instagram Product Setup</strong></td>
+<td>10 min</td>
+</tr>
+<tr>
+<td><strong>Permission Request (App Review)</strong></td>
+<td>2-14 days</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>3-8 weeks</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="content-posting-specifications">📊 Content Posting
+Specifications</h2>
+<h3 id="photo-posts">Photo Posts</h3>
+<ul>
+<li><strong>Formats:</strong> JPG, PNG</li>
+<li><strong>Size:</strong> Max 8MB</li>
+<li><strong>Aspect Ratio:</strong> 4:5, 1:1, 1.91:1</li>
+<li><strong>Caption:</strong> Max 2200 characters</li>
+<li><strong>Hashtags:</strong> Max 30</li>
+</ul>
+<h3 id="video-posts">Video Posts</h3>
+<ul>
+<li><strong>Formats:</strong> MP4, MOV</li>
+<li><strong>Size:</strong> Max 100MB</li>
+<li><strong>Length:</strong> 3 sec - 60 min</li>
+<li><strong>Caption:</strong> Max 2200 characters</li>
+</ul>
+<h3 id="stories">Stories</h3>
+<ul>
+<li><strong>Photo:</strong> JPG, PNG (max 8MB)</li>
+<li><strong>Video:</strong> MP4, MOV (max 100MB, 15 sec max)</li>
+<li><strong>Aspect Ratio:</strong> 9:16</li>
+<li><strong>Duration:</strong> 24 hours</li>
+</ul>
+<h3 id="reels">Reels</h3>
+<ul>
+<li><strong>Format:</strong> MP4, MOV</li>
+<li><strong>Size:</strong> Max 1GB</li>
+<li><strong>Length:</strong> 15-90 seconds</li>
+<li><strong>Aspect Ratio:</strong> 9:16</li>
+</ul>
+<hr />
+<h2 id="complete-checklist">✅ Complete Checklist</h2>
+<h3 id="prerequisites">Prerequisites:</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Meta developer account</label></li>
+<li><label><input type="checkbox" />Meta Business Verification
+complete</label></li>
+<li><label><input type="checkbox" />Instagram Business Account
+created</label></li>
+<li><label><input type="checkbox" />Instagram linked to Facebook
+Page</label></li>
+<li><label><input type="checkbox" />Facebook Page Admin
+rights</label></li>
+</ul>
+<h3 id="app-setup">App Setup:</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />App created in Meta developer
+portal</label></li>
+<li><label><input type="checkbox" />Instagram product added</label></li>
+<li><label><input type="checkbox" />OAuth redirect URIs
+configured</label></li>
+<li><label><input type="checkbox" />Test Instagram accounts
+added</label></li>
+</ul>
+<h3 id="permissions">Permissions:</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Required permissions
+identified</label></li>
+<li><label><input type="checkbox" />For each permission: video
+walkthrough created</label></li>
+<li><label><input type="checkbox" />Use case descriptions
+written</label></li>
+<li><label><input type="checkbox" />Test credentials
+prepared</label></li>
+<li><label><input type="checkbox" />Privacy policy complete</label></li>
+</ul>
+<hr />
+<p><strong>Document Version:</strong> 1.0 <strong>Last Updated:</strong>
+February 8, 2026 <strong>Requires:</strong> Meta Business Verification
+(see Facebook guide)</p>
+</body>
+</html>

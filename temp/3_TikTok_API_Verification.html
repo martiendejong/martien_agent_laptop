@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>3_TikTok_API_Verification</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.1.0/github-markdown.min.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">TikTok API Verification</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#tiktok-api-verification-guide"
+id="toc-tiktok-api-verification-guide">TikTok API Verification Guide</a>
+<ul>
+<li><a href="#overview" id="toc-overview">📋 Overview</a></li>
+<li><a href="#what-you-need" id="toc-what-you-need">🎯 What You Need</a>
+<ul>
+<li><a href="#for-developer-account" id="toc-for-developer-account">For
+Developer Account:</a></li>
+<li><a href="#for-app-registration" id="toc-for-app-registration">For
+App Registration:</a></li>
+</ul></li>
+<li><a href="#step-1-create-developer-account"
+id="toc-step-1-create-developer-account">📝 Step 1: Create Developer
+Account</a>
+<ul>
+<li><a href="#process" id="toc-process">Process</a></li>
+</ul></li>
+<li><a href="#step-2-register-app" id="toc-step-2-register-app">🚀 Step
+2: Register App</a>
+<ul>
+<li><a href="#process-1" id="toc-process-1">Process</a></li>
+</ul></li>
+<li><a href="#important-mobile-app-requirements"
+id="toc-important-mobile-app-requirements">⚠️ IMPORTANT: Mobile App
+Requirements</a>
+<ul>
+<li><a href="#for-ios-apps" id="toc-for-ios-apps">For iOS Apps:</a></li>
+<li><a href="#for-android-apps" id="toc-for-android-apps">For Android
+Apps:</a></li>
+<li><a href="#for-web-apps" id="toc-for-web-apps">For Web Apps:</a></li>
+</ul></li>
+<li><a href="#step-3-request-api-permissions"
+id="toc-step-3-request-api-permissions">🔑 Step 3: Request API
+Permissions</a>
+<ul>
+<li><a href="#available-api-products"
+id="toc-available-api-products">Available API Products</a></li>
+</ul></li>
+<li><a href="#step-4-permission-request-submission"
+id="toc-step-4-permission-request-submission">📤 Step 4: Permission
+Request Submission</a>
+<ul>
+<li><a href="#process-2" id="toc-process-2">Process</a></li>
+</ul></li>
+<li><a href="#step-5-audit-process-for-production"
+id="toc-step-5-audit-process-for-production">🔍 Step 5: Audit Process
+(For Production)</a>
+<ul>
+<li><a href="#when-to-request-audit" id="toc-when-to-request-audit">When
+to Request Audit?</a></li>
+<li><a href="#audit-process" id="toc-audit-process">Audit
+Process</a></li>
+</ul></li>
+<li><a href="#complete-timeline" id="toc-complete-timeline">⏱️ Complete
+Timeline</a></li>
+<li><a href="#rate-limits" id="toc-rate-limits">📊 Rate Limits</a>
+<ul>
+<li><a href="#api-rate-limits-production"
+id="toc-api-rate-limits-production">API Rate Limits
+(Production)</a></li>
+</ul></li>
+<li><a href="#common-mistakes" id="toc-common-mistakes">🚨 Common
+Mistakes</a>
+<ul>
+<li><a href="#mistake-1-app-not-in-app-store"
+id="toc-mistake-1-app-not-in-app-store">❌ Mistake 1: App Not in App
+Store</a></li>
+<li><a href="#mistake-2-too-broad-permissions"
+id="toc-mistake-2-too-broad-permissions">❌ Mistake 2: Too Broad
+Permissions</a></li>
+<li><a href="#mistake-3-vague-use-case"
+id="toc-mistake-3-vague-use-case">❌ Mistake 3: Vague Use Case</a></li>
+</ul></li>
+<li><a href="#complete-checklist" id="toc-complete-checklist">✅
+Complete Checklist</a>
+<ul>
+<li><a href="#before-starting" id="toc-before-starting">Before
+Starting:</a></li>
+<li><a href="#app-registration" id="toc-app-registration">App
+Registration:</a></li>
+<li><a href="#permissions" id="toc-permissions">Permissions:</a></li>
+<li><a href="#development" id="toc-development">Development:</a></li>
+<li><a href="#audit-production" id="toc-audit-production">Audit
+(Production):</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="tiktok-api-verification-guide">TikTok API Verification
+Guide</h1>
+<p><strong>Date:</strong> February 8, 2026 <strong>Platform:</strong>
+TikTok for Developers <strong>Portal:</strong>
+https://developers.tiktok.com/</p>
+<hr />
+<h2 id="overview">📋 Overview</h2>
+<p>This guide describes the complete process to obtain API access for
+TikTok’s developer platform, including app registration, permissions
+request, and audit process.</p>
+<hr />
+<h2 id="what-you-need">🎯 What You Need</h2>
+<h3 id="for-developer-account">For Developer Account:</h3>
+<ul>
+<li>✅ TikTok account (personal or business)</li>
+<li>✅ Valid email address for verification</li>
+<li>✅ Business details (name, website, description)</li>
+</ul>
+<h3 id="for-app-registration">For App Registration:</h3>
+<ul>
+<li>✅ <strong>Mobile app:</strong> Link to App Store and/or Google Play
+Store</li>
+<li>✅ <strong>Web app:</strong> Valid redirect URI (HTTPS)</li>
+<li>✅ Working prototype of your application</li>
+<li>✅ Clear use case description per permission</li>
+</ul>
+<hr />
+<h2 id="step-1-create-developer-account">📝 Step 1: Create Developer
+Account</h2>
+<h3 id="process">Process</h3>
+<ol type="1">
+<li><strong>Go to TikTok for Developers</strong>
+<ul>
+<li>URL: https://developers.tiktok.com/</li>
+<li>Click “Register” or “Get Started”</li>
+</ul></li>
+<li><strong>Select Account Type</strong>
+<ul>
+<li><strong>Individual:</strong> For personal projects/hobby apps</li>
+<li><strong>Organization:</strong> For companies and commercial
+apps</li>
+</ul></li>
+<li><strong>Fill Developer Profile</strong>
+<ul>
+<li>Email</li>
+<li>Name</li>
+<li>Website</li>
+<li>Description</li>
+</ul></li>
+<li><strong>Confirm Email</strong>
+<ul>
+<li>Check inbox (and spam folder)</li>
+<li>Click verification link</li>
+<li>Account is now active</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="step-2-register-app">🚀 Step 2: Register App</h2>
+<h3 id="process-1">Process</h3>
+<ol type="1">
+<li><p><strong>Go to “Manage Apps”</strong></p>
+<ul>
+<li>Log in to developer portal</li>
+<li>Click “Create an app”</li>
+</ul></li>
+<li><p><strong>Fill App Details</strong></p>
+<p><strong>Basic Information:</strong></p>
+<ul>
+<li><strong>App name:</strong> Name of your application</li>
+<li><strong>App description:</strong> What does your app do?</li>
+</ul>
+<p><strong>App Type:</strong></p>
+<ul>
+<li><strong>Web App:</strong>
+<ul>
+<li>Fill in redirect URI</li>
+<li>Must be HTTPS</li>
+<li>Example: <code>https://your-app.com/auth/tiktok/callback</code></li>
+</ul></li>
+<li><strong>Mobile App (iOS):</strong>
+<ul>
+<li>App Store URL (app must be published)</li>
+<li>Bundle ID</li>
+<li>iOS Universal Link</li>
+</ul></li>
+<li><strong>Mobile App (Android):</strong>
+<ul>
+<li>Google Play Store URL (app must be published)</li>
+<li>Package name</li>
+<li>SHA-256 fingerprint</li>
+</ul></li>
+</ul></li>
+<li><p><strong>Submit App Info</strong></p>
+<ul>
+<li>Review all details</li>
+<li>Click “Create app”</li>
+<li>You’ll receive Client Key and Client Secret (store securely!)</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="important-mobile-app-requirements">⚠️ IMPORTANT: Mobile App
+Requirements</h2>
+<h3 id="for-ios-apps">For iOS Apps:</h3>
+<ul>
+<li>✅ App <strong>MUST</strong> be in Apple App Store</li>
+<li>✅ Not in beta/TestFlight - fully published</li>
+<li>✅ Publicly available (no private/enterprise apps)</li>
+</ul>
+<h3 id="for-android-apps">For Android Apps:</h3>
+<ul>
+<li>✅ App <strong>MUST</strong> be in Google Play Store</li>
+<li>✅ Not in internal/closed testing - fully published</li>
+<li>✅ Publicly available</li>
+</ul>
+<h3 id="for-web-apps">For Web Apps:</h3>
+<ul>
+<li>✅ Valid redirect URI with HTTPS</li>
+<li>✅ Website must be accessible</li>
+<li>✅ Privacy policy publicly available</li>
+</ul>
+<hr />
+<h2 id="step-3-request-api-permissions">🔑 Step 3: Request API
+Permissions</h2>
+<p>TikTok follows <strong>minimum permissions principle</strong>:
+request ONLY what you truly need.</p>
+<h3 id="available-api-products">Available API Products</h3>
+<h4 id="login-kit">1️⃣ <strong>Login Kit</strong></h4>
+<ul>
+<li>Basic user info</li>
+<li>Profile picture and username</li>
+</ul>
+<p><strong>Scopes:</strong> - <code>user.info.basic</code></p>
+<h4 id="content-posting-api">2️⃣ <strong>Content Posting
+API</strong></h4>
+<ul>
+<li>Post videos on behalf of user</li>
+<li>Schedule videos</li>
+<li>Add captions and hashtags</li>
+</ul>
+<p><strong>Scopes:</strong> - <code>video.publish</code> -
+<code>video.list</code></p>
+<h4 id="data-api-analytics">3️⃣ <strong>Data API
+(Analytics)</strong></h4>
+<ul>
+<li>Video statistics</li>
+<li>Account analytics</li>
+<li>Engagement metrics</li>
+</ul>
+<p><strong>Scopes:</strong> - <code>video.insights</code> -
+<code>user.insights</code></p>
+<hr />
+<h2 id="step-4-permission-request-submission">📤 Step 4: Permission
+Request Submission</h2>
+<h3 id="process-2">Process</h3>
+<ol type="1">
+<li><p><strong>Go to App Dashboard</strong></p>
+<ul>
+<li>Select your app</li>
+<li>Click “Add products”</li>
+</ul></li>
+<li><p><strong>Select API Products</strong></p>
+<ul>
+<li>Choose desired products</li>
+<li>For each product: select specific scopes</li>
+</ul></li>
+<li><p><strong>For Each Permission: Detailed Use Case</strong></p>
+<p>Describe EXACTLY:</p>
+<ul>
+<li>What does your app do?</li>
+<li>Why do you need this permission?</li>
+<li>How does this improve user experience?</li>
+<li>Which feature uses this permission?</li>
+</ul></li>
+<li><p><strong>Submit for Review</strong></p>
+<ul>
+<li><strong>Wait time: 5-14 days</strong></li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="step-5-audit-process-for-production">🔍 Step 5: Audit Process
+(For Production)</h2>
+<p>To post public content, you must go through TikTok’s audit
+process.</p>
+<h3 id="when-to-request-audit">When to Request Audit?</h3>
+<p>✅ <strong>Ready for audit when:</strong> - Development testing is
+complete - All features work flawlessly - Security audit is done -
+Privacy policy is complete - Ready for production launch</p>
+<h3 id="audit-process">Audit Process</h3>
+<ol type="1">
+<li><strong>Prepare Documentation</strong>
+<ul>
+<li>Complete feature documentation</li>
+<li>Screenshots of all features</li>
+<li>Video demo (required, max 15 minutes)</li>
+<li>Security documentation</li>
+</ul></li>
+<li><strong>Submit Audit Request</strong>
+<ul>
+<li><strong>Timeline:</strong> 7-14 days</li>
+</ul></li>
+<li><strong>After Approval</strong>
+<ul>
+<li>✅ Production mode active</li>
+<li>✅ Content is publicly visible</li>
+<li>✅ Full API access</li>
+<li>✅ Ready for launch</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="complete-timeline">⏱️ Complete Timeline</h2>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Duration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Developer Account</strong></td>
+<td>5-10 min</td>
+</tr>
+<tr>
+<td><strong>App Registration</strong></td>
+<td>10-20 min</td>
+</tr>
+<tr>
+<td><strong>Permission Request</strong></td>
+<td>5-14 days</td>
+</tr>
+<tr>
+<td><strong>Development Testing</strong></td>
+<td>2-4 weeks</td>
+</tr>
+<tr>
+<td><strong>Audit Submission</strong></td>
+<td>7-14 days</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>4-8 weeks</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="rate-limits">📊 Rate Limits</h2>
+<h3 id="api-rate-limits-production">API Rate Limits (Production)</h3>
+<table>
+<thead>
+<tr>
+<th>Endpoint Type</th>
+<th>Limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Video Upload</strong></td>
+<td>10 per day per user</td>
+</tr>
+<tr>
+<td><strong>Video List</strong></td>
+<td>100 calls per day</td>
+</tr>
+<tr>
+<td><strong>User Info</strong></td>
+<td>1000 calls per day</td>
+</tr>
+<tr>
+<td><strong>Analytics</strong></td>
+<td>500 calls per day</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="common-mistakes">🚨 Common Mistakes</h2>
+<h3 id="mistake-1-app-not-in-app-store">❌ Mistake 1: App Not in App
+Store</h3>
+<p><strong>Problem:</strong> App submission without public app store
+listing <strong>Solution:</strong> Publish first in App Store/Play
+Store, then request TikTok API</p>
+<h3 id="mistake-2-too-broad-permissions">❌ Mistake 2: Too Broad
+Permissions</h3>
+<p><strong>Problem:</strong> “We want everything for future features”
+<strong>Solution:</strong> Request ONLY permissions you need NOW, expand
+later</p>
+<h3 id="mistake-3-vague-use-case">❌ Mistake 3: Vague Use Case</h3>
+<p><strong>Problem:</strong> “We’re making a social media app”
+<strong>Solution:</strong> Be specific: which feature, why this
+permission, how it helps users?</p>
+<hr />
+<h2 id="complete-checklist">✅ Complete Checklist</h2>
+<h3 id="before-starting">Before Starting:</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />TikTok developer account
+created</label></li>
+<li><label><input type="checkbox" />Email verified</label></li>
+<li><label><input type="checkbox" />Business details
+complete</label></li>
+</ul>
+<h3 id="app-registration">App Registration:</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />App name chosen (unique, no
+“TikTok”)</label></li>
+<li><label><input type="checkbox" />App description written (&gt;50
+chars)</label></li>
+<li><label><input type="checkbox" /><strong>Mobile:</strong> App
+published in App Store/Play Store</label></li>
+<li><label><input type="checkbox" /><strong>Web:</strong> Redirect URI
+configured (HTTPS)</label></li>
+<li><label><input type="checkbox" />Client Key and Secret securely
+stored</label></li>
+</ul>
+<h3 id="permissions">Permissions:</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Minimum permissions
+selected</label></li>
+<li><label><input type="checkbox" />Use case per permission
+written</label></li>
+<li><label><input type="checkbox" />Privacy policy publicly
+available</label></li>
+</ul>
+<h3 id="development">Development:</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />OAuth flow tested</label></li>
+<li><label><input type="checkbox" />API calls tested</label></li>
+<li><label><input type="checkbox" />Error handling robust</label></li>
+<li><label><input type="checkbox" />Rate limiting
+implemented</label></li>
+</ul>
+<h3 id="audit-production">Audit (Production):</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Minimum 2 weeks development
+testing</label></li>
+<li><label><input type="checkbox" />All bugs fixed</label></li>
+<li><label><input type="checkbox" />Complete documentation
+prepared</label></li>
+<li><label><input type="checkbox" />Video demo created (max
+15min)</label></li>
+<li><label><input type="checkbox" />Audit requested</label></li>
+</ul>
+<hr />
+<p><strong>Document Version:</strong> 1.0 <strong>Last Updated:</strong>
+February 8, 2026</p>
+</body>
+</html>

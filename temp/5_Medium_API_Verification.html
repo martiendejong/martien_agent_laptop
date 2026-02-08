@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>5_Medium_API_Verification</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.1.0/github-markdown.min.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Medium API Verification</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#medium-api-verification-guide"
+id="toc-medium-api-verification-guide">Medium API Verification Guide</a>
+<ul>
+<li><a href="#critical-warning" id="toc-critical-warning">🔴 CRITICAL
+WARNING</a></li>
+<li><a href="#whats-still-available" id="toc-whats-still-available">📋
+What’s Still Available?</a>
+<ul>
+<li><a href="#publishing-api-limited"
+id="toc-publishing-api-limited">Publishing API (Limited)</a></li>
+</ul></li>
+<li><a href="#getting-integration-token"
+id="toc-getting-integration-token">🔑 Getting Integration Token</a>
+<ul>
+<li><a href="#process" id="toc-process">Process</a></li>
+</ul></li>
+<li><a href="#available-api-endpoints"
+id="toc-available-api-endpoints">📚 Available API Endpoints</a>
+<ul>
+<li><a href="#user-info" id="toc-user-info">1. User Info</a></li>
+<li><a href="#user-publications" id="toc-user-publications">2. User
+Publications</a></li>
+<li><a href="#publish-article" id="toc-publish-article">3. Publish
+Article</a></li>
+</ul></li>
+<li><a href="#example-code-javascript"
+id="toc-example-code-javascript">💻 Example Code (JavaScript)</a>
+<ul>
+<li><a href="#basic-setup" id="toc-basic-setup">Basic Setup</a></li>
+<li><a href="#get-user-info" id="toc-get-user-info">Get User
+Info</a></li>
+<li><a href="#publish-article-1" id="toc-publish-article-1">Publish
+Article</a></li>
+</ul></li>
+<li><a href="#limitations-issues" id="toc-limitations-issues">⚠️
+Limitations &amp; Issues</a>
+<ul>
+<li><a href="#no-verification-process"
+id="toc-no-verification-process">No Verification Process</a></li>
+<li><a href="#limited-functionality"
+id="toc-limited-functionality">Limited Functionality</a></li>
+<li><a href="#no-support" id="toc-no-support">No Support</a></li>
+<li><a href="#rate-limits" id="toc-rate-limits">Rate Limits</a></li>
+</ul></li>
+<li><a href="#alternatives" id="toc-alternatives">🔄 Alternatives</a>
+<ul>
+<li><a href="#unofficial-apis" id="toc-unofficial-apis">1. Unofficial
+APIs</a></li>
+<li><a href="#rss-feeds" id="toc-rss-feeds">2. RSS Feeds</a></li>
+<li><a href="#other-platforms" id="toc-other-platforms">3. Other
+Platforms</a></li>
+</ul></li>
+<li><a href="#why-not-use-medium" id="toc-why-not-use-medium">🚨 Why NOT
+Use Medium?</a>
+<ul>
+<li><a href="#for-production-apps-not-recommended"
+id="toc-for-production-apps-not-recommended">For Production Apps: ❌ NOT
+RECOMMENDED</a></li>
+</ul></li>
+<li><a href="#if-you-still-use-medium"
+id="toc-if-you-still-use-medium">✅ If You Still Use Medium</a>
+<ul>
+<li><a href="#best-practices" id="toc-best-practices">Best
+Practices</a></li>
+</ul></li>
+<li><a href="#support-resources" id="toc-support-resources">📞 Support
+&amp; Resources</a>
+<ul>
+<li><a href="#official-archived" id="toc-official-archived">Official
+(Archived)</a></li>
+</ul></li>
+<li><a href="#recommendation" id="toc-recommendation">🎯
+Recommendation</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="medium-api-verification-guide">Medium API Verification
+Guide</h1>
+<p><strong>Date:</strong> February 8, 2026 <strong>Platform:</strong>
+Medium Publishing API <strong>Portal:</strong> https://medium.com/ (no
+dedicated developer portal)</p>
+<hr />
+<h2 id="critical-warning">🔴 CRITICAL WARNING</h2>
+<p><strong>Medium API is officially NO LONGER SUPPORTED as of March
+2023.</strong></p>
+<ul>
+<li>❌ GitHub repository archived (March 2, 2023)</li>
+<li>❌ No active development or maintenance</li>
+<li>❌ No guarantee of uptime or functionality</li>
+<li>❌ Could disappear completely at any moment</li>
+<li>⚠️ <strong>NOT RECOMMENDED for production use</strong></li>
+</ul>
+<hr />
+<h2 id="whats-still-available">📋 What’s Still Available?</h2>
+<h3 id="publishing-api-limited">Publishing API (Limited)</h3>
+<p><strong>Status:</strong> Still works but “unsupported”</p>
+<p><strong>Functionality:</strong> - ✅ Publish articles - ✅ Fetch
+basic user info - ❌ No reading/fetching articles - ❌ No
+analytics/statistics - ❌ No comment management - ❌ No publications
+management</p>
+<p><strong>API Endpoint:</strong> - Base URL:
+<code>https://api.medium.com/v1/</code> - Rate limits: Unknown/not
+documented - SLA: None</p>
+<hr />
+<h2 id="getting-integration-token">🔑 Getting Integration Token</h2>
+<p>If you still want to use the limited API:</p>
+<h3 id="process">Process</h3>
+<ol type="1">
+<li><strong>Log in to Medium</strong>
+<ul>
+<li>URL: https://medium.com/</li>
+<li>Log in with your account</li>
+</ul></li>
+<li><strong>Go to Settings</strong>
+<ul>
+<li>Click your profile (top right)</li>
+<li>Select “Settings”</li>
+</ul></li>
+<li><strong>Navigate to Security and Apps</strong>
+<ul>
+<li>In left menu: “Security and apps”</li>
+<li>Scroll down to “Integration tokens”</li>
+</ul></li>
+<li><strong>Generate Token</strong>
+<ul>
+<li>Click “Get integration token” or “New integration token”</li>
+<li>Give token a description (e.g., “MyApp - Production”)</li>
+<li>Click “Get integration token”</li>
+</ul></li>
+<li><strong>Store Token Securely</strong>
+<ul>
+<li>⚠️ Token shown only once</li>
+<li>Copy and save in password manager</li>
+<li>Token has <strong>WRITE-ONLY</strong> access</li>
+<li>No expiration date (valid until deleted)</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="available-api-endpoints">📚 Available API Endpoints</h2>
+<h3 id="user-info">1. User Info</h3>
+<p><strong>Endpoint:</strong> <code>GET /v1/me</code></p>
+<p><strong>Requires:</strong> Bearer token in Authorization header</p>
+<p><strong>Response:</strong></p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;data&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="st">&quot;user_id&quot;</span><span class="fu">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;username&quot;</span><span class="fu">:</span> <span class="st">&quot;username&quot;</span><span class="fu">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Display Name&quot;</span><span class="fu">,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;url&quot;</span><span class="fu">:</span> <span class="st">&quot;https://medium.com/@username&quot;</span><span class="fu">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;imageUrl&quot;</span><span class="fu">:</span> <span class="st">&quot;profile_image_url&quot;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<hr />
+<h3 id="user-publications">2. User Publications</h3>
+<p><strong>Endpoint:</strong>
+<code>GET /v1/users/:userId/publications</code></p>
+<p><strong>Response:</strong></p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;data&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="st">&quot;publication_id&quot;</span><span class="fu">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Publication Name&quot;</span><span class="fu">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;Description&quot;</span><span class="fu">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;url&quot;</span><span class="fu">:</span> <span class="st">&quot;https://medium.com/publication-name&quot;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<hr />
+<h3 id="publish-article">3. Publish Article</h3>
+<p><strong>Endpoint:</strong>
+<code>POST /v1/users/:userId/posts</code></p>
+<p><strong>Body:</strong></p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;Article Title&quot;</span><span class="fu">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;contentFormat&quot;</span><span class="fu">:</span> <span class="st">&quot;html&quot;</span><span class="fu">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;content&quot;</span><span class="fu">:</span> <span class="st">&quot;&lt;h1&gt;Title&lt;/h1&gt;&lt;p&gt;Content...&lt;/p&gt;&quot;</span><span class="fu">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;tags&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;tag1&quot;</span><span class="ot">,</span> <span class="st">&quot;tag2&quot;</span><span class="ot">,</span> <span class="st">&quot;tag3&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;publishStatus&quot;</span><span class="fu">:</span> <span class="st">&quot;draft&quot;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p><strong>Parameters:</strong> - <code>title</code> (required): Article
+title - <code>contentFormat</code> (required): “html” or “markdown” -
+<code>content</code> (required): Article content - <code>tags</code>
+(optional): Array of tags (max 5) - <code>publishStatus</code>
+(required): “draft” or “public” - <code>canonicalUrl</code> (optional):
+For cross-posting</p>
+<hr />
+<h2 id="example-code-javascript">💻 Example Code (JavaScript)</h2>
+<h3 id="basic-setup">Basic Setup</h3>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> MEDIUM_TOKEN <span class="op">=</span> <span class="st">&#39;your_integration_token&#39;</span><span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> API_BASE <span class="op">=</span> <span class="st">&#39;https://api.medium.com/v1&#39;</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> headers <span class="op">=</span> {</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;Authorization&#39;</span><span class="op">:</span> <span class="vs">`Bearer </span><span class="sc">${</span>MEDIUM_TOKEN<span class="sc">}</span><span class="vs">`</span><span class="op">,</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;Content-Type&#39;</span><span class="op">:</span> <span class="st">&#39;application/json&#39;</span><span class="op">,</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;Accept&#39;</span><span class="op">:</span> <span class="st">&#39;application/json&#39;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+<h3 id="get-user-info">Get User Info</h3>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">getMediumUser</span>() {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> response <span class="op">=</span> <span class="cf">await</span> <span class="fu">fetch</span>(<span class="vs">`</span><span class="sc">${</span>API_BASE<span class="sc">}</span><span class="vs">/me`</span><span class="op">,</span> {</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">headers</span><span class="op">:</span> headers</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> data <span class="op">=</span> <span class="cf">await</span> response<span class="op">.</span><span class="fu">json</span>()<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> data<span class="op">.</span><span class="at">data</span><span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="publish-article-1">Publish Article</h3>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">publishArticle</span>(userId<span class="op">,</span> article) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> response <span class="op">=</span> <span class="cf">await</span> <span class="fu">fetch</span>(<span class="vs">`</span><span class="sc">${</span>API_BASE<span class="sc">}</span><span class="vs">/users/</span><span class="sc">${</span>userId<span class="sc">}</span><span class="vs">/posts`</span><span class="op">,</span> {</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">method</span><span class="op">:</span> <span class="st">&#39;POST&#39;</span><span class="op">,</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">headers</span><span class="op">:</span> headers<span class="op">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">body</span><span class="op">:</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>({</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">title</span><span class="op">:</span> article<span class="op">.</span><span class="at">title</span><span class="op">,</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">contentFormat</span><span class="op">:</span> <span class="st">&#39;html&#39;</span><span class="op">,</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">content</span><span class="op">:</span> article<span class="op">.</span><span class="at">content</span><span class="op">,</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tags</span><span class="op">:</span> article<span class="op">.</span><span class="at">tags</span> <span class="op">||</span> []<span class="op">,</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">publishStatus</span><span class="op">:</span> <span class="st">&#39;public&#39;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> data <span class="op">=</span> <span class="cf">await</span> response<span class="op">.</span><span class="fu">json</span>()<span class="op">;</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> data<span class="op">.</span><span class="at">data</span><span class="op">;</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<hr />
+<h2 id="limitations-issues">⚠️ Limitations &amp; Issues</h2>
+<h3 id="no-verification-process">No Verification Process</h3>
+<ul>
+<li>❌ No app registration</li>
+<li>❌ No OAuth flow</li>
+<li>❌ Only simple bearer token</li>
+<li>❌ No scopes or permissions</li>
+</ul>
+<h3 id="limited-functionality">Limited Functionality</h3>
+<ul>
+<li>❌ Cannot fetch/read articles</li>
+<li>❌ No analytics or statistics</li>
+<li>❌ No comment management</li>
+<li>❌ No draft updates</li>
+<li>❌ No article deletion</li>
+</ul>
+<h3 id="no-support">No Support</h3>
+<ul>
+<li>❌ No developer support</li>
+<li>❌ No SLA or uptime guarantee</li>
+<li>❌ GitHub repo archived</li>
+<li>❌ No bug fixes or updates</li>
+</ul>
+<h3 id="rate-limits">Rate Limits</h3>
+<ul>
+<li>⚠️ Unknown and not documented</li>
+<li>⚠️ No rate limit headers in response</li>
+<li>⚠️ Risk of unexpected blocking</li>
+</ul>
+<hr />
+<h2 id="alternatives">🔄 Alternatives</h2>
+<h3 id="unofficial-apis">1. Unofficial APIs</h3>
+<p><strong>MediumAPI.com</strong> - URL: https://mediumapi.com/ -
+Commercial product (paid) - More features than official API - Web
+scraping-based - ⚠️ Against Medium ToS</p>
+<h3 id="rss-feeds">2. RSS Feeds</h3>
+<p><strong>For Reading:</strong> - Each Medium publication has RSS feed
+- Format: <code>https://medium.com/feed/@username</code> - No
+authentication needed - Free and stable</p>
+<h3 id="other-platforms">3. Other Platforms</h3>
+<p><strong>Consider:</strong> - <strong>Dev.to:</strong> Full API,
+developer-focused - <strong>Hashnode:</strong> GraphQL API, developer
+blogs - <strong>Ghost:</strong> Self-hosted, full API -
+<strong>WordPress:</strong> REST API, very extensive</p>
+<hr />
+<h2 id="why-not-use-medium">🚨 Why NOT Use Medium?</h2>
+<h3 id="for-production-apps-not-recommended">For Production Apps: ❌ NOT
+RECOMMENDED</h3>
+<p><strong>Reasons:</strong> 1. <strong>No support</strong> - API is
+abandoned 2. <strong>No guarantees</strong> - Could disappear anytime 3.
+<strong>Limited functionality</strong> - Write-only, no read 4.
+<strong>No updates</strong> - Bugs won’t be fixed 5. <strong>Business
+risk</strong> - Could break your app without warning</p>
+<hr />
+<h2 id="if-you-still-use-medium">✅ If You Still Use Medium</h2>
+<h3 id="best-practices">Best Practices</h3>
+<h4 id="error-handling-critical">Error Handling (CRITICAL)</h4>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">safePostToMedium</span>(article) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span> {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="cf">await</span> <span class="fu">postToMedium</span>(article)<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">catch</span> (error) {</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(<span class="st">&#39;Medium API failed:&#39;</span><span class="op">,</span> error)<span class="op">;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">notifyUser</span>(<span class="st">&#39;Medium posting failed, saved locally&#39;</span>)<span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">saveArticleDraft</span>(article)<span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h4 id="monitoring">Monitoring</h4>
+<ul>
+<li>Monitor API uptime yourself</li>
+<li>Alert on failures</li>
+<li>Track error rates</li>
+<li>Have manual posting fallback</li>
+</ul>
+<hr />
+<h2 id="support-resources">📞 Support &amp; Resources</h2>
+<h3 id="official-archived">Official (Archived)</h3>
+<p><strong>GitHub Repo:</strong>
+https://github.com/Medium/medium-api-docs (archived)</p>
+<p><strong>Last Update:</strong> March 2, 2023</p>
+<p><strong>No Support:</strong> - No developer support - No bug reports
+accepted - No feature requests</p>
+<hr />
+<h2 id="recommendation">🎯 Recommendation</h2>
+<p><strong>For new projects: ❌ DO NOT USE MEDIUM API</strong></p>
+<p><strong>Consider:</strong> 1. Choose Dev.to, Hashnode, or Ghost for
+blogging APIs 2. If Medium important: use RSS feeds for reading 3. For
+posting: offer manual posting flow 4. Focus on platforms with active API
+support</p>
+<hr />
+<p><strong>Document Version:</strong> 1.0 <strong>Last Updated:</strong>
+February 8, 2026 <strong>Status:</strong> API DEPRECATED - NOT
+RECOMMENDED <strong>Alternative:</strong> Dev.to, Hashnode, Ghost</p>
+</body>
+</html>
