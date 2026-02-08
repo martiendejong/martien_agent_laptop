@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-08T11:00:00Z | ✅ PR #178: MSI Installer for Hazina Orchestration with Windows Service |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager + hazina | feature/social-media-unified-flow | 2026-02-08T14:30:00Z | 🔨 Social Media Unified Flow - 20 Incremental Steps Refactor |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-08T03:30:00Z | ✅ PR #52: TopicLearn Backend + TopicUsers Fix (ClickUp #869c29zua, #869c29zv6) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-08T05:30:00Z | ✅ PR #54: Topics Featured Image Display & Management (ClickUp #869bz901c) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-07T21:40:00Z | ✅ PR #513: DoD Enforcement System (ClickUp #869bu91ej) |
