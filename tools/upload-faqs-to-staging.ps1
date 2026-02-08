@@ -11,8 +11,8 @@ Write-Host ""
 # Files to upload
 $filesToUpload = @(
     @{
-        Local = "C:\xampp\htdocs\generate-faqs-staging.php"
-        Remote = "$stagingPath/generate-faqs-staging.php"
+        Local = "C:\xampp\htdocs\generate-faqs-staging-batch.php"
+        Remote = "$stagingPath/generate-faqs-staging-batch.php"
     },
     @{
         Local = "C:\stores\artrevisionist\faq-generation.prompts.json"
