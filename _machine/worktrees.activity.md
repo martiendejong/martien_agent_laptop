@@ -315,3 +315,16 @@
 - **Outcome:** All valid PRs merged, duplicates closed, develop clean and building (0 errors)
 - **Builds:** Hazina 0 errors, Client-Manager 0 errors
 - **Status:** Both repos on develop, all worktrees FREE, no conflicts
+
+## 2026-02-08T22:15:00Z - Allocation: agent-001
+- Repo: client-manager + hazina (paired)
+- Branch: feature/869az20km-doelen-doelgroep-tab
+- ClickUp Task: #869az20km
+- Purpose: Add Doelen en Doelgroep tab to Project Settings (moved from review to todo based on code review)
+
+## 2026-02-08T22:45:00Z - Release: agent-001
+- Repo: client-manager (hazina paired, but no changes)
+- Branch: feature/869az20km-doelen-doelgroep-tab
+- PR: #521
+- ClickUp: #869az20km
+- Outcome: Goals and Target Audience section added to Project Settings with auto-save
