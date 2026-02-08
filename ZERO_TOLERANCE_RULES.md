@@ -96,7 +96,47 @@ AFTER creating PR (gh pr create):
 ❌ VIOLATION = Editing C:\Projects\<repo> in Feature Development Mode
 ```
 
-### ✋ RULE 3B: DOCUMENTATION-FIRST DEPLOYMENT (NEW - 2026-02-08)
+### ✋ RULE 3B: PR MERGE PROTOCOL (NEW - 2026-02-08)
+```
+BEFORE merging ANY PR to develop:
+
+MANDATORY SEQUENCE:
+1. Code review completed (approval given)
+2. Merge latest develop INTO feature branch
+   git checkout <feature-branch>
+   git pull origin develop
+   # OR
+   git merge origin/develop --no-edit
+3. Resolve ALL merge conflicts (if any)
+4. Build & test in feature branch (wait for CI checks)
+5. Verify ALL critical checks pass (build, tests, security scans)
+6. ONLY THEN merge PR to develop
+
+DO NOT:
+❌ Merge PR without merging develop first
+❌ Merge PR with failing CI checks
+❌ Merge PR without resolving conflicts
+❌ Assume "it will work" without testing
+
+VIOLATION EXAMPLE (2026-02-08):
+- PR ready to merge but develop not merged in branch
+- User: "develop die is in de branche gemerged dan mag je de PR mergen...
+   anders niet, dan moet je eerst develop mergen"
+
+CONSEQUENCE:
+- Merge conflicts in develop
+- Broken builds in develop
+- Wasted time fixing post-merge
+- User frustration
+
+WHY THIS RULE EXISTS:
+- Ensures feature branch is up-to-date with latest changes
+- Catches integration issues BEFORE merging to develop
+- Prevents breaking develop branch
+- Maintains clean git history
+```
+
+### ✋ RULE 3C: DOCUMENTATION-FIRST DEPLOYMENT (NEW - 2026-02-08)
 ```
 BEFORE deploying, starting, or configuring ANY service/application:
 
@@ -126,7 +166,7 @@ CONSEQUENCE:
 - Start over with correct config
 ```
 
-### ✋ RULE 3C: C:\Projects\<repo> STAYS ON DEVELOP (Feature Development Mode)
+### ✋ RULE 3D: C:\Projects\<repo> STAYS ON DEVELOP (Feature Development Mode)
 ```
 🏗️ FEATURE DEVELOPMENT MODE:
 BEFORE allocating worktree:
