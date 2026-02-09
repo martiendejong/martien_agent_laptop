@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-09T23:30:00Z | ✅ PR #533: Right panel tabs (Suggestions + Navigation) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager | feature/consolidate-post-ideas-generator | 2026-02-09T00:00:00Z | Consolidate Post Ideas Generator + Post Creation Wizard |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-09T23:45:00Z | ✅ PR #534: Media Library - Upload, Grid, Search (Phase A+C) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-09T23:30:00Z | ✅ PR #187: Convert Orchestration from Windows Service to Desktop Tray App |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-07T21:40:00Z | ✅ PR #513: DoD Enforcement System (ClickUp #869bu91ej) |
