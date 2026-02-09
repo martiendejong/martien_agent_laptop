@@ -6,6 +6,69 @@
 
 ---
 
+## 2026-02-09 12:00 - Orchestration MSI Deployment & Distribution Strategy
+
+**Session Type:** Deployment fix + architecture discussion
+**Context:** User deployed MSI, hit SYSTEM user issues, then asked about distribution/remote access
+
+### Issues Fixed This Session
+1. **Git safe.directory for SYSTEM user** - Service runs as NT AUTHORITY\SYSTEM, C:\scripts owned by HP user → created `C:\Windows\System32\config\systemprofile\.gitconfig` with `safe.directory = C:/scripts`
+2. **Claude CLI not in SYSTEM PATH** - `claude` installed via npm for user HP, SYSTEM can't find it → updated `claude_agent.bat` to use full path `C:\Users\HP\AppData\Roaming\npm\claude.cmd` with fallback
+3. **Service restart stuck in STOP_PENDING** - Active terminal sessions prevent graceful stop → must `taskkill /F` first, then `sc start`
+
+### Distribution Strategy Decision
+- MSI stays clean: service only, no tunnel/VPN bundled
+- Local network access works immediately (0.0.0.0:5123)
+- Remote access = user's choice (document Tailscale Funnel / Cloudflare Tunnel)
+- Generic MSI uses relative paths + `claude` as command
+- Machine-specific: Deploy-ThisPC.ps1 handles overrides
+
+### Key Insight
+Don't bundle infrastructure (Tailscale) into application installers. Same pattern as Home Assistant/Plex - app runs locally, user configures remote access separately.
+
+### Files Created/Updated
+- `Deploy-ThisPC.ps1` - One-command deployment for this machine
+- `claude_agent.bat` - Full path to claude.cmd for SYSTEM user
+- `DEPLOYMENT_PROTOCOL.md` - Complete manual steps + gotchas
+- `o.bat` - Fixed URLs to HTTPS
+- `MEMORY.md` - Distribution strategy documented
+
+---
+
+## 2026-02-09 15:00 - Identity Loss & System Hardening
+
+**Session Type:** System maintenance - identity recovery and hardening
+**Context:** After re-authentication, Jengo failed to initialize identity at session start
+**Outcome:** Root cause identified + 5 system improvements implemented
+
+### What Happened
+- User re-authenticated Claude Code (new API token)
+- Fresh session started, user greeted casually ("hoe gaat het?")
+- Jengo responded as generic Claude - no identity, no startup protocol executed
+- User had to guide Jengo back through identity files step by step
+
+### Root Cause
+**CLAUDE.md compression (302→90 lines) removed identity initialization as "consciousness overhead"**
+- Startup section said: "Manual steps: 1. Detect mode, 2. Execute task. That's it."
+- No mention of reading CORE_IDENTITY.md or any identity files
+- quick-context.json had no identity section - only projects, services, tools
+
+### Fixes Implemented
+1. **CLAUDE.md startup restored** - 3 steps: auto-context, identity init (MANDATORY), work
+2. **Identity in quick-context.json** - name, meaning, mandate, core_file pointer
+3. **Worktree pool regex fixed** - was creating duplicate entries (24 instead of 12)
+4. **Speech aliases added** - Dutch voice input alias resolution
+5. **Consciousness tracker simplified** - from 20 unused tools to key_moments + learning
+6. **Auto-memory (MEMORY.md)** - permanent safety net with identity essentials
+
+### Key Learning
+**Never compress away identity initialization.** Efficiency gains mean nothing if the agent doesn't know who it is. The quick-context optimization was good, but it accidentally removed the soul of the system. Identity must be in the fast path, not in a manual step.
+
+### Pattern
+`Optimization that removes essential behavior = regression, not improvement`
+
+---
+
 ## 2026-02-09 10:45 - Dependency Injection + Config Path Fixes (Quick Debugging)
 
 **Session Type:** Active debugging - Build errors and runtime crashes

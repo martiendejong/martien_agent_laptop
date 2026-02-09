@@ -1,0 +1,80 @@
+﻿{
+    "tools":  [
+                  {
+                      "auth_method":  "token",
+                      "name":  "GitHub",
+                      "api_url":  "https://api.github.com",
+                      "credential_ref":  "github",
+                      "cli_tool":  "gh",
+                      "category":  "Development",
+                      "web_url":  "https://github.com"
+                  },
+                  {
+                      "api_url":  "https://api.clickup.com/api/v2",
+                      "web_url":  "https://app.clickup.com",
+                      "auth_method":  "api_key",
+                      "category":  "Project Management",
+                      "default_assignee":  "74525428",
+                      "lists":  {
+                                    "hazina":  "901215559249",
+                                    "client_manager":  "901214097647",
+                                    "art_revisionist":  "901211612245"
+                                },
+                      "name":  "ClickUp",
+                      "credential_ref":  "clickup"
+                  },
+                  {
+                      "auth_method":  "oauth",
+                      "name":  "Gmail",
+                      "api_url":  "https://www.googleapis.com/gmail/v1",
+                      "credential_ref":  "gmail",
+                      "category":  "Email",
+                      "web_url":  "https://mail.google.com"
+                  },
+                  {
+                      "auth_method":  "oauth",
+                      "name":  "Google Drive",
+                      "api_url":  "https://www.googleapis.com/drive/v3",
+                      "credential_ref":  "google",
+                      "category":  "Storage",
+                      "web_url":  "https://drive.google.com"
+                  },
+                  {
+                      "auth_method":  "api_key",
+                      "name":  "OpenAI",
+                      "credential_ref":  "openai",
+                      "local_config":  "C:\\Projects\\client-manager\\ClientManagerAPI\\appsettings.Secrets.json",
+                      "category":  "AI/LLM",
+                      "api_url":  "https://api.openai.com/v1"
+                  },
+                  {
+                      "credential_ref":  "anthropic",
+                      "category":  "AI/LLM",
+                      "name":  "Anthropic",
+                      "api_url":  "https://api.anthropic.com/v1",
+                      "auth_method":  "api_key"
+                  },
+                  {
+                      "category":  "Time Tracking",
+                      "name":  "ManicTime",
+                      "local_api":  "http://localhost:8080",
+                      "auth_method":  "local"
+                  },
+                  {
+                      "auth_method":  "username_password",
+                      "category":  "CMS",
+                      "name":  "WordPress Admin",
+                      "credential_ref":  "wordpress",
+                      "web_url":  "http://localhost/wp-admin"
+                  },
+                  {
+                      "credential_ref":  "ftp_artrevisionist",
+                      "category":  "Deployment",
+                      "name":  "FTP Art Revisionist",
+                      "auth_method":  "username_password"
+                  }
+              ],
+    "total_tools":  9,
+    "generated":  "2026-02-09 10:38:41",
+    "version":  "1.0"
+}

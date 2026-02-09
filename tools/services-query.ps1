@@ -138,6 +138,6 @@ if ($ListAll -or (-not $ServiceName -and $Port -eq 0)) {
     }
 
     # Also output JSON for programmatic access
-    Write-Host "📦 JSON Output:" -ForegroundColor Cyan
+    Write-Host "JSON Output:" -ForegroundColor Cyan
     $services | ConvertTo-Json -Depth 10
 }

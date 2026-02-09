@@ -1,19 +1,29 @@
 @echo off
 :: Quick launcher for Hazina Agentic Orchestration
-:: HTTPS on port 5123, accessible via Tailscale
+:: Now runs as Windows Service (installed via MSI)
 
 title Hazina Orchestration
+
 echo.
-echo  ╔═══════════════════════════════════════════════════════════╗
-echo  ║         HAZINA AGENTIC ORCHESTRATION                      ║
-echo  ╠═══════════════════════════════════════════════════════════╣
-echo  ║  Local:     https://localhost:5123                        ║
-echo  ║  Tailscale: https://desktop-ecbaunu.tailca9ff1.ts.net:5123║
-echo  ║  Swagger:   https://localhost:5123/swagger                ║
-echo  ║  Login:     bosi / Th1s1sSp4rt4!                          ║
-echo  ╚═══════════════════════════════════════════════════════════╝
+echo  Hazina Agentic Orchestration
+echo  =============================
 echo.
 
-cd /d "C:\stores\orchestration"
+:: Check if service is running
+sc query HazinaOrchestration | findstr "RUNNING" >nul 2>&1
+if %errorlevel% equ 0 (
+    echo  Service: RUNNING
+) else (
+    echo  Service: STOPPED - starting...
+    net start HazinaOrchestration
+)
+
+echo  URL:     https://localhost:5123
+echo  Remote:  https://desktop-ecbaunu.tailca9ff1.ts.net:5123
+echo  Swagger: https://localhost:5123/swagger
+echo  Auth:    bosi / ****
+echo.
+echo  Manage: sc stop/start HazinaOrchestration
+echo.
+
 start "" "https://localhost:5123"
-HazinaOrchestration.exe

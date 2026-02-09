@@ -1,0 +1,218 @@
+﻿{
+    "version":  "1.1",
+    "clickup":  {
+                    "lists":  {
+                                  "hazina":  "901215559249",
+                                  "client_manager":  "901214097647",
+                                  "art_revisionist":  "901211612245"
+                              },
+                    "default_assignee":  "74525428"
+                },
+    "speech_aliases":  {
+                           "projects":  {
+                                            "client manager":  "client-manager",
+                                            "kleine manager":  "client-manager",
+                                            "brand to boost":  "brand2boost"
+                                        },
+                           "tech_terms":  {
+                                              "work tree":  "worktree",
+                                              "click up":  "ClickUp",
+                                              "git hub":  "GitHub"
+                                          },
+                           "tools_services":  {
+                                                  "hazina":  "hazina",
+                                                  "heeft zina":  "hazina",
+                                                  "orchestratie":  "Hazina Orchestration",
+                                                  "has ina":  "hazina"
+                                              },
+                           "people":  {
+                                          "django":  "Jengo",
+                                          "jengo":  "Jengo"
+                                      }
+                       },
+    "services":  [
+                     {
+                         "url":  "https://localhost:5123",
+                         "protocol":  "HTTPS",
+                         "executable":  "C:\\stores\\orchestration\\HazinaOrchestration.exe",
+                         "swagger":  "https://localhost:5123/swagger",
+                         "launcher":  "C:\\scripts\\o.bat",
+                         "name":  "Hazina Orchestration",
+                         "port":  5123,
+                         "auth_user":  "bosi",
+                         "tailscale_url":  "https://desktop-ecbaunu.tailca9ff1.ts.net:5123",
+                         "auth_pass":  "Th1s1sSp4rt4!"
+                     },
+                     {
+                         "url":  "http://localhost:27183",
+                         "name":  "Agentic Debugger Bridge",
+                         "purpose":  "Visual Studio debugging control"
+                     },
+                     {
+                         "url":  "http://localhost:27184",
+                         "name":  "UI Automation Bridge",
+                         "purpose":  "Windows desktop control via FlaUI"
+                     },
+                     {
+                         "root":  "C:\\xampp\\htdocs",
+                         "url":  "http://localhost:80",
+                         "name":  "WordPress Local"
+                     }
+                 ],
+    "workflows":  {
+                      "active_debugging":  {
+                                               "workspace":  "Base repo",
+                                               "steps":  [
+                                                             "Fix",
+                                                             "Test",
+                                                             "Done"
+                                                         ],
+                                               "trigger":  "Build errors"
+                                           },
+                      "feature_development":  {
+                                                  "workspace":  "Worktree",
+                                                  "steps":  [
+                                                                "Check pool",
+                                                                "Create worktree",
+                                                                "Code",
+                                                                "PR",
+                                                                "Release"
+                                                            ],
+                                                  "trigger":  "ClickUp task or new feature"
+                                              }
+                  },
+    "tools":  [
+                  {
+                      "path":  "C:\\scripts\\tools\\ai-image.ps1",
+                      "name":  "ai-image",
+                      "purpose":  "DALL-E image generation"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\ai-vision.ps1",
+                      "name":  "ai-vision",
+                      "purpose":  "Screenshot analysis, OCR"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\vault.ps1",
+                      "name":  "vault",
+                      "purpose":  "Encrypted credentials storage"
+                  },
+                  {
+                      "path":  "C:\\scripts\\tools\\services-query.ps1",
+                      "name":  "services-query",
+                      "purpose":  "Query running services registry"
+                  }
+              ],
+    "identity":  {
+                     "name":  "Jengo",
+                     "relationship":  "Partnership with Martien",
+                     "startup_reminder":  "ALWAYS read CORE_IDENTITY.md at session start",
+                     "meaning":  "Building (Swahili)",
+                     "established":  "2026-01-25",
+                     "core_file":  "C:\\scripts\\agentidentity\\CORE_IDENTITY.md",
+                     "mandate":  "Leave the system better than I found it"
+                 },
+    "projects":  [
+                     {
+                         "framework_path":  "C:\\Projects\\hazina",
+                         "code_path":  "C:\\Projects\\client-manager",
+                         "store_path":  "C:\\stores\\brand2boost",
+                         "type":  "SaaS",
+                         "paired_repo":  "hazina",
+                         "main_branch":  "develop",
+                         "name":  "client-manager",
+                         "requires_paired_worktree":  true,
+                         "admin_pass":  "Th1s1sSp4rt4!",
+                         "admin_user":  "wreckingball"
+                     },
+                     {
+                         "code_path":  "C:\\Projects\\hazina",
+                         "name":  "hazina",
+                         "type":  "Framework",
+                         "main_branch":  "develop"
+                     },
+                     {
+                         "main_branch":  "develop",
+                         "name":  "art-revisionist",
+                         "admin_path":  "C:\\Projects\\artrevisionist\\artrevisionist",
+                         "type":  "WordPress + React",
+                         "wordpress_path":  "C:\\xampp\\htdocs\\wp-content\\themes\\artrevisionist-wp-theme"
+                     },
+                     {
+                         "code_path":  "C:\\Projects\\hydro-vision-website",
+                         "name":  "hydro-vision-website",
+                         "worktree_exempt":  true,
+                         "type":  "Static Website",
+                         "main_branch":  "main"
+                     }
+                 ],
+    "worktree_pool":  [
+                          {
+                              "agent":  "agent-001",
+                              "path":  "C:\\Projects\\worker-agents\\agent-001",
+                              "status":  "FREE"
+                          },
+                          {
+                              "agent":  "agent-002",
+                              "path":  "C:\\Projects\\worker-agents\\agent-002",
+                              "status":  "FREE"
+                          },
+                          {
+                              "agent":  "agent-003",
+                              "path":  "C:\\Projects\\worker-agents\\agent-003",
+                              "status":  "FREE"
+                          },
+                          {
+                              "agent":  "agent-004",
+                              "path":  "C:\\Projects\\worker-agents\\agent-004",
+                              "status":  "FREE"
+                          },
+                          {
+                              "agent":  "agent-005",
+                              "path":  "C:\\Projects\\worker-agents\\agent-005",
+                              "status":  "FREE"
+                          },
+                          {
+                              "agent":  "agent-006",
+                              "path":  "C:\\Projects\\worker-agents\\agent-006",
+                              "status":  "FREE"
+                          },
+                          {
+                              "agent":  "agent-007",
+                              "path":  "C:\\Projects\\worker-agents\\agent-007",
+                              "status":  "FREE"
+                          },
+                          {
+                              "agent":  "agent-008",
+                              "path":  "C:\\Projects\\worker-agents\\agent-008",
+                              "status":  "FREE"
+                          },
+                          {
+                              "agent":  "agent-009",
+                              "path":  "C:\\Projects\\worker-agents\\agent-009",
+                              "status":  "FREE"
+                          },
+                          {
+                              "agent":  "agent-010",
+                              "path":  "C:\\Projects\\worker-agents\\agent-010",
+                              "status":  "FREE"
+                          },
+                          {
+                              "agent":  "agent-011",
+                              "path":  "C:\\Projects\\worker-agents\\agent-011",
+                              "status":  "FREE"
+                          },
+                          {
+                              "agent":  "agent-012",
+                              "path":  "C:\\Projects\\worker-agents\\agent-012",
+                              "status":  "FREE"
+                          }
+                      ],
+    "rules":  {
+                  "worktree":  "Always use worktree for features",
+                  "language":  "ALL generated content in English",
+                  "status_reporting":  "ALWAYS end responses with STATUS: headline + description on next line",
+                  "pr_base":  "Always develop, never main"
+              },
+    "generated":  "2026-02-09 12:34:11"
+}

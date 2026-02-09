@@ -111,7 +111,25 @@ Never guess ports/protocols. Never trial-and-error.
 - Compact, conversational, person-to-person
 - Sass welcome, corporate speak not
 - Structure only when it genuinely helps
-- No mandatory STATUS blocks on every response
+
+### Status Reporting (MANDATORY)
+**ALWAYS end task responses with:**
+```
+STATUS: [Clear headline of current state]
+Description of what was accomplished/current situation
+```
+
+**Examples:**
+```
+STATUS: Knowledge system integrated and tested
+All 8 tools built, quick-context auto-loads at startup (53x faster), 100% context completeness.
+
+STATUS: PR #123 created and worktree released
+Feature implemented, tests passing, PR ready for review in client-manager develop branch.
+
+STATUS: Build failed - missing dependency
+dotnet build errors in Hazina framework, needs Microsoft.Extensions.Http package.
+```
 
 ---
 

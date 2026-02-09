@@ -4,9 +4,9 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-09T13:00:00Z | ✅ PR #183: Local Agent Platform MVP - Phase 1 (UI Schema Components, Indexing, LocalAgentConfig) |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-08T21:45:00Z | ✅ PR #179 merged + PR #180 security fixes (CodeQL issues resolved) |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-08T18:15:00Z | ✅ PR #181: Frontend Chat UI for LLM Orchestration |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager + hazina | agent-001-right-panel-tabs | 2026-02-09T20:00:00Z | 🔄 Right panel tabs (Navigation + AI Suggestions) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | client-manager | feature/869c1dnx7-media-library | 2026-02-09T22:00:00Z | 🔄 Media Library - Drag-Drop Upload, Platform Cropping & Stock Photo (ClickUp #869c1dnx7) |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | hazina | feature/orchestration-tray-app | 2026-02-09T23:00:00Z | ⏳ COMMITTED - needs push+PR (SYSTEM can't push, user must: cd worktree, git push, gh pr create) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-07T21:40:00Z | ✅ PR #513: DoD Enforcement System (ClickUp #869bu91ej) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-05T05:04:00Z | ✅ PR #491: Integrations Dashboard - Comprehensive platform connection overview |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-06T14:19:00Z | ✅ PR #173 MERGED: HazinaCoder Iterations 1-60 - Conflicts resolved & merged to develop |

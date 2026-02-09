@@ -1,0 +1,15 @@
+﻿{
+    "services":  [
+                     {
+                         "pid":  12345,
+                         "last_seen":  "2026-02-09 10:31:18",
+                         "url":  "http://localhost:9999",
+                         "name":  "Test Service",
+                         "status":  "running",
+                         "health_check":  "",
+                         "port":  9999,
+                         "startup_command":  ""
+                     }
+                 ],
+    "updated":  "2026-02-09 10:31:18"
+}

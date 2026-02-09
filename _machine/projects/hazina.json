@@ -1,0 +1,38 @@
+﻿{
+    "main_branch":  "develop",
+    "code_path":  "C:\\Projects\\hazina",
+    "type":  "Framework",
+    "git_recent_commits":  [
+                               "252dd00 feat: Event Sourcing + Local LLM Foundation (Milestone 0.75)",
+                               "b3833f1 feat: Local Agent Platform MVP - Phase 1 implementation",
+                               "9943c37 fixes",
+                               "a481d62 feat: Add mobile-responsive navigation to terminal demo",
+                               "17b6cfb Merge branch \u0027develop\u0027 of https://github.com/martiendejong/Hazina into develop",
+                               "3c810fc feat: Add LLM-powered agent chat to Hazina Orchestration",
+                               "a16a66e Merge branch \u0027develop\u0027 of https://github.com/martiendejong/Hazina into develop",
+                               "5774525 feat: Session list sidebar with scrolling and fixed height (#869c2e97a) (#182)",
+                               "c4bae4a feat: Implement AI-powered FAQ generation for Art Revisionist (#179)",
+                               "e2ed81e Merge branch \u0027develop\u0027 of https://github.com/martiendejong/Hazina into develop"
+                           ],
+    "git_current_branch":  "agent-001-local-agent-platform-mvp",
+    "git_status":  [
+                       " M apps/Demos/Hazina.Demo.AgenticOrchestration.Installer/Product.wxs",
+                       " M apps/Demos/Hazina.Demo.AgenticOrchestration/Hazina.Demo.AgenticOrchestration.csproj",
+                       " M apps/Demos/Hazina.Demo.AgenticOrchestration/Program.cs",
+                       " M apps/Demos/Hazina.Demo.AgenticOrchestration/appsettings.json",
+                       " M apps/Demos/Hazina.Demo.AgenticOrchestration/wwwroot/assets/index-BOvKJzgs.js",
+                       "?? apps/Demos/Hazina.Demo.AgenticOrchestration.Installer/BUILD_README.md",
+                       "?? apps/Demos/Hazina.Demo.AgenticOrchestration.Installer/Build-MSI-Complete.ps1",
+                       "?? apps/Demos/Hazina.Demo.AgenticOrchestration.Installer/Build-MSI-Fixed.ps1",
+                       "?? apps/Demos/Hazina.Demo.AgenticOrchestration.Installer/DEPLOYMENT_GUIDE.md",
+                       "?? apps/Demos/Hazina.Demo.AgenticOrchestration.Installer/Deploy-Manual.ps1",
+                       "?? apps/Demos/Hazina.Demo.AgenticOrchestration.Installer/INSTALLATION_INSTRUCTIONS.md",
+                       "?? apps/Demos/Hazina.Demo.AgenticOrchestration.Installer/Product-Generated.wxs",
+                       "?? apps/Demos/Hazina.Demo.AgenticOrchestration.Installer/Product-Simple.wxs",
+                       "?? apps/Demos/Hazina.Demo.AgenticOrchestration.Installer/install-wix.ps1",
+                       "?? apps/Demos/Hazina.Demo.AgenticOrchestration.Installer/wix-tools/"
+                   ],
+    "name":  "hazina",
+    "generated":  "2026-02-09 10:38:40",
+    "git_is_clean":  false
+}

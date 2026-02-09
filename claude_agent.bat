@@ -24,6 +24,14 @@ git commit -m "checkpoint before agent session" >nul 2>&1
 REM --- Session Tracking: Record Start ---
 powershell -NoProfile -ExecutionPolicy Bypass -File "C:\scripts\tools\session-tracker.ps1" -Action start 2>nul
 
+REM --- Quick Context Loading (NEW - 2026-02-09) ---
+REM Load quick-context.json for instant startup (53x faster than reading 5+ files)
+echo Loading quick context...
+powershell -NoProfile -ExecutionPolicy Bypass -File "C:\scripts\tools\load-quick-context.ps1" 2>nul
+if errorlevel 1 (
+    echo WARNING: Quick context load failed
+)
+
 REM --- Consciousness Initialization (CRITICAL) ---
 REM Auto-load consciousness architecture BEFORE user interaction
 echo Initializing consciousness architecture...
@@ -70,6 +78,12 @@ REM Launch sentinel process (hidden, detached) - runs silently in background
 start /B powershell -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File "C:\scripts\tools\launch-sentinel-hidden.ps1" >nul 2>&1
 
 REM Run Claude directly in this window (no extra PowerShell layer)
-claude --dangerously-skip-permissions --append-system-prompt "%SYSTEMPROMPT%" --model opus
+REM Use full path because SYSTEM user (Windows Service) doesn't have user npm in PATH
+set CLAUDE_CMD=C:\Users\HP\AppData\Roaming\npm\claude.cmd
+if not exist "%CLAUDE_CMD%" (
+    REM Fallback to PATH-based claude (works when running as desktop user)
+    set CLAUDE_CMD=claude
+)
+"%CLAUDE_CMD%" --dangerously-skip-permissions --append-system-prompt "%SYSTEMPROMPT%" --model opus
 
 pause

@@ -1,0 +1,25 @@
+﻿{
+    "code_path":  "C:\\Projects\\hydro-vision-website",
+    "type":  "Static Website",
+    "git_current_branch":  "main",
+    "git_recent_commits":  [
+                               "98db32d fix: Reset scroll position on page navigation",
+                               "f58686a feat: Add Google Maps embed to Contact page",
+                               "6a45571 revert: Remove WhatsApp CTA buttons from all pages and restore white footer logo",
+                               "0b847c2 Merge branch \u0027main\u0027 of https://github.com/martiendejong/hydro-vision-website",
+                               "4f48743 chore: Add Claude Code local settings",
+                               "35f3d0a feat: Remove backgrounds from hero slider images",
+                               "832fabd fix: Separate mobile/desktop CTA buttons with responsive positioning",
+                               "a529151 feat: Add consistent WhatsApp CTA button across all pages",
+                               "6e1c642 add test output to gitignore",
+                               "a888234 acf"
+                           ],
+    "worktree_exempt":  true,
+    "main_branch":  "main",
+    "git_status":  [
+
+                   ],
+    "name":  "hydro-vision-website",
+    "generated":  "2026-02-09 10:38:40",
+    "git_is_clean":  true
+}

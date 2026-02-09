@@ -282,7 +282,7 @@ $fileSizeKB = [math]::Round($fileSize / 1KB, 2)
 
 Write-Host "✅ Built: $outputFile" -ForegroundColor Green
 Write-Host "📊 Size: $fileSizeKB KB" -ForegroundColor Cyan
-Write-Host "⚡ Load time: <10ms (estimated)" -ForegroundColor Cyan
+Write-Host "⚡ Load time: Less than 10ms (estimated)" -ForegroundColor Cyan
 
 # Verify it's valid JSON
 try {

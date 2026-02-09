@@ -1,0 +1,28 @@
+﻿{
+    "git_is_clean":  false,
+    "type":  "SaaS Application",
+    "generated":  "2026-02-09 10:38:40",
+    "name":  "client-manager",
+    "git_recent_commits":  [
+                               "055aef03 add roadmap",
+                               "b69b4dbf feat: Add Goals and Target Audience to Project Settings (ClickUp #869az20km) (#521)",
+                               "58cdd70e feat: Social Media Unified Flow - Steps 9-14 (ImagePicker Integration)",
+                               "d821912e feat: Social Media Unified Flow - Foundation (Steps 1-8/20)",
+                               "46ab29c6 Merge pull request #517 from martiendejong/feature/869bz3h0w-social-login-integration",
+                               "fb60a85d Merge pull request #516 from martiendejong/agent-001-fix-post-edit-404",
+                               "ea81865f Merge pull request #514 from martiendejong/process/async-standup-docs",
+                               "996d5c5b Merge pull request #513 from martiendejong/feature/869bu91ej-dod-enforcement",
+                               "f503754b Merge pull request #512 from martiendejong/feature/869c1dnwp-post-scheduling-ui",
+                               "f6f279bd Merge pull request #511 from martiendejong/feature/869c2ag22-chatgpt-plugin"
+                           ],
+    "framework_path":  "C:\\Projects\\hazina",
+    "main_branch":  "develop",
+    "git_status":  [
+                       " M ClientManagerAPI/Program.cs"
+                   ],
+    "paired_repo":  "hazina",
+    "git_current_branch":  "develop",
+    "store_path":  "C:\\stores\\brand2boost",
+    "code_path":  "C:\\Projects\\client-manager",
+    "requires_paired_worktree":  true
+}

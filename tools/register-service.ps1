@@ -43,7 +43,7 @@ param(
     [string]$Url,
 
     [Parameter(Mandatory = $false)]
-    [int]$Pid = 0,
+    [int]$ProcessId = 0,
 
     [Parameter(Mandatory = $false)]
     [string]$HealthCheck = "",
@@ -78,7 +78,7 @@ $serviceEntry = @{
     name = $ServiceName
     port = $Port
     url = $Url
-    pid = $Pid
+    pid = $ProcessId
     health_check = $HealthCheck
     startup_command = $StartupCommand
     status = "running"
@@ -103,5 +103,5 @@ $registryData = @{
 
 $registryData | ConvertTo-Json -Depth 10 | Out-File -FilePath $registryFile -Encoding UTF8
 
-Write-Host "📝 Registry updated: $registryFile" -ForegroundColor Cyan
-Write-Host "   $ServiceName → $Url (PID: $Pid)" -ForegroundColor Gray
+Write-Host "Registry updated: $registryFile" -ForegroundColor Cyan
+Write-Host "   $ServiceName to $Url (PID: $ProcessId)" -ForegroundColor Gray

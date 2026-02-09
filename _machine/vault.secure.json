@@ -1,0 +1,18 @@
+﻿{
+    "credentials":  [
+                        {
+                            "service":  "github",
+                            "username":  "",
+                            "notes_encoded":  "",
+                            "token_hint":  "ghp_test12...",
+                            "token_encoded":  "Z2hwX3Rlc3QxMjM0NTY3ODk=",
+                            "password_encoded":  "",
+                            "created":  "2026-02-09 10:30:45",
+                            "updated":  "2026-02-09 10:30:45"
+                        }
+                    ],
+    "encoding":  "base64",
+    "version":  "1.0",
+    "updated":  "2026-02-09 10:30:45",
+    "note":  "Secured by file permissions"
+}

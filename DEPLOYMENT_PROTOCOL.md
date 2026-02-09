@@ -59,18 +59,77 @@ STEP 5: THEN AND ONLY THEN execute deployment
 
 ---
 
-## CHECKLIST FOR COMMON SERVICES
+## HAZINA ORCHESTRATION - ONE COMMAND DEPLOY
 
-### Hazina Orchestration
+### Automated (preferred):
+```powershell
+# Run as Administrator:
+C:\Projects\hazina\apps\Demos\Hazina.Demo.AgenticOrchestration.Installer\Deploy-ThisPC.ps1
 ```
-□ Port: 5123 (NOT 5000)
-□ Protocol: HTTPS (NOT HTTP)
-□ Certificates: tailscale.crt + tailscale.key
-□ Location: C:\stores\orchestration
-□ Auth: bosi / Th1s1sSp4rt4!
-□ Config file: appsettings.json with Kestrel.Endpoints.Https
-□ Documentation: MACHINE_CONFIG.md lines 213-215
+This handles EVERYTHING: build, install, certs, config, git safe.directory, service start, verification.
+
+### Manual steps (if script doesn't exist or fails):
+
 ```
+STEP 1: Build MSI
+  cd C:\Projects\hazina\apps\Demos\Hazina.Demo.AgenticOrchestration.Installer
+  .\Build-MSI-Complete.ps1
+
+STEP 2: Stop service + install MSI
+  sc stop HazinaOrchestration
+  msiexec /i "bin\Release\HazinaOrchestrationSetup.msi" /qn
+
+STEP 3: Copy Tailscale certificates
+  copy C:\stores\orchestration\tailscale.crt "C:\Program Files (x86)\Hazina Orchestration\"
+  copy C:\stores\orchestration\tailscale.key "C:\Program Files (x86)\Hazina Orchestration\"
+
+STEP 4: Write appsettings.json with HTTPS config
+  Must include:
+  - Kestrel.Endpoints.Https.Url = "https://*:5123"
+  - Kestrel.Endpoints.Https.Certificate.Path = "tailscale.crt"
+  - Authentication.Enabled = true, Username = "bosi"
+  - Terminal.DefaultCommand = "C:\\scripts\\claude_agent.bat"
+  - Terminal.DefaultWorkingDirectory = "C:\\scripts"
+  - DatabasePath = "C:\\scripts\\_machine\\agent-activity.db"
+
+STEP 5: Strip appsettings.Production.json
+  REMOVE: Kestrel, Authentication, AgenticOrchestration sections
+  KEEP ONLY: Logging, Swagger, OpenAI
+  (Production.json overrides base - if it has Kestrel/Terminal it WILL break)
+
+STEP 6: Git safe.directory for SYSTEM user
+  Write to C:\Windows\System32\config\systemprofile\.gitconfig:
+  [safe]
+      directory = C:/scripts
+  (Service runs as NT AUTHORITY\SYSTEM, needs access to C:\scripts git repo)
+
+STEP 7: Start service
+  sc start HazinaOrchestration
+
+STEP 8: Verify
+  curl -sk -u bosi:Th1s1sSp4rt4! https://localhost:5123/health
+  curl -sk -u bosi:Th1s1sSp4rt4! -X POST https://localhost:5123/api/terminal/sessions -H "Content-Type: application/json" -d "{\"name\":\"test\"}"
+```
+
+### Configuration Reference
+```
+Service name:     HazinaOrchestration
+Install dir:      C:\Program Files (x86)\Hazina Orchestration
+Port:             5123 (HTTPS ONLY - never HTTP)
+Certificates:     tailscale.crt + tailscale.key (from C:\stores\orchestration\)
+Auth:             bosi / Th1s1sSp4rt4!
+Terminal command:  C:\scripts\claude_agent.bat
+Working dir:      C:\scripts
+Local URL:        https://localhost:5123
+Remote URL:       https://desktop-ecbaunu.tailca9ff1.ts.net:5123
+Swagger:          https://localhost:5123/swagger
+```
+
+### Known Gotchas
+1. **appsettings.Production.json overrides base** - If it has Kestrel section, you get dual port binding (crash)
+2. **SYSTEM user needs git safe.directory** - Without it, terminal sessions fail with "dubious ownership"
+3. **Tailscale certs not in MSI** - Must be copied separately (machine-specific)
+4. **MSI installs to Program Files (x86)** - Even on x64 (WiX ProgramFilesFolder default)
 
 ### Future Services
 ```
