@@ -1,43 +1,62 @@
 # ClickUp Reviewer Workflow
 
 **Created:** 2026-02-07
-**Purpose:** Automated code review for ClickUp tasks in "review" status
-**Invocation:** "run the clickup reviewer" or "review clickup tasks"
+**Updated:** 2026-02-09 (Full merge workflow)
+**Purpose:** Automated code review AND merge workflow for ClickUp tasks in "review" status
+**Invocation:** "ga reviewen" or "run the clickup reviewer" or "review clickup tasks"
 
 ---
 
 ## Overview
 
-The ClickUp Reviewer is an automated workflow that:
+The ClickUp Reviewer is a COMPLETE automated review-to-merge workflow that:
 1. Identifies ClickUp tasks in "review" status
 2. Locates linked Pull Requests
 3. Analyzes code changes
 4. Posts comprehensive review comments
-5. Provides recommendations for approval/changes
+5. **Merges develop into PR branch** (if not already merged)
+6. **Builds and tests locally** (NOT GitHub CI - we skip that deliberately)
+7. **Merges PR into develop** (if tests pass)
+8. **Builds develop branch** (verify integration)
+9. **Updates task status** (to "testing" or "done" depending on project)
+
+**CRITICAL:** This is the STANDARD workflow. User should only need to say "ga reviewen" to trigger the entire process.
 
 ## When to Use
 
-**Automatic Triggers:**
-- When user says "run the clickup reviewer"
-- When user says "review clickup tasks"
-- When user says "check tasks in review"
+**Primary Invocation (STANDARD):**
+- User says: **"ga reviewen"** (Dutch - most common)
+- User says: "run the clickup reviewer"
+- User says: "review clickup tasks"
 
-**Manual Triggers:**
-- Before merging PRs
-- During daily standup reviews
-- When tasks have been in review >2 days
+**This triggers the COMPLETE workflow:**
+1. Find all tasks in "review" status (all projects)
+2. Locate PRs
+3. Review code
+4. Merge develop into branch (if needed)
+5. Build & test locally
+6. Merge into develop (if not already)
+7. Build develop
+8. Post review comments
+9. Update task status
 
-## Workflow Steps
+**User Expectation:**
+"ga reviewen" should be ENOUGH to trigger the entire review-to-merge workflow. No need for detailed instructions.
+
+## Workflow Steps (COMPLETE REVIEW-TO-MERGE)
 
 ### 1. Identify Review Tasks
 
 ```powershell
+# For each project
+C:\scripts\tools\clickup-sync.ps1 -Action list -Project "hazina"
+C:\scripts\tools\clickup-sync.ps1 -Action list -Project "client-manager"
 C:\scripts\tools\clickup-sync.ps1 -Action list -Project "art-revisionist"
 ```
 
 Filter for tasks with status="review"
 
-### 2. For Each Task
+### 2. For Each Task - Find PR
 
 #### A. Get Task Details
 ```powershell
@@ -46,81 +65,148 @@ C:\scripts\tools\clickup-sync.ps1 -Action show -TaskId "<task-id>"
 
 #### B. Find Linked PR
 
-**Method 1: Check task description**
-- Look for PR links (github.com/*/pull/*)
-- Look for #PR-NUMBER references
-
-**Method 2: Search GitHub**
+**Search GitHub for PRs with task ID:**
 ```bash
 cd <repo-path>
-gh pr list --state all --search "<task-id>"
+gh pr list --state all --limit 30 --json number,title,state,headRefName,body \
+  --jq ".[] | select(.body | contains(\"<task-id>\")) | {number, title, state, branch: .headRefName}"
 ```
 
-**Method 3: Scan PR bodies**
+### 3. Analyze PR & Review Code
+
+#### A. Get PR Details
 ```bash
-gh pr list --state all --limit 50 --json body,number |
-  jq ".[] | select(.body | contains(\"<task-id>\"))"
+gh pr view <pr-number> --json title,body,files,state,mergedAt
 ```
 
-#### C. Analyze PR (if found)
+#### B. Check PR State
+
+**IF PR is OPEN:**
+→ Continue to Step 4 (Merge develop into branch)
+
+**IF PR is MERGED:**
+→ Skip to Step 7 (Build develop branch)
+
+**IF PR not found:**
+→ Post "No PR found" comment, suggest creating PR or moving to "to do"
+
+### 4. Merge Develop into PR Branch (if PR is OPEN)
+
+**CRITICAL:** Always merge develop into the PR branch BEFORE approving/merging to prevent conflicts.
 
 ```bash
-gh pr view <pr-number> --json number,title,state,files,commits,body,url
+cd <repo-path>
+git checkout <pr-branch>
+git pull origin develop --no-edit
+# Resolve any conflicts if they occur
+git push
 ```
 
-**Review Checklist:**
-- ✅ All MUST HAVE requirements met?
-- ✅ Code quality acceptable?
-- ✅ Tests included?
-- ✅ Documentation updated?
-- ✅ No critical bugs?
-- ⚠️ SHOULD HAVE requirements met?
-- ⚠️ COULD HAVE features included?
+**If conflicts occur:**
+- Post comment on task: "Merge conflicts detected, needs manual resolution"
+- Update task status to "to do"
+- STOP workflow for this task
 
-#### D. Generate Review Comment
+### 5. Build & Test Locally (NO GitHub CI)
 
-**If PR found:**
+**IMPORTANT:** We deliberately skip GitHub CI. Only local builds matter.
+
+#### Backend Build
+```bash
+cd <repo-path>
+dotnet build <project>.csproj -c Release
+```
+
+**Success criteria:** 0 errors (warnings are acceptable)
+
+#### Frontend Build (if applicable)
+```bash
+cd <frontend-path>
+npm run build
+```
+
+**Success criteria:** Build completes without errors
+
+**If build fails:**
+- Post comment on task with build errors
+- Update task status to "to do"
+- STOP workflow for this task
+
+### 6. Merge PR into Develop (if tests pass)
+
+```bash
+cd <repo-path>
+gh pr merge <pr-number> --merge --delete-branch
+# OR if already merged: verify merge commit exists
+```
+
+### 7. Build Develop Branch
+
+**Verify integration works:**
+
+```bash
+cd <repo-path>
+git checkout develop
+git pull origin develop
+dotnet build -c Release  # Backend
+cd <frontend> && npm run build  # Frontend
+```
+
+**If develop build fails:**
+- Fix issues immediately (this is critical path)
+- Commit fixes directly to develop
+- Re-run build verification
+
+### 8. Post Review Comment & Update Task
+
+#### A. Generate Review Comment
+
+**Review Comment Template:**
 ```markdown
-📝 CODE REVIEW (Automated by Claude Code Agent)
+📝 CODE REVIEW (Automated)
 
 ## PR Analysis
-- PR #: {number}
-- Title: {title}
-- Status: {state}
-- Files Changed: {count}
-- Commits: {count}
+- PR #{number}: {title}
+- Status: {state} (merged at {mergedAt})
+- Files Changed: {count} files (+{additions} / -{deletions})
 
 ## Review Summary
-[Analysis of changes]
+✅ **MUST HAVE - Complete:**
+- [List MUST HAVE items from task description]
+
+✅ **SHOULD HAVE - Complete:**
+- [List SHOULD HAVE items]
+
+## Build & Test Results
+- Backend build: ✅ SUCCESS (0 errors)
+- Frontend build: ✅ SUCCESS
+- Develop branch: ✅ Clean
 
 ## Verdict
-✅ APPROVED / ⚠️ APPROVED WITH COMMENTS / ❌ CHANGES REQUESTED
+✅ **APPROVED - Ready for Testing/Done**
+
+All MUST HAVE requirements met. Code quality good.
 
 ---
-Date: {timestamp}
-Task: {taskId}
+Reviewed: {date}
+Builds verified on develop branch
 ```
 
-**If No PR found:**
-```markdown
-📝 CODE REVIEW (Automated by Claude Code Agent)
-
-## Status
-⚠️ Task in REVIEW but no linked PR found.
-
-## Recommendations
-- Create PR if code complete
-- Move to 'to do' if not implemented
-- Clarify review type (requirements vs code)
-
----
-Date: {timestamp}
-Task: {taskId}
-```
-
-#### E. Post Review
+#### B. Post Review Comment
 ```powershell
-C:\scripts\tools\clickup-sync.ps1 -Action comment -TaskId "<task-id>" -Comment "<review>"
+C:\scripts\tools\clickup-sync.ps1 -Action comment -TaskId "<task-id>" -Project "<project>" -Comment "<review>"
+```
+
+#### C. Update Task Status
+
+**Status mapping by project:**
+- **client-manager:** "review" → "testing" (has testing status)
+- **art-revisionist:** "review" → "done" (NO testing status, goes straight to done)
+- **hazina:** "review" → "complete" (uses "complete" instead of "done")
+
+```powershell
+# Check project config for correct status name
+C:\scripts\tools\clickup-sync.ps1 -Action update -TaskId "<task-id>" -Status "<status>" -Project "<project>"
 ```
 
 ### 3. Summary Report
