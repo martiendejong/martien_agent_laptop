@@ -70,6 +70,6 @@ REM Launch sentinel process (hidden, detached) - runs silently in background
 start /B powershell -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File "C:\scripts\tools\launch-sentinel-hidden.ps1" >nul 2>&1
 
 REM Run Claude directly in this window (no extra PowerShell layer)
-claude --dangerously-skip-permissions --append-system-prompt "%SYSTEMPROMPT%" --model sonnet
+claude --dangerously-skip-permissions --append-system-prompt "%SYSTEMPROMPT%" --model opus
 
 pause

@@ -9,209 +9,67 @@ user-invocable: true
 
 **Purpose:** Create an isolated worktree for code editing while enforcing zero-tolerance rules and multi-agent conflict detection.
 
-## MANDATORY Pre-Allocation Checks
+## Pre-Allocation (3 Checks)
 
-### 0. Mode Detection (CRITICAL - FIRST CHECK)
+### 1. Mode Detection
+- ClickUp URL/task ID present → Feature Development Mode (proceed)
+- User debugging/build errors → Active Debugging Mode (DO NOT allocate, work in base repo)
+- New feature request → Feature Development Mode (proceed)
 
-**BEFORE doing ANYTHING, verify this is Feature Development Mode:**
+### 2. Feature-Exists Check (AUTOMATED GATE - PREVENTS DUPLICATE PRs)
 
-```powershell
-# Run mode detection on user's request
-$mode = detect-mode.ps1 -UserMessage $userRequest
-
-if ($mode -ne "FEATURE_DEVELOPMENT_MODE") {
-    Write-Host "⚠️  Mode is $mode - DO NOT ALLOCATE WORKTREE" -ForegroundColor Red
-    Write-Host "This is Active Debugging Mode - work in base repo instead" -ForegroundColor Yellow
-    exit 1
-}
-```
-
-**HARD RULE: ClickUp URL present → ALWAYS Feature Development Mode**
-
-If user message contains:
-- `clickup.com` URL
-- Task ID like `869abc123`
-- Any ClickUp reference
-
-→ You MUST use Feature Development Mode (allocate worktree)
-
-**Why this check exists:**
-- 2026-01-20: Critical mistake where ClickUp task was treated as Debug Mode
-- Resulted in direct base repo edits, no PR, no ClickUp link
-- User mandate: "do not ever forget that again"
-
-**This check prevents trust-breaking workflow violations.**
-
-### 1. Read Zero-Tolerance Rules
-```bash
-# ALWAYS read first
-cat C:/scripts/ZERO_TOLERANCE_RULES.md
-```
-
-### 2. ManicTime Coordination Check (MANDATORY)
-
-**Get current agent activity context:**
-
-```powershell
-# Check how many Claude agents are running and their status
-$context = monitor-activity.ps1 -Mode context -OutputFormat object
-
-Write-Host "Active Claude Instances: $($context.ClaudeInstances.Count)"
-Write-Host "User Attending: $($context.System.UserAttending)"
-Write-Host "System Idle: $($context.IdleTime.IsIdle)"
-```
-
-**Store for later use:**
-```powershell
-$agentCount = $context.ClaudeInstances.Count
-$userFocused = $context.System.UserAttending
-$myPriority = if ($userFocused) { 100 } else { 50 }
-```
-
-**Coordination Strategy Selection:**
-```powershell
-if ($agentCount -lt 3) {
-    Write-Host "✅ Low contention ($agentCount agents) - using optimistic allocation"
-    $strategy = "optimistic"  # Fast path
-} else {
-    Write-Host "⚠️  High contention ($agentCount agents) - using pessimistic allocation"
-    $strategy = "pessimistic"  # Slow path with jitter
-    # Add random delay to reduce thundering herd
-    Start-Sleep -Milliseconds (Get-Random -Minimum 0 -Maximum 500)
-}
-```
-
-### 3. Multi-Agent Conflict Detection (CRITICAL)
-Before allocating ANY worktree, check for conflicts:
+**This is the #1 most costly recurring error. This check is NON-NEGOTIABLE.**
 
 ```bash
-# Run conflict detection script
+# Pull latest develop
+git -C C:/Projects/<repo> checkout develop && git -C C:/Projects/<repo> pull origin develop
+
+# Search for existing feature (run ALL of these)
+git -C C:/Projects/<repo> log --oneline develop --grep="<feature-keyword>" | head -10
+ls C:/Projects/<repo>/ClientManagerAPI/Controllers/ 2>/dev/null | grep -i <feature>
+ls C:/Projects/<repo>/ClientManagerAPI/Services/ 2>/dev/null | grep -i <feature>
+grep -r "class.*<Feature>" C:/Projects/<repo>/ClientManagerAPI/ --include="*.cs" -l 2>/dev/null | head -5
+
+# Also check recent PRs
+gh pr list --repo user/repo --state merged --search "<feature>" --limit 5
+```
+
+**Decision:**
+- ANY match found → **STOP. Feature already exists. Tell user.**
+- No matches → Proceed to allocation.
+
+**Why:** On 2026-02-08, duplicate PRs #518 and #515 were created because this check was missing. Cost: duplicate work, merge conflicts, user frustration.
+
+### 3. Check Pool + Conflict Detection
+```bash
+# Read pool
+cat C:/scripts/_machine/worktrees.pool.md
+
+# Check for branch conflicts
 bash C:/scripts/tools/check-branch-conflicts.sh <repo> <branch-name>
 ```
 
-**If conflicts detected:**
-```
-🚨 CONFLICT DETECTED 🚨
-There is already another agent working in this branch.
+If conflicts → STOP. If all seats BUSY → provision new seat.
 
-I will NOT proceed with allocation to avoid conflicts.
-```
-
-**STOP IMMEDIATELY. Do not allocate.**
-
-### 4. Check Pool Status
+### 4. Verify Base Repos on Develop
 ```bash
-cat C:/scripts/_machine/worktrees.pool.md
+# Only switch if no uncommitted changes (respect Active Debugging)
+git -C C:/Projects/<repo> status --short
+# If clean: git checkout develop && git pull
+# If dirty: ABORT (user is debugging)
 ```
 
-Find a FREE seat (agent-001, agent-002, etc.). If all BUSY, provision new seat.
+### 5. ClickUp Task Creation/Linking (MANDATORY)
 
-### 5. Verify Base Repos on Develop (ONLY switch if not in Active Debugging Mode)
-
-**⚠️ CRITICAL: Check for Active Debugging Mode first!**
+- User provided task ID → Use it
+- No task ID → CREATE one immediately:
+  - hazina-only → List 901215559249
+  - client-manager → List 901214097647
+  - art-revisionist → List 901211612245
 
 ```bash
-# Check client-manager
-cd C:/Projects/client-manager
-current_branch=$(git branch --show-current)
-uncommitted_changes=$(git status --short)
-
-if [ "$current_branch" != "develop" ]; then
-  if [ -n "$uncommitted_changes" ]; then
-    echo "⚠️ ABORT: Active debugging detected in client-manager (branch: $current_branch, uncommitted changes)"
-    echo "User is actively working - cannot allocate worktree in Active Debugging Mode"
-    exit 1
-  else
-    git checkout develop
-    git pull origin develop
-  fi
-fi
-
-# Check hazina
-cd C:/Projects/hazina
-current_branch=$(git branch --show-current)
-uncommitted_changes=$(git status --short)
-
-if [ "$current_branch" != "develop" ]; then
-  if [ -n "$uncommitted_changes" ]; then
-    echo "⚠️ ABORT: Active debugging detected in hazina (branch: $current_branch, uncommitted changes)"
-    echo "User is actively working - cannot allocate worktree in Active Debugging Mode"
-    exit 1
-  else
-    git checkout develop
-    git pull origin develop
-  fi
-fi
+powershell.exe -NoProfile -Command "./tools/clickup-sync.ps1 -Action create -Project <project> -Name '<feature>' -Description '<scope>'"
 ```
-
-**Detection Logic:**
-- IF base repo has uncommitted changes AND is not on develop → **ABORT allocation** (Active Debugging Mode)
-- ELSE IF base repo not on develop but no changes → Safe to switch to develop
-- ELSE → Already on develop, proceed
-
-### 6. ClickUp Task Creation/Linking (MANDATORY - NEW 2026-02-08)
-
-**⚠️ CRITICAL: ClickUp task is MANDATORY for all feature work (like branch creation)**
-
-**User feedback:** "branch maken gaat al heel goed maar clickup tasks nog niet zo"
-
-**Decision tree:**
-```
-User provided ClickUp task ID/URL?
-├─ YES → Extract and verify task exists
-└─ NO  → CREATE NEW TASK IMMEDIATELY
-    ↓
-    Auto-detect project:
-    ├─ Hazina-only work → Project: hazina (List: 901215559249)
-    ├─ Client-manager features → Project: client-manager (List: 901214097647)
-    ├─ Art Revisionist → Project: art-revisionist (List: 901211612245)
-    └─ Multi-repo strategic → Project: brand2boost-birdseye (List: 901215573347)
-```
-
-**Project detection logic:**
-```bash
-# Analyze repos being worked on
-if [ "$repo" = "hazina" ] && [ -z "$paired_repo" ]; then
-    project="hazina"  # Hazina-only work (framework improvements)
-elif [ "$repo" = "client-manager" ] || [ "$paired_repo" = "hazina" ]; then
-    project="client-manager"  # User-facing features
-elif [ "$repo" = "artrevisionist" ]; then
-    project="art-revisionist"  # WordPress content features
-else
-    project="client-manager"  # Default fallback
-fi
-```
-
-**Create task:**
-```bash
-# Extract feature description from user request or use branch name
-task_name="<Feature description from user request>"
-task_description="Technical implementation details, repos involved, scope"
-
-# Create ClickUp task
-/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -Command "
-./tools/clickup-sync.ps1 -Action create -Project $project -Name '$task_name' -Description '$task_description'
-"
-
-# Capture task ID from output
-task_id="<extracted from command output>"
-
-echo "✅ ClickUp task $task_id created in $project board"
-```
-
-**Store task ID:**
-- Add to instances.map.md
-- Add to worktrees.activity.md log
-- Use in branch name if possible (or add as comment later)
-
-**Why this step exists:**
-- User feedback: Branch creation works perfectly, ClickUp tasks don't
-- Root cause: Not integrated into protocol, treated as optional
-- Fix: Make it MANDATORY like branch creation (zero-tolerance)
-- Pattern: LLM chat feature (today) had no task → retroactive creation
-- Goal: 100% ClickUp task creation rate (0 retroactive tasks)
-
-**Reference:** `C:\scripts\_machine\analysis-clickup-task-pattern.md` for complete decision tree
 
 ## Allocation Process
 
