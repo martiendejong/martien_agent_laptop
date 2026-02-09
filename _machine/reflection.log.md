@@ -6,6 +6,105 @@
 
 ---
 
+## 2026-02-09 23:30 - Orchestration Tray App Conversion (PR #187)
+
+**Session Type:** Feature development — Windows Service → Desktop Tray App
+**Context:** Orchestration ran as SYSTEM service, couldn't access user env vars, gh auth, git config
+**Outcome:** PR #187 created — code complete, build successful
+
+### What Was Done
+Converted `Hazina.Demo.AgenticOrchestration` from Windows Service to WinForms tray app:
+- csproj: `net9.0-windows`, `WinExe`, `UseWindowsForms`, removed `WindowsServices` package
+- Program.cs: ASP.NET Core on background thread, WinForms message pump on main thread, console output → log file
+- TrayApplicationContext.cs: NotifyIcon with context menu (Dashboard, Swagger, auto-start toggle, Exit)
+- AutoStartHelper.cs: Registry-based HKCU auto-start
+- app.ico: Generated programmatically via PowerShell (System.Drawing)
+
+### Key Learnings
+
+**1. Worktree Conflict with Parallel Agents**
+- Allocated agent-001, but another session took it over mid-work (changed branch to right-panel-tabs)
+- All new files I created were wiped — had to re-allocate agent-003 and redo everything
+- **Pattern:** When running as SYSTEM service with multiple concurrent agents, worktree conflicts are real. The pool file is a shared resource with no locking mechanism.
+- **Mitigation:** Check worktree state AFTER creating files, not just before. If files vanish, re-check pool immediately.
+
+**2. SYSTEM User Cannot Push to GitHub**
+- `git credential manager` stores creds per-user in Windows Credential Store — SYSTEM has its own empty store
+- `gh auth` is per-user — SYSTEM not authenticated
+- `GH_TOKEN` env var not set for SYSTEM
+- **This is the exact problem the tray app solves** — running as user means all these work automatically
+- **Workaround:** Commit locally in worktree, let user or another agent in user context push
+
+**3. File Writes Get Reverted in Worktrees**
+- Wrote files to agent-001 worktree, files appeared to save but then vanished
+- Root cause: another agent cleaned/reset the worktree directory
+- **Pattern:** `Write` tool confirms success, but if another process operates on same directory, changes are lost
+- **Rule:** After writing to a worktree, immediately `git add` to protect against this
+
+**4. Icon Generation via PowerShell**
+- Can't write binary .ico files via the Write tool
+- **Solution:** PowerShell with System.Drawing — create Bitmap, draw text, GetHicon(), save via Icon.Save()
+- Works well for simple icons, stores directly in project directory
+
+**5. Speech Alias: "aziët" = "agent"**
+- Dutch voice transcription of "agent" can produce "aziët"
+- Added to quick-context.json speech_aliases
+
+### Files Created/Modified
+- `Hazina.Demo.AgenticOrchestration.csproj` (modified)
+- `Program.cs` (rewritten)
+- `TrayApplicationContext.cs` (new)
+- `Startup/AutoStartHelper.cs` (new)
+- `app.ico` (new, generated)
+
+---
+
+## 2026-02-09 21:00 - SCP CognitivePipeline: Architecture Discovery & Task Planning
+
+**Session Type:** Architecture analysis + ClickUp task creation
+**Context:** User shared visual diagram "De Driehoek van Bewustzijn SCP" showing how Art Revisionist should handle cognitive processing
+**Outcome:** Deep architecture analysis, 12 ClickUp tasks created across Hazina + Art Revisionist
+
+### What Happened
+1. Analyzed Martien's SCP diagram — combines Damasio/Freud/Swaab into S-O-L-F-B-M technical layers
+2. Explored both codebases (2 parallel agents, ~180s + ~280s)
+3. Discovered: Hazina already has 90% of the building blocks, AR bypasses them
+4. Created comprehensive ClickUp task structure (2 epics, 12 subtasks)
+5. Linked cross-repo dependency
+
+### Key Discovery
+**Art Revisionist talks directly to OpenAI via TypedOpenAIClient, completely bypassing Hazina's:**
+- HallucinationDetector (noise suppression)
+- Neurochain (multi-layer verification)
+- 3-tier Memory (learning loop)
+- Guardrails (pre/post validation)
+- ProviderOrchestrator (failover, cost tracking)
+
+**The gap is wiring, not technology.** Hazina has the cognitive architecture; AR just doesn't use it.
+
+### Architecture Decision
+- Generic `CognitivePipeline` module → Hazina (reusable for client-manager)
+- Domain-specific processors → Art Revisionist
+- GroundTruthStore as first-class Hazina concept (persistent validated facts, <120ms lookup)
+- DBTL learning loop: validations auto-promote to GroundTruth
+
+### ClickUp Tasks Created
+| Project | Epic ID | Subtasks |
+|---------|---------|----------|
+| Hazina | 869c2rvay | 6 (interfaces, GroundTruth, NoiseFilter, Neurochain, DBTL, Builder) |
+| Art Revisionist | 869c2rwpz | 6 (ILLMClient migration, S+O, NoiseFilter, MetamodelService refactor, Memory, E2E) |
+
+### Session Pattern
+- Visual diagrams from Martien = architecture specifications (treat them seriously)
+- Parallel codebase exploration (2 agents) was effective — comprehensive results in ~5 min
+- SCP model is a general cognitive pattern applicable to multiple projects
+
+### Files Updated
+- `insights.md` — SCP architecture section, Hazina/AR technical reference
+- `reflection.log.md` — this entry
+
+---
+
 ## 2026-02-09 12:00 - Orchestration MSI Deployment & Distribution Strategy
 
 **Session Type:** Deployment fix + architecture discussion

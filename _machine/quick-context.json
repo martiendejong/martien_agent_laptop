@@ -27,7 +27,9 @@
                                               },
                            "people":  {
                                           "django":  "Jengo",
-                                          "jengo":  "Jengo"
+                                          "jengo":  "Jengo",
+                                          "aziët":  "agent",
+                                          "aziet":  "agent"
                                       }
                        },
     "services":  [
