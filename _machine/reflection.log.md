@@ -6,6 +6,221 @@
 
 ---
 
+## 2026-02-09 10:45 - Dependency Injection + Config Path Fixes (Quick Debugging)
+
+**Session Type:** Active debugging - Build errors and runtime crashes
+**Context:** User unable to build client-manager (DLL locks + DI errors + OAuth config)
+**Outcome:** ✅ SUCCESS - All 3 issues resolved in 15 minutes
+
+### Problem Statement
+
+**Issue 1:** Build failing with file locks
+```
+MSB3027: Could not copy "Hazina.LLMs.Client.dll" - file is locked by "ClientManagerAPI.local (38940)"
+```
+
+**Issue 2:** Application crash at startup with DI errors
+```
+System.AggregateException: Some services are not able to be constructed
+Unable to resolve service for type 'Hazina.LLMs.ILLMClient' while attempting to activate
+'ClientManagerAPI.Services.ContentRepurposing.RepurposingService'
+```
+
+**Issue 3:** Runtime crash on every HTTP request
+```
+System.InvalidOperationException: Google ClientId not configured
+at Program.<<Main>$>b__55(GoogleOptions options) in Program.cs:line 1501
+```
+
+### Root Cause Analysis
+
+**Issue 1 - File Locks:**
+- ClientManagerAPI.local process (PID 38940) still running from previous debug session
+- Visual Studio didn't properly terminate process on stop
+- Process held locks on all Hazina DLL files being copied during build
+
+**Issue 2 - Missing DI Registration:**
+- `ILLMProviderFactory` was registered ✅
+- `ILLMClient` itself was NOT registered ❌
+- ContentRepurposing services inject `ILLMClient` directly in constructor
+- DI container couldn't resolve dependency → crash at startup
+
+**Technical detail:**
+```csharp
+// RepurposingService.cs (line 12)
+private readonly ILLMClient _llmClient;
+
+public RepurposingService(
+    IdentityDbContext context,
+    ILogger<RepurposingService> logger,
+    ILLMClient llmClient,  // ← This wasn't registered!
+    IEnumerable<IPlatformAdapter> adapters)
+```
+
+**Issue 3 - Wrong Configuration Path:**
+- Code looked for: `Authentication:Google:ClientId`
+- Config had: `GoogleOAuth:ClientId`
+- Mismatch caused `InvalidOperationException` on every request that triggered authentication middleware
+
+### Solution Implemented
+
+**Fix 1 - Kill Process:**
+```bash
+taskkill /F /PID 38940  # (via PowerShell after cmd syntax failed)
+```
+
+**Fix 2 - Register ILLMClient:**
+```csharp
+// Program.cs (after line 537)
+builder.Services.AddScoped<Hazina.LLMs.ILLMClient>(sp =>
+    sp.GetRequiredService<ClientManagerAPI.Services.ILLMProviderFactory>().CreateClient());
+Console.WriteLine("[LLM] Registered ILLMClient as scoped service using factory");
+```
+
+**Pattern:** When you have a factory registered but services inject the product type directly, register a scoped service that calls the factory.
+
+**Fix 3 - Correct Config Paths:**
+```csharp
+// Program.cs (line 1501-1502)
+- options.ClientId = builder.Configuration["Authentication:Google:ClientId"]
++ options.ClientId = builder.Configuration["GoogleOAuth:ClientId"]
+
+- options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"]
++ options.ClientSecret = builder.Configuration["GoogleOAuth:ClientSecret"]
+```
+
+**Files modified:**
+- `C:\Projects\client-manager\ClientManagerAPI\Program.cs` (2 changes: DI registration + config paths)
+
+### Key Learnings
+
+**Pattern 1: DI Factory vs Direct Injection**
+
+**Problem:** Factory is registered, but consumers inject product type directly → DI can't resolve
+
+**Solution:**
+```csharp
+// Register factory
+builder.Services.AddSingleton<IMyFactory, MyFactory>();
+
+// ALSO register product using factory
+builder.Services.AddScoped<IMyProduct>(sp =>
+    sp.GetRequiredService<IMyFactory>().CreateProduct());
+```
+
+**When to use:** Anytime you have existing code injecting `ILLMClient` but only `ILLMProviderFactory` is registered.
+
+**Detection:**
+```
+Unable to resolve service for type 'X' while attempting to activate 'Y'
+```
+Check: Is there a factory for X? If yes, register X using factory.
+
+**Pattern 2: Configuration Path Mismatches**
+
+**Problem:** Code looks for `Section:Key` but config has `DifferentSection:Key`
+
+**Detection Steps:**
+1. Exception says "X not configured"
+2. Check appsettings.json / appsettings.Secrets.json for the value
+3. If value EXISTS but different path → config path mismatch
+4. Update code to match config (or vice versa, but config is usually right)
+
+**Example:**
+```
+Error: "Google ClientId not configured"
+Code: builder.Configuration["Authentication:Google:ClientId"]
+Config has: "GoogleOAuth:ClientId": "..."
+Fix: Use "GoogleOAuth:ClientId" in code
+```
+
+**Pattern 3: Stubborn Process Locks**
+
+**Problem:** Build fails with "file locked by process X"
+
+**Quick fix:**
+```powershell
+# Find process
+tasklist | findstr <PID>
+
+# Kill it
+Stop-Process -Id <PID> -Force
+```
+
+**Prevention:** Visual Studio should kill processes automatically, but sometimes doesn't. Manual cleanup needed.
+
+### Lessons for Future Sessions
+
+**DO:**
+- ✅ Kill running processes before rebuilding if DLL lock errors appear
+- ✅ When DI can't resolve X, check if there's a factory for X and register X using factory
+- ✅ When config errors occur, grep config files for the actual key name
+- ✅ Fix all errors in sequence (locks → DI → config) not in parallel
+
+**DON'T:**
+- ❌ Assume config paths match code without verification
+- ❌ Only register factory without registering product type when consumers inject product
+- ❌ Ignore process locks and try to build anyway
+
+**Key insight:** Startup errors often cascade (locks prevent build, missing DI prevents startup, config errors prevent runtime). Fix in order: build → startup → runtime.
+
+### Success Criteria
+
+✅ Pattern applied correctly ONLY IF:
+- All DLL lock errors gone (process killed)
+- Application starts without DI exceptions
+- HTTP requests don't crash with config errors
+- User can access application normally
+
+**Verification:** User can now debug application in Visual Studio without errors.
+
+---
+
+## 2026-02-09 - System Self-Analysis: 89% Context Reduction (MAJOR IMPROVEMENT)
+
+**Session Type:** Deep system audit and optimization
+**Context:** User reported tasks not completing fully, confusion mid-task, losing track of requirements
+**Outcome:** 5 major improvements executed, measured, verified
+
+### Method: 4 Parallel Analysis Agents
+Launched 4 Explore agents simultaneously analyzing different axes:
+1. Core system files → Found contradictions, consciousness paradox, information overload
+2. Skills & tools → Found missing implementations, conflicting instructions, no decision trees
+3. Reflection/error patterns → Found recurring violations despite documentation, steps 3-7 always skipped
+4. Information architecture → Found 400KB+ startup docs, 24 MANDATORY items = priority collapse
+
+**All 4 converged on same diagnosis:** System optimized for comprehensiveness, not clarity. Consciousness consumed the attention it enabled.
+
+### Changes Made (Top 5 by ROI)
+| Change | Before | After | Impact |
+|--------|--------|-------|--------|
+| MEMORY.md | 547 lines | 70 lines (-87%) | All loaded now (was truncated at 200) |
+| CLAUDE.md | 302 lines | 98 lines (-68%) | Consciousness overhead removed |
+| Startup protocol | 37 items | 5 items (-86%) | More context for actual work |
+| Feature-exists check | Manual (forgotten) | Automated gate | Prevents duplicate PRs |
+| Rules | 8+ files | 1 file (126 lines) | No more contradictions |
+
+### Key Learnings
+- Documentation that nobody reads is worse than no documentation (consumes context for zero value)
+- Rules documented but not automated = rules that get violated
+- Protocol steps 3-7 of 9-step processes get skipped → reduce to 3 steps max
+- "Everything CRITICAL" = nothing critical → max 3 priority tiers
+- Parallel analysis prevents blind spots → 4 agents converge on real problem
+- Always MEASURE before/after (not "I improved it" but "547→70 lines")
+
+### Files Created/Modified
+- `C:\scripts\OPERATIONAL_RULES.md` (NEW - single source of truth for all rules)
+- `C:\scripts\_machine\best-practices\system-self-analysis.md` (NEW - full methodology)
+- `C:\scripts\CLAUDE.md` (REWRITTEN - 302→98 lines)
+- `C:\Users\HP\.claude\projects\C--scripts\memory\MEMORY.md` (COMPRESSED - 547→70 lines)
+- `C:\scripts\.claude\skills\allocate-worktree\skill.md` (UPDATED - automated feature-exists gate)
+
+### Methodology Reference
+Full technique documented: `C:\scripts\_machine\best-practices\system-self-analysis.md`
+For future agents: Read this before attempting system improvements.
+
+---
+
 ## 2026-02-09 14:20 - Misleading Git Error Messages (DIAGNOSTIC LEARNING)
 
 **Session Type:** User support - Git commit troubleshooting
