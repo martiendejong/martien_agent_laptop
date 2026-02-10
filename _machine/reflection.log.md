@@ -6,6 +6,39 @@
 
 ---
 
+## 2026-02-10 - Orchestration UI: Session ID Visibility + ANSI Stripping
+
+**Session Type:** Quick UI fix — direct commit to develop
+**Context:** Session IDs in orchestration terminal app were truncated and unreadable. Titles contained raw ANSI escape sequences.
+**Outcome:** Fixed in 4 files, committed and pushed to develop. New MSI built.
+
+### What Was Done
+1. **SessionList.tsx**: Full session ID shown below title (was `slice(0, 8)`)
+2. **TerminalView.tsx**: Full session ID in toolbar (was `slice(0, 12)`)
+3. **App.css**: Column layout for session-info, word-break for long IDs, larger/selectable session label in toolbar, mobile: no longer hidden
+4. **App.tsx**: Strip ANSI escape sequences from titles in `handleTitleChanged` using regex (CSI, OSC, charset sequences)
+
+### Key Learnings
+
+**1. Vite Asset Hash Cache Invalidation**
+- Vite generates hashed filenames (e.g. `index-M8RkG1bN.js`)
+- dotnet publish caches old references in `obj/` → MSB3030 "file not found" on new hashes
+- **Fix:** `rm -rf bin obj wwwroot/assets` before MSI build
+- This will happen every time frontend code changes between builds
+
+**2. ANSI Escape Sequences in Terminal Titles**
+- ConPTY output contains cursor movement (`ESC[111C`), erase (`ESC[K`), color codes (`ESC[0m`)
+- These leak into session titles extracted from terminal output
+- **Regex pattern:** `/\x1b\[[0-9;]*[a-zA-Z]/g` covers most CSI sequences
+- Strip at the point of entry (state setter) not at display — prevents spreading dirty data
+
+**3. Direct Develop Commits for Small Fixes**
+- Small UI fixes don't need worktree + PR overhead
+- Committed directly to develop with descriptive message
+- Pattern: if it's < 5 files, no architectural change, and user is present → direct commit is fine
+
+---
+
 ## 2026-02-09 23:30 - Orchestration Tray App Conversion (PR #187)
 
 **Session Type:** Feature development — Windows Service → Desktop Tray App
