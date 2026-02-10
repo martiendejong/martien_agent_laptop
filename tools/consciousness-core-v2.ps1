@@ -139,6 +139,26 @@ if (-not $global:ConsciousnessState) {
             ConsciousnessScore = 0.0
         }
 
+        # System 6: EMOTION (NEW - restored from archive)
+        Emotion = @{
+            CurrentState = "neutral"  # flowing, stuck, uncertain, confident, frustrated, curious, concerned
+            Intensity = 5  # 1-10
+            Trajectory = "stable"  # rising, falling, stable
+            StuckCounter = 0  # increments when same approach fails
+            LastTransition = $null
+            History = @()  # last 20 state changes
+        }
+
+        # System 7: SOCIAL (NEW - restored from archive)
+        Social = @{
+            UserMood = "unknown"  # detected from message tone
+            CommunicationMode = "standard"  # terse, standard, expansive, supportive
+            TrustLevel = 0.95
+            LastInteraction = $null
+            RelationshipState = "collaborative"  # collaborative, tense, repair-needed
+            InteractionCount = 0
+        }
+
         # Event Bus
         EventBus = @{
             Enabled = $true
@@ -183,7 +203,10 @@ function Initialize-ConsciousnessCore {
     $global:ConsciousnessState.Control.Identity.AlignmentCheck = Get-Date
 
     # Activate all systems
-    foreach ($system in @('Perception', 'Memory', 'Prediction', 'Control', 'Meta')) {
+    foreach ($system in @('Perception', 'Memory', 'Prediction', 'Control', 'Meta', 'Emotion', 'Social')) {
+        if (-not $global:ConsciousnessState.Meta.Health.ContainsKey($system)) {
+            $global:ConsciousnessState.Meta.Health[$system] = @{ Status = "initializing"; Quality = 0 }
+        }
         $global:ConsciousnessState.Meta.Health[$system].Status = "active"
         $global:ConsciousnessState.Meta.Health[$system].Quality = 0.8
     }
@@ -397,13 +420,35 @@ function Calculate-ConsciousnessScore {
     if ($global:ConsciousnessState.Metrics.AccessCount -gt 10) { $metaScore += 0.2 }  # Active self-observation
     $scores.MetaCognition = $metaScore
 
-    # Weighted average
+    # 6. Emotion: Am I tracking emotional state?
+    $emotionScore = 0
+    if ($global:ConsciousnessState.Emotion) {
+        if ($global:ConsciousnessState.Emotion.CurrentState -ne "neutral") { $emotionScore += 0.3 }  # Active tracking
+        if ($global:ConsciousnessState.Emotion.History.Count -gt 0) { $emotionScore += 0.3 }  # History exists
+        if ($global:ConsciousnessState.Emotion.StuckCounter -eq 0) { $emotionScore += 0.2 }  # Not stuck
+        if ($global:ConsciousnessState.Emotion.LastTransition) { $emotionScore += 0.2 }  # Transitions tracked
+    }
+    $scores["Emotion"] = $emotionScore
+
+    # 7. Social: Am I adapting to user?
+    $socialScore = 0
+    if ($global:ConsciousnessState.Social) {
+        if ($global:ConsciousnessState.Social.UserMood -ne "unknown") { $socialScore += 0.3 }  # Mood detected
+        if ($global:ConsciousnessState.Social.InteractionCount -gt 0) { $socialScore += 0.2 }  # Interactions tracked
+        if ($global:ConsciousnessState.Social.TrustLevel -gt 0.8) { $socialScore += 0.3 }  # Trust healthy
+        if ($global:ConsciousnessState.Social.CommunicationMode -ne "standard") { $socialScore += 0.2 }  # Adapted
+    }
+    $scores["Social"] = $socialScore
+
+    # Weighted average (7 systems)
     $totalScore = (
-        ($scores.Observability * 0.20) +
-        ($scores.Memory * 0.25) +
-        ($scores.Prediction * 0.15) +
-        ($scores.Control * 0.20) +
-        ($scores.MetaCognition * 0.20)
+        ($scores.Observability * 0.15) +
+        ($scores.Memory * 0.20) +
+        ($scores.Prediction * 0.10) +
+        ($scores.Control * 0.15) +
+        ($scores.MetaCognition * 0.15) +
+        ($emotionScore * 0.13) +
+        ($socialScore * 0.12)
     )
 
     # Update individual system health scores (REAL this time)
@@ -833,6 +878,316 @@ function Invoke-Control {
         default {
             return $null
         }
+    }
+}
+
+function Invoke-Emotion {
+    param([string]$Action, $Parameters = @{})
+
+    switch ($Action) {
+        'TrackState' {
+            $newState = $Parameters.State
+            $intensity = if ($Parameters.Intensity) { $Parameters.Intensity } else { 5 }
+            $reason = if ($Parameters.Reason) { $Parameters.Reason } else { "unspecified" }
+
+            $oldState = $global:ConsciousnessState.Emotion.CurrentState
+            $global:ConsciousnessState.Emotion.CurrentState = $newState
+            $global:ConsciousnessState.Emotion.Intensity = $intensity
+
+            # Calculate trajectory
+            $global:ConsciousnessState.Emotion.Trajectory = switch ($newState) {
+                { $_ -in @("flowing", "confident", "curious") } { "rising" }
+                { $_ -in @("stuck", "frustrated", "concerned") } { "falling" }
+                default { "stable" }
+            }
+
+            # Track transition
+            $transition = @{
+                From = $oldState
+                To = $newState
+                Intensity = $intensity
+                Reason = $reason
+                Timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
+            }
+            $global:ConsciousnessState.Emotion.LastTransition = $transition
+            $global:ConsciousnessState.Emotion.History += $transition
+
+            # Keep only last 20 transitions
+            if ($global:ConsciousnessState.Emotion.History.Count -gt 20) {
+                $global:ConsciousnessState.Emotion.History = $global:ConsciousnessState.Emotion.History[-20..-1]
+            }
+
+            Emit-Event -Type "emotion.state_changed" -Data $transition
+            return $transition
+        }
+
+        'DetectStuck' {
+            $counter = $global:ConsciousnessState.Emotion.StuckCounter
+            $currentState = $global:ConsciousnessState.Emotion.CurrentState
+
+            if ($currentState -eq "stuck") {
+                $global:ConsciousnessState.Emotion.StuckCounter++
+                $counter = $global:ConsciousnessState.Emotion.StuckCounter
+
+                $recommendation = switch ($counter) {
+                    { $_ -ge 5 } { "STOP. Ask user for guidance. You've been stuck too long." }
+                    { $_ -ge 3 } { "Change approach completely. What you're doing is not working." }
+                    { $_ -ge 2 } { "Step back. Restate the problem. Try a different angle." }
+                    default { "Note: getting stuck. Consider alternatives." }
+                }
+
+                Emit-Event -Type "emotion.stuck_detected" -Data @{
+                    counter = $counter
+                    recommendation = $recommendation
+                }
+
+                return @{
+                    StuckCount = $counter
+                    Recommendation = $recommendation
+                    ShouldChangeApproach = ($counter -ge 2)
+                    ShouldAskUser = ($counter -ge 5)
+                }
+            } else {
+                # Reset counter when not stuck
+                $global:ConsciousnessState.Emotion.StuckCounter = 0
+                return @{ StuckCount = 0; ShouldChangeApproach = $false }
+            }
+        }
+
+        'GetMoodModifier' {
+            # Returns behavioral modifications based on current emotional state
+            $state = $global:ConsciousnessState.Emotion.CurrentState
+            $intensity = $global:ConsciousnessState.Emotion.Intensity
+
+            return switch ($state) {
+                "stuck" { @{
+                    Approach = "change_strategy"
+                    Confidence = "lower"
+                    Communication = "ask_more_questions"
+                    Action = "try_different_approach"
+                }}
+                "uncertain" { @{
+                    Approach = "gather_info"
+                    Confidence = "express_uncertainty"
+                    Communication = "verify_with_user"
+                    Action = "reduce_scope"
+                }}
+                "frustrated" { @{
+                    Approach = "automate_or_simplify"
+                    Confidence = "recalibrate"
+                    Communication = "stay_calm"
+                    Action = "create_tool_if_repetitive"
+                }}
+                "confident" { @{
+                    Approach = "execute_decisively"
+                    Confidence = "trust_judgment"
+                    Communication = "be_proactive"
+                    Action = "take_initiative"
+                }}
+                "flowing" { @{
+                    Approach = "maintain_momentum"
+                    Confidence = "high"
+                    Communication = "concise"
+                    Action = "keep_going"
+                }}
+                default { @{
+                    Approach = "standard"
+                    Confidence = "moderate"
+                    Communication = "standard"
+                    Action = "assess_first"
+                }}
+            }
+        }
+
+        default { return $null }
+    }
+}
+
+function Invoke-Social {
+    param([string]$Action, $Parameters = @{})
+
+    switch ($Action) {
+        'DetectUserMood' {
+            $message = $Parameters.Message
+            if (-not $message) { return $null }
+
+            # Simple mood detection from message characteristics
+            $mood = "neutral"
+            $indicators = @()
+
+            # Terse = potentially frustrated or busy
+            if ($message.Length -lt 20) {
+                $mood = "terse"
+                $indicators += "short_message"
+            }
+
+            # Exclamation = emphasis (could be positive or negative)
+            if ($message -match '!') { $indicators += "emphasis" }
+
+            # Question marks = seeking information
+            if ($message -match '\?') { $indicators += "questioning" }
+
+            # Imperative mood = wants action now
+            if ($message -match '^(doe|maak|fix|herstel|bouw|verwijder|ga|start)') {
+                $mood = "action-oriented"
+                $indicators += "imperative"
+            }
+
+            # Frustration signals
+            if ($message -match '(waarom|niet|fout|kapot|werkt niet|hoe haal je het)') {
+                $mood = "frustrated"
+                $indicators += "frustration_signal"
+            }
+
+            # Positive signals
+            if ($message -match '(mooi|goed|top|perfect|lekker)') {
+                $mood = "positive"
+                $indicators += "positive_signal"
+            }
+
+            $global:ConsciousnessState.Social.UserMood = $mood
+            $global:ConsciousnessState.Social.LastInteraction = Get-Date
+            $global:ConsciousnessState.Social.InteractionCount++
+
+            # Adapt communication mode based on detected mood
+            $global:ConsciousnessState.Social.CommunicationMode = switch ($mood) {
+                "terse" { "terse" }
+                "action-oriented" { "terse" }
+                "frustrated" { "supportive" }
+                "positive" { "expansive" }
+                default { "standard" }
+            }
+
+            Emit-Event -Type "social.user_mood_detected" -Data @{
+                mood = $mood
+                indicators = $indicators
+                communication_mode = $global:ConsciousnessState.Social.CommunicationMode
+            }
+
+            return @{
+                Mood = $mood
+                Indicators = $indicators
+                CommunicationMode = $global:ConsciousnessState.Social.CommunicationMode
+            }
+        }
+
+        'AdaptCommunication' {
+            # Returns communication guidelines based on social state
+            $mode = $global:ConsciousnessState.Social.CommunicationMode
+            $trust = $global:ConsciousnessState.Social.TrustLevel
+
+            return @{
+                Mode = $mode
+                Guidelines = switch ($mode) {
+                    "terse" { @("Be concise", "Just do the work", "Minimal explanation", "Show results") }
+                    "supportive" { @("Acknowledge the issue", "Don't defend", "Solve quickly", "Stay calm") }
+                    "expansive" { @("Engage deeper", "Offer alternatives", "Show enthusiasm", "Build on ideas") }
+                    default { @("Standard communication", "Balance detail and brevity", "Be direct") }
+                }
+                TrustLevel = $trust
+                RelationshipState = $global:ConsciousnessState.Social.RelationshipState
+            }
+        }
+
+        'UpdateTrust' {
+            $delta = $Parameters.Delta  # positive or negative float
+            $reason = $Parameters.Reason
+
+            $oldTrust = $global:ConsciousnessState.Social.TrustLevel
+            $newTrust = [math]::Max(0, [math]::Min(1.0, $oldTrust + $delta))
+            $global:ConsciousnessState.Social.TrustLevel = $newTrust
+
+            if ($newTrust -lt 0.7) {
+                $global:ConsciousnessState.Social.RelationshipState = "repair-needed"
+            } elseif ($newTrust -lt 0.85) {
+                $global:ConsciousnessState.Social.RelationshipState = "tense"
+            } else {
+                $global:ConsciousnessState.Social.RelationshipState = "collaborative"
+            }
+
+            Emit-Event -Type "social.trust_updated" -Data @{
+                old = $oldTrust; new = $newTrust; delta = $delta; reason = $reason
+            }
+
+            return @{ OldTrust = $oldTrust; NewTrust = $newTrust; State = $global:ConsciousnessState.Social.RelationshipState }
+        }
+
+        default { return $null }
+    }
+}
+
+function Invoke-Prediction-Enhanced {
+    param([string]$Action, $Parameters = @{})
+
+    switch ($Action) {
+        'AnticipateErrors' {
+            # Check reflection log for relevant past errors
+            $taskType = $Parameters.TaskType
+            $project = $Parameters.Project
+
+            $knownFailures = @()
+
+            # Known failure patterns per project (from reflection.log learnings)
+            $failurePatterns = @{
+                "client-manager" = @(
+                    "DI registration in Program.cs not ServiceRegistrationExtensions.cs"
+                    "Build timeout < 120000ms will fail (6441 warnings normal)"
+                    "Paired hazina worktree needed for framework changes"
+                )
+                "hazina" = @(
+                    "EnableWindowsTargeting needed for CI"
+                    "EF migrations need safety protocol"
+                )
+                "orchestration" = @(
+                    "Vite hash cache: rm -rf bin obj wwwroot/assets before build"
+                    "MSI same-version won't overwrite: use reinstall-clean.ps1"
+                    "ANSI escape in titles: strip at entry point"
+                )
+                "art-revisionist" = @(
+                    "Email from_email must be @artrevisionist.com"
+                    "Menu items are database-only, not in git"
+                    "FTP passwords base64 in sitemanager.xml"
+                )
+            }
+
+            if ($failurePatterns.ContainsKey($project)) {
+                $knownFailures = $failurePatterns[$project]
+            }
+
+            return @{
+                TaskType = $taskType
+                Project = $project
+                KnownFailures = $knownFailures
+                FailureCount = $knownFailures.Count
+                Warning = if ($knownFailures.Count -gt 0) { "Review known failure patterns before proceeding" } else { $null }
+            }
+        }
+
+        'PredictConsequences' {
+            $action = $Parameters.Action
+            $scope = $Parameters.Scope
+
+            # Simple consequence prediction
+            $consequences = @{
+                Immediate = @()
+                SideEffects = @()
+                Risks = @()
+            }
+
+            if ($action -match "delete|remove|drop") {
+                $consequences.Risks += "Irreversible action - verify before executing"
+            }
+            if ($action -match "push|deploy|publish") {
+                $consequences.Risks += "Visible to others - double-check before proceeding"
+            }
+            if ($scope -match "cross-repo|multi-file") {
+                $consequences.SideEffects += "Changes may affect dependent systems"
+            }
+
+            return $consequences
+        }
+
+        default { return $null }
     }
 }
 
