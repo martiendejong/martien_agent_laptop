@@ -6,6 +6,8 @@ Track cross-repository PR dependencies between Hazina and client-manager.
 
 | Downstream PR | Depends On (Hazina) | Status | Notes |
 |---------------|---------------------|--------|-------|
+| [artrevisionist#55](https://github.com/martiendejong/artrevisionist/pull/55) | [Hazina#188](https://github.com/martiendejong/Hazina/pull/188) | ⏳ Waiting | SCP CognitivePipeline integration - art validation pipeline |
+| [artrevisionist#56](https://github.com/martiendejong/artrevisionist/pull/56) | [artrevisionist#55](https://github.com/martiendejong/artrevisionist/pull/55) | ⏳ Waiting | DBTL learning loop (depends on PR #55 merged first) |
 | [client-manager#373](https://github.com/martiendejong/client-manager/pull/373) | [Hazina#118](https://github.com/martiendejong/Hazina/pull/118) | ⏳ Waiting | Social messaging integration - ISocialMessagingProvider interface + Facebook implementation |
 | [client-manager#293](https://github.com/martiendejong/client-manager/pull/293) | [Hazina#102](https://github.com/martiendejong/Hazina/pull/102) | 🔀 Merged | LayeredImageTool integration - document header generation (2026-01-26) |
 | [artrevisionist#33](https://github.com/martiendejong/artrevisionist/pull/33) | [Hazina#102](https://github.com/martiendejong/Hazina/pull/102) | ⏳ Waiting | LayeredImageTool integration - automatic text-based image generation |
