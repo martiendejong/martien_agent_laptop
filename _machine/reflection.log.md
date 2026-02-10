@@ -6,6 +6,50 @@
 
 ---
 
+## 2026-02-10 - Art Revisionist: Favicon Restore + Email Fix
+
+**Session Type:** Production debugging — direct server fixes via FTP
+**Context:** Favicon missing, contact form and newsletter emails not working on artrevisionist.com
+**Outcome:** All three issues fixed and verified live.
+
+### What Was Done
+1. **Favicon:** Recovered original favicons from `public_html.b2` backup via FTP. Added link tags in header.php. Uploaded to both theme (git) and server root (FTP).
+2. **Email settings:** Admin email and WP Mail SMTP from_email were set to `info@prohydro.nl` (wrong domain). Hosting server rejected sending from non-hosted domain. Fixed to `artrevisionist.com` via PHP fix-script uploaded/executed/deleted via FTP.
+3. **Contact form From header:** Changed from visitor's email (SPF fail) to `noreply@artrevisionist.com` with visitor email as Reply-To.
+
+### Key Learnings
+
+**1. FTP Access Pattern for Production WordPress**
+- FileZilla credentials in `C:\Users\HP\AppData\Roaming\FileZilla\sitemanager.xml` (base64 passwords)
+- PowerShell `FtpWebRequest` works reliably for list/download/upload/delete
+- Git Bash mangles `/` arguments (MSYS path conversion) — avoid as CLI params
+- Pattern: write .ps1 script, call with `-File` flag, never inline PowerShell with `$` vars from bash
+
+**2. WordPress Email Diagnosis Checklist**
+- Check `wp_mail_smtp` option in wp_options for mailer type and from_email
+- Check `admin_email` in wp_options (contact forms send here)
+- Check `wp_mail_smtp_debug` for error messages
+- Hosting servers often reject mail from non-hosted domains — from_email MUST match hosted domain
+- PHP mail() works on shared hosting IF from_email is correct
+
+**3. Production Site Running on Staging Database**
+- wp-config.php points to `_ar_staging` database with default auth salts
+- This is a security risk — salts should be regenerated
+- Table prefix changed from `yvpd_` to `wp_` in migration
+
+**4. Server Backup Structure**
+- `public_html.b` = WordPress-only backup (Aug 2025)
+- `public_html.b2` = full pre-migration backup with favicons, old Elementor site, old plugins
+- Always check backups before recreating assets from scratch
+
+### Files Modified
+- `header.php` (favicon link tags)
+- `functions.php` (contact form From header)
+- `assets/favicon.ico`, `favicon-32x32.png`, `favicon-16x16.png`, `apple-touch-icon.png` (new, from backup)
+- Production wp_options: admin_email, wp_mail_smtp settings
+
+---
+
 ## 2026-02-10 - Orchestration UI: Session ID Visibility + ANSI Stripping
 
 **Session Type:** Quick UI fix — direct commit to develop
