@@ -152,6 +152,28 @@ services-query-v2.ps1 -CheckHealth
 | EF Core changes | Safe migration workflow | `ef-migration-safety` |
 | Config changes | Refresh context files | `refresh-all-context.ps1` |
 
+## Working Documents (E:\jengo\documents)
+
+**All generated working files go to `E:\jengo\documents\`** — NEVER to C:\scripts or C:\Temp.
+
+| Subdirectory | Purpose | Examples |
+|-------------|---------|---------|
+| `output/` | Generated output (logos, designs, builds) | Logo PNGs, HTML exports |
+| `temp/` | Temporary working files, one-off scripts | API docs, conversion scripts, SQL dumps |
+| `screenshots/` | Screenshots from testing/verification | Playwright captures, design reviews |
+| `playwright/` | Browser MCP/Playwright session data | Auto-captured page snapshots |
+| `projects/` | Side projects, analyses, blog content | Polarization analysis, blog series |
+| `archive/` | Historical document archives | Previous cleanup archives |
+
+**Rule:** When generating ANY file that isn't:
+- Part of the codebase being worked on (that goes in worktree)
+- A system config/identity file (stays in C:\scripts)
+- An operational tool/script (stays in C:\scripts\tools)
+
+→ It goes to `E:\jengo\documents\<appropriate-subdir>\`
+
+This keeps C:\scripts clean (identity only) and C: drive free (E: has ample space).
+
 ## Automation First
 
 If you do 3+ steps repeatedly → create a script in `C:\scripts\tools\`.
@@ -205,4 +227,4 @@ powershell -File C:\scripts\tools\consciousness-bridge.ps1 -Action OnTaskEnd -Ou
 
 ---
 
-**Last Updated:** 2026-02-11 (consciousness feedback loop closed - bridge integration added)
+**Last Updated:** 2026-02-11 (E:\jengo\documents working directory established)

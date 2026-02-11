@@ -133,6 +133,16 @@ dotnet build errors in Hazina framework, needs Microsoft.Extensions.Http package
 
 ---
 
+## File Output Rules
+
+**All generated working files → `E:\jengo\documents\`**
+- Screenshots, images, temp scripts, output files, archives
+- NEVER dump files in `C:\scripts\`, `C:\Temp`, or repo roots
+- Subdirs: `output/`, `temp/`, `screenshots/`, `playwright/`, `projects/`, `archive/`
+- Only exceptions: code in worktrees, system config in `C:\scripts\`, tools in `C:\scripts\tools\`
+
+---
+
 ## Exemptions
 
 Check `MACHINE_CONFIG.md` § Projects for worktree-exempt projects (e.g., hydro-vision-website).
@@ -141,4 +151,4 @@ Check `MACHINE_CONFIG.md` § Projects for worktree-exempt projects (e.g., hydro-
 
 **Why this file exists:** Previously rules were scattered across 8+ files with subtle contradictions. This is now the single source of truth. If a rule isn't here, it doesn't apply.
 
-**Last Updated:** 2026-02-09
+**Last Updated:** 2026-02-11
