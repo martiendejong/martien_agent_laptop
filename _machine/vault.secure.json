@@ -1,18 +1,153 @@
 ﻿{
+    "scope":  "CurrentUser",
+    "version":  "2.0",
+    "encryption":  "dpapi",
+    "storage":  "hex",
+    "updated":  "2026-02-11 18:54:07",
     "credentials":  [
                         {
-                            "service":  "github",
+                            "updated":  "2026-02-11 18:53:42",
+                            "token_enc":  "",
+                            "password_hint":  "Th1s1sSp...",
+                            "notes_enc":  "",
+                            "tags":  [
+                                         "service",
+                                         "admin"
+                                     ],
+                            "username":  "bosi",
+                            "token_hint":  "",
+                            "password_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e00000000020000000000106600000001000020000000477a97669a5dd350f13c48f416c57192556ef1a97cfedb70143103d7ca2669a7000000000e8000000002000020000000c23e1357fe5d95fa2fc3e3beae72fdb5cec1a7f08217742951d90b5d1a818cae10000000be998f04a616c805d2bc91514c5e0235400000009825f0c15820ee9877a94e6d3fbe681deb4cb0ba18601c2d1dfb550c91765e36fa67d0b94a3392b265c01d8ca6975d3940fa8e8ba0b6e9d4d58489c70ae853e3",
+                            "service":  "orchestration",
+                            "created":  "2026-02-11 18:53:42"
+                        },
+                        {
+                            "updated":  "2026-02-11 18:53:43",
+                            "token_enc":  "",
+                            "password_hint":  "Th1s1sSp...",
+                            "notes_enc":  "",
+                            "tags":  [
+                                         "admin"
+                                     ],
+                            "username":  "wreckingball",
+                            "token_hint":  "",
+                            "password_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e000000000200000000001066000000010000200000003571f0d8a26e8eacce7cbc3616926dc05c40ea34956167a8b5c1dcb358b5921d000000000e80000000020000200000008d6601792291f8d829703f0449cfaa680acbfbd5abc339cc62f15a01caeaf836100000008a0cfebf81c7713bf1b52bfea6b12ad04000000047d27fe0b7dec2f40a4dd1fad39c0bf47161ddd582631e8b5dac4a261f484c132490fe90a16a6e4d509867b75fe462420bee29f27dc107c5c1dc93c639909db8",
+                            "service":  "admin",
+                            "created":  "2026-02-11 18:53:43"
+                        },
+                        {
+                            "updated":  "2026-02-11 18:53:43",
+                            "token_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e000000000200000000001066000000010000200000006db3e6b14a13b8782b3650e85a25efa25050238146db77af65ee7042e51af99b000000000e8000000002000020000000a137e56053e85e3c797f9ae515ed94780ee54752e9e0b569934753146f56dca7300000006ca9252327c8128c11874e6756acb841288b3190a935555b5d6fa73e00937e7c07ccbd2328711eb1deaaa78a6b73b9f34000000097f918de091a1cf35cddca1e06889b9c66a901a0c3dae9db49546d2ee5932d4c215f536702bb8c05da0d0d8dd7cee6f5ee9698a2326526bb75c97c73e79db885",
+                            "password_hint":  "",
+                            "notes_enc":  "",
+                            "tags":  [
+                                         "api"
+                                     ],
                             "username":  "",
-                            "notes_encoded":  "",
-                            "token_hint":  "ghp_test12...",
-                            "token_encoded":  "Z2hwX3Rlc3QxMjM0NTY3ODk=",
-                            "password_encoded":  "",
-                            "created":  "2026-02-09 10:30:45",
-                            "updated":  "2026-02-09 10:30:45"
+                            "token_hint":  "pk_74525...",
+                            "password_enc":  "",
+                            "service":  "clickup",
+                            "created":  "2026-02-11 18:53:43"
+                        },
+                        {
+                            "updated":  "2026-02-11 18:53:43",
+                            "token_enc":  "",
+                            "password_hint":  "Voy@%JzV...",
+                            "notes_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e000000000200000000001066000000010000200000004c53e23b32d8a8d15f85f4bfc310cc4e26f8dfacbaaba276f0b30cc4f7237f08000000000e80000000020000200000003a6fa359b34a034156aaa04d06f4de0766471535b19500c918dd5181456c6824400000000b42591ba61b3ee7d6dac53d1b90553b93e2c4ed6095cf54a8fa4892aed181092eb9d030da277bd3383de7a66f4159f171c0b72d2bb20383379ee28fdbbb7e9540000000ef1066a0efb07d217e4fdc05c746b8050e898e582342bd12ed5bc8de37823013d7f43d95a92a6a0f1d6d78f8b2cd2777beb2851eb265ba6411fa70b77cc431bf",
+                            "tags":  [
+                                         "email"
+                                     ],
+                            "username":  "info@martiendejong.nl",
+                            "token_hint":  "",
+                            "password_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e00000000020000000000106600000001000020000000320a6f161c60b7c8aa40c1cc9b7a0749142f4ff7ceb3724918bb66431fb9e021000000000e8000000002000020000000efffbf4e50970ecaba6abd024c293988ae39e483beb64b1dbd4f96775463f80320000000a135bef4c75ba5d0e9062793406af939d206f33021f8f41ee36359031aafc9084000000056151d4144f9d561ea47b855441a83eb841659ea0ccc5e19ed446c7af00377f09734981c7c95aa0f8f407ef125abf7d4adaab3a368ae58603a111f2494445462",
+                            "service":  "smtp",
+                            "created":  "2026-02-11 18:53:43"
+                        },
+                        {
+                            "updated":  "2026-02-11 18:53:43",
+                            "token_enc":  "",
+                            "password_hint":  "hLPFy6Md...",
+                            "notes_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e00000000020000000000106600000001000020000000988566c1142fd0958afa70156d969a52287296faafd14029e0ef360326076457000000000e8000000002000020000000336f40de420d57332725f7f4e351c21e861b70b159f76eb3ae8b616fab89f29f5000000041ee2063f602525f9a8638a2c2db2d69f80bd57ca1b9771d44d8708e2b7a77631bc06dbf07b44a72f1e9d1b0f934284e977b755e72e9a289e9ec1cc758f3356b29f23b0f0d1c5ef2fc3a4aa24c9a5bc340000000d750bf821eac58dd677ff7ac13158a6cb770b4f9e4ab5ae4a4f6e3f05256559bdb16a6a9a0e0777d127c3f0ba82c16fbcffa252994281bdfca3999940f6ba6d3",
+                            "tags":  [
+                                         "email"
+                                     ],
+                            "username":  "info@martiendejong.nl",
+                            "token_hint":  "",
+                            "password_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e0000000002000000000010660000000100002000000092af10d5d5680136a05381b76a24844e163a3c52b1a4a06fd895f4e6fbe9001e000000000e8000000002000020000000b721038ab88abe4d070c86492aef518c9ae68f0a0dff5da8c68f2a012996ff9e2000000058e93630cbc959ad656c0ae0b7614fc214c2fd23865123abdca25707b4a8952740000000d5ebd05d58778d8bcdc339dd278fa4307bc74409dd5e88443f6c0b5da42c04d84fe72a3a7f1ee3eb87b3d158e8f02bc70a2c1df71ad3e8cb972902dd53ac4ca0",
+                            "service":  "imap",
+                            "created":  "2026-02-11 18:53:43"
+                        },
+                        {
+                            "updated":  "2026-02-11 18:53:43",
+                            "token_enc":  "",
+                            "password_hint":  "WmQZZNX7...",
+                            "notes_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e00000000020000000000106600000001000020000000160a55f305b7e53181ef425b2c09d5fd0086bed80433fc94f74ea3de211c8e93000000000e8000000002000020000000b8b73434d20c0a2f6c22dde7fdd907ddf27c481d0c849a4361c6bae1b60d7efc20000000fbaf8c13bfe622d80c9d3b234b304c901651447e6c397bef75653716d517933340000000967feb9d88bd5ae37f1d2c4a90d0f0e6b2abf848cba8cede6fd3337222f1acd35f1070558aa5ce6e0eba0c9ace2e924f1f7bbd72985f034c8c36d9f0131ceb09",
+                            "tags":  [
+                                         "email"
+                                     ],
+                            "username":  "account@brand2boost.com",
+                            "token_hint":  "",
+                            "password_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e000000000200000000001066000000010000200000000684faa490384ddb50737746b09a422601d9924d9c0d0e5d1c2ae7805bc53112000000000e800000000200002000000096bb7c4a93b2fe3994cf571efd6e223a5216e6a0013316ea0815bf3f7c3be3d0200000000ee150444836bcd3a2ee9c8865bd7b3a92c9923735c48c0c71795572fcd5374e4000000052c9b53aa2679f1ee0706c6b64cda050dccbbe7f190fac661054492d640e8da5364a0af13860bd7b2aeafc5dfb936576c1cdeeaca47cd9dcc2a6f967824158d2",
+                            "service":  "email-brand2boost",
+                            "created":  "2026-02-11 18:53:43"
+                        },
+                        {
+                            "updated":  "2026-02-11 18:53:43",
+                            "token_enc":  "",
+                            "password_hint":  "KeMgxLxZ...",
+                            "notes_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e000000000200000000001066000000010000200000008721ddaa00059547663fe0d733f6fb66f52cbeed3abe3f6b29d0b97f59c24803000000000e80000000020000200000008142fed0101255de2b36593b5cf1db443ea0187d979a743fb5abee36c52d4a7520000000cf0e3910c3a5bd6840fb12039031439e5edd12b57a7fea027f53b8e135440f00400000001ebaece1ff3682d48f2b8699df7e6ffedb904b5036d671f7350dded4ec2ff49d07d028c0c9cebbb05d5044a21913709be324f874f4dd7b4d8c4192be8bc9facc",
+                            "tags":  [
+                                         "email"
+                                     ],
+                            "username":  "brandmanager@prospergenics.com",
+                            "token_hint":  "",
+                            "password_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e0000000002000000000010660000000100002000000073b01043e3e71b9649039d95d666d2e35419496b3c9e4f3e1fffb4ff19e71c4e000000000e80000000020000200000004f12b5a009e5b7a51bb8bfcab1b00a09938c535de05e832bdba67debe50799f5200000004bbeabf734ccfbb3220a15d92af8d28d0d525e01e4e63cf28d4dcda20ea85c294000000088d639f282ec918e2017d89baacfeb9b9c4b44ab6cfbd329978cdd1d0e06b2709a2c8535da78d9edec46e21c94d0728d166029a09880846aa28fa1e15bb48c02",
+                            "service":  "email-prospergenics",
+                            "created":  "2026-02-11 18:53:43"
+                        },
+                        {
+                            "updated":  "2026-02-11 18:53:43",
+                            "token_enc":  "",
+                            "password_hint":  "UtCI Mgr...",
+                            "notes_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e00000000020000000000106600000001000020000000a74491b43c705aba3a5e29d38e6fee4579a92182b6f5d8178c6c220af9bcf27e000000000e8000000002000020000000b56cc49f56810840bf7b3f737ce6e95f7aa32cce6144966edea98dfb1496a40650000000c49bd920de0058adb38d5dc4835e1ad87d1006fbaa63230c969198d38081af2d6fa190a7f0019819c4d3feddd95b212ab76b4b16c63b604285b520278d33bd51ea9f4f17b86eaa52e7d613efb5781ea840000000e3148a508091e912d05cc2b9578868b84a84a64214332edccf4c9c900347ff30c95e11a0ea7747963116950a9028f361d826753d0bc802b4881f7ff741ebe555",
+                            "tags":  [
+                                         "admin",
+                                         "api"
+                                     ],
+                            "username":  "admin",
+                            "token_hint":  "",
+                            "password_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e000000000200000000001066000000010000200000009914b9652dd823ae959876dce744e0b78155bc3b1fd4b007ba45e5fd61dbc3aa000000000e800000000200002000000089bc373a6f29a2b140bfc4b8daf2db78c028515e37488c35b29092808a646b12200000009e1d40aa6350f7f37b0f1a8dd71347fee8ee1d2d61854836d7b975f063d851d2400000000356a2e1fe344a0558d5952ed36c4710f20265d7d5820b2fe57fd65a951c4114b8b93729138243bbe238badd8fda1a71ffa93c4a1529fc2fcd6a7590df463bf7",
+                            "service":  "wordpress-martiendejong",
+                            "created":  "2026-02-11 18:53:43"
+                        },
+                        {
+                            "updated":  "2026-02-11 18:53:43",
+                            "token_enc":  "",
+                            "password_hint":  "?:jO8;Tr...",
+                            "notes_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e000000000200000000001066000000010000200000000dd42f633061528ded15bcfdf4bc509753c33c82e5f688dce1a96f5efa88bf04000000000e8000000002000020000000dd36164b5ca75ac987a40703002959729b2cdec46653e86bc4f6b7ddb668d36e30000000078231f9c61e9fecc4de03684bdd35f496acdece1709fcbac611a75fa7597e6a6aadbc941dce25e48cc66ae3f98de236400000003a8cc0e5e88b2f5eff3118dde024ab058eba93a588cb8a75c42dfd48a85770c4952c7de3e908dfb0e1cbd83fd773d590777a090d68cf57a8a6f79ad2f264bdcb",
+                            "tags":  [
+                                         "ftp",
+                                         "deployment"
+                                     ],
+                            "username":  "u63291p434771",
+                            "token_hint":  "",
+                            "password_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e00000000020000000000106600000001000020000000d1e613e54c69fc1026487c208e9e7d4db4b7b6156f9781442b6fbca896d2567e000000000e80000000020000200000009475e40fcb766dce3458811eaf7689ea967aa03b875d460a2e1d3007b4478ec720000000b204351d2fd648b09a029a9cb1fafc87f384a4add8501b97f9541ea0f35892e040000000fa50a0bcb43d2547016bae125b0c161bef52d58b9eb61f4827ae349f1eb6ebbb2da11d65e78d63bb478ee9c0905c597a458578beb5fd18bc7d6d25f86b77afba",
+                            "service":  "ftp-artrevisionist",
+                            "created":  "2026-02-11 18:53:43"
+                        },
+                        {
+                            "updated":  "2026-02-11 18:53:43",
+                            "token_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e00000000020000000000106600000001000020000000d758283fe47f6d6c68ac550b8b3b800d73b6fc21bf59b80de804326c37e35ba7000000000e80000000020000200000006c38ac45c7248837d20b9c1bb6ac4333e4d32536f97c220147adb7df1448ed82b0000000f65b63f5f49dd77daf920965b3542c5ee5a0017ee8935cf36f297d76cca71a3a22aaad68c7b6ba0caa7a4039f133cf8afaae21d2a50d535b172b66f1dcc74528754eb5210e6a251786a8e7a7a1e3b96a0f1daafc962b6f40543a9a298f8a7e5197215df1f46d2cca27b53de4b28d67f404721a192b7879af49c6ad9b49589779aba4ac4140d30e7138235f6111beba37efdcf5a40fbbceff237fbc9f8627e888a8a37c34af01623c9b818877f51670e940000000e120d47bd774552b9428991017056ef9dea632c6a18fad0a843a8e197709db011de6def20ad2f4e80136320a8b12fa2f5b544903ae2035980a56d78f91813359",
+                            "password_hint":  "",
+                            "notes_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e00000000020000000000106600000001000020000000fc8ccc215803ee95ab972a3f7765f12eb6a49ff357739de7ec540a33c768eceb000000000e8000000002000020000000c735b8709700f0bd9e10de7fa1413ae5f1932d2e2c40b8b673c8eeffe5b61b5b50000000d93c4b6e7809214c619d50ed71adbb7418e972c10c20180aefc9a27ff232bc44b7b4a871af3dd2cb3e8a75261114f54ef0a869a17fd2c6ede84288dee42caa25cb7e0273415c7d434ef9717b817c940840000000afd533c4fba3f5e8b6dddd6f699309870946f00fb140b2a77b3d0449ae53e99ff7d4a7cb6070b14b7c11b6b7033681731aa1b29ef18d6edc5514f75f8efbec5a",
+                            "tags":  [
+                                         "api",
+                                         "ai"
+                                     ],
+                            "username":  "",
+                            "token_hint":  "sk-svcac...",
+                            "password_enc":  "",
+                            "service":  "openai",
+                            "created":  "2026-02-11 18:53:43"
                         }
-                    ],
-    "encoding":  "base64",
-    "version":  "1.0",
-    "updated":  "2026-02-09 10:30:45",
-    "note":  "Secured by file permissions"
+                    ]
 }

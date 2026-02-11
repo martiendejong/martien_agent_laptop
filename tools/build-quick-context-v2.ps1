@@ -40,8 +40,7 @@ $context.projects += @{
     framework_path = "C:\Projects\hazina"
     store_path = "C:\stores\brand2boost"
     main_branch = "develop"
-    admin_user = "wreckingball"
-    admin_pass = "Th1s1sSp4rt4!"
+    admin_auth = "vault:admin"
     requires_paired_worktree = $true
     paired_repo = "hazina"
 }
@@ -77,8 +76,7 @@ $context.services += @{
     swagger = "https://localhost:5123/swagger"
     launcher = "C:\scripts\o.bat"
     executable = "C:\stores\orchestration\HazinaOrchestration.exe"
-    auth_user = "bosi"
-    auth_pass = "Th1s1sSp4rt4!"
+    auth = "vault:orchestration"
     protocol = "HTTPS"
     port = 5123
 }

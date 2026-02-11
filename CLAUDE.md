@@ -68,7 +68,7 @@ This list is alive - it grows every session as new patterns emerge.
 | Store config | `C:\stores\brand2boost` | Config/data |
 | Orchestration | `C:\stores\orchestration\HazinaOrchestration.exe` | Terminal service (HTTPS:5123) |
 
-**Admin:** user=wreckingball, pass=Th1s1sSp4rt4!
+**Admin:** vault:admin (vault.ps1 -Action get -Service admin)
 **Don't** run client-manager from command line - user runs from Visual Studio + npm.
 
 ## Debugging Tools

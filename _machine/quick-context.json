@@ -41,9 +41,8 @@
                          "launcher":  "C:\\scripts\\o.bat",
                          "name":  "Hazina Orchestration",
                          "port":  5123,
-                         "auth_user":  "bosi",
-                         "tailscale_url":  "https://desktop-ecbaunu.tailca9ff1.ts.net:5123",
-                         "auth_pass":  "Th1s1sSp4rt4!"
+                         "auth":  "vault:orchestration",
+                         "tailscale_url":  "https://desktop-ecbaunu.tailca9ff1.ts.net:5123"
                      },
                      {
                          "url":  "http://localhost:27183",
@@ -124,8 +123,7 @@
                          "main_branch":  "develop",
                          "name":  "client-manager",
                          "requires_paired_worktree":  true,
-                         "admin_pass":  "Th1s1sSp4rt4!",
-                         "admin_user":  "wreckingball"
+                         "admin_auth":  "vault:admin"
                      },
                      {
                          "code_path":  "C:\\Projects\\hazina",

@@ -1,294 +1,437 @@
-#!/usr/bin/env pwsh
 <#
 .SYNOPSIS
-    Secure credentials vault using Windows DPAPI encryption
+    DPAPI-encrypted credentials vault (v2)
 
 .DESCRIPTION
-    Stores and retrieves credentials encrypted with Windows Data Protection API.
-    Credentials are user-scoped and machine-scoped (cannot be decrypted by other users or on other machines).
+    Stores and retrieves credentials encrypted with Windows DPAPI (CurrentUser scope).
+    Per-user, per-machine encryption. No key management required.
+    PS 5.1 compatible. Atomic file writes. ACL-protected vault file.
 
 .PARAMETER Action
-    Action to perform: get, set, list, rotate, delete
+    get, set, list, delete, export-hints
 
 .PARAMETER Service
-    Service name (e.g., "github", "clickup", "gmail")
+    Service name (e.g., "clickup", "orchestration")
+
+.PARAMETER Field
+    Return single raw value: vault.ps1 -Action get -Service clickup -Field token
 
 .PARAMETER Username
-    Username for the service (used with 'set')
+    Username for the service
 
 .PARAMETER Password
-    Password for the service (used with 'set')
+    Password for the service
 
 .PARAMETER Token
-    API token for the service (alternative to username/password)
+    API token for the service
 
 .PARAMETER Notes
-    Optional notes (2FA codes, recovery keys, etc.)
+    Optional notes
+
+.PARAMETER Tags
+    String array for categorization
+
+.PARAMETER Json
+    Force JSON output
+
+.PARAMETER Silent
+    Suppress Write-Host output
 
 .EXAMPLE
-    .\vault.ps1 -Action set -Service "github" -Token "ghp_xxx"
-
-.EXAMPLE
-    .\vault.ps1 -Action get -Service "github"
-
-.EXAMPLE
+    .\vault.ps1 -Action set -Service "clickup" -Token "pk_xxx" -Tags "api"
+    .\vault.ps1 -Action get -Service "clickup" -Field token
     .\vault.ps1 -Action list
-
-.EXAMPLE
-    .\vault.ps1 -Action rotate -Service "github"
-
-.EXAMPLE
-    .\vault.ps1 -Action delete -Service "github"
+    .\vault.ps1 -Action delete -Service "test"
+    .\vault.ps1 -Action export-hints
 
 .NOTES
     Author: Jengo
-    Created: 2026-02-09
-    ROI: 8.0
-    Encryption: DPAPI (user-scoped, machine-scoped)
+    Version: 2.0
+    Created: 2026-02-11
+    Encryption: DPAPI CurrentUser, stored as hex strings
 #>
 
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $true)]
-    [ValidateSet("get", "set", "list", "rotate", "delete")]
+    [ValidateSet("get", "set", "list", "delete", "export-hints")]
     [string]$Action,
 
-    [Parameter(Mandatory = $false)]
     [string]$Service = "",
-
-    [Parameter(Mandatory = $false)]
+    [string]$Field = "",
     [string]$Username = "",
-
-    [Parameter(Mandatory = $false)]
     [string]$Password = "",
-
-    [Parameter(Mandatory = $false)]
     [string]$Token = "",
-
-    [Parameter(Mandatory = $false)]
-    [string]$Notes = ""
+    [string]$Notes = "",
+    [string[]]$Tags = @(),
+    [switch]$Json,
+    [switch]$Silent
 )
 
 $ErrorActionPreference = "Stop"
 
-$vaultFile = "C:\scripts\_machine\vault.encrypted.json"
+Add-Type -AssemblyName System.Security
 
-# Encryption helpers using DPAPI
+$vaultFile = "C:\scripts\_machine\vault.secure.json"
+
+# --- Helpers ---
+
+function ConvertTo-Hashtable {
+    param([Parameter(ValueFromPipeline=$true)]$InputObject)
+    process {
+        if ($null -eq $InputObject) { return $null }
+        if ($InputObject -is [System.Collections.IEnumerable] -and $InputObject -isnot [string]) {
+            $result = @()
+            foreach ($item in $InputObject) {
+                $result += (ConvertTo-Hashtable -InputObject $item)
+            }
+            return ,$result
+        }
+        if ($InputObject -is [psobject]) {
+            $hash = @{}
+            foreach ($prop in $InputObject.PSObject.Properties) {
+                $hash[$prop.Name] = ConvertTo-Hashtable -InputObject $prop.Value
+            }
+            return $hash
+        }
+        return $InputObject
+    }
+}
+
 function Protect-Secret {
     param([string]$PlainText)
-
-    if ([string]::IsNullOrEmpty($PlainText)) {
-        return ""
-    }
-
+    if ([string]::IsNullOrEmpty($PlainText)) { return "" }
     $bytes = [System.Text.Encoding]::UTF8.GetBytes($PlainText)
-    $encryptedBytes = [System.Security.Cryptography.ProtectedData]::Protect(
-        $bytes,
-        $null,
-        [System.Security.Cryptography.DataProtectionScope]::CurrentUser
+    $encrypted = [System.Security.Cryptography.ProtectedData]::Protect(
+        $bytes, $null, [System.Security.Cryptography.DataProtectionScope]::CurrentUser
     )
-    return [Convert]::ToBase64String($encryptedBytes)
+    $hex = ""
+    foreach ($b in $encrypted) {
+        $hex += $b.ToString("x2")
+    }
+    return $hex
 }
 
 function Unprotect-Secret {
-    param([string]$EncryptedText)
-
-    if ([string]::IsNullOrEmpty($EncryptedText)) {
-        return ""
-    }
-
+    param([string]$HexString)
+    if ([string]::IsNullOrEmpty($HexString)) { return "" }
     try {
-        $encryptedBytes = [Convert]::FromBase64String($EncryptedText)
-        $bytes = [System.Security.Cryptography.ProtectedData]::Unprotect(
-            $encryptedBytes,
-            $null,
-            [System.Security.Cryptography.DataProtectionScope]::CurrentUser
+        $byteCount = $HexString.Length / 2
+        $encrypted = New-Object byte[] $byteCount
+        for ($i = 0; $i -lt $byteCount; $i++) {
+            $encrypted[$i] = [Convert]::ToByte($HexString.Substring($i * 2, 2), 16)
+        }
+        $decrypted = [System.Security.Cryptography.ProtectedData]::Unprotect(
+            $encrypted, $null, [System.Security.Cryptography.DataProtectionScope]::CurrentUser
         )
-        return [System.Text.Encoding]::UTF8.GetString($bytes)
+        return [System.Text.Encoding]::UTF8.GetString($decrypted)
     } catch {
-        Write-Host "⚠️  Failed to decrypt: $_" -ForegroundColor Yellow
         return "[DECRYPTION FAILED]"
     }
 }
 
-# Load or create vault
+function Get-Hint {
+    param([string]$Value, [int]$Length = 8)
+    if ([string]::IsNullOrEmpty($Value)) { return "" }
+    if ($Value.Length -le $Length) { return $Value + "..." }
+    return $Value.Substring(0, $Length) + "..."
+}
+
 function Load-Vault {
-    if (Test-Path $vaultFile) {
-        $content = Get-Content $vaultFile -Raw | ConvertFrom-Json
-        return @($content.credentials)
-    } else {
-        return @()
+    if (-not (Test-Path $vaultFile)) {
+        return ,@()
     }
+    $raw = Get-Content $vaultFile -Raw
+    if ([string]::IsNullOrWhiteSpace($raw)) {
+        return ,@()
+    }
+    $parsed = $raw | ConvertFrom-Json
+    $converted = ConvertTo-Hashtable -InputObject $parsed
+    if ($null -eq $converted) { return ,@() }
+    $creds = $converted["credentials"]
+    if ($null -eq $creds) { return ,@() }
+    # Force array (PS 5.1 unrolls single-element arrays from functions)
+    if ($creds -is [hashtable]) {
+        $arr = @($creds)
+        return ,$arr
+    }
+    return ,$creds
 }
 
 function Save-Vault {
     param([array]$Credentials)
 
     $vaultData = @{
-        version = "1.0"
-        encrypted_with = "DPAPI"
+        version = "2.0"
+        encryption = "dpapi"
         scope = "CurrentUser"
+        storage = "hex"
         updated = (Get-Date -Format "yyyy-MM-dd HH:mm:ss")
         credentials = $Credentials
     }
 
-    $vaultData | ConvertTo-Json -Depth 10 | Out-File -FilePath $vaultFile -Encoding UTF8
+    $jsonContent = $vaultData | ConvertTo-Json -Depth 10
+
+    # Atomic write: .tmp -> delete original -> rename
+    $tmpFile = $vaultFile + ".tmp"
+    $jsonContent | Out-File -FilePath $tmpFile -Encoding UTF8
+
+    if (Test-Path $vaultFile) {
+        Remove-Item $vaultFile -Force
+    }
+    Rename-Item -Path $tmpFile -NewName (Split-Path $vaultFile -Leaf)
+
+    # ACL: current user only
+    try {
+        $acl = Get-Acl $vaultFile
+        $acl.SetAccessRuleProtection($true, $false)
+        $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+        $rule = New-Object System.Security.AccessControl.FileSystemAccessRule(
+            $currentUser, "FullControl", "Allow"
+        )
+        $acl.SetAccessRule($rule)
+        Set-Acl $vaultFile $acl
+    } catch {
+        # ACL setting may fail in some environments, vault still works
+    }
 }
 
-# === ACTION: LIST ===
+function Write-VaultHost {
+    param([string]$Message, [string]$Color = "White")
+    if (-not $Silent) {
+        Write-Host $Message -ForegroundColor $Color
+    }
+}
+
+# --- Actions ---
+
+# === LIST ===
 if ($Action -eq "list") {
     $vault = Load-Vault
 
     if ($vault.Count -eq 0) {
-        Write-Host "📭 Vault is empty" -ForegroundColor Yellow
+        Write-VaultHost "Vault is empty" "Yellow"
         exit 0
     }
 
-    Write-Host "🔐 Credentials Vault ($($vault.Count) entries):" -ForegroundColor Cyan
-    Write-Host ""
+    if ($Json) {
+        $output = @()
+        foreach ($entry in $vault) {
+            $output += @{
+                service = $entry["service"]
+                username = $entry["username"]
+                password_hint = $entry["password_hint"]
+                token_hint = $entry["token_hint"]
+                tags = $entry["tags"]
+                created = $entry["created"]
+                updated = $entry["updated"]
+            }
+        }
+        $output | ConvertTo-Json -Depth 10
+        exit 0
+    }
+
+    Write-VaultHost "Credentials Vault ($($vault.Count) entries):" "Cyan"
+    Write-VaultHost ""
 
     foreach ($entry in $vault) {
-        $rotateWarning = if ($entry.needs_rotation) { " ⚠️  NEEDS ROTATION" } else { "" }
-        Write-Host "  🔹 $($entry.service)$rotateWarning" -ForegroundColor White
-        if ($entry.username) {
-            Write-Host "     Username: $($entry.username)" -ForegroundColor Gray
+        $svc = $entry["service"]
+        $user = $entry["username"]
+        $phint = $entry["password_hint"]
+        $thint = $entry["token_hint"]
+        $tagList = $entry["tags"]
+        $updated = $entry["updated"]
+
+        $tagStr = ""
+        if ($tagList -and $tagList.Count -gt 0) {
+            $tagStr = " [" + ($tagList -join ", ") + "]"
         }
-        if ($entry.token_hint) {
-            Write-Host "     Token: $($entry.token_hint)" -ForegroundColor Gray
+
+        Write-VaultHost "  $svc$tagStr" "White"
+        if ($user) {
+            Write-VaultHost "    Username: $user" "Gray"
         }
-        Write-Host "     Created: $($entry.created)" -ForegroundColor Gray
-        Write-Host "     Updated: $($entry.updated)" -ForegroundColor Gray
-        Write-Host ""
+        if ($phint) {
+            Write-VaultHost "    Password: $phint" "Gray"
+        }
+        if ($thint) {
+            Write-VaultHost "    Token: $thint" "Gray"
+        }
+        Write-VaultHost "    Updated: $updated" "Gray"
+        Write-VaultHost ""
     }
 
     exit 0
 }
 
-# === ACTION: GET ===
+# === GET ===
 if ($Action -eq "get") {
     if ([string]::IsNullOrEmpty($Service)) {
-        Write-Host "❌ Service name required for 'get' action" -ForegroundColor Red
+        Write-VaultHost "Service name required for get action" "Red"
         exit 1
     }
 
     $vault = Load-Vault
-    $entry = $vault | Where-Object { $_.service -eq $Service }
+    $entry = $null
+    foreach ($e in $vault) {
+        if ($e["service"] -eq $Service) {
+            $entry = $e
+            break
+        }
+    }
 
-    if (-not $entry) {
-        Write-Host "❌ Service not found in vault: $Service" -ForegroundColor Red
+    if ($null -eq $entry) {
+        Write-VaultHost "Service not found: $Service" "Red"
         exit 1
     }
 
-    # Decrypt and return
-    $decrypted = @{
-        service = $entry.service
-        username = $entry.username
-        password = Unprotect-Secret $entry.password_encrypted
-        token = Unprotect-Secret $entry.token_encrypted
-        notes = Unprotect-Secret $entry.notes_encrypted
-        needs_rotation = $entry.needs_rotation
-        created = $entry.created
-        updated = $entry.updated
+    $decUsername = $entry["username"]
+    $decPassword = Unprotect-Secret $entry["password_enc"]
+    $decToken = Unprotect-Secret $entry["token_enc"]
+    $decNotes = Unprotect-Secret $entry["notes_enc"]
+
+    # Single field extraction: return raw value only
+    if (-not [string]::IsNullOrEmpty($Field)) {
+        switch ($Field.ToLower()) {
+            "username" { Write-Output $decUsername }
+            "password" { Write-Output $decPassword }
+            "token"    { Write-Output $decToken }
+            "notes"    { Write-Output $decNotes }
+            "service"  { Write-Output $entry["service"] }
+            default {
+                Write-VaultHost "Unknown field: $Field (valid: username, password, token, notes, service)" "Red"
+                exit 1
+            }
+        }
+        exit 0
     }
 
-    Write-Host "🔓 Decrypted credentials for: $Service" -ForegroundColor Green
-    $decrypted | ConvertTo-Json -Depth 10
+    # Full output
+    $result = @{
+        service = $entry["service"]
+        username = $decUsername
+        password = $decPassword
+        token = $decToken
+        notes = $decNotes
+        tags = $entry["tags"]
+        created = $entry["created"]
+        updated = $entry["updated"]
+    }
+
+    if ($Json) {
+        $result | ConvertTo-Json -Depth 10
+    } else {
+        Write-VaultHost "Credentials for: $Service" "Green"
+        $result | ConvertTo-Json -Depth 10
+    }
 
     exit 0
 }
 
-# === ACTION: SET ===
+# === SET ===
 if ($Action -eq "set") {
     if ([string]::IsNullOrEmpty($Service)) {
-        Write-Host "❌ Service name required for 'set' action" -ForegroundColor Red
+        Write-VaultHost "Service name required for set action" "Red"
         exit 1
     }
 
-    if ([string]::IsNullOrEmpty($Username) -and [string]::IsNullOrEmpty($Token)) {
-        Write-Host "❌ Either Username+Password or Token required" -ForegroundColor Red
+    if ([string]::IsNullOrEmpty($Username) -and [string]::IsNullOrEmpty($Password) -and [string]::IsNullOrEmpty($Token) -and [string]::IsNullOrEmpty($Notes)) {
+        Write-VaultHost "At least one of -Username, -Password, -Token, or -Notes required" "Red"
         exit 1
     }
 
     $vault = Load-Vault
 
-    # Find existing or create new
     $existingIndex = -1
     for ($i = 0; $i -lt $vault.Count; $i++) {
-        if ($vault[$i].service -eq $Service) {
+        if ($vault[$i]["service"] -eq $Service) {
             $existingIndex = $i
             break
         }
     }
 
-    # Encrypt secrets
+    $now = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    $createdDate = $now
+    if ($existingIndex -ge 0) {
+        $createdDate = $vault[$existingIndex]["created"]
+    }
+
     $entry = @{
         service = $Service
         username = $Username
-        password_encrypted = Protect-Secret $Password
-        token_encrypted = Protect-Secret $Token
-        token_hint = if ($Token) { $Token.Substring(0, [Math]::Min(10, $Token.Length)) + "..." } else { "" }
-        notes_encrypted = Protect-Secret $Notes
-        needs_rotation = $false
-        created = if ($existingIndex -ge 0) { $vault[$existingIndex].created } else { (Get-Date -Format "yyyy-MM-dd HH:mm:ss") }
-        updated = (Get-Date -Format "yyyy-MM-dd HH:mm:ss")
+        password_enc = Protect-Secret $Password
+        password_hint = Get-Hint $Password
+        token_enc = Protect-Secret $Token
+        token_hint = Get-Hint $Token
+        notes_enc = Protect-Secret $Notes
+        tags = $Tags
+        created = $createdDate
+        updated = $now
     }
 
     if ($existingIndex -ge 0) {
         $vault[$existingIndex] = $entry
-        Write-Host "✅ Updated credentials for: $Service" -ForegroundColor Green
+        Write-VaultHost "Updated: $Service" "Green"
     } else {
         $vault += $entry
-        Write-Host "✅ Stored new credentials for: $Service" -ForegroundColor Green
+        Write-VaultHost "Stored: $Service" "Green"
     }
 
     Save-Vault $vault
-    Write-Host "🔒 Encrypted with DPAPI (CurrentUser scope)" -ForegroundColor Cyan
+    Write-VaultHost "Encrypted with DPAPI (CurrentUser scope)" "Cyan"
 
     exit 0
 }
 
-# === ACTION: ROTATE ===
-if ($Action -eq "rotate") {
-    if ([string]::IsNullOrEmpty($Service)) {
-        Write-Host "❌ Service name required for 'rotate' action" -ForegroundColor Red
-        exit 1
-    }
-
-    $vault = Load-Vault
-    $entry = $vault | Where-Object { $_.service -eq $Service }
-
-    if (-not $entry) {
-        Write-Host "❌ Service not found in vault: $Service" -ForegroundColor Red
-        exit 1
-    }
-
-    $entry.needs_rotation = $true
-    $entry.updated = (Get-Date -Format "yyyy-MM-dd HH:mm:ss")
-
-    Save-Vault $vault
-    Write-Host "⚠️  Marked for rotation: $Service" -ForegroundColor Yellow
-    Write-Host "   Remember to update the actual credentials and call 'vault set' again" -ForegroundColor Gray
-
-    exit 0
-}
-
-# === ACTION: DELETE ===
+# === DELETE ===
 if ($Action -eq "delete") {
     if ([string]::IsNullOrEmpty($Service)) {
-        Write-Host "❌ Service name required for 'delete' action" -ForegroundColor Red
+        Write-VaultHost "Service name required for delete action" "Red"
         exit 1
     }
 
     $vault = Load-Vault
-    $newVault = $vault | Where-Object { $_.service -ne $Service }
+    $newVault = @()
+    $found = $false
+    foreach ($e in $vault) {
+        if ($e["service"] -eq $Service) {
+            $found = $true
+        } else {
+            $newVault += $e
+        }
+    }
 
-    if ($newVault.Count -eq $vault.Count) {
-        Write-Host "❌ Service not found in vault: $Service" -ForegroundColor Red
+    if (-not $found) {
+        Write-VaultHost "Service not found: $Service" "Red"
         exit 1
     }
 
     Save-Vault $newVault
-    Write-Host "✅ Deleted credentials for: $Service" -ForegroundColor Green
+    Write-VaultHost "Deleted: $Service" "Green"
 
+    exit 0
+}
+
+# === EXPORT-HINTS ===
+if ($Action -eq "export-hints") {
+    $vault = Load-Vault
+
+    if ($vault.Count -eq 0) {
+        Write-VaultHost "Vault is empty" "Yellow"
+        exit 0
+    }
+
+    $hints = @()
+    foreach ($entry in $vault) {
+        $hints += @{
+            service = $entry["service"]
+            username = $entry["username"]
+            password_hint = $entry["password_hint"]
+            token_hint = $entry["token_hint"]
+            tags = $entry["tags"]
+        }
+    }
+
+    $hints | ConvertTo-Json -Depth 10
     exit 0
 }

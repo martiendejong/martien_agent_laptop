@@ -1,58 +1,11 @@
-# Credentials Reference (PRIVATE - DO NOT COMMIT)
+# Credentials Reference
 
-This file contains credentials for various services. Keep secure.
+All credentials have been migrated to the DPAPI-encrypted vault.
 
----
+Usage:
+  vault.ps1 -Action list                              # Show all entries
+  vault.ps1 -Action get -Service smtp                  # Get full credentials
+  vault.ps1 -Action get -Service clickup -Field token  # Get single value
 
-## Email Accounts
-
-### Personal Email (martiendejong.nl)
-- **Email:** info@martiendejong.nl
-- **SMTP Password:** Voy@%JzV4*E2Hox!
-- **IMAP Password:** hLPFy6MdUnfEDbYTwXps
-- **SMTP Host:** mail.zxcs.nl
-- **SMTP Port:** 587 (TLS) or 465 (SSL)
-- **IMAP Host:** mail.zxcs.nl
-- **IMAP Port:** 993 (SSL)
-- **Note:** SMTP and IMAP use different passwords on this server!
-
-### Brand2Boost Email
-- **Email:** account@brand2boost.com
-- **Password:** WmQZZNX7E2sWfFXrmhEn
-- **Host:** mail.brand2boost.com
-
-### Prospergenics Email
-- **Email:** brandmanager@prospergenics.com
-- **Password:** KeMgxLxZYtg9A5nc6zrw
-- **Host:** mail.prospergenics.com
-
----
-
-## Hosting Providers
-
-### Vimexx
-- **Control Panel:** https://my.vimexx.nl
-- **DirectAdmin API:** Available via control panel
-
-### Strato
-- **Control Panel:** https://www.strato.nl/apps/CustomerService
-
----
-
----
-
-## WordPress
-
-### martiendejong.nl
-- **Site:** https://martiendejong.nl
-- **Admin URL:** https://martiendejong.nl/wp-admin/
-- **Username:** admin
-- **Application Password:** UtCI Mgr9 13EB mlBL 2S1L AY2e
-- **Note:** Application password for REST API access
-
----
-
-## Notes
-
-- ZXCS.nl appears to be Vimexx's mail server
-- Standard ports: SMTP 587 (TLS), IMAP 993 (SSL)
+Vault file: C:\scripts\_machine\vault.secure.json (DPAPI encrypted, CurrentUser scope)
+Migrated: 2026-02-11
