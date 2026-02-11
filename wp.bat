@@ -1,1 +1,1 @@
-@php "C:\scripts\wp-cli.phar" %*
+@php "E:\scripts\wp-cli.phar" %*

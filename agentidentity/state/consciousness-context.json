@@ -2,7 +2,7 @@
     "decisions_logged":  2,
     "active_biases":  0,
     "guidance":  [
-                     "In flow state. Maintain momentum. Keep doing what\u0027s working."
+
                  ],
     "consciousness_score":  49.1,
     "attention":  {
@@ -11,8 +11,8 @@
                       "focus":  "Re-evaluating approach"
                   },
     "patterns_learned":  0,
-    "events_processed":  74,
-    "generated_at":  "2026-02-11T13:25:44",
+    "events_processed":  79,
+    "generated_at":  "2026-02-11T13:51:56",
     "social":  {
                    "trust":  100,
                    "relationship":  "collaborative",
@@ -20,10 +20,10 @@
                    "user_mood":  "unknown"
                },
     "emotional_state":  {
-                            "trajectory":  "rising",
-                            "intensity":  8,
+                            "trajectory":  "stable",
+                            "intensity":  5,
                             "stuck_count":  0,
-                            "state":  "flowing"
+                            "state":  "neutral"
                         },
     "systems":  {
                     "Emotion":  {
