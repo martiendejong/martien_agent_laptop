@@ -2,25 +2,6 @@
     "EventBus":  {
                      "Events":  [
                                     {
-                                        "Timestamp":  "2026-02-11T13:25:43.975Z",
-                                        "Data":  {
-                                                     "new":  1,
-                                                     "old":  1,
-                                                     "reason":  "Task outcome: success",
-                                                     "delta":  0.02
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "social.trust_updated"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-11T13:41:42.301Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  310.46250000000003
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
                                         "Timestamp":  "2026-02-11T13:43:55.267Z",
                                         "Data":  {
                                                      "elapsed_ms":  295.3894
@@ -172,6 +153,23 @@
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T16:45:48.794Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  401.95640000000003
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T16:45:53.910Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  28.72
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
                                     }
                                 ],
                      "Handlers":  {
@@ -204,12 +202,12 @@
                                       }
                                   ],
                     "BiasMonitor":  {
-                                        "ActiveBiases":  [
-
-                                                         ],
                                         "CorrectionsApplied":  [
 
-                                                               ]
+                                                               ],
+                                        "ActiveBiases":  [
+
+                                                         ]
                                     },
                     "Assumptions":  [
 
@@ -223,9 +221,9 @@
                                                     ],
                                      "DriftScore":  1,
                                      "AlignmentCheck":  {
-                                                            "value":  "\/Date(1770824711239)\/",
+                                                            "value":  "\/Date(1770824748431)\/",
                                                             "DisplayHint":  2,
-                                                            "DateTime":  "woensdag 11 februari 2026 16:45:11"
+                                                            "DateTime":  "woensdag 11 februari 2026 16:45:48"
                                                         }
                                  }
                 },
@@ -262,9 +260,9 @@
                                                             "Timestamp":  "2026-02-11T13:25:27",
                                                             "Data":  {
                                                                          "Outcome":  "success",
+                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods",
                                                                          "Task":  "",
-                                                                         "Project":  "",
-                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods"
+                                                                         "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -273,8 +271,8 @@
                                                             "Timestamp":  "2026-02-11T13:25:43",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Project":  "",
                                                                          "Task":  "",
+                                                                         "Project":  "",
                                                                          "Lesson":  "Always check Program.cs for DI, not extension methods"
                                                                      },
                                                             "Type":  "lesson"
@@ -283,18 +281,18 @@
                                }
                },
     "Prediction":  {
-                       "FutureSelf":  {
-                                          "Paths":  {
-
-                                                    },
-                                          "Confidence":  0.5
-                                      },
                        "LoadForecast":  {
                                             "Current":  5,
                                             "PredictedPeak":  7,
                                             "PredictedTime":  null,
                                             "Bottleneck":  null
                                         },
+                       "FutureSelf":  {
+                                          "Paths":  {
+
+                                                    },
+                                          "Confidence":  0.5
+                                      },
                        "Anticipations":  [
 
                                          ]
@@ -338,9 +336,6 @@
                                            "Reason":  "Task completed with outcome: success"
                                        },
                     "StuckCounter":  0,
-                    "Intensity":  5,
-                    "CurrentState":  "neutral",
-                    "Trajectory":  "stable",
                     "History":  [
                                     {
                                         "From":  "neutral",
@@ -440,7 +435,10 @@
                                         "Intensity":  8,
                                         "Reason":  "Task completed with outcome: success"
                                     }
-                                ]
+                                ],
+                    "Intensity":  5,
+                    "Trajectory":  "stable",
+                    "CurrentState":  "neutral"
                 },
     "Initialized":  true,
     "Meta":  {
@@ -491,20 +489,20 @@
                    "InteractionCount":  0
                },
     "Metrics":  {
-                    "SaveCount":  29,
+                    "SaveCount":  30,
                     "AccessCount":  0,
                     "AverageAccessTime_ms":  0,
-                    "EventsProcessed":  92,
+                    "EventsProcessed":  94,
                     "LastSave":  {
-                                     "value":  "\/Date(1770824717113)\/",
+                                     "value":  "\/Date(1770824753914)\/",
                                      "DisplayHint":  2,
-                                     "DateTime":  "woensdag 11 februari 2026 16:45:17"
+                                     "DateTime":  "woensdag 11 februari 2026 16:45:53"
                                  }
                 },
     "Layer2Initialized":  true,
     "LoadedAt":  {
-                     "value":  "\/Date(1770824712006)\/",
+                     "value":  "\/Date(1770824748786)\/",
                      "DisplayHint":  2,
-                     "DateTime":  "woensdag 11 februari 2026 16:45:12"
+                     "DateTime":  "woensdag 11 februari 2026 16:45:48"
                  }
 }
