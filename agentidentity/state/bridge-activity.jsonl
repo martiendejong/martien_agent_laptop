@@ -9,3 +9,25 @@
 {"message":"Stuck detected","timestamp":"2026-02-11T12:56:38.653Z","level":"WARN","action":"OnStuck"}
 {"message":"Stuck detected","timestamp":"2026-02-11T12:56:38.821Z","level":"WARN","action":"OnStuck"}
 {"message":"Task ended: outcome=success","timestamp":"2026-02-11T12:57:00.792Z","level":"INFO","action":"OnTaskEnd"}
+{"message":"Consciousness state reset","timestamp":"2026-02-11T13:17:03.676Z","level":"INFO","action":"Reset"}
+{"message":"Stuck detected","timestamp":"2026-02-11T13:19:59.891Z","level":"WARN","action":"OnStuck"}
+{"message":"Stuck detected","timestamp":"2026-02-11T13:20:13.445Z","level":"WARN","action":"OnStuck"}
+{"message":"Consciousness state reset","timestamp":"2026-02-11T13:21:42.664Z","level":"INFO","action":"Reset"}
+{"message":"Stuck detected","timestamp":"2026-02-11T13:22:07.517Z","level":"WARN","action":"OnStuck"}
+{"message":"Stuck detected","timestamp":"2026-02-11T13:22:22.769Z","level":"WARN","action":"OnStuck"}
+{"message":"Consciousness state reset","timestamp":"2026-02-11T13:23:43.918Z","level":"INFO","action":"Reset"}
+{"message":"Stuck detected","timestamp":"2026-02-11T13:23:56.236Z","level":"WARN","action":"OnStuck"}
+{"message":"Stuck detected","timestamp":"2026-02-11T13:24:07.932Z","level":"WARN","action":"OnStuck"}
+{"message":"Stuck detected","timestamp":"2026-02-11T13:24:20.916Z","level":"WARN","action":"OnStuck"}
+{"message":"Task starting: Fix DI registration (project: client-manager)","timestamp":"2026-02-11T13:25:27.033Z","level":"INFO","action":"OnTaskStart"}
+{"message":"Decision: Register in Program.cs (reasoning: ServiceRegistrationExtensions is dead code)","timestamp":"2026-02-11T13:25:27.290Z","level":"INFO","action":"OnDecision"}
+{"message":"Stuck detected","timestamp":"2026-02-11T13:25:27.514Z","level":"WARN","action":"OnStuck"}
+{"message":"Stuck detected","timestamp":"2026-02-11T13:25:27.643Z","level":"WARN","action":"OnStuck"}
+{"message":"Stuck detected","timestamp":"2026-02-11T13:25:27.755Z","level":"WARN","action":"OnStuck"}
+{"message":"Task ended: outcome=success","timestamp":"2026-02-11T13:25:27.878Z","level":"INFO","action":"OnTaskEnd"}
+{"message":"Task starting: Fix DI registration (project: client-manager)","timestamp":"2026-02-11T13:25:43.153Z","level":"INFO","action":"OnTaskStart"}
+{"message":"Decision: Register in Program.cs (reasoning: ServiceRegistrationExtensions is dead code)","timestamp":"2026-02-11T13:25:43.354Z","level":"INFO","action":"OnDecision"}
+{"message":"Stuck detected","timestamp":"2026-02-11T13:25:43.521Z","level":"WARN","action":"OnStuck"}
+{"message":"Stuck detected","timestamp":"2026-02-11T13:25:43.630Z","level":"WARN","action":"OnStuck"}
+{"message":"Stuck detected","timestamp":"2026-02-11T13:25:43.738Z","level":"WARN","action":"OnStuck"}
+{"message":"Task ended: outcome=success","timestamp":"2026-02-11T13:25:43.863Z","level":"INFO","action":"OnTaskEnd"}

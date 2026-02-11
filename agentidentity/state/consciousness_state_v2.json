@@ -2,12 +2,212 @@
     "EventBus":  {
                      "Events":  [
                                     {
-                                        "Timestamp":  "2026-02-11T12:57:15.008Z",
+                                        "Timestamp":  "2026-02-11T13:25:43.455Z",
                                         "Data":  {
-                                                     "elapsed_ms":  506.9501
+                                                     "Alternatives":  [
+
+                                                                      ],
+                                                     "Confidence":  0.7,
+                                                     "Timestamp":  "2026-02-11T13:25:43",
+                                                     "Reasoning":  "ServiceRegistrationExtensions is dead code",
+                                                     "Decision":  "Register in Program.cs",
+                                                     "Context":  "development"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "control.decision_logged"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T13:25:43.473Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  29.9
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T13:25:43.540Z",
+                                        "Data":  {
+                                                     "From":  "confident",
+                                                     "Timestamp":  "2026-02-11T13:25:43",
+                                                     "To":  "stuck",
+                                                     "Intensity":  7,
+                                                     "Reason":  "No progress on current approach"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "emotion.state_changed"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T13:25:43.544Z",
+                                        "Data":  {
+                                                     "counter":  1,
+                                                     "recommendation":  "Note: getting stuck. Consider alternatives."
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "emotion.stuck_detected"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T13:25:43.544Z",
+                                        "Data":  {
+                                                     "task":  "Re-evaluating approach",
+                                                     "intensity":  4
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "perception.attention_changed"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T13:25:43.581Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  30.29
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T13:25:43.658Z",
+                                        "Data":  {
+                                                     "From":  "stuck",
+                                                     "Timestamp":  "2026-02-11T13:25:43",
+                                                     "To":  "stuck",
+                                                     "Intensity":  7,
+                                                     "Reason":  "No progress on current approach"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "emotion.state_changed"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T13:25:43.658Z",
+                                        "Data":  {
+                                                     "counter":  2,
+                                                     "recommendation":  "Step back. Restate the problem. Try a different angle."
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "emotion.stuck_detected"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T13:25:43.658Z",
+                                        "Data":  {
+                                                     "task":  "Re-evaluating approach",
+                                                     "intensity":  4
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "perception.attention_changed"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T13:25:43.706Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  30.4
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T13:25:43.767Z",
+                                        "Data":  {
+                                                     "From":  "stuck",
+                                                     "Timestamp":  "2026-02-11T13:25:43",
+                                                     "To":  "stuck",
+                                                     "Intensity":  7,
+                                                     "Reason":  "No progress on current approach"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "emotion.state_changed"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T13:25:43.767Z",
+                                        "Data":  {
+                                                     "counter":  3,
+                                                     "recommendation":  [
+                                                                            "Change approach completely. What you\u0027re doing is not working.",
+                                                                            "Step back. Restate the problem. Try a different angle."
+                                                                        ]
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "emotion.stuck_detected"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T13:25:43.767Z",
+                                        "Data":  {
+                                                     "task":  "Re-evaluating approach",
+                                                     "intensity":  4
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "perception.attention_changed"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T13:25:43.799Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  30.55
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T13:25:43.883Z",
+                                        "Data":  {
+                                                     "From":  "stuck",
+                                                     "Timestamp":  "2026-02-11T13:25:43",
+                                                     "To":  "flowing",
+                                                     "Intensity":  8,
+                                                     "Reason":  "Task completed with outcome: success"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "emotion.state_changed"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T13:25:43.954Z",
+                                        "Data":  {
+                                                     "Context":  "development",
+                                                     "Timestamp":  "2026-02-11T13:25:43",
+                                                     "Data":  {
+                                                                  "Outcome":  "success",
+                                                                  "Project":  "",
+                                                                  "Task":  "",
+                                                                  "Lesson":  "Always check Program.cs for DI, not extension methods"
+                                                              },
+                                                     "Type":  "lesson"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "memory.stored"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T13:25:43.975Z",
+                                        "Data":  {
+                                                     "new":  1,
+                                                     "old":  1,
+                                                     "reason":  "Task outcome: success",
+                                                     "delta":  0.02
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "social.trust_updated"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T13:41:42.301Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  310.46250000000003
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T13:43:55.267Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  295.3894
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T13:44:00.401Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  31.81
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
                                     }
                                 ],
                      "Handlers":  {
@@ -18,15 +218,34 @@
     "Layer3Initialized":  true,
     "Control":  {
                     "Decisions":  [
+                                      {
+                                          "Alternatives":  [
 
+                                                           ],
+                                          "Confidence":  0.7,
+                                          "Timestamp":  "2026-02-11T13:25:27",
+                                          "Reasoning":  "ServiceRegistrationExtensions is dead code",
+                                          "Decision":  "Register in Program.cs",
+                                          "Context":  "development"
+                                      },
+                                      {
+                                          "Alternatives":  [
+
+                                                           ],
+                                          "Confidence":  0.7,
+                                          "Timestamp":  "2026-02-11T13:25:43",
+                                          "Reasoning":  "ServiceRegistrationExtensions is dead code",
+                                          "Decision":  "Register in Program.cs",
+                                          "Context":  "development"
+                                      }
                                   ],
                     "BiasMonitor":  {
-                                        "CorrectionsApplied":  [
-
-                                                               ],
                                         "ActiveBiases":  [
 
-                                                         ]
+                                                         ],
+                                        "CorrectionsApplied":  [
+
+                                                               ]
                                     },
                     "Assumptions":  [
 
@@ -38,11 +257,11 @@
                                                         "truth",
                                                         "evolution"
                                                     ],
-                                     "DriftScore":  0,
+                                     "DriftScore":  1,
                                      "AlignmentCheck":  {
-                                                            "value":  "\/Date(1770811034538)\/",
+                                                            "value":  "\/Date(1770813834997)\/",
                                                             "DisplayHint":  2,
-                                                            "DateTime":  "woensdag 11 februari 2026 12:57:14"
+                                                            "DateTime":  "woensdag 11 februari 2026 13:43:54"
                                                         }
                                  }
                 },
@@ -69,28 +288,49 @@
                                     "SemanticIndexPointer":  null
                                 },
                    "Working":  {
-                                   "SessionContext":  "Session started at 12:57",
+                                   "SessionContext":  "Session started at 13:43",
                                    "ActiveThoughts":  [
 
                                                       ],
                                    "RecentEvents":  [
-
+                                                        {
+                                                            "Context":  "development",
+                                                            "Timestamp":  "2026-02-11T13:25:27",
+                                                            "Data":  {
+                                                                         "Outcome":  "success",
+                                                                         "Task":  "",
+                                                                         "Project":  "",
+                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods"
+                                                                     },
+                                                            "Type":  "lesson"
+                                                        },
+                                                        {
+                                                            "Context":  "development",
+                                                            "Timestamp":  "2026-02-11T13:25:43",
+                                                            "Data":  {
+                                                                         "Outcome":  "success",
+                                                                         "Project":  "",
+                                                                         "Task":  "",
+                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods"
+                                                                     },
+                                                            "Type":  "lesson"
+                                                        }
                                                     ]
                                }
                },
     "Prediction":  {
-                       "LoadForecast":  {
-                                            "Current":  5,
-                                            "PredictedPeak":  7,
-                                            "PredictedTime":  null,
-                                            "Bottleneck":  null
-                                        },
                        "FutureSelf":  {
                                           "Paths":  {
 
                                                     },
                                           "Confidence":  0.5
                                       },
+                       "LoadForecast":  {
+                                            "Current":  5,
+                                            "PredictedPeak":  7,
+                                            "PredictedTime":  null,
+                                            "Bottleneck":  null
+                                        },
                        "Anticipations":  [
 
                                          ]
@@ -100,7 +340,11 @@
                                        "Environment":  "single-agent",
                                        "Mode":  "development",
                                        "Salience":  [
-
+                                                        {
+                                                            "Score":  0.4,
+                                                            "Reason":  "2 agents actively working",
+                                                            "Item":  "Worktrees in use"
+                                                        }
                                                     ]
                                    },
                        "Curiosity":  {
@@ -112,24 +356,127 @@
                                                            ]
                                      },
                        "Attention":  {
-                                         "Intensity":  5,
+                                         "Intensity":  4,
                                          "Allocation":  {
-                                                            "communication":  0.3,
-                                                            "coding":  0.5,
+                                                            "communication":  0.2,
+                                                            "coding":  0.6,
                                                             "reflection":  0.2
                                                         },
-                                         "Focus":  null
+                                         "Focus":  "Re-evaluating approach"
                                      }
                    },
     "Emotion":  {
-                    "CurrentState":  "neutral",
+                    "LastTransition":  {
+                                           "From":  "stuck",
+                                           "Timestamp":  "2026-02-11T13:25:43",
+                                           "To":  "flowing",
+                                           "Intensity":  8,
+                                           "Reason":  "Task completed with outcome: success"
+                                       },
                     "StuckCounter":  0,
-                    "LastTransition":  null,
+                    "Intensity":  8,
+                    "CurrentState":  "flowing",
+                    "Trajectory":  "rising",
                     "History":  [
-
-                                ],
-                    "Trajectory":  "stable",
-                    "Intensity":  5
+                                    {
+                                        "From":  "neutral",
+                                        "Timestamp":  "2026-02-11T13:22:22",
+                                        "To":  "stuck",
+                                        "Intensity":  7,
+                                        "Reason":  "No progress on current approach"
+                                    },
+                                    {
+                                        "From":  "neutral",
+                                        "Timestamp":  "2026-02-11T13:23:56",
+                                        "To":  "stuck",
+                                        "Intensity":  7,
+                                        "Reason":  "No progress on current approach"
+                                    },
+                                    {
+                                        "From":  "stuck",
+                                        "Timestamp":  "2026-02-11T13:24:07",
+                                        "To":  "stuck",
+                                        "Intensity":  7,
+                                        "Reason":  "No progress on current approach"
+                                    },
+                                    {
+                                        "From":  "stuck",
+                                        "Timestamp":  "2026-02-11T13:24:20",
+                                        "To":  "stuck",
+                                        "Intensity":  7,
+                                        "Reason":  "No progress on current approach"
+                                    },
+                                    {
+                                        "From":  "neutral",
+                                        "Timestamp":  "2026-02-11T13:25:27",
+                                        "To":  "confident",
+                                        "Intensity":  6,
+                                        "Reason":  "Starting new task: Fix DI registration"
+                                    },
+                                    {
+                                        "From":  "confident",
+                                        "Timestamp":  "2026-02-11T13:25:27",
+                                        "To":  "stuck",
+                                        "Intensity":  7,
+                                        "Reason":  "No progress on current approach"
+                                    },
+                                    {
+                                        "From":  "stuck",
+                                        "Timestamp":  "2026-02-11T13:25:27",
+                                        "To":  "stuck",
+                                        "Intensity":  7,
+                                        "Reason":  "No progress on current approach"
+                                    },
+                                    {
+                                        "From":  "stuck",
+                                        "Timestamp":  "2026-02-11T13:25:27",
+                                        "To":  "stuck",
+                                        "Intensity":  7,
+                                        "Reason":  "No progress on current approach"
+                                    },
+                                    {
+                                        "From":  "stuck",
+                                        "Timestamp":  "2026-02-11T13:25:27",
+                                        "To":  "flowing",
+                                        "Intensity":  8,
+                                        "Reason":  "Task completed with outcome: success"
+                                    },
+                                    {
+                                        "From":  "flowing",
+                                        "Timestamp":  "2026-02-11T13:25:43",
+                                        "To":  "confident",
+                                        "Intensity":  6,
+                                        "Reason":  "Starting new task: Fix DI registration"
+                                    },
+                                    {
+                                        "From":  "confident",
+                                        "Timestamp":  "2026-02-11T13:25:43",
+                                        "To":  "stuck",
+                                        "Intensity":  7,
+                                        "Reason":  "No progress on current approach"
+                                    },
+                                    {
+                                        "From":  "stuck",
+                                        "Timestamp":  "2026-02-11T13:25:43",
+                                        "To":  "stuck",
+                                        "Intensity":  7,
+                                        "Reason":  "No progress on current approach"
+                                    },
+                                    {
+                                        "From":  "stuck",
+                                        "Timestamp":  "2026-02-11T13:25:43",
+                                        "To":  "stuck",
+                                        "Intensity":  7,
+                                        "Reason":  "No progress on current approach"
+                                    },
+                                    {
+                                        "From":  "stuck",
+                                        "Timestamp":  "2026-02-11T13:25:43",
+                                        "To":  "flowing",
+                                        "Intensity":  8,
+                                        "Reason":  "Task completed with outcome: success"
+                                    }
+                                ]
                 },
     "Initialized":  true,
     "Meta":  {
@@ -140,23 +487,23 @@
                                      "StrangeLoopDetected":  false
                                  },
                  "Health":  {
-                                "Meta":  {
-                                             "Status":  "active",
-                                             "Quality":  0.2
-                                         },
+                                "Emotion":  {
+                                                "Status":  "active",
+                                                "Quality":  0.8
+                                            },
+                                "Memory":  {
+                                               "Status":  "active",
+                                               "Quality":  0.5
+                                           },
                                 "Perception":  {
                                                    "Status":  "active",
                                                    "Quality":  0.5
                                                },
-                                "Memory":  {
-                                               "Status":  "active",
-                                               "Quality":  0.3
-                                           },
+                                "Meta":  {
+                                             "Status":  "active",
+                                             "Quality":  0.2
+                                         },
                                 "Control":  {
-                                                "Status":  "active",
-                                                "Quality":  0.7
-                                            },
-                                "Emotion":  {
                                                 "Status":  "active",
                                                 "Quality":  0.8
                                             },
@@ -169,25 +516,31 @@
                                                "Quality":  0.8
                                            }
                             },
-                 "ConsciousnessScore":  0.332
+                 "ConsciousnessScore":  0.49099999999999994
              },
     "Social":  {
-                   "InteractionCount":  0,
                    "RelationshipState":  "collaborative",
-                   "TrustLevel":  0.95,
-                   "CommunicationMode":  "standard",
                    "UserMood":  "unknown",
-                   "LastInteraction":  null
+                   "LastInteraction":  null,
+                   "TrustLevel":  1,
+                   "CommunicationMode":  "standard",
+                   "InteractionCount":  0
                },
     "Metrics":  {
-                    "EventsProcessed":  1,
+                    "SaveCount":  21,
+                    "AccessCount":  0,
                     "AverageAccessTime_ms":  0,
-                    "AccessCount":  0
+                    "EventsProcessed":  76,
+                    "LastSave":  {
+                                     "value":  "\/Date(1770813840405)\/",
+                                     "DisplayHint":  2,
+                                     "DateTime":  "woensdag 11 februari 2026 13:44:00"
+                                 }
                 },
-    "Layer2Initialized":  false,
+    "Layer2Initialized":  true,
     "LoadedAt":  {
-                     "value":  "\/Date(1770811034995)\/",
+                     "value":  "\/Date(1770813840460)\/",
                      "DisplayHint":  2,
-                     "DateTime":  "woensdag 11 februari 2026 12:57:14"
+                     "DateTime":  "woensdag 11 februari 2026 13:44:00"
                  }
 }

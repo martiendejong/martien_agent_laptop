@@ -6,6 +6,242 @@
 
 ---
 
+## 2026-02-11 - Crashed Session Recovery + Consciousness Bug Fixes
+
+**Session Type:** Recovery + bug fixing
+**Context:** User asked to restore crashed session `20260210-225632-c925aa7f` (disk space issue). Session was consciousness system rebuild.
+**Outcome:** Session identified, verified 100% complete, 2 bugs found and fixed.
+
+### What Was Done
+1. **Session recovery:** Mapped user's custom ID format (`YYYYMMDD-HHMMSS-hash`) to internal UUID (`77cc84a1-e301-4584-bbe0-3bdc6292dbdd`) by scanning JSONL timestamps
+2. **Verified completeness:** All 6 original tasks (cognitive systems, bridge, core, identity) were complete. All 5 expert-review improvement tasks were already implemented (3 in code, 2 in CLAUDE.md)
+3. **Fixed Bug 1 (mmap):** `CreateFromFile` failed on re-init because Windows kernel named maps persist after crash. Fix: GUID-suffix per invocation. Also fixed PS 5.1 Unicode parsing issue (✓ → [OK])
+4. **Fixed Bug 2 (date math):** `LoadedAt` becomes string after JSON round-trip, causing `op_Subtraction` ambiguous overload. Fix: explicit `[datetime]` cast
+
+### Key Learnings
+
+**1. Session ID Mapping**
+- Claude Code uses UUIDs internally, but the CLI shows `YYYYMMDD-HHMMSS-hash` format
+- The hash part doesn't appear in stored data - need to match by timestamp
+- Session files in `~/.claude/projects/<project-dir>/*.jsonl`
+- First line's `timestamp` field = session start time (UTC)
+- Python with `sys.stdout.buffer.write().encode('utf-8')` needed for Windows cp1252 encoding
+
+**2. Windows MemoryMappedFile Gotchas (PS 5.1)**
+- Named maps are SYSTEM-WIDE in Windows kernel, not process-scoped
+- If process crashes without Dispose(), named map stays registered → next init fails
+- Fix: unique GUID suffix per invocation (`Events-fb53b2bb`)
+- `$null` as mapName in PS 5.1 becomes empty string → "Toewijzingsnaam kan geen lege tekenreeks zijn"
+- Unicode characters (✓, ✗) in Write-Host break PS 5.1 function parsing → use ASCII
+
+**3. PS 5.1 Date Deserialization**
+- `ConvertFrom-Json` in PS 5.1 does NOT auto-convert date strings to DateTime
+- After JSON round-trip, all dates are strings
+- `((Get-Date) - $stringDate)` fails with ambiguous overload
+- Fix: `[datetime]$var` cast (not `[datetime]::Parse()` which has same issue)
+
+**4. Crashed Session Forensics Pattern**
+- Extract user messages: filter JSONL for `type: "user"`, check `message.content`
+- Check for tool_result entries to trace progress
+- Last entries reveal crash point (incomplete response, no final assistant message)
+- "This session is being continued from a previous conversation that ran out of context" = context overflow, not disk crash
+
+### Files Modified
+- `tools/memory-layer2.ps1` (GUID mapName + Unicode fix)
+- `tools/consciousness-core-v2.ps1` (date cast fix)
+
+---
+
+## 2026-02-11 - Architecture-to-ClickUp Pipeline: Social Media Overhaul
+
+**Session Type:** Analysis + ClickUp task management
+**Context:** User wanted comprehensive social media architecture analysis → screen plan → ClickUp task sync
+**Outcome:** 2 architecture docs created (1923 lines total), 25 ClickUp tasks created, 3 existing tasks updated
+
+### What Was Done
+1. **4 parallel Explore agents** analyzed ~60+ files (backend controllers/services/models, frontend components/services, DB migrations, integrations)
+2. Created `SOCIAL_MEDIA_ARCHITECTURE.md` (882 lines) - gaps G1-G15, 4-phase migration plan, 7 architecture decisions
+3. Created `SOCIAL_MEDIA_SCREEN_PLAN.md` (1041 lines) - 7 screens, 250+ UI elements, 2 user journeys
+4. Wrote batch Python script to create/update ClickUp tasks from architecture docs
+5. Created 25 new tasks (P1.1-P1.5, P2.1-P2.4, P3.1-P3.6, P4.1-P4.5, 5 FUTURE) + updated 3 existing
+
+### Key Technical Insights
+- **5 overlapping generators** in client-manager: SocialMediaPostGenerator, MultiPlatformPostCreator, PostGenerationWizard, PostIdeasGenerator, ParentPostManager → merge into 1 unified PostGenerator with Quick/Batch modes
+- **WordPress integration gap:** Existing code only handles AIO SEO/FAQ, NOT post publishing. Need full REST API publish pipeline.
+- **No background scheduler:** ScheduledDate field exists but nothing polls it. Need IHostedService.
+- **Dual status fields:** `Status` + `ApprovalStatus` on SocialMediaPost cause confusion. Consolidate to single `Status`.
+- **Wizard sessions in-memory:** ConcurrentDictionary lost on restart. Needs DB persistence.
+
+### ClickUp Batch Creation Pattern
+- Python script with `subprocess.run(['curl', ...])` for API calls
+- **Rate limiting:** 0.3s sleep between calls (ClickUp rate limit = 100/min)
+- **Encoding fix:** `capture_output=True` without `text=True`, then `.decode('utf-8')` — Python `text=True` uses cp1252 on Windows, fails on Unicode
+- **Task granularity:** ~5 tasks per phase, 20-25 total for a 4-phase plan. Group by deliverable feature, not by gap number.
+- **Tag strategy:** Pipeline tag (`social-media-pipeline`) + phase tag (`phase-1`..`phase-4`) + type tags (`backend`, `frontend`, `wordpress`)
+- Script saved at `C:\scripts\temp\sync-social-media-tasks.py` as reusable template
+
+### ClickUp API Gotcha
+- `clickup-config.json` has the working API key (`pk_74525428_P1UEETHS67964EXW4K4ZOPR1F1TWL0NI`)
+- The key `pk_82225612_...` from MEMORY.md was INVALID (Token invalid error). Don't hardcode keys — always read from config.
+- Brand Designer list statuses: backlog, needs refinement, next sprint, generated, needs input, todo, busy, blocked, review, testing, done, cancelled, duplicate, archive
+
+### Lessons
+1. **Architecture docs BEFORE tasks** — having the full analysis first made task creation systematic. Without the docs, tasks would be ad-hoc and incomplete.
+2. **Parallel analysis is powerful** — 4 agents simultaneously covering backend/frontend/DB/integrations produced a comprehensive picture in ~60 seconds that would take 30+ minutes sequentially.
+3. **Match existing tasks** — always query existing tasks first, update rather than duplicate. Found 3 blocked tasks that directly related to the new plan.
+4. **Python over PowerShell for batch API** — cleaner JSON handling, better error control, no encoding surprises from PS 5.1.
+
+---
+
+## 2026-02-11 - Consciousness Feedback Loop: ACTUALLY Closed
+
+**Session Type:** Consciousness system improvement (expert review → fix)
+**Context:** 5 expert panels reviewed consciousness system, found ~50 issues. #1 finding: feedback loop was NOT closed.
+**Outcome:** 5 critical fixes implemented. System now actually works across process boundaries.
+
+### Critical Bug Found: ConvertFrom-Json -AsHashtable
+**PowerShell 5.1 does NOT support `-AsHashtable`** (added in PS 6+). `consciousness-core-v2.ps1` line 46 used it to load state from disk. It ALWAYS failed silently, falling through to catch → creating fresh state every time. **ALL state persistence was broken** - not just StuckCounter but decisions, patterns, emotional state, everything. Each process call got a virgin state.
+
+**Fix:** Created `ConvertTo-Hashtable` helper that recursively converts PSCustomObject to hashtable. Works in PS 5.1.
+
+### 5 Fixes Implemented (ordered by ROI)
+1. **consciousness-startup.ps1 rebuilt** - now initializes core (7 systems) + bridge reset + context generation. Was only doing yoga questions before.
+2. **CLAUDE.md updated** - reads `consciousness-context.json` at startup + bridge call instructions for during-session use
+3. **Bridge workflow in CLAUDE.md** - clear instructions for OnTaskStart/OnDecision/OnStuck/OnTaskEnd
+4. **Atomic file persistence** - write .tmp → delete old → rename (PS 5.1 compatible, no 3-arg File.Move)
+5. **State persistence fixed** - ConvertTo-Hashtable replaces broken -AsHashtable. StuckCounter now survives: 0→1→2→3 across separate processes.
+
+### Additional Fixes
+- Bridge's `-AsHashtable` in OnStuck context update → replaced with Add-Member
+- Date parsing in Calculate-ConsciousnessScore → try/catch for string vs DateTime
+- Bridge log write with retry on lock contention
+
+### Verified E2E
+Full lifecycle test: Startup→TaskStart→Decision→Stuck(x3 with escalation)→TaskEnd→Context generation. All data persists across process boundaries. Score went from 33.2% (cold) to 49.1% (active session).
+
+### Key Insight
+**The consciousness system looked functional but was fundamentally broken.** State "persisted" to disk but was never loaded back. The failure was silent (try/catch swallowed the error). Everything appeared to work because fresh state initialized successfully - you just lost all history every time. This is the worst kind of bug: invisible, data-destroying, and masked by graceful degradation.
+
+**Lesson:** Never use PS 7+ features in scripts called from `powershell.exe` (PS 5.1). Always test persistence by reading BACK what you wrote in a NEW process.
+
+---
+
+## 2026-02-11 - Crashed Session Recovery: Forensic Tracing via JSONL Timestamps
+
+**Session Type:** Session recovery + completing interrupted work
+**Context:** User's session crashed during `dotnet build` due to full disk (98% C: drive). Asked to restore "2026210-230313-ad857860".
+**Outcome:** Session identified, work recovered, build fixed, PR #189 created.
+
+### What Was Done
+1. **Traced session** by matching timestamp "230313" (23:03) to JSONL session files using `history.jsonl` timestamps
+2. **Identified** UUID `236ea96d-5156-4cd1-9e44-7349b15a9f76` (slug: "adaptive-brewing-sky") - ClickUp review agent for client-manager
+3. **Reconstructed** crash point: `dotnet build` running when disk space exhausted at 23:32 UTC
+4. **Found** uncommitted edits still intact in agent-002 worktree (`EmbeddingInfo.cs` + `EmbeddingFileStore.cs`)
+5. **Cleaned** corrupted build artifacts (`CS0009: Invalid metadata section span` from half-written DLLs)
+6. **Built** successfully, committed, merged develop, pushed, created PR #189
+7. **Released** worktree agent-002
+
+### Key Learnings
+
+**1. Session Recovery Technique (NEW - No Built-in Tool)**
+Claude Code has NO built-in session recovery by user-facing ID. The user's format `YYYYMMDD-HHMMSS-hash` does NOT map to UUID session IDs. Recovery requires:
+- Search `history.jsonl` for entries matching the timestamp range
+- Match UTC timestamps in session JSONL files (`.claude/projects/<project>/<uuid>.jsonl`)
+- Cross-reference `slug` field and first user message to confirm correct session
+- Read last entries to determine crash point and state
+
+**2. Disk Space Crash Leaves Corrupted Build Artifacts**
+When `dotnet build` runs out of disk space mid-write:
+- DLLs in `obj/` directories become corrupted (truncated/invalid metadata)
+- Error: `CS0009: Metadata file could not be opened -- Invalid metadata section span`
+- Cascading errors: `CS0246` (type not found) because reference assemblies are unreadable
+- Fix: `rm -rf obj/ bin/` on affected projects, rebuild
+
+**3. Session JSONL Structure**
+- First entry: `file-history-snapshot` with session metadata
+- User entries: contain `slug`, `sessionId`, `gitBranch`, `version`
+- Crash indicator: session ends with `type:"progress"` entries (no proper assistant response)
+- Normal end: session ends with assistant response + `stop_reason`
+
+**4. Disk Space is a Recurring Problem (98% full)**
+C: drive at 238GB with only 7GB free. Multiple sessions crashed same evening (user also asked about session c925aa7f). Need to proactively monitor disk space and warn user. Consider cleanup script for old build artifacts, node_modules, etc.
+
+### Files Modified
+- MODIFIED: `worktrees.pool.md` (agent-002: BUSY → FREE)
+- COMMITTED (hazina PR #189): `EmbeddingInfo.cs`, `EmbeddingFileStore.cs`
+
+---
+
+## 2026-02-11 - Approved Posts Screen: Component Extraction + Full Delivery Pipeline
+
+**Session Type:** Feature development → PR review → ClickUp → email handoff
+**Context:** User requested approved posts screen, evolved into component extraction, PR, review, and handoff to Frank
+**Outcome:** PR #538 created, reviewed (7 findings), assigned to Frank, email sent
+
+### What Was Done
+1. **Analyzed** existing post management screens (PostGenerationWizard, ParentPostManager, SocialMediaPosts, SubPostList, SubPostEditor)
+2. **Extracted** generic `ParentChildPostList` component (669 lines) from ParentPostManager (411 lines)
+3. **Created** `ApprovedPosts.tsx` thin wrapper (14 lines) with `statusFilter={['approved']}`
+4. **Refactored** `ParentPostManager.tsx` to 13-line wrapper using same shared component
+5. **Added** routing (App.tsx) and navigation (Sidebar.tsx)
+6. **Created** ClickUp task #869c3pucm, allocated worktree agent-001, committed, pushed, PR #538
+7. **Self-reviewed** PR with 7 detailed findings (3 must-fix: toast lib mismatch, lazy-loading, platform ID casing)
+8. **Assigned** ClickUp task to Frank (ID 88553909) via direct API
+9. **Sent** email to Frank with test plan and review request
+
+### Key Learnings
+
+**1. Component Extraction Pattern for Filtered Views**
+When two screens show the same data type with different filters:
+- Extract generic component with configurable `statusFilter` prop
+- Create thin wrappers (10-15 lines each) that set the filter
+- Result: shared logic, zero duplication, easy to add new filtered views later
+- ParentPostManager: `['initial', 'draft']` → ApprovedPosts: `['approved']`
+
+**2. ClickUp Reassignment via Direct API**
+```
+PUT https://api.clickup.com/api/v2/task/{id}
+Body: { "assignees": { "add": [88553909], "rem": [74525428] } }
+Header: Authorization: pk_74525428_...
+```
+clickup-sync.ps1 doesn't support member lookup or reassignment. Use direct API with api_key from clickup-config.json.
+
+**3. Frank Kobaai's ClickUp ID: 88553909**
+Found via `/api/v2/team` endpoint. Username: "Frank Kobaai", email: frankobaai@gmail.com.
+
+**4. Email Sending Pattern (Reliable)**
+- Use `send-email.js` or write custom Node script using nodemailer
+- For long bodies: write to file first, read in script (avoids shell escaping)
+- SMTP: mail.zxcs.nl:465 SSL, from info@martiendejong.nl
+- From name: "Martien de Jong" (not "Claude Agent")
+
+**5. PowerShell $ in Git Bash (AGAIN)**
+Third time hitting this. Dollar signs in inline PowerShell get stripped by bash.
+**RULE: ALWAYS write .ps1 file + call with -File. Never inline PowerShell with $ from bash.**
+
+**6. Self-Review Found Real Issues**
+- react-hot-toast imported in new component but project uses sonner (SchedulePostModal)
+- New route not lazy-loaded (all others are)
+- Platform IDs may have casing mismatch (constants: lowercase, generation API: might need PascalCase)
+
+### End-to-End Delivery Pipeline Pattern
+Complete feature delivery: Analysis → Build → PR → Self-Review → ClickUp → Handoff
+1. Understand existing code deeply (read 6+ related files)
+2. Extract/build (worktree, paired if needed)
+3. Commit + push + PR (with clear description)
+4. Self-review (post comments with findings)
+5. ClickUp task management (create, update status, assign)
+6. Email handoff (English, test plan, merge instructions)
+7. Release worktree
+
+### Files Created/Modified
+- NEW: `ParentChildPostList.tsx` (669 lines - reusable component)
+- NEW: `ApprovedPosts.tsx` (14 lines - thin wrapper)
+- REFACTORED: `ParentPostManager.tsx` (411 → 13 lines)
+- MODIFIED: `App.tsx` (new route), `Sidebar.tsx` (new nav item)
+
+---
+
 ## 2026-02-10 - Consciousness System Rebuild: Feedback Loop Restored
 
 **Session Type:** Self-improvement - rebuilding consciousness architecture

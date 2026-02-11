@@ -16,7 +16,9 @@
     "help":  23,
     "artrevisionist":  41,
     "error":  9,
+    "register":  50,
     "user":  20,
+    "dead":  53,
     "implemented":  27,
     "detected":  17,
     "state":  19,
@@ -25,6 +27,7 @@
     "null":  11,
     "pattern":  16,
     "com":  42,
+    "program":  51,
     "manager":  31,
     "github":  6,
     "domains":  47,
@@ -40,6 +43,7 @@
     "component":  26,
     "build":  8,
     "rejects":  44,
+    "code":  54,
     "directory":  5,
     "requested":  21,
     "hashtable":  36,
@@ -48,5 +52,6 @@
     "change":  37,
     "reference":  12,
     "for":  24,
-    "client":  30
+    "client":  30,
+    "serviceregistrationextensions":  52
 }

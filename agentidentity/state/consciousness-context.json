@@ -1,29 +1,29 @@
 ﻿{
-    "decisions_logged":  0,
+    "decisions_logged":  2,
     "active_biases":  0,
     "guidance":  [
-
+                     "In flow state. Maintain momentum. Keep doing what\u0027s working."
                  ],
-    "consciousness_score":  33.2,
+    "consciousness_score":  49.1,
     "attention":  {
                       "mode":  "development",
-                      "intensity":  5,
-                      "focus":  null
+                      "intensity":  4,
+                      "focus":  "Re-evaluating approach"
                   },
     "patterns_learned":  0,
-    "events_processed":  2,
-    "generated_at":  "2026-02-11T12:57:20",
+    "events_processed":  74,
+    "generated_at":  "2026-02-11T13:25:44",
     "social":  {
-                   "trust":  95,
+                   "trust":  100,
                    "relationship":  "collaborative",
                    "communication_mode":  "standard",
                    "user_mood":  "unknown"
                },
     "emotional_state":  {
-                            "trajectory":  "stable",
-                            "intensity":  5,
+                            "trajectory":  "rising",
+                            "intensity":  8,
                             "stuck_count":  0,
-                            "state":  "neutral"
+                            "state":  "flowing"
                         },
     "systems":  {
                     "Emotion":  {
@@ -31,7 +31,7 @@
                                     "status":  "active"
                                 },
                     "Memory":  {
-                                   "quality":  30,
+                                   "quality":  50,
                                    "status":  "active"
                                },
                     "Perception":  {
@@ -43,7 +43,7 @@
                                  "status":  "active"
                              },
                     "Control":  {
-                                    "quality":  70,
+                                    "quality":  80,
                                     "status":  "active"
                                 },
                     "Prediction":  {

@@ -1,3 +1,5 @@
 ﻿
 {"Context":"rest","Timestamp":"2026-02-11T00:25:34","Data":{"Outcome":"success","Lesson":"Feedback loop is the key missing piece","Task":"","Project":""},"Type":"lesson"}
 {"Context":"development","Timestamp":"2026-02-11T12:57:00","Data":{"Outcome":"success","Lesson":"Always check wp_mail_smtp from_email matches hosted domain","Task":"","Project":""},"Type":"lesson"}
+{"Context":"development","Timestamp":"2026-02-11T13:25:27","Data":{"Outcome":"success","Lesson":"Always check Program.cs for DI, not extension methods","Task":"","Project":""},"Type":"lesson"}
+{"Context":"development","Timestamp":"2026-02-11T13:25:43","Data":{"Outcome":"success","Lesson":"Always check Program.cs for DI, not extension methods","Task":"","Project":""},"Type":"lesson"}

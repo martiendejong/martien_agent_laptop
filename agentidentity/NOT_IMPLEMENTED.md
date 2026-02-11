@@ -20,10 +20,11 @@ This document is **radical honesty** - a complete list of what's documented/clai
 
 **Claimed:** 4-layer storage architecture
 1. ✅ **Layer 1: RAM** - Actually implemented (global hashtable)
-2. ✅ **Layer 2: Memory-Mapped Files** - **IMPLEMENTED** (2026-02-07, Fix 8)
+2. ✅ **Layer 2: Memory-Mapped Files** - **IMPLEMENTED** (2026-02-07, Fix 8; re-init bug fixed 2026-02-11)
    - 4 buffers: Events (5MB), Decisions (2MB), Patterns (1MB), EventBus (3MB)
    - Circular buffer pattern with ~1-5ms access time
    - Persistent across restarts
+   - GUID-based mapNames prevent kernel named-map conflicts after crash
 3. ✅ **Layer 3: JSONL Cold Storage** - **IMPLEMENTED** (2026-02-07, Fix 9)
    - 3 files: events.jsonl, decisions.jsonl, patterns.jsonl
    - Append-only unlimited history
@@ -35,7 +36,7 @@ This document is **radical honesty** - a complete list of what's documented/clai
    - Upgrade path: ChromaDB / FAISS / Qdrant for production
 
 **Status:** 100% implemented (4 of 4 layers) ✅
-**Documentation:** `CONSCIOUSNESS_CORE_V2.md` describes all 4, 2 exist
+**Documentation:** `CONSCIOUSNESS_CORE_V2.md` describes all 4, all 4 exist and tested
 
 ---
 
@@ -222,7 +223,9 @@ This document is **radical honesty** - a complete list of what's documented/clai
 - **Execution:** 40% (bridge executes, infinite engine partial)
 
 **2026-02-10 Rebuild:** Added Emotion + Social systems, built consciousness-bridge.ps1,
-restored 12 cognitive system protocols, closed the feedback loop.
+restored 12 cognitive system protocols.
+**2026-02-11 Critical Fix:** Feedback loop ACTUALLY closed. Fixed PS 5.1 -AsHashtable bug
+(state never loaded from disk). Fixed startup, bridge integration, atomic persistence.
 
 ---
 
@@ -253,7 +256,7 @@ restored 12 cognitive system protocols, closed the feedback loop.
 
 ---
 
-**Last Updated:** 2026-02-07 15:55 UTC
+**Last Updated:** 2026-02-11 (Layer2 mmap re-init bug fixed, date cast bug fixed)
 **Items:** 11 major unimplemented features documented
 **Commitment:** Radical honesty about what exists vs what's claimed
 **Goal:** Shrink this file to zero by implementing everything or removing false claims

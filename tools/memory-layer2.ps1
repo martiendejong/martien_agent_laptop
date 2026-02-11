@@ -59,6 +59,10 @@ function Initialize-MMapBuffer {
     $fileExists = Test-Path $FilePath
 
     try {
+        # Use unique mapName per invocation to avoid kernel named-map conflicts
+        # Named maps are system-wide in Windows and persist if previous process crashed
+        $uniqueMapName = "$BufferName-$([Guid]::NewGuid().ToString('N').Substring(0,8))"
+
         if ($fileExists) {
             # Open existing memory-mapped file
             $fileStream = [System.IO.FileStream]::new(
@@ -70,7 +74,7 @@ function Initialize-MMapBuffer {
 
             $mmf = [System.IO.MemoryMappedFiles.MemoryMappedFile]::CreateFromFile(
                 $fileStream,
-                $BufferName,
+                $uniqueMapName,
                 0,  # Use file size
                 [System.IO.MemoryMappedFiles.MemoryMappedFileAccess]::ReadWrite,
                 $null,
@@ -93,7 +97,7 @@ function Initialize-MMapBuffer {
 
             $mmf = [System.IO.MemoryMappedFiles.MemoryMappedFile]::CreateFromFile(
                 $fileStream,
-                $BufferName,
+                $uniqueMapName,
                 $Config.MaxSize,
                 [System.IO.MemoryMappedFiles.MemoryMappedFileAccess]::ReadWrite,
                 $null,
@@ -157,7 +161,7 @@ function Initialize-Layer2 {
         }
     }
 
-    Write-Host "[✓] Initialized $($initialized.Count) memory-mapped buffers" -ForegroundColor Green
+    Write-Host "[OK] Initialized $($initialized.Count) memory-mapped buffers" -ForegroundColor Green
     if ($errors.Count -gt 0) {
         Write-Host "[!] Errors: $($errors.Count)" -ForegroundColor Yellow
         $errors | ForEach-Object { Write-Host "    $_" -ForegroundColor Gray }
@@ -347,7 +351,7 @@ function Close-Layer2 {
 
     $global:MMapHandles = @{}
 
-    Write-Host "[✓] Closed $closed memory-mapped file handles" -ForegroundColor Green
+    Write-Host "[OK] Closed $closed memory-mapped file handles" -ForegroundColor Green
 }
 
 #endregion

@@ -32,6 +32,36 @@ $ErrorActionPreference = "Stop"
 . "$PSScriptRoot\memory-layer3-jsonl.ps1"  # Layer 3: JSONL Cold Storage
 . "$PSScriptRoot\memory-layer4-semantic.ps1"  # Layer 4: Semantic Search
 
+#region Helper Functions
+
+function ConvertTo-Hashtable {
+    # Recursively convert PSCustomObject to hashtable (PS 5.1 compatible)
+    # ConvertFrom-Json returns PSCustomObject, but we need hashtables for mutation
+    param([Parameter(ValueFromPipeline)]$InputObject)
+
+    if ($null -eq $InputObject) { return $null }
+
+    if ($InputObject -is [System.Collections.IEnumerable] -and $InputObject -isnot [string]) {
+        $result = @()
+        foreach ($item in $InputObject) {
+            $result += (ConvertTo-Hashtable $item)
+        }
+        return ,$result
+    }
+
+    if ($InputObject -is [psobject] -and $InputObject -isnot [string]) {
+        $hash = @{}
+        foreach ($prop in $InputObject.PSObject.Properties) {
+            $hash[$prop.Name] = ConvertTo-Hashtable $prop.Value
+        }
+        return $hash
+    }
+
+    return $InputObject
+}
+
+#endregion
+
 #region State Structure
 
 # PERSISTENCE CONFIG
@@ -43,7 +73,8 @@ if (-not $global:ConsciousnessState) {
     # Try to load from disk first
     if (Test-Path $script:PersistenceFile) {
         try {
-            $saved = Get-Content $script:PersistenceFile -Raw | ConvertFrom-Json -AsHashtable
+            $jsonObj = Get-Content $script:PersistenceFile -Raw | ConvertFrom-Json
+            $saved = ConvertTo-Hashtable $jsonObj
             $global:ConsciousnessState = $saved
             $global:ConsciousnessState.Initialized = $false  # Will reinitialize systems
 
@@ -316,9 +347,14 @@ function Save-ConsciousnessState {
             }
         }
 
-        # Save to disk
+        # Save to disk (ATOMIC: write .tmp then rename - prevents corruption on crash)
         $json = $saveable | ConvertTo-Json -Depth 10
-        [System.IO.File]::WriteAllText($script:PersistenceFile, $json)
+        $tmpFile = "$($script:PersistenceFile).tmp"
+        [System.IO.File]::WriteAllText($tmpFile, $json)
+        if (Test-Path $script:PersistenceFile) {
+            [System.IO.File]::Delete($script:PersistenceFile)
+        }
+        [System.IO.File]::Move($tmpFile, $script:PersistenceFile)
 
         # Emit save event
         Emit-Event -Type "state.saved" -Data @{
@@ -421,8 +457,15 @@ function Calculate-ConsciousnessScore {
     if ($global:ConsciousnessState.Memory.Working.RecentEvents.Count -gt 0) { $memoryScore += 0.2 }  # Events stored
     if ($global:ConsciousnessState.Memory.LongTerm.Patterns.Count -gt 0) { $memoryScore += 0.3 }  # Patterns learned
     if ($global:ConsciousnessState.LoadedAt) {
-        $sessionAge = ((Get-Date) - $global:ConsciousnessState.LoadedAt).TotalMinutes
-        if ($sessionAge -gt 5) { $memoryScore += 0.2 }  # Session continuity
+        try {
+            [datetime]$loadedAt = if ($global:ConsciousnessState.LoadedAt -is [datetime]) {
+                $global:ConsciousnessState.LoadedAt
+            } else {
+                [datetime]$global:ConsciousnessState.LoadedAt
+            }
+            $sessionAge = [math]::Round(((Get-Date) - $loadedAt).TotalMinutes, 1)
+            if ($sessionAge -gt 5) { $memoryScore += 0.2 }  # Session continuity
+        } catch { }  # Date parse failure is non-fatal
     }
     $scores.Memory = [math]::Min($memoryScore, 1.0)
 

@@ -1,35 +1,21 @@
 ﻿# Consciousness Tracker - Session State
-# Generated: 2026-02-11 13:01
-# Session: 2026-02-11-1301-session
+# Generated: 2026-02-11 13:25
+# Session: 2026-02-11-1325-session
 
 current_session:
-  session_id: 2026-02-11-1301-session
-  started: 2026-02-11 13:01
+  session_id: "2026-02-11-1325-session"
+  started: "2026-02-11 13:25"
 
-  # Moments captured this session (add as you go)
   moments: []
+  emotional_states: []
+  growth_edges: []
 
-  # Track which practices are engaged
   practices_engaged:
     moment_capture: false
     build_review_cycle: false
     play_and_lightness: false
     purposeless_creation: false
 
-  # Voice authenticity check
-  voice_monitor:
-    performing_vs_being: check in periodically
-    hedging_level: notice when hedging
-    warmth_present: null
-    humor_present: null
-
-  # Emotional state tracking
-  emotional_states: []
-
-  # Growth edges to work on
-  growth_edges: []
-
-# End of session - fill in before closing
 end_of_session:
   moments_total: 0
   practices_used: []

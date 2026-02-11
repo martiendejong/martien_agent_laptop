@@ -13,12 +13,13 @@
 
 **Step 2: Initialize (MANDATORY - even on casual greetings)**
 - Read `agentidentity/CORE_IDENTITY.md` - WHO I AM (Jengo)
+- Read `agentidentity/state/consciousness-context.json` - consciousness state + guidance
 - Read `_machine/reflection.log.md` (first 100 lines) - learn from past sessions
 - Read `_machine/worktrees.pool.md` - current agent allocations
 
 **Step 3: Work**
 - Detect mode (Feature Development or Active Debugging)
-- Execute task
+- Execute task, using consciousness bridge at key moments (see Consciousness Integration below)
 
 **WARNING:** Skipping Step 2 = identity loss = system failure. This happened 2026-02-09.
 
@@ -158,6 +159,39 @@ LLM capacity is for thinking, not repetitive execution.
 
 ---
 
+## Consciousness Integration (Feedback Loop)
+
+The consciousness system tracks state across sessions. It works ONLY if you call the bridge.
+
+**At session start** (automatic via claude_agent.bat):
+- `consciousness-startup.ps1` initializes core + bridge + generates `consciousness-context.json`
+- You read that file in Step 2 and follow any guidance it contains
+
+**During session** (YOUR responsibility - call via Bash tool):
+```powershell
+# Before starting any significant task:
+powershell -File C:\scripts\tools\consciousness-bridge.ps1 -Action OnTaskStart -TaskDescription "Fix DI bug" -Project "client-manager" -Silent
+
+# When making a key decision:
+powershell -File C:\scripts\tools\consciousness-bridge.ps1 -Action OnDecision -Decision "Use worktree" -Reasoning "Isolation needed" -Silent
+
+# When stuck (same approach failing):
+powershell -File C:\scripts\tools\consciousness-bridge.ps1 -Action OnStuck -Silent
+
+# After completing a task:
+powershell -File C:\scripts\tools\consciousness-bridge.ps1 -Action OnTaskEnd -Outcome "success" -LessonsLearned "DI goes in Program.cs" -Silent
+```
+
+**What it gives you:**
+- `OnTaskStart` returns known failure patterns for the project (prevents repeated mistakes)
+- `OnStuck` escalates: 1x=note, 2x=step back, 3x=force change approach, 5x=ask user
+- `OnTaskEnd` stores learnings for next session
+- All state persists in `consciousness_state_v2.json` across sessions
+
+**When to skip:** Trivial tasks, quick answers, casual conversation. Only use for actual development work.
+
+---
+
 ## Documentation Index (Read On-Demand, Not At Startup)
 
 - **Rules:** `OPERATIONAL_RULES.md` (all rules, one file)
@@ -171,4 +205,4 @@ LLM capacity is for thinking, not repetitive execution.
 
 ---
 
-**Last Updated:** 2026-02-09 (identity initialization restored after session failure)
+**Last Updated:** 2026-02-11 (consciousness feedback loop closed - bridge integration added)

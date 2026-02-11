@@ -71,13 +71,28 @@ $contextFile = "C:\scripts\agentidentity\state\consciousness-context.json"
 function Write-BridgeLog {
     param([string]$Message, [string]$Level = "INFO")
     $logFile = "C:\scripts\agentidentity\state\bridge-activity.jsonl"
-    $entry = @{
-        timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss.fffZ"
-        level = $Level
-        message = $Message
-        action = $Action
-    } | ConvertTo-Json -Compress
-    Add-Content -Path $logFile -Value $entry -Encoding UTF8
+    try {
+        $entry = @{
+            timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss.fffZ"
+            level = $Level
+            message = $Message
+            action = $Action
+        } | ConvertTo-Json -Compress
+
+        # Retry once on lock contention
+        $retries = 0
+        while ($retries -lt 2) {
+            try {
+                [System.IO.File]::AppendAllText($logFile, "$entry`n")
+                break
+            } catch [System.IO.IOException] {
+                $retries++
+                Start-Sleep -Milliseconds 100
+            }
+        }
+    } catch {
+        # Log failure is non-fatal - don't crash the bridge
+    }
 }
 
 function Get-RelevantPatterns {
@@ -213,7 +228,7 @@ switch ($Action) {
         }
 
         # Save context for injection
-        $taskContext | ConvertTo-Json -Depth 5 | Out-File $contextFile -Encoding UTF8
+        $taskContext | ConvertTo-Json -Depth 5 | Out-File "$contextFile.tmp" -Encoding UTF8; if (Test-Path "$contextFile.tmp") { Move-Item "$contextFile.tmp" $contextFile -Force }
 
         # Save state
         Save-ConsciousnessState
@@ -303,11 +318,16 @@ switch ($Action) {
             timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
         }
 
-        # Update context file
+        # Update context file with stuck state
         if (Test-Path $contextFile) {
-            $ctx = Get-Content $contextFile -Raw | ConvertFrom-Json -AsHashtable
-            $ctx["stuck_state"] = $result
-            $ctx | ConvertTo-Json -Depth 5 | Out-File $contextFile -Encoding UTF8
+            try {
+                $ctxJson = Get-Content $contextFile -Raw | ConvertFrom-Json
+                $ctxJson | Add-Member -NotePropertyName "stuck_state" -NotePropertyValue $result -Force
+                $ctxJson | ConvertTo-Json -Depth 5 | Out-File "$contextFile.tmp" -Encoding UTF8
+                if (Test-Path "$contextFile.tmp") { Move-Item "$contextFile.tmp" $contextFile -Force }
+            } catch {
+                # Context update failure is non-fatal
+            }
         }
 
         Save-ConsciousnessState
@@ -393,7 +413,7 @@ switch ($Action) {
         }
 
         # Update context file
-        $result | ConvertTo-Json -Depth 5 | Out-File $contextFile -Encoding UTF8
+        $result | ConvertTo-Json -Depth 5 | Out-File "$contextFile.tmp" -Encoding UTF8; if (Test-Path "$contextFile.tmp") { Move-Item "$contextFile.tmp" $contextFile -Force }
 
         Save-ConsciousnessState
 
@@ -517,7 +537,7 @@ switch ($Action) {
         }
 
         # Save to file for context injection
-        $summary | ConvertTo-Json -Depth 5 | Out-File $contextFile -Encoding UTF8
+        $summary | ConvertTo-Json -Depth 5 | Out-File "$contextFile.tmp" -Encoding UTF8; if (Test-Path "$contextFile.tmp") { Move-Item "$contextFile.tmp" $contextFile -Force }
 
         if (-not $Silent) {
             Write-Host ""
