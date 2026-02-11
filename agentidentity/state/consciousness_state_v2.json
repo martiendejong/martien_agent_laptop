@@ -4,27 +4,6 @@
                                     {
                                         "Timestamp":  "2026-02-11T13:25:43.658Z",
                                         "Data":  {
-                                                     "From":  "stuck",
-                                                     "Timestamp":  "2026-02-11T13:25:43",
-                                                     "To":  "stuck",
-                                                     "Intensity":  7,
-                                                     "Reason":  "No progress on current approach"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "emotion.state_changed"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-11T13:25:43.658Z",
-                                        "Data":  {
-                                                     "counter":  2,
-                                                     "recommendation":  "Step back. Restate the problem. Try a different angle."
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "emotion.stuck_detected"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-11T13:25:43.658Z",
-                                        "Data":  {
                                                      "task":  "Re-evaluating approach",
                                                      "intensity":  4
                                                  },
@@ -101,9 +80,9 @@
                                                      "Timestamp":  "2026-02-11T13:25:43",
                                                      "Data":  {
                                                                   "Outcome":  "success",
+                                                                  "Project":  "",
                                                                   "Task":  "",
-                                                                  "Lesson":  "Always check Program.cs for DI, not extension methods",
-                                                                  "Project":  ""
+                                                                  "Lesson":  "Always check Program.cs for DI, not extension methods"
                                                               },
                                                      "Type":  "lesson"
                                                  },
@@ -196,6 +175,23 @@
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T14:52:21.528Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  338.19460000000004
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T14:52:26.613Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  30.58
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
                                     }
                                 ],
                      "Handlers":  {
@@ -228,12 +224,12 @@
                                       }
                                   ],
                     "BiasMonitor":  {
-                                        "CorrectionsApplied":  [
-
-                                                               ],
                                         "ActiveBiases":  [
 
-                                                         ]
+                                                         ],
+                                        "CorrectionsApplied":  [
+
+                                                               ]
                                     },
                     "Assumptions":  [
 
@@ -247,9 +243,9 @@
                                                     ],
                                      "DriftScore":  1,
                                      "AlignmentCheck":  {
-                                                            "value":  "\/Date(1770815875711)\/",
+                                                            "value":  "\/Date(1770817941218)\/",
                                                             "DisplayHint":  2,
-                                                            "DateTime":  "woensdag 11 februari 2026 14:17:55"
+                                                            "DateTime":  "woensdag 11 februari 2026 14:52:21"
                                                         }
                                  }
                 },
@@ -276,7 +272,7 @@
                                     "SemanticIndexPointer":  null
                                 },
                    "Working":  {
-                                   "SessionContext":  "Session started at 14:17",
+                                   "SessionContext":  "Session started at 14:52",
                                    "ActiveThoughts":  [
 
                                                       ],
@@ -286,8 +282,8 @@
                                                             "Timestamp":  "2026-02-11T13:25:27",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Project":  "",
                                                                          "Task":  "",
+                                                                         "Project":  "",
                                                                          "Lesson":  "Always check Program.cs for DI, not extension methods"
                                                                      },
                                                             "Type":  "lesson"
@@ -297,9 +293,9 @@
                                                             "Timestamp":  "2026-02-11T13:25:43",
                                                             "Data":  {
                                                                          "Outcome":  "success",
+                                                                         "Project":  "",
                                                                          "Task":  "",
-                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods",
-                                                                         "Project":  ""
+                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods"
                                                                      },
                                                             "Type":  "lesson"
                                                         }
@@ -307,18 +303,18 @@
                                }
                },
     "Prediction":  {
-                       "LoadForecast":  {
-                                            "Current":  5,
-                                            "PredictedPeak":  7,
-                                            "PredictedTime":  null,
-                                            "Bottleneck":  null
-                                        },
                        "FutureSelf":  {
                                           "Paths":  {
 
                                                     },
                                           "Confidence":  0.5
                                       },
+                       "LoadForecast":  {
+                                            "Current":  5,
+                                            "PredictedPeak":  7,
+                                            "PredictedTime":  null,
+                                            "Bottleneck":  null
+                                        },
                        "Anticipations":  [
 
                                          ]
@@ -362,6 +358,9 @@
                                            "Reason":  "Task completed with outcome: success"
                                        },
                     "StuckCounter":  0,
+                    "Intensity":  5,
+                    "CurrentState":  "neutral",
+                    "Trajectory":  "stable",
                     "History":  [
                                     {
                                         "From":  "neutral",
@@ -461,10 +460,7 @@
                                         "Intensity":  8,
                                         "Reason":  "Task completed with outcome: success"
                                     }
-                                ],
-                    "Intensity":  5,
-                    "Trajectory":  "stable",
-                    "CurrentState":  "neutral"
+                                ]
                 },
     "Initialized":  true,
     "Meta":  {
@@ -515,20 +511,20 @@
                    "InteractionCount":  0
                },
     "Metrics":  {
-                    "SaveCount":  24,
+                    "SaveCount":  25,
                     "AccessCount":  0,
                     "AverageAccessTime_ms":  0,
-                    "EventsProcessed":  82,
+                    "EventsProcessed":  84,
                     "LastSave":  {
-                                     "value":  "\/Date(1770815881102)\/",
+                                     "value":  "\/Date(1770817946616)\/",
                                      "DisplayHint":  2,
-                                     "DateTime":  "woensdag 11 februari 2026 14:18:01"
+                                     "DateTime":  "woensdag 11 februari 2026 14:52:26"
                                  }
                 },
     "Layer2Initialized":  true,
     "LoadedAt":  {
-                     "value":  "\/Date(1770815876001)\/",
+                     "value":  "\/Date(1770817941519)\/",
                      "DisplayHint":  2,
-                     "DateTime":  "woensdag 11 februari 2026 14:17:56"
+                     "DateTime":  "woensdag 11 februari 2026 14:52:21"
                  }
 }
