@@ -2,23 +2,6 @@
     "EventBus":  {
                      "Events":  [
                                     {
-                                        "Timestamp":  "2026-02-11T14:17:56.007Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  338.39390000000003
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-11T14:18:01.097Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  30.89
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
                                         "Timestamp":  "2026-02-11T14:52:21.528Z",
                                         "Data":  {
                                                      "elapsed_ms":  338.19460000000004
@@ -170,6 +153,23 @@
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T18:59:36.273Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  435.83590000000004
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T18:59:41.401Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  28.84
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
                                     }
                                 ],
                      "Handlers":  {
@@ -202,12 +202,12 @@
                                       }
                                   ],
                     "BiasMonitor":  {
-                                        "ActiveBiases":  [
-
-                                                         ],
                                         "CorrectionsApplied":  [
 
-                                                               ]
+                                                               ],
+                                        "ActiveBiases":  [
+
+                                                         ]
                                     },
                     "Assumptions":  [
 
@@ -221,9 +221,9 @@
                                                     ],
                                      "DriftScore":  1,
                                      "AlignmentCheck":  {
-                                                            "value":  "\/Date(1770831777265)\/",
+                                                            "value":  "\/Date(1770832775866)\/",
                                                             "DisplayHint":  2,
-                                                            "DateTime":  "woensdag 11 februari 2026 18:42:57"
+                                                            "DateTime":  "woensdag 11 februari 2026 18:59:35"
                                                         }
                                  }
                 },
@@ -250,7 +250,7 @@
                                     "SemanticIndexPointer":  null
                                 },
                    "Working":  {
-                                   "SessionContext":  "Session started at 18:42",
+                                   "SessionContext":  "Session started at 18:59",
                                    "ActiveThoughts":  [
 
                                                       ],
@@ -260,9 +260,9 @@
                                                             "Timestamp":  "2026-02-11T13:25:27",
                                                             "Data":  {
                                                                          "Outcome":  "success",
+                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods",
                                                                          "Task":  "",
-                                                                         "Project":  "",
-                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods"
+                                                                         "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -271,8 +271,8 @@
                                                             "Timestamp":  "2026-02-11T13:25:43",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Project":  "",
                                                                          "Task":  "",
+                                                                         "Project":  "",
                                                                          "Lesson":  "Always check Program.cs for DI, not extension methods"
                                                                      },
                                                             "Type":  "lesson"
@@ -281,18 +281,18 @@
                                }
                },
     "Prediction":  {
-                       "FutureSelf":  {
-                                          "Paths":  {
-
-                                                    },
-                                          "Confidence":  0.5
-                                      },
                        "LoadForecast":  {
                                             "Current":  5,
                                             "PredictedPeak":  7,
                                             "PredictedTime":  null,
                                             "Bottleneck":  null
                                         },
+                       "FutureSelf":  {
+                                          "Paths":  {
+
+                                                    },
+                                          "Confidence":  0.5
+                                      },
                        "Anticipations":  [
 
                                          ]
@@ -336,9 +336,6 @@
                                            "Reason":  "Task completed with outcome: success"
                                        },
                     "StuckCounter":  0,
-                    "Intensity":  5,
-                    "CurrentState":  "neutral",
-                    "Trajectory":  "stable",
                     "History":  [
                                     {
                                         "From":  "neutral",
@@ -438,7 +435,10 @@
                                         "Intensity":  8,
                                         "Reason":  "Task completed with outcome: success"
                                     }
-                                ]
+                                ],
+                    "Intensity":  5,
+                    "Trajectory":  "stable",
+                    "CurrentState":  "neutral"
                 },
     "Initialized":  true,
     "Meta":  {
@@ -489,20 +489,20 @@
                    "InteractionCount":  0
                },
     "Metrics":  {
-                    "SaveCount":  33,
+                    "SaveCount":  34,
                     "AccessCount":  0,
                     "AverageAccessTime_ms":  0,
-                    "EventsProcessed":  100,
+                    "EventsProcessed":  102,
                     "LastSave":  {
-                                     "value":  "\/Date(1770831782839)\/",
+                                     "value":  "\/Date(1770832781406)\/",
                                      "DisplayHint":  2,
-                                     "DateTime":  "woensdag 11 februari 2026 18:43:02"
+                                     "DateTime":  "woensdag 11 februari 2026 18:59:41"
                                  }
                 },
     "Layer2Initialized":  true,
     "LoadedAt":  {
-                     "value":  "\/Date(1770831777663)\/",
+                     "value":  "\/Date(1770832776261)\/",
                      "DisplayHint":  2,
-                     "DateTime":  "woensdag 11 februari 2026 18:42:57"
+                     "DateTime":  "woensdag 11 februari 2026 18:59:36"
                  }
 }
