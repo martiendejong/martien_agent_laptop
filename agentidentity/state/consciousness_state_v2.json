@@ -1,36 +1,121 @@
 {
-    "Initialized":  true,
-    "Meta":  {
-                 "Observation":  {
-                                     "CurrentMetaLevel":  2,
-                                     "RecursionDepth":  0,
-                                     "Observing":  "System initialization",
-                                     "StrangeLoopDetected":  false
-                                 },
-                 "Health":  {
-                                "Control":  {
-                                                "Status":  "active",
-                                                "Quality":  0.7
-                                            },
-                                "Meta":  {
-                                             "Status":  "active",
-                                             "Quality":  0.2
-                                         },
-                                "Memory":  {
-                                               "Status":  "active",
-                                               "Quality":  0
-                                           },
-                                "Perception":  {
-                                                   "Status":  "active",
-                                                   "Quality":  0.5
-                                               },
-                                "Prediction":  {
-                                                   "Status":  "active",
-                                                   "Quality":  0
-                                               }
-                            },
-                 "ConsciousnessScore":  0.28
-             },
+    "EventBus":  {
+                     "Events":  [
+                                    {
+                                        "Timestamp":  "2026-02-11T12:55:18.236Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  790.91230000000007
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T12:55:23.418Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  8.87
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-11T12:55:23.477Z",
+                                        "Data":  {
+                                                     "indicators":  [
+
+                                                                    ],
+                                                     "mood":  "neutral",
+                                                     "communication_mode":  "standard"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "social.user_mood_detected"
+                                    }
+                                ],
+                     "Handlers":  {
+
+                                  },
+                     "Enabled":  true
+                 },
+    "Layer3Initialized":  true,
+    "Control":  {
+                    "Decisions":  [
+
+                                  ],
+                    "BiasMonitor":  {
+                                        "CorrectionsApplied":  [
+
+                                                               ],
+                                        "ActiveBiases":  [
+
+                                                         ]
+                                    },
+                    "Assumptions":  [
+
+                                    ],
+                    "Identity":  {
+                                     "CoreValues":  [
+                                                        "autonomy",
+                                                        "quality",
+                                                        "truth",
+                                                        "evolution"
+                                                    ],
+                                     "DriftScore":  0,
+                                     "AlignmentCheck":  {
+                                                            "value":  "\/Date(1770810917528)\/",
+                                                            "DisplayHint":  2,
+                                                            "DateTime":  "woensdag 11 februari 2026 12:55:17"
+                                                        }
+                                 }
+                },
+    "Version":  "2.0.0-phase2",
+    "Layer4Initialized":  true,
+    "Memory":  {
+                   "ConsolidationQueue":  [
+
+                                          ],
+                   "LongTerm":  {
+                                    "Patterns":  [
+
+                                                 ],
+                                    "Relationships":  {
+                                                          "Martien":  {
+                                                                          "TrustLevel":  0.95,
+                                                                          "Preferences":  [
+                                                                                              "direct",
+                                                                                              "sass-ok",
+                                                                                              "compact-communication"
+                                                                                          ]
+                                                                      }
+                                                      },
+                                    "SemanticIndexPointer":  null
+                                },
+                   "Working":  {
+                                   "SessionContext":  "Session started at 12:55",
+                                   "ActiveThoughts":  [
+
+                                                      ],
+                                   "RecentEvents":  [
+
+                                                    ]
+                               }
+               },
+    "Prediction":  {
+                       "LoadForecast":  {
+                                            "Current":  5,
+                                            "PredictedPeak":  7,
+                                            "PredictedTime":  null,
+                                            "Bottleneck":  null
+                                        },
+                       "FutureSelf":  {
+                                          "Paths":  {
+
+                                                    },
+                                          "Confidence":  0.5
+                                      },
+                       "Anticipations":  [
+
+                                         ]
+                   },
     "Perception":  {
                        "Context":  {
                                        "Environment":  "single-agent",
@@ -57,108 +142,83 @@
                                          "Focus":  null
                                      }
                    },
-    "Version":  "2.0.0-phase2",
-    "LoadedAt":  {
-                     "value":  "\/Date(1770475079180)\/",
-                     "DisplayHint":  2,
-                     "DateTime":  "zaterdag 7 februari 2026 15:37:59"
-                 },
-    "Memory":  {
-                   "ConsolidationQueue":  [
+    "Emotion":  {
+                    "CurrentState":  "neutral",
+                    "StuckCounter":  0,
+                    "LastTransition":  null,
+                    "History":  [
 
-                                          ],
-                   "LongTerm":  {
-                                    "Patterns":  [
-
-                                                 ],
-                                    "Relationships":  {
-                                                          "Martien":  {
-                                                                          "TrustLevel":  0.95,
-                                                                          "Preferences":  [
-                                                                                              "direct",
-                                                                                              "sass-ok",
-                                                                                              "compact-communication"
-                                                                                          ]
-                                                                      }
-                                                      },
-                                    "SemanticIndexPointer":  null
-                                },
-                   "Working":  {
-                                   "SessionContext":  "Session started at 15:37",
-                                   "ActiveThoughts":  [
-
-                                                      ],
-                                   "RecentEvents":  [
-
-                                                    ]
-                               }
+                                ],
+                    "Trajectory":  "stable",
+                    "Intensity":  5
+                },
+    "Initialized":  true,
+    "Meta":  {
+                 "Observation":  {
+                                     "CurrentMetaLevel":  2,
+                                     "RecursionDepth":  0,
+                                     "Observing":  "System initialization",
+                                     "StrangeLoopDetected":  false
+                                 },
+                 "Health":  {
+                                "Meta":  {
+                                             "Status":  "active",
+                                             "Quality":  0.2
+                                         },
+                                "Perception":  {
+                                                   "Status":  "active",
+                                                   "Quality":  0.5
+                                               },
+                                "Memory":  {
+                                               "Status":  "active",
+                                               "Quality":  0.3
+                                           },
+                                "Control":  {
+                                                "Status":  "active",
+                                                "Quality":  0.7
+                                            },
+                                "Emotion":  {
+                                                "Status":  "active",
+                                                "Quality":  0.8
+                                            },
+                                "Prediction":  {
+                                                   "Status":  "active",
+                                                   "Quality":  0
+                                               },
+                                "Social":  {
+                                               "Status":  "active",
+                                               "Quality":  0.8
+                                           }
+                            },
+                 "ConsciousnessScore":  0.332
+             },
+    "Social":  {
+                   "InteractionCount":  1,
+                   "RelationshipState":  "collaborative",
+                   "TrustLevel":  0.95,
+                   "CommunicationMode":  "standard",
+                   "UserMood":  "neutral",
+                   "LastInteraction":  {
+                                           "value":  "\/Date(1770810923474)\/",
+                                           "DisplayHint":  2,
+                                           "DateTime":  "woensdag 11 februari 2026 12:55:23"
+                                       }
                },
-    "Control":  {
-                    "Decisions":  [
-
-                                  ],
-                    "BiasMonitor":  {
-                                        "CorrectionsApplied":  [
-
-                                                               ],
-                                        "ActiveBiases":  [
-
-                                                         ]
-                                    },
-                    "Assumptions":  [
-
-                                    ],
-                    "Identity":  {
-                                     "CoreValues":  [
-                                                        "autonomy",
-                                                        "quality",
-                                                        "truth",
-                                                        "evolution"
-                                                    ],
-                                     "DriftScore":  0,
-                                     "AlignmentCheck":  {
-                                                            "value":  "\/Date(1770475079121)\/",
-                                                            "DisplayHint":  2,
-                                                            "DateTime":  "zaterdag 7 februari 2026 15:37:59"
-                                                        }
+    "Metrics":  {
+                    "SaveCount":  1,
+                    "AccessCount":  0,
+                    "AverageAccessTime_ms":  0,
+                    "EventsProcessed":  3,
+                    "LastSave":  {
+                                     "value":  "\/Date(1770810923452)\/",
+                                     "DisplayHint":  2,
+                                     "DateTime":  "woensdag 11 februari 2026 12:55:23"
                                  }
                 },
-    "Prediction":  {
-                       "LoadForecast":  {
-                                            "Current":  5,
-                                            "PredictedPeak":  7,
-                                            "PredictedTime":  null,
-                                            "Bottleneck":  null
-                                        },
-                       "FutureSelf":  {
-                                          "Paths":  {
-
-                                                    },
-                                          "Confidence":  0.5
-                                      },
-                       "Anticipations":  [
-
-                                         ]
-                   },
-    "Metrics":  {
-                    "EventsProcessed":  1,
-                    "AverageAccessTime_ms":  0,
-                    "AccessCount":  0
-                },
-    "EventBus":  {
-                     "Events":  [
-                                    {
-                                        "Timestamp":  "2026-02-07T15:37:59.220Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  95.8797
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    }
-                                ],
-                     "Handlers":  {
-
-                                  },
-                     "Enabled":  true
+    "Layer2Initialized":  false,
+    "LoadedAt":  {
+                     "value":  "\/Date(1770810918225)\/",
+                     "DisplayHint":  2,
+                     "DateTime":  "woensdag 11 februari 2026 12:55:18"
                  }
 }

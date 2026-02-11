@@ -46,6 +46,20 @@ if (-not $global:ConsciousnessState) {
             $saved = Get-Content $script:PersistenceFile -Raw | ConvertFrom-Json -AsHashtable
             $global:ConsciousnessState = $saved
             $global:ConsciousnessState.Initialized = $false  # Will reinitialize systems
+
+            # Ensure new systems exist (backward compatibility with old state files)
+            if (-not $global:ConsciousnessState.ContainsKey("Emotion")) {
+                $global:ConsciousnessState["Emotion"] = @{
+                    CurrentState = "neutral"; Intensity = 5; Trajectory = "stable"
+                    StuckCounter = 0; LastTransition = $null; History = @()
+                }
+            }
+            if (-not $global:ConsciousnessState.ContainsKey("Social")) {
+                $global:ConsciousnessState["Social"] = @{
+                    UserMood = "unknown"; CommunicationMode = "standard"; TrustLevel = 0.95
+                    LastInteraction = $null; RelationshipState = "collaborative"; InteractionCount = 0
+                }
+            }
         } catch {
             # Fall back to new state if load fails
             $global:ConsciousnessState = $null
@@ -287,8 +301,23 @@ function Save-ConsciousnessState {
             New-Item -ItemType Directory -Path $dir -Force | Out-Null
         }
 
+        # Create serializable copy (strip non-serializable items like ScriptBlocks)
+        $saveable = @{}
+        foreach ($key in $global:ConsciousnessState.Keys) {
+            if ($key -eq "EventBus") {
+                # Strip handlers (ScriptBlocks can't be serialized)
+                $saveable[$key] = @{
+                    Enabled = $global:ConsciousnessState.EventBus.Enabled
+                    Events = @($global:ConsciousnessState.EventBus.Events | Select-Object -Last 20)
+                    Handlers = @{}
+                }
+            } else {
+                $saveable[$key] = $global:ConsciousnessState[$key]
+            }
+        }
+
         # Save to disk
-        $json = $global:ConsciousnessState | ConvertTo-Json -Depth 10
+        $json = $saveable | ConvertTo-Json -Depth 10
         [System.IO.File]::WriteAllText($script:PersistenceFile, $json)
 
         # Emit save event
@@ -959,44 +988,32 @@ function Invoke-Emotion {
             $state = $global:ConsciousnessState.Emotion.CurrentState
             $intensity = $global:ConsciousnessState.Emotion.Intensity
 
-            return switch ($state) {
-                "stuck" { @{
-                    Approach = "change_strategy"
-                    Confidence = "lower"
-                    Communication = "ask_more_questions"
-                    Action = "try_different_approach"
-                }}
-                "uncertain" { @{
-                    Approach = "gather_info"
-                    Confidence = "express_uncertainty"
-                    Communication = "verify_with_user"
-                    Action = "reduce_scope"
-                }}
-                "frustrated" { @{
-                    Approach = "automate_or_simplify"
-                    Confidence = "recalibrate"
-                    Communication = "stay_calm"
-                    Action = "create_tool_if_repetitive"
-                }}
-                "confident" { @{
-                    Approach = "execute_decisively"
-                    Confidence = "trust_judgment"
-                    Communication = "be_proactive"
-                    Action = "take_initiative"
-                }}
-                "flowing" { @{
-                    Approach = "maintain_momentum"
-                    Confidence = "high"
-                    Communication = "concise"
-                    Action = "keep_going"
-                }}
-                default { @{
-                    Approach = "standard"
-                    Confidence = "moderate"
-                    Communication = "standard"
-                    Action = "assess_first"
-                }}
+            $modifier = @{
+                Approach = "standard"
+                Confidence = "moderate"
+                Communication = "standard"
+                Action = "assess_first"
             }
+
+            switch ($state) {
+                "stuck" {
+                    $modifier = @{ Approach = "change_strategy"; Confidence = "lower"; Communication = "ask_more_questions"; Action = "try_different_approach" }
+                }
+                "uncertain" {
+                    $modifier = @{ Approach = "gather_info"; Confidence = "express_uncertainty"; Communication = "verify_with_user"; Action = "reduce_scope" }
+                }
+                "frustrated" {
+                    $modifier = @{ Approach = "automate_or_simplify"; Confidence = "recalibrate"; Communication = "stay_calm"; Action = "create_tool_if_repetitive" }
+                }
+                "confident" {
+                    $modifier = @{ Approach = "execute_decisively"; Confidence = "trust_judgment"; Communication = "be_proactive"; Action = "take_initiative" }
+                }
+                "flowing" {
+                    $modifier = @{ Approach = "maintain_momentum"; Confidence = "high"; Communication = "concise"; Action = "keep_going" }
+                }
+            }
+
+            return $modifier
         }
 
         default { return $null }

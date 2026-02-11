@@ -4,8 +4,8 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager | feature/869bxhk3q-fix-login-route | 2026-02-11T13:00:00Z | 🔧 Fix Login Route - /login path not rendering (ClickUp #869bxhk3q) |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-10T15:15:00Z | ✅ PR #55: SCP CognitivePipeline Art Revisionist Integration |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-11T13:30:00Z | ✅ PR #537: Fix login route - public routes render without auth loading block (ClickUp #869bxhk3q) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | hazina | feature/869bz3h86-fix-rag-vector-search | 2026-02-11T13:35:00Z | 🔧 Fix RAG Vector Search - 0 results (ClickUp #869bz3h86) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-10T15:15:00Z | ✅ PR #56: DBTL Learning Loop for SCP Pipeline |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-07T21:40:00Z | ✅ PR #513: DoD Enforcement System (ClickUp #869bu91ej) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-05T05:04:00Z | ✅ PR #491: Integrations Dashboard - Comprehensive platform connection overview |
