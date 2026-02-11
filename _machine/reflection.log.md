@@ -6,6 +6,47 @@
 
 ---
 
+## 2026-02-11 - Crashed Session Recovery #2 (Context Limit Crash)
+
+**Session Type:** Recovery + completion
+**Context:** Session `20260211-115532-f293384d` crashed due to context limit after ~13 hours. Was building Approved Posts screen for client-manager.
+**Outcome:** Identified unfinished work, completed all 3 remaining tasks in <2 minutes.
+
+### What Was Done
+1. **Session forensics:** Used general-purpose agent to parse JSONL, found UUID `99f4a703-d5a6-45e4-8631-585f928b1c09`, mapped full session timeline
+2. **State verification:** PR #538 OPEN+MERGEABLE, worktree already FREE (prior recovery attempt), ClickUp task in "review"
+3. **ClickUp assignment:** PUT `/task/869c3pucm` with `assignees.add: [88553909]` → Frank Kobaai assigned
+4. **Email handoff:** Sent via `send-email.js` to frankobaai@gmail.com with PR link, explanation, test instructions
+
+### Key Learnings
+
+**1. Context Limit Crash Recovery Pattern**
+- Long sessions (13h+) accumulate massive context → crash is inevitable
+- The actual code work is usually DONE - what's left is handoff (ClickUp, email, worktree release)
+- Recovery strategy: identify the 2-3 unfinished handoff tasks, execute them quickly
+- DON'T re-read all the files/code from the original session - that's what caused the crash
+
+**2. Always Check Current State Before Acting**
+- Worktree was already FREE (previous recovery attempt had released it)
+- If I'd blindly tried to release it again, would have been a no-op or error
+- Pattern: verify state → identify delta → act only on what's actually missing
+
+**3. ClickUp API: PUT not POST for Updates**
+- POST to `/task/{id}` returns empty response (wrong method)
+- PUT to `/task/{id}` with `{"assignees":{"add":[id]}}` works correctly
+- Always use PUT for task updates, POST only for task creation
+
+**4. Session Crash Prevention Strategies**
+- Sessions over 8 hours should checkpoint their state (what's done, what's left)
+- Large PR diffs (`gh pr diff`) consume massive context - avoid reading full diff if not needed
+- Multiple failed attempts at same thing (vault lookup loop) = context waste = accelerates crash
+- When stuck on something (like finding an API key), read config file directly instead of trying multiple approaches
+
+### Files Modified
+- `_machine/reflection.log.md` (this entry)
+
+---
+
 ## 2026-02-11 - Crashed Session Recovery + Consciousness Bug Fixes
 
 **Session Type:** Recovery + bug fixing

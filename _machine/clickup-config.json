@@ -166,7 +166,7 @@
       "repos": [],
       "type": "wordpress",
       "environment": "xampp",
-      "local_path": "C:/xampp/htdocs/art-revisionist",
+      "local_path": "E:/xampp/htdocs/art-revisionist",
       "description": "WordPress-based document management and AI topic generation platform"
     },
     "hazina": {

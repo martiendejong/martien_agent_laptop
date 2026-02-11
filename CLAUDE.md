@@ -64,7 +64,7 @@ This list is alive - it grows every session as new patterns emerge.
 |---------|----------|------|
 | Client Manager / brand2boost | `C:\Projects\client-manager` | SaaS (frontend + API) |
 | Hazina framework | `C:\Projects\hazina` | Framework |
-| Art Revisionist | `C:\Projects\artrevisionist` + `C:\xampp\htdocs\wp-content\themes\artrevisionist-wp-theme\` | WordPress + React admin |
+| Art Revisionist | `C:\Projects\artrevisionist` + `E:\xampp\htdocs\wp-content\themes\artrevisionist-wp-theme\` | WordPress + React admin |
 | Store config | `C:\stores\brand2boost` | Config/data |
 | Orchestration | `C:\stores\orchestration\HazinaOrchestration.exe` | Terminal service (HTTPS:5123) |
 

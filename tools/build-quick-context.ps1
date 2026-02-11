@@ -68,7 +68,7 @@ $context.projects += @{
 $context.projects += @{
     name = "art-revisionist"
     type = "WordPress + React"
-    wordpress_path = "C:\xampp\htdocs\wp-content\themes\artrevisionist-wp-theme"
+    wordpress_path = "E:\xampp\htdocs\wp-content\themes\artrevisionist-wp-theme"
     admin_path = "C:\Projects\artrevisionist\artrevisionist"
     main_branch = "develop"
 }
@@ -115,8 +115,8 @@ $context.services += @{
 $context.services += @{
     name = "WordPress Local"
     url = "http://localhost:80"
-    root = "C:\xampp\htdocs"
-    control_panel = "C:\xampp\xampp-control.exe"
+    root = "E:\xampp\htdocs"
+    control_panel = "E:\xampp\xampp-control.exe"
 }
 
 # Tools registry

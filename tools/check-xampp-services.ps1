@@ -4,10 +4,10 @@ Write-Host "---"
 $env:PATH -split ';' | Where-Object { $_ -like '*xampp*' } | ForEach-Object { Write-Host "PATH entry: $_" }
 Write-Host "---"
 # Check wp-config for DB path
-if (Test-Path 'C:\xampp\htdocs\wp-config.php') {
+if (Test-Path 'E:\xampp\htdocs\wp-config.php') {
     Write-Host "wp-config.php exists"
 } else {
     Write-Host "No wp-config.php in htdocs root"
 }
 # Check for artrevisionist wp-config
-Get-ChildItem 'C:\xampp\htdocs' -Filter 'wp-config.php' -Recurse -Depth 1 -ErrorAction SilentlyContinue | ForEach-Object { Write-Host "Found: $($_.FullName)" }
+Get-ChildItem 'E:\xampp\htdocs' -Filter 'wp-config.php' -Recurse -Depth 1 -ErrorAction SilentlyContinue | ForEach-Object { Write-Host "Found: $($_.FullName)" }

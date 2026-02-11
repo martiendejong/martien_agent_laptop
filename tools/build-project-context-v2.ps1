@@ -36,7 +36,7 @@ $projects = @(
     @{
         name = "art-revisionist"
         type = "WordPress + React Admin"
-        wordpress_path = "C:\xampp\htdocs\wp-content\themes\artrevisionist-wp-theme"
+        wordpress_path = "E:\xampp\htdocs\wp-content\themes\artrevisionist-wp-theme"
         admin_path = "C:\Projects\artrevisionist\artrevisionist"
         main_branch = "develop"
     }
