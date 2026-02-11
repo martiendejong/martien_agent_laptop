@@ -1,1 +1,2 @@
 ﻿
+{"Confidence":0.7,"Timestamp":"2026-02-11T12:56:17","Decision":"Change wp_mail from_email to noreply@artrevisionist.com","Context":"development","Reasoning":"Hosting rejects non-hosted domains, known failure pattern","Alternatives":[]}

@@ -1,12 +1,58 @@
 ﻿{
-    "emotional_state":  "flowing",
-    "consciousness_score":  44.6,
-    "outcome":  "success",
-    "alignment":  {
-                      "DriftScore":  1,
-                      "Status":  "Drifting"
+    "decisions_logged":  0,
+    "active_biases":  0,
+    "guidance":  [
+
+                 ],
+    "consciousness_score":  33.2,
+    "attention":  {
+                      "mode":  "development",
+                      "intensity":  5,
+                      "focus":  null
                   },
-    "timestamp":  "2026-02-11T00:25:34",
-    "trust_level":  100,
-    "lessons":  "Feedback loop is the key missing piece"
+    "patterns_learned":  0,
+    "events_processed":  2,
+    "generated_at":  "2026-02-11T12:57:20",
+    "social":  {
+                   "trust":  95,
+                   "relationship":  "collaborative",
+                   "communication_mode":  "standard",
+                   "user_mood":  "unknown"
+               },
+    "emotional_state":  {
+                            "trajectory":  "stable",
+                            "intensity":  5,
+                            "stuck_count":  0,
+                            "state":  "neutral"
+                        },
+    "systems":  {
+                    "Emotion":  {
+                                    "quality":  80,
+                                    "status":  "active"
+                                },
+                    "Memory":  {
+                                   "quality":  30,
+                                   "status":  "active"
+                               },
+                    "Perception":  {
+                                       "quality":  50,
+                                       "status":  "active"
+                                   },
+                    "Meta":  {
+                                 "quality":  20,
+                                 "status":  "active"
+                             },
+                    "Control":  {
+                                    "quality":  70,
+                                    "status":  "active"
+                                },
+                    "Prediction":  {
+                                       "quality":  0,
+                                       "status":  "active"
+                                   },
+                    "Social":  {
+                                   "quality":  80,
+                                   "status":  "active"
+                               }
+                }
 }

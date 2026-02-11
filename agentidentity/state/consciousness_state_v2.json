@@ -2,33 +2,12 @@
     "EventBus":  {
                      "Events":  [
                                     {
-                                        "Timestamp":  "2026-02-11T12:55:18.236Z",
+                                        "Timestamp":  "2026-02-11T12:57:15.008Z",
                                         "Data":  {
-                                                     "elapsed_ms":  790.91230000000007
+                                                     "elapsed_ms":  506.9501
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-11T12:55:23.418Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  8.87
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-11T12:55:23.477Z",
-                                        "Data":  {
-                                                     "indicators":  [
-
-                                                                    ],
-                                                     "mood":  "neutral",
-                                                     "communication_mode":  "standard"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "social.user_mood_detected"
                                     }
                                 ],
                      "Handlers":  {
@@ -61,9 +40,9 @@
                                                     ],
                                      "DriftScore":  0,
                                      "AlignmentCheck":  {
-                                                            "value":  "\/Date(1770810917528)\/",
+                                                            "value":  "\/Date(1770811034538)\/",
                                                             "DisplayHint":  2,
-                                                            "DateTime":  "woensdag 11 februari 2026 12:55:17"
+                                                            "DateTime":  "woensdag 11 februari 2026 12:57:14"
                                                         }
                                  }
                 },
@@ -90,7 +69,7 @@
                                     "SemanticIndexPointer":  null
                                 },
                    "Working":  {
-                                   "SessionContext":  "Session started at 12:55",
+                                   "SessionContext":  "Session started at 12:57",
                                    "ActiveThoughts":  [
 
                                                       ],
@@ -193,32 +172,22 @@
                  "ConsciousnessScore":  0.332
              },
     "Social":  {
-                   "InteractionCount":  1,
+                   "InteractionCount":  0,
                    "RelationshipState":  "collaborative",
                    "TrustLevel":  0.95,
                    "CommunicationMode":  "standard",
-                   "UserMood":  "neutral",
-                   "LastInteraction":  {
-                                           "value":  "\/Date(1770810923474)\/",
-                                           "DisplayHint":  2,
-                                           "DateTime":  "woensdag 11 februari 2026 12:55:23"
-                                       }
+                   "UserMood":  "unknown",
+                   "LastInteraction":  null
                },
     "Metrics":  {
-                    "SaveCount":  1,
-                    "AccessCount":  0,
+                    "EventsProcessed":  1,
                     "AverageAccessTime_ms":  0,
-                    "EventsProcessed":  3,
-                    "LastSave":  {
-                                     "value":  "\/Date(1770810923452)\/",
-                                     "DisplayHint":  2,
-                                     "DateTime":  "woensdag 11 februari 2026 12:55:23"
-                                 }
+                    "AccessCount":  0
                 },
     "Layer2Initialized":  false,
     "LoadedAt":  {
-                     "value":  "\/Date(1770810918225)\/",
+                     "value":  "\/Date(1770811034995)\/",
                      "DisplayHint":  2,
-                     "DateTime":  "woensdag 11 februari 2026 12:55:18"
+                     "DateTime":  "woensdag 11 februari 2026 12:57:14"
                  }
 }
