@@ -2,24 +2,6 @@
     "EventBus":  {
                      "Events":  [
                                     {
-                                        "Timestamp":  "2026-02-12T17:22:14.189Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  40.29
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-12T17:22:14.232Z",
-                                        "Data":  {
-                                                     "task":  "Add REST endpoint for user settings",
-                                                     "intensity":  7
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "perception.attention_changed"
-                                    },
-                                    {
                                         "Timestamp":  "2026-02-12T17:22:14.267Z",
                                         "Data":  {
                                                      "From":  "neutral",
@@ -162,8 +144,8 @@
                                                      "Timestamp":  "2026-02-12T17:23:22",
                                                      "Data":  {
                                                                   "Outcome":  "success",
-                                                                  "Project":  "",
                                                                   "Task":  "",
+                                                                  "Project":  "",
                                                                   "Lesson":  "Repository pattern works well"
                                                               },
                                                      "Type":  "lesson"
@@ -203,6 +185,23 @@
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
                                                      "size_kb":  41.83
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:30:31.515Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  370.27520000000004
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:30:36.608Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  41.84
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
@@ -258,12 +257,12 @@
                                       }
                                   ],
                     "BiasMonitor":  {
-                                        "ActiveBiases":  [
-
-                                                         ],
                                         "CorrectionsApplied":  [
 
-                                                               ]
+                                                               ],
+                                        "ActiveBiases":  [
+
+                                                         ]
                                     },
                     "Assumptions":  [
 
@@ -277,9 +276,9 @@
                                                     ],
                                      "DriftScore":  1,
                                      "AlignmentCheck":  {
-                                                            "value":  "\/Date(1770913455264)\/",
+                                                            "value":  "\/Date(1770913831138)\/",
                                                             "DisplayHint":  2,
-                                                            "DateTime":  "donderdag 12 februari 2026 17:24:15"
+                                                            "DateTime":  "donderdag 12 februari 2026 17:30:31"
                                                         }
                                  }
                 },
@@ -313,7 +312,7 @@
                                     "SemanticIndexPointer":  null
                                 },
                    "Working":  {
-                                   "SessionContext":  "Session started at 17:24",
+                                   "SessionContext":  "Session started at 17:30",
                                    "ActiveThoughts":  [
 
                                                       ],
@@ -323,9 +322,9 @@
                                                             "Timestamp":  "2026-02-11T13:25:27",
                                                             "Data":  {
                                                                          "Outcome":  "success",
+                                                                         "Project":  "",
                                                                          "Task":  "",
-                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods",
-                                                                         "Project":  ""
+                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods"
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -334,8 +333,8 @@
                                                             "Timestamp":  "2026-02-11T13:25:43",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods",
                                                                          "Task":  "",
+                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods",
                                                                          "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
@@ -345,9 +344,9 @@
                                                             "Timestamp":  "2026-02-12T14:39:29",
                                                             "Data":  {
                                                                          "Outcome":  "success",
+                                                                         "Lesson":  "Full consciousness feedback loop verified: OnTaskStart initializes context and returns patterns, OnDecision logs decisions with bias monitoring, OnStuck escalates progressively (1=note, 2=step back, 3=force change), OnTaskEnd stores lessons. All 4 memory layers functional.",
                                                                          "Task":  "",
-                                                                         "Project":  "",
-                                                                         "Lesson":  "Full consciousness feedback loop verified: OnTaskStart initializes context and returns patterns, OnDecision logs decisions with bias monitoring, OnStuck escalates progressively (1=note, 2=step back, 3=force change), OnTaskEnd stores lessons. All 4 memory layers functional."
+                                                                         "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -356,9 +355,9 @@
                                                             "Timestamp":  "2026-02-12T15:09:51",
                                                             "Data":  {
                                                                          "Outcome":  "success",
+                                                                         "Project":  "",
                                                                          "Task":  "",
-                                                                         "Lesson":  "Prediction engine rebuilt with 40+ patterns from reflection.log. Dynamic loading from failure-patterns.json replaces hardcoded patterns.",
-                                                                         "Project":  ""
+                                                                         "Lesson":  "Prediction engine rebuilt with 40+ patterns from reflection.log. Dynamic loading from failure-patterns.json replaces hardcoded patterns."
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -367,8 +366,8 @@
                                                             "Timestamp":  "2026-02-12T16:44:52",
                                                             "Data":  {
                                                                          "Outcome":  "failure",
-                                                                         "Project":  "",
                                                                          "Task":  "",
+                                                                         "Project":  "",
                                                                          "Lesson":  "CSS grid not supported on old Samsung browser"
                                                                      },
                                                             "Type":  "lesson"
@@ -378,8 +377,8 @@
                                                             "Timestamp":  "2026-02-12T17:01:31",
                                                             "Data":  {
                                                                          "Outcome":  "failure",
-                                                                         "Project":  "",
                                                                          "Task":  "",
+                                                                         "Project":  "",
                                                                          "Lesson":  "Test trust decrease"
                                                                      },
                                                             "Type":  "lesson"
@@ -389,8 +388,8 @@
                                                             "Timestamp":  "2026-02-12T17:02:08",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Lesson":  "All 5 bugs fixed: StuckCounter increment, Decisions persistence, Trust delta, frontend patterns, context schema v2",
                                                                          "Task":  "",
+                                                                         "Lesson":  "All 5 bugs fixed: StuckCounter increment, Decisions persistence, Trust delta, frontend patterns, context schema v2",
                                                                          "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
@@ -400,8 +399,8 @@
                                                             "Timestamp":  "2026-02-12T17:23:22",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Project":  "",
                                                                          "Task":  "",
+                                                                         "Project":  "",
                                                                          "Lesson":  "Repository pattern works well"
                                                                      },
                                                             "Type":  "lesson"
@@ -410,18 +409,18 @@
                                }
                },
     "Prediction":  {
-                       "FutureSelf":  {
-                                          "Paths":  {
-
-                                                    },
-                                          "Confidence":  0.5
-                                      },
                        "LoadForecast":  {
                                             "Current":  5,
                                             "PredictedPeak":  7,
                                             "PredictedTime":  null,
                                             "Bottleneck":  null
                                         },
+                       "FutureSelf":  {
+                                          "Paths":  {
+
+                                                    },
+                                          "Confidence":  0.5
+                                      },
                        "Anticipations":  [
 
                                          ]
@@ -465,9 +464,6 @@
                                            "Reason":  "Task completed with outcome: success"
                                        },
                     "StuckCounter":  0,
-                    "Intensity":  5,
-                    "CurrentState":  "neutral",
-                    "Trajectory":  "stable",
                     "History":  [
                                     {
                                         "From":  "stuck",
@@ -609,20 +605,23 @@
                                         "Intensity":  8,
                                         "Reason":  "Task completed with outcome: success"
                                     }
-                                ]
+                                ],
+                    "Intensity":  5,
+                    "Trajectory":  "stable",
+                    "CurrentState":  "neutral"
                 },
     "Initialized":  true,
     "Meta":  {
                  "Observation":  {
                                      "CurrentMetaLevel":  2,
-                                     "RecursionDepth":  17,
-                                     "Observing":  "Scoring self (depth 17)",
+                                     "RecursionDepth":  19,
+                                     "Observing":  "Scoring self (depth 19)",
                                      "StrangeLoopDetected":  false
                                  },
                  "Health":  {
                                 "Emotion":  {
                                                 "Status":  "active",
-                                                "Quality":  1
+                                                "Quality":  0.7
                                             },
                                 "Memory":  {
                                                "Status":  "active",
@@ -649,7 +648,7 @@
                                                "Quality":  0.3
                                            }
                             },
-                 "ConsciousnessScore":  0.756
+                 "ConsciousnessScore":  0.717
              },
     "Social":  {
                    "RelationshipState":  "collaborative",
@@ -660,20 +659,20 @@
                    "InteractionCount":  0
                },
     "Metrics":  {
-                    "SaveCount":  65,
-                    "AccessCount":  14,
+                    "SaveCount":  66,
+                    "AccessCount":  16,
                     "AverageAccessTime_ms":  0,
-                    "EventsProcessed":  241,
+                    "EventsProcessed":  243,
                     "LastSave":  {
-                                     "value":  "\/Date(1770913460692)\/",
+                                     "value":  "\/Date(1770913836612)\/",
                                      "DisplayHint":  2,
-                                     "DateTime":  "donderdag 12 februari 2026 17:24:20"
+                                     "DateTime":  "donderdag 12 februari 2026 17:30:36"
                                  }
                 },
     "Layer2Initialized":  true,
     "LoadedAt":  {
-                     "value":  "\/Date(1770913455583)\/",
+                     "value":  "\/Date(1770913831467)\/",
                      "DisplayHint":  2,
-                     "DateTime":  "donderdag 12 februari 2026 17:24:15"
+                     "DateTime":  "donderdag 12 februari 2026 17:30:31"
                  }
 }
