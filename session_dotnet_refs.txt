@@ -1,0 +1,15 @@
+=== LINE 86 [progress] ===
+
+=== LINE 168 [progress] ===
+
+=== LINE 178 [progress] ===
+
+=== LINE 180 [progress] ===
+
+=== LINE 204 [user] ===
+  CONTEXT: ...ployment Status\n\n**Deployed Version:** Commit `954b04a` from Feb 10, 2026 12:19 UTC\n- Built as: `HazinaOrchestration.exe` v1.0.0.0\n- Installed to: `C:\\Program Files (x86)\\Hazina Orchestration\\`\n- Build date: Feb 10,...
+  CONTEXT: ...─ wwwroot/                 (web assets)\n├── appsettings.json\n├── appsettings.Production.json\n├── HazinaOrchestration.exe\n├── Setup-Config.example.json\n├── Setup.ps1\n├── Deploy-ThisPC.ps1\n├── tailscale.crt/key\n└── we...
+
+=== LINE 278 [user] ===
+  CONTEXT: ...und: #3d1f1f;\n}\n```\n\n---\n\n### Phase 6: Verification Steps\n\n1. **Backend build check:** Run `dotnet build` in the Hazina.AgenticOrchestration project and the Demo project to verify no compilation err...
+

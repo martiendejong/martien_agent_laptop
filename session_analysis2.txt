@@ -1,0 +1,121 @@
+LINE 206 [assistant]: THINKING: Excellent! Now I have a comprehensive picture of the codebase. Let me read a few key files directly to confirm some details before designing the plan.
+
+Key findings so far:
+1. **File upload** - Does NOT exist, needs to be built from scratch (backend endpoint + frontend UI)
+2. **Paste** - IS implemented in the source code (multi-layer: Ctrl+V, Ctrl+Shift+V, document fallback, context menu). If user says paste doesn't work, it's likely the wrong version deployed.
+3. **Mobile input** - IS implemented (textarea + Send button at bottom when `isMobile`)
+
+
+4. **Version number** - NOT displayed in UI
+5. **Deployed version** - 2 commits behind develop (Feb 10 vs Feb 11), but paste functionality was already there in Feb 10 version
+6. **The + button with arrow keys panel** - Does NOT exist
+
+There's a
+
+LINE 207 [assistant]: TEXT: Goed, ik heb nu een compleet beeld. Laat me een paar specifieke files lezen om het plan precies te maken.
+
+LINE 208 [assistant]: READ: C:\Projects\hazina\apps\Demos\Hazina.Demo.AgenticOrchestration\ClientApp\src\components\TerminalView.tsx
+
+LINE 209 [assistant]: READ: C:\Projects\hazina\apps\Demos\Hazina.Demo.AgenticOrchestration\ClientApp\src\App.tsx
+
+LINE 212 [assistant]: READ: C:\Projects\hazina\apps\Demos\Hazina.Demo.AgenticOrchestration\appsettings.json
+
+LINE 217 [assistant]: THINKING: Now I have a very clear picture. Let me also check the .csproj for version info and the TerminalController for existing endpoints to understand the API patterns.
+
+LINE 218 [assistant]: TEXT: Laat me nog een paar specifieke files checken voor het plan.
+
+LINE 219 [assistant]: READ: C:\Projects\hazina\apps\Demos\Hazina.Demo.AgenticOrchestration\Hazina.Demo.AgenticOrchestration.csproj
+
+LINE 222 [assistant]: READ: C:\Projects\hazina\src\Hazina.AgenticOrchestration\Controllers\TerminalController.cs
+
+LINE 225 [assistant]: READ: C:\Projects\hazina\src\Hazina.AgenticOrchestration\Extensions\ServiceCollectionExtensions.cs
+
+LINE 228 [assistant]: THINKING: Now I have a very comprehensive understanding. Let me also check the types.ts and the API endpoint for config to see how the frontend fetches configuration.
+
+LINE 229 [assistant]: TEXT: Laat me nu de types en een paar andere details checken.
+
+LINE 230 [assistant]: READ: C:\Projects\hazina\apps\Demos\Hazina.Demo.AgenticOrchestration\ClientApp\src\types.ts
+
+LINE 233 [assistant]: READ: C:\Projects\hazina\src\Hazina.AgenticOrchestration\Controllers\TerminalController.cs
+
+LINE 236 [assistant]: THINKING: Now I have a complete picture. Let me also look at the config endpoint to understand how config flows to the frontend.
+
+LINE 237 [assistant]: TEXT: Nu heb ik alles. Laat me nu een Plan agent starten om het implementatieplan uit te werken.
+
+LINE 238 [assistant]: TASK: Design implementation plan
+  prompt: Design a detailed implementation plan for the following changes to the Hazina Orchestration app (Claude Terminal Orchestration). The app has a C# ASP.NET Core backend at `C:\Projects\hazina\src\Hazina.AgenticOrchestration\` and a demo app at `C:\Projects\hazina\apps\Demos\Hazina.Demo.AgenticOrchestration\` with a React/Vite frontend in `ClientApp\`.
+
+## Current State Analysis
+
+The app already has:
+- Paste handling (multi-layer: Ctrl+V, Ctrl+Shift+V, document fallback, right-click context menu) i
+
+LINE 279 [assistant]: THINKING: Now I have a comprehensive plan. Let me also read the Program.cs to understand where to wire the upload config, and the auth.ts to make sure FormData uploads will work correctly.
+
+LINE 280 [assistant]: TEXT: Goed, nu heb ik alle informatie. Laat me nog even Program.cs en auth.ts checken voor de exacte integratiepunten.
+
+LINE 281 [assistant]: READ: C:\Projects\hazina\apps\Demos\Hazina.Demo.AgenticOrchestration\Program.cs
+
+LINE 284 [assistant]: READ: C:\Projects\hazina\apps\Demos\Hazina.Demo.AgenticOrchestration\ClientApp\src\auth.ts
+
+LINE 287 [assistant]: THINKING: Now I have everything I need. Let me also check the appsettings.Production.json to know where to add the uploads config there too.
+
+LINE 288 [assistant]: READ: C:\Projects\hazina\apps\Demos\Hazina.Demo.AgenticOrchestration\appsettings.Production.json
+
+LINE 291 [assistant]: TEXT: Nu heb ik alles. Laat me het plan schrijven.
+
+LINE 293 [assistant]: WRITE to C:\Users\HP\.claude\plans\stateless-coalescing-tower.md
+  Content size: 6354 chars
+  Preview: # Orchestration App: File Upload, Version Display, Input Bar, Mobile Special Keys
+
+## Status Report (paste + input bar)
+
+Paste IS fully implemented in the source code (TerminalView.tsx lines 295-398: 
+
+LINE 296 [assistant]: TEXT: Hier is de samenvatting van wat ik gevonden heb en wat ik van plan ben:
+
+Qua paste en input bar: die zitten WEL in de broncode. Paste is volledig geimplementeerd (Ctrl+V, Ctrl+Shift+V, rechtermuisklik, document-level fallback). De mobiele input bar ook (textarea + Send knop, alleen zichtbaar als isMobile true is). De gedeployede versie is van 10 februari en mist minstens 1 commit. Dus dat verklaart waarom je die features niet ziet, je zit waarschijnlijk op een oudere build.
+
+Het plan voor de nieuwe features:
+
+1) File upload: backend endpoint die bestanden opslaat in een configureerbare folder (appsettings.json), unieke bestandsnaam, weergave in terminal. Frontend paperclip-knop naast het inputveld.
+
+2) Versienummer: prominent achter "Claude Terminal Orchestration" in de header, opgehaald v
+
+LINE 297 [assistant]: EXIT PLAN MODE
+  Plan: # Orchestration App: File Upload, Version Display, Input Bar, Mobile Special Keys
+
+## Status Report (paste + input bar)
+
+Paste IS fully implemented in the source code (TerminalView.tsx lines 295-398: Ctrl+V, Ctrl+Shift+V, document-level fallback, right-click context menu). The mobile input bar IS implemented (lines 719-737, shown only when isMobile). The deployed version (Feb 10 build) is likely stale. A rebuild+redeploy will restore these features.
+
+---
+
+## Changes Overview
+
+| # | Feature | Status | Effort |
+|---|---------|--------|--------|
+| 1 | File upload (backend + frontend) | NEW | Medium |
+| 2 | Version number in header | NEW | Small |
+| 3 | Input bar always visible (desktop + mobile) | Small change | Small |
+| 4 | Mobile + button with special keys panel | NEW | Medium |
+| 5 | Never-auto-deploy rule | Documentation | Tiny |
+
+---
+
+## Files to Modify
+
+### Backend (C:\Projects\hazina\src\Hazina.AgenticOrchestration\)
+1. **Extensions/ServiceCollectionExtensions.cs** -- Add `UploadsPath` + `MaxUploadFileSizeMB` to `AgenticOrchestrationOptions` class (line ~275), copy values in IOptions Configure block (line ~85)
+2. **Controllers/TerminalController.cs** -- Add 3 endpoints: `POST /api/terminal/upload`, `GET /api/terminal/uploads`, `GET /api/terminal/version`
+
+### Demo App (C:\Projects\hazina\apps\Demos\Hazina.Demo.AgenticOrchestration\)
+3. **appsettings.json** -- Add `"Uploads": { "Path": "C:\\scripts\\uploads", "MaxFileSizeMB": 50 }` in AgenticOrchestration section
+4. **appsettings.Production.json** -- Add `"Uploads": { "Path": "uploads", "MaxFileSizeMB": 50 }` in AgenticOrchestration section
+5. **Program.cs** -- Read uploads config (after line 65), pass to options (line ~110), configure FormOptions for large uploads (after line 148)
+
+### Frontend (ClientApp\src\)
+6. **types.ts** -- Add `VersionInfo`, `UploadResponse`, `UploadedFile` types
+7. **App.tsx** -- Fetch version on mount, display in header as `v{version}` badge
+8. **App.c
+

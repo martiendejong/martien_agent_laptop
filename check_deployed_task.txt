@@ -1,0 +1,21 @@
+FULL PROMPT for Check deployed version task:
+
+Check the DEPLOYED version of the Hazina Orchestration app to compare with the source code.
+
+1. **Installed files** - List files in `C:\Program Files (x86)\Hazina Orchestration\` - check what's there, especially wwwroot/assets/ for the built frontend files
+
+2. **Installed appsettings.json** - Read `C:\Program Files (x86)\Hazina Orchestration\appsettings.json` and also check for `appsettings.Production.json`
+
+3. **Installed version** - Check the .exe or .dll version in the install directory. Look for version info.
+
+4. **Source version** - Find the .csproj file for the orchestration app in C:\Projects\hazina and read the version number
+
+5. **Git log** - Run `git log --oneline -20` in C:\Projects\hazina to see recent commits, especially any related to paste fixes, mobile input, etc.
+
+6. **Current branch** - What branch is C:\Projects\hazina on?
+
+7. **Build scripts** - Read `C:\Projects\hazina\apps\Demos\Hazina.Demo.AgenticOrchestration.Installer\Build-MSI-Complete.ps1` to understand the build process
+
+8. **Deploy scripts** - Read `C:\Projects\hazina\apps\Demos\Hazina.Demo.AgenticOrchestration.Installer\Deploy-ThisPC.ps1` or `reinstall-clean.ps1`
+
+This will help me understand if the deployed version matches the latest source code.

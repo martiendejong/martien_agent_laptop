@@ -1,0 +1,7 @@
+LINE 293: WRITE to C:\Users\HP\.claude\plans\stateless-coalescing-tower.md (6354 chars)
+
+
+=== USER MESSAGES ===
+
+LINE 2: USER: ik wil dat de claude terminal orchestration app een functie heeft om bestanden te uploaden. die bestanden moeten in een folder komen te staan die in de application config (appsettings.json?) ingevuld is. je moet ook in je eigen configuratie opnemen dat die folder 'de uploads folder' is, dus als daarnaar gerefereert wordt dan moet je in die folder kijken. als een bestand geupload wordt moet het een unieke naam krijgen in die folder en die naam wordt in de claude terminal orchestration hazina demo
+
