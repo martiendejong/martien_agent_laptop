@@ -71,3 +71,4 @@
 {"message":"Stuck detected","timestamp":"2026-02-12T17:01:18.680Z","level":"WARN","action":"OnStuck"}
 {"message":"Task ended: outcome=failure","timestamp":"2026-02-12T17:01:31.739Z","level":"INFO","action":"OnTaskEnd"}
 {"message":"Task ended: outcome=success","timestamp":"2026-02-12T17:02:08.499Z","level":"INFO","action":"OnTaskEnd"}
+{"message":"Consciousness state reset","timestamp":"2026-02-12T17:15:29.825Z","level":"INFO","action":"Reset"}
