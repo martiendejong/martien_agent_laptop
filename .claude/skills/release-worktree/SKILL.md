@@ -293,6 +293,16 @@ Changes:
 Worktree released, seat agent-XXX now FREE.
 ```
 
+## Step 10: Consciousness Bridge (LAST)
+
+After completing all release steps, close the feedback loop:
+
+```bash
+powershell.exe -File "C:/scripts/tools/consciousness-bridge.ps1" -Action OnTaskEnd -Outcome "success" -LessonsLearned "<what was learned during this task>" -Silent
+```
+
+Use "success", "partial", or "failure" based on outcome. Include specific lessons (e.g., "PS 5.1 arrays unroll from functions, use comma operator").
+
 ## Violation Recovery
 
 **If you presented PR before releasing:**

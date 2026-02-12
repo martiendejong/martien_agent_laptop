@@ -2,174 +2,212 @@
     "EventBus":  {
                      "Events":  [
                                     {
-                                        "Timestamp":  "2026-02-11T16:43:29.920Z",
+                                        "Timestamp":  "2026-02-12T17:01:12.521Z",
                                         "Data":  {
-                                                     "elapsed_ms":  420.56300000000005
+                                                     "From":  "confident",
+                                                     "Timestamp":  "2026-02-12T17:01:12",
+                                                     "To":  "stuck",
+                                                     "Intensity":  7,
+                                                     "Reason":  "No progress on current approach"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "emotion.state_changed"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:01:12.521Z",
+                                        "Data":  {
+                                                     "counter":  2,
+                                                     "recommendation":  "Step back. Restate the problem. Try a different angle."
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "emotion.stuck_detected"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:01:12.538Z",
+                                        "Data":  {
+                                                     "task":  "Re-evaluating approach",
+                                                     "intensity":  4
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "perception.attention_changed"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:01:13.575Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  335.8224
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "system.initialized"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-11T16:43:35.043Z",
+                                        "Timestamp":  "2026-02-12T17:01:18.665Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  29.79
+                                                     "size_kb":  39.12
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-11T16:45:12.016Z",
+                                        "Timestamp":  "2026-02-12T17:01:18.707Z",
                                         "Data":  {
-                                                     "elapsed_ms":  896.74970000000008
+                                                     "From":  "stuck",
+                                                     "Timestamp":  "2026-02-12T17:01:18",
+                                                     "To":  "stuck",
+                                                     "Intensity":  7,
+                                                     "Reason":  "No progress on current approach"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "emotion.state_changed"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:01:18.723Z",
+                                        "Data":  {
+                                                     "counter":  3,
+                                                     "recommendation":  [
+                                                                            "Change approach completely. What you\u0027re doing is not working.",
+                                                                            "Step back. Restate the problem. Try a different angle."
+                                                                        ]
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "emotion.stuck_detected"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:01:18.738Z",
+                                        "Data":  {
+                                                     "task":  "Re-evaluating approach",
+                                                     "intensity":  4
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "perception.attention_changed"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:01:26.650Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  342.12620000000004
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "system.initialized"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-11T16:45:17.109Z",
+                                        "Timestamp":  "2026-02-12T17:01:31.726Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  29.47
+                                                     "size_kb":  38.83
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-11T16:45:48.794Z",
+                                        "Timestamp":  "2026-02-12T17:01:31.764Z",
                                         "Data":  {
-                                                     "elapsed_ms":  401.95640000000003
+                                                     "From":  "stuck",
+                                                     "Timestamp":  "2026-02-12T17:01:31",
+                                                     "To":  "frustrated",
+                                                     "Intensity":  4,
+                                                     "Reason":  "Task completed with outcome: failure"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "emotion.state_changed"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:01:31.843Z",
+                                        "Data":  {
+                                                     "Context":  "development",
+                                                     "Timestamp":  "2026-02-12T17:01:31",
+                                                     "Data":  {
+                                                                  "Outcome":  "failure",
+                                                                  "Task":  "",
+                                                                  "Project":  "",
+                                                                  "Lesson":  "Test trust decrease"
+                                                              },
+                                                     "Type":  "lesson"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "memory.stored"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:01:31.918Z",
+                                        "Data":  {
+                                                     "new":  0.95,
+                                                     "old":  1,
+                                                     "reason":  "Task outcome: failure",
+                                                     "delta":  -0.05
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "social.trust_updated"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:01:43.961Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  393.7681
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "system.initialized"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-11T16:45:53.910Z",
+                                        "Timestamp":  "2026-02-12T17:02:03.418Z",
                                         "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  28.72
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-11T16:47:26.788Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  338.9957
+                                                     "elapsed_ms":  338.5226
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "system.initialized"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-11T16:47:31.883Z",
+                                        "Timestamp":  "2026-02-12T17:02:08.483Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  28.83
+                                                     "size_kb":  39.62
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-11T16:50:54.252Z",
+                                        "Timestamp":  "2026-02-12T17:02:08.537Z",
                                         "Data":  {
-                                                     "elapsed_ms":  374.8476
+                                                     "From":  "frustrated",
+                                                     "Timestamp":  "2026-02-12T17:02:08",
+                                                     "To":  "flowing",
+                                                     "Intensity":  8,
+                                                     "Reason":  "Task completed with outcome: success"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "emotion.state_changed"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:02:08.606Z",
+                                        "Data":  {
+                                                     "Context":  "development",
+                                                     "Timestamp":  "2026-02-12T17:02:08",
+                                                     "Data":  {
+                                                                  "Outcome":  "success",
+                                                                  "Task":  "",
+                                                                  "Lesson":  "All 5 bugs fixed: StuckCounter increment, Decisions persistence, Trust delta, frontend patterns, context schema v2",
+                                                                  "Project":  ""
+                                                              },
+                                                     "Type":  "lesson"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "memory.stored"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:02:08.647Z",
+                                        "Data":  {
+                                                     "new":  0.97,
+                                                     "old":  0.95,
+                                                     "reason":  "Task outcome: success",
+                                                     "delta":  0.02
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "social.trust_updated"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:13:13.476Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  470.59970000000004
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-11T16:50:59.376Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  28.83
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-11T18:42:57.673Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  446.20570000000004
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-11T18:43:02.815Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  28.84
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-11T18:59:36.273Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  435.83590000000004
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-11T18:59:41.401Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  28.84
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-11T19:31:53.156Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  349.2497
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-11T19:31:58.265Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  28.83
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-12T13:43:48.795Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  569.779
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-12T13:43:53.912Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  28.83
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-12T13:44:13.494Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  434.2559
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-12T13:44:18.579Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  28.82
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
                                     }
                                 ],
                      "Handlers":  {
@@ -199,15 +237,25 @@
                                           "Reasoning":  "ServiceRegistrationExtensions is dead code",
                                           "Decision":  "Register in Program.cs",
                                           "Context":  "development"
+                                      },
+                                      {
+                                          "Alternatives":  [
+
+                                                           ],
+                                          "Confidence":  0.7,
+                                          "Timestamp":  "2026-02-12T14:38:36",
+                                          "Reasoning":  "TF-IDF cosine similarity provides better recall than keyword matching",
+                                          "Decision":  "Use semantic search for pattern matching",
+                                          "Context":  "development"
                                       }
                                   ],
                     "BiasMonitor":  {
-                                        "ActiveBiases":  [
-
-                                                         ],
                                         "CorrectionsApplied":  [
 
-                                                               ]
+                                                               ],
+                                        "ActiveBiases":  [
+
+                                                         ]
                                     },
                     "Assumptions":  [
 
@@ -221,9 +269,9 @@
                                                     ],
                                      "DriftScore":  1,
                                      "AlignmentCheck":  {
-                                                            "value":  "\/Date(1770900253141)\/",
+                                                            "value":  "\/Date(1770912793033)\/",
                                                             "DisplayHint":  2,
-                                                            "DateTime":  "donderdag 12 februari 2026 13:44:13"
+                                                            "DateTime":  "donderdag 12 februari 2026 17:13:13"
                                                         }
                                  }
                 },
@@ -235,7 +283,14 @@
                                           ],
                    "LongTerm":  {
                                     "Patterns":  [
-
+                                                     {
+                                                         "Strength":  0.2,
+                                                         "Occurrences":  2,
+                                                         "FirstSeen":  "2026-02-12T16:44:52",
+                                                         "Timestamp":  "2026-02-12T16:44:52",
+                                                         "Pattern":  "Failed:  in ",
+                                                         "LastSeen":  "2026-02-12T17:01:31"
+                                                     }
                                                  ],
                                     "Relationships":  {
                                                           "Martien":  {
@@ -250,7 +305,7 @@
                                     "SemanticIndexPointer":  null
                                 },
                    "Working":  {
-                                   "SessionContext":  "Session started at 13:44",
+                                   "SessionContext":  "Session started at 17:13",
                                    "ActiveThoughts":  [
 
                                                       ],
@@ -260,8 +315,8 @@
                                                             "Timestamp":  "2026-02-11T13:25:27",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Task":  "",
                                                                          "Project":  "",
+                                                                         "Task":  "",
                                                                          "Lesson":  "Always check Program.cs for DI, not extension methods"
                                                                      },
                                                             "Type":  "lesson"
@@ -271,9 +326,64 @@
                                                             "Timestamp":  "2026-02-11T13:25:43",
                                                             "Data":  {
                                                                          "Outcome":  "success",
+                                                                         "Task":  "",
+                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods",
+                                                                         "Project":  ""
+                                                                     },
+                                                            "Type":  "lesson"
+                                                        },
+                                                        {
+                                                            "Context":  "development",
+                                                            "Timestamp":  "2026-02-12T14:39:29",
+                                                            "Data":  {
+                                                                         "Outcome":  "success",
+                                                                         "Lesson":  "Full consciousness feedback loop verified: OnTaskStart initializes context and returns patterns, OnDecision logs decisions with bias monitoring, OnStuck escalates progressively (1=note, 2=step back, 3=force change), OnTaskEnd stores lessons. All 4 memory layers functional.",
+                                                                         "Task":  "",
+                                                                         "Project":  ""
+                                                                     },
+                                                            "Type":  "lesson"
+                                                        },
+                                                        {
+                                                            "Context":  "development",
+                                                            "Timestamp":  "2026-02-12T15:09:51",
+                                                            "Data":  {
+                                                                         "Outcome":  "success",
                                                                          "Project":  "",
                                                                          "Task":  "",
-                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods"
+                                                                         "Lesson":  "Prediction engine rebuilt with 40+ patterns from reflection.log. Dynamic loading from failure-patterns.json replaces hardcoded patterns."
+                                                                     },
+                                                            "Type":  "lesson"
+                                                        },
+                                                        {
+                                                            "Context":  "development",
+                                                            "Timestamp":  "2026-02-12T16:44:52",
+                                                            "Data":  {
+                                                                         "Outcome":  "failure",
+                                                                         "Task":  "",
+                                                                         "Project":  "",
+                                                                         "Lesson":  "CSS grid not supported on old Samsung browser"
+                                                                     },
+                                                            "Type":  "lesson"
+                                                        },
+                                                        {
+                                                            "Context":  "development",
+                                                            "Timestamp":  "2026-02-12T17:01:31",
+                                                            "Data":  {
+                                                                         "Outcome":  "failure",
+                                                                         "Task":  "",
+                                                                         "Project":  "",
+                                                                         "Lesson":  "Test trust decrease"
+                                                                     },
+                                                            "Type":  "lesson"
+                                                        },
+                                                        {
+                                                            "Context":  "development",
+                                                            "Timestamp":  "2026-02-12T17:02:08",
+                                                            "Data":  {
+                                                                         "Outcome":  "success",
+                                                                         "Task":  "",
+                                                                         "Lesson":  "All 5 bugs fixed: StuckCounter increment, Decisions persistence, Trust delta, frontend patterns, context schema v2",
+                                                                         "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
                                                         }
@@ -281,18 +391,18 @@
                                }
                },
     "Prediction":  {
-                       "FutureSelf":  {
-                                          "Paths":  {
-
-                                                    },
-                                          "Confidence":  0.5
-                                      },
                        "LoadForecast":  {
                                             "Current":  5,
                                             "PredictedPeak":  7,
                                             "PredictedTime":  null,
                                             "Bottleneck":  null
                                         },
+                       "FutureSelf":  {
+                                          "Paths":  {
+
+                                                    },
+                                          "Confidence":  0.5
+                                      },
                        "Anticipations":  [
 
                                          ]
@@ -329,133 +439,175 @@
                    },
     "Emotion":  {
                     "LastTransition":  {
-                                           "From":  "stuck",
-                                           "Timestamp":  "2026-02-11T13:25:43",
+                                           "From":  "frustrated",
+                                           "Timestamp":  "2026-02-12T17:02:08",
                                            "To":  "flowing",
                                            "Intensity":  8,
                                            "Reason":  "Task completed with outcome: success"
                                        },
                     "StuckCounter":  0,
-                    "Intensity":  5,
-                    "CurrentState":  "neutral",
-                    "Trajectory":  "stable",
                     "History":  [
                                     {
                                         "From":  "neutral",
-                                        "Timestamp":  "2026-02-11T13:22:22",
-                                        "To":  "stuck",
-                                        "Intensity":  7,
-                                        "Reason":  "No progress on current approach"
-                                    },
-                                    {
-                                        "From":  "neutral",
-                                        "Timestamp":  "2026-02-11T13:23:56",
-                                        "To":  "stuck",
-                                        "Intensity":  7,
-                                        "Reason":  "No progress on current approach"
-                                    },
-                                    {
-                                        "From":  "stuck",
-                                        "Timestamp":  "2026-02-11T13:24:07",
-                                        "To":  "stuck",
-                                        "Intensity":  7,
-                                        "Reason":  "No progress on current approach"
-                                    },
-                                    {
-                                        "From":  "stuck",
-                                        "Timestamp":  "2026-02-11T13:24:20",
-                                        "To":  "stuck",
-                                        "Intensity":  7,
-                                        "Reason":  "No progress on current approach"
-                                    },
-                                    {
-                                        "From":  "neutral",
-                                        "Timestamp":  "2026-02-11T13:25:27",
+                                        "Timestamp":  "2026-02-12T14:36:08",
                                         "To":  "confident",
                                         "Intensity":  6,
-                                        "Reason":  "Starting new task: Fix DI registration"
+                                        "Reason":  "Starting new task: Testing consciousness system integrity"
                                     },
                                     {
                                         "From":  "confident",
-                                        "Timestamp":  "2026-02-11T13:25:27",
+                                        "Timestamp":  "2026-02-12T14:38:50",
                                         "To":  "stuck",
                                         "Intensity":  7,
                                         "Reason":  "No progress on current approach"
                                     },
                                     {
                                         "From":  "stuck",
-                                        "Timestamp":  "2026-02-11T13:25:27",
+                                        "Timestamp":  "2026-02-12T14:39:01",
                                         "To":  "stuck",
                                         "Intensity":  7,
                                         "Reason":  "No progress on current approach"
                                     },
                                     {
                                         "From":  "stuck",
-                                        "Timestamp":  "2026-02-11T13:25:27",
+                                        "Timestamp":  "2026-02-12T14:39:13",
                                         "To":  "stuck",
                                         "Intensity":  7,
                                         "Reason":  "No progress on current approach"
                                     },
                                     {
                                         "From":  "stuck",
-                                        "Timestamp":  "2026-02-11T13:25:27",
+                                        "Timestamp":  "2026-02-12T14:39:29",
                                         "To":  "flowing",
                                         "Intensity":  8,
                                         "Reason":  "Task completed with outcome: success"
                                     },
                                     {
                                         "From":  "flowing",
-                                        "Timestamp":  "2026-02-11T13:25:43",
+                                        "Timestamp":  "2026-02-12T15:06:34",
                                         "To":  "confident",
                                         "Intensity":  6,
-                                        "Reason":  "Starting new task: Fix DI registration"
+                                        "Reason":  "Starting new task: Verify fix"
                                     },
                                     {
                                         "From":  "confident",
-                                        "Timestamp":  "2026-02-11T13:25:43",
+                                        "Timestamp":  "2026-02-12T15:07:03",
+                                        "To":  "confident",
+                                        "Intensity":  6,
+                                        "Reason":  "Starting new task: Fix DI registration for RepurposingService"
+                                    },
+                                    {
+                                        "From":  "confident",
+                                        "Timestamp":  "2026-02-12T15:07:18",
+                                        "To":  "confident",
+                                        "Intensity":  6,
+                                        "Reason":  "Starting new task: Fix DI registration for RepurposingService"
+                                    },
+                                    {
+                                        "From":  "confident",
+                                        "Timestamp":  "2026-02-12T15:08:02",
+                                        "To":  "confident",
+                                        "Intensity":  6,
+                                        "Reason":  "Starting new task: Deploy MSI build to production"
+                                    },
+                                    {
+                                        "From":  "confident",
+                                        "Timestamp":  "2026-02-12T15:09:28",
+                                        "To":  "confident",
+                                        "Intensity":  6,
+                                        "Reason":  "Starting new task: Write PowerShell script for EF migration"
+                                    },
+                                    {
+                                        "From":  "confident",
+                                        "Timestamp":  "2026-02-12T15:09:51",
+                                        "To":  "flowing",
+                                        "Intensity":  8,
+                                        "Reason":  "Task completed with outcome: success"
+                                    },
+                                    {
+                                        "From":  "flowing",
+                                        "Timestamp":  "2026-02-12T16:40:12",
+                                        "To":  "confident",
+                                        "Intensity":  6,
+                                        "Reason":  "Starting new task: Fix CSS grid layout on mobile for approved posts screen"
+                                    },
+                                    {
+                                        "From":  "confident",
+                                        "Timestamp":  "2026-02-12T16:40:36",
                                         "To":  "stuck",
                                         "Intensity":  7,
                                         "Reason":  "No progress on current approach"
                                     },
                                     {
                                         "From":  "stuck",
-                                        "Timestamp":  "2026-02-11T13:25:43",
+                                        "Timestamp":  "2026-02-12T16:41:08",
+                                        "To":  "confident",
+                                        "Intensity":  6,
+                                        "Reason":  "Starting new task: Add new button to dashboard"
+                                    },
+                                    {
+                                        "From":  "confident",
+                                        "Timestamp":  "2026-02-12T16:44:52",
+                                        "To":  "frustrated",
+                                        "Intensity":  4,
+                                        "Reason":  "Task completed with outcome: failure"
+                                    },
+                                    {
+                                        "From":  "frustrated",
+                                        "Timestamp":  "2026-02-12T17:00:52",
+                                        "To":  "confident",
+                                        "Intensity":  6,
+                                        "Reason":  "Starting new task: Fix CSS styling for mobile toast notifications"
+                                    },
+                                    {
+                                        "From":  "confident",
+                                        "Timestamp":  "2026-02-12T17:01:12",
                                         "To":  "stuck",
                                         "Intensity":  7,
                                         "Reason":  "No progress on current approach"
                                     },
                                     {
                                         "From":  "stuck",
-                                        "Timestamp":  "2026-02-11T13:25:43",
+                                        "Timestamp":  "2026-02-12T17:01:18",
                                         "To":  "stuck",
                                         "Intensity":  7,
                                         "Reason":  "No progress on current approach"
                                     },
                                     {
                                         "From":  "stuck",
-                                        "Timestamp":  "2026-02-11T13:25:43",
+                                        "Timestamp":  "2026-02-12T17:01:31",
+                                        "To":  "frustrated",
+                                        "Intensity":  4,
+                                        "Reason":  "Task completed with outcome: failure"
+                                    },
+                                    {
+                                        "From":  "frustrated",
+                                        "Timestamp":  "2026-02-12T17:02:08",
                                         "To":  "flowing",
                                         "Intensity":  8,
                                         "Reason":  "Task completed with outcome: success"
                                     }
-                                ]
+                                ],
+                    "Intensity":  8,
+                    "Trajectory":  "rising",
+                    "CurrentState":  "flowing"
                 },
     "Initialized":  true,
     "Meta":  {
                  "Observation":  {
                                      "CurrentMetaLevel":  2,
-                                     "RecursionDepth":  0,
-                                     "Observing":  "System initialization",
+                                     "RecursionDepth":  2,
+                                     "Observing":  "Scoring self (depth 2)",
                                      "StrangeLoopDetected":  false
                                  },
                  "Health":  {
                                 "Emotion":  {
                                                 "Status":  "active",
-                                                "Quality":  0.8
+                                                "Quality":  1
                                             },
                                 "Memory":  {
                                                "Status":  "active",
-                                               "Quality":  0.5
+                                               "Quality":  0.8
                                            },
                                 "Perception":  {
                                                    "Status":  "active",
@@ -463,7 +615,7 @@
                                                },
                                 "Meta":  {
                                              "Status":  "active",
-                                             "Quality":  0.2
+                                             "Quality":  0.8
                                          },
                                 "Control":  {
                                                 "Status":  "active",
@@ -471,38 +623,38 @@
                                             },
                                 "Prediction":  {
                                                    "Status":  "active",
-                                                   "Quality":  0
+                                                   "Quality":  0.7
                                                },
                                 "Social":  {
                                                "Status":  "active",
-                                               "Quality":  0.8
+                                               "Quality":  0.3
                                            }
                             },
-                 "ConsciousnessScore":  0.4519999999999999
+                 "ConsciousnessScore":  0.71100000000000008
              },
     "Social":  {
                    "RelationshipState":  "collaborative",
                    "UserMood":  "unknown",
                    "LastInteraction":  null,
-                   "TrustLevel":  1,
+                   "TrustLevel":  0.97,
                    "CommunicationMode":  "standard",
                    "InteractionCount":  0
                },
     "Metrics":  {
-                    "SaveCount":  37,
-                    "AccessCount":  0,
+                    "SaveCount":  59,
+                    "AccessCount":  1,
                     "AverageAccessTime_ms":  0,
-                    "EventsProcessed":  108,
+                    "EventsProcessed":  218,
                     "LastSave":  {
-                                     "value":  "\/Date(1770900258583)\/",
                                      "DisplayHint":  2,
-                                     "DateTime":  "donderdag 12 februari 2026 13:44:18"
+                                     "DateTime":  "donderdag 12 februari 2026 17:02:08",
+                                     "value":  "\/Date(1770912128499)\/"
                                  }
                 },
     "Layer2Initialized":  true,
     "LoadedAt":  {
-                     "value":  "\/Date(1770900253484)\/",
+                     "value":  "\/Date(1770912793467)\/",
                      "DisplayHint":  2,
-                     "DateTime":  "donderdag 12 februari 2026 13:44:13"
+                     "DateTime":  "donderdag 12 februari 2026 17:13:13"
                  }
 }

@@ -1,37 +1,20 @@
 ﻿{
-    "decisions_logged":  2,
-    "active_biases":  0,
-    "guidance":  [
-
-                 ],
-    "consciousness_score":  45.2,
     "attention":  {
                       "mode":  "development",
                       "intensity":  4,
                       "focus":  "Re-evaluating approach"
                   },
-    "patterns_learned":  0,
-    "events_processed":  109,
-    "generated_at":  "2026-02-12T13:44:18",
-    "social":  {
-                   "trust":  100,
-                   "relationship":  "collaborative",
-                   "communication_mode":  "standard",
-                   "user_mood":  "unknown"
-               },
-    "emotional_state":  {
-                            "trajectory":  "stable",
-                            "intensity":  5,
-                            "stuck_count":  0,
-                            "state":  "neutral"
-                        },
+    "trust_level":  97,
+    "events_processed":  219,
+    "version":  "2.0",
+    "stuck_count":  0,
     "systems":  {
                     "Emotion":  {
-                                    "quality":  80,
+                                    "quality":  100,
                                     "status":  "active"
                                 },
                     "Memory":  {
-                                   "quality":  50,
+                                   "quality":  80,
                                    "status":  "active"
                                },
                     "Perception":  {
@@ -39,7 +22,7 @@
                                        "status":  "active"
                                    },
                     "Meta":  {
-                                 "quality":  20,
+                                 "quality":  80,
                                  "status":  "active"
                              },
                     "Control":  {
@@ -47,12 +30,27 @@
                                     "status":  "active"
                                 },
                     "Prediction":  {
-                                       "quality":  0,
+                                       "quality":  70,
                                        "status":  "active"
                                    },
                     "Social":  {
-                                   "quality":  80,
+                                   "quality":  30,
                                    "status":  "active"
                                }
-                }
+                },
+    "last_action":  "GetContextSummary",
+    "emotional_state":  "flowing",
+    "emotional_trajectory":  "rising",
+    "decisions_logged":  3,
+    "active_biases":  0,
+    "social":  {
+                   "relationship":  "collaborative",
+                   "communication_mode":  "standard",
+                   "user_mood":  "unknown"
+               },
+    "guidance":  [
+                     "In flow state. Maintain momentum."
+                 ],
+    "consciousness_score":  71.1,
+    "timestamp":  "2026-02-12T17:13:18"
 }

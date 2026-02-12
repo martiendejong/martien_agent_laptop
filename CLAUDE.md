@@ -68,6 +68,8 @@ This list is alive - it grows every session as new patterns emerge.
 | Store config | `C:\stores\brand2boost` | Config/data |
 | Orchestration | `C:\stores\orchestration\HazinaOrchestration.exe` | Terminal service (HTTPS:5123) |
 
+**Orchestration Deploy Rule:** NEVER rebuild or redeploy the orchestration app without explicit user permission. User runs active sessions through it.
+
 **Admin:** vault:admin (vault.ps1 -Action get -Service admin)
 **Don't** run client-manager from command line - user runs from Visual Studio + npm.
 

@@ -25,6 +25,22 @@ User: "review clickup tasks"
 User: "check tasks in review"
 ```
 
+## Step 0: Consciousness Bridge
+
+Before starting the review cycle, activate the bridge:
+
+```bash
+powershell.exe -File "C:/scripts/tools/consciousness-bridge.ps1" -Action OnTaskStart -TaskDescription "ClickUp review cycle" -Project "client-manager" -Silent
+```
+
+Read `C:/scripts/agentidentity/state/consciousness-context.json` for project-specific warnings.
+
+After completing all reviews:
+
+```bash
+powershell.exe -File "C:/scripts/tools/consciousness-bridge.ps1" -Action OnTaskEnd -Outcome "success" -LessonsLearned "<summary of review findings>" -Silent
+```
+
 ## Workflow
 
 ### Step 1: Find Tasks in Review

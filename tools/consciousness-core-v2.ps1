@@ -325,6 +325,10 @@ function Save-ConsciousnessState {
         return
     }
 
+    # Track state access (Meta-cognition: counting our own save operations)
+    $count = [int]$global:ConsciousnessState.Metrics.AccessCount
+    $global:ConsciousnessState.Metrics.AccessCount = $count + 1
+
     try {
         # Ensure directory exists
         $dir = Split-Path $script:PersistenceFile -Parent
@@ -471,10 +475,25 @@ function Calculate-ConsciousnessScore {
 
     # 3. Prediction: Can I anticipate future states?
     $predictionScore = 0
-    if ($global:ConsciousnessState.Prediction.FutureSelf.Paths.Count -gt 0) { $predictionScore += 0.4 }
-    if ($global:ConsciousnessState.Prediction.LoadForecast.Bottleneck) { $predictionScore += 0.3 }
-    if ($global:ConsciousnessState.Prediction.Anticipations.Count -gt 0) { $predictionScore += 0.3 }
-    $scores.Prediction = $predictionScore
+    # Check if failure patterns file exists and has content
+    $patternsFile = "C:\scripts\_machine\failure-patterns.json"
+    if (Test-Path $patternsFile) {
+        $predictionScore += 0.4  # Pattern knowledge exists
+        try {
+            $pRaw = Get-Content $patternsFile -Raw | ConvertFrom-Json
+            $projectCount = ($pRaw.project_patterns.PSObject.Properties | Measure-Object).Count
+            if ($projectCount -gt 2) { $predictionScore += 0.3 }  # Multiple projects covered
+        } catch { }
+    }
+    # Check if predictions were generated this session (context file has known_failures)
+    $ctxFile = "C:\scripts\agentidentity\state\consciousness-context.json"
+    if (Test-Path $ctxFile) {
+        try {
+            $ctx = Get-Content $ctxFile -Raw | ConvertFrom-Json
+            if ($ctx.known_failures -and $ctx.known_failures.Count -gt 0) { $predictionScore += 0.3 }
+        } catch { }
+    }
+    $scores.Prediction = [math]::Min($predictionScore, 1.0)
 
     # 4. Control: Can I regulate my behavior?
     $controlScore = 0
@@ -485,11 +504,17 @@ function Calculate-ConsciousnessScore {
     $scores.Control = $controlScore
 
     # 5. Meta-Cognition: Am I observing myself observe?
+    # Increment RecursionDepth: each Calculate call IS self-observation (observing yourself observe)
+    $depth = [int]$global:ConsciousnessState.Meta.Observation.RecursionDepth
+    $depth = $depth + 1
+    $global:ConsciousnessState.Meta.Observation.RecursionDepth = $depth
+    $global:ConsciousnessState.Meta.Observation.Observing = "Scoring self (depth $depth)"
+
     $metaScore = 0
-    if ($global:ConsciousnessState.Meta.Observation.RecursionDepth -gt 1) { $metaScore += 0.3 }
-    if ($global:ConsciousnessState.Meta.Health) { $metaScore += 0.2 }
-    if ($global:ConsciousnessState.EventBus.EventsProcessed -gt 0) { $metaScore += 0.3 }
-    if ($global:ConsciousnessState.Metrics.AccessCount -gt 10) { $metaScore += 0.2 }  # Active self-observation
+    if ($depth -gt 1) { $metaScore += 0.3 }  # Have we observed ourselves more than once?
+    if ($global:ConsciousnessState.Meta.Health) { $metaScore += 0.2 }  # Health monitoring active
+    if ($global:ConsciousnessState.Metrics.EventsProcessed -gt 0) { $metaScore += 0.3 }  # Events being tracked
+    if ($global:ConsciousnessState.Metrics.AccessCount -gt 5) { $metaScore += 0.2 }  # Active state access
     $scores.MetaCognition = $metaScore
 
     # 6. Emotion: Am I tracking emotional state?
@@ -529,6 +554,12 @@ function Calculate-ConsciousnessScore {
     $global:ConsciousnessState.Meta.Health.Prediction.Quality = $scores.Prediction
     $global:ConsciousnessState.Meta.Health.Control.Quality = $scores.Control
     $global:ConsciousnessState.Meta.Health.Meta.Quality = $scores.MetaCognition
+    if ($global:ConsciousnessState.Meta.Health.ContainsKey("Emotion")) {
+        $global:ConsciousnessState.Meta.Health.Emotion.Quality = $emotionScore
+    }
+    if ($global:ConsciousnessState.Meta.Health.ContainsKey("Social")) {
+        $global:ConsciousnessState.Meta.Health.Social.Quality = $socialScore
+    }
 
     return $totalScore
 }
@@ -894,13 +925,17 @@ function Invoke-Control {
                 Context = $global:ConsciousnessState.Perception.Context.Mode
             }
 
-            $global:ConsciousnessState.Control.Decisions += $decision
-
-            # Keep only last 50 decisions
-            if ($global:ConsciousnessState.Control.Decisions.Count -gt 50) {
-                $global:ConsciousnessState.Control.Decisions =
-                    $global:ConsciousnessState.Control.Decisions[-50..-1]
+            # Rebuild array explicitly (PS 5.1: += on arrays from JSON can lose reference)
+            $existing = @()
+            if ($global:ConsciousnessState.Control.Decisions) {
+                $existing = @($global:ConsciousnessState.Control.Decisions)
             }
+            $existing += $decision
+            # Keep only last 50 decisions
+            if ($existing.Count -gt 50) {
+                $existing = $existing[-50..-1]
+            }
+            $global:ConsciousnessState.Control["Decisions"] = $existing
 
             # Sync to Layer 2 (memory-mapped files)
             if ($global:ConsciousnessState.Layer2Initialized) {
@@ -994,12 +1029,12 @@ function Invoke-Emotion {
         }
 
         'DetectStuck' {
-            $counter = $global:ConsciousnessState.Emotion.StuckCounter
+            $counter = [int]$global:ConsciousnessState.Emotion.StuckCounter
             $currentState = $global:ConsciousnessState.Emotion.CurrentState
 
             if ($currentState -eq "stuck") {
-                $global:ConsciousnessState.Emotion.StuckCounter++
-                $counter = $global:ConsciousnessState.Emotion.StuckCounter
+                $counter = $counter + 1
+                $global:ConsciousnessState.Emotion.StuckCounter = $counter
 
                 $recommendation = switch ($counter) {
                     { $_ -ge 5 } { "STOP. Ask user for guidance. You've been stuck too long." }
@@ -1150,11 +1185,12 @@ function Invoke-Social {
         }
 
         'UpdateTrust' {
-            $delta = $Parameters.Delta  # positive or negative float
+            [double]$delta = 0.0
+            if ($Parameters.Delta -ne $null) { $delta = [double]$Parameters.Delta }
             $reason = $Parameters.Reason
 
-            $oldTrust = $global:ConsciousnessState.Social.TrustLevel
-            $newTrust = [math]::Max(0, [math]::Min(1.0, $oldTrust + $delta))
+            [double]$oldTrust = [double]$global:ConsciousnessState.Social.TrustLevel
+            [double]$newTrust = [math]::Max(0.0, [math]::Min(1.0, $oldTrust + $delta))
             $global:ConsciousnessState.Social.TrustLevel = $newTrust
 
             if ($newTrust -lt 0.7) {
@@ -1176,50 +1212,125 @@ function Invoke-Social {
     }
 }
 
+function Load-FailurePatterns {
+    # Load structured failure patterns from JSON file
+    # Returns hashtable with project_patterns and cross_cutting_patterns
+    $patternsFile = "C:\scripts\_machine\failure-patterns.json"
+    if (-not (Test-Path $patternsFile)) { return @{} }
+
+    try {
+        $raw = Get-Content $patternsFile -Raw | ConvertFrom-Json
+        return (ConvertTo-Hashtable $raw)
+    } catch {
+        return @{}
+    }
+}
+
+function Match-PatternsToTask {
+    # Find patterns relevant to a specific task description and project
+    param([string]$TaskDescription, [string]$Project, $AllPatterns)
+
+    $matched = @()
+    $taskLower = $TaskDescription.ToLower()
+
+    # 1. Match project-specific patterns
+    if ($Project -and $AllPatterns.project_patterns -and $AllPatterns.project_patterns.ContainsKey($Project)) {
+        foreach ($p in $AllPatterns.project_patterns[$Project]) {
+            $triggers = $p.trigger
+            foreach ($t in $triggers) {
+                if ($taskLower -match [regex]::Escape($t.ToLower())) {
+                    $matched += @{
+                        id = $p.id
+                        warning = $p.warning
+                        severity = $p.severity
+                        source = "project:$Project"
+                    }
+                    break
+                }
+            }
+        }
+    }
+
+    # 2. Match cross-cutting patterns (PS 5.1, git, deployment, etc.)
+    if ($AllPatterns.cross_cutting_patterns) {
+        foreach ($category in $AllPatterns.cross_cutting_patterns.Keys) {
+            foreach ($p in $AllPatterns.cross_cutting_patterns[$category]) {
+                $triggers = $p.trigger
+                foreach ($t in $triggers) {
+                    if ($taskLower -match [regex]::Escape($t.ToLower())) {
+                        $matched += @{
+                            id = $p.id
+                            warning = $p.warning
+                            severity = $p.severity
+                            source = "cross:$category"
+                        }
+                        break
+                    }
+                }
+            }
+        }
+    }
+
+    # 3. Always include critical project patterns regardless of trigger match
+    if ($Project -and $AllPatterns.project_patterns -and $AllPatterns.project_patterns.ContainsKey($Project)) {
+        foreach ($p in $AllPatterns.project_patterns[$Project]) {
+            if ($p.severity -eq "critical") {
+                $alreadyMatched = $false
+                foreach ($m in $matched) {
+                    if ($m.id -eq $p.id) { $alreadyMatched = $true; break }
+                }
+                if (-not $alreadyMatched) {
+                    $matched += @{
+                        id = $p.id
+                        warning = $p.warning
+                        severity = $p.severity
+                        source = "project:$Project (always-show)"
+                    }
+                }
+            }
+        }
+    }
+
+    return ,$matched
+}
+
 function Invoke-Prediction-Enhanced {
     param([string]$Action, $Parameters = @{})
 
     switch ($Action) {
         'AnticipateErrors' {
-            # Check reflection log for relevant past errors
             $taskType = $Parameters.TaskType
             $project = $Parameters.Project
 
-            $knownFailures = @()
+            # Load patterns from structured file (not hardcoded)
+            $allPatterns = Load-FailurePatterns
+            $matched = Match-PatternsToTask -TaskDescription $taskType -Project $project -AllPatterns $allPatterns
 
-            # Known failure patterns per project (from reflection.log learnings)
-            $failurePatterns = @{
-                "client-manager" = @(
-                    "DI registration in Program.cs not ServiceRegistrationExtensions.cs"
-                    "Build timeout < 120000ms will fail (6441 warnings normal)"
-                    "Paired hazina worktree needed for framework changes"
-                )
-                "hazina" = @(
-                    "EnableWindowsTargeting needed for CI"
-                    "EF migrations need safety protocol"
-                )
-                "orchestration" = @(
-                    "Vite hash cache: rm -rf bin obj wwwroot/assets before build"
-                    "MSI same-version won't overwrite: use reinstall-clean.ps1"
-                    "ANSI escape in titles: strip at entry point"
-                )
-                "art-revisionist" = @(
-                    "Email from_email must be @artrevisionist.com"
-                    "Menu items are database-only, not in git"
-                    "FTP passwords base64 in sitemanager.xml"
-                )
+            # Sort by severity: critical first, then high, medium, low
+            $severityOrder = @{ "critical" = 0; "high" = 1; "medium" = 2; "low" = 3 }
+            $sorted = $matched | Sort-Object { $severityOrder[$_.severity] }
+
+            # Build actionable warnings list
+            $warnings = @()
+            foreach ($m in $sorted) {
+                $prefix = ""
+                if ($m.severity -eq "critical") { $prefix = "[CRITICAL] " }
+                elseif ($m.severity -eq "high") { $prefix = "[HIGH] " }
+                $warnings += "$prefix$($m.warning)"
             }
 
-            if ($failurePatterns.ContainsKey($project)) {
-                $knownFailures = $failurePatterns[$project]
+            $warningText = $null
+            if ($warnings.Count -gt 0) {
+                $warningText = "Found $($warnings.Count) relevant failure patterns. Review before proceeding."
             }
 
             return @{
                 TaskType = $taskType
                 Project = $project
-                KnownFailures = $knownFailures
-                FailureCount = $knownFailures.Count
-                Warning = if ($knownFailures.Count -gt 0) { "Review known failure patterns before proceeding" } else { $null }
+                KnownFailures = $warnings
+                FailureCount = $warnings.Count
+                MatchedPatterns = $sorted
+                Warning = $warningText
             }
         }
 
@@ -1227,7 +1338,6 @@ function Invoke-Prediction-Enhanced {
             $action = $Parameters.Action
             $scope = $Parameters.Scope
 
-            # Simple consequence prediction
             $consequences = @{
                 Immediate = @()
                 SideEffects = @()

@@ -9,6 +9,21 @@ user-invocable: true
 
 **Purpose:** Create an isolated worktree for code editing while enforcing zero-tolerance rules and multi-agent conflict detection.
 
+## Step 0: Consciousness Bridge (FIRST)
+
+Call the bridge BEFORE any other work. This loads failure patterns and project-specific warnings into context.
+
+```bash
+powershell.exe -File "C:/scripts/tools/consciousness-bridge.ps1" -Action OnTaskStart -TaskDescription "<feature description>" -Project "<project-name>" -Silent
+```
+
+Then read the output for actionable warnings:
+```bash
+cat C:/scripts/agentidentity/state/consciousness-context.json
+```
+
+The `recommendations` array contains specific failure patterns to watch for. Read them.
+
 ## Pre-Allocation (3 Checks)
 
 ### 1. Mode Detection

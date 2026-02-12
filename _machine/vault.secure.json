@@ -3,7 +3,7 @@
     "version":  "2.0",
     "encryption":  "dpapi",
     "storage":  "hex",
-    "updated":  "2026-02-11 18:54:07",
+    "updated":  "2026-02-12 14:37:09",
     "credentials":  [
                         {
                             "updated":  "2026-02-11 18:53:42",
@@ -148,6 +148,20 @@
                             "password_enc":  "",
                             "service":  "openai",
                             "created":  "2026-02-11 18:53:43"
+                        },
+                        {
+                            "updated":  "2026-02-12 14:37:09",
+                            "token_enc":  "",
+                            "username":  "admin",
+                            "notes_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e000000000200000000001066000000010000200000007a8cec18ca961942fe7f5cfdf400a208ade49832142790488c83624f52076cb5000000000e8000000002000020000000216e904b93b18dcdb13e13a1ec7e19be9f477e416fc3e851d6c8f528594d8e88500000008cd67dfdcc6e8fbb692606fb150725d11ebd526cb04407e245c695b294cb3fd98abb2795c49ab13f13e5f5d8bdf7fc474c3783e4ae08df12dd250617ac31873b74b9f4119bdccc8f6fb9c179c14e1c4040000000dfdcb6f3d20b360f793a97caa78f1195bf98a683748dbfd24825880980ee81fb92461cdef94b8d92e6a36d29b8a47d4f925547083008c3c7a156f0134a08bc70",
+                            "password_hint":  "2ep8I4k8...",
+                            "token_hint":  "",
+                            "password_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e000000000200000000001066000000010000200000004f9c64b4e4effe720dad3551a0693dd2737641f4c134d220d1f994463bf63c6e000000000e80000000020000200000007cbc4231982369802c5ffac13f81d2cf99827ed47f0b9d5c3ec6934df074c87920000000cc62b82b4be08e3dc597adc2e5a3ff849be6aa6e41db9b4aa921ce30b039160a40000000495cf68efa8cb86aafefe317a275210e33f65bd08d9f9be20de27a2dfaaf6647f23a22dbc4669d6fba898b195a1a94a8ed1f64a6ee9203ed8d868c873b0a108b",
+                            "service":  "wordpress-artrevisionist",
+                            "created":  "2026-02-12 14:37:09",
+                            "tags":  [
+                                         "admin,api"
+                                     ]
                         }
                     ]
 }

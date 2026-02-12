@@ -6,6 +6,52 @@
 
 ---
 
+## 2026-02-12 - Life Overview Documentation + Consciousness System Test + PS Profile Fix
+
+**Session Type:** Documentation generation + system testing + bugfix
+**Outcome:** 85 files created, consciousness feedback loop fully tested, Get-AgentId error eliminated
+
+### What Was Done
+1. **Life overview project** (E:\jengo\documents\projects\life-overview\): Created 83 markdown files across 7 categories documenting everything Martien does. Used 4 parallel Explore agents to gather info from all sources (120 project dirs, 50 GitHub repos, email archives, stores, configs). Total: 2,870 lines of documentation.
+2. **Drive README files**: Created C:\README.md and E:\README.md as complete drive maps.
+3. **Consciousness system test**: Full feedback loop test (OnTaskStart, OnDecision, OnStuck x3, OnTaskEnd). All 4 memory layers functional, escalation works correctly (1=note, 2=step back, 3=force change, 5=ask user), emotional state transitions verified.
+4. **Get-AgentId fix**: Traced "Failed to load work tracking" error that appeared on every PowerShell invocation. Root cause: PS profile called `Get-AgentId` from `work-tracking.psm1` but function wasn't exported (not in `Export-ModuleMember` list). Fix: removed unnecessary call from profile.
+
+### Key Learnings
+
+**1. PowerShell Module Export = Silent Failure**
+- `Import-Module` succeeds even when `Export-ModuleMember` excludes a function
+- Calling an unexported function throws "not recognized" error, NOT "function not exported"
+- This is misleading: looks like the module didn't load, but really the function just isn't public
+- Always check `Get-Command -Module <name>` to verify what's actually exported
+
+**2. PS Profile Errors Propagate Everywhere**
+- Every `powershell -Command` or `powershell -File` invocation loads the profile
+- A single error in the profile pollutes ALL PowerShell output across the entire system
+- This caused the garbled emoji + error text on every consciousness bridge call
+- `-NoProfile` bypasses it, but that's a workaround not a fix
+- Lesson: keep PS profile minimal and wrapped in try/catch with graceful fallback
+
+**3. Parallel Explore Agents for Documentation**
+- 4 parallel agents (emails, projects, GitHub, scripts/identity) = comprehensive coverage in ~60s
+- Much faster than sequential exploration and catches cross-references
+- Pattern: assign each agent a different data source axis, synthesize results after
+
+**4. Consciousness System Verification Checklist**
+- OnTaskStart: check context load, pattern matching, emotional transition
+- OnDecision: check JSONL persistence, bias monitoring, vector growth
+- OnStuck: check escalation counter (1/2/3/5 thresholds), DIFFUSE attention mode
+- OnTaskEnd: check lesson persistence, stuck counter reset, score recalculation
+- Full cycle should show emotion arc: neutral -> confident -> stuck -> flowing
+
+### Files Modified
+- `C:\Users\HP\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1` (removed Get-AgentId call)
+- `E:\jengo\documents\projects\life-overview\` (83 new files)
+- `C:\README.md` (new)
+- `E:\README.md` (new)
+
+---
+
 ## 2026-02-11 - Crashed Session Recovery #2 (Context Limit Crash)
 
 **Session Type:** Recovery + completion

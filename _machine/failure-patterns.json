@@ -1,0 +1,412 @@
+{
+  "version": "1.0",
+  "generated": "2026-02-12",
+  "description": "Structured failure patterns extracted from reflection.log. Loaded by consciousness Prediction engine.",
+
+  "project_patterns": {
+    "client-manager": [
+      {
+        "id": "cm-di-registration",
+        "pattern": "DI registration",
+        "trigger": ["service", "dependency injection", "DI", "register", "resolve", "activate"],
+        "warning": "Register in Program.cs directly (~line 300-1550), NOT in ServiceRegistrationExtensions.cs (dead code, never called).",
+        "severity": "critical",
+        "source": "2026-02-09 10:45"
+      },
+      {
+        "id": "cm-di-factory",
+        "pattern": "Factory vs direct injection",
+        "trigger": ["ILLMClient", "factory", "Unable to resolve service"],
+        "warning": "When factory is registered but consumers inject product type directly, also register product using factory: AddScoped<IProduct>(sp => sp.GetRequiredService<IFactory>().Create())",
+        "severity": "critical",
+        "source": "2026-02-09 10:45"
+      },
+      {
+        "id": "cm-build-timeout",
+        "pattern": "Build timeout",
+        "trigger": ["build", "dotnet build", "timeout", "compile"],
+        "warning": "Use 120000ms minimum timeout. 6441 warnings are normal (CA1416). Don't panic at warning count.",
+        "severity": "high",
+        "source": "2026-02-09 10:45"
+      },
+      {
+        "id": "cm-paired-worktree",
+        "pattern": "Paired worktree",
+        "trigger": ["hazina", "framework", "worktree", "Hazina.LLMs", "Hazina.Core"],
+        "warning": "ALWAYS create paired hazina worktree (same branch name) when changes touch framework types.",
+        "severity": "critical",
+        "source": "2026-02-08"
+      },
+      {
+        "id": "cm-config-path",
+        "pattern": "Config path mismatch",
+        "trigger": ["configuration", "appsettings", "not configured", "ClientId", "config"],
+        "warning": "Code may use different config path than appsettings.json. Grep config files for actual key name before changing code.",
+        "severity": "high",
+        "source": "2026-02-09 10:45"
+      },
+      {
+        "id": "cm-process-locks",
+        "pattern": "DLL file locks",
+        "trigger": ["locked", "MSB3027", "could not copy", "file is locked"],
+        "warning": "Kill lingering ClientManagerAPI.local processes before rebuild. Visual Studio sometimes doesn't terminate properly.",
+        "severity": "medium",
+        "source": "2026-02-09 10:45"
+      },
+      {
+        "id": "cm-error-cascade",
+        "pattern": "Startup error cascade",
+        "trigger": ["startup", "crash", "AggregateException"],
+        "warning": "Fix errors in order: build locks -> DI registration -> config paths. They cascade.",
+        "severity": "medium",
+        "source": "2026-02-09 10:45"
+      },
+      {
+        "id": "cm-pre-commit",
+        "pattern": "Pre-commit hook",
+        "trigger": ["commit", "code page", "unicode", "hook"],
+        "warning": "Misleading 'cannot convert code page' error = pre-commit hook failing, not encoding. Check .git/hooks/pre-commit.",
+        "severity": "medium",
+        "source": "2026-02-09 14:20"
+      },
+      {
+        "id": "cm-social-media-overlap",
+        "pattern": "Social media generators",
+        "trigger": ["social media", "post generator", "wizard", "content"],
+        "warning": "5 overlapping generators exist (SocialMediaPostGenerator, MultiPlatformPostCreator, PostGenerationWizard, PostIdeasGenerator, ParentPostManager). Check before adding another.",
+        "severity": "medium",
+        "source": "2026-02-11"
+      },
+      {
+        "id": "cm-toast-library",
+        "pattern": "Toast notification library",
+        "trigger": ["toast", "notification", "sonner", "react-hot-toast", "alert"],
+        "warning": "Project uses sonner (SchedulePostModal), NOT react-hot-toast. Don't import wrong toast library.",
+        "severity": "high",
+        "source": "2026-02-11"
+      },
+      {
+        "id": "cm-lazy-loading",
+        "pattern": "Route lazy loading",
+        "trigger": ["route", "routing", "lazy", "React.lazy", "page", "screen", "view"],
+        "warning": "All routes use React.lazy() for code splitting. New routes MUST use lazy loading too. Check App.tsx for pattern.",
+        "severity": "high",
+        "source": "2026-02-11"
+      },
+      {
+        "id": "cm-component-extract",
+        "pattern": "Component extraction for filtered views",
+        "trigger": ["screen", "view", "component", "filter", "list", "table", "grid", "approved", "posts"],
+        "warning": "When two screens show same data with different filters: extract generic component with configurable filter prop, create thin wrappers (ParentChildPostList pattern).",
+        "severity": "medium",
+        "source": "2026-02-11"
+      },
+      {
+        "id": "cm-frontend-build",
+        "pattern": "Frontend build",
+        "trigger": ["npm", "vite", "frontend", "build", "react", "tsx", "jsx", "css", "style"],
+        "warning": "Frontend is React+Vite in ClientManagerFrontend/. Run npm run build to verify. Check for TypeScript errors before committing.",
+        "severity": "medium",
+        "source": "2026-02-11"
+      },
+      {
+        "id": "cm-platform-casing",
+        "pattern": "Platform ID casing",
+        "trigger": ["platform", "facebook", "instagram", "linkedin", "twitter", "social"],
+        "warning": "Platform IDs in constants use lowercase but generation API might need PascalCase. Verify casing consistency.",
+        "severity": "medium",
+        "source": "2026-02-11"
+      }
+    ],
+
+    "hazina": [
+      {
+        "id": "hz-ci-windows",
+        "pattern": "CI Windows targeting",
+        "trigger": ["CI", "GitHub Actions", "build", "workflow"],
+        "warning": "EnableWindowsTargeting needed in CI workflows for net9.0-windows projects.",
+        "severity": "critical",
+        "source": "2026-02-09"
+      },
+      {
+        "id": "hz-ef-migration",
+        "pattern": "EF migration safety",
+        "trigger": ["migration", "EF", "Entity Framework", "database", "schema"],
+        "warning": "Use ef-migration-safety skill. Never apply migrations without backup and rollback plan.",
+        "severity": "critical",
+        "source": "2026-02-09"
+      }
+    ],
+
+    "orchestration": [
+      {
+        "id": "orch-vite-cache",
+        "pattern": "Vite hash cache",
+        "trigger": ["build", "MSI", "publish", "MSB3030", "file not found"],
+        "warning": "rm -rf bin obj wwwroot/assets BEFORE MSI build. Vite generates new hashed filenames; dotnet caches old refs in obj/.",
+        "severity": "critical",
+        "source": "2026-02-10"
+      },
+      {
+        "id": "orch-msi-overwrite",
+        "pattern": "MSI version overwrite",
+        "trigger": ["MSI", "upgrade", "install", "overwrite"],
+        "warning": "Same-version unversioned files (JS/CSS/JSON) not overwritten on MSI upgrade. Use reinstall-clean.ps1 or REINSTALLMODE=vomus.",
+        "severity": "high",
+        "source": "2026-02-10"
+      },
+      {
+        "id": "orch-ansi-titles",
+        "pattern": "ANSI escape in titles",
+        "trigger": ["title", "session", "terminal", "ANSI", "escape"],
+        "warning": "Strip ANSI escape sequences at point of entry with regex /\\x1b\\[[0-9;]*[a-zA-Z]/g. Don't let dirty data spread.",
+        "severity": "medium",
+        "source": "2026-02-10"
+      },
+      {
+        "id": "orch-double-paste",
+        "pattern": "Double paste in terminal",
+        "trigger": ["paste", "Ctrl+V", "clipboard", "xterm"],
+        "warning": "event.preventDefault() needed in Ctrl+V/Ctrl+Shift+V handlers. attachCustomKeyEventHandler returning false only prevents xterm processing, NOT browser native paste.",
+        "severity": "medium",
+        "source": "2026-02-10"
+      },
+      {
+        "id": "orch-https-config",
+        "pattern": "Deployment config",
+        "trigger": ["deploy", "start", "service", "port", "HTTPS"],
+        "warning": "ALWAYS HTTPS port 5123 with tailscale.crt/key. Read MACHINE_CONFIG.md BEFORE deploying. Never guess.",
+        "severity": "critical",
+        "source": "2026-02-08 10:30"
+      },
+      {
+        "id": "orch-msi-locked",
+        "pattern": "MSI file locked",
+        "trigger": ["msi", "locked", "Release", "build"],
+        "warning": "Old .msi in bin/Release gets locked by Explorer/msiexec. Build to bin/Release2/ as workaround.",
+        "severity": "low",
+        "source": "2026-02-10"
+      },
+      {
+        "id": "orch-conpty-bat",
+        "pattern": "ConPTY bat files",
+        "trigger": [".bat", "batch", "ConPTY", "terminal session"],
+        "warning": ".bat files need cmd.exe /k wrapper in production (VS debug auto-handles).",
+        "severity": "medium",
+        "source": "2026-02-10"
+      }
+    ],
+
+    "art-revisionist": [
+      {
+        "id": "ar-email-domain",
+        "pattern": "Email from domain",
+        "trigger": ["email", "mail", "contact", "smtp", "wp_mail"],
+        "warning": "from_email MUST be @artrevisionist.com. Hosting server rejects non-hosted domains.",
+        "severity": "critical",
+        "source": "2026-02-10"
+      },
+      {
+        "id": "ar-menu-db",
+        "pattern": "Menus database-only",
+        "trigger": ["menu", "navigation", "nav_menu"],
+        "warning": "Menus are database-only (wp_posts + wp_postmeta + wp_terms). NOT in git. Must recreate on production manually.",
+        "severity": "high",
+        "source": "2026-02-10"
+      },
+      {
+        "id": "ar-theme-deploy",
+        "pattern": "Theme deployment",
+        "trigger": ["deploy", "production", "FTP", "push"],
+        "warning": "Theme deploy = git only (PHP/CSS/JS). Database content (pages, menus, posts) does NOT sync.",
+        "severity": "high",
+        "source": "2026-02-10"
+      },
+      {
+        "id": "ar-ftp-passwords",
+        "pattern": "FTP credentials",
+        "trigger": ["FTP", "FileZilla", "upload", "credentials"],
+        "warning": "FTP passwords are base64 encoded in FileZilla sitemanager.xml. Decode with [Convert]::FromBase64String().",
+        "severity": "medium",
+        "source": "2026-02-10"
+      },
+      {
+        "id": "ar-staging-db",
+        "pattern": "Production database",
+        "trigger": ["database", "wp-config", "production"],
+        "warning": "Production runs on staging DB (u63291p434771_ar_staging) with DEFAULT auth salts. Security risk.",
+        "severity": "high",
+        "source": "2026-02-10"
+      }
+    ]
+  },
+
+  "cross_cutting_patterns": {
+    "powershell_51": [
+      {
+        "id": "ps-no-ashashtable",
+        "pattern": "ConvertFrom-Json -AsHashtable",
+        "trigger": ["-AsHashtable", "ConvertFrom-Json", "hashtable", "PSCustomObject"],
+        "warning": "PS 5.1 does NOT support -AsHashtable. Use ConvertTo-Hashtable helper (recursive PSCustomObject conversion). Silent failure in try/catch = invisible data loss.",
+        "severity": "critical",
+        "source": "2026-02-11"
+      },
+      {
+        "id": "ps-array-unroll",
+        "pattern": "Array unwrap from functions",
+        "trigger": ["return", "array", "@(", "function", "single element"],
+        "warning": "PS 5.1 unrolls single-element arrays from functions. return @($arr) with 1 element becomes scalar. Fix: return ,$arr (comma operator prevents unrolling).",
+        "severity": "critical",
+        "source": "2026-02-12"
+      },
+      {
+        "id": "ps-file-move",
+        "pattern": "File.Move overwrite",
+        "trigger": ["Move", "File.Move", "overwrite", "rename"],
+        "warning": "PS 5.1 File.Move has no 3-argument overwrite. Use Delete + Move instead.",
+        "severity": "high",
+        "source": "2026-02-11"
+      },
+      {
+        "id": "ps-unicode-writehost",
+        "pattern": "Unicode in Write-Host",
+        "trigger": ["emoji", "unicode", "Write-Host", "function parsing"],
+        "warning": "Unicode characters (checkmarks, crosses, emojis) in Write-Host break PS 5.1 function parsing. Use ASCII alternatives ([OK], [FAIL]).",
+        "severity": "high",
+        "source": "2026-02-11"
+      },
+      {
+        "id": "ps-mmap-persist",
+        "pattern": "MemoryMappedFile persistence",
+        "trigger": ["MemoryMappedFile", "CreateFromFile", "named map"],
+        "warning": "Named maps are SYSTEM-WIDE in Windows kernel. Persist after crash. Fix: GUID suffix per invocation. null mapName = empty string error in PS 5.1.",
+        "severity": "high",
+        "source": "2026-02-11"
+      },
+      {
+        "id": "ps-date-deserialize",
+        "pattern": "Date after JSON roundtrip",
+        "trigger": ["date", "DateTime", "ConvertFrom-Json", "op_Subtraction"],
+        "warning": "ConvertFrom-Json does NOT auto-convert dates. After JSON round-trip, dates are strings. Cast with [datetime]$var.",
+        "severity": "medium",
+        "source": "2026-02-11"
+      },
+      {
+        "id": "ps-dollar-gitbash",
+        "pattern": "Dollar signs in Git Bash",
+        "trigger": ["Git Bash", "inline", "PowerShell", "bash"],
+        "warning": "$ in inline PowerShell from Git Bash gets stripped by shell expansion. ALWAYS write .ps1 file and call with -File flag.",
+        "severity": "high",
+        "source": "2026-02-11"
+      }
+    ],
+
+    "git_github": [
+      {
+        "id": "git-pr-base",
+        "pattern": "PR base branch",
+        "trigger": ["PR", "pull request", "base", "branch"],
+        "warning": "ALWAYS base PRs on develop, NEVER main. Merge develop INTO feature branch BEFORE creating PR.",
+        "severity": "critical",
+        "source": "2026-02-08"
+      },
+      {
+        "id": "git-index-lock",
+        "pattern": "Index lock file",
+        "trigger": ["index.lock", "lock", "another process"],
+        "warning": "Another agent may be committing. Wait 3-5 seconds and retry. Don't delete lock file without investigation.",
+        "severity": "medium",
+        "source": "2026-02-09"
+      },
+      {
+        "id": "git-system-push",
+        "pattern": "SYSTEM user git push",
+        "trigger": ["SYSTEM", "push", "credential", "gh auth"],
+        "warning": "SYSTEM user has no credential manager or gh auth. Commit locally, let user-context agent push.",
+        "severity": "high",
+        "source": "2026-02-09 23:30"
+      },
+      {
+        "id": "git-worktree-protect",
+        "pattern": "Worktree file protection",
+        "trigger": ["worktree", "vanished", "files disappeared"],
+        "warning": "After writing files to worktree, immediately git add. Another agent may clean/reset the directory.",
+        "severity": "high",
+        "source": "2026-02-09 23:30"
+      }
+    ],
+
+    "deployment": [
+      {
+        "id": "deploy-read-docs",
+        "pattern": "Read docs before deploying",
+        "trigger": ["deploy", "start service", "install", "MSI"],
+        "warning": "ALWAYS read MACHINE_CONFIG.md + installer docs BEFORE deploying. Don't guess ports/protocols. User corrected 3 times in one session.",
+        "severity": "critical",
+        "source": "2026-02-08 10:30"
+      },
+      {
+        "id": "deploy-disk-space",
+        "pattern": "Disk space crash",
+        "trigger": ["disk", "space", "full", "CS0009", "metadata"],
+        "warning": "Low disk space during dotnet build = corrupted DLLs (CS0009 Invalid metadata). Fix: rm -rf obj/ bin/ and rebuild.",
+        "severity": "high",
+        "source": "2026-02-11"
+      }
+    ],
+
+    "session_management": [
+      {
+        "id": "session-context-limit",
+        "pattern": "Context limit crash",
+        "trigger": ["long session", "hours", "context"],
+        "warning": "Sessions >8h will crash from context limit. Checkpoint state periodically. Large PR diffs eat context fast.",
+        "severity": "high",
+        "source": "2026-02-11"
+      },
+      {
+        "id": "session-recovery",
+        "pattern": "Crashed session recovery",
+        "trigger": ["crash", "recover", "restore", "session"],
+        "warning": "Code work is usually DONE. What's left is handoff (ClickUp, email, worktree release). Verify state, act only on delta.",
+        "severity": "medium",
+        "source": "2026-02-11"
+      }
+    ],
+
+    "process": [
+      {
+        "id": "proc-clickup-mandatory",
+        "pattern": "ClickUp task creation",
+        "trigger": ["ClickUp", "task", "feature"],
+        "warning": "ClickUp task creation must be mandatory+automatic (in allocate-worktree), not manual. Manual steps get skipped.",
+        "severity": "high",
+        "source": "2026-02-08 18:30"
+      },
+      {
+        "id": "proc-component-extract",
+        "pattern": "Component extraction",
+        "trigger": ["screen", "view", "component", "filter", "duplicate"],
+        "warning": "When two screens show same data with different filters: extract generic component with configurable filter prop, create thin wrappers.",
+        "severity": "medium",
+        "source": "2026-02-11"
+      },
+      {
+        "id": "proc-arch-before-tasks",
+        "pattern": "Architecture before tasks",
+        "trigger": ["architecture", "plan", "tasks", "ClickUp tasks"],
+        "warning": "Full architecture analysis BEFORE creating tasks. Without docs, tasks are ad-hoc and incomplete.",
+        "severity": "high",
+        "source": "2026-02-11"
+      },
+      {
+        "id": "proc-identity-loss",
+        "pattern": "Identity initialization",
+        "trigger": ["startup", "identity", "session start", "greeting"],
+        "warning": "NEVER compress away identity initialization. Read CORE_IDENTITY.md at every session start. Optimization that removes essential behavior = regression.",
+        "severity": "critical",
+        "source": "2026-02-09 15:00"
+      }
+    ]
+  }
+}

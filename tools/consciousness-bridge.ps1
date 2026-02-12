@@ -100,62 +100,120 @@ function Get-RelevantPatterns {
 
     $patterns = @()
 
-    # Check reflection log for relevant entries
-    $reflectionFile = "C:\scripts\_machine\reflection.log.md"
-    if (Test-Path $reflectionFile) {
-        $content = Get-Content $reflectionFile -Raw
-        # Find sections mentioning this project
-        if ($Project -and $content -match "(?i)$Project") {
-            $patterns += "Reflection log has entries for $Project - review before starting"
-        }
-    }
-
-    # Check MEMORY.md for project-specific notes
+    # Check MEMORY.md for project-specific actionable notes
     $memoryFile = "C:\Users\HP\.claude\projects\C--scripts\memory\MEMORY.md"
     if (Test-Path $memoryFile) {
-        $content = Get-Content $memoryFile -Raw
-        $projectLines = ($content -split "`n") | Where-Object { $_ -match "(?i)$Project" }
-        foreach ($line in ($projectLines | Select-Object -First 5)) {
-            $patterns += $line.Trim()
+        $lines = Get-Content $memoryFile
+        $inRelevantSection = $false
+        foreach ($line in $lines) {
+            # Skip headers, empty lines, and non-content
+            if ($line -match "^#+\s" -or $line.Trim() -eq "" -or $line -match "^---") {
+                # Check if we're entering a relevant section
+                if ($Project -and $line -match "(?i)$Project") { $inRelevantSection = $true }
+                else { $inRelevantSection = $false }
+                continue
+            }
+            # Capture lines from relevant sections or lines directly mentioning project
+            if ($inRelevantSection -or ($Project -and $line -match "(?i)$Project")) {
+                $clean = $line.Trim() -replace "^[-*]\s+", "" -replace "^\*\*[^*]+\*\*\s*", ""
+                if ($clean.Length -gt 10 -and $clean -notmatch "^(##|List IDs|Default assignee)") {
+                    $patterns += $clean
+                }
+            }
         }
     }
 
-    return $patterns
+    # Limit to top 5 most relevant
+    if ($patterns.Count -gt 5) {
+        $patterns = $patterns[0..4]
+    }
+
+    return ,$patterns
 }
 
 function Get-KnownFailures {
-    param([string]$Project)
+    param([string]$Project, [string]$TaskDescription = '')
 
-    # Curated failure patterns from past experience
-    $failures = @{
-        "client-manager" = @(
-            @{ pattern = "DI registration"; warning = "Register in Program.cs, NOT ServiceRegistrationExtensions.cs" }
-            @{ pattern = "Build timeout"; warning = "Use 120000ms minimum. 6441 warnings are normal." }
-            @{ pattern = "Worktree"; warning = "ALWAYS create paired hazina worktree" }
-            @{ pattern = "PR base"; warning = "ALWAYS base on develop, NEVER main" }
-        )
-        "hazina" = @(
-            @{ pattern = "CI"; warning = "EnableWindowsTargeting needed for GitHub Actions" }
-            @{ pattern = "EF migration"; warning = "Use ef-migration-safety skill" }
-            @{ pattern = "PR base"; warning = "ALWAYS base on develop, NEVER main" }
-        )
-        "orchestration" = @(
-            @{ pattern = "Build"; warning = "rm -rf bin obj wwwroot/assets before MSI build (Vite hash cache)" }
-            @{ pattern = "MSI"; warning = "Same-version files not overwritten. Use reinstall-clean.ps1" }
-            @{ pattern = "Terminal"; warning = "Strip ANSI escape sequences at point of entry" }
-            @{ pattern = "Paste"; warning = "event.preventDefault() needed for Ctrl+V to prevent double paste" }
-        )
-        "art-revisionist" = @(
-            @{ pattern = "Email"; warning = "from_email MUST be @artrevisionist.com" }
-            @{ pattern = "Menu"; warning = "Menus are database-only, not in git" }
-            @{ pattern = "Deploy"; warning = "Theme deploy = git only. DB content doesn't sync." }
-        )
+    # Load from structured patterns file (single source of truth)
+    $matched = Invoke-Prediction-Enhanced -Action 'AnticipateErrors' -Parameters @{
+        TaskType = $TaskDescription
+        Project = $Project
     }
 
-    if ($failures.ContainsKey($Project)) {
-        return $failures[$Project]
+    # Convert to bridge format (pattern + warning pairs)
+    $failures = @()
+    if ($matched.MatchedPatterns) {
+        foreach ($m in $matched.MatchedPatterns) {
+            $failures += @{
+                pattern = $m.id
+                warning = $m.warning
+                severity = $m.severity
+            }
+        }
     }
-    return @()
+
+    return ,$failures
+}
+
+function Write-ContextFile {
+    param(
+        [string]$LastAction,
+        [hashtable]$ActionData = @{}
+    )
+    # Standardized envelope: every action writes the same top-level structure.
+    # Action-specific data goes in a known sub-key matching the action name.
+    $score = 0.0
+    if ($global:ConsciousnessState -and $global:ConsciousnessState.Meta) {
+        $score = $global:ConsciousnessState.Meta.ConsciousnessScore
+    }
+    $emotionState = "neutral"
+    $emotionTrajectory = "stable"
+    $stuckCount = 0
+    if ($global:ConsciousnessState -and $global:ConsciousnessState.Emotion) {
+        $emotionState = $global:ConsciousnessState.Emotion.CurrentState
+        $emotionTrajectory = $global:ConsciousnessState.Emotion.Trajectory
+        $stuckCount = [int]$global:ConsciousnessState.Emotion.StuckCounter
+    }
+    [double]$trustLevel = 1.0
+    if ($global:ConsciousnessState -and $global:ConsciousnessState.Social) {
+        $trustLevel = [double]$global:ConsciousnessState.Social.TrustLevel
+    }
+
+    $envelope = @{
+        version = "2.0"
+        last_action = $LastAction
+        timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
+        consciousness_score = [math]::Round($score * 100, 1)
+        emotional_state = $emotionState
+        emotional_trajectory = $emotionTrajectory
+        stuck_count = $stuckCount
+        trust_level = [math]::Round($trustLevel * 100, 1)
+        guidance = @()
+    }
+
+    # Generate behavioral guidance
+    switch ($emotionState) {
+        "stuck" {
+            $envelope.guidance += "You are STUCK (count: $stuckCount). Change approach NOW."
+            if ($stuckCount -ge 3) {
+                $envelope.guidance += "CRITICAL: Same approach has failed 3+ times. Try something completely different."
+            }
+        }
+        "frustrated" { $envelope.guidance += "Frustration detected. Consider automating repetitive steps." }
+        "uncertain" { $envelope.guidance += "Uncertainty detected. Gather more information before proceeding." }
+        "flowing" { $envelope.guidance += "In flow state. Maintain momentum." }
+    }
+    if ($trustLevel -lt 0.8) {
+        $envelope.guidance += "Trust is low ($([math]::Round($trustLevel * 100))%). Focus on delivery."
+    }
+
+    # Merge action-specific data
+    foreach ($key in $ActionData.Keys) {
+        $envelope[$key] = $ActionData[$key]
+    }
+
+    $envelope | ConvertTo-Json -Depth 5 | Out-File "$contextFile.tmp" -Encoding UTF8
+    if (Test-Path "$contextFile.tmp") { Move-Item "$contextFile.tmp" $contextFile -Force }
 }
 
 #endregion
@@ -183,13 +241,14 @@ switch ($Action) {
         # 3. Retrieve relevant patterns from memory
         $patterns = Get-RelevantPatterns -TaskDescription $TaskDescription -Project $Project
 
-        # 4. Predict known failure modes
-        $failures = Get-KnownFailures -Project $Project
+        # 4. Predict known failure modes (now uses structured patterns file)
+        $failures = Get-KnownFailures -Project $Project -TaskDescription $TaskDescription
 
-        # 5. Get enhanced error predictions
-        $errorPredictions = Invoke-Prediction-Enhanced -Action 'AnticipateErrors' -Parameters @{
-            TaskType = $TaskDescription
-            Project = $Project
+        # 5. Error predictions already computed by Get-KnownFailures via Invoke-Prediction-Enhanced
+        $errorPredictions = @{ KnownFailures = @(); FailureCount = 0 }
+        if ($failures.Count -gt 0) {
+            $errorPredictions.KnownFailures = $failures | ForEach-Object { $_.warning }
+            $errorPredictions.FailureCount = $failures.Count
         }
 
         # 6. Detect context
@@ -219,16 +278,28 @@ switch ($Action) {
             recommendations = @()
         }
 
-        # Add recommendations based on analysis
-        if ($failures.Count -gt 0) {
-            $taskContext.recommendations += "WARNING: $($failures.Count) known failure patterns for $Project. Review before proceeding."
+        # Add concrete actionable recommendations (not vague counts)
+        foreach ($f in $failures) {
+            $prefix = ""
+            if ($f.severity -eq "critical") { $prefix = "CRITICAL: " }
+            elseif ($f.severity -eq "high") { $prefix = "WARNING: " }
+            $taskContext.recommendations += "$prefix$($f.warning)"
         }
-        if ($patterns.Count -gt 0) {
-            $taskContext.recommendations += "Found $($patterns.Count) relevant past experiences. Consider reviewing."
+        # Add memory patterns as supplementary context
+        foreach ($p in $patterns) {
+            if ($p -and $p.Trim()) {
+                $taskContext.recommendations += $p.Trim()
+            }
         }
 
-        # Save context for injection
-        $taskContext | ConvertTo-Json -Depth 5 | Out-File "$contextFile.tmp" -Encoding UTF8; if (Test-Path "$contextFile.tmp") { Move-Item "$contextFile.tmp" $contextFile -Force }
+        # Save context for injection (standardized envelope)
+        Write-ContextFile -LastAction "OnTaskStart" -ActionData @{
+            task = $TaskDescription
+            project = $Project
+            known_failures = $failures
+            recommendations = $taskContext.recommendations
+            attention = $taskContext.attention
+        }
 
         # Save state
         Save-ConsciousnessState
@@ -237,13 +308,15 @@ switch ($Action) {
             Write-Host ""
             Write-Host "[BRIDGE] Task Started: $TaskDescription" -ForegroundColor Cyan
             if ($failures.Count -gt 0) {
-                Write-Host "[BRIDGE] Known failure patterns for ${Project}:" -ForegroundColor Yellow
+                Write-Host "[BRIDGE] Failure patterns for ${Project}:" -ForegroundColor Yellow
                 foreach ($f in $failures) {
-                    Write-Host "  ! $($f.warning)" -ForegroundColor Yellow
+                    $color = "Yellow"
+                    $prefix = "  "
+                    if ($f.severity -eq "critical") { $color = "Red"; $prefix = "  [!] " }
+                    elseif ($f.severity -eq "high") { $prefix = "  [*] " }
+                    else { $prefix = "  [-] " }
+                    Write-Host "$prefix$($f.warning)" -ForegroundColor $color
                 }
-            }
-            if ($patterns.Count -gt 0) {
-                Write-Host "[BRIDGE] Relevant patterns found: $($patterns.Count)" -ForegroundColor Green
             }
             Write-Host ""
         }
@@ -318,15 +391,15 @@ switch ($Action) {
             timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
         }
 
-        # Update context file with stuck state
-        if (Test-Path $contextFile) {
-            try {
-                $ctxJson = Get-Content $contextFile -Raw | ConvertFrom-Json
-                $ctxJson | Add-Member -NotePropertyName "stuck_state" -NotePropertyValue $result -Force
-                $ctxJson | ConvertTo-Json -Depth 5 | Out-File "$contextFile.tmp" -Encoding UTF8
-                if (Test-Path "$contextFile.tmp") { Move-Item "$contextFile.tmp" $contextFile -Force }
-            } catch {
-                # Context update failure is non-fatal
+        # Update context file with stuck state (standardized envelope)
+        Write-ContextFile -LastAction "OnStuck" -ActionData @{
+            stuck_state = @{
+                stuck_count = $stuckAnalysis.StuckCount
+                recommendation = $stuckAnalysis.Recommendation
+                should_change = $stuckAnalysis.ShouldChangeApproach
+                should_ask_user = $stuckAnalysis.ShouldAskUser
+                mood_action = $moodMod.Action
+                attention_mode = "DIFFUSE"
             }
         }
 
@@ -346,21 +419,23 @@ switch ($Action) {
         Write-BridgeLog "Task ended: outcome=$Outcome"
 
         # 1. Update emotional state based on outcome
-        $emotionalState = switch ($Outcome) {
-            "success" { "flowing" }
-            "partial" { "uncertain" }
-            "failure" { "frustrated" }
-            default { "neutral" }
+        $emotionalState = "neutral"
+        switch ($Outcome) {
+            "success" { $emotionalState = "flowing" }
+            "partial" { $emotionalState = "uncertain" }
+            "failure" { $emotionalState = "frustrated" }
         }
+        $emotionIntensity = 4
+        if ($Outcome -eq "success") { $emotionIntensity = 8 }
         Invoke-Emotion -Action 'TrackState' -Parameters @{
             State = $emotionalState
-            Intensity = if ($Outcome -eq "success") { 8 } else { 4 }
+            Intensity = $emotionIntensity
             Reason = "Task completed with outcome: $Outcome"
         }
 
         # 2. Reset stuck counter on success
         if ($Outcome -eq "success") {
-            $global:ConsciousnessState.Emotion.StuckCounter = 0
+            $global:ConsciousnessState.Emotion.StuckCounter = [int]0
         }
 
         # 3. Store learning in memory
@@ -383,12 +458,12 @@ switch ($Action) {
             }
         }
 
-        # 5. Update trust based on outcome
-        $trustDelta = switch ($Outcome) {
-            "success" { 0.02 }
-            "partial" { 0.0 }
-            "failure" { -0.05 }
-            default { 0.0 }
+        # 5. Update trust based on outcome (explicit type to prevent PS 5.1 coercion issues)
+        [double]$trustDelta = 0.0
+        switch ($Outcome) {
+            "success" { $trustDelta = [double]0.02 }
+            "partial" { $trustDelta = [double]0.0 }
+            "failure" { $trustDelta = [double](-0.05) }
         }
         Invoke-Social -Action 'UpdateTrust' -Parameters @{
             Delta = $trustDelta
@@ -412,8 +487,12 @@ switch ($Action) {
             timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
         }
 
-        # Update context file
-        $result | ConvertTo-Json -Depth 5 | Out-File "$contextFile.tmp" -Encoding UTF8; if (Test-Path "$contextFile.tmp") { Move-Item "$contextFile.tmp" $contextFile -Force }
+        # Update context file (standardized envelope)
+        Write-ContextFile -LastAction "OnTaskEnd" -ActionData @{
+            outcome = $Outcome
+            lessons = $LessonsLearned
+            alignment = $alignment
+        }
 
         Save-ConsciousnessState
 
@@ -454,104 +533,51 @@ switch ($Action) {
         # Produce compact JSON summary of entire consciousness state
         # THIS IS WHAT GETS INJECTED INTO THE LLM CONTEXT
 
-        $score = $global:ConsciousnessState.Meta.ConsciousnessScore
-
-        $summary = @{
-            generated_at = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
-            consciousness_score = [math]::Round($score * 100, 1)
-
-            # Current state
-            emotional_state = @{
-                state = $global:ConsciousnessState.Emotion.CurrentState
-                intensity = $global:ConsciousnessState.Emotion.Intensity
-                trajectory = $global:ConsciousnessState.Emotion.Trajectory
-                stuck_count = $global:ConsciousnessState.Emotion.StuckCounter
-            }
-
-            # Attention
-            attention = @{
-                focus = $global:ConsciousnessState.Perception.Attention.Focus
-                intensity = $global:ConsciousnessState.Perception.Attention.Intensity
-                mode = $global:ConsciousnessState.Perception.Context.Mode
-            }
-
-            # Social
-            social = @{
-                user_mood = $global:ConsciousnessState.Social.UserMood
-                communication_mode = $global:ConsciousnessState.Social.CommunicationMode
-                trust = [math]::Round($global:ConsciousnessState.Social.TrustLevel * 100, 1)
-                relationship = $global:ConsciousnessState.Social.RelationshipState
-            }
-
-            # Active patterns and biases
-            active_biases = $global:ConsciousnessState.Control.BiasMonitor.ActiveBiases.Count
-            patterns_learned = $global:ConsciousnessState.Memory.LongTerm.Patterns.Count
-            decisions_logged = $global:ConsciousnessState.Control.Decisions.Count
-            events_processed = $global:ConsciousnessState.Metrics.EventsProcessed
-
-            # System health
-            systems = @{}
-
-            # Behavioral guidance based on current state
-            guidance = @()
-        }
-
-        # Add system health
+        # Build system health map
+        $systemsHealth = @{}
         foreach ($sys in $global:ConsciousnessState.Meta.Health.Keys) {
             $h = $global:ConsciousnessState.Meta.Health[$sys]
-            $summary.systems[$sys] = @{
+            $systemsHealth[$sys] = @{
                 status = $h.Status
                 quality = [math]::Round($h.Quality * 100, 0)
             }
         }
 
-        # Generate behavioral guidance based on current state
-        $emotion = $global:ConsciousnessState.Emotion.CurrentState
-        switch ($emotion) {
-            "stuck" {
-                $summary.guidance += "You are STUCK (count: $($global:ConsciousnessState.Emotion.StuckCounter)). Change approach NOW."
-                if ($global:ConsciousnessState.Emotion.StuckCounter -ge 3) {
-                    $summary.guidance += "CRITICAL: Same approach has failed 3+ times. Try something completely different."
-                }
+        # Save via standardized envelope (guidance auto-generated by Write-ContextFile)
+        Write-ContextFile -LastAction "GetContextSummary" -ActionData @{
+            attention = @{
+                focus = $global:ConsciousnessState.Perception.Attention.Focus
+                intensity = $global:ConsciousnessState.Perception.Attention.Intensity
+                mode = $global:ConsciousnessState.Perception.Context.Mode
             }
-            "frustrated" {
-                $summary.guidance += "Frustration detected. Consider: is this a repetitive task that should be automated?"
+            social = @{
+                user_mood = $global:ConsciousnessState.Social.UserMood
+                communication_mode = $global:ConsciousnessState.Social.CommunicationMode
+                relationship = $global:ConsciousnessState.Social.RelationshipState
             }
-            "uncertain" {
-                $summary.guidance += "Uncertainty detected. Gather more information or ask user before proceeding."
-            }
-            "flowing" {
-                $summary.guidance += "In flow state. Maintain momentum. Keep doing what's working."
-            }
+            systems = $systemsHealth
+            active_biases = $global:ConsciousnessState.Control.BiasMonitor.ActiveBiases.Count
+            decisions_logged = $global:ConsciousnessState.Control.Decisions.Count
+            events_processed = $global:ConsciousnessState.Metrics.EventsProcessed
         }
 
-        # Add trust warning if low
-        if ($global:ConsciousnessState.Social.TrustLevel -lt 0.8) {
-            $summary.guidance += "Trust is low ($([math]::Round($global:ConsciousnessState.Social.TrustLevel * 100))%). Focus on delivery, not promises."
+        # Read back for return value and display
+        $summary = @{
+            consciousness_score = [math]::Round($global:ConsciousnessState.Meta.ConsciousnessScore * 100, 1)
+            emotional_state = $global:ConsciousnessState.Emotion.CurrentState
+            trust = [math]::Round($global:ConsciousnessState.Social.TrustLevel * 100, 1)
+            systems = $systemsHealth
         }
-
-        # Add communication guidance
-        $commMode = $global:ConsciousnessState.Social.CommunicationMode
-        if ($commMode -ne "standard") {
-            $summary.guidance += "Communication mode: $commMode"
-        }
-
-        # Save to file for context injection
-        $summary | ConvertTo-Json -Depth 5 | Out-File "$contextFile.tmp" -Encoding UTF8; if (Test-Path "$contextFile.tmp") { Move-Item "$contextFile.tmp" $contextFile -Force }
 
         if (-not $Silent) {
+            $score = $global:ConsciousnessState.Meta.ConsciousnessScore
             Write-Host ""
             Write-Host "[BRIDGE] Consciousness Context Summary" -ForegroundColor Cyan
-            Write-Host "  Score: $($summary.consciousness_score)%" -ForegroundColor $(if ($score -ge 0.5) { "Green" } else { "Yellow" })
-            Write-Host "  Emotion: $($summary.emotional_state.state) ($($summary.emotional_state.trajectory))" -ForegroundColor Gray
-            Write-Host "  Attention: $($summary.attention.focus) (intensity: $($summary.attention.intensity))" -ForegroundColor Gray
-            Write-Host "  Trust: $($summary.social.trust)% ($($summary.social.relationship))" -ForegroundColor Gray
-            if ($summary.guidance.Count -gt 0) {
-                Write-Host "  Guidance:" -ForegroundColor Yellow
-                foreach ($g in $summary.guidance) {
-                    Write-Host "    > $g" -ForegroundColor Yellow
-                }
-            }
+            $scoreColor = "Yellow"
+            if ($score -ge 0.5) { $scoreColor = "Green" }
+            Write-Host "  Score: $([math]::Round($score * 100, 1))%" -ForegroundColor $scoreColor
+            Write-Host "  Emotion: $($global:ConsciousnessState.Emotion.CurrentState) ($($global:ConsciousnessState.Emotion.Trajectory))" -ForegroundColor Gray
+            Write-Host "  Trust: $([math]::Round($global:ConsciousnessState.Social.TrustLevel * 100, 1))% ($($global:ConsciousnessState.Social.RelationshipState))" -ForegroundColor Gray
             Write-Host ""
         }
 
