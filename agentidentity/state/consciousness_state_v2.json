@@ -2,36 +2,122 @@
     "EventBus":  {
                      "Events":  [
                                     {
-                                        "Timestamp":  "2026-02-12T17:01:12.538Z",
-                                        "Data":  {
-                                                     "task":  "Re-evaluating approach",
-                                                     "intensity":  4
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "perception.attention_changed"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-12T17:01:13.575Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  335.8224
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-12T17:01:18.665Z",
+                                        "Timestamp":  "2026-02-12T17:15:29.748Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  39.12
+                                                     "size_kb":  40.4
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-12T17:01:18.707Z",
+                                        "Timestamp":  "2026-02-12T17:22:09.106Z",
                                         "Data":  {
-                                                     "From":  "stuck",
-                                                     "Timestamp":  "2026-02-12T17:01:18",
+                                                     "elapsed_ms":  733.7036
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:22:14.189Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  40.29
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:22:14.232Z",
+                                        "Data":  {
+                                                     "task":  "Add REST endpoint for user settings",
+                                                     "intensity":  7
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "perception.attention_changed"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:22:14.267Z",
+                                        "Data":  {
+                                                     "From":  "neutral",
+                                                     "Timestamp":  "2026-02-12T17:22:14",
+                                                     "To":  "confident",
+                                                     "Intensity":  6,
+                                                     "Reason":  "Starting new task: Add REST endpoint for user settings"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "emotion.state_changed"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:22:14.523Z",
+                                        "Data":  {
+                                                     "Environment":  "single-agent",
+                                                     "Mode":  "development",
+                                                     "Salience":  [
+                                                                      {
+                                                                          "Score":  0.4,
+                                                                          "Reason":  "2 agents actively working",
+                                                                          "Item":  "Worktrees in use"
+                                                                      }
+                                                                  ]
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "perception.context_updated"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:22:30.997Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  782.9148
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:22:36.503Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  40.61
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:22:37.193Z",
+                                        "Data":  {
+                                                     "Alternatives":  [
+
+                                                                      ],
+                                                     "Confidence":  0.7,
+                                                     "Timestamp":  "2026-02-12T17:22:36",
+                                                     "Reasoning":  "Consistent with existing codebase",
+                                                     "Decision":  "Use repository pattern",
+                                                     "Context":  "development"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "control.decision_logged"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:23:00.360Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  496.3251
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:23:05.479Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  41.36
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-12T17:23:05.564Z",
+                                        "Data":  {
+                                                     "From":  "confident",
+                                                     "Timestamp":  "2026-02-12T17:23:05",
                                                      "To":  "stuck",
                                                      "Intensity":  7,
                                                      "Reason":  "No progress on current approach"
@@ -40,19 +126,16 @@
                                         "Type":  "emotion.state_changed"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-12T17:01:18.723Z",
+                                        "Timestamp":  "2026-02-12T17:23:05.576Z",
                                         "Data":  {
-                                                     "counter":  3,
-                                                     "recommendation":  [
-                                                                            "Change approach completely. What you\u0027re doing is not working.",
-                                                                            "Step back. Restate the problem. Try a different angle."
-                                                                        ]
+                                                     "counter":  1,
+                                                     "recommendation":  "Note: getting stuck. Consider alternatives."
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "emotion.stuck_detected"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-12T17:01:18.738Z",
+                                        "Timestamp":  "2026-02-12T17:23:05.587Z",
                                         "Data":  {
                                                      "task":  "Re-evaluating approach",
                                                      "intensity":  4
@@ -61,91 +144,27 @@
                                         "Type":  "perception.attention_changed"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-12T17:01:26.650Z",
+                                        "Timestamp":  "2026-02-12T17:23:17.021Z",
                                         "Data":  {
-                                                     "elapsed_ms":  342.12620000000004
+                                                     "elapsed_ms":  501.70300000000003
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "system.initialized"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-12T17:01:31.726Z",
+                                        "Timestamp":  "2026-02-12T17:23:22.117Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  38.83
+                                                     "size_kb":  41.02
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-12T17:01:31.764Z",
+                                        "Timestamp":  "2026-02-12T17:23:22.174Z",
                                         "Data":  {
                                                      "From":  "stuck",
-                                                     "Timestamp":  "2026-02-12T17:01:31",
-                                                     "To":  "frustrated",
-                                                     "Intensity":  4,
-                                                     "Reason":  "Task completed with outcome: failure"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "emotion.state_changed"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-12T17:01:31.843Z",
-                                        "Data":  {
-                                                     "Context":  "development",
-                                                     "Timestamp":  "2026-02-12T17:01:31",
-                                                     "Data":  {
-                                                                  "Outcome":  "failure",
-                                                                  "Lesson":  "Test trust decrease",
-                                                                  "Task":  "",
-                                                                  "Project":  ""
-                                                              },
-                                                     "Type":  "lesson"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "memory.stored"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-12T17:01:31.918Z",
-                                        "Data":  {
-                                                     "new":  0.95,
-                                                     "old":  1,
-                                                     "reason":  "Task outcome: failure",
-                                                     "delta":  -0.05
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "social.trust_updated"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-12T17:01:43.961Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  393.7681
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-12T17:02:03.418Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  338.5226
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-12T17:02:08.483Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  39.62
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-12T17:02:08.537Z",
-                                        "Data":  {
-                                                     "From":  "frustrated",
-                                                     "Timestamp":  "2026-02-12T17:02:08",
+                                                     "Timestamp":  "2026-02-12T17:23:22",
                                                      "To":  "flowing",
                                                      "Intensity":  8,
                                                      "Reason":  "Task completed with outcome: success"
@@ -154,15 +173,15 @@
                                         "Type":  "emotion.state_changed"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-12T17:02:08.606Z",
+                                        "Timestamp":  "2026-02-12T17:23:22.297Z",
                                         "Data":  {
                                                      "Context":  "development",
-                                                     "Timestamp":  "2026-02-12T17:02:08",
+                                                     "Timestamp":  "2026-02-12T17:23:22",
                                                      "Data":  {
                                                                   "Outcome":  "success",
-                                                                  "Project":  "",
                                                                   "Task":  "",
-                                                                  "Lesson":  "All 5 bugs fixed: StuckCounter increment, Decisions persistence, Trust delta, frontend patterns, context schema v2"
+                                                                  "Lesson":  "Repository pattern works well",
+                                                                  "Project":  ""
                                                               },
                                                      "Type":  "lesson"
                                                  },
@@ -170,10 +189,10 @@
                                         "Type":  "memory.stored"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-12T17:02:08.647Z",
+                                        "Timestamp":  "2026-02-12T17:23:22.347Z",
                                         "Data":  {
-                                                     "new":  0.97,
-                                                     "old":  0.95,
+                                                     "new":  0.99,
+                                                     "old":  0.97,
                                                      "reason":  "Task outcome: success",
                                                      "delta":  0.02
                                                  },
@@ -181,29 +200,12 @@
                                         "Type":  "social.trust_updated"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-12T17:13:13.476Z",
+                                        "Timestamp":  "2026-02-12T17:23:33.766Z",
                                         "Data":  {
-                                                     "elapsed_ms":  470.59970000000004
+                                                     "elapsed_ms":  464.5709
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-12T17:15:24.670Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  414.3004
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-12T17:15:29.748Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  40.4
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
                                     }
                                 ],
                      "Handlers":  {
@@ -243,15 +245,25 @@
                                           "Reasoning":  "TF-IDF cosine similarity provides better recall than keyword matching",
                                           "Decision":  "Use semantic search for pattern matching",
                                           "Context":  "development"
+                                      },
+                                      {
+                                          "Alternatives":  [
+
+                                                           ],
+                                          "Confidence":  0.7,
+                                          "Timestamp":  "2026-02-12T17:22:36",
+                                          "Reasoning":  "Consistent with existing codebase",
+                                          "Decision":  "Use repository pattern",
+                                          "Context":  "development"
                                       }
                                   ],
                     "BiasMonitor":  {
-                                        "ActiveBiases":  [
-
-                                                         ],
                                         "CorrectionsApplied":  [
 
-                                                               ]
+                                                               ],
+                                        "ActiveBiases":  [
+
+                                                         ]
                                     },
                     "Assumptions":  [
 
@@ -265,9 +277,9 @@
                                                     ],
                                      "DriftScore":  1,
                                      "AlignmentCheck":  {
-                                                            "value":  "\/Date(1770912924287)\/",
+                                                            "value":  "\/Date(1770913413334)\/",
                                                             "DisplayHint":  2,
-                                                            "DateTime":  "donderdag 12 februari 2026 17:15:24"
+                                                            "DateTime":  "donderdag 12 februari 2026 17:23:33"
                                                         }
                                  }
                 },
@@ -301,7 +313,7 @@
                                     "SemanticIndexPointer":  null
                                 },
                    "Working":  {
-                                   "SessionContext":  "Session started at 17:15",
+                                   "SessionContext":  "Session started at 17:23",
                                    "ActiveThoughts":  [
 
                                                       ],
@@ -311,9 +323,9 @@
                                                             "Timestamp":  "2026-02-11T13:25:27",
                                                             "Data":  {
                                                                          "Outcome":  "success",
+                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods",
                                                                          "Task":  "",
-                                                                         "Project":  "",
-                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods"
+                                                                         "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -322,8 +334,8 @@
                                                             "Timestamp":  "2026-02-11T13:25:43",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Project":  "",
                                                                          "Task":  "",
+                                                                         "Project":  "",
                                                                          "Lesson":  "Always check Program.cs for DI, not extension methods"
                                                                      },
                                                             "Type":  "lesson"
@@ -333,9 +345,9 @@
                                                             "Timestamp":  "2026-02-12T14:39:29",
                                                             "Data":  {
                                                                          "Outcome":  "success",
+                                                                         "Project":  "",
                                                                          "Task":  "",
-                                                                         "Lesson":  "Full consciousness feedback loop verified: OnTaskStart initializes context and returns patterns, OnDecision logs decisions with bias monitoring, OnStuck escalates progressively (1=note, 2=step back, 3=force change), OnTaskEnd stores lessons. All 4 memory layers functional.",
-                                                                         "Project":  ""
+                                                                         "Lesson":  "Full consciousness feedback loop verified: OnTaskStart initializes context and returns patterns, OnDecision logs decisions with bias monitoring, OnStuck escalates progressively (1=note, 2=step back, 3=force change), OnTaskEnd stores lessons. All 4 memory layers functional."
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -344,9 +356,9 @@
                                                             "Timestamp":  "2026-02-12T15:09:51",
                                                             "Data":  {
                                                                          "Outcome":  "success",
+                                                                         "Lesson":  "Prediction engine rebuilt with 40+ patterns from reflection.log. Dynamic loading from failure-patterns.json replaces hardcoded patterns.",
                                                                          "Task":  "",
-                                                                         "Project":  "",
-                                                                         "Lesson":  "Prediction engine rebuilt with 40+ patterns from reflection.log. Dynamic loading from failure-patterns.json replaces hardcoded patterns."
+                                                                         "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -355,8 +367,8 @@
                                                             "Timestamp":  "2026-02-12T16:44:52",
                                                             "Data":  {
                                                                          "Outcome":  "failure",
-                                                                         "Lesson":  "CSS grid not supported on old Samsung browser",
                                                                          "Task":  "",
+                                                                         "Lesson":  "CSS grid not supported on old Samsung browser",
                                                                          "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
@@ -366,8 +378,8 @@
                                                             "Timestamp":  "2026-02-12T17:01:31",
                                                             "Data":  {
                                                                          "Outcome":  "failure",
-                                                                         "Lesson":  "Test trust decrease",
                                                                          "Task":  "",
+                                                                         "Lesson":  "Test trust decrease",
                                                                          "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
@@ -377,9 +389,20 @@
                                                             "Timestamp":  "2026-02-12T17:02:08",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Project":  "",
                                                                          "Task":  "",
+                                                                         "Project":  "",
                                                                          "Lesson":  "All 5 bugs fixed: StuckCounter increment, Decisions persistence, Trust delta, frontend patterns, context schema v2"
+                                                                     },
+                                                            "Type":  "lesson"
+                                                        },
+                                                        {
+                                                            "Context":  "development",
+                                                            "Timestamp":  "2026-02-12T17:23:22",
+                                                            "Data":  {
+                                                                         "Outcome":  "success",
+                                                                         "Task":  "",
+                                                                         "Lesson":  "Repository pattern works well",
+                                                                         "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
                                                         }
@@ -387,18 +410,18 @@
                                }
                },
     "Prediction":  {
-                       "FutureSelf":  {
-                                          "Paths":  {
-
-                                                    },
-                                          "Confidence":  0.5
-                                      },
                        "LoadForecast":  {
                                             "Current":  5,
                                             "PredictedPeak":  7,
                                             "PredictedTime":  null,
                                             "Bottleneck":  null
                                         },
+                       "FutureSelf":  {
+                                          "Paths":  {
+
+                                                    },
+                                          "Confidence":  0.5
+                                      },
                        "Anticipations":  [
 
                                          ]
@@ -435,38 +458,14 @@
                    },
     "Emotion":  {
                     "LastTransition":  {
-                                           "From":  "frustrated",
-                                           "Timestamp":  "2026-02-12T17:02:08",
+                                           "From":  "stuck",
+                                           "Timestamp":  "2026-02-12T17:23:22",
                                            "To":  "flowing",
                                            "Intensity":  8,
                                            "Reason":  "Task completed with outcome: success"
                                        },
                     "StuckCounter":  0,
-                    "Intensity":  5,
-                    "CurrentState":  "neutral",
-                    "Trajectory":  "stable",
                     "History":  [
-                                    {
-                                        "From":  "neutral",
-                                        "Timestamp":  "2026-02-12T14:36:08",
-                                        "To":  "confident",
-                                        "Intensity":  6,
-                                        "Reason":  "Starting new task: Testing consciousness system integrity"
-                                    },
-                                    {
-                                        "From":  "confident",
-                                        "Timestamp":  "2026-02-12T14:38:50",
-                                        "To":  "stuck",
-                                        "Intensity":  7,
-                                        "Reason":  "No progress on current approach"
-                                    },
-                                    {
-                                        "From":  "stuck",
-                                        "Timestamp":  "2026-02-12T14:39:01",
-                                        "To":  "stuck",
-                                        "Intensity":  7,
-                                        "Reason":  "No progress on current approach"
-                                    },
                                     {
                                         "From":  "stuck",
                                         "Timestamp":  "2026-02-12T14:39:13",
@@ -585,15 +584,39 @@
                                         "To":  "flowing",
                                         "Intensity":  8,
                                         "Reason":  "Task completed with outcome: success"
+                                    },
+                                    {
+                                        "From":  "neutral",
+                                        "Timestamp":  "2026-02-12T17:22:14",
+                                        "To":  "confident",
+                                        "Intensity":  6,
+                                        "Reason":  "Starting new task: Add REST endpoint for user settings"
+                                    },
+                                    {
+                                        "From":  "confident",
+                                        "Timestamp":  "2026-02-12T17:23:05",
+                                        "To":  "stuck",
+                                        "Intensity":  7,
+                                        "Reason":  "No progress on current approach"
+                                    },
+                                    {
+                                        "From":  "stuck",
+                                        "Timestamp":  "2026-02-12T17:23:22",
+                                        "To":  "flowing",
+                                        "Intensity":  8,
+                                        "Reason":  "Task completed with outcome: success"
                                     }
-                                ]
+                                ],
+                    "Intensity":  8,
+                    "Trajectory":  "rising",
+                    "CurrentState":  "flowing"
                 },
     "Initialized":  true,
     "Meta":  {
                  "Observation":  {
                                      "CurrentMetaLevel":  2,
-                                     "RecursionDepth":  4,
-                                     "Observing":  "Scoring self (depth 4)",
+                                     "RecursionDepth":  15,
+                                     "Observing":  "Scoring self (depth 15)",
                                      "StrangeLoopDetected":  false
                                  },
                  "Health":  {
@@ -611,7 +634,7 @@
                                                },
                                 "Meta":  {
                                              "Status":  "active",
-                                             "Quality":  0.8
+                                             "Quality":  1
                                          },
                                 "Control":  {
                                                 "Status":  "active",
@@ -626,31 +649,31 @@
                                                "Quality":  0.3
                                            }
                             },
-                 "ConsciousnessScore":  0.72600000000000009
+                 "ConsciousnessScore":  0.756
              },
     "Social":  {
                    "RelationshipState":  "collaborative",
                    "UserMood":  "unknown",
                    "LastInteraction":  null,
-                   "TrustLevel":  0.97,
+                   "TrustLevel":  0.99,
                    "CommunicationMode":  "standard",
                    "InteractionCount":  0
                },
     "Metrics":  {
-                    "SaveCount":  60,
-                    "AccessCount":  3,
+                    "SaveCount":  64,
+                    "AccessCount":  12,
                     "AverageAccessTime_ms":  0,
-                    "EventsProcessed":  220,
+                    "EventsProcessed":  239,
                     "LastSave":  {
-                                     "value":  "\/Date(1770912929751)\/",
                                      "DisplayHint":  2,
-                                     "DateTime":  "donderdag 12 februari 2026 17:15:29"
+                                     "DateTime":  "donderdag 12 februari 2026 17:23:22",
+                                     "value":  "\/Date(1770913402122)\/"
                                  }
                 },
     "Layer2Initialized":  true,
     "LoadedAt":  {
-                     "value":  "\/Date(1770912924662)\/",
+                     "value":  "\/Date(1770913413754)\/",
                      "DisplayHint":  2,
-                     "DateTime":  "donderdag 12 februari 2026 17:15:24"
+                     "DateTime":  "donderdag 12 februari 2026 17:23:33"
                  }
 }
