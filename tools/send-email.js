@@ -9,6 +9,7 @@
 const nodemailer = require('nodemailer');
 const fs = require('fs');
 const path = require('path');
+const { getSmtpConfig } = require('./lib/vault-config');
 
 // Parse command line arguments
 const args = process.argv.slice(2);
@@ -33,21 +34,8 @@ const config = {
   attachments: options.attachments ? options.attachments.split(',') : []
 };
 
-// SMTP configuration for info@martiendejong.nl
-const transporter = nodemailer.createTransport({
-  host: 'mail.zxcs.nl',
-  port: 465,
-  secure: true, // Use SSL
-  auth: {
-    user: 'info@martiendejong.nl',
-    pass: 'hLPFy6MdUnfEDbYTwXps'
-  },
-  tls: {
-    rejectUnauthorized: false
-  },
-  connectionTimeout: 10000,
-  greetingTimeout: 10000
-});
+// SMTP configuration from vault
+const transporter = nodemailer.createTransport(getSmtpConfig());
 
 async function sendEmail() {
   if (!config.to || !config.subject || !config.body) {

@@ -4,17 +4,9 @@
  */
 
 const Imap = require('imap');
+const { getImapConfig } = require('./lib/vault-config');
 
-const config = {
-  user: 'info@martiendejong.nl',
-  password: 'hLPFy6MdUnfEDbYTwXps',
-  host: 'mail.zxcs.nl',
-  port: 993,
-  tls: true,
-  tlsOptions: { rejectUnauthorized: false },
-  authTimeout: 30000,
-  connTimeout: 30000
-};
+const config = getImapConfig();
 
 // UIDs to move to spam (from previous query - LinkedIn, ov-chipkaart, 2x Coinbase phishing)
 const uidsToSpam = process.argv.slice(2).map(Number).filter(n => n > 0);

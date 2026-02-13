@@ -1,9 +1,13 @@
 param(
     [string]$SiteUrl = "https://artrevisionist.com",
-    [string]$Username = "wreckingball",
-    [string]$Password = "Th1s1sSp4rt4!",
+    [string]$Username = "",
+    [string]$Password = "",
     [string]$ThemeZip = "C:\Users\HP\Downloads\artrevisionist-wp-theme.zip"
 )
+
+# Load credentials from vault if not provided
+if (-not $Username) { $Username = & "$PSScriptRoot\vault.ps1" -Action get -Service admin -Field username -Silent }
+if (-not $Password) { $Password = & "$PSScriptRoot\vault.ps1" -Action get -Service admin -Field password -Silent }
 
 Add-Type -AssemblyName System.Web
 $ErrorActionPreference = "Stop"

@@ -91,8 +91,8 @@ $appSettings = @{
     }
     Authentication = @{
         Enabled = $true
-        Username = "bosi"
-        Password = "Th1s1sSp4rt4!"
+        Username = (& "$PSScriptRoot\vault.ps1" -Action get -Service orchestration -Field username -Silent)
+        Password = (& "$PSScriptRoot\vault.ps1" -Action get -Service orchestration -Field password -Silent)
         Realm = "Hazina Agentic Orchestration"
     }
     AgenticOrchestration = @{
@@ -194,7 +194,9 @@ Write-Output ""
 Write-Output "=== STEP 8: Verify ==="
 Start-Sleep -Seconds 3
 try {
-    $auth = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("bosi:Th1s1sSp4rt4!"))
+    $orchUser = & "$PSScriptRoot\vault.ps1" -Action get -Service orchestration -Field username -Silent
+    $orchPass = & "$PSScriptRoot\vault.ps1" -Action get -Service orchestration -Field password -Silent
+    $auth = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("${orchUser}:${orchPass}"))
     $headers = @{ Authorization = "Basic $auth" }
     $response = Invoke-WebRequest -Uri "https://localhost:5123/health" -Headers $headers -SkipCertificateCheck -TimeoutSec 10 -UseBasicParsing
     Write-Output "Health check: $($response.StatusCode) - $($response.Content)"

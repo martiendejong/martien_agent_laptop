@@ -5,17 +5,9 @@
 
 const Imap = require('imap');
 const fs = require('fs');
+const { getImapConfig } = require('./lib/vault-config');
 
-const config = {
-  user: 'info@martiendejong.nl',
-  password: 'hLPFy6MdUnfEDbYTwXps',
-  host: 'mail.zxcs.nl',
-  port: 993,
-  tls: true,
-  tlsOptions: { rejectUnauthorized: false },
-  authTimeout: 30000,
-  connTimeout: 30000
-};
+const config = getImapConfig();
 
 const to = process.argv[2];
 const subject = process.argv[3];

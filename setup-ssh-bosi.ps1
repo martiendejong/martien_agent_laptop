@@ -16,14 +16,15 @@ if ($sshCapability.State -ne 'Installed') {
 
 # 2. Create user 'bosi' if not exists
 Write-Host "`n[2/5] Creating user 'bosi'..." -ForegroundColor Yellow
+$vaultPass = & "C:\scripts\tools\vault.ps1" -Action get -Service admin -Field password -Silent
 $userExists = Get-LocalUser -Name 'bosi' -ErrorAction SilentlyContinue
 if (-not $userExists) {
-    $password = ConvertTo-SecureString 'Th1s1sSp4rt4!' -AsPlainText -Force
+    $password = ConvertTo-SecureString $vaultPass -AsPlainText -Force
     New-LocalUser -Name 'bosi' -Password $password -FullName 'Bosi SSH User' -Description 'SSH access user' -PasswordNeverExpires
     Write-Host "User 'bosi' created." -ForegroundColor Green
 } else {
     Write-Host "User 'bosi' already exists. Updating password..." -ForegroundColor Yellow
-    $password = ConvertTo-SecureString 'Th1s1sSp4rt4!' -AsPlainText -Force
+    $password = ConvertTo-SecureString $vaultPass -AsPlainText -Force
     Set-LocalUser -Name 'bosi' -Password $password
     Write-Host "Password updated." -ForegroundColor Green
 }
@@ -61,7 +62,7 @@ Connection details:
   Host: 192.168.1.161
   Port: 22
   User: bosi
-  Pass: Th1s1sSp4rt4!
+  Pass: (from vault:admin)
 
 Test locally:
   ssh bosi@localhost

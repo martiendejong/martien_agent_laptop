@@ -99,7 +99,7 @@
                       "purpose":  "Encrypted credentials storage"
                   },
                   {
-                      "path":  "C:\\scripts\\tools\\services-query.ps1",
+                      "path":  "C:\\scripts\\tools\\services-query-v2.ps1",
                       "name":  "services-query",
                       "purpose":  "Query running services registry"
                   }

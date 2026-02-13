@@ -84,6 +84,6 @@ if not exist "%CLAUDE_CMD%" (
     REM Fallback to PATH-based claude (works when running as desktop user)
     set CLAUDE_CMD=claude
 )
-"%CLAUDE_CMD%" --dangerously-skip-permissions --append-system-prompt "%SYSTEMPROMPT%" --model opus
+"%CLAUDE_CMD%" --dangerously-skip-permissions --append-system-prompt "%SYSTEMPROMPT%" --model sonnet
 
 pause

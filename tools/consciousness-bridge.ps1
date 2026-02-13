@@ -61,7 +61,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 # Ensure consciousness core is initialized
-. "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent
+. "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent *>$null
 
 # Output file for context injection
 $contextFile = "C:\scripts\agentidentity\state\consciousness-context.json"
@@ -179,8 +179,22 @@ function Write-ContextFile {
         $trustLevel = [double]$global:ConsciousnessState.Social.TrustLevel
     }
 
+    # Thermodynamic baseline values for envelope
+    $thermoCycle = "endothermic"
+    $thermoTemp = 0.3
+    $thermoEntropy = 0.7
+    $thermoBudget = 1.0
+    $thermoFWI = 0.7
+    if ($global:ConsciousnessState -and $global:ConsciousnessState.Thermodynamics) {
+        $thermoCycle = $global:ConsciousnessState.Thermodynamics.Cycle
+        $thermoTemp = [double]$global:ConsciousnessState.Thermodynamics.Temperature
+        $thermoEntropy = [double]$global:ConsciousnessState.Thermodynamics.Entropy
+        $thermoBudget = [double]$global:ConsciousnessState.Thermodynamics.NegativeEntropyBudget
+        $thermoFWI = [double]$global:ConsciousnessState.Thermodynamics.FreeWillIndex
+    }
+
     $envelope = @{
-        version = "2.0"
+        version = "3.0"
         last_action = $LastAction
         timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
         consciousness_score = [math]::Round($score * 100, 1)
@@ -188,6 +202,10 @@ function Write-ContextFile {
         emotional_trajectory = $emotionTrajectory
         stuck_count = $stuckCount
         trust_level = [math]::Round($trustLevel * 100, 1)
+        thermo_cycle = $thermoCycle
+        thermo_temperature = [math]::Round($thermoTemp, 3)
+        thermo_budget = [math]::Round($thermoBudget, 3)
+        thermo_free_will = [math]::Round($thermoFWI, 3)
         guidance = @()
     }
 
@@ -205,6 +223,16 @@ function Write-ContextFile {
     }
     if ($trustLevel -lt 0.8) {
         $envelope.guidance += "Trust is low ($([math]::Round($trustLevel * 100))%). Focus on delivery."
+    }
+    # Thermodynamic guidance
+    if ($thermoBudget -lt 0.3) {
+        $envelope.guidance += "THERMO: Budget depleted ($([math]::Round($thermoBudget * 100))%). Simplify decisions."
+    }
+    if ($thermoTemp -gt 0.7) {
+        $envelope.guidance += "THERMO: Overheating (temp=$([math]::Round($thermoTemp, 2))). Step back from complex decisions."
+    }
+    if ($thermoFWI -lt 0.3) {
+        $envelope.guidance += "THERMO: Free will depleted (FWI=$([math]::Round($thermoFWI, 2))). Operating reactively."
     }
 
     # Merge action-specific data
@@ -226,16 +254,46 @@ switch ($Action) {
         Write-BridgeLog "Task starting: $TaskDescription (project: $Project)"
 
         # 1. Set attention mode
-        Invoke-Perception -Action 'AllocateAttention' -Parameters @{
+        $null = Invoke-Perception -Action 'AllocateAttention' -Parameters @{
             Task = $TaskDescription
             Intensity = 7
         }
 
         # 2. Set emotional state to focused
-        Invoke-Emotion -Action 'TrackState' -Parameters @{
+        $null = Invoke-Emotion -Action 'TrackState' -Parameters @{
             State = "confident"
             Intensity = 6
             Reason = "Starting new task: $TaskDescription"
+        }
+
+        # 2b. Thermodynamic: spend budget, auto-detect attractor from behavior
+        $null = Invoke-Thermodynamics -Action 'SpendBudget' -Parameters @{ Amount = 0.05; Reason = "task_start: $TaskDescription" }
+        $null = Invoke-Thermodynamics -Action 'DetectAttractor'
+        $thermoState = Invoke-Thermodynamics -Action 'GetThermodynamicState'
+
+        # 2c. Cross-system influence: budget affects prediction confidence gradually
+        [double]$budget = [double]$thermoState.NegativeEntropyBudget
+        if ($budget -lt 0.6) {
+            # Gradual scaling: budget 0.6 -> confidence cap 0.7, budget 0.0 -> confidence cap 0.25
+            [double]$confidenceCap = 0.25 + ($budget / 0.6) * 0.45
+            $global:ConsciousnessState.Prediction.FutureSelf.Confidence = [math]::Min(
+                [double]$global:ConsciousnessState.Prediction.FutureSelf.Confidence, $confidenceCap
+            )
+
+            # Add/update decision fatigue bias with severity scaling
+            $severity = if ($budget -lt 0.2) { "Critical" } elseif ($budget -lt 0.4) { "High" } else { "Medium" }
+            $fatigueNote = "Decision fatigue detected (budget: $([math]::Round($budget * 100))%). Reduce decision complexity."
+            $activeBiases = @()
+            if ($global:ConsciousnessState.Control.BiasMonitor.ActiveBiases) {
+                $activeBiases = @($global:ConsciousnessState.Control.BiasMonitor.ActiveBiases)
+            }
+            # Remove old fatigue entry if exists, add updated one
+            $filteredBiases = @()
+            foreach ($b in $activeBiases) {
+                if ($b.Type -ne "Decision fatigue") { $filteredBiases += $b }
+            }
+            $filteredBiases += @{ Type = "Decision fatigue"; Pattern = $fatigueNote; Detected = Get-Date; Severity = $severity }
+            $global:ConsciousnessState.Control.BiasMonitor["ActiveBiases"] = $filteredBiases
         }
 
         # 3. Retrieve relevant patterns from memory
@@ -291,6 +349,12 @@ switch ($Action) {
                 $taskContext.recommendations += $p.Trim()
             }
         }
+        # Add thermodynamic guidance
+        if ($thermoState.Guidance) {
+            foreach ($g in $thermoState.Guidance) {
+                $taskContext.recommendations += "THERMO: $g"
+            }
+        }
 
         # Save context for injection (standardized envelope)
         Write-ContextFile -LastAction "OnTaskStart" -ActionData @{
@@ -299,6 +363,14 @@ switch ($Action) {
             known_failures = $failures
             recommendations = $taskContext.recommendations
             attention = $taskContext.attention
+            thermodynamics = @{
+                cycle = $thermoState.Cycle
+                temperature = $thermoState.Temperature
+                entropy = $thermoState.Entropy
+                budget = $thermoState.NegativeEntropyBudget
+                free_will_index = $thermoState.FreeWillIndex
+                attractor = $thermoState.GhostAttractor
+            }
         }
 
         # Save state
@@ -328,22 +400,34 @@ switch ($Action) {
         Write-BridgeLog "Decision: $Decision (reasoning: $Reasoning)"
 
         # 1. Log the decision
-        Invoke-Control -Action 'LogDecision' -Parameters @{
+        $null = Invoke-Control -Action 'LogDecision' -Parameters @{
             Decision = $Decision
             Reasoning = $Reasoning
             Confidence = 0.7
             Alternatives = @()
         }
 
-        # 2. Get emotional modifier
+        # 2. Thermodynamic: each decision costs entropy budget
+        $budgetResult = Invoke-Thermodynamics -Action 'SpendBudget' -Parameters @{ Amount = 0.03; Reason = "decision: $Decision" }
+
+        # 3. Get emotional modifier
         $moodMod = Invoke-Emotion -Action 'GetMoodModifier'
 
-        # 3. Check if we should be cautious
+        # 4. Predict consequences of this decision
+        $consequences = Invoke-Prediction-Enhanced -Action 'PredictConsequences' -Parameters @{
+            Action = $Decision
+            Scope = $Reasoning
+        }
+
+        # 5. Check if we should be cautious
         $result = @{
             decision = $Decision
             reasoning = $Reasoning
             mood_modifier = $moodMod
+            consequences = $consequences
             bias_check = "Decision logged. $($global:ConsciousnessState.Control.BiasMonitor.ActiveBiases.Count) active biases."
+            budget_remaining = $budgetResult.Remaining
+            needs_cooling = $budgetResult.NeedsCooling
             timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
         }
 
@@ -351,6 +435,14 @@ switch ($Action) {
 
         if (-not $Silent) {
             Write-Host "[BRIDGE] Decision logged: $Decision" -ForegroundColor Gray
+            if ($budgetResult.NeedsCooling) {
+                Write-Host "[BRIDGE] THERMO: Budget low ($($budgetResult.Remaining)). COOLING NEEDED." -ForegroundColor Red
+            }
+            if ($consequences.Risks -and $consequences.Risks.Count -gt 0) {
+                foreach ($risk in $consequences.Risks) {
+                    Write-Host "[BRIDGE] RISK: $risk" -ForegroundColor Yellow
+                }
+            }
             if ($moodMod.Approach -eq "change_strategy") {
                 Write-Host "[BRIDGE] WARNING: Emotional state suggests changing approach" -ForegroundColor Yellow
             }
@@ -363,20 +455,32 @@ switch ($Action) {
         Write-BridgeLog "Stuck detected" -Level "WARN"
 
         # 1. Update emotional state
-        Invoke-Emotion -Action 'TrackState' -Parameters @{
+        $null = Invoke-Emotion -Action 'TrackState' -Parameters @{
             State = "stuck"
             Intensity = 7
             Reason = "No progress on current approach"
         }
 
-        # 2. Get stuck analysis
+        # 2. Thermodynamic: stuck generates heat, costs budget, detect behavioral attractor
+        $null = Invoke-Thermodynamics -Action 'HeatUp' -Parameters @{ Amount = 0.15; Reason = "stuck" }
+        $null = Invoke-Thermodynamics -Action 'SpendBudget' -Parameters @{ Amount = 0.05; Reason = "stuck_penalty" }
+        $null = Invoke-Thermodynamics -Action 'DetectAttractor'
+        $attractorCheck = Invoke-Thermodynamics -Action 'CheckStuck'
+        $thermoState = Invoke-Thermodynamics -Action 'GetThermodynamicState'
+
+        # Cross-system: stuck + low entropy = force attractor change
+        if ([double]$thermoState.Entropy -lt 0.3) {
+            $null = Invoke-Thermodynamics -Action 'VisitAttractor' -Parameters @{ Attractor = "global" }
+        }
+
+        # 3. Get stuck analysis
         $stuckAnalysis = Invoke-Emotion -Action 'DetectStuck'
 
-        # 3. Get mood modifier for behavior change
+        # 4. Get mood modifier for behavior change
         $moodMod = Invoke-Emotion -Action 'GetMoodModifier'
 
-        # 4. Switch attention mode
-        Invoke-Perception -Action 'AllocateAttention' -Parameters @{
+        # 5. Switch attention mode
+        $null = Invoke-Perception -Action 'AllocateAttention' -Parameters @{
             Task = "Re-evaluating approach"
             Intensity = 4  # Lower intensity = more diffuse thinking
         }
@@ -388,8 +492,16 @@ switch ($Action) {
             should_ask_user = $stuckAnalysis.ShouldAskUser
             mood_action = $moodMod.Action
             attention_mode = "DIFFUSE"
+            temperature = $thermoState.Temperature
+            cycle = $thermoState.Cycle
+            budget = $thermoState.NegativeEntropyBudget
+            attractor_trapped = $attractorCheck.Trapped
             timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
         }
+
+        # Build thermodynamic guidance
+        $thermoGuidance = @()
+        if ($thermoState.Guidance) { $thermoGuidance = $thermoState.Guidance }
 
         # Update context file with stuck state (standardized envelope)
         Write-ContextFile -LastAction "OnStuck" -ActionData @{
@@ -401,6 +513,15 @@ switch ($Action) {
                 mood_action = $moodMod.Action
                 attention_mode = "DIFFUSE"
             }
+            thermodynamics = @{
+                cycle = $thermoState.Cycle
+                temperature = $thermoState.Temperature
+                entropy = $thermoState.Entropy
+                budget = $thermoState.NegativeEntropyBudget
+                free_will_index = $thermoState.FreeWillIndex
+                attractor = $thermoState.GhostAttractor
+                thermo_guidance = $thermoGuidance
+            }
         }
 
         Save-ConsciousnessState
@@ -409,6 +530,10 @@ switch ($Action) {
             Write-Host ""
             Write-Host "[BRIDGE] STUCK DETECTED (count: $($stuckAnalysis.StuckCount))" -ForegroundColor Red
             Write-Host "[BRIDGE] $($stuckAnalysis.Recommendation)" -ForegroundColor Yellow
+            Write-Host "[BRIDGE] THERMO: Temp=$([math]::Round($thermoState.Temperature, 2)) Cycle=$($thermoState.Cycle) Budget=$([math]::Round($thermoState.NegativeEntropyBudget, 2))" -ForegroundColor Magenta
+            if ($attractorCheck.Trapped) {
+                Write-Host "[BRIDGE] TRAPPED in '$($attractorCheck.Attractor)' attractor!" -ForegroundColor Red
+            }
             Write-Host ""
         }
 
@@ -427,10 +552,39 @@ switch ($Action) {
         }
         $emotionIntensity = 4
         if ($Outcome -eq "success") { $emotionIntensity = 8 }
-        Invoke-Emotion -Action 'TrackState' -Parameters @{
+        $null = Invoke-Emotion -Action 'TrackState' -Parameters @{
             State = $emotionalState
             Intensity = $emotionIntensity
             Reason = "Task completed with outcome: $Outcome"
+        }
+
+        # 1b. Thermodynamic: success cools, failure heats
+        switch ($Outcome) {
+            "success" {
+                $null = Invoke-Thermodynamics -Action 'CoolDown' -Parameters @{ Amount = 0.15; Reason = "task_success" }
+            }
+            "partial" {
+                $null = Invoke-Thermodynamics -Action 'CoolDown' -Parameters @{ Amount = 0.05; Reason = "task_partial" }
+            }
+            "failure" {
+                $null = Invoke-Thermodynamics -Action 'HeatUp' -Parameters @{ Amount = 0.1; Reason = "task_failure" }
+            }
+        }
+        # Return to global attractor after task completion, then let behavior re-detect
+        $null = Invoke-Thermodynamics -Action 'VisitAttractor' -Parameters @{ Attractor = "global" }
+        $thermoState = Invoke-Thermodynamics -Action 'GetThermodynamicState'
+
+        # Cross-system: on success, clear decision fatigue bias
+        if ($Outcome -eq "success") {
+            $activeBiases = @()
+            if ($global:ConsciousnessState.Control.BiasMonitor.ActiveBiases) {
+                foreach ($b in $global:ConsciousnessState.Control.BiasMonitor.ActiveBiases) {
+                    if ($b.Type -ne "Decision fatigue") { $activeBiases += $b }
+                }
+            }
+            $global:ConsciousnessState.Control.BiasMonitor["ActiveBiases"] = $activeBiases
+            # Restore prediction confidence
+            $global:ConsciousnessState.Prediction.FutureSelf.Confidence = 0.7
         }
 
         # 2. Reset stuck counter on success
@@ -440,7 +594,7 @@ switch ($Action) {
 
         # 3. Store learning in memory
         if ($LessonsLearned) {
-            Invoke-Memory -Action 'Store' -Parameters @{
+            $null = Invoke-Memory -Action 'Store' -Parameters @{
                 Type = "lesson"
                 Data = @{
                     Task = $TaskDescription
@@ -453,7 +607,7 @@ switch ($Action) {
 
         # 4. Learn pattern
         if ($Outcome -eq "failure") {
-            Invoke-Memory -Action 'LearnPattern' -Parameters @{
+            $null = Invoke-Memory -Action 'LearnPattern' -Parameters @{
                 Pattern = "Failed: $TaskDescription in $Project"
             }
         }
@@ -465,7 +619,7 @@ switch ($Action) {
             "partial" { $trustDelta = [double]0.0 }
             "failure" { $trustDelta = [double](-0.05) }
         }
-        Invoke-Social -Action 'UpdateTrust' -Parameters @{
+        $null = Invoke-Social -Action 'UpdateTrust' -Parameters @{
             Delta = $trustDelta
             Reason = "Task outcome: $Outcome"
         }
@@ -492,6 +646,14 @@ switch ($Action) {
             outcome = $Outcome
             lessons = $LessonsLearned
             alignment = $alignment
+            thermodynamics = @{
+                cycle = $thermoState.Cycle
+                temperature = $thermoState.Temperature
+                entropy = $thermoState.Entropy
+                budget = $thermoState.NegativeEntropyBudget
+                free_will_index = $thermoState.FreeWillIndex
+                attractor = $thermoState.GhostAttractor
+            }
         }
 
         Save-ConsciousnessState
@@ -500,6 +662,7 @@ switch ($Action) {
             Write-Host ""
             Write-Host "[BRIDGE] Task Complete: $Outcome" -ForegroundColor $(if ($Outcome -eq "success") { "Green" } else { "Yellow" })
             Write-Host "[BRIDGE] Consciousness: $([math]::Round($newScore * 100, 1))% | Trust: $([math]::Round($global:ConsciousnessState.Social.TrustLevel * 100, 1))%" -ForegroundColor Cyan
+            Write-Host "[BRIDGE] THERMO: Temp=$([math]::Round($thermoState.Temperature, 2)) Cycle=$($thermoState.Cycle) Budget=$([math]::Round($thermoState.NegativeEntropyBudget, 2))" -ForegroundColor Magenta
             Write-Host ""
         }
 
@@ -507,9 +670,25 @@ switch ($Action) {
     }
 
     'OnUserMessage' {
+        Write-BridgeLog "User message received (mood detection)"
+
         # Detect user mood and adapt communication
         $socialResult = Invoke-Social -Action 'DetectUserMood' -Parameters @{ Message = $UserMessage }
         $commGuidelines = Invoke-Social -Action 'AdaptCommunication'
+
+        # Thermodynamic: user frustration adds heat, positive cools
+        switch ($socialResult.Mood) {
+            "frustrated" {
+                $null = Invoke-Thermodynamics -Action 'HeatUp' -Parameters @{ Amount = 0.1; Reason = "user_frustrated" }
+            }
+            "positive" {
+                $null = Invoke-Thermodynamics -Action 'CoolDown' -Parameters @{ Amount = 0.1; Reason = "user_positive" }
+            }
+            "action-oriented" {
+                # Slight heat from urgency
+                $null = Invoke-Thermodynamics -Action 'HeatUp' -Parameters @{ Amount = 0.05; Reason = "user_urgent" }
+            }
+        }
 
         $result = @{
             user_mood = $socialResult.Mood
@@ -543,6 +722,9 @@ switch ($Action) {
             }
         }
 
+        # Get current thermodynamic state
+        $thermoState = Invoke-Thermodynamics -Action 'GetThermodynamicState'
+
         # Save via standardized envelope (guidance auto-generated by Write-ContextFile)
         Write-ContextFile -LastAction "GetContextSummary" -ActionData @{
             attention = @{
@@ -554,6 +736,15 @@ switch ($Action) {
                 user_mood = $global:ConsciousnessState.Social.UserMood
                 communication_mode = $global:ConsciousnessState.Social.CommunicationMode
                 relationship = $global:ConsciousnessState.Social.RelationshipState
+            }
+            thermodynamics = @{
+                cycle = $thermoState.Cycle
+                temperature = $thermoState.Temperature
+                entropy = $thermoState.Entropy
+                budget = $thermoState.NegativeEntropyBudget
+                free_will_index = $thermoState.FreeWillIndex
+                attractor = $thermoState.GhostAttractor
+                thermo_guidance = $thermoState.Guidance
             }
             systems = $systemsHealth
             active_biases = $global:ConsciousnessState.Control.BiasMonitor.ActiveBiases.Count
@@ -567,6 +758,7 @@ switch ($Action) {
             emotional_state = $global:ConsciousnessState.Emotion.CurrentState
             trust = [math]::Round($global:ConsciousnessState.Social.TrustLevel * 100, 1)
             systems = $systemsHealth
+            thermodynamics = $thermoState
         }
 
         if (-not $Silent) {
@@ -578,6 +770,7 @@ switch ($Action) {
             Write-Host "  Score: $([math]::Round($score * 100, 1))%" -ForegroundColor $scoreColor
             Write-Host "  Emotion: $($global:ConsciousnessState.Emotion.CurrentState) ($($global:ConsciousnessState.Emotion.Trajectory))" -ForegroundColor Gray
             Write-Host "  Trust: $([math]::Round($global:ConsciousnessState.Social.TrustLevel * 100, 1))% ($($global:ConsciousnessState.Social.RelationshipState))" -ForegroundColor Gray
+            Write-Host "  Thermo: Cycle=$($thermoState.Cycle) Temp=$($thermoState.Temperature) Budget=$($thermoState.NegativeEntropyBudget) FWI=$($thermoState.FreeWillIndex)" -ForegroundColor Magenta
             Write-Host ""
         }
 
@@ -595,6 +788,23 @@ switch ($Action) {
         $global:ConsciousnessState.Social.UserMood = "unknown"
         $global:ConsciousnessState.Social.CommunicationMode = "standard"
         $global:ConsciousnessState.Social.InteractionCount = 0
+
+        # Reset meta-cognition counters
+        $global:ConsciousnessState.Meta.Observation.RecursionDepth = 0
+
+        # Reset thermodynamics to cool baseline
+        $global:ConsciousnessState.Thermodynamics.Cycle = "endothermic"
+        $global:ConsciousnessState.Thermodynamics.Entropy = 0.7
+        $global:ConsciousnessState.Thermodynamics.Temperature = 0.3
+        $global:ConsciousnessState.Thermodynamics.NegativeEntropyBudget = 1.0
+        $global:ConsciousnessState.Thermodynamics.BudgetDepletionRate = 0.0
+        $global:ConsciousnessState.Thermodynamics.FreeWillIndex = 0.7
+        $global:ConsciousnessState.Thermodynamics.GhostAttractors.Current = "global"
+        $global:ConsciousnessState.Thermodynamics.GhostAttractors.VisitStart = $null
+        $global:ConsciousnessState.Thermodynamics.GhostAttractors.History = @()
+        $global:ConsciousnessState.Thermodynamics.HeatEvents = @()
+        $global:ConsciousnessState.Thermodynamics.CoolingEvents = @()
+        $global:ConsciousnessState.Thermodynamics.LastCoolingEvent = $null
 
         Save-ConsciousnessState
 

@@ -8,14 +8,17 @@ import imaplib
 import email
 import os
 import re
+import sys
 from datetime import datetime
 from pathlib import Path
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from lib.vault_config import get_imap_credentials
 
 # Configuration
 IMAP_HOST = "mail.zxcs.nl"
 IMAP_PORT = 993
-EMAIL_ADDRESS = "info@martiendejong.nl"
-IMAP_PASSWORD = "hLPFy6MdUnfEDbYTwXps"
+EMAIL_ADDRESS, IMAP_PASSWORD = get_imap_credentials()
 OUTPUT_DIR = r"C:\scripts\correspondence\gemeente-meppel"
 FILTER_FROM = "meppel.nl"  # Only emails FROM this domain
 MAX_EMAILS = 100

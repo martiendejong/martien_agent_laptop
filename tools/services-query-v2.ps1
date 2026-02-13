@@ -26,18 +26,43 @@ $services = @($registry.services)
 if ($CheckHealth) {
     Write-Host "Checking service health..." -ForegroundColor Cyan
     foreach ($service in $services) {
-        if ($service.pid -gt 0) {
-            $processExists = Get-Process -Id $service.pid -ErrorAction SilentlyContinue
-            if ($processExists) {
-                $service.status = "running"
-                Write-Host "  OK: $($service.name) (PID $($service.pid))" -ForegroundColor Green
-            } else {
-                $service.status = "stopped"
-                Write-Host "  FAIL: $($service.name) (PID $($service.pid) not found)" -ForegroundColor Red
+        $alive = $false
+
+        # Method 1: Try health endpoint
+        if ($service.health_check) {
+            try {
+                $resp = Invoke-WebRequest -Uri $service.health_check -TimeoutSec 3 -UseBasicParsing -SkipCertificateCheck -ErrorAction Stop
+                if ($resp.StatusCode -lt 500) { $alive = $true }
+            } catch {
+                # 401/403 means the service IS running (just needs auth)
+                if ($_.Exception.Response.StatusCode.value__ -in @(401, 403)) { $alive = $true }
             }
+        }
+
+        # Method 2: Try TCP port
+        if (-not $alive -and $service.port -gt 0) {
+            try {
+                $tcp = New-Object System.Net.Sockets.TcpClient
+                $tcp.ConnectAsync("localhost", $service.port).Wait(2000) | Out-Null
+                if ($tcp.Connected) { $alive = $true }
+                $tcp.Close()
+            } catch { }
+        }
+
+        # Method 3: Check PID if registered
+        if (-not $alive -and $service.pid -gt 0) {
+            $processExists = Get-Process -Id $service.pid -ErrorAction SilentlyContinue
+            if ($processExists) { $alive = $true }
+        }
+
+        # Update status
+        if ($alive) {
+            $service.status = "running"
+            $service.last_seen = (Get-Date -Format "yyyy-MM-dd HH:mm:ss")
+            Write-Host "  OK: $($service.name) (:$($service.port))" -ForegroundColor Green
         } else {
-            $service.status = "unknown"
-            Write-Host "  UNKNOWN: $($service.name) (no PID registered)" -ForegroundColor Yellow
+            $service.status = "stopped"
+            Write-Host "  DOWN: $($service.name) (:$($service.port))" -ForegroundColor Red
         }
     }
 

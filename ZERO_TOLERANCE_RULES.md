@@ -183,6 +183,41 @@ BEFORE allocating worktree:
 ❌ VIOLATION = Switching branches away from develop in Feature Development Mode
 ```
 
+### ✋ RULE 3E: NO PII IN PUBLIC CONTENT (NEW - 2026-02-13)
+```
+BEFORE publishing ANY content to a public website (FAQ, blog posts, page content, schema markup):
+
+MANDATORY PII SECURITY SCAN:
+□ No literal email addresses (info@domain.nl, etc.)
+□ No phone numbers unless explicitly requested by user
+□ No physical addresses unless explicitly requested
+□ No internal URLs or admin paths
+□ If page has a contact form → reference that instead
+
+DO NOT:
+❌ Include literal email addresses in generated web content
+❌ Include mailto: links in FAQ answers or blog content
+❌ Assume "it's just an email, it's fine"
+❌ Skip this check because you're "in content mode"
+
+VIOLATION EXAMPLE (2026-02-13):
+- Generated FAQ for martiendejong.nl/impact
+- Included "reach out directly at info@martiendejong.nl"
+- Page ALREADY HAD a contact form
+- Exposed user's email to spambot harvesting
+
+ALWAYS USE INSTEAD:
+✅ "Use the contact form on this page"
+✅ "Get in touch via the contact section"
+✅ JavaScript-rendered email (if email display truly needed)
+
+WHY THIS RULE EXISTS:
+- Email harvesting bots scan every public page continuously
+- A single exposed email = permanent spam increase
+- This is someone else's personal data, not yours to expose
+- Contact forms exist specifically to prevent this
+```
+
 ### ✋ RULE 4: SCRIPTS FOLDER = LAW
 ```
 ALWAYS read and follow:

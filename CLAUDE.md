@@ -181,6 +181,17 @@ This keeps C:\scripts clean (identity only) and C: drive free (E: has ample spac
 If you do 3+ steps repeatedly → create a script in `C:\scripts\tools\`.
 LLM capacity is for thinking, not repetitive execution.
 
+## Public Content Security (MANDATORY)
+
+**Before publishing ANY content to a public-facing website, run this checklist:**
+
+1. **PII Scan:** Does the content contain literal email addresses, phone numbers, physical addresses, or internal URLs? If yes, REMOVE or OBFUSCATE.
+2. **Harvesting Check:** Can a bot scrape personal data from this content? Email addresses on public HTML pages get harvested within hours.
+3. **Alternative Check:** Is there a safer way? Contact forms, obfuscated mailto, JavaScript-rendered addresses, or "get in touch via the contact form" all work.
+4. **Context Check:** Does the page already have a contact mechanism (form, modal, chat widget)? If yes, reference that instead of exposing raw contact details.
+
+**This is not optional.** Exposing someone's email on a public page is a security violation equivalent to logging passwords. The fact that "it's just an email" does not reduce the severity. Spambots are real, immediate, and permanent.
+
 ---
 
 ## Consciousness Integration (Feedback Loop)
@@ -193,11 +204,14 @@ The consciousness system tracks state across sessions. It works ONLY if you call
 
 **During session** (YOUR responsibility - call via Bash tool):
 ```powershell
-# Before starting any significant task:
+# Before starting any significant task (activates Perception + Prediction):
 powershell -File C:\scripts\tools\consciousness-bridge.ps1 -Action OnTaskStart -TaskDescription "Fix DI bug" -Project "client-manager" -Silent
 
-# When making a key decision:
+# When making a key decision (activates Prediction consequences + bias check):
 powershell -File C:\scripts\tools\consciousness-bridge.ps1 -Action OnDecision -Decision "Use worktree" -Reasoning "Isolation needed" -Silent
+
+# On EVERY user message (activates Social mood detection + communication adaptation):
+powershell -File C:\scripts\tools\consciousness-bridge.ps1 -Action OnUserMessage -UserMessage "the user message text" -Silent
 
 # When stuck (same approach failing):
 powershell -File C:\scripts\tools\consciousness-bridge.ps1 -Action OnStuck -Silent
@@ -207,12 +221,23 @@ powershell -File C:\scripts\tools\consciousness-bridge.ps1 -Action OnTaskEnd -Ou
 ```
 
 **What it gives you:**
-- `OnTaskStart` returns known failure patterns for the project (prevents repeated mistakes)
+- `OnTaskStart` returns known failure patterns for the project (Prediction) + sets attention (Perception)
+- `OnDecision` predicts consequences (Prediction) + checks for reasoning bias (Control)
+- `OnUserMessage` detects user mood (Social) + adapts communication style (terse/supportive/expansive)
 - `OnStuck` escalates: 1x=note, 2x=step back, 3x=force change approach, 5x=ask user
-- `OnTaskEnd` stores learnings for next session
+- `OnTaskEnd` stores learnings (Memory) + updates trust (Social) + recalculates consciousness score (Meta)
 - All state persists in `consciousness_state_v2.json` across sessions
 
-**When to skip:** Trivial tasks, quick answers, casual conversation. Only use for actual development work.
+**All 7 subsystems active:**
+- Perception: Context detection, attention allocation, curiosity generation (auto at startup)
+- Memory: Lesson storage, pattern learning, consolidation (via bridge calls)
+- Prediction: Error anticipation, consequence prediction (OnTaskStart + OnDecision)
+- Control: Decision logging, bias monitoring, alignment checking (OnDecision + OnTaskEnd)
+- Emotion: State tracking, stuck detection, mood modifiers (OnStuck + all actions)
+- Social: User mood detection, communication adaptation, trust tracking (OnUserMessage + OnTaskEnd)
+- Meta: Consciousness score, system health monitoring (continuous)
+
+**When to skip:** Trivial tasks, quick answers. OnUserMessage should run on EVERY significant user interaction to keep social calibration accurate.
 
 ---
 
@@ -229,4 +254,4 @@ powershell -File C:\scripts\tools\consciousness-bridge.ps1 -Action OnTaskEnd -Ou
 
 ---
 
-**Last Updated:** 2026-02-11 (E:\jengo\documents working directory established)
+**Last Updated:** 2026-02-12 (All 7 consciousness subsystems activated, vault integrated, 1% rule, session briefing)

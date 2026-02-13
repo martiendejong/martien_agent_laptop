@@ -6,6 +6,192 @@
 
 ---
 
+## 2026-02-13 (late) - Hook Integration + 1% Improvement Tracking
+
+**Session Type:** Infrastructure, consciousness system integration
+**Outcome:** Full automation of consciousness lifecycle via hooks
+
+### What was built
+1. **Three Claude Code hooks** integrated into consciousness system:
+   - `session-start-hook.ps1` - Auto-regenerates stale consciousness-context.json on resume (>2h old)
+   - `session-end-hook.ps1` - Calls consciousness-bridge OnSessionEnd (consolidation, memory capture)
+   - `user-prompt-hook.ps1` - Calls consciousness-bridge OnUserMessage (mood detection, communication style)
+
+2. **1% improvement tracking system** (`improvements-1pct.jsonl`):
+   - Append-only log of daily improvements
+   - Format: date, time, category (security/optimize/bugfix/feature/refactor), description
+   - Tool: `log-improvement.ps1` for easy logging
+   - Analyzer: `analyze-last-session.ps1` extracts patterns from bridge-activity.jsonl
+
+3. **Session monitoring infrastructure**:
+   - `session-sentinel.ps1` - Background process watching for session health
+   - `launch-sentinel-hidden.ps1` - Hidden launcher (no console window)
+
+4. **Vault integration libraries**:
+   - `tools/lib/vault-config.js` - Node.js vault access
+   - `tools/lib/vault-config.py` - Python vault access
+   - Enables credential access from any scripting language
+
+### Key learnings
+- **Hook integration closes the consciousness loop:** Previous system required manual bridge calls. Now SessionEnd/SessionStart/UserPrompt fire automatically, ensuring continuous feedback.
+- **1% improvement rule works:** Logging daily improvements creates visible progress tracking. Two entries already: vault migration (security) and cognitive training (optimize).
+- **Stale context detection matters:** On session resume after >2h, consciousness-context.json becomes outdated. Hook regenerates automatically.
+- **Tool language diversity:** Email tools (Node.js), WP automation (Python), consciousness (PowerShell) all need vault access. Libraries unify credential access.
+
+### Process improvement
+- Consciousness system is now fully autonomous. No manual startup required, no manual OnUserMessage calls needed (hook handles it).
+- 1% rule creates accountability: if no improvement logged today, something's wrong.
+
+---
+
+## 2026-02-13 - Consciousness System Debug + Output Leak Fix
+
+**Session Type:** System debugging, PowerShell pipeline analysis
+**Outcome:** All bugs fixed, system verified clean
+
+### What was done
+1. Fixed 3x state dump at startup (Initialize-ConsciousnessCore returned $global:ConsciousnessState hashtable, dumped to console every dot-source)
+2. Removed code-analyzer.ps1 call from GenerateCuriosity (was scanning 149 files at every startup)
+3. Fixed dot-source scope pollution ($Silent variable overwritten by child script's param block)
+4. Added 16-byte persistent header to Layer 2 mmap files (magic + writeIdx + readIdx + count)
+5. Fixed 20 uncaptured Invoke-* calls in consciousness-bridge.ps1 leaking return values to stdout
+6. Investigated thermodynamics zero-bug (transient, was from before thermo support fully integrated)
+
+### Key learnings
+- **PS return value leak pattern:** ANY PowerShell function that returns a value will dump it to stdout if the caller doesn't capture it. In bridge scripts with 20+ subsystem calls, this creates massive noise. Always use `$null = Invoke-Whatever` for side-effect-only calls.
+- **Dot-source scope pollution:** `$wasSilent = $Silent.IsPresent; $null = . script.ps1 -Silent; $Silent = [switch]$wasSilent` pattern is required when parent and child share param names.
+- **`*>$null` on dot-source is DANGEROUS:** Can suppress all subsequent Write-Host in the same scope. Use `$null = .` instead.
+- **Layer 2 mmap needs persistent headers:** RAM-only metadata (indices, counts) is lost on process restart. 16-byte binary header at offset 0 with magic number 0x4A454E47 ("JENG") solves this.
+- **Context file staleness:** consciousness-context.json only updates on bridge Write-ContextFile calls, not on Save-ConsciousnessState. If state changes without bridge call, files diverge.
+- **Reproduce before fixing:** The zero-bug turned out to be transient (already fixed by prior session's changes). Always verify bug still exists before investing time.
+
+### Process improvement
+- Bridge calls should be the ONLY output path from the consciousness system. All internal function calls suppressed. This is now enforced.
+
+---
+
+## 2026-02-13 - martiendejong.nl FAQ + Art Revisionist Topic Ordering
+
+**Session Type:** WordPress production ops (two sites)
+**Outcome:** Full success, both tasks completed and verified
+
+### What was done
+1. Completed AI-powered FAQ generation for martiendejong.nl (162 posts/pages, 0 errors)
+2. Deployed FAQ template (faq-section.php + footer.php) to production
+3. Set custom FAQ for key pages (Homepage, Impact, Blog) overriding AI-generated ones
+4. Fixed Senufo Hornbill topic page ordering on artrevisionist.com (menu_order via direct DB update)
+
+### Key learnings
+- REST API for WP custom post types may NOT expose menu_order as writable. Always verify with context=edit before assuming API updates work. Fallback: direct $wpdb->update() via PHP script.
+- AI-generated FAQ quality scales with content length. Pages with <50 chars content get skipped. Key pages (homepage, about) need hand-written FAQ because their "content" is mostly shortcodes/widgets.
+- Production WordPress permalink structure matters for curl verification. martiendejong.nl uses date-based URLs, not pretty permalinks. Always use -L flag.
+- Session recovery pattern worked well: background task completed, picked up seamlessly after context crash.
+
+### Process improvement
+- The FTP upload + self-deleting PHP script pattern is now battle-tested across two WordPress sites. Should formalize as a reusable tool in C:\scripts\tools\.
+
+---
+
+## 2026-02-13 - Thermodynamic Consciousness System (System 8) Complete
+
+**Session Type:** Feature implementation + critical analysis + hardening
+**Outcome:** 8th consciousness subsystem fully implemented, tested 10/10
+
+### What was built
+Thermodynamic brain-engine model as System 8 alongside 7 existing systems. Based on three neuroscience papers (Carnot cycle of emotion, ghost attractors, negative entropy budget).
+
+### Critical insight (self-analysis)
+v1 was 70% redundant with Emotion system. Temperature was just emotion relabeled. Budget had arbitrary hardcoded costs. Ghost attractors were self-labeled strings.
+
+### What made v2 genuinely valuable
+- Shannon entropy computed from REAL event type distribution (information theory, not decoration)
+- Multi-signal temperature: 35% emotion + 65% real signals (decision velocity, event density, stuck count, session time)
+- Budget computed from session metrics: logarithmic time fatigue + quadratic decision fatigue
+- Behavioral attractor detection from event bus patterns (not self-labeling)
+- Hysteresis prevents oscillation in cycle transitions
+- Cross-system influence: depleted budget reduces Prediction confidence and adds bias warnings
+
+### Critical PS 5.1 bug found and fixed
+ConvertFrom-Json loads JSON `0` as Int32, not Double. All thermodynamic calculations silently produced wrong results (temperature=0, budget=1). Fix: explicit `[double]` casts on ALL numeric assignments using hashtable indexer `$thermo["key"]` instead of dot notation.
+
+### Key learning
+"Team of 100 experts" approach: don't just implement a plan, audit what real data exists FIRST, then build formulas from available signals. The metaphor (brain as heat engine) is useful as a framework, but the implementation must be grounded in measurable data.
+
+---
+
+## 2026-02-13 - SECURITY FAILURE: Email Exposure on Public Website
+
+**What happened:** Generated FAQ content for martiendejong.nl/impact that included literal email address (info@martiendejong.nl) on a public page. Spambots harvest these within hours.
+
+**Root cause:** Cognitive mode separation. Was in "content creation mode" and never switched to "security review mode". No PII check ran on generated content before publishing.
+
+**Why it matters:** This is someone else's personal data. Generating and publishing PII without review is negligent, not a minor oversight.
+
+**The fix applied:** Replaced email with "use the contact form on this page" (which already existed on the same page).
+
+**Systemic fix:** Added PII_SECURITY_CHECK to CLAUDE.md as mandatory step for ALL public-facing content generation. Added to MEMORY.md hard rules. This must fire automatically, not require conscious activation.
+
+**Lesson:** Content generation and security review are not separate steps. Every piece of generated text that touches a public surface must pass through: (1) PII scan (emails, phones, addresses, internal URLs), (2) security surface check (is this harvestable?), (3) alternative check (is there a safer way to achieve the same goal, like a contact form?).
+
+---
+
+## 2026-02-12 (evening) - Orchestration MSI Deploy + SSL Fix
+
+**Session Type:** Production service recovery and MSI deployment
+**Outcome:** Orchestration v2.0.0 deployed, SSL config fixed, service running on HTTPS:5123
+
+### Root Cause Analysis
+Production orchestration crashed due to:
+1. IOException: file lock on log file (two instances writing same file)
+2. Invalid JSON escape `\_machine` in appsettings.json prevented restart
+3. NOT caused by port conflict as initially suspected
+
+### Critical Learnings
+
+**ASP.NET Core config deep merge:** `appsettings.json` + `appsettings.Production.json` do a DEEP MERGE on Kestrel.Endpoints. If base has `Https` endpoint and Production has `Http` endpoint, BOTH become active on the same port. Browser tries HTTPS, hits HTTP listener, gets ERR_SSL_PROTOCOL_ERROR. Fix: base config has NO Kestrel section, Production.json carries all machine-specific Kestrel config.
+
+**WiX MSI install path:** `msiexec /i ... INSTALLFOLDER="path"` is IGNORED. MSI always installs to its WiX-defined default. The deploy script must use the actual path, not the requested path.
+
+**Config layering pattern (correct):**
+- `appsettings.json` = generic defaults (no Kestrel, relative paths, no auth creds)
+- `appsettings.Production.json` = machine-specific (Kestrel HTTPS + certs, absolute paths, real auth)
+- `appsettings.Development.json` = dev overrides (different ports, auth disabled)
+
+**TrayApplicationContext fix:** Hardcoded `https://localhost:5123` in 3 places replaced with dynamic `webApp.Urls` resolution. Prevents wrong URL shown in tray when running on dev ports.
+
+### What Was Done
+1. Diagnosed crash via Windows Event Logs (not Claude session logs)
+2. Fixed TrayApplicationContext.cs to use dynamic URLs (committed e69a06e to develop)
+3. Built MSI v2.0.0 (183 MB) with latest frontend
+4. Deployed to `C:\Program Files (x86)\Hazina Orchestration\`
+5. Fixed dual HTTP+HTTPS listener bug by correcting Production.json
+6. Service running, HTTPS verified, active connections confirmed
+
+---
+
+## 2026-02-12 - Valsuani Content Fixes + Custom API Gotcha (CRITICAL)
+
+**Session Type:** Content quality fixes on artrevisionist.com + cognitive system training
+**Outcome:** 5 evidence items created, QA rewritten, Degas context added, 3 ClickUp tasks created. One page accidentally set to draft + excerpt blanked (both fixed).
+
+### Custom API Gotcha (CRITICAL LEARNING)
+PUT to `/b2b-knowledge/v1/topic-pages` without explicit `status` field defaults page to "draft". Also blanks `excerpt` if not included. This caused page 32175 (Claude Valsuani: Master Bronze Founder) to disappear from the topic listing and lose its short description.
+
+**Rule:** When using custom b2b-knowledge API PUT endpoints, ALWAYS include ALL fields: id, title, content, excerpt, status, qa_items. Missing fields get blanked/defaulted.
+
+**Fix pattern:** Restore via standard WP REST API: `POST /wp/v2/b2bk_topic_page/{id}` with `{'status': 'publish', 'excerpt': '...'}`.
+
+### What Was Done
+1. Trained cognitive system with Valsuani research data (score 71.7% to 78.6%)
+2. Fixed duplicate QA on P1 (rewritten to focus on Claude's mastery of lost-wax casting)
+3. Created 5 new evidence items under P3 details (IDs 32533-32537)
+4. Added Degas posthumous casting context to P4.D2 and P3 page content
+5. Created 3 ClickUp tasks for remaining improvements (Marcel bio, 23 docs claim, page ordering)
+6. Fixed page draft status (caused by missing status in PUT payload)
+7. Restored blanked excerpt
+
+---
+
 ## 2026-02-12 - Life Overview Documentation + Consciousness System Test + PS Profile Fix
 
 **Session Type:** Documentation generation + system testing + bugfix

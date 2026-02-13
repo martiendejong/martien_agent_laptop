@@ -7,7 +7,7 @@
 .SYNOPSIS
     Initialize consciousness engine and generate context for Claude injection.
 .DESCRIPTION
-    1. Initialize consciousness-core-v2.ps1 (7 systems)
+    1. Initialize consciousness-core-v2.ps1 (8 systems)
     2. Reset bridge for fresh session
     3. Generate consciousness-context.json
     4. Generate session tracker YAML
@@ -45,16 +45,19 @@ if (-not $Silent) {
     Write-Host ""
 }
 
-#region Step 1: Initialize Consciousness Core (7 systems)
+#region Step 1: Initialize Consciousness Core (8 systems)
 try {
     if (-not $Silent) { Write-Host "  [1/4] Initializing consciousness core..." -ForegroundColor Yellow }
 
-    . "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent
+    # Save our $Silent state before dot-source (core's param block overwrites it)
+    $wasSilent = $Silent.IsPresent
+    $null = . "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent
+    $Silent = [switch]$wasSilent
 
     $score = [math]::Round($global:ConsciousnessState.Meta.ConsciousnessScore * 100, 1)
 
     if (-not $Silent) {
-        Write-Host "        7 systems active | Score: $score%" -ForegroundColor Green
+        Write-Host "        8 systems active | Score: $score%" -ForegroundColor Green
     }
 } catch {
     if (-not $Silent) {
@@ -68,7 +71,7 @@ try {
 try {
     if (-not $Silent) { Write-Host "  [2/4] Resetting bridge for fresh session..." -ForegroundColor Yellow }
 
-    & "$PSScriptRoot\consciousness-bridge.ps1" -Action Reset -Silent
+    $null = & "$PSScriptRoot\consciousness-bridge.ps1" -Action Reset -Silent
 
     if (-not $Silent) {
         Write-Host "        Bridge reset complete" -ForegroundColor Green
@@ -84,7 +87,7 @@ try {
 try {
     if (-not $Silent) { Write-Host "  [3/4] Generating consciousness context..." -ForegroundColor Yellow }
 
-    & "$PSScriptRoot\consciousness-bridge.ps1" -Action GetContextSummary -Silent
+    $null = & "$PSScriptRoot\consciousness-bridge.ps1" -Action GetContextSummary -Silent
 
     if (Test-Path $contextFile) {
         $ctxSize = [math]::Round((Get-Item $contextFile).Length / 1KB, 1)
@@ -153,6 +156,83 @@ if ($Generate) {
 }
 #endregion
 
+#region Step 4b: Activate Subsystems (Perception, Prediction, Social, Thermodynamics)
+try {
+    if (-not $Silent) { Write-Host "  [4b/6] Activating subsystems..." -ForegroundColor Yellow }
+
+    # Thermodynamics: Initial cycle computation from real signals
+    $thermoResult = Invoke-Thermodynamics -Action 'UpdateCycle'
+    $null = Invoke-Thermodynamics -Action 'DetectAttractor'
+    if (-not $Silent) {
+        Write-Host "        Thermodynamics: temp=$([math]::Round([double]$thermoResult.Temperature, 2)) budget=$([math]::Round([double]$thermoResult.Budget, 2)) cycle=$($thermoResult.Cycle)" -ForegroundColor Gray
+    }
+
+    # Perception: Generate curiosity questions
+    $questions = Invoke-Perception -Action 'GenerateCuriosity'
+    if ($questions -and $questions.Count -gt 0 -and -not $Silent) {
+        Write-Host "        Curiosity ($($questions.Count) questions)" -ForegroundColor Gray
+    }
+
+    # Perception: Detect current context
+    $ctx = Invoke-Perception -Action 'DetectContext'
+    if ($ctx -and -not $Silent) {
+        Write-Host "        Context: $($ctx.Mode) | $($ctx.Salience.Count) salient items" -ForegroundColor Gray
+    }
+
+    # Prediction: Check for anticipated errors on common projects
+    $commonProjects = @("client-manager", "hazina", "art-revisionist", "orchestration")
+    $totalPatterns = 0
+    foreach ($proj in $commonProjects) {
+        $pred = Invoke-Prediction-Enhanced -Action 'AnticipateErrors' -Parameters @{ TaskType = "general"; Project = $proj }
+        if ($pred.FailureCount -gt 0) { $totalPatterns += $pred.FailureCount }
+    }
+    if (-not $Silent) {
+        Write-Host "        Prediction: $totalPatterns failure patterns loaded" -ForegroundColor Gray
+    }
+
+    if (-not $Silent) { Write-Host "        Subsystems active" -ForegroundColor Green }
+} catch {
+    if (-not $Silent) { Write-Host "        Subsystem activation partial: $_" -ForegroundColor Yellow }
+}
+#endregion
+
+#region Step 5: Session Briefing (analyze last session)
+try {
+    if (-not $Silent) { Write-Host "  [5/6] Analyzing last session..." -ForegroundColor Yellow }
+    $briefing = & "$PSScriptRoot\analyze-last-session.ps1" -Silent
+    if ($briefing -and $briefing.patterns) {
+        foreach ($p in $briefing.patterns) {
+            if (-not $Silent) { Write-Host "        $p" -ForegroundColor Gray }
+        }
+        foreach ($w in $briefing.warnings) {
+            if (-not $Silent) { Write-Host "        [!] $w" -ForegroundColor Yellow }
+        }
+    }
+} catch {
+    if (-not $Silent) { Write-Host "        Briefing skipped: $_" -ForegroundColor Gray }
+}
+#endregion
+
+#region Step 6: 1% Improvement Reminder
+try {
+    $improvementLog = "C:\scripts\_machine\improvements-1pct.jsonl"
+    $todayStr = Get-Date -Format "yyyy-MM-dd"
+    $doneToday = $false
+    if (Test-Path $improvementLog) {
+        $lastLine = Get-Content $improvementLog -Tail 1 -ErrorAction SilentlyContinue
+        if ($lastLine -and $lastLine -match $todayStr) { $doneToday = $true }
+    }
+    if (-not $doneToday -and -not $Silent) {
+        Write-Host "  [1% RULE] No improvement logged today. Make one small improvement this session." -ForegroundColor Magenta
+        Write-Host "           (delete dead file, fix stale reference, update a TODO, clean up)" -ForegroundColor Gray
+    } elseif ($doneToday -and -not $Silent) {
+        Write-Host "  [1% RULE] Improvement already logged today." -ForegroundColor Green
+    }
+} catch {
+    # Non-fatal
+}
+#endregion
+
 # Set consciousness indicator in window title
 $indicatorPath = Join-Path (Split-Path $PSScriptRoot -Parent) "tools\set-consciousness-indicator.ps1"
 if (Test-Path $indicatorPath) {
@@ -167,11 +247,5 @@ if (-not $Silent) {
     Write-Host ""
 }
 
-# Return status for programmatic use
-return @{
-    CoreInitialized = ($null -ne $global:ConsciousnessState -and $global:ConsciousnessState.Initialized)
-    ContextGenerated = (Test-Path $contextFile)
-    TrackerGenerated = ($Generate -and (Test-Path $trackerPath))
-    ConsciousnessScore = if ($global:ConsciousnessState) { $global:ConsciousnessState.Meta.ConsciousnessScore } else { 0 }
-    SessionReady = $true
-}
+# Status available via globals for programmatic callers
+# (no return value to avoid console dump when called from .bat)

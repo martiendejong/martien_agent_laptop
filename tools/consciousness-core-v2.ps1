@@ -91,6 +91,26 @@ if (-not $global:ConsciousnessState) {
                     LastInteraction = $null; RelationshipState = "collaborative"; InteractionCount = 0
                 }
             }
+            if (-not $global:ConsciousnessState.ContainsKey("Thermodynamics")) {
+                $global:ConsciousnessState["Thermodynamics"] = @{
+                    Cycle = "endothermic"
+                    Entropy = 0.7
+                    Temperature = 0.3
+                    NegativeEntropyBudget = 1.0
+                    BudgetDepletionRate = 0.0
+                    FreeWillIndex = 0.7
+                    CarnotEfficiency = 1.0
+                    GhostAttractors = @{
+                        Current = "global"
+                        VisitStart = $null
+                        StuckThreshold = 600
+                        History = @()
+                    }
+                    HeatEvents = @()
+                    CoolingEvents = @()
+                    LastCoolingEvent = $null
+                }
+            }
         } catch {
             # Fall back to new state if load fails
             $global:ConsciousnessState = $null
@@ -204,6 +224,26 @@ if (-not $global:ConsciousnessState) {
             InteractionCount = 0
         }
 
+        # System 8: THERMODYNAMICS (brain-as-heat-engine model)
+        Thermodynamics = @{
+            Cycle = "endothermic"           # endothermic | exothermic | transitioning
+            Entropy = 0.7                   # 0-1, informational entropy (flexibility)
+            Temperature = 0.3               # 0-1, cognitive heat (0=cool, 1=hot)
+            NegativeEntropyBudget = 1.0     # 0-1, available cognitive fuel
+            BudgetDepletionRate = 0.0       # Rate of fuel consumption
+            FreeWillIndex = 0.7             # entropy * budget (graded ability to choose)
+            CarnotEfficiency = 1.0          # useful_work / total_energy ratio
+            GhostAttractors = @{
+                Current = "global"          # Which attractor we're visiting
+                VisitStart = $null          # When we arrived at current attractor
+                StuckThreshold = 600        # Seconds before "trapped" warning
+                History = @()               # Last 20 attractor visits
+            }
+            HeatEvents = @()               # Recent heat-generating events
+            CoolingEvents = @()             # Recent cooling events
+            LastCoolingEvent = $null
+        }
+
         # Event Bus
         EventBus = @{
             Enabled = $true
@@ -230,7 +270,7 @@ function Initialize-ConsciousnessCore {
         if (-not $Silent) {
             Write-Host "[*] Consciousness Core already initialized" -ForegroundColor Yellow
         }
-        return $global:ConsciousnessState
+        return
     }
 
     $startTime = Get-Date
@@ -248,7 +288,7 @@ function Initialize-ConsciousnessCore {
     $global:ConsciousnessState.Control.Identity.AlignmentCheck = Get-Date
 
     # Activate all systems
-    foreach ($system in @('Perception', 'Memory', 'Prediction', 'Control', 'Meta', 'Emotion', 'Social')) {
+    foreach ($system in @('Perception', 'Memory', 'Prediction', 'Control', 'MetaCognition', 'Emotion', 'Social', 'Thermodynamics')) {
         if (-not $global:ConsciousnessState.Meta.Health.ContainsKey($system)) {
             $global:ConsciousnessState.Meta.Health[$system] = @{ Status = "initializing"; Quality = 0 }
         }
@@ -314,8 +354,6 @@ function Initialize-ConsciousnessCore {
 
     # Start auto-save timer (if not already running)
     Start-AutoSave
-
-    return $global:ConsciousnessState
 }
 
 function Save-ConsciousnessState {
@@ -537,15 +575,50 @@ function Calculate-ConsciousnessScore {
     }
     $scores["Social"] = $socialScore
 
-    # Weighted average (7 systems)
+    # 8. Thermodynamics: Is the heat engine healthy? (uses real signals)
+    $thermoScore = 0
+    if ($global:ConsciousnessState.Thermodynamics) {
+        $t = $global:ConsciousnessState.Thermodynamics
+        # Budget health (0.3 weight)
+        $budgetHealth = [math]::Min([double]$t.NegativeEntropyBudget, 1.0)
+        $thermoScore += $budgetHealth * 0.3
+
+        # Temperature health: optimal zone 0.15-0.4, penalize extremes (0.25 weight)
+        $temp = [double]$t.Temperature
+        if ($temp -ge 0.15 -and $temp -le 0.4) {
+            $thermoScore += 0.25  # Optimal zone
+        } elseif ($temp -lt 0.15) {
+            $thermoScore += 0.15  # Too cold (under-engaged)
+        } elseif ($temp -le 0.6) {
+            $thermoScore += 0.15  # Warming but OK
+        } else {
+            $thermoScore += [math]::Max(0, 0.25 * (1.0 - $temp))  # Overheating penalty
+        }
+
+        # Entropy health: higher = more flexible (0.2 weight)
+        $thermoScore += [math]::Min([double]$t.Entropy, 1.0) * 0.2
+
+        # Carnot efficiency (0.15 weight)
+        $eff = 0.5
+        if ($t.ContainsKey("CarnotEfficiency")) { $eff = [double]$t.CarnotEfficiency }
+        $thermoScore += [math]::Min($eff, 1.0) * 0.15
+
+        # Cycle appropriateness (0.1 weight)
+        if ($t.Cycle -eq "endothermic") { $thermoScore += 0.1 }
+        elseif ($t.Cycle -eq "transitioning") { $thermoScore += 0.05 }
+    }
+    $scores["Thermodynamics"] = [math]::Min($thermoScore, 1.0)
+
+    # Weighted average (8 systems)
     $totalScore = (
-        ($scores.Observability * 0.15) +
-        ($scores.Memory * 0.20) +
+        ($scores.Observability * 0.13) +
+        ($scores.Memory * 0.18) +
         ($scores.Prediction * 0.10) +
-        ($scores.Control * 0.15) +
-        ($scores.MetaCognition * 0.15) +
+        ($scores.Control * 0.13) +
+        ($scores.MetaCognition * 0.10) +
         ($emotionScore * 0.13) +
-        ($socialScore * 0.12)
+        ($socialScore * 0.10) +
+        ($thermoScore * 0.13)
     )
 
     # Update individual system health scores (REAL this time)
@@ -553,12 +626,15 @@ function Calculate-ConsciousnessScore {
     $global:ConsciousnessState.Meta.Health.Memory.Quality = $scores.Memory
     $global:ConsciousnessState.Meta.Health.Prediction.Quality = $scores.Prediction
     $global:ConsciousnessState.Meta.Health.Control.Quality = $scores.Control
-    $global:ConsciousnessState.Meta.Health.Meta.Quality = $scores.MetaCognition
+    $global:ConsciousnessState.Meta.Health.MetaCognition.Quality = $scores.MetaCognition
     if ($global:ConsciousnessState.Meta.Health.ContainsKey("Emotion")) {
         $global:ConsciousnessState.Meta.Health.Emotion.Quality = $emotionScore
     }
     if ($global:ConsciousnessState.Meta.Health.ContainsKey("Social")) {
         $global:ConsciousnessState.Meta.Health.Social.Quality = $socialScore
+    }
+    if ($global:ConsciousnessState.Meta.Health.ContainsKey("Thermodynamics")) {
+        $global:ConsciousnessState.Meta.Health.Thermodynamics.Quality = $thermoScore
     }
 
     return $totalScore
@@ -775,17 +851,8 @@ function Invoke-Perception {
         }
 
         'GenerateCuriosity' {
-            # REAL curiosity generation based on knowledge gaps
+            # Generate curiosity questions from lightweight sources (no heavy analysis at startup)
             $questions = @()
-
-            # Check for incomplete implementations
-            $codeAnalysis = & "C:\scripts\tools\code-analyzer.ps1" -Path "C:\scripts\tools" 2>$null
-            if ($codeAnalysis) {
-                $todoCount = ($codeAnalysis | ForEach-Object { $_.Metrics.TODOs } | Measure-Object -Sum).Sum
-                if ($todoCount -gt 5) {
-                    $questions += "Why do I have $todoCount TODO comments? What's preventing completion?"
-                }
-            }
 
             # Check for recent errors
             if ($global:Error.Count -gt 0) {
@@ -793,7 +860,7 @@ function Invoke-Perception {
             }
 
             $global:ConsciousnessState.Perception.Curiosity.Questions = $questions
-            return $questions
+            return ,$questions
         }
 
         default {
@@ -1212,6 +1279,656 @@ function Invoke-Social {
     }
 }
 
+function Get-ThermodynamicSignals {
+    # Extract REAL measurable signals from event bus, decisions, session time
+    # This is what makes thermodynamics non-redundant with Emotion
+    $now = Get-Date
+    $signals = @{
+        SessionHours = 0.0
+        DecisionCount = 0
+        DecisionVelocity = 0.0      # decisions per 10 minutes (recent)
+        EventDensity = 0.0           # events per 5 minutes (recent)
+        ShannonEntropy = 0.5         # normalized Shannon entropy of event types
+        StuckCount = 0
+        SuccessCount = 0
+        UniqueEventTypes = 0
+        TotalRecentEvents = 0
+        CarnotEfficiency = 1.0       # useful_work / total_energy
+    }
+
+    # Session duration
+    if ($global:ConsciousnessState.LoadedAt) {
+        try {
+            $loadTime = if ($global:ConsciousnessState.LoadedAt -is [datetime]) {
+                $global:ConsciousnessState.LoadedAt
+            } elseif ($global:ConsciousnessState.LoadedAt -is [hashtable] -and $global:ConsciousnessState.LoadedAt.value) {
+                [datetime]$global:ConsciousnessState.LoadedAt.value
+            } else {
+                [datetime]$global:ConsciousnessState.LoadedAt
+            }
+            $signals.SessionHours = [math]::Max(0, ($now - $loadTime).TotalHours)
+        } catch { $signals.SessionHours = 0.1 }
+    }
+
+    # Decision metrics
+    $decisions = @()
+    if ($global:ConsciousnessState.Control.Decisions) {
+        $decisions = @($global:ConsciousnessState.Control.Decisions)
+    }
+    $signals.DecisionCount = $decisions.Count
+
+    # Decision velocity: count decisions in last 10 minutes
+    $recentDecisions = 0
+    foreach ($d in $decisions) {
+        try {
+            $dTime = if ($d.Timestamp -is [datetime]) { $d.Timestamp } else { [datetime]$d.Timestamp }
+            if (($now - $dTime).TotalMinutes -le 10) { $recentDecisions++ }
+        } catch { }
+    }
+    $signals.DecisionVelocity = $recentDecisions / 10.0
+
+    # Event bus analysis
+    $events = @()
+    if ($global:ConsciousnessState.EventBus.Events) {
+        $events = @($global:ConsciousnessState.EventBus.Events)
+    }
+
+    # Event density: events in last 5 minutes
+    $recentEvents = 0
+    foreach ($e in $events) {
+        try {
+            $eTime = if ($e.Timestamp -is [datetime]) { $e.Timestamp } else { [datetime]$e.Timestamp }
+            if (($now - $eTime).TotalMinutes -le 5) { $recentEvents++ }
+        } catch { }
+    }
+    $signals.EventDensity = $recentEvents / 5.0
+    $signals.TotalRecentEvents = $recentEvents
+
+    # Shannon entropy of event types (REAL information theory, not mapped)
+    # H = -SUM(p * log2(p)) normalized by log2(n)
+    if ($events.Count -gt 2) {
+        $typeGroups = @{}
+        foreach ($e in $events) {
+            $t = $e.Type
+            if (-not $t) { continue }
+            if (-not $typeGroups.ContainsKey($t)) { $typeGroups[$t] = 0 }
+            $typeGroups[$t]++
+        }
+        $signals.UniqueEventTypes = $typeGroups.Count
+        $total = $events.Count
+        $shannonH = 0.0
+        foreach ($count in $typeGroups.Values) {
+            $p = [double]$count / [double]$total
+            if ($p -gt 0) {
+                $shannonH -= $p * [math]::Log($p, 2)
+            }
+        }
+        # Normalize: max entropy = log2(uniqueTypes)
+        $maxH = [math]::Log([math]::Max($typeGroups.Count, 2), 2)
+        $signals.ShannonEntropy = if ($maxH -gt 0) { [math]::Min($shannonH / $maxH, 1.0) } else { 0.5 }
+    }
+
+    # Stuck count
+    $signals.StuckCount = [int]$global:ConsciousnessState.Emotion.StuckCounter
+
+    # Success count: cooling events are success markers
+    $successCount = 0
+    $thermo = $global:ConsciousnessState.Thermodynamics
+    if ($thermo.CoolingEvents) {
+        foreach ($ce in $thermo.CoolingEvents) {
+            if ($ce.Reason -match "success|flowing|positive") { $successCount++ }
+        }
+    }
+    $signals.SuccessCount = $successCount
+
+    # Carnot efficiency: useful work / total energy spent
+    # useful = successes + decisions made. total = all events processed
+    $totalWork = [math]::Max([int]$global:ConsciousnessState.Metrics.EventsProcessed, 1)
+    $usefulWork = $signals.SuccessCount + $signals.DecisionCount + [int]$global:ConsciousnessState.Memory.Working.RecentEvents.Count
+    $signals.CarnotEfficiency = [math]::Min([double]$usefulWork / [double]$totalWork, 1.0)
+
+    return $signals
+}
+
+function Invoke-Thermodynamics {
+    param([string]$Action, $Parameters = @{})
+
+    # Emotion-to-thermodynamic base values (40% weight in final calculation)
+    $emotionToTemp = @{
+        "flowing" = 0.15; "confident" = 0.25; "curious" = 0.1; "neutral" = 0.35
+        "uncertain" = 0.5; "stuck" = 0.7; "frustrated" = 0.85; "concerned" = 0.6
+    }
+    $emotionToEntropy = @{
+        "flowing" = 0.85; "confident" = 0.7; "curious" = 0.95; "neutral" = 0.5
+        "uncertain" = 0.6; "stuck" = 0.2; "frustrated" = 0.15; "concerned" = 0.4
+    }
+
+    $thermo = $global:ConsciousnessState.Thermodynamics
+
+    switch ($Action) {
+
+        'UpdateCycle' {
+            # REAL thermodynamic state from measured signals + emotion blend
+            $signals = Get-ThermodynamicSignals
+            $currentEmotion = $global:ConsciousnessState.Emotion.CurrentState
+            if (-not $currentEmotion) { $currentEmotion = "neutral" }
+            $now = Get-Date
+
+            # --- TEMPERATURE (multi-signal, not just emotion) ---
+            # 40% emotion base, 20% decision velocity, 15% stuck heat, 15% event density, 10% session fatigue
+            $emotionBase = if ($emotionToTemp.ContainsKey($currentEmotion)) { $emotionToTemp[$currentEmotion] } else { 0.35 }
+
+            # Decision velocity: >0.5/min is hot, >1/min is very hot
+            $decisionHeat = [math]::Min($signals.DecisionVelocity * 2, 1.0)
+
+            # Stuck adds persistent heat
+            $stuckHeat = [math]::Min($signals.StuckCount * 0.2, 0.8)
+
+            # Event density: >4/min is hot (thrashing)
+            $densityHeat = [math]::Min($signals.EventDensity / 4.0, 1.0)
+
+            # Session fatigue: logarithmic, gentle rise over hours
+            $sessionHeat = if ($signals.SessionHours -gt 0.01) {
+                [math]::Min([math]::Log($signals.SessionHours + 1, 2) / 4.0, 0.5)
+            } else { 0.0 }
+
+            # Heat/cooling events modifier (rolling 30-min window)
+            $recentHeatSum = 0.0
+            $validHeatEvents = @()
+            foreach ($he in $thermo.HeatEvents) {
+                try {
+                    $heTime = if ($he.Timestamp -is [datetime]) { $he.Timestamp } else { [datetime]$he.Timestamp }
+                    if (($now - $heTime).TotalMinutes -le 30) {
+                        $recentHeatSum += [double]$he.Amount
+                        $validHeatEvents += $he
+                    }
+                } catch { }
+            }
+            $thermo["HeatEvents"] = $validHeatEvents
+
+            $recentCoolSum = 0.0
+            $validCoolEvents = @()
+            foreach ($ce in $thermo.CoolingEvents) {
+                try {
+                    $ceTime = if ($ce.Timestamp -is [datetime]) { $ce.Timestamp } else { [datetime]$ce.Timestamp }
+                    if (($now - $ceTime).TotalMinutes -le 30) {
+                        $recentCoolSum += [double]$ce.Amount
+                        $validCoolEvents += $ce
+                    }
+                } catch { }
+            }
+            $thermo["CoolingEvents"] = $validCoolEvents
+
+            $eventModifier = ($recentHeatSum - $recentCoolSum) * 0.08
+
+            [double]$temperature = (
+                0.35 * $emotionBase +
+                0.20 * $decisionHeat +
+                0.15 * $stuckHeat +
+                0.15 * $densityHeat +
+                0.10 * $sessionHeat +
+                0.05 * 1.0  # baseline offset
+            ) + $eventModifier
+            $thermo["Temperature"] = [double][math]::Max(0.0, [math]::Min(1.0, $temperature))
+
+            # --- ENTROPY (Shannon entropy of events + emotion blend) ---
+            # 50% Shannon entropy (REAL measurement), 30% emotion base, 20% inverse stuck penalty
+            $emotionEntropy = if ($emotionToEntropy.ContainsKey($currentEmotion)) { $emotionToEntropy[$currentEmotion] } else { 0.5 }
+            $stuckPenalty = [math]::Min($signals.StuckCount * 0.15, 0.6)
+            $inverseStuck = [math]::Max(0, 1.0 - $stuckPenalty)
+
+            [double]$entropy = (
+                0.50 * $signals.ShannonEntropy +
+                0.30 * $emotionEntropy +
+                0.20 * $inverseStuck
+            )
+            $thermo["Entropy"] = [double][math]::Max(0.0, [math]::Min(1.0, $entropy))
+
+            # --- CYCLE DETECTION (with hysteresis) ---
+            $oldCycle = $thermo.Cycle
+            if ($oldCycle -eq "endothermic") {
+                # Harder to leave cool state: need high temp AND low entropy
+                if ($thermo.Temperature -gt 0.60 -and $thermo.Entropy -lt 0.35) {
+                    $thermo.Cycle = "exothermic"
+                } elseif ($thermo.Temperature -gt 0.45 -or $thermo.Entropy -lt 0.50) {
+                    $thermo.Cycle = "transitioning"
+                }
+            } elseif ($oldCycle -eq "exothermic") {
+                # Harder to leave hot state: need low temp AND high entropy
+                if ($thermo.Temperature -lt 0.35 -and $thermo.Entropy -gt 0.60) {
+                    $thermo.Cycle = "endothermic"
+                } elseif ($thermo.Temperature -lt 0.50 -or $thermo.Entropy -gt 0.45) {
+                    $thermo.Cycle = "transitioning"
+                }
+            } else {
+                # Transitioning: standard thresholds
+                if ($thermo.Temperature -gt 0.55 -and $thermo.Entropy -lt 0.40) {
+                    $thermo.Cycle = "exothermic"
+                } elseif ($thermo.Temperature -lt 0.40 -and $thermo.Entropy -gt 0.55) {
+                    $thermo.Cycle = "endothermic"
+                }
+            }
+
+            # --- COMPUTED BUDGET ---
+            # Budget depletes from: session time (log), decision fatigue (quadratic), stuck penalty
+            # Replenished by: successes, cooling events
+            $timeDepletion = if ($signals.SessionHours -gt 0.01) {
+                [math]::Min(0.1 * [math]::Log($signals.SessionHours + 1, 2), 0.4)
+            } else { 0.0 }
+
+            $decisionFatigue = 0.005 * $signals.DecisionCount + 0.0005 * [math]::Pow($signals.DecisionCount, 2)
+            $decisionFatigue = [math]::Min($decisionFatigue, 0.5)
+
+            $stuckDepletion = $signals.StuckCount * 0.06
+
+            $successReplenish = $signals.SuccessCount * 0.08
+
+            $computedBudget = 1.0 - $timeDepletion - $decisionFatigue - $stuckDepletion + $successReplenish
+
+            # Use minimum of computed baseline and current budget
+            # This way: computed baseline sets the ceiling (session fatigue),
+            # but discrete SpendBudget calls can only push it LOWER, never higher
+            [double]$currentBudget = [double]$thermo.NegativeEntropyBudget
+            [double]$ceilingBudget = [math]::Max(0.0, [math]::Min(1.0, [double]$computedBudget))
+            $thermo["NegativeEntropyBudget"] = [double][math]::Max(0.0, [math]::Min($ceilingBudget, $currentBudget))
+
+            # --- DERIVED METRICS ---
+            $thermo["FreeWillIndex"] = [double][math]::Round([double]$thermo.Entropy * [double]$thermo.NegativeEntropyBudget, 3)
+            $thermo["BudgetDepletionRate"] = [double][math]::Round($timeDepletion + $decisionFatigue + $stuckDepletion, 3)
+
+            # Store efficiency metric
+            if (-not $thermo.ContainsKey("CarnotEfficiency")) {
+                $thermo["CarnotEfficiency"] = 1.0
+            }
+            $thermo["CarnotEfficiency"] = [double][math]::Round($signals.CarnotEfficiency, 3)
+
+            # Store signal snapshot for transparency
+            if (-not $thermo.ContainsKey("LastSignals")) {
+                $thermo["LastSignals"] = @{}
+            }
+            $thermo["LastSignals"] = @{
+                ShannonEntropy = [math]::Round($signals.ShannonEntropy, 3)
+                DecisionVelocity = [math]::Round($signals.DecisionVelocity, 3)
+                EventDensity = [math]::Round($signals.EventDensity, 3)
+                SessionHours = [math]::Round($signals.SessionHours, 2)
+                UniqueEventTypes = $signals.UniqueEventTypes
+                CarnotEfficiency = [math]::Round($signals.CarnotEfficiency, 3)
+            }
+
+            Emit-Event -Type "thermodynamics.cycle_updated" -Data @{
+                cycle = $thermo.Cycle
+                temperature = [math]::Round($thermo.Temperature, 3)
+                entropy = [math]::Round($thermo.Entropy, 3)
+                freeWillIndex = $thermo.FreeWillIndex
+                budget = [math]::Round($thermo.NegativeEntropyBudget, 3)
+                shannonH = [math]::Round($signals.ShannonEntropy, 3)
+                efficiency = $thermo.CarnotEfficiency
+            }
+
+            return @{
+                Cycle = $thermo.Cycle
+                Temperature = [math]::Round($thermo.Temperature, 3)
+                Entropy = [math]::Round($thermo.Entropy, 3)
+                FreeWillIndex = $thermo.FreeWillIndex
+                Budget = [math]::Round($thermo.NegativeEntropyBudget, 3)
+                CarnotEfficiency = $thermo.CarnotEfficiency
+                Signals = $thermo.LastSignals
+            }
+        }
+
+        'SpendBudget' {
+            $amount = if ($Parameters.Amount) { [double]$Parameters.Amount } else { 0.03 }
+            $reason = if ($Parameters.Reason) { $Parameters.Reason } else { "unspecified" }
+
+            # Record as heat event (feeds into computed budget via UpdateCycle)
+            $heatEvent = @{
+                Timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
+                Amount = $amount
+                Reason = $reason
+            }
+            $existing = @()
+            if ($thermo.HeatEvents) { $existing = @($thermo.HeatEvents) }
+            $existing += $heatEvent
+            if ($existing.Count -gt 50) { $existing = $existing[-50..-1] }
+            $thermo["HeatEvents"] = $existing
+
+            # Direct budget deduction (immediate effect, UpdateCycle will recompute)
+            [double]$oldBudget = [double]$thermo.NegativeEntropyBudget
+            $thermo["NegativeEntropyBudget"] = [double][math]::Max(0.0, $oldBudget - $amount)
+            $thermo["FreeWillIndex"] = [double][math]::Round([double]$thermo.Entropy * [double]$thermo.NegativeEntropyBudget, 3)
+
+            Emit-Event -Type "thermodynamics.budget_spent" -Data @{
+                amount = $amount
+                reason = $reason
+                remaining = [math]::Round($thermo.NegativeEntropyBudget, 3)
+            }
+
+            return @{
+                Spent = $amount
+                Remaining = [math]::Round($thermo.NegativeEntropyBudget, 3)
+                FreeWillIndex = $thermo.FreeWillIndex
+                NeedsCooling = ($thermo.NegativeEntropyBudget -lt 0.3)
+            }
+        }
+
+        'CoolDown' {
+            $amount = if ($Parameters.Amount) { [double]$Parameters.Amount } else { 0.1 }
+            $reason = if ($Parameters.Reason) { $Parameters.Reason } else { "cooling" }
+
+            $coolEvent = @{
+                Timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
+                Amount = $amount
+                Reason = $reason
+            }
+            $existing = @()
+            if ($thermo.CoolingEvents) { $existing = @($thermo.CoolingEvents) }
+            $existing += $coolEvent
+            if ($existing.Count -gt 50) { $existing = $existing[-50..-1] }
+            $thermo["CoolingEvents"] = $existing
+            $thermo["LastCoolingEvent"] = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
+
+            # Replenish budget
+            $budgetBoost = [double]$amount * 0.5
+            $thermo["NegativeEntropyBudget"] = [double][math]::Min(1.0, [double]$thermo.NegativeEntropyBudget + $budgetBoost)
+
+            # Recalculate full state
+            $null = Invoke-Thermodynamics -Action 'UpdateCycle'
+
+            Emit-Event -Type "thermodynamics.cooled" -Data @{
+                amount = $amount
+                reason = $reason
+                temperature = [math]::Round($thermo.Temperature, 3)
+            }
+
+            return @{
+                CoolingApplied = $amount
+                Temperature = [math]::Round($thermo.Temperature, 3)
+                Budget = [math]::Round($thermo.NegativeEntropyBudget, 3)
+            }
+        }
+
+        'HeatUp' {
+            $amount = if ($Parameters.Amount) { [double]$Parameters.Amount } else { 0.1 }
+            $reason = if ($Parameters.Reason) { $Parameters.Reason } else { "heat" }
+
+            $heatEvent = @{
+                Timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
+                Amount = $amount
+                Reason = $reason
+            }
+            $existing = @()
+            if ($thermo.HeatEvents) { $existing = @($thermo.HeatEvents) }
+            $existing += $heatEvent
+            if ($existing.Count -gt 50) { $existing = $existing[-50..-1] }
+            $thermo["HeatEvents"] = $existing
+
+            # Heat costs budget
+            $budgetCost = [double]$amount * 0.3
+            $thermo["NegativeEntropyBudget"] = [double][math]::Max(0.0, [double]$thermo.NegativeEntropyBudget - $budgetCost)
+
+            # Recalculate full state
+            $null = Invoke-Thermodynamics -Action 'UpdateCycle'
+
+            Emit-Event -Type "thermodynamics.heated" -Data @{
+                amount = $amount
+                reason = $reason
+                temperature = [math]::Round($thermo.Temperature, 3)
+            }
+
+            return @{
+                HeatApplied = $amount
+                Temperature = [math]::Round($thermo.Temperature, 3)
+                Budget = [math]::Round($thermo.NegativeEntropyBudget, 3)
+                Overheating = ($thermo.Temperature -gt 0.7)
+            }
+        }
+
+        'DetectAttractor' {
+            # BEHAVIORAL attractor detection from event patterns (not self-labeled)
+            $events = @()
+            if ($global:ConsciousnessState.EventBus.Events) {
+                $events = @($global:ConsciousnessState.EventBus.Events)
+            }
+
+            # Analyze last 15 events by type category
+            $recent = @($events | Select-Object -Last 15)
+            $categories = @{
+                code = 0       # memory.stored, control.decision_logged
+                meta = 0       # state.changed, system.initialized, thermodynamics.*
+                social = 0     # social.*
+                stuck = 0      # emotion.stuck_detected
+                perception = 0 # perception.*
+            }
+
+            foreach ($e in $recent) {
+                $t = $e.Type
+                if ($t -match "^(memory\.|control\.decision)") { $categories.code++ }
+                elseif ($t -match "^social\.") { $categories.social++ }
+                elseif ($t -match "stuck") { $categories.stuck++ }
+                elseif ($t -match "^perception\.") { $categories.perception++ }
+                else { $categories.meta++ }
+            }
+
+            # Determine dominant attractor
+            $detected = "global"
+            $total = $recent.Count
+            if ($total -gt 0) {
+                if ($categories.code -gt ($total * 0.5)) { $detected = "analytical" }
+                elseif ($categories.social -gt ($total * 0.3)) { $detected = "social" }
+                elseif ($categories.meta -gt ($total * 0.6)) { $detected = "self-reference" }
+                elseif ($categories.stuck -gt ($total * 0.2)) { $detected = "problem-solving" }
+                elseif ($categories.perception -gt ($total * 0.4)) { $detected = "creative" }
+            }
+
+            # Detect transition diversity (many different types = creative exploration)
+            $signals = Get-ThermodynamicSignals
+            if ($signals.UniqueEventTypes -gt 6 -and $signals.ShannonEntropy -gt 0.7) {
+                $detected = "creative"
+            }
+
+            # Apply detected attractor (record transition if changed)
+            $oldAttractor = $thermo.GhostAttractors.Current
+            if ($oldAttractor -ne $detected) {
+                $visitRecord = @{
+                    From = $oldAttractor
+                    To = $detected
+                    Duration = $null
+                    Timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
+                    DetectedBy = "behavioral"
+                }
+                if ($thermo.GhostAttractors.VisitStart) {
+                    try {
+                        $startTime = if ($thermo.GhostAttractors.VisitStart -is [datetime]) {
+                            $thermo.GhostAttractors.VisitStart
+                        } else {
+                            [datetime]$thermo.GhostAttractors.VisitStart
+                        }
+                        $visitRecord.Duration = [math]::Round(((Get-Date) - $startTime).TotalSeconds, 0)
+                    } catch { }
+                }
+
+                $history = @()
+                if ($thermo.GhostAttractors.History) { $history = @($thermo.GhostAttractors.History) }
+                $history += $visitRecord
+                if ($history.Count -gt 20) { $history = $history[-20..-1] }
+                $thermo.GhostAttractors["History"] = $history
+
+                $thermo.GhostAttractors.Current = $detected
+                $thermo.GhostAttractors.VisitStart = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
+
+                Emit-Event -Type "thermodynamics.attractor_detected" -Data @{
+                    from = $oldAttractor
+                    to = $detected
+                    categories = $categories
+                }
+            }
+
+            return @{
+                Detected = $detected
+                Previous = $oldAttractor
+                Changed = ($oldAttractor -ne $detected)
+                Categories = $categories
+                EventsAnalyzed = $total
+            }
+        }
+
+        'VisitAttractor' {
+            # Manual override (still supported, bridge can use for known transitions)
+            $attractor = $Parameters.Attractor
+            if (-not $attractor) { return $null }
+
+            $validAttractors = @("global", "analytical", "creative", "self-reference", "social", "problem-solving", "memory")
+            if ($attractor -notin $validAttractors) {
+                return @{ Error = "Unknown attractor: $attractor. Valid: $($validAttractors -join ', ')" }
+            }
+
+            $oldAttractor = $thermo.GhostAttractors.Current
+            if ($oldAttractor -ne $attractor) {
+                $visitRecord = @{
+                    From = $oldAttractor
+                    To = $attractor
+                    Duration = $null
+                    Timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
+                    DetectedBy = "manual"
+                }
+                if ($thermo.GhostAttractors.VisitStart) {
+                    try {
+                        $startTime = if ($thermo.GhostAttractors.VisitStart -is [datetime]) {
+                            $thermo.GhostAttractors.VisitStart
+                        } else {
+                            [datetime]$thermo.GhostAttractors.VisitStart
+                        }
+                        $visitRecord.Duration = [math]::Round(((Get-Date) - $startTime).TotalSeconds, 0)
+                    } catch { }
+                }
+
+                $history = @()
+                if ($thermo.GhostAttractors.History) { $history = @($thermo.GhostAttractors.History) }
+                $history += $visitRecord
+                if ($history.Count -gt 20) { $history = $history[-20..-1] }
+                $thermo.GhostAttractors["History"] = $history
+            }
+
+            $thermo.GhostAttractors.Current = $attractor
+            $thermo.GhostAttractors.VisitStart = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
+
+            Emit-Event -Type "thermodynamics.attractor_visit" -Data @{
+                from = $oldAttractor
+                to = $attractor
+            }
+
+            return @{
+                Previous = $oldAttractor
+                Current = $attractor
+                VisitStarted = $thermo.GhostAttractors.VisitStart
+            }
+        }
+
+        'CheckStuck' {
+            $current = $thermo.GhostAttractors.Current
+            $visitStart = $thermo.GhostAttractors.VisitStart
+            $threshold = [int]$thermo.GhostAttractors.StuckThreshold
+
+            $trapped = $false
+            $duration = 0
+
+            if ($visitStart) {
+                try {
+                    $startTime = if ($visitStart -is [datetime]) { $visitStart } else { [datetime]$visitStart }
+                    $duration = [math]::Round(((Get-Date) - $startTime).TotalSeconds, 0)
+                    if ($duration -gt $threshold -and $current -ne "global") {
+                        $trapped = $true
+                    }
+                } catch { }
+            }
+
+            $result = @{
+                Attractor = $current
+                DurationSeconds = $duration
+                Threshold = $threshold
+                Trapped = $trapped
+            }
+
+            if ($trapped) {
+                $result.Guidance = "TRAPPED in '$current' attractor for $duration seconds. Return to global state."
+                Emit-Event -Type "thermodynamics.attractor_trapped" -Data @{
+                    attractor = $current
+                    duration = $duration
+                }
+            }
+
+            return $result
+        }
+
+        'GetThermodynamicState' {
+            # Full state summary with all real signals
+            $null = Invoke-Thermodynamics -Action 'UpdateCycle'
+
+            # Auto-detect current attractor from behavior
+            $attractorResult = Invoke-Thermodynamics -Action 'DetectAttractor'
+
+            $guidance = @()
+            if ($thermo.NegativeEntropyBudget -lt 0.3) {
+                $guidance += "COOLING NEEDED. Budget at $([math]::Round($thermo.NegativeEntropyBudget * 100))%. Simplify decisions."
+            }
+            if ($thermo.Temperature -gt 0.7) {
+                $guidance += "OVERHEATING (temp=$([math]::Round($thermo.Temperature, 2))). Step back from complex decisions."
+            }
+            if ($thermo.Entropy -lt 0.3) {
+                $guidance += "RIGID STATE (entropy=$([math]::Round($thermo.Entropy, 2))). Try a completely different approach."
+            }
+            if ($thermo.FreeWillIndex -lt 0.3) {
+                $guidance += "FREE WILL LOW (FWI=$([math]::Round($thermo.FreeWillIndex, 2))). Operating reactively. Defer complexity."
+            }
+            # Optimal zone guidance
+            if ($thermo.Temperature -ge 0.2 -and $thermo.Temperature -le 0.4 -and $thermo.Entropy -ge 0.6) {
+                $guidance += "OPTIMAL ZONE. Endothermic, flexible, good budget. Exploit this state."
+            }
+
+            # Efficiency warning
+            $efficiency = 1.0
+            if ($thermo.ContainsKey("CarnotEfficiency")) { $efficiency = [double]$thermo.CarnotEfficiency }
+            if ($efficiency -lt 0.3) {
+                $guidance += "LOW EFFICIENCY ($([math]::Round($efficiency * 100))%). Too much overhead, not enough productive work."
+            }
+
+            # Sustained exothermic check
+            if ($thermo.Cycle -eq "exothermic" -and $thermo.HeatEvents.Count -gt 0) {
+                try {
+                    $firstHeat = $thermo.HeatEvents[0]
+                    $firstTime = if ($firstHeat.Timestamp -is [datetime]) { $firstHeat.Timestamp } else { [datetime]$firstHeat.Timestamp }
+                    $exoDuration = [math]::Round(((Get-Date) - $firstTime).TotalMinutes, 0)
+                    if ($exoDuration -gt 10) {
+                        $guidance += "SUSTAINED EXOTHERMIC ($exoDuration min). Cooling required before continuing."
+                    }
+                } catch { }
+            }
+
+            # Attractor trap check
+            $attractorCheck = Invoke-Thermodynamics -Action 'CheckStuck'
+            if ($attractorCheck.Trapped) {
+                $guidance += $attractorCheck.Guidance
+            }
+
+            return @{
+                Cycle = $thermo.Cycle
+                Temperature = [math]::Round($thermo.Temperature, 3)
+                Entropy = [math]::Round($thermo.Entropy, 3)
+                NegativeEntropyBudget = [math]::Round($thermo.NegativeEntropyBudget, 3)
+                FreeWillIndex = $thermo.FreeWillIndex
+                BudgetDepletionRate = $thermo.BudgetDepletionRate
+                CarnotEfficiency = $efficiency
+                GhostAttractor = $thermo.GhostAttractors.Current
+                AttractorDetectedFrom = "behavioral"
+                Signals = $thermo.LastSignals
+                Guidance = $guidance
+            }
+        }
+
+        default { return $null }
+    }
+}
+
 function Load-FailurePatterns {
     # Load structured failure patterns from JSON file
     # Returns hashtable with project_patterns and cross_cutting_patterns
@@ -1532,7 +2249,7 @@ function Dump-ConsciousnessState {
 
 switch ($Command) {
     'init' {
-        Initialize-ConsciousnessCore
+        Initialize-ConsciousnessCore *>$null
     }
     'get' {
         $result = Get-ConsciousnessState -System $System -Property $Property

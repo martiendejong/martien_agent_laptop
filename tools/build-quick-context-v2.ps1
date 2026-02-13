@@ -120,7 +120,7 @@ $context.tools += @{
 
 $context.tools += @{
     name = "services-query"
-    path = "C:\scripts\tools\services-query.ps1"
+    path = "C:\scripts\tools\services-query-v2.ps1"
     purpose = "Query running services registry"
 }
 

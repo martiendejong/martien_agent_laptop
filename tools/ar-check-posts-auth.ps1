@@ -1,4 +1,6 @@
-$cred = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes('wreckingball:Th1s1sSp4rt4!'))
+$adminUser = & "$PSScriptRoot\vault.ps1" -Action get -Service admin -Field username -Silent
+$adminPass = & "$PSScriptRoot\vault.ps1" -Action get -Service admin -Field password -Silent
+$cred = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("${adminUser}:${adminPass}"))
 $headers = @{ Authorization = "Basic $cred" }
 $url = 'https://artrevisionist.com/wp-json/wp/v2/posts?per_page=20&orderby=date&order=desc&status=publish,future'
 

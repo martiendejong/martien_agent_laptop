@@ -1,22 +1,25 @@
 # Memory Layer 2 - Memory-Mapped Files
 # Fast persistent storage for recent history (Warm State)
-# Created: 2026-02-07 (Fix 8 - Devastating Critique completion)
+# Created: 2026-02-07 | Fixed: 2026-02-13 (header-based persistence)
 
 <#
 .SYNOPSIS
     Memory Layer 2 - Memory-Mapped File storage for warm state
 
 .DESCRIPTION
-    Provides ~1-5ms access to recent history using .NET MemoryMappedFiles
-    - Recent events (last 1000, circular buffer)
-    - Recent decisions (last 500)
-    - Event bus history
-    - Persistent across restarts
-    - Shared memory capable
+    Provides ~1-5ms access to recent history using .NET MemoryMappedFiles.
+    Each file has a 16-byte header storing metadata (write pos, read pos, count)
+    so state survives process restarts.
+
+    Header format (bytes 0-15):
+      0-3:   Magic (0x4A454E47 = "JENG")
+      4-7:   WriteIndex (int32, offset from HEADER_SIZE)
+      8-11:  ReadIndex (int32, offset from HEADER_SIZE)
+      12-15: Count (int32)
+    Data entries start at offset 16.
 
 .NOTES
     File: memory-layer2.ps1
-    Part of Fix 8 - Layer 2 storage implementation
 #>
 
 param(
@@ -30,22 +33,66 @@ param(
 
 $ErrorActionPreference = "Continue"
 
-# Load required .NET assemblies for memory-mapped files
 Add-Type -AssemblyName "System.Core"
 
 #region Configuration
 
 $script:MMapPath = "C:\scripts\agentidentity\state\mmap\"
+$script:HEADER_SIZE = 16
+$script:MAGIC = [int]0x4A454E47  # "JENG"
+
 $script:BufferConfigs = @{
-    Events = @{ FileName = "events.mmap"; MaxSize = 5MB; MaxEntries = 1000 }
+    Events   = @{ FileName = "events.mmap";   MaxSize = 5MB; MaxEntries = 1000 }
     Decisions = @{ FileName = "decisions.mmap"; MaxSize = 2MB; MaxEntries = 500 }
-    Patterns = @{ FileName = "patterns.mmap"; MaxSize = 1MB; MaxEntries = 200 }
-    EventBus = @{ FileName = "eventbus.mmap"; MaxSize = 3MB; MaxEntries = 500 }
+    Patterns = @{ FileName = "patterns.mmap";  MaxSize = 1MB; MaxEntries = 200 }
+    EventBus = @{ FileName = "eventbus.mmap";  MaxSize = 3MB; MaxEntries = 500 }
 }
 
-# Global memory-mapped file handles
 if (-not $global:MMapHandles) {
     $global:MMapHandles = @{}
+}
+
+#endregion
+
+#region Header Functions
+
+function Read-MMapHeader {
+    param([System.IO.MemoryMappedFiles.MemoryMappedFile]$Mmf)
+
+    $accessor = $Mmf.CreateViewAccessor(0, $script:HEADER_SIZE)
+    try {
+        $magic = $accessor.ReadInt32(0)
+        if ($magic -ne $script:MAGIC) {
+            return $null  # no valid header
+        }
+        return @{
+            WriteIndex = $accessor.ReadInt32(4)
+            ReadIndex  = $accessor.ReadInt32(8)
+            Count      = $accessor.ReadInt32(12)
+        }
+    } finally {
+        $accessor.Dispose()
+    }
+}
+
+function Write-MMapHeader {
+    param(
+        [System.IO.MemoryMappedFiles.MemoryMappedFile]$Mmf,
+        [int]$WriteIndex,
+        [int]$ReadIndex,
+        [int]$Count
+    )
+
+    $accessor = $Mmf.CreateViewAccessor(0, $script:HEADER_SIZE)
+    try {
+        $accessor.Write(0, $script:MAGIC)
+        $accessor.Write(4, [int]$WriteIndex)
+        $accessor.Write(8, [int]$ReadIndex)
+        $accessor.Write(12, [int]$Count)
+        $accessor.Flush()
+    } finally {
+        $accessor.Dispose()
+    }
 }
 
 #endregion
@@ -55,61 +102,42 @@ if (-not $global:MMapHandles) {
 function Initialize-MMapBuffer {
     param([string]$BufferName, [hashtable]$Config, [string]$FilePath)
 
-    # Check if file exists
     $fileExists = Test-Path $FilePath
 
     try {
-        # Use unique mapName per invocation to avoid kernel named-map conflicts
-        # Named maps are system-wide in Windows and persist if previous process crashed
         $uniqueMapName = "$BufferName-$([Guid]::NewGuid().ToString('N').Substring(0,8))"
 
         if ($fileExists) {
-            # Open existing memory-mapped file
             $fileStream = [System.IO.FileStream]::new(
                 $FilePath,
                 [System.IO.FileMode]::Open,
                 [System.IO.FileAccess]::ReadWrite,
                 [System.IO.FileShare]::ReadWrite
             )
-
             $mmf = [System.IO.MemoryMappedFiles.MemoryMappedFile]::CreateFromFile(
-                $fileStream,
-                $uniqueMapName,
-                0,  # Use file size
+                $fileStream, $uniqueMapName, 0,
                 [System.IO.MemoryMappedFiles.MemoryMappedFileAccess]::ReadWrite,
-                $null,
-                0,
-                $false  # Don't leave open
+                $null, 0, $false
             )
-
-            Write-Verbose "Opened existing mmap: $FilePath"
         } else {
-            # Create new memory-mapped file
             $fileStream = [System.IO.FileStream]::new(
                 $FilePath,
                 [System.IO.FileMode]::CreateNew,
                 [System.IO.FileAccess]::ReadWrite,
                 [System.IO.FileShare]::ReadWrite
             )
-
-            # Set file size
             $fileStream.SetLength($Config.MaxSize)
 
             $mmf = [System.IO.MemoryMappedFiles.MemoryMappedFile]::CreateFromFile(
-                $fileStream,
-                $uniqueMapName,
-                $Config.MaxSize,
+                $fileStream, $uniqueMapName, $Config.MaxSize,
                 [System.IO.MemoryMappedFiles.MemoryMappedFileAccess]::ReadWrite,
-                $null,
-                0,
-                $false
+                $null, 0, $false
             )
 
-            $sizeMB = [math]::Round($Config.MaxSize / 1048576, 2)
-            Write-Verbose "Created new mmap: $FilePath - Size: $sizeMB megabytes"
+            # Write initial header for new file
+            Write-MMapHeader -Mmf $mmf -WriteIndex 0 -ReadIndex 0 -Count 0
         }
 
-        # Store file stream in handle for later disposal
         $streamKey = "$BufferName" + "_FileStream"
         $global:MMapHandles[$streamKey] = $fileStream
 
@@ -121,12 +149,6 @@ function Initialize-MMapBuffer {
 }
 
 function Initialize-Layer2 {
-    <#
-    .SYNOPSIS
-        Initialize memory-mapped file layer
-    #>
-
-    # Ensure directory exists
     if (-not (Test-Path $script:MMapPath)) {
         New-Item -ItemType Directory -Path $script:MMapPath -Force | Out-Null
     }
@@ -134,6 +156,7 @@ function Initialize-Layer2 {
     Write-Host "[*] Initializing Memory Layer 2 (Memory-Mapped Files)..." -ForegroundColor Cyan
 
     $initialized = @()
+    $recovered = 0
     $errors = @()
 
     foreach ($bufferName in $script:BufferConfigs.Keys) {
@@ -141,17 +164,27 @@ function Initialize-Layer2 {
             $config = $script:BufferConfigs[$bufferName]
             $filePath = Join-Path $script:MMapPath $config.FileName
 
-            # Create or open memory-mapped file
             $mmf = Initialize-MMapBuffer -BufferName $bufferName -Config $config -FilePath $filePath
 
             if ($mmf) {
+                # Try to recover metadata from header
+                $header = Read-MMapHeader -Mmf $mmf
+                $writeIdx = 0; $readIdx = 0; $count = 0
+
+                if ($header) {
+                    $writeIdx = $header.WriteIndex
+                    $readIdx  = $header.ReadIndex
+                    $count    = $header.Count
+                    $recovered++
+                }
+
                 $global:MMapHandles[$bufferName] = @{
-                    File = $mmf
-                    FilePath = $filePath
-                    Config = $config
-                    ReadIndex = 0
-                    WriteIndex = 0
-                    Count = 0
+                    File       = $mmf
+                    FilePath   = $filePath
+                    Config     = $config
+                    ReadIndex  = $readIdx
+                    WriteIndex = $writeIdx
+                    Count      = $count
                 }
                 $initialized += $bufferName
             }
@@ -161,7 +194,10 @@ function Initialize-Layer2 {
         }
     }
 
-    Write-Host "[OK] Initialized $($initialized.Count) memory-mapped buffers" -ForegroundColor Green
+    $msg = "[OK] Initialized $($initialized.Count) memory-mapped buffers"
+    if ($recovered -gt 0) { $msg += " ($recovered recovered from disk)" }
+    Write-Host $msg -ForegroundColor Green
+
     if ($errors.Count -gt 0) {
         Write-Host "[!] Errors: $($errors.Count)" -ForegroundColor Yellow
         $errors | ForEach-Object { Write-Host "    $_" -ForegroundColor Gray }
@@ -170,15 +206,12 @@ function Initialize-Layer2 {
     return @{
         Initialized = $initialized
         Errors = $errors
+        Recovered = $recovered
         Path = $script:MMapPath
     }
 }
 
 function Write-Layer2Event {
-    <#
-    .SYNOPSIS
-        Write event to memory-mapped buffer (circular buffer pattern)
-    #>
     param(
         [string]$BufferName,
         [object]$Data
@@ -193,34 +226,43 @@ function Write-Layer2Event {
         $handle = $global:MMapHandles[$BufferName]
         $mmf = $handle.File
 
-        # Serialize data to JSON
         $json = $Data | ConvertTo-Json -Compress -Depth 5
         $bytes = [System.Text.Encoding]::UTF8.GetBytes($json)
-
-        # Calculate entry size (4 bytes length + data)
         $entrySize = 4 + $bytes.Length
 
-        # Create view accessor
+        # Check if entry fits in remaining space (accounting for header)
+        $dataCapacity = $handle.Config.MaxSize - $script:HEADER_SIZE
+        if ($entrySize -gt $dataCapacity) {
+            Write-Warning "Entry too large for buffer $BufferName ($entrySize bytes)"
+            return $false
+        }
+
         $accessor = $mmf.CreateViewAccessor()
-
         try {
-            # Write entry size
-            $offset = $handle.WriteIndex
-            $accessor.Write($offset, [int]$bytes.Length)
+            # All data offsets are relative to HEADER_SIZE
+            $dataOffset = $script:HEADER_SIZE + $handle.WriteIndex
 
-            # Write data
-            $accessor.WriteArray($offset + 4, $bytes, 0, $bytes.Length)
+            # Check wrap: if entry won't fit before end, wrap to start
+            if (($handle.WriteIndex + $entrySize) -gt $dataCapacity) {
+                $handle.WriteIndex = 0
+                $dataOffset = $script:HEADER_SIZE
+            }
 
-            # Update write index (circular buffer)
-            $handle.WriteIndex = ($handle.WriteIndex + $entrySize) % $handle.Config.MaxSize
+            # Write entry length prefix
+            $accessor.Write($dataOffset, [int]$bytes.Length)
+            # Write entry data
+            $accessor.WriteArray($dataOffset + 4, $bytes, 0, $bytes.Length)
+
+            # Update write index
+            $handle.WriteIndex = $handle.WriteIndex + $entrySize
 
             # Update count
             if ($handle.Count -lt $handle.Config.MaxEntries) {
                 $handle.Count++
-            } else {
-                # Wrapped around, update read index
-                $handle.ReadIndex = $handle.WriteIndex
             }
+
+            # Persist metadata to header
+            Write-MMapHeader -Mmf $mmf -WriteIndex $handle.WriteIndex -ReadIndex $handle.ReadIndex -Count $handle.Count
 
             return $true
         } finally {
@@ -233,10 +275,6 @@ function Write-Layer2Event {
 }
 
 function Read-Layer2Events {
-    <#
-    .SYNOPSIS
-        Read recent events from memory-mapped buffer
-    #>
     param(
         [string]$BufferName,
         [int]$MaxEntries = 100
@@ -251,37 +289,40 @@ function Read-Layer2Events {
         $handle = $global:MMapHandles[$BufferName]
         $mmf = $handle.File
 
+        if ($handle.Count -eq 0) { return @() }
+
         $results = @()
         $accessor = $mmf.CreateViewAccessor()
 
         try {
             $currentOffset = $handle.ReadIndex
             $entriesRead = 0
+            $dataCapacity = $handle.Config.MaxSize - $script:HEADER_SIZE
 
             while ($entriesRead -lt $MaxEntries -and $entriesRead -lt $handle.Count) {
-                # Read entry size
-                $entrySize = $accessor.ReadInt32($currentOffset)
+                $dataOffset = $script:HEADER_SIZE + $currentOffset
+                $entrySize = $accessor.ReadInt32($dataOffset)
 
                 if ($entrySize -le 0 -or $entrySize -gt 1MB) {
-                    # Invalid entry, skip
-                    break
+                    break  # corrupt or end of data
                 }
 
-                # Read data
-                $bytes = New-Object byte[] $entrySize
-                $accessor.ReadArray($currentOffset + 4, $bytes, 0, $entrySize)
+                $entryBytes = New-Object byte[] $entrySize
+                $accessor.ReadArray($dataOffset + 4, $entryBytes, 0, $entrySize)
 
-                # Deserialize JSON
-                $json = [System.Text.Encoding]::UTF8.GetString($bytes)
-                $entry = $json | ConvertFrom-Json
-
+                $entryJson = [System.Text.Encoding]::UTF8.GetString($entryBytes)
+                $entry = $entryJson | ConvertFrom-Json
                 $results += $entry
 
-                # Move to next entry
-                $currentOffset = ($currentOffset + 4 + $entrySize) % $handle.Config.MaxSize
+                $currentOffset = $currentOffset + 4 + $entrySize
+
+                # Wrap check
+                if ($currentOffset -ge $dataCapacity) {
+                    $currentOffset = 0
+                }
+
                 $entriesRead++
 
-                # Stop if we've wrapped around to write position
                 if ($currentOffset -eq $handle.WriteIndex) {
                     break
                 }
@@ -298,11 +339,6 @@ function Read-Layer2Events {
 }
 
 function Get-Layer2Stats {
-    <#
-    .SYNOPSIS
-        Get statistics for memory-mapped buffers
-    #>
-
     $stats = @{}
 
     foreach ($bufferName in $global:MMapHandles.Keys | Where-Object { $_ -notlike "*_FileStream" }) {
@@ -314,11 +350,11 @@ function Get-Layer2Stats {
         }
 
         $stats[$bufferName] = @{
-            Entries = $handle.Count
+            Entries    = $handle.Count
             MaxEntries = $handle.Config.MaxEntries
-            MaxSize = [math]::Round($handle.Config.MaxSize / 1MB, 2)
+            MaxSize    = [math]::Round($handle.Config.MaxSize / 1MB, 2)
             FileSizeKB = $fileSizeKB
-            Usage = [math]::Round(($handle.Count / $handle.Config.MaxEntries) * 100, 1)
+            Usage      = [math]::Round(($handle.Count / $handle.Config.MaxEntries) * 100, 1)
         }
     }
 
@@ -326,14 +362,9 @@ function Get-Layer2Stats {
 }
 
 function Close-Layer2 {
-    <#
-    .SYNOPSIS
-        Close all memory-mapped file handles
-    #>
-
     $closed = 0
 
-    foreach ($bufferName in $global:MMapHandles.Keys) {
+    foreach ($bufferName in @($global:MMapHandles.Keys)) {
         try {
             $handle = $global:MMapHandles[$bufferName]
 
@@ -359,34 +390,17 @@ function Close-Layer2 {
 #region Integration Functions
 
 function Sync-EventToLayer2 {
-    <#
-    .SYNOPSIS
-        Sync event from Layer 1 (RAM) to Layer 2 (mmap)
-    .DESCRIPTION
-        Called automatically when events are stored in consciousness-core-v2
-    #>
     param([object]$Event)
-
     Write-Layer2Event -BufferName 'Events' -Data $Event
 }
 
 function Sync-DecisionToLayer2 {
-    <#
-    .SYNOPSIS
-        Sync decision from Layer 1 (RAM) to Layer 2 (mmap)
-    #>
     param([object]$Decision)
-
     Write-Layer2Event -BufferName 'Decisions' -Data $Decision
 }
 
 function Sync-PatternToLayer2 {
-    <#
-    .SYNOPSIS
-        Sync pattern from Layer 1 (RAM) to Layer 2 (mmap)
-    #>
     param([object]$Pattern)
-
     Write-Layer2Event -BufferName 'Patterns' -Data $Pattern
 }
 
@@ -394,7 +408,6 @@ function Sync-PatternToLayer2 {
 
 #region Main Execution
 
-# Only run command if called directly (not dot-sourced)
 if ($MyInvocation.InvocationName -ne '.' -and $MyInvocation.InvocationName -ne '&') {
     switch ($Command) {
         'init' {
@@ -407,7 +420,6 @@ if ($MyInvocation.InvocationName -ne '.' -and $MyInvocation.InvocationName -ne '
                 Write-Error "BufferName required for write command"
                 return $false
             }
-
             return Write-Layer2Event -BufferName $BufferName -Data $Data
         }
 
@@ -416,7 +428,6 @@ if ($MyInvocation.InvocationName -ne '.' -and $MyInvocation.InvocationName -ne '
                 Write-Error "BufferName required for read command"
                 return @()
             }
-
             return Read-Layer2Events -BufferName $BufferName -MaxEntries $MaxEntries
         }
 

@@ -13,21 +13,9 @@
 
 const Imap = require('imap');
 const fs = require('fs');
+const { getImapConfig } = require('./lib/vault-config');
 
-// Load credentials
-const credsPath = 'C:\\scripts\\_machine\\credentials.md';
-let imapPassword = 'hLPFy6MdUnfEDbYTwXps'; // fallback
-
-const config = {
-  user: 'info@martiendejong.nl',
-  password: imapPassword,
-  host: 'mail.zxcs.nl',
-  port: 993,
-  tls: true,
-  tlsOptions: { rejectUnauthorized: false },
-  authTimeout: 30000,
-  connTimeout: 30000
-};
+const config = getImapConfig();
 
 // Known spam domains for auto-detection
 const SPAM_DOMAINS = [

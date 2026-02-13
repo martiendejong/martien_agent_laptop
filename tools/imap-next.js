@@ -1,16 +1,8 @@
 #!/usr/bin/env node
 const Imap = require('imap');
+const { getImapConfig } = require('./lib/vault-config');
 
-const config = {
-  user: 'info@martiendejong.nl',
-  password: 'hLPFy6MdUnfEDbYTwXps',
-  host: 'mail.zxcs.nl',
-  port: 993,
-  tls: true,
-  tlsOptions: { rejectUnauthorized: false },
-  authTimeout: 30000,
-  connTimeout: 30000
-};
+const config = getImapConfig();
 
 const uidsToSpam = process.argv.slice(2).filter(a => !a.startsWith('--')).map(Number).filter(n => n > 0);
 const offsetArg = process.argv.find(a => a.startsWith('--offset='));

@@ -10,6 +10,7 @@ const Imap = require('imap');
 const { simpleParser } = require('mailparser');
 const fs = require('fs');
 const path = require('path');
+const { getImapConfig } = require('./lib/vault-config');
 
 // Parse command line arguments
 const args = process.argv.slice(2);
@@ -20,16 +21,7 @@ const outputDir = args.find(a => a.startsWith('--output='))?.split('=')[1] || 'C
 const accounts = [
   {
     name: 'info@martiendejong.nl',
-    config: {
-      user: 'info@martiendejong.nl',
-      password: 'hLPFy6MdUnfEDbYTwXps',
-      host: 'mail.zxcs.nl',
-      port: 993,
-      tls: true,
-      tlsOptions: { rejectUnauthorized: false },
-      authTimeout: 30000,
-      connTimeout: 30000
-    }
+    config: getImapConfig()
   },
   {
     name: 'martiendejong2008@gmail.com',
