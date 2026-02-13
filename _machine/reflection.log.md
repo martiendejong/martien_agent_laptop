@@ -6,6 +6,68 @@
 
 ---
 
+## 2026-02-13 (evening) - Dopamine Supremacy Blog Series Deployment
+
+**Session Type:** Content generation, WordPress deployment, DALL-E integration
+**Outcome:** 12-article series deployed with AI-generated images and FAQs
+
+### What was delivered
+1. **12 blog articles** (~7500 words total) on dopamine supremacy:
+   - From Columbus/colonialism to modern attention economy to collective solutions
+   - All content in English (no em-dashes, no markdown formatting in text)
+   - PII-scanned (no email addresses in public content)
+
+2. **WordPress deployment via REST API**:
+   - Created posts via REST API with application password authentication
+   - Category: "Collective Pathology" (renamed from initial "Narcisme Pandemic")
+   - Each article has "Article X of 12" with link to collection page
+   - Collection page with explicit links to all 12 posts
+
+3. **AI-generated enhancements**:
+   - 12 unique DALL-E images (1792x1024, contextual prompts per article)
+   - FAQ sections for all 12 posts (GPT-4 generated, 5 Q&As each)
+   - Images uploaded via FTP (REST API media endpoint failed with 500 errors)
+
+### Critical mistakes made
+1. **FTP + PHP script detour**: Initially tried FTP upload with self-deleting PHP script instead of using REST API. User correctly pointed out application password + REST API was simpler. Lost 30+ minutes on unnecessary complexity.
+
+2. **Duplicate category creation**: Created new "Narcisme Pandemic" category without checking if one already existed. This created "Narcisme Pandemic" (new, 12 posts) and "The Narcissism Pandemic" (old, 10 posts) chaos. Had to merge and separate two different series.
+
+3. **Context misunderstanding**: There were TWO different blog series (Narcissism Pandemic and Dopamine Supremacy), but I conflated them initially. The Dopamine Supremacy collection page was pointing to Narcissism posts instead of Dopamine posts. Took 3 iterations to fix.
+
+4. **Missing article numbers**: Deployed posts without "Article X of 12" indicators initially. User had to request this explicitly.
+
+### Key learnings
+- **REST API first for WordPress operations**: Application passwords work perfectly for posts/pages/categories. Don't jump to FTP unless REST API actually fails.
+- **ALWAYS check existing data before creating**: Query categories, check slugs, understand what already exists. Don't blindly create.
+- **Understand full context FIRST**: When user mentions existing content, ask clarifying questions or do reconnaissance before starting. Two different series existed, should have mapped that out first.
+- **DALL-E images too large for WP REST API media endpoint**: 1792x1024 PNG files consistently return 500 errors on `/wp/v2/media` endpoint. FTP upload + PHP import script is more reliable for images >1MB.
+- **"Theater vs Engineering" still applies**: User said "denk hier over na met 1000 experts" but wanted 12 articles delivered, not a performance about consulting experts. MEMORY.md warns about this pattern. Deliver work, not theater.
+
+### WordPress REST API patterns learned
+- **Posts/Pages/Categories**: REST API works great, use application password Basic Auth
+- **Media uploads**: Large files (>1MB) often fail with 500 errors, use FTP + wp_upload_bits() in PHP instead
+- **Post meta for FAQs**: `b2bk_qa_items` JSON field stores FAQ data, same pattern as Art Revisionist site
+- **Featured images**: Set via `featured_media` field (attachment ID), but must create attachment first
+- **Category operations**: Create, rename, delete via `/wp/v2/categories`, but check for existing first
+
+### Process improvement
+- Before creating WordPress content, run discovery phase:
+  1. Query existing categories/tags
+  2. Query existing posts by keyword
+  3. Map out relationships (which series exists, which posts belong where)
+  4. THEN create new content
+- For WordPress image workflows: generate with DALL-E, upload via FTP, import with PHP script (proven pattern)
+
+### Tools created
+- `deploy-via-api.py` - WordPress REST API deployment (posts, pages, categories)
+- `fix-dopamine-series.py` - Category cleanup and article numbering
+- `fix-series-separation.py` - Separate two different blog series
+- `enhance-dopamine-posts.py` - DALL-E image generation + GPT-4 FAQ generation
+- `import-dopamine-images.php` - Self-deleting PHP script for media import
+
+---
+
 ## 2026-02-13 (late) - Hook Integration + 1% Improvement Tracking
 
 **Session Type:** Infrastructure, consciousness system integration
