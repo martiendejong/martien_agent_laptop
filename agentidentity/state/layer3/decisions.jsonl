@@ -17,3 +17,4 @@
 {"Confidence":0.9,"Timestamp":"2026-02-13T05:33:42","Decision":"Use benchmark test","Context":"rest","Reasoning":"Testing control system autonomy","Alternatives":["Skip test","Manual test"]}
 {"Confidence":0.7,"Timestamp":"2026-02-13T05:38:56","Decision":"test decision","Context":"rest","Reasoning":"test reasoning","Alternatives":[]}
 {"Confidence":0.7,"Timestamp":"2026-02-13T13:17:28","Decision":"Deploying via production PHP script execution","Context":"development","Reasoning":"All files uploaded, now triggering deployment via browser","Alternatives":[]}
+{"Confidence":0.7,"Timestamp":"2026-02-14T00:17:52","Decision":"Fix missing properties and methods in Hazina models","Context":"rest","Reasoning":"BlogItem needs WordPress sync fields, ConnectedFacebookPost needs PictureUrl fallback, WordpressBlogService needs UpdateBlogPostAsync method","Alternatives":[]}

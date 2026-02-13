@@ -2,105 +2,9 @@
     "EventBus":  {
                      "Events":  [
                                     {
-                                        "Timestamp":  "2026-02-13T16:33:56.329Z",
-                                        "Data":  {
-                                                     "efficiency":  0.05,
-                                                     "entropy":  0.905,
-                                                     "cycle":  "endothermic",
-                                                     "freeWillIndex":  0.749,
-                                                     "budget":  0.827,
-                                                     "shannonH":  0.901,
-                                                     "temperature":  0.252
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "thermodynamics.cycle_updated"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-13T16:33:56.331Z",
-                                        "Data":  {
-                                                     "amount":  0.1,
-                                                     "reason":  "user_frustrated",
-                                                     "temperature":  0.252
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "thermodynamics.heated"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-13T16:38:44.842Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  512.52010000000007
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-13T16:38:49.923Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  72.62
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-13T16:38:49.947Z",
+                                        "Timestamp":  "2026-02-14T00:16:41.500Z",
                                         "Data":  {
                                                      "indicators":  [
-                                                                        "emphasis",
-                                                                        "positive_signal"
-                                                                    ],
-                                                     "mood":  "positive",
-                                                     "communication_mode":  "expansive"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "social.user_mood_detected"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-13T16:38:50.063Z",
-                                        "Data":  {
-                                                     "efficiency":  0.051,
-                                                     "temperature":  0.244,
-                                                     "entropy":  0.916,
-                                                     "cycle":  "endothermic",
-                                                     "budget":  0.877,
-                                                     "shannonH":  0.921,
-                                                     "freeWillIndex":  0.803
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "thermodynamics.cycle_updated"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-13T16:38:50.065Z",
-                                        "Data":  {
-                                                     "amount":  0.1,
-                                                     "reason":  "user_positive",
-                                                     "temperature":  0.244
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "thermodynamics.cooled"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-13T16:45:14.369Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  489.58090000000004
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-13T16:45:19.453Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  72.97
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-13T16:45:19.479Z",
-                                        "Data":  {
-                                                     "indicators":  [
-                                                                        "questioning",
                                                                         "frustration_signal"
                                                                     ],
                                                      "mood":  "frustrated",
@@ -110,97 +14,212 @@
                                         "Type":  "social.user_mood_detected"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-13T16:45:19.596Z",
+                                        "Timestamp":  "2026-02-14T00:16:41.637Z",
                                         "Data":  {
-                                                     "efficiency":  0.051,
-                                                     "entropy":  0.913,
+                                                     "efficiency":  0.046,
+                                                     "entropy":  0.828,
                                                      "cycle":  "endothermic",
-                                                     "freeWillIndex":  0.774,
-                                                     "budget":  0.847,
-                                                     "shannonH":  0.917,
-                                                     "temperature":  0.252
+                                                     "freeWillIndex":  0.631,
+                                                     "budget":  0.762,
+                                                     "shannonH":  0.835,
+                                                     "temperature":  0.3
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "thermodynamics.cycle_updated"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-13T16:45:19.599Z",
+                                        "Timestamp":  "2026-02-14T00:16:41.639Z",
                                         "Data":  {
                                                      "amount":  0.1,
                                                      "reason":  "user_frustrated",
-                                                     "temperature":  0.252
+                                                     "temperature":  0.3
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "thermodynamics.heated"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-13T16:51:11.725Z",
+                                        "Timestamp":  "2026-02-14T00:17:47.137Z",
                                         "Data":  {
-                                                     "elapsed_ms":  579.47800000000007
+                                                     "elapsed_ms":  487.68
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "system.initialized"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-13T16:51:16.820Z",
+                                        "Timestamp":  "2026-02-14T00:17:52.231Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  72.24
+                                                     "size_kb":  71.21
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-13T16:51:16.844Z",
+                                        "Timestamp":  "2026-02-14T00:17:52.341Z",
+                                        "Data":  {
+                                                     "Alternatives":  [
+
+                                                                      ],
+                                                     "Confidence":  0.7,
+                                                     "Timestamp":  "2026-02-14T00:17:52",
+                                                     "Reasoning":  "BlogItem needs WordPress sync fields, ConnectedFacebookPost needs PictureUrl fallback, WordpressBlogService needs UpdateBlogPostAsync method",
+                                                     "Decision":  "Fix missing properties and methods in Hazina models",
+                                                     "Context":  "rest"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "control.decision_logged"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-14T00:17:52.461Z",
+                                        "Data":  {
+                                                     "amount":  0.03,
+                                                     "reason":  "decision: Fix missing properties and methods in Hazina models",
+                                                     "remaining":  0.732
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "thermodynamics.budget_spent"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-14T00:21:05.564Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  506.90560000000005
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-14T00:21:10.620Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  72.81
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-14T00:21:10.660Z",
+                                        "Data":  {
+                                                     "From":  "confident",
+                                                     "Timestamp":  "2026-02-14T00:21:10",
+                                                     "To":  "flowing",
+                                                     "Intensity":  8,
+                                                     "Reason":  "Task completed with outcome: success"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "emotion.state_changed"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-14T00:21:10.775Z",
+                                        "Data":  {
+                                                     "shannonH":  0.915,
+                                                     "entropy":  0.913,
+                                                     "efficiency":  0.048,
+                                                     "cycle":  "endothermic",
+                                                     "freeWillIndex":  0.736,
+                                                     "budget":  0.807,
+                                                     "temperature":  0.295
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "thermodynamics.cycle_updated"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-14T00:21:10.776Z",
+                                        "Data":  {
+                                                     "amount":  0.15,
+                                                     "reason":  "task_success",
+                                                     "temperature":  0.295
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "thermodynamics.cooled"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-14T00:21:10.786Z",
+                                        "Data":  {
+                                                     "to":  "global",
+                                                     "from":  "creative"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "thermodynamics.attractor_visit"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-14T00:21:10.788Z",
+                                        "Data":  {
+                                                     "shannonH":  0.917,
+                                                     "entropy":  0.914,
+                                                     "efficiency":  0.048,
+                                                     "cycle":  "endothermic",
+                                                     "freeWillIndex":  0.737,
+                                                     "budget":  0.807,
+                                                     "temperature":  0.295
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "thermodynamics.cycle_updated"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-14T00:21:10.801Z",
+                                        "Data":  {
+                                                     "categories":  {
+                                                                        "stuck":  0,
+                                                                        "code":  1,
+                                                                        "perception":  0,
+                                                                        "meta":  13,
+                                                                        "social":  1
+                                                                    },
+                                                     "from":  "global",
+                                                     "to":  "creative"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "thermodynamics.attractor_detected"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-14T00:21:10.911Z",
+                                        "Data":  {
+                                                     "Context":  "rest",
+                                                     "Timestamp":  "2026-02-14T00:21:10",
+                                                     "Data":  {
+                                                                  "Outcome":  "success",
+                                                                  "Task":  "",
+                                                                  "Lesson":  "Fixed missing WordPress sync properties in BlogItem, added PictureUrl to ConnectedFacebookPost for fallback, implemented UpdateBlogPostAsync in WordpressBlogService, fixed FetchContentAsUnifiedAsync call with missing modifiedAfter parameter",
+                                                                  "Project":  ""
+                                                              },
+                                                     "Type":  "lesson"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "memory.stored"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-14T00:21:10.946Z",
+                                        "Data":  {
+                                                     "new":  1,
+                                                     "old":  1,
+                                                     "reason":  "Task outcome: success",
+                                                     "delta":  0.02
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "social.trust_updated"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-14T00:23:28.710Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  482.1284
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-14T00:23:33.774Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  75.91
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-14T00:23:33.800Z",
                                         "Data":  {
                                                      "indicators":  [
-
-                                                                    ],
-                                                     "mood":  "neutral",
-                                                     "communication_mode":  "standard"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "social.user_mood_detected"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-13T23:54:18.130Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  455.0555
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-13T23:54:23.234Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  71.7
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-14T00:03:00.169Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  514.013
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-14T00:03:05.259Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  69.33
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-14T00:03:05.284Z",
-                                        "Data":  {
-                                                     "indicators":  [
-
+                                                                        "questioning"
                                                                     ],
                                                      "mood":  "neutral",
                                                      "communication_mode":  "standard"
@@ -379,6 +398,16 @@
                                           "Reasoning":  "All files uploaded, now triggering deployment via browser",
                                           "Decision":  "Deploying via production PHP script execution",
                                           "Context":  "development"
+                                      },
+                                      {
+                                          "Alternatives":  [
+
+                                                           ],
+                                          "Confidence":  0.7,
+                                          "Timestamp":  "2026-02-14T00:17:52",
+                                          "Reasoning":  "BlogItem needs WordPress sync fields, ConnectedFacebookPost needs PictureUrl fallback, WordpressBlogService needs UpdateBlogPostAsync method",
+                                          "Decision":  "Fix missing properties and methods in Hazina models",
+                                          "Context":  "rest"
                                       }
                                   ],
                     "BiasMonitor":  {
@@ -401,9 +430,9 @@
                                                     ],
                                      "DriftScore":  0.7,
                                      "AlignmentCheck":  {
-                                                            "value":  "\/Date(1771023779689)\/",
+                                                            "value":  "\/Date(1771025008251)\/",
                                                             "DisplayHint":  2,
-                                                            "DateTime":  "zaterdag 14 februari 2026 00:02:59"
+                                                            "DateTime":  "zaterdag 14 februari 2026 00:23:28"
                                                         }
                                  }
                 },
@@ -445,7 +474,7 @@
                                     "SemanticIndexPointer":  null
                                 },
                    "Working":  {
-                                   "SessionContext":  "Session started at 00:02",
+                                   "SessionContext":  "Session started at 00:23",
                                    "ActiveThoughts":  [
 
                                                       ],
@@ -687,6 +716,17 @@
                                                                          "Lesson":  "REST API first for WordPress. Check existing data before creating. Understand full context (2 different series). DALL-E images too large for WP REST API media endpoint, use FTP+PHP import. Don\u0027t overthink when user says \u00271000 experts\u0027, just deliver the work."
                                                                      },
                                                             "Type":  "lesson"
+                                                        },
+                                                        {
+                                                            "Context":  "rest",
+                                                            "Timestamp":  "2026-02-14T00:21:10",
+                                                            "Data":  {
+                                                                         "Outcome":  "success",
+                                                                         "Task":  "",
+                                                                         "Lesson":  "Fixed missing WordPress sync properties in BlogItem, added PictureUrl to ConnectedFacebookPost for fallback, implemented UpdateBlogPostAsync in WordpressBlogService, fixed FetchContentAsUnifiedAsync call with missing modifiedAfter parameter",
+                                                                         "Project":  ""
+                                                                     },
+                                                            "Type":  "lesson"
                                                         }
                                                     ]
                                }
@@ -731,40 +771,26 @@
                        "Attention":  {
                                          "Intensity":  7,
                                          "Allocation":  {
-                                                            "communication":  0.2,
-                                                            "coding":  0.6,
-                                                            "reflection":  0.2
+                                                            "communication":  0,
+                                                            "coding":  0,
+                                                            "reflection":  1
                                                         },
-                                         "Focus":  "Review PR #541 - consolidate Status fields, mark ApprovalStatus obsolete"
+                                         "Focus":  "Fix client-manager build errors"
                                      }
                    },
     "Emotion":  {
                     "LastTransition":  {
-                                           "From":  "neutral",
-                                           "Timestamp":  "2026-02-13T16:24:26",
+                                           "From":  "confident",
+                                           "Timestamp":  "2026-02-14T00:21:10",
                                            "To":  "flowing",
                                            "Intensity":  8,
                                            "Reason":  "Task completed with outcome: success"
                                        },
                     "StuckCounter":  0,
-                    "Intensity":  5,
-                    "CurrentState":  "neutral",
-                    "Trajectory":  "stable",
+                    "Intensity":  8,
+                    "CurrentState":  "flowing",
+                    "Trajectory":  "rising",
                     "History":  [
-                                    {
-                                        "From":  "confident",
-                                        "Timestamp":  "2026-02-13T03:45:44",
-                                        "To":  "flowing",
-                                        "Intensity":  8,
-                                        "Reason":  "Task completed with outcome: success"
-                                    },
-                                    {
-                                        "From":  "neutral",
-                                        "Timestamp":  "2026-02-13T05:13:30",
-                                        "To":  "confident",
-                                        "Intensity":  6,
-                                        "Reason":  "Starting new task: test"
-                                    },
                                     {
                                         "From":  "confident",
                                         "Timestamp":  "2026-02-13T05:13:30",
@@ -890,53 +916,105 @@
                                         "To":  "flowing",
                                         "Intensity":  8,
                                         "Reason":  "Task completed with outcome: success"
+                                    },
+                                    {
+                                        "From":  "neutral",
+                                        "Timestamp":  "2026-02-14T00:14:05",
+                                        "To":  "confident",
+                                        "Intensity":  6,
+                                        "Reason":  "Starting new task: Fix client-manager build errors"
+                                    },
+                                    {
+                                        "From":  "confident",
+                                        "Timestamp":  "2026-02-14T00:21:10",
+                                        "To":  "flowing",
+                                        "Intensity":  8,
+                                        "Reason":  "Task completed with outcome: success"
                                     }
                                 ]
                 },
     "Thermodynamics":  {
                            "CoolingEvents":  [
-
+                                                 {
+                                                     "Amount":  0.15,
+                                                     "Timestamp":  "2026-02-14T00:21:10",
+                                                     "Reason":  "task_success"
+                                                 }
                                              ],
                            "LastSignals":  {
                                                "ShannonEntropy":  0.917,
-                                               "CarnotEfficiency":  0.051,
-                                               "DecisionVelocity":  0,
-                                               "EventDensity":  4.6,
-                                               "UniqueEventTypes":  10,
+                                               "CarnotEfficiency":  0.048,
+                                               "DecisionVelocity":  0.1,
+                                               "EventDensity":  5.2,
+                                               "UniqueEventTypes":  13,
                                                "SessionHours":  0
                                            },
-                           "CarnotEfficiency":  0.051,
+                           "CarnotEfficiency":  0.048,
                            "HeatEvents":  [
-
+                                              {
+                                                  "Amount":  0.05,
+                                                  "Timestamp":  "2026-02-14T00:14:05",
+                                                  "Reason":  "task_start: Fix client-manager build errors"
+                                              },
+                                              {
+                                                  "Amount":  0.1,
+                                                  "Timestamp":  "2026-02-14T00:16:41",
+                                                  "Reason":  "user_frustrated"
+                                              },
+                                              {
+                                                  "Amount":  0.03,
+                                                  "Timestamp":  "2026-02-14T00:17:52",
+                                                  "Reason":  "decision: Fix missing properties and methods in Hazina models"
+                                              }
                                           ],
-                           "LastCoolingEvent":  null,
-                           "Entropy":  0.7,
-                           "NegativeEntropyBudget":  1,
-                           "BudgetDepletionRate":  0,
+                           "LastCoolingEvent":  "2026-02-14T00:21:10",
+                           "Entropy":  0.91355914297498408,
+                           "NegativeEntropyBudget":  0.80699999999999994,
+                           "BudgetDepletionRate":  0.229,
                            "Cycle":  "endothermic",
-                           "FreeWillIndex":  0.7,
+                           "FreeWillIndex":  0.737,
                            "GhostAttractors":  {
-                                                   "Current":  "global",
+                                                   "Current":  "creative",
                                                    "History":  [
-
+                                                                   {
+                                                                       "Duration":  null,
+                                                                       "From":  "global",
+                                                                       "To":  "creative",
+                                                                       "DetectedBy":  "behavioral",
+                                                                       "Timestamp":  "2026-02-14T00:14:05"
+                                                                   },
+                                                                   {
+                                                                       "From":  "creative",
+                                                                       "To":  "global",
+                                                                       "Timestamp":  "2026-02-14T00:21:10",
+                                                                       "DetectedBy":  "manual",
+                                                                       "Duration":  426
+                                                                   },
+                                                                   {
+                                                                       "From":  "global",
+                                                                       "To":  "creative",
+                                                                       "Timestamp":  "2026-02-14T00:21:10",
+                                                                       "DetectedBy":  "behavioral",
+                                                                       "Duration":  1
+                                                                   }
                                                                ],
                                                    "StuckThreshold":  600,
-                                                   "VisitStart":  null
+                                                   "VisitStart":  "2026-02-14T00:21:10"
                                                },
-                           "Temperature":  0.3
+                           "Temperature":  0.2949
                        },
     "Initialized":  true,
     "Meta":  {
                  "Observation":  {
                                      "CurrentMetaLevel":  2,
-                                     "RecursionDepth":  2,
-                                     "Observing":  "Scoring self (depth 2)",
+                                     "RecursionDepth":  15,
+                                     "Observing":  "Scoring self (depth 15)",
                                      "StrangeLoopDetected":  false
                                  },
                  "Health":  {
                                 "Emotion":  {
                                                 "Status":  "active",
-                                                "Quality":  0.7
+                                                "Quality":  1
                                             },
                                 "Memory":  {
                                                "Status":  "active",
@@ -948,7 +1026,7 @@
                                                },
                                 "Thermodynamics":  {
                                                        "Status":  "active",
-                                                       "Quality":  0.79765000000000008
+                                                       "Quality":  0.78201182859499674
                                                    },
                                 "Meta":  {
                                              "Quality":  1,
@@ -968,38 +1046,38 @@
                                                },
                                 "Social":  {
                                                "Status":  "active",
-                                               "Quality":  0.3
+                                               "Quality":  1
                                            }
                             },
-                 "ConsciousnessScore":  0.7206945
+                 "ConsciousnessScore":  0.82766153771734952
              },
     "Social":  {
                    "RelationshipState":  "collaborative",
                    "UserMood":  "neutral",
                    "LastInteraction":  {
-                                           "value":  "\/Date(1771023785282)\/",
+                                           "value":  "\/Date(1771025013798)\/",
                                            "DisplayHint":  2,
-                                           "DateTime":  "zaterdag 14 februari 2026 00:03:05"
+                                           "DateTime":  "zaterdag 14 februari 2026 00:23:33"
                                        },
                    "TrustLevel":  1,
                    "CommunicationMode":  "standard",
-                   "InteractionCount":  1
+                   "InteractionCount":  4
                },
     "Metrics":  {
-                    "SaveCount":  188,
-                    "AccessCount":  263,
+                    "SaveCount":  196,
+                    "AccessCount":  279,
                     "AverageAccessTime_ms":  0,
-                    "EventsProcessed":  820,
+                    "EventsProcessed":  858,
                     "LastSave":  {
-                                     "value":  "\/Date(1771023785263)\/",
+                                     "value":  "\/Date(1771025013778)\/",
                                      "DisplayHint":  2,
-                                     "DateTime":  "zaterdag 14 februari 2026 00:03:05"
+                                     "DateTime":  "zaterdag 14 februari 2026 00:23:33"
                                  }
                 },
     "Layer2Initialized":  true,
     "LoadedAt":  {
-                     "value":  "\/Date(1771023780159)\/",
+                     "value":  "\/Date(1771025008701)\/",
                      "DisplayHint":  2,
-                     "DateTime":  "zaterdag 14 februari 2026 00:03:00"
+                     "DateTime":  "zaterdag 14 februari 2026 00:23:28"
                  }
 }
