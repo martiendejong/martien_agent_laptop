@@ -1,0 +1,24 @@
+﻿{
+    "learned_patterns":  {
+                             "archetypes":  {
+
+                                            },
+                             "visual_patterns":  {
+
+                                                 },
+                             "tone_markers":  {
+
+                                              }
+                         },
+    "version":  "1.0",
+    "analyses":  [
+                     {
+                         "tone_warmth":  0,
+                         "archetype_primary":  "creator",
+                         "timestamp":  "2026-02-14 00:09:52",
+                         "output_path":  "E:\\jengo\\documents\\temp\\vibe-analysis-20260214-000951.md",
+                         "tone_formality":  -3,
+                         "project":  "Art Revisionist"
+                     }
+                 ]
+}

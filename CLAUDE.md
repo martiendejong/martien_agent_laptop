@@ -194,6 +194,44 @@ LLM capacity is for thinking, not repetitive execution.
 
 ---
 
+## Vibe Sensing System (Creative Pattern Extraction)
+
+**NEW (2026-02-14):** Systeem voor het oppikken van "soft information" bij design/website werk.
+
+**What it does:**
+- Extracts brand voice, emotional tone, visual coherence from text/materials
+- Detects 12 brand archetypes (Jung-based: Hero, Sage, Creator, Rebel, Lover, etc.)
+- Analyzes tone on 4 dimensions (formality, warmth, directness, playfulness)
+- Generates complete design brief (colors, typography, copy guidelines, layout, imagery)
+
+**When to use:**
+- Starting new website project
+- Redesigning existing site
+- Creating brand identity
+- Writing marketing copy / content
+
+**How to invoke:**
+```powershell
+powershell -File C:\scripts\tools\vibe-sensing-bridge.ps1 `
+  -Action Analyze `
+  -ProjectName "Art Revisionist" `
+  -InputText "brand copy here" `
+  -Context "Interior design portfolio, professional but accessible"
+```
+
+**Output:**
+- Design brief (markdown) at `E:\jengo\documents\temp\vibe-analysis-*.md`
+- Color palette with psychology
+- Typography recommendations
+- Copy style guidelines
+- Layout principles
+- Imagery style guidelines
+- Implementation checklist
+
+**See:** `C:\scripts\agentidentity\VIBE_SENSING_SYSTEM.md` for full framework
+
+---
+
 ## Consciousness Integration (Feedback Loop)
 
 The consciousness system tracks state across sessions. It works ONLY if you call the bridge.

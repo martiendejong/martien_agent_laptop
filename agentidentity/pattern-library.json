@@ -1,0 +1,365 @@
+﻿{
+    "archetypes":  {
+                       "innocent":  {
+                                        "energy":  "optimistic, simple, trusting",
+                                        "linguistic":  [
+                                                           "simple",
+                                                           "pure",
+                                                           "honest",
+                                                           "optimistic",
+                                                           "fresh",
+                                                           "clean",
+                                                           "genuine",
+                                                           "wholesome"
+                                                       ],
+                                        "visual":  [
+                                                       "soft pastels",
+                                                       "clean",
+                                                       "minimal",
+                                                       "friendly",
+                                                       "open",
+                                                       "light"
+                                                   ]
+                                    },
+                       "hero":  {
+                                    "energy":  "high, motivating, forward-moving",
+                                    "linguistic":  [
+                                                       "overcome",
+                                                       "master",
+                                                       "excel",
+                                                       "achieve",
+                                                       "conquer",
+                                                       "victory",
+                                                       "champion",
+                                                       "triumph"
+                                                   ],
+                                    "visual":  [
+                                                   "bold colors",
+                                                   "high contrast",
+                                                   "angular shapes",
+                                                   "strong hierarchy"
+                                               ]
+                                },
+                       "sage":  {
+                                    "energy":  "calm, contemplative, authoritative",
+                                    "linguistic":  [
+                                                       "understand",
+                                                       "discover",
+                                                       "learn",
+                                                       "wisdom",
+                                                       "knowledge",
+                                                       "insight",
+                                                       "analyze",
+                                                       "explore"
+                                                   ],
+                                    "visual":  [
+                                                   "cool colors",
+                                                   "clean lines",
+                                                   "minimal decoration",
+                                                   "generous whitespace"
+                                               ]
+                                },
+                       "explorer":  {
+                                        "energy":  "adventurous, authentic, free",
+                                        "linguistic":  [
+                                                           "discover",
+                                                           "adventure",
+                                                           "freedom",
+                                                           "journey",
+                                                           "authentic",
+                                                           "experience",
+                                                           "bold",
+                                                           "pioneer"
+                                                       ],
+                                        "visual":  [
+                                                       "earthy colors",
+                                                       "natural textures",
+                                                       "expansive",
+                                                       "outdoor imagery",
+                                                       "rugged"
+                                                   ]
+                                    },
+                       "jester":  {
+                                      "energy":  "playful, spontaneous, entertaining",
+                                      "linguistic":  [
+                                                         "fun",
+                                                         "play",
+                                                         "enjoy",
+                                                         "laugh",
+                                                         "spontaneous",
+                                                         "witty",
+                                                         "surprise",
+                                                         "lighthearted"
+                                                     ],
+                                      "visual":  [
+                                                     "bright colors",
+                                                     "playful shapes",
+                                                     "unexpected elements",
+                                                     "humor",
+                                                     "dynamic"
+                                                 ]
+                                  },
+                       "creator":  {
+                                       "energy":  "inspiring, imaginative, authentic",
+                                       "linguistic":  [
+                                                          "create",
+                                                          "design",
+                                                          "imagine",
+                                                          "innovate",
+                                                          "craft",
+                                                          "build",
+                                                          "express",
+                                                          "original"
+                                                      ],
+                                       "visual":  [
+                                                      "rich colors",
+                                                      "textural",
+                                                      "artistic",
+                                                      "asymmetric",
+                                                      "expressive typography"
+                                                  ]
+                                   },
+                       "caregiver":  {
+                                         "energy":  "warm, supportive, reliable",
+                                         "linguistic":  [
+                                                            "care",
+                                                            "support",
+                                                            "nurture",
+                                                            "protect",
+                                                            "serve",
+                                                            "compassion",
+                                                            "help",
+                                                            "generous"
+                                                        ],
+                                         "visual":  [
+                                                        "warm colors",
+                                                        "soft edges",
+                                                        "welcoming",
+                                                        "people-focused",
+                                                        "accessible"
+                                                    ]
+                                     },
+                       "magician":  {
+                                        "energy":  "transformative, visionary, charismatic",
+                                        "linguistic":  [
+                                                           "transform",
+                                                           "vision",
+                                                           "magic",
+                                                           "possibility",
+                                                           "dreams",
+                                                           "wonder",
+                                                           "mystical",
+                                                           "transcend"
+                                                       ],
+                                        "visual":  [
+                                                       "deep purples",
+                                                       "gradients",
+                                                       "ethereal",
+                                                       "transformative imagery",
+                                                       "mysterious"
+                                                   ]
+                                    },
+                       "lover":  {
+                                     "energy":  "warm, sensual, appreciative",
+                                     "linguistic":  [
+                                                        "passion",
+                                                        "beauty",
+                                                        "sensual",
+                                                        "intimate",
+                                                        "desire",
+                                                        "elegant",
+                                                        "indulge",
+                                                        "luxurious"
+                                                    ],
+                                     "visual":  [
+                                                    "warm colors",
+                                                    "soft textures",
+                                                    "organic shapes",
+                                                    "romantic imagery",
+                                                    "flowing typography"
+                                                ]
+                                 },
+                       "rebel":  {
+                                     "energy":  "intense, disruptive, uncompromising",
+                                     "linguistic":  [
+                                                        "break",
+                                                        "challenge",
+                                                        "disrupt",
+                                                        "reimagine",
+                                                        "defy",
+                                                        "revolution",
+                                                        "radical",
+                                                        "unconventional"
+                                                    ],
+                                     "visual":  [
+                                                    "unexpected colors",
+                                                    "asymmetry",
+                                                    "raw textures",
+                                                    "grid-breaking",
+                                                    "bold statements"
+                                                ]
+                                 },
+                       "regular":  {
+                                       "energy":  "relatable, comfortable, trustworthy",
+                                       "linguistic":  [
+                                                          "everyday",
+                                                          "real",
+                                                          "relatable",
+                                                          "friendly",
+                                                          "practical",
+                                                          "down-to-earth",
+                                                          "honest",
+                                                          "reliable"
+                                                      ],
+                                       "visual":  [
+                                                      "familiar colors",
+                                                      "approachable",
+                                                      "unpretentious",
+                                                      "comfortable",
+                                                      "accessible"
+                                                  ]
+                                   },
+                       "ruler":  {
+                                     "energy":  "confident, authoritative, refined",
+                                     "linguistic":  [
+                                                        "lead",
+                                                        "control",
+                                                        "organize",
+                                                        "premium",
+                                                        "exclusive",
+                                                        "authority",
+                                                        "elite",
+                                                        "command"
+                                                    ],
+                                     "visual":  [
+                                                    "black, gold, navy",
+                                                    "symmetry",
+                                                    "luxury materials",
+                                                    "strong hierarchy",
+                                                    "refined"
+                                                ]
+                                 }
+                   },
+    "visual_patterns":  {
+                            "warm_palette":  [
+                                                 "reds",
+                                                 "oranges",
+                                                 "yellows",
+                                                 "earth tones"
+                                             ],
+                            "cool_palette":  [
+                                                 "blues",
+                                                 "greens",
+                                                 "purples",
+                                                 "grays"
+                                             ],
+                            "subtle_contrast":  [
+                                                    "gentle gradations",
+                                                    "soft hierarchy",
+                                                    "harmonious"
+                                                ],
+                            "muted":  [
+                                          "desaturated",
+                                          "soft",
+                                          "sophisticated tones"
+                                      ],
+                            "minimal_whitespace":  [
+                                                       "tight spacing",
+                                                       "dense layout",
+                                                       "compact",
+                                                       "information-rich"
+                                                   ],
+                            "vibrant":  [
+                                            "saturated",
+                                            "bold",
+                                            "energetic colors"
+                                        ],
+                            "generous_whitespace":  [
+                                                        "large padding",
+                                                        "breathing room",
+                                                        "minimal density",
+                                                        "spacious"
+                                                    ],
+                            "high_contrast":  [
+                                                  "bold differences",
+                                                  "stark hierarchy",
+                                                  "clear distinction"
+                                              ]
+                        },
+    "tone_markers":  {
+                         "cold":  [
+                                      "deliver",
+                                      "execute",
+                                      "optimize",
+                                      "metrics",
+                                      "efficiency",
+                                      "process",
+                                      "system"
+                                  ],
+                         "formal":  [
+                                        "we are",
+                                        "you will",
+                                        "it is",
+                                        "furthermore",
+                                        "therefore",
+                                        "pursuant",
+                                        "accordingly"
+                                    ],
+                         "serious":  [
+                                         "critical",
+                                         "essential",
+                                         "rigorous",
+                                         "systematic",
+                                         "comprehensive",
+                                         "thorough"
+                                     ],
+                         "subtle":  [
+                                        "consider",
+                                        "perhaps",
+                                        "might",
+                                        "could",
+                                        "explore",
+                                        "discover",
+                                        "nuanced"
+                                    ],
+                         "casual":  [
+                                        "we\u0027re",
+                                        "you\u0027ll",
+                                        "it\u0027s",
+                                        "pretty cool",
+                                        "no worries",
+                                        "let\u0027s",
+                                        "gonna",
+                                        "wanna"
+                                    ],
+                         "warm":  [
+                                      "love",
+                                      "passion",
+                                      "care",
+                                      "together",
+                                      "community",
+                                      "welcome",
+                                      "embrace",
+                                      "heart"
+                                  ],
+                         "direct":  [
+                                        "you need",
+                                        "do this",
+                                        "here\u0027s how",
+                                        "simple",
+                                        "just",
+                                        "only",
+                                        "clearly"
+                                    ],
+                         "playful":  [
+                                         "fun",
+                                         "whoa",
+                                         "awesome",
+                                         "boom",
+                                         "magic",
+                                         "spark",
+                                         "surprise",
+                                         "delight"
+                                     ]
+                     }
+}
