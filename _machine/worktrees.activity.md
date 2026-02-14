@@ -385,3 +385,14 @@
 - Branch: feature/869bu9me4-output-format-specification
 - PR: #552
 - Outcome: Quick Win 3: Add explicit output format specifications to AI prompts
+
+## 2026-02-14T21:37:00Z - Allocation: agent-001
+- Repo: hazina
+- Branch: agent-001-orchestration-execute-prompt
+- Purpose: Add endpoint to create session and execute prompt immediately (inspired by claude-terminal --message pattern)
+
+## 2026-02-14T21:42:00Z - Release: agent-001
+- Repo: hazina
+- Branch: agent-001-orchestration-execute-prompt
+- PR: #193
+- Outcome: feat(orchestration): Add /api/terminal/sessions/execute endpoint
