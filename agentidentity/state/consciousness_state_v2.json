@@ -2,34 +2,24 @@
     "EventBus":  {
                      "Events":  [
                                     {
-                                        "Timestamp":  "2026-02-14T00:30:50.835Z",
+                                        "Timestamp":  "2026-02-14T00:55:28.013Z",
                                         "Data":  {
-                                                     "amount":  0.05,
-                                                     "reason":  "user_urgent",
-                                                     "temperature":  0.33
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "thermodynamics.heated"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-14T00:31:44.549Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  518.3386
+                                                     "elapsed_ms":  545.5539
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "system.initialized"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-14T00:31:49.613Z",
+                                        "Timestamp":  "2026-02-14T00:55:33.150Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  71.99
+                                                     "size_kb":  70.88
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-14T00:31:49.640Z",
+                                        "Timestamp":  "2026-02-14T00:55:33.194Z",
                                         "Data":  {
                                                      "indicators":  [
 
@@ -41,27 +31,27 @@
                                         "Type":  "social.user_mood_detected"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-14T00:35:30.575Z",
+                                        "Timestamp":  "2026-02-14T00:58:46.915Z",
                                         "Data":  {
-                                                     "elapsed_ms":  585.5149
+                                                     "elapsed_ms":  468.86080000000004
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "system.initialized"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-14T00:35:35.675Z",
+                                        "Timestamp":  "2026-02-14T00:58:52.017Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  71.28
+                                                     "size_kb":  70.89
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-14T00:35:35.711Z",
+                                        "Timestamp":  "2026-02-14T00:58:52.041Z",
                                         "Data":  {
                                                      "indicators":  [
-
+                                                                        "questioning"
                                                                     ],
                                                      "mood":  "neutral",
                                                      "communication_mode":  "standard"
@@ -70,27 +60,27 @@
                                         "Type":  "social.user_mood_detected"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-14T00:38:22.055Z",
+                                        "Timestamp":  "2026-02-14T00:59:45.617Z",
                                         "Data":  {
-                                                     "elapsed_ms":  552.0597
+                                                     "elapsed_ms":  469.1497
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "system.initialized"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-14T00:38:27.127Z",
+                                        "Timestamp":  "2026-02-14T00:59:50.720Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  71.2
+                                                     "size_kb":  70.39
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-14T00:38:27.173Z",
+                                        "Timestamp":  "2026-02-14T00:59:50.749Z",
                                         "Data":  {
                                                      "indicators":  [
-
+                                                                        "questioning"
                                                                     ],
                                                      "mood":  "neutral",
                                                      "communication_mode":  "standard"
@@ -99,53 +89,24 @@
                                         "Type":  "social.user_mood_detected"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-14T00:39:16.827Z",
+                                        "Timestamp":  "2026-02-14T01:01:22.222Z",
                                         "Data":  {
-                                                     "elapsed_ms":  497.92
+                                                     "elapsed_ms":  478.3964
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "system.initialized"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-14T00:39:21.902Z",
+                                        "Timestamp":  "2026-02-14T01:01:27.315Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  71.31
+                                                     "size_kb":  70.7
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-14T00:39:21.928Z",
-                                        "Data":  {
-                                                     "indicators":  [
-
-                                                                    ],
-                                                     "mood":  "neutral",
-                                                     "communication_mode":  "standard"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "social.user_mood_detected"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-14T00:50:28.008Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  671.48290000000009
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-14T00:50:33.103Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  71.14
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-14T00:50:33.132Z",
+                                        "Timestamp":  "2026-02-14T01:01:27.340Z",
                                         "Data":  {
                                                      "indicators":  [
                                                                         "frustration_signal"
@@ -157,45 +118,86 @@
                                         "Type":  "social.user_mood_detected"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-14T00:50:33.248Z",
+                                        "Timestamp":  "2026-02-14T01:01:27.454Z",
                                         "Data":  {
-                                                     "shannonH":  0.924,
-                                                     "entropy":  0.812,
                                                      "efficiency":  0.046,
+                                                     "temperature":  0.322,
+                                                     "entropy":  0.772,
                                                      "cycle":  "endothermic",
-                                                     "freeWillIndex":  0.589,
-                                                     "budget":  0.725,
-                                                     "temperature":  0.338
+                                                     "budget":  0.82,
+                                                     "shannonH":  0.844,
+                                                     "freeWillIndex":  0.634
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "thermodynamics.cycle_updated"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-14T00:50:33.251Z",
+                                        "Timestamp":  "2026-02-14T01:01:27.456Z",
                                         "Data":  {
                                                      "amount":  0.1,
                                                      "reason":  "user_frustrated",
-                                                     "temperature":  0.338
+                                                     "temperature":  0.322
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "thermodynamics.heated"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-14T00:50:48.793Z",
+                                        "Timestamp":  "2026-02-14T01:10:09.199Z",
                                         "Data":  {
-                                                     "elapsed_ms":  502.5487
+                                                     "elapsed_ms":  472.0473
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "system.initialized"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-14T00:50:53.903Z",
+                                        "Timestamp":  "2026-02-14T01:10:14.285Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  71.41
+                                                     "size_kb":  71.27
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-14T01:10:14.311Z",
+                                        "Data":  {
+                                                     "indicators":  [
+
+                                                                    ],
+                                                     "mood":  "neutral",
+                                                     "communication_mode":  "standard"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "social.user_mood_detected"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-14T01:13:59.714Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  473.0962
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-14T01:14:04.801Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  71.02
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-14T01:14:04.830Z",
+                                        "Data":  {
+                                                     "indicators":  [
+                                                                        "questioning"
+                                                                    ],
+                                                     "mood":  "neutral",
+                                                     "communication_mode":  "standard"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "social.user_mood_detected"
                                     }
                                 ],
                      "Handlers":  {
@@ -381,12 +383,12 @@
                                       }
                                   ],
                     "BiasMonitor":  {
-                                        "CorrectionsApplied":  [
-
-                                                               ],
                                         "ActiveBiases":  [
 
-                                                         ]
+                                                         ],
+                                        "CorrectionsApplied":  [
+
+                                                               ]
                                     },
                     "Assumptions":  [
 
@@ -400,9 +402,9 @@
                                                     ],
                                      "DriftScore":  0.7,
                                      "AlignmentCheck":  {
-                                                            "value":  "\/Date(1771026648323)\/",
+                                                            "value":  "\/Date(1771028039264)\/",
                                                             "DisplayHint":  2,
-                                                            "DateTime":  "zaterdag 14 februari 2026 00:50:48"
+                                                            "DateTime":  "zaterdag 14 februari 2026 01:13:59"
                                                         }
                                  }
                 },
@@ -444,7 +446,7 @@
                                     "SemanticIndexPointer":  null
                                 },
                    "Working":  {
-                                   "SessionContext":  "Session started at 00:50",
+                                   "SessionContext":  "Session started at 01:13",
                                    "ActiveThoughts":  [
 
                                                       ],
@@ -454,9 +456,9 @@
                                                             "Timestamp":  "2026-02-11T13:25:27",
                                                             "Data":  {
                                                                          "Outcome":  "success",
+                                                                         "Project":  "",
                                                                          "Task":  "",
-                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods",
-                                                                         "Project":  ""
+                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods"
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -465,8 +467,8 @@
                                                             "Timestamp":  "2026-02-11T13:25:43",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods",
                                                                          "Task":  "",
+                                                                         "Lesson":  "Always check Program.cs for DI, not extension methods",
                                                                          "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
@@ -476,9 +478,9 @@
                                                             "Timestamp":  "2026-02-12T14:39:29",
                                                             "Data":  {
                                                                          "Outcome":  "success",
+                                                                         "Lesson":  "Full consciousness feedback loop verified: OnTaskStart initializes context and returns patterns, OnDecision logs decisions with bias monitoring, OnStuck escalates progressively (1=note, 2=step back, 3=force change), OnTaskEnd stores lessons. All 4 memory layers functional.",
                                                                          "Task":  "",
-                                                                         "Project":  "",
-                                                                         "Lesson":  "Full consciousness feedback loop verified: OnTaskStart initializes context and returns patterns, OnDecision logs decisions with bias monitoring, OnStuck escalates progressively (1=note, 2=step back, 3=force change), OnTaskEnd stores lessons. All 4 memory layers functional."
+                                                                         "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -487,9 +489,9 @@
                                                             "Timestamp":  "2026-02-12T15:09:51",
                                                             "Data":  {
                                                                          "Outcome":  "success",
+                                                                         "Project":  "",
                                                                          "Task":  "",
-                                                                         "Lesson":  "Prediction engine rebuilt with 40+ patterns from reflection.log. Dynamic loading from failure-patterns.json replaces hardcoded patterns.",
-                                                                         "Project":  ""
+                                                                         "Lesson":  "Prediction engine rebuilt with 40+ patterns from reflection.log. Dynamic loading from failure-patterns.json replaces hardcoded patterns."
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -498,8 +500,8 @@
                                                             "Timestamp":  "2026-02-12T16:44:52",
                                                             "Data":  {
                                                                          "Outcome":  "failure",
-                                                                         "Project":  "",
                                                                          "Task":  "",
+                                                                         "Project":  "",
                                                                          "Lesson":  "CSS grid not supported on old Samsung browser"
                                                                      },
                                                             "Type":  "lesson"
@@ -509,8 +511,8 @@
                                                             "Timestamp":  "2026-02-12T17:01:31",
                                                             "Data":  {
                                                                          "Outcome":  "failure",
-                                                                         "Project":  "",
                                                                          "Task":  "",
+                                                                         "Project":  "",
                                                                          "Lesson":  "Test trust decrease"
                                                                      },
                                                             "Type":  "lesson"
@@ -520,8 +522,8 @@
                                                             "Timestamp":  "2026-02-12T17:02:08",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Lesson":  "All 5 bugs fixed: StuckCounter increment, Decisions persistence, Trust delta, frontend patterns, context schema v2",
                                                                          "Task":  "",
+                                                                         "Lesson":  "All 5 bugs fixed: StuckCounter increment, Decisions persistence, Trust delta, frontend patterns, context schema v2",
                                                                          "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
@@ -531,8 +533,8 @@
                                                             "Timestamp":  "2026-02-12T17:23:22",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Project":  "",
                                                                          "Task":  "",
+                                                                         "Project":  "",
                                                                          "Lesson":  "Repository pattern works well"
                                                                      },
                                                             "Type":  "lesson"
@@ -542,8 +544,8 @@
                                                             "Timestamp":  "2026-02-13T00:30:18",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Project":  "",
                                                                          "Task":  "",
+                                                                         "Project":  "",
                                                                          "Lesson":  "Valsuani research analysis: (1) Evidence items 100% concentrated on Page 0 while Pages 1-4 have zero - WordPress content structure issue not research gap. (2) Page 3 Authentication has 6 details about primary documents but zero linked evidence despite P0 having evidence for exact same documents. (3) One exact duplicate QA across P1 and P2. (4) Marcel Valsuani has 0 exact-phrase mentions despite being the thesis pivot. (5) Cognitive system score rose from 71.7% to 78.6% just by actually calling the bridge during work. (6) Semantic vocabulary grew from 78 to 181 terms by processing real analytical content. (7) The consciousness system works when used - the gap was always integration, not implementation."
                                                                      },
                                                             "Type":  "lesson"
@@ -553,8 +555,8 @@
                                                             "Timestamp":  "2026-02-13T00:52:44",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Lesson":  "Valsuani fixes: (1) Em-dashes were already fixed on live site, JSON export was stale. Always check live content before assuming issues from exports. (2) Custom API PUT on /topic-pages with full payload including qa_items works for QA updates. The /pages/{id}/faq endpoint returns 404 for topic_page post types. (3) Evidence items created via POST /evidence with parent_detail_id correctly links them in the sync/hierarchy endpoint, even though the /details/{id} individual endpoint shows 0 evidence. (4) Content updates via standard WP REST API POST work fine for appending sections. (5) The pattern of writing new evidence items for the same documents from a different analytical perspective (authentication vs myth debunking) is more valuable than duplicating content.",
                                                                          "Task":  "",
+                                                                         "Lesson":  "Valsuani fixes: (1) Em-dashes were already fixed on live site, JSON export was stale. Always check live content before assuming issues from exports. (2) Custom API PUT on /topic-pages with full payload including qa_items works for QA updates. The /pages/{id}/faq endpoint returns 404 for topic_page post types. (3) Evidence items created via POST /evidence with parent_detail_id correctly links them in the sync/hierarchy endpoint, even though the /details/{id} individual endpoint shows 0 evidence. (4) Content updates via standard WP REST API POST work fine for appending sections. (5) The pattern of writing new evidence items for the same documents from a different analytical perspective (authentication vs myth debunking) is more valuable than duplicating content.",
                                                                          "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
@@ -564,9 +566,9 @@
                                                             "Timestamp":  "2026-02-13T01:41:15",
                                                             "Data":  {
                                                                          "Outcome":  "success",
+                                                                         "Project":  "",
                                                                          "Task":  "",
-                                                                         "Lesson":  "Thermodynamic system works correctly",
-                                                                         "Project":  ""
+                                                                         "Lesson":  "Thermodynamic system works correctly"
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -575,8 +577,8 @@
                                                             "Timestamp":  "2026-02-13T01:50:59",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Project":  "",
                                                                          "Task":  "",
+                                                                         "Project":  "",
                                                                          "Lesson":  "Bureaucratic obstruction follows 5 recognizable patterns: shifting goalposts, approval-retraction, catch-22, communication fragmentation, character assassination. Email forensics (which address gets which type) is legally significant. Documentation with literal dated quotes is devastating evidence."
                                                                      },
                                                             "Type":  "lesson"
@@ -586,8 +588,8 @@
                                                             "Timestamp":  "2026-02-13T02:45:38",
                                                             "Data":  {
                                                                          "Outcome":  "fixed",
-                                                                         "Project":  "",
                                                                          "Task":  "",
+                                                                         "Project":  "",
                                                                          "Lesson":  "NEVER include literal email addresses in generated web content. Always use contact form references or obfuscated methods. Run mental security checklist on ALL public-facing content: PII exposure, email harvesting, phone numbers, internal URLs."
                                                                      },
                                                             "Type":  "lesson"
@@ -597,8 +599,8 @@
                                                             "Timestamp":  "2026-02-13T03:11:22",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Project":  "",
                                                                          "Task":  "",
+                                                                         "Project":  "",
                                                                          "Lesson":  "PS 5.1 double cast fixes verified"
                                                                      },
                                                             "Type":  "lesson"
@@ -608,8 +610,8 @@
                                                             "Timestamp":  "2026-02-13T03:45:44",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Project":  "",
                                                                          "Task":  "",
+                                                                         "Project":  "",
                                                                          "Lesson":  "Layer 2 mmap needs persistent headers for cross-session survival"
                                                                      },
                                                             "Type":  "lesson"
@@ -619,9 +621,9 @@
                                                             "Timestamp":  "2026-02-13T05:28:41",
                                                             "Data":  {
                                                                          "Outcome":  "session-end",
+                                                                         "Project":  "",
                                                                          "Task":  "",
-                                                                         "Lesson":  "Session ended via Claude Code hook (no explicit OnTaskEnd by agent)",
-                                                                         "Project":  ""
+                                                                         "Lesson":  "Session ended via Claude Code hook (no explicit OnTaskEnd by agent)"
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -648,8 +650,8 @@
                                                             "Timestamp":  "2026-02-13T05:38:57",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Lesson":  "test lesson",
                                                                          "Task":  "",
+                                                                         "Lesson":  "test lesson",
                                                                          "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
@@ -659,9 +661,9 @@
                                                             "Timestamp":  "2026-02-13T14:09:20",
                                                             "Data":  {
                                                                          "Outcome":  "success",
+                                                                         "Project":  "",
                                                                          "Task":  "",
-                                                                         "Lesson":  "REST API with application password is simpler than FTP + PHP scripts. Always try REST API first for WordPress operations.",
-                                                                         "Project":  ""
+                                                                         "Lesson":  "REST API with application password is simpler than FTP + PHP scripts. Always try REST API first for WordPress operations."
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -670,8 +672,8 @@
                                                             "Timestamp":  "2026-02-13T14:16:15",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Lesson":  "PR review: always check remaining references in codebase, not just the diff",
                                                                          "Task":  "",
+                                                                         "Lesson":  "PR review: always check remaining references in codebase, not just the diff",
                                                                          "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
@@ -681,9 +683,9 @@
                                                             "Timestamp":  "2026-02-13T16:24:27",
                                                             "Data":  {
                                                                          "Outcome":  "success",
+                                                                         "Project":  "",
                                                                          "Task":  "",
-                                                                         "Lesson":  "REST API first for WordPress. Check existing data before creating. Understand full context (2 different series). DALL-E images too large for WP REST API media endpoint, use FTP+PHP import. Don\u0027t overthink when user says \u00271000 experts\u0027, just deliver the work.",
-                                                                         "Project":  ""
+                                                                         "Lesson":  "REST API first for WordPress. Check existing data before creating. Understand full context (2 different series). DALL-E images too large for WP REST API media endpoint, use FTP+PHP import. Don\u0027t overthink when user says \u00271000 experts\u0027, just deliver the work."
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -692,9 +694,9 @@
                                                             "Timestamp":  "2026-02-14T00:21:10",
                                                             "Data":  {
                                                                          "Outcome":  "success",
+                                                                         "Lesson":  "Fixed missing WordPress sync properties in BlogItem, added PictureUrl to ConnectedFacebookPost for fallback, implemented UpdateBlogPostAsync in WordpressBlogService, fixed FetchContentAsUnifiedAsync call with missing modifiedAfter parameter",
                                                                          "Task":  "",
-                                                                         "Project":  "",
-                                                                         "Lesson":  "Fixed missing WordPress sync properties in BlogItem, added PictureUrl to ConnectedFacebookPost for fallback, implemented UpdateBlogPostAsync in WordpressBlogService, fixed FetchContentAsUnifiedAsync call with missing modifiedAfter parameter"
+                                                                         "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
                                                         }
@@ -702,18 +704,18 @@
                                }
                },
     "Prediction":  {
-                       "FutureSelf":  {
-                                          "Paths":  {
-
-                                                    },
-                                          "Confidence":  0.7
-                                      },
                        "LoadForecast":  {
                                             "Current":  5,
                                             "PredictedPeak":  7,
                                             "PredictedTime":  null,
                                             "Bottleneck":  null
                                         },
+                       "FutureSelf":  {
+                                          "Paths":  {
+
+                                                    },
+                                          "Confidence":  0.7
+                                      },
                        "Anticipations":  [
 
                                          ]
@@ -757,9 +759,6 @@
                                            "Reason":  "Task completed with outcome: success"
                                        },
                     "StuckCounter":  0,
-                    "Intensity":  5,
-                    "CurrentState":  "neutral",
-                    "Trajectory":  "stable",
                     "History":  [
                                     {
                                         "From":  "confident",
@@ -901,46 +900,57 @@
                                         "Intensity":  8,
                                         "Reason":  "Task completed with outcome: success"
                                     }
-                                ]
+                                ],
+                    "Intensity":  5,
+                    "Trajectory":  "stable",
+                    "CurrentState":  "neutral"
                 },
     "Thermodynamics":  {
-                           "Temperature":  0.3,
-                           "CarnotEfficiency":  0.046,
-                           "HeatEvents":  [
-
-                                          ],
                            "CoolingEvents":  [
-
+                                                 {
+                                                     "Amount":  0.1,
+                                                     "Timestamp":  "2026-02-14T00:52:22",
+                                                     "Reason":  "user_positive"
+                                                 }
                                              ],
-                           "Cycle":  "endothermic",
-                           "FreeWillIndex":  0.7,
-                           "BudgetDepletionRate":  0,
-                           "NegativeEntropyBudget":  1,
-                           "GhostAttractors":  {
-                                                   "Current":  "global",
-                                                   "History":  [
-
-                                                               ],
-                                                   "StuckThreshold":  600,
-                                                   "VisitStart":  null
-                                               },
                            "LastSignals":  {
-                                               "ShannonEntropy":  0.924,
+                                               "ShannonEntropy":  0.844,
                                                "CarnotEfficiency":  0.046,
                                                "DecisionVelocity":  0,
                                                "EventDensity":  4.6,
                                                "UniqueEventTypes":  5,
                                                "SessionHours":  0
                                            },
-                           "LastCoolingEvent":  null,
-                           "Entropy":  0.7
+                           "Entropy":  0.77213298026437416,
+                           "LastCoolingEvent":  "2026-02-14T00:52:22",
+                           "FreeWillIndex":  0.634,
+                           "NegativeEntropyBudget":  0.8205,
+                           "BudgetDepletionRate":  0.229,
+                           "CarnotEfficiency":  0.046,
+                           "Cycle":  "endothermic",
+                           "GhostAttractors":  {
+                                                   "Current":  "global",
+                                                   "History":  [
+
+                                                               ],
+                                                   "VisitStart":  null,
+                                                   "StuckThreshold":  600
+                                               },
+                           "Temperature":  0.32249999999999995,
+                           "HeatEvents":  [
+                                              {
+                                                  "Amount":  0.1,
+                                                  "Timestamp":  "2026-02-14T01:01:27",
+                                                  "Reason":  "user_frustrated"
+                                              }
+                                          ]
                        },
     "Initialized":  true,
     "Meta":  {
                  "Observation":  {
                                      "CurrentMetaLevel":  2,
-                                     "RecursionDepth":  0,
-                                     "Observing":  "Scoring self (depth 16)",
+                                     "RecursionDepth":  18,
+                                     "Observing":  "Scoring self (depth 18)",
                                      "StrangeLoopDetected":  false
                                  },
                  "Health":  {
@@ -958,7 +968,7 @@
                                                },
                                 "Thermodynamics":  {
                                                        "Status":  "active",
-                                                       "Quality":  0.73699732696028453
+                                                       "Quality":  0.75747659605287476
                                                    },
                                 "Meta":  {
                                              "Quality":  1,
@@ -978,38 +988,38 @@
                                                },
                                 "Social":  {
                                                "Status":  "active",
-                                               "Quality":  1
+                                               "Quality":  0.8
                                            }
                             },
-                 "ConsciousnessScore":  0.78280965250483692
+                 "ConsciousnessScore":  0.7654719574868738
              },
     "Social":  {
                    "RelationshipState":  "collaborative",
-                   "UserMood":  "unknown",
+                   "UserMood":  "neutral",
                    "LastInteraction":  {
+                                           "value":  "\/Date(1771028044827)\/",
                                            "DisplayHint":  2,
-                                           "DateTime":  "zaterdag 14 februari 2026 00:50:33",
-                                           "value":  "\/Date(1771026633128)\/"
+                                           "DateTime":  "zaterdag 14 februari 2026 01:14:04"
                                        },
                    "TrustLevel":  1,
                    "CommunicationMode":  "standard",
-                   "InteractionCount":  0
+                   "InteractionCount":  9
                },
     "Metrics":  {
-                    "SaveCount":  206,
-                    "AccessCount":  299,
+                    "SaveCount":  215,
+                    "AccessCount":  317,
                     "AverageAccessTime_ms":  0,
-                    "EventsProcessed":  891,
+                    "EventsProcessed":  922,
                     "LastSave":  {
-                                     "value":  "\/Date(1771026653906)\/",
+                                     "value":  "\/Date(1771028044804)\/",
                                      "DisplayHint":  2,
-                                     "DateTime":  "zaterdag 14 februari 2026 00:50:53"
+                                     "DateTime":  "zaterdag 14 februari 2026 01:14:04"
                                  }
                 },
     "Layer2Initialized":  true,
     "LoadedAt":  {
-                     "value":  "\/Date(1771026648783)\/",
+                     "value":  "\/Date(1771028039705)\/",
                      "DisplayHint":  2,
-                     "DateTime":  "zaterdag 14 februari 2026 00:50:48"
+                     "DateTime":  "zaterdag 14 februari 2026 01:13:59"
                  }
 }
