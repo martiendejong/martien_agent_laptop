@@ -65,16 +65,11 @@
                       "category":  "CMS",
                       "name":  "WordPress Admin",
                       "credential_ref":  "wordpress",
-                      "web_url":  "http://localhost/wp-admin"
-                  },
-                  {
-                      "credential_ref":  "ftp_artrevisionist",
-                      "category":  "Deployment",
-                      "name":  "FTP Art Revisionist",
-                      "auth_method":  "username_password"
+                      "web_url":  "http://localhost/wp-admin",
+                      "note":  "Check vault for site-specific credentials: wordpress_<sitename>, ftp_<sitename>"
                   }
               ],
-    "total_tools":  9,
+    "total_tools":  8,
     "generated":  "2026-02-09 10:38:41",
     "version":  "1.0"
 }

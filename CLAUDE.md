@@ -90,6 +90,39 @@ This list is alive - it grows every session as new patterns emerge.
   - Output to: `E:\jengo\documents\output\`
   - Use for: Batch processing, format conversion, optimization, compositing
 
+**WordPress:**
+- **WP-CLI:** `wp` command (v2.12.0) - WordPress command-line interface
+  - Root: `E:\xampp\htdocs`
+  - Use for: Post/page management, plugin/theme ops, database ops, media imports, custom fields
+
+---
+
+## WordPress Deployment Protocol
+
+**When user requests "update site X" - ALWAYS follow this protocol:**
+
+1. **Check vault for credentials:**
+   ```powershell
+   vault.ps1 -Action get -Service "wordpress_<sitename>"  # Application password
+   vault.ps1 -Action get -Service "ftp_<sitename>"         # FTP credentials
+   vault.ps1 -Action get -Service "ssh_<sitename>"         # SSH access (if available)
+   ```
+
+2. **Determine deployment method** (in order of preference):
+   - **Local sites** (`E:\xampp\htdocs`) → WP-CLI direct
+   - **REST API** (if WordPress app password available) → Preferred for remote
+   - **SSH + WP-CLI** (if SSH access available) → Direct remote WP-CLI
+   - **FTP + self-deleting PHP** (if FTP credentials available) → Fallback method
+
+3. **Known sites:**
+   - `artrevisionist.com` - Portfolio site
+   - `martiendejong.nl` - Personal site
+   - `prospergenics.com` - Client site
+
+4. **Never hardcode credentials** - always use vault lookups
+5. **Always verify changes** after deployment
+6. **Use self-deleting PHP scripts** for FTP deployments (security best practice)
+
 ---
 
 ## Knowledge System (NEW - 2026-02-09)

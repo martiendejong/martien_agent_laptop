@@ -80,7 +80,23 @@
                                                                 "Release"
                                                             ],
                                                   "trigger":  "ClickUp task or new feature"
-                                              }
+                                              },
+                      "wordpress_deployment":  {
+                                                   "trigger":  "Update WordPress site",
+                                                   "steps":  [
+                                                                 "Check vault for credentials (ftp_<site>, wordpress_<site>)",
+                                                                 "Determine method (WP-CLI local, REST API, FTP+PHP, SSH)",
+                                                                 "Execute deployment",
+                                                                 "Verify changes"
+                                                             ],
+                                                   "methods":  {
+                                                                   "local":  "WP-CLI direct (E:\\xampp\\htdocs)",
+                                                                   "rest_api":  "WordPress REST API with application password (preferred)",
+                                                                   "ftp_php":  "FTP + self-deleting PHP scripts (fallback)",
+                                                                   "ssh":  "WP-CLI remote via SSH (if available)"
+                                                               },
+                                                   "known_sites":  ["artrevisionist.com", "martiendejong.nl", "prospergenics.com"]
+                                               }
                   },
     "tools":  [
                   {
@@ -111,6 +127,14 @@
                       "formats":  ["JPEG", "PNG", "WebP", "HEIC", "TIFF", "SVG", "PDF"],
                       "use_cases":  ["Batch resize", "Format conversion", "Watermarking", "Image optimization", "Compositing"],
                       "output_dir":  "E:\\jengo\\documents\\output\\"
+                  },
+                  {
+                      "name":  "WP-CLI",
+                      "command":  "wp",
+                      "version":  "2.12.0",
+                      "purpose":  "WordPress command-line interface",
+                      "wp_root":  "E:\\xampp\\htdocs",
+                      "use_cases":  ["Post management", "Plugin/theme operations", "Database operations", "User management", "Media imports", "Custom field updates"]
                   }
               ],
     "identity":  {

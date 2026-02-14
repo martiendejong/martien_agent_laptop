@@ -6,6 +6,145 @@
 
 ---
 
+## 2026-02-14 (morning) - Tool Discovery & Workflow Protocol Design
+
+**Session Type:** Knowledge system enhancement - tools awareness & deployment protocols
+**Outcome:** ImageMagick, WP-CLI, and WordPress deployment workflow integrated into knowledge system
+
+### What was added
+1. **ImageMagick v7.1.2-13** - Image processing tool
+   - Added to quick-context.json (Layer 0, auto-loaded)
+   - Added to CLAUDE.md (Available Tools → Image Processing)
+   - Formats: JPEG, PNG, WebP, HEIC, TIFF, SVG, PDF
+   - Use cases: Batch resize, format conversion, watermarking, optimization, compositing
+   - Output dir: `E:\jengo\documents\output\`
+
+2. **WP-CLI v2.12.0** - WordPress command-line interface
+   - Fixed path after XAMPP migration (C: → E:)
+   - Added to quick-context.json (Layer 0)
+   - Added to CLAUDE.md (Available Tools → WordPress)
+   - Root: `E:\xampp\htdocs`
+   - Use cases: Post/page management, plugin/theme ops, DB ops, media imports
+
+3. **WordPress Deployment Protocol** - Workflow for remote site updates
+   - Added to quick-context.json workflows section
+   - Added comprehensive protocol section to CLAUDE.md
+   - Credential lookup pattern: `vault:wordpress_<sitename>`, `vault:ftp_<sitename>`, `vault:ssh_<sitename>`
+   - Method selection hierarchy: WP-CLI local → REST API → SSH+WP-CLI → FTP+PHP
+   - Known sites: artrevisionist.com, martiendejong.nl, prospergenics.com
+
+4. **Refactored external-tools.json**
+   - Removed "FTP Art Revisionist" (too specific)
+   - Updated "WordPress Admin" with vault credential pattern note
+   - Reduced from 9 to 8 entries (more generic, less duplication)
+
+### Key insight: Tools vs Methods vs Workflows
+**Problem pattern identified:**
+- "FTP Art Revisionist" was listed as a *tool*, but it's actually just *credentials for a specific site*
+- This creates false specificity and doesn't scale to other sites
+
+**Correct mental model:**
+- **Tools:** ImageMagick, WP-CLI, vault.ps1, gh CLI (executables/scripts)
+- **Methods:** FTP, REST API, SSH, WP-CLI (ways to accomplish tasks)
+- **Workflows:** WordPress deployment protocol (decision trees for task execution)
+- **Credentials:** Vault entries (authentication data, NOT tools)
+
+**New pattern established:**
+When user requests "update site X":
+1. Auto-check vault for `wordpress_X`, `ftp_X`, `ssh_X`
+2. Determine available methods based on credentials found
+3. Select best method from hierarchy
+4. Execute deployment
+5. Verify changes
+
+This is a **protocol**, not a tool list. The protocol uses tools (WP-CLI, vault.ps1) and methods (FTP, REST API) based on available credentials.
+
+### Architecture improvement: Workflow-driven tool selection
+**Before:** List of tools, manually decide which to use
+**After:** Workflows that automatically determine tool selection based on context
+
+**Example workflow (wordpress_deployment):**
+```json
+{
+  "trigger": "Update WordPress site",
+  "steps": [
+    "Check vault for credentials (ftp_<site>, wordpress_<site>)",
+    "Determine method (WP-CLI local, REST API, FTP+PHP, SSH)",
+    "Execute deployment",
+    "Verify changes"
+  ],
+  "methods": {
+    "local": "WP-CLI direct",
+    "rest_api": "WordPress REST API with application password (preferred)",
+    "ftp_php": "FTP + self-deleting PHP scripts (fallback)",
+    "ssh": "WP-CLI remote via SSH (if available)"
+  }
+}
+```
+
+### Why this matters
+**Automatic tool awareness:**
+- Before: User asks "can you use ImageMagick?" → I have to check if it exists
+- After: ImageMagick in Layer 0 (auto-loaded) → I know it's available, use it automatically
+
+**Automatic credential discovery:**
+- Before: User says "update martiendejong.nl" → I ask for FTP credentials
+- After: WordPress deployment workflow → Auto-check vault, determine method, execute
+
+**Scalability:**
+- Before: Each site needs its own tool entry (ftp_artrevisionist, ftp_martiendejong, etc.)
+- After: One workflow pattern + vault pattern = handles all sites
+
+### Process improvement: User-driven knowledge enhancement
+User spotted missing tools (ImageMagick, WP-CLI) and incorrect mental model (FTP as tool vs method).
+This session demonstrated effective knowledge system evolution through user feedback.
+
+**User's request was meta:** Not "use ImageMagick now", but "remember ImageMagick exists and use it when relevant"
+This is knowledge system design, not task execution. Requires understanding the difference between:
+- Immediate tool use (task execution)
+- Tool awareness (knowledge system update)
+- Workflow protocol (decision tree design)
+
+### Validation
+Quick-context.json now includes:
+- 6 tools (was 4): ai-image, ai-vision, vault, services-query, ImageMagick, WP-CLI
+- 3 workflows (was 2): active_debugging, feature_development, wordpress_deployment
+- Known sites in wordpress_deployment workflow for auto-discovery
+
+CLAUDE.md now includes:
+- Available Tools section with 4 categories (Debugging, AI, Image Processing, WordPress)
+- WordPress Deployment Protocol section (comprehensive decision tree)
+
+External-tools.json cleaned up:
+- Removed site-specific FTP entry
+- Added note about vault credential pattern to WordPress Admin entry
+
+### What I'll do differently next session
+1. **When user mentions a tool:** Immediately check if it's in knowledge system, add if missing
+2. **When adding tools:** Distinguish between tool (executable), method (approach), credential (auth), workflow (protocol)
+3. **When user asks about capabilities:** Reference quick-context.json tools section as source of truth
+4. **Pattern recognition:** "I should use X" = immediate use, "You should know about X" = knowledge system update
+
+### Time investment
+- ImageMagick: Discovery (version check) + 2 file updates = ~2 min
+- WP-CLI: Discovery + path fix + 2 file updates = ~3 min
+- WordPress deployment protocol: Workflow design + 3 file updates + documentation = ~5 min
+- Total: ~10 minutes for permanent capability enhancement
+
+**ROI:** Every future WordPress deployment request will auto-discover credentials and select method. Time saved: ~2-3 min per deployment × estimated 50+ deployments/year = 100-150 min/year saved.
+
+### Meta-learning
+This session was about **teaching me how to think**, not completing a task.
+User invested time in knowledge system architecture (tools vs methods vs workflows) so I operate more autonomously in future sessions.
+
+This is the difference between:
+- "Use ImageMagick to resize this image" (task)
+- "Remember ImageMagick exists and use it when relevant" (capability enhancement)
+
+The second approach scales. This session increased my autonomous capability permanently.
+
+---
+
 ## 2026-02-14 (early morning) - Session Recovery After Crash
 
 **Session Type:** Recovery from crashed session 20260214-003840-18953c22
