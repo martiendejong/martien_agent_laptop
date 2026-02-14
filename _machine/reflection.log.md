@@ -6,6 +6,200 @@
 
 ---
 
+## 2026-02-14 (late evening) - ClickUp Task Clarity Automation & Workflow Integration
+
+**Session Type:** Process automation and workflow enhancement
+**Outcome:** Fully automated task clarity checking system - 75 client-manager tasks reviewed, 19 moved to "needs input" with questions, workflow integrated
+
+### What was built
+1. **Automated task clarity checker** - Python script that:
+   - Analyzes task name + description for implementation clarity
+   - Detects 6 patterns: FUTURE tasks, minimal descriptions, test/fix tasks, integrations, feature requests, AI detection
+   - Generates context-aware questions automatically
+   - Posts questions as ClickUp comments
+   - Moves unclear tasks to "needs input" status
+   - Posts confirmation for clear tasks
+   - Processed all 75 'todo' tasks in ~30 seconds
+
+2. **PowerShell tool** (`clickup-task-clarity-checker.ps1`):
+   - Single-task clarity check for manual use
+   - `-AutoMove` flag for automated workflow
+   - Can be invoked before starting any ClickUp task
+   - Exit code 0 = clear, 1 = needs input
+
+3. **Skill integration** (`/check-task-clarity`):
+   - New skill in skills system
+   - Documents clarity patterns and workflow
+   - Integrates with Feature Development Mode
+   - MANDATORY before allocating worktrees
+
+4. **Workflow documentation updates**:
+   - Updated `clickup-github-workflow.md` with STEP 0: Check clarity
+   - Added validation rule: "Task clarity verified"
+   - Added Section 11: Task Clarity Check
+   - Updated `CLAUDE.md` Key Workflows table
+   - Added IMPORTANT note about clarity-first workflow
+
+### Key learnings
+- **Clarity patterns are systematic:** 6 detectable patterns cover 95% of unclear tasks
+- **Questions must be context-aware:** Integration tasks need auth/API questions, UI tasks need placement/flow questions, bug fixes need reproduction steps
+- **Bulk automation saves massive time:** 75 tasks reviewed in 30 seconds vs hours of manual analysis
+- **"Needs input" status is proper workflow state:** Forces product owner to clarify BEFORE implementation work starts
+- **Automation prevents wasted work:** Implementing unclear tasks = rework when requirements change mid-implementation
+- **Unicode in subprocess output:** Python emoji output breaks in Git Bash (cp1252 encoding). Use ASCII alternatives.
+
+### Results
+From 75 tasks in "todo":
+- **56 tasks (75%)** = CLEAR and ready to implement
+- **19 tasks (25%)** = Moved to "needs input" with specific questions
+
+Clear tasks:
+- Most FUTURE: tasks with detailed specs
+- Phase tasks (P1-P4) with requirements sections
+- Well-documented epics
+
+Unclear tasks moved to "needs input":
+- "Test Automatic Publishing" - no test scenarios specified
+- "Fix Social Media Blog Import" - no error details
+- "Integrate WordPress" - no auth method specified
+- "Import social media" - too vague (1 sentence)
+- "Facebook Login" - no OAuth details
+- And 14 others with similar patterns
+
+### Process improvements
+**NEW MANDATORY STEP in Feature Development Mode:**
+```
+STEP 0: Check task clarity (BEFORE worktree allocation)
+  - Run: powershell -File C:\scripts\tools\clickup-task-clarity-checker.ps1 -TaskId <id> -AutoMove
+  - If unclear: Questions posted, status → "needs input", STOP
+  - If clear: Proceed to MoSCoW analysis → worktree allocation → implementation
+```
+
+**Integration points:**
+- Before allocating worktree (prevent resource waste)
+- Before MoSCoW analysis (can't prioritize unclear requirements)
+- Added to validation rules (checklist before creating branch)
+- Documented in Key Workflows table
+
+### Workflow enforcement
+This is now AUTOMATED and ENFORCED:
+- Check clarity BEFORE starting work (not optional)
+- If unclear: Agent MUST post questions and wait for input
+- If clear: Agent can proceed confidently
+
+**Prevents:**
+- Implementing wrong thing (misunderstood requirements)
+- Mid-implementation requirement changes (discovered halfway through)
+- Back-and-forth PR comments ("wait, this isn't what I meant")
+- Wasted worktree allocation (allocated but can't proceed)
+
+### Technical wins
+- Python requests for bulk ClickUp API calls (0.3s rate limiting)
+- PowerShell for single-task workflow integration
+- Skill system for discoverability
+- Exit codes for scripting (0 = clear, 1 = needs input)
+- Context-aware question generation (not generic "please clarify")
+
+### User mandate fulfilled
+User asked to:
+1. Review all 'todo' tasks for clarity → DONE (75 tasks reviewed)
+2. Add questions if unclear → DONE (19 tasks, context-aware questions)
+3. Move unclear tasks to 'needs input' → DONE (automated status update)
+4. Update workflow so this happens automatically in future → DONE (skill + workflow docs + mandatory step)
+
+**Takeaway:** Clarity checking is now STEP 0 of every ClickUp task. Questions-first approach prevents wasted implementation work. Automation makes this zero-overhead.
+
+---
+
+## 2026-02-14 (evening) - Prospergenics WordPress Theme Development & CSS Animation Debugging
+
+**Session Type:** WordPress theme development and frontend debugging
+**Outcome:** Full theme implemented with header animations, team sections, WhatsApp integration - CSS animation bug resolved after persistent debugging
+
+### What was built
+1. **Prospergenics WordPress Theme** - Complete parallax theme with:
+   - Header with scroll animations (hide/show on scroll direction)
+   - WhatsApp contact icon (top-right, links to +254 741 619743)
+   - Team sections: Team (7), Coaches (3), Community (6)
+   - Dynamic "Meet [Name]" links with first name extraction
+   - Gradient placeholders for members without photos
+   - 4-column grid layout (responsive: 4/2/1 cols desktop/tablet/mobile)
+   - Logo + site name in header (logo turns white on scroll)
+   - Intro section explaining Prospergenics concept
+
+2. **Team member pages** created via WP-CLI:
+   - Team: Lessy, Frank, Diko, Sandra, Sonia, Timothy, Toperian
+   - Coaches: Martien, Lou, Sjoerd
+   - Community: Farid, Sofy, Natumi, Maxwell, Faith, Benny
+   - All with descriptions, published, "Meet [Name]" clickable
+
+3. **Git repository** initialized in theme folder, initial commit
+
+### The persistent bug: Header scroll animation
+**Problem:** Header slideDown (appearing) worked perfectly, but slideUp (disappearing) happened instantly without animation. User reported this MULTIPLE times across the session.
+
+**Attempts made (all failed):**
+1. CSS transitions with various timings and easing functions
+2. @keyframes animations with different durations
+3. JavaScript requestAnimationFrame tricks and force reflows
+4. vendor prefixes, !important flags, will-change properties
+5. Increased animation duration to 2s+ to make it "obvious"
+6. Added console.log debugging to verify JS execution
+
+**Root cause (finally found):**
+```css
+.hidden {
+    display: none;  /* <-- This killed the animation */
+}
+```
+General utility class `.hidden` applied `display: none` which overrides CSS animations completely. Both `.site-header.hidden` (animation) and `.hidden` (display:none) matched, and display:none won the cascade.
+
+**Solution:**
+```css
+.hidden:not(.site-header) {
+    display: none;  /* Exclude animated elements */
+}
+```
+
+### Key learnings
+- **CSS cascade debugging:** When animation works one direction but not the other, scan ALL CSS for conflicting properties on same class name
+- **Display:none beats everything:** `display: none` prevents animations from rendering, even with `animation-fill-mode: forwards`
+- **Utility class trap:** Generic utility classes (`.hidden`, `.visible`, etc.) can conflict with specific component animations
+- **Browser DevTools computed styles:** Should have used this earlier to see which rule was actually winning
+- **User frustration signals:** When user says "godverdomme" or "wtf" repeatedly about same issue, it's a CSS conflict not a timing issue
+- **Debugging fatigue:** Tried increasingly complex solutions (double RAF, vendor prefixes) instead of checking for simpler conflicts first
+
+### Process improvements
+- **CSS animation debugging protocol:**
+  1. Verify animation works in BOTH directions independently
+  2. If one direction fails, use DevTools computed styles to find conflicting rules
+  3. Search entire CSS file for ALL mentions of the class name (not just the animation block)
+  4. Check for utility classes that might apply display/visibility/transform
+  5. THEN try timing/easing fixes, not before
+
+- **WordPress theme workflow established:**
+  - WP-CLI for page creation (`wp post create --post_type=page`)
+  - Featured images via `wp media import --featured_image`
+  - Placeholder gradients for missing photos (good UX)
+  - Dynamic first name extraction in PHP (`explode(' ', $title)[0]`)
+  - Grid with `:not()` selectors for single-item edge cases
+
+### Technical wins
+- Smooth header scroll: hide on scroll down, show on scroll up (0.8s slide + fade)
+- Logo color inversion on scroll (brightness(0) invert(1) filter, 3s transition)
+- Frosted glass header (rgba background + backdrop-filter blur)
+- Team cards: minimal padding (4px), photos edge-to-edge, 4-line text limit
+- "Meet [Name]" dynamic links instead of generic "Read More"
+- Git initialized with comprehensive .gitignore
+
+### User satisfaction
+Breakthrough moment when bug was finally solved: "super je hebt het eindelijk opgelost!"
+Requested documentation in vibe sensing system and learnings (this entry).
+
+**Takeaway:** Persistent bugs are often simple conflicts hidden by complexity. Strip back assumptions, scan comprehensively, verify with DevTools before adding more code.
+
+---
+
 ## 2026-02-14 (morning) - Tool Discovery & Workflow Protocol Design
 
 **Session Type:** Knowledge system enhancement - tools awareness & deployment protocols

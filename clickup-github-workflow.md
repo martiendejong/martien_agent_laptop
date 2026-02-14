@@ -108,37 +108,48 @@ After acceptance test:
 
 2. Pick a task, note the ID (e.g., 869bhfw7r)
 
-3. 📊 PERFORM MOSCOW PRIORITIZATION (MANDATORY - 2026-02-07)
+3. ⚠️ CHECK TASK CLARITY (MANDATORY - 2026-02-14) ⭐ NEW STEP
+   > powershell -File C:\scripts\tools\clickup-task-clarity-checker.ps1 -TaskId 869bhfw7r -AutoMove
+   > If task is UNCLEAR:
+     - Script posts questions as comments
+     - Moves task to "needs input"
+     - STOP and wait for product owner response
+   > If task is CLEAR:
+     - Continue to step 4
+   > Reference: Skill /check-task-clarity
+   > Purpose: Prevent wasted work on unclear requirements
+
+4. 📊 PERFORM MOSCOW PRIORITIZATION (MANDATORY - 2026-02-07)
    > Analyze task requirements: Must/Should/Could/Won't Have
    > Post MoSCoW analysis as comment in ClickUp task
    > Reference: C:\scripts\MOSCOW_PRIORITIZATION.md
    > User mandate: Task #869bu91e5
 
-4. Create branch with ClickUp task ID
+5. Create branch with ClickUp task ID
    > Branch naming: feature/869bhfw7r-restaurant-menu
 
-5. Allocate worktree for branch
+6. Allocate worktree for branch
    > Allocate agent seat and create worktree for this branch
 
-6. Make changes to implement the feature (MoSCoW-guided)
+7. Make changes to implement the feature (MoSCoW-guided)
    > Phase 1: MUST HAVE items (100% complete)
    > Phase 2: SHOULD HAVE items (if time allows)
    > Phase 3: COULD HAVE items (only if trivial)
    > Document WON'T HAVE as TODOs
 
-7. Merge develop into branch before PR
+8. Merge develop into branch before PR
    > git fetch origin && git merge origin/develop
    > Resolve conflicts, ensure build passes, tests pass
 
-8. Create PR with task reference (include MoSCoW in description)
+9. Create PR with task reference (include MoSCoW in description)
    > gh pr create --base develop --title "feat: Restaurant menu [869bhfw7r]"
    > Include implemented MUST/SHOULD/COULD and deferred items in PR body
 
-9. 🚨 MANDATORY (NON-NEGOTIABLE): Add PR link to ClickUp task
-   > clickup-sync.ps1 -Action comment -TaskId 869bhfw7r -Comment "PR #148: https://github.com/martiendejong/client-manager/pull/148"
-   > THIS STEP IS REQUIRED - NO EXCEPTIONS
+10. 🚨 MANDATORY (NON-NEGOTIABLE): Add PR link to ClickUp task
+    > clickup-sync.ps1 -Action comment -TaskId 869bhfw7r -Comment "PR #148: https://github.com/martiendejong/client-manager/pull/148"
+    > THIS STEP IS REQUIRED - NO EXCEPTIONS
 
-10. Release worktree per zero-tolerance rules
+11. Release worktree per zero-tolerance rules
 ```
 
 ### When PR is Merged
@@ -216,6 +227,7 @@ $taskId = [regex]::Match($title, '\[([a-z0-9]+)\]').Groups[1].Value
 - [ ] Task ID exists in ClickUp
 - [ ] Task is in Brand Designer list
 - [ ] Task status is appropriate (todo, needs refinement, etc.)
+- [ ] **Task clarity verified (not in 'needs input')** ⭐ MANDATORY (2026-02-14)
 - [ ] **MoSCoW prioritization analysis performed** ⭐ MANDATORY (2026-02-07)
 
 ### Before Creating PR
@@ -298,5 +310,59 @@ clickup-sync.ps1 -Action update -TaskId 869bhfw7r -Status done
 
 ---
 
+## 11. Task Clarity Check (2026-02-14) ⭐ NEW
+
+**User Mandate:** Before implementing ANY task, verify it's clear enough to proceed.
+
+### Purpose
+Prevent wasted work on unclear requirements by checking clarity BEFORE allocating worktrees and writing code.
+
+### When Task is Unclear
+Tasks moved to "needs input" status with questions posted automatically when they lack:
+- Sufficient detail (<100 chars description)
+- Requirements and acceptance criteria
+- Technical specs (for integrations, auth details, API endpoints)
+- UI/UX details (where in UI, user flow, design mockups)
+- Error details (for bug fixes, reproduction steps)
+- Trigger detection logic (for AI/LLM features)
+
+### Automated Clarity Review
+The system now automatically reviews ALL 'todo' tasks and:
+1. Posts questions as comments if unclear
+2. Moves unclear tasks to "needs input"
+3. Posts confirmation if task is clear and ready
+
+### Example: Unclear Task
+**Before:**
+- Name: "Fix Social Media Blog Import"
+- Description: "Verify that all platforms work correctly"
+- Status: todo
+
+**After Clarity Check:**
+- Comment posted: "What specific issue or error needs to be fixed? What are the steps to reproduce? Which platforms are affected?"
+- Status: needs input
+- Agent waits for product owner response
+
+### Example: Clear Task
+**Before:**
+- Name: "FUTURE: Content Calendar Drag-and-Drop"
+- Description: 500+ chars with Requirements, Acceptance Criteria, Technical Notes
+- Status: todo
+
+**After Clarity Check:**
+- Comment posted: "This task is completely clear and can be implemented now"
+- Status: stays todo (ready to implement)
+- Agent can proceed to MoSCoW analysis
+
+### Tools
+- **Manual check:** `powershell -File C:\scripts\tools\clickup-task-clarity-checker.ps1 -TaskId <id>`
+- **Automated check:** `powershell -File C:\scripts\tools\clickup-task-clarity-checker.ps1 -TaskId <id> -AutoMove`
+- **Bulk review:** `python E:\jengo\documents\temp\clickup-task-clarity-review.py`
+- **Skill:** `/check-task-clarity` in chat
+
+**See:** `C:\scripts\skills\check-task-clarity.skill.md` for complete documentation
+
+---
+
 **Maintained by:** Claude Agent
-**Last Updated:** 2026-02-07 (MoSCoW integration)
+**Last Updated:** 2026-02-14 (Task clarity check integration)

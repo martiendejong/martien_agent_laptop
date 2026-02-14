@@ -189,12 +189,14 @@ services-query-v2.ps1 -CheckHealth
 
 | Trigger | Action | Skill |
 |---------|--------|-------|
-| ClickUp task / new feature | Allocate worktree → code → PR → release | `allocate-worktree` → `release-worktree` |
+| ClickUp task / new feature | **CHECK CLARITY FIRST** → Allocate worktree → code → PR → release | `/check-task-clarity` → `allocate-worktree` → `release-worktree` |
 | "ga reviewen" | Review all tasks in review status | `clickup-reviewer` |
 | Build errors / debugging | Work in base repo on user's branch | `debug-mode` |
 | Cross-repo PR | Track dependencies | `pr-dependencies` |
 | EF Core changes | Safe migration workflow | `ef-migration-safety` |
 | Config changes | Refresh context files | `refresh-all-context.ps1` |
+
+**IMPORTANT (2026-02-14):** Before starting ANY ClickUp task, run clarity check first. If task is unclear, questions are posted and status moves to "needs input". This prevents wasted work on unclear requirements.
 
 ## Working Documents (E:\jengo\documents)
 

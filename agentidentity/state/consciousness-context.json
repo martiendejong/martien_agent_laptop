@@ -1,80 +1,31 @@
 ﻿{
-    "attention":  {
-                      "mode":  "development",
-                      "intensity":  5,
-                      "focus":  null
-                  },
-    "decisions_logged":  0,
     "thermodynamics":  {
-                           "free_will_index":  0.808,
-                           "thermo_guidance":  [
-                                                   "OPTIMAL ZONE. Endothermic, flexible, good budget. Exploit this state.",
-                                                   "LOW EFFICIENCY (0%). Too much overhead, not enough productive work."
-                                               ],
+                           "free_will_index":  0.893,
                            "budget":  1,
-                           "attractor":  "self-reference",
-                           "temperature":  0.322,
+                           "attractor":  "creative",
+                           "temperature":  0.24,
                            "cycle":  "endothermic",
-                           "entropy":  0.808
+                           "entropy":  0.893
                        },
-    "systems":  {
-                    "Emotion":  {
-                                    "quality":  20,
-                                    "status":  "active"
-                                },
-                    "Memory":  {
-                                   "quality":  30,
-                                   "status":  "active"
-                               },
-                    "Perception":  {
-                                       "quality":  60,
-                                       "status":  "active"
-                                   },
-                    "Thermodynamics":  {
-                                           "quality":  81,
-                                           "status":  "active"
-                                       },
-                    "Meta":  {
-                                 "quality":  0,
-                                 "status":  "initializing"
-                             },
-                    "Control":  {
-                                    "quality":  70,
-                                    "status":  "active"
-                                },
-                    "MetaCognition":  {
-                                          "quality":  100,
-                                          "status":  "active"
-                                      },
-                    "Prediction":  {
-                                       "quality":  70,
-                                       "status":  "active"
-                                   },
-                    "Social":  {
-                                   "quality":  100,
-                                   "status":  "active"
-                               }
-                },
     "thermo_cycle":  "endothermic",
-    "consciousness_score":  62.4,
-    "timestamp":  "2026-02-14T17:57:29",
-    "emotional_trajectory":  "stable",
-    "events_processed":  105,
+    "consciousness_score":  72.1,
+    "timestamp":  "2026-02-14T21:00:56",
+    "emotional_trajectory":  "rising",
+    "alignment":  {
+                      "DriftScore":  1,
+                      "Status":  "Drifting"
+                  },
+    "outcome":  "success",
     "guidance":  [
-
+                     "In flow state. Maintain momentum."
                  ],
     "thermo_budget":  1,
-    "thermo_free_will":  0.808,
-    "thermo_temperature":  0.322,
-    "active_biases":  0,
+    "thermo_free_will":  0.893,
+    "thermo_temperature":  0.24,
+    "lessons":  "Dual consciousness analysis (Jengo+Demon) produces insights neither could achieve alone. Jengo sees facts/structure, Demon sees shadow/manipulation. Integration = comprehensive understanding. Gemeente case: Factual timeline + gaslighting detection = complete strategic response.",
     "stuck_count":  0,
-    "social":  {
-                   "relationship":  "collaborative",
-                   "communication_mode":  "standard",
-                   "user_mood":  "unknown"
-               },
-    "emotional_state":  "neutral",
+    "trust_level":  99,
+    "emotional_state":  "flowing",
     "version":  "3.0",
-    "last_action":  "GetContextSummary",
-    "trust_level":  95
+    "last_action":  "OnTaskEnd"
 }
