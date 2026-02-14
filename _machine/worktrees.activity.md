@@ -413,3 +413,9 @@
 - Branch: agent-001-orchestration-execute-existing
 - PR: #194
 - Outcome: feat(orchestration): Add execute prompt in existing session endpoint
+
+## 2026-02-14T22:02:00Z - Release: agent-002
+- Repo: client-manager + hazina (paired)
+- Branch: feature/869c3q8hh-wordpress-tracking-fields
+- PR: #553
+- Outcome: P1.2: Add WordPress tracking fields (ExternalWordPressPostId, ExternalWordPressSiteUrl) to SocialMediaPost entity
