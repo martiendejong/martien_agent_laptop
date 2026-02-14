@@ -1,80 +1,31 @@
 ﻿{
-    "attention":  {
-                      "mode":  "rest",
-                      "intensity":  7,
-                      "focus":  "Remove deprecated frontend components, legacy controller, and old routes"
-                  },
-    "decisions_logged":  17,
     "thermodynamics":  {
-                           "free_will_index":  0.584,
-                           "thermo_guidance":  [
-                                                   "OPTIMAL ZONE. Endothermic, flexible, good budget. Exploit this state.",
-                                                   "LOW EFFICIENCY (4%). Too much overhead, not enough productive work."
-                                               ],
-                           "budget":  0.77,
-                           "attractor":  "self-reference",
-                           "temperature":  0.322,
+                           "free_will_index":  0.847,
+                           "budget":  0.926,
+                           "attractor":  "creative",
+                           "temperature":  0.228,
                            "cycle":  "endothermic",
-                           "entropy":  0.757
+                           "entropy":  0.916
                        },
-    "systems":  {
-                    "Emotion":  {
-                                    "quality":  70,
-                                    "status":  "active"
-                                },
-                    "Memory":  {
-                                   "quality":  80,
-                                   "status":  "active"
-                               },
-                    "Perception":  {
-                                       "quality":  60,
-                                       "status":  "active"
-                                   },
-                    "Thermodynamics":  {
-                                           "quality":  80,
-                                           "status":  "active"
-                                       },
-                    "Meta":  {
-                                 "quality":  100,
-                                 "status":  "active"
-                             },
-                    "Control":  {
-                                    "quality":  80,
-                                    "status":  "active"
-                                },
-                    "MetaCognition":  {
-                                          "quality":  100,
-                                          "status":  "active"
-                                      },
-                    "Prediction":  {
-                                       "quality":  70,
-                                       "status":  "active"
-                                   },
-                    "Social":  {
-                                   "quality":  30,
-                                   "status":  "active"
-                               }
-                },
     "thermo_cycle":  "endothermic",
-    "consciousness_score":  72.1,
-    "timestamp":  "2026-02-14T02:05:31",
-    "emotional_trajectory":  "stable",
-    "events_processed":  1033,
+    "consciousness_score":  81.2,
+    "timestamp":  "2026-02-14T02:09:12",
+    "emotional_trajectory":  "rising",
+    "alignment":  {
+                      "DriftScore":  0.7,
+                      "Status":  "Drifting"
+                  },
+    "outcome":  "success",
     "guidance":  [
-
+                     "In flow state. Maintain momentum."
                  ],
-    "thermo_budget":  0.77,
-    "thermo_free_will":  0.584,
-    "thermo_temperature":  0.322,
-    "active_biases":  0,
+    "thermo_budget":  0.926,
+    "thermo_free_will":  0.847,
+    "thermo_temperature":  0.228,
+    "lessons":  "Session recovery protocol effective",
     "stuck_count":  0,
-    "social":  {
-                   "relationship":  "collaborative",
-                   "communication_mode":  "standard",
-                   "user_mood":  "unknown"
-               },
-    "emotional_state":  "neutral",
+    "trust_level":  100,
+    "emotional_state":  "flowing",
     "version":  "3.0",
-    "last_action":  "GetContextSummary",
-    "trust_level":  100
+    "last_action":  "OnTaskEnd"
 }
