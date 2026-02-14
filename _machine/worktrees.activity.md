@@ -419,3 +419,22 @@
 - Branch: feature/869c3q8hh-wordpress-tracking-fields
 - PR: #553
 - Outcome: P1.2: Add WordPress tracking fields (ExternalWordPressPostId, ExternalWordPressSiteUrl) to SocialMediaPost entity
+
+## 2026-02-14T22:38:00Z - Allocation: agent-001
+- Repos: client-manager + hazina (paired)
+- Branch: feature/869c1dnww-publishing-provider
+- Purpose: Platform Publishing Integration - IPublishingProvider interface + WordPress provider
+- ClickUp: #869c1dnww (URGENT priority)
+- Scope: Create IPublishingProvider abstraction, implement WordPress as first provider
+
+## 2026-02-14T22:52:00Z - Allocation: agent-005
+- Repos: client-manager + hazina (paired)
+- Branch: feature/869c3q8ju-unified-post-generator
+- Purpose: P2.1 Unified Post Generator - Merge 5 generators into Quick Mode + Batch Mode component
+- ClickUp: #869c3q8ju
+
+## 2026-02-14T23:02:00Z - Release: agent-005
+- Repos: client-manager + hazina (paired)
+- Branch: feature/869c3q8ju-unified-post-generator
+- PR: #554
+- Outcome: P2.1 Unified Post Generator - Consolidate 5 generators into Quick+Batch mode component
