@@ -396,3 +396,20 @@
 - Branch: agent-001-orchestration-execute-prompt
 - PR: #193
 - Outcome: feat(orchestration): Add /api/terminal/sessions/execute endpoint
+
+## 2026-02-14T21:54:00Z - Allocation: agent-001
+- Repo: hazina
+- Branch: agent-001-orchestration-execute-existing
+- Purpose: Add endpoint to execute prompt in existing session (POST /api/terminal/sessions/{sessionId}/execute)
+
+## 2026-02-14T21:58:00Z - Allocation: agent-002
+- Repo: client-manager + hazina (paired)
+- Branch: feature/869c3q8hh-wordpress-tracking-fields
+- Purpose: P1.2: Add WordPress tracking fields (ExternalWordPressPostId, ExternalWordPressSiteUrl) to SocialMediaPost entity
+- ClickUp: #869c3q8hh
+
+## 2026-02-14T21:59:00Z - Release: agent-001
+- Repo: hazina
+- Branch: agent-001-orchestration-execute-existing
+- PR: #194
+- Outcome: feat(orchestration): Add execute prompt in existing session endpoint
