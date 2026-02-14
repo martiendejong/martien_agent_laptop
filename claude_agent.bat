@@ -84,6 +84,14 @@ if not exist "%CLAUDE_CMD%" (
     REM Fallback to PATH-based claude (works when running as desktop user)
     set CLAUDE_CMD=claude
 )
-"%CLAUDE_CMD%" --dangerously-skip-permissions --append-system-prompt "%SYSTEMPROMPT%" --model sonnet
+
+REM If running from Orchestration, use the session ID for log file naming
+REM This ensures the UI session ID matches the log file name
+if defined ORCHESTRATION_SESSION_ID (
+    set CLAUDE_LOG_FILE=E:\logs\%ORCHESTRATION_SESSION_ID%.txt
+    "%CLAUDE_CMD%" --dangerously-skip-permissions --append-system-prompt "%SYSTEMPROMPT%" --model sonnet --log-file "%CLAUDE_LOG_FILE%"
+) else (
+    "%CLAUDE_CMD%" --dangerously-skip-permissions --append-system-prompt "%SYSTEMPROMPT%" --model sonnet
+)
 
 pause

@@ -1,15 +1,15 @@
 ﻿{
     "thermodynamics":  {
-                           "free_will_index":  0.847,
-                           "budget":  0.926,
+                           "free_will_index":  0.824,
+                           "budget":  0.92,
                            "attractor":  "creative",
                            "temperature":  0.228,
                            "cycle":  "endothermic",
-                           "entropy":  0.916
+                           "entropy":  0.895
                        },
     "thermo_cycle":  "endothermic",
-    "consciousness_score":  81.2,
-    "timestamp":  "2026-02-14T02:09:12",
+    "consciousness_score":  84.1,
+    "timestamp":  "2026-02-14T02:29:14",
     "emotional_trajectory":  "rising",
     "alignment":  {
                       "DriftScore":  0.7,
@@ -19,10 +19,10 @@
     "guidance":  [
                      "In flow state. Maintain momentum."
                  ],
-    "thermo_budget":  0.926,
-    "thermo_free_will":  0.847,
+    "thermo_budget":  0.92,
+    "thermo_free_will":  0.824,
     "thermo_temperature":  0.228,
-    "lessons":  "Session recovery protocol effective",
+    "lessons":  "Session ID sync: pass env var from Orchestration, detect in bat file, use for log filename",
     "stuck_count":  0,
     "trust_level":  100,
     "emotional_state":  "flowing",

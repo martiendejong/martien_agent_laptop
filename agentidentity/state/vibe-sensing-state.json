@@ -27,6 +27,14 @@
                          "output_path":  "E:\\jengo\\documents\\temp\\vibe-analysis-20260214-001833.md",
                          "tone_formality":  1,
                          "project":  "Maasai Investments"
+                     },
+                     {
+                         "tone_warmth":  0,
+                         "archetype_primary":  "magician",
+                         "timestamp":  "2026-02-14 02:23:48",
+                         "output_path":  "E:\\jengo\\documents\\temp\\vibe-analysis-20260214-022348.md",
+                         "tone_formality":  0,
+                         "project":  "Valsuani Foundry Debate"
                      }
                  ]
 }
