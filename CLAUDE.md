@@ -73,13 +73,22 @@ This list is alive - it grows every session as new patterns emerge.
 **Admin:** vault:admin (vault.ps1 -Action get -Service admin)
 **Don't** run client-manager from command line - user runs from Visual Studio + npm.
 
-## Debugging Tools
+## Available Tools
 
+**Debugging & Testing:**
 - **Agentic Debugger:** `localhost:27183` - VS control, breakpoints, Roslyn search
 - **Browser MCP / Playwright:** Frontend testing, live browser control
 - **UI Automation Bridge:** `localhost:27184` - Windows desktop control (FlaUI)
+
+**AI Tools:**
 - **AI Vision:** `ai-vision.ps1` - Screenshot analysis, OCR
 - **AI Image:** `ai-image.ps1` - DALL-E image generation
+
+**Image Processing:**
+- **ImageMagick:** `magick` command (v7.1.2-13) - Resize, convert, crop, watermark, effects
+  - Formats: JPEG, PNG, WebP, HEIC, TIFF, SVG, PDF
+  - Output to: `E:\jengo\documents\output\`
+  - Use for: Batch processing, format conversion, optimization, compositing
 
 ---
 

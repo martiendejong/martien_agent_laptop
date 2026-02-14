@@ -102,6 +102,15 @@
                       "path":  "C:\\scripts\\tools\\services-query-v2.ps1",
                       "name":  "services-query",
                       "purpose":  "Query running services registry"
+                  },
+                  {
+                      "name":  "ImageMagick",
+                      "command":  "magick",
+                      "version":  "7.1.2-13",
+                      "purpose":  "Image processing - resize, convert, crop, watermark, effects",
+                      "formats":  ["JPEG", "PNG", "WebP", "HEIC", "TIFF", "SVG", "PDF"],
+                      "use_cases":  ["Batch resize", "Format conversion", "Watermarking", "Image optimization", "Compositing"],
+                      "output_dir":  "E:\\jengo\\documents\\output\\"
                   }
               ],
     "identity":  {
