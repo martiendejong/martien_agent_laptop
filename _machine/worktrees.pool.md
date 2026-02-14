@@ -6,7 +6,7 @@ Seat states:
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager | feature/869c1dnww-publishing-provider | 2026-02-14T22:37:00Z | Implementing IPublishingProvider + WordPress provider (ClickUp #869c1dnww) |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | client-manager | feature/869c3q8hh-wordpress-tracking-fields | 2026-02-14T22:08:00Z | Reviewing PR #553: WordPress tracking fields |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-14T02:00:00Z | PR #550: Remove deprecated routes (ClickUp #869c3q8pu) |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | client-manager | feature/869c3q8k4-post-hub-refactoring | 2026-02-14T23:05:00Z | P2.2: Post Hub Refactoring - SocialMediaPosts.tsx (ClickUp #869c3q8k4) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-07T21:40:00Z | ✅ PR #513: DoD Enforcement System (ClickUp #869bu91ej) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-14T23:02:00Z | ✅ PR #554: Unified Post Generator - Quick+Batch mode (ClickUp #869c3q8ju) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-06T14:19:00Z | ✅ PR #173 MERGED: HazinaCoder Iterations 1-60 - Conflicts resolved & merged to develop |

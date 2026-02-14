@@ -307,6 +307,8 @@ Before launching a financial platform design:
 8. **Dark mode isn't automatically premium** - can signal obscurity
 9. **Grounded layouts** signal financial stability
 10. **User feedback validates patterns** - trust your data
+11. **Understanding principles ≠ creative application** - ultimate-02 v3 copied ultimate-01 with horizontal scroll instead of applying principles to original design. Copying is not skill.
+12. **Theater doesn't produce work** - analyzing "why" something works is valuable, but only if it leads to original creation, not replication
 
 ---
 

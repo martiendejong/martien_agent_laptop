@@ -438,3 +438,9 @@
 - Branch: feature/869c3q8ju-unified-post-generator
 - PR: #554
 - Outcome: P2.1 Unified Post Generator - Consolidate 5 generators into Quick+Batch mode component
+
+## 2026-02-14T23:05:00Z - Allocation: agent-003
+- Repos: client-manager + hazina (paired)
+- Branch: feature/869c3q8k4-post-hub-refactoring
+- Purpose: P2.2 Post Hub Refactoring - Remove embedded generator tab, add Create New Post button
+- ClickUp: #869c3q8k4

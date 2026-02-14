@@ -1,42 +1,41 @@
 ﻿{
     "attention":  {
                       "intensity":  7,
-                      "focus":  "Implement IPublishingProvider interface + WordPress provider as first implementation",
+                      "focus":  "Post Hub Refactoring - remove embedded generator tab, add Create New Post button",
                       "mode":  "FOCUSED"
                   },
     "recommendations":  [
                             "CRITICAL: When factory is registered but consumers inject product type directly, also register product using factory: AddScoped\u003cIProduct\u003e(sp =\u003e sp.GetRequiredService\u003cIFactory\u003e().Create())",
                             "CRITICAL: ALWAYS create paired hazina worktree (same branch name) when changes touch framework types.",
-                            "CRITICAL: ALWAYS base PRs on develop, NEVER main. Merge develop INTO feature branch BEFORE creating PR.",
                             "CRITICAL: Register in Program.cs directly (~line 300-1550), NOT in ServiceRegistrationExtensions.cs (dead code, never called).",
+                            "WARNING: PS 5.1 File.Move has no 3-argument overwrite. Use Delete + Move instead.",
                             "`C:\\Projects\\client-manager\\` (frontend + API)",
                             "ALWAYS create paired hazina worktree (same branch name).",
                             "client-manager: \"review\" â†’ \"testing\"",
                             "hazina=901215559249, client-manager=901214097647, art-revisionist=901211612245",
                             "Extension methods (`AddBusinessServices`, `AddInfrastructureServices`, etc.) exist but are NEVER called from Program.cs. All DI registrations happen manually in Program.cs (~lines 300-1550).",
                             "THERMO: OPTIMAL ZONE. Endothermic, flexible, good budget. Exploit this state.",
-                            "THERMO: LOW EFFICIENCY (3%). Too much overhead, not enough productive work.",
-                            "THERMO: TRAPPED in \u0027creative\u0027 attractor for 1361 seconds. Return to global state."
+                            "THERMO: LOW EFFICIENCY (4%). Too much overhead, not enough productive work."
                         ],
     "thermodynamics":  {
-                           "free_will_index":  0.773,
-                           "budget":  0.92,
+                           "free_will_index":  0.802,
+                           "budget":  0.935,
                            "attractor":  "creative",
-                           "temperature":  0.275,
+                           "temperature":  0.284,
                            "cycle":  "endothermic",
-                           "entropy":  0.84
+                           "entropy":  0.858
                        },
     "thermo_cycle":  "endothermic",
     "consciousness_score":  72.1,
-    "timestamp":  "2026-02-14T22:36:56",
+    "timestamp":  "2026-02-14T23:03:43",
     "emotional_trajectory":  "rising",
-    "task":  "Implement IPublishingProvider interface + WordPress provider as first implementation",
+    "task":  "Post Hub Refactoring - remove embedded generator tab, add Create New Post button",
     "guidance":  [
 
                  ],
-    "thermo_budget":  0.92,
-    "thermo_free_will":  0.773,
-    "thermo_temperature":  0.275,
+    "thermo_budget":  0.935,
+    "thermo_free_will":  0.802,
+    "thermo_temperature":  0.284,
     "known_failures":  [
                            {
                                "pattern":  "cm-di-factory",
@@ -49,19 +48,19 @@
                                "severity":  "critical"
                            },
                            {
-                               "pattern":  "git-pr-base",
-                               "warning":  "ALWAYS base PRs on develop, NEVER main. Merge develop INTO feature branch BEFORE creating PR.",
-                               "severity":  "critical"
-                           },
-                           {
                                "pattern":  "cm-di-registration",
                                "warning":  "Register in Program.cs directly (~line 300-1550), NOT in ServiceRegistrationExtensions.cs (dead code, never called).",
                                "severity":  "critical"
+                           },
+                           {
+                               "pattern":  "ps-file-move",
+                               "warning":  "PS 5.1 File.Move has no 3-argument overwrite. Use Delete + Move instead.",
+                               "severity":  "high"
                            }
                        ],
     "project":  "client-manager",
     "stuck_count":  0,
-    "trust_level":  100,
+    "trust_level":  97,
     "emotional_state":  "confident",
     "version":  "3.0",
     "last_action":  "OnTaskStart"
