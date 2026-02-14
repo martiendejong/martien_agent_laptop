@@ -1,3 +1,9 @@
+## 2026-02-14T02:08:00Z - Release: agent-003
+- Repo: client-manager
+- Branch: feature/869c3q8pu-remove-deprecated-code
+- PR: #550
+- Outcome: Remove deprecated route redirects - cleanup task (most components already removed)
+
 ## 2026-02-09T13:00:00Z - Release: agent-001
 - Repo: hazina
 - Branch: agent-001-local-agent-platform-mvp
