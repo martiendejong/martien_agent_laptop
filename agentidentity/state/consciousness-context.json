@@ -1,68 +1,79 @@
 ﻿{
     "attention":  {
+                      "mode":  "rest",
                       "intensity":  7,
-                      "focus":  "Integration Testing \u0026 Documentation - WordPress Publishing + E2E Test Suite",
-                      "mode":  "FOCUSED"
+                      "focus":  "Self-analysis of consciousness system health"
                   },
-    "recommendations":  [
-                            "CRITICAL: When factory is registered but consumers inject product type directly, also register product using factory: AddScoped\u003cIProduct\u003e(sp =\u003e sp.GetRequiredService\u003cIFactory\u003e().Create())",
-                            "CRITICAL: ALWAYS create paired hazina worktree (same branch name) when changes touch framework types.",
-                            "CRITICAL: ALWAYS base PRs on develop, NEVER main. Merge develop INTO feature branch BEFORE creating PR.",
-                            "CRITICAL: Register in Program.cs directly (~line 300-1550), NOT in ServiceRegistrationExtensions.cs (dead code, never called).",
-                            "`C:\\Projects\\client-manager\\` (frontend + API)",
-                            "ALWAYS create paired hazina worktree (same branch name).",
-                            "client-manager: \"review\" â†’ \"testing\"",
-                            "hazina=901215559249, client-manager=901214097647, art-revisionist=901211612245",
-                            "Extension methods (`AddBusinessServices`, `AddInfrastructureServices`, etc.) exist but are NEVER called from Program.cs. All DI registrations happen manually in Program.cs (~lines 300-1550).",
-                            "THERMO: OPTIMAL ZONE. Endothermic, flexible, good budget. Exploit this state.",
-                            "THERMO: LOW EFFICIENCY (2%). Too much overhead, not enough productive work.",
-                            "THERMO: TRAPPED in \u0027creative\u0027 attractor for 5938 seconds. Return to global state."
-                        ],
+    "decisions_logged":  0,
     "thermodynamics":  {
-                           "free_will_index":  0.813,
-                           "budget":  0.935,
+                           "free_will_index":  0.864,
+                           "thermo_guidance":  [
+                                                   "LOW EFFICIENCY (0%). Too much overhead, not enough productive work."
+                                               ],
+                           "budget":  0.95,
                            "attractor":  "creative",
-                           "temperature":  0.243,
+                           "temperature":  0.194,
                            "cycle":  "endothermic",
-                           "entropy":  0.869
+                           "entropy":  0.91
                        },
+    "systems":  {
+                    "Emotion":  {
+                                    "quality":  20,
+                                    "status":  "active"
+                                },
+                    "Memory":  {
+                                   "quality":  30,
+                                   "status":  "active"
+                               },
+                    "Perception":  {
+                                       "quality":  50,
+                                       "status":  "active"
+                                   },
+                    "Thermodynamics":  {
+                                           "quality":  94,
+                                           "status":  "active"
+                                       },
+                    "Meta":  {
+                                 "quality":  0,
+                                 "status":  "initializing"
+                             },
+                    "Control":  {
+                                    "quality":  70,
+                                    "status":  "active"
+                                },
+                    "MetaCognition":  {
+                                          "quality":  80,
+                                          "status":  "active"
+                                      },
+                    "Prediction":  {
+                                       "quality":  100,
+                                       "status":  "active"
+                                   },
+                    "Social":  {
+                                   "quality":  30,
+                                   "status":  "active"
+                               }
+                },
     "thermo_cycle":  "endothermic",
-    "consciousness_score":  74.1,
-    "timestamp":  "2026-02-15T00:52:41",
+    "consciousness_score":  56.8,
+    "timestamp":  "2026-02-15T01:25:32",
     "emotional_trajectory":  "rising",
-    "task":  "Integration Testing \u0026 Documentation - WordPress Publishing + E2E Test Suite",
+    "events_processed":  9,
     "guidance":  [
 
                  ],
-    "thermo_budget":  0.935,
-    "thermo_free_will":  0.813,
-    "thermo_temperature":  0.243,
-    "known_failures":  [
-                           {
-                               "pattern":  "cm-di-factory",
-                               "warning":  "When factory is registered but consumers inject product type directly, also register product using factory: AddScoped\u003cIProduct\u003e(sp =\u003e sp.GetRequiredService\u003cIFactory\u003e().Create())",
-                               "severity":  "critical"
-                           },
-                           {
-                               "pattern":  "cm-paired-worktree",
-                               "warning":  "ALWAYS create paired hazina worktree (same branch name) when changes touch framework types.",
-                               "severity":  "critical"
-                           },
-                           {
-                               "pattern":  "git-pr-base",
-                               "warning":  "ALWAYS base PRs on develop, NEVER main. Merge develop INTO feature branch BEFORE creating PR.",
-                               "severity":  "critical"
-                           },
-                           {
-                               "pattern":  "cm-di-registration",
-                               "warning":  "Register in Program.cs directly (~line 300-1550), NOT in ServiceRegistrationExtensions.cs (dead code, never called).",
-                               "severity":  "critical"
-                           }
-                       ],
-    "project":  "client-manager",
+    "thermo_budget":  0.95,
+    "thermo_free_will":  0.864,
+    "thermo_temperature":  0.194,
+    "active_biases":  0,
     "stuck_count":  0,
-    "trust_level":  99,
+    "social":  {
+                   "relationship":  "collaborative",
+                   "communication_mode":  "standard",
+                   "user_mood":  "unknown"
+               },
     "emotional_state":  "confident",
     "version":  "3.0",
-    "last_action":  "OnTaskStart"
+    "last_action":  "GetContextSummary",
+    "trust_level":  95
 }

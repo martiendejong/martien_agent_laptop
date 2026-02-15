@@ -242,7 +242,8 @@ function Write-ContextFile {
     }
     if ($efficiency -lt 0.10) {
         $severity = if ($efficiency -lt 0.05) { "CRITICAL" } else { "WARNING" }
-        $envelope.guidance += "THERMO $severity: Efficiency $([math]::Round($efficiency * 100, 1))% (97%+ overhead). Reduce system complexity."
+        $effPct = [math]::Round($efficiency * 100, 1)
+        $envelope.guidance += "THERMO ${severity}: Efficiency ${effPct}% (97%+ overhead). Reduce system complexity."
     }
 
     # Merge action-specific data

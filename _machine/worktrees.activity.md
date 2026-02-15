@@ -451,3 +451,5 @@
 - PR: #555
 - Outcome: IPublishingProvider interface + WordPress provider (Phase 1 foundation)
 - ClickUp: #869c1dnww moved to review status
+2026-02-15T00:19:33Z | agent-001 | ALLOCATE | feature/869c3q8ke-route-cleanup | ClickHub P2.3 #869c3q8ke
+2026-02-15T00:25:30Z | agent-004 | ALLOCATE | feature/869c3q8nd-post-publish-url-feedback | ClickHub P3.4 #869c3q8nd
