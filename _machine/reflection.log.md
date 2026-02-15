@@ -6,6 +6,48 @@
 
 ---
 
+## 2026-02-14 (night) - WordPress SEO Redirect & FAQ Addition
+
+**Session Type:** WordPress content management and SEO preservation
+**Outcome:** Created new Carlo & Claude Valsuani page with FAQ, documented 301 redirect workflow for Google-indexed URLs
+
+### What was done
+1. **New WordPress page created** - artrevisionist.com/carlo-claude-valsuani-2/
+   - Content: Carlo Valsuani (father, municipal secretary) + Claude Valsuani (son, bronze founder)
+   - Context: Debunking "Marcello Valsuani" myth with primary source documentation
+   - Links to existing Valsuani investigation pages
+   - 7-question FAQ section added
+
+2. **SEO redirect strategy**:
+   - Old URL (Google-indexed): `/topic/valsuani/certificates-and-stamps-a-market-illusion/the-role-of-documentation-2/redirection-to-carlo-and-claude-valsuani/`
+   - New URL: `/carlo-claude-valsuani-2/`
+   - Redirection plugin installed and activated via REST API
+   - User instructed to configure 301 redirect via WordPress admin (plugin DB requires initialization)
+
+3. **FAQ section**:
+   - 7 Q&A pairs covering Carlo, Claude, their relationship, Marcello myth, foundry history, famous sculptures, and closure
+   - Initial report of "not seeing FAQ" resolved with hard refresh (browser caching)
+
+### Key learnings
+- **301 redirect SEO behavior**: Google replaces old URL with new URL in search results over 2-8 weeks, preserving PageRank/SEO value. Old URL eventually disappears from index.
+- **Custom post type URL structure**: `/topic/` prefix comes from `b2bk_topic` custom post type rewrite rule. Regular WordPress pages don't get this prefix automatically. For legacy URL redirects, don't rebuild hierarchies - use redirect plugin.
+- **Redirection plugin initialization**: Installing plugin via REST API works, but database tables require initialization via WordPress admin UI (Tools > Redirection > Start Setup) before redirects can be created.
+- **WordPress caching**: After content updates, users often need hard refresh (Ctrl+F5) to see changes due to browser/server caching.
+- **Vault credentials for WordPress**: Use `vault.ps1 -Action get -Service "wordpress-artrevisionist"` for REST API credentials. FTP may be disabled on some hosts.
+
+### WordPress REST API patterns used
+- `POST /wp/v2/pages` - Create new page (regular page, not custom post type)
+- `POST /wp/v2/plugins` with `{"slug":"redirection","status":"active"}` - Install and activate plugin
+- `POST /wp/v2/pages/{id}` - Update existing page content
+- Authentication: Basic auth with username + application password from vault
+
+### Process improvements
+- When old URLs are Google-indexed and user wants to preserve SEO value, always ask: "Do you want to REPLACE old URL in Google (301 redirect) or KEEP old URL (real content on that URL)?"
+- For URL replacement: create new page anywhere + use redirect plugin (don't recreate hierarchies)
+- For URL preservation: rebuild exact hierarchy with real content (more work, rarely needed)
+
+---
+
 ## 2026-02-14 (late evening) - ClickUp Task Clarity Automation & Workflow Integration
 
 **Session Type:** Process automation and workflow enhancement

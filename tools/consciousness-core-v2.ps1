@@ -1855,6 +1855,15 @@ function Invoke-Thermodynamics {
                     attractor = $current
                     duration = $duration
                 }
+
+                # IMPROVEMENT #2: AUTOMATIC ESCAPE when trapped
+                $null = Invoke-Thermodynamics -Action 'VisitAttractor' -Parameters @{ Attractor = "global" }
+                Emit-Event -Type "thermodynamics.attractor_escaped" -Data @{
+                    from = $current
+                    duration = $duration
+                    reason = "auto_escape"
+                }
+                $result.AutoEscaped = $true
             }
 
             return $result
