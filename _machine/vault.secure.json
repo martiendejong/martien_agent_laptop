@@ -3,7 +3,7 @@
     "version":  "2.0",
     "encryption":  "dpapi",
     "storage":  "hex",
-    "updated":  "2026-02-12 23:14:42",
+    "updated":  "2026-02-15 05:41:58",
     "credentials":  [
                         {
                             "updated":  "2026-02-11 18:53:42",
@@ -166,13 +166,27 @@
                         {
                             "updated":  "2026-02-12 23:14:42",
                             "token_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e00000000020000000000106600000001000020000000de2856bcd9c65139636b9186f5f879060eb2ecdb16b7c574fa8a63d3ce2cb6a8000000000e8000000002000020000000eebdc488bdb0149778f3b2c4fe77d2f41a690a4c435722d75c7271616d2a814a20000000b622f4df22bc233a99f9cb66a00ef883cce26b83c187fd5005d4be16f636b84b4000000055098561af4c7b07b9badac1bcf255d9eeec0c4cc0e95f66f86534d6836ad69880128e990ea60e70409d93323c71d516fce71dc0477acf144ff0665aa20c16d7",
-                            "username":  "admin@martiendejong.nl",
-                            "notes_enc":  "",
                             "password_hint":  "",
+                            "notes_enc":  "",
+                            "tags":  [
+
+                                     ],
+                            "username":  "admin@martiendejong.nl",
                             "token_hint":  "4mrkD8yq...",
                             "password_enc":  "",
                             "service":  "ftp-martiendejong",
-                            "created":  "2026-02-12 23:14:42",
+                            "created":  "2026-02-12 23:14:42"
+                        },
+                        {
+                            "updated":  "2026-02-15 05:41:58",
+                            "token_enc":  "",
+                            "username":  "JengoAutonomous",
+                            "notes_enc":  "",
+                            "password_hint":  "moltbook...",
+                            "token_hint":  "",
+                            "password_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e00000000020000000000106600000001000020000000ee47833aa3ca08a0f2e844d5a4b8e5fe8a22169aad5437ff7cfe2c0e748e3ee0000000000e8000000002000020000000fd25307f53e657d254c8a2668a0c5bd59ec40ae9b00044d6ddbd6135cca35f3a3000000061fe9928b2dd1d820dfe14321d7a090c4c5ca441924cf7e64791e8a08f8d7318553f42e9f120b5d3eccd43b43822bbb3400000009af950962f2d1d73b4e8129bcdfc3bd5527d22b50109b58e66b413052de097c4713deaa4b380d2622247aea3fa5d1b5b148d801e6b65e895f79097fe8b8ea3ab",
+                            "service":  "moltbook",
+                            "created":  "2026-02-15 05:41:58",
                             "tags":  [
 
                                      ]
