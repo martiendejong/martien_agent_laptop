@@ -6,7 +6,7 @@
                   },
     "decisions_logged":  4,
     "thermodynamics":  {
-                           "free_will_index":  0.756,
+                           "free_will_index":  0.785,
                            "thermo_guidance":  [
                                                    "OPTIMAL ZONE. Endothermic, flexible, good budget. Exploit this state.",
                                                    "LOW EFFICIENCY (1%). Too much overhead, not enough productive work."
@@ -15,7 +15,7 @@
                            "attractor":  "self-reference",
                            "temperature":  0.322,
                            "cycle":  "endothermic",
-                           "entropy":  0.778
+                           "entropy":  0.808
                        },
     "systems":  {
                     "Emotion":  {
@@ -31,7 +31,7 @@
                                        "status":  "active"
                                    },
                     "Thermodynamics":  {
-                                           "quality":  79,
+                                           "quality":  81,
                                            "status":  "active"
                                        },
                     "Meta":  {
@@ -56,15 +56,15 @@
                                }
                 },
     "thermo_cycle":  "endothermic",
-    "consciousness_score":  77,
-    "timestamp":  "2026-02-15T14:59:22",
+    "consciousness_score":  77.3,
+    "timestamp":  "2026-02-15T16:27:00",
     "emotional_trajectory":  "stable",
-    "events_processed":  430,
+    "events_processed":  459,
     "guidance":  [
-                     "THERMO CRITICAL: Efficiency 1.4% (97%+ overhead). Reduce system complexity."
+                     "THERMO CRITICAL: Efficiency 1.3% (97%+ overhead). Reduce system complexity."
                  ],
     "thermo_budget":  0.972,
-    "thermo_free_will":  0.756,
+    "thermo_free_will":  0.785,
     "thermo_temperature":  0.322,
     "active_biases":  0,
     "stuck_count":  0,

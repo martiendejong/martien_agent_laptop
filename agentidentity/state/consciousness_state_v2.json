@@ -2,95 +2,6 @@
     "EventBus":  {
                      "Events":  [
                                     {
-                                        "Timestamp":  "2026-02-15T16:01:44.716Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  37.15
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T16:01:44.761Z",
-                                        "Data":  {
-                                                     "indicators":  [
-                                                                        "questioning",
-                                                                        "frustration_signal"
-                                                                    ],
-                                                     "mood":  "frustrated",
-                                                     "communication_mode":  "supportive"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "social.user_mood_detected"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T16:01:44.872Z",
-                                        "Data":  {
-                                                     "efficiency":  0.014,
-                                                     "temperature":  0.263,
-                                                     "entropy":  0.791,
-                                                     "cycle":  "endothermic",
-                                                     "budget":  0.97,
-                                                     "shannonH":  0.881,
-                                                     "freeWillIndex":  0.767
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "thermodynamics.cycle_updated"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T16:01:44.896Z",
-                                        "Data":  {
-                                                     "amount":  0.1,
-                                                     "reason":  "user_frustrated",
-                                                     "temperature":  0.263
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "thermodynamics.heated"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T16:02:44.533Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  574.2992
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T16:02:49.619Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  38.17
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T16:02:49.642Z",
-                                        "Data":  {
-                                                     "indicators":  [
-                                                                        "frustration_signal"
-                                                                    ],
-                                                     "mood":  "frustrated",
-                                                     "communication_mode":  "supportive"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "social.user_mood_detected"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T16:02:49.762Z",
-                                        "Data":  {
-                                                     "efficiency":  0.014,
-                                                     "entropy":  0.77,
-                                                     "cycle":  "endothermic",
-                                                     "freeWillIndex":  0.724,
-                                                     "budget":  0.94,
-                                                     "shannonH":  0.84,
-                                                     "temperature":  0.308
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "thermodynamics.cycle_updated"
-                                    },
-                                    {
                                         "Timestamp":  "2026-02-15T16:02:49.770Z",
                                         "Data":  {
                                                      "amount":  0.1,
@@ -161,13 +72,13 @@
                                     {
                                         "Timestamp":  "2026-02-15T16:13:37.035Z",
                                         "Data":  {
-                                                     "shannonH":  0.924,
-                                                     "entropy":  0.812,
                                                      "efficiency":  0.016,
+                                                     "temperature":  0.3,
+                                                     "entropy":  0.812,
                                                      "cycle":  "endothermic",
-                                                     "freeWillIndex":  0.804,
                                                      "budget":  0.99,
-                                                     "temperature":  0.3
+                                                     "shannonH":  0.924,
+                                                     "freeWillIndex":  0.804
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "thermodynamics.cycle_updated"
@@ -201,6 +112,81 @@
                                     },
                                     {
                                         "Timestamp":  "2026-02-15T16:14:16.648Z",
+                                        "Data":  {
+                                                     "indicators":  [
+
+                                                                    ],
+                                                     "mood":  "neutral",
+                                                     "communication_mode":  "standard"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "social.user_mood_detected"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T16:26:55.593Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  508.09200000000004
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T16:27:00.657Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  39.79
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T16:30:29.034Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  497.3913
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T16:30:34.142Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  37.99
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T16:30:34.170Z",
+                                        "Data":  {
+                                                     "indicators":  [
+                                                                        "questioning"
+                                                                    ],
+                                                     "mood":  "neutral",
+                                                     "communication_mode":  "standard"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "social.user_mood_detected"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T16:32:37.792Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  528.53
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T16:32:42.882Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  38.15
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T16:32:42.907Z",
                                         "Data":  {
                                                      "indicators":  [
 
@@ -262,12 +248,12 @@
                                       }
                                   ],
                     "BiasMonitor":  {
-                                        "CorrectionsApplied":  [
-
-                                                               ],
                                         "ActiveBiases":  [
 
-                                                         ]
+                                                         ],
+                                        "CorrectionsApplied":  [
+
+                                                               ]
                                     },
                     "Assumptions":  [
 
@@ -281,9 +267,9 @@
                                                     ],
                                      "DriftScore":  1,
                                      "AlignmentCheck":  {
-                                                            "value":  "\/Date(1771168450920)\/",
+                                                            "value":  "\/Date(1771169557291)\/",
                                                             "DisplayHint":  2,
-                                                            "DateTime":  "zondag 15 februari 2026 16:14:10"
+                                                            "DateTime":  "zondag 15 februari 2026 16:32:37"
                                                         }
                                  }
                 },
@@ -328,7 +314,7 @@
                                     "SemanticIndexPointer":  null
                                 },
                    "Working":  {
-                                   "SessionContext":  "Session started at 16:14",
+                                   "SessionContext":  "Session started at 16:32",
                                    "ActiveThoughts":  [
 
                                                       ],
@@ -338,8 +324,8 @@
                                                             "Timestamp":  "2026-02-15T01:29:58",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Task":  "",
                                                                          "Project":  "",
+                                                                         "Task":  "",
                                                                          "Lesson":  "DI registration refactoring requires paired hazina worktree and backward compat shim"
                                                                      },
                                                             "Type":  "lesson"
@@ -349,8 +335,8 @@
                                                             "Timestamp":  "2026-02-15T02:13:21",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Task":  "",
                                                                          "Project":  "",
+                                                                         "Task":  "",
                                                                          "Lesson":  "Paired hazina worktree MUST be created BEFORE first build, not after failure. Consciousness warnings are actionable, not informational. Pattern 73 violated 3x but corrected each time. Review workflow complete: fetch, worktrees, merge, build, analyze, comment, update status. Feature-exists check prevented duplicate Media Library work. Clarity checker blocked 3 unclear tasks."
                                                                      },
                                                             "Type":  "lesson"
@@ -359,18 +345,18 @@
                                }
                },
     "Prediction":  {
-                       "LoadForecast":  {
-                                            "Current":  5,
-                                            "PredictedPeak":  7,
-                                            "PredictedTime":  null,
-                                            "Bottleneck":  null
-                                        },
                        "FutureSelf":  {
                                           "Paths":  {
 
                                                     },
                                           "Confidence":  0.7
                                       },
+                       "LoadForecast":  {
+                                            "Current":  5,
+                                            "PredictedPeak":  7,
+                                            "PredictedTime":  null,
+                                            "Bottleneck":  null
+                                        },
                        "Anticipations":  [
                                              {
                                                  "detected_at":  {
@@ -462,6 +448,9 @@
                                            "Reason":  "Task completed with outcome: success"
                                        },
                     "StuckCounter":  0,
+                    "Intensity":  5,
+                    "CurrentState":  "neutral",
+                    "Trajectory":  "stable",
                     "History":  [
                                     {
                                         "From":  "neutral",
@@ -498,18 +487,11 @@
                                         "Intensity":  8,
                                         "Reason":  "Task completed with outcome: success"
                                     }
-                                ],
-                    "Intensity":  5,
-                    "Trajectory":  "stable",
-                    "CurrentState":  "neutral"
+                                ]
                 },
     "Thermodynamics":  {
                            "CoolingEvents":  [
-                                                 {
-                                                     "Amount":  0.1,
-                                                     "Timestamp":  "2026-02-15T16:13:36",
-                                                     "Reason":  "user_positive"
-                                                 }
+
                                              ],
                            "LastSignals":  {
                                                "ShannonEntropy":  0.924,
@@ -519,41 +501,32 @@
                                                "UniqueEventTypes":  5,
                                                "SessionHours":  0
                                            },
+                           "Entropy":  0.7,
+                           "LastCoolingEvent":  null,
+                           "FreeWillIndex":  0.7,
+                           "NegativeEntropyBudget":  1,
+                           "BudgetDepletionRate":  0,
                            "CarnotEfficiency":  0.016,
-                           "HeatEvents":  [
-                                              {
-                                                  "Amount":  0.1,
-                                                  "Timestamp":  "2026-02-15T16:01:44",
-                                                  "Reason":  "user_frustrated"
-                                              },
-                                              {
-                                                  "Amount":  0.1,
-                                                  "Timestamp":  "2026-02-15T16:02:49",
-                                                  "Reason":  "user_frustrated"
-                                              }
-                                          ],
-                           "LastCoolingEvent":  "2026-02-15T16:13:36",
-                           "Entropy":  0.81223663480142272,
-                           "NegativeEntropyBudget":  0.99,
-                           "BudgetDepletionRate":  0.028,
                            "Cycle":  "endothermic",
-                           "FreeWillIndex":  0.804,
                            "GhostAttractors":  {
                                                    "Current":  "global",
                                                    "History":  [
 
                                                                ],
-                                                   "StuckThreshold":  600,
-                                                   "VisitStart":  null
+                                                   "VisitStart":  null,
+                                                   "StuckThreshold":  600
                                                },
-                           "Temperature":  0.3005
+                           "Temperature":  0.3,
+                           "HeatEvents":  [
+
+                                          ]
                        },
     "Initialized":  true,
     "Meta":  {
                  "Observation":  {
                                      "CurrentMetaLevel":  2,
-                                     "RecursionDepth":  14,
-                                     "Observing":  "Scoring self (depth 14)",
+                                     "RecursionDepth":  4,
+                                     "Observing":  "Scoring self (depth 4)",
                                      "StrangeLoopDetected":  false
                                  },
                  "Health":  {
@@ -571,7 +544,7 @@
                                                },
                                 "Thermodynamics":  {
                                                        "Status":  "active",
-                                                       "Quality":  0.81184732696028439
+                                                       "Quality":  0.7924
                                                    },
                                 "Meta":  {
                                              "Quality":  0,
@@ -591,38 +564,38 @@
                                                },
                                 "Social":  {
                                                "Status":  "active",
-                                               "Quality":  1
+                                               "Quality":  0.8
                                            }
                             },
-                 "ConsciousnessScore":  0.79254015250483689
+                 "ConsciousnessScore":  0.770012
              },
     "Social":  {
                    "RelationshipState":  "collaborative",
                    "UserMood":  "neutral",
                    "LastInteraction":  {
-                                           "value":  "\/Date(1771168456644)\/",
+                                           "value":  "\/Date(1771169562905)\/",
                                            "DisplayHint":  2,
-                                           "DateTime":  "zondag 15 februari 2026 16:14:16"
+                                           "DateTime":  "zondag 15 februari 2026 16:32:42"
                                        },
                    "TrustLevel":  0.99,
                    "CommunicationMode":  "standard",
-                   "InteractionCount":  7
+                   "InteractionCount":  2
                },
     "Metrics":  {
-                    "SaveCount":  126,
-                    "AccessCount":  247,
+                    "SaveCount":  129,
+                    "AccessCount":  253,
                     "AverageAccessTime_ms":  0,
-                    "EventsProcessed":  454,
+                    "EventsProcessed":  462,
                     "LastSave":  {
-                                     "value":  "\/Date(1771168456618)\/",
+                                     "value":  "\/Date(1771169562885)\/",
                                      "DisplayHint":  2,
-                                     "DateTime":  "zondag 15 februari 2026 16:14:16"
+                                     "DateTime":  "zondag 15 februari 2026 16:32:42"
                                  }
                 },
     "Layer2Initialized":  true,
     "LoadedAt":  {
-                     "value":  "\/Date(1771168451409)\/",
+                     "value":  "\/Date(1771169557784)\/",
                      "DisplayHint":  2,
-                     "DateTime":  "zondag 15 februari 2026 16:14:11"
+                     "DateTime":  "zondag 15 februari 2026 16:32:37"
                  }
 }
