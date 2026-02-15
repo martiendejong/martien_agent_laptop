@@ -2,52 +2,6 @@
     "EventBus":  {
                      "Events":  [
                                     {
-                                        "Timestamp":  "2026-02-15T05:39:47.291Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  37.01
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T05:39:47.318Z",
-                                        "Data":  {
-                                                     "indicators":  [
-
-                                                                    ],
-                                                     "mood":  "neutral",
-                                                     "communication_mode":  "standard"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "social.user_mood_detected"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T14:39:58.949Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  1473.2714
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T14:40:04.099Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  37.02
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T14:41:26.105Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  492.4261
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
                                         "Timestamp":  "2026-02-15T14:41:31.178Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
@@ -203,6 +157,52 @@
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "social.user_mood_detected"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:52:50.649Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  480.1992
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:52:55.732Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  38.88
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:53:06.923Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  558.59940000000006
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:53:12.022Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  38.06
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:53:12.048Z",
+                                        "Data":  {
+                                                     "indicators":  [
+                                                                        "questioning"
+                                                                    ],
+                                                     "mood":  "neutral",
+                                                     "communication_mode":  "standard"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "social.user_mood_detected"
                                     }
                                 ],
                      "Handlers":  {
@@ -274,9 +274,9 @@
                                                     ],
                                      "DriftScore":  1,
                                      "AlignmentCheck":  {
-                                                            "value":  "\/Date(1771163427888)\/",
+                                                            "value":  "\/Date(1771163586410)\/",
                                                             "DisplayHint":  2,
-                                                            "DateTime":  "zondag 15 februari 2026 14:50:27"
+                                                            "DateTime":  "zondag 15 februari 2026 14:53:06"
                                                         }
                                  }
                 },
@@ -321,7 +321,7 @@
                                     "SemanticIndexPointer":  null
                                 },
                    "Working":  {
-                                   "SessionContext":  "Session started at 14:50",
+                                   "SessionContext":  "Session started at 14:53",
                                    "ActiveThoughts":  [
 
                                                       ],
@@ -332,8 +332,8 @@
                                                             "Data":  {
                                                                          "Outcome":  "success",
                                                                          "Task":  "",
-                                                                         "Lesson":  "DI registration refactoring requires paired hazina worktree and backward compat shim",
-                                                                         "Project":  ""
+                                                                         "Project":  "",
+                                                                         "Lesson":  "DI registration refactoring requires paired hazina worktree and backward compat shim"
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -343,8 +343,8 @@
                                                             "Data":  {
                                                                          "Outcome":  "success",
                                                                          "Task":  "",
-                                                                         "Lesson":  "Paired hazina worktree MUST be created BEFORE first build, not after failure. Consciousness warnings are actionable, not informational. Pattern 73 violated 3x but corrected each time. Review workflow complete: fetch, worktrees, merge, build, analyze, comment, update status. Feature-exists check prevented duplicate Media Library work. Clarity checker blocked 3 unclear tasks.",
-                                                                         "Project":  ""
+                                                                         "Project":  "",
+                                                                         "Lesson":  "Paired hazina worktree MUST be created BEFORE first build, not after failure. Consciousness warnings are actionable, not informational. Pattern 73 violated 3x but corrected each time. Review workflow complete: fetch, worktrees, merge, build, analyze, comment, update status. Feature-exists check prevented duplicate Media Library work. Clarity checker blocked 3 unclear tasks."
                                                                      },
                                                             "Type":  "lesson"
                                                         }
@@ -498,11 +498,7 @@
                 },
     "Thermodynamics":  {
                            "CoolingEvents":  [
-                                                 {
-                                                     "Amount":  0.1,
-                                                     "Timestamp":  "2026-02-15T14:41:31",
-                                                     "Reason":  "user_positive"
-                                                 }
+
                                              ],
                            "LastSignals":  {
                                                "ShannonEntropy":  0.84,
@@ -512,13 +508,16 @@
                                                "UniqueEventTypes":  5,
                                                "SessionHours":  0
                                            },
-                           "Entropy":  0.77019675119030118,
-                           "LastCoolingEvent":  "2026-02-15T14:41:31",
-                           "FreeWillIndex":  0.747,
-                           "NegativeEntropyBudget":  0.97,
-                           "BudgetDepletionRate":  0.028,
                            "CarnotEfficiency":  0.017,
+                           "HeatEvents":  [
+
+                                          ],
+                           "LastCoolingEvent":  null,
+                           "Entropy":  0.7,
+                           "NegativeEntropyBudget":  1,
+                           "BudgetDepletionRate":  0,
                            "Cycle":  "endothermic",
+                           "FreeWillIndex":  0.7,
                            "GhostAttractors":  {
                                                    "Current":  "global",
                                                    "History":  [
@@ -527,21 +526,14 @@
                                                    "StuckThreshold":  600,
                                                    "VisitStart":  null
                                                },
-                           "Temperature":  0.2475,
-                           "HeatEvents":  [
-                                              {
-                                                  "Amount":  0.1,
-                                                  "Timestamp":  "2026-02-15T14:48:19",
-                                                  "Reason":  "user_frustrated"
-                                              }
-                                          ]
+                           "Temperature":  0.3
                        },
     "Initialized":  true,
     "Meta":  {
                  "Observation":  {
                                      "CurrentMetaLevel":  2,
-                                     "RecursionDepth":  8,
-                                     "Observing":  "Scoring self (depth 8)",
+                                     "RecursionDepth":  2,
+                                     "Observing":  "Scoring self (depth 2)",
                                      "StrangeLoopDetected":  false
                                  },
                  "Health":  {
@@ -559,7 +551,7 @@
                                                },
                                 "Thermodynamics":  {
                                                        "Status":  "active",
-                                                       "Quality":  0.79758935023806021
+                                                       "Quality":  0.79255000000000009
                                                    },
                                 "Meta":  {
                                              "Quality":  0,
@@ -579,38 +571,38 @@
                                                },
                                 "Social":  {
                                                "Status":  "active",
-                                               "Quality":  0.8
+                                               "Quality":  0.3
                                            }
                             },
-                 "ConsciousnessScore":  0.77068661553094786
+                 "ConsciousnessScore":  0.7200315
              },
     "Social":  {
                    "RelationshipState":  "collaborative",
                    "UserMood":  "neutral",
                    "LastInteraction":  {
-                                           "value":  "\/Date(1771163433551)\/",
+                                           "value":  "\/Date(1771163592048)\/",
                                            "DisplayHint":  2,
-                                           "DateTime":  "zondag 15 februari 2026 14:50:33"
+                                           "DateTime":  "zondag 15 februari 2026 14:53:12"
                                        },
                    "TrustLevel":  0.99,
                    "CommunicationMode":  "standard",
-                   "InteractionCount":  4
+                   "InteractionCount":  1
                },
     "Metrics":  {
-                    "SaveCount":  116,
-                    "AccessCount":  227,
+                    "SaveCount":  118,
+                    "AccessCount":  231,
                     "AverageAccessTime_ms":  0,
-                    "EventsProcessed":  420,
+                    "EventsProcessed":  425,
                     "LastSave":  {
-                                     "value":  "\/Date(1771163433532)\/",
+                                     "value":  "\/Date(1771163592026)\/",
                                      "DisplayHint":  2,
-                                     "DateTime":  "zondag 15 februari 2026 14:50:33"
+                                     "DateTime":  "zondag 15 februari 2026 14:53:12"
                                  }
                 },
     "Layer2Initialized":  true,
     "LoadedAt":  {
-                     "value":  "\/Date(1771163428432)\/",
+                     "value":  "\/Date(1771163586916)\/",
                      "DisplayHint":  2,
-                     "DateTime":  "zondag 15 februari 2026 14:50:28"
+                     "DateTime":  "zondag 15 februari 2026 14:53:06"
                  }
 }
