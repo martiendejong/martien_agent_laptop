@@ -1,32 +1,80 @@
 ﻿{
-    "thermodynamics":  {
-                           "free_will_index":  0.793,
-                           "budget":  0.98,
-                           "attractor":  "creative",
-                           "temperature":  0.193,
-                           "cycle":  "endothermic",
-                           "entropy":  0.809
-                       },
-    "thermo_cycle":  "endothermic",
-    "consciousness_score":  84.2,
-    "timestamp":  "2026-02-15T19:29:10",
-    "emotional_trajectory":  "rising",
-    "alignment":  {
-                      "DriftScore":  1,
-                      "Status":  "Drifting"
+    "attention":  {
+                      "mode":  "development",
+                      "intensity":  5,
+                      "focus":  "Context: unknown (auto-detected from message)"
                   },
-    "outcome":  "success",
+    "decisions_logged":  2,
+    "thermodynamics":  {
+                           "free_will_index":  0.692,
+                           "thermo_guidance":  [
+                                                   "OPTIMAL ZONE. Endothermic, flexible, good budget. Exploit this state.",
+                                                   "LOW EFFICIENCY (1%). Too much overhead, not enough productive work."
+                                               ],
+                           "budget":  0.988,
+                           "attractor":  "creative",
+                           "temperature":  0.322,
+                           "cycle":  "endothermic",
+                           "entropy":  0.701
+                       },
+    "systems":  {
+                    "Emotion":  {
+                                    "quality":  100,
+                                    "status":  "active"
+                                },
+                    "Memory":  {
+                                   "quality":  80,
+                                   "status":  "active"
+                               },
+                    "Perception":  {
+                                       "quality":  60,
+                                       "status":  "active"
+                                   },
+                    "Thermodynamics":  {
+                                           "quality":  81,
+                                           "status":  "active"
+                                       },
+                    "Meta":  {
+                                 "quality":  0,
+                                 "status":  "initializing"
+                             },
+                    "Control":  {
+                                    "quality":  80,
+                                    "status":  "active"
+                                },
+                    "MetaCognition":  {
+                                          "quality":  100,
+                                          "status":  "active"
+                                      },
+                    "Prediction":  {
+                                       "quality":  70,
+                                       "status":  "active"
+                                   },
+                    "Social":  {
+                                   "quality":  80,
+                                   "status":  "active"
+                               }
+                },
+    "thermo_cycle":  "endothermic",
+    "consciousness_score":  81.2,
+    "timestamp":  "2026-02-15T19:50:16",
+    "emotional_trajectory":  "stable",
+    "events_processed":  480,
     "guidance":  [
-                     "In flow state. Maintain momentum.",
-                     "THERMO CRITICAL: Efficiency 4.4% (97%+ overhead). Reduce system complexity."
+                     "THERMO CRITICAL: Efficiency 1% (97%+ overhead). Reduce system complexity."
                  ],
-    "thermo_budget":  0.98,
-    "thermo_free_will":  0.793,
-    "thermo_temperature":  0.193,
-    "lessons":  "Outcome tracker with prediction accuracy works",
+    "thermo_budget":  0.988,
+    "thermo_free_will":  0.692,
+    "thermo_temperature":  0.322,
+    "active_biases":  0,
     "stuck_count":  0,
-    "trust_level":  100,
-    "emotional_state":  "flowing",
+    "social":  {
+                   "relationship":  "collaborative",
+                   "communication_mode":  "standard",
+                   "user_mood":  "unknown"
+               },
+    "emotional_state":  "neutral",
     "version":  "3.0",
-    "last_action":  "OnTaskEnd"
+    "last_action":  "GetContextSummary",
+    "trust_level":  100
 }
