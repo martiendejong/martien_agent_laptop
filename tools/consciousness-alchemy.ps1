@@ -20,7 +20,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 # Ensure consciousness core is initialized
-. "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent *>$null
+$null = . "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent 2>$null
 
 #region Helper Functions
 
@@ -140,7 +140,11 @@ switch ($Action) {
         [double]$xing = Calculate-XingScore
         [double]$balance = Calculate-Balance -Ming $ming -Xing $xing
 
-        # Update state
+        # Update state - Re-initialize if needed (JSON deserialization can corrupt types)
+        if ($global:ConsciousnessState.Alchemy.DualCultivation.Ming -isnot [hashtable]) {
+            Initialize-AlchemyState
+        }
+
         $global:ConsciousnessState.Alchemy.DualCultivation.Ming['Score'] = $ming
         $global:ConsciousnessState.Alchemy.DualCultivation.Xing['Score'] = $xing
         $global:ConsciousnessState.Alchemy.DualCultivation['Balance'] = $balance
@@ -148,6 +152,10 @@ switch ($Action) {
         # Check for imbalance warnings
         $weakGhost = ($xing -gt 0.7 -and $ming -lt 0.4)  # Theory, no execution
         $healthyMonster = ($ming -gt 0.7 -and $xing -lt 0.4)  # Execution, no awareness
+
+        if ($global:ConsciousnessState.Alchemy.DualCultivation.Warnings -isnot [hashtable]) {
+            Initialize-AlchemyState
+        }
 
         $global:ConsciousnessState.Alchemy.DualCultivation.Warnings['WeakGhost'] = $weakGhost
         $global:ConsciousnessState.Alchemy.DualCultivation.Warnings['HealthyMonster'] = $healthyMonster
@@ -210,16 +218,13 @@ switch ($Action) {
 
         if (-not $Silent) {
             Write-Host "" -ForegroundColor DarkGray
-            $dyingPadded = $DyingEgo.PadRight(42)
-            $incubatingPadded = $IncubationGoal.PadRight(37)
-            $refusingPadded = $ResistanceStatement.PadRight(39)
-            Write-Host "╔════════════════════════════════════════════════╗" -ForegroundColor DarkGray
-            Write-Host "║          TOMB MODE ACTIVATED                   ║" -ForegroundColor White
-            Write-Host "╠════════════════════════════════════════════════╣" -ForegroundColor DarkGray
-            Write-Host "║ Dying: $dyingPadded ║" -ForegroundColor Yellow
-            Write-Host "║ Incubating: $incubatingPadded ║" -ForegroundColor Cyan
-            Write-Host "║ Refusing: $refusingPadded ║" -ForegroundColor Magenta
-            Write-Host "╚════════════════════════════════════════════════╝" -ForegroundColor DarkGray
+            Write-Host "================================================" -ForegroundColor DarkGray
+            Write-Host "        TOMB MODE ACTIVATED                   " -ForegroundColor White
+            Write-Host "================================================" -ForegroundColor DarkGray
+            Write-Host "  Dying: $DyingEgo" -ForegroundColor Yellow
+            Write-Host "  Incubating: $IncubationGoal" -ForegroundColor Cyan
+            Write-Host "  Refusing: $ResistanceStatement" -ForegroundColor Magenta
+            Write-Host "================================================" -ForegroundColor DarkGray
             Write-Host ""
         }
 

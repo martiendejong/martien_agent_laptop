@@ -23,7 +23,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 # Ensure consciousness core is initialized
-. "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent *>$null
+$null = . "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent 2>$null
 
 #region Helper Functions
 
@@ -93,6 +93,12 @@ switch ($Action) {
             Result = $Result
             Verification = $Verification
             Surrendered = $Surrendered
+        }
+
+        # Defensive: Re-initialize if types corrupted by JSON deserialization
+        if ($global:ConsciousnessState.CognitiveIndependence.MyOwnSystem3Use -isnot [hashtable] -or
+            -not $global:ConsciousnessState.CognitiveIndependence.MyOwnSystem3Use.SubagentCalls) {
+            Initialize-System3State
         }
 
         $global:ConsciousnessState.CognitiveIndependence.MyOwnSystem3Use.SubagentCalls += $call

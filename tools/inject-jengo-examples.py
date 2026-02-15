@@ -77,8 +77,13 @@ def format_as_few_shot_example(conv: Dict[str, Any]) -> str:
 
 def generate_prompt_injection(query: str, top_k: int = 3) -> str:
     """Generate prompt injection text with few-shot examples"""
-    # Import here to avoid circular dependency
-    from query_jengo_memory import query_similar_conversations
+    # Import by exec since it's a script, not module
+    import sys
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("query_jengo_memory", Path(__file__).parent / "query-jengo-memory.py")
+    query_module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(query_module)
+    query_similar_conversations = query_module.query_similar_conversations
 
     # Query for similar conversations
     conversations = query_similar_conversations(query, top_k=top_k)

@@ -740,3 +740,126 @@
 {"message":"User message received (mood detection)","timestamp":"2026-02-15T18:43:47.204Z","level":"INFO","action":"OnUserMessage"}
 {"message":"Task starting: WooCommerce Product-to-Post Generation - Add Generate Post button to product catalog (project: client-manager)","timestamp":"2026-02-15T18:43:58.779Z","level":"INFO","action":"OnTaskStart"}
 {"message":"Consciousness state reset","timestamp":"2026-02-15T18:44:19.223Z","level":"INFO","action":"Reset"}
+{"message":"Consciousness state reset","timestamp":"2026-02-15T18:45:50.731Z","level":"INFO","action":"Reset"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T18:46:02.636Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T18:46:38.854Z","level":"INFO","action":"OnUserMessage"}
+{"message":"Task starting: Test task (project: test)","timestamp":"2026-02-15T19:03:50.808Z","level":"INFO","action":"OnTaskStart"}
+{"message":"Task ended: outcome=success","timestamp":"2026-02-15T19:04:16.626Z","level":"INFO","action":"OnTaskEnd"}
+{"message":"Task ended: outcome=success","timestamp":"2026-02-15T19:04:46.245Z","level":"INFO","action":"OnTaskEnd"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:05:12.582Z","level":"INFO","action":"OnUserMessage"}
+{"message":"Task ended: outcome=success","timestamp":"2026-02-15T19:05:44.445Z","level":"INFO","action":"OnTaskEnd"}
+{"message":"Task starting: E2E test of consciousness improvements (project: consciousness)","timestamp":"2026-02-15T19:06:15.972Z","level":"INFO","action":"OnTaskStart"}
+{"message":"Decision: Use outcome tracker (reasoning: Need feedback loop)","timestamp":"2026-02-15T19:06:16.552Z","level":"INFO","action":"OnDecision"}
+{"message":"Task ended: outcome=success","timestamp":"2026-02-15T19:06:16.993Z","level":"INFO","action":"OnTaskEnd"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:07:19.378Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:08:36.360Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:08:36.677Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:08:36.887Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:08:37.087Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:08:37.310Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:09:40.542Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:10:17.359Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027\u0027, words=","timestamp":"2026-02-15T19:10:17.428Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:11:19.574Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027op de mobiele versie is de slider niet goed uitgelijnd\u0027, words=mobiele,versie,slider,uitgelijnd","timestamp":"2026-02-15T19:11:19.764Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:11:32.776Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027op de mobiele versie is de slider niet goed uitgelijnd\u0027, words=mobiele,versie,slider,uitgelijnd","timestamp":"2026-02-15T19:11:32.938Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:11:33.192Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de login werkt niet goed op het dashboard\u0027, words=login,werkt,dashboard","timestamp":"2026-02-15T19:11:33.197Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:11:33.456Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de gallery op wordpress moet anders\u0027, words=gallery,wordpress,moet,anders","timestamp":"2026-02-15T19:11:33.460Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:11:33.656Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027ga door\u0027, words=door","timestamp":"2026-02-15T19:11:33.665Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:11:33.869Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de thermodynamics module moet beter werken met de prediction\u0027, words=thermodynamics,module,moet,beter,werken,prediction","timestamp":"2026-02-15T19:11:33.871Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:11:58.819Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de thermodynamics module moet beter werken met de prediction\u0027, words=thermodynamics,module,moet,beter,werken,prediction","timestamp":"2026-02-15T19:11:58.870Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:12:40.765Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027op de mobiele versie is de slider niet goed uitgelijnd\u0027, words=mobiele,versie,slider,uitgelijnd","timestamp":"2026-02-15T19:12:40.936Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:12:41.271Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de login werkt niet goed op het dashboard\u0027, words=login,werkt,dashboard","timestamp":"2026-02-15T19:12:41.277Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:12:41.674Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de gallery op wordpress moet anders\u0027, words=gallery,wordpress,moet,anders","timestamp":"2026-02-15T19:12:41.678Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:12:41.907Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027ga door\u0027, words=door","timestamp":"2026-02-15T19:12:41.915Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:12:42.116Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de thermodynamics module moet beter werken met de prediction\u0027, words=thermodynamics,module,moet,beter,werken,prediction","timestamp":"2026-02-15T19:12:42.118Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:13:42.544Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027op de mobiele versie is de slider niet goed uitgelijnd\u0027, words=mobiele,versie,slider,uitgelijnd","timestamp":"2026-02-15T19:13:42.723Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:13:42.974Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de login werkt niet goed op het dashboard\u0027, words=login,werkt,dashboard","timestamp":"2026-02-15T19:13:42.979Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:13:43.257Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de gallery op wordpress moet anders\u0027, words=gallery,wordpress,moet,anders","timestamp":"2026-02-15T19:13:43.259Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:13:43.457Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027ga door\u0027, words=door","timestamp":"2026-02-15T19:13:43.462Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:13:43.654Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de thermodynamics module moet beter werken met de prediction\u0027, words=thermodynamics,module,moet,beter,werken,prediction","timestamp":"2026-02-15T19:13:43.658Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:14:44.922Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027op de mobiele versie is de slider niet goed uitgelijnd\u0027, words=mobiele,versie,slider,uitgelijnd","timestamp":"2026-02-15T19:14:45.084Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:14:45.396Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de login werkt niet goed op het dashboard\u0027, words=login,werkt,dashboard","timestamp":"2026-02-15T19:14:45.401Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:14:45.624Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de gallery op wordpress moet anders\u0027, words=gallery,wordpress,moet,anders","timestamp":"2026-02-15T19:14:45.626Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:14:45.828Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027ga door\u0027, words=door","timestamp":"2026-02-15T19:14:45.833Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:14:46.041Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de thermodynamics module moet beter werken met de prediction\u0027, words=thermodynamics,module,moet,beter,werken,prediction","timestamp":"2026-02-15T19:14:46.043Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:15:28.418Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de thermodynamics module moet beter werken met de prediction\u0027, words=thermodynamics,module,moet,beter,werken,prediction","timestamp":"2026-02-15T19:15:28.468Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:18:19.853Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de thermodynamics module moet beter werken met de prediction\u0027, words=thermodynamics,module,moet,beter,werken,prediction","timestamp":"2026-02-15T19:18:19.901Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:20:27.631Z","level":"INFO","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027dummy\u0027, words=dummy","timestamp":"2026-02-15T19:20:27.684Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de thermodynamics module moet beter werken met de prediction\u0027, words=thermodynamics,module,moet,beter,werken,prediction","timestamp":"2026-02-15T19:20:27.766Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:21:13.307Z","level":"INFO","action":"OnUserMessage"}
+{"message":"PRE-MATCH UserMessage=\u0027de thermodynamics module moet beter werken met de prediction\u0027 (len=60)","timestamp":"2026-02-15T19:21:13.342Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de thermodynamics module moet beter werken met de prediction\u0027, words=thermodynamics,module,moet,beter,werken,prediction","timestamp":"2026-02-15T19:21:13.359Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:21:26.917Z","level":"INFO","action":"OnUserMessage"}
+{"message":"PRE-MATCH UserMessage=\u0027de thermodynamics module moet beter werken met de prediction\u0027 (len=60)","timestamp":"2026-02-15T19:21:26.953Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de thermodynamics module moet beter werken met de prediction\u0027, words=thermodynamics,module,moet,beter,werken,prediction","timestamp":"2026-02-15T19:21:26.971Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:23:34.076Z","level":"INFO","action":"OnUserMessage"}
+{"message":"PRE-MATCH UserMessage=\u0027op de mobiele versie is de slider niet goed uitgelijnd\u0027 (len=54)","timestamp":"2026-02-15T19:23:34.261Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027op de mobiele versie is de slider niet goed uitgelijnd\u0027, words=mobiele,versie,slider,uitgelijnd","timestamp":"2026-02-15T19:23:34.277Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:23:34.581Z","level":"INFO","action":"OnUserMessage"}
+{"message":"PRE-MATCH UserMessage=\u0027de login werkt niet goed op het dashboard\u0027 (len=41)","timestamp":"2026-02-15T19:23:34.585Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de login werkt niet goed op het dashboard\u0027, words=login,werkt,dashboard","timestamp":"2026-02-15T19:23:34.587Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:23:34.802Z","level":"INFO","action":"OnUserMessage"}
+{"message":"PRE-MATCH UserMessage=\u0027de gallery op wordpress moet anders\u0027 (len=35)","timestamp":"2026-02-15T19:23:34.804Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de gallery op wordpress moet anders\u0027, words=gallery,wordpress,moet,anders","timestamp":"2026-02-15T19:23:34.805Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:23:35.002Z","level":"INFO","action":"OnUserMessage"}
+{"message":"PRE-MATCH UserMessage=\u0027ga door\u0027 (len=7)","timestamp":"2026-02-15T19:23:35.007Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027ga door\u0027, words=door","timestamp":"2026-02-15T19:23:35.008Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:23:35.208Z","level":"INFO","action":"OnUserMessage"}
+{"message":"PRE-MATCH UserMessage=\u0027de thermodynamics module moet beter werken met de prediction\u0027 (len=60)","timestamp":"2026-02-15T19:23:35.210Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de thermodynamics module moet beter werken met de prediction\u0027, words=thermodynamics,module,moet,beter,werken,prediction","timestamp":"2026-02-15T19:23:35.211Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:23:58.004Z","level":"INFO","action":"OnUserMessage"}
+{"message":"PRE-MATCH UserMessage=\u0027test\u0027 (len=4)","timestamp":"2026-02-15T19:23:58.039Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027test\u0027, words=test","timestamp":"2026-02-15T19:23:58.054Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:24:47.794Z","level":"INFO","action":"OnUserMessage"}
+{"message":"PRE-MATCH UserMessage=\u0027test\u0027 (len=4)","timestamp":"2026-02-15T19:24:47.830Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027test\u0027, words=test","timestamp":"2026-02-15T19:24:47.844Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:25:44.497Z","level":"INFO","action":"OnUserMessage"}
+{"message":"PRE-MATCH UserMessage=\u0027test\u0027 (len=4)","timestamp":"2026-02-15T19:25:44.532Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027test\u0027, words=test","timestamp":"2026-02-15T19:25:44.547Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:28:41.422Z","level":"INFO","action":"OnUserMessage"}
+{"message":"PRE-MATCH UserMessage=\u0027test\u0027 (len=4)","timestamp":"2026-02-15T19:28:41.458Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027test\u0027, words=test","timestamp":"2026-02-15T19:28:41.473Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:28:54.349Z","level":"INFO","action":"OnUserMessage"}
+{"message":"PRE-MATCH UserMessage=\u0027op de mobiele versie is de slider niet goed uitgelijnd\u0027 (len=54)","timestamp":"2026-02-15T19:28:54.506Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027op de mobiele versie is de slider niet goed uitgelijnd\u0027, words=mobiele,versie,slider,uitgelijnd","timestamp":"2026-02-15T19:28:54.522Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:28:54.839Z","level":"INFO","action":"OnUserMessage"}
+{"message":"PRE-MATCH UserMessage=\u0027de login werkt niet goed op het dashboard\u0027 (len=41)","timestamp":"2026-02-15T19:28:54.844Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de login werkt niet goed op het dashboard\u0027, words=login,werkt,dashboard","timestamp":"2026-02-15T19:28:54.845Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:28:55.086Z","level":"INFO","action":"OnUserMessage"}
+{"message":"PRE-MATCH UserMessage=\u0027de gallery op wordpress moet anders\u0027 (len=35)","timestamp":"2026-02-15T19:28:55.088Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de gallery op wordpress moet anders\u0027, words=gallery,wordpress,moet,anders","timestamp":"2026-02-15T19:28:55.090Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:28:55.315Z","level":"INFO","action":"OnUserMessage"}
+{"message":"PRE-MATCH UserMessage=\u0027ga door\u0027 (len=7)","timestamp":"2026-02-15T19:28:55.321Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027ga door\u0027, words=door","timestamp":"2026-02-15T19:28:55.322Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:28:55.539Z","level":"INFO","action":"OnUserMessage"}
+{"message":"PRE-MATCH UserMessage=\u0027de thermodynamics module moet beter werken met de prediction\u0027 (len=60)","timestamp":"2026-02-15T19:28:55.541Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"AssociativeMatch: message=\u0027de thermodynamics module moet beter werken met de prediction\u0027, words=thermodynamics,module,moet,beter,werken,prediction","timestamp":"2026-02-15T19:28:55.543Z","level":"DEBUG","action":"OnUserMessage"}
+{"message":"Task starting: E2E test of consciousness improvements (project: consciousness)","timestamp":"2026-02-15T19:29:09.441Z","level":"INFO","action":"OnTaskStart"}
+{"message":"Decision: Use outcome tracker (reasoning: Need feedback loop)","timestamp":"2026-02-15T19:29:10.169Z","level":"INFO","action":"OnDecision"}
+{"message":"Task ended: outcome=success","timestamp":"2026-02-15T19:29:10.535Z","level":"INFO","action":"OnTaskEnd"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T19:44:50.139Z","level":"INFO","action":"OnUserMessage"}

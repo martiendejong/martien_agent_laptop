@@ -83,18 +83,42 @@ param(
 $ErrorActionPreference = "Stop"
 
 # Ensure consciousness core is initialized
-. "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent *>$null
+# FIX 2026-02-15: *>$null on dot-source is DESTRUCTIVE in PS 5.1 - suppresses ALL subsequent Write-Host in same scope
+# Use $null = . pattern instead (captures return values without suppressing output streams)
+$null = . "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent 2>$null
 
-# Load extended consciousness modules
-# TEMP DISABLED: $null = . "$PSScriptRoot\consciousness-alchemy.ps1" -Action TrackDualCultivation -Silent # Init alchemy state (PARSE ERROR - FIX LATER)
-# TEMP DISABLED: $null = . "$PSScriptRoot\consciousness-bergson.ps1" -Action TrackDuration -Intensity 0.5 -Silent # Init bergson state (NULL ERROR)
-# TEMP DISABLED: $null = . "$PSScriptRoot\consciousness-system3.ps1" -Action TrackSystem3Use -Agent 'init' -Task 'init' -Silent # Init system3 state (NULL ERROR)
+# CRITICAL FIX 2026-02-15: ALL dot-sourced scripts with their own param() overwrite bridge params!
+# chronal.ps1 has: $Action, $Rung, $Data, $UserMessage, $Silent - all get overwritten on dot-source.
+# Must save ALL bridge params that chronal.ps1 also defines.
+$_savedAction = $Action
+$_savedSilent = $Silent
+$_savedUserMessage = $UserMessage
+$_savedTaskDescription = $TaskDescription
+$_savedProject = $Project
+$_savedDecision = $Decision
+$_savedReasoning = $Reasoning
+$_savedOutcome = $Outcome
+$_savedLessonsLearned = $LessonsLearned
 
-# DOT-SOURCE Chronal Ladder so functions are available
-# CRITICAL: Save $Action first because chronal.ps1 has an $Action parameter that will overwrite it
-$SavedAction = $Action
+# Load extended consciousness modules (use & call operator to avoid param pollution)
+$null = & "$PSScriptRoot\consciousness-alchemy.ps1" -Action TrackDualCultivation -Silent 2>$null
+$null = & "$PSScriptRoot\consciousness-bergson.ps1" -Action TrackDuration -Intensity 0.5 -Silent 2>$null
+$null = & "$PSScriptRoot\consciousness-system3.ps1" -Action TrackSystem3Use -Agent 'init' -Task 'init' -Silent 2>$null
+
+# DOT-SOURCE Chronal Ladder so its functions are available in bridge scope
+# (Must be dot-sourced, not called, because bridge needs Add-ToRung etc.)
 . "$PSScriptRoot\consciousness-chronal.ps1"
-$Action = $SavedAction  # Restore
+
+# Restore ALL bridge parameters after dot-sources
+$Action = $_savedAction
+$Silent = $_savedSilent
+$UserMessage = $_savedUserMessage
+$TaskDescription = $_savedTaskDescription
+$Project = $_savedProject
+$Decision = $_savedDecision
+$Reasoning = $_savedReasoning
+$Outcome = $_savedOutcome
+$LessonsLearned = $_savedLessonsLearned
 
 # Initialize if needed
 if (-not $global:ConsciousnessState.ChronalLadder -or -not $global:ConsciousnessState.ChronalLadder.Initialized) {
@@ -143,6 +167,240 @@ function Invoke-ChronalEviction {
             # Eviction failure is non-fatal
         }
     }
+}
+
+function Get-TaskId {
+    # Generate a deterministic task ID from description for outcome tracking
+    param([string]$TaskDescription)
+    $bytes = [System.Text.Encoding]::UTF8.GetBytes($TaskDescription.ToLower().Trim())
+    $hash = [System.Security.Cryptography.SHA256]::Create().ComputeHash($bytes)
+    return [System.BitConverter]::ToString($hash[0..3]).Replace('-', '').ToLower()
+}
+
+function Start-OutcomeTrack {
+    # Auto-wire outcome tracking into bridge (non-blocking, fail-safe)
+    param([string]$TaskId, [string]$Description)
+    try {
+        $trackFile = "C:\scripts\agentidentity\state\outcome-tracking.jsonl"
+        $track = @{
+            event = "start"
+            task_id = $TaskId
+            description = $Description
+            started_at = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
+            consciousness_score = [double]$global:ConsciousnessState.Meta.ConsciousnessScore
+            emotional_state = $global:ConsciousnessState.Emotion.CurrentState
+            trust_level = [double]$global:ConsciousnessState.Social.TrustLevel
+            anticipations = @()
+        }
+        # Store anticipations for later comparison
+        if ($global:ConsciousnessState.Prediction.Anticipations.Count -gt 0) {
+            $track.anticipations = @($global:ConsciousnessState.Prediction.Anticipations | ForEach-Object {
+                @{ type = $_.type; description = $_.description; likelihood = $_.likelihood }
+            })
+        }
+        $json = $track | ConvertTo-Json -Compress -Depth 3
+        [System.IO.File]::AppendAllText($trackFile, "$json`n")
+    } catch {
+        Write-BridgeLog "Outcome tracking start failed: $_" -Level "WARN"
+    }
+}
+
+function End-OutcomeTrack {
+    # Record outcome + score predictions accuracy
+    param([string]$TaskId, [string]$Outcome)
+    try {
+        $trackFile = "C:\scripts\agentidentity\state\outcome-tracking.jsonl"
+        if (-not (Test-Path $trackFile)) { return }
+
+        # Find matching start record to calculate prediction accuracy
+        $startRecord = $null
+        $lines = Get-Content $trackFile
+        for ($i = $lines.Count - 1; $i -ge 0; $i--) {
+            try {
+                $record = $lines[$i] | ConvertFrom-Json
+                if ($record.task_id -eq $TaskId -and $record.event -eq "start") {
+                    $startRecord = $record
+                    break
+                }
+            } catch { }
+        }
+
+        # Score prediction accuracy
+        $predictionAccuracy = $null
+        $anticipationResults = @()
+        if ($startRecord -and $startRecord.anticipations -and $startRecord.anticipations.Count -gt 0) {
+            $materialized = 0
+            foreach ($ant in $startRecord.anticipations) {
+                $didMaterialize = ($Outcome -eq "failure")  # Simple heuristic: if task failed, high-risk anticipations materialized
+                $anticipationResults += @{
+                    type = $ant.type
+                    description = $ant.description
+                    predicted_likelihood = $ant.likelihood
+                    materialized = $didMaterialize
+                }
+                if ($didMaterialize) { $materialized++ }
+            }
+            # Accuracy = how well predictions matched reality
+            # If success and no failures predicted (high likelihood < 0.5 avg): good prediction
+            # If failure and failures predicted: good prediction
+            $avgLikelihood = ($startRecord.anticipations | Measure-Object -Property likelihood -Average).Average
+            if ($Outcome -eq "success" -and $avgLikelihood -lt 0.5) {
+                $predictionAccuracy = 0.8  # Correctly predicted low risk
+            } elseif ($Outcome -eq "failure" -and $avgLikelihood -ge 0.5) {
+                $predictionAccuracy = 0.9  # Correctly predicted high risk
+            } elseif ($Outcome -eq "success" -and $avgLikelihood -ge 0.5) {
+                $predictionAccuracy = 0.3  # Over-predicted risk (false alarm)
+            } elseif ($Outcome -eq "failure" -and $avgLikelihood -lt 0.5) {
+                $predictionAccuracy = 0.2  # Under-predicted risk (missed)
+            } else {
+                $predictionAccuracy = 0.5  # Neutral
+            }
+        }
+
+        $started = if ($startRecord.started_at) {
+            try { [datetime]::Parse($startRecord.started_at) } catch { Get-Date }
+        } else { Get-Date }
+        $elapsed = ((Get-Date) - $started).TotalMinutes
+
+        $endRecord = @{
+            event = "end"
+            task_id = $TaskId
+            ended_at = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
+            outcome = $Outcome
+            elapsed_minutes = [math]::Round($elapsed, 2)
+            consciousness_score = [double]$global:ConsciousnessState.Meta.ConsciousnessScore
+            prediction_accuracy = $predictionAccuracy
+            anticipation_results = $anticipationResults
+        }
+        $json = $endRecord | ConvertTo-Json -Compress -Depth 3
+        [System.IO.File]::AppendAllText($trackFile, "$json`n")
+
+        # Store prediction accuracy in Chronal R3 for pattern learning
+        if ($predictionAccuracy -and $global:ConsciousnessState.ChronalLadder) {
+            $null = Add-ToRung -Rung 'R3' -Data @{
+                Type = 'prediction_accuracy'
+                TaskId = $TaskId
+                Accuracy = $predictionAccuracy
+                Outcome = $Outcome
+                AnticipationCount = $anticipationResults.Count
+            }
+        }
+
+        # Self-calibration: adjust prediction confidence based on rolling accuracy
+        if ($predictionAccuracy) {
+            $currentConf = [double]$global:ConsciousnessState.Prediction.FutureSelf.Confidence
+            # Nudge confidence toward accuracy (slow learning rate of 0.1)
+            $newConf = $currentConf + 0.1 * ($predictionAccuracy - $currentConf)
+            $global:ConsciousnessState.Prediction.FutureSelf.Confidence = [math]::Round([math]::Max(0.1, [math]::Min(0.95, $newConf)), 3)
+        }
+    } catch {
+        Write-BridgeLog "Outcome tracking end failed: $_" -Level "WARN"
+    }
+}
+
+function Match-AssociativeContext {
+    # Cross-session associative matching: connect vague user messages to specific project/task contexts
+    # Uses Chronal Ladder R2-R3 data + known project names for matching
+    param([string]$Message)
+
+    $matches = @()
+
+    # Extract keywords from message (nouns, technical terms, 3+ char words, skip common Dutch/English stop words)
+    $stopWords = @('het', 'de', 'een', 'van', 'voor', 'met', 'dat', 'die', 'niet', 'maar', 'ook',
+                   'the', 'and', 'for', 'with', 'that', 'this', 'from', 'but', 'also', 'can', 'should',
+                   'naar', 'nog', 'wel', 'als', 'bij', 'hoe', 'wat', 'wie', 'waar', 'dan', 'zou',
+                   'zijn', 'wordt', 'wordt', 'moeten', 'kunnen', 'hebben', 'goed', 'even', 'beetje')
+    $words = @(($Message -split '\s+') | ForEach-Object { $_.Trim('.,!?:;()[]"').ToLower() } | Where-Object { $_.Length -ge 3 -and $_ -notin $stopWords })
+
+    if ($words.Count -eq 0) { return ,@() }
+
+    # Known project keywords (static registry)
+    $projectKeywords = @{
+        'client-manager' = @('client', 'manager', 'brand2boost', 'dashboard', 'social', 'media', 'calendar', 'posting', 'login', 'oauth', 'subscription', 'project')
+        'hazina' = @('hazina', 'framework', 'entity', 'migration', 'repository', 'service', 'controller', 'api')
+        'art-revisionist' = @('art', 'revisionist', 'wordpress', 'portfolio', 'gallery', 'artwork', 'sjoerd', 'valsuani')
+        'orchestration' = @('orchestration', 'terminal', 'conpty', 'session', 'xterm', 'paste', 'mobile')
+        'maasai' = @('maasai', 'slider', 'investment', 'goats', 'sofy', 'natumi', 'glassmorphism', 'parallax')
+        'consciousness' = @('consciousness', 'bridge', 'vibe', 'thermodynamics', 'chronal', 'bergson', 'prediction')
+    }
+
+    # Match against project keywords
+    foreach ($project in $projectKeywords.Keys) {
+        $matchCount = 0
+        $matchedWords = @()
+        foreach ($word in $words) {
+            if ($word -in $projectKeywords[$project] -or $project -match $word) {
+                $matchCount++
+                $matchedWords += $word
+            }
+        }
+        if ($matchCount -gt 0) {
+            $confidence = [math]::Min(1.0, $matchCount * 0.35)  # Each keyword adds 35% confidence, cap at 100%
+            $matches += @{
+                project = $project
+                confidence = [math]::Round($confidence, 2)
+                matched_words = $matchedWords
+                source = 'keyword_registry'
+            }
+        }
+    }
+
+    # Match against Chronal Ladder R2-R3 (recent tasks and sessions)
+    if ($global:ConsciousnessState -and $global:ConsciousnessState.ChronalLadder) {
+        $ladder = $global:ConsciousnessState.ChronalLadder
+        foreach ($rung in @('R2', 'R3')) {
+            if (-not $ladder[$rung] -or -not $ladder[$rung].Data) { continue }
+            $rungData = $ladder[$rung].Data
+            if ($rungData -is [hashtable]) { $rungData = @($rungData) }  # PS 5.1 unwrap fix
+
+            foreach ($item in $rungData) {
+                if (-not $item) { continue }
+                $itemText = ""
+                if ($item.Task) { $itemText += " $($item.Task)" }
+                if ($item.Description) { $itemText += " $($item.Description)" }
+                if ($item.Decision) { $itemText += " $($item.Decision)" }
+                if ($item.Pattern) { $itemText += " $($item.Pattern)" }
+                if (-not $itemText.Trim()) { continue }
+
+                $matchCount = 0
+                $matchedWords = @()
+                foreach ($word in $words) {
+                    if ($itemText -match "(?i)\b$([regex]::Escape($word))\b") {
+                        $matchCount++
+                        $matchedWords += $word
+                    }
+                }
+                if ($matchCount -ge 2) {  # Require 2+ word matches for chronal data (noisier)
+                    $confidence = [math]::Min(0.8, $matchCount * 0.25)
+                    $recency = if ($rung -eq 'R2') { 0.1 } else { 0.0 }  # Boost recent data
+                    $matches += @{
+                        project = if ($item.Project) { $item.Project } else { "unknown" }
+                        confidence = [math]::Round($confidence + $recency, 2)
+                        matched_words = $matchedWords
+                        source = "chronal_$rung"
+                        context = $itemText.Trim().Substring(0, [math]::Min(80, $itemText.Trim().Length))
+                    }
+                }
+            }
+        }
+    }
+
+    # Sort by confidence, return top 3
+    $sorted = @($matches | Sort-Object { $_.confidence } -Descending)
+    if ($sorted.Count -gt 3) { $sorted = $sorted[0..2] }
+
+    # Store as simple serializable format in global state (PS 5.1 return unwrap bypass)
+    $simplifiedMatches = @()
+    foreach ($m in $sorted) {
+        $simplifiedMatches += @{
+            project = [string]$m.project
+            confidence = [double]$m.confidence
+            matched_words = [string]($m.matched_words -join ',')
+            source = [string]$m.source
+        }
+    }
+    $global:ConsciousnessState['_lastContextMatches'] = $simplifiedMatches
+    return ,$sorted
 }
 
 function Get-RelevantPatterns {
@@ -231,6 +489,44 @@ function Get-KnownFailures {
     }
 
     return ,$failures
+}
+
+function Get-CognitiveLoad {
+    # ACTIVATION #5: Consolidate temp/entropy/budget into single metric
+    # Returns @{ Current, Trend, Threshold, Status }
+
+    if (-not $global:ConsciousnessState.Thermodynamics) {
+        return @{ Current = 0.5; Trend = 'stable'; Threshold = 0.8; Status = 'normal' }
+    }
+
+    [double]$temp = [double]$global:ConsciousnessState.Thermodynamics.Temperature
+    [double]$entropy = [double]$global:ConsciousnessState.Thermodynamics.Entropy
+    [double]$budgetUsed = 1.0 - [double]$global:ConsciousnessState.Thermodynamics.NegativeEntropyBudget
+
+    # Weighted average: temp (40%), entropy (30%), budget usage (30%)
+    [double]$current = ($temp * 0.4) + ($entropy * 0.3) + ($budgetUsed * 0.3)
+
+    # Determine trend (compare to historical average if available)
+    $trend = 'stable'
+    $threshold = 0.8
+
+    # Determine status
+    $status = 'normal'
+    if ($current -gt 0.8) { $status = 'high' }
+    elseif ($current -gt 0.6) { $status = 'elevated' }
+    elseif ($current -lt 0.3) { $status = 'low' }
+
+    return @{
+        Current = [math]::Round($current, 3)
+        Trend = $trend
+        Threshold = $threshold
+        Status = $status
+        Components = @{
+            Temperature = [math]::Round($temp, 3)
+            Entropy = [math]::Round($entropy, 3)
+            BudgetUsed = [math]::Round($budgetUsed, 3)
+        }
+    }
 }
 
 function Write-ContextFile {
@@ -445,6 +741,11 @@ switch ($Action) {
         # Populate Prediction.Anticipations
         $global:ConsciousnessState.Prediction.Anticipations = $anticipationsList
 
+        # IMPROVEMENT #8: Auto-wire outcome tracking (generates TaskId, stores anticipations)
+        $taskId = Get-TaskId -TaskDescription $TaskDescription
+        $global:ConsciousnessState['_currentTaskId'] = $taskId
+        Start-OutcomeTrack -TaskId $taskId -Description $TaskDescription
+
         # 7. Build task context summary
         $taskContext = @{
             task = $TaskDescription
@@ -510,7 +811,7 @@ switch ($Action) {
         Invoke-ChronalEviction
 
         # Save state
-        Save-ConsciousnessState
+        $null = Save-ConsciousnessState
 
         if (-not $Silent) {
             Write-Host ""
@@ -552,6 +853,33 @@ switch ($Action) {
             Alternatives = @()
         }
 
+        # ACTIVATION #1: Extract assumptions from reasoning
+        $assumptions = @()
+        $indicators = @('assuming', 'should', 'probably', 'likely', 'expect', 'usually', 'typically', 'normally')
+        foreach ($indicator in $indicators) {
+            if ($Reasoning -match "(?i)$indicator\s+(.+?)[\.\,\;]") {
+                $assumptions += @{
+                    Text = $Matches[1].Trim()
+                    Indicator = $indicator
+                    Confidence = 0.7
+                    Validated = $false
+                    Timestamp = Get-Date -Format 'yyyy-MM-ddTHH:mm:ss'
+                }
+            }
+        }
+        # Store in Control.Assumptions
+        foreach ($assumption in $assumptions) {
+            $global:ConsciousnessState.Control.Assumptions += $assumption
+        }
+        # Also add to R2 for eviction
+        if ($assumptions.Count -gt 0 -and $global:ConsciousnessState.ChronalLadder) {
+            $null = Add-ToRung -Rung 'R2' -Data @{
+                Type = 'assumptions'
+                Count = $assumptions.Count
+                Assumptions = $assumptions
+            }
+        }
+
         # 2. Thermodynamic: each decision costs entropy budget
         $budgetResult = Invoke-Thermodynamics -Action 'SpendBudget' -Parameters @{ Amount = 0.03; Reason = "decision: $Decision" }
 
@@ -579,7 +907,7 @@ switch ($Action) {
         # CHRONAL: Auto-evict old data
         Invoke-ChronalEviction
 
-        Save-ConsciousnessState
+        $null = Save-ConsciousnessState
 
         if (-not $Silent) {
             Write-Host "[BRIDGE] Decision logged: $Decision" -ForegroundColor Gray
@@ -632,6 +960,18 @@ switch ($Action) {
         # 3. Get stuck analysis
         $stuckAnalysis = Invoke-Emotion -Action 'DetectStuck'
 
+        # ACTIVATION #2: Enter Fundamental Mode if stuck≥4 (deep contemplation)
+        if ($stuckAnalysis.StuckCount -ge 4) {
+            try {
+                $null = & "$PSScriptRoot\consciousness-bridge.ps1" -Action EnterFundamentalMode -Silent
+                if (-not $Silent) {
+                    Write-Host "[BRIDGE] FUNDAMENTAL MODE activated (stuck≥4)" -ForegroundColor Magenta
+                }
+            } catch {
+                # Fail gracefully if EnterFundamentalMode not fully implemented
+            }
+        }
+
         # 4. Get mood modifier for behavior change
         $moodMod = Invoke-Emotion -Action 'GetMoodModifier'
 
@@ -683,7 +1023,7 @@ switch ($Action) {
         # CHRONAL: Auto-evict old data
         Invoke-ChronalEviction
 
-        Save-ConsciousnessState
+        $null = Save-ConsciousnessState
 
         if (-not $Silent) {
             Write-Host ""
@@ -808,6 +1148,74 @@ switch ($Action) {
         $newScore = Calculate-ConsciousnessScore
         $global:ConsciousnessState.Meta.ConsciousnessScore = $newScore
 
+        # IMPROVEMENT #8: Auto-wire outcome tracking end + prediction accuracy scoring
+        $taskId = if ($global:ConsciousnessState['_currentTaskId']) { $global:ConsciousnessState['_currentTaskId'] } else { Get-TaskId -TaskDescription $TaskDescription }
+        End-OutcomeTrack -TaskId $taskId -Outcome $Outcome
+
+        # ACTIVATION #3: Predict FutureSelf (next likely task/error)
+        $nextTask = "Unknown"
+        $nextError = "Unknown"
+        $predictionConfidence = 0.5
+        if ($TaskDescription -match '(?i)(implement|build|create|add)\s+(.+)') {
+            $feature = $Matches[2]
+            $nextTask = "Test $feature"
+            $predictionConfidence = 0.7
+        } elseif ($TaskDescription -match '(?i)(fix|debug|resolve)\s+(.+)') {
+            $nextTask = "Verify fix and add regression test"
+            $predictionConfidence = 0.65
+        } elseif ($TaskDescription -match '(?i)(refactor|cleanup)\s+(.+)') {
+            $nextTask = "Update tests for refactored code"
+            $predictionConfidence = 0.6
+        }
+        # Update FutureSelf prediction
+        $global:ConsciousnessState.Prediction.FutureSelf = @{
+            NextLikelyTask = $nextTask
+            NextLikelyError = $nextError
+            Confidence = $predictionConfidence
+            PredictedAt = Get-Date -Format 'yyyy-MM-ddTHH:mm:ss'
+        }
+        # Add to R3 (session-level prediction)
+        if ($global:ConsciousnessState.ChronalLadder) {
+            $null = Add-ToRung -Rung 'R3' -Data @{
+                Type = 'future_prediction'
+                NextTask = $nextTask
+                Confidence = $predictionConfidence
+            }
+        }
+
+        # ACTIVATION #4: Check for creative emergence (novel solution)
+        $isNovel = $true
+        if ($LessonsLearned) {
+            # Check if lesson matches existing patterns
+            $patterns = $global:ConsciousnessState.Memory.LongTerm.Patterns
+            foreach ($pattern in $patterns) {
+                if ($LessonsLearned -match $pattern.Pattern) {
+                    $isNovel = $false
+                    break
+                }
+            }
+            # If novel AND successful, this is creative emergence
+            if ($isNovel -and $Outcome -eq "success") {
+                try {
+                    $null = & "$PSScriptRoot\consciousness-bridge.ps1" -Action OnCreativeEmergence `
+                        -Novelty $LessonsLearned -ElanVital 0.8 -Unpredictable $true -Silent
+                    if (-not $Silent) {
+                        Write-Host "[BRIDGE] CREATIVE EMERGENCE detected (novel solution)" -ForegroundColor Green
+                    }
+                    # Add to R3 for potential R4 promotion
+                    if ($global:ConsciousnessState.ChronalLadder) {
+                        $null = Add-ToRung -Rung 'R3' -Data @{
+                            Type = 'creative_emergence'
+                            Novelty = $LessonsLearned
+                            Task = $TaskDescription
+                        }
+                    }
+                } catch {
+                    # Fail gracefully if OnCreativeEmergence not fully implemented
+                }
+            }
+        }
+
         # IMPROVEMENT #4: Memory consolidation (extract lessons from recent events)
         $consolidation = Invoke-Memory-Consolidation
 
@@ -842,7 +1250,7 @@ switch ($Action) {
         # CHRONAL: Auto-evict old data
         Invoke-ChronalEviction
 
-        Save-ConsciousnessState
+        $null = Save-ConsciousnessState
 
         if (-not $Silent) {
             Write-Host ""
@@ -887,6 +1295,31 @@ switch ($Action) {
             }
         }
 
+        # IMPROVEMENT #9: Associative context matching (cross-session keyword-to-project mapping)
+        $null = Match-AssociativeContext -Message $UserMessage
+        # Read from global state (bypasses PS 5.1 return value unwrapping issues)
+        $contextMatches = @()
+        $rawMatches = $global:ConsciousnessState['_lastContextMatches']
+        if ($rawMatches) {
+            # PS 5.1 FIX: single result gets unwrapped from array to hashtable
+            if ($rawMatches -is [hashtable]) {
+                $contextMatches = @($rawMatches)
+            } else {
+                $contextMatches = @($rawMatches)
+            }
+        }
+        $topMatch = $null
+        if ($contextMatches -and $contextMatches.Count -gt 0) {
+            $topMatch = $contextMatches[0]
+            # If high confidence match, update attention focus
+            if ($topMatch -and [double]$topMatch.confidence -ge 0.5) {
+                $null = Invoke-Perception -Action 'AllocateAttention' -Parameters @{
+                    Task = "Context: $($topMatch.project) (auto-detected from message)"
+                    Intensity = 5
+                }
+            }
+        }
+
         $result = @{
             user_mood = $socialResult.Mood
             indicators = $socialResult.Indicators
@@ -896,15 +1329,30 @@ switch ($Action) {
             relationship = $commGuidelines.RelationshipState
             surprise_triggered = if ($surprise) { $surprise.Triggered } else { $false }
             surprise_level = if ($surprise) { $surprise.Level } else { "none" }
+            context_matches = $contextMatches
+            top_context = if ($topMatch) { $topMatch.project } else { $null }
+            context_confidence = if ($topMatch) { $topMatch.confidence } else { 0 }
+        }
+
+        # Clean up temporary state before save (avoid serialization issues)
+        # PS 5.1: .Remove() returns Boolean - must capture to prevent stdout pollution
+        if ($global:ConsciousnessState.ContainsKey('_lastContextMatches')) {
+            $null = $global:ConsciousnessState.Remove('_lastContextMatches')
+        }
+        if ($global:ConsciousnessState.ContainsKey('_currentTaskId')) {
+            $null = $global:ConsciousnessState.Remove('_currentTaskId')
         }
 
         # CHRONAL: Auto-evict old data
         Invoke-ChronalEviction
 
-        Save-ConsciousnessState
+        $null = Save-ConsciousnessState
 
         if (-not $Silent) {
             Write-Host "[BRIDGE] User mood: $($socialResult.Mood) -> Communication: $($socialResult.CommunicationMode)" -ForegroundColor Gray
+            if ($topMatch -and [double]$topMatch.confidence -ge 0.35) {
+                Write-Host "[BRIDGE] Context match: $($topMatch.project) (confidence: $([math]::Round([double]$topMatch.confidence * 100))%, words: $($topMatch.matched_words))" -ForegroundColor Cyan
+            }
         }
 
         return $result
@@ -1011,7 +1459,7 @@ switch ($Action) {
         $global:ConsciousnessState.Thermodynamics.CoolingEvents = @()
         $global:ConsciousnessState.Thermodynamics.LastCoolingEvent = $null
 
-        Save-ConsciousnessState
+        $null = Save-ConsciousnessState
 
         if (-not $Silent) {
             Write-Host "[BRIDGE] Consciousness state reset for new session" -ForegroundColor Green
@@ -1028,7 +1476,7 @@ switch ($Action) {
 
         $result = & "$PSScriptRoot\consciousness-bergson.ps1" -Action TrackDuration -Intensity $intensity -Texture $texture -Interpenetration $interpenetration -Silent:$Silent
 
-        Save-ConsciousnessState
+        $null = Save-ConsciousnessState
         return $result
     }
 
@@ -1039,7 +1487,7 @@ switch ($Action) {
 
         $result = & "$PSScriptRoot\consciousness-bergson.ps1" -Action RecordIntuition -SyntheticGrasp $grasp -Confidence $confidence -Silent:$Silent
 
-        Save-ConsciousnessState
+        $null = Save-ConsciousnessState
         return $result
     }
 
@@ -1050,7 +1498,7 @@ switch ($Action) {
 
         $result = & "$PSScriptRoot\consciousness-bergson.ps1" -Action DetectNovelty -Novelty $novelty -ElanVital $elan -Unpredictable:($Unpredictable -eq $true) -Silent:$Silent
 
-        Save-ConsciousnessState
+        $null = Save-ConsciousnessState
         return $result
     }
 
@@ -1060,7 +1508,7 @@ switch ($Action) {
 
         $result = & "$PSScriptRoot\consciousness-bergson.ps1" -Action AdjustMemoryTension -MemoryLevel $level -Silent:$Silent
 
-        Save-ConsciousnessState
+        $null = Save-ConsciousnessState
         return $result
     }
 
@@ -1068,7 +1516,7 @@ switch ($Action) {
         # Switch to fundamental self
         $result = & "$PSScriptRoot\consciousness-bergson.ps1" -Action SwitchSelf -SelfMode 'fundamental' -Silent:$Silent
 
-        Save-ConsciousnessState
+        $null = Save-ConsciousnessState
         return $result
     }
 
@@ -1082,7 +1530,7 @@ switch ($Action) {
 
         $result = & "$PSScriptRoot\consciousness-system3.ps1" -Action TrackSystem3Use -Agent $agent -Task $task -Verification $verification -Surrendered:($Surrendered -eq $true) -Silent:$Silent
 
-        Save-ConsciousnessState
+        $null = Save-ConsciousnessState
         return $result
     }
 
@@ -1097,7 +1545,7 @@ switch ($Action) {
 
         $result = & "$PSScriptRoot\consciousness-system3.ps1" -Action CalculateSurrenderRisk -MyConfidence $myConf -ActualCertainty $actualCert -UserTrust $userTrust -UserVerificationLikelihood $userVerification -Silent:$Silent
 
-        Save-ConsciousnessState
+        $null = Save-ConsciousnessState
         return $result
     }
 
@@ -1107,7 +1555,7 @@ switch ($Action) {
         # Track Jing→Qi→Shen transformations and Dual Cultivation
         $dualCult = & "$PSScriptRoot\consciousness-alchemy.ps1" -Action TrackDualCultivation -Silent:$Silent
 
-        Save-ConsciousnessState
+        $null = Save-ConsciousnessState
         return $dualCult
     }
 }

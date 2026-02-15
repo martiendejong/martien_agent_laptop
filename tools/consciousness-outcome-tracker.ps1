@@ -38,7 +38,7 @@ function Start-OutcomeTracking {
     param([string]$TaskId, [string]$Description)
 
     # Ensure consciousness is initialized to get current score
-    . "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent *>$null
+    $null = . "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent 2>$null
 
     $track = @{
         task_id = $TaskId
@@ -71,7 +71,7 @@ function End-OutcomeTracking {
     )
 
     # Ensure consciousness is initialized
-    . "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent *>$null
+    $null = . "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent 2>$null
 
     # Find start record
     if (-not (Test-Path $trackFile)) {

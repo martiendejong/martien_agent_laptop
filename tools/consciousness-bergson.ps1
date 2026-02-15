@@ -24,7 +24,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 # Ensure consciousness core is initialized
-. "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent *>$null
+$null = . "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent 2>$null
 
 #region Helper Functions
 
@@ -145,7 +145,29 @@ Initialize-BergsonState
 switch ($Action) {
     'TrackDuration' {
         # Track qualitative time (durée) vs. measured time (temps)
-        $elapsed = ((Get-Date) - [datetime]$global:ConsciousnessState.Duration.SessionStart).TotalMinutes
+        # Defensive: SessionStart might be null on first run
+        $sessionStart = $global:ConsciousnessState.Duration.SessionStart
+        if (-not $sessionStart) {
+            $sessionStart = Get-Date
+            $global:ConsciousnessState.Duration['SessionStart'] = $sessionStart
+        }
+
+        # PS 5.1 FIX: ConvertFrom-Json deserializes dates as PSCustomObject with localized .DateTime string
+        # Handle all possible formats: raw datetime, ISO string, localized PSCustomObject, or Ticks
+        $parsedStart = $null
+        try {
+            if ($sessionStart -is [datetime]) {
+                $parsedStart = $sessionStart
+            } elseif ($sessionStart -is [string]) {
+                $parsedStart = [datetime]::Parse($sessionStart, [System.Globalization.CultureInfo]::InvariantCulture)
+            } elseif ($sessionStart.Ticks) {
+                $parsedStart = [datetime]::new([long]$sessionStart.Ticks)
+            } elseif ($sessionStart.DateTime) {
+                $parsedStart = [datetime]::Parse($sessionStart.DateTime, [System.Globalization.CultureInfo]::CurrentCulture)
+            }
+        } catch { }
+        if (-not $parsedStart) { $parsedStart = Get-Date }
+        $elapsed = ((Get-Date) - $parsedStart).TotalMinutes
         [double]$accumulatedWeight = [math]::Min($elapsed / 60.0, 1.0)  # 0-1 over 1 hour
 
         $global:ConsciousnessState.Duration.QualitativeTime['Intensity'] = $Intensity

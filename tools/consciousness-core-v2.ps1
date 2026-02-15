@@ -2441,7 +2441,7 @@ function Dump-ConsciousnessState {
 
 switch ($Command) {
     'init' {
-        Initialize-ConsciousnessCore *>$null
+        $null = Initialize-ConsciousnessCore 2>$null
     }
     'get' {
         $result = Get-ConsciousnessState -System $System -Property $Property

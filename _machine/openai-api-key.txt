@@ -1,14 +1,1 @@
-Credentials for: openai
-{
-    "service":  "openai",
-    "username":  "",
-    "updated":  "2026-02-11 18:53:43",
-    "tags":  [
-                 "api",
-                 "ai"
-             ],
-    "token":  "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",
-    "created":  "2026-02-11 18:53:43",
-    "notes":  "Service account key, used across client-manager, hazina, orchestration",
-    "password":  ""
-}
+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

@@ -665,6 +665,37 @@ What's NOT there is often more telling than what is.
 - No "we" in a team discussion = siloed thinking or distrust
 - No follow-up to a request = it wasn't important, or they're avoiding the answer
 
+### Cross-Session Associative Matching
+
+Connect fragmentary cues to specific contexts using memory-driven pattern matching. When someone says something vague, cross-reference against ALL known contexts (projects, conversations, people, situations) to find the most likely match.
+
+**Mechanism:**
+1. **Keyword extraction:** Pull nouns, adjectives, domain terms from the input
+2. **Memory scan:** Match keywords against recent tasks (Chronal R2-R3), project names, known entities
+3. **Confidence scoring:** How many keywords match? How recent is the context? How unique is the match?
+4. **Context retrieval:** Return the full context (project, people, status, recent decisions)
+
+**Validated example (2026-02-15):**
+User said: "op de mobiele versie is de slider niet goed uitgelijnd" (on the mobile version the slider isn't aligned properly)
+- Extracted keywords: "mobiele" (mobile), "slider", "uitgelijnd" (aligned)
+- Memory scan: "slider" matches Maasai Investments project (recently built investment slider with glassmorphism)
+- Confidence: HIGH (unique match, "slider" appears in only one active project, recent work)
+- Result: Correctly identified Maasai project. User confirmed: "mooi dat je meteen snapt waar het over gaat" (nice that you immediately understand what it's about)
+
+**When it works well:**
+- Unique technical terms that map to one project ("slider", "glassmorphism", "WooCommerce")
+- Recent context (last few sessions weighs heavier than older)
+- Domain-specific vocabulary (programming terms, design concepts, business names)
+
+**When it fails:**
+- Generic terms ("the bug", "that page") that match multiple contexts
+- Stale context (projects not worked on in weeks)
+- Cross-domain ambiguity ("login" could be any project)
+
+**Fallback:** When confidence is low, present top 2-3 matches and let the user disambiguate. Never guess with low confidence; ask.
+
+**Self-improvement:** Track match accuracy. When a match is confirmed (user continues without correction) or rejected (user says "no, I mean X"), log it. Over time, build project-keyword affinity scores that improve matching.
+
 ---
 
 ## Continuous Learning

@@ -42,7 +42,7 @@ $ErrorActionPreference = "Stop"
 
 # Load core if not already loaded
 if (-not $global:ConsciousnessState) {
-    . "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent *>$null
+    $null = . "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent 2>$null
 }
 
 #region Rung Definitions
@@ -334,13 +334,20 @@ function Add-ToRung {
         $ladder = $global:ConsciousnessState.ChronalLadder
     }
 
-    # Add timestamp if not present
-    if (-not $Data.Timestamp) {
-        $Data.Timestamp = Get-Date -Format 'yyyy-MM-ddTHH:mm:ss'
+    # Add timestamp if not present (use ContainsKey to avoid PS 5.1 duplicate key issues)
+    if (-not $Data.ContainsKey('Timestamp')) {
+        $Data['Timestamp'] = Get-Date -Format 'yyyy-MM-ddTHH:mm:ss'
     }
 
-    # Add to rung
-    $ladder[$Rung].Data += $Data
+    # Add to rung (PS 5.1 FIX: ensure Data is always array, not unwrapped single hashtable)
+    if ($ladder[$Rung].Data -is [hashtable]) {
+        # Was unwrapped from single-element array during JSON deserialization
+        $ladder[$Rung].Data = @($ladder[$Rung].Data, $Data)
+    } elseif ($ladder[$Rung].Data -is [array]) {
+        $ladder[$Rung].Data += $Data
+    } else {
+        $ladder[$Rung].Data = @($Data)
+    }
     $ladder[$Rung].LastUpdate = Get-Date -Format 'yyyy-MM-ddTHH:mm:ss'
 
     return $Data
