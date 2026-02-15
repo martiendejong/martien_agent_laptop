@@ -1,3 +1,10 @@
+## 2026-02-15T19:10:00Z - Release: agent-001
+- Repos: client-manager + hazina
+- Branch: feature/869c3q8rx-woocommerce-product-post
+- PR: #580
+- Outcome: WooCommerce Product-to-Post Generation - Generate Post button with platform selector, creates parent/child posts with AI content
+- ClickUp: #869c3q8rx moved to review status
+
 ## 2026-02-15T18:50:00Z - Allocation: agent-001
 - Repos: client-manager + hazina (paired worktrees)
 - Branch: feature/869c3q8rx-woocommerce-product-post
