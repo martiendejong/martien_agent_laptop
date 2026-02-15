@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-15T19:10:00Z | ✅ PR #580: WooCommerce Product-to-Post Generation (ClickUp #869c3q8rx) - Note: worktree locked, manual cleanup needed |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | client-manager | feature/869c513zu-remove-new-project-button | 2026-02-15T20:50:00Z | Remove obsolete New Project button (ClickUp #869c513zu) |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-02-16T04:15:00Z | PR #579: Logo alignment fix (ClickUp #869c2zqez) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-15T18:40:00Z | ✅ PR #578: Platform Crop Modal (Media Library Phase B, ClickUp #869c1dnx7) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-15T22:30:00Z | PR #571: Context Completeness Indicator (ClickUp #869bu9mer) |

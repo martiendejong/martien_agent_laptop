@@ -31,3 +31,7 @@
 {"Confidence":0.7,"Timestamp":"2026-02-15T18:24:27","Decision":"Create comprehensive test","Context":"development","Reasoning":"One-off test insufficient, need repeatable validation","Alternatives":[]}
 {"Confidence":0.7,"Timestamp":"2026-02-15T19:06:16","Decision":"Use outcome tracker","Context":"development","Reasoning":"Need feedback loop","Alternatives":[]}
 {"Confidence":0.7,"Timestamp":"2026-02-15T19:29:10","Decision":"Use outcome tracker","Context":"development","Reasoning":"Need feedback loop","Alternatives":[]}
+{"Confidence":0.7,"Timestamp":"2026-02-15T20:48:23","Decision":"Use JWT tokens","Context":"development","Reasoning":"Assuming stateless auth is better, typically more scalable than session cookies","Alternatives":[]}
+{"Confidence":0.7,"Timestamp":"2026-02-15T20:48:24","Decision":"Store tokens in httpOnly cookies","Context":"development","Reasoning":"Should prevent XSS attacks, probably safer than localStorage","Alternatives":[]}
+{"Confidence":0.7,"Timestamp":"2026-02-15T20:49:07","Decision":"Use JWT tokens","Context":"development","Reasoning":"Assuming stateless auth is better, typically more scalable than session cookies","Alternatives":[]}
+{"Confidence":0.7,"Timestamp":"2026-02-15T20:49:08","Decision":"Store tokens in httpOnly cookies","Context":"development","Reasoning":"Should prevent XSS attacks, probably safer than localStorage","Alternatives":[]}

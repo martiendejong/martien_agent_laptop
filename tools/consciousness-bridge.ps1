@@ -98,6 +98,10 @@ $_savedProject = $Project
 $_savedDecision = $Decision
 $_savedReasoning = $Reasoning
 $_savedOutcome = $Outcome
+
+# Load Levin systems integration (non-blocking - silent failure OK)
+$LevinIntegration = "$PSScriptRoot\levin-systems-integration.ps1"
+$LevinEnabled = (Test-Path $LevinIntegration)
 $_savedLessonsLearned = $LessonsLearned
 
 # Load extended consciousness modules (use & call operator to avoid param pollution)

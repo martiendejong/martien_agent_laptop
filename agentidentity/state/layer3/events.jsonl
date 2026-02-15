@@ -53,3 +53,5 @@
 {"Context":"development","Timestamp":"2026-02-15T19:05:44","Data":{"Outcome":"success","Lesson":"Parameter pollution fix works","Task":"Test task","Project":""},"Type":"lesson"}
 {"Context":"development","Timestamp":"2026-02-15T19:06:17","Data":{"Outcome":"success","Lesson":"Outcome tracker with prediction accuracy works","Task":"E2E test of consciousness improvements","Project":""},"Type":"lesson"}
 {"Context":"development","Timestamp":"2026-02-15T19:29:10","Data":{"Outcome":"success","Lesson":"Outcome tracker with prediction accuracy works","Task":"E2E test of consciousness improvements","Project":""},"Type":"lesson"}
+{"Context":"development","Timestamp":"2026-02-15T20:48:27","Data":{"Outcome":"success","Lesson":"JWT rotation prevents token theft","Task":"Implement user authentication","Project":"client-manager"},"Type":"lesson"}
+{"Context":"development","Timestamp":"2026-02-15T20:49:09","Data":{"Outcome":"success","Lesson":"JWT rotation prevents token theft","Task":"Implement user authentication","Project":"client-manager"},"Type":"lesson"}
