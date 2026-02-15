@@ -1,3 +1,9 @@
+## 2026-02-15T18:50:00Z - Allocation: agent-001
+- Repos: client-manager + hazina (paired worktrees)
+- Branch: feature/869c3q8rx-woocommerce-product-post
+- Purpose: WooCommerce Product-to-Post Generation - Add "Generate Post" button to product catalog, bulk generation support
+- ClickUp: #869c3q8rx
+
 ## 2026-02-15T18:40:00Z - Release: agent-003
 - Repo: client-manager
 - Branch: feature/869c1dnx7-media-library-phase-b
