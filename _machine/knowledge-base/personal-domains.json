@@ -1,0 +1,115 @@
+﻿{
+    "domains":  {
+                    "visa":  {
+                                 "files_present":  7,
+                                 "domain":  "Visa Application",
+                                 "purpose":  "Visa application documents and supporting evidence",
+                                 "last_updated":  "2026-02-15",
+                                 "location":  "E:\\visa application\\",
+                                 "key_documents":  [
+                                                       "20251026_143040.jpg",
+                                                       "4c0bd06d-c1e4-4427-922d-8675eb28e9de.jpg",
+                                                       "Factuur 2025-22 Vera AI.pdf",
+                                                       "Invitation_Letter_Sophy_Nashipae_Mpoe.docx",
+                                                       "Invitation_Letter_Sophy_Nashipae_Mpoe.pdf",
+                                                       "room.png",
+                                                       "ticket.png"
+                                                   ]
+                             },
+                    "gemeente":  {
+                                     "key_documents":  {
+                                                           "for_helpers":  "E:\\gemeente_emails\\hoe-je-martien-echt-kunt-helpen.pdf",
+                                                           "email_analysis":  "E:\\gemeente_emails\\ANALYSE_GMAIL_VS_INFO_EMAILS.md",
+                                                           "timeline":  "E:\\gemeente_emails\\TIJDLIJN_HUWELIJK_2022-2026_COMPLEET.pdf",
+                                                           "strategy":  "E:\\gemeente_emails\\STRATEGIE_PUBLIEKE_DRUK_ESCALATIE.md",
+                                                           "situation":  "E:\\gemeente_emails\\VOLLEDIGE_SITUATIEBESCHRIJVING_MARTIEN_EN_SOFY.md"
+                                                       },
+                                     "last_updated":  "2026-02-15",
+                                     "critical_moments":  {
+                                                              "2026-02-09":  "Gemeente: \u0027Die bevestiging kan ik u niet geven\u0027",
+                                                              "2025-12-23":  "Gemeente: \u0027De legalisatie is zo prima\u0027",
+                                                              "2024":  "Reis naar Kenia mislukt (verkeerde documenten)",
+                                                              "2026-01-30":  "Verschuivende eisen in uren tijd",
+                                                              "2023-07-24":  "Eerste formele verzoeken",
+                                                              "2023-01":  "Eerste contact, direct beschuldigd van schijnhuwelijk",
+                                                              "2026-01-23":  "Gemeente: \u0027Het besluit zal negatief zijn\u0027"
+                                                          },
+                                     "key_facts":  {
+                                                       "email_count":  896,
+                                                       "goalpost_shifting":  "30 jan 2026: QR-codes â†’ URLs â†’ fysieke documenten (in uren tijd)",
+                                                       "start_date":  "Januari 2023",
+                                                       "current_status":  "Beide routes geblokkeerd (feb 2026)"
+                                                   },
+                                     "status":  "Active conflict, 3+ years",
+                                     "duration":  "1138 dagen (37 maanden)",
+                                     "domain":  "Gemeente Meppel - Huwelijksdossier",
+                                     "communication_patterns":  {
+                                                                    "email_fragmentation":  "Cruciale emails naar Gmail, intrekking naar info@",
+                                                                    "gemeente_contact":  "Mw. Van der Haar",
+                                                                    "tactic":  "Goalpost shifting, inconsistent requirements"
+                                                                }
+                                 },
+                    "arjan":  {
+                                  "domain":  "Arjan Stroeve / Social Media Hulp",
+                                  "key_evidence":  {
+                                                       "email_count":  91,
+                                                       "game_theory_phase":  "Phase 8: Nash Equilibrium (permanent non-cooperation)",
+                                                       "timeline":  "2022-2026",
+                                                       "smoking_gun":  "Non-compete clause tijdens financial crisis",
+                                                       "wurgcontract":  "E:\\arjan_emails\\Overeenkomst Martien.pdf (16 sept 2025)"
+                                                   },
+                                  "financial":  {
+                                                    "salary_during_crisis":  "EUR 3,500 bruto (minimumloon voor lead developer)",
+                                                    "outstanding":  "EUR 3,625"
+                                                },
+                                  "communication_patterns":  {
+                                                                 "exploitation_markers":  [
+                                                                                              "Payment refusals",
+                                                                                              "Wurgcontract",
+                                                                                              "Kenyan team refusal",
+                                                                                              "Blocking",
+                                                                                              "False accusations"
+                                                                                          ],
+                                                                 "response_strategy":  "Tit-for-tat boundaries, permanent non-cooperation",
+                                                                 "narrative_warfare":  "Google review accusation via Hassan â†’ Allan"
+                                                             },
+                                  "last_updated":  "2026-02-15",
+                                  "status":  "Publication Ready (95%)",
+                                  "key_documents":  {
+                                                        "facts":  "E:\\arjan_emails\\FEITEN_EN_EVIDENCE.md",
+                                                        "publication_strategy":  "E:\\arjan_emails\\PUBLICATIE_STRATEGIE.md",
+                                                        "critical_evidence":  "E:\\arjan_emails\\CRITICAL_EVIDENCE_SUMMARY.md",
+                                                        "timeline":  "E:\\arjan_emails\\TIJDLIJN_EVIDENCE_BASED.md",
+                                                        "game_theory":  "E:\\arjan_emails\\GAME_THEORY_ANALYSE.md"
+                                                    }
+                              },
+                    "mvv":  {
+                                "domain":  "MVV (Machtiging tot Voorlopig Verblijf)",
+                                "purpose":  "Visa application for Sofy to enter Netherlands",
+                                "supporting_documents":  {
+                                                             "invitation_letter":  "E:\\mvv\\Invitation_Letter_Sophy_Nashipae_Mpoe.pdf",
+                                                             "room":  "E:\\mvv\\room.png",
+                                                             "ticket":  "E:\\mvv\\ticket.png"
+                                                         },
+                                "last_updated":  "2026-02-15",
+                                "related_folder":  "E:\\bedrijf\\mvv aanvraag\\",
+                                "key_documents":  {
+                                                      "checklist_ind":  "E:\\mvv\\CHECKLIST_IND_VEREISTEN.md",
+                                                      "tasks_sophy":  "E:\\mvv\\9-2-2026\\Tasks for Sophy.md",
+                                                      "template_communication":  "E:\\mvv\\TEMPLATE_Communicatie_Overzicht.md",
+                                                      "actieplan":  "E:\\mvv\\ACTIEPLAN.md",
+                                                      "readme":  "E:\\mvv\\README.md"
+                                                  }
+                            },
+                    "inburgering":  {
+                                        "domain":  "Inburgering (Integration Exam)",
+                                        "purpose":  "Dutch integration exam requirements and preparation",
+                                        "location":  "E:\\inburgering\\",
+                                        "last_updated":  "2026-02-15",
+                                        "files_present":  2
+                                    }
+                },
+    "created":  "2026-02-15T17:06:11.8830831+01:00",
+    "version":  "1.0",
+    "last_updated":  "2026-02-15T17:06:11.8830831+01:00"
+}

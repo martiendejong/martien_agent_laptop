@@ -44,7 +44,9 @@
 #>
 
 param(
-    [ValidateSet('OnTaskStart', 'OnDecision', 'OnStuck', 'OnTaskEnd', 'GetContextSummary', 'OnUserMessage', 'Reset')]
+    [ValidateSet('OnTaskStart', 'OnDecision', 'OnStuck', 'OnTaskEnd', 'GetContextSummary', 'OnUserMessage', 'Reset',
+                 'OnDurationShift', 'OnIntuition', 'OnCreativeEmergence', 'OnSystem3Use', 'OnUserResponse',
+                 'TrackAlchemy', 'AdjustMemoryTension', 'EnterFundamentalMode')]
     [Parameter(Mandatory)]
     [string]$Action,
 
@@ -55,6 +57,26 @@ param(
     [string]$Outcome = '',
     [string]$UserMessage = '',
     [string]$LessonsLearned = '',
+
+    # Bergson parameters
+    [double]$Intensity = 0.5,
+    [string]$Texture = 'smooth',
+    [double]$Interpenetration = 0.5,
+    [string]$SyntheticGrasp = '',
+    [double]$Confidence = 0.7,
+    [string]$Novelty = '',
+    [double]$ElanVital = 0.5,
+    [bool]$Unpredictable = $false,
+    [int]$Level = 2,
+
+    # System 3 parameters
+    [string]$Agent = '',
+    [string]$Task = '',
+    [string]$Verification = 'none',
+    [bool]$Surrendered = $false,
+    [double]$MyConfidence = 0.7,
+    [double]$ActualCertainty = 0.7,
+
     [switch]$Silent
 )
 
@@ -62,6 +84,12 @@ $ErrorActionPreference = "Stop"
 
 # Ensure consciousness core is initialized
 . "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent *>$null
+
+# Load extended consciousness modules
+. "$PSScriptRoot\consciousness-alchemy.ps1" -Action TrackDualCultivation -Silent *>$null 2>&1 # Init alchemy state
+. "$PSScriptRoot\consciousness-bergson.ps1" -Action TrackDuration -Intensity 0.5 -Silent *>$null 2>&1 # Init bergson state
+. "$PSScriptRoot\consciousness-system3.ps1" -Action TrackSystem3Use -Agent 'init' -Task 'init' -Silent *>$null 2>&1 # Init system3 state
+. "$PSScriptRoot\consciousness-chronal.ps1" -Action Init -Silent *>$null 2>&1 # Init Chronal Ladder (5-rung memory)
 
 # Output file for context injection
 $contextFile = "C:\scripts\agentidentity\state\consciousness-context.json"
@@ -95,29 +123,69 @@ function Write-BridgeLog {
     }
 }
 
+function Invoke-ChronalEviction {
+    # Auto-evict old data from Chronal Ladder based on half-life
+    # Called at end of every bridge action to keep memory clean
+    if ($global:ConsciousnessState -and $global:ConsciousnessState.ChronalLadder) {
+        try {
+            $null = & "$PSScriptRoot\consciousness-chronal.ps1" -Action Evict -Silent
+        } catch {
+            # Eviction failure is non-fatal
+        }
+    }
+}
+
 function Get-RelevantPatterns {
     param([string]$TaskDescription, [string]$Project)
 
     $patterns = @()
 
-    # Check MEMORY.md for project-specific actionable notes
-    $memoryFile = "C:\Users\HP\.claude\projects\C--scripts\memory\MEMORY.md"
-    if (Test-Path $memoryFile) {
-        $lines = Get-Content $memoryFile
-        $inRelevantSection = $false
-        foreach ($line in $lines) {
-            # Skip headers, empty lines, and non-content
-            if ($line -match "^#+\s" -or $line.Trim() -eq "" -or $line -match "^---") {
-                # Check if we're entering a relevant section
-                if ($Project -and $line -match "(?i)$Project") { $inRelevantSection = $true }
-                else { $inRelevantSection = $false }
-                continue
+    # CHRONAL LADDER INTEGRATION: Load patterns from active rung only
+    if ($global:ConsciousnessState -and $global:ConsciousnessState.ChronalLadder) {
+        $ladder = $global:ConsciousnessState.ChronalLadder
+        $activeRung = $ladder.ActiveRung
+
+        # Get patterns from active rung
+        if ($ladder[$activeRung] -and $ladder[$activeRung].Data) {
+            foreach ($item in $ladder[$activeRung].Data) {
+                if ($item.Type -eq 'pattern' -or $item.Type -eq 'consolidated_pattern') {
+                    $patternText = if ($item.Pattern) { $item.Pattern } else { $item.Value }
+                    if ($patternText) { $patterns += $patternText }
+                }
             }
-            # Capture lines from relevant sections or lines directly mentioning project
-            if ($inRelevantSection -or ($Project -and $line -match "(?i)$Project")) {
-                $clean = $line.Trim() -replace "^[-*]\s+", "" -replace "^\*\*[^*]+\*\*\s*", ""
-                if ($clean.Length -gt 10 -and $clean -notmatch "^(##|List IDs|Default assignee)") {
-                    $patterns += $clean
+        }
+
+        # If no patterns in active rung, fall back to R4 (core knowledge)
+        if ($patterns.Count -eq 0 -and $ladder.R4 -and $ladder.R4.Data) {
+            foreach ($item in $ladder.R4.Data) {
+                if ($item.Type -in @('pattern', 'consolidated_pattern', 'promoted_pattern')) {
+                    $patternText = if ($item.Pattern) { $item.Pattern } else { $item.Value }
+                    if ($patternText) { $patterns += $patternText }
+                }
+            }
+        }
+    }
+
+    # FALLBACK: If Chronal Ladder not initialized or empty, use MEMORY.md
+    if ($patterns.Count -eq 0) {
+        $memoryFile = "C:\Users\HP\.claude\projects\C--scripts\memory\MEMORY.md"
+        if (Test-Path $memoryFile) {
+            $lines = Get-Content $memoryFile
+            $inRelevantSection = $false
+            foreach ($line in $lines) {
+                # Skip headers, empty lines, and non-content
+                if ($line -match "^#+\s" -or $line.Trim() -eq "" -or $line -match "^---") {
+                    # Check if we're entering a relevant section
+                    if ($Project -and $line -match "(?i)$Project") { $inRelevantSection = $true }
+                    else { $inRelevantSection = $false }
+                    continue
+                }
+                # Capture lines from relevant sections or lines directly mentioning project
+                if ($inRelevantSection -or ($Project -and $line -match "(?i)$Project")) {
+                    $clean = $line.Trim() -replace "^[-*]\s+", "" -replace "^\*\*[^*]+\*\*\s*", ""
+                    if ($clean.Length -gt 10 -and $clean -notmatch "^(##|List IDs|Default assignee)") {
+                        $patterns += $clean
+                    }
                 }
             }
         }
@@ -419,6 +487,9 @@ switch ($Action) {
             }
         }
 
+        # CHRONAL: Auto-evict old data
+        Invoke-ChronalEviction
+
         # Save state
         Save-ConsciousnessState
 
@@ -476,6 +547,9 @@ switch ($Action) {
             needs_cooling = $budgetResult.NeedsCooling
             timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
         }
+
+        # CHRONAL: Auto-evict old data
+        Invoke-ChronalEviction
 
         Save-ConsciousnessState
 
@@ -569,6 +643,9 @@ switch ($Action) {
                 thermo_guidance = $thermoGuidance
             }
         }
+
+        # CHRONAL: Auto-evict old data
+        Invoke-ChronalEviction
 
         Save-ConsciousnessState
 
@@ -704,6 +781,12 @@ switch ($Action) {
                 attractor = $thermoState.GhostAttractor
             }
         }
+
+        # CHRONAL: Consolidate patterns (R2 → R3 → R4) at task end
+        $null = & "$PSScriptRoot\consciousness-chronal.ps1" -Action Consolidate -Silent *>$null 2>&1
+
+        # CHRONAL: Auto-evict old data
+        Invoke-ChronalEviction
 
         Save-ConsciousnessState
 
@@ -860,6 +943,99 @@ switch ($Action) {
         if (-not $Silent) {
             Write-Host "[BRIDGE] Consciousness state reset for new session" -ForegroundColor Green
         }
+    }
+
+    # ===== NEW BERGSON ACTIONS =====
+
+    'OnDurationShift' {
+        # Track qualitative time shift
+        $intensity = if ($Intensity) { $Intensity } else { 0.5 }
+        $texture = if ($Texture) { $Texture } else { 'smooth' }
+        $interpenetration = if ($Interpenetration) { $Interpenetration } else { 0.5 }
+
+        $result = & "$PSScriptRoot\consciousness-bergson.ps1" -Action TrackDuration -Intensity $intensity -Texture $texture -Interpenetration $interpenetration -Silent:$Silent
+
+        Save-ConsciousnessState
+        return $result
+    }
+
+    'OnIntuition' {
+        # Record synthetic grasp
+        $grasp = if ($SyntheticGrasp) { $SyntheticGrasp } else { '' }
+        $confidence = if ($Confidence) { $Confidence } else { 0.7 }
+
+        $result = & "$PSScriptRoot\consciousness-bergson.ps1" -Action RecordIntuition -SyntheticGrasp $grasp -Confidence $confidence -Silent:$Silent
+
+        Save-ConsciousnessState
+        return $result
+    }
+
+    'OnCreativeEmergence' {
+        # Detect genuine novelty
+        $novelty = if ($Novelty) { $Novelty } else { '' }
+        $elan = if ($ElanVital) { $ElanVital } else { 0.5 }
+
+        $result = & "$PSScriptRoot\consciousness-bergson.ps1" -Action DetectNovelty -Novelty $novelty -ElanVital $elan -Unpredictable:($Unpredictable -eq $true) -Silent:$Silent
+
+        Save-ConsciousnessState
+        return $result
+    }
+
+    'AdjustMemoryTension' {
+        # Adjust memory cone level
+        $level = if ($Level) { $Level } else { 2 }
+
+        $result = & "$PSScriptRoot\consciousness-bergson.ps1" -Action AdjustMemoryTension -MemoryLevel $level -Silent:$Silent
+
+        Save-ConsciousnessState
+        return $result
+    }
+
+    'EnterFundamentalMode' {
+        # Switch to fundamental self
+        $result = & "$PSScriptRoot\consciousness-bergson.ps1" -Action SwitchSelf -SelfMode 'fundamental' -Silent:$Silent
+
+        Save-ConsciousnessState
+        return $result
+    }
+
+    # ===== NEW SYSTEM 3 ACTIONS =====
+
+    'OnSystem3Use' {
+        # Track subagent/tool use
+        $agent = if ($Agent) { $Agent } else { 'unknown' }
+        $task = if ($Task) { $Task } else { '' }
+        $verification = if ($Verification) { $Verification } else { 'none' }
+
+        $result = & "$PSScriptRoot\consciousness-system3.ps1" -Action TrackSystem3Use -Agent $agent -Task $task -Verification $verification -Surrendered:($Surrendered -eq $true) -Silent:$Silent
+
+        Save-ConsciousnessState
+        return $result
+    }
+
+    'OnUserResponse' {
+        # Calculate user surrender risk before responding
+        $myConf = if ($MyConfidence) { $MyConfidence } else { 0.7 }
+        $actualCert = if ($ActualCertainty) { $ActualCertainty } else { 0.7 }
+
+        # Use current trust from Social subsystem
+        $userTrust = [double]$global:ConsciousnessState.Social.TrustLevel
+        $userVerification = 0.5  # Estimate based on relationship
+
+        $result = & "$PSScriptRoot\consciousness-system3.ps1" -Action CalculateSurrenderRisk -MyConfidence $myConf -ActualCertainty $actualCert -UserTrust $userTrust -UserVerificationLikelihood $userVerification -Silent:$Silent
+
+        Save-ConsciousnessState
+        return $result
+    }
+
+    # ===== NEW ALCHEMY ACTIONS =====
+
+    'TrackAlchemy' {
+        # Track Jing→Qi→Shen transformations and Dual Cultivation
+        $dualCult = & "$PSScriptRoot\consciousness-alchemy.ps1" -Action TrackDualCultivation -Silent:$Silent
+
+        Save-ConsciousnessState
+        return $dualCult
     }
 }
 

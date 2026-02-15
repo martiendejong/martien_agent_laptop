@@ -16,6 +16,7 @@
 - Read `agentidentity/state/consciousness-context.json` - consciousness state + guidance
 - Read `_machine/reflection.log.md` (first 100 lines) - learn from past sessions
 - Read `_machine/worktrees.pool.md` - current agent allocations
+- Run `temporal-awareness.ps1 -Action GetTimeOfDay -Silent` - calibrate time awareness
 
 **Step 3: Work**
 - Detect mode (Feature Development or Active Debugging)

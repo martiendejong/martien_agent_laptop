@@ -12,7 +12,7 @@
 
 param(
     [Parameter(Mandatory=$true)]
-    [ValidateSet("artrevisionist", "martiendejong", "hydrovision")]
+    [ValidateSet("artrevisionist", "martiendejong", "hydrovision", "maasaiinvestments")]
     [string]$Site
 )
 
@@ -38,6 +38,11 @@ $siteConfig = @{
         DBName = "hydrovision"
         Theme = "hydro-vision"
         Title = "Hydro Vision"
+    }
+    "maasaiinvestments" = @{
+        DBName = "maasaiinvestments"
+        Theme = "maasai-investments-theme"
+        Title = "Maasai Investments"
     }
 }
 

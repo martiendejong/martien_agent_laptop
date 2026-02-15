@@ -7,6 +7,7 @@ Snel wisselen tussen 3 WordPress sites op je lokale XAMPP omgeving.
 1. **ArtRevisionist** - Database: `artrevisionist` - Theme: `artrevisionist-wp-theme`
 2. **martiendejong.nl** - Database: `martiendejong` - Theme: `martiendejong-wp-theme`
 3. **Hydro Vision** - Database: `hydrovision` - Theme: `hydro-vision`
+4. **Maasai Investments** - Database: `maasaiinvestments` - Theme: `maasai-investments-theme`
 
 ## Gebruik
 
@@ -23,6 +24,9 @@ Gebruik het all-in-one script dat automatisch WordPress installeert als de datab
 
 # Switch naar Hydro Vision
 .\wp-switch-and-setup.ps1 -Site hydrovision
+
+# Switch naar Maasai Investments
+.\wp-switch-and-setup.ps1 -Site maasaiinvestments
 ```
 
 ### Handmatig
@@ -38,6 +42,9 @@ Gebruik de individuele switcher scripts:
 
 # Hydro Vision
 .\switch-to-hydrovision.ps1
+
+# Maasai Investments
+.\switch-to-maasaiinvestments.ps1
 ```
 
 Als de database leeg is, moet je handmatig WordPress installeren:
@@ -109,6 +116,7 @@ Alle databases gebruiken:
 | `switch-to-artrevisionist.ps1` | Switch naar ArtRevisionist |
 | `switch-to-martiendejong.ps1` | Switch naar martiendejong.nl |
 | `switch-to-hydrovision.ps1` | Switch naar Hydro Vision |
+| `switch-to-maasaiinvestments.ps1` | Switch naar Maasai Investments |
 | `wp-quick-install.ps1` | Handmatige WordPress installatie |
 
 ## Notities

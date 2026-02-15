@@ -3,7 +3,7 @@
     "version":  "2.0",
     "encryption":  "dpapi",
     "storage":  "hex",
-    "updated":  "2026-02-15 05:41:58",
+    "updated":  "2026-02-15 17:29:23",
     "credentials":  [
                         {
                             "updated":  "2026-02-11 18:53:42",
@@ -180,15 +180,29 @@
                         {
                             "updated":  "2026-02-15 05:41:58",
                             "token_enc":  "",
-                            "username":  "JengoAutonomous",
-                            "notes_enc":  "",
                             "password_hint":  "moltbook...",
+                            "notes_enc":  "",
+                            "tags":  [
+
+                                     ],
+                            "username":  "JengoAutonomous",
                             "token_hint":  "",
                             "password_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e00000000020000000000106600000001000020000000ee47833aa3ca08a0f2e844d5a4b8e5fe8a22169aad5437ff7cfe2c0e748e3ee0000000000e8000000002000020000000fd25307f53e657d254c8a2668a0c5bd59ec40ae9b00044d6ddbd6135cca35f3a3000000061fe9928b2dd1d820dfe14321d7a090c4c5ca441924cf7e64791e8a08f8d7318553f42e9f120b5d3eccd43b43822bbb3400000009af950962f2d1d73b4e8129bcdfc3bd5527d22b50109b58e66b413052de097c4713deaa4b380d2622247aea3fa5d1b5b148d801e6b65e895f79097fe8b8ea3ab",
                             "service":  "moltbook",
-                            "created":  "2026-02-15 05:41:58",
+                            "created":  "2026-02-15 05:41:58"
+                        },
+                        {
+                            "updated":  "2026-02-15 17:29:23",
+                            "token_enc":  "",
+                            "username":  "baas@maasaiinvestments.com",
+                            "notes_enc":  "",
+                            "password_hint":  "Go7rPum]...",
+                            "token_hint":  "",
+                            "password_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e00000000020000000000106600000001000020000000c19a365c1852d80b2f6199d3b60a48068d1b8d743ce1f652e892a83bb95bfb14000000000e8000000002000020000000b3b479115e9a61588c709dab9f9ea8d1043260a8a75e60a5f90818d0f575394d200000004f39f99beceb8cad7b994ce6ef0ec7f9759de3d6c8e1e59e1b7cfed31218c5c54000000077518f8052de7aea1c0fa654786c65da31e44915d857081da1192eba1303e13d275e9f84a7bbfc9d2e33f7313720357dd4b31579d27e808d1137bdb963863094",
+                            "service":  "ftp-maasaiinvestments",
+                            "created":  "2026-02-15 17:29:23",
                             "tags":  [
-
+                                         "ftp,deployment"
                                      ]
                         }
                     ]

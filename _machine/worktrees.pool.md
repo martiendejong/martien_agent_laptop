@@ -5,7 +5,7 @@ Seat states:
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-15T17:42:00Z | ✅ WordPress Publishing Provider MVP (PR #555) - Note: worktree locked, manual cleanup needed |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | client-manager | feature/869c3q8t7-dalle-image-generation | 2026-02-16T00:05:00Z | AI Image Generation DALL-E Integration (ClickUp #869c3q8t7) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | client-manager | feature/869c3q8t3-ab-testing | 2026-02-16T00:35:00Z | A/B Testing for Posts (ClickUp #869c3q8t3) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-02-14T23:05:00Z | PR MERGED: Post Hub Refactoring (ClickUp #869c3q8k4) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-15T22:30:00Z | PR #571: Context Completeness Indicator (ClickUp #869bu9mer) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-15T16:10:00Z | PR #572: Prompt Builder Interface (ClickUp #869bu9meu) |
