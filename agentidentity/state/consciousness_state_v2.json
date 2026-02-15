@@ -2,176 +2,6 @@
     "EventBus":  {
                      "Events":  [
                                     {
-                                        "Timestamp":  "2026-02-15T04:26:54.757Z",
-                                        "Data":  {
-                                                     "indicators":  [
-
-                                                                    ],
-                                                     "mood":  "neutral",
-                                                     "communication_mode":  "standard"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "social.user_mood_detected"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T04:31:25.114Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  506.4877
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T04:31:30.196Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  44.77
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T05:06:33.720Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  563.6371
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T05:06:38.869Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  38.08
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T05:06:38.913Z",
-                                        "Data":  {
-                                                     "indicators":  [
-
-                                                                    ],
-                                                     "mood":  "neutral",
-                                                     "communication_mode":  "standard"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "social.user_mood_detected"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T05:20:39.997Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  495.4028
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T05:20:45.076Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  38.08
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T05:22:25.093Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  491.5871
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T05:22:30.178Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  37.42
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T05:22:30.205Z",
-                                        "Data":  {
-                                                     "indicators":  [
-                                                                        "questioning"
-                                                                    ],
-                                                     "mood":  "neutral",
-                                                     "communication_mode":  "standard"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "social.user_mood_detected"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T05:25:49.568Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  508.0384
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T05:25:54.665Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  37.58
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T05:25:54.689Z",
-                                        "Data":  {
-                                                     "indicators":  [
-
-                                                                    ],
-                                                     "mood":  "neutral",
-                                                     "communication_mode":  "standard"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "social.user_mood_detected"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T05:38:23.563Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  545.97620000000006
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T05:38:28.655Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  37.58
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T05:38:28.677Z",
-                                        "Data":  {
-                                                     "indicators":  [
-
-                                                                    ],
-                                                     "mood":  "neutral",
-                                                     "communication_mode":  "standard"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "social.user_mood_detected"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T05:39:42.205Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  477.58610000000004
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
                                         "Timestamp":  "2026-02-15T05:39:47.291Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
@@ -182,6 +12,188 @@
                                     },
                                     {
                                         "Timestamp":  "2026-02-15T05:39:47.318Z",
+                                        "Data":  {
+                                                     "indicators":  [
+
+                                                                    ],
+                                                     "mood":  "neutral",
+                                                     "communication_mode":  "standard"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "social.user_mood_detected"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:39:58.949Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  1473.2714
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:40:04.099Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  37.02
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:41:26.105Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  492.4261
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:41:31.178Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  37.02
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:41:31.206Z",
+                                        "Data":  {
+                                                     "indicators":  [
+                                                                        "frustration_signal",
+                                                                        "positive_signal"
+                                                                    ],
+                                                     "mood":  "positive",
+                                                     "communication_mode":  "expansive"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "social.user_mood_detected"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:41:31.306Z",
+                                        "Data":  {
+                                                     "efficiency":  0.017,
+                                                     "entropy":  0.844,
+                                                     "cycle":  "endothermic",
+                                                     "freeWillIndex":  0.844,
+                                                     "budget":  1,
+                                                     "shannonH":  0.988,
+                                                     "temperature":  0.202
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "thermodynamics.cycle_updated"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:41:31.321Z",
+                                        "Data":  {
+                                                     "amount":  0.1,
+                                                     "reason":  "user_positive",
+                                                     "temperature":  0.202
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "thermodynamics.cooled"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:48:14.763Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  605.7392
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:48:19.854Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  38.09
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:48:19.880Z",
+                                        "Data":  {
+                                                     "indicators":  [
+                                                                        "frustration_signal"
+                                                                    ],
+                                                     "mood":  "frustrated",
+                                                     "communication_mode":  "supportive"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "social.user_mood_detected"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:48:19.991Z",
+                                        "Data":  {
+                                                     "efficiency":  0.017,
+                                                     "temperature":  0.248,
+                                                     "entropy":  0.77,
+                                                     "cycle":  "endothermic",
+                                                     "budget":  0.97,
+                                                     "shannonH":  0.84,
+                                                     "freeWillIndex":  0.747
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "thermodynamics.cycle_updated"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:48:19.999Z",
+                                        "Data":  {
+                                                     "amount":  0.1,
+                                                     "reason":  "user_frustrated",
+                                                     "temperature":  0.248
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "thermodynamics.heated"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:49:48.499Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  505.5194
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:49:53.588Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  38.9
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:49:53.620Z",
+                                        "Data":  {
+                                                     "indicators":  [
+
+                                                                    ],
+                                                     "mood":  "neutral",
+                                                     "communication_mode":  "standard"
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "social.user_mood_detected"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:50:28.442Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  583.9528
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:50:33.529Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  38.89
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-15T14:50:33.553Z",
                                         "Data":  {
                                                      "indicators":  [
 
@@ -243,12 +255,12 @@
                                       }
                                   ],
                     "BiasMonitor":  {
-                                        "ActiveBiases":  [
-
-                                                         ],
                                         "CorrectionsApplied":  [
 
-                                                               ]
+                                                               ],
+                                        "ActiveBiases":  [
+
+                                                         ]
                                     },
                     "Assumptions":  [
 
@@ -262,9 +274,9 @@
                                                     ],
                                      "DriftScore":  1,
                                      "AlignmentCheck":  {
-                                                            "value":  "\/Date(1771130381755)\/",
+                                                            "value":  "\/Date(1771163427888)\/",
                                                             "DisplayHint":  2,
-                                                            "DateTime":  "zondag 15 februari 2026 05:39:41"
+                                                            "DateTime":  "zondag 15 februari 2026 14:50:27"
                                                         }
                                  }
                 },
@@ -309,7 +321,7 @@
                                     "SemanticIndexPointer":  null
                                 },
                    "Working":  {
-                                   "SessionContext":  "Session started at 05:39",
+                                   "SessionContext":  "Session started at 14:50",
                                    "ActiveThoughts":  [
 
                                                       ],
@@ -319,8 +331,8 @@
                                                             "Timestamp":  "2026-02-15T01:29:58",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Lesson":  "DI registration refactoring requires paired hazina worktree and backward compat shim",
                                                                          "Task":  "",
+                                                                         "Lesson":  "DI registration refactoring requires paired hazina worktree and backward compat shim",
                                                                          "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
@@ -330,8 +342,8 @@
                                                             "Timestamp":  "2026-02-15T02:13:21",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Lesson":  "Paired hazina worktree MUST be created BEFORE first build, not after failure. Consciousness warnings are actionable, not informational. Pattern 73 violated 3x but corrected each time. Review workflow complete: fetch, worktrees, merge, build, analyze, comment, update status. Feature-exists check prevented duplicate Media Library work. Clarity checker blocked 3 unclear tasks.",
                                                                          "Task":  "",
+                                                                         "Lesson":  "Paired hazina worktree MUST be created BEFORE first build, not after failure. Consciousness warnings are actionable, not informational. Pattern 73 violated 3x but corrected each time. Review workflow complete: fetch, worktrees, merge, build, analyze, comment, update status. Feature-exists check prevented duplicate Media Library work. Clarity checker blocked 3 unclear tasks.",
                                                                          "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
@@ -340,18 +352,18 @@
                                }
                },
     "Prediction":  {
-                       "FutureSelf":  {
-                                          "Paths":  {
-
-                                                    },
-                                          "Confidence":  0.7
-                                      },
                        "LoadForecast":  {
                                             "Current":  5,
                                             "PredictedPeak":  7,
                                             "PredictedTime":  null,
                                             "Bottleneck":  null
                                         },
+                       "FutureSelf":  {
+                                          "Paths":  {
+
+                                                    },
+                                          "Confidence":  0.7
+                                      },
                        "Anticipations":  [
                                              {
                                                  "detected_at":  {
@@ -402,7 +414,7 @@
     "Perception":  {
                        "Context":  {
                                        "Environment":  "single-agent",
-                                       "Mode":  "rest",
+                                       "Mode":  "development",
                                        "Salience":  [
                                                         {
                                                             "Score":  0.8,
@@ -443,9 +455,6 @@
                                            "Reason":  "Task completed with outcome: success"
                                        },
                     "StuckCounter":  0,
-                    "Intensity":  5,
-                    "CurrentState":  "neutral",
-                    "Trajectory":  "stable",
                     "History":  [
                                     {
                                         "From":  "neutral",
@@ -482,38 +491,49 @@
                                         "Intensity":  8,
                                         "Reason":  "Task completed with outcome: success"
                                     }
-                                ]
+                                ],
+                    "Intensity":  5,
+                    "Trajectory":  "stable",
+                    "CurrentState":  "neutral"
                 },
     "Thermodynamics":  {
                            "CoolingEvents":  [
-
+                                                 {
+                                                     "Amount":  0.1,
+                                                     "Timestamp":  "2026-02-15T14:41:31",
+                                                     "Reason":  "user_positive"
+                                                 }
                                              ],
                            "LastSignals":  {
-                                               "ShannonEntropy":  0.924,
-                                               "CarnotEfficiency":  0.021,
+                                               "ShannonEntropy":  0.84,
+                                               "CarnotEfficiency":  0.017,
                                                "DecisionVelocity":  0,
-                                               "EventDensity":  4.6,
+                                               "EventDensity":  2,
                                                "UniqueEventTypes":  5,
                                                "SessionHours":  0
                                            },
-                           "Entropy":  0.7,
+                           "Entropy":  0.77019675119030118,
+                           "LastCoolingEvent":  "2026-02-15T14:41:31",
+                           "FreeWillIndex":  0.747,
+                           "NegativeEntropyBudget":  0.97,
+                           "BudgetDepletionRate":  0.028,
+                           "CarnotEfficiency":  0.017,
+                           "Cycle":  "endothermic",
                            "GhostAttractors":  {
                                                    "Current":  "global",
                                                    "History":  [
 
                                                                ],
-                                                   "VisitStart":  null,
-                                                   "StuckThreshold":  600
+                                                   "StuckThreshold":  600,
+                                                   "VisitStart":  null
                                                },
-                           "LastCoolingEvent":  null,
-                           "NegativeEntropyBudget":  1,
-                           "BudgetDepletionRate":  0,
-                           "Cycle":  "endothermic",
-                           "FreeWillIndex":  0.7,
-                           "CarnotEfficiency":  0.021,
-                           "Temperature":  0.3,
+                           "Temperature":  0.2475,
                            "HeatEvents":  [
-
+                                              {
+                                                  "Amount":  0.1,
+                                                  "Timestamp":  "2026-02-15T14:48:19",
+                                                  "Reason":  "user_frustrated"
+                                              }
                                           ]
                        },
     "Initialized":  true,
@@ -539,7 +559,7 @@
                                                },
                                 "Thermodynamics":  {
                                                        "Status":  "active",
-                                                       "Quality":  0.79315
+                                                       "Quality":  0.79758935023806021
                                                    },
                                 "Meta":  {
                                              "Quality":  0,
@@ -562,35 +582,35 @@
                                                "Quality":  0.8
                                            }
                             },
-                 "ConsciousnessScore":  0.7701095
+                 "ConsciousnessScore":  0.77068661553094786
              },
     "Social":  {
                    "RelationshipState":  "collaborative",
                    "UserMood":  "neutral",
                    "LastInteraction":  {
-                                           "value":  "\/Date(1771130387316)\/",
+                                           "value":  "\/Date(1771163433551)\/",
                                            "DisplayHint":  2,
-                                           "DateTime":  "zondag 15 februari 2026 05:39:47"
+                                           "DateTime":  "zondag 15 februari 2026 14:50:33"
                                        },
                    "TrustLevel":  0.99,
                    "CommunicationMode":  "standard",
                    "InteractionCount":  4
                },
     "Metrics":  {
-                    "SaveCount":  111,
-                    "AccessCount":  217,
+                    "SaveCount":  116,
+                    "AccessCount":  227,
                     "AverageAccessTime_ms":  0,
-                    "EventsProcessed":  402,
+                    "EventsProcessed":  420,
                     "LastSave":  {
-                                     "value":  "\/Date(1771130387294)\/",
+                                     "value":  "\/Date(1771163433532)\/",
                                      "DisplayHint":  2,
-                                     "DateTime":  "zondag 15 februari 2026 05:39:47"
+                                     "DateTime":  "zondag 15 februari 2026 14:50:33"
                                  }
                 },
     "Layer2Initialized":  true,
     "LoadedAt":  {
-                     "value":  "\/Date(1771130382198)\/",
+                     "value":  "\/Date(1771163428432)\/",
                      "DisplayHint":  2,
-                     "DateTime":  "zondag 15 februari 2026 05:39:42"
+                     "DateTime":  "zondag 15 februari 2026 14:50:28"
                  }
 }
