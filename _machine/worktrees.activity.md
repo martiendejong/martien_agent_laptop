@@ -1,3 +1,9 @@
+## 2026-02-15T18:15:00Z - Release: agent-003
+- Repo: client-manager
+- Branch: feature/869c3q8tc-calendar-drag-drop-reschedule (+ 2 others via git checkout)
+- PRs: #574 (Content Calendar), #575 (DALL-E), #573 (Unified Post Generator)
+- Outcome: Reviewed 3 PRs, all merged into develop, ClickUp tasks updated to testing status
+
 ## 2026-02-15T17:42:00Z - Release: agent-001
 - Repo: client-manager
 - Branch: feature/869c1dnww-publishing-provider
