@@ -1,3 +1,10 @@
+## 2026-02-15T17:42:00Z - Release: agent-001
+- Repo: client-manager
+- Branch: feature/869c1dnww-publishing-provider
+- PR: #555
+- Outcome: WordPress Publishing Provider MVP - Complete backend provider infrastructure, media upload APIs, and frontend publish button
+- Note: Worktree directory locked during cleanup, manual rm needed later
+
 ## 2026-02-14T02:08:00Z - Release: agent-003
 - Repo: client-manager
 - Branch: feature/869c3q8pu-remove-deprecated-code
