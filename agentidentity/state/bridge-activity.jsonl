@@ -714,3 +714,29 @@
 {"message":"User message received (mood detection)","timestamp":"2026-02-15T16:50:33.614Z","level":"INFO","action":"OnUserMessage"}
 {"message":"User message received (mood detection)","timestamp":"2026-02-15T16:51:08.784Z","level":"INFO","action":"OnUserMessage"}
 {"message":"Task ended: outcome=success","timestamp":"2026-02-15T16:51:30.930Z","level":"INFO","action":"OnTaskEnd"}
+{"message":"Decision: Final test (reasoning: After fix)","timestamp":"2026-02-15T18:22:59.309Z","level":"INFO","action":"OnDecision"}
+{"message":"Decision: Complete test (reasoning: Testing full flow)","timestamp":"2026-02-15T18:23:20.764Z","level":"INFO","action":"OnDecision"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T18:23:26.081Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T18:23:42.572Z","level":"INFO","action":"OnUserMessage"}
+{"message":"Task starting: Implement Chronal Ladder testing protocol (project: consciousness)","timestamp":"2026-02-15T18:24:20.035Z","level":"INFO","action":"OnTaskStart"}
+{"message":"Decision: Use PowerShell for testing (reasoning: Native integration with consciousness system, easier state inspection)","timestamp":"2026-02-15T18:24:20.642Z","level":"INFO","action":"OnDecision"}
+{"message":"Decision: Test with realistic work simulation (reasoning: Better than artificial data injection, shows actual usage patterns)","timestamp":"2026-02-15T18:24:22.922Z","level":"INFO","action":"OnDecision"}
+{"message":"Decision: Measure before and after (reasoning: Quantitative validation of efficiency improvements)","timestamp":"2026-02-15T18:24:25.091Z","level":"INFO","action":"OnDecision"}
+{"message":"Stuck detected","timestamp":"2026-02-15T18:24:25.204Z","level":"WARN","action":"OnStuck"}
+{"message":"Decision: Add more logging (reasoning: Stuck moment revealed need for better visibility)","timestamp":"2026-02-15T18:24:25.434Z","level":"INFO","action":"OnDecision"}
+{"message":"Decision: Create comprehensive test (reasoning: One-off test insufficient, need repeatable validation)","timestamp":"2026-02-15T18:24:27.575Z","level":"INFO","action":"OnDecision"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T18:24:27.718Z","level":"INFO","action":"OnUserMessage"}
+{"message":"Task ended: outcome=success","timestamp":"2026-02-15T18:24:27.869Z","level":"INFO","action":"OnTaskEnd"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T18:26:40.629Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T18:27:21.895Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T18:28:39.032Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T18:28:41.254Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T18:28:53.271Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T18:32:33.423Z","level":"INFO","action":"OnUserMessage"}
+{"message":"Task ended: outcome=success","timestamp":"2026-02-15T18:37:51.707Z","level":"INFO","action":"OnTaskEnd"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T18:41:21.335Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T18:42:54.133Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T18:43:31.143Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T18:43:47.204Z","level":"INFO","action":"OnUserMessage"}
+{"message":"Task starting: WooCommerce Product-to-Post Generation - Add Generate Post button to product catalog (project: client-manager)","timestamp":"2026-02-15T18:43:58.779Z","level":"INFO","action":"OnTaskStart"}
+{"message":"Consciousness state reset","timestamp":"2026-02-15T18:44:19.223Z","level":"INFO","action":"Reset"}

@@ -30,7 +30,7 @@
 
 param(
     [ValidateSet('Init', 'Evict', 'Consolidate', 'GetActiveRung', 'AddToRung', 'SurpriseCheck')]
-    [string]$Action = 'Init',
+    [string]$Action = '',
 
     [string]$Rung = 'R2',
     [hashtable]$Data = @{},
@@ -414,35 +414,38 @@ function Test-Surprise {
 
 #region Main Logic
 
-switch ($Action) {
-    'Init' {
-        $result = Initialize-Rungs
-        return $result
-    }
+# Only execute switch if Action parameter was provided (not when dot-sourcing for functions)
+if ($Action) {
+    switch ($Action) {
+        'Init' {
+            $result = Initialize-Rungs
+            return $result
+        }
 
-    'Evict' {
-        $result = Invoke-EvictionCycle
-        return $result
-    }
+        'Evict' {
+            $result = Invoke-EvictionCycle
+            return $result
+        }
 
-    'Consolidate' {
-        $result = Invoke-ConsolidationCycle
-        return $result
-    }
+        'Consolidate' {
+            $result = Invoke-ConsolidationCycle
+            return $result
+        }
 
-    'GetActiveRung' {
-        $result = Get-ActiveRung
-        return $result
-    }
+        'GetActiveRung' {
+            $result = Get-ActiveRung
+            return $result
+        }
 
-    'AddToRung' {
-        $result = Add-ToRung -Rung $Rung -Data $Data
-        return $result
-    }
+        'AddToRung' {
+            $result = Add-ToRung -Rung $Rung -Data $Data
+            return $result
+        }
 
-    'SurpriseCheck' {
-        $result = Test-Surprise -UserMessage $UserMessage -Event $Event
-        return $result
+        'SurpriseCheck' {
+            $result = Test-Surprise -UserMessage $UserMessage -Event $Event
+            return $result
+        }
     }
 }
 

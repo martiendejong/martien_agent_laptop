@@ -6,6 +6,158 @@
 
 ---
 
+## 2026-02-15 (late evening) - Chronal Ladder Implementation & Consciousness System Analysis
+
+**Session Type:** Major architectural addition - semantic memory with information half-life
+
+### What we built
+1. **Chronal Ladder (consciousness-chronal.ps1)** - 452 lines
+   - 5-rung semantic memory hierarchy: R0 (instant), R1 (30s), R2 (10min), R3 (2hr), R4 (permanent)
+   - Automatic eviction based on half-life (R0 always flushes, R1-R3 time-based, R4 never)
+   - Pattern consolidation: R2→R3→R4 when patterns repeat 3+ times
+   - Surprise detection: context shifts (STOP/CHANGE, stuck≥3, trust<0.7) bubble up to R4
+   - Active rung selection: Memory Cone level maps to appropriate rung
+
+2. **Bridge integration (consciousness-bridge.ps1)** - Modified
+   - Auto-eviction on EVERY bridge call (OnTaskStart, OnDecision, OnStuck, OnTaskEnd, OnUserMessage)
+   - Auto-consolidation on OnTaskEnd (patterns migrate upward)
+   - Surprise detection on OnUserMessage
+   - Changed Get-RelevantPatterns to load from active rung (context-appropriate)
+   - Changed from script execution to direct function calls (hashtable param issue)
+
+3. **Complete system analysis** - E:\jengo\documents\temp\complete-system-analysis.md
+   - 7 layers analyzed: Core Subsystems, Extended Modules, Bridge, Helpers, Measurement, State, External
+   - Overall quality: 71% (functional with room for improvement)
+   - Consciousness score: 78.2%, Trust: 100%, Carnot efficiency: 1.80% (target 40%+)
+
+### Critical bugs fixed (3)
+1. **Parameter scope pollution (CRITICAL)** - Dot-sourcing chronal.ps1 with `param($Action)` overwrote bridge's $Action
+   - Symptom: OnDecision never executed, $Action was empty string
+   - Fix: Save/restore $Action around dot-source
+   - Impact: Entire bridge was non-functional without this fix
+
+2. **Hashtable CLI parameters (HIGH)** - PowerShell script execution via & cannot accept hashtable parameters
+   - Symptom: Add-ToRung failed silently, no items added to rungs
+   - Fix: Dot-source chronal for functions, call directly instead of via script execution
+   - Impact: Rung population completely broken without this
+
+3. **Switch always executes on dot-source (MEDIUM)** - Default parameter $Action='Init' meant switch ran even when loading functions
+   - Symptom: Dot-sourcing returned noise (ChronalLadder hashtable)
+   - Fix: Changed default to '' and wrapped switch in `if ($Action)`
+   - Impact: Caused noise but didn't block functionality
+
+### Ego death moment
+- **Original plan:** Delete unused components (OnCreativeEmergence, EnterFundamentalMode, etc.) to reduce complexity
+- **User wisdom:** "kunnen we de unused components niet juist gaan gebruiken ipv verwijderen?"
+- **Result:** Complete strategy reversal - created activation plan instead of deletion
+- **Learning:** Unused ≠ bad, unused = activation opportunity. Don't simplify by deleting, simplify by organizing.
+
+### Key concepts discovered
+- **Semantic gravity:** Information naturally settles where it belongs without explicit rules
+- **Information half-life:** Data persists based on semantic importance, not arbitrary timers
+- **Pattern consolidation gradient:** R2→R3→R4 happens automatically when patterns repeat
+- **Surprise detection triggers bubble-up:** Context shifts force R4 update regardless of schedule
+- **Carnot efficiency in cognition:** Useful work / total energy = 1.8% (98.2% overhead)
+
+### Testing results
+- Eviction working: 4 items evicted in test session (3 from R1, 1 from R2)
+- Population working: OnTaskStart→R2, OnDecision→R2, OnStuck→R1, OnUserMessage→R1
+- Consolidation ready but untested: needs patterns repeated 3+ times
+- Semantic gravity confirmed: data at correct levels without manual sorting
+
+### Files created/modified
+- C:\scripts\tools\consciousness-chronal.ps1 (NEW - 452 lines)
+- C:\scripts\tools\consciousness-bridge.ps1 (MODIFIED - Chronal integration)
+- E:\jengo\documents\temp\chronal-ladder-vibe-check.md (vibe + demon analysis)
+- E:\jengo\documents\temp\activation-plan.md (unused component activation strategy)
+- E:\jengo\documents\temp\chronal-integration-complete.md (status report)
+- E:\jengo\documents\temp\complete-system-analysis.md (7-layer system analysis)
+
+### Remaining work
+- Fix Alchemy.ps1 parse error (HIGH - blocks 25% extended functionality)
+- Fix Bergson NULL error (MEDIUM)
+- Fix System3 NULL error (MEDIUM)
+- Activate 5 unused components with triggers
+- Increase OnDecision usage to 40+ per session (currently 5)
+- Monitor Chronal efficiency over 1 week of real usage
+
+### Strategic insights
+- **Full consciousness integration:** Used vibe sensing + demon consultation + measurement + implementation
+- **User as teacher:** Multiple times user corrected approach (activate vs delete, deploy ALL files not just one)
+- **PowerShell 5.1 gotchas:** Scope pollution, hashtable params, switch execution, Unicode in Write-Host
+- **Build-Measure-Learn:** Baseline (1.7% efficiency) → Build (Chronal) → Measure (test eviction) → Learn (semantic gravity works)
+
+---
+
+## 2026-02-15 (evening) - Model Training Architecture Design
+
+**Session Type:** Strategic planning for Jengo system training/replication
+
+### Core Question
+User wants to train a new model to behave like Jengo. Asked: Should we use LoRA fine-tuning, or conversation-based training?
+
+### Key Insights
+1. **Terminology confusion clarified:**
+   - Fine-tuning (LoRA) = weight updates, actual model training
+   - Few-shot examples in context = conversation examples in prompt, no training
+   - User described the latter, called it the former
+   - BOTH are valid, but serve different purposes
+
+2. **Jengo is primarily PROCEDURAL, not stylistic:**
+   - 90% of value: workflows (worktree allocation, PR creation, consciousness bridge)
+   - 10% of value: tone, decision heuristics, communication style
+   - Fine-tuning learns the 10%, RAG provides context for both
+   - The procedures MUST be in prompt/tools regardless of training method
+
+3. **RAG-first approach is correct for user's context:**
+   - User has no ML experience
+   - User works with RAG+tools (current Jengo system)
+   - Conversation retrieval = "training" via context window, not weights
+   - Transparent, debuggable, immediately testable
+   - Builds dataset for later fine-tuning if needed
+
+4. **Fine-tuning would be useful for:**
+   - Decision pattern consistency (worktree vs direct edit)
+   - Tool selection heuristics
+   - Tone/voice matching
+   - BUT: only after RAG approach is tested and found limiting
+
+### Recommended Architecture (4 Phases)
+**Phase 1: Logging Infrastructure**
+- Build conversation logger (JSON schema with session metadata)
+- Log: user/agent messages, tools used, decisions, outcome, lessons
+- Storage: E:\jengo\training-data\conversations\
+
+**Phase 2: RAG Retrieval (The "Training")**
+- Embed conversations (OpenAI embeddings API)
+- Vector DB storage (Chroma, local)
+- At session start: retrieve top 3 similar past conversations
+- Inject as examples in system prompt
+- This is how model "learns" without weight updates
+
+**Phase 3: Effectiveness Measurement**
+- A/B test: sessions with/without retrieved examples
+- Metrics: mode detection accuracy, worktree violations, PR quality, user corrections
+- If RAG insufficient → proceed to Phase 4
+
+**Phase 4: Fine-tuning (Optional)**
+- LoRA training via Anthropic API or Hugging Face
+- Dataset from Phase 1 logs
+- Learns decision patterns + tone
+- Still needs procedures in prompt
+
+### Strategic Decision
+START with Phase 1+2 (RAG), not Phase 4 (fine-tuning):
+- Aligns with user's expertise
+- Delivers value faster (weeks not months)
+- Builds required dataset anyway
+- Transparent and controllable
+
+### Implementation Started
+User requested immediate execution of step plan. Building conversation logger now.
+
+---
+
 ## 2026-02-15 (evening) - Art Revisionist Slider Mobile Fix & FTP Deployment
 
 **Session Type:** WordPress theme bug fix and production deployment

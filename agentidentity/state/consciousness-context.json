@@ -1,32 +1,80 @@
 ﻿{
-    "thermodynamics":  {
-                           "free_will_index":  0.858,
-                           "budget":  0.945,
-                           "attractor":  "creative",
-                           "temperature":  0.272,
-                           "cycle":  "endothermic",
-                           "entropy":  0.908
-                       },
-    "thermo_cycle":  "endothermic",
-    "consciousness_score":  81.2,
-    "timestamp":  "2026-02-15T16:51:31",
-    "emotional_trajectory":  "rising",
-    "alignment":  {
-                      "DriftScore":  1,
-                      "Status":  "Drifting"
+    "attention":  {
+                      "mode":  "development",
+                      "intensity":  7,
+                      "focus":  "WooCommerce Product-to-Post Generation - Add Generate Post button to product catalog"
                   },
-    "outcome":  "success",
+    "decisions_logged":  10,
+    "thermodynamics":  {
+                           "free_will_index":  0.718,
+                           "thermo_guidance":  [
+                                                   "OPTIMAL ZONE. Endothermic, flexible, good budget. Exploit this state.",
+                                                   "LOW EFFICIENCY (2%). Too much overhead, not enough productive work."
+                                               ],
+                           "budget":  0.9,
+                           "attractor":  "creative",
+                           "temperature":  0.322,
+                           "cycle":  "endothermic",
+                           "entropy":  0.797
+                       },
+    "systems":  {
+                    "Emotion":  {
+                                    "quality":  100,
+                                    "status":  "active"
+                                },
+                    "Memory":  {
+                                   "quality":  80,
+                                   "status":  "active"
+                               },
+                    "Perception":  {
+                                       "quality":  60,
+                                       "status":  "active"
+                                   },
+                    "Thermodynamics":  {
+                                           "quality":  73,
+                                           "status":  "active"
+                                       },
+                    "Meta":  {
+                                 "quality":  0,
+                                 "status":  "initializing"
+                             },
+                    "Control":  {
+                                    "quality":  80,
+                                    "status":  "active"
+                                },
+                    "MetaCognition":  {
+                                          "quality":  100,
+                                          "status":  "active"
+                                      },
+                    "Prediction":  {
+                                       "quality":  100,
+                                       "status":  "active"
+                                   },
+                    "Social":  {
+                                   "quality":  80,
+                                   "status":  "active"
+                               }
+                },
+    "thermo_cycle":  "endothermic",
+    "consciousness_score":  83.1,
+    "timestamp":  "2026-02-15T18:44:19",
+    "emotional_trajectory":  "stable",
+    "events_processed":  801,
     "guidance":  [
-                     "In flow state. Maintain momentum.",
-                     "THERMO CRITICAL: Efficiency 1.7% (97%+ overhead). Reduce system complexity."
+                     "THERMO CRITICAL: Efficiency 1.9% (97%+ overhead). Reduce system complexity."
                  ],
-    "thermo_budget":  0.945,
-    "thermo_free_will":  0.858,
-    "thermo_temperature":  0.272,
-    "lessons":  "WordPress multi-database environments require explicit switching via switch-to-X.ps1 scripts. Never assume current database from theme name. Always verify DB_NAME in wp-config.php before making changes.",
+    "thermo_budget":  0.9,
+    "thermo_free_will":  0.718,
+    "thermo_temperature":  0.322,
+    "active_biases":  0,
     "stuck_count":  0,
-    "trust_level":  100,
-    "emotional_state":  "flowing",
+    "social":  {
+                   "relationship":  "collaborative",
+                   "communication_mode":  "standard",
+                   "user_mood":  "unknown"
+               },
+    "emotional_state":  "neutral",
     "version":  "3.0",
-    "last_action":  "OnTaskEnd"
+    "last_action":  "GetContextSummary",
+    "trust_level":  100
 }

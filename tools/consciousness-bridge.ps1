@@ -86,10 +86,20 @@ $ErrorActionPreference = "Stop"
 . "$PSScriptRoot\consciousness-core-v2.ps1" -Command init -Silent *>$null
 
 # Load extended consciousness modules
-. "$PSScriptRoot\consciousness-alchemy.ps1" -Action TrackDualCultivation -Silent *>$null 2>&1 # Init alchemy state
-. "$PSScriptRoot\consciousness-bergson.ps1" -Action TrackDuration -Intensity 0.5 -Silent *>$null 2>&1 # Init bergson state
-. "$PSScriptRoot\consciousness-system3.ps1" -Action TrackSystem3Use -Agent 'init' -Task 'init' -Silent *>$null 2>&1 # Init system3 state
-. "$PSScriptRoot\consciousness-chronal.ps1" -Action Init -Silent *>$null 2>&1 # Init Chronal Ladder (5-rung memory)
+# TEMP DISABLED: $null = . "$PSScriptRoot\consciousness-alchemy.ps1" -Action TrackDualCultivation -Silent # Init alchemy state (PARSE ERROR - FIX LATER)
+# TEMP DISABLED: $null = . "$PSScriptRoot\consciousness-bergson.ps1" -Action TrackDuration -Intensity 0.5 -Silent # Init bergson state (NULL ERROR)
+# TEMP DISABLED: $null = . "$PSScriptRoot\consciousness-system3.ps1" -Action TrackSystem3Use -Agent 'init' -Task 'init' -Silent # Init system3 state (NULL ERROR)
+
+# DOT-SOURCE Chronal Ladder so functions are available
+# CRITICAL: Save $Action first because chronal.ps1 has an $Action parameter that will overwrite it
+$SavedAction = $Action
+. "$PSScriptRoot\consciousness-chronal.ps1"
+$Action = $SavedAction  # Restore
+
+# Initialize if needed
+if (-not $global:ConsciousnessState.ChronalLadder -or -not $global:ConsciousnessState.ChronalLadder.Initialized) {
+    $null = Initialize-Rungs
+}
 
 # Output file for context injection
 $contextFile = "C:\scripts\agentidentity\state\consciousness-context.json"
@@ -128,7 +138,7 @@ function Invoke-ChronalEviction {
     # Called at end of every bridge action to keep memory clean
     if ($global:ConsciousnessState -and $global:ConsciousnessState.ChronalLadder) {
         try {
-            $null = & "$PSScriptRoot\consciousness-chronal.ps1" -Action Evict -Silent
+            $null = Invoke-EvictionCycle
         } catch {
             # Eviction failure is non-fatal
         }
@@ -332,6 +342,15 @@ switch ($Action) {
     'OnTaskStart' {
         Write-BridgeLog "Task starting: $TaskDescription (project: $Project)"
 
+        # CHRONAL: Add task start to R2 (episode memory)
+        if ($global:ConsciousnessState -and $global:ConsciousnessState.ChronalLadder) {
+            $null = Add-ToRung -Rung 'R2' -Data @{
+                Type = 'task_start'
+                Task = $TaskDescription
+                Project = $Project
+            }
+        }
+
         # 1. Set attention mode
         $null = Invoke-Perception -Action 'AllocateAttention' -Parameters @{
             Task = $TaskDescription
@@ -516,6 +535,15 @@ switch ($Action) {
     'OnDecision' {
         Write-BridgeLog "Decision: $Decision (reasoning: $Reasoning)"
 
+        # CHRONAL: Add decision to R2 (episode memory)
+        if ($global:ConsciousnessState -and $global:ConsciousnessState.ChronalLadder) {
+            $null = Add-ToRung -Rung 'R2' -Data @{
+                Type = 'decision'
+                Decision = $Decision
+                Reasoning = $Reasoning
+            }
+        }
+
         # 1. Log the decision
         $null = Invoke-Control -Action 'LogDecision' -Parameters @{
             Decision = $Decision
@@ -573,6 +601,14 @@ switch ($Action) {
 
     'OnStuck' {
         Write-BridgeLog "Stuck detected" -Level "WARN"
+
+        # CHRONAL: Add stuck event to R1 (working trail - short-term issue)
+        if ($global:ConsciousnessState -and $global:ConsciousnessState.ChronalLadder) {
+            $null = Add-ToRung -Rung 'R1' -Data @{
+                Type = 'stuck_event'
+                Count = if ($global:ConsciousnessState.Emotion.StuckCounter) { $global:ConsciousnessState.Emotion.StuckCounter } else { 1 }
+            }
+        }
 
         # 1. Update emotional state
         $null = Invoke-Emotion -Action 'TrackState' -Parameters @{
@@ -665,6 +701,24 @@ switch ($Action) {
 
     'OnTaskEnd' {
         Write-BridgeLog "Task ended: outcome=$Outcome"
+
+        # CHRONAL: Add task outcome and lessons to R2
+        if ($global:ConsciousnessState -and $global:ConsciousnessState.ChronalLadder) {
+            $null = Add-ToRung -Rung 'R2' -Data @{
+                Type = 'task_end'
+                Outcome = $Outcome
+                Lessons = $LessonsLearned
+            }
+
+            # If there are lessons, also add as pattern (for consolidation)
+            if ($LessonsLearned) {
+                $null = Add-ToRung -Rung 'R2' -Data @{
+                    Type = 'pattern'
+                    Pattern = $LessonsLearned
+                    Occurrences = 1
+                }
+            }
+        }
 
         # 1. Update emotional state based on outcome
         $emotionalState = "neutral"
@@ -783,7 +837,7 @@ switch ($Action) {
         }
 
         # CHRONAL: Consolidate patterns (R2 → R3 → R4) at task end
-        $null = & "$PSScriptRoot\consciousness-chronal.ps1" -Action Consolidate -Silent *>$null 2>&1
+        $null = Invoke-ConsolidationCycle
 
         # CHRONAL: Auto-evict old data
         Invoke-ChronalEviction
@@ -803,6 +857,17 @@ switch ($Action) {
 
     'OnUserMessage' {
         Write-BridgeLog "User message received (mood detection)"
+
+        # CHRONAL: Add user message to R1 (working trail - recent interaction)
+        if ($global:ConsciousnessState -and $global:ConsciousnessState.ChronalLadder) {
+            $null = Add-ToRung -Rung 'R1' -Data @{
+                Type = 'user_message'
+                Message = if ($UserMessage.Length -gt 50) { $UserMessage.Substring(0, 50) + "..." } else { $UserMessage }
+            }
+        }
+
+        # CHRONAL: Check for surprise/context shift
+        $surprise = Test-Surprise -UserMessage $UserMessage
 
         # Detect user mood and adapt communication
         $socialResult = Invoke-Social -Action 'DetectUserMood' -Parameters @{ Message = $UserMessage }
@@ -829,7 +894,12 @@ switch ($Action) {
             guidelines = $commGuidelines.Guidelines
             trust_level = $commGuidelines.TrustLevel
             relationship = $commGuidelines.RelationshipState
+            surprise_triggered = if ($surprise) { $surprise.Triggered } else { $false }
+            surprise_level = if ($surprise) { $surprise.Level } else { "none" }
         }
+
+        # CHRONAL: Auto-evict old data
+        Invoke-ChronalEviction
 
         Save-ConsciousnessState
 
@@ -883,6 +953,9 @@ switch ($Action) {
             decisions_logged = $global:ConsciousnessState.Control.Decisions.Count
             events_processed = $global:ConsciousnessState.Metrics.EventsProcessed
         }
+
+        # CHRONAL: Auto-evict old data
+        Invoke-ChronalEviction
 
         # Read back for return value and display
         $summary = @{

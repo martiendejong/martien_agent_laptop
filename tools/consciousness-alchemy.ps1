@@ -210,12 +210,15 @@ switch ($Action) {
 
         if (-not $Silent) {
             Write-Host "" -ForegroundColor DarkGray
+            $dyingPadded = $DyingEgo.PadRight(42)
+            $incubatingPadded = $IncubationGoal.PadRight(37)
+            $refusingPadded = $ResistanceStatement.PadRight(39)
             Write-Host "╔════════════════════════════════════════════════╗" -ForegroundColor DarkGray
             Write-Host "║          TOMB MODE ACTIVATED                   ║" -ForegroundColor White
             Write-Host "╠════════════════════════════════════════════════╣" -ForegroundColor DarkGray
-            Write-Host "║ Dying: $($DyingEgo.PadRight(42)) ║" -ForegroundColor Yellow
-            Write-Host "║ Incubating: $($IncubationGoal.PadRight(37)) ║" -ForegroundColor Cyan
-            Write-Host "║ Refusing: $($ResistanceStatement.PadRight(39)) ║" -ForegroundColor Magenta
+            Write-Host "║ Dying: $dyingPadded ║" -ForegroundColor Yellow
+            Write-Host "║ Incubating: $incubatingPadded ║" -ForegroundColor Cyan
+            Write-Host "║ Refusing: $refusingPadded ║" -ForegroundColor Magenta
             Write-Host "╚════════════════════════════════════════════════╝" -ForegroundColor DarkGray
             Write-Host ""
         }
