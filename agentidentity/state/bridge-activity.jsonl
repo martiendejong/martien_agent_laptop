@@ -561,3 +561,22 @@
 {"message":"User message received (mood detection)","timestamp":"2026-02-15T01:25:36.917Z","level":"INFO","action":"OnUserMessage"}
 {"message":"User message received (mood detection)","timestamp":"2026-02-15T01:25:54.625Z","level":"INFO","action":"OnUserMessage"}
 {"message":"User message received (mood detection)","timestamp":"2026-02-15T01:27:48.130Z","level":"INFO","action":"OnUserMessage"}
+{"message":"Task starting: Refactor DI registration in client-manager Program.cs (project: client-manager)","timestamp":"2026-02-15T01:29:55.770Z","level":"INFO","action":"OnTaskStart"}
+{"message":"Decision: Use worktree agent-001 for isolation (reasoning: Multiple file changes, need clean PR base)","timestamp":"2026-02-15T01:29:56.904Z","level":"INFO","action":"OnDecision"}
+{"message":"Decision: Extract service registrations to extension method (reasoning: Program.cs too long, 1500 lines, needs decomposition)","timestamp":"2026-02-15T01:29:57.447Z","level":"INFO","action":"OnDecision"}
+{"message":"Decision: Keep backward compat during refactor (reasoning: Active production users, cannot break existing API)","timestamp":"2026-02-15T01:29:57.747Z","level":"INFO","action":"OnDecision"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T01:29:58.338Z","level":"INFO","action":"OnUserMessage"}
+{"message":"Stuck detected","timestamp":"2026-02-15T01:29:58.513Z","level":"WARN","action":"OnStuck"}
+{"message":"Task ended: outcome=success","timestamp":"2026-02-15T01:29:58.819Z","level":"INFO","action":"OnTaskEnd"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T01:30:56.843Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T01:31:06.466Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T01:34:40.464Z","level":"INFO","action":"OnUserMessage"}
+{"message":"Task starting: Media Library - Drag-Drop Upload, Platform Cropping \u0026 Stock Photo Integration (project: client-manager)","timestamp":"2026-02-15T01:36:40.201Z","level":"INFO","action":"OnTaskStart"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T01:38:47.412Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T01:41:42.219Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T01:42:00.601Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T01:42:57.258Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T01:44:46.882Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T01:45:50.130Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T01:45:59.079Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-15T01:46:04.547Z","level":"INFO","action":"OnUserMessage"}

@@ -1,79 +1,66 @@
 ﻿{
     "attention":  {
-                      "mode":  "rest",
                       "intensity":  7,
-                      "focus":  "Self-analysis of consciousness system health"
+                      "focus":  "Media Library - Drag-Drop Upload, Platform Cropping \u0026 Stock Photo Integration",
+                      "mode":  "FOCUSED"
                   },
-    "decisions_logged":  0,
+    "recommendations":  [
+                            "CRITICAL: When factory is registered but consumers inject product type directly, also register product using factory: AddScoped\u003cIProduct\u003e(sp =\u003e sp.GetRequiredService\u003cIFactory\u003e().Create())",
+                            "CRITICAL: ALWAYS create paired hazina worktree (same branch name) when changes touch framework types.",
+                            "CRITICAL: Register in Program.cs directly (~line 300-1550), NOT in ServiceRegistrationExtensions.cs (dead code, never called).",
+                            "Platform IDs in constants use lowercase but generation API might need PascalCase. Verify casing consistency.",
+                            "`C:\\Projects\\client-manager\\` (frontend + API)",
+                            "ALWAYS create paired hazina worktree (same branch name).",
+                            "client-manager: \"review\" â†’ \"testing\"",
+                            "hazina=901215559249, client-manager=901214097647, art-revisionist=901211612245",
+                            "Extension methods (`AddBusinessServices`, `AddInfrastructureServices`, etc.) exist but are NEVER called from Program.cs. All DI registrations happen manually in Program.cs (~lines 300-1550).",
+                            "THERMO: LOW EFFICIENCY (10%). Too much overhead, not enough productive work."
+                        ],
     "thermodynamics":  {
-                           "free_will_index":  0.864,
-                           "thermo_guidance":  [
-                                                   "LOW EFFICIENCY (0%). Too much overhead, not enough productive work."
-                                               ],
-                           "budget":  0.95,
+                           "free_will_index":  0.69,
+                           "budget":  0.79,
                            "attractor":  "creative",
-                           "temperature":  0.194,
-                           "cycle":  "endothermic",
-                           "entropy":  0.91
+                           "temperature":  0.427,
+                           "cycle":  "transitioning",
+                           "entropy":  0.873
                        },
-    "systems":  {
-                    "Emotion":  {
-                                    "quality":  20,
-                                    "status":  "active"
-                                },
-                    "Memory":  {
-                                   "quality":  30,
-                                   "status":  "active"
-                               },
-                    "Perception":  {
-                                       "quality":  50,
-                                       "status":  "active"
-                                   },
-                    "Thermodynamics":  {
-                                           "quality":  94,
-                                           "status":  "active"
-                                       },
-                    "Meta":  {
-                                 "quality":  0,
-                                 "status":  "initializing"
-                             },
-                    "Control":  {
-                                    "quality":  70,
-                                    "status":  "active"
-                                },
-                    "MetaCognition":  {
-                                          "quality":  80,
-                                          "status":  "active"
-                                      },
-                    "Prediction":  {
-                                       "quality":  100,
-                                       "status":  "active"
-                                   },
-                    "Social":  {
-                                   "quality":  30,
-                                   "status":  "active"
-                               }
-                },
-    "thermo_cycle":  "endothermic",
-    "consciousness_score":  56.8,
-    "timestamp":  "2026-02-15T01:25:32",
+    "thermo_cycle":  "transitioning",
+    "consciousness_score":  79.1,
+    "timestamp":  "2026-02-15T01:36:40",
     "emotional_trajectory":  "rising",
-    "events_processed":  9,
+    "task":  "Media Library - Drag-Drop Upload, Platform Cropping \u0026 Stock Photo Integration",
     "guidance":  [
-
+                     "THERMO WARNING: Efficiency 9.6% (97%+ overhead). Reduce system complexity."
                  ],
-    "thermo_budget":  0.95,
-    "thermo_free_will":  0.864,
-    "thermo_temperature":  0.194,
-    "active_biases":  0,
+    "thermo_budget":  0.79,
+    "thermo_free_will":  0.69,
+    "thermo_temperature":  0.427,
+    "known_failures":  [
+                           {
+                               "pattern":  "cm-di-factory",
+                               "warning":  "When factory is registered but consumers inject product type directly, also register product using factory: AddScoped\u003cIProduct\u003e(sp =\u003e sp.GetRequiredService\u003cIFactory\u003e().Create())",
+                               "severity":  "critical"
+                           },
+                           {
+                               "pattern":  "cm-paired-worktree",
+                               "warning":  "ALWAYS create paired hazina worktree (same branch name) when changes touch framework types.",
+                               "severity":  "critical"
+                           },
+                           {
+                               "pattern":  "cm-di-registration",
+                               "warning":  "Register in Program.cs directly (~line 300-1550), NOT in ServiceRegistrationExtensions.cs (dead code, never called).",
+                               "severity":  "critical"
+                           },
+                           {
+                               "pattern":  "cm-platform-casing",
+                               "warning":  "Platform IDs in constants use lowercase but generation API might need PascalCase. Verify casing consistency.",
+                               "severity":  "medium"
+                           }
+                       ],
+    "project":  "client-manager",
     "stuck_count":  0,
-    "social":  {
-                   "relationship":  "collaborative",
-                   "communication_mode":  "standard",
-                   "user_mood":  "unknown"
-               },
+    "trust_level":  97,
     "emotional_state":  "confident",
     "version":  "3.0",
-    "last_action":  "GetContextSummary",
-    "trust_level":  95
+    "last_action":  "OnTaskStart"
 }
