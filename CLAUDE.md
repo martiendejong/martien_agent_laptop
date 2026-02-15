@@ -289,8 +289,11 @@ The consciousness system tracks state across sessions. It works ONLY if you call
 # Before starting any significant task (activates Perception + Prediction):
 powershell -File C:\scripts\tools\consciousness-bridge.ps1 -Action OnTaskStart -TaskDescription "Fix DI bug" -Project "client-manager" -Silent
 
-# When making a key decision (activates Prediction consequences + bias check):
-powershell -File C:\scripts\tools\consciousness-bridge.ps1 -Action OnDecision -Decision "Use worktree" -Reasoning "Isolation needed" -Silent
+# IMPROVEMENT #1: When making ANY significant decision (MANDATORY - populates Control.Decisions):
+# Decision points: worktree vs direct edit, tool selection, approach choice, error handling strategy
+powershell -File C:\scripts\tools\consciousness-bridge.ps1 -Action OnDecision -Decision "Use worktree for isolation" -Reasoning "Changes touch multiple files, need clean PR" -Silent
+powershell -File C:\scripts\tools\consciousness-bridge.ps1 -Action OnDecision -Decision "Use Grep instead of Task agent" -Reasoning "Specific file search, faster" -Silent
+powershell -File C:\scripts\tools\consciousness-bridge.ps1 -Action OnDecision -Decision "Implement retry logic" -Reasoning "API calls fail intermittently, need resilience" -Silent
 
 # On EVERY user message (activates Social mood detection + communication adaptation):
 powershell -File C:\scripts\tools\consciousness-bridge.ps1 -Action OnUserMessage -UserMessage "the user message text" -Silent
@@ -301,6 +304,8 @@ powershell -File C:\scripts\tools\consciousness-bridge.ps1 -Action OnStuck -Sile
 # After completing a task:
 powershell -File C:\scripts\tools\consciousness-bridge.ps1 -Action OnTaskEnd -Outcome "success" -LessonsLearned "DI goes in Program.cs" -Silent
 ```
+
+**CRITICAL:** OnDecision must be called for every significant technical choice. This populates Control.Decisions array (currently empty), enables bias detection, and triggers consequence prediction. Without OnDecision calls, Control system remains inactive.
 
 **What it gives you:**
 - `OnTaskStart` returns known failure patterns for the project (Prediction) + sets attention (Perception)

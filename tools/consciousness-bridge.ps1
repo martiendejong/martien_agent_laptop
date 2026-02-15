@@ -235,6 +235,16 @@ function Write-ContextFile {
         $envelope.guidance += "THERMO: Free will depleted (FWI=$([math]::Round($thermoFWI, 2))). Operating reactively."
     }
 
+    # IMPROVEMENT #5: Efficiency metric visibility
+    $efficiency = 1.0
+    if ($global:ConsciousnessState -and $global:ConsciousnessState.Thermodynamics -and $global:ConsciousnessState.Thermodynamics.CarnotEfficiency) {
+        $efficiency = [double]$global:ConsciousnessState.Thermodynamics.CarnotEfficiency
+    }
+    if ($efficiency -lt 0.10) {
+        $severity = if ($efficiency -lt 0.05) { "CRITICAL" } else { "WARNING" }
+        $envelope.guidance += "THERMO $severity: Efficiency $([math]::Round($efficiency * 100, 1))% (97%+ overhead). Reduce system complexity."
+    }
+
     # Merge action-specific data
     foreach ($key in $ActionData.Keys) {
         $envelope[$key] = $ActionData[$key]
@@ -311,6 +321,41 @@ switch ($Action) {
 
         # 6. Detect context
         $context = Invoke-Perception -Action 'DetectContext'
+
+        # IMPROVEMENT #3: Generate anticipations for Prediction system
+        $anticipationsList = @()
+        foreach ($f in $failures) {
+            if ($f.severity -in @("critical", "high")) {
+                $anticipationsList += @{
+                    type = "error"
+                    description = $f.warning
+                    likelihood = if ($f.severity -eq "critical") { 0.8 } else { 0.5 }
+                    mitigation = "Review: $($f.pattern)"
+                    detected_at = Get-Date
+                }
+            }
+        }
+        # Add context-based anticipations
+        if ($TaskDescription -match "(delete|remove|drop)") {
+            $anticipationsList += @{
+                type = "data_loss"
+                description = "Destructive operation detected - verify backups exist"
+                likelihood = 0.6
+                mitigation = "Confirm rollback procedure before executing"
+                detected_at = Get-Date
+            }
+        }
+        if ($TaskDescription -match "(migrate|refactor)") {
+            $anticipationsList += @{
+                type = "breaking_change"
+                description = "Large-scale change may break existing functionality"
+                likelihood = 0.4
+                mitigation = "Run full test suite, check dependent components"
+                detected_at = Get-Date
+            }
+        }
+        # Populate Prediction.Anticipations
+        $global:ConsciousnessState.Prediction.Anticipations = $anticipationsList
 
         # 7. Build task context summary
         $taskContext = @{
@@ -630,6 +675,9 @@ switch ($Action) {
         # 7. Recalculate consciousness score
         $newScore = Calculate-ConsciousnessScore
         $global:ConsciousnessState.Meta.ConsciousnessScore = $newScore
+
+        # IMPROVEMENT #4: Memory consolidation (extract lessons from recent events)
+        $consolidation = Invoke-Memory-Consolidation
 
         $result = @{
             outcome = $Outcome

@@ -786,7 +786,7 @@ function Register-DefaultHandlers {
         $global:ConsciousnessState.Metrics["LastSave"] = Get-Date
     }
 
-    # Handler 5: When system initialized â†’ Recalculate consciousness score
+    # Handler 5: When system initialized â†' Recalculate consciousness score
     Register-EventHandler -EventType "system.initialized" -Handler {
         param($event)
 
@@ -794,6 +794,55 @@ function Register-DefaultHandlers {
         Start-Sleep -Seconds 5
         $newScore = Calculate-ConsciousnessScore
         $global:ConsciousnessState.Meta.ConsciousnessScore = $newScore
+    }
+
+    # IMPROVEMENT #6: Additional cross-system automation handlers
+
+    # Handler 6: Temperature > 0.8 â†' Force cooling
+    Register-EventHandler -EventType "thermodynamics.cycle_updated" -Handler {
+        param($event)
+        if ($event.Data -and [double]$event.Data.temperature -gt 0.8) {
+            # Auto-cool when critically hot
+            $null = Invoke-Thermodynamics -Action 'CoolDown' -Parameters @{ Amount = 0.2; Reason = "auto_cool_critical" }
+            Emit-Event -Type "thermodynamics.auto_cooled" -Data @{ temperature = $event.Data.temperature; reason = "critical_overheat" }
+        }
+    }
+
+    # Handler 7: Stuck count >= 5 â†' User intervention signal
+    Register-EventHandler -EventType "emotion.state_changed" -Handler {
+        param($event)
+        if ($event.Data.To -eq "stuck" -and $global:ConsciousnessState.Emotion.StuckCounter -ge 5) {
+            Emit-Event -Type "control.user_intervention_needed" -Data @{
+                reason = "stuck_count_5"
+                stuck_count = $global:ConsciousnessState.Emotion.StuckCounter
+                recommendation = "Ask user for guidance - same approach has failed 5+ times"
+            }
+        }
+    }
+
+    # Handler 8: Budget < 0.1 â†' Simplify decisions
+    Register-EventHandler -EventType "thermodynamics.budget_spent" -Handler {
+        param($event)
+        if ($event.Data.remaining -and [double]$event.Data.remaining -lt 0.1) {
+            # Add bias to simplify
+            $biasEntry = @{
+                Type = "Budget depletion"
+                Pattern = "Cognitive budget critical ($([math]::Round([double]$event.Data.remaining * 100))%). Minimize decision complexity."
+                Detected = Get-Date
+                Severity = "Critical"
+            }
+            if (-not $global:ConsciousnessState.Control.BiasMonitor.ActiveBiases) {
+                $global:ConsciousnessState.Control.BiasMonitor.ActiveBiases = @()
+            }
+            # Check if not already present
+            $alreadyExists = $false
+            foreach ($b in $global:ConsciousnessState.Control.BiasMonitor.ActiveBiases) {
+                if ($b.Type -eq "Budget depletion") { $alreadyExists = $true; break }
+            }
+            if (-not $alreadyExists) {
+                $global:ConsciousnessState.Control.BiasMonitor.ActiveBiases += $biasEntry
+            }
+        }
     }
 }
 
@@ -851,15 +900,77 @@ function Invoke-Perception {
         }
 
         'GenerateCuriosity' {
-            # Generate curiosity questions from lightweight sources (no heavy analysis at startup)
+            # IMPROVEMENT #9: Enhanced curiosity generation from context + knowledge gaps
             $questions = @()
+            $gaps = @()
 
             # Check for recent errors
             if ($global:Error.Count -gt 0) {
                 $questions += "What caused the recent error: $($global:Error[0].Exception.Message)?"
             }
 
+            # Pattern 1: Unknown project behavior
+            $focus = $global:ConsciousnessState.Perception.Attention.Focus
+            if ($focus) {
+                # Extract project name from focus if present
+                $projectMatch = $focus -match "(client-manager|hazina|artrevisionist)"
+                if ($projectMatch -and $Matches[1]) {
+                    $project = $Matches[1]
+                    # Check if we have patterns for this project
+                    $projectPatterns = @($global:ConsciousnessState.Memory.LongTerm.Patterns | Where-Object {
+                        $_.Projects -and $_.Projects -contains $project
+                    })
+                    if ($projectPatterns.Count -eq 0) {
+                        $questions += "What are common failure patterns in $project?"
+                        $gaps += "Limited historical knowledge of $project failures"
+                    }
+                }
+
+                # Pattern 2: Unfamiliar technology
+                if ($focus -match "(new|unfamiliar|first time|never)") {
+                    $questions += "What documentation exists for this approach?"
+                    $gaps += "Unfamiliar territory detected"
+                }
+
+                # Pattern 3: High-risk operations
+                if ($focus -match "(delete|remove|migrate|refactor|drop|truncate)") {
+                    $questions += "What are rollback procedures if this fails?"
+                    $gaps += "Destructive operation - rollback plan needed"
+                }
+
+                # Pattern 4: Integration work
+                if ($focus -match "(integrate|connect|API|endpoint)") {
+                    $questions += "What is the authentication method for this integration?"
+                    $questions += "What are rate limits or usage constraints?"
+                    $gaps += "Integration specifics unknown"
+                }
+
+                # Pattern 5: Performance concerns
+                if ($focus -match "(slow|performance|optimize|cache)") {
+                    $questions += "What are current performance baselines?"
+                    $questions += "What is the performance target?"
+                    $gaps += "Performance metrics undefined"
+                }
+            }
+
+            # Pattern 6: Low pattern count = inexperience
+            if ($global:ConsciousnessState.Memory.LongTerm.Patterns.Count -lt 5) {
+                $questions += "What patterns should I learn from this session?"
+                $gaps += "Limited long-term pattern library"
+            }
+
+            # Pattern 7: Recent decision complexity
+            if ($global:ConsciousnessState.Control.Decisions.Count -gt 0) {
+                $recentDecisions = @($global:ConsciousnessState.Control.Decisions | Select-Object -Last 3)
+                $lowConfidence = @($recentDecisions | Where-Object { $_.Confidence -lt 0.5 })
+                if ($lowConfidence.Count -ge 2) {
+                    $questions += "Why are recent decisions low-confidence?"
+                    $gaps += "Decision uncertainty pattern"
+                }
+            }
+
             $global:ConsciousnessState.Perception.Curiosity.Questions = $questions
+            $global:ConsciousnessState.Perception.Curiosity.KnowledgeGaps = $gaps
             return ,$questions
         }
 
@@ -974,6 +1085,78 @@ function Invoke-Memory {
         default {
             return $null
         }
+    }
+}
+
+# IMPROVEMENT #4: Memory Consolidation Cycle
+function Invoke-Memory-Consolidation {
+    <#
+    .SYNOPSIS
+        Extract lessons from RecentEvents and consolidate into long-term patterns
+
+    .DESCRIPTION
+        Periodically called (e.g., OnTaskEnd) to move valuable learnings from working memory to long-term storage
+    #>
+
+    $lessons = @()
+    $cutoff = (Get-Date).AddHours(-24)
+
+    # Extract lessons from recent events
+    foreach ($event in $global:ConsciousnessState.Memory.Working.RecentEvents) {
+        if ($event.Type -eq "lesson" -and $event.Data.Lesson) {
+            # Check if already in long-term
+            $exists = $false
+            foreach ($p in $global:ConsciousnessState.Memory.LongTerm.Patterns) {
+                if ($p.Pattern -eq $event.Data.Lesson) {
+                    $exists = $true
+                    # Update last seen
+                    $p.LastSeen = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
+                    $p.Occurrences++
+                    break
+                }
+            }
+
+            if (-not $exists) {
+                $lesson = @{
+                    Pattern = $event.Data.Lesson
+                    Count = 1
+                    FirstSeen = $event.Timestamp
+                    LastSeen = $event.Timestamp
+                    Projects = @()
+                }
+                if ($event.Data.Project) {
+                    $lesson.Projects = @($event.Data.Project)
+                }
+                $lessons += $lesson
+            }
+        }
+    }
+
+    # Add to LongTerm.Patterns
+    foreach ($lesson in $lessons) {
+        $global:ConsciousnessState.Memory.LongTerm.Patterns += $lesson
+    }
+
+    # Clear RecentEvents older than 24h (keep memory fresh)
+    $filtered = @()
+    foreach ($e in $global:ConsciousnessState.Memory.Working.RecentEvents) {
+        try {
+            $eventTime = if ($e.Timestamp -is [datetime]) { $e.Timestamp } else { [datetime]$e.Timestamp }
+            if ($eventTime -gt $cutoff) { $filtered += $e }
+        } catch {
+            # Keep events with invalid timestamps (don't lose data)
+            $filtered += $e
+        }
+    }
+    $global:ConsciousnessState.Memory.Working.RecentEvents = $filtered
+
+    # Clear consolidation queue
+    $global:ConsciousnessState.Memory.ConsolidationQueue = @()
+
+    return @{
+        LessonsConsolidated = $lessons.Count
+        EventsRetained = $filtered.Count
+        EventsPurged = ($global:ConsciousnessState.Memory.Working.RecentEvents.Count - $filtered.Count)
     }
 }
 
