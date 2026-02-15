@@ -6,6 +6,40 @@
 
 ---
 
+## 2026-02-15 - WordPress deployment: Menu fallback functions can silently override database menus
+
+**What happened:** Deployed Prospergenics WordPress theme to production. Updated menu items in database to use anchor links (/#about, /#team, etc.), verified database had correct URLs, but menu on site still showed old hardcoded links (/about, /our-team). User kept seeing old links even after cache clearing and hard refresh.
+
+**Root cause:** Theme's `wp_nav_menu()` called with `theme_location => 'primary'`, but actual menu was registered at location `menu-1`. When WordPress can't find menu at specified location, it uses `fallback_cb` function which was hardcoded with old links. The fallback menu was rendering instead of the database menu, completely bypassing all database updates.
+
+**Diagnostic process:**
+1. Verified database had correct URLs (/#about etc.) - ✓ correct
+2. Updated menu item post_meta - ✓ confirmed saved
+3. Cleared all caches (object cache, transients, menu cache) - still broken
+4. Checked menu location mismatch → found `theme_location => 'primary'` vs actual `menu-1`
+5. Discovered hardcoded fallback function in header.php with old URLs
+
+**Fix:** Updated hardcoded fallback menu function with anchor links as emergency fix. Proper fix would be either:
+- Register menu at correct location in functions.php, OR
+- Assign menu to 'primary' location in WordPress admin, OR
+- Remove fallback function entirely (force menu setup requirement)
+
+**Key learnings:**
+1. **Always check theme_location vs actual menu registration** - `wp_nav_menu(['theme_location' => 'X'])` must match key in `get_nav_menu_locations()`, not the menu name
+2. **Fallback functions silently override database menus** - If location doesn't match, fallback renders hardcoded HTML, bypassing ALL menu changes in WordPress admin
+3. **Menu debugging checklist:**
+   - Check `get_nav_menu_locations()` for actual location keys
+   - Check `wp_nav_menu()` theme_location parameter matches
+   - Check if fallback function exists and what it outputs
+   - THEN check database menu items
+4. **WordPress custom logo uses different CSS classes** - `the_custom_logo()` outputs `custom-logo` class, not `site-logo`. Need CSS for both classes when using WordPress custom logo feature vs hardcoded img tag.
+5. **Menu item type changes can wipe titles** - When updating menu items from `post_type` to `custom` type, the `post_title` field can get cleared if not explicitly preserved. Always update title AND URL together.
+6. **Self-deleting PHP diagnostic scripts pattern** - Upload script to public_html root, run via browser (with auth check), shows diagnostics, deletes itself. Effective for production DB operations without leaving files behind.
+
+**Pattern:** When WordPress feature "doesn't work" after database changes verified, check if theme is using fallback/hardcoded alternative that bypasses the feature entirely.
+
+---
+
 ## 2026-02-15 - Review workflow gap: ClickUp status not updated on code review rejection
 
 **What happened:** Reviewed 7 PRs, found issues in 5, posted GitHub comments, but did NOT move ClickUp tasks back to "todo". User had to remind me.

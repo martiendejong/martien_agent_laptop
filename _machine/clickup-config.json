@@ -97,6 +97,14 @@
                   "maps_to": ["client-manager"],
                   "statuses": ["to do", "planning", "in progress", "at risk", "update required", "on hold", "complete", "cancelled", "archive"],
                   "description": "High-level overview and strategic planning for Brand2Boost platform"
+                },
+                "general_meta": {
+                  "id": "901215818012",
+                  "name": "General & Meta Tasks",
+                  "task_count": 1,
+                  "maps_to": [],
+                  "statuses": ["to do", "planning", "in progress", "at risk", "update required", "on hold", "complete", "cancelled", "archive"],
+                  "description": "Tasks that don't belong to a specific project - platform experiments, agent development, external integrations, meta work"
                 }
               }
             },
@@ -189,5 +197,6 @@
     }
   },
   "default_list_id": "901214097647",
-  "last_updated": "2026-01-30"
+  "meta_list_id": "901215818012",
+  "last_updated": "2026-02-15"
 }
