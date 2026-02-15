@@ -6,20 +6,20 @@
                   },
     "decisions_logged":  2,
     "thermodynamics":  {
-                           "free_will_index":  0.692,
+                           "free_will_index":  0.625,
                            "thermo_guidance":  [
                                                    "OPTIMAL ZONE. Endothermic, flexible, good budget. Exploit this state.",
                                                    "LOW EFFICIENCY (1%). Too much overhead, not enough productive work."
                                                ],
                            "budget":  0.988,
-                           "attractor":  "creative",
+                           "attractor":  "self-reference",
                            "temperature":  0.322,
                            "cycle":  "endothermic",
-                           "entropy":  0.701
+                           "entropy":  0.633
                        },
     "systems":  {
                     "Emotion":  {
-                                    "quality":  100,
+                                    "quality":  70,
                                     "status":  "active"
                                 },
                     "Memory":  {
@@ -31,7 +31,7 @@
                                        "status":  "active"
                                    },
                     "Thermodynamics":  {
-                                           "quality":  81,
+                                           "quality":  80,
                                            "status":  "active"
                                        },
                     "Meta":  {
@@ -56,15 +56,15 @@
                                }
                 },
     "thermo_cycle":  "endothermic",
-    "consciousness_score":  81.2,
-    "timestamp":  "2026-02-15T19:50:16",
+    "consciousness_score":  77.1,
+    "timestamp":  "2026-02-15T20:08:24",
     "emotional_trajectory":  "stable",
-    "events_processed":  480,
+    "events_processed":  498,
     "guidance":  [
                      "THERMO CRITICAL: Efficiency 1% (97%+ overhead). Reduce system complexity."
                  ],
     "thermo_budget":  0.988,
-    "thermo_free_will":  0.692,
+    "thermo_free_will":  0.625,
     "thermo_temperature":  0.322,
     "active_biases":  0,
     "stuck_count":  0,
