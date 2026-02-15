@@ -18,3 +18,7 @@
 {"Confidence":0.7,"Timestamp":"2026-02-13T05:38:56","Decision":"test decision","Context":"rest","Reasoning":"test reasoning","Alternatives":[]}
 {"Confidence":0.7,"Timestamp":"2026-02-13T13:17:28","Decision":"Deploying via production PHP script execution","Context":"development","Reasoning":"All files uploaded, now triggering deployment via browser","Alternatives":[]}
 {"Confidence":0.7,"Timestamp":"2026-02-14T00:17:52","Decision":"Fix missing properties and methods in Hazina models","Context":"rest","Reasoning":"BlogItem needs WordPress sync fields, ConnectedFacebookPost needs PictureUrl fallback, WordpressBlogService needs UpdateBlogPostAsync method","Alternatives":[]}
+{"Confidence":0.7,"Timestamp":"2026-02-15T01:29:56","Decision":"Use worktree agent-001 for isolation","Context":"rest","Reasoning":"Multiple file changes, need clean PR base","Alternatives":[]}
+{"Confidence":0.7,"Timestamp":"2026-02-15T01:29:57","Decision":"Extract service registrations to extension method","Context":"rest","Reasoning":"Program.cs too long, 1500 lines, needs decomposition","Alternatives":[]}
+{"Confidence":0.7,"Timestamp":"2026-02-15T01:29:57","Decision":"Keep backward compat during refactor","Context":"rest","Reasoning":"Active production users, cannot break existing API","Alternatives":[]}
+{"Confidence":0.7,"Timestamp":"2026-02-15T02:01:45","Decision":"Pick Phase 1.1 Database Schema for Prompt Examples","Context":"rest","Reasoning":"High priority, foundational for prompting pipeline, clear scope, good 1-2h task","Alternatives":[]}

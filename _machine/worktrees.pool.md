@@ -4,15 +4,15 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-15T00:45:00Z | ✅ PR #556: WordPress Publishing Test Suite - 50+ tests (ClickUp #869bzf5qc) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-02-15T16:15:00Z | PR #568: Phase 2.1 Persona Builder Service (ClickUp #869bu9mem) |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | client-manager | feature/869c3q8hh-wordpress-tracking-fields | 2026-02-14T22:08:00Z | Reviewing PR #553: WordPress tracking fields |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | client-manager | feature/869c3q8k4-post-hub-refactoring | 2026-02-14T23:05:00Z | P2.2: Post Hub Refactoring - SocialMediaPosts.tsx (ClickUp #869c3q8k4) |
-| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-15T01:35:00Z | ✅ PR #557: WordPress Media Upload + Platform Image Processing (ClickUp #869bz3gzc) |
-| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-14T23:02:00Z | ✅ PR #554: Unified Post Generator - Quick+Batch mode (ClickUp #869c3q8ju) |
+| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-15T16:45:00Z | ✅ PR #569: OAuth Token Auto-Refresh for Social Platforms (ClickUp #869c3q8p8) |
+| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | BUSY | client-manager | feature/869c3q8ju-unified-post-generator | 2026-02-15T17:00:00Z | P2.1: Fixing bugs in Unified Post Generator (ClickUp #869c3q8ju) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-06T14:19:00Z | ✅ PR #173 MERGED: HazinaCoder Iterations 1-60 - Conflicts resolved & merged to develop |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-02-06T08:00:00Z | ✅ PR #488: AI Image Alt Text Generator - Quick Win (ROI 3.50, ~1hr implementation) |
 | agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | - | - | 2026-02-06T07:35:00Z | ✅ Hazina PR #174: Polly retry logic for LinkedInPublisher (Sprint 1 Task 3 enhancement) |
-| agent-009 | agent009 | C:\Projects | C:\Projects\worker-agents\agent-009 | FREE | - | - | 2026-02-06T05:50:00Z | ✅ PR #484: Content Library UI Phase 1 (ClickUp #869c1dny3) |
+| agent-009 | agent009 | C:\Projects | C:\Projects\worker-agents\agent-009 | FREE | - | - | 2026-02-15T16:00:00Z | ✅ PR #567: WordPress Post Update Sync (ClickUp #869c3q8r1) |
 | agent-010 | agent010 | C:\Projects | C:\Projects\worker-agents\agent-010 | FREE | - | - | 2026-01-10T15:30:00Z | ✅ Cleaned up: Deleted agent-008-license-back-button branch (obsolete) |
 | agent-011 | agent011 | C:\Projects | C:\Projects\worker-agents\agent-011 | FREE | - | - | 2026-01-10T16:00:00Z | ✅ Cleaned up: License back button (PR #79 MERGED), worktree released |
 | agent-012 | agent012 | C:\Projects | C:\Projects\worker-agents\agent-012 | FREE | - | - | 2026-01-10T15:30:00Z | ✅ Cleaned up: Deleted agent-012-tier1-implementation (PR #77 already merged on 2026-01-09) |
