@@ -501,3 +501,8 @@
 2026-02-15T02:00:51Z | agent-004 | ALLOCATE | feature/869c3q8p8-oauth-token-auto-refresh | ClickHub task 869c3q8p8: OAuth Token Auto-Refresh
 2026-02-15T02:30:29Z | agent-004 | RELEASE | feature/869c3q8p8-oauth-token-auto-refresh | PR #569 created: OAuth Token Auto-Refresh
 2026-02-15T02:54:13Z | agent-005 | RELEASE | feature/869c3q8ju-unified-post-generator | PR #554 updated with bug fixes
+## 2026-02-15T19:52:44Z - Release: agent-001
+- Repo: client-manager
+- Branch: feature/869c513zu-remove-new-project-button
+- PR: #584
+- Outcome: Remove obsolete New Project button from projects list
