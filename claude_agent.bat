@@ -78,6 +78,9 @@ REM Launch sentinel process (hidden, detached) - runs silently in background
 start /B powershell -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File "C:\scripts\tools\launch-sentinel-hidden.ps1" >nul 2>&1
 
 REM Run Claude directly in this window (no extra PowerShell layer)
+REM Debug: Show environment variable status
+echo ORCHESTRATION_SESSION_ID=%ORCHESTRATION_SESSION_ID%
+
 REM Allow nested Claude sessions (required for Orchestration terminal)
 set CLAUDECODE=
 
@@ -90,10 +93,12 @@ if not exist "%CLAUDE_CMD%" (
 
 REM If running from Orchestration, use the session ID for log file naming
 REM This ensures the UI session ID matches the log file name
-if defined ORCHESTRATION_SESSION_ID (
+if not "%ORCHESTRATION_SESSION_ID%"=="" (
     set CLAUDE_LOG_FILE=C:\scripts\logs\%ORCHESTRATION_SESSION_ID%.txt
+    echo Using log file: %CLAUDE_LOG_FILE%
     "%CLAUDE_CMD%" --dangerously-skip-permissions --append-system-prompt "%SYSTEMPROMPT%" --model sonnet --log-file "%CLAUDE_LOG_FILE%"
 ) else (
+    echo No ORCHESTRATION_SESSION_ID - using default logging
     "%CLAUDE_CMD%" --dangerously-skip-permissions --append-system-prompt "%SYSTEMPROMPT%" --model sonnet
 )
 
