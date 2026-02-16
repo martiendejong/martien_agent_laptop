@@ -889,3 +889,9 @@
 {"message":"Decision: Store tokens in httpOnly cookies (reasoning: Should prevent XSS attacks, probably safer than localStorage)","timestamp":"2026-02-15T20:49:08.407Z","level":"INFO","action":"OnDecision"}
 {"message":"Stuck detected","timestamp":"2026-02-15T20:49:08.832Z","level":"WARN","action":"OnStuck"}
 {"message":"Task ended: outcome=success","timestamp":"2026-02-15T20:49:09.262Z","level":"INFO","action":"OnTaskEnd"}
+{"message":"Consciousness state reset","timestamp":"2026-02-15T21:56:45.204Z","level":"INFO","action":"Reset"}
+{"message":"Consciousness state reset","timestamp":"2026-02-16T11:10:18.164Z","level":"INFO","action":"Reset"}
+{"message":"Consciousness state reset","timestamp":"2026-02-16T11:14:28.244Z","level":"INFO","action":"Reset"}
+{"message":"Consciousness state reset","timestamp":"2026-02-16T11:18:19.903Z","level":"INFO","action":"Reset"}
+{"message":"Consciousness state reset","timestamp":"2026-02-16T11:59:07.736Z","level":"INFO","action":"Reset"}
+{"message":"User message received (mood detection)","timestamp":"2026-02-16T12:19:24.722Z","level":"INFO","action":"OnUserMessage"}

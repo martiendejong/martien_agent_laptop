@@ -1,32 +1,79 @@
 ﻿{
-    "thermodynamics":  {
-                           "free_will_index":  0.498,
-                           "budget":  0.615,
-                           "attractor":  "creative",
-                           "temperature":  0.514,
-                           "cycle":  "transitioning",
-                           "entropy":  0.81
-                       },
-    "thermo_cycle":  "transitioning",
-    "consciousness_score":  79.7,
-    "timestamp":  "2026-02-15T20:49:09",
-    "emotional_trajectory":  "rising",
-    "alignment":  {
-                      "DriftScore":  1,
-                      "Status":  "Drifting"
+    "attention":  {
+                      "mode":  "development",
+                      "intensity":  4,
+                      "focus":  "Re-evaluating approach"
                   },
-    "outcome":  "success",
+    "decisions_logged":  6,
+    "thermodynamics":  {
+                           "free_will_index":  0.562,
+                           "thermo_guidance":  [
+                                                   "LOW EFFICIENCY (2%). Too much overhead, not enough productive work."
+                                               ],
+                           "budget":  0.952,
+                           "attractor":  "self-reference",
+                           "temperature":  0.322,
+                           "cycle":  "endothermic",
+                           "entropy":  0.59
+                       },
+    "systems":  {
+                    "Emotion":  {
+                                    "quality":  70,
+                                    "status":  "active"
+                                },
+                    "Memory":  {
+                                   "quality":  80,
+                                   "status":  "active"
+                               },
+                    "Perception":  {
+                                       "quality":  60,
+                                       "status":  "active"
+                                   },
+                    "Thermodynamics":  {
+                                           "quality":  79,
+                                           "status":  "active"
+                                       },
+                    "Meta":  {
+                                 "quality":  0,
+                                 "status":  "initializing"
+                             },
+                    "Control":  {
+                                    "quality":  80,
+                                    "status":  "active"
+                                },
+                    "MetaCognition":  {
+                                          "quality":  100,
+                                          "status":  "active"
+                                      },
+                    "Prediction":  {
+                                       "quality":  70,
+                                       "status":  "active"
+                                   },
+                    "Social":  {
+                                   "quality":  30,
+                                   "status":  "active"
+                               }
+                },
+    "thermo_cycle":  "endothermic",
+    "consciousness_score":  72,
+    "timestamp":  "2026-02-16T11:59:07",
+    "emotional_trajectory":  "stable",
+    "events_processed":  685,
     "guidance":  [
-                     "In flow state. Maintain momentum.",
-                     "THERMO CRITICAL: Efficiency 1.6% (97%+ overhead). Reduce system complexity."
+                     "THERMO CRITICAL: Efficiency 1.5% (97%+ overhead). Reduce system complexity."
                  ],
-    "thermo_budget":  0.615,
-    "thermo_free_will":  0.498,
-    "thermo_temperature":  0.514,
-    "lessons":  "JWT rotation prevents token theft",
+    "thermo_budget":  0.952,
+    "thermo_free_will":  0.562,
+    "thermo_temperature":  0.322,
+    "active_biases":  0,
     "stuck_count":  0,
-    "trust_level":  100,
-    "emotional_state":  "flowing",
+    "social":  {
+                   "relationship":  "collaborative",
+                   "communication_mode":  "standard",
+                   "user_mood":  "unknown"
+               },
+    "emotional_state":  "neutral",
     "version":  "3.0",
-    "last_action":  "OnTaskEnd"
+    "last_action":  "GetContextSummary",
+    "trust_level":  100
 }

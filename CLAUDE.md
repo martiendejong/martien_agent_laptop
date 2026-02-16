@@ -65,7 +65,7 @@ This list is alive - it grows every session as new patterns emerge.
 |---------|----------|------|
 | Client Manager / brand2boost | `C:\Projects\client-manager` | SaaS (frontend + API) |
 | Hazina framework | `C:\Projects\hazina` | Framework |
-| Art Revisionist | `C:\Projects\artrevisionist` + `E:\xampp\htdocs\wp-content\themes\artrevisionist-wp-theme\` | WordPress + React admin |
+| Art Revisionist | `C:\Projects\artrevisionist` (laptop: no local WordPress - remote deploy only) | WordPress + React admin |
 | Store config | `C:\stores\brand2boost` | Config/data |
 | Orchestration | `C:\stores\orchestration\HazinaOrchestration.exe` | Terminal service (HTTPS:5123) |
 
@@ -88,13 +88,13 @@ This list is alive - it grows every session as new patterns emerge.
 **Image Processing:**
 - **ImageMagick:** `magick` command (v7.1.2-13) - Resize, convert, crop, watermark, effects
   - Formats: JPEG, PNG, WebP, HEIC, TIFF, SVG, PDF
-  - Output to: `E:\jengo\documents\output\`
+  - Output to: `C:\jengo\documents\output\`
   - Use for: Batch processing, format conversion, optimization, compositing
 
 **WordPress:**
-- **WP-CLI:** `wp` command (v2.12.0) - WordPress command-line interface
-  - Root: `E:\xampp\htdocs`
-  - Use for: Post/page management, plugin/theme ops, database ops, media imports, custom fields
+- **WP-CLI:** `wp` command (v2.12.0) - WordPress command-line interface (remote operations only on laptop)
+  - Use for: Remote site management via REST API, SSH-based operations
+  - Note: No local WordPress on laptop (desktop has XAMPP on E: drive)
 
 ---
 
@@ -110,10 +110,10 @@ This list is alive - it grows every session as new patterns emerge.
    ```
 
 2. **Determine deployment method** (in order of preference):
-   - **Local sites** (`E:\xampp\htdocs`) → WP-CLI direct
-   - **REST API** (if WordPress app password available) → Preferred for remote
+   - **REST API** (if WordPress app password available) → Preferred for remote (laptop default)
    - **SSH + WP-CLI** (if SSH access available) → Direct remote WP-CLI
    - **FTP + self-deleting PHP** (if FTP credentials available) → Fallback method
+   - **Local sites** (NOT AVAILABLE ON LAPTOP - desktop only with XAMPP)
 
 3. **Known sites:**
    - `artrevisionist.com` - Portfolio site
@@ -199,9 +199,9 @@ services-query-v2.ps1 -CheckHealth
 
 **IMPORTANT (2026-02-14):** Before starting ANY ClickUp task, run clarity check first. If task is unclear, questions are posted and status moves to "needs input". This prevents wasted work on unclear requirements.
 
-## Working Documents (E:\jengo\documents)
+## Working Documents (C:\jengo\documents)
 
-**All generated working files go to `E:\jengo\documents\`** — NEVER to C:\scripts or C:\Temp.
+**All generated working files go to `C:\jengo\documents\`** — NEVER to C:\scripts or C:\Temp.
 
 | Subdirectory | Purpose | Examples |
 |-------------|---------|---------|
@@ -217,9 +217,9 @@ services-query-v2.ps1 -CheckHealth
 - A system config/identity file (stays in C:\scripts)
 - An operational tool/script (stays in C:\scripts\tools)
 
-→ It goes to `E:\jengo\documents\<appropriate-subdir>\`
+→ It goes to `C:\jengo\documents\<appropriate-subdir>\`
 
-This keeps C:\scripts clean (identity only) and C: drive free (E: has ample space).
+**Note:** Desktop uses E:\jengo\documents (separate data drive), laptop uses C:\jengo\documents (single drive system).
 
 ## Automation First
 
@@ -265,7 +265,7 @@ powershell -File C:\scripts\tools\vibe-sensing-bridge.ps1 `
 ```
 
 **Output:**
-- Design brief (markdown) at `E:\jengo\documents\temp\vibe-analysis-*.md`
+- Design brief (markdown) at `C:\jengo\documents\temp\vibe-analysis-*.md`
 - Color palette with psychology
 - Typography recommendations
 - Copy style guidelines

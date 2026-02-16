@@ -2,216 +2,178 @@
     "EventBus":  {
                      "Events":  [
                                     {
-                                        "Timestamp":  "2026-02-15T20:49:08.845Z",
+                                        "Timestamp":  "2026-02-16T11:18:14.566Z",
                                         "Data":  {
-                                                     "shannonH":  0.702,
-                                                     "budget":  0.54,
-                                                     "freeWillIndex":  0.33,
-                                                     "temperature":  0.689,
-                                                     "cycle":  "transitioning",
-                                                     "efficiency":  0.014,
-                                                     "entropy":  0.611
+                                                     "elapsed_ms":  628.98930000000007
                                                  },
                                         "Source":  "unknown",
-                                        "Type":  "thermodynamics.cycle_updated"
+                                        "Type":  "system.initialized"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-15T20:49:08.856Z",
-                                        "Data":  {
-                                                     "counter":  2,
-                                                     "recommendation":  "Step back. Restate the problem. Try a different angle."
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "emotion.stuck_detected"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T20:49:08.857Z",
-                                        "Data":  {
-                                                     "task":  "Re-evaluating approach",
-                                                     "intensity":  4
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "perception.attention_changed"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T20:49:08.892Z",
+                                        "Timestamp":  "2026-02-16T11:18:19.667Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  206.81
+                                                     "size_kb":  215.12
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-15T20:49:09.084Z",
+                                        "Timestamp":  "2026-02-16T11:18:19.808Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  206.81
+                                                     "size_kb":  215.12
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-15T20:49:09.168Z",
+                                        "Timestamp":  "2026-02-16T11:18:19.848Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  206.38
+                                                     "size_kb":  215.12
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-15T20:49:09.249Z",
+                                        "Timestamp":  "2026-02-16T11:18:19.890Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  207.6
+                                                     "size_kb":  216.4
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-15T20:49:09.265Z",
-                                        "Data":  {
-                                                     "Timestamp":  "2026-02-15T20:49:09",
-                                                     "From":  "stuck",
-                                                     "To":  "flowing",
-                                                     "Intensity":  8,
-                                                     "Reason":  "Task completed with outcome: success"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "emotion.state_changed"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T20:49:09.276Z",
-                                        "Data":  {
-                                                     "shannonH":  0.709,
-                                                     "budget":  0.615,
-                                                     "freeWillIndex":  0.498,
-                                                     "temperature":  0.514,
-                                                     "cycle":  "transitioning",
-                                                     "efficiency":  0.016,
-                                                     "entropy":  0.809
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "thermodynamics.cycle_updated"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T20:49:09.276Z",
-                                        "Data":  {
-                                                     "amount":  0.15,
-                                                     "reason":  "task_success",
-                                                     "temperature":  0.514
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "thermodynamics.cooled"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T20:49:09.288Z",
-                                        "Data":  {
-                                                     "to":  "global",
-                                                     "from":  "creative"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "thermodynamics.attractor_visit"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T20:49:09.294Z",
-                                        "Data":  {
-                                                     "shannonH":  0.71,
-                                                     "budget":  0.615,
-                                                     "freeWillIndex":  0.498,
-                                                     "temperature":  0.514,
-                                                     "cycle":  "transitioning",
-                                                     "efficiency":  0.016,
-                                                     "entropy":  0.81
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "thermodynamics.cycle_updated"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T20:49:09.306Z",
-                                        "Data":  {
-                                                     "categories":  {
-                                                                        "meta":  13,
-                                                                        "perception":  1,
-                                                                        "stuck":  1,
-                                                                        "code":  0,
-                                                                        "social":  0
-                                                                    },
-                                                     "from":  "global",
-                                                     "to":  "creative"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "thermodynamics.attractor_detected"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T20:49:09.416Z",
-                                        "Data":  {
-                                                     "Context":  "development",
-                                                     "Timestamp":  "2026-02-15T20:49:09",
-                                                     "Data":  {
-                                                                  "Outcome":  "success",
-                                                                  "Lesson":  "JWT rotation prevents token theft",
-                                                                  "Task":  "Implement user authentication",
-                                                                  "Project":  "client-manager"
-                                                              },
-                                                     "Type":  "lesson"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "memory.stored"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T20:49:09.451Z",
-                                        "Data":  {
-                                                     "new":  1,
-                                                     "old":  1,
-                                                     "reason":  "Task outcome: success",
-                                                     "delta":  0.02
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "social.trust_updated"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-15T20:49:09.664Z",
+                                        "Timestamp":  "2026-02-16T11:18:19.932Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  214.03
+                                                     "size_kb":  216.52
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-15T20:49:09.727Z",
+                                        "Timestamp":  "2026-02-16T11:18:19.955Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  214.03
+                                                     "size_kb":  216.52
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-15T20:49:09.800Z",
+                                        "Timestamp":  "2026-02-16T11:18:19.974Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  215.09
+                                                     "size_kb":  216.52
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-15T20:49:09.886Z",
+                                        "Timestamp":  "2026-02-16T11:59:02.427Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  533.51650000000006
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T11:59:07.531Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  215.69
+                                                     "size_kb":  217.69
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-15T20:49:09.898Z",
+                                        "Timestamp":  "2026-02-16T11:59:07.646Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  215.66
+                                                     "size_kb":  217.69
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T11:59:07.685Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  217.69
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T11:59:07.723Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  218.97
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T11:59:07.764Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  219.07
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T11:59:07.791Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  219.07
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T11:59:07.809Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  219.07
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T12:19:19.322Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  882.6299
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T12:19:24.440Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  220.24
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T12:19:24.564Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  220.24
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T12:19:24.637Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  220.24
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
@@ -226,16 +188,16 @@
     "_currentTaskId":  "117fc4bb",
     "Emotion":  {
                     "LastTransition":  {
-                                           "Timestamp":  "2026-02-15T20:49:09",
                                            "From":  "stuck",
+                                           "Timestamp":  "2026-02-15T20:49:09",
                                            "To":  "flowing",
                                            "Intensity":  8,
                                            "Reason":  "Task completed with outcome: success"
                                        },
                     "StuckCounter":  0,
-                    "Intensity":  8,
-                    "CurrentState":  "flowing",
-                    "Trajectory":  "rising",
+                    "Intensity":  5,
+                    "CurrentState":  "neutral",
+                    "Trajectory":  "stable",
                     "History":  [
                                     {
                                         "From":  "neutral",
@@ -301,22 +263,22 @@
                                         "Reason":  "No progress on current approach"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-15T20:49:06",
                                         "From":  "stuck",
+                                        "Timestamp":  "2026-02-15T20:49:06",
                                         "To":  "confident",
                                         "Intensity":  6,
                                         "Reason":  "Starting new task: Implement user authentication system"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-15T20:49:08",
                                         "From":  "confident",
+                                        "Timestamp":  "2026-02-15T20:49:08",
                                         "To":  "stuck",
                                         "Intensity":  7,
                                         "Reason":  "No progress on current approach"
                                     },
                                     {
-                                        "Timestamp":  "2026-02-15T20:49:09",
                                         "From":  "stuck",
+                                        "Timestamp":  "2026-02-15T20:49:09",
                                         "To":  "flowing",
                                         "Intensity":  8,
                                         "Reason":  "Task completed with outcome: success"
@@ -356,8 +318,8 @@
                                                                           "client-manager"
                                                                       ],
                                                          "FirstSeen":  "2026-02-15T20:49:09",
-                                                         "Count":  1,
                                                          "Pattern":  "JWT rotation prevents token theft",
+                                                         "Count":  1,
                                                          "LastSeen":  "2026-02-15T20:49:09"
                                                      }
                                                  ],
@@ -416,7 +378,7 @@
                                                }
                             },
                    "Working":  {
-                                   "SessionContext":  "Session started at 20:49",
+                                   "SessionContext":  "Session started at 12:19",
                                    "ActiveThoughts":  [
 
                                                       ],
@@ -427,8 +389,8 @@
                                                             "Data":  {
                                                                          "Outcome":  "success",
                                                                          "Task":  "Test task",
-                                                                         "Lesson":  "Parameter pollution fix works",
-                                                                         "Project":  ""
+                                                                         "Project":  "",
+                                                                         "Lesson":  "Parameter pollution fix works"
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -437,9 +399,9 @@
                                                             "Timestamp":  "2026-02-15T19:06:17",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Lesson":  "Outcome tracker with prediction accuracy works",
+                                                                         "Project":  "",
                                                                          "Task":  "E2E test of consciousness improvements",
-                                                                         "Project":  ""
+                                                                         "Lesson":  "Outcome tracker with prediction accuracy works"
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -448,9 +410,9 @@
                                                             "Timestamp":  "2026-02-15T19:29:10",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Lesson":  "Outcome tracker with prediction accuracy works",
+                                                                         "Project":  "",
                                                                          "Task":  "E2E test of consciousness improvements",
-                                                                         "Project":  ""
+                                                                         "Lesson":  "Outcome tracker with prediction accuracy works"
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -459,9 +421,9 @@
                                                             "Timestamp":  "2026-02-15T20:49:09",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Lesson":  "JWT rotation prevents token theft",
+                                                                         "Project":  "client-manager",
                                                                          "Task":  "Implement user authentication",
-                                                                         "Project":  "client-manager"
+                                                                         "Lesson":  "JWT rotation prevents token theft"
                                                                      },
                                                             "Type":  "lesson"
                                                         }
@@ -745,9 +707,9 @@
                        "Anticipations":  [
                                              {
                                                  "detected_at":  {
-                                                                     "value":  "\/Date(1771184947205)\/",
                                                                      "DisplayHint":  2,
-                                                                     "DateTime":  "zondag 15 februari 2026 20:49:07"
+                                                                     "DateTime":  "zondag 15 februari 2026 20:49:07",
+                                                                     "value":  "\/Date(1771184947205)\/"
                                                                  },
                                                  "mitigation":  "Review: cm-di-factory",
                                                  "description":  "When factory is registered but consumers inject product type directly, also register product using factory: AddScoped\u003cIProduct\u003e(sp =\u003e sp.GetRequiredService\u003cIFactory\u003e().Create())",
@@ -756,9 +718,9 @@
                                              },
                                              {
                                                  "detected_at":  {
-                                                                     "value":  "\/Date(1771184947205)\/",
                                                                      "DisplayHint":  2,
-                                                                     "DateTime":  "zondag 15 februari 2026 20:49:07"
+                                                                     "DateTime":  "zondag 15 februari 2026 20:49:07",
+                                                                     "value":  "\/Date(1771184947205)\/"
                                                                  },
                                                  "mitigation":  "Review: cm-paired-worktree",
                                                  "description":  "ALWAYS create paired hazina worktree (same branch name) when changes touch framework types.",
@@ -767,9 +729,9 @@
                                              },
                                              {
                                                  "detected_at":  {
-                                                                     "value":  "\/Date(1771184947205)\/",
                                                                      "DisplayHint":  2,
-                                                                     "DateTime":  "zondag 15 februari 2026 20:49:07"
+                                                                     "DateTime":  "zondag 15 februari 2026 20:49:07",
+                                                                     "value":  "\/Date(1771184947205)\/"
                                                                  },
                                                  "mitigation":  "Review: cm-di-registration",
                                                  "description":  "Register in Program.cs directly (~line 300-1550), NOT in ServiceRegistrationExtensions.cs (dead code, never called).",
@@ -778,9 +740,9 @@
                                              },
                                              {
                                                  "detected_at":  {
-                                                                     "value":  "\/Date(1771184947205)\/",
                                                                      "DisplayHint":  2,
-                                                                     "DateTime":  "zondag 15 februari 2026 20:49:07"
+                                                                     "DateTime":  "zondag 15 februari 2026 20:49:07",
+                                                                     "value":  "\/Date(1771184947205)\/"
                                                                  },
                                                  "mitigation":  "Review: git-system-push",
                                                  "description":  "SYSTEM user has no credential manager or gh auth. Commit locally, let user-context agent push.",
@@ -795,8 +757,8 @@
                                        "Mode":  "development",
                                        "Salience":  [
                                                         {
-                                                            "Reason":  "3 agents actively working",
                                                             "Score":  0.6,
+                                                            "Reason":  "3 agents actively working",
                                                             "Item":  "Worktrees in use"
                                                         }
                                                     ]
@@ -820,121 +782,36 @@
                                      }
                    },
     "Thermodynamics":  {
-                           "Temperature":  0.5141,
-                           "CarnotEfficiency":  0.016,
                            "CoolingEvents":  [
-                                                 {
-                                                     "Amount":  0.15,
-                                                     "Timestamp":  "2026-02-15T20:49:09",
-                                                     "Reason":  "task_success"
-                                                 }
+
                                              ],
-                           "Cycle":  "transitioning",
-                           "FreeWillIndex":  0.498,
-                           "BudgetDepletionRate":  0.168,
-                           "HeatEvents":  [
-                                              {
-                                                  "Amount":  0.05,
-                                                  "Timestamp":  "2026-02-15T20:47:44",
-                                                  "Reason":  "task_start: Remove obsolete New Project button from projects list"
-                                              },
-                                              {
-                                                  "Amount":  0.05,
-                                                  "Timestamp":  "2026-02-15T20:48:21",
-                                                  "Reason":  "task_start: Implement user authentication system"
-                                              },
-                                              {
-                                                  "Amount":  0.03,
-                                                  "Timestamp":  "2026-02-15T20:48:23",
-                                                  "Reason":  "decision: Use JWT tokens"
-                                              },
-                                              {
-                                                  "Amount":  0.03,
-                                                  "Timestamp":  "2026-02-15T20:48:24",
-                                                  "Reason":  "decision: Store tokens in httpOnly cookies"
-                                              },
-                                              {
-                                                  "Amount":  0.15,
-                                                  "Timestamp":  "2026-02-15T20:48:25",
-                                                  "Reason":  "stuck"
-                                              },
-                                              {
-                                                  "Amount":  0.05,
-                                                  "Timestamp":  "2026-02-15T20:48:25",
-                                                  "Reason":  "stuck_penalty"
-                                              },
-                                              {
-                                                  "Amount":  0.05,
-                                                  "Timestamp":  "2026-02-15T20:49:06",
-                                                  "Reason":  "task_start: Implement user authentication system"
-                                              },
-                                              {
-                                                  "Amount":  0.03,
-                                                  "Timestamp":  "2026-02-15T20:49:08",
-                                                  "Reason":  "decision: Use JWT tokens"
-                                              },
-                                              {
-                                                  "Amount":  0.03,
-                                                  "Timestamp":  "2026-02-15T20:49:08",
-                                                  "Reason":  "decision: Store tokens in httpOnly cookies"
-                                              },
-                                              {
-                                                  "Amount":  0.15,
-                                                  "Timestamp":  "2026-02-15T20:49:08",
-                                                  "Reason":  "stuck"
-                                              },
-                                              {
-                                                  "Amount":  0.05,
-                                                  "Timestamp":  "2026-02-15T20:49:08",
-                                                  "Reason":  "stuck_penalty"
-                                              }
-                                          ],
-                           "GhostAttractors":  {
-                                                   "Current":  "creative",
-                                                   "History":  [
-                                                                   {
-                                                                       "Duration":  null,
-                                                                       "From":  "global",
-                                                                       "To":  "self-reference",
-                                                                       "DetectedBy":  "behavioral",
-                                                                       "Timestamp":  "2026-02-15T20:47:44"
-                                                                   },
-                                                                   {
-                                                                       "Timestamp":  "2026-02-15T20:48:22",
-                                                                       "From":  "self-reference",
-                                                                       "To":  "creative",
-                                                                       "DetectedBy":  "behavioral",
-                                                                       "Duration":  38
-                                                                   },
-                                                                   {
-                                                                       "To":  "global",
-                                                                       "Timestamp":  "2026-02-15T20:49:09",
-                                                                       "From":  "creative",
-                                                                       "Duration":  47,
-                                                                       "DetectedBy":  "manual"
-                                                                   },
-                                                                   {
-                                                                       "To":  "creative",
-                                                                       "Timestamp":  "2026-02-15T20:49:09",
-                                                                       "From":  "global",
-                                                                       "Duration":  0,
-                                                                       "DetectedBy":  "behavioral"
-                                                                   }
-                                                               ],
-                                                   "VisitStart":  "2026-02-15T20:49:09",
-                                                   "StuckThreshold":  600
-                                               },
                            "LastSignals":  {
-                                               "DecisionVelocity":  0.4,
-                                               "SessionHours":  0,
                                                "ShannonEntropy":  0.71,
                                                "CarnotEfficiency":  0.016,
+                                               "DecisionVelocity":  0.4,
+                                               "EventDensity":  12.2,
                                                "UniqueEventTypes":  13,
-                                               "EventDensity":  12.2
+                                               "SessionHours":  0
                                            },
-                           "LastCoolingEvent":  "2026-02-15T20:49:09",
-                           "NegativeEntropyBudget":  0.61499999999999966,
-                           "Entropy":  0.8101208203682817
+                           "CarnotEfficiency":  0.016,
+                           "HeatEvents":  [
+
+                                          ],
+                           "LastCoolingEvent":  null,
+                           "Entropy":  0.7,
+                           "NegativeEntropyBudget":  1,
+                           "BudgetDepletionRate":  0,
+                           "Cycle":  "endothermic",
+                           "FreeWillIndex":  0.7,
+                           "GhostAttractors":  {
+                                                   "Current":  "global",
+                                                   "History":  [
+
+                                                               ],
+                                                   "VisitStart":  null,
+                                                   "StuckThreshold":  600
+                                               },
+                           "Temperature":  0.3
                        },
     "Control":  {
                     "Decisions":  [
@@ -979,24 +856,24 @@
                                           "Context":  "development"
                                       },
                                       {
+                                          "Alternatives":  [
+
+                                                           ],
                                           "Confidence":  0.7,
                                           "Timestamp":  "2026-02-15T20:49:07",
-                                          "Decision":  "Use JWT tokens",
-                                          "Context":  "development",
                                           "Reasoning":  "Assuming stateless auth is better, typically more scalable than session cookies",
-                                          "Alternatives":  [
-
-                                                           ]
+                                          "Decision":  "Use JWT tokens",
+                                          "Context":  "development"
                                       },
                                       {
-                                          "Confidence":  0.7,
-                                          "Timestamp":  "2026-02-15T20:49:08",
-                                          "Decision":  "Store tokens in httpOnly cookies",
-                                          "Context":  "development",
-                                          "Reasoning":  "Should prevent XSS attacks, probably safer than localStorage",
                                           "Alternatives":  [
 
-                                                           ]
+                                                           ],
+                                          "Confidence":  0.7,
+                                          "Timestamp":  "2026-02-15T20:49:08",
+                                          "Reasoning":  "Should prevent XSS attacks, probably safer than localStorage",
+                                          "Decision":  "Store tokens in httpOnly cookies",
+                                          "Context":  "development"
                                       }
                                   ],
                     "BiasMonitor":  {
@@ -1046,14 +923,15 @@
                                                     ],
                                      "DriftScore":  1,
                                      "AlignmentCheck":  {
-                                                            "value":  "\/Date(1771184949468)\/",
+                                                            "value":  "\/Date(1771240758474)\/",
                                                             "DisplayHint":  2,
-                                                            "DateTime":  "zondag 15 februari 2026 20:49:09"
+                                                            "DateTime":  "Monday, February 16, 2026 12:19:18 PM"
                                                         }
                                  }
                 },
     "Initialized":  true,
     "CreativeEvolution":  {
+                              "CreativityScore":  1,
                               "GenuineNovelties":  [
                                                        {
                                                            "Novelty":  "Parameter pollution fix works",
@@ -1083,16 +961,15 @@
                                                            "CreativeSource":  "radical_new",
                                                            "ElanVital":  0.8,
                                                            "Moment":  {
-                                                                          "value":  "\/Date(1771184949866)\/",
                                                                           "DisplayHint":  2,
-                                                                          "DateTime":  "zondag 15 februari 2026 20:49:09"
+                                                                          "DateTime":  "zondag 15 februari 2026 20:49:09",
+                                                                          "value":  "\/Date(1771184949866)\/"
                                                                       }
                                                        }
                                                    ],
                               "VitalityLevel":  0.8,
-                              "CreativityScore":  1,
-                              "MechanisticTendency":  0,
-                              "UnpredictableEventsCount":  3
+                              "UnpredictableEventsCount":  3,
+                              "MechanisticTendency":  0
                           },
     "CognitiveIndependence":  {
                                   "MyOwnSystem3Use":  {
@@ -2238,71 +2115,203 @@
                                                                                                   }
                                                                                 },
                                                                                 {
-                                                                                    "Agent":  "init",
-                                                                                    "Timestamp":  {
-                                                                                                      "value":  "\/Date(1771184946769)\/",
-                                                                                                      "DisplayHint":  2,
-                                                                                                      "DateTime":  "zondag 15 februari 2026 20:49:06"
-                                                                                                  },
-                                                                                    "Result":  "",
-                                                                                    "Verification":  "none",
                                                                                     "Surrendered":  false,
-                                                                                    "Task":  "init"
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "zondag 15 februari 2026 20:49:06",
+                                                                                                      "value":  "\/Date(1771184946769)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "zondag 15 februari 2026 20:49:07",
+                                                                                                      "value":  "\/Date(1771184947795)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "zondag 15 februari 2026 20:49:08",
+                                                                                                      "value":  "\/Date(1771184948384)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "zondag 15 februari 2026 20:49:08",
+                                                                                                      "value":  "\/Date(1771184948803)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "zondag 15 februari 2026 20:49:09",
+                                                                                                      "value":  "\/Date(1771184949233)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "zondag 15 februari 2026 20:49:09",
+                                                                                                      "value":  "\/Date(1771184949783)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Sunday, February 15, 2026 9:56:45 PM",
+                                                                                                      "value":  "\/Date(1771189005138)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Sunday, February 15, 2026 9:56:45 PM",
+                                                                                                      "value":  "\/Date(1771189005260)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Monday, February 16, 2026 11:10:18 AM",
+                                                                                                      "value":  "\/Date(1771236618100)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Monday, February 16, 2026 11:10:18 AM",
+                                                                                                      "value":  "\/Date(1771236618227)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Monday, February 16, 2026 11:14:28 AM",
+                                                                                                      "value":  "\/Date(1771236868210)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Monday, February 16, 2026 11:14:28 AM",
+                                                                                                      "value":  "\/Date(1771236868326)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Monday, February 16, 2026 11:18:19 AM",
+                                                                                                      "value":  "\/Date(1771237099861)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Monday, February 16, 2026 11:18:19 AM",
+                                                                                                      "value":  "\/Date(1771237099988)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Monday, February 16, 2026 11:59:07 AM",
+                                                                                                      "value":  "\/Date(1771239547703)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Monday, February 16, 2026 11:59:07 AM",
+                                                                                                      "value":  "\/Date(1771239547816)\/"
+                                                                                                  }
                                                                                 },
                                                                                 {
                                                                                     "Agent":  "init",
                                                                                     "Timestamp":  {
-                                                                                                      "value":  "\/Date(1771184947795)\/",
+                                                                                                      "value":  "\/Date(1771240764656)\/",
                                                                                                       "DisplayHint":  2,
-                                                                                                      "DateTime":  "zondag 15 februari 2026 20:49:07"
-                                                                                                  },
-                                                                                    "Result":  "",
-                                                                                    "Verification":  "none",
-                                                                                    "Surrendered":  false,
-                                                                                    "Task":  "init"
-                                                                                },
-                                                                                {
-                                                                                    "Agent":  "init",
-                                                                                    "Timestamp":  {
-                                                                                                      "value":  "\/Date(1771184948384)\/",
-                                                                                                      "DisplayHint":  2,
-                                                                                                      "DateTime":  "zondag 15 februari 2026 20:49:08"
-                                                                                                  },
-                                                                                    "Result":  "",
-                                                                                    "Verification":  "none",
-                                                                                    "Surrendered":  false,
-                                                                                    "Task":  "init"
-                                                                                },
-                                                                                {
-                                                                                    "Agent":  "init",
-                                                                                    "Timestamp":  {
-                                                                                                      "value":  "\/Date(1771184948803)\/",
-                                                                                                      "DisplayHint":  2,
-                                                                                                      "DateTime":  "zondag 15 februari 2026 20:49:08"
-                                                                                                  },
-                                                                                    "Result":  "",
-                                                                                    "Verification":  "none",
-                                                                                    "Surrendered":  false,
-                                                                                    "Task":  "init"
-                                                                                },
-                                                                                {
-                                                                                    "Agent":  "init",
-                                                                                    "Timestamp":  {
-                                                                                                      "value":  "\/Date(1771184949233)\/",
-                                                                                                      "DisplayHint":  2,
-                                                                                                      "DateTime":  "zondag 15 februari 2026 20:49:09"
-                                                                                                  },
-                                                                                    "Result":  "",
-                                                                                    "Verification":  "none",
-                                                                                    "Surrendered":  false,
-                                                                                    "Task":  "init"
-                                                                                },
-                                                                                {
-                                                                                    "Agent":  "init",
-                                                                                    "Timestamp":  {
-                                                                                                      "value":  "\/Date(1771184949783)\/",
-                                                                                                      "DisplayHint":  2,
-                                                                                                      "DateTime":  "zondag 15 februari 2026 20:49:09"
+                                                                                                      "DateTime":  "Monday, February 16, 2026 12:19:24 PM"
                                                                                                   },
                                                                                     "Result":  "",
                                                                                     "Verification":  "none",
@@ -2313,7 +2322,7 @@
                                                           "VerificationRigor":  0,
                                                           "OffloadVsSurrender":  {
                                                                                      "CognitiveSurrenders":  0,
-                                                                                     "StrategicOffloads":  101,
+                                                                                     "StrategicOffloads":  112,
                                                                                      "Ratio":  0
                                                                                  },
                                                           "SurrenderTriggers":  [
@@ -2376,14 +2385,14 @@
     "Meta":  {
                  "Observation":  {
                                      "CurrentMetaLevel":  2,
-                                     "RecursionDepth":  19,
-                                     "Observing":  "Scoring self (depth 19)",
+                                     "RecursionDepth":  2,
+                                     "Observing":  "Scoring self (depth 2)",
                                      "StrangeLoopDetected":  false
                                  },
                  "Health":  {
                                 "Emotion":  {
                                                 "Status":  "active",
-                                                "Quality":  1
+                                                "Quality":  0.7
                                             },
                                 "Memory":  {
                                                "Status":  "active",
@@ -2395,7 +2404,7 @@
                                                },
                                 "Thermodynamics":  {
                                                        "Status":  "active",
-                                                       "Quality":  0.5489241640736563
+                                                       "Quality":  0.7924
                                                    },
                                 "Meta":  {
                                              "Quality":  0,
@@ -2415,7 +2424,7 @@
                                                },
                                 "Social":  {
                                                "Status":  "active",
-                                               "Quality":  1
+                                               "Quality":  0.3
                                            }
                             },
                  "TwoSelves":  {
@@ -2429,21 +2438,21 @@
                                    "ActiveMode":  "social",
                                    "FundamentalSelf":  {
                                                            "Freedom":  0.4,
-                                                           "LastActiveSession":  "",
-                                                           "Active":  false,
                                                            "Depth":  0.25,
-                                                           "Continuity":  0.55
+                                                           "LastActiveSession":  "",
+                                                           "Continuity":  0.55,
+                                                           "Active":  false
                                                        },
                                    "BalanceScore":  0.35
                                },
-                 "ConsciousnessScore":  0.79736014132957533
+                 "ConsciousnessScore":  0.720012
              },
     "Duration":  {
                      "QualitativeTime":  {
                                              "Interpenetration":  0.5,
                                              "Intensity":  0.5,
                                              "Texture":  "smooth",
-                                             "AccumulatedWeight":  1
+                                             "AccumulatedWeight":  0
                                          },
                      "SessionStart":  {
                                           "DisplayHint":  2,
@@ -2466,15 +2475,15 @@
                  },
     "Social":  {
                    "RelationshipState":  "collaborative",
-                   "UserMood":  "terse",
+                   "UserMood":  "unknown",
                    "LastInteraction":  {
                                            "DisplayHint":  2,
                                            "DateTime":  "zondag 15 februari 2026 20:48:35",
                                            "value":  "\/Date(1771184915596)\/"
                                        },
                    "TrustLevel":  1,
-                   "CommunicationMode":  "terse",
-                   "InteractionCount":  5
+                   "CommunicationMode":  "standard",
+                   "InteractionCount":  0
                },
     "Alchemy":  {
                     "ThreeDomainBalance":  {
@@ -2496,7 +2505,7 @@
                                   ],
                     "DualCultivation":  {
                                             "Ming":  {
-                                                         "Score":  0.54116999999999982,
+                                                         "Score":  0.82,
                                                          "Factors":  [
                                                                          "budget_efficiency",
                                                                          "response_speed",
@@ -2504,7 +2513,7 @@
                                                                      ]
                                                      },
                                             "Xing":  {
-                                                         "Score":  0.69868007066478766,
+                                                         "Score":  0.660006,
                                                          "Factors":  [
                                                                          "consciousness_score",
                                                                          "alignment",
@@ -2515,27 +2524,27 @@
                                                              "HealthyMonster":  false,
                                                              "WeakGhost":  false
                                                          },
-                                            "Balance":  0.77456052164917422
+                                            "Balance":  0.80488536585365855
                                         },
                     "Transformations":  [
 
                                         ]
                 },
     "Metrics":  {
-                    "SaveCount":  387,
-                    "AccessCount":  445,
+                    "SaveCount":  425,
+                    "AccessCount":  489,
                     "AverageAccessTime_ms":  0,
-                    "EventsProcessed":  642,
+                    "EventsProcessed":  686,
                     "LastSave":  {
-                                     "value":  "\/Date(1771184949898)\/",
+                                     "value":  "\/Date(1771240764637)\/",
                                      "DisplayHint":  2,
-                                     "DateTime":  "zondag 15 februari 2026 20:49:09"
+                                     "DateTime":  "Monday, February 16, 2026 12:19:24 PM"
                                  }
                 },
     "Layer2Initialized":  true,
     "LoadedAt":  {
-                     "value":  "\/Date(1771184941233)\/",
+                     "value":  "\/Date(1771240759309)\/",
                      "DisplayHint":  2,
-                     "DateTime":  "zondag 15 februari 2026 20:49:01"
+                     "DateTime":  "Monday, February 16, 2026 12:19:19 PM"
                  }
 }
