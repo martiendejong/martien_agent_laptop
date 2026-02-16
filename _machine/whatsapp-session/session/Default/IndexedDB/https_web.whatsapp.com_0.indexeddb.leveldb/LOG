@@ -1,0 +1,6 @@
+2026/02/16-16:11:23.653 3fb8 Reusing MANIFEST C:\scripts\_machine\whatsapp-session\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/02/16-16:11:23.653 3fb8 Recovering log #69
+2026/02/16-16:11:23.696 3fb8 Reusing old log C:\scripts\_machine\whatsapp-session\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000069.log 
+2026/02/16-16:11:28.909 21f4 Level-0 table #75: started
+2026/02/16-16:11:28.939 21f4 Level-0 table #75: 1096440 bytes OK
+2026/02/16-16:11:28.943 21f4 Delete type=0 #69

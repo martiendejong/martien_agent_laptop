@@ -1,0 +1,5 @@
+@echo off
+echo START TEST
+echo ORCHESTRATION_SESSION_ID=%ORCHESTRATION_SESSION_ID%
+echo END TEST
+timeout /t 30

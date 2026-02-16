@@ -6,6 +6,351 @@
 
 ---
 
+## 2026-02-16 13:00 - EdTech Architecture Advisory + PDF Generation Pipeline
+
+**Session Type:** Technical consultation + Document automation
+**Context:** User forwarded request from Diko (team member) for EdTech platform architecture advisory
+**Outcome:** ✅ SUCCESS - 40+ page PDF delivered via email in <2 hours
+
+### What We Built
+
+**1. Comprehensive EdTech Architecture Advisory (40+ pages)**
+- Complete tech stack recommendation (Django + React + PostgreSQL)
+- Technology trade-offs analysis (5 dimensions: backend, frontend, DB, code execution, deployment)
+- Migration strategy (7 phases, 20-week timeline from static HTML to full platform)
+- Scalability roadmap (0 → 100K+ users without rewrites)
+- AI integration path (3 phases with cost estimates)
+- Security deep dive (code execution sandboxing, GDPR compliance)
+- Sample code (Django models, React components, Docker configs)
+- Cost breakdown ($20/month → $500+/month progression)
+
+**2. Automated Markdown → HTML → PDF Pipeline**
+- Created enhanced HTML converter with professional styling
+- Auto-detected Microsoft Edge browser for PDF rendering
+- Headless Edge command: `msedge --headless --disable-gpu --print-to-pdf=<output> <input>`
+- Result: 780KB professional PDF with proper formatting
+
+**3. SMTP Email Automation with Attachment**
+- PowerShell Send-MailMessage with 780KB PDF attachment
+- SMTP configuration: mail.martiendejong.nl:587 with TLS
+- Professional email template for technical advisory delivery
+
+### Technical Challenges & Solutions
+
+**Challenge 1: DPAPI Vault Decryption Failure**
+
+**Problem:**
+```powershell
+vault.ps1 -Action get -Service smtp -Field password
+# Returns: [DECRYPTION FAILED]
+```
+
+**Root Cause:**
+- Windows DPAPI encryption is per-user, per-machine
+- `vault.ps1 -Action list` shows decrypted hints (works fine)
+- `vault.ps1 -Action get` with `-Field` parameter fails to decrypt
+- Suggests code path difference or session context issue
+
+**Workaround:**
+- User provided SMTP password directly via chat
+- Created parameterized email script accepting password as argument
+- Avoided vault dependency for this session
+
+**Future Fix Needed:**
+- Debug vault.ps1 decryption logic in get action
+- Compare list vs get code paths
+- May need vault re-encryption or DPAPI troubleshooting
+
+**Challenge 2: PowerShell Unicode Character Encoding**
+
+**Problem:**
+```powershell
+Write-Host "✓ SUCCESS! Email sent" -ForegroundColor Green
+# Error: Unexpected token '✓' in expression or statement
+```
+
+**Root Cause:**
+- PowerShell scripts with UTF-8 BOM + special Unicode (✓ ✗ • ) fail parsing
+- Windows PowerShell 5.1 has limited Unicode support in script files
+- Characters work in console but fail when saved to .ps1 files
+
+**Solution:**
+- Use ASCII-only characters in PowerShell scripts
+- Replace ✓ with "SUCCESS", ✗ with "ERROR", • with "-"
+- Save files as UTF-8 without BOM when possible
+- Use `[System.Text.Encoding]::UTF8` for email body (works fine)
+
+**Pattern Learned:**
+```powershell
+# ❌ DON'T: Unicode in script files
+Write-Host "✓ Email sent"
+
+# ✅ DO: ASCII alternatives
+Write-Host "SUCCESS! Email sent"
+Write-Host "[OK] Email sent"
+```
+
+**Challenge 3: Browser Auto-Detection for PDF Conversion**
+
+**Initial Attempts:**
+1. `pandoc` - not installed
+2. `python` + `weasyprint` - Python not in PATH
+3. `wkhtmltopdf` - not installed
+4. Direct Edge path - incorrect path
+
+**Solution:**
+- Created browser detection script checking multiple paths:
+  - `$env:ProgramFiles\Microsoft\Edge\Application\msedge.exe`
+  - `${env:ProgramFiles(x86)}\Microsoft\Edge\Application\msedge.exe`
+  - Same for Chrome, Chromium
+- Found Edge at x86 path (32-bit install on 64-bit Windows)
+- Used headless mode: `--headless --disable-gpu --print-to-pdf=<output>`
+
+**Pattern: PDF Conversion from HTML**
+```powershell
+# Auto-detect browser
+$browsers = @(
+    @{ Name = "Microsoft Edge"; Paths = @(
+        "$env:ProgramFiles\Microsoft\Edge\Application\msedge.exe",
+        "${env:ProgramFiles(x86)}\Microsoft\Edge\Application\msedge.exe"
+    )}
+)
+
+foreach ($browser in $browsers) {
+    foreach ($path in $browser.Paths) {
+        if (Test-Path $path) {
+            # Found browser, use for PDF conversion
+            Start-Process -FilePath $path -ArgumentList @(
+                "--headless", "--disable-gpu",
+                "--print-to-pdf=$OutputPdf", $HtmlFile
+            ) -Wait -NoNewWindow
+            break
+        }
+    }
+}
+```
+
+### Key Learnings
+
+**Pattern 51: Technical Advisory Document Generation**
+
+**When:** User requests architecture advice, tech stack recommendations, or consultative documents
+
+**Approach:**
+1. **Deep Context Gathering** - Understand constraints (solo dev, budget, timeline, future needs)
+2. **Multi-Dimensional Analysis** - Compare 3+ options across 5+ factors (cost, learning curve, scalability, ecosystem, alignment)
+3. **Concrete Examples** - Include actual code snippets, not just concepts
+4. **Trade-Off Tables** - Visual comparison with ⭐ ratings for quick scanning
+5. **Timeline + Cost Estimates** - Realistic numbers based on experience
+6. **Risk Assessment** - High/medium/low priority risks with mitigations
+
+**Structure (40-page advisory):**
+```markdown
+1. Executive Summary (1 page) - TL;DR with key recommendation
+2. Problem Analysis (2 pages) - Current state, target state, constraints
+3. Architecture Design (15 pages) - Backend, frontend, DB, execution, deployment
+4. Trade-Offs (5 pages) - Tables comparing 3+ options per layer
+5. Migration Strategy (5 pages) - Phased approach with timeline
+6. Long-Term Considerations (5 pages) - Scalability, AI, institutions
+7. Security (3 pages) - Code execution, auth, GDPR
+8. Cost Breakdown (2 pages) - Month-by-month estimates
+9. Recommendations Summary (1 page) - Actionable next steps
+10. Appendices (6 pages) - Sample code, package lists, references
+```
+
+**Quality Markers:**
+- ✅ Specific numbers (not "affordable" but "$20-50/month")
+- ✅ Code examples (not "use Django ORM" but actual model code)
+- ✅ Comparison tables (visual quick reference)
+- ✅ Timeline estimates (20 weeks with breakdown)
+- ✅ Risk assessment (what could go wrong + mitigations)
+
+**Pattern 52: Markdown → PDF Automation Pipeline**
+
+**Use Case:** Generate professional PDFs from markdown content
+
+**Pipeline:**
+```
+Markdown (source)
+  → Enhanced HTML (styled with CSS)
+  → Browser Headless Rendering
+  → PDF (print-optimized)
+```
+
+**Implementation:**
+```powershell
+# Step 1: Convert markdown to HTML with professional styling
+function Convert-MarkdownToHtml {
+    param([string]$markdown)
+
+    # Regex-based conversion
+    $html = $markdown `
+        -replace '```([a-z]*)\r?\n(.*?)\r?\n```', '<pre><code>$2</code></pre>' `
+        -replace '#### (.+)', '<h4>$1</h4>' `
+        -replace '### (.+)', '<h3>$1</h3>' `
+        -replace '## (.+)', '<h2>$1</h2>' `
+        -replace '# (.+)', '<h1>$1</h1>' `
+        -replace '\*\*(.+?)\*\*', '<strong>$1</strong>'
+
+    # Embed in styled HTML template
+    $template = @"
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: 'Segoe UI'; max-width: 1000px; margin: 0 auto; }
+        h1 { color: #1a365d; border-bottom: 4px solid #3182ce; }
+        h2 { color: #2c5282; border-bottom: 2px solid #63b3ed; }
+        code { background: #edf2f7; color: #c53030; padding: 2px 6px; }
+        pre { background: #1a202c; color: #e2e8f0; padding: 16px; }
+        table { border-collapse: collapse; width: 100%; }
+        th { background: #2c5282; color: white; }
+    </style>
+</head>
+<body>$html</body>
+</html>
+"@
+    return $template
+}
+
+# Step 2: Convert HTML to PDF using browser
+$edgePath = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+Start-Process $edgePath -ArgumentList @(
+    "--headless", "--disable-gpu",
+    "--print-to-pdf=output.pdf", "input.html"
+) -Wait
+```
+
+**Key Details:**
+- CSS optimized for print (`@page` margins, page breaks)
+- Font choices: Segoe UI (Windows), system fonts as fallbacks
+- Color scheme: Professional blues (#2c5282, #3182ce)
+- Code blocks: Dark theme for contrast
+- Tables: Alternating row colors for readability
+
+**Pattern 53: SMTP Email with Large Attachments**
+
+**Use Case:** Send automated emails with PDF/image attachments
+
+**PowerShell Implementation:**
+```powershell
+param([string]$SmtpPassword, [string]$AttachmentPath)
+
+$mailParams = @{
+    From = "sender@domain.com"
+    To = "recipient@domain.com"
+    Subject = "Document Title"
+    Body = "Email body text"
+    SmtpServer = "mail.domain.com"
+    Port = 587
+    UseSsl = $true
+    Credential = (New-Object PSCredential(
+        "username",
+        (ConvertTo-SecureString $SmtpPassword -AsPlainText -Force)
+    ))
+    Attachments = $AttachmentPath
+    Encoding = [System.Text.Encoding]::UTF8
+}
+
+Send-MailMessage @mailParams
+```
+
+**SMTP Configuration:**
+- **Port 587:** STARTTLS (encrypted connection, standard)
+- **Port 465:** SSL/TLS (legacy but still common)
+- **Port 25:** Unencrypted (avoid, often blocked)
+
+**Attachment Size Limits:**
+- Most SMTP servers: 25MB max
+- Gmail: 25MB
+- Outlook: 10MB per file, 20MB total
+- This session: 780KB PDF (well within limits)
+
+**Authentication:**
+- Use `PSCredential` object with `ConvertTo-SecureString`
+- Don't hardcode passwords (accept as parameter or use vault)
+- Some hosts require app-specific passwords (Gmail, Outlook with 2FA)
+
+**Error Handling:**
+```powershell
+try {
+    Send-MailMessage @mailParams
+    Write-Host "SUCCESS: Email sent" -ForegroundColor Green
+}
+catch {
+    if ($_.Exception.Message -match "authentication") {
+        Write-Host "ERROR: Check SMTP password" -ForegroundColor Red
+    }
+    elseif ($_.Exception.Message -match "timed out") {
+        Write-Host "ERROR: Try different port (465 instead of 587)" -ForegroundColor Red
+    }
+}
+```
+
+### Lessons for Future Sessions
+
+**DO:**
+- ✅ Use browser headless mode for PDF generation (no external dependencies)
+- ✅ Create fallback options for tools (Edge → Chrome → Chromium → manual)
+- ✅ Accept sensitive parameters (passwords) as script arguments, not hardcoded
+- ✅ Use ASCII-only in PowerShell .ps1 files (Unicode fails parsing)
+- ✅ Provide specific numbers in advisory docs ($20/month, not "cheap")
+- ✅ Include code examples in technical advisories (not just concepts)
+- ✅ Check for multiple browser installation paths (x86 and x64)
+- ✅ Use `-Wait` with Start-Process for synchronous operations
+
+**DON'T:**
+- ❌ Rely on vault decryption if get action fails (have workaround plan)
+- ❌ Use Unicode special chars (✓ ✗ •) in PowerShell script files
+- ❌ Assume browser is in standard path (check both Program Files locations)
+- ❌ Give vague estimates in advisory docs ("affordable", "scalable" without numbers)
+- ❌ Skip trade-off analysis (always compare 3+ options)
+- ❌ Forget to test email sending before reporting success
+
+**Key Insight:**
+> "Technical advisory quality = specificity. Don't say 'Django is good for EdTech' - say 'Django + React + PostgreSQL costs $20-50/month for 0-1K users, scales to 100K+ users for $200-500/month, and aligns with Python learning roadmap.' Concrete numbers build trust."
+
+### Files Created
+
+**Documentation:**
+- `C:\jengo\documents\temp\codehub-architecture-advisory.md` (40+ pages, source)
+- `C:\jengo\documents\output\CodeHub-Architecture-Advisory.html` (58KB, styled)
+- `C:\jengo\documents\output\CodeHub-Architecture-Advisory.pdf` (780KB, final)
+
+**Automation Scripts:**
+- `C:\jengo\documents\temp\convert-md-to-pdf.ps1` (initial attempt)
+- `C:\jengo\documents\temp\md-to-html-enhanced.ps1` (HTML converter)
+- `C:\jengo\documents\output\convert-to-pdf.ps1` (browser auto-detect + PDF)
+- `C:\jengo\documents\temp\send-email-simple.ps1` (SMTP sender with attachment)
+
+**Instructions:**
+- `C:\jengo\documents\output\CONVERT_TO_PDF_INSTRUCTIONS.txt` (manual fallback)
+
+### Deliverables
+
+**Email sent to:** dikomohamed287@gmail.com
+**Subject:** CodeHub EdTech Platform - Architecture Advisory
+**Attachment:** CodeHub-Architecture-Advisory.pdf (780 KB)
+**Status:** ✅ Delivered successfully
+
+### Success Metrics
+
+- ✅ Comprehensive advisory created (40+ pages with 13 sections)
+- ✅ Automated PDF pipeline built (reusable for future docs)
+- ✅ Email delivered with attachment (780KB PDF)
+- ✅ Zero manual steps (fully automated after password provided)
+- ✅ Professional quality output (styled HTML, proper formatting)
+- ✅ Time efficiency: <2 hours from request to delivery
+
+### Next Steps
+
+1. **Debug vault.ps1 decryption** - Why does `get` action fail but `list` succeeds?
+2. **Create reusable advisory template** - Markdown structure for future consultations
+3. **Document PDF pipeline** - Add to CLAUDE.md as standard procedure
+4. **Add to auto-memory** - PDF generation pattern for quick reference
+
+---
+
 ## 2026-02-15 (night) - Consciousness System Hardening (Session 2)
 
 **Tasks completed:** 5/5 (PS 5.1 *>$null fix, outcome tracker wiring, prediction feedback loop, associative matching docs, associative context matching)
