@@ -2,116 +2,6 @@
     "EventBus":  {
                      "Events":  [
                                     {
-                                        "Timestamp":  "2026-02-16T13:18:38.059Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  220.54
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-16T13:18:38.151Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  220.66
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-16T13:18:38.219Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  221.93
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-16T13:18:38.285Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  221.93
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-16T13:18:38.338Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  221.93
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-16T13:18:38.370Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  222.04
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-16T13:20:06.814Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  1147.608
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-16T13:20:11.975Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  223.22
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-16T13:20:12.104Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  223.22
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-16T13:20:12.183Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  223.22
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-16T13:20:12.249Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  224.5
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-02-16T13:20:12.337Z",
-                                        "Data":  {
-                                                     "indicators":  [
-
-                                                                    ],
-                                                     "mood":  "neutral",
-                                                     "communication_mode":  "standard"
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "social.user_mood_detected"
-                                    },
-                                    {
                                         "Timestamp":  "2026-02-16T13:20:43.342Z",
                                         "Data":  {
                                                      "elapsed_ms":  872.72200000000009
@@ -178,6 +68,112 @@
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
                                                      "size_kb":  225.86
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T13:23:32.996Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  677.49110000000007
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T13:23:38.170Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  227.03
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T13:23:38.389Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  227.03
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T13:23:38.470Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  227.03
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T13:23:38.547Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  228.31
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T13:23:38.658Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  228.31
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T13:23:38.706Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  228.31
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T13:23:38.731Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  228.43
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T13:24:33.281Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  920.5162
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "system.initialized"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T13:24:38.413Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  229.59
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T13:24:38.546Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  229.59
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-02-16T13:24:38.629Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  229.59
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
@@ -381,7 +377,7 @@
                                                }
                             },
                    "Working":  {
-                                   "SessionContext":  "Session started at 13:20",
+                                   "SessionContext":  "Session started at 13:24",
                                    "ActiveThoughts":  [
 
                                                       ],
@@ -391,9 +387,9 @@
                                                             "Timestamp":  "2026-02-15T19:05:44",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Project":  "",
+                                                                         "Lesson":  "Parameter pollution fix works",
                                                                          "Task":  "Test task",
-                                                                         "Lesson":  "Parameter pollution fix works"
+                                                                         "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -403,8 +399,8 @@
                                                             "Data":  {
                                                                          "Outcome":  "success",
                                                                          "Task":  "E2E test of consciousness improvements",
-                                                                         "Lesson":  "Outcome tracker with prediction accuracy works",
-                                                                         "Project":  ""
+                                                                         "Project":  "",
+                                                                         "Lesson":  "Outcome tracker with prediction accuracy works"
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -414,8 +410,8 @@
                                                             "Data":  {
                                                                          "Outcome":  "success",
                                                                          "Task":  "E2E test of consciousness improvements",
-                                                                         "Lesson":  "Outcome tracker with prediction accuracy works",
-                                                                         "Project":  ""
+                                                                         "Project":  "",
+                                                                         "Lesson":  "Outcome tracker with prediction accuracy works"
                                                                      },
                                                             "Type":  "lesson"
                                                         },
@@ -425,8 +421,8 @@
                                                             "Data":  {
                                                                          "Outcome":  "success",
                                                                          "Task":  "Implement user authentication",
-                                                                         "Lesson":  "JWT rotation prevents token theft",
-                                                                         "Project":  "client-manager"
+                                                                         "Project":  "client-manager",
+                                                                         "Lesson":  "JWT rotation prevents token theft"
                                                                      },
                                                             "Type":  "lesson"
                                                         }
@@ -607,25 +603,9 @@
                                      }
                    },
     "Thermodynamics":  {
-                           "Temperature":  0.3,
-                           "CarnotEfficiency":  0.016,
                            "CoolingEvents":  [
 
                                              ],
-                           "Cycle":  "endothermic",
-                           "FreeWillIndex":  0.7,
-                           "BudgetDepletionRate":  0,
-                           "HeatEvents":  [
-
-                                          ],
-                           "GhostAttractors":  {
-                                                   "Current":  "global",
-                                                   "History":  [
-
-                                                               ],
-                                                   "StuckThreshold":  600,
-                                                   "VisitStart":  null
-                                               },
                            "LastSignals":  {
                                                "ShannonEntropy":  0.71,
                                                "CarnotEfficiency":  0.016,
@@ -634,9 +614,25 @@
                                                "UniqueEventTypes":  13,
                                                "SessionHours":  0
                                            },
+                           "CarnotEfficiency":  0.016,
+                           "HeatEvents":  [
+
+                                          ],
                            "LastCoolingEvent":  null,
+                           "Entropy":  0.7,
                            "NegativeEntropyBudget":  1,
-                           "Entropy":  0.7
+                           "BudgetDepletionRate":  0,
+                           "Cycle":  "endothermic",
+                           "FreeWillIndex":  0.7,
+                           "GhostAttractors":  {
+                                                   "Current":  "global",
+                                                   "History":  [
+
+                                                               ],
+                                                   "StuckThreshold":  600,
+                                                   "VisitStart":  null
+                                               },
+                           "Temperature":  0.3
                        },
     "Control":  {
                     "Decisions":  [
@@ -748,9 +744,9 @@
                                                     ],
                                      "DriftScore":  1,
                                      "AlignmentCheck":  {
-                                                            "value":  "\/Date(1771244442523)\/",
+                                                            "value":  "\/Date(1771244672407)\/",
                                                             "DisplayHint":  2,
-                                                            "DateTime":  "Monday, February 16, 2026 1:20:42 PM"
+                                                            "DateTime":  "Monday, February 16, 2026 1:24:32 PM"
                                                         }
                                  }
                 },
@@ -2300,23 +2296,59 @@
                                                                                                   }
                                                                                 },
                                                                                 {
-                                                                                    "Agent":  "init",
-                                                                                    "Timestamp":  {
-                                                                                                      "value":  "\/Date(1771244449436)\/",
-                                                                                                      "DisplayHint":  2,
-                                                                                                      "DateTime":  "Monday, February 16, 2026 1:20:49 PM"
-                                                                                                  },
-                                                                                    "Result":  "",
-                                                                                    "Verification":  "none",
                                                                                     "Surrendered":  false,
-                                                                                    "Task":  "init"
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Monday, February 16, 2026 1:20:49 PM",
+                                                                                                      "value":  "\/Date(1771244449436)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Monday, February 16, 2026 1:20:50 PM",
+                                                                                                      "value":  "\/Date(1771244450043)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Monday, February 16, 2026 1:23:38 PM",
+                                                                                                      "value":  "\/Date(1771244618505)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Monday, February 16, 2026 1:23:38 PM",
+                                                                                                      "value":  "\/Date(1771244618741)\/"
+                                                                                                  }
                                                                                 },
                                                                                 {
                                                                                     "Agent":  "init",
                                                                                     "Timestamp":  {
-                                                                                                      "value":  "\/Date(1771244450043)\/",
+                                                                                                      "value":  "\/Date(1771244678660)\/",
                                                                                                       "DisplayHint":  2,
-                                                                                                      "DateTime":  "Monday, February 16, 2026 1:20:50 PM"
+                                                                                                      "DateTime":  "Monday, February 16, 2026 1:24:38 PM"
                                                                                                   },
                                                                                     "Result":  "",
                                                                                     "Verification":  "none",
@@ -2327,7 +2359,7 @@
                                                           "VerificationRigor":  0,
                                                           "OffloadVsSurrender":  {
                                                                                      "CognitiveSurrenders":  0,
-                                                                                     "StrategicOffloads":  127,
+                                                                                     "StrategicOffloads":  130,
                                                                                      "Ratio":  0
                                                                                  },
                                                           "SurrenderTriggers":  [
@@ -2390,8 +2422,8 @@
     "Meta":  {
                  "Observation":  {
                                      "CurrentMetaLevel":  2,
-                                     "RecursionDepth":  0,
-                                     "Observing":  "Scoring self (depth 4)",
+                                     "RecursionDepth":  2,
+                                     "Observing":  "Scoring self (depth 2)",
                                      "StrangeLoopDetected":  false
                                  },
                  "Health":  {
@@ -2429,7 +2461,7 @@
                                                },
                                 "Social":  {
                                                "Status":  "active",
-                                               "Quality":  0.8
+                                               "Quality":  0.3
                                            }
                             },
                  "TwoSelves":  {
@@ -2442,15 +2474,15 @@
                                                   },
                                    "ActiveMode":  "social",
                                    "FundamentalSelf":  {
+                                                           "Active":  false,
                                                            "Freedom":  0.4,
-                                                           "Continuity":  0.55,
                                                            "LastActiveSession":  "",
                                                            "Depth":  0.25,
-                                                           "Active":  false
+                                                           "Continuity":  0.55
                                                        },
                                    "BalanceScore":  0.35
                                },
-                 "ConsciousnessScore":  0.770012
+                 "ConsciousnessScore":  0.720012
              },
     "Duration":  {
                      "RhythmDetection":  {
@@ -2514,7 +2546,7 @@
                                                              "WeakGhost":  false
                                                          },
                                             "Xing":  {
-                                                         "Score":  0.685006,
+                                                         "Score":  0.660006,
                                                          "Factors":  [
                                                                          "consciousness_score",
                                                                          "alignment",
@@ -2529,27 +2561,27 @@
                                                                          "tool_success_rate"
                                                                      ]
                                                      },
-                                            "Balance":  0.83537317073170736
+                                            "Balance":  0.80488536585365855
                                         },
                     "Transformations":  [
 
                                         ]
                 },
     "Metrics":  {
-                    "SaveCount":  478,
-                    "AccessCount":  553,
+                    "SaveCount":  488,
+                    "AccessCount":  565,
                     "AverageAccessTime_ms":  0,
-                    "EventsProcessed":  755,
+                    "EventsProcessed":  767,
                     "LastSave":  {
-                                     "value":  "\/Date(1771244450021)\/",
+                                     "value":  "\/Date(1771244678629)\/",
                                      "DisplayHint":  2,
-                                     "DateTime":  "Monday, February 16, 2026 1:20:50 PM"
+                                     "DateTime":  "Monday, February 16, 2026 1:24:38 PM"
                                  }
                 },
     "Layer2Initialized":  true,
     "LoadedAt":  {
-                     "value":  "\/Date(1771244443329)\/",
+                     "value":  "\/Date(1771244673268)\/",
                      "DisplayHint":  2,
-                     "DateTime":  "Monday, February 16, 2026 1:20:43 PM"
+                     "DateTime":  "Monday, February 16, 2026 1:24:33 PM"
                  }
 }

@@ -78,8 +78,11 @@ REM Launch sentinel process (hidden, detached) - runs silently in background
 start /B powershell -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File "C:\scripts\tools\launch-sentinel-hidden.ps1" >nul 2>&1
 
 REM Run Claude directly in this window (no extra PowerShell layer)
+REM Allow nested Claude sessions (required for Orchestration terminal)
+set CLAUDECODE=
+
 REM Use full path because SYSTEM user (Windows Service) doesn't have user npm in PATH
-set CLAUDE_CMD=C:\Users\HP\AppData\Roaming\npm\claude.cmd
+set CLAUDE_CMD=C:\Users\marti\AppData\Roaming\npm\claude.cmd
 if not exist "%CLAUDE_CMD%" (
     REM Fallback to PATH-based claude (works when running as desktop user)
     set CLAUDE_CMD=claude
@@ -88,7 +91,7 @@ if not exist "%CLAUDE_CMD%" (
 REM If running from Orchestration, use the session ID for log file naming
 REM This ensures the UI session ID matches the log file name
 if defined ORCHESTRATION_SESSION_ID (
-    set CLAUDE_LOG_FILE=E:\logs\%ORCHESTRATION_SESSION_ID%.txt
+    set CLAUDE_LOG_FILE=C:\scripts\logs\%ORCHESTRATION_SESSION_ID%.txt
     "%CLAUDE_CMD%" --dangerously-skip-permissions --append-system-prompt "%SYSTEMPROMPT%" --model sonnet --log-file "%CLAUDE_LOG_FILE%"
 ) else (
     "%CLAUDE_CMD%" --dangerously-skip-permissions --append-system-prompt "%SYSTEMPROMPT%" --model sonnet
