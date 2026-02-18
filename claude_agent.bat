@@ -91,15 +91,8 @@ if not exist "%CLAUDE_CMD%" (
     set CLAUDE_CMD=claude
 )
 
-REM If running from Orchestration, use the session ID for log file naming
-REM This ensures the UI session ID matches the log file name
-if not "%ORCHESTRATION_SESSION_ID%"=="" (
-    set CLAUDE_LOG_FILE=C:\scripts\logs\%ORCHESTRATION_SESSION_ID%.txt
-    echo Using log file: %CLAUDE_LOG_FILE%
-    "%CLAUDE_CMD%" --dangerously-skip-permissions --append-system-prompt "%SYSTEMPROMPT%" --model sonnet --log-file "%CLAUDE_LOG_FILE%"
-) else (
-    echo No ORCHESTRATION_SESSION_ID - using default logging
-    "%CLAUDE_CMD%" --dangerously-skip-permissions --append-system-prompt "%SYSTEMPROMPT%" --model sonnet
-)
+REM Launch Claude Code without log file for now (bypassing environment variable issue)
+echo Launching Claude Code...
+"%CLAUDE_CMD%" --dangerously-skip-permissions --append-system-prompt "%SYSTEMPROMPT%" --model sonnet
 
 pause

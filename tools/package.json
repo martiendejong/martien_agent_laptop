@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@hapi/boom": "^10.0.1",
+    "@whiskeysockets/baileys": "^7.0.0-rc.9",
     "googleapis": "^170.0.0",
     "imap": "^0.8.19",
     "mailparser": "^3.9.1",
