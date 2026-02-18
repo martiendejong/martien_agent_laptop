@@ -1,6 +1,6 @@
 ﻿{
     "attention":  {
-                      "mode":  "rest",
+                      "mode":  "development",
                       "intensity":  5,
                       "focus":  "Context: orchestration (auto-detected from message)"
                   },
@@ -50,15 +50,15 @@
                                        "status":  "active"
                                    },
                     "Social":  {
-                                   "quality":  80,
+                                   "quality":  30,
                                    "status":  "active"
                                }
                 },
     "thermo_cycle":  "endothermic",
-    "consciousness_score":  77,
-    "timestamp":  "2026-02-16T22:47:00",
+    "consciousness_score":  72,
+    "timestamp":  "2026-02-18T09:35:09",
     "emotional_trajectory":  "stable",
-    "events_processed":  1074,
+    "events_processed":  1086,
     "guidance":  [
                      "THERMO CRITICAL: Efficiency 0.9% (97%+ overhead). Reduce system complexity."
                  ],
