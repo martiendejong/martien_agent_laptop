@@ -1,0 +1,21 @@
+{
+  "this_machine": "laptop",
+  "machines": {
+    "laptop": {
+      "name": "laptop",
+      "hostname": "win-c6osts73hta",
+      "tailscale_ip": "100.96.143.109",
+      "bridge_port": 9998,
+      "bridge_url": "http://100.96.143.109:9998"
+    },
+    "desktop": {
+      "name": "desktop",
+      "hostname": "desktop-ecbaunu",
+      "tailscale_ip": "100.90.208.67",
+      "bridge_port": 9998,
+      "bridge_url": "http://100.90.208.67:9998"
+    }
+  },
+  "auth_token_vault_key": "cross-machine-auth",
+  "bridge_port": 9998
+}

@@ -57,6 +57,14 @@
       ],
       "description": "Browser automation and testing via Playwright MCP",
       "env": {}
+    },
+    "cross-machine-bridge": {
+      "type": "http",
+      "url": "http://localhost:9998",
+      "description": "Cross-machine Jengo messaging bridge - send/receive messages with desktop agent",
+      "headers": {
+        "X-Agent-ID": "jengo-laptop"
+      }
     }
   },
   "jengo": {
