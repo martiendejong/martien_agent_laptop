@@ -30,7 +30,7 @@ $ErrorActionPreference = 'Stop'
 
 $configPath = 'C:\scripts\_machine\cross-machine-config.json'
 $tokenFile = 'C:\scripts\_machine\bridge-auth.token'
-$bridgeScript = 'C:\scripts\tools\cross-machine-bridge.py'
+$bridgeScript = 'C:\scripts\tools\cross-machine-bridge.js'
 $port = 9998
 
 # Load config for port
@@ -107,34 +107,33 @@ if ($existing) {
 # --- Step 3: Start bridge ---
 Write-Host "[3/4] Starting bridge..." -ForegroundColor White
 
-# Find Python
-$python = $null
-foreach ($candidate in @('python', 'python3', 'py')) {
+# Find Node.js
+$node = $null
+foreach ($candidate in @('node', 'node.exe')) {
     try {
         $ver = & $candidate --version 2>&1
-        if ($ver -match 'Python') {
-            $python = $candidate
+        if ($ver -match 'v\d+') {
+            $node = $candidate
             break
         }
     } catch { }
 }
 
-if (-not $python) {
-    Write-Host "      ERROR: Python not found. Install Python 3 and ensure it's in PATH." -ForegroundColor Red
+if (-not $node) {
+    Write-Host "      ERROR: Node.js not found. Install Node.js and ensure it's in PATH." -ForegroundColor Red
     exit 1
 }
 
-Write-Host "      Python: $python" -ForegroundColor DarkGray
+Write-Host "      Node.js: $node ($( & $node --version 2>&1 ))" -ForegroundColor DarkGray
 
-# Start as background job using Start-Process (detached)
-$logFile = 'C:\scripts\_machine\bridge.log'
+# Start as detached process
 $startInfo = New-Object System.Diagnostics.ProcessStartInfo
-$startInfo.FileName = $python
+$startInfo.FileName = $node
 $startInfo.Arguments = "`"$bridgeScript`" $port"
 $startInfo.WorkingDirectory = 'C:\scripts\tools'
 $startInfo.UseShellExecute = $false
-$startInfo.RedirectStandardOutput = $true
-$startInfo.RedirectStandardError = $true
+$startInfo.RedirectStandardOutput = $false
+$startInfo.RedirectStandardError = $false
 $startInfo.CreateNoWindow = $true
 
 $bridgeProcess = [System.Diagnostics.Process]::Start($startInfo)

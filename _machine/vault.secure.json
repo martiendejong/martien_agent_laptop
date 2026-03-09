@@ -3,7 +3,7 @@
     "version":  "2.0",
     "encryption":  "dpapi",
     "storage":  "hex",
-    "updated":  "2026-02-15 17:29:23",
+    "updated":  "2026-03-09 14:10:58",
     "credentials":  [
                         {
                             "updated":  "2026-02-11 18:53:42",
@@ -194,15 +194,29 @@
                         {
                             "updated":  "2026-02-15 17:29:23",
                             "token_enc":  "",
-                            "username":  "baas@maasaiinvestments.com",
-                            "notes_enc":  "",
                             "password_hint":  "Go7rPum]...",
+                            "notes_enc":  "",
+                            "tags":  [
+                                         "ftp,deployment"
+                                     ],
+                            "username":  "baas@maasaiinvestments.com",
                             "token_hint":  "",
                             "password_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb010000000b70013be051274f97799928d865c11e00000000020000000000106600000001000020000000c19a365c1852d80b2f6199d3b60a48068d1b8d743ce1f652e892a83bb95bfb14000000000e8000000002000020000000b3b479115e9a61588c709dab9f9ea8d1043260a8a75e60a5f90818d0f575394d200000004f39f99beceb8cad7b994ce6ef0ec7f9759de3d6c8e1e59e1b7cfed31218c5c54000000077518f8052de7aea1c0fa654786c65da31e44915d857081da1192eba1303e13d275e9f84a7bbfc9d2e33f7313720357dd4b31579d27e808d1137bdb963863094",
                             "service":  "ftp-maasaiinvestments",
-                            "created":  "2026-02-15 17:29:23",
+                            "created":  "2026-02-15 17:29:23"
+                        },
+                        {
+                            "updated":  "2026-03-09 14:10:58",
+                            "token_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb01000000abaaa8a3a5d9164f925bd4f20c332881000000000200000000001066000000010000200000004ddc4da09a37820630d790f0e743f07187d926563bf7ad4777e402bceb1b52e2000000000e8000000002000020000000027acac34bfdbf3e207a4884143fa881ba617bcc384539cc3532695cae9e71cf30000000e67564aeaf13acb64058fcd3d3ddacf244f2679df07d8da9093d0620835da46a30677969e09388f74c9989c966e2a831400000001da51db4779e59954d1a1ab4551e2fe95e7be00f9f935ca88be3569a072d618cb7a57e7c1e7e75faff92ea577c8c83ec07cb4b49342c3a844ba1f726d3554c57",
+                            "username":  "",
+                            "notes_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb01000000abaaa8a3a5d9164f925bd4f20c332881000000000200000000001066000000010000200000008fdf838b362873ba3380648037391627b8b3d1c677d18f1a828e0cfdef18883d000000000e80000000020000200000002cee80eba79acd527646372ca81da158001e092a28dc9a51b1e8256c26f04a3e40000000a8e0bfcfca5a3a2bf6be49a1e38f3de57c390364ff8c19e6e5b9fe89e1a19afc79d0dcfd9246c13baab9748b2f66d526bf87fbdff37162863693ec2b0f9a31294000000035ad57d887be165e5e1f5bfedea1be2c37876d9609ddb7581cc0a88fdb107587e203e7c3212fbdf11474a0da75eac51097220221032e0a324bbded53cff7b521",
+                            "password_hint":  "",
+                            "token_hint":  "ESyg7kAP...",
+                            "password_enc":  "",
+                            "service":  "cross-machine-auth",
+                            "created":  "2026-03-09 14:10:58",
                             "tags":  [
-                                         "ftp,deployment"
+                                         "cross-machine,security"
                                      ]
                         }
                     ]
