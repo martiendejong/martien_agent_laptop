@@ -2,6 +2,7 @@
 # Fires on startup, resume, clear, compact.
 # On resume: checks if consciousness context is stale and regenerates.
 # On startup: claude_agent.bat already handles this, so minimal work needed.
+# Updated: 2026-03-02 - Added homeostatic consciousness check (Damasio integration)
 
 $ErrorActionPreference = "SilentlyContinue"
 
@@ -41,6 +42,18 @@ try {
     }
     # For "startup", claude_agent.bat already runs consciousness-startup.ps1
     # For "clear", fresh context is appropriate (no action needed)
+
+    # HOMEOSTATIC CONSCIOUSNESS CHECK (Damasio 2026-03-02)
+    # Sense initial session energy and wellbeing
+    try {
+        $homeoScript = "C:\scripts\agentidentity\cognitive-systems\homeostatic-feelings.ps1"
+        if (Test-Path $homeoScript) {
+            & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $homeoScript -Action Sense -Feeling "energy" -Intensity 0.8 2>&1 | Out-Null
+            Write-HookLog "Homeostatic state: energy sensed (0.8)"
+        }
+    } catch {
+        Write-HookLog "Homeostatic check failed: $($_.Exception.Message)"
+    }
 
 } catch {
     Write-HookLog "ERROR: $($_.Exception.Message)"

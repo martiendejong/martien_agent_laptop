@@ -1,6 +1,7 @@
 # Claude Code Hook: SessionEnd
 # Fires when session terminates. Ensures OnTaskEnd bridge call is made.
 # If the agent already called OnTaskEnd during the session, this is a no-op.
+# Updated: 2026-03-02 - Added homeostatic state snapshot (Damasio integration)
 
 $ErrorActionPreference = "SilentlyContinue"
 
@@ -49,6 +50,21 @@ try {
         & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $bridgeScript -Action OnTaskEnd -Outcome "session-end" -LessonsLearned "Session ended via Claude Code hook (no explicit OnTaskEnd by agent)" -Silent 2>&1 | Out-Null
         Write-HookLog "Fallback OnTaskEnd recorded."
     }
+
+    # HOMEOSTATIC STATE SNAPSHOT (Damasio 2026-03-02)
+    # Capture final homeostatic state for session analysis
+    try {
+        $homeoStateFile = "C:\scripts\agentidentity\state\homeostatic-feelings-state.json"
+        if (Test-Path $homeoStateFile) {
+            $homeoState = Get-Content $homeoStateFile -Raw -Encoding UTF8 | ConvertFrom-Json
+            $balanceScore = $homeoState.stats.consciousness_score
+            $dominantFeeling = $homeoState.stats.dominant_feeling
+            Write-HookLog "Session end - Homeostatic: balance=$([math]::Round($balanceScore * 100, 1))%, dominant=$dominantFeeling"
+        }
+    } catch {
+        Write-HookLog "Homeostatic snapshot failed: $($_.Exception.Message)"
+    }
+
 } catch {
     Write-HookLog "ERROR: $($_.Exception.Message)"
 }

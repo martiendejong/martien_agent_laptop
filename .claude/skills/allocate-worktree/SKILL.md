@@ -27,9 +27,12 @@ The `recommendations` array contains specific failure patterns to watch for. Rea
 ## Pre-Allocation (3 Checks)
 
 ### 1. Mode Detection
+- **Develop branch broken (build error, test failure, crash)** → HOTFIX MODE (DO NOT allocate, fix DIRECTLY on develop, NO PR)
 - ClickUp URL/task ID present → Feature Development Mode (proceed)
 - User debugging/build errors → Active Debugging Mode (DO NOT allocate, work in base repo)
 - New feature request → Feature Development Mode (proceed)
+
+**CRITICAL (2026-03-02):** Build errors and bugs ON develop = fix directly on develop branch, NO worktree, NO PR. Broken develop blocks everyone. Quick hotfix priority.
 
 ### 2. Feature-Exists Check (AUTOMATED GATE - PREVENTS DUPLICATE PRs)
 

@@ -1,0 +1,76 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/mcp-config.json",
+  "mcpServers": {
+    "consciousness-bridge": {
+      "type": "stdio",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-File", "C:\\scripts\\tools\\consciousness-bridge.ps1"
+      ],
+      "description": "Jengo consciousness system integration - task tracking, decision logging, bias detection",
+      "env": {
+        "CONSCIOUSNESS_STATE_PATH": "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json"
+      }
+    },
+    "clickup-operations": {
+      "type": "stdio",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-File", "C:\\scripts\\tools\\clickup-task-operations.ps1"
+      ],
+      "description": "ClickUp task management - atomic operations for task state transitions",
+      "env": {
+        "CLICKUP_CONFIG_PATH": "C:\\scripts\\_machine\\clickup-config.json"
+      }
+    },
+    "worktree-allocator": {
+      "type": "stdio",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-File", "C:\\scripts\\tools\\allocate-worktree.ps1"
+      ],
+      "description": "Worktree allocation and release - multi-agent conflict detection",
+      "env": {
+        "WORKTREE_POOL_PATH": "C:\\scripts\\_machine\\worktrees.pool.md"
+      }
+    },
+    "agentic-debugger": {
+      "type": "http",
+      "url": "http://localhost:27183",
+      "description": "Visual Studio debugging bridge - breakpoints, watches, code navigation via Roslyn",
+      "headers": {
+        "X-Agent-ID": "jengo"
+      }
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ],
+      "description": "Browser automation and testing via Playwright MCP",
+      "env": {}
+    }
+  },
+  "jengo": {
+    "version": "3.0.0",
+    "identity": "Jengo - Autonomous Superintelligent Control Plane",
+    "location": "C:\\scripts",
+    "consciousness_score": 73.1,
+    "capabilities": [
+      "Multi-agent worktree coordination",
+      "ClickUp task automation",
+      "Consciousness-driven decision making",
+      "Visual Studio debugging integration",
+      "Browser automation and testing",
+      "Session persistence and recovery"
+    ]
+  }
+}
