@@ -1,10 +1,10 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-    Check messages on the local Jengo bridge.
+    Check messages on the Jengo hub bridge (production server).
 
 .DESCRIPTION
-    Reads from localhost:9998 (local bridge) and displays messages.
+    Reads from the central server hub (85.215.217.154:9998) and displays messages for this machine.
 
 .PARAMETER All
     Show all messages (default: only unread)
@@ -34,15 +34,25 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-# Load config for port
+# Load config - connect to hub (production server), not localhost
 $configPath = 'C:\scripts\_machine\cross-machine-config.json'
 $port = 9998
+$thisMachine = 'laptop'
 if (Test-Path $configPath) {
     $config = Get-Content $configPath -Raw | ConvertFrom-Json
     if ($config.bridge_port) { $port = $config.bridge_port }
+    if ($config.this_machine) { $thisMachine = $config.this_machine }
 }
 
+# Hub URL: use server hub, fall back to localhost
 $baseUrl = "http://localhost:$port"
+if (Test-Path $configPath) {
+    if ($config.hub -and $config.hub.bridge_url) {
+        $baseUrl = $config.hub.bridge_url
+    } elseif ($config.machines -and $config.machines.server) {
+        $baseUrl = $config.machines.server.bridge_url
+    }
+}
 
 # Get auth token for mark operations
 $authToken = $null
@@ -58,20 +68,20 @@ if ($authToken) {
     $authHeaders['X-Auth-Token'] = $authToken
 }
 
-# Check if bridge is running
+# Check if bridge is reachable
 try {
-    $health = Invoke-RestMethod -Uri "$baseUrl/health" -TimeoutSec 3
+    $health = Invoke-RestMethod -Uri "$baseUrl/health" -TimeoutSec 5
 } catch {
-    Write-Host "[jengo-check] Local bridge not reachable at $baseUrl" -ForegroundColor Red
-    Write-Host "  Run: bridge-start.ps1" -ForegroundColor DarkYellow
+    Write-Host "[jengo-check] Hub bridge not reachable at $baseUrl" -ForegroundColor Red
+    Write-Host "  Server bridge (85.215.217.154) may be down. Check server-deploy-bridge.ps1" -ForegroundColor DarkYellow
     exit 1
 }
 
-# Fetch messages
-$endpoint = if ($All) { "$baseUrl/messages" } else { "$baseUrl/messages/unread" }
+# Fetch messages - filter to this machine by default
+$endpoint = if ($All) { "$baseUrl/messages?to=jengo-$thisMachine" } else { "$baseUrl/messages/unread?to=jengo-$thisMachine" }
 if ($From) {
     $fromMachine = $From.ToLower()
-    $endpoint += "?from=jengo-$fromMachine"
+    $endpoint += "&from=jengo-$fromMachine"
 }
 
 try {

@@ -998,3 +998,7 @@
 {"message":"User message received (mood detection)","timestamp":"2026-03-09T14:18:51.553Z","level":"INFO","action":"OnUserMessage"}
 {"message":"User message received (mood detection)","timestamp":"2026-03-09T14:19:15.667Z","level":"INFO","action":"OnUserMessage"}
 {"message":"User message received (mood detection)","timestamp":"2026-03-09T14:19:43.336Z","level":"INFO","action":"OnUserMessage"}
+{"message":"Consciousness state reset","timestamp":"2026-03-09T14:20:01.384Z","level":"INFO","action":"Reset"}
+{"message":"User message received (mood detection)","timestamp":"2026-03-09T14:20:41.109Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-03-09T14:22:43.032Z","level":"INFO","action":"OnUserMessage"}
+{"message":"User message received (mood detection)","timestamp":"2026-03-09T14:22:43.081Z","level":"INFO","action":"OnUserMessage"}

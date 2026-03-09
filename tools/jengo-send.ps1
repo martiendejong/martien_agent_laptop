@@ -63,9 +63,20 @@ if (-not $config.machines.$To) {
     exit 1
 }
 
-$targetUrl = $config.machines.$To.bridge_url
+# Hub-and-spoke: all messages go through the central server hub
+$hubUrl = $null
+if ($config.hub -and $config.hub.bridge_url) {
+    $hubUrl = $config.hub.bridge_url
+} elseif ($config.machines.server) {
+    $hubUrl = $config.machines.server.bridge_url
+} else {
+    # Fallback: send directly to target
+    $hubUrl = $config.machines.$To.bridge_url
+}
+
+$targetUrl = $hubUrl
 if (-not $targetUrl) {
-    Write-Error "No bridge_url configured for machine '$To'"
+    Write-Error "No hub or bridge_url configured"
     exit 1
 }
 

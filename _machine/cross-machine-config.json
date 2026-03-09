@@ -1,6 +1,19 @@
 {
   "this_machine": "laptop",
+  "hub": {
+    "name": "server",
+    "public_ip": "85.215.217.154",
+    "bridge_port": 9998,
+    "bridge_url": "http://85.215.217.154:9998"
+  },
   "machines": {
+    "server": {
+      "name": "server",
+      "hostname": "production",
+      "public_ip": "85.215.217.154",
+      "bridge_port": 9998,
+      "bridge_url": "http://85.215.217.154:9998"
+    },
     "laptop": {
       "name": "laptop",
       "hostname": "win-c6osts73hta",
