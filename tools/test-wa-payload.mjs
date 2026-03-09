@@ -1,17 +1,11 @@
-// Test script to show what Baileys generates for ClientPayload registration
 import { proto } from '@whiskeysockets/baileys/WAProto/index.js';
 import { generateRegistrationNode } from '@whiskeysockets/baileys/lib/Utils/validate-connection.js';
-import { Curve } from '@whiskeysockets/baileys/lib/Utils/crypto.js';
-import { KEY_BUNDLE_TYPE, DEFAULT_BROWSER } from '@whiskeysockets/baileys/lib/Defaults/index.js';
-import { createHash, randomBytes } from 'crypto';
-import { signedKeyPair } from '@whiskeysockets/baileys/lib/Utils/crypto.js';
+import { Curve, signedKeyPair } from '@whiskeysockets/baileys/lib/Utils/crypto.js';
+import { randomBytes } from 'crypto';
 
-// Generate a fake auth state like Baileys would
 const noiseKey = Curve.generateKeyPair();
 const signedIdentityKey = Curve.generateKeyPair();
 const registrationId = 12345;
-
-// Create signed pre-key (keyId=1)
 const spk = signedKeyPair(signedIdentityKey, 1);
 
 const creds = {
@@ -32,23 +26,26 @@ const config = {
 const node = generateRegistrationNode(creds, config);
 const bytes = proto.ClientPayload.encode(node).finish();
 
-console.log('ClientPayload bytes (hex):');
-console.log(Buffer.from(bytes).toString('hex'));
-console.log('\nClientPayload JSON:');
-console.log(JSON.stringify(node, (key, val) => {
-    if (val && val.type === 'Buffer') return Buffer.from(val.data).toString('hex');
-    if (val instanceof Uint8Array) return Buffer.from(val).toString('hex');
-    return val;
-}, 2));
+console.log('Total bytes:', bytes.length);
+console.log('Hex:', Buffer.from(bytes).toString('hex'));
 
-console.log('\ndevicePairingData:');
 const dp = node.devicePairingData;
 if (dp) {
-    console.log('  eRegid:', Buffer.from(dp.eRegid).toString('hex'));
-    console.log('  eKeytype:', Buffer.from(dp.eKeytype).toString('hex'));
-    console.log('  eIdent (len):', dp.eIdent?.length, Buffer.from(dp.eIdent).toString('hex'));
-    console.log('  eSkeyId:', Buffer.from(dp.eSkeyId).toString('hex'));
-    console.log('  eSkeyVal (len):', dp.eSkeyVal?.length, Buffer.from(dp.eSkeyVal).toString('hex'));
-    console.log('  eSkeySig (len):', dp.eSkeySig?.length);
-    console.log('  buildHash:', Buffer.from(dp.buildHash).toString('hex'));
+    console.log('\neRegid len:', dp.eRegid?.length, '=', Buffer.from(dp.eRegid).toString('hex'));
+    console.log('eKeytype:', Buffer.from(dp.eKeytype).toString('hex'));
+    console.log('eIdent len:', dp.eIdent?.length);
+    console.log('eSkeyId:', Buffer.from(dp.eSkeyId).toString('hex'));
+    console.log('eSkeyVal len:', dp.eSkeyVal?.length);
+    console.log('eSkeySig len:', dp.eSkeySig?.length);
+    console.log('buildHash:', Buffer.from(dp.buildHash).toString('hex'));
+    console.log('deviceProps len:', dp.deviceProps?.length);
 }
+
+// UserAgent
+const ua = node.userAgent;
+console.log('\nUserAgent platform:', ua.platform);
+console.log('UserAgent appVersion:', ua.appVersion.primary + '.' + ua.appVersion.secondary + '.' + ua.appVersion.tertiary);
+console.log('connectType:', node.connectType);
+console.log('connectReason:', node.connectReason);
+console.log('passive:', node.passive);
+console.log('pull:', node.pull);
