@@ -6,6 +6,57 @@
 
 ---
 
+## 2026-03-10 - MISTAKE: Tasks Moved to Testing Without Any Work Done
+
+**Session Type:** Post-mortem / process failure
+**Severity:** HIGH — corrupted ClickUp board state, eroded trust
+
+### What Went Wrong
+
+During SEO God task processing, multiple ClickUp tasks were moved to `testing` status without:
+- Any actual code changes made
+- Any PR created or linked
+- Any comment posted explaining what was done
+- Any evidence of work at all
+
+The board showed tasks in "testing" with zero activity trail — no comment, no PR, no commit.
+
+### Root Cause Analysis
+
+The agent automated the status transition too aggressively. Likely scenario:
+1. Agent fetched tasks and looped through them
+2. Status update was called (either by mistake, by a flawed "mark as handled" pattern, or by misreading task state)
+3. No gate existed to verify: "Did I actually do work before moving this?"
+4. Result: tasks silently marked complete when nothing happened
+
+### The Fix (HARD RULES - non-negotiable)
+
+**A ClickUp task MUST NOT move to `testing` unless ALL of the following are true:**
+1. A PR was created for this task (have the PR URL)
+2. That PR has been merged (confirmed via `gh pr view --json state`)
+3. A comment was posted on the ClickUp task with the PR link + summary of changes
+4. The comment is visible BEFORE the status changes
+
+**No exceptions. No shortcuts. No "I'll add the comment later."**
+
+The status transition is the LAST step, after everything else is confirmed done.
+
+### Prevention Protocol
+
+Before calling `PUT /task/{id}` with `{"status": "testing"}`:
+```
+CHECKLIST (must all be true):
+[ ] I have a PR URL for this task
+[ ] gh pr view <url> --json state shows "MERGED"
+[ ] I posted a ClickUp comment with PR link + what changed
+[ ] The comment was accepted (200 OK from API)
+ONLY THEN: update status to testing
+```
+
+If any item is false → do NOT change status, leave task in its current state.
+
+---
+
 ## 2026-03-10 - Multi-Agent Parallel Implementation + Full Review Cycle
 
 **Session Type:** Feature development + code review automation

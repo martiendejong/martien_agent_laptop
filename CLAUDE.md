@@ -199,6 +199,113 @@ services-query-v2.ps1 -CheckHealth
 
 **IMPORTANT (2026-02-14):** Before starting ANY ClickUp task, run clarity check first. If task is unclear, questions are posted and status moves to "needs input". This prevents wasted work on unclear requirements.
 
+**HARD RULE (2026-03-10 — DO NOT VIOLATE):** A ClickUp task MUST NOT move to `testing` unless ALL of the following are verified:
+1. A PR was created (you have the PR URL)
+2. That PR is confirmed MERGED (`gh pr view <url> --json state` shows `"MERGED"`)
+3. A comment was posted on the ClickUp task with the PR link + summary of what changed
+4. The comment POST returned 200 OK
+
+**If any condition is false: leave the task status unchanged.** No exceptions. Moving a task to `testing` with zero evidence is a trust-breaking action that corrupts the board.
+
+---
+
+## ClickUp Task Execution Protocol (TODO / FEEDBACK → REVIEW)
+
+**Full spec:** `_machine/clickup-task-protocol.md`
+
+**The rule:** Every task, regardless of status, goes through the same 5-phase checklist before moving to `review`. No shortcuts.
+
+### Phase 1: Read & Understand
+- Read full task description (title, description, acceptance criteria)
+- Read ALL comments in chronological order — not just the latest
+- Note: what is being asked, what has already been done, what was flagged
+
+### Phase 2: Determine Task State
+Identify which scenario applies:
+
+**Scenario A — Fresh todo (no prior work):**
+- No existing branch, no PR, no code changes
+- Start from scratch: allocate worktree, implement, create PR
+
+**Scenario B — Feedback / came back (was in testing or review):**
+- There IS prior work (merged or open PR, existing code)
+- Comments contain reviewer notes, bug reports, or change requests
+- Must implement every piece of feedback before creating a new PR
+
+**Scenario C — No-PR exception:**
+- Task is handled without code (config change, deployment, content update, infra)
+- Must still leave a comment explaining what was done and why there is no PR
+- A comment is MANDATORY — silence is not acceptable
+
+### Phase 3: Implement
+
+**For Scenario A:**
+1. Run clarity check — if unclear, post questions and move to `needs input`, STOP
+2. Allocate worktree (`allocate-worktree` skill)
+3. Implement the feature/fix
+4. Run tests / build locally
+5. Commit with clear message referencing ClickUp task
+
+**For Scenario B:**
+1. Re-read every comment carefully — extract each individual point of feedback
+2. Create a checklist of all feedback items (in your working notes, not ClickUp)
+3. For each item: implement the fix, verify it resolves the comment
+4. Do NOT skip items because they seem minor — every comment gets addressed
+5. If a comment is unclear, post a reply asking for clarification before implementing
+6. Allocate new worktree or use existing branch — implement all changes
+7. Commit with message: "Address review feedback: [brief summary]"
+
+**For Scenario C:**
+1. Do the non-code work (deploy, config, etc.)
+2. Verify the result
+3. Write a ClickUp comment explaining: what was done, how it was verified, why no PR
+
+### Phase 4: Create / Update PR
+
+**For Scenarios A and B:**
+1. Push branch
+2. Create PR with:
+   - Title that matches the task name
+   - Body with: what changed, how to test, ClickUp task link
+   - For Scenario B: explicitly list which feedback items were resolved
+3. Verify PR is created (`gh pr view <url>` returns data)
+4. Post ClickUp comment with:
+   - PR URL
+   - Summary of what was implemented (2–5 bullet points)
+   - For Scenario B: "Resolved feedback: [list each item addressed]"
+5. Verify comment was posted (200 OK)
+
+### Phase 5: Move to Review
+
+Only after Phase 4 is fully confirmed:
+```bash
+curl -X PUT "https://api.clickup.com/api/v2/task/{id}" \
+  -H "Authorization: {api_key}" \
+  -H "Content-Type: application/json" \
+  -d '{"status": "review"}'
+```
+
+**Gate check before calling this:**
+- [ ] Task description fully read
+- [ ] All comments read and addressed
+- [ ] Code implemented in a worktree (Scenario A/B) OR non-code action completed (Scenario C)
+- [ ] PR exists and is open (Scenario A/B) OR explanation comment posted (Scenario C)
+- [ ] ClickUp comment posted with PR link or action summary
+- [ ] Comment confirmed posted (200 OK)
+
+If any box is unchecked: DO NOT change status.
+
+### Status Flow Summary
+
+```
+todo          → (implement + PR + comment) → review
+needs input   → (clarity resolved) → todo → review
+feedback      → (read all comments + implement fixes + new PR + comment) → review
+testing       → (only via merged PR, never manually) → [user sets done]
+```
+
+**See also:** `_machine/clickup-task-protocol.md` for the extended reference with API examples.
+
 ## Working Documents (C:\jengo\documents)
 
 **All generated working files go to `C:\jengo\documents\`** — NEVER to C:\scripts or C:\Temp.
