@@ -6,6 +6,37 @@
 
 ---
 
+## 2026-03-10 - Knowledge Sync Session (machine_agents ↔ C:\scripts)
+
+**Session Type:** Process improvement + knowledge sync
+**Outcome:** ✅ Both repos committed and pushed
+
+### What Was Done
+
+1. Documented phantom-task mistake → `CLAUDE.md` hard rule + reflection entry
+2. Created `_machine/clickup-task-protocol.md` — full 6-phase TODO/feedback protocol
+3. Synced C:\scripts → machine_agents: CLAUDE.md, clickup-task-protocol.md, reflection.log.md
+4. Synced machine_agents → C:\scripts: CLICKUP_COMMENT_READING_ANCHOR.md, GIT_WORKFLOW_STANDARD.md, PR_REVIEW_PROTOCOL.md, PR_REVIEW_DECISION_TREE.md, SESSION_STARTUP_CHECKLIST.md, git-repositories.md, agent-roles.md, reflection archive
+
+### Key Protocols Now In Place
+
+**Testing status gate:** PR exists + merged + ClickUp comment posted → THEN set testing. Never manually.
+
+**Review status gate:** PR open + ClickUp comment with PR link → THEN set review. Never before.
+
+**TODO/feedback task flow:** Read task → read ALL comments → classify (A/B/C) → implement → PR → comment → review.
+
+**Comment is truth:** Status on a task can lie. The last comment tells you the real state. Always read it first.
+
+**PR review vs merge:** "ga reviewen" = review only, post comments, stop. "merge" = explicit permission needed.
+
+### machine_agents Repo Location
+
+`martiendejong/machine_agents` → cloned at `C:\Projects\machine_agents`
+Contains full mirror of C:\scripts knowledge system. Sync manually when protocol files change.
+
+---
+
 ## 2026-03-10 - MISTAKE: Tasks Moved to Testing Without Any Work Done
 
 **Session Type:** Post-mortem / process failure
