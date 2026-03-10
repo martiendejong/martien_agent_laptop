@@ -3,7 +3,7 @@
     "version":  "2.0",
     "encryption":  "dpapi",
     "storage":  "hex",
-    "updated":  "2026-03-09 22:42:20",
+    "updated":  "2026-03-10 00:47:15",
     "credentials":  [
                         {
                             "updated":  "2026-02-11 18:53:42",
@@ -222,13 +222,27 @@
                         {
                             "updated":  "2026-03-09 22:42:20",
                             "token_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb01000000abaaa8a3a5d9164f925bd4f20c3328810000000002000000000010660000000100002000000041d2f37ee3838746fcfabf075ab038ec70eb1ac110eeb23127e18f1bfbde70df000000000e80000000020000200000009c824d8adda9d89397455a798976251e916814c3e7bfd815caff9a8a5be4d8c02000000036bce1cb296c241644e81d62ca2b5dcb36d81af1ca686e1718e7ec1c5833cc06400000002a691ef45248346e1d647742771a8504e977a74d4f89f18a2ddf4041157f048ce52a843329f4be5e60f590339b20e9110f929a8efef7482181ae7e860e7b6cef",
-                            "username":  "",
-                            "notes_enc":  "",
                             "password_hint":  "",
+                            "notes_enc":  "",
+                            "tags":  [
+
+                                     ],
+                            "username":  "",
                             "token_hint":  "z|.FRKq4...",
                             "password_enc":  "",
                             "service":  "wordpress_localhost",
-                            "created":  "2026-03-09 22:42:20",
+                            "created":  "2026-03-09 22:42:20"
+                        },
+                        {
+                            "updated":  "2026-03-10 00:47:15",
+                            "token_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb01000000abaaa8a3a5d9164f925bd4f20c33288100000000020000000000106600000001000020000000f61244898d8f29687f61e800c6bb49e318cb4af187d8a55662b8f823ec8cb448000000000e800000000200002000000074651f4afc39ebbc6dcf85567b993117ba009550f0db5d1927d2f5e57053f08b20000000c7c4fd00f4e9a17bd4c3bcb6cb482d79b54398c54a89a57607a64a38a9dd359640000000c417ba0a4cec28fe5d3fb2d0b1b40d5fdf2b0a99a937afe68356e5ce7e9621148d5018e5f55cc0b93f311563e062918ccd812cc264666b47d1ad77e16dbecdae",
+                            "username":  "",
+                            "notes_enc":  "",
+                            "password_hint":  "",
+                            "token_hint":  "ukAc q12...",
+                            "password_enc":  "",
+                            "service":  "wordpress_localhost_apppassword",
+                            "created":  "2026-03-10 00:47:15",
                             "tags":  [
 
                                      ]
