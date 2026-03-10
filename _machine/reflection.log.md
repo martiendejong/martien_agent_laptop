@@ -3988,3 +3988,77 @@ post_data = {
 
 **Status:** SUCCESS - All review tasks completed, develop branch ready for testing
 
+---
+
+## 2026-03-10 - SEO God: Batch todo fixes + Feedback redesign
+
+**Session Type:** Feature bug fixing + UI redesign (ClickUp tasks)
+**Context:** Continuation session — previous context had batch1 (PR #141) done, agent-002 needed for remaining todo tasks
+**Outcome:** ✅ SUCCESS — PR #142 (batch2 todo fixes) + PR #143 (URL popup redesign)
+
+### What We Did
+
+**PR #142 — 8 todo tasks with test feedback:**
+- 869cd4n2x: `App.tsx` pollJobStatus navigates to `/dashboard` after import completes
+- 869cd02gu: Removed `backdrop-blur-sm` from 3 modal files (RegisterForm, ConnectWebsiteModal, CategoriesPage)
+- 869cd3j5h: OnboardingSpotlight now calls `scrollIntoView` before locking `body overflow`, shows spinner when element not yet found
+- 869cd5wh2: Replaced fragile custom scroll animation (wrong container detection) with native `scrollIntoView`
+- 869cd5bbz: Added `.scrollbar-none` CSS class, applied to URL table to hide horizontal scrollbar
+- 869cd5e2e: Dual root cause fix — `ExtractFaqArray` wasn't checking ValueKind before returning `faqs` property; UrlsController was passing `wpId` (WP integer) to generator that expects DB auto-increment Id
+- 869cd032d, 869cd5wpv: Already correct in develop, moved to review
+
+**PR #143 — 2 feedback tasks (URL popup redesign):**
+- Bug: `URLDetailPanel` used `item.id` (Hazina document ID like `wordpress/uuid/post/52`) directly in `navigate()` — routes expect `post-52` format → black page with "undefined" in URL
+- Fix: `getUrlId()` extracts numeric WP ID via `.split('/').pop()` + builds `type-wpId` format
+- UI: Complete redesign from right-side opaque panel to centered glass modal
+- URLsPageNew simplified: removed duplicate backdrop, panel manages its own
+
+### Key Patterns / Bugs Learned
+
+**Pattern: Hazina document ID vs URL route ID mismatch**
+
+Hazina stores content as `wordpress/{uuid}/{type}/{wpNumericId}` (e.g. `wordpress/abc123/post/52`).
+Routes expect `{type}-{wpNumericId}` (e.g. `post-52`).
+Extract with: `item.id.split('/').pop()` → gives `"52"`, then build `${contentType}-${wpId}`.
+
+This mismatch caused navigation to black pages. Always check which ID format is expected at the destination route.
+
+**Pattern: EF Core — WordPress ID vs DB auto-increment ID**
+
+Multiple bugs in this project came from passing the WordPress integer ID to methods that do `p.Id == pageId` (DB auto-increment). The lookup silently finds the wrong entity or nothing.
+
+Rule: When building any URL-based lookup → look up entity by `WordPressId` first, then pass `entity.Id` to downstream services.
+
+**Pattern: ExtractFaqArray missing ValueKind check**
+
+When checking `root.TryGetProperty("faqs", out var candidate)`, always follow with `&& candidate.ValueKind == JsonValueKind.Array`. Without it, if the LLM returns `{"faqs": {"some": "object"}}`, calling `.EnumerateArray()` throws "requires Array but got Object" — exactly the user-reported 500 error.
+
+**Pattern: AnimatePresence + body overflow**
+
+OnboardingSpotlight locked `body.style.overflow = 'hidden'` at mount, then couldn't scroll target elements into view. Fix: temporarily unlock overflow before `scrollIntoView`, re-lock after 400ms settle.
+
+**Pattern: ClickUp feedback status = re-do not just move**
+
+When tasks are in "feedback" status, always read comments thoroughly. User may have tested and found issues AFTER a PR was approved. Agents previously marked features "already implemented" and ignored visual/UX problems. The right approach: read feedback comment, diagnose the actual complaint (not just the task name), fix it.
+
+**Pattern: Agent-002 worktree cleanup**
+
+When base repo worktrees are leftover from previous sessions, they still hold their old branch. Cannot create a new worktree at the same path. Use `git worktree remove` on the old one or pick a different agent seat.
+
+### Metrics
+- 2 PRs created: #142 (9 files changed) + #143 (2 files changed)
+- 10 ClickUp tasks → review status
+- 0 todo, 0 feedback, 0 busy tasks remaining
+- 2 worktrees allocated + released cleanly (agent-002, agent-003)
+
+### What Went Well
+- ClickUp direct API calls worked reliably (list ID 901215927087)
+- Worktree isolation kept base repo clean
+- Root cause analysis was correct on first pass for all bugs
+
+### What To Improve
+- Don't waste time guessing at "black screen" causes — test with browser MCP instead of reading code
+- When a previous agent said "already implemented" and user gave feedback, skip reading the agent's previous comment and go straight to user's complaint
+
+**Status:** SUCCESS - All SEO God tasks cleared
+
