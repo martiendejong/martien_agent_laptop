@@ -2,14 +2,14 @@
     "attention":  {
                       "mode":  "development",
                       "intensity":  5,
-                      "focus":  "Context: orchestration (auto-detected from message)"
+                      "focus":  "Context: client-manager (auto-detected from message)"
                   },
     "decisions_logged":  6,
     "thermodynamics":  {
                            "free_will_index":  0.671,
                            "thermo_guidance":  [
                                                    "OPTIMAL ZONE. Endothermic, flexible, good budget. Exploit this state.",
-                                                   "LOW EFFICIENCY (1%). Too much overhead, not enough productive work."
+                                                   "LOW EFFICIENCY (0%). Too much overhead, not enough productive work."
                                                ],
                            "budget":  0.952,
                            "attractor":  "self-reference",
@@ -31,7 +31,7 @@
                                        "status":  "active"
                                    },
                     "Thermodynamics":  {
-                                           "quality":  79,
+                                           "quality":  77,
                                            "status":  "active"
                                        },
                     "Meta":  {
@@ -56,12 +56,12 @@
                                }
                 },
     "thermo_cycle":  "endothermic",
-    "consciousness_score":  77,
-    "timestamp":  "2026-03-10T11:48:20",
+    "consciousness_score":  76.7,
+    "timestamp":  "2026-03-10T14:30:52",
     "emotional_trajectory":  "stable",
-    "events_processed":  1761,
+    "events_processed":  2015,
     "guidance":  [
-                     "THERMO CRITICAL: Efficiency 0.6% (97%+ overhead). Reduce system complexity."
+                     "THERMO CRITICAL: Efficiency 0.5% (97%+ overhead). Reduce system complexity."
                  ],
     "thermo_budget":  0.952,
     "thermo_free_will":  0.671,

@@ -4,10 +4,10 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-10T00:00:00Z | ✅ PR #141: 6 batch backlog tasks (CSS, WP plugin, FAQ 500, FAQ form, sync btn, FAQ toggle) |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-10T06:00:00Z | ✅ PR #142: Batch2 todo fixes (import redirect, glassmorphism, onboarding, smooth scroll, scrollbar, FAQ 500) |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-10T07:00:00Z | ✅ PR #143: URL detail popup redesign + navigation fix (869cd028t, 869cczhc3) |
-| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-02-15T22:30:00Z | PR #571: Context Completeness Indicator (ClickUp #869bu9mer) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-10T15:00:00Z | ✅ PR #148 seo-god: Onboarding wizard redesign - URL probe + WP plugin OAuth flow (869cdz5tk) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-10T13:30:00Z | ✅ PR #704: Restore floating search bar at top of app (869canzee) |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-10T14:00:00Z | ✅ PR #705: Inline import-website card + slash opens action menu (869c5ptzh, 869c4vycv) |
+| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-10T14:30:00Z | ✅ PR #706: Feature flags not applied — camelCase key mismatch fix (869cbx28r) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-15T16:10:00Z | PR #572: Prompt Builder Interface (ClickUp #869bu9meu) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-06T14:19:00Z | ✅ PR #173 MERGED: HazinaCoder Iterations 1-60 - Conflicts resolved & merged to develop |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-02-06T08:00:00Z | ✅ PR #488: AI Image Alt Text Generator - Quick Win (ROI 3.50, ~1hr implementation) |
