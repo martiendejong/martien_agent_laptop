@@ -1,3 +1,9 @@
+## 2026-03-11T13:00:00Z - Release: agent-002
+- Repo: seo-god
+- Branch: agent-002-wp-auto-import
+- PR: #153 (https://github.com/martiendejong/seo-god/pull/153)
+- Outcome: Persist selectedWebsiteId to localStorage so WP callback goes straight to import dashboard
+
 ## 2026-03-11T09:55:00Z - Release: agent-001
 - Repo: seo-god
 - Branch: agent-001-refresh-redirect
