@@ -1,3 +1,9 @@
+## 2026-03-11T09:10:00Z - Release: agent-001
+- Repo: whatsappbridge
+- Branch: agent-001-move-dawa-local
+- PR: #12 (https://github.com/martiendejong/whatsappbridge/pull/12)
+- Outcome: Embed Dawa source locally in /Dawa/, fix cross-repo ProjectReference, remove dead Node.js WhatsAppService
+
 ## 2026-03-11T01:10:00Z - Release: agent-001
 - Repo: seo-god
 - Branch: feature/backlog-869ce0uq8-869cdzkzp
