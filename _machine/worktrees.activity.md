@@ -1,3 +1,10 @@
+## 2026-03-11T11:15:00Z - Release: agent-001
+- Repo: whatsappbridge
+- Branch: agent-001-fix-dawa-crypto
+- PR: #13 (https://github.com/martiendejong/whatsappbridge/pull/13)
+- Outcome: Fix 5 Noise protocol crypto bugs (MixKey HKDF order, pre-key signing prefix, WA version, nonce counter, OS identifier)
+- ClickUp: 869ceb2e8, 869ceb2jp, 869ceb2t7, 869ceb2uw, 869ceb3w5 moved to review
+
 ## 2026-03-11T09:10:00Z - Release: agent-001
 - Repo: whatsappbridge
 - Branch: agent-001-move-dawa-local
