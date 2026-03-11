@@ -6,6 +6,43 @@
 
 ---
 
+## 2026-03-11 - Media Library Fix + Build Repair
+
+**Session Type:** Bug fix + conflict resolution + build repair
+**Outcome:** ✅ PR #708 merged, 3 frontend build errors fixed, develop builds clean
+
+### What Was Done
+
+1. Task 869c1dnx7 (Media Library) — answered scope questions in ClickUp, moved needs-input → todo
+2. Cloned client-manager (wasn't on laptop) with `--depth 1`, then `git fetch --unshallow` before merges
+3. Fetched PR #578 branch (feature/869c1dnx7-media-library) via FETCH_HEAD, created worktree
+4. Resolved 3-way merge conflicts (PR #578 crop modal vs develop variant panel + wordpress endpoints):
+   - Kept both approaches in MediaController, media.ts, MediaLibrary.tsx
+5. Root cause of broken upload identified: `MediaAssets` DB table never created
+6. Fixed by adding `EnsureMediaAssetsTable` to DatabaseSchemaFixer + no-op placeholder migration
+7. PR #708 created, code review approved, merged, task moved to testing
+8. `dotnet build` — 0 errors ✅
+9. `vite build` failed with 3 pre-existing errors:
+   - `chat.ts`: orphaned object literal from console.log cleanup (PR #504)
+   - `RepurposingDashboard.tsx`: broken imports (@/contexts/ProjectContext, @/config, @/components/ui barrel, blogService named export)
+   - `PlatformCropModal.tsx`: non-existent `platformIcons`/`platformColors` exports
+10. Fixed all 3, pushed to develop — builds clean
+
+### Key Patterns Learned
+
+**DatabaseSchemaFixer pattern** is the standard in client-manager for EF Core migrations.
+Don't create real EF migrations — add `EnsureXxxTable` + no-op placeholder. Always check this when adding entities.
+
+**Shallow clone breaks worktrees** — `git fetch --unshallow` before any merge or worktree-from-remote-branch.
+
+**`getPlatformIcon` returns ReactNode** — cannot be used as `<Icon className="..." />`. Use `Crop` icon as fallback.
+
+**`@/components/ui` has no barrel** in client-manager — import from individual files (button, card, dialog, tabs, textarea). Missing: select, table, alert — use native HTML or div replacements.
+
+**Conflict resolution strategy for UI components:** When HEAD and develop have different but complementary implementations (crop modal vs variant panel), keep BOTH — add separate buttons for each flow.
+
+---
+
 ## 2026-03-10 - Knowledge Sync Session (machine_agents ↔ C:\scripts)
 
 **Session Type:** Process improvement + knowledge sync
