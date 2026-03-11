@@ -1,3 +1,9 @@
+## 2026-03-11T09:55:00Z - Release: agent-001
+- Repo: seo-god
+- Branch: agent-001-refresh-redirect
+- PR: #152 (https://github.com/martiendejong/seo-god/pull/152)
+- Outcome: Fix Go to SEO God button — new refresh-redirect API endpoint issues fresh JWT on every click
+
 ## 2026-03-11T11:15:00Z - Release: agent-001
 - Repo: whatsappbridge
 - Branch: agent-001-fix-dawa-crypto
