@@ -1,3 +1,9 @@
+## 2026-03-11T16:00:00Z - Release: agent-002
+- Repo: real-estate-agency-ai
+- Branch: agent-002-seller-portal
+- PR: #112 (https://github.com/martiendejong/real-estate-agency-ai/pull/112)
+- Outcome: Seller portal (SellerController, SellerLayout, SellerProperties, SellerPropertyEdit) + job title field + Realtor access to users + EF migration
+
 ## 2026-03-11T14:30:00Z - Release: agent-001
 - Repo: whatsappbridge
 - Branch: agent-001-fix-binary-decoder
