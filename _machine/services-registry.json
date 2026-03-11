@@ -1,65 +1,65 @@
-{
-  "updated": "2026-02-12 21:00:00",
-  "services": [
-    {
-      "name": "Hazina Orchestration",
-      "port": 5123,
-      "url": "https://localhost:5123",
-      "health_check": "https://localhost:5123/health",
-      "pid": 0,
-      "status": "registered",
-      "startup_command": "C:\\stores\\orchestration\\HazinaOrchestration.exe",
-      "last_seen": "2026-02-12 21:00:00",
-      "protocol": "HTTPS",
-      "auth": "vault:orchestration"
-    },
-    {
-      "name": "Agentic Debugger Bridge",
-      "port": 27183,
-      "url": "http://localhost:27183",
-      "health_check": "http://localhost:27183/api/health",
-      "pid": 0,
-      "status": "registered",
-      "startup_command": "VS Extension (auto-start)",
-      "last_seen": "2026-02-12 21:00:00",
-      "protocol": "HTTP",
-      "auth": "none"
-    },
-    {
-      "name": "UI Automation Bridge",
-      "port": 27184,
-      "url": "http://localhost:27184",
-      "health_check": "",
-      "pid": 0,
-      "status": "registered",
-      "startup_command": "VS Extension (auto-start)",
-      "last_seen": "2026-02-12 21:00:00",
-      "protocol": "HTTP",
-      "auth": "none"
-    },
-    {
-      "name": "WordPress Local",
-      "port": 80,
-      "url": "http://localhost",
-      "health_check": "http://localhost",
-      "pid": 0,
-      "status": "registered",
-      "startup_command": "E:\\xampp\\xampp-control.exe",
-      "last_seen": "2026-02-12 21:00:00",
-      "protocol": "HTTP",
-      "auth": "none"
-    },
-    {
-      "name": "MySQL Local",
-      "port": 3306,
-      "url": "localhost:3306",
-      "health_check": "",
-      "pid": 0,
-      "status": "registered",
-      "startup_command": "E:\\xampp\\mysql\\bin\\mysqld.exe",
-      "last_seen": "2026-02-12 21:00:00",
-      "protocol": "TCP",
-      "auth": "root (no password)"
-    }
-  ]
+﻿{
+    "updated":  "2026-03-11 10:25:23",
+    "services":  [
+                     {
+                         "name":  "Hazina Orchestration",
+                         "port":  5123,
+                         "url":  "https://localhost:5123",
+                         "health_check":  "https://localhost:5123/health",
+                         "pid":  0,
+                         "status":  "running",
+                         "startup_command":  "C:\\stores\\orchestration\\HazinaOrchestration.exe",
+                         "last_seen":  "2026-03-11 10:25:19",
+                         "protocol":  "HTTPS",
+                         "auth":  "vault:orchestration"
+                     },
+                     {
+                         "name":  "Agentic Debugger Bridge",
+                         "port":  27183,
+                         "url":  "http://localhost:27183",
+                         "health_check":  "http://localhost:27183/api/health",
+                         "pid":  0,
+                         "status":  "stopped",
+                         "startup_command":  "VS Extension (auto-start)",
+                         "last_seen":  "2026-02-12 21:00:00",
+                         "protocol":  "HTTP",
+                         "auth":  "none"
+                     },
+                     {
+                         "name":  "UI Automation Bridge",
+                         "port":  27184,
+                         "url":  "http://localhost:27184",
+                         "health_check":  "",
+                         "pid":  0,
+                         "status":  "stopped",
+                         "startup_command":  "VS Extension (auto-start)",
+                         "last_seen":  "2026-02-12 21:00:00",
+                         "protocol":  "HTTP",
+                         "auth":  "none"
+                     },
+                     {
+                         "name":  "WordPress Local",
+                         "port":  80,
+                         "url":  "http://localhost",
+                         "health_check":  "http://localhost",
+                         "pid":  0,
+                         "status":  "running",
+                         "startup_command":  "E:\\xampp\\xampp-control.exe",
+                         "last_seen":  "2026-03-11 10:25:23",
+                         "protocol":  "HTTP",
+                         "auth":  "none"
+                     },
+                     {
+                         "name":  "MySQL Local",
+                         "port":  3306,
+                         "url":  "localhost:3306",
+                         "health_check":  "",
+                         "pid":  0,
+                         "status":  "running",
+                         "startup_command":  "E:\\xampp\\mysql\\bin\\mysqld.exe",
+                         "last_seen":  "2026-03-11 10:25:23",
+                         "protocol":  "TCP",
+                         "auth":  "root (no password)"
+                     }
+                 ]
 }
