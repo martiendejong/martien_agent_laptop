@@ -157,7 +157,19 @@
                          "main_branch":  "develop",
                          "name":  "client-manager",
                          "requires_paired_worktree":  true,
-                         "admin_auth":  "vault:admin"
+                         "admin_auth":  "vault:admin",
+                         "dev_ports":  {
+                             "frontend":  5173,
+                             "api":  54501,
+                             "whatsapp_bridge_ui":  5174
+                         },
+                         "whatsapp_bridge":  {
+                             "ui_path":  "C:\\Projects\\whatsapp-bridge\\ui",
+                             "ui_dev_port":  5174,
+                             "ui_start_cmd":  "cd C:\\Projects\\whatsapp-bridge\\ui && npx serve . --listen 5174 --no-clipboard",
+                             "api_port":  54501,
+                             "note":  "Dawa C# client embedded in client-manager API. Standalone UI at port 5174 (NOT 5173 which is brand2boost frontend)."
+                         }
                      },
                      {
                          "code_path":  "C:\\Projects\\hazina",

@@ -30,6 +30,13 @@
 
 **PR review vs merge:** "ga reviewen" = review only, post comments, stop. "merge" = explicit permission needed.
 
+### SEO God Services
+
+- Frontend: **`https://localhost:5198`** — Vite dev server, HTTPS verplicht, cert ingebakken in vite.config.ts
+- Backend: **`https://localhost:7057`** — dotnet run met launch-profile https
+- Starten backend: `Start-Process dotnet -ArgumentList 'run --project C:\Projects\seo-god\backend\SEOGod.API\SEOGod.API.csproj --launch-profile https'`
+- HTTPS is ALTIJD vereist, nooit plain HTTP gebruiken
+
 ### machine_agents Repo Location
 
 `martiendejong/machine_agents` → cloned at `C:\Projects\machine_agents`

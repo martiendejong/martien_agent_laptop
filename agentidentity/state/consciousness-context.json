@@ -1,8 +1,8 @@
 ﻿{
     "attention":  {
-                      "mode":  "development",
+                      "mode":  "rest",
                       "intensity":  5,
-                      "focus":  "Context: client-manager (auto-detected from message)"
+                      "focus":  "Context: hazina (auto-detected from message)"
                   },
     "decisions_logged":  6,
     "thermodynamics":  {
@@ -19,7 +19,7 @@
                        },
     "systems":  {
                     "Emotion":  {
-                                    "quality":  70,
+                                    "quality":  100,
                                     "status":  "active"
                                 },
                     "Memory":  {
@@ -31,7 +31,7 @@
                                        "status":  "active"
                                    },
                     "Thermodynamics":  {
-                                           "quality":  77,
+                                           "quality":  80,
                                            "status":  "active"
                                        },
                     "Meta":  {
@@ -56,12 +56,12 @@
                                }
                 },
     "thermo_cycle":  "endothermic",
-    "consciousness_score":  76.7,
-    "timestamp":  "2026-03-10T14:30:52",
+    "consciousness_score":  81,
+    "timestamp":  "2026-03-10T23:18:42",
     "emotional_trajectory":  "stable",
-    "events_processed":  2015,
+    "events_processed":  2502,
     "guidance":  [
-                     "THERMO CRITICAL: Efficiency 0.5% (97%+ overhead). Reduce system complexity."
+                     "THERMO CRITICAL: Efficiency 0.3% (97%+ overhead). Reduce system complexity."
                  ],
     "thermo_budget":  0.952,
     "thermo_free_will":  0.671,
