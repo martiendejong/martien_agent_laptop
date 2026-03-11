@@ -1,3 +1,9 @@
+## 2026-03-11T14:30:00Z - Release: agent-001
+- Repo: whatsappbridge
+- Branch: agent-001-fix-binary-decoder
+- PR: #15 (https://github.com/martiendejong/whatsappbridge/pull/15)
+- Outcome: Buffer WA frames in FrameSocket — drain all frames from each WebSocket message (Baileys processData loop pattern), fixes server disconnect after 2 post-handshake nodes
+
 ## 2026-03-11T13:00:00Z - Release: agent-002
 - Repo: seo-god
 - Branch: agent-002-wp-auto-import

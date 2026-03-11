@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | whatsappbridge | agent-001-fix-binary-decoder | 2026-03-11T12:00:00Z | Fix WA binary decoder: flags byte strip + single-byte token handling |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-11T14:30:00Z | ✅ PR #15: Buffer WA frames — multiple frames per WebSocket message fix |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-11T13:00:00Z | ✅ PR #153: Persist selectedWebsiteId to localStorage (WP callback → import dashboard) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-10T14:00:00Z | ✅ PR #705: Inline import-website card + slash opens action menu (869c5ptzh, 869c4vycv) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-10T14:30:00Z | ✅ PR #706: Feature flags not applied — camelCase key mismatch fix (869cbx28r) |
