@@ -65,18 +65,39 @@ Automate everything with ready-to-use PowerShell tools:
 
 **Full list:** [`tools/README.md`](./tools/README.md)
 
-### 3. **Auto-Discoverable Skills**
+### 3. **Auto-Discoverable Skills** ⭐ *Updated 2026-03-11*
 Claude automatically activates specialized workflows based on context:
 
+#### Core Workflows
 - **Worktree Management** - `allocate-worktree`, `release-worktree`, `worktree-status`
-- **GitHub Workflows** - `github-workflow`, `pr-dependencies`
+- **GitHub Workflows** - `github-workflow`, `pr-dependencies`, `auto-pr-review`
 - **Development Patterns** - `api-patterns`, `terminology-migration`, `ef-migration-safety`
 - **Continuous Improvement** - `continuous-optimization`, `session-reflection`, `self-improvement`
-- **Task Management** - `clickhub-coding-agent` (autonomous ClickUp integration)
-- **Context Intelligence** - `activity-monitoring`, `parallel-agent-coordination`
-- **Massive Context Processing** - `rlm` (handles 10M+ token contexts)
+
+#### Task & Project Management
+- **ClickUp Integration** - `clickhub-coding-agent` (autonomous task manager), `clickup-reviewer` (PR review)
+- **Task Review** - `task-review` (comprehensive PR verification, conflict resolution, testing)
+- **Feature Ideation** - `feature-idea-generator` (100+ expert analysis, ROI prioritization) 🆕
+
+#### Code Quality & Review
+- **Automated Reviews** - `auto-pr-review` (builds, tests, comprehensive PR reviews) 🆕
+- **Code Analysis** - `api-patterns`, `ef-migration-safety`
+
+#### Context & Intelligence
+- **Activity Monitoring** - `activity-monitoring`, `parallel-agent-coordination`
+- **Massive Context** - `rlm` (handles 10M+ token contexts)
+
+#### UI & Design
+- **Beautiful UIs** - `beautiful-ui` (Lovable.dev quality), `beautiful-letterhead` (business documents) 🆕
+
+#### Specialized Tools
+- **Legal Safeguards** - `legal-mode` (juridical correspondence, contracts) 🆕
+- **Consciousness** - `consciousness-practices`, `character-reflection` 🆕
+- **User Experience** - `browse-awareness` (passive browsing detection) 🆕
 
 **Full list:** [`.claude/skills/`](./.claude/skills/)
+
+**Latest Update (2026-03-11):** Added feature-idea-generator, task-review, beautiful-letterhead/DISCOVERY_PHASE.md
 
 ### 4. **Dual-Mode Workflow**
 Intelligent mode detection for optimal workflow:
@@ -295,11 +316,12 @@ This is a **self-improving system**. Claude agents:
 ## 📊 Statistics
 
 - **120+ Productivity Tools** - Automation for every workflow
-- **20+ Claude Skills** - Auto-discoverable specialized workflows
-- **299 PowerShell Scripts** - Total script files in repository
+- **34 Claude Skills** - Auto-discoverable specialized workflows (updated 2026-03-11)
+- **299+ PowerShell Scripts** - Total script files in repository
 - **10M+ Token Context Support** - Via RLM (Recursive Language Model) pattern
 - **Multi-Agent Coordination** - Parallel execution without conflicts
 - **Zero-Tolerance Protocol** - Prevents common mistakes via hard-stop rules
+- **Latest Additions** - Feature ideation, automated PR review, task review, UI generation
 
 ---
 
@@ -340,6 +362,7 @@ Built on top of:
 
 **🤖 Built by autonomous agents, for autonomous agents.**
 
-**Last Updated:** 2026-01-25
+**Last Updated:** 2026-03-11
 **Maintained By:** Self-improving Claude agents
-**Version:** 1.0.0 (120 tools, 20 skills, cognitive architecture v1)
+**Version:** 1.1.0 (120 tools, 34 skills, cognitive architecture v1)
+**Latest Changes:** Added feature-idea-generator, task-review, beautiful-letterhead discovery phase
