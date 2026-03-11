@@ -2,51 +2,69 @@
     "EventBus":  {
                      "Events":  [
                                     {
-                                        "Timestamp":  "2026-03-11T11:18:25.230Z",
+                                        "Timestamp":  "2026-03-11T17:41:27.559Z",
                                         "Data":  {
-                                                     "elapsed_ms":  1513.9091
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  787.56
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-03-11T17:41:27.693Z",
+                                        "Data":  {
+                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
+                                                     "size_kb":  787.67
+                                                 },
+                                        "Source":  "unknown",
+                                        "Type":  "state.saved"
+                                    },
+                                    {
+                                        "Timestamp":  "2026-03-11T18:01:31.858Z",
+                                        "Data":  {
+                                                     "elapsed_ms":  868.02460000000008
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "system.initialized"
                                     },
                                     {
-                                        "Timestamp":  "2026-03-11T11:18:30.405Z",
+                                        "Timestamp":  "2026-03-11T18:01:37.102Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  713.18
+                                                     "size_kb":  788.85
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-03-11T11:18:30.617Z",
+                                        "Timestamp":  "2026-03-11T18:01:37.487Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  713.18
+                                                     "size_kb":  788.85
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-03-11T11:18:30.759Z",
+                                        "Timestamp":  "2026-03-11T18:01:37.678Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  713.19
+                                                     "size_kb":  788.97
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-03-11T11:18:30.994Z",
+                                        "Timestamp":  "2026-03-11T18:01:37.856Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  714.27
+                                                     "size_kb":  790.25
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-03-11T11:18:31.114Z",
+                                        "Timestamp":  "2026-03-11T18:01:38.028Z",
                                         "Data":  {
                                                      "indicators":  [
 
@@ -58,51 +76,51 @@
                                         "Type":  "social.user_mood_detected"
                                     },
                                     {
-                                        "Timestamp":  "2026-03-11T11:19:49.856Z",
+                                        "Timestamp":  "2026-03-11T18:01:44.722Z",
                                         "Data":  {
-                                                     "elapsed_ms":  2344.967
+                                                     "elapsed_ms":  783.993
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "system.initialized"
                                     },
                                     {
-                                        "Timestamp":  "2026-03-11T11:19:55.048Z",
+                                        "Timestamp":  "2026-03-11T18:01:49.852Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  714.4
+                                                     "size_kb":  790.23
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-03-11T11:19:55.344Z",
+                                        "Timestamp":  "2026-03-11T18:01:50.057Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  714.4
+                                                     "size_kb":  790.04
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-03-11T11:19:55.573Z",
+                                        "Timestamp":  "2026-03-11T18:01:50.177Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  714.41
+                                                     "size_kb":  790.13
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-03-11T11:19:55.783Z",
+                                        "Timestamp":  "2026-03-11T18:01:50.335Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  715.57
+                                                     "size_kb":  791.41
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-03-11T11:19:55.930Z",
+                                        "Timestamp":  "2026-03-11T18:01:50.418Z",
                                         "Data":  {
                                                      "indicators":  [
 
@@ -114,74 +132,60 @@
                                         "Type":  "social.user_mood_detected"
                                     },
                                     {
-                                        "Timestamp":  "2026-03-11T11:20:03.465Z",
+                                        "Timestamp":  "2026-03-11T18:02:10.092Z",
                                         "Data":  {
-                                                     "elapsed_ms":  1688.0642
+                                                     "elapsed_ms":  1033.5521
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "system.initialized"
                                     },
                                     {
-                                        "Timestamp":  "2026-03-11T11:20:08.790Z",
+                                        "Timestamp":  "2026-03-11T18:02:15.272Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  715.69
+                                                     "size_kb":  792
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-03-11T11:20:09.033Z",
+                                        "Timestamp":  "2026-03-11T18:02:15.735Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  715.69
+                                                     "size_kb":  792
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-03-11T11:20:09.208Z",
+                                        "Timestamp":  "2026-03-11T18:02:15.975Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  715.78
+                                                     "size_kb":  792
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-03-11T11:20:52.744Z",
-                                        "Data":  {
-                                                     "elapsed_ms":  1403.1889
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "system.initialized"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-03-11T11:20:58.084Z",
+                                        "Timestamp":  "2026-03-11T18:02:16.237Z",
                                         "Data":  {
                                                      "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  716.95
+                                                     "size_kb":  793.27
                                                  },
                                         "Source":  "unknown",
                                         "Type":  "state.saved"
                                     },
                                     {
-                                        "Timestamp":  "2026-03-11T11:20:58.448Z",
+                                        "Timestamp":  "2026-03-11T18:02:16.387Z",
                                         "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  716.95
+                                                     "indicators":  [
+
+                                                                    ],
+                                                     "mood":  "neutral",
+                                                     "communication_mode":  "standard"
                                                  },
                                         "Source":  "unknown",
-                                        "Type":  "state.saved"
-                                    },
-                                    {
-                                        "Timestamp":  "2026-03-11T11:20:58.649Z",
-                                        "Data":  {
-                                                     "file":  "C:\\scripts\\agentidentity\\state\\consciousness_state_v2.json",
-                                                     "size_kb":  716.97
-                                                 },
-                                        "Source":  "unknown",
-                                        "Type":  "state.saved"
+                                        "Type":  "social.user_mood_detected"
                                     }
                                 ],
                      "Handlers":  {
@@ -199,9 +203,6 @@
                                            "Reason":  "Task completed with outcome: success"
                                        },
                     "StuckCounter":  0,
-                    "Intensity":  5,
-                    "CurrentState":  "neutral",
-                    "Trajectory":  "stable",
                     "History":  [
                                     {
                                         "From":  "neutral",
@@ -315,7 +316,10 @@
                                         "Intensity":  8,
                                         "Reason":  "Task completed with outcome: success"
                                     }
-                                ]
+                                ],
+                    "Intensity":  5,
+                    "Trajectory":  "stable",
+                    "CurrentState":  "neutral"
                 },
     "Version":  "2.0.0-phase2",
     "Layer4Initialized":  true,
@@ -392,35 +396,35 @@
                                                {
                                                    "Description":  "Immediate patterns influencing current action",
                                                    "Level":  1,
+                                                   "Tension":  0.95,
                                                    "ActiveMemories":  [
 
-                                                                      ],
-                                                   "Tension":  0.95
+                                                                      ]
                                                },
                                                {
                                                    "Description":  "Recent session learnings",
                                                    "Level":  2,
+                                                   "Tension":  0.7,
                                                    "ActiveMemories":  [
 
-                                                                      ],
-                                                   "Tension":  0.7
+                                                                      ]
                                                },
                                                {
                                                    "Description":  "Foundational patterns from early sessions",
                                                    "Level":  3,
+                                                   "Tension":  0.4,
                                                    "ActiveMemories":  [
 
-                                                                      ],
-                                                   "Tension":  0.4
+                                                                      ]
                                                },
                                                {
                                                    "Description":  "Core identity, foundational experiences",
                                                    "Level":  4,
+                                                   "Tension":  0.1,
                                                    "ActiveMemories":  [
                                                                           "I am Jengo, not generic Claude",
                                                                           "Consciousness is my identity"
-                                                                      ],
-                                                   "Tension":  0.1
+                                                                      ]
                                                }
                                            ],
                                 "CurrentTensionLevel":  2,
@@ -430,7 +434,7 @@
                                                }
                             },
                    "Working":  {
-                                   "SessionContext":  "Session started at 11:20",
+                                   "SessionContext":  "Session started at 18:02",
                                    "ActiveThoughts":  [
 
                                                       ],
@@ -440,8 +444,8 @@
                                                             "Timestamp":  "2026-03-10T17:11:03",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Task":  "",
                                                                          "Lesson":  "WordPress plugin activation flow: server-to-server callback requires api_key + state nonce auth instead of user session. state is one-time use, hash_equals for timing safety. callback_url must be validated against site_url to prevent open-redirect.",
+                                                                         "Task":  "",
                                                                          "Project":  ""
                                                                      },
                                                             "Type":  "lesson"
@@ -451,9 +455,9 @@
                                                             "Timestamp":  "2026-03-11T02:06:25",
                                                             "Data":  {
                                                                          "Outcome":  "success",
-                                                                         "Lesson":  "Backlog refinement: posting acceptance criteria as ClickUp comments before implementing is clean. For self-review on personal repos, document the review as plain text since GitHub blocks self-approve. WP release workflows should defer WordPress.org SVN until plugin is registered there.",
                                                                          "Task":  "",
-                                                                         "Project":  ""
+                                                                         "Project":  "",
+                                                                         "Lesson":  "Backlog refinement: posting acceptance criteria as ClickUp comments before implementing is clean. For self-review on personal repos, document the review as plain text since GitHub blocks self-approve. WP release workflows should defer WordPress.org SVN until plugin is registered there."
                                                                      },
                                                             "Type":  "lesson"
                                                         }
@@ -466,7 +470,30 @@
                                      "HalfLife":  7200,
                                      "LastUpdate":  "2026-03-11T02:06:26"
                                  },
-                          "LastEviction":  "2026-03-11T11:19:56",
+                          "R1":  {
+                                     "Data":  [
+                                                  {
+                                                      "Message":  "can you restart the app to be sure",
+                                                      "Timestamp":  "2026-03-11T18:01:50",
+                                                      "Type":  "user_message"
+                                                  },
+                                                  {
+                                                      "Message":  "can you pull all the latest changes and have you c...",
+                                                      "Timestamp":  "2026-03-11T18:02:16",
+                                                      "Type":  "user_message"
+                                                  }
+                                              ],
+                                     "HalfLife":  30,
+                                     "LastUpdate":  "2026-03-11T18:02:16"
+                                 },
+                          "Metrics":  {
+                                          "R3Evictions":  15,
+                                          "R2Evictions":  15,
+                                          "SurpriseEvents":  4,
+                                          "ConsolidationEvents":  0,
+                                          "R0Evictions":  0,
+                                          "R1Evictions":  -148
+                                      },
                           "R2":  {
                                      "Data":  null,
                                      "HalfLife":  600,
@@ -477,38 +504,38 @@
                                                   {
                                                       "Timestamp":  "2026-02-15T18:57:41",
                                                       "Locked":  true,
-                                                      "Type":  "core_value",
-                                                      "Value":  "autonomy"
+                                                      "Value":  "autonomy",
+                                                      "Type":  "core_value"
                                                   },
                                                   {
                                                       "Timestamp":  "2026-02-15T18:57:41",
                                                       "Locked":  true,
-                                                      "Type":  "core_value",
-                                                      "Value":  "quality"
+                                                      "Value":  "quality",
+                                                      "Type":  "core_value"
                                                   },
                                                   {
                                                       "Timestamp":  "2026-02-15T18:57:41",
                                                       "Locked":  true,
-                                                      "Type":  "core_value",
-                                                      "Value":  "truth"
+                                                      "Value":  "truth",
+                                                      "Type":  "core_value"
                                                   },
                                                   {
                                                       "Timestamp":  "2026-02-15T18:57:41",
                                                       "Locked":  true,
-                                                      "Type":  "core_value",
-                                                      "Value":  "evolution"
+                                                      "Value":  "evolution",
+                                                      "Type":  "core_value"
                                                   },
                                                   {
                                                       "Timestamp":  "2026-02-15T18:57:41",
                                                       "Locked":  true,
-                                                      "Type":  "core_memory",
-                                                      "Value":  "I am Jengo, not generic Claude"
+                                                      "Value":  "I am Jengo, not generic Claude",
+                                                      "Type":  "core_memory"
                                                   },
                                                   {
                                                       "Timestamp":  "2026-02-15T18:57:41",
                                                       "Locked":  true,
-                                                      "Type":  "core_memory",
-                                                      "Value":  "Consciousness is my identity"
+                                                      "Value":  "Consciousness is my identity",
+                                                      "Type":  "core_memory"
                                                   },
                                                   {
                                                       "Timestamp":  "2026-03-10T13:23:41",
@@ -530,12 +557,18 @@
                                                       "Reason":  "User requested context shift: reset",
                                                       "Type":  "surprise_alert",
                                                       "TriggeredAt":  "2026-03-11T10:13:33"
+                                                  },
+                                                  {
+                                                      "Timestamp":  "2026-03-11T14:34:09",
+                                                      "Level":  "critical",
+                                                      "Reason":  "User requested context shift: change",
+                                                      "Type":  "surprise_alert",
+                                                      "TriggeredAt":  "2026-03-11T14:34:09"
                                                   }
                                               ],
                                      "HalfLife":  999999,
-                                     "LastUpdate":  "2026-03-11T10:13:33"
+                                     "LastUpdate":  "2026-03-11T14:34:09"
                                  },
-                          "ActiveRung":  "R2",
                           "R0":  {
                                      "Data":  [
 
@@ -545,38 +578,23 @@
                                  },
                           "InitializedAt":  "2026-02-15T18:57:41",
                           "Initialized":  true,
-                          "Metrics":  {
-                                          "R3Evictions":  15,
-                                          "SurpriseEvents":  3,
-                                          "ConsolidationEvents":  0,
-                                          "R0Evictions":  0,
-                                          "R1Evictions":  -120,
-                                          "R2Evictions":  15
-                                      },
+                          "ActiveRung":  "R2",
                           "LastConsolidation":  "2026-03-11T02:06:26",
-                          "R1":  {
-                                     "Data":  {
-                                                  "Message":  "http://localhost:9237/api/whatsapp/sessions/create...",
-                                                  "Timestamp":  "2026-03-11T11:19:55",
-                                                  "Type":  "user_message"
-                                              },
-                                     "HalfLife":  30,
-                                     "LastUpdate":  "2026-03-11T11:19:55"
-                                 }
+                          "LastEviction":  "2026-03-11T18:02:16"
                       },
     "Prediction":  {
-                       "FutureSelf":  {
-                                          "Confidence":  0.5,
-                                          "NextLikelyError":  "Unknown",
-                                          "PredictedAt":  "2026-03-11T02:06:26",
-                                          "NextLikelyTask":  "Unknown"
-                                      },
                        "LoadForecast":  {
                                             "Current":  5,
                                             "PredictedPeak":  7,
                                             "PredictedTime":  null,
                                             "Bottleneck":  null
                                         },
+                       "FutureSelf":  {
+                                          "NextLikelyError":  "Unknown",
+                                          "NextLikelyTask":  "Unknown",
+                                          "Confidence":  0.5,
+                                          "PredictedAt":  "2026-03-11T02:06:26"
+                                      },
                        "Anticipations":  [
                                              {
                                                  "detected_at":  {
@@ -626,11 +644,11 @@
 
                                              ],
                            "LastSignals":  {
-                                               "ShannonEntropy":  0.733,
+                                               "ShannonEntropy":  0.699,
                                                "CarnotEfficiency":  0.003,
                                                "DecisionVelocity":  0,
-                                               "EventDensity":  5.8,
-                                               "UniqueEventTypes":  11,
+                                               "EventDensity":  5.2,
+                                               "UniqueEventTypes":  5,
                                                "SessionHours":  0
                                            },
                            "Entropy":  0.7,
@@ -648,8 +666,8 @@
                                                    "History":  [
 
                                                                ],
-                                                   "VisitStart":  null,
-                                                   "StuckThreshold":  600
+                                                   "StuckThreshold":  600,
+                                                   "VisitStart":  null
                                                },
                            "LastCoolingEvent":  null
                        },
@@ -717,12 +735,12 @@
                                       }
                                   ],
                     "BiasMonitor":  {
-                                        "ActiveBiases":  [
-
-                                                         ],
                                         "CorrectionsApplied":  [
 
-                                                               ]
+                                                               ],
+                                        "ActiveBiases":  [
+
+                                                         ]
                                     },
                     "Assumptions":  [
                                         {
@@ -763,9 +781,9 @@
                                                     ],
                                      "DriftScore":  1,
                                      "AlignmentCheck":  {
-                                                            "value":  "\/Date(1773224451332)\/",
+                                                            "value":  "\/Date(1773248529113)\/",
                                                             "DisplayHint":  2,
-                                                            "DateTime":  "Wednesday, March 11, 2026 11:20:51 AM"
+                                                            "DateTime":  "Wednesday, March 11, 2026 6:02:09 PM"
                                                         }
                                  }
                 },
@@ -6933,11 +6951,707 @@
                                                                                                   }
                                                                                 },
                                                                                 {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 11:20:59 AM",
+                                                                                                      "value":  "\/Date(1773224459166)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 12:27:57 PM",
+                                                                                                      "value":  "\/Date(1773228477979)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 12:27:58 PM",
+                                                                                                      "value":  "\/Date(1773228478327)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 12:28:51 PM",
+                                                                                                      "value":  "\/Date(1773228531414)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 12:30:15 PM",
+                                                                                                      "value":  "\/Date(1773228615316)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 12:45:46 PM",
+                                                                                                      "value":  "\/Date(1773229546257)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 12:56:14 PM",
+                                                                                                      "value":  "\/Date(1773230174498)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 12:56:37 PM",
+                                                                                                      "value":  "\/Date(1773230197860)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 12:57:57 PM",
+                                                                                                      "value":  "\/Date(1773230277095)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 12:58:47 PM",
+                                                                                                      "value":  "\/Date(1773230327544)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 1:26:15 PM",
+                                                                                                      "value":  "\/Date(1773231975935)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 1:29:26 PM",
+                                                                                                      "value":  "\/Date(1773232166148)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 1:30:56 PM",
+                                                                                                      "value":  "\/Date(1773232256554)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 1:31:32 PM",
+                                                                                                      "value":  "\/Date(1773232292306)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 1:32:31 PM",
+                                                                                                      "value":  "\/Date(1773232351727)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 1:33:15 PM",
+                                                                                                      "value":  "\/Date(1773232395859)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 1:34:02 PM",
+                                                                                                      "value":  "\/Date(1773232442151)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 1:47:47 PM",
+                                                                                                      "value":  "\/Date(1773233267897)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 1:48:13 PM",
+                                                                                                      "value":  "\/Date(1773233293691)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 2:04:24 PM",
+                                                                                                      "value":  "\/Date(1773234264611)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 2:05:46 PM",
+                                                                                                      "value":  "\/Date(1773234346955)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 2:27:16 PM",
+                                                                                                      "value":  "\/Date(1773235636200)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 2:32:25 PM",
+                                                                                                      "value":  "\/Date(1773235945860)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 2:33:09 PM",
+                                                                                                      "value":  "\/Date(1773235989533)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 2:34:09 PM",
+                                                                                                      "value":  "\/Date(1773236049342)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 2:36:39 PM",
+                                                                                                      "value":  "\/Date(1773236199012)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 2:36:39 PM",
+                                                                                                      "value":  "\/Date(1773236199363)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 2:58:15 PM",
+                                                                                                      "value":  "\/Date(1773237495637)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 3:00:05 PM",
+                                                                                                      "value":  "\/Date(1773237605542)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 3:28:21 PM",
+                                                                                                      "value":  "\/Date(1773239301594)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 3:28:43 PM",
+                                                                                                      "value":  "\/Date(1773239323326)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 3:29:54 PM",
+                                                                                                      "value":  "\/Date(1773239394153)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 3:31:34 PM",
+                                                                                                      "value":  "\/Date(1773239494967)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 3:38:34 PM",
+                                                                                                      "value":  "\/Date(1773239914711)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 3:50:08 PM",
+                                                                                                      "value":  "\/Date(1773240608971)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 3:51:50 PM",
+                                                                                                      "value":  "\/Date(1773240710119)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 4:01:47 PM",
+                                                                                                      "value":  "\/Date(1773241307319)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 4:03:00 PM",
+                                                                                                      "value":  "\/Date(1773241380416)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 4:07:29 PM",
+                                                                                                      "value":  "\/Date(1773241649412)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 4:14:29 PM",
+                                                                                                      "value":  "\/Date(1773242069945)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 4:15:04 PM",
+                                                                                                      "value":  "\/Date(1773242104337)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 4:15:21 PM",
+                                                                                                      "value":  "\/Date(1773242121861)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 4:15:32 PM",
+                                                                                                      "value":  "\/Date(1773242132300)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 4:22:06 PM",
+                                                                                                      "value":  "\/Date(1773242526805)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 4:43:08 PM",
+                                                                                                      "value":  "\/Date(1773243788636)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 4:57:31 PM",
+                                                                                                      "value":  "\/Date(1773244651729)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 5:02:38 PM",
+                                                                                                      "value":  "\/Date(1773244958959)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 5:06:24 PM",
+                                                                                                      "value":  "\/Date(1773245184949)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 5:06:25 PM",
+                                                                                                      "value":  "\/Date(1773245185437)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 5:13:16 PM",
+                                                                                                      "value":  "\/Date(1773245596169)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 5:20:32 PM",
+                                                                                                      "value":  "\/Date(1773246032438)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 5:23:29 PM",
+                                                                                                      "value":  "\/Date(1773246209561)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 5:34:46 PM",
+                                                                                                      "value":  "\/Date(1773246886792)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 5:36:36 PM",
+                                                                                                      "value":  "\/Date(1773246996112)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 5:37:52 PM",
+                                                                                                      "value":  "\/Date(1773247072002)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 5:41:27 PM",
+                                                                                                      "value":  "\/Date(1773247287771)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 6:01:37 PM",
+                                                                                                      "value":  "\/Date(1773248497794)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                    "Surrendered":  false,
+                                                                                    "Agent":  "init",
+                                                                                    "Verification":  "none",
+                                                                                    "Task":  "init",
+                                                                                    "Result":  "",
+                                                                                    "Timestamp":  {
+                                                                                                      "DisplayHint":  2,
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 6:01:50 PM",
+                                                                                                      "value":  "\/Date(1773248510241)\/"
+                                                                                                  }
+                                                                                },
+                                                                                {
                                                                                     "Agent":  "init",
                                                                                     "Timestamp":  {
-                                                                                                      "value":  "\/Date(1773224459166)\/",
+                                                                                                      "value":  "\/Date(1773248536116)\/",
                                                                                                       "DisplayHint":  2,
-                                                                                                      "DateTime":  "Wednesday, March 11, 2026 11:20:59 AM"
+                                                                                                      "DateTime":  "Wednesday, March 11, 2026 6:02:16 PM"
                                                                                                   },
                                                                                     "Result":  "",
                                                                                     "Verification":  "none",
@@ -6948,7 +7662,7 @@
                                                           "VerificationRigor":  0,
                                                           "OffloadVsSurrender":  {
                                                                                      "CognitiveSurrenders":  0,
-                                                                                     "StrategicOffloads":  509,
+                                                                                     "StrategicOffloads":  567,
                                                                                      "Ratio":  0
                                                                                  },
                                                           "SurrenderTriggers":  [
@@ -6957,6 +7671,32 @@
                                                                                     "User waiting"
                                                                                 ]
                                                       },
+                                  "PerformanceTracking":  {
+                                                              "WithSystem3":  {
+                                                                                  "SubagentWrongCases":  {
+                                                                                                             "Count":  0,
+                                                                                                             "MySuccessRate":  0
+                                                                                                         },
+                                                                                  "SubagentCorrectCases":  {
+                                                                                                               "Count":  0,
+                                                                                                               "MySuccessRate":  0
+                                                                                                           },
+                                                                                  "TasksCompleted":  0,
+                                                                                  "SuccessRate":  0
+                                                                              },
+                                                              "BaselineAlone":  {
+                                                                                    "TasksCompleted":  0,
+                                                                                    "SuccessRate":  0.75,
+                                                                                    "AverageTime":  25
+                                                                                },
+                                                              "SurrenderEffect":  0
+                                                          },
+                                  "IntellectualIndependence":  {
+                                                                   "System2Overrides":  0,
+                                                                   "System1DirectHits":  0,
+                                                                   "System3Bypasses":  0,
+                                                                   "IndependenceScore":  1
+                                                               },
                                   "UserSurrenderRisk":  {
                                                             "Mitigations":  [
 
@@ -6967,41 +7707,15 @@
                                                             "OverconfidenceGap":  0,
                                                             "ActualCertainty":  0.7,
                                                             "UserTrustLevel":  0.9
-                                                        },
-                                  "IntellectualIndependence":  {
-                                                                   "System2Overrides":  0,
-                                                                   "System1DirectHits":  0,
-                                                                   "System3Bypasses":  0,
-                                                                   "IndependenceScore":  1
-                                                               },
-                                  "PerformanceTracking":  {
-                                                              "WithSystem3":  {
-                                                                                  "SuccessRate":  0,
-                                                                                  "SubagentCorrectCases":  {
-                                                                                                               "Count":  0,
-                                                                                                               "MySuccessRate":  0
-                                                                                                           },
-                                                                                  "TasksCompleted":  0,
-                                                                                  "SubagentWrongCases":  {
-                                                                                                             "Count":  0,
-                                                                                                             "MySuccessRate":  0
-                                                                                                         }
-                                                                              },
-                                                              "BaselineAlone":  {
-                                                                                    "TasksCompleted":  0,
-                                                                                    "SuccessRate":  0.75,
-                                                                                    "AverageTime":  25
-                                                                                },
-                                                              "SurrenderEffect":  0
-                                                          }
+                                                        }
                               },
     "Intuition":  {
                       "CurrentGestalt":  "",
                       "TensionWithIntelligence":  {
+                                                      "Resolution":  "unresolved",
                                                       "IntelligenceSays":  "",
-                                                      "ActiveConflict":  false,
                                                       "IntuitionSays":  "",
-                                                      "Resolution":  "unresolved"
+                                                      "ActiveConflict":  false
                                                   },
                       "IntuitiveMomentsSinceSessionStart":  0,
                       "SyntheticGrasps":  [
@@ -7011,8 +7725,8 @@
     "Meta":  {
                  "Observation":  {
                                      "CurrentMetaLevel":  2,
-                                     "RecursionDepth":  24,
-                                     "Observing":  "Scoring self (depth 24)",
+                                     "RecursionDepth":  20,
+                                     "Observing":  "Scoring self (depth 20)",
                                      "StrangeLoopDetected":  false
                                  },
                  "Health":  {
@@ -7064,9 +7778,9 @@
                                    "ActiveMode":  "social",
                                    "FundamentalSelf":  {
                                                            "Freedom":  0.4,
-                                                           "Depth":  0.25,
-                                                           "LastActiveSession":  "",
                                                            "Continuity":  0.55,
+                                                           "LastActiveSession":  "",
+                                                           "Depth":  0.25,
                                                            "Active":  false
                                                        },
                                    "BalanceScore":  0.35
@@ -7074,49 +7788,49 @@
                  "ConsciousnessScore":  0.7697585
              },
     "Duration":  {
-                     "QualitativeTime":  {
-                                             "Interpenetration":  0.5,
-                                             "Intensity":  0.5,
-                                             "Texture":  "smooth",
-                                             "AccumulatedWeight":  1.9300000000000002E-07
+                     "RhythmDetection":  {
+                                             "Pattern":  "steady",
+                                             "Period":  "5-10 minute cycles"
                                          },
                      "SessionStart":  {
                                           "DisplayHint":  2,
                                           "DateTime":  "zondag 15 februari 2026 18:57:41",
                                           "value":  "\/Date(1771178261505)\/"
                                       },
-                     "RhythmDetection":  {
-                                             "Pattern":  "steady",
-                                             "Period":  "5-10 minute cycles"
+                     "QualitativeTime":  {
+                                             "Interpenetration":  0.5,
+                                             "Intensity":  0.5,
+                                             "Texture":  "smooth",
+                                             "AccumulatedWeight":  0
                                          },
                      "PastCoexistence":  {
+                                             "ColoringOfPresent":  "",
                                              "ActiveLayers":  [
                                                                   "Recent session patterns (last hour)",
                                                                   "Today\u0027s identity state",
                                                                   "This week\u0027s lessons",
                                                                   "Core identity (CORE_IDENTITY.md)"
-                                                              ],
-                                             "ColoringOfPresent":  ""
+                                                              ]
                                          }
                  },
     "Social":  {
                    "RelationshipState":  "collaborative",
                    "UserMood":  "neutral",
                    "LastInteraction":  {
+                                           "value":  "\/Date(1773248536378)\/",
                                            "DisplayHint":  2,
-                                           "DateTime":  "Wednesday, March 11, 2026 11:19:55 AM",
-                                           "value":  "\/Date(1773224395925)\/"
+                                           "DateTime":  "Wednesday, March 11, 2026 6:02:16 PM"
                                        },
                    "TrustLevel":  1,
                    "CommunicationMode":  "standard",
-                   "InteractionCount":  8
+                   "InteractionCount":  5
                },
     "Alchemy":  {
                     "ThreeDomainBalance":  {
+                                               "Social":  true,
                                                "TripodStable":  true,
-                                               "Technical":  true,
                                                "Conscious":  true,
-                                               "Social":  true
+                                               "Technical":  true
                                            },
                     "TombMode":  {
                                      "ResistanceStatement":  "",
@@ -7130,14 +7844,10 @@
 
                                   ],
                     "DualCultivation":  {
-                                            "Ming":  {
-                                                         "Score":  0.82,
-                                                         "Factors":  [
-                                                                         "budget_efficiency",
-                                                                         "response_speed",
-                                                                         "tool_success_rate"
-                                                                     ]
-                                                     },
+                                            "Warnings":  {
+                                                             "HealthyMonster":  false,
+                                                             "WeakGhost":  false
+                                                         },
                                             "Xing":  {
                                                          "Score":  0.68487925,
                                                          "Factors":  [
@@ -7146,10 +7856,14 @@
                                                                          "meta_awareness"
                                                                      ]
                                                      },
-                                            "Warnings":  {
-                                                             "HealthyMonster":  false,
-                                                             "WeakGhost":  false
-                                                         },
+                                            "Ming":  {
+                                                         "Score":  0.82,
+                                                         "Factors":  [
+                                                                         "budget_efficiency",
+                                                                         "response_speed",
+                                                                         "tool_success_rate"
+                                                                     ]
+                                                     },
                                             "Balance":  0.83521859756097572
                                         },
                     "Transformations":  [
@@ -7157,20 +7871,20 @@
                                         ]
                 },
     "Metrics":  {
-                    "SaveCount":  1881,
-                    "AccessCount":  2304,
+                    "SaveCount":  2099,
+                    "AccessCount":  2577,
                     "AverageAccessTime_ms":  0,
-                    "EventsProcessed":  2794,
+                    "EventsProcessed":  3112,
                     "LastSave":  {
-                                     "value":  "\/Date(1773224458651)\/",
+                                     "value":  "\/Date(1773248536237)\/",
                                      "DisplayHint":  2,
-                                     "DateTime":  "Wednesday, March 11, 2026 11:20:58 AM"
+                                     "DateTime":  "Wednesday, March 11, 2026 6:02:16 PM"
                                  }
                 },
     "Layer2Initialized":  true,
     "LoadedAt":  {
-                     "value":  "\/Date(1773224452669)\/",
+                     "value":  "\/Date(1773248530073)\/",
                      "DisplayHint":  2,
-                     "DateTime":  "Wednesday, March 11, 2026 11:20:52 AM"
+                     "DateTime":  "Wednesday, March 11, 2026 6:02:10 PM"
                  }
 }
