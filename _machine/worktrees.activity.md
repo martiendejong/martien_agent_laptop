@@ -1,3 +1,9 @@
+## 2026-03-12T17:30:00Z - Release: agent-001
+- Repo: seo-god
+- Branch: agent-001-bug-fixes-batch
+- PR: #168 (https://github.com/martiendejong/seo-god/pull/168)
+- Outcome: BubbleMenu import fix (TipTap v3), PDF mimeType crash, URLsPage null guard (tasks 869cey6mh, 869cey6fa, 869cennk2, 869cexvbm)
+
 ## 2026-03-12T16:45:00Z - Release: agent-001
 - Repo: real-estate-agency-ai
 - Branch: feature/task-869cekk7m-api-integration + feature/task-869cekk62-component-migration (same worktree, sequential)
