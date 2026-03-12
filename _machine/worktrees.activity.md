@@ -1,3 +1,9 @@
+## 2026-03-12T22:00:00Z - Release: agent-002
+- Repo: real-estate-agency-ai
+- Branch: feature/task-869cf57zq-869cf789f-edit-page-openai-key
+- PR: #140 (https://github.com/martiendejong/real-estate-agency-ai/pull/140)
+- Outcome: WoningzoekendeEdit page (fixes white screen on /edit route) + OpenAI key configurable via Instellingen
+
 ## 2026-03-12T21:00:00Z - Release: agent-001
 - Repo: real-estate-agency-ai
 - Branch: feature/task-869cekk87-email-whatsapp-fixes

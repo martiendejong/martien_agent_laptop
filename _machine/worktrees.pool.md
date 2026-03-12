@@ -4,8 +4,8 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-12T20:15:00Z | ✅ PR #170: WP login redirect fix, FAQ auto-generate, draft/scheduled import (869cf81hn, 869cf5y5n, 869cf8aet) |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-12T13:45:00Z | ✅ PR #164: 5 robustness tasks (sync retry, crawl checkpoint, AI validation, health dashboard, content quality gating) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | seo-god | feature/869cf6209-sitemap-generator | 2026-03-12T20:30:00Z | 🔄 Implementing XML Sitemap Generator (869cf6209) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-12T22:00:00Z | ✅ PR #140: WoningzoekendeEdit page + OpenAI key settings (869cf57zq, 869cf789f) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-10T14:00:00Z | ✅ PR #705: Inline import-website card + slash opens action menu (869c5ptzh, 869c4vycv) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-10T14:30:00Z | ✅ PR #706: Feature flags not applied — camelCase key mismatch fix (869cbx28r) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-15T16:10:00Z | PR #572: Prompt Builder Interface (ClickUp #869bu9meu) |
