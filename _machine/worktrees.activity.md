@@ -1,3 +1,9 @@
+## 2026-03-12T16:00:00Z - Release: agent-001
+- Repo: real-estate-agency-ai
+- Branch: feature/task-869ceqgnc-hamburger-menu
+- PR: #136 (https://github.com/martiendejong/real-estate-agency-ai/pull/136)
+- Outcome: Responsive hamburger menu for mobile sidebar — MainLayout topbar + Sidebar open/close + CSS drawer
+
 ## 2026-03-12T13:30:00Z - Release: agent-001
 - Repo: seo-god
 - Branch: agent-001-todo-tasks
