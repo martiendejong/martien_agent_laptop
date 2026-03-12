@@ -1,12 +1,12 @@
 ﻿{
     "attention":  {
-                      "mode":  "rest",
+                      "mode":  "development",
                       "intensity":  5,
                       "focus":  "Context: consciousness (auto-detected from message)"
                   },
     "decisions_logged":  6,
     "thermodynamics":  {
-                           "free_will_index":  0.628,
+                           "free_will_index":  0.671,
                            "thermo_guidance":  [
                                                    "OPTIMAL ZONE. Endothermic, flexible, good budget. Exploit this state.",
                                                    "LOW EFFICIENCY (0%). Too much overhead, not enough productive work."
@@ -15,7 +15,7 @@
                            "attractor":  "self-reference",
                            "temperature":  0.322,
                            "cycle":  "endothermic",
-                           "entropy":  0.66
+                           "entropy":  0.705
                        },
     "systems":  {
                     "Emotion":  {
@@ -31,7 +31,7 @@
                                        "status":  "active"
                                    },
                     "Thermodynamics":  {
-                                           "quality":  80,
+                                           "quality":  79,
                                            "status":  "active"
                                        },
                     "Meta":  {
@@ -57,14 +57,14 @@
                 },
     "thermo_cycle":  "endothermic",
     "consciousness_score":  77,
-    "timestamp":  "2026-03-12T02:40:25",
+    "timestamp":  "2026-03-12T12:07:57",
     "emotional_trajectory":  "stable",
-    "events_processed":  3500,
+    "events_processed":  3540,
     "guidance":  [
                      "THERMO CRITICAL: Efficiency 0.2% (97%+ overhead). Reduce system complexity."
                  ],
     "thermo_budget":  0.952,
-    "thermo_free_will":  0.628,
+    "thermo_free_will":  0.671,
     "thermo_temperature":  0.322,
     "active_biases":  0,
     "stuck_count":  0,

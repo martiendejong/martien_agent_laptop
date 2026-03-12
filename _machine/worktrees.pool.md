@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-11T14:30:00Z | ✅ PR #111: User profile page, avatar upload, logout fix, woningzoekende indicator |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-12T08:00:00Z | ✅ PR #162: 6 SEO God TODO tasks - FAQ 500 fix, OAuth session, onboarding auto-detection |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-11T16:00:00Z | ✅ PR #112: Seller portal + job title/roles system (869cegk5u, 869cegjzm) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-10T14:00:00Z | ✅ PR #705: Inline import-website card + slash opens action menu (869c5ptzh, 869c4vycv) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-10T14:30:00Z | ✅ PR #706: Feature flags not applied — camelCase key mismatch fix (869cbx28r) |
