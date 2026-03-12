@@ -3,7 +3,7 @@
     "version":  "2.0",
     "encryption":  "dpapi",
     "storage":  "hex",
-    "updated":  "2026-03-10 00:47:15",
+    "updated":  "2026-03-12 02:56:13",
     "credentials":  [
                         {
                             "updated":  "2026-02-11 18:53:42",
@@ -236,13 +236,27 @@
                         {
                             "updated":  "2026-03-10 00:47:15",
                             "token_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb01000000abaaa8a3a5d9164f925bd4f20c33288100000000020000000000106600000001000020000000f61244898d8f29687f61e800c6bb49e318cb4af187d8a55662b8f823ec8cb448000000000e800000000200002000000074651f4afc39ebbc6dcf85567b993117ba009550f0db5d1927d2f5e57053f08b20000000c7c4fd00f4e9a17bd4c3bcb6cb482d79b54398c54a89a57607a64a38a9dd359640000000c417ba0a4cec28fe5d3fb2d0b1b40d5fdf2b0a99a937afe68356e5ce7e9621148d5018e5f55cc0b93f311563e062918ccd812cc264666b47d1ad77e16dbecdae",
-                            "username":  "",
-                            "notes_enc":  "",
                             "password_hint":  "",
+                            "notes_enc":  "",
+                            "tags":  [
+
+                                     ],
+                            "username":  "",
                             "token_hint":  "ukAc q12...",
                             "password_enc":  "",
                             "service":  "wordpress_localhost_apppassword",
-                            "created":  "2026-03-10 00:47:15",
+                            "created":  "2026-03-10 00:47:15"
+                        },
+                        {
+                            "updated":  "2026-03-12 02:56:13",
+                            "token_enc":  "",
+                            "username":  "administrator",
+                            "notes_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb01000000abaaa8a3a5d9164f925bd4f20c33288100000000020000000000106600000001000020000000e579836c86628e102c13f8ec80791d98939bad59e23d6aac229b5f8e3fb74517000000000e8000000002000020000000011b936c553b100654cb8740bb17879f502e6ac6e9b8c7789a1a8ad23896dbbd40000000943114832e72ed5a28b2d3ff00bc308e7c639cc72828248411991d830026db9dbe2c4f3bd6658d1ff550b08e8ec0c5b28ca460b03b1062f873cca9b8637a61e740000000392b77cf703e0f17e65026354d981458c6aa7b4f5e15367381b1104b3116d401232ffc2ff637082974df519d3c787f93951fa3324c12b8f5524558b1e41f6395",
+                            "password_hint":  "SpaceEle...",
+                            "token_hint":  "",
+                            "password_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb01000000abaaa8a3a5d9164f925bd4f20c332881000000000200000000001066000000010000200000007d5119b1426dabe2ef72c3c2a471cd673f8aeb2062ad5ad2223167effa437b54000000000e80000000020000200000004e3262a62a40b5375051d8d8a2fa208dd0c970d795990af816e281b85f0e70f1200000005c6db3c6c9f8267b17d17ccbaf9d9c6150990af9d8df22541cb1c62d614e6a1e400000008ce90fc0c93fded643d909fb28657f0da14aadd351e95dcad09c9200626620a7fc7a116acaccd7dfe1384112ccf546e0f7b5b4c7f15437ce92f1da496df91ec7",
+                            "service":  "ssh_whatsappbridge",
+                            "created":  "2026-03-12 02:56:13",
                             "tags":  [
 
                                      ]

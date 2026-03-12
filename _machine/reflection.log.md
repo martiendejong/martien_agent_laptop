@@ -6,6 +6,50 @@
 
 ---
 
+## 2026-03-11 - Dawa WhatsApp C# Client - Binary Protocol Debugging
+
+**Session Type:** Deep protocol reverse engineering
+**Outcome:** 🔄 In progress - multiple fixes applied, pair-success not yet confirmed
+
+### What Was Done
+
+1. **Token dictionary complete rewrite**: Old WATags.cs had wrong dictionaries. Replaced with correct Baileys SINGLE_BYTE_TOKENS (236 entries, byte value = index) and DOUBLE_BYTE_TOKENS[0..3] (256 entries each).
+2. **Static init order fix**: `AllDictionaries = [Dictionary0, ...]` was declared BEFORE the dict arrays → NullReferenceException. Fixed by moving AllDictionaries declaration AFTER the four dict arrays.
+3. **Decoder indexing fix**: Old decoder used `b - 3` offset. New: byte value IS the token index directly.
+4. **Encoder single vs double byte fix**: Was always writing 2 bytes (dictByte+idx). Fixed to write 1 byte for single-byte tokens.
+5. **Flags byte fix**: Post-handshake frames need leading 0x00 (flags byte). Was missing → `xml-not-well-formed` error.
+6. **QR generation fix**: pair-device IQ arrives as `type="set"` (server-initiated). Ack was sent but `HandlePairDeviceResultAsync` was never called. Fixed.
+7. **Ref encoding fix**: `<ref>` node content is `byte[]` but contains UTF-8 string (102 ASCII chars). Was double-encoding with base64. Fixed to `Encoding.UTF8.GetString(refNode.Data)`.
+8. **Ping handler**: Server sends `<iq type="get"><ping/>` keep-alives. Added pong response.
+9. **JID encoding fix**: `atIdx > 0` check fails for `@s.whatsapp.net` (@ at index 0). Fixed to `atIdx >= 0` so empty-user JIDs encode as JidPair instead of raw UTF-8.
+
+### Key Patterns
+
+**WhatsApp binary format (post-handshake):**
+- Every frame: 1 byte flags (0x00) + binary node
+- Binary node: WriteListSize + WriteString(tag) + WriteString(k) + WriteString(v) + content
+- ListSize formula: 1(tag) + 2*attrCount + (1 if has content)
+- Single-byte tokens: byte 1-235, value IS the index into SingleByteTokens
+- Double-byte tokens: byte 236-239 = DictionaryBase + dict index, then 1 byte for token index
+- JidPair (0xFA): empty user JIDs like `@s.whatsapp.net` MUST use JidPair(ListEmpty, token)
+- Nibble8 (0xFB): numeric strings encoded as nibble pairs
+- Binary8 (0xFC): raw byte/string data ≤255 bytes
+
+**Noise protocol facts:**
+- WA prologue: [0x57, 0x41, 0x06, 0x03] = "WA" + protocol 6 + dict 3
+- After handshake: server sends pair-device IQ as `type="set"`, ack with `type="result"`
+- pair-success can arrive as either `type="set"` or `type="result"` — handle both
+- `<stream:error><ping>` = server rejected something we sent (ack encoding wrong)
+
+**WA version:** [2, 3000, 1033846690] — confirmed current in Baileys (March 2026)
+
+### Remaining Issues
+- stream:error<ping> after pair-device ack suggests ack still has encoding issue
+- Need to verify JID fix resolves the stream:error
+- pair-success handling not yet tested
+
+---
+
 ## 2026-03-11 - Media Library Fix + Build Repair
 
 **Session Type:** Bug fix + conflict resolution + build repair
