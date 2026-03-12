@@ -98,6 +98,14 @@
                   "statuses": ["to do", "planning", "in progress", "at risk", "update required", "on hold", "complete", "cancelled", "archive"],
                   "description": "High-level overview and strategic planning for Brand2Boost platform"
                 },
+                "seo_god": {
+                  "id": "901215927087",
+                  "name": "SEO God",
+                  "task_count": 0,
+                  "maps_to": ["seo-god"],
+                  "statuses": ["backlog", "refined", "needs input", "todo", "busy", "review", "testing", "done", "cancelled"],
+                  "description": "SEO God project board - AI-powered SEO content platform"
+                },
                 "general_meta": {
                   "id": "901215818012",
                   "name": "General & Meta Tasks",
@@ -157,6 +165,13 @@
       "folder": "internal",
       "list_id": "901215573347",
       "list_name": "Brand2Boost - Birdseye View"
+    },
+    "seo-god": {
+      "workspace": "gigshub",
+      "space": "team_tasks",
+      "folder": "internal",
+      "list_id": "901215927087",
+      "list_name": "SEO God"
     }
   },
   "projects": {
@@ -194,6 +209,15 @@
       "environment": "visual-studio",
       "local_path": "C:/Projects/client-manager",
       "description": "High-level overview and strategic planning for Brand2Boost platform"
+    },
+    "seo-god": {
+      "name": "SEO God",
+      "list_id": "901215927087",
+      "repos": ["seo-god"],
+      "type": "fullstack",
+      "environment": "visual-studio",
+      "local_path": "C:/Projects/seo-god",
+      "description": "AI-powered SEO content platform - React frontend + ASP.NET Core backend + WordPress plugin"
     }
   },
   "default_list_id": "901214097647",
