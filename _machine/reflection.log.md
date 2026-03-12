@@ -6,6 +6,76 @@
 
 ---
 
+## 2026-03-12 - Real Estate Agency AI: 4 PRs, Deploy, Task Cleanup, Backlog Refinement
+
+**Session Type:** Feature implementation + deploy + task triage + backlog refinement
+**Outcome:** ✅ SUCCESS — 4 PRs created and merged (#136–#139), app deployed to VPS, 5 backlog tasks refined
+
+### What Was Done
+
+1. **PR #136 — Hamburger menu** (task 869ceqgnc): `Sidebar.tsx` accepts `isOpen/onClose` props, `MainLayout.tsx` adds mobile topbar with 3-bar button, CSS drawer at `left: -260px` → `.open { left: 0 }` with transition + overlay backdrop
+2. **PR #137 — Analytics + retry** (task 869cekk7m): `analytics.service.ts` fire-and-forget with 5min TTL cache, `api.ts` retry logic with 500ms/1s/2s backoff (5xx + network only, not 4xx), optimistic favorite toggle in `PropertyCard.tsx`
+3. **PR #138 — Component migration** (task 869cekk62): generic `Table<T>` component, `Header.tsx` with search/notifications/avatar, `Gebruikers.tsx` refactored (−90 lines)
+4. **PR #139 — Email/WhatsApp fixes** (task 869cekk87): WhatsApp 5s timeout per attempt + 3 retries, SMTP 10s timeout + 3 retries, failed messages stored in DB with `Status="failed"`, `Berichten.tsx` shows ✓ verzonden / ✗ mislukt badges
+5. **VPS deploy**: Established pipeline — `npm run build` locally, copy `dist/` to VPS via WinRM, restart `RealEstatePool`. VPS has .NET 8 only (can't build .NET 9 backend remotely). Frontend goes to `C:\stores\realestate\backend\wwwroot`
+6. **Task triage**: 869ccfvqa/869cc94k0/869cc94k3 → blocked (WhatsApp bridge); 869cc94jx → testing (IMAP live)
+7. **Backlog refinement**: 5 tasks across real-estate + client-manager refined with 4-section format, moved to todo
+
+### Key Patterns Learned
+
+**Pattern 74: VPS deploy for .NET 9 + React apps (IIS)**
+- VPS may have older .NET SDK → check before attempting remote dotnet build
+- Build frontend locally: `npm run build` → copy `dist/index.html` + `dist/assets/` to `wwwroot`
+- Restart app pool: `Import-Module WebAdministration; Restart-WebAppPool -Name "RealEstatePool"`
+- Preserve `documents/` and `uploads/` (user files) — only replace `index.html` and `assets/`
+- Use WinRM with `-Authentication Negotiate` (not `-UseSSL:$false` which fails with unencrypted error)
+
+**Pattern 75: Optimistic UI updates**
+```tsx
+const prev = isFavorite
+setIsFavorite(!isFavorite)
+try { await api.toggle() }
+catch { setIsFavorite(prev) }  // revert on error
+```
+
+**Pattern 76: Fire-and-forget analytics**
+```ts
+trackView(id): void {  // returns void, never throws
+  (async () => { try { await api.track(id) } catch {} })()
+}
+```
+
+**Pattern 77: Retry with exponential backoff (frontend axios)**
+```ts
+const RETRY_DELAYS_MS = [500, 1000, 2000]
+// Only retry: network errors + 5xx. Never: 4xx, 401
+if (error.response?.status >= 400 && error.response?.status < 500) return false
+```
+
+**Pattern 78: WhatsApp/SMTP retry with CancellationToken (backend)**
+```csharp
+for (int attempt = 1; attempt <= 3; attempt++) {
+  using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+  try { var r = await _http.PostAsync(url, content, cts.Token); ... }
+  catch (OperationCanceledException) { /* timeout */ }
+  if (attempt < 3) await Task.Delay(TimeSpan.FromSeconds(attempt));
+}
+// After all retries: store message with Status="failed"
+```
+
+### Lessons for Future Sessions
+
+**DO:**
+- ✅ Check VPS .NET SDK version before planning backend deploy strategy
+- ✅ Store failed messages in DB (Status="failed") so UI can show delivery state
+- ✅ Always verify IMAP/WhatsApp task status before marking blocked — IMAP was live in prod
+
+**DON'T:**
+- ❌ WinRM with `-UseSSL:$false` — use `-Authentication Negotiate`
+- ❌ Copy entire `wwwroot` from dist — preserve `documents/` and `uploads/` subdirs
+
+---
+
 ## 2026-03-11 - Dawa WhatsApp C# Client - Binary Protocol Debugging
 
 **Session Type:** Deep protocol reverse engineering
