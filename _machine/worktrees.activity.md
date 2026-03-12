@@ -1,3 +1,9 @@
+## 2026-03-12T21:00:00Z - Release: agent-001
+- Repo: real-estate-agency-ai
+- Branch: feature/task-869cekk87-email-whatsapp-fixes
+- PR: #139 (https://github.com/martiendejong/real-estate-agency-ai/pull/139)
+- Outcome: WhatsApp 5s timeout + 3 retries, SMTP 10s timeout + 3 retries, failed messages stored in DB, UI sent/failed indicators
+
 ## 2026-03-12T17:30:00Z - Release: agent-001
 - Repo: seo-god
 - Branch: agent-001-bug-fixes-batch
