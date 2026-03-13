@@ -6,6 +6,83 @@
 
 ---
 
+## 2026-03-13 - Real Estate: Branch Audit + Bulk PR Merge (22 PRs, 27 tasks → testing)
+
+**Session Type:** Branch cleanup + bulk PR review + ClickUp task triage
+**Outcome:** ✅ SUCCESS — 4 stale branches cleaned, 22 PRs merged, 27 ClickUp tasks moved to testing
+
+### What Was Done
+
+1. **Branch audit** — Found all remote branches ahead of develop, filtered by: no open PR + no activity in last 2 hours
+   - All 25 branches ahead of develop had PRs (either open or merged)
+   - 4 branches had no OPEN PR but had MERGED PRs (squash merge artifacts)
+   - These 4 were still "ahead" because squash merge doesn't match original commit hashes
+
+2. **Squash merge artifact cleanup:**
+   - Merged develop INTO all 4 stale branches (to bring them current)
+   - Checked `git diff origin/develop...origin/<branch> --stat` — all empty, content identical
+   - One branch had `"peer": true` metadata in package-lock.json — not valuable
+   - Deleted all 4 remote branches
+
+3. **ClickUp task created** (#869cfdu7j) listing all 4 branches with PR links + task references
+
+4. **Bulk PR merge (22 PRs):** Launched single general-purpose agent to:
+   - Review diff stats for each PR
+   - Merge sequentially (oldest → newest to minimize conflicts)
+   - Look up ClickUp task per branch name
+   - Move to `testing` or create task if missing
+   - **Result:** 22 PRs merged, 6 conflicts resolved via cherry-pick, 27 tasks → testing
+
+### Key Patterns Learned
+
+**Pattern 76: Squash merge branch detection**
+
+Branches that show as "ahead of develop" but have merged PRs = squash merge artifacts.
+The branch commits exist but develop has a squashed commit with the same content.
+`git diff origin/develop...origin/<branch> --stat` will show empty if content is identical.
+
+**DO:**
+- ✅ Always check `--state all` when looking for PRs per branch (not just `--state open`)
+- ✅ Use `git diff origin/develop...origin/<branch> --stat` (3-dot) to see branch-unique changes
+- ✅ Delete stale post-merge branches — they're pure noise
+
+**DON'T:**
+- ❌ Assume "branch ahead of develop" = "unmerged work" — could be squash artifact
+- ❌ Create new PRs for squash-merged branches without checking the diff first
+
+---
+
+**Pattern 77: Bulk PR merge via single agent**
+
+For 10+ PRs that need sequential merge + ClickUp update, delegate to one general-purpose agent.
+Provide a full table of PR# → branch → ClickUp task ID(s) so the agent has everything it needs.
+Agent handles conflict resolution (cherry-pick onto clean branch), moves tasks, creates missing tasks.
+
+**Agent prompt must include:**
+- Explicit table: PR# | branch | task IDs
+- ClickUp API key + list ID
+- "process oldest first" (minimize conflicts)
+- Exact curl commands for status update
+- Expected output format (table with merged/task status)
+
+**When 6/22 had conflicts:** All were the same high-traffic files (AanbodLijst.tsx, AanbodDetail.tsx, WoningPubliek.tsx) modified by multiple features. Cherry-pick approach works cleanly.
+
+---
+
+**Pattern 78: Branch → ClickUp task ID extraction**
+
+Task IDs are embedded in branch names: `feature/<taskId>-description` or `agent-xxx-<taskId>`.
+Extract with: `echo "feature/calendar-week-view-869cemj2z" | grep -oE '[0-9a-z]{9,}'`
+For multi-task PRs (like agent-012-remaining): always `gh pr view <number>` to read the body.
+
+### Key Insight
+
+**A branch being "ahead of develop" is not the same as having unmerged work.**
+Always check `git diff origin/develop...origin/<branch>` before deciding whether to create a PR.
+Squash merges are common — content is in develop, only the commit graph differs.
+
+---
+
 ## 2026-03-12 (Session 2) - SEO God: Sitemap Generator + ClickUp Review Cycle
 
 **Session Type:** Feature implementation + task review + memory restructuring
