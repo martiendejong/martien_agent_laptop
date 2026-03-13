@@ -83,6 +83,123 @@ Squash merges are common — content is in develop, only the commit graph differ
 
 ---
 
+## 2026-03-13 (Session 3) - client-manager: PR Rework Batch (605, 650, 642, 662, 655, 649, 656)
+
+**Session Type:** PR rework + conflict resolution + ClickUp task management
+**Outcome:** ✅ SUCCESS — 7 PRs resolved (5 merged, 1 superseded+merged, 1 closed as redundant), 4 tasks → testing
+
+### What Was Done
+
+1. **PR #605** (ToolsDashboard duplicate) — removed static import + duplicate route in App.tsx, kept lazy version. Merged, task 869cfm47h → testing.
+
+2. **PR #650** (ImportWebsite action) — Had massive unintended action handler rewrite on top of the actual feature. Created clean PR #712 off develop with only the 3 genuinely missing lines (import, state, handler case + dialog render). #712 merged, old #650 closed. Task 869cfm2ng → testing.
+
+3. **PR #656** (content-hook search action) — Closed without changes. Develop already had `create-hook` in `getAllActions(t)` with keywords + `content-hook` in handleActivityClick. Task 869cfm2r4 → testing.
+
+4. **PR #642** (remove deprecated) — Merged develop in with `-X theirs`, only conflict was `PostGenerationWizard.tsx` (PR deleted it, develop modified it). Kept the deletion (file unused — confirmed no imports). Merged. Task 869c3q8pu → testing.
+
+5. **PR #662** (i18n alignment) — DIRTY. Merged develop in. Conflicts: ActionSearchModal (took develop's version — already has `getAllActions(t)`), MainLayout (took develop), en.json + nl.json (kept `blogCategories` from work-662 that develop lacked). Merged.
+
+6. **PR #655 + #649** (docs only) — Conflict only in .gitignore (took develop's version). Both merged cleanly.
+
+### Key Patterns Learned
+
+**Pattern 80: "Supersede + close" approach for bloated PRs**
+
+When a PR adds the correct feature but wraps it in unintended refactoring:
+1. Identify the minimum unique content (3-dot diff on specific files)
+2. Create fresh branch off develop
+3. Apply only the unique lines manually
+4. Create new clean PR, merge it
+5. Close old PR with explanation comment
+
+DO NOT try to fix the old branch (git cherry-pick specific lines across messy merge history = nightmare). Start clean.
+
+**Pattern 81: Closing PR as "already in develop"**
+
+Before spending time on conflict resolution, check: `git show origin/develop:path/to/file | grep "thing-to-find"`.
+If the fix is already there, close the PR with a comment explaining what's live. Save the merge effort entirely.
+
+Checklist:
+- Is the action/keyword already in develop's version of the file? (`grep`)
+- Is the handler logic already there? (`git show origin/develop:file | grep`)
+- If YES to both → close PR, mark task done, move on.
+
+**Pattern 82: Conflict strategy for i18n JSON files**
+
+When en.json/nl.json conflict during merge:
+- Usually a single line added by branch that develop doesn't have
+- Check `grep -n "<<<<<<" file.json` → usually 1 conflict marker
+- If branch added a key that develop doesn't have: keep it (union of both sides)
+- If branch has stale/redundant key already in develop: take develop
+- Never take one side wholesale — always inspect what the branch actually added
+
+**Pattern 83: `ClientManagerAPI.local.csproj` always dirty**
+
+This file is user-local VS config and will always differ between machines/checkouts.
+Fix: `git rm --cached ClientManagerAPI/ClientManagerAPI.local.csproj` + add to `.gitignore`.
+**This must propagate to develop** — or every branch swap will fail with "overwritten by checkout".
+Note: we committed the fix on work-650 branch (not merged to develop yet as of session end).
+
+**ClickUp PS pattern (reconfirmed):** Always write script to `C:\Windows\Temp\*.ps1` and run with `powershell -ExecutionPolicy Bypass -File`. Never use inline `-Command` with bash heredocs — `$` variables get eaten by bash before PS sees them.
+
+### Lessons for Future Sessions
+
+**DO:**
+- ✅ Before merging a conflict-heavy PR, check if key files are already correct in develop
+- ✅ Create clean superseding PRs instead of trying to salvage bloated branches
+- ✅ Check if `.gitignore` has `ClientManagerAPI.local.csproj` before switching branches
+- ✅ Use `git checkout -f <branch>` when .local.csproj blocks checkout (force = discard local)
+
+**DON'T:**
+- ❌ Try to cherry-pick specific lines from a branch with messy merge history — start clean
+- ❌ Merge ActionSearchModal from old branches — develop's `getAllActions(t)` is newer and correct
+- ❌ Auto-merge dependabot PRs for tailwindcss 3→4 / zod 3→4 — major breaking versions, need explicit user decision
+
+### Pending (dependabot PRs left open intentionally)
+
+- #694: QuestPDF 2024→2026 (medium risk)
+- #688/687/682/681: Storybook 8→10 (dev-only, medium)
+- #686: rollup-plugin-visualizer 6→7 (low risk)
+- #684: tailwindcss 3→4 (HIGH — do not merge without user intent)
+- #683: zod 3→4 (HIGH — do not merge without user intent)
+
+---
+
+## 2026-03-13 (Session 2) - Hazina: Stale Branch Audit + Cleanup
+
+**Session Type:** Branch audit, develop merge-in, unique content recovery, branch deletion
+**Outcome:** ✅ SUCCESS — 10 stale branches cleaned, 2 fixup PRs merged, branches deleted
+
+### What Was Done
+
+1. **10 stale branches** in Hazina identified: ahead of develop, no open PR, inactive >2h
+2. **Merged develop into all 10** using `git merge origin/develop -X theirs` (develop = source of truth for conflicts)
+3. **Unique content check** using 3-dot diff → only 2 branches had anything:
+   - `agent-001-msi-installer`: `builder.Host.UseWindowsService()` missed from squash merge of PR #178
+   - `geometric-service-week2`: `week-3-implementation-plan.md` planning doc not in develop
+4. **Created clean fixup branches** off develop (not from stale branches) with just the unique changes
+5. **PR #228** (Windows Service fix) + **PR #229** (week-3 plan) → reviewed, merged, branches deleted
+6. **All 10 stale branches deleted** via `git push origin --delete`
+7. **ClickUp task created** in SEO God todo list: [869cfgb1y](https://app.clickup.com/t/869cfgb1y)
+
+### Key Patterns Refined
+
+**Pattern 76 update: Squash merge + 2-dot vs 3-dot diff**
+- 3-dot (`git diff A...B`): shows what B added relative to the common ancestor → reveals the original feature work
+- 2-dot (`git diff A B -- <file>`): shows current file differences between tips → reveals what's actually missing from develop NOW
+- Correct workflow: 3-dot to find candidate files → 2-dot on those files to confirm they truly differ
+- After merging develop into branch with `-X theirs`, 3-dot diff narrows down further
+
+**Pattern 79: Clean fixup PRs from stale branches**
+Don't create PRs from stale branches directly (messy history from the merge commit).
+Instead: create a fresh branch off develop → apply only the unique change → clean 1-commit PR.
+Much easier to review and merge.
+
+**ClickUp API from bash:** Use a `.ps1` file written to `C:\Windows\Temp\` and run via `powershell.exe -File`. Inline `-Command` with bash heredocs fails due to `$` variable escaping eating PS variables.
+
+---
+
 ## 2026-03-12 (Session 2) - SEO God: Sitemap Generator + ClickUp Review Cycle
 
 **Session Type:** Feature implementation + task review + memory restructuring
