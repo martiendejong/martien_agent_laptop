@@ -6,6 +6,47 @@
 
 ---
 
+## 2026-03-12 (Session 2) - SEO God: Sitemap Generator + ClickUp Review Cycle
+
+**Session Type:** Feature implementation + task review + memory restructuring
+**Outcome:** Partial success — PR created, reviews posted, MEMORY.md restructured
+
+### What Was Done
+
+1. **XML Sitemap Generator (task 869cf6209)** — Continued implementation from previous session:
+   - Added route `/sitemap` in `App.tsx` + nav item (Map icon) in `MainLayout.tsx`
+   - WordPress plugin: `GET /wp-json/seo-god/v1/sitemap` endpoint, `save_post` → invalidate hook (non-blocking), `robots_txt` filter appending sitemap URL
+   - Backend builds clean (0 errors)
+   - Committed, pushed, PR #171 created
+   - **Not completed:** ClickUp comment + move to review (interrupted by user)
+
+2. **ClickUp Review Cycle (SEO God board):**
+   - 3 tasks in review: 869cenhnz, 869cf8e0a, 869cf8dud
+   - 869cenhnz (icon overhaul) → PR #167 MERGED → moved to `testing`
+   - 869cf8e0a + 869cf8dud (WP account delete + reconnect) → PR #172 OPEN, CLEAN, builds → APPROVED with minor comment (reconnect URL might use `/connect` instead of `/wp-connect`)
+   - Reviews posted as ClickUp comments
+
+3. **MEMORY.md Restructured:**
+   - Was 352 lines (limit 200) — bottom 150 lines invisible to future sessions
+   - Created `clickup-patterns.md` and `powershell-bash-patterns.md` topic files
+   - Trimmed MEMORY.md to ~130 lines as concise index with pointers to topic files
+
+### Learnings
+
+- **ClickUp API parsing:** Most reliable method is `curl > file.json` then Read tool. Piping through PowerShell `-Command` breaks on `$` escaping every time.
+- **gh CLI ANSI codes:** Always `sed 's/\x1b\[[0-9;]*m//g'` before saving gh output to JSON files.
+- **MEMORY.md hygiene:** Check line count periodically. Move detailed code blocks to topic files early — they consume index space that should be pointers.
+- **Incomplete task:** PR #171 (sitemap) was created but ClickUp comment + status move were interrupted. Next session should complete this.
+
+### Pending
+
+- [ ] Post ClickUp comment on task 869cf6209 with PR #171 link
+- [ ] Move task 869cf6209 to `review` after confirming comment posted
+- [ ] Release agent-001 worktree (mark FREE in pool)
+- [ ] Merge PR #172 if user approves (covers tasks 869cf8e0a + 869cf8dud)
+
+---
+
 ## 2026-03-12 - Real Estate Agency AI: 4 PRs, Deploy, Task Cleanup, Backlog Refinement
 
 **Session Type:** Feature implementation + deploy + task triage + backlog refinement
