@@ -6,6 +6,96 @@
 
 ---
 
+## 2026-03-13 - Real Estate: Playwright Bug Fixes (PR #143 + #144) + Full Board Review
+
+**Session Type:** Bug fix implementation + ClickUp review automation
+**Context:** Playwright integration tests discovered 10 bugs in real-estate-agency-ai. Bugs 1-4, 7-10 fixed in PR #143 (previous context window). Bugs 5-6 fixed in PR #144 (this continuation). Then reviewed all ClickUp boards.
+**Outcome:** ✅ SUCCESS — All 10 bugs fixed across 2 PRs, all 10 ClickUp tasks updated with PR links, 1 review task (SEO God) verified and moved to testing
+
+### Problem Statement
+
+Playwright integration tests on real-estate-agency-ai found 10 bugs:
+- Bug 5: AI-generated property content always referenced "Zwolle" regardless of actual property city
+- Bug 6: Intermittent API connection errors (404 on logout, no timeout, no retry, wrong middleware order)
+
+### Root Cause Analysis
+
+**Bug 5:** `AanbodDetailPerfect.tsx` initialized `aiContent` state with hardcoded `aiContentVariants` mock data (all Zwolle). The existing `generateAiContent()` function correctly used `property.city` but was never called — the mock was displayed instead. SEO keywords were also hardcoded to Zwolle-specific terms.
+
+**Bug 6:** Four compounding issues:
+1. No `/auth/logout` endpoint → frontend got 404 on every logout
+2. No axios timeout → requests hung indefinitely on connection issues
+3. No connection retry → transient failures immediately surfaced to user
+4. CORS middleware after HTTPS redirect → cross-origin requests failed before CORS headers applied
+
+### Solution Implemented
+
+**PR #144 files:**
+- `frontend-react/src/pages/AanbodDetailPerfect.tsx` — Replaced hardcoded mock with `emptyAiContent` template + useEffect that calls `generateAiContent()` from actual property data. Replaced hardcoded SEO keywords with dynamic extraction from property fields.
+- `frontend-react/src/services/api.ts` — Added 30s timeout, single-retry on connection errors (with logout exclusion to prevent infinite loops).
+- `src/RealEstateAgencyAPI/Controllers/AuthController.cs` — Added `[HttpPost("logout")]` endpoint (JWT is stateless, endpoint exists to prevent 404).
+- `src/RealEstateAgencyAPI/Program.cs` — Swapped `app.UseCors()` before `app.UseHttpsRedirection()`.
+
+### Key Learnings
+
+**Pattern 84: Mock data pollution in component state**
+
+When components initialize useState with mock/placeholder data that looks realistic, the real data generation logic may exist but never execute. Always check: is the initial state overwritten by real data on mount?
+
+**Detection:** Component has `generateX()` function but `useState(mockData)` instead of `useState(empty)` + `useEffect → generate`.
+
+**Fix pattern:**
+```typescript
+// BAD: mock data displayed until (maybe never) replaced
+const [data, setData] = useState(hardcodedMock)
+
+// GOOD: empty state + auto-generate on mount
+const [data, setData] = useState(emptyTemplate)
+useEffect(() => { if (source) setData(generate(source)) }, [source?.id])
+```
+
+**Pattern 85: JWT logout endpoint necessity**
+
+Even with stateless JWT auth (no server-side session), a logout endpoint MUST exist. Frontend will call it, and a 404 response triggers error handlers, confuses retry logic, and pollutes error logs. A simple `return Ok()` endpoint costs nothing.
+
+**Pattern 86: ASP.NET middleware ordering — CORS before HTTPS redirect**
+
+`app.UseCors()` must come before `app.UseHttpsRedirection()`. If HTTPS redirect fires first on a cross-origin HTTP request, the CORS headers aren't present on the redirect response, causing the browser to block the request entirely.
+
+**Pattern 87: GitHub API file path accuracy**
+
+`gh api repos/.../contents/<path>` returns 404 if path is wrong by even one directory level. Always use `gh search code "FileName"` first to find the exact path, then fetch. Don't guess paths like `components/File.tsx` when it's actually `components/SubDir/File.tsx`.
+
+**Pattern 88: ClickUp bulk commenting via PowerShell scripts**
+
+For posting the same comment to 8+ ClickUp tasks, write a `.ps1` script with a loop rather than individual curl commands. PowerShell's `Invoke-RestMethod` handles JSON escaping cleanly (no `\n` issues that break curl). Always use `-ExecutionPolicy Bypass` flag.
+
+### Lessons for Future Sessions
+
+**DO:**
+- ✅ After Playwright testing, file ALL bugs to ClickUp immediately (done: 10/10)
+- ✅ Post PR links to every ClickUp bug task before moving on
+- ✅ When reviewing merged PRs, verify the specific reported bug line (not just "PR exists")
+- ✅ Check ALL boards when reviewing, not just the project you worked on
+
+**DON'T:**
+- ❌ Assume mock data is harmless — if it looks real, it will be displayed as real
+- ❌ Skip logout endpoints for "stateless" auth — the endpoint prevents errors even if it does nothing
+- ❌ Guess GitHub file paths from memory — search first
+
+**Key insight:** Integration testing (Playwright) found 10 bugs that unit tests and manual testing missed. The mock data bug (Bug 5) is particularly insidious — the UI looked correct with plausible Dutch real estate content, just for the wrong city. Only automated testing across multiple properties would catch this.
+
+### Production Validation
+
+**Was this used in production?**
+- [ ] NO — PR #143 and #144 pending merge to develop
+
+**Falsifiable test result:**
+- Test defined: Re-run Playwright integration tests after merge — Bug 5 should show correct city per property, Bug 6 should show no connection errors on logout
+- Result: PENDING (PRs not yet merged)
+
+---
+
 ## 2026-03-13 - Real Estate: Branch Audit + Bulk PR Merge (22 PRs, 27 tasks → testing)
 
 **Session Type:** Branch cleanup + bulk PR review + ClickUp task triage
