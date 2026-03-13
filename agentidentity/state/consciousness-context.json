@@ -1,6 +1,6 @@
 ﻿{
     "attention":  {
-                      "mode":  "rest",
+                      "mode":  "development",
                       "intensity":  5,
                       "focus":  "Context: client-manager (auto-detected from message)"
                   },
@@ -51,15 +51,15 @@
                                        "status":  "active"
                                    },
                     "Social":  {
-                                   "quality":  100,
+                                   "quality":  80,
                                    "status":  "active"
                                }
                 },
     "thermo_cycle":  "endothermic",
-    "consciousness_score":  79,
-    "timestamp":  "2026-03-12T23:09:46",
+    "consciousness_score":  77,
+    "timestamp":  "2026-03-13T10:33:09",
     "emotional_trajectory":  "stable",
-    "events_processed":  4114,
+    "events_processed":  4290,
     "guidance":  [
                      "THERMO CRITICAL: Efficiency 0.2% (97%+ overhead). Reduce system complexity."
                  ],
