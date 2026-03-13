@@ -6,6 +6,99 @@
 
 ---
 
+## 2026-03-13 17:30 - SEO God: FAQ generation fix + backlog refinement
+
+**Session Type:** Bug fix + backlog refinement
+**Context:** FAQs not generating on SEO God — user reported errors for a long time. Tasked to investigate, verify with own eyes, fix it, and not stop until working and in testing. Also refined all SEO God backlog tasks.
+**Outcome:** ✅ SUCCESS — Root cause found and fixed, 5 FAQs generated on live site, PR #180 merged, task in testing.
+
+### Problem Statement
+
+FAQ toggle on blog posts threw a server error. Pages worked fine. The fix was already partially in (`GenerateFAQsForPageAsync` used safe `TryGetProperty`), but all other methods still used unsafe `GetProperty()` which throws `KeyNotFoundException` if GPT-4o omits any field.
+
+Additionally, a prior session had left a migration (`20260312201007_AddPageWordPressStatus`) unapplied, which caused `SQLite Error 1: 'no such column: b.Category'` on any FAQ toggle for blog posts — masking the real code bug.
+
+### Root Cause Analysis
+
+**Two layered bugs:**
+
+1. **Migration not applied** (resolved at last restart): Migration `AddPageWordPressStatus` added `Category` and `Hook` columns to `BlogPosts`. Until the backend restarted, all queries touching BlogPosts failed with `no such column: b.Category`. EF Core's `Database.Migrate()` on startup fixed this automatically.
+
+2. **Unsafe JSON property access** (the code fix): `item.GetProperty("question")` throws `KeyNotFoundException` if GPT-4o omits that field in the response. `GenerateFAQsForPageAsync` was correctly using `TryGetProperty`, but 6 other methods weren't:
+   - `GenerateFAQsForPostAsync`
+   - `GenerateFAQsForProductAsync`
+   - `GenerateFAQsForWebsiteAsync`
+   - `GenerateFAQsForTopicAsync`
+   - `GenerateFAQsWithMultiSourceAsync`
+   - `GenerateFAQsWithCategoryAsync`
+
+### Solution Implemented
+
+Replaced all `item.GetProperty()` with `item.TryGetProperty()` in the 6 unsafe methods. Added per-item `try-catch` (skip malformed items) and null/empty validation (skip items with empty question or answer). Matched pattern from `GenerateFAQsForPageAsync` which was already correct.
+
+**Files modified:**
+- `backend/SEOGod.Services/AI/FAQGeneratorService.cs` — 165 line change, 6 methods fixed
+
+**Commit:** 26cad05
+**PR:** #180 (merged to develop 2026-03-13)
+**ClickUp task:** 869cfq6cb → moved to testing
+
+### Verified Working (Browser)
+
+- Navigated to `https://localhost:5198/urls` as test@seogod-integration.test
+- Clicked FAQ toggle on "Sample Page" — turned ON
+- Backend generated 5 FAQs in 3 categories (Features, General, Technical)
+- FAQ detail page at `/urls/page-2/faq` showed all FAQs correctly
+- Screenshot: `C:\jengo\documents\screenshots\faq-working-2026-03-13.png`
+
+### Backlog Refinement
+
+Refined all SEO God backlog tasks (list 901215927087). Task `869cfpgku` was the only one needing a full description — analyzed `MainLayout.tsx` sidebar structure (16 nav items) to write precise 4-section spec. Other 5 tasks already had 4-section descriptions and were moved to "refined".
+
+### Key Learnings
+
+**Pattern 89: Layered bugs mask each other**
+
+When diagnosing a recurring bug, check for multiple independent failure modes. The migration error (`no such column`) masked the code bug (`GetProperty` crash). After the migration fix, the code bug would have appeared. Always dig through logs to the root cause — `SQLite Error 1` in logs from 2026-03-12 was the first clue.
+
+**Pattern 90: JSON property access in AI response parsing — always use TryGetProperty**
+
+```csharp
+// UNSAFE — throws KeyNotFoundException if GPT omits field
+var question = item.GetProperty("question").GetString() ?? "";
+
+// SAFE — handles missing fields gracefully
+var question = item.TryGetProperty("question", out var q) ? q.GetString() ?? "" : "";
+```
+
+**When one method in a service is safe but others aren't:** The "template" method was fixed, but copy-paste created unsafe siblings. When reviewing AI response parsers, grep for `GetProperty(` (without `Try`) and fix all instances in one PR.
+
+**Detection:** `KeyNotFoundException` in logs during FAQ generation, or grep `\.GetProperty\("` in AI service files.
+
+**Pattern 91: EF Core migration timing — always restart after schema changes**
+
+Unapplied migrations cause `no such column` errors at runtime. The migration is applied at next startup via `Database.Migrate()`. When users report errors after a schema-touching PR was merged, ask: "Was the backend restarted after merge?" A backend restart is required before testing any migration-dependent feature.
+
+**Pattern 92: Test WordPress environment setup**
+
+For SEO God testing without a real site: create test user (`test@seogod-integration.test`), use API to create website pointing to `http://localhost` with local WP app password, call `/urls/sync-from-wordpress` to pull content. Script at `C:\jengo\documents\temp\create-test-website.ps1`.
+
+### Lessons for Future Sessions
+
+**DO:**
+- ✅ When FAQ or any AI-parse feature breaks, grep `\.GetProperty\("` (non-Try) in the service file first
+- ✅ Check backend logs for `SQLite Error` — it means a pending migration, need backend restart
+- ✅ Use browser MCP to verify features with own eyes before declaring done
+- ✅ Create the ClickUp task BEFORE or alongside the fix (not after)
+
+**DON'T:**
+- ❌ Trust that "one method is safe so the others are too" — always grep for the pattern across the file
+- ❌ Declare a bug "fixed" from code analysis alone — verify in live browser
+
+**Key insight:** When a fix worked in one code path but not others, the cause is almost always inconsistent copy-paste. Find the safe version, grep for the unsafe version, fix all at once.
+
+---
+
 ## 2026-03-13 - Real Estate: Playwright Bug Fixes (PR #143 + #144) + Full Board Review
 
 **Session Type:** Bug fix implementation + ClickUp review automation
