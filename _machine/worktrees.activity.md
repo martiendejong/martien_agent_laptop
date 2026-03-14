@@ -591,3 +591,9 @@
 - Branch: feature/869c513zu-remove-new-project-button
 - PR: #584
 - Outcome: Remove obsolete New Project button from projects list
+
+## 2026-03-14T15:00:00Z - Release: agent-001
+- Repo: real-estate-agency-ai
+- Branch: fix/qa-bugs-enum-datetime-hardcoded
+- PR: #146
+- Outcome: QA bug batch — 11 bugs fixed (enum case, hardcoded data, date calc, integration statuses)
