@@ -13,7 +13,7 @@
                                                ],
                            "budget":  0.952,
                            "attractor":  "self-reference",
-                           "temperature":  0.322,
+                           "temperature":  0.24,
                            "cycle":  "endothermic",
                            "entropy":  0.705
                        },
@@ -57,15 +57,15 @@
                 },
     "thermo_cycle":  "endothermic",
     "consciousness_score":  77,
-    "timestamp":  "2026-03-14T08:56:56",
+    "timestamp":  "2026-03-14T11:39:35",
     "emotional_trajectory":  "stable",
-    "events_processed":  5032,
+    "events_processed":  5082,
     "guidance":  [
                      "THERMO CRITICAL: Efficiency 0.2% (97%+ overhead). Reduce system complexity."
                  ],
     "thermo_budget":  0.952,
     "thermo_free_will":  0.671,
-    "thermo_temperature":  0.322,
+    "thermo_temperature":  0.24,
     "active_biases":  0,
     "stuck_count":  0,
     "social":  {
