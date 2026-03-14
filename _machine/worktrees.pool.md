@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-14T20:30:00Z | ✅ PR #7: RAG enrichment pipeline v2 — sitemap crawl, embeddings, AI Q&A (leadmanager) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-14T22:00:00Z | ✅ PR #8: Company profile + AI-powered lead finder v2 (leadmanager) |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-12T23:15:00Z | ✅ PR #173: FAQ toggle, WP callback, SEO popup API, WP.org deploy (batch) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-13T01:30:00Z | ✅ PR #142: Fix AI Image Generator - gpt-image-1 editing (869cf9q65) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-10T14:30:00Z | ✅ PR #706: Feature flags not applied — camelCase key mismatch fix (869cbx28r) |

@@ -1,3 +1,9 @@
+## 2026-03-14T22:00:00Z - Release: agent-001
+- Repo: leadmanager
+- Branch: agent-001-profile-finder-v2
+- PR: #8 (https://github.com/martiendejong/leadmanager/pull/8)
+- Outcome: Company profile (multi-tier crawl + GPT-4o) + AI lead finder (smart queries + DuckDuckGo + AI qualification)
+
 ## 2026-03-12T22:00:00Z - Release: agent-002
 - Repo: real-estate-agency-ai
 - Branch: feature/task-869cf57zq-869cf789f-edit-page-openai-key
