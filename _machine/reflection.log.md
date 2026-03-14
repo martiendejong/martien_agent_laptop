@@ -6,6 +6,173 @@
 
 ---
 
+## 2026-03-15 00:00 - Real Estate VPS deploy + AI image generator herstel
+
+**Session Type:** Session restore + infrastructure fix + feature quality improvement
+**Context:** Gebruiker meldde dat een sessie over real estate (20260312-113341-8d760b33) steeds crashte en afdwaalde naar SEO God. Gevraagd om sessie te analyseren, openstaand werk te identificeren en uit te voeren.
+**Outcome:** ✅ SUCCESS — Sessie geïdentificeerd, code gecommit, VPS gedeployed, 5 bugs gefixed, AI image generator werkend inclusief kwaliteitsverbetering.
+
+### Problem Statement
+
+Sessie `738b89c9` had uncommitted wijzigingen (chat-style AiImageGeneratorModal + backend image URL fallback). Daarnaast: VPS deploy faalde op meerdere fronten, OpenAI key ontbrak, images werden op verkeerde locatie opgeslagen.
+
+### Root Cause Analysis
+
+**1. Sessie identificatie:** Session ID `20260312-113341-8d760b33` is een custom format van `claude_agent.bat`. Mapping naar Claude Code UUID gaat via tijdstempel + inhoud analyse van `.jsonl` bestanden. De sessie was `738b89c9` (Mar 14, image generator).
+
+**2. VPS build failure:** VPS heeft .NET 8 SDK, project target .NET 9. Oplossing: altijd lokaal builden en binary kopiëren via PSSession `Copy-Item -ToSession`.
+
+**3. TypeScript errors na deploy:** `WoningPubliek.tsx` gebruikte `property.address?.street` maar `Property` interface heeft flat fields (`property.street`). `Bezichtigingen.tsx` gebruikte `Date[][]` maar renderde als `number[][]`.
+
+**4. Frontend in verkeerde directory:** Deploy script kopieerde frontend naar `C:\stores\realestate\www\` maar backend serveert static files vanuit `backend\wwwroot\`. Index.html + assets moeten in `backend\wwwroot\`.
+
+**5. OpenAI key ontbrak in DB:** `AppSettings` tabel had geen `openai_api_key` record. Config fallback werkte niet omdat de key in `openai-api-key.txt` een ongeldige `sk-svcacct-` key was (401). Werkende key staat in `C:\Projects\seo-god\backend\SEOGod.API\appsettings.Development.json` als `sk-proj-...`.
+
+**6. ImageStorage.LocalPath verkeerd:** Configuratie wees naar `C:\stores\realestate\uploads` maar static files zitten in `backend\wwwroot\uploads`. Images werden opgeslagen maar niet gevonden via HTTP.
+
+**7. AI image kwaliteit:** `quality: "high"` ontbrak bij gpt-image-1 call. Temperatuur 0.4 was te hoog voor literal instruction following. Prompt aan Vision model was te passief.
+
+### Solutions Implemented
+
+**Sessie herstel:**
+```bash
+# Sessie identificeren: tijdstempel matchen + inhoud grep op "real.estate"
+ls -la ~/.claude/projects/C--scripts/ --sort=time
+# Dan doorzoeken op eerste user message + keyword matches
+```
+
+**VPS deploy patroon (DEFINITIEF):**
+```powershell
+# 1. Build LOKAAL
+dotnet publish ... --output /tmp/backend
+# 2. Stop pool, swap directories, copy via PSSession
+Copy-Item -Path "local\*" -Destination "remote\" -Recurse -Force -ToSession $s
+# 3. Restore: appsettings.Production.json + web.config + wwwroot\uploads + wwwroot\documents
+# 4. Start pool
+```
+
+**Frontend deploy locatie:**
+```
+✅ Correct: backend\wwwroot\index.html + backend\wwwroot\assets\
+❌ Fout:    www\index.html (niet geserveerd door ASP.NET Core)
+```
+
+**OpenAI key locatie:**
+```
+Werkende key: C:\Projects\seo-god\backend\SEOGod.API\appsettings.Development.json → OpenAI.ApiKey
+Sla op in DB: AppSettings tabel, Key = "openai_api_key"
+```
+
+**ImageStorage fix:**
+```json
+"ImageStorage": {
+  "LocalPath": "C:\\stores\\realestate\\backend\\wwwroot\\uploads",
+  "BaseUrl": "/uploads"
+}
+```
+
+**AI image kwaliteitsverbetering:**
+```csharp
+// gpt-image-1 call:
+formContent.Add(new StringContent("high"), "quality");  // WAS: ontbrak
+
+// Vision prompt generation:
+temperature = 0.2,   // WAS: 0.4
+max_tokens = 800,    // WAS: 500
+
+// Systeem prompt: verbiedt expliciet "verbeteren" buiten instructie
+// User prompt: imperatiefstructuur + expliciete preservatielijst
+```
+
+**Files modified:**
+- `frontend-react/src/components/AiImageGeneratorModal.tsx` — chat-style rewrite gecommit
+- `src/Bliek.Infrastructure/Services/AiImageGeneratorService.cs` — URL fallback + quality + prompt
+- `frontend-react/src/pages/WoningPubliek.tsx` — address fields fix
+- `frontend-react/src/pages/Bezichtigingen.tsx` — Date vs number calendar fix
+
+**Commits:** `0b81855`, `cc73a65`, `7423b22`
+
+### Key Learnings
+
+**Pattern 89: VPS .NET versie mismatch — altijd lokaal builden**
+
+Wanneer VPS een oudere .NET SDK heeft dan het project target: nooit op VPS builden, altijd lokaal publishen en binary via PSSession kopiëren.
+
+**Detectie:** `NETSDK1045: The current .NET SDK does not support targeting .NET X.0`
+
+**Oplossing:**
+```powershell
+# Lokaal:
+dotnet publish src/Api.csproj --output /tmp/backend
+# Deploy:
+Copy-Item -Path "/tmp/backend/*" -Destination "remote-path\" -Recurse -Force -ToSession $s
+```
+
+---
+
+**Pattern 90: ASP.NET Core static files — frontend moet in wwwroot**
+
+Static files middleware serveert vanuit `backend\wwwroot\`. Frontend dist moet daar staan, niet in een aparte `www\` map.
+
+**Detectie:** Site geeft 404 op `/` maar API endpoints werken wel.
+
+**Fix:** `Copy-Item www\index.html backend\wwwroot\index.html` + assets.
+
+---
+
+**Pattern 91: OpenAI key voor real estate staat in SEO God**
+
+De werkende `sk-proj-...` key zit in:
+```
+C:\Projects\seo-god\backend\SEOGod.API\appsettings.Development.json → OpenAI.ApiKey
+```
+De `sk-svcacct-...` key in `openai-api-key.txt` is ONGELDIG (geeft 401).
+
+Sla de correcte key op in de DB via psql INSERT, niet via appsettings (want appsettings.Production.json heeft lege key).
+
+---
+
+**Pattern 92: gpt-image-1 kwaliteit — quality + lage temperatuur**
+
+Voor betere instruction following bij AI image editing:
+- `quality: "high"` is verplicht (default is te laag)
+- Vision model temperatuur: 0.2 (niet 0.4)
+- Prompt structuur: imperatief + expliciete preservatielijst + verbod op ongewenste verbeteringen
+
+---
+
+**Pattern 93: Sessie herstel via tijdstempel + keyword grep**
+
+```bash
+# Stap 1: sorteer op modificatietijd
+ls -la ~/.claude/projects/C--scripts/ --sort=time
+
+# Stap 2: grep per kandidaat op keywords
+$lines | Where-Object { $_ -match "real.estate|vastgoed" }
+
+# Stap 3: match tijdstempel aan session ID formaat YYYYMMDD-HHMMSS
+# Directory modificatietijd = sessie starttijd
+```
+
+### Lessons for Future Sessions
+
+**DO:**
+- ✅ Bij VPS deploy: altijd lokaal builden, dan kopiëren via PSSession
+- ✅ Frontend deployen naar `backend\wwwroot\`, niet naar aparte map
+- ✅ Na deploy: altijd `appsettings.Production.json` + `web.config` + uploads terugzetten vanuit backup
+- ✅ OpenAI key voor real estate halen uit SEO God appsettings.Development.json
+- ✅ `quality: "high"` altijd meegeven aan gpt-image-1
+
+**DON'T:**
+- ❌ Nooit `dotnet publish` uitvoeren op de VPS (verkeerde SDK versie)
+- ❌ Nooit frontend naar `www\` kopiëren — gaat naar `backend\wwwroot\`
+- ❌ Nooit de `sk-svcacct-` key gebruiken — is ongeldig
+- ❌ Nooit image quality weglaten bij gpt-image-1 — geeft slechte resultaten
+
+**Key insight:** Real estate VPS deploy is een 5-stap protocol: lokaal builden → pool stoppen → swap dirs → configs restoren → pool starten. Elke stap overslaan breekt de deploy op een andere manier.
+
+---
+
 ## 2026-03-13 17:30 - SEO God: FAQ generation fix + backlog refinement
 
 **Session Type:** Bug fix + backlog refinement
