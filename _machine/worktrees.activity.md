@@ -1,3 +1,9 @@
+## 2026-03-15T02:00:00Z - Release: agent-001
+- Repo: whatsappbridge
+- Branch: feat/history-sync
+- PR: #17 (https://github.com/martiendejong/whatsappbridge/pull/17)
+- Outcome: ON_DEMAND history sync via peerDataOperationRequestMessage; fixed silent protocol message drop in participants path
+
 ## 2026-03-14T22:00:00Z - Release: agent-001
 - Repo: leadmanager
 - Branch: agent-001-profile-finder-v2
