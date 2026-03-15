@@ -1,3 +1,9 @@
+## 2026-03-15T12:30:00Z - Release: agent-002
+- Repo: whatsappbridge
+- Branch: feat/wa-full-parity
+- PR: #19 (https://github.com/martiendejong/whatsappbridge/pull/19)
+- Outcome: Full WhatsApp parity — all message types, ContextInfo/quoted messages, receipt tracking, revoke, forward, typing, presence, group management (create/leave/add/remove/invite/subject), media download. 12 new REST endpoints. 7 ClickUp tasks moved to review.
+
 ## 2026-03-15T10:30:00Z - Release: agent-001
 - Repo: whatsappbridge
 - Branch: feat/dawa-all-message-types
