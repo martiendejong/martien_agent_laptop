@@ -1,3 +1,9 @@
+## 2026-03-15T10:30:00Z - Release: agent-001
+- Repo: whatsappbridge
+- Branch: feat/dawa-all-message-types
+- PR: #18 (https://github.com/martiendejong/whatsappbridge/pull/18)
+- Outcome: All WhatsApp message types supported — image, audio, video, document, sticker, reaction; fixed silent drop in participants path; LID→phone JID resolution for ON_DEMAND; media fields in API response
+
 ## 2026-03-15T02:00:00Z - Release: agent-001
 - Repo: whatsappbridge
 - Branch: feat/history-sync
