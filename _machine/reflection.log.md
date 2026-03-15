@@ -6,6 +6,32 @@
 
 ---
 
+## 2026-03-15 — LeadManager: Enrichment fixes + Production deploy
+
+### What happened
+- Backend kept crashing (thread pool starvation) from parallel enrichment with SemaphoreSlim(3) — each enrichment = sitemap fetch + 50 pages + OpenAI embedding batch + RAG queries + sales pitch = massive concurrent load. Fixed: changed to sequential foreach (1 at a time).
+- SignalR race condition: frontend joined SignalR group AFTER job completed → missed all LeadEnriched events → progress stuck at "0 van ? verwerkt". Fixed: added HTTP polling fallback (every 2s) to EnrichmentProgress.tsx using new fetchEnrichmentJobStatus() API.
+- Deployed to leads.prospergenics.com (85.215.217.154, Windows/IIS, same server as other apps).
+- IIS deployment pattern: C:\stores\leadmanager\backend + C:\stores\leadmanager\www, consistent with all other apps.
+- HTTPS via win-acme (C:\win-acme\wacs.exe), cert issued for leads.prospergenics.com. Manual binding via PowerShell AddSslCertificate when IIS installation plugin fails.
+- Single-domain architecture: frontend at leads.prospergenics.com, API proxied via IIS ARR + URL Rewrite at /api/* and /hubs/* → http://127.0.0.1:5010/.
+- Key IIS gotchas hit and resolved:
+  1. "Bad Request - Invalid Hostname": ARR forwards original Host header → override HTTP_HOST server variable
+  2. allowedServerVariables must be in applicationHost.config (appcmd), not site-level web.config (locked section)
+  3. UseHttpsRedirection causes 500 when behind HTTP proxy → wrap in `if (IsDevelopment())`
+- WinRM via PowerShell (Negotiate auth) is the reliable way to remote-manage this server. sshpass not available, SSH key not trusted.
+- win-acme hangs if another instance is running (mutex). Always kill all wacs.exe before running.
+
+### Lessons learned
+- Sequential enrichment (1 at a time) is mandatory for this architecture. Each lead = 50+ HTTP requests + 3-5 OpenAI calls. Parallel = crash.
+- SignalR-only progress = fragile. Always combine with HTTP polling fallback.
+- IIS ARR reverse proxy: HTTP_HOST override is required, must be allowed at server level via appcmd.
+- UseHttpsRedirection must be dev-only when running behind ARR.
+- WinRM Negotiate auth works on this server. Use PowerShell sessions for all server management.
+- win-acme IIS installation plugin fails silently but cert IS issued — manually bind with AddSslCertificate().
+
+---
+
 ## 2026-03-15 00:00 - Real Estate VPS deploy + AI image generator herstel
 
 **Session Type:** Session restore + infrastructure fix + feature quality improvement
