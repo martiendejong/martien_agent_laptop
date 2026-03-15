@@ -1,3 +1,9 @@
+## 2026-03-15T18:30:00Z - Release: agent-001
+- Repo: seo-god
+- Branch: feature/blog-link-insertion-fixes
+- PR: #221 (https://github.com/martiendejong/seo-god/pull/221)
+- Outcome: Fixed link insertion at cursor position (869cg0c98) + auto-include internal links in blog post generation (869cg0cca)
+
 ## 2026-03-15T12:30:00Z - Release: agent-002
 - Repo: whatsappbridge
 - Branch: feat/wa-full-parity
