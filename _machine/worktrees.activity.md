@@ -627,3 +627,9 @@
 - Branch: fix/qa-bugs-enum-datetime-hardcoded
 - PR: #146
 - Outcome: QA bug batch — 11 bugs fixed (enum case, hardcoded data, date calc, integration statuses)
+
+## 2026-03-15T21:30:00Z - Release: agent-001
+- Repo: seo-god
+- Branch: agent-001-qa-bugfixes
+- PR: #222 https://github.com/martiendejong/seo-god/pull/222
+- Outcome: QA bug batch — Idea post blank editor, raw HTML excerpt, TipTap duplicate extension, SEO dashboard 0 posts, Author column showing numeric ID

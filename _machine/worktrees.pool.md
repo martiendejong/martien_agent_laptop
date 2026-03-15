@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-15T18:30:00Z | ✅ PR #221: Blog link insertion at cursor + internal links in generation (869cg0c98+869cg0cca) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-15T21:30:00Z | ✅ PR #222: QA bug batch seo-god (869cg4e7j+869cg4ea3+869cg4ea7+869cg4ecp+869cg4ect) |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-15T15:00:00Z | ✅ PR #198: Info page + Information menu restructure (869cfynw8) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-15T17:15:00Z | ✅ PR #17 (whatsappbridge): HistorySync parsing — full chat history (feat/history-sync) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-10T14:30:00Z | ✅ PR #706: Feature flags not applied — camelCase key mismatch fix (869cbx28r) |
