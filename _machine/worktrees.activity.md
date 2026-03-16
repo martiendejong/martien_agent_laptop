@@ -633,3 +633,9 @@
 - Branch: agent-001-qa-bugfixes
 - PR: #222 https://github.com/martiendejong/seo-god/pull/222
 - Outcome: QA bug batch — Idea post blank editor, raw HTML excerpt, TipTap duplicate extension, SEO dashboard 0 posts, Author column showing numeric ID
+
+## 2026-03-16T14:00:00Z - Release: agent-001
+- Repo: whatsappbridge
+- Branch: feat/missing-api-endpoints
+- PR: #22
+- Outcome: Add 11 missing API endpoints (revoke, forward, typing, user-presence, create/leave group, add/remove participants, invite-link, rename group, resolve-lid)
