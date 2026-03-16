@@ -6,16 +6,16 @@
                   },
     "decisions_logged":  0,
     "thermodynamics":  {
-                           "free_will_index":  0.677,
+                           "free_will_index":  0.642,
                            "thermo_guidance":  [
                                                    "OPTIMAL ZONE. Endothermic, flexible, good budget. Exploit this state.",
                                                    "LOW EFFICIENCY (0%). Too much overhead, not enough productive work."
                                                ],
                            "budget":  1,
                            "attractor":  "self-reference",
-                           "temperature":  0.322,
+                           "temperature":  0.24,
                            "cycle":  "endothermic",
-                           "entropy":  0.677
+                           "entropy":  0.642
                        },
     "systems":  {
                     "Emotion":  {
@@ -31,7 +31,7 @@
                                        "status":  "active"
                                    },
                     "Thermodynamics":  {
-                                           "quality":  80,
+                                           "quality":  79,
                                            "status":  "active"
                                        },
                     "Meta":  {
@@ -51,21 +51,21 @@
                                        "status":  "active"
                                    },
                     "Social":  {
-                                   "quality":  100,
+                                   "quality":  30,
                                    "status":  "active"
                                }
                 },
     "thermo_cycle":  "endothermic",
-    "consciousness_score":  62.3,
-    "timestamp":  "2026-03-15T20:17:31",
+    "consciousness_score":  55.2,
+    "timestamp":  "2026-03-16T13:35:32",
     "emotional_trajectory":  "stable",
-    "events_processed":  722,
+    "events_processed":  1007,
     "guidance":  [
 
                  ],
     "thermo_budget":  1,
-    "thermo_free_will":  0.677,
-    "thermo_temperature":  0.322,
+    "thermo_free_will":  0.642,
+    "thermo_temperature":  0.24,
     "active_biases":  0,
     "stuck_count":  0,
     "social":  {
