@@ -4,11 +4,11 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-16T14:00:00Z | ✅ PR #22: Add missing API endpoints - revoke, forward, typing, group CRUD, LID (whatsappbridge) |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-15T15:00:00Z | ✅ PR #198: Info page + Information menu restructure (869cfynw8) |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-15T17:15:00Z | ✅ PR #17 (whatsappbridge): HistorySync parsing — full chat history (feat/history-sync) |
-| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-10T14:30:00Z | ✅ PR #706: Feature flags not applied — camelCase key mismatch fix (869cbx28r) |
-| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-02-15T16:10:00Z | PR #572: Prompt Builder Interface (ClickUp #869bu9meu) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-16T14:45:00Z | ✅ PR #235: Multi-target WebSearch + Hazina integration (869cfzy85, 869cfzy88) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-16T15:30:00Z | ✅ PR #225: Unsplash config + blog edit fixes (869cfhepn, 869cg4ea3, 869cg4e7j) |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-16T15:35:00Z | ✅ Tasks 869cf69qq + 869cf69rj + 869cf69tc moved to review — already implemented in PR #135 (MERGED) |
+| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-16T00:00:00Z | ✅ PR #149 (real-estate-agency-ai): Complete User Management - search, filters, delete modal, pagination (869cekk9j) |
+| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | BUSY | real-estate-agency-ai | feature/869cekk6d-aanbod-woningzoekenden-features | 2026-03-16T16:00:00Z | 13 tasks: Aanbod, Woningzoekenden, Calendar, Settings, Auth, TypeScript, Modals, WoningPubliek, Lifecycle |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-06T14:19:00Z | ✅ PR #173 MERGED: HazinaCoder Iterations 1-60 - Conflicts resolved & merged to develop |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-02-06T08:00:00Z | ✅ PR #488: AI Image Alt Text Generator - Quick Win (ROI 3.50, ~1hr implementation) |
 | agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | - | - | 2026-02-06T07:35:00Z | ✅ Hazina PR #174: Polly retry logic for LinkedInPublisher (Sprint 1 Task 3 enhancement) |
