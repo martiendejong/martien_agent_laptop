@@ -6,6 +6,41 @@
 
 ---
 
+## 2026-03-16 — Testing audit + 26-task parallel implementation
+
+### What happened
+- Audited all tasks in `testing` status across 5 boards (226 tasks total)
+- Script checked each task's comments for evidence: PR link, "merged", "deployed", "resolved", etc.
+- 26 tasks had zero evidence → moved to `todo`
+- Launched 5 parallel agents (seats 001–005) to implement all 26 tasks simultaneously
+- All 5 agents completed, 4 PRs created, 26 tasks moved to `review`
+
+### Pattern: Many "testing" tasks were already done, just never ClickUp-updated
+- AI Beeldgenerator (3 tasks): fully merged in PR #135 on 2026-03-12, tasks never updated
+- SEO God blog HTML bugs: fixed in merged PR #222, tasks never updated
+- Root cause: agent sessions end, PRs get merged, but nobody goes back to update ClickUp status
+
+### Testing audit script pattern (reusable)
+```powershell
+# Check ClickUp tasks in status X for evidence in comments
+$EVIDENCE_PATTERNS = @("github\.com.*pull", "merged", "deployed", "no pr", ...)
+# If no evidence → move to todo (or whatever target status)
+```
+Script saved at: `C:\jengo\documents\temp\audit_testing_tasks.ps1` — should be moved to tools.
+
+### Parallel agent assignment worked cleanly
+- 12 seats all FREE → no conflicts
+- Grouping strategy: by repo + logical domain (backend/frontend/feature-type)
+- Agent 005 had the biggest batch (13 tasks, 150 tool uses, ~14 min) — still succeeded
+
+### Lessons learned
+- **ClickUp status drift is real.** PRs get merged but tasks stay in wrong status. Periodic audit is valuable.
+- **Many "no evidence" tasks were actually done** — agent finding this and just updating status (instead of re-implementing) is the correct behavior.
+- **The audit script pattern** (fetch all tasks in status → check comments → batch-move if no evidence) is worth formalizing as a tool.
+- **5 parallel agents on 2 repos** (real-estate had 3 agents) worked without conflict because each used a separate branch/worktree.
+
+---
+
 ## 2026-03-15 — LeadManager: Enrichment fixes + Production deploy
 
 ### What happened
