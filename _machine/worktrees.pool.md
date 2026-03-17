@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-16T14:45:00Z | ✅ PR #235: Multi-target WebSearch + Hazina integration (869cfzy85, 869cfzy88) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-17T00:00:00Z | ✅ PR #151: Theme switching prod fix + image generator crash (869cgj9dz, 869cfv6vq) |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-16T15:30:00Z | ✅ PR #225: Unsplash config + blog edit fixes (869cfhepn, 869cg4ea3, 869cg4e7j) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-16T15:35:00Z | ✅ Tasks 869cf69qq + 869cf69rj + 869cf69tc moved to review — already implemented in PR #135 (MERGED) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-16T00:00:00Z | ✅ PR #149 (real-estate-agency-ai): Complete User Management - search, filters, delete modal, pagination (869cekk9j) |
