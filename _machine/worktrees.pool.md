@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-17T20:30:00Z | ✅ PR #227: Admin bypass for ownership checks — fixes 7 API auth bugs (869ch53nb, 869ch53nm, 869ch53pc, 869ch53q3, 869ch53qq, 869ch53qx, 869ch53r3) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-17T21:00:00Z | ✅ PR #23 (leadmanager): Enrichment upgrade 7 tasks — signals, owner identity, ops fields, sales approach v2, IIS fix, URL normalize |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-16T15:30:00Z | ✅ PR #225: Unsplash config + blog edit fixes (869cfhepn, 869cg4ea3, 869cg4e7j) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-16T15:35:00Z | ✅ Tasks 869cf69qq + 869cf69rj + 869cf69tc moved to review — already implemented in PR #135 (MERGED) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-16T00:00:00Z | ✅ PR #149 (real-estate-agency-ai): Complete User Management - search, filters, delete modal, pagination (869cekk9j) |
