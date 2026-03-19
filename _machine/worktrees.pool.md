@@ -4,9 +4,9 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-18T08:00:00Z | ✅ PR #904 (client-manager): 10 frontend UX improvements — useDebouncedCallback fix, useCopyToClipboard onSuccess, SearchInput minChars/noResults, AutoSaveIndicator errorMessage, FilePreviewBubble error text, ErrorBoundary alert→inline |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-16T15:30:00Z | ✅ PR #225: Unsplash config + blog edit fixes (869cfhepn, 869cg4ea3, 869cg4e7j) |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-16T15:35:00Z | ✅ Tasks 869cf69qq + 869cf69rj + 869cf69tc moved to review — already implemented in PR #135 (MERGED) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-19T19:00:00Z | ✅ PR #242 (seo-god): SQL fallback for SearchContent endpoint - WordPress URLs page empty fix (869cgcmbz) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-18T16:45:00Z | ✅ PR #908 (client-manager): Admin dashboard wired up — /api/admin/stats, /api/admin/users, enable/disable (869cef7mk) |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-19T18:30:00Z | ✅ PR #236 (seo-god): fix link suggestions GET→POST, add keyword chips in editor (869cjehjr + 869cjehpm) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-16T00:00:00Z | ✅ PR #149 (real-estate-agency-ai): Complete User Management - search, filters, delete modal, pagination (869cekk9j) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-03-16T17:30:00Z | ✅ PR #150: 13 tasks - Aanbod views/kanban, client match scores, notes edit, Calendar notifications, Auth, Settings, TypeScript, SEO |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-06T14:19:00Z | ✅ PR #173 MERGED: HazinaCoder Iterations 1-60 - Conflicts resolved & merged to develop |
