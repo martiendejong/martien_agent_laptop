@@ -639,3 +639,9 @@
 - Branch: feat/missing-api-endpoints
 - PR: #22
 - Outcome: Add 11 missing API endpoints (revoke, forward, typing, user-presence, create/leave group, add/remove participants, invite-link, rename group, resolve-lid)
+
+## 2026-03-20T13:45:00Z - Release: agent-002
+- Repo: mastermindgroupAI
+- Branch: agent-002-onboarding-fixes
+- PR: #19 (https://github.com/martiendejong/mastermindgroupAI/pull/19)
+- Outcome: OnboardingController (TASK-040-045), Hazina LLM enabled, all 20 unit tests fixed

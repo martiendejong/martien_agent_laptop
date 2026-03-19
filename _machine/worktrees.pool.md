@@ -5,7 +5,7 @@ Seat states:
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-20T13:00:00Z | ✅ PR #57 (artrevisionist): Fix 500 for new users - empty topics list (ClickUp #869cfqzye) |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | mastermindgroupAI | agent-002-onboarding-fixes | 2026-03-20T10:30:00Z | Implement OnboardingController, Hazina LLM wiring, fix tests |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-20T13:45:00Z | ✅ PR #19 (mastermindgroupAI): OnboardingController, Hazina LLM, fix all tests |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-20T13:30:00Z | ✅ PR #266 (hazina) + PR #911 (client-manager): SEO keywords persist through blog generation pipeline (ClickUp #869chdut0) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-19T22:30:00Z | ✅ PR #724 (client-manager): Post wizard English name conflicts resolved |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-03-19T22:30:00Z | ✅ PR #729 (client-manager): Social media post conflicts resolved |
