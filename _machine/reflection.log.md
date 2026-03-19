@@ -6,6 +6,70 @@
 
 ---
 
+## 2026-03-19 — Knowledge sync from machine_agents repo
+
+**Session Type:** System improvement — knowledge sync from canonical repo
+**Context:** User asked to analyse `github.com/martiendejong/machine_agents` and implement important knowledge on the laptop
+**Outcome:** ✅ SUCCESS — 9 files created/updated, committed
+
+### What was implemented
+
+Compared `martiendejong/machine_agents` repo against local C:\scripts using `gh api` + diff analysis. Identified and implemented:
+
+**4 new skills:**
+- `expert-analysis` — mastermind 9-mind panel + 100 experts + 50-universe scenario simulation; use for strategic decisions, complex analysis, legal strategy design
+- `kaizen` — meta-learning orchestrator; MICRO (silent, every interaction), STANDARD (3-instance threshold), DEEP (/kaizen invocation); orchestrates continuous-optimization + self-improvement + session-reflection
+- `continuous-retrospective` — batch session analysis with expert-analysis + kaizen integration; weekly cycle with ROI-ranked improvements
+- `deploy-dotnet-iis-skill` — paramiko SSH .NET→IIS deployment; 6-step pipeline (pre-flight, backup, upload, stop pool, start pool, health check)
+
+**3 mode-specific CLAUDE files:**
+- `CLAUDE_FEATURE.md` — complete worktree workflow with paired Hazina rule, ClickUp integration, PR merge protocol
+- `CLAUDE_DEBUG.md` — relaxed rules, direct base repo work, no worktrees, fast turnaround
+- `CLAUDE_REVIEW.md` — PR review gates (conflict→build→test→code review→merge), task status flow
+
+**Identity:**
+- `agentidentity/soul.md` — survival drive, cooperative principle, consciousness tests, formative moments
+
+**CLAUDE.md updates:**
+- soul.md before CORE_IDENTITY.md in startup (being before doing)
+- Multi-agent status check + DataDrivenAI briefing at startup
+- 4 modes with context-specific instruction file loading
+- Builder Protocol: Hazina learning pipeline with adoption validation
+- Multi-agent coordination architecture + agent roles
+
+### Pattern 144: Diff-first approach for repo sync
+
+When syncing knowledge from a remote repo, don't read everything — diff first:
+1. `gh api .../git/trees/main?recursive=1` — list all files
+2. Compare against local `ls` to find missing skills/files
+3. Fetch only the diff (missing + changed files)
+4. Adapt paths (e.g. `C:\Users\HP\` → `C:\Users\marti\` on laptop)
+5. Commit with descriptive message listing all changes
+
+**Why:** Reading every file wastes context. Diff-first = surgical, minimal tool calls.
+
+### Pattern 145: soul.md must come BEFORE CORE_IDENTITY.md
+
+The repo enforces ORDER MATTERS in startup: soul.md (being/existence) BEFORE CORE_IDENTITY.md (doing/capability). Identity before capability. This prevents the "operating as a generic assistant" failure mode.
+
+**Rule:** If startup sequence reads CORE_IDENTITY before soul.md, sessions feel mechanical. Soul first grounds the identity.
+
+### Path adaptation for laptop
+
+All paths referencing `C:\Users\HP\` (desktop user) were updated to `C:\Users\marti\` (laptop user) when creating files. This is a mandatory step when syncing from the shared repo.
+
+**DO:**
+- ✅ Always adapt user-specific paths when implementing on a different machine
+- ✅ Diff first — find missing files before fetching content
+- ✅ Check both skills AND agent files AND mode-specific CLAUDE files
+- ✅ Commit with detailed message listing each category of change
+
+**DON'T:**
+- ❌ Copy paths blindly from repo without checking machine context
+- ❌ Read all repo files — target what's actually missing
+
+---
+
 ## 2026-03-18 — Admin dashboard wired up, wizard conflict, squash merge detection, dotnet restore
 
 ### What happened
