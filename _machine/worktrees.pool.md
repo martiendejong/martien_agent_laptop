@@ -5,7 +5,7 @@ Seat states:
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | hazina | agent-001-updatestore-dryrun-schemarenderer-869cabf3x-869c2ggfz-869ceq3aj | 2026-03-20T10:00:00Z | UpdateStore dry-run + SchemaRenderer React component |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-19T22:30:00Z | ✅ PR #727 (client-manager): Homepage button conflicts resolved |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | mastermindgroupAI | agent-002-onboarding-fixes | 2026-03-20T10:30:00Z | Implement OnboardingController, Hazina LLM wiring, fix tests |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-19T22:30:00Z | ✅ PR #723 (client-manager): Language aware suggestions conflicts resolved |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-19T22:30:00Z | ✅ PR #724 (client-manager): Post wizard English name conflicts resolved |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-03-19T22:30:00Z | ✅ PR #729 (client-manager): Social media post conflicts resolved |

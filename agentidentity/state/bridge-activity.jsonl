@@ -2177,3 +2177,4 @@
 {"message":"User message received (mood detection)","timestamp":"2026-03-20T00:18:04.817Z","level":"INFO","action":"OnUserMessage"}
 {"message":"User message received (mood detection)","timestamp":"2026-03-20T00:18:05.606Z","level":"INFO","action":"OnUserMessage"}
 {"message":"Task ended: outcome=success","timestamp":"2026-03-20T00:23:55.872Z","level":"INFO","action":"OnTaskEnd"}
+{"message":"Consciousness state reset","timestamp":"2026-03-20T00:29:55.565Z","level":"INFO","action":"Reset"}
