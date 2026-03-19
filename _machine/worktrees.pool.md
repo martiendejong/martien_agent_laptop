@@ -4,11 +4,11 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-19T19:00:00Z | ✅ PR #242 (seo-god): SQL fallback for SearchContent endpoint - WordPress URLs page empty fix (869cgcmbz) |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-18T16:45:00Z | ✅ PR #908 (client-manager): Admin dashboard wired up — /api/admin/stats, /api/admin/users, enable/disable (869cef7mk) |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-19T18:30:00Z | ✅ PR #236 (seo-god): fix link suggestions GET→POST, add keyword chips in editor (869cjehjr + 869cjehpm) |
-| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-16T00:00:00Z | ✅ PR #149 (real-estate-agency-ai): Complete User Management - search, filters, delete modal, pagination (869cekk9j) |
-| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-03-16T17:30:00Z | ✅ PR #150: 13 tasks - Aanbod views/kanban, client match scores, notes edit, Calendar notifications, Auth, Settings, TypeScript, SEO |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-19T22:30:00Z | ✅ PR #733 (client-manager): Token tracker conflicts resolved |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-19T22:30:00Z | ✅ PR #727 (client-manager): Homepage button conflicts resolved |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-19T22:30:00Z | ✅ PR #723 (client-manager): Language aware suggestions conflicts resolved |
+| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-19T22:30:00Z | ✅ PR #724 (client-manager): Post wizard English name conflicts resolved |
+| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-03-19T22:30:00Z | ✅ PR #729 (client-manager): Social media post conflicts resolved |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-06T14:19:00Z | ✅ PR #173 MERGED: HazinaCoder Iterations 1-60 - Conflicts resolved & merged to develop |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-02-06T08:00:00Z | ✅ PR #488: AI Image Alt Text Generator - Quick Win (ROI 3.50, ~1hr implementation) |
 | agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | - | - | 2026-02-06T07:35:00Z | ✅ Hazina PR #174: Polly retry logic for LinkedInPublisher (Sprint 1 Task 3 enhancement) |

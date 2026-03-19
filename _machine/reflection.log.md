@@ -5303,3 +5303,164 @@ Fresh worktrees have no `node_modules`. Always check with `ls node_modules/.bin/
 
 **Status:** SUCCESS — PR #28 created, tasks 869cg5v6n + 869cg5v6k → review, agent-001 released
 
+---
+
+## 2026-03-19 — SEO God: integration test + link suggestions fix + keyword management (PR #236)
+
+**Session Type:** Integration testing + bug fix + feature implementation
+**Context:** Browser integration test of SEO God blog manager. Four findings identified, two already fixed in prior PRs, two implemented fresh in agent-003 worktree.
+**Outcome:** ✅ SUCCESS — PR #236 created with GET→POST link suggestions fix + full keyword management feature.
+
+### What happened
+
+1. Ran Playwright integration test on SEO God blog manager (https://localhost:5198)
+2. Tested: blog post creation, post list skeleton loaders, editor word count + unsaved badge, keyword chips, image modal alt text
+3. Skeleton loaders and image modal were already fixed in PR #232 (merged on develop)
+4. Found 2 real issues: link suggestions URL overflow + keywords not implemented
+5. Created 4 ClickUp tasks, refined them, moved to todo, implemented all
+6. PR #236 merged after fixing GET→POST for link suggestions and adding full keyword CRUD
+
+### Pattern 82: SEO God is a standalone project — not part of client-manager
+
+SEO God lives at `C:\Projects\seo-god\` with its own frontend (React/Vite) and backend (ASP.NET Core).
+- Frontend runs at `https://localhost:5198` serving compiled dist from `frontend/dist/`
+- Backend runs at `https://localhost:7057` / `http://localhost:5104`
+- ClickUp list ID: `901215927087`
+- Does NOT share a codebase or worktree dependency with client-manager
+
+**Implication:** When asked to work on SEO God, allocate from `C:\Projects\seo-god`, NOT from `C:\Projects\client-manager`. No paired Hazina worktree needed.
+
+### Pattern 83: SEO God frontend at 5198 is a compiled dist — not Vite dev server
+
+The running frontend at port 5198 serves files from `frontend/dist/` (Nginx or static serve). Code changes to `frontend/src/` are NOT reflected without a `npm run build` + copy/restart.
+
+**Trap:** Editing TypeScript source and expecting live reload → nothing changes in browser.
+
+**Fix:** After frontend changes in worktree, build first:
+```bash
+cd C:/Projects/worker-agents/agent-XXX/seo-god/frontend
+npm run build
+```
+Then copy dist or restart the serving process.
+
+### Pattern 84: Long GET query param → use POST with body (URL overflow)
+
+When passing content strings (HTML, markdown, long text) as GET query parameters, URLs can exceed ~8KB causing server 414 errors or proxy truncation.
+
+**Symptom:** `InternalLinksController.SuggestLinks` receiving empty content, or 414 responses.
+
+**Fix pattern:**
+```typescript
+// BAD — URL overflow when content is large:
+axios.get(`/api/.../suggest`, { params: { content: text.slice(0, 2000) } })
+
+// GOOD — body has no length limit:
+axios.post(`/api/.../suggest`, { content: text.slice(0, 5000) }, { headers })
+```
+
+Backend: Change `[HttpGet]` to `[HttpPost]`, add `[FromBody]` record, remove `[FromQuery]`.
+
+### Pattern 85: EF Core migrations with multiple DbContexts — always use `--context` flag
+
+When a solution has more than one `DbContext`, `dotnet ef migrations add` throws:
+```
+More than one DbContext was found. Specify which one to use.
+```
+
+**Fix:**
+```bash
+dotnet ef migrations add <MigrationName> --context SEOGodDbContext --project backend/SEOGod.Infrastructure --startup-project backend/SEOGod.API
+```
+
+Always run from solution root, not from a subdirectory. The `--project` and `--startup-project` flags must both be specified.
+
+### Pattern 86: Check develop's latest before implementing — QA tasks may already be done
+
+Before implementing a task found during QA (e.g., "skeleton loaders missing"), pull latest develop and check if the feature was already added in a recent merged PR.
+
+**This session:** Tasks for skeleton loaders and image alt text modal were created as ClickUp issues but turned out to be already implemented in PR #232 on develop. Saved two wasted implementation cycles.
+
+**Rule:** After creating QA tasks, immediately run:
+```bash
+git -C C:/Projects/<repo> pull origin develop
+grep -r "Skeleton\|ImageInsertModal" frontend/src/ --include="*.tsx" -l
+```
+If the component exists → verify in browser, close the task with a comment.
+
+### Pattern 87: `WordPressContentController` missing `using SEOGod.Core.Models`
+
+After adding the `ImportProgress` type to `SEOGod.Core.Models`, `WordPressContentController.cs` will fail to compile because it lacks the using directive.
+
+**Fix:** Add `using SEOGod.Core.Models;` to the top of `WordPressContentController.cs`.
+
+This is a recurring issue — whenever a new model is added to `SEOGod.Core.Models`, check all controllers that reference types from that namespace.
+
+### Lessons for Future Sessions
+
+**DO:**
+- ✅ Check develop's latest before implementing QA findings — may already be done
+- ✅ Use POST for any endpoint receiving content/HTML params (avoid URL overflow)
+- ✅ Always specify `--context` for EF migrations in multi-DbContext projects
+- ✅ Rebuild frontend after code changes (not hot-reload at port 5198)
+- ✅ Pull `dotnet restore` before `dotnet build` in fresh worktrees
+
+**DON'T:**
+- ❌ Treat SEO God as part of client-manager — it's a separate project with its own worktree path
+- ❌ Assume frontend at port 5198 reflects source changes without rebuild
+- ❌ Use `[HttpGet]` for endpoints that receive large text payloads
+
+**Status:** SUCCESS — PR #236 created (link suggestions GET→POST fix + keyword management), agent-003 released
+
+---
+
+## 2026-03-19 — Hazina review: ICapabilityProvider build fix + 20 task comments
+
+**Session Type:** Code review + build break fix
+**Context:** Reviewing all Hazina ClickUp review tasks. Root cause of CI failures discovered: `ILLMClient : ICapabilityProvider` added to develop but 6 wrapper classes not updated.
+**Outcome:** ✅ SUCCESS — PR #255 fixes 68 CS0535 build errors. All 20 review task comments posted.
+
+### What happened
+
+1. Reviewed all Hazina ClickUp tasks in "review" status (20 tasks total)
+2. PR #251 and #250 were MERGED — approved, comments posted, status confirmed "testing"
+3. PRs #245 and #253 were UNSTABLE — CI failing due to build break on develop
+4. Root cause: `ILLMClient` in develop now extends `ICapabilityProvider` (commit e4d4bad8) but 6 wrapper classes didn't implement the 4 new members
+5. Fixed 6 classes: LLMLoggingWrapper (full rewrite to new API), LLMLoggingClientDecorator, ClaudeClientWrapper, OpenAIClientWrapper, OllamaClientWrapper, ProviderOrchestrator
+6. PR #255 created — fixes 68 CS0535 build errors
+7. 13 tasks with no linked PR — posted "no PR found" comments
+
+### Pattern 88: `LLMLoggingWrapper` had stale old API
+
+`LLMLoggingWrapper.cs` in `Hazina.Observability.LLMLogs` was implementing the OLD `ILLMClient` API (string prompt, nullable LLMResponse?) and also importing `Hazina.Observability.Core.*` which isn't referenced in the project file. Required full rewrite to the new API. The `LLMLoggingClientDecorator` in the same project was already on the new API.
+
+**Fix pattern:** When `ILLMClient` changes, check BOTH `LLMLoggingWrapper` AND `LLMLoggingClientDecorator` — they live in the same project but are separate classes.
+
+### Pattern 89: Build a project individually before building full solution
+
+When diagnosing build errors, build individual `.csproj` files first to isolate errors from pre-existing issues in unrelated projects. The full `Hazina.sln` had pre-existing errors in `SensitiveDataRedactor.cs` that would have confused the output.
+
+```bash
+dotnet build src/Core/Observability/Hazina.Observability.LLMLogs/Hazina.Observability.LLMLogs.csproj
+```
+
+### Pattern 90: Interface members require updates in ALL implementors — not just the obvious ones
+
+When `ILLMClient : ICapabilityProvider` was added, the fix needed to go to:
+- Concrete providers (ClaudeClientWrapper, OpenAIClientWrapper, OllamaClientWrapper)
+- Wrapper/decorator classes (LLMLoggingWrapper, LLMLoggingClientDecorator)
+- Orchestrators (ProviderOrchestrator)
+
+For **wrappers**: delegate to `_inner.SupportedCapabilities` etc.
+For **concrete providers**: implement actual capabilities flags.
+For **orchestrators**: return `ProviderCapability.All` (delegates to multiple providers).
+
+### Lessons for Future Sessions
+
+**DO:**
+- ✅ Build individual `.csproj` files to isolate errors from pre-existing failures in unrelated files
+- ✅ For wrapper classes: delegate `ICapabilityProvider` to the inner client
+- ✅ When `ILLMClient` changes: check LLMLoggingWrapper + LLMLoggingClientDecorator separately
+- ✅ Check project file for actual references before using namespace imports from the old file
+
+**Status:** SUCCESS — PR #255 (hazina): ICapabilityProvider on all ILLMClient wrappers. 20 ClickUp comments posted.
+

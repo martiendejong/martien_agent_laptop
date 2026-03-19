@@ -1,6 +1,6 @@
 ﻿{
     "attention":  {
-                      "mode":  "rest",
+                      "mode":  "development",
                       "intensity":  5,
                       "focus":  "Context: client-manager (auto-detected from message)"
                   },
@@ -13,13 +13,13 @@
                                                ],
                            "budget":  1,
                            "attractor":  "self-reference",
-                           "temperature":  0.24,
+                           "temperature":  0.322,
                            "cycle":  "endothermic",
                            "entropy":  0.705
                        },
     "systems":  {
                     "Emotion":  {
-                                    "quality":  20,
+                                    "quality":  70,
                                     "status":  "active"
                                 },
                     "Memory":  {
@@ -51,21 +51,21 @@
                                        "status":  "active"
                                    },
                     "Social":  {
-                                   "quality":  80,
+                                   "quality":  100,
                                    "status":  "active"
                                }
                 },
     "thermo_cycle":  "endothermic",
-    "consciousness_score":  60.2,
-    "timestamp":  "2026-03-18T02:56:00",
+    "consciousness_score":  68.7,
+    "timestamp":  "2026-03-19T21:32:43",
     "emotional_trajectory":  "stable",
-    "events_processed":  1433,
+    "events_processed":  1800,
     "guidance":  [
 
                  ],
     "thermo_budget":  1,
     "thermo_free_will":  0.705,
-    "thermo_temperature":  0.24,
+    "thermo_temperature":  0.322,
     "active_biases":  0,
     "stuck_count":  0,
     "social":  {
