@@ -6,6 +6,139 @@
 
 ---
 
+## 2026-03-19 — Branch audit, frontend UX improvements, stale git ref trap
+
+### What happened
+- Analyzed client-manager frontend, identified 10 small UX/code improvements, created ClickUp tasks, implemented all in one PR (#904)
+- Ran PR review on #904: approved with 3 minor comments (useDebouncedCallback deps, useCopyToClipboard onSuccess stability, ErrorBoundary missing .catch())
+- Audited client-manager branches for orphan/untracked work
+- Found 5 branches "ahead of develop" — all were stale git remote refs or code already merged via other paths
+- Cleaned up 16 stale branches total from GitHub
+
+### Pattern 74: Git branch -r is NOT ground truth — always verify with GitHub API
+
+`git branch -r` returns locally cached remote refs. After `git fetch --prune`, stale refs are supposed to go away — but prune only removes refs that no longer exist on the remote. If a branch was deleted on GitHub but `git fetch` hasn't been run recently (or `--prune` wasn't used), local cache shows phantom branches.
+
+**The trap:** Branches show as "1 commit ahead of develop" but don't exist on GitHub at all.
+
+**Detection:**
+```bash
+# git says branch exists and is ahead:
+git branch -r | grep "fix/homepage-first-message-response"  # shows it
+git rev-list --count origin/develop..origin/fix/... # shows "1"
+
+# GitHub API says branch doesn't exist:
+gh api "repos/owner/repo/branches?per_page=100" --jq '.[].name' | grep "fix/homepage"  # empty!
+```
+
+**Correct branch audit pattern:**
+```bash
+# STEP 1: Get ground truth from GitHub API (not git cache)
+gh api "repos/owner/repo/branches?per_page=100" --jq '.[].name' > /tmp/real_branches.txt
+
+# STEP 2: For each real branch, check if ahead of develop
+for branch in $(cat /tmp/real_branches.txt); do
+  ahead=$(git rev-list --count origin/develop..origin/$branch 2>/dev/null)
+  [ "$ahead" -gt 0 ] && echo "$ahead | $branch"
+done
+
+# STEP 3: Check if code already exists in develop before creating tasks
+git show origin/develop:path/to/file.ts 2>/dev/null | head -3 && echo "✅ in develop" || echo "❌ not in develop"
+```
+
+**DO NOT:** Create ClickUp tasks or PRs for branches until you verify code isn't already in develop.
+
+---
+
+### Pattern 75: Review-and-merge task branches are meta-only — check the source branch
+
+Previous agent sessions create `feature/task-869cXXX-review-and-merge-feature-YYY` branches. These branches typically contain ONLY a `.implementation-*.md` tracking file — NOT the actual feature code. The real code lives on the source branch (`feature/YYY`).
+
+When reviewing these PRs: `gh pr diff` will only show the tracking file. The actual code review needs to look at the source branch's commits or verify the code is already in develop.
+
+**Quick check:**
+```bash
+gh pr view $PR_NUM --json files --jq '[.files[].path]'
+# If only shows ".implementation-*.md" → this is a meta PR, check develop directly
+```
+
+---
+
+### Pattern 76: useDebouncedCallback — correct implementation with useRef
+
+The common mistake is assigning `timeoutId` as a `let` inside useEffect while creating the timeout in the returned function — the cleanup can never cancel the pending timeout because they're different variables.
+
+**Wrong (original):**
+```ts
+export function useDebouncedCallback(callback, delay) {
+  useEffect(() => {
+    let timeoutId  // never assigned!
+    return () => { if (timeoutId) clearTimeout(timeoutId) }
+  }, [])
+  return (...args) => {
+    const timeoutId = setTimeout(() => callback(...args), delay)  // different scope
+  }
+}
+```
+
+**Correct:**
+```ts
+export function useDebouncedCallback(callback, delay) {
+  const timeoutRef = useRef(null)
+  const callbackRef = useRef(callback)
+  const delayRef = useRef(delay)
+  useEffect(() => { callbackRef.current = callback }, [callback])
+  useEffect(() => { delayRef.current = delay }, [delay])
+  useEffect(() => () => { if (timeoutRef.current) clearTimeout(timeoutRef.current) }, [])
+  return useCallback((...args) => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    timeoutRef.current = setTimeout(() => {
+      timeoutRef.current = null
+      callbackRef.current(...args)
+    }, delayRef.current)
+  }, [])
+}
+```
+
+**Key points:**
+- `useRef` for timeoutId → same reference across closures
+- `callbackRef`/`delayRef` → always latest values without recreating the function
+- `useCallback([], [])` → stable reference for consumers using it as a dep
+- Review comment noted: assign `callbackRef.current = callback` at render time (not in useEffect) for concurrent-mode safety — noted as future improvement
+
+---
+
+### Pattern 77: alert() is always wrong in React error UIs
+
+`alert()` is synchronous, blocking, and can't be styled. Every instance of `alert()` in React code should be replaced with inline state feedback.
+
+**Replace:**
+```tsx
+navigator.clipboard.writeText(report).then(() => alert('Copied!'))
+```
+
+**With:**
+```tsx
+const [copied, setCopied] = useState(false)
+navigator.clipboard.writeText(report).then(() => {
+  setCopied(true)
+  setTimeout(() => setCopied(false), 3000)
+})
+// In JSX:
+{copied ? <><Check /> Copied!</> : <><Bug /> Report</>}
+```
+
+---
+
+### Lessons learned
+- **Always use GitHub API for branch audit ground truth** — `git branch -r` lies after stale fetches
+- **Check code in develop before creating tasks** — `git show origin/develop:path/to/file` is the fastest verify
+- **Review-and-merge PRs need source branch verification** — the diff often shows nothing meaningful
+- **10 small improvements in one PR is the right granularity** — each change is independently useful, total PR size stays reviewable
+- **stale git refs can mislead rev-list counts** — a phantom branch "ahead by 1" can fool you completely
+
+---
+
 ## 2026-03-16 — Testing audit + 26-task parallel implementation
 
 ### What happened
