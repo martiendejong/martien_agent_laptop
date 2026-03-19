@@ -4,9 +4,9 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | BUSY | hazina | agent-001-updatestore-dryrun-schemarenderer-869cabf3x-869c2ggfz-869ceq3aj | 2026-03-20T10:00:00Z | UpdateStore dry-run + SchemaRenderer React component |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-20T13:00:00Z | ✅ PR #57 (artrevisionist): Fix 500 for new users - empty topics list (ClickUp #869cfqzye) |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | mastermindgroupAI | agent-002-onboarding-fixes | 2026-03-20T10:30:00Z | Implement OnboardingController, Hazina LLM wiring, fix tests |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-19T22:30:00Z | ✅ PR #723 (client-manager): Language aware suggestions conflicts resolved |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-20T13:30:00Z | ✅ PR #266 (hazina) + PR #911 (client-manager): SEO keywords persist through blog generation pipeline (ClickUp #869chdut0) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-19T22:30:00Z | ✅ PR #724 (client-manager): Post wizard English name conflicts resolved |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-03-19T22:30:00Z | ✅ PR #729 (client-manager): Social media post conflicts resolved |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-06T14:19:00Z | ✅ PR #173 MERGED: HazinaCoder Iterations 1-60 - Conflicts resolved & merged to develop |
