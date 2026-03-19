@@ -5464,3 +5464,67 @@ For **orchestrators**: return `ProviderCapability.All` (delegates to multiple pr
 
 **Status:** SUCCESS — PR #255 (hazina): ICapabilityProvider on all ILLMClient wrappers. 20 ClickUp comments posted.
 
+---
+
+## 2026-03-19 — 5 stale client-manager PRs: parallel conflict resolution
+
+**Session Type:** Parallel conflict resolution across 5 feature branches
+**Context:** 5 client-manager todo tasks, all with open PRs stuck on merge conflicts with develop (4–6 weeks stale).
+**Outcome:** ✅ SUCCESS — All 5 branches conflict-free, builds clean, tasks moved to review.
+
+### What happened
+
+- 5 parallel agents launched simultaneously (agents 001–005), each on an exclusive seat
+- Every branch had conflicts; all resolved intelligently in ~10 minutes total
+- All 5 tasks moved from `todo` → `review`
+
+### Conflict breakdown
+
+| PR | Files conflicted | Root cause |
+|----|-----------------|------------|
+| #733 token-tracker | 8 | `RequestType` enum refactor in develop touched TokenCostAttribute, middleware, controllers, tests |
+| #727 homepage-button | 1 | `initialMode` prop value ("register" vs "login") |
+| #723 language-aware | 1 | `actions.json` — new entries added on both sides |
+| #724 wizard-english | 1 | `actions.json` — same slot, different entries |
+| #729 social-media-post | 1 (`UD`) | `PostGenerationWizard.tsx` deleted in develop (replaced by PostIdeasGenerator.tsx) |
+
+### Pattern 91: `actions.json` is a high-conflict hotspot
+
+`ClientManagerFrontend/src/config/actions/actions.json` conflicts in **3 out of 5** PRs. Every feature that adds a UI action panel touches this file. Conflict resolution: always keep BOTH sides' entries (different IDs, no duplicates). Never take one side wholesale.
+
+### Pattern 92: `UD` conflict = check if feature was superseded
+
+When `git status --short` shows `UD <file>` (modified in branch, deleted in develop), check:
+1. Was the file intentionally removed in develop? (`git log --oneline --all -- <file>`)
+2. Does develop have a replacement with equivalent functionality?
+3. Is the file still referenced anywhere? (`grep -r "<filename>" src/ --include="*.ts" -l`)
+
+If deleted + replaced + unreferenced → accept deletion (`git rm <file>`).
+If deleted but feature is genuinely new → keep the file.
+
+### Pattern 93: Parallel agent conflict resolution — proven pattern
+
+5 independent feature branches can be resolved in parallel using 5 agents. Conditions for parallel:
+- Each agent has its own exclusive worktree seat (pool collision = broken)
+- Branches don't share files being modified (otherwise git worktree locks)
+- Each agent creates its OWN hazina worktree branch (not all on `develop` — that collides)
+
+Per-agent hazina branch naming: `agent-00X-hazina-<feature>` avoids conflicts.
+
+### Pattern 94: Build client-manager API when Hazina has a build break
+
+When Hazina develop has a build break (like the ICapabilityProvider CS0535 errors), `.local.sln` will fail because it includes Hazina projects. Don't waste time debugging Hazina errors in a client-manager PR.
+
+Build just the API:
+```bash
+dotnet build ClientManagerAPI/ClientManagerAPI.local.csproj --configuration Release 2>&1 | tail -5
+```
+0 errors = client-manager code is fine regardless of Hazina state.
+
+### Pattern 95: Semantic conflicts require understanding BOTH sides
+
+PR #733 (token-tracker) had 8 semantic conflicts. The correct resolution required understanding that develop had done an enum refactor (`string RequestType` → `RequestType` enum with `-1` sentinel). Mechanical conflict resolution (just take one side) would have broken the feature. Required reading both sides to produce a coherent merge.
+
+**Rule:** For conflicts in `.cs` files touching shared models/attributes, read the full diff of both sides before resolving.
+
+**Status:** SUCCESS — PRs #723, #724, #727, #729, #733 all conflict-free and in review.
