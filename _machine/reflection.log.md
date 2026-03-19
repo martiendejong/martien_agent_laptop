@@ -6,6 +6,124 @@
 
 ---
 
+## 2026-03-18 — Admin dashboard wired up, wizard conflict, squash merge detection, dotnet restore
+
+### What happened
+- Fetched all 8 TODO tasks from client-manager ClickUp board (901214097647)
+- Discovered 6/8 tasks were already implemented (squash-merged via earlier PRs)
+- Resolved wizard merge conflict (feature/wizard-parent-posts vs develop — 3 new DTO classes added by develop)
+- Implemented admin dashboard backend: `/api/admin/stats`, `/api/admin/users`, enable/disable endpoints
+- Wired up AdminDashboard.tsx to real API (was previously all static mock data)
+- Made mistake: moved tasks to `done` instead of `testing` — caught and corrected
+- Created PR #908 for admin dashboard
+
+### Pattern 78: Re-check PR state before acting — user can close PRs mid-session
+
+When a PR was open at task start, it may have been closed by the user while you were working on something else. Never assume PR state is unchanged from when you last checked.
+
+**Detection:**
+```bash
+gh api repos/OWNER/REPO/pulls/NNN --jq '.state'
+# "open" or "closed"
+```
+
+**Rule:** Before posting review, merging, or commenting on a PR — query its state first.
+
+---
+
+### Pattern 79: Auto-merge introduces duplicate properties — build-test after any merge commit
+
+When develop gets new EF entity properties (e.g. `ParentPostId`) and a feature branch independently added the same property, the merge commit contains BOTH definitions. This causes `CS0102: The type X already contains a definition for 'Y'`.
+
+**Detection:**
+```bash
+git diff origin/develop...origin/feature-branch --name-only  # see what files changed
+# Then grep for duplicate property names in affected files
+grep -n "ParentPostId" MyEntity.cs | head -5
+```
+
+**Rule:** After any merge, grep for duplicate property/class definitions in affected files before creating PR.
+
+---
+
+### Pattern 80: Squash merge — branch looks "ahead" but content is already in develop
+
+After a squash merge, the source branch still shows commits not in develop (`git rev-list develop..branch > 0`). This is misleading. The content was squashed into a single commit on develop, so git doesn't recognize the relationship.
+
+**Correct check:**
+```bash
+# 3-dot diff: find files unique to the branch (not in develop)
+git diff origin/develop...origin/branch --name-only
+
+# Then for each file — confirm content actually differs:
+git diff origin/develop origin/branch -- path/to/file.ts
+# Empty output = content already merged (squash)
+```
+
+**Rule:** Use 3-dot diff (`...`) not 2-dot (`..`) when checking if branch content exists in develop.
+
+---
+
+### Pattern 81: Agent never sets `done` — only up to `review`
+
+Status ownership:
+- `todo → busy → review` = agent-owned
+- `testing → done` = user-owned
+
+Never set a task to `done`. Maximum status an agent can set is `review`. After implementation, move to `review` only. User promotes to `testing` and `done` after verifying.
+
+---
+
+### Pattern 82: Admin dashboard "nothing done" — frontend existed, backend endpoints were missing
+
+Symptom: Frontend admin dashboard renders but shows no data / all zeros. Root cause: frontend calls `/api/admin/stats` and `/api/admin/users` which return 404 because backend endpoints don't exist yet.
+
+**Diagnosis pattern:**
+```bash
+# Check what endpoints the frontend is calling
+grep -r "api/admin" ClientManagerFrontend/src/ --include="*.ts" --include="*.tsx"
+
+# Check what endpoints exist in backend
+grep -r "\[HttpGet\]" ClientManagerAPI/Controllers/AdminController.cs
+grep -r "Route\|HttpGet\|HttpPost\|HttpPut" ClientManagerAPI/Controllers/AdminController.cs
+```
+
+If frontend calls endpoint that doesn't exist in controller → implement it.
+
+---
+
+### Pattern 83: `dotnet restore` required in fresh worktrees before `dotnet build`
+
+In a fresh worktree, `dotnet build` fails with NETSDK1004: "Assets file 'obj/project.assets.json' not found."
+
+**Fix:**
+```bash
+cd ClientManagerAPI
+dotnet restore   # ← REQUIRED first
+dotnet build --configuration Release
+```
+
+This is not needed in an already-used worktree (restore ran during clone/previous build).
+
+---
+
+### Lessons for Future Sessions
+
+**DO:**
+- ✅ Fetch all tasks without status filter (filter client-side) — ClickUp status filter causes ITEMV2_003
+- ✅ Use `git diff origin/develop...origin/branch` (3-dot) to detect squash-merged content
+- ✅ Run `dotnet restore` before `dotnet build` in fresh worktrees
+- ✅ Query PR state before acting (`gh api ... --jq '.state'`)
+- ✅ Move tasks to `review` max, never `done`
+- ✅ Check backend endpoints exist before concluding "frontend does nothing"
+
+**DON'T:**
+- ❌ Use `git rev-list develop..branch > 0` as proof of unique content (fails for squash merges)
+- ❌ Trust PR state from earlier in the session (user may have closed it)
+- ❌ Set `done` status — that's user territory
+
+---
+
 ## 2026-03-19 — Branch audit, frontend UX improvements, stale git ref trap
 
 ### What happened
@@ -5123,4 +5241,65 @@ When base repo worktrees are leftover from previous sessions, they still hold th
 - When a previous agent said "already implemented" and user gave feedback, skip reading the agent's previous comment and go straight to user's complaint
 
 **Status:** SUCCESS - All SEO God tasks cleared
+
+---
+
+## 2026-03-19 — LeadManager: enrichment gap tasks + dashboard + export (PR #23, #28)
+
+### What happened
+- Continued from previous context: implemented 5 enrichment gap tasks (OwnerLinkedInUrl, OwnerMobile, InternalContact, WorkingArea, Certifications, PricingInfo, OpeningHours, SalesPriorityLabel, SalesPriorityReasoning, Signals) in PR #23
+- Merged PR #23 at user request
+- Implemented dashboard improvements (869cg5v6n) and export enrichment fields (869cg5v6k) in PR #28 on branch `agent-001-dashboard-export`
+
+### Pattern 78: vault.ps1 DPAPI — use ExecutionPolicy Bypass + grep for Token field
+
+`vault.ps1 -Action get -Service clickup` returns `[DECRYPTION FAILED]` for the token field due to a DPAPI machine-key issue. **Workaround:**
+
+```bash
+# Won't work — returns [DECRYPTION FAILED]:
+CLICKUP_KEY=$(powershell.exe -NoProfile -File "C:/scripts/tools/vault.ps1" -Action get -Service clickup | grep "Token:" | awk '{print $2}')
+
+# Works — use clickup-sync.ps1 which has its own auth mechanism:
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:/scripts/tools/clickup-sync.ps1" \
+  -Action comment -TaskId "869cXXX" -Comment "message"
+```
+
+`clickup-sync.ps1` reads its own config (separate from vault) and works reliably. Always prefer it over direct API calls for ClickUp operations.
+
+### Pattern 79: clickup-sync.ps1 — action set and required params
+
+Valid `-Action` values: `list`, `update`, `create`, `comment`, `show`, `link-pr`, `pr-merged`
+
+Moving a task to `review` requires `-Assignee`:
+```bash
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:/scripts/tools/clickup-sync.ps1" \
+  -Action update -TaskId "869cXXX" -Status "review" -Assignee "74525428"
+```
+
+Default assignee for this project is `74525428` (Martien de Jong).
+
+### Pattern 80: dotnet build --no-restore fails in fresh worktrees
+
+Worktrees created fresh (or recreated after pruning) don't have `obj/project.assets.json`. Always run `dotnet restore` first if `--no-restore` gives NETSDK1004.
+
+```bash
+dotnet restore src/Project/Project.csproj
+dotnet build src/Project/Project.csproj --configuration Release
+# --no-restore is only safe if the worktree has been built before
+```
+
+### Pattern 81: Frontend build in worktrees — npm install required
+
+Fresh worktrees have no `node_modules`. Always check with `ls node_modules/.bin/tsc` before building. If missing, run `npm install --legacy-peer-deps` first.
+
+### What Went Well
+- Batch approach (single PR for all enrichment gap tasks) avoided merge conflicts across shared files (Lead.cs, EnrichmentBackgroundService.cs)
+- Default sort change (name → salesPriorityScore desc) done in both frontend (`buildInitialFilter`) and backend (`LeadFilterParams` default) for consistency
+- Export HTML sections are conditional — only render when data is present, keeps clean output for un-enriched leads
+
+### What To Improve
+- Check `vault.ps1` DPAPI status earlier in session — don't waste Node.js calls with empty API key
+- When continuing from summarized context, immediately read the key files listed in "Current Work" section of summary before doing anything else
+
+**Status:** SUCCESS — PR #28 created, tasks 869cg5v6n + 869cg5v6k → review, agent-001 released
 
