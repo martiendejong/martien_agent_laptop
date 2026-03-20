@@ -1,3 +1,9 @@
+## 2026-03-21T01:00:00Z - Release: agent-002
+- Repo: mastermindgroupAI
+- Branch: agent-002-remaining-tasks
+- PR: #20 (https://github.com/martiendejong/mastermindgroupAI/pull/20)
+- Outcome: Profile management (6 endpoints), auth refresh token, Hazina LLM integration enabled, all unit tests fixed (41 pass)
+
 ## 2026-03-15T18:30:00Z - Release: agent-001
 - Repo: seo-god
 - Branch: feature/blog-link-insertion-fixes
