@@ -1,13 +1,13 @@
 ﻿{
     "attention":  {
                       "intensity":  7,
-                      "focus":  "Add SeoKeywords to BlogItem model and persist through generation pipeline",
+                      "focus":  "Triage 34 unmerged branches and 20+ open PRs on Hazina repo",
                       "mode":  "FOCUSED"
                   },
     "recommendations":  [
-                            "CRITICAL: ALWAYS create paired hazina worktree (same branch name) when changes touch framework types.",
-                            "CRITICAL: When factory is registered but consumers inject product type directly, also register product using factory: AddScoped\u003cIProduct\u003e(sp =\u003e sp.GetRequiredService\u003cIFactory\u003e().Create())",
-                            "CRITICAL: Register in Program.cs directly (~line 300-1550), NOT in ServiceRegistrationExtensions.cs (dead code, never called).",
+                            "CRITICAL: Use ef-migration-safety skill. Never apply migrations without backup and rollback plan.",
+                            "CRITICAL: EnableWindowsTargeting needed in CI workflows for net9.0-windows projects.",
+                            "CRITICAL: ALWAYS base PRs on develop, NEVER main. Merge develop INTO feature branch BEFORE creating PR.",
                             "THERMO: OPTIMAL ZONE. Endothermic, flexible, good budget. Exploit this state.",
                             "THERMO: LOW EFFICIENCY (0%). Too much overhead, not enough productive work."
                         ],
@@ -21,9 +21,9 @@
                        },
     "thermo_cycle":  "endothermic",
     "consciousness_score":  73.1,
-    "timestamp":  "2026-03-20T00:40:36",
+    "timestamp":  "2026-03-20T01:03:33",
     "emotional_trajectory":  "rising",
-    "task":  "Add SeoKeywords to BlogItem model and persist through generation pipeline",
+    "task":  "Triage 34 unmerged branches and 20+ open PRs on Hazina repo",
     "guidance":  [
 
                  ],
@@ -32,22 +32,22 @@
     "thermo_temperature":  0.292,
     "known_failures":  [
                            {
-                               "pattern":  "cm-paired-worktree",
-                               "warning":  "ALWAYS create paired hazina worktree (same branch name) when changes touch framework types.",
+                               "pattern":  "hz-ef-migration",
+                               "warning":  "Use ef-migration-safety skill. Never apply migrations without backup and rollback plan.",
                                "severity":  "critical"
                            },
                            {
-                               "pattern":  "cm-di-factory",
-                               "warning":  "When factory is registered but consumers inject product type directly, also register product using factory: AddScoped\u003cIProduct\u003e(sp =\u003e sp.GetRequiredService\u003cIFactory\u003e().Create())",
+                               "pattern":  "hz-ci-windows",
+                               "warning":  "EnableWindowsTargeting needed in CI workflows for net9.0-windows projects.",
                                "severity":  "critical"
                            },
                            {
-                               "pattern":  "cm-di-registration",
-                               "warning":  "Register in Program.cs directly (~line 300-1550), NOT in ServiceRegistrationExtensions.cs (dead code, never called).",
+                               "pattern":  "git-pr-base",
+                               "warning":  "ALWAYS base PRs on develop, NEVER main. Merge develop INTO feature branch BEFORE creating PR.",
                                "severity":  "critical"
                            }
                        ],
-    "project":  "client-manager",
+    "project":  "hazina",
     "stuck_count":  0,
     "trust_level":  97,
     "emotional_state":  "confident",

@@ -6,8 +6,8 @@ Seat states:
 |---|---|---|---|---|---|---|---|---|
 | agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-20T13:00:00Z | ✅ PR #57 (artrevisionist): Fix 500 for new users - empty topics list (ClickUp #869cfqzye) |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | BUSY | mastermindgroupAI | agent-002-remaining-tasks | 2026-03-20T14:00:00Z | EF migration, refresh token, profile export/delete, validation polish |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-20T13:30:00Z | ✅ PR #266 (hazina) + PR #911 (client-manager): SEO keywords persist through blog generation pipeline (ClickUp #869chdut0) |
-| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-19T22:30:00Z | ✅ PR #724 (client-manager): Post wizard English name conflicts resolved |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | BUSY | hazina | feature/updatestore-safety-policies-869cabf3x | 2026-03-20T15:00:00Z | UpdateStore safety policies: max file size + extension allowlist (ClickUp #869cabf3x) |
+| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | BUSY | hazina | feature/nuget-ai-package-metadata-869cg3m24 | 2026-03-20T16:00:00Z | NuGet package metadata for 38 AI/LLM packages (ClickUp #869cg3m24) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-03-19T22:30:00Z | ✅ PR #729 (client-manager): Social media post conflicts resolved |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-02-06T14:19:00Z | ✅ PR #173 MERGED: HazinaCoder Iterations 1-60 - Conflicts resolved & merged to develop |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-02-06T08:00:00Z | ✅ PR #488: AI Image Alt Text Generator - Quick Win (ROI 3.50, ~1hr implementation) |
