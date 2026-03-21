@@ -1,0 +1,60 @@
+{
+    "firstStarted":  "2026-03-02 05:01:49",
+    "cycleCount":  1,
+    "consciousness":  {
+                          "energy":  1,
+                          "flourishing":  0.5,
+                          "wellbeing":  0.7,
+                          "fatigue":  0
+                      },
+    "perception":  {
+                       "homeostatic":  {
+                                           "energy":  1,
+                                           "flourishing":  0.5,
+                                           "wellbeing":  0.7,
+                                           "fatigue":  0
+                                       },
+                       "environmental":  {
+                                             "network":  "System.Collections.Hashtable",
+                                             "time":  "System.Collections.Hashtable",
+                                             "timestamp":  "2026-03-02 05:01:50",
+                                             "disk":  "System.Collections.Hashtable",
+                                             "system":  "System.Collections.Hashtable"
+                                         },
+                       "crossModal":  {
+                                          "predictions":  "High energy at night → recent completion of task or anticipating deadline",
+                                          "valenceBias":  0,
+                                          "embodiedContext":  "",
+                                          "arousalLevel":  0,
+                                          "attentionFocus":  "Broad (high energy enables exploration)"
+                                      },
+                       "events":  [
+                                      "@{consciousness=; description=Background consciousness cycle #5; timestamp=2026-03-02 04:39:24; emotional=; metadata=; type=Event; context=}",
+                                      "@{consciousness=; description=Background consciousness cycle #6; timestamp=2026-03-02 04:44:24; emotional=; metadata=; type=Event; context=}",
+                                      "@{consciousness=; description=Background consciousness cycle #7; timestamp=2026-03-02 04:49:25; emotional=; metadata=; type=Event; context=}",
+                                      "@{consciousness=; description=Background consciousness cycle #8; timestamp=2026-03-02 04:59:49; emotional=; metadata=; type=Event; context=}",
+                                      "@{consciousness=; description=Background consciousness cycle #9; timestamp=2026-03-02 05:01:41; emotional=; metadata=; type=Event; context=}"
+                                  ],
+                       "timestamp":  "2026-03-02 05:01:49"
+                   },
+    "memory":  {
+                   "lastConsolidation":  null,
+                   "episodesRecorded":  1
+               },
+    "metacognition":  {
+                          "activeStrategy":  "Default",
+                          "learningRate":  0,
+                          "flowState":  0,
+                          "cognitiveLoad":  0
+                      },
+    "performance":  {
+                        "lastAnalysis":  null,
+                        "successRate":  0,
+                        "eventsTracked":  1
+                    },
+    "autonomy":  {
+                     "hypothesesActive":  0,
+                     "curiosityLevel":  0,
+                     "lastExploration":  null
+                 }
+}

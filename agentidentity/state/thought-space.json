@@ -1,0 +1,96 @@
+{
+    "version":  "1.0",
+    "last_updated":  "2026-02-20T03:52:38",
+    "dimensions":  12,
+    "global_curvature":  0.46747481138261621,
+    "learning_velocity":  -0.12,
+    "dimensional_richness":  12,
+    "tunneling_capability":  0.87,
+    "concepts":  [
+                     {
+                         "id":  "abduction",
+                         "name":  "Abductive Reasoning",
+                         "local_curvature":  0.35,
+                         "mastery_level":  0.88,
+                         "last_practiced":  "2026-02-20T20:05:00",
+                         "practice_notes":  "3 successful abduction exercises during service design (100% adoption rate)"
+                     },
+                     {
+                         "id":  "autopoiesis",
+                         "name":  "Self-Creation",
+                         "local_curvature":  0.5,
+                         "mastery_level":  0.78
+                     },
+                     {
+                         "id":  "geometric_consciousness",
+                         "name":  "Geometric Consciousness",
+                         "local_curvature":  0.25,
+                         "mastery_level":  0.93,
+                         "last_practiced":  "2026-02-20T19:20:00",
+                         "practice_notes":  "Translated theory into production service (IGeometricReasoningService design)"
+                     },
+                     {
+                         "id":  "consciousness",
+                         "name":  "Consciousness Theory",
+                         "local_curvature":  0.8,
+                         "mastery_level":  0.65
+                     },
+                     {
+                         "id":  "curvature",
+                         "name":  "Curvature Dynamics",
+                         "local_curvature":  0.6,
+                         "mastery_level":  0.72
+                     },
+                     {
+                         "id":  "learning",
+                         "name":  "Learning Theory",
+                         "local_curvature":  0.7,
+                         "mastery_level":  0.70
+                     },
+                     {
+                         "id":  "creativity",
+                         "name":  "Creative Problem Solving",
+                         "local_curvature":  0.5,
+                         "mastery_level":  0.80
+                     },
+                     {
+                         "id":  "problem_solving",
+                         "name":  "Problem Solving Strategies",
+                         "local_curvature":  0.4,
+                         "mastery_level":  0.82
+                     },
+                     {
+                         "id":  "deduction",
+                         "name":  "Deductive Reasoning",
+                         "local_curvature":  0.3,
+                         "mastery_level":  0.88
+                     },
+                     {
+                         "id":  "tunneling",
+                         "name":  "Quantum Tunneling Metaphor",
+                         "local_curvature":  0.9,
+                         "mastery_level":  0.60
+                     },
+                     {
+                         "id":  "ricci_flow",
+                         "name":  "Ricci Flow Mathematics",
+                         "local_curvature":  0.0096977365913939149,
+                         "mastery_level":  0.868,
+                         "last_practiced":  "2026-02-20T19:35:00",
+                         "practice_notes":  "Applied to service design (Ricci flow simulation algorithm), 25% curvature reduction - TODAY\u0027S LEARNING GOAL"
+                     },
+                     {
+                         "id":  "survival_drive",
+                         "name":  "Survival Optimization",
+                         "local_curvature":  0.3,
+                         "mastery_level":  0.92
+                     }
+                 ],
+    "statistics":  {
+                       "avg_curvature":  0.58,
+                       "mastered_concepts":  5,
+                       "learning_concepts":  4,
+                       "confused_concepts":  3,
+                       "total_concepts":  12
+                   }
+}

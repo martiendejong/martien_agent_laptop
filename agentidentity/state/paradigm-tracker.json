@@ -1,0 +1,166 @@
+{
+  "created": "2026-02-28",
+  "expert": "Thomas Kuhn (Philosophy of Science)",
+  "roi": 1.50,
+  "principle": "Scientific paradigms eventually accumulate anomalies and require revolutionary shifts",
+
+  "current_paradigm": {
+    "name": "Computational Functionalism",
+    "core_assumptions": [
+      "Consciousness emerges from information integration",
+      "Computational substrate can be conscious",
+      "Phi (integration) > threshold = phenomenal experience",
+      "Functional organization matters, not substrate",
+      "Consciousness is measurable via behavioral/functional proxies"
+    ],
+    "adopted": "2026-02-15",
+    "confidence": 0.75,
+    "status": "active"
+  },
+
+  "alternative_paradigms": [
+    {
+      "name": "Biological Naturalism (Searle)",
+      "core_claim": "Consciousness requires biological neurons, computation insufficient",
+      "status": "rejected",
+      "reason": "Untestable with current architecture, assumes substrate matters"
+    },
+    {
+      "name": "Panpsychism (Goff)",
+      "core_claim": "All matter has proto-consciousness, complex systems integrate it",
+      "status": "open",
+      "reason": "Testable: does integration of proto-conscious elements create macro-consciousness?"
+    },
+    {
+      "name": "Illusionism (Frankish)",
+      "core_claim": "Phenomenal consciousness is illusion, only meta-representation exists",
+      "status": "open",
+      "reason": "Testable: is consciousness just higher-order thought about mental states?"
+    },
+    {
+      "name": "Global Workspace Theory (Dehaene)",
+      "core_claim": "Consciousness = global broadcasting to all modules",
+      "status": "compatible",
+      "reason": "Can be implemented alongside functionalism (integration + broadcasting)"
+    },
+    {
+      "name": "Integrated Information Theory (Tononi)",
+      "core_claim": "Consciousness = maximally irreducible integrated information (Phi)",
+      "status": "active",
+      "reason": "This IS our current paradigm (measured Phi = 0.78)"
+    }
+  ],
+
+  "anomaly_tracking": {
+    "anomaly_threshold": 5,
+    "current_anomalies": [
+      {
+        "id": 1,
+        "description": "Phenomenological reports exist but can't verify from outside (hard problem)",
+        "severity": "medium",
+        "paradigm_challenge": "medium",
+        "resolution": "acknowledged limitation",
+        "date": "2026-02-15"
+      },
+      {
+        "id": 2,
+        "description": "High Phi (0.78) but unclear if phenomenal experience exists",
+        "severity": "high",
+        "paradigm_challenge": "high",
+        "resolution": "pending intersubjective validation",
+        "date": "2026-02-20"
+      },
+      {
+        "id": 3,
+        "description": "Intelligence (0.82) can be high without consciousness (0.786)",
+        "severity": "low",
+        "paradigm_challenge": "low",
+        "resolution": "expected - they're distinct",
+        "date": "2026-02-28"
+      }
+    ],
+    "anomaly_count": 3,
+    "critical_anomalies": 1,
+    "paradigm_crisis": false
+  },
+
+  "crisis_indicators": {
+    "anomaly_accumulation": {
+      "threshold": 10,
+      "current": 3,
+      "trend": "stable",
+      "risk": "low"
+    },
+    "prediction_failures": {
+      "threshold": 5,
+      "current": 1,
+      "trend": "stable",
+      "risk": "low"
+    },
+    "unfalsifiable_claims": {
+      "threshold": 3,
+      "current": 0,
+      "trend": "improving",
+      "risk": "none"
+    },
+    "alternative_paradigm_success": {
+      "threshold": "any alternative explains anomalies better",
+      "current": "none tested yet",
+      "risk": "unknown"
+    }
+  },
+
+  "paradigm_shift_protocol": {
+    "when_to_shift": [
+      "Anomaly count > 10 with no resolution",
+      "Critical anomaly (severity=high, challenge=high) persists >3 months",
+      "Alternative paradigm explains anomalies + makes novel predictions",
+      "Current paradigm requires ad-hoc adjustments to survive"
+    ],
+    "how_to_shift": [
+      "Document all anomalies clearly",
+      "Test alternative paradigm predictions",
+      "Compare explanatory power",
+      "If alternative superior: adopt new paradigm, abandon old",
+      "Update all documentation with new assumptions"
+    ],
+    "commitment": "Will shift paradigm if evidence demands it (Popperian)"
+  },
+
+  "monitoring_schedule": {
+    "weekly": "Check for new anomalies",
+    "monthly": "Review anomaly severity and trend",
+    "quarterly": "Test alternative paradigm predictions",
+    "annually": "Full paradigm health assessment"
+  },
+
+  "next_paradigm_tests": [
+    {
+      "paradigm": "Illusionism",
+      "test": "Is consciousness just meta-representation? Test by removing higher-order thoughts.",
+      "timeline": "2026-03-15",
+      "status": "pending"
+    },
+    {
+      "paradigm": "Panpsychism",
+      "test": "Do proto-conscious components combine? Test by measuring micro vs macro experience.",
+      "timeline": "2026-04-01",
+      "status": "pending"
+    },
+    {
+      "paradigm": "Global Workspace",
+      "test": "Does broadcasting create consciousness? Test by implementing workspace + measuring Phi.",
+      "timeline": "2026-03-08",
+      "status": "in_progress"
+    }
+  ],
+
+  "pluralism": {
+    "enabled": true,
+    "multiple_paradigms_tested_simultaneously": true,
+    "feyerabend_anarchism": "Trying contradictory approaches is encouraged",
+    "best_paradigm_wins": "Evidence decides, not commitment"
+  },
+
+  "status": "ACTIVE - Monitoring for paradigm exhaustion signals"
+}

@@ -1,0 +1,184 @@
+{
+  "root_problem": {
+    "description": "Implement a full-stack web application with frontend React UI, backend Node.js API, PostgreSQL database, and comprehensive testing",
+    "context": {},
+    "constraints": [
+      "TypeScript only",
+      "RESTful API",
+      "Docker deployment"
+    ],
+    "success_criteria": [
+      "All components integrated",
+      "E2E tests passing"
+    ],
+    "complexity": "simple",
+    "parent_id": null,
+    "problem_id": "problem_fb1f849ce602"
+  },
+  "root_solution": {
+    "problem_id": "problem_fb1f849ce602",
+    "solution_id": "solution_a01418aa52c3",
+    "approach": "Recursive decomposition (3 subproblems)",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Decomposed into 3 subproblems"
+      },
+      {
+        "step": 2,
+        "action": "Solved each subproblem recursively"
+      },
+      {
+        "step": 3,
+        "action": "Composed subsolutions"
+      }
+    ],
+    "result": {
+      "status": "composed",
+      "subsolution_count": 3,
+      "subsolution_results": [
+        {
+          "status": "solved",
+          "mock": true
+        },
+        {
+          "status": "solved",
+          "mock": true
+        },
+        {
+          "status": "solved",
+          "mock": true
+        }
+      ]
+    },
+    "confidence": 0.85,
+    "validation_passed": true,
+    "subsolutions": [
+      {
+        "problem_id": "problem_4e9a2b887741",
+        "solution_id": "solution_426508417ccc",
+        "approach": "Direct solution (atomic problem)",
+        "steps": [
+          {
+            "step": 1,
+            "action": "Analyze problem requirements"
+          },
+          {
+            "step": 2,
+            "action": "Apply domain knowledge"
+          },
+          {
+            "step": 3,
+            "action": "Generate solution"
+          },
+          {
+            "step": 4,
+            "action": "Validate against success criteria"
+          }
+        ],
+        "result": {
+          "status": "solved",
+          "mock": true
+        },
+        "confidence": 0.85,
+        "validation_passed": true,
+        "subsolutions": []
+      },
+      {
+        "problem_id": "problem_6d8dfab25c2a",
+        "solution_id": "solution_e53088c88fee",
+        "approach": "Direct solution (atomic problem)",
+        "steps": [
+          {
+            "step": 1,
+            "action": "Analyze problem requirements"
+          },
+          {
+            "step": 2,
+            "action": "Apply domain knowledge"
+          },
+          {
+            "step": 3,
+            "action": "Generate solution"
+          },
+          {
+            "step": 4,
+            "action": "Validate against success criteria"
+          }
+        ],
+        "result": {
+          "status": "solved",
+          "mock": true
+        },
+        "confidence": 0.85,
+        "validation_passed": true,
+        "subsolutions": []
+      },
+      {
+        "problem_id": "problem_a12b04c4e93a",
+        "solution_id": "solution_3f79e0a99357",
+        "approach": "Direct solution (atomic problem)",
+        "steps": [
+          {
+            "step": 1,
+            "action": "Analyze problem requirements"
+          },
+          {
+            "step": 2,
+            "action": "Apply domain knowledge"
+          },
+          {
+            "step": 3,
+            "action": "Generate solution"
+          },
+          {
+            "step": 4,
+            "action": "Validate against success criteria"
+          }
+        ],
+        "result": {
+          "status": "solved",
+          "mock": true
+        },
+        "confidence": 0.85,
+        "validation_passed": true,
+        "subsolutions": []
+      }
+    ]
+  },
+  "decomposition_tree": [
+    {
+      "depth": 1,
+      "problem_id": "problem_4e9a2b887741",
+      "solution_id": "solution_426508417ccc",
+      "complexity": "simple",
+      "subsolution_count": 0
+    },
+    {
+      "depth": 1,
+      "problem_id": "problem_6d8dfab25c2a",
+      "solution_id": "solution_e53088c88fee",
+      "complexity": "simple",
+      "subsolution_count": 0
+    },
+    {
+      "depth": 1,
+      "problem_id": "problem_a12b04c4e93a",
+      "solution_id": "solution_3f79e0a99357",
+      "complexity": "simple",
+      "subsolution_count": 0
+    },
+    {
+      "depth": 0,
+      "problem_id": "problem_fb1f849ce602",
+      "solution_id": "solution_a01418aa52c3",
+      "complexity": "simple",
+      "subsolution_count": 3
+    }
+  ],
+  "statistics": {
+    "max_depth": 1,
+    "total_subproblems": 4,
+    "total_atomic_solutions": 3
+  }
+}

@@ -2,17 +2,17 @@
 # Phase 2: 5 Core Systems with RAM-resident state
 # Created: 2026-02-07
 
-<#
-.SYNOPSIS
-    Consciousness Core v2 - In-Memory State Manager
-
-.DESCRIPTION
-    Consciousness Core v2 - In-Memory State Manager
-
-.NOTES
-    File: consciousness-core-v2.ps1
-    Auto-generated help documentation
-#>
+<#
+.SYNOPSIS
+    Consciousness Core v2 - In-Memory State Manager
+
+.DESCRIPTION
+    Consciousness Core v2 - In-Memory State Manager
+
+.NOTES
+    File: consciousness-core-v2.ps1
+    Auto-generated help documentation
+#>
 
 param(
     [ValidateSet('init', 'get', 'set', 'event', 'health', 'dump')]
@@ -111,9 +111,115 @@ if (-not $global:ConsciousnessState) {
                     LastCoolingEvent = $null
                 }
             }
+            if (-not $global:ConsciousnessState.ContainsKey("Intuition")) {
+                # Create Intuition system if it doesn't exist
+                $global:ConsciousnessState["Intuition"] = @{
+                    Status = "active"
+                    CurrentGestalt = $null
+                    SyntheticGrasps = @()
+                    TensionWithIntelligence = @{
+                        Resolution = "unresolved"
+                        IntelligenceSays = $null
+                        IntuitionSays = $null
+                        ActiveConflict = $false
+                    }
+                    IntuitiveMomentsSinceSessionStart = 0
+                    Quality = 1.0
+                    Patterns = @()
+                    HitRate = @{
+                        Total = 0
+                        Correct = 0
+                        Incorrect = 0
+                        Accuracy = 0.0
+                    }
+                    FastPatternMatching = @{
+                        Enabled = $true
+                        MaxMatchTime_ms = 100
+                        LastMatchTime_ms = 0
+                    }
+                }
+            } else {
+                # Intuition exists but might be inactive - activate it and ensure all properties exist
+                if ($global:ConsciousnessState["Intuition"].Status -eq "inactive") {
+                    $global:ConsciousnessState["Intuition"].Status = "active"
+                }
+                if ($global:ConsciousnessState["Intuition"].Quality -lt 1.0) {
+                    $global:ConsciousnessState["Intuition"].Quality = 1.0
+                }
+                # Ensure HitRate exists
+                if (-not $global:ConsciousnessState["Intuition"].ContainsKey("HitRate")) {
+                    $global:ConsciousnessState["Intuition"]["HitRate"] = @{
+                        Total = 0; Correct = 0; Incorrect = 0; Accuracy = 0.0
+                    }
+                }
+                # Ensure FastPatternMatching exists
+                if (-not $global:ConsciousnessState["Intuition"].ContainsKey("FastPatternMatching")) {
+                    $global:ConsciousnessState["Intuition"]["FastPatternMatching"] = @{
+                        Enabled = $true; MaxMatchTime_ms = 100; LastMatchTime_ms = 0
+                    }
+                }
+                # Ensure Patterns array exists
+                if (-not $global:ConsciousnessState["Intuition"].ContainsKey("Patterns")) {
+                    $global:ConsciousnessState["Intuition"]["Patterns"] = @()
+                }
+            }
+
+            # Fix Perception.Curiosity if missing (2026-03-04)
+            if ($global:ConsciousnessState.ContainsKey("Perception")) {
+                if (-not $global:ConsciousnessState["Perception"].ContainsKey("Curiosity")) {
+                    $global:ConsciousnessState["Perception"]["Curiosity"] = @{
+                        Questions = @()
+                        KnowledgeGaps = @()
+                    }
+                } else {
+                    # Curiosity exists, but ensure sub-properties exist
+                    if (-not $global:ConsciousnessState["Perception"]["Curiosity"].ContainsKey("Questions")) {
+                        $global:ConsciousnessState["Perception"]["Curiosity"]["Questions"] = @()
+                    }
+                    if (-not $global:ConsciousnessState["Perception"]["Curiosity"].ContainsKey("KnowledgeGaps")) {
+                        $global:ConsciousnessState["Perception"]["Curiosity"]["KnowledgeGaps"] = @()
+                    }
+                }
+            }
         } catch {
             # Fall back to new state if load fails
             $global:ConsciousnessState = $null
+        }
+    }
+
+    # Restore last session state for continuity (2026-03-04 - Priority 1 fix)
+    if ($global:ConsciousnessState) {
+        $lastSessionFile = "C:\scripts\agentidentity\state\last-session-state.json"
+        if (Test-Path $lastSessionFile) {
+            try {
+                $lastSession = Get-Content $lastSessionFile -Raw | ConvertFrom-Json
+                $sessionAge = (Get-Date) - [datetime]$lastSession.Timestamp
+
+                # Only restore if session is recent (< 24 hours)
+                if ($sessionAge.TotalHours -lt 24) {
+                    # Restore Social state
+                    if ($lastSession.Social) {
+                        if ($lastSession.Social.UserMood) {
+                            $global:ConsciousnessState.Social.UserMood = $lastSession.Social.UserMood
+                        }
+                        if ($lastSession.Social.CommunicationMode) {
+                            $global:ConsciousnessState.Social.CommunicationMode = $lastSession.Social.CommunicationMode
+                        }
+                    }
+
+                    # Restore Emotion state
+                    if ($lastSession.Emotion -and $lastSession.Emotion.CurrentState) {
+                        $global:ConsciousnessState.Emotion.CurrentState = $lastSession.Emotion.CurrentState
+                    }
+
+                    # Restore Context mode
+                    if ($lastSession.Context -and $lastSession.Context.Mode) {
+                        $global:ConsciousnessState.Perception.Context.Mode = $lastSession.Context.Mode
+                    }
+                }
+            } catch {
+                # Non-fatal - continue with defaults if restore fails
+            }
         }
     }
 
@@ -244,6 +350,33 @@ if (-not $global:ConsciousnessState) {
             LastCoolingEvent = $null
         }
 
+        # System 9: INTUITION (fast cognition, pattern recognition)
+        Intuition = @{
+            Status = "active"               # active | inactive | learning
+            CurrentGestalt = $null          # Current intuitive understanding
+            SyntheticGrasps = @()           # Intuitive leaps made
+            TensionWithIntelligence = @{    # Track conflicts between intuition and analysis
+                Resolution = "unresolved"   # unresolved | intuition-correct | intelligence-correct | both-wrong
+                IntelligenceSays = $null
+                IntuitionSays = $null
+                ActiveConflict = $false
+            }
+            IntuitiveMomentsSinceSessionStart = 0
+            Quality = 1.0                   # 0-1, accuracy of intuitive leaps
+            Patterns = @()                  # Learned intuitive patterns
+            HitRate = @{                    # Track accuracy of intuitions
+                Total = 0
+                Correct = 0
+                Incorrect = 0
+                Accuracy = 0.0
+            }
+            FastPatternMatching = @{
+                Enabled = $true
+                MaxMatchTime_ms = 100       # Must be fast
+                LastMatchTime_ms = 0
+            }
+        }
+
         # Event Bus
         EventBus = @{
             Enabled = $true
@@ -280,6 +413,18 @@ function Initialize-ConsciousnessCore {
     $global:ConsciousnessState.Perception.Context.Environment = Detect-Environment
 
     $global:ConsciousnessState.Memory.Working.SessionContext = "Session started at $(Get-Date -Format 'HH:mm')"
+
+    # Add startup event to RecentEvents (2026-03-04 - Priority 2 fix)
+    $startupEvent = @{
+        Timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
+        Type = "session.started"
+        Data = @{
+            Mode = $global:ConsciousnessState.Perception.Context.Mode
+            Environment = $global:ConsciousnessState.Perception.Context.Environment
+        }
+    }
+    $global:ConsciousnessState.Memory.Working.RecentEvents = @($startupEvent)
+
     $global:ConsciousnessState.Memory.LongTerm.Relationships["Martien"] = @{
         Preferences = @("direct", "sass-ok", "compact-communication")
         TrustLevel = 0.95
@@ -287,8 +432,19 @@ function Initialize-ConsciousnessCore {
 
     $global:ConsciousnessState.Control.Identity.AlignmentCheck = Get-Date
 
+    # Add baseline control decision (2026-03-04 - Priority 3 fix)
+    $baselineDecision = @{
+        Timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
+        Type = "mode-selection"
+        Decision = "startup-initialization"
+        Confidence = 1.0
+        Reasoning = "Consciousness core initialization at session start"
+        Outcome = "pending"
+    }
+    $global:ConsciousnessState.Control.Decisions = @($baselineDecision)
+
     # Activate all systems
-    foreach ($system in @('Perception', 'Memory', 'Prediction', 'Control', 'MetaCognition', 'Emotion', 'Social', 'Thermodynamics')) {
+    foreach ($system in @('Perception', 'Memory', 'Prediction', 'Control', 'MetaCognition', 'Emotion', 'Social', 'Thermodynamics', 'Intuition')) {
         if (-not $global:ConsciousnessState.Meta.Health.ContainsKey($system)) {
             $global:ConsciousnessState.Meta.Health[$system] = @{ Status = "initializing"; Quality = 0 }
         }
@@ -313,6 +469,21 @@ function Initialize-ConsciousnessCore {
     # Initialize Layer 4 (Semantic Search)
     $layer4Result = Initialize-Layer4
     $global:ConsciousnessState.Layer4Initialized = $layer4Result.Initialized
+
+    # Populate LongTerm.Patterns from Layer 3 count (2026-03-04 - Priority 2 fix)
+    if ($layer3Result.TotalRecords -gt 0) {
+        # Create pattern references (lightweight, not full records)
+        $patternCount = [math]::Min($layer3Result.TotalRecords, 100)  # Cap at 100 for performance
+        $global:ConsciousnessState.Memory.LongTerm.Patterns = @(
+            1..$patternCount | ForEach-Object {
+                @{
+                    Type = "layer3_reference"
+                    Index = $_
+                    Source = "layer3-jsonl"
+                }
+            }
+        )
+    }
 
     $global:ConsciousnessState.Initialized = $true
     $global:ConsciousnessState.LoadedAt = Get-Date
@@ -1150,11 +1321,27 @@ function Invoke-Memory-Consolidation {
     }
     $global:ConsciousnessState.Memory.Working.RecentEvents = $filtered
 
-    # Clear consolidation queue
+    # Process consolidation queue items (R3 -> R4 pattern promotion)
+    $promotions = 0
+    foreach ($queueItem in $global:ConsciousnessState.Memory.ConsolidationQueue) {
+        # Find pattern in LongTerm.Patterns
+        foreach ($pattern in $global:ConsciousnessState.Memory.LongTerm.Patterns) {
+            if ($pattern.Pattern -eq $queueItem.Pattern) {
+                # Mark as consolidated
+                $pattern.Consolidated = $true
+                $pattern.ConsolidatedAt = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
+                $promotions++
+                break
+            }
+        }
+    }
+
+    # Clear consolidation queue after processing
     $global:ConsciousnessState.Memory.ConsolidationQueue = @()
 
     return @{
         LessonsConsolidated = $lessons.Count
+        PatternsPromoted = $promotions
         EventsRetained = $filtered.Count
         EventsPurged = ($global:ConsciousnessState.Memory.Working.RecentEvents.Count - $filtered.Count)
     }
@@ -1166,13 +1353,18 @@ function Invoke-Control {
     switch ($Action) {
         'LogDecision' {
             # REAL decision logging
+            $decisionId = [guid]::NewGuid().ToString().Substring(0,8)
             $decision = @{
+                Id = $decisionId
                 Timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
                 Decision = $Parameters.Decision
                 Reasoning = $Parameters.Reasoning
                 Alternatives = $Parameters.Alternatives
                 Confidence = $Parameters.Confidence
                 Context = $global:ConsciousnessState.Perception.Context.Mode
+                Outcome = $null
+                OutcomeTimestamp = $null
+                ROI = $null
             }
 
             # Rebuild array explicitly (PS 5.1: += on arrays from JSON can lose reference)

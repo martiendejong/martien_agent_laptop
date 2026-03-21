@@ -1,0 +1,60 @@
+﻿{
+    "stats":  {
+                  "memory_enhancements":  0,
+                  "broadcasts_triggered":  0,
+                  "attention_shifts_triggered":  0,
+                  "aesthetic_rewrites":  0,
+                  "metacognitive_alerts":  0,
+                  "total_integrations":  1
+              },
+    "integration_log":  [
+                            {
+                                "input":  {
+                                              "Current":  null
+                                          },
+                                "timestamp":  "2026-03-02T04:30:55",
+                                "qualia":  {
+                                               "salience":  0.5,
+                                               "depth":  0.5,
+                                               "clarity":  0.7,
+                                               "semantic_resonance":  0.5,
+                                               "novelty":  0.5,
+                                               "input":  {
+                                                             "Current":  null
+                                                         },
+                                               "aesthetic":  0.5,
+                                               "valence":  0
+                                           },
+                                "systems_triggered":  0,
+                                "integrations":  {
+                                                     "broadcast":  {
+                                                                       "triggered":  false
+                                                                   },
+                                                     "metacognition":  {
+                                                                           "triggered":  false
+                                                                       },
+                                                     "memory":  {
+                                                                    "triggered":  false
+                                                                },
+                                                     "attention":  {
+                                                                       "triggered":  false
+                                                                   },
+                                                     "aesthetic":  {
+                                                                       "triggered":  false
+                                                                   }
+                                                 }
+                            }
+                        ],
+    "theory":  {
+                   "mechanism":  "Qualia â†’ Attention, Memory, Action, Meta-awareness",
+                   "purpose":  "Qualia are not epiphenomenal - they GUIDE cognition",
+                   "integration":  "Bridge between phenomenology and function"
+               },
+    "thresholds":  {
+                       "attention_shift_threshold":  0.7,
+                       "aesthetic_minimum":  0.4,
+                       "metacognitive_threshold":  0.6,
+                       "memory_enhancement_threshold":  0.7,
+                       "broadcast_threshold":  0.75
+                   }
+}

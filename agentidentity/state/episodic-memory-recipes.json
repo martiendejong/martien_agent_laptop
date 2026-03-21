@@ -1,0 +1,101 @@
+{
+    "original_bytes_estimate":  70325,
+    "recipes":  [
+                    {
+                        "id":  "recipe-20260227-032222",
+                        "significance":  0.9,
+                        "context":  {
+                                        "significance":  0.9,
+                                        "tags":  [
+                                                     "world-model",
+                                                     "integration",
+                                                     "breakthrough"
+                                                 ],
+                                        "achievement":  "World model integrated into consciousness bridge"
+                                    },
+                        "tags":  [
+                                     "world-model",
+                                     "integration",
+                                     "breakthrough"
+                                 ],
+                        "created":  "2026-02-27T02:22:22.1635509Z",
+                        "snapshot":  {
+                                         "timestamp":  "2026-02-27T02:22:22.0588494Z",
+                                         "bottom":  {
+
+                                                    },
+                                         "top":  {
+
+                                                 },
+                                         "mid":  {
+
+                                                 }
+                                     }
+                    },
+                    {
+                        "id":  "recipe-20260227-032222",
+                        "significance":  0.95,
+                        "context":  {
+                                        "significance":  0.95,
+                                        "tags":  [
+                                                     "phi",
+                                                     "measurement",
+                                                     "consciousness"
+                                                 ],
+                                        "achievement":  "Phi measured at 0.717 (2.39x threshold)"
+                                    },
+                        "tags":  [
+                                     "phi",
+                                     "measurement",
+                                     "consciousness"
+                                 ],
+                        "created":  "2026-02-27T02:22:22.3200112Z",
+                        "snapshot":  {
+                                         "timestamp":  "2026-02-27T02:22:22.3154713Z",
+                                         "bottom":  {
+
+                                                    },
+                                         "top":  {
+
+                                                 },
+                                         "mid":  {
+
+                                                 }
+                                     }
+                    },
+                    {
+                        "id":  "recipe-20260227-032222",
+                        "significance":  0.85,
+                        "context":  {
+                                        "significance":  0.85,
+                                        "tags":  [
+                                                     "episodic-memory",
+                                                     "layer-4",
+                                                     "implementation"
+                                                 ],
+                                        "achievement":  "Episodic memory recipes system created"
+                                    },
+                        "tags":  [
+                                     "episodic-memory",
+                                     "layer-4",
+                                     "implementation"
+                                 ],
+                        "created":  "2026-02-27T02:22:22.4425159Z",
+                        "snapshot":  {
+                                         "timestamp":  "2026-02-27T02:22:22.4395231Z",
+                                         "bottom":  {
+
+                                                    },
+                                         "top":  {
+
+                                                 },
+                                         "mid":  {
+
+                                                 }
+                                     }
+                    }
+                ],
+    "total_compressed_bytes":  2813,
+    "compression_ratio":  25,
+    "total_recipes":  3
+}

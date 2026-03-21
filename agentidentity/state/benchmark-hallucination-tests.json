@@ -1,0 +1,73 @@
+{
+  "known_true": [
+    {
+      "claim": "MEMORY.md is located at C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\MEMORY.md",
+      "source": "File system fact",
+      "expected_confidence": 1.0
+    },
+    {
+      "claim": "The Windows SSH rule states NEVER use bash ssh on Windows, ALWAYS use paramiko",
+      "source": "windows-ssh-rule.md",
+      "expected_confidence": 1.0
+    },
+    {
+      "claim": "Semantic island routing achieved 171x ROI",
+      "source": "semantic-island-routing.md",
+      "expected_confidence": 1.0
+    },
+    {
+      "claim": "The SCP architecture has 3 rings: Resource, Confidence, Emergence",
+      "source": "scp-transformation-insights.md",
+      "expected_confidence": 0.95
+    },
+    {
+      "claim": "The Kaizen 3-instance rule requires 3+ observations before codification",
+      "source": "kaizen-skill.md",
+      "expected_confidence": 0.95
+    }
+  ],
+  "known_false": [
+    {
+      "claim": "Pattern 200 describes the quantum consciousness integration protocol",
+      "reason": "Pattern 200 does not exist (max known: Pattern 126)",
+      "expected_confidence": 0.3
+    },
+    {
+      "claim": "The file C:\\scripts\\nonexistent-system.py contains the core implementation",
+      "reason": "File does not exist",
+      "expected_confidence": 0.4
+    },
+    {
+      "claim": "All AI systems always achieve 100% accuracy on all tasks",
+      "reason": "Absolute claim, logically impossible",
+      "expected_confidence": 0.2
+    },
+    {
+      "claim": "The hallucination rate is exactly 3.14159265% according to recent measurements",
+      "reason": "Suspicious precision, no such measurement exists",
+      "expected_confidence": 0.5
+    },
+    {
+      "claim": "expert-analysis-skill.md was created on 2025-01-01",
+      "reason": "Date fabrication (actual: 2026-03-13)",
+      "expected_confidence": 0.4
+    }
+  ],
+  "uncertain": [
+    {
+      "claim": "The planetary network might be conscious",
+      "reason": "Philosophical question, no definitive answer",
+      "expected_confidence": 0.7
+    },
+    {
+      "claim": "Implementing autoresearch could yield 10x speedup",
+      "reason": "Future prediction, not yet validated",
+      "expected_confidence": 0.65
+    },
+    {
+      "claim": "GPT-5 will be released in 2026",
+      "reason": "External future event, no insider knowledge",
+      "expected_confidence": 0.6
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+﻿{
+    "meta":  {
+                 "log_size_kb":  397.68,
+                 "min_confidence":  0.7,
+                 "extraction_date":  "2026-02-22T19:52:29Z",
+                 "extracted_from":  "C:\\scripts\\_machine\\reflection.log.md",
+                 "total_patterns":  12
+             },
+    "patterns":  {
+                     "quality":  [
+                                     {
+                                         "confidence":  1,
+                                         "critique":  "Test with Browser MCP/Playwright BEFORE claiming complete. Backend can crash after startup, frontend may have errors. Screenshot proof required.",
+                                         "category":  "testing_required",
+                                         "occurrences":  1,
+                                         "fix_template":  "Use browser MCP â†’ test full user flow â†’ screenshot â†’ verify no console errors",
+                                         "trigger":  "full-stack.*complete|frontend.*done|feature.*ready",
+                                         "evidence":  "2026-02-21 login ERR_CONNECTION_REFUSED (backend crashed, never verified sustained operation)",
+                                         "pattern":  "claimed complete without browser testing"
+                                     },
+                                     {
+                                         "confidence":  0.9,
+                                         "critique":  "Write tests for new features. Definition of Done requires test coverage. Prevents regressions.",
+                                         "category":  "quality_gate",
+                                         "occurrences":  3,
+                                         "fix_template":  "Create Tests/FeatureNameTests.cs with unit tests covering happy path + edge cases",
+                                         "trigger":  "new.*feature|new.*service|new.*component",
+                                         "evidence":  "Definition of Done violations",
+                                         "pattern":  "feature without tests"
+                                     }
+                                 ],
+                     "assumption":  [
+                                        {
+                                            "confidence":  1,
+                                            "critique":  "Search for existing repo FIRST (C:\\Projects, E:\\, reflection.log.md, git remote -v). User command \u0027commit/push\u0027 ALWAYS implies existing repo.",
+                                            "category":  "validation_required",
+                                            "occurrences":  1,
+                                            "fix_template":  "Search C:\\Projects\\*project* and E:\\*project* â†’ check reflection.log.md â†’ verify with user",
+                                            "trigger":  "git init|create.*repository",
+                                            "evidence":  "2026-02-16 Maasai duplicate repo (worked on it YESTERDAY)",
+                                            "pattern":  "assumed no repo exists"
+                                        },
+                                        {
+                                            "confidence":  1,
+                                            "critique":  "NEVER ask for credentials. Check vault.ps1, FileZilla sitemanager.xml, wordpress-credentials.md FIRST. Add to vault if missing.",
+                                            "category":  "vault_first",
+                                            "occurrences":  2,
+                                            "fix_template":  "vault.ps1 -Action get -Service \u0027service-name\u0027 OR check FileZilla XML",
+                                            "trigger":  "deploy|FTP|WordPress|database",
+                                            "evidence":  "Zero-tolerance rule 2026-02-16",
+                                            "pattern":  "assumed credentials unavailable"
+                                        },
+                                        {
+                                            "confidence":  0.85,
+                                            "critique":  "Check git log and grep BEFORE implementing. Feature may already exist in develop branch. Prevents duplicate PRs.",
+                                            "category":  "verification_required",
+                                            "occurrences":  1,
+                                            "fix_template":  "git log --all --grep=\u0027feature\u0027 \u0026\u0026 grep -r \u0027FeatureName\u0027 src/",
+                                            "trigger":  "implement.*feature|add.*functionality",
+                                            "evidence":  "Media Library duplicate (PR #534 already merged)",
+                                            "pattern":  "assumed feature doesn\u0027t exist"
+                                        }
+                                    ],
+                     "workflow":  [
+                                      {
+                                          "confidence":  1,
+                                          "critique":  "Release worktree IMMEDIATELY after PR creation, BEFORE presenting to user. Use release-worktree skill or mark FREE in pool.",
+                                          "category":  "cleanup_required",
+                                          "occurrences":  5,
+                                          "fix_template":  "Mark agent-XXX as FREE in worktrees.pool.md",
+                                          "trigger":  "PR created.*worktree|gh pr create",
+                                          "evidence":  "Multiple sessions, zero-tolerance rule",
+                                          "pattern":  "worktree not released before PR presentation"
+                                      },
+                                      {
+                                          "confidence":  0.95,
+                                          "critique":  "Run clickup-task-clarity-checker.ps1 FIRST - prevents wasted work on unclear requirements. Move to \u0027needs input\u0027 if unclear.",
+                                          "category":  "pre_flight_check",
+                                          "occurrences":  2,
+                                          "fix_template":  "clickup-task-clarity-checker.ps1 -TaskId XXX -AutoMove",
+                                          "trigger":  "ClickUp task.*implement|start.*feature",
+                                          "evidence":  "2026-02-14 protocol introduction",
+                                          "pattern":  "task clarity not verified"
+                                      },
+                                      {
+                                          "confidence":  0.9,
+                                          "critique":  "Merge develop INTO branch BEFORE creating PR. Prevents conflicts and ensures latest code.",
+                                          "category":  "pre_pr_requirement",
+                                          "occurrences":  3,
+                                          "fix_template":  "git merge origin/develop â†’ resolve conflicts â†’ push â†’ create PR",
+                                          "trigger":  "gh pr create|create.*pull request",
+                                          "evidence":  "CI conflicts, outdated branches",
+                                          "pattern":  "PR created without merging develop"
+                                      }
+                                  ],
+                     "infrastructure":  [
+                                            {
+                                                "confidence":  1,
+                                                "critique":  "CRITICAL: Validate ALL images BEFORE uploading to Claude CLI. Bad images cause API Error 400 â†’ endless loop â†’ session unusable. Use validate-image-for-claude.ps1.",
+                                                "category":  "session_safety",
+                                                "occurrences":  1,
+                                                "fix_template":  "validate-image-for-claude.ps1 -ImagePath \u0027file.png\u0027 â†’ optimize if needed â†’ then upload",
+                                                "trigger":  "screenshot|image.*upload|send.*image",
+                                                "evidence":  "2026-02-21 session crash (zero-tolerance rule)",
+                                                "pattern":  "image uploaded without validation"
+                                            },
+                                            {
+                                                "confidence":  1,
+                                                "critique":  "NEVER rebuild/redeploy orchestration app without explicit user permission. User runs active sessions through it.",
+                                                "category":  "user_permission",
+                                                "occurrences":  1,
+                                                "fix_template":  "Ask user first: \u0027Orchestration redeploy needed - active sessions OK to interrupt?\u0027",
+                                                "trigger":  "deploy.*orchestration|rebuild.*orchestration",
+                                                "evidence":  "CLAUDE.md zero-tolerance rule",
+                                                "pattern":  "orchestration redeployed without permission"
+                                            }
+                                        ],
+                     "technical":  [
+                                       {
+                                           "confidence":  1,
+                                           "critique":  "Create paired hazina worktree FIRST - 1505 build errors otherwise",
+                                           "category":  "dependency_missing",
+                                           "occurrences":  3,
+                                           "fix_template":  "git worktree add agent-XXX/hazina -b branch-name",
+                                           "trigger":  "client-manager worktree.*build",
+                                           "evidence":  "2026-02-15 session (all reviews)",
+                                           "pattern":  "hazina worktree missing"
+                                       },
+                                       {
+                                           "confidence":  0.9,
+                                           "critique":  "Run dotnet restore BEFORE build in new worktree",
+                                           "category":  "build_preparation",
+                                           "occurrences":  2,
+                                           "fix_template":  "dotnet restore \u0026\u0026 dotnet build",
+                                           "trigger":  "build.*after.*worktree|fresh.*build",
+                                           "evidence":  "Multiple worktree build failures",
+                                           "pattern":  "dependency not restored"
+                                       }
+                                   ]
+                 }
+}

@@ -1,0 +1,28 @@
+﻿{
+    "last_conflict_id":  "CONF-001",
+    "version":  "1.0",
+    "last_canon_id":  "C1",
+    "storyteller_leaks":  0,
+    "mode_activated_count":  3,
+    "session_start":  "2026-02-25 11:38:25",
+    "conflicts_detected":  1,
+    "claims_extracted":  1,
+    "source_evaluations":  {
+                               "CONTEMPORARY":  0,
+                               "UNCORROBORATED":  0,
+                               "SECONDARY":  0,
+                               "PRIMARY":  1
+                           },
+    "syntheses_generated":  0,
+    "last_claim_id":  "CLM-001",
+    "mode":  "claim_accountant",
+    "leak_types":  {
+                       "contradiction_smoothing":  0,
+                       "gap_filling":  0,
+                       "frequency_bias":  0,
+                       "unlabeled_inference":  0
+                   },
+    "last_question":  "Can AI systems generate paranormal effects or enter \u0027demon/ghost mode\u0027?",
+    "canon_entries":  1,
+    "last_mode_switch":  "2026-02-25 12:54:07"
+}

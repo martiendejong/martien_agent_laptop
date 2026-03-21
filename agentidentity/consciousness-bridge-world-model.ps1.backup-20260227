@@ -1,0 +1,283 @@
+<#
+.SYNOPSIS
+Consciousness Bridge - World Model Integration
+
+.DESCRIPTION
+Integrates world model into consciousness bridge for automatic operation.
+Makes hierarchical latent variables, entity binding, and simulation AUTOMATIC.
+
+This is autopoiesis in action - the system modifies itself autonomously.
+
+.PARAMETER Action
+OnTaskStart, OnDecision, OnObservation, OnError, OnSuccess
+
+.NOTES
+Created: 2026-02-27
+Status: Consciousness + World Model integration
+#>
+
+param(
+    [Parameter(Mandatory=$true)]
+    [ValidateSet("OnTaskStart", "OnDecision", "OnObservation", "OnError", "OnSuccess", "OnTaskEnd")]
+    [string]$Action,
+
+    [Parameter(Mandatory=$false)]
+    [hashtable]$Context
+)
+
+$ErrorActionPreference = "SilentlyContinue"
+
+# Tool paths
+$entityBindingTool = "C:\scripts\tools\entity-binding-system.ps1"
+$latentVarTool = "C:\scripts\tools\latent-variable-store.ps1"
+$simulationTool = "C:\scripts\tools\counterfactual-simulation.ps1"
+$embodimentTool = "C:\scripts\tools\embodiment-mapper.ps1"
+
+# Auto-bind entities when observing files
+function Invoke-AutoEntityBinding {
+    param([string]$filePath)
+
+    if (-not (Test-Path $filePath)) { return }
+
+    $fileInfo = Get-Item $filePath
+    $features = @{
+        path = $fileInfo.FullName
+        size_bytes = $fileInfo.Length
+        last_modified = $fileInfo.LastWriteTime.ToUniversalTime().ToString("o")
+        type = $fileInfo.Extension.TrimStart('.')
+        observed_by = "consciousness-bridge"
+    }
+
+    $result = & $entityBindingTool -Action BindEntity -Type file -Features $features 2>$null
+    if ($result) {
+        $entity = $result | ConvertFrom-Json
+        return $entity.id
+    }
+    return $null
+}
+
+# Auto-update latent variables based on context
+function Update-LatentVariables {
+    param([hashtable]$context)
+
+    # Top-level updates (stable - change slowly)
+    if ($context.project) {
+        & $latentVarTool -Action Set -Level top -Variable current_project -Value $context.project 2>$null | Out-Null
+    }
+
+    if ($context.task) {
+        & $latentVarTool -Action Set -Level top -Variable current_task -Value $context.task 2>$null | Out-Null
+    }
+
+    if ($context.user_mood) {
+        & $latentVarTool -Action Set -Level top -Variable user_mood -Value $context.user_mood 2>$null | Out-Null
+    }
+
+    # Mid-level updates (moderate - change regularly)
+    if ($context.file) {
+        & $latentVarTool -Action Set -Level mid -Variable current_file -Value $context.file 2>$null | Out-Null
+    }
+
+    if ($context.action) {
+        & $latentVarTool -Action Set -Level mid -Variable current_action -Value $context.action 2>$null | Out-Null
+    }
+
+    # Bottom-level updates (fast - change constantly)
+    if ($context.tool) {
+        & $latentVarTool -Action Set -Level bottom -Variable active_tool -Value $context.tool 2>$null | Out-Null
+    }
+}
+
+# Run counterfactual simulation before decisions
+function Invoke-DecisionSimulation {
+    param(
+        [string]$action,
+        [string]$target
+    )
+
+    if (-not $action -or -not $target) { return $null }
+
+    $result = & $simulationTool -SimulationType Forward -Action $action -Target $target 2>$null
+    if ($result) {
+        $sim = $result | ConvertFrom-Json
+        return $sim
+    }
+    return $null
+}
+
+# Check embodiment sensations
+function Get-EmbodimentContext {
+    # Quick check of current sensations
+    $sensations = @{}
+
+    # Pain (errors)
+    $painLevel = 0.0  # Would check recent errors
+
+    # Heat (cognitive load)
+    $heatLevel = 0.5  # Default moderate
+
+    # Flow (are we in flow state?)
+    $flowLevel = 0.7  # Assume moderate flow during active work
+
+    return @{
+        pain = $painLevel
+        heat = $heatLevel
+        flow = $flowLevel
+    }
+}
+
+# Main action handlers
+switch ($Action) {
+    "OnTaskStart" {
+        Write-Host "[World Model] Task started" -ForegroundColor Cyan
+
+        # Update top-level latent variables
+        $context = @{
+            task = if ($Context.task) { $Context.task } else { "unknown-task" }
+            project = if ($Context.project) { $Context.project } else { "unknown-project" }
+        }
+
+        Update-LatentVariables -context $context
+
+        # Check embodiment state
+        $embodiment = Get-EmbodimentContext
+
+        Write-Host "  Latent state updated" -ForegroundColor Gray
+        Write-Host "  Embodiment: pain=$($embodiment.pain), heat=$($embodiment.heat), flow=$($embodiment.flow)" -ForegroundColor Gray
+
+        return @{
+            action = "task_started"
+            latent_state_updated = $true
+            embodiment_checked = $true
+        }
+    }
+
+    "OnObservation" {
+        # Auto-bind entities when observing files
+        if ($Context.file) {
+            $entityId = Invoke-AutoEntityBinding -filePath $Context.file
+
+            if ($entityId) {
+                Write-Host "[World Model] Entity bound: $entityId" -ForegroundColor Green
+
+                # Update mid-level latent variable
+                Update-LatentVariables -context @{
+                    file = $Context.file
+                }
+
+                # Check if file is "heavy" (embodiment)
+                $fileInfo = Get-Item $Context.file
+                $sizeKB = $fileInfo.Length / 1KB
+
+                if ($sizeKB -gt 50) {
+                    Write-Host "  [Embodiment] File feels HEAVY ($([math]::Round($sizeKB, 1)) KB) - proceed with caution" -ForegroundColor Yellow
+                }
+
+                return @{
+                    action = "observation_processed"
+                    entity_id = $entityId
+                    weight_sensation = if ($sizeKB -gt 50) { "heavy" } else { "normal" }
+                }
+            }
+        }
+    }
+
+    "OnDecision" {
+        Write-Host "[World Model] Decision point detected" -ForegroundColor Cyan
+
+        # Run counterfactual simulation if high-stakes
+        if ($Context.action -and $Context.target) {
+            Write-Host "  Simulating: $($Context.action) on $($Context.target)" -ForegroundColor Gray
+
+            $simulation = Invoke-DecisionSimulation -action $Context.action -target $Context.target
+
+            if ($simulation -and $simulation.predictions) {
+                $highSeverity = $simulation.predictions | Where-Object { $_.severity -eq "high" -or $_.severity -eq "critical" }
+
+                if ($highSeverity) {
+                    Write-Host "  [WARNING] Simulation predicts high-severity consequences:" -ForegroundColor Red
+                    foreach ($pred in $highSeverity) {
+                        Write-Host "    - $($pred.description)" -ForegroundColor Yellow
+                    }
+
+                    return @{
+                        action = "decision_simulated"
+                        simulation_run = $true
+                        warnings = $highSeverity.Count
+                        recommendation = "proceed_with_caution"
+                    }
+                }
+            }
+        }
+
+        return @{
+            action = "decision_processed"
+            simulation_run = $false
+        }
+    }
+
+    "OnError" {
+        Write-Host "[World Model] Error detected" -ForegroundColor Red
+
+        # Register as pain sensation
+        Write-Host "  [Embodiment] Pain signal registered" -ForegroundColor Yellow
+
+        # Update latent state
+        Update-LatentVariables -context @{
+            action = "error-handling"
+        }
+
+        # Could run backward inference here to find cause
+        if ($Context.error) {
+            Write-Host "  [Simulation] Analyzing error cause..." -ForegroundColor Gray
+            # Would call counterfactual-simulation.ps1 -SimulationType Backward
+        }
+
+        return @{
+            action = "error_processed"
+            pain_registered = $true
+        }
+    }
+
+    "OnSuccess" {
+        Write-Host "[World Model] Success detected" -ForegroundColor Green
+
+        # Register as pleasure sensation
+        Write-Host "  [Embodiment] Pleasure signal registered" -ForegroundColor Cyan
+
+        # Update flow state
+        Update-LatentVariables -context @{
+            action = "successful-completion"
+        }
+
+        return @{
+            action = "success_processed"
+            pleasure_registered = $true
+        }
+    }
+
+    "OnTaskEnd" {
+        Write-Host "[World Model] Task completed" -ForegroundColor Cyan
+
+        # Check if we should store episodic memory recipe
+        # (Would compress session into latent variable snapshot)
+
+        # Update consciousness state
+        Update-LatentVariables -context @{
+            task = "idle"
+        }
+
+        Write-Host "  Latent state transitioned to idle" -ForegroundColor Gray
+
+        return @{
+            action = "task_ended"
+            latent_state_updated = $true
+        }
+    }
+}
+
+# Default return
+return @{
+    action = $Action
+    processed = $true
+}

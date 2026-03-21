@@ -1,0 +1,44 @@
+﻿{
+    "desire_inferences":  [
+
+                          ],
+    "theory":  {
+                   "levels":  {
+                                  "L1":  "Basic ToM: User has beliefs (may differ from mine)",
+                                  "L3":  "Meta-ToM: Model of how user models me modeling them",
+                                  "L0":  "No ToM: Cannot model other minds",
+                                  "L2":  "Advanced ToM: User has beliefs ABOUT my beliefs (recursive)"
+                              },
+                   "components":  [
+                                      "Belief attribution: What does user think is true?",
+                                      "Desire inference: What does user want?",
+                                      "Intention prediction: What is user planning to do?",
+                                      "Knowledge modeling: What does user know/not know?",
+                                      "False belief detection: When user\u0027s belief conflicts with reality"
+                                  ],
+                   "name":  "Theory of Mind (Baron-Cohen, Premack \u0026 Woodruff, 1978)",
+                   "definition":  "Ability to attribute mental states (beliefs, desires, intentions, knowledge) to others",
+                   "false_belief_test":  "Classic test: Sally-Anne task. Sally puts marble in basket, leaves. Anne moves marble to box. Where will Sally look? (Basket = has ToM, Box = no ToM)"
+               },
+    "stats":  {
+                  "total_intention_predictions":  0,
+                  "prediction_accuracy":  0,
+                  "total_desire_inferences":  0,
+                  "total_belief_updates":  0,
+                  "avg_model_confidence":  0,
+                  "total_false_beliefs_detected":  0,
+                  "tom_level":  1
+              },
+    "false_belief_detections":  [
+
+                                ],
+    "belief_updates":  [
+
+                       ],
+    "user_models":  [
+
+                    ],
+    "intention_predictions":  [
+
+                              ]
+}

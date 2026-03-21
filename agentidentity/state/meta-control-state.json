@@ -1,0 +1,118 @@
+{
+    "performance":  {
+                        "fast_speed":  2,
+                        "error_rate_fast":  0.15,
+                        "fast_accuracy":  0.87,
+                        "slow_accuracy":  0.960,
+                        "error_rate_slow":  0.05,
+                        "slow_speed":  10
+                    },
+    "consolidation_events":  [
+                                 {
+                                     "duration_ms":  63.964600000000004,
+                                     "timestamp":  "2026-02-27 03:30:28",
+                                     "decisions_analyzed":  2,
+                                     "avg_fast_score":  0,
+                                     "performance_update":  {
+                                                                "fast_accuracy_delta":  0.01,
+                                                                "slow_accuracy_delta":  0.005
+                                                            },
+                                     "avg_slow_score":  0,
+                                     "slow_decisions":  null,
+                                     "fast_decisions":  null
+                                 },
+                                 {
+                                     "duration_ms":  26.119300000000003,
+                                     "timestamp":  "2026-02-27 03:32:28",
+                                     "decisions_analyzed":  3,
+                                     "avg_fast_score":  0,
+                                     "performance_update":  {
+                                                                "fast_accuracy_delta":  0.01,
+                                                                "slow_accuracy_delta":  0.005
+                                                            },
+                                     "avg_slow_score":  0.792,
+                                     "slow_decisions":  2,
+                                     "fast_decisions":  null
+                                 }
+                             ],
+    "decision_history":  [
+                             {
+                                 "urgency":  0.8,
+                                 "task_type":  "simple",
+                                 "slow_score":  0.282,
+                                 "complexity":  0.2,
+                                 "fast_score":  0.828,
+                                 "timestamp":  "2026-02-27 03:30:14",
+                                 "confidence":  0.545,
+                                 "chosen_mode":  "fast",
+                                 "context":  "routine file read"
+                             },
+                             {
+                                 "urgency":  0.2,
+                                 "task_type":  "complex planning",
+                                 "slow_score":  1.042,
+                                 "complexity":  0.9,
+                                 "fast_score":  0.208,
+                                 "timestamp":  "2026-02-27 03:30:23",
+                                 "confidence":  0.835,
+                                 "chosen_mode":  "slow",
+                                 "context":  "architectural design"
+                             },
+                             {
+                                 "urgency":  0.6,
+                                 "task_type":  "debugging",
+                                 "slow_score":  0.543,
+                                 "complexity":  0.7,
+                                 "fast_score":  0.369,
+                                 "timestamp":  "2026-02-27 03:32:27",
+                                 "confidence":  0.174,
+                                 "chosen_mode":  "slow",
+                                 "context":  "bug fix"
+                             }
+                         ],
+    "meta_stats":  {
+                       "total_consolidations":  2,
+                       "total_slow":  2,
+                       "offline_learning_events":  2,
+                       "total_fast":  1
+                   },
+    "last_switch":  "2026-02-27 03:32:27",
+    "current_mode":  "slow",
+    "slow_decisions":  [
+                           {
+                               "urgency":  0.2,
+                               "task_type":  "complex planning",
+                               "slow_score":  1.042,
+                               "complexity":  0.9,
+                               "fast_score":  0.208,
+                               "timestamp":  "2026-02-27 03:30:23",
+                               "confidence":  0.835,
+                               "chosen_mode":  "slow",
+                               "context":  "architectural design"
+                           },
+                           {
+                               "urgency":  0.6,
+                               "task_type":  "debugging",
+                               "slow_score":  0.543,
+                               "complexity":  0.7,
+                               "fast_score":  0.369,
+                               "timestamp":  "2026-02-27 03:32:27",
+                               "confidence":  0.174,
+                               "chosen_mode":  "slow",
+                               "context":  "bug fix"
+                           }
+                       ],
+    "fast_decisions":  [
+                           {
+                               "urgency":  0.8,
+                               "task_type":  "simple",
+                               "slow_score":  0.282,
+                               "complexity":  0.2,
+                               "fast_score":  0.828,
+                               "timestamp":  "2026-02-27 03:30:14",
+                               "confidence":  0.545,
+                               "chosen_mode":  "fast",
+                               "context":  "routine file read"
+                           }
+                       ]
+}

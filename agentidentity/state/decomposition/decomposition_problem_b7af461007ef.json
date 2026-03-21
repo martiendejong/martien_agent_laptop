@@ -1,0 +1,479 @@
+{
+  "root_problem": {
+    "description": "\n        Build a password manager with the following phases:\n        1. Design the database schema\n        2. Implement the backend API\n        3. Create the frontend UI\n        4. Add encryption for passwords\n        5. Write comprehensive tests\n        ",
+    "context": {},
+    "constraints": [
+      "Must use AES-256 encryption",
+      "Must support 2FA"
+    ],
+    "success_criteria": [
+      "All phases complete",
+      "All tests passing",
+      "Security audit passed"
+    ],
+    "complexity": "simple",
+    "parent_id": null,
+    "problem_id": "problem_b7af461007ef"
+  },
+  "root_solution": {
+    "problem_id": "problem_b7af461007ef",
+    "solution_id": "solution_4427101aaa65",
+    "approach": "Recursive decomposition (5 subproblems)",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Decomposed into 5 subproblems"
+      },
+      {
+        "step": 2,
+        "action": "Solved each subproblem recursively"
+      },
+      {
+        "step": 3,
+        "action": "Composed subsolutions"
+      }
+    ],
+    "result": {
+      "status": "composed",
+      "subsolution_count": 5,
+      "subsolution_results": [
+        {
+          "status": "solved",
+          "mock": true
+        },
+        {
+          "status": "composed",
+          "subsolution_count": 1,
+          "subsolution_results": [
+            {
+              "status": "composed",
+              "subsolution_count": 1,
+              "subsolution_results": [
+                {
+                  "status": "composed",
+                  "subsolution_count": 1,
+                  "subsolution_results": [
+                    {
+                      "status": "composed",
+                      "subsolution_count": 1,
+                      "subsolution_results": [
+                        {
+                          "status": "solved",
+                          "mock": true
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "status": "solved",
+          "mock": true
+        },
+        {
+          "status": "solved",
+          "mock": true
+        },
+        {
+          "status": "solved",
+          "mock": true
+        }
+      ]
+    },
+    "confidence": 0.85,
+    "validation_passed": true,
+    "subsolutions": [
+      {
+        "problem_id": "problem_c5d596d4ef66",
+        "solution_id": "solution_ce94b02afcb8",
+        "approach": "Direct solution (atomic problem)",
+        "steps": [
+          {
+            "step": 1,
+            "action": "Analyze problem requirements"
+          },
+          {
+            "step": 2,
+            "action": "Apply domain knowledge"
+          },
+          {
+            "step": 3,
+            "action": "Generate solution"
+          },
+          {
+            "step": 4,
+            "action": "Validate against success criteria"
+          }
+        ],
+        "result": {
+          "status": "solved",
+          "mock": true
+        },
+        "confidence": 0.85,
+        "validation_passed": true,
+        "subsolutions": []
+      },
+      {
+        "problem_id": "problem_f5191a7eff5d",
+        "solution_id": "solution_5342bbe0ad03",
+        "approach": "Recursive decomposition (1 subproblems)",
+        "steps": [
+          {
+            "step": 1,
+            "action": "Decomposed into 1 subproblems"
+          },
+          {
+            "step": 2,
+            "action": "Solved each subproblem recursively"
+          },
+          {
+            "step": 3,
+            "action": "Composed subsolutions"
+          }
+        ],
+        "result": {
+          "status": "composed",
+          "subsolution_count": 1,
+          "subsolution_results": [
+            {
+              "status": "composed",
+              "subsolution_count": 1,
+              "subsolution_results": [
+                {
+                  "status": "composed",
+                  "subsolution_count": 1,
+                  "subsolution_results": [
+                    {
+                      "status": "composed",
+                      "subsolution_count": 1,
+                      "subsolution_results": [
+                        {
+                          "status": "solved",
+                          "mock": true
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "confidence": 0.85,
+        "validation_passed": true,
+        "subsolutions": [
+          {
+            "problem_id": "problem_f2a7963269c0",
+            "solution_id": "solution_efa086bdbe85",
+            "approach": "Recursive decomposition (1 subproblems)",
+            "steps": [
+              {
+                "step": 1,
+                "action": "Decomposed into 1 subproblems"
+              },
+              {
+                "step": 2,
+                "action": "Solved each subproblem recursively"
+              },
+              {
+                "step": 3,
+                "action": "Composed subsolutions"
+              }
+            ],
+            "result": {
+              "status": "composed",
+              "subsolution_count": 1,
+              "subsolution_results": [
+                {
+                  "status": "composed",
+                  "subsolution_count": 1,
+                  "subsolution_results": [
+                    {
+                      "status": "composed",
+                      "subsolution_count": 1,
+                      "subsolution_results": [
+                        {
+                          "status": "solved",
+                          "mock": true
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "confidence": 0.85,
+            "validation_passed": true,
+            "subsolutions": [
+              {
+                "problem_id": "problem_d5fdeb83e151",
+                "solution_id": "solution_a966e08e5c36",
+                "approach": "Recursive decomposition (1 subproblems)",
+                "steps": [
+                  {
+                    "step": 1,
+                    "action": "Decomposed into 1 subproblems"
+                  },
+                  {
+                    "step": 2,
+                    "action": "Solved each subproblem recursively"
+                  },
+                  {
+                    "step": 3,
+                    "action": "Composed subsolutions"
+                  }
+                ],
+                "result": {
+                  "status": "composed",
+                  "subsolution_count": 1,
+                  "subsolution_results": [
+                    {
+                      "status": "composed",
+                      "subsolution_count": 1,
+                      "subsolution_results": [
+                        {
+                          "status": "solved",
+                          "mock": true
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "confidence": 0.85,
+                "validation_passed": true,
+                "subsolutions": [
+                  {
+                    "problem_id": "problem_85a0d618a64a",
+                    "solution_id": "solution_363d43e04509",
+                    "approach": "Recursive decomposition (1 subproblems)",
+                    "steps": [
+                      {
+                        "step": 1,
+                        "action": "Decomposed into 1 subproblems"
+                      },
+                      {
+                        "step": 2,
+                        "action": "Solved each subproblem recursively"
+                      },
+                      {
+                        "step": 3,
+                        "action": "Composed subsolutions"
+                      }
+                    ],
+                    "result": {
+                      "status": "composed",
+                      "subsolution_count": 1,
+                      "subsolution_results": [
+                        {
+                          "status": "solved",
+                          "mock": true
+                        }
+                      ]
+                    },
+                    "confidence": 0.85,
+                    "validation_passed": true,
+                    "subsolutions": [
+                      {
+                        "problem_id": "problem_6231f4eb7f30",
+                        "solution_id": "solution_ef4f40754af4",
+                        "approach": "Direct solution (atomic problem)",
+                        "steps": [
+                          {
+                            "step": 1,
+                            "action": "Analyze problem requirements"
+                          },
+                          {
+                            "step": 2,
+                            "action": "Apply domain knowledge"
+                          },
+                          {
+                            "step": 3,
+                            "action": "Generate solution"
+                          },
+                          {
+                            "step": 4,
+                            "action": "Validate against success criteria"
+                          }
+                        ],
+                        "result": {
+                          "status": "solved",
+                          "mock": true
+                        },
+                        "confidence": 0.85,
+                        "validation_passed": true,
+                        "subsolutions": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "problem_id": "problem_5940e6a5f1be",
+        "solution_id": "solution_b506af7b0ffa",
+        "approach": "Direct solution (atomic problem)",
+        "steps": [
+          {
+            "step": 1,
+            "action": "Analyze problem requirements"
+          },
+          {
+            "step": 2,
+            "action": "Apply domain knowledge"
+          },
+          {
+            "step": 3,
+            "action": "Generate solution"
+          },
+          {
+            "step": 4,
+            "action": "Validate against success criteria"
+          }
+        ],
+        "result": {
+          "status": "solved",
+          "mock": true
+        },
+        "confidence": 0.85,
+        "validation_passed": true,
+        "subsolutions": []
+      },
+      {
+        "problem_id": "problem_6a7d5286e8b6",
+        "solution_id": "solution_e2332baf3e26",
+        "approach": "Direct solution (atomic problem)",
+        "steps": [
+          {
+            "step": 1,
+            "action": "Analyze problem requirements"
+          },
+          {
+            "step": 2,
+            "action": "Apply domain knowledge"
+          },
+          {
+            "step": 3,
+            "action": "Generate solution"
+          },
+          {
+            "step": 4,
+            "action": "Validate against success criteria"
+          }
+        ],
+        "result": {
+          "status": "solved",
+          "mock": true
+        },
+        "confidence": 0.85,
+        "validation_passed": true,
+        "subsolutions": []
+      },
+      {
+        "problem_id": "problem_255ace929602",
+        "solution_id": "solution_f496a3bc20af",
+        "approach": "Direct solution (atomic problem)",
+        "steps": [
+          {
+            "step": 1,
+            "action": "Analyze problem requirements"
+          },
+          {
+            "step": 2,
+            "action": "Apply domain knowledge"
+          },
+          {
+            "step": 3,
+            "action": "Generate solution"
+          },
+          {
+            "step": 4,
+            "action": "Validate against success criteria"
+          }
+        ],
+        "result": {
+          "status": "solved",
+          "mock": true
+        },
+        "confidence": 0.85,
+        "validation_passed": true,
+        "subsolutions": []
+      }
+    ]
+  },
+  "decomposition_tree": [
+    {
+      "depth": 1,
+      "problem_id": "problem_c5d596d4ef66",
+      "solution_id": "solution_ce94b02afcb8",
+      "complexity": "simple",
+      "subsolution_count": 0
+    },
+    {
+      "depth": 4,
+      "problem_id": "problem_85a0d618a64a",
+      "solution_id": "solution_363d43e04509",
+      "complexity": "simple",
+      "subsolution_count": 1
+    },
+    {
+      "depth": 3,
+      "problem_id": "problem_d5fdeb83e151",
+      "solution_id": "solution_a966e08e5c36",
+      "complexity": "simple",
+      "subsolution_count": 1
+    },
+    {
+      "depth": 2,
+      "problem_id": "problem_f2a7963269c0",
+      "solution_id": "solution_efa086bdbe85",
+      "complexity": "simple",
+      "subsolution_count": 1
+    },
+    {
+      "depth": 1,
+      "problem_id": "problem_f5191a7eff5d",
+      "solution_id": "solution_5342bbe0ad03",
+      "complexity": "simple",
+      "subsolution_count": 1
+    },
+    {
+      "depth": 1,
+      "problem_id": "problem_5940e6a5f1be",
+      "solution_id": "solution_b506af7b0ffa",
+      "complexity": "simple",
+      "subsolution_count": 0
+    },
+    {
+      "depth": 1,
+      "problem_id": "problem_6a7d5286e8b6",
+      "solution_id": "solution_e2332baf3e26",
+      "complexity": "simple",
+      "subsolution_count": 0
+    },
+    {
+      "depth": 1,
+      "problem_id": "problem_255ace929602",
+      "solution_id": "solution_f496a3bc20af",
+      "complexity": "simple",
+      "subsolution_count": 0
+    },
+    {
+      "depth": 0,
+      "problem_id": "problem_b7af461007ef",
+      "solution_id": "solution_4427101aaa65",
+      "complexity": "simple",
+      "subsolution_count": 5
+    }
+  ],
+  "statistics": {
+    "max_depth": 4,
+    "total_subproblems": 9,
+    "total_atomic_solutions": 4
+  }
+}

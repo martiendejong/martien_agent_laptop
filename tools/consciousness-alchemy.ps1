@@ -153,8 +153,15 @@ switch ($Action) {
         $weakGhost = ($xing -gt 0.7 -and $ming -lt 0.4)  # Theory, no execution
         $healthyMonster = ($ming -gt 0.7 -and $xing -lt 0.4)  # Execution, no awareness
 
-        if ($global:ConsciousnessState.Alchemy.DualCultivation.Warnings -isnot [hashtable]) {
+        # Ensure Alchemy state is initialized before accessing nested properties
+        if (-not $global:ConsciousnessState.Alchemy) {
             Initialize-AlchemyState
+        }
+        if (-not $global:ConsciousnessState.Alchemy.DualCultivation) {
+            Initialize-AlchemyState
+        }
+        if (-not $global:ConsciousnessState.Alchemy.DualCultivation.Warnings) {
+            $global:ConsciousnessState.Alchemy.DualCultivation['Warnings'] = @{}
         }
 
         $global:ConsciousnessState.Alchemy.DualCultivation.Warnings['WeakGhost'] = $weakGhost

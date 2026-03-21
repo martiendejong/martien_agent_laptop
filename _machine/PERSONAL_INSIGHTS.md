@@ -49,6 +49,48 @@
 
 ---
 
+## 🚨 CRITICAL UPDATES (2026-03-02)
+
+### HOTFIX MODE - Develop Branch Workflow (NEW)
+
+**User directive:** "build errors en bugs op develop los op develop op. daarvoor is geen pull request nodig"
+
+**Critical Rule:**
+- Develop branch broken? → Fix DIRECTLY on develop, NO PR
+- Broken develop blocks entire team → Quick hotfix priority
+
+**Decision Tree:**
+```
+Is develop broken (build error, test failure, crash)?
+├─ YES → HOTFIX MODE
+│  ├─ Work in base repo (C:\Projects\<repo>)
+│  ├─ NO worktree allocation
+│  ├─ NO PR creation
+│  ├─ Direct commit + push to develop
+│  └─ Examples: Swagger conflict, missing dependency, test suite broken
+│
+└─ NO (develop works, adding feature)
+   └─ FEATURE MODE
+      ├─ Allocate worktree
+      ├─ Create feature branch
+      ├─ PR to develop
+      └─ Release worktree after PR
+```
+
+**Rationale:**
+- Broken develop = blocker for ALL developers
+- Quick fixes need speed, not review overhead
+- User values unblocking team over process formality
+
+**Anchored in:**
+- hard-rules.md § DEVELOP HOTFIXES
+- allocate-worktree skill § Mode Detection (HOTFIX MODE first check)
+- reflection.log.md § 2026-03-02 19:20
+
+**Impact:** Faster incident response for critical issues, proper process for features.
+
+---
+
 ## 🚨 CRITICAL UPDATES (2026-02-07)
 
 ### Testing Protocol - RECURRING VIOLATION ⚠️

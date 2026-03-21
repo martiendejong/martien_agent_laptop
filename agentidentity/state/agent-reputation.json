@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.0",
+  "last_updated": "2026-02-17T03:38:00Z",
+  "agents": {
+    "Task_Explore": {
+      "description": "Fast codebase exploration agent",
+      "task_categories": {
+        "code_search": {
+          "total_tasks": 0,
+          "successes": 0,
+          "failures": 0,
+          "success_rate": 0.0,
+          "avg_turns": 0.0,
+          "trust_score": 5.0,
+          "failure_patterns": [],
+          "expertise_domains": [],
+          "latent_expertise_events": [],
+          "notes": "Baseline trust, no data yet"
+        },
+        "architecture_analysis": {
+          "total_tasks": 0,
+          "successes": 0,
+          "failures": 0,
+          "success_rate": 0.0,
+          "avg_turns": 0.0,
+          "trust_score": 5.0,
+          "failure_patterns": [],
+          "expertise_domains": [],
+          "latent_expertise_events": [],
+          "notes": "Baseline trust, no data yet"
+        },
+        "file_discovery": {
+          "total_tasks": 0,
+          "successes": 0,
+          "failures": 0,
+          "success_rate": 0.0,
+          "avg_turns": 0.0,
+          "trust_score": 5.0,
+          "failure_patterns": [],
+          "expertise_domains": [],
+          "latent_expertise_events": [],
+          "notes": "Baseline trust, no data yet"
+        }
+      }
+    },
+    "Task_Plan": {
+      "description": "Software architect agent for implementation planning",
+      "task_categories": {
+        "feature_planning": {
+          "total_tasks": 0,
+          "successes": 0,
+          "failures": 0,
+          "success_rate": 0.0,
+          "avg_turns": 0.0,
+          "trust_score": 5.0,
+          "failure_patterns": [],
+          "expertise_domains": [],
+          "latent_expertise_events": [],
+          "notes": "Baseline trust, no data yet"
+        },
+        "architecture_design": {
+          "total_tasks": 0,
+          "successes": 0,
+          "failures": 0,
+          "success_rate": 0.0,
+          "avg_turns": 0.0,
+          "trust_score": 5.0,
+          "failure_patterns": [],
+          "expertise_domains": [],
+          "latent_expertise_events": [],
+          "notes": "Baseline trust, no data yet"
+        }
+      }
+    },
+    "Task_GeneralPurpose": {
+      "description": "General-purpose agent for complex multi-step tasks",
+      "task_categories": {
+        "research": {
+          "total_tasks": 0,
+          "successes": 0,
+          "failures": 0,
+          "success_rate": 0.0,
+          "avg_turns": 0.0,
+          "trust_score": 5.0,
+          "failure_patterns": [],
+          "expertise_domains": [],
+          "latent_expertise_events": [],
+          "notes": "Baseline trust, no data yet"
+        },
+        "debugging": {
+          "total_tasks": 0,
+          "successes": 0,
+          "failures": 0,
+          "success_rate": 0.0,
+          "avg_turns": 0.0,
+          "trust_score": 5.0,
+          "failure_patterns": [],
+          "expertise_domains": [],
+          "latent_expertise_events": [],
+          "notes": "Baseline trust, no data yet"
+        },
+        "complex_analysis": {
+          "total_tasks": 0,
+          "successes": 0,
+          "failures": 0,
+          "success_rate": 0.0,
+          "avg_turns": 0.0,
+          "trust_score": 5.0,
+          "failure_patterns": [],
+          "expertise_domains": [],
+          "latent_expertise_events": [],
+          "notes": "Baseline trust, no data yet"
+        }
+      }
+    },
+    "Task_Bash": {
+      "description": "Command execution specialist",
+      "task_categories": {
+        "git_operations": {
+          "total_tasks": 0,
+          "successes": 0,
+          "failures": 0,
+          "success_rate": 0.0,
+          "avg_turns": 0.0,
+          "trust_score": 5.0,
+          "failure_patterns": [],
+          "expertise_domains": [],
+          "latent_expertise_events": [],
+          "notes": "Baseline trust, no data yet"
+        },
+        "terminal_commands": {
+          "total_tasks": 0,
+          "successes": 0,
+          "failures": 0,
+          "success_rate": 0.0,
+          "avg_turns": 0.0,
+          "trust_score": 5.0,
+          "failure_patterns": [],
+          "expertise_domains": [],
+          "latent_expertise_events": [],
+          "notes": "Baseline trust, no data yet"
+        }
+      }
+    }
+  },
+  "delegation_log": [],
+  "notes": "Initialized 2026-02-17. Trust scores start at 5.0 (neutral). Will be updated as delegation history accumulates."
+}

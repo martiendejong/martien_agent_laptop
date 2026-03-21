@@ -1,0 +1,53 @@
+{
+    "unified_guidance":  {
+                             "response_approach":  "Mode: conservative | Length: 1200 tokens | Confidence: medium | Use hedging language | Stay concrete",
+                             "key_constraints":  "Conservative mode - precision over novelty",
+                             "warnings":  {
+
+                                          }
+                         },
+    "timestamp":  "2026-03-06 02:51:16",
+    "ring2":  {
+                  "hallucination_risk":  0.472,
+                  "confidence_score":  0.528,
+                  "gates":  {
+                                "use_hedging":  true,
+                                "flag_uncertainty":  false,
+                                "uncertainty_guidance":  "No uncertainty detected",
+                                "confidence_guidance":  "Medium confidence - use qualifiers",
+                                "hedging_language":  "ik verwacht dat",
+                                "verify_before_claim":  true,
+                                "hallucination_prevention_action":  "USE_HEDGING"
+                            },
+                  "confidence_level":  "medium"
+              },
+    "ring1":  {
+                  "stuck":  false,
+                  "energy":  0.7,
+                  "overall_resources":  0.73,
+                  "constraints":  {
+                                      "max_response_tokens":  1200,
+                                      "exploration_budget":  0.8,
+                                      "length_guidance":  "Long detailed response OK",
+                                      "deep_analysis_allowed":  true,
+                                      "mode_guidance":  "Exploratory mode",
+                                      "stuck_action":  "CONTINUE",
+                                      "multitasking_allowed":  true
+                                  },
+                  "context":  0.075
+              },
+    "ring3":  {
+                  "rationale":  "Low resources OR low confidence OR stuck = focus on precision",
+                  "creativity_mode":  "conservative",
+                  "permissions":  {
+                                      "exploration_depth":  0.2,
+                                      "analogies_allowed":  false,
+                                      "mode_guidance":  "Focus mode - precision over novelty, proven patterns, minimal exploration",
+                                      "multiple_perspectives":  false,
+                                      "use_broadcasting":  false,
+                                      "invoke_blending":  false,
+                                      "novelty_tolerance":  0.2,
+                                      "task_fit":  "Bug fixing, deployment, critical operations, testing"
+                                  }
+              }
+}

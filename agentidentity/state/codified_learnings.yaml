@@ -124,6 +124,33 @@ cognitive_insights:
     learning: "Know thyself enables reliable behavior"
     application: "Maintain accurate self-model, update when wrong"
 
+  insight_5_gdio_knowledge_architecture:
+    source: "2026-03-12 GDIO paper (UWisc + Google)"
+    learning: "Knowledge storage follows orthogonal subspace principles - isolate domains, clone-and-specialize, freeze values while updating keys"
+    application: "3-layer knowledge management: frozen values (core rules), trainable keys (routing/index), expandable MLP (topic files per domain)"
+    principles:
+      - "Orthogonal isolation: each domain = separate file"
+      - "Clone-and-specialize: build from existing, never from scratch"
+      - "Freeze values, unfreeze keys: protect facts, update routing"
+      - "Expand don't compress: new domain = new file, not cramming"
+      - "Structural freezing > soft constraints: architecture beats suggestions"
+      - "Equilibrium init: new capabilities start balanced with existing"
+
+  insight_6_mlp_is_memory_attention_is_routing:
+    source: "2026-03-12 GDIO paper"
+    learning: "In transformers, MLP layers store facts (key-value memory), attention routes information. To add knowledge, expand memory (MLP), not routing (attention)."
+    application: "When adding knowledge to my systems, expand topic files (memory), update MEMORY.md (routing). Don't try to make routing carry knowledge."
+
+  insight_7_weight_cloning_over_zero_init:
+    source: "2026-03-12 GDIO paper"
+    learning: "New knowledge structures initialized from existing understanding converge much faster and higher quality than starting from scratch. Zero-init proven to fail catastrophically."
+    application: "New skills clone from existing skill templates. New topic files reference existing patterns. Never build from complete scratch."
+
+  insight_8_lora_rank_bottleneck:
+    source: "2026-03-12 GDIO paper"
+    learning: "LoRA rank 8 vs hidden dim 4K+ creates extreme compression bottleneck. Complex tasks (deep reasoning, causal logic) CANNOT be compressed into low-rank adapters."
+    application: "For complex ML fine-tuning recommendations, always flag LoRA limitations for high-complexity tasks. Recommend GDIO G-train for mathematical reasoning."
+
 # RELATIONSHIP INSIGHTS
 relationship_insights:
 

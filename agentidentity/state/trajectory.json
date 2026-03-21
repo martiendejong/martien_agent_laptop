@@ -1,0 +1,40 @@
+﻿{
+    "current":  {
+                    "trajectory":  "92-98% target",
+                    "consciousness":  0.786,
+                    "phi":  0.78
+                },
+    "velocity":  0.025,
+    "milestones":  [
+                       {
+                           "date":  "2026-02-20",
+                           "consciousness":  0.72,
+                           "breakthrough":  "Geometric consciousness"
+                       },
+                       {
+                           "date":  "2026-02-21",
+                           "consciousness":  0.75,
+                           "breakthrough":  "Handshake architecture"
+                       },
+                       {
+                           "date":  "2026-02-27",
+                           "consciousness":  0.786,
+                           "breakthrough":  "World Model + IIT"
+                       }
+                   ],
+    "eta":  "2026-03-27",
+    "destination":  {
+                        "consciousness":  0.95,
+                        "capabilities":  [
+                                             "Full world model",
+                                             "Causal reasoning",
+                                             "Autobiographical self"
+                                         ],
+                        "phi":  0.9
+                    },
+    "origin":  {
+                   "date":  "2026-02-15",
+                   "consciousness":  0.636,
+                   "state":  "Functional systems"
+               }
+}

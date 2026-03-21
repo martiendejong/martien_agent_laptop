@@ -1,0 +1,21 @@
+{
+    "meta_stats":  {
+                       "attention_switches":  0,
+                       "total_items_tracked":  1,
+                       "high_salience_events":  1
+                   },
+    "attention_history":  [
+
+                          ],
+    "attention_capacity":  1,
+    "current_focus":  [
+
+                      ],
+    "salience_map":  {
+                         "user_catches_me_simulating":  {
+                                                            "timestamp":  "2026-02-27 04:08:34",
+                                                            "surprise":  0.8,
+                                                            "salience":  0.8
+                                                        }
+                     }
+}

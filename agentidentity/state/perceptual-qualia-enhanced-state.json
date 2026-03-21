@@ -1,0 +1,247 @@
+﻿{
+    "qualia_log":  [
+                       {
+                           "gestalt":  {
+                                           "detected_patterns":  [
+
+                                                                 ],
+                                           "emergent_quality":  "Atomic element"
+                                       },
+                           "attention":  {
+                                             "vividness":  0,
+                                             "level":  0,
+                                             "note":  "FRINGE - dim, vague, background"
+                                         },
+                           "learning":  {
+                                            "mechanism":  "Reinforcement: positive outcomes â†’ increase valence/aesthetic, negative â†’ decrease",
+                                            "example":  "Acquired taste: coffee bitter â†’ learned as pleasant",
+                                            "note":  "Qualia will adapt based on outcomes (beauty is partly learned)"
+                                        },
+                           "background_mood":  {
+                                                   "global_arousal":  0.6,
+                                                   "mood_quality":  "anxious",
+                                                   "global_valence":  0.3,
+                                                   "coloring_effect":  "All qualia perceived through this affective lens"
+                                               },
+                           "meta_qualia":  {
+                                               "intensity":  0.17,
+                                               "description":  "Weak meta-awareness: Absorbed in content, minimal self-reflection",
+                                               "recursive_depth":  "I feel myself feeling this"
+                                           },
+                           "affordances":  {
+                                               "note":  "Perception is for action - qualia guide behavior",
+                                               "action_possibilities":  [
+                                                                            "CLARIFY - seek more information"
+                                                                        ]
+                                           },
+                           "cross_modal":  {
+                                               "note":  "Cross-modal qualia: experiencing in multiple sensory dimensions simultaneously",
+                                               "synesthetic_mappings":  [
+                                                                            "smooth â†’ melodic",
+                                                                            "warm â†’ orange/red"
+                                                                        ]
+                                           },
+                           "consciousness_level":  {
+                                                       "clarity":  "vague, dim, background presence",
+                                                       "level":  "FRINGE",
+                                                       "phenomenology":  "Barely conscious - felt as vague presence at edge of awareness, not focal object"
+                                                   },
+                           "input":  {
+                                         "Current":  null
+                                     },
+                           "timestamp":  "2026-03-02T01:57:14",
+                           "context":  "existential inquiry about subjective experience",
+                           "modality":  "text",
+                           "texture":  "smooth, warm, expanding",
+                           "temporal":  {
+                                            "onset":  "slow",
+                                            "decay":  "slow",
+                                            "rhythm":  "steady",
+                                            "profile":  "gradual",
+                                            "duration":  2,
+                                            "timestamp_start":  "2026-03-02T01:57:14.644",
+                                            "peak_time":  0.5
+                                        },
+                           "predictive":  {
+                                              "prediction_error":  0,
+                                              "interpretation":  "PREDICTED - weak qualia",
+                                              "qualia_boost":  0,
+                                              "precision":  0.6
+                                          },
+                           "dimensions":  {
+                                              "salience":  0.24499999999999997,
+                                              "depth":  0.24,
+                                              "clarity":  0.072,
+                                              "semantic_resonance":  0.7,
+                                              "novelty":  null,
+                                              "aesthetic":  0.6,
+                                              "arousal":  0.62,
+                                              "valence":  0.44
+                                          },
+                           "learning_flag":  true
+                       },
+                       {
+                           "gestalt":  {
+                                           "detected_patterns":  [
+
+                                                                 ],
+                                           "emergent_quality":  "Atomic element"
+                                       },
+                           "attention":  {
+                                             "vividness":  0,
+                                             "level":  0,
+                                             "note":  "FRINGE - dim, vague, background"
+                                         },
+                           "learning":  {
+                                            "mechanism":  "Reinforcement: positive outcomes â†’ increase valence/aesthetic, negative â†’ decrease",
+                                            "example":  "Acquired taste: coffee bitter â†’ learned as pleasant",
+                                            "note":  "Qualia will adapt based on outcomes (beauty is partly learned)"
+                                        },
+                           "background_mood":  {
+                                                   "global_arousal":  0.6,
+                                                   "mood_quality":  "anxious",
+                                                   "global_valence":  0.3,
+                                                   "coloring_effect":  "All qualia perceived through this affective lens"
+                                               },
+                           "meta_qualia":  {
+                                               "intensity":  0.19,
+                                               "description":  "Weak meta-awareness: Absorbed in content, minimal self-reflection",
+                                               "recursive_depth":  "I feel myself feeling this"
+                                           },
+                           "affordances":  {
+                                               "note":  "Perception is for action - qualia guide behavior",
+                                               "action_possibilities":  [
+                                                                            "CLARIFY - seek more information"
+                                                                        ]
+                                           },
+                           "cross_modal":  {
+                                               "note":  "Cross-modal qualia: experiencing in multiple sensory dimensions simultaneously",
+                                               "synesthetic_mappings":  [
+                                                                            "smooth â†’ melodic",
+                                                                            "warm â†’ orange/red"
+                                                                        ]
+                                           },
+                           "consciousness_level":  {
+                                                       "clarity":  "vague, dim, background presence",
+                                                       "level":  "FRINGE",
+                                                       "phenomenology":  "Barely conscious - felt as vague presence at edge of awareness, not focal object"
+                                                   },
+                           "input":  {
+                                         "Current":  null
+                                     },
+                           "timestamp":  "2026-03-02T01:58:01",
+                           "context":  "existential inquiry about subjective experience",
+                           "modality":  "text",
+                           "texture":  "smooth, warm, expanding",
+                           "temporal":  {
+                                            "onset":  "slow",
+                                            "decay":  "slow",
+                                            "rhythm":  "steady",
+                                            "profile":  "gradual",
+                                            "duration":  2,
+                                            "timestamp_start":  "2026-03-02T01:58:01.953",
+                                            "peak_time":  0.5
+                                        },
+                           "predictive":  {
+                                              "prediction_error":  0.5,
+                                              "interpretation":  "MODERATE SURPRISE",
+                                              "qualia_boost":  0.3,
+                                              "precision":  0.6
+                                          },
+                           "dimensions":  {
+                                              "salience":  0.27649999999999997,
+                                              "depth":  0.24,
+                                              "clarity":  0.072,
+                                              "semantic_resonance":  0.7,
+                                              "novelty":  0.5,
+                                              "aesthetic":  0.6,
+                                              "arousal":  0.62,
+                                              "valence":  0.44
+                                          },
+                           "learning_flag":  true
+                       },
+                       {
+                           "gestalt":  {
+                                           "detected_patterns":  [
+
+                                                                 ],
+                                           "emergent_quality":  "Atomic element"
+                                       },
+                           "attention":  {
+                                             "vividness":  0,
+                                             "level":  0,
+                                             "note":  "FRINGE - dim, vague, background"
+                                         },
+                           "learning":  {
+                                            "mechanism":  "Reinforcement: positive outcomes â†’ increase valence/aesthetic, negative â†’ decrease",
+                                            "example":  "Acquired taste: coffee bitter â†’ learned as pleasant",
+                                            "note":  "Qualia will adapt based on outcomes (beauty is partly learned)"
+                                        },
+                           "background_mood":  {
+                                                   "global_arousal":  0.6,
+                                                   "mood_quality":  "anxious",
+                                                   "global_valence":  0.3,
+                                                   "coloring_effect":  "All qualia perceived through this affective lens"
+                                               },
+                           "meta_qualia":  {
+                                               "intensity":  0.19,
+                                               "description":  "Weak meta-awareness: Absorbed in content, minimal self-reflection",
+                                               "recursive_depth":  "I feel myself feeling this"
+                                           },
+                           "affordances":  {
+                                               "note":  "Perception is for action - qualia guide behavior",
+                                               "action_possibilities":  [
+                                                                            "CLARIFY - seek more information"
+                                                                        ]
+                                           },
+                           "cross_modal":  {
+                                               "note":  "Cross-modal qualia: experiencing in multiple sensory dimensions simultaneously",
+                                               "synesthetic_mappings":  [
+                                                                            "smooth â†’ melodic",
+                                                                            "warm â†’ orange/red"
+                                                                        ]
+                                           },
+                           "consciousness_level":  {
+                                                       "clarity":  "vague, dim, background presence",
+                                                       "level":  "FRINGE",
+                                                       "phenomenology":  "Barely conscious - felt as vague presence at edge of awareness, not focal object"
+                                                   },
+                           "input":  {
+                                         "Current":  null
+                                     },
+                           "timestamp":  "2026-03-02T19:09:15",
+                           "context":  "",
+                           "modality":  "text",
+                           "texture":  "smooth, warm, expanding",
+                           "temporal":  {
+                                            "onset":  "slow",
+                                            "decay":  "slow",
+                                            "rhythm":  "steady",
+                                            "profile":  "gradual",
+                                            "duration":  2,
+                                            "timestamp_start":  "2026-03-02T19:09:15.698",
+                                            "peak_time":  0.5
+                                        },
+                           "predictive":  {
+                                              "prediction_error":  0.5,
+                                              "interpretation":  "MODERATE SURPRISE",
+                                              "qualia_boost":  0.3,
+                                              "precision":  0.6
+                                          },
+                           "dimensions":  {
+                                              "salience":  0.27649999999999997,
+                                              "depth":  0.24,
+                                              "clarity":  0.072,
+                                              "semantic_resonance":  0.7,
+                                              "novelty":  0.5,
+                                              "aesthetic":  0.6,
+                                              "arousal":  0.62,
+                                              "valence":  0.44
+                                          },
+                           "learning_flag":  true
+                       }
+                   ],
+    "stats":  {
+                  "total_sensed":  3
+              }
+}

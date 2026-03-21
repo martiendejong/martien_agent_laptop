@@ -24,6 +24,16 @@ A task is **DONE** only when ALL of the following criteria are met:
 
 ### Phase 1: Development ✍️
 
+**HOTFIX MODE EXCEPTION (2026-03-02):**
+If develop branch is BROKEN (build error, test failure, crash):
+- ⚠️ **SKIP** worktree allocation, PR workflow, all DoD phases
+- ✅ **FIX DIRECTLY** on develop branch in base repo
+- ✅ **COMMIT + PUSH** immediately to unblock team
+- Examples: Swagger conflicts, missing dependencies, broken test suite
+- Reason: Broken develop blocks everyone - speed > process
+
+**For ALL other work (features, refactors, non-critical fixes):**
+
 - [ ] **Branch created from `develop`** (or `main` if configured)
   - Branch naming: `feature/<feature-name>` or `fix/<bug-name>` or `agent-XXX-<description>`
   - Never branch from outdated branches
@@ -81,6 +91,50 @@ A task is **DONE** only when ALL of the following criteria are met:
   - No significant performance degradation
   - Database queries optimized
   - API response times acceptable
+
+### Phase 2.5: Production Validation Metrics 📊 (NEW)
+
+**Purpose:** Ensure systems are not just built, but validated for actual use.
+
+- [ ] **Usage tracking implemented** (if applicable)
+  - API endpoints log usage to measurable storage
+  - Service calls tracked with success/failure metrics
+  - JSONL or database storage for analysis
+
+- [ ] **Health monitoring configured** (if applicable)
+  - `/health` endpoint exists and tested
+  - Service reports status (healthy/degraded/down)
+  - Health checks integrated with monitoring dashboard
+
+- [ ] **Baseline metrics established** (for infrastructure)
+  - Performance baseline recorded (e.g., "90th percentile: 250ms")
+  - Initial success rate documented (target: ≥95%)
+  - Resource usage measured (CPU, memory, disk)
+
+- [ ] **Validation criteria defined** (MANDATORY)
+  - **Falsifiable test:** How to prove this works/fails in production?
+  - **Success metric:** What number proves success? (e.g., "TotalCalls > 0 after 7 days")
+  - **Failure threshold:** What triggers investigation? (e.g., "SuccessRate < 80%")
+  - **Measurement period:** How long before validation? (e.g., "7 days", "100 calls")
+
+- [ ] **Monitoring plan documented** (for non-trivial features)
+  - What metrics to track (usage, errors, performance)
+  - Where metrics are stored (log file, database, dashboard)
+  - How to query metrics (script, SQL, API call)
+  - When to review (daily, weekly, after N uses)
+
+**Examples of validation criteria:**
+
+| Feature Type | Falsifiable Test | Success Metric | Failure Threshold |
+|-------------|------------------|----------------|-------------------|
+| New API service | TotalCalls > 0 | ≥10 calls within 7 days | 0 calls = unused |
+| Background job | JobRuns > 0 | Runs daily at 06:00 | No runs for 2 days = broken |
+| Performance optimization | AvgDuration < baseline | ≤200ms (was 500ms) | >400ms = regression |
+| Error handling | ErrorRate measured | <5% of total calls | >20% = investigate |
+
+**Critical insight:** "Builds without errors" ≠ "Actually works in production"
+
+**Validation principle:** If you can't measure whether it's used, don't build it.
 
 ### Phase 3: Version Control 🔀
 
@@ -229,6 +283,9 @@ A task is **DONE** only when ALL of the following criteria are met:
 - ❌ In production but causing errors
 - ❌ Working but documentation not updated
 - ❌ Everything done but stakeholder not notified
+- ❌ **NEW:** No validation metrics defined (can't measure if it's used)
+- ❌ **NEW:** No falsifiable test (can't prove it works in production)
+- ❌ **NEW:** Built but never validated (unknown if anyone uses it)
 
 **"Works on my machine" ≠ Done**
 
@@ -236,7 +293,11 @@ A task is **DONE** only when ALL of the following criteria are met:
 
 **"Deployed to staging" ≠ Done**
 
-**DONE = In production, working, documented, and verified**
+**"Builds without errors" ≠ Done**
+
+**"Looks impressive" ≠ Done**
+
+**DONE = In production, working, documented, verified, AND measured**
 
 ---
 
@@ -377,6 +438,9 @@ A task is **DONE** only when ALL of the following criteria are met:
 3. **Better documentation** - Docs always current with code
 4. **Team alignment** - Everyone knows what "done" means
 5. **User satisfaction** - Features work as expected when released
+6. **NEW: No unused features** - All deployed features have TotalCalls > 0 within validation period
+7. **NEW: Measurable quality** - Success rates tracked, performance baselines established
+8. **NEW: Falsifiable claims** - Can prove features work (or don't) with data, not philosophy
 
 ---
 
@@ -568,8 +632,15 @@ Coordination DoD satisfied? (heartbeat, metrics, no conflicts, etc.)
 - **ClickUp Integration:** `C:\scripts\_machine\knowledge-base\04-EXTERNAL-SYSTEMS\clickup-structure.md`
 - **GitHub Integration:** `C:\scripts\_machine\knowledge-base\04-EXTERNAL-SYSTEMS\github-integration.md`
 
-**Last Updated:** 2026-01-25 (Added knowledge base references)
-**Added:** Parallel Agent Coordination criteria (2026-01-20)
+**Last Updated:** 2026-02-20 (Added Production Validation Metrics phase)
+**Added:**
+- Phase 2.5: Production Validation Metrics (2026-02-20)
+- Falsifiable tests, usage tracking, baseline metrics
+- Parallel Agent Coordination criteria (2026-01-20)
+- Knowledge base references (2026-01-25)
+**Version:** 2.0
 **Integration:** Mandatory when agentCount > 1
 **Reference:** See `SYSTEM_INTEGRATION.md` for complete coordination protocol
+
+**Critical Principle:** Build less, validate more. Measure actual usage, not just capability.
 

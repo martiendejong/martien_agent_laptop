@@ -18,7 +18,7 @@ def execute_ssh_command(command):
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
         # Connect using password
-        ssh.connect(SSH_HOST, username=SSH_USER, password="3WsXcFr$7YhNmKi*")
+        ssh.connect(SSH_HOST, username=SSH_USER, password="SpaceElevator1tam!")
 
         # Execute command
         stdin, stdout, stderr = ssh.exec_command(command)

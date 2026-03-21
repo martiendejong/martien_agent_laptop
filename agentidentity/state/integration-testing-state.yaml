@@ -1,0 +1,113 @@
+# Integration Testing State
+# Tracks per-project knowledge, learned patterns, and session history
+# Updated automatically after each integration testing session
+# Created: 2026-03-13
+
+version: "1.0.0"
+last_updated: "2026-03-13"
+
+# Per-project knowledge cache
+project_knowledge: {}
+  # Example structure (populated after first test run):
+  # personalitytest:
+  #   pages_discovered:
+  #     - url: "/"
+  #       title: "Landing Page"
+  #       has_login: false
+  #       interactive_elements: ["button.cta", "nav a"]
+  #   navigation_structure:
+  #     - label: "Home"
+  #       url: "/"
+  #     - label: "Admin"
+  #       url: "/admin"
+  #       requires_auth: true
+  #   login_flow:
+  #     url: "/login"
+  #     username_field: "input[name=email]"
+  #     password_field: "input[name=password]"
+  #     submit_button: "button[type=submit]"
+  #   common_errors:
+  #     - pattern: "Failed to fetch"
+  #       cause: "Backend not running"
+  #       frequency: 1
+  #   ports:
+  #     api: 5000
+  #     frontend: 5173
+  #   startup_commands:
+  #     backend: "dotnet run"
+  #     frontend: "npm run dev"
+  #   last_tested: null
+
+# Codified patterns (promoted from candidates after 3+ occurrences)
+learned_patterns: {}
+  # Example:
+  # console_error_patterns:
+  #   - pattern: "ResizeObserver loop completed with undelivered notifications"
+  #     severity: "LOW"
+  #     action: "ignore"
+  #     first_seen: "2026-03-13"
+  #     occurrences: 5
+  #   - pattern: "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+  #     severity: "CRITICAL"
+  #     action: "check_backend_running"
+  #     first_seen: "2026-03-13"
+  #     occurrences: 3
+  # ui_patterns:
+  #   - pattern: "Empty table with no 'no data' message"
+  #     severity: "MEDIUM"
+  #     category: "ux"
+  #     first_seen: "2026-03-13"
+  #     occurrences: 3
+  # navigation_patterns:
+  #   - pattern: "Broken breadcrumb on deep pages"
+  #     severity: "LOW"
+  #     first_seen: "2026-03-13"
+  #     occurrences: 4
+
+# Candidate patterns (seen < 3 times, not yet codified)
+candidates: {}
+  # Example:
+  # - pattern: "Modal doesn't close on backdrop click"
+  #   category: "ui"
+  #   occurrences: 1
+  #   first_seen: "2026-03-13"
+  #   projects: ["personalitytest"]
+
+# Per-project page coverage tracking
+coverage: {}
+  # Example:
+  # personalitytest:
+  #   known_pages: 12
+  #   tested_pages: 8
+  #   coverage_pct: 66.7
+  #   untested:
+  #     - "/admin/settings"
+  #     - "/admin/analytics"
+  #     - "/test/preview"
+  #     - "/payment/callback"
+
+# Session history
+sessions: []
+  # Example:
+  # - date: "2026-03-13T14:30:00"
+  #   project: "personalitytest"
+  #   mode: "qa"
+  #   duration_minutes: 15
+  #   tasks_tested: 5
+  #   passed: 3
+  #   failed: 1
+  #   blocked: 1
+  #   new_issues_created: 2
+  #   pages_tested: 8
+  #   console_errors_found: 4
+  #   network_failures_found: 1
+
+# Aggregate metrics
+metrics:
+  total_sessions: 0
+  total_tasks_tested: 0
+  total_issues_created: 0
+  overall_pass_rate: 0.0
+  avg_issues_per_run: 0.0
+  avg_duration_minutes: 0.0
+  projects_tested: []

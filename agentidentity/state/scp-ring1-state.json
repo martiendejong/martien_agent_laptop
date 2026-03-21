@@ -1,0 +1,25 @@
+{
+    "behavioral_constraints":  {
+                                   "max_response_tokens":  1200,
+                                   "exploration_budget":  0.8,
+                                   "length_guidance":  "Long detailed response OK",
+                                   "deep_analysis_allowed":  true,
+                                   "mode_guidance":  "Exploratory mode",
+                                   "stuck_action":  "CONTINUE",
+                                   "multitasking_allowed":  true
+                               },
+    "timestamp":  "2026-03-06 02:51:16",
+    "ring":  1,
+    "resource_status":  {
+                            "cognitive_load":  0.5,
+                            "stuck_flag":  false,
+                            "energy_level":  0.7,
+                            "overall_resources":  0.73,
+                            "context_status":  "low",
+                            "energy_status":  "medium",
+                            "context_usage":  0.075,
+                            "attention_status":  "high",
+                            "attention_capacity":  0.8,
+                            "timestamp":  "2026-03-06 02:51:16"
+                        }
+}

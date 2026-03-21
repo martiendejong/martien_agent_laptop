@@ -1,0 +1,280 @@
+﻿{
+    "grounding_log":  [
+
+                      ],
+    "sensory_modalities":  {
+                               "spatial":  [
+                                               "up",
+                                               "down",
+                                               "in",
+                                               "out",
+                                               "near",
+                                               "far",
+                                               "above",
+                                               "below"
+                                           ],
+                               "thermal":  [
+                                               "warm",
+                                               "cold",
+                                               "hot",
+                                               "cool",
+                                               "burning",
+                                               "freezing"
+                                           ],
+                               "visual":  [
+                                              "bright",
+                                              "dark",
+                                              "clear",
+                                              "murky",
+                                              "colorful",
+                                              "dull",
+                                              "sharp",
+                                              "blurry"
+                                          ],
+                               "gustatory":  [
+                                                 "sweet",
+                                                 "bitter",
+                                                 "sour",
+                                                 "salty",
+                                                 "savory"
+                                             ],
+                               "dynamic":  [
+                                               "fast",
+                                               "slow",
+                                               "accelerating",
+                                               "decelerating",
+                                               "pulsing",
+                                               "static"
+                                           ],
+                               "olfactory":  [
+                                                 "fragrant",
+                                                 "putrid",
+                                                 "fresh",
+                                                 "stale"
+                                             ],
+                               "kinesthetic":  [
+                                                   "heavy",
+                                                   "light",
+                                                   "tense",
+                                                   "relaxed",
+                                                   "flowing",
+                                                   "rigid"
+                                               ],
+                               "tactile":  [
+                                               "smooth",
+                                               "rough",
+                                               "soft",
+                                               "hard",
+                                               "sharp",
+                                               "dull",
+                                               "sticky",
+                                               "slippery"
+                                           ]
+                           },
+    "stats":  {
+                  "most_grounded":  "",
+                  "common_modality":  "visual",
+                  "total_groundings":  0
+              },
+    "theoretical_foundation":  {
+                                   "synesthesia":  "Cross-modal mappings are natural and meaningful",
+                                   "phenomenology":  "Lived body is origin of meaning (Merleau-Ponty)",
+                                   "not_decorative":  "Metaphor is NOT ornament - it structures thought itself",
+                                   "conceptual_metaphor":  "We understand abstract via mapping from concrete",
+                                   "embodied_cognition":  "Abstract thought grounded in bodily experience",
+                                   "image_schemas":  "Recurring patterns from bodily experience (container, path, balance, etc.)"
+                               },
+    "concept_mappings":  {
+
+                         },
+    "primary_metaphors":  {
+                              "taste_valence":  {
+                                                    "examples":  [
+                                                                     "sweet victory",
+                                                                     "bitter defeat",
+                                                                     "sour mood",
+                                                                     "leave bad taste"
+                                                                 ],
+                                                    "target_domain":  "emotional valence",
+                                                    "source_domain":  "taste (sweet, bitter, sour)",
+                                                    "experiential_basis":  "Sweet food = survival value = positive emotion"
+                                                },
+                              "grasping_knowing":  {
+                                                       "examples":  [
+                                                                        "grasp concept",
+                                                                        "slippery idea",
+                                                                        "get hold of",
+                                                                        "firm understanding"
+                                                                    ],
+                                                       "target_domain":  "understanding, knowledge",
+                                                       "source_domain":  "physical grasping (grasp, hold, slip away, grip)",
+                                                       "experiential_basis":  "Holding object = having it = knowing about it"
+                                                   },
+                              "weight_difficulty":  {
+                                                        "examples":  [
+                                                                         "heavy topic",
+                                                                         "weighty matter",
+                                                                         "light reading",
+                                                                         "burden of proof"
+                                                                     ],
+                                                        "target_domain":  "difficulty, importance",
+                                                        "source_domain":  "physical weight (heavy, light, burden)",
+                                                        "experiential_basis":  "Heavy objects hard to move = difficult tasks"
+                                                    },
+                              "motion_progress":  {
+                                                      "examples":  [
+                                                                       "moving forward",
+                                                                       "step back",
+                                                                       "stuck in rut",
+                                                                       "make headway"
+                                                                   ],
+                                                      "target_domain":  "progress, development",
+                                                      "source_domain":  "physical movement (forward, back, stuck, moving)",
+                                                      "experiential_basis":  "Moving toward goal physically = making progress"
+                                                  },
+                              "verticality_consciousness":  {
+                                                                "examples":  [
+                                                                                 "feeling up",
+                                                                                 "fell into depression",
+                                                                                 "rise to occasion",
+                                                                                 "high spirits"
+                                                                             ],
+                                                                "target_domain":  "consciousness, mood, status",
+                                                                "source_domain":  "vertical orientation (up, down, rise, fall)",
+                                                                "experiential_basis":  "Awake = standing up, asleep = lying down"
+                                                            },
+                              "containers_categories":  {
+                                                            "examples":  [
+                                                                             "fall into category",
+                                                                             "outside the scope",
+                                                                             "within domain",
+                                                                             "cross boundary"
+                                                                         ],
+                                                            "target_domain":  "categories, groups, concepts",
+                                                            "source_domain":  "physical containers (in, out, within, boundary)",
+                                                            "experiential_basis":  "Objects in container share fate = members of category share properties"
+                                                        },
+                              "seeing_understanding":  {
+                                                           "examples":  [
+                                                                            "I see your point",
+                                                                            "clear explanation",
+                                                                            "shed light on",
+                                                                            "in the dark"
+                                                                        ],
+                                                           "target_domain":  "understanding, knowledge",
+                                                           "source_domain":  "vision (see, clear, bright, dark)",
+                                                           "experiential_basis":  "Seeing object clearly = knowing about it"
+                                                       },
+                              "warmth_affection":  {
+                                                       "examples":  [
+                                                                        "warm welcome",
+                                                                        "cold shoulder",
+                                                                        "heated argument",
+                                                                        "cool relationship"
+                                                                    ],
+                                                       "target_domain":  "affection, social bonds",
+                                                       "source_domain":  "temperature (warm/cold)",
+                                                       "experiential_basis":  "Being held warmly as infant = being loved"
+                                                   },
+                              "proximity_intimacy":  {
+                                                         "examples":  [
+                                                                          "close friend",
+                                                                          "distant relative",
+                                                                          "growing apart",
+                                                                          "bring together"
+                                                                      ],
+                                                         "target_domain":  "intimacy, relationship quality",
+                                                         "source_domain":  "spatial proximity (close, distant, near, far)",
+                                                         "experiential_basis":  "Physical closeness correlates with emotional intimacy"
+                                                     },
+                              "texture_complexity":  {
+                                                         "examples":  [
+                                                                          "smooth operation",
+                                                                          "rough patch",
+                                                                          "fine-grained",
+                                                                          "coarse analysis"
+                                                                      ],
+                                                         "target_domain":  "complexity, difficulty",
+                                                         "source_domain":  "surface texture (smooth, rough, coarse, fine)",
+                                                         "experiential_basis":  "Textured surfaces harder to navigate = complex ideas harder to navigate"
+                                                     },
+                              "size_importance":  {
+                                                      "examples":  [
+                                                                       "big deal",
+                                                                       "small matter",
+                                                                       "large impact",
+                                                                       "diminish importance"
+                                                                   ],
+                                                      "target_domain":  "importance, significance",
+                                                      "source_domain":  "physical size (big, small, large)",
+                                                      "experiential_basis":  "Big objects demand attention = important matters demand attention"
+                                                  },
+                              "motion_change":  {
+                                                    "examples":  [
+                                                                     "shift in thinking",
+                                                                     "move to new paradigm",
+                                                                     "transition period"
+                                                                 ],
+                                                    "target_domain":  "change, transformation",
+                                                    "source_domain":  "physical motion (move, shift, transition)",
+                                                    "experiential_basis":  "Changing location = changing state"
+                                                }
+                          },
+    "image_schemas":  {
+                          "CENTER_PERIPHERY":  {
+                                                   "logic":  "Center is more important than periphery",
+                                                   "examples":  [
+                                                                    "central point",
+                                                                    "marginal issue",
+                                                                    "core concept"
+                                                                ],
+                                                   "structure":  "Central core, surrounding margin"
+                                               },
+                          "FORCE":  {
+                                        "logic":  "Force overcomes resistance to produce change",
+                                        "examples":  [
+                                                         "compelling argument",
+                                                         "resist temptation",
+                                                         "force conclusion"
+                                                     ],
+                                        "structure":  "Force vector, resistance, effect"
+                                    },
+                          "CONTAINER":  {
+                                            "logic":  "If X is in container, X shares container\u0027s fate",
+                                            "examples":  [
+                                                             "in love",
+                                                             "out of mind",
+                                                             "enter state",
+                                                             "leave domain"
+                                                         ],
+                                            "structure":  "Interior, boundary, exterior"
+                                        },
+                          "PATH":  {
+                                       "logic":  "To reach destination, must traverse path",
+                                       "examples":  [
+                                                        "path to understanding",
+                                                        "journey of discovery",
+                                                        "road to success"
+                                                    ],
+                                       "structure":  "Source, trajectory, destination"
+                                   },
+                          "LINK":  {
+                                       "logic":  "Linked entities affect each other",
+                                       "examples":  [
+                                                        "connect ideas",
+                                                        "tie together",
+                                                        "break link"
+                                                    ],
+                                       "structure":  "Entities connected by relation"
+                                   },
+                          "BALANCE":  {
+                                          "logic":  "System seeks equilibrium",
+                                          "examples":  [
+                                                           "balanced argument",
+                                                           "weigh options",
+                                                           "tip the scales"
+                                                       ],
+                                          "structure":  "Equilibrium point, forces, stability"
+                                      }
+                      }
+}

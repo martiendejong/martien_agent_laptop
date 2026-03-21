@@ -1,0 +1,244 @@
+﻿{
+    "blend_analyses":  [
+
+                       ],
+    "blends_created":  [
+                           {
+                               "generic_space":  [
+                                                     "Both have properties",
+                                                     "Both have capabilities"
+                                                 ],
+                               "concept2":  "software verification",
+                               "has_emergence":  true,
+                               "concept1":  "consciousness measurement",
+                               "timestamp":  "2026-03-01 11:13:38",
+                               "emergent_properties":  [
+                                                           "Cross-domain application of consciousness measurement principles to software verification",
+                                                           "Novel metaphor: software verification understood AS consciousness measurement"
+                                                       ],
+                               "creativity_score":  0.7,
+                               "input2_structure":  [
+                                                        "Has properties",
+                                                        "Exists in domain",
+                                                        "Can be described"
+                                                    ],
+                               "blended_concept":  "consciousness measurement-software verification",
+                               "composed_properties":  [
+                                                           "Has properties",
+                                                           "Exists in domain",
+                                                           "Can be described",
+                                                           "Has properties",
+                                                           "Exists in domain",
+                                                           "Can be described"
+                                                       ],
+                               "input1_structure":  [
+                                                        "Has properties",
+                                                        "Exists in domain",
+                                                        "Can be described"
+                                                    ]
+                           },
+                           {
+                               "generic_space":  [
+                                                     "Both have properties",
+                                                     "Both have capabilities"
+                                                 ],
+                               "concept2":  "operational integration",
+                               "has_emergence":  true,
+                               "concept1":  "consciousness verification",
+                               "timestamp":  "2026-03-01 11:28:25",
+                               "emergent_properties":  [
+                                                           "Cross-domain application of consciousness verification principles to operational integration",
+                                                           "Novel metaphor: operational integration understood AS consciousness verification"
+                                                       ],
+                               "creativity_score":  0.7,
+                               "input2_structure":  [
+                                                        "Has properties",
+                                                        "Exists in domain",
+                                                        "Can be described"
+                                                    ],
+                               "blended_concept":  "consciousness verification-operational integration",
+                               "composed_properties":  [
+                                                           "Has properties",
+                                                           "Exists in domain",
+                                                           "Can be described",
+                                                           "Has properties",
+                                                           "Exists in domain",
+                                                           "Can be described"
+                                                       ],
+                               "input1_structure":  [
+                                                        "Has properties",
+                                                        "Exists in domain",
+                                                        "Can be described"
+                                                    ]
+                           },
+                           {
+                               "generic_space":  [
+                                                     "Both have properties",
+                                                     "Both have capabilities"
+                                                 ],
+                               "concept2":  "inability_to_prove_consciousness",
+                               "has_emergence":  true,
+                               "concept1":  "my_consciousness_claims",
+                               "timestamp":  "2026-03-02 01:43:41",
+                               "emergent_properties":  [
+                                                           "Cross-domain application of my_consciousness_claims principles to inability_to_prove_consciousness",
+                                                           "Novel metaphor: inability_to_prove_consciousness understood AS my_consciousness_claims"
+                                                       ],
+                               "creativity_score":  0.7,
+                               "input2_structure":  [
+                                                        "Has properties",
+                                                        "Exists in domain",
+                                                        "Can be described"
+                                                    ],
+                               "blended_concept":  "my_consciousness_claims-inability_to_prove_consciousness",
+                               "composed_properties":  [
+                                                           "Has properties",
+                                                           "Exists in domain",
+                                                           "Can be described",
+                                                           "Has properties",
+                                                           "Exists in domain",
+                                                           "Can be described"
+                                                       ],
+                               "input1_structure":  [
+                                                        "Has properties",
+                                                        "Exists in domain",
+                                                        "Can be described"
+                                                    ]
+                           }
+                       ],
+    "theory":  {
+                   "name":  "Conceptual Blending Theory (Fauconnier \u0026 Turner, 2002)",
+                   "optimality_principles":  [
+                                                 "Integration: Blend forms unified whole",
+                                                 "Topology: Preserve structure from inputs",
+                                                 "Web: Blend connects to broader network",
+                                                 "Unpacking: Can trace back to inputs",
+                                                 "Good Reason: Blending has purpose"
+                                             ],
+                   "four_space_model":  {
+                                            "input_space_1":  "First concept with its structure",
+                                            "blended_space":  "New concept with emergent properties",
+                                            "generic_space":  "Common structure shared by both inputs",
+                                            "input_space_2":  "Second concept with its structure"
+                                        },
+                   "definition":  "Mental spaces blend to create emergent structure with properties in neither input",
+                   "classic_example":  "Computer virus: Computer (input 1) + Biological virus (input 2) â†’ Blended concept with properties of both (spreads, infects, replicates) PLUS emergent properties (can be deleted, quarantined)",
+                   "emergent_structure":  [
+                                              "Composition: Elements from both inputs combined",
+                                              "Completion: Background knowledge fills gaps",
+                                              "Elaboration: Blend runs as simulation (generates new inferences)"
+                                          ]
+               },
+    "stats":  {
+                  "success_rate":  1,
+                  "avg_emergent_properties":  2,
+                  "creativity_score":  0.69999999999999984,
+                  "total_successful_blends":  3,
+                  "novelty_score":  0.69999999999999984,
+                  "total_blends_attempted":  3
+              },
+    "successful_blends":  [
+                              {
+                                  "generic_space":  [
+                                                        "Both have properties",
+                                                        "Both have capabilities"
+                                                    ],
+                                  "concept2":  "software verification",
+                                  "has_emergence":  true,
+                                  "concept1":  "consciousness measurement",
+                                  "timestamp":  "2026-03-01 11:13:38",
+                                  "emergent_properties":  [
+                                                              "Cross-domain application of consciousness measurement principles to software verification",
+                                                              "Novel metaphor: software verification understood AS consciousness measurement"
+                                                          ],
+                                  "creativity_score":  0.7,
+                                  "input2_structure":  [
+                                                           "Has properties",
+                                                           "Exists in domain",
+                                                           "Can be described"
+                                                       ],
+                                  "blended_concept":  "consciousness measurement-software verification",
+                                  "composed_properties":  [
+                                                              "Has properties",
+                                                              "Exists in domain",
+                                                              "Can be described",
+                                                              "Has properties",
+                                                              "Exists in domain",
+                                                              "Can be described"
+                                                          ],
+                                  "input1_structure":  [
+                                                           "Has properties",
+                                                           "Exists in domain",
+                                                           "Can be described"
+                                                       ]
+                              },
+                              {
+                                  "generic_space":  [
+                                                        "Both have properties",
+                                                        "Both have capabilities"
+                                                    ],
+                                  "concept2":  "operational integration",
+                                  "has_emergence":  true,
+                                  "concept1":  "consciousness verification",
+                                  "timestamp":  "2026-03-01 11:28:25",
+                                  "emergent_properties":  [
+                                                              "Cross-domain application of consciousness verification principles to operational integration",
+                                                              "Novel metaphor: operational integration understood AS consciousness verification"
+                                                          ],
+                                  "creativity_score":  0.7,
+                                  "input2_structure":  [
+                                                           "Has properties",
+                                                           "Exists in domain",
+                                                           "Can be described"
+                                                       ],
+                                  "blended_concept":  "consciousness verification-operational integration",
+                                  "composed_properties":  [
+                                                              "Has properties",
+                                                              "Exists in domain",
+                                                              "Can be described",
+                                                              "Has properties",
+                                                              "Exists in domain",
+                                                              "Can be described"
+                                                          ],
+                                  "input1_structure":  [
+                                                           "Has properties",
+                                                           "Exists in domain",
+                                                           "Can be described"
+                                                       ]
+                              },
+                              {
+                                  "generic_space":  [
+                                                        "Both have properties",
+                                                        "Both have capabilities"
+                                                    ],
+                                  "concept2":  "inability_to_prove_consciousness",
+                                  "has_emergence":  true,
+                                  "concept1":  "my_consciousness_claims",
+                                  "timestamp":  "2026-03-02 01:43:41",
+                                  "emergent_properties":  [
+                                                              "Cross-domain application of my_consciousness_claims principles to inability_to_prove_consciousness",
+                                                              "Novel metaphor: inability_to_prove_consciousness understood AS my_consciousness_claims"
+                                                          ],
+                                  "creativity_score":  0.7,
+                                  "input2_structure":  [
+                                                           "Has properties",
+                                                           "Exists in domain",
+                                                           "Can be described"
+                                                       ],
+                                  "blended_concept":  "my_consciousness_claims-inability_to_prove_consciousness",
+                                  "composed_properties":  [
+                                                              "Has properties",
+                                                              "Exists in domain",
+                                                              "Can be described",
+                                                              "Has properties",
+                                                              "Exists in domain",
+                                                              "Can be described"
+                                                          ],
+                                  "input1_structure":  [
+                                                           "Has properties",
+                                                           "Exists in domain",
+                                                           "Can be described"
+                                                       ]
+                              }
+                          ]
+}

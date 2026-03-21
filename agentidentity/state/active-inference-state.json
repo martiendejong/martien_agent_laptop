@@ -1,0 +1,130 @@
+{
+    "actions":  {
+                    "history":  [
+                                    {
+                                        "expected_free_energy":  0.355,
+                                        "timestamp":  "2026-02-27 03:41:47",
+                                        "epistemic_value":  0,
+                                        "action":  "refine"
+                                    }
+                                ],
+                    "selected":  {
+                                     "name":  "refine",
+                                     "description":  "Optimize current approach (moderate surprise, moderate learning)",
+                                     "total_value":  -0.355,
+                                     "expected_learning":  0.6,
+                                     "epistemic_value":  0,
+                                     "expected_free_energy":  0.355,
+                                     "expected_surprise":  0.4
+                                 },
+                    "available":  [
+                                      {
+                                          "name":  "explore",
+                                          "description":  "Try new approach (high information gain, high risk)",
+                                          "total_value":  -0.495,
+                                          "expected_learning":  0.8,
+                                          "epistemic_value":  0,
+                                          "expected_free_energy":  0.495,
+                                          "expected_surprise":  0.6
+                                      },
+                                      {
+                                          "name":  "exploit",
+                                          "description":  "Use known approach (low surprise, low learning)",
+                                          "total_value":  -0.21499999999999997,
+                                          "expected_learning":  0.3,
+                                          "epistemic_value":  0,
+                                          "expected_free_energy":  0.21499999999999997,
+                                          "expected_surprise":  0.2
+                                      },
+                                      {
+                                          "name":  "refine",
+                                          "description":  "Optimize current approach (moderate surprise, moderate learning)",
+                                          "total_value":  -0.355,
+                                          "expected_learning":  0.6,
+                                          "epistemic_value":  0,
+                                          "expected_free_energy":  0.355,
+                                          "expected_surprise":  0.4
+                                      }
+                                  ]
+                },
+    "predictions":  {
+                        "prediction_errors":  [
+                                                  {
+                                                      "variable":  "code_quality",
+                                                      "prediction_error":  0.3,
+                                                      "observed_value":  1,
+                                                      "predicted_value":  0.7,
+                                                      "outcome":  "test observation",
+                                                      "timestamp":  "2026-02-27 03:41:48"
+                                                  },
+                                                  {
+                                                      "variable":  "user_satisfaction",
+                                                      "prediction_error":  0.1,
+                                                      "observed_value":  0.9,
+                                                      "predicted_value":  0.8,
+                                                      "outcome":  "user vraagt hoe systemen testen",
+                                                      "timestamp":  "2026-02-27 04:08:18"
+                                                  }
+                                              ],
+                        "next_observation":  {
+                                                 "confidence":  0.74,
+                                                 "timestamp":  "2026-02-27 04:08:10",
+                                                 "variance":  0.185,
+                                                 "context":  "user vraagt hoe ik me voel",
+                                                 "predicted_quality":  0.76,
+                                                 "predicted_satisfaction":  0.8
+                                             }
+                    },
+    "attention":  {
+                      "salience_weights":  {
+
+                                           },
+                      "current_focus":  [
+
+                                        ]
+                  },
+    "free_energy":  {
+                        "current":  0.3064999999999999811000000000,
+                        "history":  [
+                                        {
+                                            "free_energy":  0.3064999999999999811000000000,
+                                            "timestamp":  "2026-02-27 03:41:49",
+                                            "surprise":  0.344999999999999973,
+                                            "complexity":  0.2166666666666666666666666667
+                                        }
+                                    ],
+                        "trend":  "stable",
+                        "average":  null
+                    },
+    "surprise":  {
+                     "current":  0.248,
+                     "threshold":  0.5,
+                     "high_surprise_events":  [
+
+                                              ]
+                 },
+    "meta_stats":  {
+                       "total_predictions":  2,
+                       "belief_updates":  2,
+                       "free_energy_reductions":  1,
+                       "total_observations":  2,
+                       "surprise_events":  0
+                   },
+    "beliefs":  {
+                    "current_project":  {
+                                            "confidence":  0.5,
+                                            "variance":  0.3,
+                                            "mean":  0.5
+                                        },
+                    "user_satisfaction":  {
+                                              "confidence":  0.835,
+                                              "variance":  0.165,
+                                              "mean":  0.82
+                                          },
+                    "code_quality":  {
+                                         "confidence":  0.758,
+                                         "variance":  0.242,
+                                         "mean":  0.808
+                                     }
+                }
+}

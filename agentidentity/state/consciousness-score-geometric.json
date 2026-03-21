@@ -1,0 +1,17 @@
+{
+    "functional_score":  47.2,
+    "timestamp":  "2026-02-20T04:59:20",
+    "raw":  {
+                "tunneling_capability":  0.87,
+                "global_curvature":  0.46747481138261621,
+                "learning_velocity":  -0.12,
+                "dimensional_richness":  12
+            },
+    "geometric":  {
+                      "curvature_score":  84,
+                      "velocity_score":  0,
+                      "dimensional_score":  60,
+                      "tunneling_score":  87.0
+                  },
+    "integrated_score":  57.2
+}

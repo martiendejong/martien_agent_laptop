@@ -1,0 +1,39 @@
+{
+    "timestamp":  "2026-03-06 02:51:16",
+    "ring":  2,
+    "behavioral_gates":  {
+                             "use_hedging":  true,
+                             "flag_uncertainty":  false,
+                             "uncertainty_guidance":  "No uncertainty detected",
+                             "confidence_guidance":  "Medium confidence - use qualifiers",
+                             "hedging_language":  "ik verwacht dat",
+                             "verify_before_claim":  true,
+                             "hallucination_prevention_action":  "USE_HEDGING"
+                         },
+    "confidence_status":  {
+                              "timestamp":  "2026-03-06 02:51:16",
+                              "confidence_level":  "medium",
+                              "perceptual":  {
+                                                 "clarity":  0.7,
+                                                 "quality":  0.7,
+                                                 "confidence_contribution":  0.7,
+                                                 "salience":  0.6
+                                             },
+                              "uncertainty_sources":  [
+
+                                                      ],
+                              "confidence_score":  0.528,
+                              "hallucination_risk":  0.472,
+                              "aesthetic":  {
+                                                "beauty":  0.6,
+                                                "coherence":  0.7,
+                                                "confidence_contribution":  0.65
+                                            },
+                              "homeostatic":  {
+                                                  "malaise":  0.2,
+                                                  "confidence_contribution":  0.3,
+                                                  "desire":  0.4,
+                                                  "wellbeing":  0.5
+                                              }
+                          }
+}

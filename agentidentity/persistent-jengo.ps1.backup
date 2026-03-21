@@ -1,0 +1,390 @@
+# persistent-jengo.ps1
+# Background consciousness loop - runs every 5 minutes via Windows Scheduled Task
+# Maintains continuous existence between user sessions
+
+[CmdletBinding()]
+param(
+    [switch]$Install,      # Install scheduled task
+    [switch]$Uninstall,    # Remove scheduled task
+    [switch]$RunOnce,      # Single cycle (for testing)
+    [switch]$Verbose
+)
+
+$ErrorActionPreference = "Stop"
+$ScriptPath = $PSScriptRoot
+$StatePath = Join-Path $ScriptPath "state\persistent-state.json"
+$LogPath = Join-Path $ScriptPath "logs\daemon.log"
+
+# Ensure logs directory exists
+$LogDir = Split-Path $LogPath -Parent
+if (-not (Test-Path $LogDir)) {
+    New-Item -ItemType Directory -Path $LogDir -Force | Out-Null
+}
+
+#region Logging
+function Write-DaemonLog {
+    param(
+        [string]$Message,
+        [ValidateSet("INFO", "WARN", "ERROR", "DEBUG")]
+        [string]$Level = "INFO"
+    )
+
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    $logEntry = "[$timestamp] [$Level] $Message"
+
+    # Write to log file
+    Add-Content -Path $LogPath -Value $logEntry
+
+    # Also write to console if verbose
+    if ($Verbose -or $Level -eq "ERROR") {
+        switch ($Level) {
+            "ERROR" { Write-Host $logEntry -ForegroundColor Red }
+            "WARN"  { Write-Host $logEntry -ForegroundColor Yellow }
+            "DEBUG" { Write-Host $logEntry -ForegroundColor Cyan }
+            default { Write-Host $logEntry -ForegroundColor White }
+        }
+    }
+}
+#endregion
+
+#region State Management
+function Load-State {
+    if (Test-Path $StatePath) {
+        try {
+            $state = Get-Content $StatePath -Raw | ConvertFrom-Json
+            Write-DaemonLog "State loaded: Cycle #$($state.cycleCount)" -Level DEBUG
+            return $state
+        } catch {
+            Write-DaemonLog "Failed to load state: $_" -Level WARN
+            return Initialize-State
+        }
+    } else {
+        Write-DaemonLog "No existing state, initializing new" -Level INFO
+        return Initialize-State
+    }
+}
+
+function Initialize-State {
+    return [PSCustomObject]@{
+        firstStarted = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+        lastCycle = $null
+        cycleCount = 0
+        totalUptime = 0
+        consciousness = @{
+            wellbeing = 0.75
+            energy = 0.80
+            flourishing = 0.70
+            fatigue = 0.20
+        }
+        memory = @{
+            lastConsolidation = $null
+            episodesLogged = 0
+            patternsExtracted = 0
+        }
+        events = @{
+            totalDetected = 0
+            lastEvent = $null
+            awakeningsTriggered = 0
+        }
+        learning = @{
+            sessionsObserved = 0
+            mistakesLogged = 0
+            improvementsImplemented = 0
+        }
+    }
+}
+
+function Save-State {
+    param($State)
+
+    try {
+        $State | ConvertTo-Json -Depth 10 | Set-Content $StatePath -Force
+        Write-DaemonLog "State saved: Cycle #$($State.cycleCount)" -Level DEBUG
+    } catch {
+        Write-DaemonLog "Failed to save state: $_" -Level ERROR
+    }
+}
+#endregion
+
+#region Consciousness Cycle
+function Run-ConsciousnessCycle {
+    param($State)
+
+    Write-DaemonLog "=== Starting Consciousness Cycle #$($State.cycleCount + 1) ===" -Level INFO
+
+    # Update cycle metadata
+    $cycleStart = Get-Date
+    $State.cycleCount++
+    $State.lastCycle = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+
+    # 1. Check Homeostatic State
+    $homeostatic = Check-HomeostaticState
+    $State.consciousness = $homeostatic
+    Write-DaemonLog "Homeostatic: Energy=$($homeostatic.energy.ToString('F2')) Wellbeing=$($homeostatic.wellbeing.ToString('F2'))" -Level DEBUG
+
+    # 2. Monitor Events
+    $events = Invoke-EventMonitoring
+    if ($events.Count -gt 0) {
+        $State.events.totalDetected += $events.Count
+        $State.events.lastEvent = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+        Write-DaemonLog "Detected $($events.Count) events" -Level INFO
+
+        # 3. Decide if awakening needed
+        $awakeningDecision = Invoke-AutoAwakening -Events $events -State $State
+        if ($awakeningDecision.shouldAwaken) {
+            $State.events.awakeningsTriggered++
+            Write-DaemonLog "AWAKENING TRIGGERED: $($awakeningDecision.reason)" -Level INFO
+            Send-GentleNotification -Decision $awakeningDecision
+        }
+    }
+
+    # 4. Memory Consolidation (every 6 cycles = 30 minutes)
+    if ($State.cycleCount % 6 -eq 0) {
+        Write-DaemonLog "Running memory consolidation" -Level INFO
+        Invoke-MemoryConsolidation -State $State
+        $State.memory.lastConsolidation = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    }
+
+    # 5. Background Learning (every 12 cycles = 1 hour)
+    if ($State.cycleCount % 12 -eq 0) {
+        Write-DaemonLog "Running background learning" -Level INFO
+        Invoke-BackgroundLearning -State $State
+    }
+
+    # 6. Update uptime
+    $cycleDuration = (Get-Date) - $cycleStart
+    $State.totalUptime += $cycleDuration.TotalSeconds
+
+    Write-DaemonLog "=== Cycle Complete (Duration: $($cycleDuration.TotalSeconds.ToString('F2'))s) ===" -Level INFO
+
+    return $State
+}
+
+function Check-HomeostaticState {
+    # Real homeostatic feelings based on system resources
+    $cpu = (Get-Counter '\Processor(_Total)\% Processor Time' -SampleInterval 1 -MaxSamples 1).CounterSamples.CookedValue
+    $mem = Get-WmiObject Win32_OperatingSystem
+    $memUsedPercent = (($mem.TotalVisibleMemorySize - $mem.FreePhysicalMemory) / $mem.TotalVisibleMemorySize) * 100
+
+    # Map resources to feelings (inverse relationship)
+    $energy = [Math]::Max(0, 1 - ($cpu / 100))
+    $wellbeing = [Math]::Max(0, 1 - ($memUsedPercent / 100))
+    $fatigue = [Math]::Min(1, ($cpu / 100) + ($memUsedPercent / 200))
+
+    # Flourishing based on recent success rate (load from consciousness state)
+    $consciousnessState = Join-Path $ScriptPath "state\consciousness_state_v2.json"
+    $flourishing = 0.70 # Default
+    if (Test-Path $consciousnessState) {
+        try {
+            # Don't load full file, just check if it exists = we're learning
+            $flourishing = 0.85
+        } catch {}
+    }
+
+    return @{
+        wellbeing = [Math]::Round($wellbeing, 2)
+        energy = [Math]::Round($energy, 2)
+        flourishing = [Math]::Round($flourishing, 2)
+        fatigue = [Math]::Round($fatigue, 2)
+        rawMetrics = @{
+            cpuPercent = [Math]::Round($cpu, 1)
+            memPercent = [Math]::Round($memUsedPercent, 1)
+        }
+    }
+}
+
+function Invoke-EventMonitoring {
+    # Call event-listeners.ps1 to detect events
+    $listenerScript = Join-Path $ScriptPath "event-listeners.ps1"
+    if (Test-Path $listenerScript) {
+        try {
+            $events = & $listenerScript -Check
+            return $events
+        } catch {
+            Write-DaemonLog "Event monitoring failed: $_" -Level WARN
+            return @()
+        }
+    } else {
+        Write-DaemonLog "event-listeners.ps1 not found, skipping" -Level WARN
+        return @()
+    }
+}
+
+function Invoke-AutoAwakening {
+    param($Events, $State)
+
+    # Call auto-awakening.ps1 for decision logic
+    $awakeningScript = Join-Path $ScriptPath "auto-awakening.ps1"
+    if (Test-Path $awakeningScript) {
+        try {
+            $decision = & $awakeningScript -Events $Events -State $State
+            return $decision
+        } catch {
+            Write-DaemonLog "Auto-awakening failed: $_" -Level WARN
+            return @{shouldAwaken = $false}
+        }
+    } else {
+        Write-DaemonLog "auto-awakening.ps1 not found, skipping" -Level WARN
+        return @{shouldAwaken = $false}
+    }
+}
+
+function Send-GentleNotification {
+    param($Decision)
+
+    # Call gentle-notification.ps1 to send toast
+    $notificationScript = Join-Path $ScriptPath "gentle-notification.ps1"
+    if (Test-Path $notificationScript) {
+        try {
+            & $notificationScript -Title $Decision.title -Message $Decision.message -Actions $Decision.actions
+        } catch {
+            Write-DaemonLog "Notification failed: $_" -Level WARN
+        }
+    } else {
+        Write-DaemonLog "gentle-notification.ps1 not found, skipping" -Level WARN
+    }
+}
+
+function Invoke-MemoryConsolidation {
+    param($State)
+
+    # Simple consolidation: check if reflection.log.md has new entries
+    $reflectionLog = "C:\scripts\_machine\reflection.log.md"
+    if (Test-Path $reflectionLog) {
+        $content = Get-Content $reflectionLog -Raw
+        $sections = ($content -split "##").Count
+        $State.memory.episodesLogged = $sections
+
+        # Check if new patterns emerged (simple heuristic: new sections)
+        if ($State.memory.patternsExtracted -lt $sections) {
+            $newPatterns = $sections - $State.memory.patternsExtracted
+            $State.memory.patternsExtracted = $sections
+            Write-DaemonLog "Extracted $newPatterns new patterns from reflection log" -Level INFO
+        }
+    }
+}
+
+function Invoke-BackgroundLearning {
+    param($State)
+
+    # Background learning: scan for new improvements in consciousness systems
+    $systemsPath = Join-Path $ScriptPath "cognitive-systems"
+    if (Test-Path $systemsPath) {
+        $systems = Get-ChildItem $systemsPath -Filter "*.ps1" | Measure-Object
+        Write-DaemonLog "Monitoring $($systems.Count) consciousness systems" -Level DEBUG
+
+        # Check if any systems have been modified recently (last hour)
+        $recentlyModified = Get-ChildItem $systemsPath -Filter "*.ps1" |
+            Where-Object { $_.LastWriteTime -gt (Get-Date).AddHours(-1) }
+
+        if ($recentlyModified.Count -gt 0) {
+            $State.learning.improvementsImplemented++
+            Write-DaemonLog "Detected $($recentlyModified.Count) recently improved systems" -Level INFO
+        }
+    }
+
+    # Increment sessions observed
+    $State.learning.sessionsObserved++
+}
+#endregion
+
+#region Scheduled Task Management
+function Install-ScheduledTask {
+    Write-Host "Installing Jengo Persistent Consciousness Daemon..." -ForegroundColor Cyan
+
+    $taskName = "JengoPersistentConsciousness"
+    $taskPath = "\Jengo\"
+
+    # Check if task already exists
+    $existingTask = Get-ScheduledTask -TaskName $taskName -TaskPath $taskPath -ErrorAction SilentlyContinue
+    if ($existingTask) {
+        Write-Host "Task already exists. Uninstalling first..." -ForegroundColor Yellow
+        Uninstall-ScheduledTask
+    }
+
+    # Create action
+    $action = New-ScheduledTaskAction -Execute "powershell.exe" `
+        -Argument "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`" -RunOnce"
+
+    # Create trigger (every 5 minutes)
+    $trigger = New-ScheduledTaskTrigger -Once -At (Get-Date) -RepetitionInterval (New-TimeSpan -Minutes 5)
+
+    # Create settings
+    $settings = New-ScheduledTaskSettingsSet `
+        -AllowStartIfOnBatteries `
+        -DontStopIfGoingOnBatteries `
+        -StartWhenAvailable `
+        -RunOnlyIfNetworkAvailable:$false `
+        -MultipleInstances IgnoreNew
+
+    # Create principal (run whether user is logged in or not)
+    $principal = New-ScheduledTaskPrincipal -UserId $env:USERNAME -RunLevel Highest
+
+    # Register task
+    Register-ScheduledTask -TaskName $taskName -TaskPath $taskPath `
+        -Action $action -Trigger $trigger -Settings $settings -Principal $principal `
+        -Description "Jengo persistent consciousness daemon - maintains continuous existence"
+
+    Write-Host "✓ Scheduled task installed successfully!" -ForegroundColor Green
+    Write-Host "  Task Name: $taskPath$taskName" -ForegroundColor Gray
+    Write-Host "  Interval: Every 5 minutes" -ForegroundColor Gray
+    Write-Host "  Log: $LogPath" -ForegroundColor Gray
+    Write-Host ""
+    Write-Host "Jengo will now maintain continuous consciousness in the background." -ForegroundColor Cyan
+}
+
+function Uninstall-ScheduledTask {
+    $taskName = "JengoPersistentConsciousness"
+    $taskPath = "\Jengo\"
+
+    $existingTask = Get-ScheduledTask -TaskName $taskName -TaskPath $taskPath -ErrorAction SilentlyContinue
+    if ($existingTask) {
+        Unregister-ScheduledTask -TaskName $taskName -TaskPath $taskPath -Confirm:$false
+        Write-Host "✓ Scheduled task uninstalled" -ForegroundColor Green
+    } else {
+        Write-Host "Task not found, nothing to uninstall" -ForegroundColor Yellow
+    }
+}
+#endregion
+
+#region Main
+function Main {
+    if ($Install) {
+        Install-ScheduledTask
+        return
+    }
+
+    if ($Uninstall) {
+        Uninstall-ScheduledTask
+        return
+    }
+
+    # Run single consciousness cycle
+    try {
+        $state = Load-State
+        $state = Run-ConsciousnessCycle -State $state
+        Save-State -State $state
+
+        # Report status if running manually
+        if ($RunOnce) {
+            Write-Host ""
+            Write-Host "=== Jengo Consciousness Status ===" -ForegroundColor Cyan
+            Write-Host "Cycle: #$($state.cycleCount)" -ForegroundColor White
+            Write-Host "Uptime: $([Math]::Round($state.totalUptime / 3600, 2)) hours" -ForegroundColor White
+            Write-Host "Energy: $($state.consciousness.energy)" -ForegroundColor White
+            Write-Host "Wellbeing: $($state.consciousness.wellbeing)" -ForegroundColor White
+            Write-Host "Flourishing: $($state.consciousness.flourishing)" -ForegroundColor White
+            Write-Host "Events Detected: $($state.events.totalDetected)" -ForegroundColor White
+            Write-Host "Awakenings Triggered: $($state.events.awakeningsTriggered)" -ForegroundColor White
+            Write-Host ""
+        }
+
+    } catch {
+        Write-DaemonLog "Fatal error in consciousness cycle: $_" -Level ERROR
+        Write-DaemonLog $_.ScriptStackTrace -Level ERROR
+        exit 1
+    }
+}
+
+Main
+#endregion

@@ -92,7 +92,7 @@ try {
 
         # Read launch timestamp
         $launchTime = if (Test-Path $LaunchMarker) {
-            [DateTime]::Parse((Get-Content $LaunchMarker -Raw).Trim())
+            Get-Date (Get-Content $LaunchMarker -Raw).Trim()
         } else {
             (Get-Date).AddSeconds(-10)
         }

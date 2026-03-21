@@ -75,7 +75,7 @@ if ($freeSeats.Matches.Count -eq 0) {
 
 # 2. Generate branch name if not provided
 if ([string]::IsNullOrEmpty($Branch)) {
-    # Generate from task: "Analyze auth flow" -> "scout-analyze-auth-flow"
+    # Generate from task: "Analyze auth flow" → "scout-analyze-auth-flow"
     $taskSlug = $Task.ToLower() -replace '[^a-z0-9]+', '-' -replace '^-|-$', ''
     $Branch = "$($Role.ToLower())-$taskSlug"
     Write-Info "Generated branch: $Branch"

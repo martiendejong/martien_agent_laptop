@@ -1,0 +1,20 @@
+{
+    "repeat_error_rate":  {
+                              "target":  0.05,
+                              "baseline":  0.15
+                          },
+    "self_correction_turns":  {
+                                  "target":  3,
+                                  "baseline":  0
+                              },
+    "critique_prediction_accuracy":  {
+                                         "target":  0.75,
+                                         "baseline":  0.3
+                                     },
+    "validation_end_date":  "2026-03-16",
+    "date":  "2026-02-23",
+    "integration_rate":  {
+                             "target":  0.80,
+                             "baseline":  0.45
+                         }
+}

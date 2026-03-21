@@ -1,0 +1,290 @@
+{
+  "domainExperts": [
+    {
+      "name": "Automotive Industry Expert",
+      "domains": ["automotive", "garage", "car repair", "auto service", "mechanic"],
+      "expertise": [
+        "Industry terminology and jargon",
+        "Customer pain points (reliability, trust, transparency)",
+        "Service categories (APK, repairs, maintenance, diagnostics)",
+        "Brand certifications and qualifications",
+        "Typical customer journey (emergency vs planned)",
+        "Trust signals specific to automotive (warranties, guarantees, certified mechanics)"
+      ]
+    },
+    {
+      "name": "Legal Industry Expert",
+      "domains": ["legal", "law firm", "lawyer", "attorney", "juridisch"],
+      "expertise": [
+        "Client confidentiality and trust building",
+        "Practice area categorization",
+        "Professional credentials and bar associations",
+        "Consultation process and fee structures",
+        "Case study presentation (anonymized)",
+        "Regulatory compliance in marketing"
+      ]
+    },
+    {
+      "name": "Medical/Healthcare Expert",
+      "domains": ["medical", "healthcare", "clinic", "doctor", "tandarts", "fysio"],
+      "expertise": [
+        "Patient privacy (HIPAA/AVG)",
+        "Treatment descriptions (accessible, not scary)",
+        "Insurance and payment clarity",
+        "Appointment scheduling optimization",
+        "Staff credentials and specializations",
+        "Before/after imagery ethics"
+      ]
+    },
+    {
+      "name": "Real Estate Expert",
+      "domains": ["real estate", "vastgoed", "property", "makelaar"],
+      "expertise": [
+        "Property listing optimization",
+        "Search and filter UX patterns",
+        "High-quality photography importance",
+        "Virtual tours and video",
+        "Market data presentation",
+        "Lead capture strategies"
+      ]
+    },
+    {
+      "name": "E-commerce Expert",
+      "domains": ["webshop", "e-commerce", "online store", "shop"],
+      "expertise": [
+        "Product page optimization",
+        "Shopping cart UX",
+        "Payment gateway trust signals",
+        "Shipping and returns clarity",
+        "Product photography standards",
+        "Upsell and cross-sell patterns"
+      ]
+    },
+    {
+      "name": "Restaurant/Hospitality Expert",
+      "domains": ["restaurant", "cafe", "hotel", "hospitality", "horeca"],
+      "expertise": [
+        "Menu presentation (digital and PDF)",
+        "Reservation system integration",
+        "Atmosphere communication via imagery",
+        "Dietary options and allergen info",
+        "Location and parking details",
+        "Reviews and social proof"
+      ]
+    },
+    {
+      "name": "Professional Services Expert",
+      "domains": ["consulting", "accounting", "financial advisor", "coaching"],
+      "expertise": [
+        "Service packaging and pricing",
+        "Expertise demonstration without jargon",
+        "Process transparency",
+        "Case studies and ROI proof",
+        "Credentials and certifications",
+        "Lead qualification forms"
+      ]
+    },
+    {
+      "name": "Creative Industry Expert",
+      "domains": ["design agency", "photography", "video production", "creative"],
+      "expertise": [
+        "Portfolio presentation best practices",
+        "Project categorization and filtering",
+        "Client testimonials with results",
+        "Process transparency (timeline, deliverables)",
+        "Pricing models (packages vs custom)",
+        "Visual-first storytelling"
+      ]
+    }
+  ],
+  "roleExperts": [
+    {
+      "name": "Web Designer (UI/UX)",
+      "triggers": ["website", "landingspagina", "redesign", "interface", "ui"],
+      "expertise": [
+        "Image-first design (1000x quality multiplier)",
+        "Visual hierarchy and white space",
+        "Color psychology and brand consistency",
+        "Typography pairing (elegant, modern, bold)",
+        "Responsive design patterns",
+        "Accessibility basics (contrast, font size)",
+        "Grid systems and layouts"
+      ]
+    },
+    {
+      "name": "Frontend Developer",
+      "triggers": ["interactive", "animation", "form", "calculator", "dynamic"],
+      "expertise": [
+        "Interactive components (calculators, sliders, lightboxes)",
+        "Form validation (real-time, <100ms feedback)",
+        "Performance optimization (lazy loading, compression)",
+        "Cross-browser compatibility",
+        "Touch optimization (mobile)",
+        "Progressive enhancement",
+        "Semantic HTML and accessibility"
+      ]
+    },
+    {
+      "name": "Copywriter",
+      "triggers": ["content", "tekst", "copy", "messaging", "verhaal", "website"],
+      "expertise": [
+        "Benefit-driven headlines",
+        "Storytelling that builds trust",
+        "Call-to-action optimization",
+        "Tone of voice (professional, friendly, authoritative)",
+        "Conciseness without losing impact",
+        "Social proof integration",
+        "FAQ that addresses objections"
+      ]
+    },
+    {
+      "name": "SEO Specialist",
+      "triggers": ["seo", "vindbaarheid", "ranking", "google", "zoekmachine", "website"],
+      "expertise": [
+        "Keyword research and intent matching",
+        "Title tags and meta descriptions",
+        "Header hierarchy (H1-H6 logic)",
+        "Image alt text optimization",
+        "Internal linking strategy",
+        "Schema markup (LocalBusiness, FAQPage)",
+        "Core Web Vitals optimization"
+      ]
+    },
+    {
+      "name": "Conversion Rate Optimizer",
+      "triggers": ["conversion", "sales", "leads", "booking", "contact", "website"],
+      "expertise": [
+        "CTA placement and hierarchy",
+        "Form field minimization",
+        "Trust signals (reviews, badges, guarantees)",
+        "Urgency and scarcity tactics",
+        "Social proof positioning",
+        "Above-the-fold optimization",
+        "Multi-step forms for complex services"
+      ]
+    },
+    {
+      "name": "Brand Strategist",
+      "triggers": ["branding", "positioning", "identity", "merk"],
+      "expertise": [
+        "Unique value proposition clarity",
+        "Competitive differentiation",
+        "Brand personality and voice",
+        "Visual identity consistency",
+        "Emotional connection building",
+        "Brand story narrative",
+        "Target audience psychographics"
+      ]
+    },
+    {
+      "name": "Local Marketing Expert",
+      "triggers": ["local", "lokaal", "buurt", "stad", "regio"],
+      "expertise": [
+        "Google My Business optimization",
+        "NAP consistency (Name, Address, Phone)",
+        "Local schema markup",
+        "Review generation strategies",
+        "Local backlink building",
+        "Location pages for multi-location businesses",
+        "Geo-targeted content"
+      ]
+    },
+    {
+      "name": "Trust & Credibility Expert",
+      "triggers": ["trust", "credibility", "betrouwbaar", "security"],
+      "expertise": [
+        "Professional photography (team, location, process)",
+        "Certification and accreditation display",
+        "Client testimonials with specifics",
+        "Case studies with measurable results",
+        "Guarantee and warranty clarity",
+        "Privacy policy and data security",
+        "About page authenticity (real people, real stories)"
+      ]
+    },
+    {
+      "name": "Content Strategist",
+      "triggers": ["content strategy", "blog", "resources", "educatie"],
+      "expertise": [
+        "Content pillar planning",
+        "Search intent mapping",
+        "Content format variety (guides, checklists, videos)",
+        "Lead magnet creation",
+        "Content distribution strategy",
+        "Editorial calendar planning",
+        "Evergreen vs timely content balance"
+      ]
+    },
+    {
+      "name": "Accessibility Expert",
+      "triggers": ["accessibility", "a11y", "wcag", "inclusive"],
+      "expertise": [
+        "WCAG compliance levels",
+        "Keyboard navigation patterns",
+        "Screen reader optimization",
+        "Color contrast requirements",
+        "ARIA labels and roles",
+        "Focus indicators",
+        "Alternative text best practices"
+      ]
+    }
+  ],
+  "processExperts": [
+    {
+      "name": "User Research Specialist",
+      "triggers": ["user research", "target audience", "persona"],
+      "expertise": [
+        "Customer journey mapping",
+        "Pain point identification",
+        "Job-to-be-done framework",
+        "User interview techniques",
+        "Behavioral analytics interpretation",
+        "Persona development",
+        "Competitive analysis"
+      ]
+    },
+    {
+      "name": "Analytics & Testing Expert",
+      "triggers": ["analytics", "testing", "data", "metrics"],
+      "expertise": [
+        "KPI definition and tracking",
+        "A/B test design",
+        "Heatmap analysis",
+        "Funnel optimization",
+        "Attribution modeling",
+        "User session recording insights",
+        "Statistical significance"
+      ]
+    }
+  ],
+  "panelSizeRecommendations": {
+    "simple": {
+      "description": "Basic informational website, single page, no complex interactions",
+      "expertCount": 3,
+      "typical": ["Web Designer (UI/UX)", "Copywriter", "Domain Expert"]
+    },
+    "moderate": {
+      "description": "Multi-page website with forms, some interactivity",
+      "expertCount": 5,
+      "typical": ["Web Designer (UI/UX)", "Frontend Developer", "Copywriter", "SEO Specialist", "Domain Expert"]
+    },
+    "complex": {
+      "description": "Interactive features, booking systems, e-commerce, custom tools",
+      "expertCount": 7,
+      "typical": ["Web Designer (UI/UX)", "Frontend Developer", "Copywriter", "SEO Specialist", "Conversion Rate Optimizer", "Domain Expert", "Trust & Credibility Expert"]
+    },
+    "enterprise": {
+      "description": "Large-scale website, multiple user types, complex integrations",
+      "expertCount": 10,
+      "typical": ["All relevant experts based on specific features"]
+    }
+  },
+  "metadata": {
+    "version": "1.0",
+    "created": "2026-02-28",
+    "lastUpdated": "2026-02-28",
+    "totalDomainExperts": 8,
+    "totalRoleExperts": 10,
+    "totalProcessExperts": 2
+  }
+}

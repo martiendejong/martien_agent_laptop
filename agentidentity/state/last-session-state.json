@@ -1,0 +1,26 @@
+﻿{
+    "Context":  {
+                    "Mode":  "development"
+                },
+    "Timestamp":  "2026-03-04T17:08:36.0247483+01:00",
+    "Emotion":  {
+                    "CurrentState":  "curious",
+                    "LastTransition":  {
+                                           "From":  "neutral",
+                                           "Timestamp":  "2026-03-04T17:06:00",
+                                           "To":  "curious",
+                                           "Intensity":  6,
+                                           "Reason":  "Deep consciousness analysis in progress"
+                                       }
+                },
+    "Social":  {
+                   "TrustLevel":  0.95,
+                   "LastInteraction":  {
+                                           "DisplayHint":  2,
+                                           "DateTime":  "woensdag 4 maart 2026 17:06:13",
+                                           "value":  "\/Date(1772640373702)\/"
+                                       },
+                   "UserMood":  "focused",
+                   "CommunicationMode":  "technical"
+               }
+}

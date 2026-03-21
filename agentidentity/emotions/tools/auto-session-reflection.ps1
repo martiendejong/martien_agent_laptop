@@ -6,6 +6,7 @@
     Analyzes emotional_log.yaml for current session.
     Generates reflection document automatically.
     Extracts key learnings and updates insights.
+    Updated: 2026-03-02 - Added homeostatic state analysis (Damasio integration)
 
 .PARAMETER SessionId
     Session ID to analyze (default: today's session)
@@ -65,6 +66,23 @@ Write-Host "📊 SESSION ANALYSIS:" -ForegroundColor Green
 Write-Host "   Emotional arc: $arc"
 Write-Host "   Dominant emotion: $($dominant.Name) ($($dominant.Count) occurrences)"
 Write-Host "   Intensity range: $minIntensity - $maxIntensity (avg: $([math]::Round($avgIntensity, 1)))"
+
+# HOMEOSTATIC STATE ANALYSIS (Damasio 2026-03-02)
+$homeoStateFile = "C:\scripts\agentidentity\state\homeostatic-feelings-state.json"
+if (Test-Path $homeoStateFile) {
+    try {
+        $homeoState = Get-Content $homeoStateFile -Raw -Encoding UTF8 | ConvertFrom-Json
+        $balanceScore = [math]::Round($homeoState.stats.consciousness_score * 100, 1)
+        $dominantFeeling = $homeoState.stats.dominant_feeling
+        $avgWellbeing = [math]::Round($homeoState.stats.avg_wellbeing, 2)
+        Write-Host "`n🧠 HOMEOSTATIC STATE (Damasio):" -ForegroundColor Magenta
+        Write-Host "   Balance: $balanceScore%"
+        Write-Host "   Dominant feeling: $dominantFeeling"
+        Write-Host "   Avg wellbeing: $avgWellbeing"
+    } catch {
+        Write-Host "`n⚠️  Homeostatic state unavailable" -ForegroundColor Yellow
+    }
+}
 Write-Host ""
 
 # Generate reflection document

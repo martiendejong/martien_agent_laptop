@@ -1,0 +1,86 @@
+﻿{
+    "patterns":  [
+                     {
+                         "avg_effectiveness":  0,
+                         "abstract_definition":  "Iterative improvement strategy where each step attempts to improve on the previous state",
+                         "instance_count":  0,
+                         "total_effectiveness":  0,
+                         "category":  "ProblemSolving",
+                         "last_used":  null,
+                         "first_observed":  "2026-02-15T21:12:32.045Z",
+                         "name":  "HillClimbing",
+                         "variations":  [
+
+                                        ],
+                         "conditions":  [
+
+                                        ]
+                     },
+                     {
+                         "avg_effectiveness":  0,
+                         "abstract_definition":  "Working within defined limits and boundaries to find valid solutions",
+                         "instance_count":  0,
+                         "total_effectiveness":  0,
+                         "category":  "ProblemSolving",
+                         "last_used":  null,
+                         "first_observed":  "2026-02-15T21:12:43.907Z",
+                         "name":  "ConstraintSatisfaction",
+                         "variations":  [
+
+                                        ],
+                         "conditions":  [
+
+                                        ]
+                     },
+                     {
+                         "avg_effectiveness":  0,
+                         "abstract_definition":  "Trying alternative approaches after a path fails",
+                         "instance_count":  0,
+                         "total_effectiveness":  0,
+                         "category":  "ErrorRecovery",
+                         "last_used":  null,
+                         "first_observed":  "2026-02-15T21:12:43.948Z",
+                         "name":  "Backtracking",
+                         "variations":  [
+
+                                        ],
+                         "conditions":  [
+
+                                        ]
+                     },
+                     {
+                         "avg_effectiveness":  0,
+                         "abstract_definition":  "Breaking complex problems into smaller, manageable subtasks",
+                         "instance_count":  0,
+                         "total_effectiveness":  0,
+                         "category":  "ProblemSolving",
+                         "last_used":  null,
+                         "first_observed":  "2026-02-15T21:12:43.973Z",
+                         "name":  "DivideAndConquer",
+                         "variations":  [
+
+                                        ],
+                         "conditions":  [
+
+                                        ]
+                     },
+                     {
+                         "avg_effectiveness":  0,
+                         "abstract_definition":  "Recognizing similarity between current and past situations",
+                         "instance_count":  0,
+                         "total_effectiveness":  0,
+                         "category":  "Learning",
+                         "last_used":  null,
+                         "first_observed":  "2026-02-15T21:12:43.994Z",
+                         "name":  "PatternMatching",
+                         "variations":  [
+
+                                        ],
+                         "conditions":  [
+
+                                        ]
+                     }
+                 ],
+    "version":  "1.0",
+    "last_updated":  "2026-02-15T21:12:43.994Z"
+}

@@ -1,0 +1,9 @@
+{
+  "total_validations": 13,
+  "hallucinations_detected": 5,
+  "hallucination_rate": 0.38461538461538464,
+  "uncertainty_flags": 8,
+  "uncertainty_rate": 0.6153846153846154,
+  "target_rate": 0.005,
+  "meets_target": false
+}

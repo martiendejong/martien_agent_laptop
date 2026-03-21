@@ -1,0 +1,223 @@
+[
+  {
+    "id": "869cj3hve",
+    "custom_id": null,
+    "custom_item_id": 0,
+    "name": "when the terminal orchestration service crashes and restarts I want all the sessions to be recoverable",
+    "text_content": "SUMMARY\nSession recovery system for Terminal Orchestration Service - automatically restore active sessions after service crash/restart using SessionPersistence infrastructure\n\nFRONTEND\nComponents:\n- No frontend changes (backend-only feature)\n- Terminal sessions automatically reconnect via SignalR groups\n- Existing TerminalHub.cs handles reconnection events\n\nRecovery Flow:\n- User refreshes browser after service restart\n- SignalR reconnects to TerminalHub\n- Frontend requests session list via existing GetAllSessions endpoint\n- Sessions marked as recoverable show \"Restore\" button\n- Click restore -> Backend replays transcript -> Terminal displays historical output\n\nBACKEND\nFiles to Modify:\n- TerminalSessionManager.cs:168 - Add RestoreSessionAsync(sessionId) method\n- SessionPersistence.cs:110 - LoadSessionAsync already exists, use it\n- TerminalController.cs - Add GET /api/terminal/recoverable endpoint\n- Program.cs - Add startup recovery: scan E:\\orchestration-sessions\\active for .session.json files\n\nServices:\n- ISessionPersistence (existing) - LoadSessionAsync, GetActiveSessionsAsync, GetTranscriptAsync\n- TerminalSessionManager (existing) - Add session restoration logic\n- IAgentSessionLogger (existing) - Resume logging for restored sessions\n\nLogic:\n1. On startup: Scan E:\\orchestration-sessions\\active for *.session.json files\n2. For each metadata file: Check if process still alive (ProcessById), mark as \"recoverable\" if dead\n3. On restore request: Create new ITerminalSession with recovered SessionId\n4. Load transcript from GetTranscriptAsync, replay byte-by-byte to match timing\n5. Wire up SignalR events (OnOutput, OnExit, OnTitleChanged) per existing pattern (line 133-219)\n6. Update SessionMetadata.State = SessionState.Active, LastActive = DateTime.UtcNow\n\nKey Pattern:\n- SessionPersistence already saves metadata + transcript (lines 67-107)\n- TerminalSessionManager._sessions ConcurrentDictionary is lost on crash\n- Solution: Rebuild _sessions from persisted metadata on startup\n- Use existing AppendOutputAsync during normal operation (line 140)\n\nIMPACT\nExisting Features:\n- Terminal Orchestration: Sessions survive service restart (zero data loss)\n- No breaking changes (SessionPersistence already wired up)\n\nMigration:\n- None (SessionPersistence directory E:\\orchestration-sessions already exists)\n- Graceful degradation: If no persisted sessions, startup works as before\n\nTESTING\nScenario 1: Service Crash Recovery\n1. Start orchestration service, create 2 terminal sessions\n2. Type commands in both terminals, verify output logged\n3. Kill service process (simulate crash)\n4. Restart service\n5. Refresh browser, verify GET /api/terminal/recoverable returns 2 sessions\n6. Click Restore on session 1, verify transcript replays correctly\n7. Type new command, verify session continues normally\n\nScenario 2: Process Already Dead Before Restart\n1. Create terminal session running \"claude\" command\n2. Kill claude.exe process manually (simulates app crash, not service crash)\n3. Restart orchestration service\n4. Verify session marked as recoverable (ProcessById returns null)\n5. Restore session, verify transcript shows but session marked as completed\n\nScenario 3: Clean Shutdown (Not a Crash)\n1. Create terminal session\n2. Gracefully stop service (Ctrl+C)\n3. Restart service\n4. Verify sessions NOT marked recoverable (clean shutdown archives them)",
+    "description": "SUMMARY\nSession recovery system for Terminal Orchestration Service - automatically restore active sessions after service crash/restart using SessionPersistence infrastructure\n\nFRONTEND\nComponents:\n- No frontend changes (backend-only feature)\n- Terminal sessions automatically reconnect via SignalR groups\n- Existing TerminalHub.cs handles reconnection events\n\nRecovery Flow:\n- User refreshes browser after service restart\n- SignalR reconnects to TerminalHub\n- Frontend requests session list via existing GetAllSessions endpoint\n- Sessions marked as recoverable show \"Restore\" button\n- Click restore -> Backend replays transcript -> Terminal displays historical output\n\nBACKEND\nFiles to Modify:\n- TerminalSessionManager.cs:168 - Add RestoreSessionAsync(sessionId) method\n- SessionPersistence.cs:110 - LoadSessionAsync already exists, use it\n- TerminalController.cs - Add GET /api/terminal/recoverable endpoint\n- Program.cs - Add startup recovery: scan E:\\orchestration-sessions\\active for .session.json files\n\nServices:\n- ISessionPersistence (existing) - LoadSessionAsync, GetActiveSessionsAsync, GetTranscriptAsync\n- TerminalSessionManager (existing) - Add session restoration logic\n- IAgentSessionLogger (existing) - Resume logging for restored sessions\n\nLogic:\n1. On startup: Scan E:\\orchestration-sessions\\active for *.session.json files\n2. For each metadata file: Check if process still alive (ProcessById), mark as \"recoverable\" if dead\n3. On restore request: Create new ITerminalSession with recovered SessionId\n4. Load transcript from GetTranscriptAsync, replay byte-by-byte to match timing\n5. Wire up SignalR events (OnOutput, OnExit, OnTitleChanged) per existing pattern (line 133-219)\n6. Update SessionMetadata.State = SessionState.Active, LastActive = DateTime.UtcNow\n\nKey Pattern:\n- SessionPersistence already saves metadata + transcript (lines 67-107)\n- TerminalSessionManager._sessions ConcurrentDictionary is lost on crash\n- Solution: Rebuild _sessions from persisted metadata on startup\n- Use existing AppendOutputAsync during normal operation (line 140)\n\nIMPACT\nExisting Features:\n- Terminal Orchestration: Sessions survive service restart (zero data loss)\n- No breaking changes (SessionPersistence already wired up)\n\nMigration:\n- None (SessionPersistence directory E:\\orchestration-sessions already exists)\n- Graceful degradation: If no persisted sessions, startup works as before\n\nTESTING\nScenario 1: Service Crash Recovery\n1. Start orchestration service, create 2 terminal sessions\n2. Type commands in both terminals, verify output logged\n3. Kill service process (simulate crash)\n4. Restart service\n5. Refresh browser, verify GET /api/terminal/recoverable returns 2 sessions\n6. Click Restore on session 1, verify transcript replays correctly\n7. Type new command, verify session continues normally\n\nScenario 2: Process Already Dead Before Restart\n1. Create terminal session running \"claude\" command\n2. Kill claude.exe process manually (simulates app crash, not service crash)\n3. Restart orchestration service\n4. Verify session marked as recoverable (ProcessById returns null)\n5. Restore session, verify transcript shows but session marked as completed\n\nScenario 3: Clean Shutdown (Not a Crash)\n1. Create terminal session\n2. Gracefully stop service (Ctrl+C)\n3. Restart service\n4. Verify sessions NOT marked recoverable (clean shutdown archives them)",
+    "status": {
+      "status": "todo",
+      "id": "sc901216032574_4f80h8q7",
+      "color": "#8d8d8d",
+      "type": "custom",
+      "orderindex": 5
+    },
+    "orderindex": "120484883.00009360000000000000000000000000",
+    "date_created": "1773910723777",
+    "date_updated": "1773949997858",
+    "date_closed": null,
+    "date_done": null,
+    "archived": false,
+    "creator": {
+      "id": 74525428,
+      "username": "Martien de Jong",
+      "color": "",
+      "email": "martiendejong2008@gmail.com",
+      "profilePicture": null
+    },
+    "assignees": [],
+    "group_assignees": [],
+    "watchers": [
+      {
+        "id": 74525428,
+        "username": "Martien de Jong",
+        "color": "",
+        "initials": "MJ",
+        "email": "martiendejong2008@gmail.com",
+        "profilePicture": null
+      }
+    ],
+    "checklists": [],
+    "tags": [],
+    "parent": null,
+    "top_level_parent": null,
+    "priority": null,
+    "due_date": null,
+    "start_date": null,
+    "points": null,
+    "time_estimate": null,
+    "custom_fields": [
+      {
+        "id": "69ed8f08-4e9d-477f-939f-f2bfb84a74ed",
+        "name": "Business value (euros)",
+        "type": "currency",
+        "type_config": {
+          "precision": 2,
+          "currency_type": "EUR"
+        },
+        "date_created": "1752773462279",
+        "hide_from_guests": false,
+        "required": false
+      }
+    ],
+    "dependencies": [],
+    "linked_tasks": [],
+    "locations": [],
+    "team_id": "9012956001",
+    "url": "https://app.clickup.com/t/869cj3hve",
+    "sharing": {
+      "public": false,
+      "public_share_expires_on": null,
+      "public_fields": [
+        "assignees",
+        "priority",
+        "due_date",
+        "content",
+        "comments",
+        "attachments",
+        "customFields",
+        "subtasks",
+        "tags",
+        "checklists",
+        "coverimage"
+      ],
+      "token": null,
+      "seo_optimized": false
+    },
+    "permission_level": "create",
+    "list": {
+      "id": "901216032574",
+      "name": "Hazina Terminal Orchestration Service",
+      "access": true
+    },
+    "project": {
+      "id": "90126650982",
+      "name": "Internal Projects",
+      "hidden": false,
+      "access": true
+    },
+    "folder": {
+      "id": "90126650982",
+      "name": "Internal Projects",
+      "hidden": false,
+      "access": true
+    },
+    "space": {
+      "id": "90124247049"
+    }
+  },
+  {
+    "id": "869ca5df8",
+    "custom_id": null,
+    "custom_item_id": 0,
+    "name": "agent in the chat that uses an llm to give sensible responses who can make the sessions by itself",
+    "text_content": "SUMMARY\nTerminal-based conversational agent with LLM integration - intelligent responses in chat interface for Hazina orchestration\n\nFRONTEND\nComponents:\n- No frontend (terminal-only CLI application)\n- Terminal UI using Spectre.Console or System.Console\n- Chat interface with message history display\n- Command input prompt with auto-complete\n\nTerminal UI:\n- Display: Chat history scrolling view, agent name, timestamp per message\n- Input: Command line with Enter to send, arrow keys for history\n- Responses: Streamed token-by-token for natural feel\n- Commands: /help, /clear, /exit, /context (show current context)\n\nBACKEND\nEndpoints:\n- No HTTP endpoints (terminal app, not web service)\n\nServices:\n- Hazina.Terminal.ChatAgent - Main chat loop and message handling\n- Hazina.Terminal.LLMService - Integration with Hazina LLM abstraction\n- Hazina.Terminal.ContextManager - Maintain conversation context window\n\nLogic:\n- Load Hazina orchestration config from appsettings.json\n- Initialize LLM client (OpenAI/Claude/etc via Hazina)\n- Maintain rolling context window (last 10 messages)\n- Stream responses token-by-token to terminal\n- System prompt: \"You are a helpful assistant for Hazina orchestration tasks\"\n\nIMPACT\nExisting Features:\n- Hazina Terminal Orchestration: Add chat agent mode (new feature)\n- No breaking changes (pure addition)\n\nMigration:\n- None (new feature)\n\nTESTING\nScenario 1: Basic Chat Interaction\n1. Run: dotnet run --project Hazina.Terminal.csproj chat\n2. Type: \"Hello, what can you help me with?\"\n3. Verify: Agent responds with capabilities description\n4. Type: \"What orchestration tasks are running?\"\n5. Verify: Agent queries Hazina API and lists tasks\n\nScenario 2: Context Retention\n1. Start chat session\n2. Type: \"My name is John\"\n3. Agent acknowledges\n4. Type: \"What's my name?\"\n5. Verify: Agent responds \"Your name is John\"\n\nScenario 3: Command Handling\n1. In chat session, type: /help\n2. Verify: Shows available commands\n3. Type: /context\n4. Verify: Shows current conversation history (last 10 messages)\n5. Type: /clear\n6. Verify: Context cleared, confirms in response",
+    "description": "SUMMARY\nTerminal-based conversational agent with LLM integration - intelligent responses in chat interface for Hazina orchestration\n\nFRONTEND\nComponents:\n- No frontend (terminal-only CLI application)\n- Terminal UI using Spectre.Console or System.Console\n- Chat interface with message history display\n- Command input prompt with auto-complete\n\nTerminal UI:\n- Display: Chat history scrolling view, agent name, timestamp per message\n- Input: Command line with Enter to send, arrow keys for history\n- Responses: Streamed token-by-token for natural feel\n- Commands: /help, /clear, /exit, /context (show current context)\n\nBACKEND\nEndpoints:\n- No HTTP endpoints (terminal app, not web service)\n\nServices:\n- Hazina.Terminal.ChatAgent - Main chat loop and message handling\n- Hazina.Terminal.LLMService - Integration with Hazina LLM abstraction\n- Hazina.Terminal.ContextManager - Maintain conversation context window\n\nLogic:\n- Load Hazina orchestration config from appsettings.json\n- Initialize LLM client (OpenAI/Claude/etc via Hazina)\n- Maintain rolling context window (last 10 messages)\n- Stream responses token-by-token to terminal\n- System prompt: \"You are a helpful assistant for Hazina orchestration tasks\"\n\nIMPACT\nExisting Features:\n- Hazina Terminal Orchestration: Add chat agent mode (new feature)\n- No breaking changes (pure addition)\n\nMigration:\n- None (new feature)\n\nTESTING\nScenario 1: Basic Chat Interaction\n1. Run: dotnet run --project Hazina.Terminal.csproj chat\n2. Type: \"Hello, what can you help me with?\"\n3. Verify: Agent responds with capabilities description\n4. Type: \"What orchestration tasks are running?\"\n5. Verify: Agent queries Hazina API and lists tasks\n\nScenario 2: Context Retention\n1. Start chat session\n2. Type: \"My name is John\"\n3. Agent acknowledges\n4. Type: \"What's my name?\"\n5. Verify: Agent responds \"Your name is John\"\n\nScenario 3: Command Handling\n1. In chat session, type: /help\n2. Verify: Shows available commands\n3. Type: /context\n4. Verify: Shows current conversation history (last 10 messages)\n5. Type: /clear\n6. Verify: Context cleared, confirms in response",
+    "status": {
+      "status": "todo",
+      "id": "sc901216032574_4f80h8q7",
+      "color": "#8d8d8d",
+      "type": "custom",
+      "orderindex": 5
+    },
+    "orderindex": "120484884.00013530000000000000000000000000",
+    "date_created": "1772241964506",
+    "date_updated": "1773949999093",
+    "date_closed": null,
+    "date_done": null,
+    "archived": false,
+    "creator": {
+      "id": 74525428,
+      "username": "Martien de Jong",
+      "color": "",
+      "email": "martiendejong2008@gmail.com",
+      "profilePicture": null
+    },
+    "assignees": [],
+    "group_assignees": [],
+    "watchers": [
+      {
+        "id": 74525428,
+        "username": "Martien de Jong",
+        "color": "",
+        "initials": "MJ",
+        "email": "martiendejong2008@gmail.com",
+        "profilePicture": null
+      }
+    ],
+    "checklists": [],
+    "tags": [],
+    "parent": null,
+    "top_level_parent": null,
+    "priority": {
+      "color": "#f8ae00",
+      "id": "2",
+      "orderindex": "2",
+      "priority": "high"
+    },
+    "due_date": null,
+    "start_date": null,
+    "points": null,
+    "time_estimate": null,
+    "custom_fields": [
+      {
+        "id": "69ed8f08-4e9d-477f-939f-f2bfb84a74ed",
+        "name": "Business value (euros)",
+        "type": "currency",
+        "type_config": {
+          "precision": 2,
+          "currency_type": "EUR"
+        },
+        "date_created": "1752773462279",
+        "hide_from_guests": false,
+        "required": false
+      }
+    ],
+    "dependencies": [],
+    "linked_tasks": [],
+    "locations": [],
+    "team_id": "9012956001",
+    "url": "https://app.clickup.com/t/869ca5df8",
+    "sharing": {
+      "public": false,
+      "public_share_expires_on": null,
+      "public_fields": [
+        "assignees",
+        "priority",
+        "due_date",
+        "content",
+        "comments",
+        "attachments",
+        "customFields",
+        "subtasks",
+        "tags",
+        "checklists",
+        "coverimage"
+      ],
+      "token": null,
+      "seo_optimized": false
+    },
+    "permission_level": "create",
+    "list": {
+      "id": "901216032574",
+      "name": "Hazina Terminal Orchestration Service",
+      "access": true
+    },
+    "project": {
+      "id": "90126650982",
+      "name": "Internal Projects",
+      "hidden": false,
+      "access": true
+    },
+    "folder": {
+      "id": "90126650982",
+      "name": "Internal Projects",
+      "hidden": false,
+      "access": true
+    },
+    "space": {
+      "id": "90124247049"
+    }
+  }
+]

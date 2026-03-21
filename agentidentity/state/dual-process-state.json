@@ -1,0 +1,19 @@
+﻿{
+    "cognitive_ease":  0.7,
+    "current_mode":  "S1",
+    "mode_history":  [
+
+                     ],
+    "stats":  {
+                  "s1_success_rate":  0,
+                  "s1_decisions":  0,
+                  "avg_s1_time":  0,
+                  "avg_s2_time":  0,
+                  "mode_switches":  0,
+                  "s2_success_rate":  0,
+                  "s2_decisions":  0
+              },
+    "decisions":  [
+
+                  ]
+}

@@ -86,7 +86,122 @@ Moving task back to 'todo' status.
 -- Task Review System (FAILED)
 ```
 
-### Step 2: Analyze Code Changes vs Problem Statement
+### Step 2: Verify Expected Files Exist (CRITICAL GATE #2)
+
+**NEW 2026-03-11: File existence verification prevents "wrong code" scenarios**
+
+**Purpose:** Verify that PR modified the expected files mentioned in task specs.
+
+```bash
+# Extract expected files from task description
+# Look for patterns like:
+# - "Component: src/components/FillPasswordButton.tsx"
+# - "File: src/services/formDetection.ts"
+# - Code blocks showing file paths
+
+TASK_DESC=$(clickup-sync.ps1 -Action show -TaskId "<task-id>")
+
+# Search for file path patterns (src/.../.tsx, API/.../.cs, etc.)
+EXPECTED_FILES=$(echo "$TASK_DESC" | grep -oP '[\w\-/]+\.(tsx?|jsx?|cs|py|java|go|rs)')
+
+if [ -n "$EXPECTED_FILES" ]; then
+    echo "Expected files from task specs:"
+    echo "$EXPECTED_FILES"
+
+    # Verify each file exists in codebase
+    cd "/c/Projects/$REPO"
+    MISSING_FILES=""
+
+    for file in $EXPECTED_FILES; do
+        # Try exact path
+        if [ ! -f "$file" ]; then
+            # Try fuzzy match (basename search)
+            BASENAME=$(basename "$file")
+            FOUND=$(find . -name "$BASENAME" -type f | head -1)
+
+            if [ -z "$FOUND" ]; then
+                MISSING_FILES="$MISSING_FILES\n- $file"
+            fi
+        fi
+    done
+
+    # Check if PR modified expected files
+    PR_FILES=$(gh pr view $PR_NUM --json files --jq '.files[].path')
+    EXPECTED_IN_PR=$(echo "$EXPECTED_FILES" | grep -F "$PR_FILES" || echo "")
+
+    if [ -n "$MISSING_FILES" ]; then
+        echo "❌ MISSING FILES DETECTED"
+        echo "$MISSING_FILES"
+        # Skip to Step 10 (Critical Failure - Missing Implementation)
+    elif [ -z "$EXPECTED_IN_PR" ]; then
+        echo "⚠️ PR doesn't modify expected files"
+        echo "Expected: $EXPECTED_FILES"
+        echo "PR modified: $PR_FILES"
+        # This indicates PR fixes DIFFERENT component than task specifies
+        # Skip to Step 10 (Critical Failure - Wrong Implementation)
+    else
+        echo "✅ Expected files exist and were modified by PR"
+    fi
+fi
+```
+
+**Decision:**
+- ✅ **Expected files exist AND PR modifies them** → Continue to Step 3
+- ❌ **Expected files DON'T exist** → **FAIL** → Skip to Step 10 (Missing Implementation)
+- ❌ **PR doesn't modify expected files** → **FAIL** → Skip to Step 10 (Wrong Implementation)
+
+**Critical Failure Template (Missing Files):**
+```markdown
+❌ TASK REVIEW FAILED - EXPECTED FILES DO NOT EXIST
+
+This task claims to implement features but the expected files are missing from the codebase.
+
+**Missing Files:**
+<list of missing files>
+
+**Task Specifications Mentioned:**
+<files mentioned in task description>
+
+**This indicates the feature was NOT actually implemented.**
+
+**Required Actions:**
+1. Create the missing components/files
+2. Implement the functionality as specified
+3. Commit changes
+4. Update PR
+5. Request re-review
+
+Moving task back to 'todo' status.
+
+-- Task Review System (FAILED - Missing Implementation)
+```
+
+**Critical Failure Template (Wrong Files):**
+```markdown
+⚠️ TASK REVIEW FAILED - PR MODIFIES DIFFERENT COMPONENT
+
+This PR exists but modifies different files than the task specifies.
+
+**Expected Files (from task):**
+<list of expected files>
+
+**PR Modified:**
+<list of files PR actually modified>
+
+**This indicates PR addresses a DIFFERENT task or feature.**
+
+**Required Actions:**
+1. Verify this PR addresses the correct task
+2. If wrong task: Create new PR for this task's requirements
+3. If correct task: Update task description to reflect actual changes
+4. Request re-review
+
+Moving task back to 'todo' status.
+
+-- Task Review System (FAILED - Wrong Implementation)
+```
+
+### Step 3: Analyze Code Changes vs Problem Statement
 
 **Verify that code changes actually solve the stated problem.**
 

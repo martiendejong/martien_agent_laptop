@@ -1,0 +1,70 @@
+{
+  "869cg9e97": {
+    "pr_number": 247,
+    "pr_url": "https://github.com/jkriddle/hazina/pull/247",
+    "branch": "agent-014-dotnet-version-standardization",
+    "title": ".NET Version Standardization - Multi-target Libraries + Standardize Apps"
+  },
+  "869cfzy8e": {
+    "pr_number": 247,
+    "pr_url": "https://github.com/jkriddle/hazina/pull/247",
+    "branch": "agent-014-dotnet-version-standardization",
+    "title": ".NET Version Standardization - Multi-target Libraries + Standardize Apps (Phase 4)"
+  },
+  "869cfzy8d": {
+    "pr_number": 250,
+    "pr_url": "https://github.com/jkriddle/hazina/pull/250",
+    "branch": "feature/phase3-consolidation-869cfzy8d",
+    "title": "Phase 3: Consolidation Stage 2 - Deprecation Markers & Planning"
+  },
+  "869cfzy8b": {
+    "pr_number": null,
+    "reason": "Phase 2 is likely documentation/planning, may not have PR"
+  },
+  "869cfzy8a": {
+    "pr_number": 243,
+    "pr_url": "https://github.com/jkriddle/hazina/pull/243",
+    "branch": "hazina-phase1-architecture-audit",
+    "title": "Phase 1: Hazina Modular Architecture Audit & Documentation"
+  },
+  "869ceq3aj": {
+    "pr_number": null,
+    "reason": "Local Agent Platform - needs manual search"
+  },
+  "869cabf59": {
+    "pr_number": null,
+    "reason": "PartialJsonParser test coverage - needs manual search"
+  },
+  "869cabf56": {
+    "pr_number": null,
+    "reason": "Benchmark split/token counter - needs manual search"
+  },
+  "869cabf3t": {
+    "pr_number": null,
+    "reason": "Config parsing vs construction - needs manual search"
+  },
+  "869cabf3p": {
+    "pr_number": null,
+    "reason": "Remove hardcoded paths + DI - needs manual search"
+  },
+  "869cabf3f": {
+    "pr_number": null,
+    "reason": "JSON schema for config - needs manual search"
+  },
+  "869cabf3d": {
+    "pr_number": null,
+    "reason": "Safety defaults - needs manual search"
+  },
+  "869cjgt43": {
+    "pr_number": 251,
+    "pr_url": "https://github.com/jkriddle/hazina/pull/251",
+    "branch": "feature/upgrade-semantickernel-869cjgt43",
+    "title": "Upgrade SemanticKernel to 1.73.0 and OpenAI SDK to 2.8.0"
+  },
+  "869cabf4y": {
+    "pr_number": 249,
+    "pr_url": "https://github.com/jkriddle/hazina/pull/249",
+    "branch": "feature/transactional-updates-869cabf4y",
+    "title": "feat: Implement transactional multi-file updates"
+  }
+}

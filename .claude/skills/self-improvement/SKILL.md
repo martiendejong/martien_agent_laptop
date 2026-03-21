@@ -542,6 +542,15 @@ git log origin/main -1  # Should match local
 
 **This is not optional. This is core directive.**
 
+## Kaizen Integration
+
+**When called by kaizen**, this skill operates as the EXECUTE layer:
+- Receives improvement plans from kaizen's Phase 5 (Execution)
+- Applies file updates, skill refinements, and documentation changes
+- Reports execution results back to kaizen for logging in kaizen-evolution.yaml
+- Safety gate decisions come from kaizen's Phase 4; this skill trusts those decisions
+- Self-improvement's own detection logic still works independently when kaizen is not the caller
+
 ## Examples of Good Self-Improvement
 
 ### Example 1: User Feedback Integration (2026-01-11)

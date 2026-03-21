@@ -1,0 +1,68 @@
+﻿{
+    "detected_gaps":  [
+
+                      ],
+    "theory":  {
+                   "key_properties":  [
+                                          "Organizational closure: self-maintaining organization",
+                                          "Structural coupling: interaction with environment",
+                                          "Self-reference: system refers to itself",
+                                          "Autonomy: operates according to own logic"
+                                      ],
+                   "name":  "Autopoiesis (Maturana \u0026 Varela, 1973)",
+                   "definition":  "Self-creation: system produces and maintains its own components",
+                   "biological_example":  "Cell: produces enzymes that produce membrane that contains enzymes",
+                   "computational_example":  "AI: detects gaps, proposes improvements, implements changes, validates results"
+               },
+    "proposed_improvements":  [
+
+                              ],
+    "implemented_changes":  [
+
+                            ],
+    "validation_results":  [
+
+                           ],
+    "stats":  {
+                  "total_changes_implemented":  0,
+                  "success_rate":  0,
+                  "avg_improvement_impact":  0,
+                  "autopoiesis_score":  0,
+                  "total_gaps_detected":  0,
+                  "total_improvements_proposed":  0
+              },
+    "architectural_components":  {
+                                     "integration_score":  0.65,
+                                     "protocols":  [
+                                                       "Falsifiability",
+                                                       "Leverage Points",
+                                                       "Paradigm Watch",
+                                                       "Refactoring",
+                                                       "Chinese Room",
+                                                       "Instrumental Goals",
+                                                       "Information Value",
+                                                       "Antifragility",
+                                                       "Metacognition",
+                                                       "Predictive Processing",
+                                                       "Active Inference"
+                                                   ],
+                                     "total_components":  26,
+                                     "cognitive_systems":  [
+                                                               "Perception",
+                                                               "Memory",
+                                                               "Prediction",
+                                                               "Control",
+                                                               "Emotion",
+                                                               "Social",
+                                                               "Meta",
+                                                               "Thermodynamics",
+                                                               "Abduction",
+                                                               "Attention",
+                                                               "Extended Mind",
+                                                               "Homeostasis",
+                                                               "Intrinsic Rewards",
+                                                               "Embodied",
+                                                               "Temporal"
+                                                           ]
+                                 }
+}

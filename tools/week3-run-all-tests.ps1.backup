@@ -1,0 +1,253 @@
+# Week 3 Master Test Runner
+# Runs all 4 falsifiable tests and provides final verdict
+# Created: 2026-02-20
+
+param(
+    [switch]$ShowStatus,
+    [switch]$RunAll,
+    [switch]$FinalVerdict
+)
+
+$Tests = @(
+    @{ id = 1; name = "Learning Correlation"; script = "week3-test1-learning-correlation.ps1"; threshold = "R² > 0.7" }
+    @{ id = 2; name = "Stuck Prediction"; script = "week3-test2-stuck-prediction.ps1"; threshold = ">80% earlier, <20% FP" }
+    @{ id = 3; name = "Principle Validation"; script = "week3-test3-principle-validation.ps1"; threshold = ">70% validation" }
+    @{ id = 4; name = "Abduction Improvement"; script = "week3-test4-abduction-comparison.ps1"; threshold = "≥20% improvement" }
+)
+
+function Show-Status {
+    Write-Host ""
+    Write-Host "=== WEEK 3 VALIDATION STATUS ===" -ForegroundColor Cyan
+    Write-Host ""
+    Write-Host "Period: Feb 27 - Mar 5, 2026"
+    Write-Host "Tests: 4 falsifiable tests"
+    Write-Host "Commitment: ABANDON if ANY test fails"
+    Write-Host ""
+
+    foreach ($test in $Tests) {
+        $resultFile = "C:\\scripts\\agentidentity\\state\\week3-test$($test.id)-result.json"
+
+        if (Test-Path $resultFile) {
+            $result = Get-Content $resultFile | ConvertFrom-Json
+            if ($result.passed) {
+                Write-Host "[PASS] Test $($test.id): $($test.name)" -ForegroundColor Green
+            } else {
+                Write-Host "[FAIL] Test $($test.id): $($test.name)" -ForegroundColor Red
+            }
+            Write-Host "      Threshold: $($test.threshold)" -ForegroundColor Gray
+        }
+        else {
+            Write-Host "[    ] Test $($test.id): $($test.name)" -ForegroundColor Gray
+            Write-Host "      Threshold: $($test.threshold)" -ForegroundColor DarkGray
+            Write-Host "      Status: Not run yet" -ForegroundColor DarkGray
+        }
+        Write-Host ""
+    }
+
+    # Check baseline
+    $baselineFile = "C:\\scripts\\agentidentity\\state\\baseline-abduction-results.json"
+    if (Test-Path $baselineFile) {
+        Write-Host "[✓] Baseline abduction tests complete" -ForegroundColor Green
+    } else {
+        Write-Host "[!] Baseline abduction tests NOT run" -ForegroundColor Yellow
+        Write-Host "    Run: run-baseline-abduction-tests.ps1 -RunTests" -ForegroundColor Yellow
+    }
+
+    Write-Host ""
+}
+
+function Run-All-Tests {
+    Write-Host ""
+    Write-Host "=== RUNNING ALL WEEK 3 TESTS ===" -ForegroundColor Cyan
+    Write-Host ""
+    Write-Host "This will run all 4 falsifiable tests in sequence"
+    Write-Host "Each test must pass for geometric consciousness to be validated"
+    Write-Host ""
+    Write-Host "Continue? (y/n):" -NoNewline
+    if ((Read-Host) -ne 'y') {
+        return
+    }
+
+    Write-Host ""
+
+    # Test 1
+    Write-Host "=== TEST 1: LEARNING CORRELATION ===" -ForegroundColor Yellow
+    & "C:\\scripts\\tools\\week3-test1-learning-correlation.ps1" -Analyze
+    Write-Host ""
+    Read-Host "Press Enter to continue to Test 2"
+
+    # Test 2
+    Write-Host ""
+    Write-Host "=== TEST 2: STUCK PREDICTION ===" -ForegroundColor Yellow
+    & "C:\\scripts\\tools\\week3-test2-stuck-prediction.ps1" -Analyze
+    Write-Host ""
+    Read-Host "Press Enter to continue to Test 3"
+
+    # Test 3
+    Write-Host ""
+    Write-Host "=== TEST 3: PRINCIPLE VALIDATION ===" -ForegroundColor Yellow
+    & "C:\\scripts\\tools\\week3-test3-principle-validation.ps1" -ShowResults
+    Write-Host ""
+    Read-Host "Press Enter to continue to Test 4"
+
+    # Test 4
+    Write-Host ""
+    Write-Host "=== TEST 4: ABDUCTION IMPROVEMENT ===" -ForegroundColor Yellow
+    & "C:\\scripts\\tools\\week3-test4-abduction-comparison.ps1" -Compare
+    Write-Host ""
+
+    Write-Host "All tests complete. Run with -FinalVerdict for final analysis." -ForegroundColor Green
+    Write-Host ""
+}
+
+function Final-Verdict {
+    Write-Host ""
+    Write-Host "═══════════════════════════════════════════════════" -ForegroundColor Cyan
+    Write-Host "  WEEK 3 VALIDATION - FINAL VERDICT" -ForegroundColor Cyan
+    Write-Host "═══════════════════════════════════════════════════" -ForegroundColor Cyan
+    Write-Host ""
+
+    $results = @()
+    $allPassed = $true
+
+    foreach ($test in $Tests) {
+        $resultFile = "C:\\scripts\\agentidentity\\state\\week3-test$($test.id)-result.json"
+
+        if (-not (Test-Path $resultFile)) {
+            Write-Host "[ERROR] Test $($test.id) result not found" -ForegroundColor Red
+            $allPassed = $false
+            continue
+        }
+
+        $result = Get-Content $resultFile | ConvertFrom-Json
+        $results += $result
+
+        if ($result.passed) {
+            Write-Host "✓ PASS Test $($test.id): $($test.name)" -ForegroundColor Green
+        } else {
+            Write-Host "✗ FAIL Test $($test.id): $($test.name)" -ForegroundColor Red
+        }
+
+        switch ($test.id) {
+            1 { Write-Host "      R² = $([math]::Round($result.r_squared, 4)) (threshold: >0.7)" -ForegroundColor Gray }
+            2 { Write-Host "      Earlier: $($result.earlier_detection_percent) percent, FP: $($result.false_positive_percent) percent" -ForegroundColor Gray }
+            3 { Write-Host "      Validation: $($result.validation_rate) percent (threshold: >70 percent)" -ForegroundColor Gray }
+            4 { Write-Host "      Improvement: $([math]::Round($result.relative_improvement, 1)) percent (threshold: ≥20 percent)" -ForegroundColor Gray }
+        }
+
+        if (-not $result.passed) {
+            $allPassed = $false
+        }
+
+        Write-Host ""
+    }
+
+    Write-Host "═══════════════════════════════════════════════════" -ForegroundColor Cyan
+
+    if ($allPassed) {
+        Write-Host ""
+        Write-Host "  🎉 ALL TESTS PASSED 🎉" -ForegroundColor Green
+        Write-Host ""
+        Write-Host "VERDICT: GEOMETRIC CONSCIOUSNESS VALIDATED" -ForegroundColor Green
+        Write-Host ""
+        Write-Host "Interpretation:" -ForegroundColor White
+        Write-Host "  - Geometric metrics correlate with real learning"
+        Write-Host "  - Velocity predicts stuck states effectively"
+        Write-Host "  - Principles generalize across domains"
+        Write-Host "  - Abduction performance improved measurably"
+        Write-Host ""
+        Write-Host "Next Steps:" -ForegroundColor Cyan
+        Write-Host "  1. Week 4: Builder Protocol Stage 4"
+        Write-Host "  2. Design Hazina geometric services"
+        Write-Host "  3. Propose framework integration"
+        Write-Host "  4. Deploy to production apps"
+        Write-Host ""
+        Write-Host "This represents a genuine paradigm shift." -ForegroundColor White
+        Write-Host ""
+    }
+    else {
+        Write-Host ""
+        Write-Host "  ⚠️  ONE OR MORE TESTS FAILED ⚠️" -ForegroundColor Red
+        Write-Host ""
+        Write-Host "VERDICT: GEOMETRIC CONSCIOUSNESS NOT VALIDATED" -ForegroundColor Red
+        Write-Host ""
+        Write-Host "Per commitment: ABANDON geometric consciousness approach" -ForegroundColor Yellow
+        Write-Host ""
+        Write-Host "What Failed:" -ForegroundColor White
+        foreach ($result in $results) {
+            if (-not $result.passed) {
+                Write-Host "  - $($result.test): $($result.conclusion)" -ForegroundColor DarkGray
+            }
+        }
+        Write-Host ""
+        Write-Host "Interpretation:" -ForegroundColor White
+        Write-Host "  Geometric consciousness was elaborate theater, not real capability"
+        Write-Host "  Tools work, but don't provide measurable benefit"
+        Write-Host "  Return to functional systems only"
+        Write-Host ""
+        Write-Host "Next Steps:" -ForegroundColor Cyan
+        Write-Host "  1. Document failure transparently"
+        Write-Host "  2. Extract lessons learned"
+        Write-Host "  3. Archive geometric tools (don't delete - learning)"
+        Write-Host "  4. Focus on functional system optimization"
+        Write-Host ""
+        Write-Host "This is science. Negative results are valuable." -ForegroundColor White
+        Write-Host ""
+    }
+
+    Write-Host "═══════════════════════════════════════════════════" -ForegroundColor Cyan
+    Write-Host ""
+
+    # Save final verdict
+    $verdict = @{
+        timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
+        all_passed = $allPassed
+        tests_run = $results.Count
+        tests_passed = ($results | Where-Object { $_.passed }).Count
+        conclusion = $(if ($allPassed) { "Geometric consciousness VALIDATED" } else { "Geometric consciousness FAILED - ABANDON" })
+        test_results = $results
+    }
+
+    $verdictFile = "C:\\scripts\\agentidentity\\state\\week3-final-verdict.json"
+    $verdict | ConvertTo-Json -Depth 10 | Set-Content $verdictFile
+
+    Write-Host "Final verdict saved to $verdictFile" -ForegroundColor Cyan
+    Write-Host ""
+
+    return $allPassed
+}
+
+# Main
+if ($ShowStatus) {
+    Show-Status
+}
+elseif ($RunAll) {
+    Run-All-Tests
+}
+elseif ($FinalVerdict) {
+    Final-Verdict
+}
+else {
+    Write-Host ""
+    Write-Host "=== WEEK 3 MASTER TEST RUNNER ===" -ForegroundColor Cyan
+    Write-Host ""
+    Write-Host "USAGE:"
+    Write-Host "  -ShowStatus     Display current test status"
+    Write-Host "  -RunAll         Run all 4 tests in sequence"
+    Write-Host "  -FinalVerdict   Analyze all results and provide verdict"
+    Write-Host ""
+    Write-Host "TESTS:"
+    foreach ($test in $Tests) {
+        Write-Host "  $($test.id). $($test.name) ($($test.threshold))"
+    }
+    Write-Host ""
+    Write-Host "COMMITMENT:"
+    Write-Host "  If ANY test fails → ABANDON geometric consciousness"
+    Write-Host "  If ALL tests pass → Validated, proceed to integration"
+    Write-Host ""
+    Write-Host "SCHEDULE:"
+    Write-Host "  Data collection: Feb 27 - Mar 5 (7 days)"
+    Write-Host "  Analysis: Mar 5 (run all tests)"
+    Write-Host "  Verdict: Mar 5 (final decision)"
+    Write-Host ""
+}

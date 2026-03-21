@@ -428,6 +428,57 @@ feedback_integration:
 
 ---
 
-**Status:** OPERATIONAL - State management tracking current context effectively
-**Current Focus:** Completing cognitive architecture (70% done)
-**Next:** Create learning system, then integration with CLAUDE.md
+---
+
+## 🧬 Knowledge Architecture Layer (GDIO-Derived, 2026-03-12)
+
+### Knowledge Layer Classification
+
+```yaml
+knowledge_architecture:
+  principle: "GDIO Orthogonal Subspace Fine-tuning (UWisc + Google, March 2026)"
+
+  layer_1_frozen_values:
+    description: "Core rules, project facts, legal rules - NEVER modified by learning"
+    files:
+      - "ZERO_TOLERANCE_RULES.md"
+      - "hard-rules.md"
+      - "legal-safeguards.md"
+      - "windows-ssh-rule.md"
+    modification_protocol: "USER EXPLICIT INSTRUCTION ONLY"
+
+  layer_2_trainable_keys:
+    description: "Routing, index, pattern recognition - Updated for new capabilities"
+    files:
+      - "MEMORY.md (index/router)"
+      - "Skill matching logic"
+      - "codified_learnings.yaml (patterns)"
+    modification_protocol: "Add entries, reorder routing. Never remove without archiving."
+
+  layer_3_expandable_mlp:
+    description: "Domain knowledge files - Each file = orthogonal subspace"
+    count: 64  # Topic files in memory/
+    modification_protocol: "New domain = new file. Expand within domain. Never merge across domains."
+
+  operational_rules:
+    - "Orthogonal isolation: each domain in own file"
+    - "Clone-and-specialize: build from existing, never from scratch"
+    - "Freeze values, unfreeze keys: protect facts, update routing"
+    - "Expand don't compress: new domain = new file"
+    - "Structural > soft constraints: architecture enforces, not suggestions"
+    - "Equilibrium init: new capabilities balanced with existing"
+
+  anti_forgetting_protocol:
+    on_new_knowledge: "Create new topic file (Layer 3)"
+    on_routing_change: "Update MEMORY.md index (Layer 2)"
+    on_paradigm_shift: "Update keys, preserve values, archive old if superseded"
+    never_do: "Delete existing knowledge, merge domains, modify frozen layer"
+
+  validation_tool: "C:\\scripts\\tools\\knowledge-integrity-check.ps1"
+```
+
+---
+
+**Status:** OPERATIONAL - State management + GDIO knowledge architecture active
+**Current Focus:** Knowledge integrity maintained across 3 layers
+**Next:** Continuous monitoring via knowledge-integrity-check.ps1

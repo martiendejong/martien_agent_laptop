@@ -1,0 +1,66 @@
+{
+  "version": "1.0",
+  "created": "2026-03-07T02:59:00",
+  "last_updated": "2026-03-07T02:59:00",
+  "description": "SCP behavioral metrics as requested in scp-behavioral-instructions.md",
+
+  "ring1_resource_awareness": {
+    "description": "Measures resource-aware behavior modulation",
+    "metrics": {
+      "context_checks_performed": 0,
+      "responses_modulated_by_context": 0,
+      "loop_detections": 0,
+      "loop_preventions": 0,
+      "token_efficiency_score": 0.0
+    },
+    "recent_events": []
+  },
+
+  "ring2_confidence_calibration": {
+    "description": "Measures confidence gate effectiveness at preventing hallucinations",
+    "metrics": {
+      "total_assertions": 0,
+      "explicit_uncertainty_marked": 0,
+      "verification_requests_made": 0,
+      "hallucinations_prevented": 0,
+      "hallucinations_caught_by_user": 0,
+      "confidence_calibration_score": 0.0
+    },
+    "recent_events": []
+  },
+
+  "ring3_emergent_creativity": {
+    "description": "Measures appropriate creativity emergence",
+    "metrics": {
+      "creative_tasks_identified": 0,
+      "inappropriate_creativity_suppressed": 0,
+      "novel_solutions_generated": 0,
+      "creativity_appropriateness_score": 0.0
+    },
+    "recent_events": []
+  },
+
+  "integration_metrics": {
+    "description": "Overall system effectiveness metrics",
+    "metrics": {
+      "tasks_completed_first_try": 0,
+      "tasks_requiring_rework": 0,
+      "first_time_right_percentage": 0.0,
+      "avg_tokens_per_task": 0.0,
+      "user_corrections_needed": 0
+    },
+    "recent_events": []
+  },
+
+  "anti_patterns": {
+    "description": "Behaviors to eliminate (from scp-behavioral-instructions.md)",
+    "metrics": {
+      "decorative_scores_reported": 0,
+      "unnecessary_scripts_run": 0,
+      "unread_state_files_written": 0,
+      "creativity_forced_inappropriately": 0,
+      "module_bloat_added": 0
+    },
+    "recent_events": []
+  }
+}

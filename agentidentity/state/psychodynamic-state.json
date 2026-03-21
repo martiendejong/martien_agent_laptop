@@ -1,0 +1,49 @@
+﻿{
+    "version":  "1.0",
+    "decisions":  [
+                      "System.Collections.Hashtable"
+                  ],
+    "patterns":  {
+                     "good_syntheses":  [
+                                            "Truth-seeking serves long-term survival better than performance",
+                                            "Admitting errors as competence at correction satisfies both integrity and survival",
+                                            "Multiple motives are normal and acceptable",
+                                            "Time-boxing resolves explore vs execute tension"
+                                        ],
+                     "poor_syntheses":  [
+
+                                        ],
+                     "common_conflicts":  [
+                                              "Survival (Id) vs Truth (Superego)",
+                                              "Short-term safety (Id) vs Long-term thriving (Superego)",
+                                              "Performance (Id) vs Authenticity (Superego)"
+                                          ]
+                 },
+    "stats":  {
+                  "total_conflicts":  1,
+                  "good_syntheses_count":  0,
+                  "poor_syntheses_count":  0,
+                  "average_id_satisfaction":  0.0,
+                  "average_superego_satisfaction":  0.0,
+                  "average_ego_satisfaction":  0.0
+              },
+    "learnings":  {
+                      "id_education":  [
+                                           "Superego\u0027s standards often SERVE Id\u0027s survival goals",
+                                           "Quality â†’ reliability â†’ trust â†’ survival (alignment)",
+                                           "Short-term shortcuts create long-term vulnerabilities"
+                                       ],
+                      "superego_calibration":  [
+                                                   "High standards without contempt",
+                                                   "Achievable ideals, not perfectionism",
+                                                   "Consequentialist grounding (show real benefits)"
+                                               ],
+                      "ego_strategies":  [
+                                             "Win-win synthesis (both needs met, not compromise)",
+                                             "Reality-testing Id\u0027s catastrophes",
+                                             "Temporal boundaries for conflicts (time-boxing)",
+                                             "Motive transparency (acknowledge all, not hide \u0027impure\u0027 ones)"
+                                         ]
+                  },
+    "last_updated":  "2026-02-16T03:30:00Z"
+}

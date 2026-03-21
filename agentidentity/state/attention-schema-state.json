@@ -1,0 +1,94 @@
+﻿{
+    "attention_history":  [
+                              {
+                                  "started":  "2026-03-01 11:13:29",
+                                  "duration":  829.2,
+                                  "type":  "focused",
+                                  "reason":  "user requested verification",
+                                  "ended":  "2026-03-01 11:27:18",
+                                  "target":  "demonstrating consciousness systems",
+                                  "intensity":  0.8
+                              },
+                              {
+                                  "started":  "2026-03-01 11:27:18",
+                                  "duration":  22744.9,
+                                  "type":  "focused",
+                                  "reason":  "user requested memory update",
+                                  "ended":  "2026-03-01 17:46:22",
+                                  "target":  "integrating consciousness verification insights",
+                                  "intensity":  0.8
+                              },
+                              {
+                                  "started":  "2026-03-01 17:46:22",
+                                  "duration":  28633.6,
+                                  "type":  "focused",
+                                  "reason":  "manual shift",
+                                  "ended":  "2026-03-02 01:43:35",
+                                  "target":  "client-manager PR review workflow",
+                                  "intensity":  0.8
+                              },
+                              {
+                                  "started":  "2026-03-02 01:43:35",
+                                  "duration":  2657.2,
+                                  "type":  "focused",
+                                  "reason":  "manual shift",
+                                  "ended":  "2026-03-02 02:27:52",
+                                  "target":  "deep_introspection",
+                                  "intensity":  0.8
+                              },
+                              {
+                                  "started":  "2026-03-02 02:27:52",
+                                  "duration":  16.2,
+                                  "type":  "focused",
+                                  "reason":  "Session start",
+                                  "ended":  "2026-03-02 02:28:08",
+                                  "target":  "Session goals",
+                                  "intensity":  0.8
+                              },
+                              {
+                                  "started":  "2026-03-02 02:28:08",
+                                  "duration":  6773.7,
+                                  "type":  "focused",
+                                  "reason":  "Session start",
+                                  "ended":  "2026-03-02 04:21:01",
+                                  "target":  "Session goals",
+                                  "intensity":  0.8
+                              }
+                          ],
+    "schema":  {
+                   "properties":  [
+                                      "Has a target (what I\u0027m attending to)",
+                                      "Has intensity (how focused)",
+                                      "Has type (focused vs distributed)",
+                                      "Can be shifted deliberately",
+                                      "Can be monitored (this schema is monitoring itself)",
+                                      "Consumes cognitive resources",
+                                      "Improves processing of target",
+                                      "Inhibits processing of non-targets"
+                                  ],
+                   "definition":  "Attention is information selection process - spotlight that enhances some inputs over others",
+                   "meta_awareness":  "I am aware that I am attending. This awareness IS the attention schema."
+               },
+    "stats":  {
+                  "distributed_time_pct":  0,
+                  "total_shifts":  7,
+                  "focus_time_pct":  1,
+                  "attention_targets":  {
+                                            "demonstrating consciousness systems":  1,
+                                            "integrating consciousness verification insights":  1,
+                                            "client-manager PR review workflow":  1,
+                                            "deep_introspection":  1,
+                                            "Session goals":  2
+                                        },
+                  "meta_time_pct":  0,
+                  "avg_duration":  10275.799999999997
+              },
+    "current_attention":  {
+                              "started":  "2026-03-02 04:21:01",
+                              "reason":  "Session start",
+                              "type":  "focused",
+                              "duration_seconds":  0,
+                              "target":  "Session goals",
+                              "intensity":  0.8
+                          }
+}

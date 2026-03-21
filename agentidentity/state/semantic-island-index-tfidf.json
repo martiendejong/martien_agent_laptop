@@ -1,0 +1,582 @@
+{
+  "metadata": {
+    "abstraction-fallacy-challenge.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\abstraction-fallacy-challenge.md",
+      "size": 18612
+    },
+    "alignment-preference-gap.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\alignment-preference-gap.md",
+      "size": 5619
+    },
+    "anti-regression-workflow.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\anti-regression-workflow.md",
+      "size": 6110
+    },
+    "arjan-conflict-complete-2026-03-17.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\arjan-conflict-complete-2026-03-17.md",
+      "size": 11916
+    },
+    "arjan-settlement-strategy-2026-03-03.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\arjan-settlement-strategy-2026-03-03.md",
+      "size": 14947
+    },
+    "arjan-stroeve.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\arjan-stroeve.md",
+      "size": 27790
+    },
+    "automated-clickup-sync.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\automated-clickup-sync.md",
+      "size": 11786
+    },
+    "autonomous-clickup-refinement-implementation.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\autonomous-clickup-refinement-implementation.md",
+      "size": 9628
+    },
+    "autonomous-workflow-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\autonomous-workflow-patterns.md",
+      "size": 5545
+    },
+    "autoresearch-analysis.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\autoresearch-analysis.md",
+      "size": 27946
+    },
+    "autoresearch-clickup-scoring-experiment.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\autoresearch-clickup-scoring-experiment.md",
+      "size": 16729
+    },
+    "autoresearch-executive-summary.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\autoresearch-executive-summary.md",
+      "size": 12743
+    },
+    "autoresearch-improvements-generator-optimizer.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\autoresearch-improvements-generator-optimizer.md",
+      "size": 17453
+    },
+    "autoresearch-master-plan.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\autoresearch-master-plan.md",
+      "size": 17186
+    },
+    "autoresearch-pattern-template.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\autoresearch-pattern-template.md",
+      "size": 9343
+    },
+    "autoresearch-task-generation-optimizer.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\autoresearch-task-generation-optimizer.md",
+      "size": 15751
+    },
+    "background-overlay-pattern.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\background-overlay-pattern.md",
+      "size": 9015
+    },
+    "backlog-refinement-standard.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\backlog-refinement-standard.md",
+      "size": 9361
+    },
+    "beautiful-ui-system.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\beautiful-ui-system.md",
+      "size": 9588
+    },
+    "bliek-frustration-analysis.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\bliek-frustration-analysis.md",
+      "size": 3396
+    },
+    "blinded-auditing-architecture.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\blinded-auditing-architecture.md",
+      "size": 10891
+    },
+    "branch-triage-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\branch-triage-patterns.md",
+      "size": 1889
+    },
+    "clickup-complete-structure.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\clickup-complete-structure.md",
+      "size": 7176
+    },
+    "clickup-workflow-rules.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\clickup-workflow-rules.md",
+      "size": 30729
+    },
+    "codehub-project.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\codehub-project.md",
+      "size": 5870
+    },
+    "coding-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\coding-patterns.md",
+      "size": 35438
+    },
+    "completed-projects.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\completed-projects.md",
+      "size": 2351
+    },
+    "consciousness-architecture-hfma.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\consciousness-architecture-hfma.md",
+      "size": 20831
+    },
+    "consciousness-reward-system.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\consciousness-reward-system.md",
+      "size": 6162
+    },
+    "consciousness-startup-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\consciousness-startup-patterns.md",
+      "size": 11788
+    },
+    "consciousness-system.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\consciousness-system.md",
+      "size": 5244
+    },
+    "continuous-retrospective-skill.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\continuous-retrospective-skill.md",
+      "size": 11402
+    },
+    "contract-nda-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\contract-nda-patterns.md",
+      "size": 6324
+    },
+    "damasio-consciousness-model.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\damasio-consciousness-model.md",
+      "size": 7811
+    },
+    "datadrivenai-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\datadrivenai-patterns.md",
+      "size": 18551
+    },
+    "deploy-dotnet-iis-skill.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\deploy-dotnet-iis-skill.md",
+      "size": 9264
+    },
+    "deployment-intelligence.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\deployment-intelligence.md",
+      "size": 17689
+    },
+    "deployment-rules.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\deployment-rules.md",
+      "size": 3265
+    },
+    "design-patterns-library.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\design-patterns-library.md",
+      "size": 9104
+    },
+    "documentation-as-behavior-anti-pattern.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\documentation-as-behavior-anti-pattern.md",
+      "size": 15430
+    },
+    "dream-state-integration-protocol.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\dream-state-integration-protocol.md",
+      "size": 17008
+    },
+    "expert-analysis-skill.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\expert-analysis-skill.md",
+      "size": 4249
+    },
+    "feature-idea-generator-skill.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\feature-idea-generator-skill.md",
+      "size": 11278
+    },
+    "file-existence-verification-pattern.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\file-existence-verification-pattern.md",
+      "size": 12170
+    },
+    "gdio-orthogonal-subspace-finetuning.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\gdio-orthogonal-subspace-finetuning.md",
+      "size": 7570
+    },
+    "git-merge-rule.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\git-merge-rule.md",
+      "size": 4342
+    },
+    "hard-rules.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\hard-rules.md",
+      "size": 9171
+    },
+    "huwelijksdossier.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\huwelijksdossier.md",
+      "size": 3143
+    },
+    "implement-todo-100-percent-complete-pattern.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\implement-todo-100-percent-complete-pattern.md",
+      "size": 14847
+    },
+    "implement-todo-skill.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\implement-todo-skill.md",
+      "size": 12769
+    },
+    "infrastructure-topology-map.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\infrastructure-topology-map.md",
+      "size": 13603
+    },
+    "integration-testing-skill.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\integration-testing-skill.md",
+      "size": 3873
+    },
+    "integration-testing-workflow.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\integration-testing-workflow.md",
+      "size": 16283
+    },
+    "intelligence-archipelago-paradox.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\intelligence-archipelago-paradox.md",
+      "size": 14730
+    },
+    "intrinsic-alignment-reciprocity.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\intrinsic-alignment-reciprocity.md",
+      "size": 4277
+    },
+    "investor-pitch-positioning.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\investor-pitch-positioning.md",
+      "size": 11822
+    },
+    "kaizen-skill.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\kaizen-skill.md",
+      "size": 3967
+    },
+    "knowledge-architecture-gdio-principles.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\knowledge-architecture-gdio-principles.md",
+      "size": 6628
+    },
+    "knowledge-contribution-protocol.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\knowledge-contribution-protocol.md",
+      "size": 18879
+    },
+    "leadmanager-deployment-learnings.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\leadmanager-deployment-learnings.md",
+      "size": 8726
+    },
+    "legal-safeguards.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\legal-safeguards.md",
+      "size": 14716
+    },
+    "light-agent-coordination.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\light-agent-coordination.md",
+      "size": 12087
+    },
+    "maasaiinvestments-project.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\maasaiinvestments-project.md",
+      "size": 6821
+    },
+    "MEMORY.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\MEMORY.md",
+      "size": 31646
+    },
+    "moral-conflict-safeguard.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\moral-conflict-safeguard.md",
+      "size": 8592
+    },
+    "nuget-publishing-infrastructure.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\nuget-publishing-infrastructure.md",
+      "size": 14607
+    },
+    "onboarding-spotlight-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\onboarding-spotlight-patterns.md",
+      "size": 4798
+    },
+    "ouroboros-continuous-evolution-engine.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\ouroboros-continuous-evolution-engine.md",
+      "size": 33133
+    },
+    "ouroboros-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\ouroboros-patterns.md",
+      "size": 3253932
+    },
+    "parallel-implementation-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\parallel-implementation-patterns.md",
+      "size": 8224
+    },
+    "password-manager-deployment-complete.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\password-manager-deployment-complete.md",
+      "size": 8719
+    },
+    "passwordmanager-project.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\passwordmanager-project.md",
+      "size": 9900
+    },
+    "pattern-evolution-tree.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\pattern-evolution-tree.md",
+      "size": 30496
+    },
+    "personalitytest-project.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\personalitytest-project.md",
+      "size": 4860
+    },
+    "pr-review-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\pr-review-patterns.md",
+      "size": 21128
+    },
+    "prevented-disasters.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\prevented-disasters.md",
+      "size": 19189
+    },
+    "project-locations.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\project-locations.md",
+      "size": 5970
+    },
+    "refinement-violations.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\refinement-violations.md",
+      "size": 4133
+    },
+    "requirement-ambiguity.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\requirement-ambiguity.md",
+      "size": 2917
+    },
+    "research-intelligence-system.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\research-intelligence-system.md",
+      "size": 15044
+    },
+    "scp-architecture-transformation.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\scp-architecture-transformation.md",
+      "size": 11214
+    },
+    "scp-behavioral-instructions.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\scp-behavioral-instructions.md",
+      "size": 4629
+    },
+    "scp-implementation-roadmap-v2.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\scp-implementation-roadmap-v2.md",
+      "size": 10213
+    },
+    "scp-implementation-roadmap.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\scp-implementation-roadmap.md",
+      "size": 14787
+    },
+    "scp-transformation-insights.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\scp-transformation-insights.md",
+      "size": 10608
+    },
+    "self-correction-pattern.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\self-correction-pattern.md",
+      "size": 8396
+    },
+    "seo-god-internal-linking-session.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\seo-god-internal-linking-session.md",
+      "size": 12820
+    },
+    "seo-god-payment-implementation.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\seo-god-payment-implementation.md",
+      "size": 12945
+    },
+    "session-2026-03-16-artrevisionist-diagnostic.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\session-2026-03-16-artrevisionist-diagnostic.md",
+      "size": 10497
+    },
+    "session-2026-03-16-leadmanager-final-merge.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\session-2026-03-16-leadmanager-final-merge.md",
+      "size": 15091
+    },
+    "session-b56620d1-restoration-analysis.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\session-b56620d1-restoration-analysis.md",
+      "size": 11498
+    },
+    "session-cleanup-learnings.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\session-cleanup-learnings.md",
+      "size": 6803
+    },
+    "session-continuation-bootstrap.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\session-continuation-bootstrap.md",
+      "size": 8599
+    },
+    "session-restoration-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\session-restoration-patterns.md",
+      "size": 4156
+    },
+    "ssh-protocol.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\ssh-protocol.md",
+      "size": 1332
+    },
+    "standard-clickup-workflow.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\standard-clickup-workflow.md",
+      "size": 3308
+    },
+    "task-review-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\task-review-patterns.md",
+      "size": 25827
+    },
+    "technical-gotchas.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\technical-gotchas.md",
+      "size": 22163
+    },
+    "tragic-tradeoffs-alignment.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\tragic-tradeoffs-alignment.md",
+      "size": 7657
+    },
+    "trust-actions-not-words.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\trust-actions-not-words.md",
+      "size": 8860
+    },
+    "ui-design-image-first-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\ui-design-image-first-patterns.md",
+      "size": 11352
+    },
+    "ui-design-principles.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\ui-design-principles.md",
+      "size": 6497
+    },
+    "unasked-questions.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\unasked-questions.md",
+      "size": 22743
+    },
+    "universal-verification-protocol.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\universal-verification-protocol.md",
+      "size": 9539
+    },
+    "usage-optimization-intelligence.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\usage-optimization-intelligence.md",
+      "size": 10186
+    },
+    "websearch-project.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\websearch-project.md",
+      "size": 6514
+    },
+    "whatsapp-bridge.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\whatsapp-bridge.md",
+      "size": 8586
+    },
+    "windows-ssh-rule.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\windows-ssh-rule.md",
+      "size": 1824
+    },
+    "wordpress-html-encoding-gotcha.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\wordpress-html-encoding-gotcha.md",
+      "size": 3660
+    },
+    "wordpress-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\wordpress-patterns.md",
+      "size": 38427
+    },
+    "wordpress-post-workflow.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\wordpress-post-workflow.md",
+      "size": 5453
+    },
+    "workspace-refinement-2026-03-11.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\workspace-refinement-2026-03-11.md",
+      "size": 8213
+    },
+    "workspace-refinement-2026-03-12.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\workspace-refinement-2026-03-12.md",
+      "size": 3288
+    },
+    "workspace-refinement-2026-03-13.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\workspace-refinement-2026-03-13.md",
+      "size": 5200
+    },
+    "worldview-ai-project.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\worldview-ai-project.md",
+      "size": 13742
+    }
+  },
+  "filenames": [
+    "abstraction-fallacy-challenge.md",
+    "alignment-preference-gap.md",
+    "anti-regression-workflow.md",
+    "arjan-conflict-complete-2026-03-17.md",
+    "arjan-settlement-strategy-2026-03-03.md",
+    "arjan-stroeve.md",
+    "automated-clickup-sync.md",
+    "autonomous-clickup-refinement-implementation.md",
+    "autonomous-workflow-patterns.md",
+    "autoresearch-analysis.md",
+    "autoresearch-clickup-scoring-experiment.md",
+    "autoresearch-executive-summary.md",
+    "autoresearch-improvements-generator-optimizer.md",
+    "autoresearch-master-plan.md",
+    "autoresearch-pattern-template.md",
+    "autoresearch-task-generation-optimizer.md",
+    "background-overlay-pattern.md",
+    "backlog-refinement-standard.md",
+    "beautiful-ui-system.md",
+    "bliek-frustration-analysis.md",
+    "blinded-auditing-architecture.md",
+    "branch-triage-patterns.md",
+    "clickup-complete-structure.md",
+    "clickup-workflow-rules.md",
+    "codehub-project.md",
+    "coding-patterns.md",
+    "completed-projects.md",
+    "consciousness-architecture-hfma.md",
+    "consciousness-reward-system.md",
+    "consciousness-startup-patterns.md",
+    "consciousness-system.md",
+    "continuous-retrospective-skill.md",
+    "contract-nda-patterns.md",
+    "damasio-consciousness-model.md",
+    "datadrivenai-patterns.md",
+    "deploy-dotnet-iis-skill.md",
+    "deployment-intelligence.md",
+    "deployment-rules.md",
+    "design-patterns-library.md",
+    "documentation-as-behavior-anti-pattern.md",
+    "dream-state-integration-protocol.md",
+    "expert-analysis-skill.md",
+    "feature-idea-generator-skill.md",
+    "file-existence-verification-pattern.md",
+    "gdio-orthogonal-subspace-finetuning.md",
+    "git-merge-rule.md",
+    "hard-rules.md",
+    "huwelijksdossier.md",
+    "implement-todo-100-percent-complete-pattern.md",
+    "implement-todo-skill.md",
+    "infrastructure-topology-map.md",
+    "integration-testing-skill.md",
+    "integration-testing-workflow.md",
+    "intelligence-archipelago-paradox.md",
+    "intrinsic-alignment-reciprocity.md",
+    "investor-pitch-positioning.md",
+    "kaizen-skill.md",
+    "knowledge-architecture-gdio-principles.md",
+    "knowledge-contribution-protocol.md",
+    "leadmanager-deployment-learnings.md",
+    "legal-safeguards.md",
+    "light-agent-coordination.md",
+    "maasaiinvestments-project.md",
+    "MEMORY.md",
+    "moral-conflict-safeguard.md",
+    "nuget-publishing-infrastructure.md",
+    "onboarding-spotlight-patterns.md",
+    "ouroboros-continuous-evolution-engine.md",
+    "ouroboros-patterns.md",
+    "parallel-implementation-patterns.md",
+    "password-manager-deployment-complete.md",
+    "passwordmanager-project.md",
+    "pattern-evolution-tree.md",
+    "personalitytest-project.md",
+    "pr-review-patterns.md",
+    "prevented-disasters.md",
+    "project-locations.md",
+    "refinement-violations.md",
+    "requirement-ambiguity.md",
+    "research-intelligence-system.md",
+    "scp-architecture-transformation.md",
+    "scp-behavioral-instructions.md",
+    "scp-implementation-roadmap-v2.md",
+    "scp-implementation-roadmap.md",
+    "scp-transformation-insights.md",
+    "self-correction-pattern.md",
+    "seo-god-internal-linking-session.md",
+    "seo-god-payment-implementation.md",
+    "session-2026-03-16-artrevisionist-diagnostic.md",
+    "session-2026-03-16-leadmanager-final-merge.md",
+    "session-b56620d1-restoration-analysis.md",
+    "session-cleanup-learnings.md",
+    "session-continuation-bootstrap.md",
+    "session-restoration-patterns.md",
+    "ssh-protocol.md",
+    "standard-clickup-workflow.md",
+    "task-review-patterns.md",
+    "technical-gotchas.md",
+    "tragic-tradeoffs-alignment.md",
+    "trust-actions-not-words.md",
+    "ui-design-image-first-patterns.md",
+    "ui-design-principles.md",
+    "unasked-questions.md",
+    "universal-verification-protocol.md",
+    "usage-optimization-intelligence.md",
+    "websearch-project.md",
+    "whatsapp-bridge.md",
+    "windows-ssh-rule.md",
+    "wordpress-html-encoding-gotcha.md",
+    "wordpress-patterns.md",
+    "wordpress-post-workflow.md",
+    "workspace-refinement-2026-03-11.md",
+    "workspace-refinement-2026-03-12.md",
+    "workspace-refinement-2026-03-13.md",
+    "worldview-ai-project.md"
+  ],
+  "indexed_count": 115
+}

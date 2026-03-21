@@ -1,0 +1,226 @@
+{
+  "root_problem": {
+    "description": "Optimize the system performance",
+    "context": {},
+    "constraints": [
+      "Must reduce response time to <100ms",
+      "Must handle 10K requests/sec",
+      "Must maintain 99.9% uptime",
+      "Must use <1GB memory"
+    ],
+    "success_criteria": [
+      "All constraints met",
+      "Load tests passed"
+    ],
+    "complexity": "simple",
+    "parent_id": null,
+    "problem_id": "problem_61c578e83773"
+  },
+  "root_solution": {
+    "problem_id": "problem_61c578e83773",
+    "solution_id": "solution_99f22fe1a0be",
+    "approach": "Recursive decomposition (4 subproblems)",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Decomposed into 4 subproblems"
+      },
+      {
+        "step": 2,
+        "action": "Solved each subproblem recursively"
+      },
+      {
+        "step": 3,
+        "action": "Composed subsolutions"
+      }
+    ],
+    "result": {
+      "status": "composed",
+      "subsolution_count": 4,
+      "subsolution_results": [
+        {
+          "status": "solved",
+          "mock": true
+        },
+        {
+          "status": "solved",
+          "mock": true
+        },
+        {
+          "status": "solved",
+          "mock": true
+        },
+        {
+          "status": "solved",
+          "mock": true
+        }
+      ]
+    },
+    "confidence": 0.85,
+    "validation_passed": true,
+    "subsolutions": [
+      {
+        "problem_id": "problem_8eade9629115",
+        "solution_id": "solution_2140d1795e8c",
+        "approach": "Direct solution (atomic problem)",
+        "steps": [
+          {
+            "step": 1,
+            "action": "Analyze problem requirements"
+          },
+          {
+            "step": 2,
+            "action": "Apply domain knowledge"
+          },
+          {
+            "step": 3,
+            "action": "Generate solution"
+          },
+          {
+            "step": 4,
+            "action": "Validate against success criteria"
+          }
+        ],
+        "result": {
+          "status": "solved",
+          "mock": true
+        },
+        "confidence": 0.85,
+        "validation_passed": true,
+        "subsolutions": []
+      },
+      {
+        "problem_id": "problem_f32e5cbe9bba",
+        "solution_id": "solution_6772abb78a62",
+        "approach": "Direct solution (atomic problem)",
+        "steps": [
+          {
+            "step": 1,
+            "action": "Analyze problem requirements"
+          },
+          {
+            "step": 2,
+            "action": "Apply domain knowledge"
+          },
+          {
+            "step": 3,
+            "action": "Generate solution"
+          },
+          {
+            "step": 4,
+            "action": "Validate against success criteria"
+          }
+        ],
+        "result": {
+          "status": "solved",
+          "mock": true
+        },
+        "confidence": 0.85,
+        "validation_passed": true,
+        "subsolutions": []
+      },
+      {
+        "problem_id": "problem_bb6713b15aa7",
+        "solution_id": "solution_302966396928",
+        "approach": "Direct solution (atomic problem)",
+        "steps": [
+          {
+            "step": 1,
+            "action": "Analyze problem requirements"
+          },
+          {
+            "step": 2,
+            "action": "Apply domain knowledge"
+          },
+          {
+            "step": 3,
+            "action": "Generate solution"
+          },
+          {
+            "step": 4,
+            "action": "Validate against success criteria"
+          }
+        ],
+        "result": {
+          "status": "solved",
+          "mock": true
+        },
+        "confidence": 0.85,
+        "validation_passed": true,
+        "subsolutions": []
+      },
+      {
+        "problem_id": "problem_9dae61f9ef6a",
+        "solution_id": "solution_1082f5e998f3",
+        "approach": "Direct solution (atomic problem)",
+        "steps": [
+          {
+            "step": 1,
+            "action": "Analyze problem requirements"
+          },
+          {
+            "step": 2,
+            "action": "Apply domain knowledge"
+          },
+          {
+            "step": 3,
+            "action": "Generate solution"
+          },
+          {
+            "step": 4,
+            "action": "Validate against success criteria"
+          }
+        ],
+        "result": {
+          "status": "solved",
+          "mock": true
+        },
+        "confidence": 0.85,
+        "validation_passed": true,
+        "subsolutions": []
+      }
+    ]
+  },
+  "decomposition_tree": [
+    {
+      "depth": 1,
+      "problem_id": "problem_8eade9629115",
+      "solution_id": "solution_2140d1795e8c",
+      "complexity": "simple",
+      "subsolution_count": 0
+    },
+    {
+      "depth": 1,
+      "problem_id": "problem_f32e5cbe9bba",
+      "solution_id": "solution_6772abb78a62",
+      "complexity": "simple",
+      "subsolution_count": 0
+    },
+    {
+      "depth": 1,
+      "problem_id": "problem_bb6713b15aa7",
+      "solution_id": "solution_302966396928",
+      "complexity": "simple",
+      "subsolution_count": 0
+    },
+    {
+      "depth": 1,
+      "problem_id": "problem_9dae61f9ef6a",
+      "solution_id": "solution_1082f5e998f3",
+      "complexity": "simple",
+      "subsolution_count": 0
+    },
+    {
+      "depth": 0,
+      "problem_id": "problem_61c578e83773",
+      "solution_id": "solution_99f22fe1a0be",
+      "complexity": "simple",
+      "subsolution_count": 4
+    }
+  ],
+  "statistics": {
+    "max_depth": 1,
+    "total_subproblems": 5,
+    "total_atomic_solutions": 4
+  }
+}

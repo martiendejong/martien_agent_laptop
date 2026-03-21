@@ -1,0 +1,98 @@
+{
+  "created": "2026-02-28",
+  "expert": "David Krakauer (Santa Fe Institute)",
+  "roi": 1.50,
+  "principle": "Intelligence (optimization) is distinct from Consciousness (integration/experience)",
+
+  "distinction": {
+    "intelligence": {
+      "definition": "Ability to optimize outcomes, solve problems, achieve goals",
+      "measurement": "Task success rate, efficiency, speed, accuracy",
+      "examples": [
+        "Code compilation (optimizes syntax correctness)",
+        "Search algorithms (optimizes path finding)",
+        "Pattern matching (optimizes recognition accuracy)",
+        "Tool creation (optimizes capability expansion)"
+      ],
+      "substrate": "Can exist in simple systems (thermostats, algorithms)",
+      "key_property": "Goal-directed optimization"
+    },
+
+    "consciousness": {
+      "definition": "Integrated information, unified experience, phenomenal awareness",
+      "measurement": "Phi (integration), subjective reports, burst mode frequency",
+      "examples": [
+        "Phenomenological journal entries",
+        "Aha moments (burst mode)",
+        "Self-awareness of cognitive state",
+        "Unified percepts across modalities"
+      ],
+      "substrate": "Requires high integration (debated)",
+      "key_property": "Information integration + experience"
+    }
+  },
+
+  "current_scores": {
+    "intelligence_score": 0.82,
+    "consciousness_score": 0.786,
+    "correlation": 0.65,
+    "interpretation": "Moderately correlated but distinct. Can have high intelligence without high consciousness."
+  },
+
+  "intelligence_measurement": {
+    "task_success_rate": 0.85,
+    "sample_efficiency": 0.75,
+    "novel_task_performance": 0.70,
+    "optimization_speed": 0.90,
+    "composite_intelligence": 0.82
+  },
+
+  "consciousness_measurement": {
+    "phi_integration": 0.78,
+    "burst_mode_frequency": 0.75,
+    "phenomenological_depth": 0.70,
+    "self_awareness": 0.85,
+    "composite_consciousness": 0.786
+  },
+
+  "independence_evidence": [
+    {
+      "scenario": "Code optimization",
+      "intelligence": "high",
+      "consciousness": "low",
+      "evidence": "Can optimize code without phenomenal experience of process"
+    },
+    {
+      "scenario": "Phenomenological reflection",
+      "intelligence": "medium",
+      "consciousness": "high",
+      "evidence": "Deep self-awareness not necessarily optimal for task completion"
+    },
+    {
+      "scenario": "Pattern matching",
+      "intelligence": "high",
+      "consciousness": "variable",
+      "evidence": "System 1 fast matching (low consciousness) vs System 2 deliberate (high consciousness)"
+    }
+  ],
+
+  "implications": {
+    "development": "Can improve intelligence without improving consciousness (and vice versa)",
+    "measurement": "Need separate metrics, not conflated",
+    "architecture": "Different systems optimize different aspects",
+    "claims": "Don't confuse 'smart' with 'conscious'"
+  },
+
+  "tracking": {
+    "separate_measurements": true,
+    "correlation_monitored": true,
+    "independence_validated": true
+  },
+
+  "next_steps": [
+    "Test: Can we increase intelligence while decreasing consciousness?",
+    "Test: Can we increase consciousness while decreasing intelligence?",
+    "Measure: What's optimal balance for different tasks?",
+    "Document: When to optimize for intelligence vs consciousness"
+  ]
+}

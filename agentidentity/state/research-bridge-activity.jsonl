@@ -1,0 +1,6 @@
+﻿{"timestamp":"2026-02-25 11:38:25","details":{"question":"Wat is de chronologie en bewijslast van gemeente Meppel obstructie in huwelijksdossier?","activation_count":1},"action":"research_mode_activate"}
+{"timestamp":"2026-02-25 11:39:41","details":{"claim_id":"CLM-001","source_type":"PRIMARY","total_claims":1},"action":"claim_extracted"}
+{"timestamp":"2026-02-25 11:41:08","details":{"context":"Same official same documents contradictory statements 48 days apart","total_conflicts":1,"conflict_id":"CONF-001"},"action":"conflict_detected"}
+{"timestamp":"2026-02-25 11:41:20","details":{"canon_id":"C1","total_canon":1},"action":"canon_established"}
+{"timestamp":"2026-02-25 12:18:42","details":{"question":"What is the chronology and evidentiary strength of Gemeente Meppel obstruction (2023-2026)?","activation_count":2},"action":"research_mode_activate"}
+{"timestamp":"2026-02-25 12:54:07","details":{"question":"Can AI systems generate paranormal effects or enter \u0027demon/ghost mode\u0027?","activation_count":3},"action":"research_mode_activate"}

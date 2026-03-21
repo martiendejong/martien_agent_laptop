@@ -1,0 +1,823 @@
+{
+  "spheres": [
+    {
+      "name": "abstraction-fallacy-challenge.md",
+      "x": 1.8003039360046387,
+      "y": -0.9750277996063232,
+      "radius": 0.5368455814034195,
+      "resonance": 0.46315441859658046
+    },
+    {
+      "name": "alignment-preference-gap.md",
+      "x": 0.2070273607969284,
+      "y": -3.656137704849243,
+      "radius": 0.34849945558613726,
+      "resonance": 0.6515005444138627
+    },
+    {
+      "name": "anti-regression-workflow.md",
+      "x": 0.7503767609596252,
+      "y": 3.3540897369384766,
+      "radius": 0.7057199205277356,
+      "resonance": 0.29428007947226437
+    },
+    {
+      "name": "arjan-conflict-complete-2026-03-17.md",
+      "x": 2.0945534706115723,
+      "y": -1.823919415473938,
+      "radius": 0.6021300993584842,
+      "resonance": 0.39786990064151584
+    },
+    {
+      "name": "arjan-settlement-strategy-2026-03-03.md",
+      "x": -0.7265884280204773,
+      "y": 3.1892545223236084,
+      "radius": 0.5198794656451678,
+      "resonance": 0.48012053435483215
+    },
+    {
+      "name": "arjan-stroeve.md",
+      "x": 0.29693523049354553,
+      "y": 1.3946613073349,
+      "radius": 0.4324013430936682,
+      "resonance": 0.5675986569063318
+    },
+    {
+      "name": "automated-clickup-sync.md",
+      "x": -0.5041791200637817,
+      "y": 4.145046710968018,
+      "radius": 0.5716248133072861,
+      "resonance": 0.4283751866927139
+    },
+    {
+      "name": "autonomous-clickup-refinement-implementation.md",
+      "x": 3.58748197555542,
+      "y": 0.2695692777633667,
+      "radius": 0.5588793174266478,
+      "resonance": 0.4411206825733522
+    },
+    {
+      "name": "autonomous-workflow-patterns.md",
+      "x": 2.0116891860961914,
+      "y": -4.500216960906982,
+      "radius": 0.46680147963946617,
+      "resonance": 0.5331985203605338
+    },
+    {
+      "name": "autoresearch-analysis.md",
+      "x": 0.7846886515617371,
+      "y": -1.2944610118865967,
+      "radius": 0.5511546508877783,
+      "resonance": 0.4488453491122218
+    },
+    {
+      "name": "autoresearch-clickup-scoring-experiment.md",
+      "x": 4.340719699859619,
+      "y": 2.2858235836029053,
+      "radius": 0.5748977733719833,
+      "resonance": 0.42510222662801667
+    },
+    {
+      "name": "autoresearch-executive-summary.md",
+      "x": -2.0727968215942383,
+      "y": -3.518512725830078,
+      "radius": 0.6019862196420682,
+      "resonance": 0.39801378035793183
+    },
+    {
+      "name": "autoresearch-improvements-generator-optimizer.md",
+      "x": -1.054835557937622,
+      "y": 4.902139663696289,
+      "radius": 0.5701487932014009,
+      "resonance": 0.4298512067985992
+    },
+    {
+      "name": "autoresearch-master-plan.md",
+      "x": -1.2040085792541504,
+      "y": -2.696070432662964,
+      "radius": 0.569548938019048,
+      "resonance": 0.43045106198095195
+    },
+    {
+      "name": "autoresearch-pattern-template.md",
+      "x": 3.2955424785614014,
+      "y": -0.49750813841819763,
+      "radius": 0.572764714675662,
+      "resonance": 0.42723528532433797
+    },
+    {
+      "name": "autoresearch-task-generation-optimizer.md",
+      "x": -2.6216812133789062,
+      "y": -2.028062105178833,
+      "radius": 0.5486430806508622,
+      "resonance": 0.45135691934913785
+    },
+    {
+      "name": "background-overlay-pattern.md",
+      "x": -4.212116718292236,
+      "y": 0.690304696559906,
+      "radius": 0.5797015000263382,
+      "resonance": 0.42029849997366175
+    },
+    {
+      "name": "backlog-refinement-standard.md",
+      "x": 1.1448427438735962,
+      "y": 0.6596910357475281,
+      "radius": 0.529264651194614,
+      "resonance": 0.47073534880538603
+    },
+    {
+      "name": "beautiful-ui-system.md",
+      "x": -1.645373821258545,
+      "y": 0.17223306000232697,
+      "radius": 0.5898342168737531,
+      "resonance": 0.4101657831262469
+    },
+    {
+      "name": "bliek-frustration-analysis.md",
+      "x": -1.729215383529663,
+      "y": 2.2059640884399414,
+      "radius": 0.6772734554174733,
+      "resonance": 0.32272654458252664
+    },
+    {
+      "name": "blinded-auditing-architecture.md",
+      "x": 1.6076343059539795,
+      "y": 2.581754446029663,
+      "radius": 0.6727544062920809,
+      "resonance": 0.32724559370791906
+    },
+    {
+      "name": "branch-triage-patterns.md",
+      "x": 1.8602720499038696,
+      "y": 0.09246203303337097,
+      "radius": 0.6428219710651084,
+      "resonance": 0.35717802893489164
+    },
+    {
+      "name": "clickup-complete-structure.md",
+      "x": 5.122009754180908,
+      "y": -1.0659655332565308,
+      "radius": 0.6720976445824474,
+      "resonance": 0.3279023554175526
+    },
+    {
+      "name": "clickup-workflow-rules.md",
+      "x": -3.3968634605407715,
+      "y": -2.2410504817962646,
+      "radius": 0.241491713098694,
+      "resonance": 0.758508286901306
+    },
+    {
+      "name": "codehub-project.md",
+      "x": 0.5157899856567383,
+      "y": 5.048433303833008,
+      "radius": 0.5447823962327316,
+      "resonance": 0.4552176037672684
+    },
+    {
+      "name": "coding-patterns.md",
+      "x": 1.5048030614852905,
+      "y": 1.0196020603179932,
+      "radius": 0.16414381668618694,
+      "resonance": 0.8358561833138131
+    },
+    {
+      "name": "completed-projects.md",
+      "x": -2.0627007484436035,
+      "y": 1.76446533203125,
+      "radius": 0.6190096950983284,
+      "resonance": 0.3809903049016717
+    },
+    {
+      "name": "consciousness-architecture-hfma.md",
+      "x": -1.9633179903030396,
+      "y": 0.8719072341918945,
+      "radius": 0.4585897763630842,
+      "resonance": 0.5414102236369158
+    },
+    {
+      "name": "consciousness-audio-transcript-integration.md",
+      "x": -3.725672483444214,
+      "y": -2.2433738708496094,
+      "radius": 0.6078685157677971,
+      "resonance": 0.3921314842322029
+    },
+    {
+      "name": "consciousness-reward-system.md",
+      "x": -1.0453002452850342,
+      "y": -3.072727680206299,
+      "radius": 0.6895191274848206,
+      "resonance": 0.3104808725151794
+    },
+    {
+      "name": "consciousness-startup-patterns.md",
+      "x": 3.501858711242676,
+      "y": -2.9355862140655518,
+      "radius": 0.6453013713976592,
+      "resonance": 0.35469862860234086
+    },
+    {
+      "name": "consciousness-system.md",
+      "x": 1.4044941663742065,
+      "y": -1.114289402961731,
+      "radius": 0.6541739700888711,
+      "resonance": 0.34582602991112893
+    },
+    {
+      "name": "continuous-retrospective-skill.md",
+      "x": 0.5894870758056641,
+      "y": 2.277769088745117,
+      "radius": 0.6377609181094809,
+      "resonance": 0.3622390818905191
+    },
+    {
+      "name": "contract-nda-patterns.md",
+      "x": 0.5082317590713501,
+      "y": -0.03927655145525932,
+      "radius": 0.7266664830235271,
+      "resonance": 0.2733335169764729
+    },
+    {
+      "name": "damasio-consciousness-model.md",
+      "x": 1.697442650794983,
+      "y": -2.6608216762542725,
+      "radius": 0.6925704851791836,
+      "resonance": 0.30742951482081643
+    },
+    {
+      "name": "datadrivenai-patterns.md",
+      "x": 0.7382805347442627,
+      "y": -4.176149845123291,
+      "radius": 0.6703947801620762,
+      "resonance": 0.32960521983792385
+    },
+    {
+      "name": "deploy-dotnet-iis-skill.md",
+      "x": 2.9062085151672363,
+      "y": -4.241016864776611,
+      "radius": 0.4450327465800362,
+      "resonance": 0.5549672534199638
+    },
+    {
+      "name": "deployment-intelligence.md",
+      "x": 2.8479068279266357,
+      "y": 1.0821030139923096,
+      "radius": 0.615693355333004,
+      "resonance": 0.384306644666996
+    },
+    {
+      "name": "deployment-rules.md",
+      "x": -0.04058119282126427,
+      "y": 4.242461204528809,
+      "radius": 0.6486533906612908,
+      "resonance": 0.35134660933870926
+    },
+    {
+      "name": "design-patterns-library.md",
+      "x": 2.178154468536377,
+      "y": 4.317727088928223,
+      "radius": 0.5325893704770233,
+      "resonance": 0.46741062952297674
+    },
+    {
+      "name": "documentation-as-behavior-anti-pattern.md",
+      "x": -2.2399444580078125,
+      "y": -1.4200035333633423,
+      "radius": 0.5254248488141955,
+      "resonance": 0.47457515118580457
+    },
+    {
+      "name": "dream-state-integration-protocol.md",
+      "x": -0.09569595754146576,
+      "y": -1.5152530670166016,
+      "radius": 0.5635172393490137,
+      "resonance": 0.43648276065098635
+    },
+    {
+      "name": "expert-analysis-skill.md",
+      "x": 2.8374221324920654,
+      "y": -2.769092082977295,
+      "radius": 0.6183580943115923,
+      "resonance": 0.3816419056884078
+    },
+    {
+      "name": "feature-idea-generator-skill.md",
+      "x": -3.7199108600616455,
+      "y": -0.0386124923825264,
+      "radius": 0.6133309801591927,
+      "resonance": 0.38666901984080726
+    },
+    {
+      "name": "file-existence-verification-pattern.md",
+      "x": 3.150541067123413,
+      "y": -1.5313481092453003,
+      "radius": 0.6067454718533136,
+      "resonance": 0.3932545281466864
+    },
+    {
+      "name": "gdio-orthogonal-subspace-finetuning.md",
+      "x": -0.6109921336174011,
+      "y": 2.326512098312378,
+      "radius": 0.6684671140878087,
+      "resonance": 0.3315328859121914
+    },
+    {
+      "name": "git-merge-rule.md",
+      "x": 1.729139804840088,
+      "y": 4.596362590789795,
+      "radius": 0.5979739311765617,
+      "resonance": 0.4020260688234383
+    },
+    {
+      "name": "hard-rules.md",
+      "x": -4.132128715515137,
+      "y": 0.6589386463165283,
+      "radius": 0.0,
+      "resonance": 1.0
+    },
+    {
+      "name": "huwelijksdossier.md",
+      "x": -0.28404468297958374,
+      "y": -3.092019557952881,
+      "radius": 0.7351015810267982,
+      "resonance": 0.2648984189732018
+    },
+    {
+      "name": "implement-todo-100-percent-complete-pattern.md",
+      "x": -3.209378480911255,
+      "y": 1.992099404335022,
+      "radius": 0.48761381858571007,
+      "resonance": 0.5123861814142899
+    },
+    {
+      "name": "implement-todo-skill.md",
+      "x": -0.48895853757858276,
+      "y": 2.1780807971954346,
+      "radius": 0.3842992282358132,
+      "resonance": 0.6157007717641868
+    },
+    {
+      "name": "infrastructure-topology-map.md",
+      "x": -2.5240280628204346,
+      "y": -3.569227457046509,
+      "radius": 0.4751500222933749,
+      "resonance": 0.5248499777066251
+    },
+    {
+      "name": "integration-testing-skill.md",
+      "x": -1.9826196432113647,
+      "y": 3.420806884765625,
+      "radius": 0.7029767212173035,
+      "resonance": 0.2970232787826965
+    },
+    {
+      "name": "integration-testing-workflow.md",
+      "x": -3.475356101989746,
+      "y": 1.693648099899292,
+      "radius": 0.45790687201795555,
+      "resonance": 0.5420931279820445
+    },
+    {
+      "name": "intelligence-archipelago-paradox.md",
+      "x": 3.8974931240081787,
+      "y": -2.5748984813690186,
+      "radius": 0.6652832052489769,
+      "resonance": 0.3347167947510231
+    },
+    {
+      "name": "intrinsic-alignment-reciprocity.md",
+      "x": -2.194506883621216,
+      "y": -0.9820379614830017,
+      "radius": 0.27084944617919626,
+      "resonance": 0.7291505538208037
+    },
+    {
+      "name": "investor-pitch-positioning.md",
+      "x": -3.4026598930358887,
+      "y": 1.811498999595642,
+      "radius": 0.7351015810267982,
+      "resonance": 0.2648984189732018
+    },
+    {
+      "name": "kaizen-skill.md",
+      "x": 4.688230514526367,
+      "y": 0.42464178800582886,
+      "radius": 0.5929094944929068,
+      "resonance": 0.4070905055070932
+    },
+    {
+      "name": "knowledge-architecture-gdio-principles.md",
+      "x": 0.6746217608451843,
+      "y": 1.7218129634857178,
+      "radius": 0.6116010421438087,
+      "resonance": 0.3883989578561913
+    },
+    {
+      "name": "knowledge-contribution-protocol.md",
+      "x": 0.7228816151618958,
+      "y": -2.194946050643921,
+      "radius": 0.5534434206943077,
+      "resonance": 0.4465565793056923
+    },
+    {
+      "name": "leadmanager-deployment-learnings.md",
+      "x": 1.0429142713546753,
+      "y": -2.9116299152374268,
+      "radius": 0.6444387850434576,
+      "resonance": 0.3555612149565423
+    },
+    {
+      "name": "legal-safeguards.md",
+      "x": -0.23902305960655212,
+      "y": 0.7790061831474304,
+      "radius": 0.35915578245580426,
+      "resonance": 0.6408442175441957
+    },
+    {
+      "name": "light-agent-coordination.md",
+      "x": -2.0144293308258057,
+      "y": 3.706533432006836,
+      "radius": 0.7190325687933854,
+      "resonance": 0.28096743120661455
+    },
+    {
+      "name": "maasaiinvestments-project.md",
+      "x": 0.2856677174568176,
+      "y": 0.06338457763195038,
+      "radius": 0.6160793190567903,
+      "resonance": 0.38392068094320975
+    },
+    {
+      "name": "MEMORY.md",
+      "x": -2.0153191089630127,
+      "y": 2.3818628787994385,
+      "radius": 0.7367290740237423,
+      "resonance": 0.2632709259762577
+    },
+    {
+      "name": "moral-conflict-safeguard.md",
+      "x": 5.19548225402832,
+      "y": -1.083945631980896,
+      "radius": 0.2897284603105236,
+      "resonance": 0.7102715396894764
+    },
+    {
+      "name": "nuget-publishing-infrastructure.md",
+      "x": -1.172309398651123,
+      "y": -1.3751806020736694,
+      "radius": 0.7018532003318956,
+      "resonance": 0.29814679966810437
+    },
+    {
+      "name": "onboarding-spotlight-patterns.md",
+      "x": 3.044233560562134,
+      "y": 1.9364538192749023,
+      "radius": 0.6740448534761034,
+      "resonance": 0.3259551465238965
+    },
+    {
+      "name": "ouroboros-continuous-evolution-engine.md",
+      "x": 4.298867702484131,
+      "y": 2.2013473510742188,
+      "radius": 0.6718517345796058,
+      "resonance": 0.32814826542039416
+    },
+    {
+      "name": "ouroboros-patterns.md",
+      "x": 4.309327602386475,
+      "y": 3.7700259685516357,
+      "radius": 0.7367290740237423,
+      "resonance": 0.2632709259762577
+    },
+    {
+      "name": "parallel-implementation-patterns.md",
+      "x": 1.2993839979171753,
+      "y": 2.9705288410186768,
+      "radius": 0.5842697635036393,
+      "resonance": 0.41573023649636065
+    },
+    {
+      "name": "password-manager-deployment-complete.md",
+      "x": -0.9772801995277405,
+      "y": -0.5301347374916077,
+      "radius": 0.6564903629380057,
+      "resonance": 0.34350963706199433
+    },
+    {
+      "name": "passwordmanager-project.md",
+      "x": -1.1001485586166382,
+      "y": -0.5245429873466492,
+      "radius": 0.6022564831859404,
+      "resonance": 0.3977435168140596
+    },
+    {
+      "name": "pattern-evolution-tree.md",
+      "x": 2.3554773330688477,
+      "y": 3.2896690368652344,
+      "radius": 0.598281553150134,
+      "resonance": 0.40171844684986596
+    },
+    {
+      "name": "personalitytest-project.md",
+      "x": -2.8521029949188232,
+      "y": 0.14073790609836578,
+      "radius": 0.7192169012151199,
+      "resonance": 0.28078309878488006
+    },
+    {
+      "name": "pr-review-patterns.md",
+      "x": 1.8721355199813843,
+      "y": -4.486142635345459,
+      "radius": 0.5970012206685331,
+      "resonance": 0.4029987793314669
+    },
+    {
+      "name": "prevented-disasters.md",
+      "x": -1.2508420944213867,
+      "y": 1.262432336807251,
+      "radius": 0.6133522229261232,
+      "resonance": 0.3866477770738767
+    },
+    {
+      "name": "project-locations.md",
+      "x": -3.498389720916748,
+      "y": -1.1950846910476685,
+      "radius": 0.43838782064313186,
+      "resonance": 0.5616121793568681
+    },
+    {
+      "name": "refinement-violations.md",
+      "x": -2.9810891151428223,
+      "y": -3.4649338722229004,
+      "radius": 0.5261177320197195,
+      "resonance": 0.47388226798028055
+    },
+    {
+      "name": "requirement-ambiguity.md",
+      "x": 0.5168205499649048,
+      "y": 4.9231109619140625,
+      "radius": 0.6909983459138944,
+      "resonance": 0.3090016540861055
+    },
+    {
+      "name": "research-intelligence-system.md",
+      "x": -0.6987171173095703,
+      "y": -4.47184944152832,
+      "radius": 0.6562993251191718,
+      "resonance": 0.3437006748808283
+    },
+    {
+      "name": "scp-architecture-transformation.md",
+      "x": -2.9293997287750244,
+      "y": 0.03306019306182861,
+      "radius": 0.5044719215937334,
+      "resonance": 0.4955280784062666
+    },
+    {
+      "name": "scp-behavioral-instructions.md",
+      "x": -0.0028102360665798187,
+      "y": 3.2063348293304443,
+      "radius": 0.481392142576634,
+      "resonance": 0.518607857423366
+    },
+    {
+      "name": "scp-implementation-roadmap-v2.md",
+      "x": 3.261059284210205,
+      "y": -1.3592275381088257,
+      "radius": 0.5916993402029305,
+      "resonance": 0.4083006597970695
+    },
+    {
+      "name": "scp-implementation-roadmap.md",
+      "x": -2.2439706325531006,
+      "y": -1.052174687385559,
+      "radius": 0.5736066458645861,
+      "resonance": 0.4263933541354139
+    },
+    {
+      "name": "scp-transformation-insights.md",
+      "x": 1.4640206098556519,
+      "y": 1.2706375122070312,
+      "radius": 0.6130068927326315,
+      "resonance": 0.3869931072673685
+    },
+    {
+      "name": "self-correction-pattern.md",
+      "x": 1.3081625699996948,
+      "y": 2.757413148880005,
+      "radius": 0.6651027171768995,
+      "resonance": 0.33489728282310044
+    },
+    {
+      "name": "semantic-island-routing.md",
+      "x": -0.0068156239576637745,
+      "y": -3.405735731124878,
+      "radius": 0.6881401577295566,
+      "resonance": 0.3118598422704434
+    },
+    {
+      "name": "seo-god-internal-linking-session.md",
+      "x": -0.5373854637145996,
+      "y": -1.829993724822998,
+      "radius": 0.7351015810267982,
+      "resonance": 0.2648984189732018
+    },
+    {
+      "name": "seo-god-payment-implementation.md",
+      "x": -1.1488122940063477,
+      "y": 4.82327938079834,
+      "radius": 0.7133975154956633,
+      "resonance": 0.2866024845043366
+    },
+    {
+      "name": "session-2026-03-16-artrevisionist-diagnostic.md",
+      "x": -0.3936055898666382,
+      "y": 1.4313970804214478,
+      "radius": 0.6731809189363375,
+      "resonance": 0.32681908106366253
+    },
+    {
+      "name": "session-2026-03-16-leadmanager-final-merge.md",
+      "x": 2.002932548522949,
+      "y": 2.194455146789551,
+      "radius": 0.5626279867876516,
+      "resonance": 0.4373720132123484
+    },
+    {
+      "name": "session-b56620d1-restoration-analysis.md",
+      "x": 2.5174648761749268,
+      "y": -0.14230822026729584,
+      "radius": 0.4432459054082065,
+      "resonance": 0.5567540945917935
+    },
+    {
+      "name": "session-cleanup-learnings.md",
+      "x": 2.9412925243377686,
+      "y": 1.4681695699691772,
+      "radius": 0.7066274656085924,
+      "resonance": 0.29337253439140765
+    },
+    {
+      "name": "session-continuation-bootstrap.md",
+      "x": 3.6925830841064453,
+      "y": -3.5184261798858643,
+      "radius": 0.6294188199765678,
+      "resonance": 0.3705811800234322
+    },
+    {
+      "name": "session-restoration-patterns.md",
+      "x": 3.035714626312256,
+      "y": 3.310577869415283,
+      "radius": 0.6961326187266488,
+      "resonance": 0.3038673812733513
+    },
+    {
+      "name": "ssh-protocol.md",
+      "x": 3.513080596923828,
+      "y": -0.00048092394717969,
+      "radius": 0.4938412027032657,
+      "resonance": 0.5061587972967343
+    },
+    {
+      "name": "standard-clickup-workflow.md",
+      "x": -1.1593858003616333,
+      "y": -4.437005996704102,
+      "radius": 0.4748553261184858,
+      "resonance": 0.5251446738815142
+    },
+    {
+      "name": "task-review-patterns.md",
+      "x": -0.8783872723579407,
+      "y": 0.27674415707588196,
+      "radius": 0.27620217378448164,
+      "resonance": 0.7237978262155184
+    },
+    {
+      "name": "technical-gotchas.md",
+      "x": 4.281184196472168,
+      "y": 3.75386643409729,
+      "radius": 0.334251513002669,
+      "resonance": 0.665748486997331
+    },
+    {
+      "name": "tragic-tradeoffs-alignment.md",
+      "x": 3.2523274421691895,
+      "y": -0.9952070116996765,
+      "radius": 0.28059805957244366,
+      "resonance": 0.7194019404275563
+    },
+    {
+      "name": "trust-actions-not-words.md",
+      "x": 1.0987967252731323,
+      "y": 0.09131832420825958,
+      "radius": 0.6170143193010829,
+      "resonance": 0.3829856806989171
+    },
+    {
+      "name": "ui-design-image-first-patterns.md",
+      "x": 0.48160743713378906,
+      "y": -1.951832890510559,
+      "radius": 0.5767530668647227,
+      "resonance": 0.4232469331352773
+    },
+    {
+      "name": "ui-design-principles.md",
+      "x": 1.5334417819976807,
+      "y": 4.687741756439209,
+      "radius": 0.652084407992363,
+      "resonance": 0.347915592007637
+    },
+    {
+      "name": "unasked-questions.md",
+      "x": -1.5509337186813354,
+      "y": 0.8395598530769348,
+      "radius": 0.7162796964410966,
+      "resonance": 0.28372030355890343
+    },
+    {
+      "name": "universal-verification-protocol.md",
+      "x": -2.2349722385406494,
+      "y": 4.086544036865234,
+      "radius": 0.6339344013245638,
+      "resonance": 0.36606559867543614
+    },
+    {
+      "name": "usage-optimization-intelligence.md",
+      "x": 2.003772735595703,
+      "y": 0.295724093914032,
+      "radius": 0.7351015810267982,
+      "resonance": 0.2648984189732018
+    },
+    {
+      "name": "websearch-project.md",
+      "x": -2.1359803676605225,
+      "y": 0.04036425054073334,
+      "radius": 0.7351015810267982,
+      "resonance": 0.2648984189732018
+    },
+    {
+      "name": "whatsapp-bridge.md",
+      "x": -4.254403114318848,
+      "y": 1.5346404314041138,
+      "radius": 0.3484984610489158,
+      "resonance": 0.6515015389510842
+    },
+    {
+      "name": "windows-ssh-rule.md",
+      "x": 1.0010989904403687,
+      "y": -4.368295669555664,
+      "radius": 0.46103061406319656,
+      "resonance": 0.5389693859368034
+    },
+    {
+      "name": "wordpress-html-encoding-gotcha.md",
+      "x": -0.49360018968582153,
+      "y": -1.4550220966339111,
+      "radius": 0.525813170221554,
+      "resonance": 0.4741868297784459
+    },
+    {
+      "name": "wordpress-patterns.md",
+      "x": 0.6803184747695923,
+      "y": -0.5096604824066162,
+      "radius": 0.4315999664454122,
+      "resonance": 0.5684000335545878
+    },
+    {
+      "name": "wordpress-post-workflow.md",
+      "x": 4.6485371589660645,
+      "y": 0.3186369240283966,
+      "radius": 0.6023852692863921,
+      "resonance": 0.39761473071360787
+    },
+    {
+      "name": "workspace-refinement-2026-03-11.md",
+      "x": 5.069223403930664,
+      "y": 1.4342104196548462,
+      "radius": 0.6722526561421721,
+      "resonance": 0.3277473438578279
+    },
+    {
+      "name": "workspace-refinement-2026-03-12.md",
+      "x": 1.9151839017868042,
+      "y": 1.7492727041244507,
+      "radius": 0.652067352021709,
+      "resonance": 0.34793264797829104
+    },
+    {
+      "name": "workspace-refinement-2026-03-13.md",
+      "x": 2.9323570728302,
+      "y": 3.268460750579834,
+      "radius": 0.6513081213405232,
+      "resonance": 0.3486918786594769
+    },
+    {
+      "name": "worldview-ai-project.md",
+      "x": 1.787817120552063,
+      "y": -2.3838469982147217,
+      "radius": 0.6878468679922092,
+      "resonance": 0.31215313200779077
+    }
+  ]
+}

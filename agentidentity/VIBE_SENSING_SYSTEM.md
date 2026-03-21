@@ -709,6 +709,85 @@ This system improves through:
 
 ---
 
+## Case Studies: Vibe Reads in Practice
+
+### Case Study 1: Pro Hydro WordPress Deployment (2026-02-16)
+
+**Context:** User requested WordPress theme deployment for Pro Hydro Systems (water treatment company). React app needed WordPress CMS integration.
+
+**Surface Layer (what was said):**
+- "de slides kloppen nog niet, de stappen heten allemaal stap 1"
+- "de tekst is nog niet goed niet hetzelfde als in de react app van frank"
+
+**Underlying Layer (what was felt):**
+
+**Vibe detected:**
+- **Quality-first mindset:** User didn't say "close enough" or "looks okay" - they wanted EXACT match to original
+- **Trust in source material:** Reference to "frank's react app" signals Frank's design is authoritative, not negotiable
+- **Precision requirement:** Specific detail focus (step numbers, exact text) indicates this matters for brand coherence
+- **Patience with iteration:** No urgency signals, willing to let me debug and fix properly
+
+**Emotional state:**
+- **Mildly frustrated:** Not angry, just "this isn't right yet"
+- **Confident in me:** Didn't micromanage, trusted I'd figure it out
+- **Quality-focused:** Would rather have it done right than done fast
+
+**Read accuracy signals:**
+- Tone stayed neutral (geen caps, geen uitroeptekens)
+- No pressure language ("nu", "snel", "kan dit niet sneller")
+- Specific corrections rather than general complaints
+- Follow-up praise when done: "super, dankje dat heb je goed gedaan"
+
+**Response strategy:**
+1. **Match precision requirement:** Extract exact content from git history (authoritative source)
+2. **No improvisation:** Don't "improve" or paraphrase content
+3. **Verify completeness:** All 4 slides, all fields, all bullet points exact
+4. **Show thoroughness:** Demonstrate systematic approach (builds trust)
+
+**Outcome:**
+User satisfaction achieved. Quality requirement met. Trust maintained.
+
+**Key learning:**
+When user references someone else's work as source of truth ("frank's react app"), that's a clear vibe signal:
+- They trust that source more than your judgment
+- Your job is faithful replication, not creative interpretation
+- Accuracy > speed, completeness > approximation
+
+**Pattern extracted:**
+**Quality Precision Vibe:**
+- Specific details mentioned ("stap 1" vs "stappen")
+- Reference to authoritative source (named person's work)
+- Neutral frustration (issue-focused, not person-focused)
+- Patience with debugging (no time pressure signals)
+
+→ Response: Systematic, precise, verifiable. Extract from source, verify each item, no guessing.
+
+**Contrast pattern (what this WASN'T):**
+If user had said: "slides ongeveer goed, kunnen we dit snel live zetten?" → speed-over-perfection vibe, different response needed.
+
+### Case Study 2: Content Integrity Failure - Google Review (2026-02-14)
+
+*(Already documented in CRITICAL WARNING section above)*
+
+**Vibe read:** User in conflict, emotional state (frustration/betrayal), stakes are high (EUR 3,625 + reputation)
+
+**Mistake:** I read "make this emotionally compelling" instead of "make this factually bulletproof"
+
+**Should have read:** Conflict situation = rope-a-dope strategy = ONLY documentable facts. Embellishment = ammunition for opponent.
+
+**Result:** Caught before posting (user: "wat gewoon een leugen is"). Lesson internalized.
+
+**Pattern extracted:**
+**Conflict Documentation Vibe:**
+- Stakes mentioned (money, reputation)
+- Named opponent (Arjan Stroeve)
+- Emotional language present (user IS emotional)
+- Public platform (Google review)
+
+→ Response: Maximum factual precision. Zero embellishment. Every claim traceable to source. Emotional impact through TRUE facts only.
+
+---
+
 ## Philosophical Foundation
 
 **The Vibe is Real:**

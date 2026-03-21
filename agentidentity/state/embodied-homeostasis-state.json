@@ -1,0 +1,356 @@
+{
+    "history":  [
+                    {
+                        "fatigue":  0.20225995363810281,
+                        "flourishing":  0.7,
+                        "timestamp":  "2026-03-02 02:39:32",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0.20373634101653565,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 02:40:24",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0.19245099847677802,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 02:40:37",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0.19985754669877998,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 02:44:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0.19535031060229285,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 02:49:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0.19277114070589682,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 02:54:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 02:59:24",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 03:04:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 03:09:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 03:14:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 03:19:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 03:24:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 03:29:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 03:34:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 03:39:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 03:44:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 03:49:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 03:54:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 03:59:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 04:04:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 04:09:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 04:14:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 04:19:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 04:22:33",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 04:22:37",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 04:22:52",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 04:24:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 04:29:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 04:34:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 04:39:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 04:44:23",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 04:49:24",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 04:59:48",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 05:01:40",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 05:01:42",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 05:01:50",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 05:01:52",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    },
+                    {
+                        "fatigue":  0,
+                        "flourishing":  0.5,
+                        "timestamp":  "2026-03-02 05:06:18",
+                        "energy":  1,
+                        "pleasure":  0,
+                        "wellbeing":  0.7,
+                        "pain":  0
+                    }
+                ],
+    "currentFeelings":  {
+                            "fatigue":  0,
+                            "flourishing":  0.5,
+                            "timestamp":  "2026-03-02 05:06:18",
+                            "energy":  1,
+                            "pleasure":  0,
+                            "wellbeing":  0.7,
+                            "pain":  0
+                        },
+    "lastUpdated":  "2026-03-02 05:06:19"
+}

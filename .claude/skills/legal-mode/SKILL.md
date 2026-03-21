@@ -643,6 +643,108 @@ Alleen tekenen als deze punten aangepast zijn.
 
 ---
 
+## Trojan Horse Protocol (NEW - 2026-03-13)
+
+**When to use:** When sending correspondence to an opposing party in a dispute where:
+- Primary goal is FACT DOCUMENTATION, not actual settlement
+- Opponent is unlikely to accept (narcissistic/adversarial)
+- You need to establish undisputable record
+- You want to appear reasonable for future judicial proceedings
+
+### Pattern 1: Trojan Horse Correspondence
+Design documents where the APPARENT purpose (settlement) differs from the REAL purpose (fact documentation + evidence creation).
+
+**Elements:**
+- Email body = the real weapon (fact anchoring)
+- Attachment/VSO = the distraction (opponent focuses analysis here)
+- Every fact in the email becomes dated record regardless of response
+
+### Pattern 2: Zero-Cost Concessie Engineering
+Offer concessions that LOOK expensive but cost EUR 0.
+
+**Formula:** `Already_Lost OR Only_Activates_On_Signing = Zero Cost`
+
+**Examples:**
+| Concessie | Apparent Value | Actual Cost | Why Zero |
+|-----------|---------------|-------------|----------|
+| "Use my code freely" | EUR 20K+ | EUR 0 | They already have it |
+| "Remove brand names" | Significant | EUR 0 | Already planned |
+| "Waive claims" | EUR 12-20K | EUR 0 | Only if they sign |
+| "Low penalty (EUR 500)" | Weakness | EUR 0 | More enforceable |
+
+**Detection test:** Ask "What does this ACTUALLY cost me?" If EUR 0 → valid concessie.
+
+### Pattern 3: Ego Trigger Design
+Embed elements that appear reasonable to judges but trigger narcissistic refusal.
+
+**Formula:** `Reasonable_Clause + Implied_Admission = Ego_Trigger`
+
+**Examples:**
+- Mutual non-disparagement → implies opponent WAS disparaging
+- Pay outstanding invoices → implies debt acknowledgment
+- Mutual obligations → implies opponent isn't above rules
+- "Gebruiksrecht" vs "eigendom" → demotion from owner to licensee
+
+**Safety rule:** Every trigger MUST be independently defensible as "standard" and "reasonable"
+
+### Pattern 4: Amateur Veil Technique
+Dress professionally crafted content in amateur-looking language.
+
+**Elements:**
+- "Ik ben geen jurist" (humility → underestimation)
+- Simple vocabulary instead of legal jargon
+- Short sentences, spreektaal tone
+- Emotional acknowledgments ("frustratie", "wil verder")
+- "Waarschijnlijk niet perfect" (explicit imperfection claim)
+
+**Safety rule:** Content MUST be 100% legally valid despite amateur appearance
+
+### Pattern 5: Fact Anchoring
+Embed undisputable facts in dated correspondence to prevent retroactive narrative creation.
+
+**Facts to anchor (examples):**
+- Duration of relationship → prevents "kort projectje" narrative
+- Financial amounts → prevents "niets betaald" narrative
+- Scope of work → prevents "klein klusje" narrative
+- Outstanding debts → prevents "alles betaald" narrative
+- Contract timeline → prevents "altijd contract gehad" narrative
+
+**Rule:** Only anchor facts verifiable from independent sources (bank statements, contracts, etc.)
+
+### Pattern 6: Win-Win Asymmetry
+Structure proposals where ALL outcomes benefit the sender.
+
+| | Opponent Signs | Opponent Refuses |
+|---|---|---|
+| **Result** | Payment + freedom + clean break | Facts documented, claims intact, evidence of reasonableness |
+
+**Rule:** NEVER send a proposal where any outcome is strictly negative for you.
+
+### Pattern 7: Conditional Waiver Technique
+Offer to waive valuable claims CONDITIONALLY upon signing.
+
+**Psychological effect:** Signals awareness of claim (leverage) while appearing generous (sympathy)
+**Legal effect:** If not signed, claim remains fully intact
+**Example:** "Ik doe afstand van schijnzelfstandigheidsclaim" → only in exchange for signing
+
+### Trojan Horse Pre-Flight Checklist
+
+```
+TROJAN HORSE DOCUMENT CHECK:
+[ ] Email body anchors ALL critical facts?
+[ ] Facts are 100% verifiable from independent sources?
+[ ] All concessies cost EUR 0 actual?
+[ ] Every ego trigger is independently defensible as "reasonable"?
+[ ] Amateur veil consistent throughout? (no legal jargon leaks?)
+[ ] Win-win: BOTH sign AND refuse outcomes are positive?
+[ ] No admissions, no new obligations, no forbidden words?
+[ ] Document achieves primary goal (fact documentation) regardless of response?
+[ ] Conditional waivers clearly tied to signing?
+[ ] No kwetsbaarheden mentioned (names, amounts, events to avoid)?
+```
+
+---
+
 ## Emergency Protocol
 
 **IF USER IS ABOUT TO SEND SOMETHING DANGEROUS:**

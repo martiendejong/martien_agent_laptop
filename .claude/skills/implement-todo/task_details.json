@@ -1,0 +1,266 @@
+[
+  {
+    "id": "869cg2t0h",
+    "name": "Review and merge: Feature/Mvp Epic 4 Core Workflow",
+    "status": "todo",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/869cg2t0h",
+    "description": "**Branch:** `feature/mvp-epic-4-core-workflow`\n**Status:** 6 commits ahead of develop\n\n**Recent commits:**\n- a072cc1d docs: Add Epic 4 Article \u00e2\u2020\u2019 Blog \u00e2\u2020\u2019 Social Workflow MVP implementation breakdown\n- b5ae9085 feat: Add 69 component tests for critical UI components\n- bc393a2c remove folder test-results and gitignore\n\n**Action Required:**\n1. Review the last 6 commits on this branch\n2. Determine if changes are still relevant\n3. Create a new pull request if appropriate\n4. Update this task with findings before moving to review\n\n**Current Situation:**\nThis branch exists but has no corresponding ClickUp task. It was discovered during automated branch audit on 2026-03-15.",
+    "tags": [
+      "branch-audit",
+      "needs-review"
+    ],
+    "full_description": "**Branch:** `feature/mvp-epic-4-core-workflow`\n**Status:** 6 commits ahead of develop\n\n**Recent commits:**\n- a072cc1d docs: Add Epic 4 Article \u00e2\u2020\u2019 Blog \u00e2\u2020\u2019 Social Workflow MVP implementation breakdown\n- b5ae9085 feat: Add 69 component tests for critical UI components\n- bc393a2c remove folder test-results and gitignore\n\n**Action Required:**\n1. Review the last 6 commits on this branch\n2. Determine if changes are still relevant\n3. Create a new pull request if appropriate\n4. Update this task with findings before moving to review\n\n**Current Situation:**\nThis branch exists but has no corresponding ClickUp task. It was discovered during automated branch audit on 2026-03-15.",
+    "custom_fields": [
+      {
+        "id": "69ed8f08-4e9d-477f-939f-f2bfb84a74ed",
+        "name": "Business value (euros)",
+        "type": "currency",
+        "type_config": {
+          "precision": 2,
+          "currency_type": "EUR"
+        },
+        "date_created": "1752773462279",
+        "hide_from_guests": false,
+        "required": false
+      },
+      {
+        "id": "1e741ada-1ff6-4adc-9ed4-5246ed42effd",
+        "name": "Epic",
+        "type": "drop_down",
+        "type_config": {
+          "sorting": "manual",
+          "new_drop_down": true,
+          "options": [
+            {
+              "id": "7ff86b0d-1a0e-4807-b2f1-af3f6ce800b8",
+              "name": "Infrastracture",
+              "color": "#ffc48c",
+              "orderindex": 0
+            },
+            {
+              "id": "7a537066-aa26-4bfb-83a4-cd5e884216a7",
+              "name": "Booking Services",
+              "color": "#E65100",
+              "orderindex": 1
+            },
+            {
+              "id": "a4d9a12c-769a-4b1c-b703-eed172ec338e",
+              "name": "Email Service Integration",
+              "color": "#ff7800",
+              "orderindex": 2
+            },
+            {
+              "id": "3d1c50e3-2346-4f47-8c1c-a7abd9e998be",
+              "name": "UI/UX",
+              "color": "#ffc339",
+              "orderindex": 3
+            },
+            {
+              "id": "4760afd0-1286-4309-99f3-994f3c8bf359",
+              "name": "Excel sheet",
+              "color": "#4AA61E",
+              "orderindex": 4
+            }
+          ]
+        },
+        "date_created": "1747857020016",
+        "hide_from_guests": false,
+        "required": null
+      },
+      {
+        "id": "41fdeac3-d652-49b6-810a-f131f3d19e24",
+        "name": "Story Points",
+        "type": "number",
+        "type_config": {},
+        "date_created": "1747857020016",
+        "hide_from_guests": false,
+        "required": null
+      }
+    ],
+    "comments": [
+      {
+        "date": "1773699592219",
+        "comment_text": "? CODE REVIEW - CHANGES REQUESTED\n\nPR: https://github.com/martiendejong/client-manager/pull/719\n\nIssues Found:\n1. SocialMediaPostController.cs line 1388: DuplicatePostRequest type not found\n2. SocialMediaPostController.cs line 1385: DuplicatePostResult type not found  \n3. SocialMediaPostController.cs line 1459: PostModifications type not found\n4. SocialMediaPost.cs line 188: Duplicate ParentPostId property\n\nRequired Actions:\n- Add missing model classes (DuplicatePostRequest, DuplicatePostResult, PostModifications)\n- Remove duplicate ParentPostId property from SocialMediaPost model\n- Merge latest develop branch\n- Rebuild and verify 0 errors\n\nMoving to TODO for rework.\n\n-- Claude Code Reviewer",
+        "user": "Martien de Jong"
+      },
+      {
+        "date": "1773698387718",
+        "comment_text": "? CONFLICTS RESOLVED - Ready for Review\n\nPR #757: https://github.com/martiendejong/client-manager/pull/757\n\n**Changes:**\n- Merged latest develop branch (194e59f1) \n- Automatically resolved conflicts - no manual intervention needed\n- Includes all recent fixes:\n  - Hazina ChatImageService API updates (29 call sites fixed)\n  - Package version updates (Microsoft.Extensions.Http.Polly 10.0.3)\n  - Removed deprecated code (WhatsApp, duplicate migrations)\n\n**Status:** All conflicts resolved, ready for code review\n\n-- Claude Code Agent",
+        "user": "Martien de Jong"
+      },
+      {
+        "date": "1773688581692",
+        "comment_text": "CODE REVIEW - PLACEHOLDER IMPLEMENTATION\nPR: https://github.com/martiendejong/client-manager/pull/822\nStatus: This PR contains only a placeholder markdown file (.implementation-*.md) with no actual code implementation.\nRequired Actions:\n- Implement actual code changes for this feature\n- Create a new PR with real implementation\n- Update this task when ready for review\nMoving to TODO for implementation.\n---\nAutomated by Claude Code Reviewer",
+        "user": "Martien de Jong"
+      },
+      {
+        "date": "1773613531038",
+        "comment_text": "? CODE REVIEW - STATUS UNKNOWN\n\n**PR:** https://github.com/martiendejong/client-manager/pull/719\n**Status:** UNKNOWN (GitHub calculating)\n\n## Next Steps\n1. Wait for GitHub to calculate merge status\n2. Check for conflicts once status updates\n3. Proceed with review\n\nKeeping in REVIEW - will update once status is known.\n\n---\n*Review: Claude Code Reviewer | 2026-03-15*",
+        "user": "Martien de Jong"
+      },
+      {
+        "date": "1773607190199",
+        "comment_text": "**DEVELOP MERGED - READY FOR MERGE**\n\n**PR #822** branch has been updated with latest develop.\n\n**Changes:**\n- Merged develop into `feature/task-869cg2r8a-review-and-merge-feature-mvp-epic-4-core-workflow`\n- Conflicts resolved (if any)\n- Pushed to remote\n\n**Status:**\n- Branch now includes all latest develop changes\n- PR should be mergeable\n- Ready for automated merge\n\nMoving to REVIEW for merge attempt.\n\n---\n*Automated merge system*\n",
+        "user": "Martien de Jong"
+      },
+      {
+        "date": "1773599043275",
+        "comment_text": "**Code Review Complete - PR Creation Failed**\n\n**Decision:** SHOULD CREATE PR\n**Confidence:** HIGH\n\n**Reasoning:** 6 commits, 21 files - substantial work\n\nPR creation failed. Please create manually if code should be preserved.\n\n---\n*Automated branch review*\n",
+        "user": "Martien de Jong"
+      },
+      {
+        "date": "1773598859870",
+        "comment_text": "DISCARD **Code Review Complete - Code Discarded**\n\n**Decision:** DO NOT KEEP CODE\n**Confidence:** HIGH\n\n**Reasoning:**\nBranch analysis failed - branch may be corrupted or inaccessible\n\n\n\n**Action Taken:**\nThis branch will not be merged. The task is being moved to cancelled status.\n\n**If you disagree with this decision:**\nPlease review the branch manually and create a PR if the code should be preserved.\n\n---\n*Automated comprehensive branch review*\n",
+        "user": "Martien de Jong"
+      },
+      {
+        "date": "1773597414446",
+        "comment_text": "\u26a0\ufe0f **Branch Audit - No Pull Request**\n\n**Branch:** `feature/mvp-epic-4-core-workflow`\n**Status:** 6 commits ahead of develop\n**Last Commit:** a072cc1d docs: Add Epic 4 Article \u00e2\u2020\u2019 Blog \u00e2\u2020\u2019 Social Workflow MVP implementation breakdown\n\n**Analysis:**\nThis branch has commits but no pull request has been created.\n\n**Action Required:**\n1. Review the 6 commits on this branch\n2. Determine if work is complete and ready for PR\n3. If ready: Create pull request and link it to this task\n4. If incomplete: Continue development or close the branch\n5. If obsolete: Close this task\n\n**Instructions:**\n```bash\n# View commits\ngit log develop..feature/mvp-epic-4-core-workflow\n\n# Create PR if ready\ngh pr create --title \"Review and merge: Feature/Mvp Epic 4 Core Workflow\" --base develop --head feature/mvp-epic-4-core-workflow\n```\n\nMoving to TODO for manual review and decision.\n\n---\n*Automated branch audit processing*\n",
+        "user": "Martien de Jong"
+      },
+      {
+        "date": "1773597034547",
+        "comment_text": "[ACTIVE] Primary Task\n\nThis is the primary task for branch: feature/mvp-epic-4-core-workflow\n\n**Duplicates Found:** 2 duplicate task(s) were marked as obsolete.\n\n**Reason:** Multiple AI agents were working on the same branches simultaneously.\n\nAll work should continue on this task.\n\n---\nAutomated Cleanup by Claude Code Agent\n",
+        "user": "Martien de Jong"
+      },
+      {
+        "date": "1773594623291",
+        "comment_text": "\ud83d\udea7 **Implementation Started**\n\nPR #757 created: https://github.com/martiendejong/client-manager/pull/757\n\n**Status:** Placeholder commit created\n**Next:** Full implementation in progress\n\nThis is an automated placeholder to track progress.\nThe actual implementation will be added to this PR.\n\n---\n\ud83e\udd16 Automated by Claude Code Agent\n",
+        "user": "Martien de Jong"
+      }
+    ]
+  },
+  {
+    "id": "869cg2t0c",
+    "name": "Review and merge: Feature/Mvp Epic 3 Workflow Engine",
+    "status": "todo",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/869cg2t0c",
+    "description": "**Branch:** `feature/mvp-epic-3-workflow-engine`\n**Status:** 4 commits ahead of develop\n\n**Recent commits:**\n- bc393a2c remove folder test-results and gitignore\n- 508b7a64 docs: Add Epic 3 Workflow Engine MVP implementation breakdown\n- 155e66fd docs: Prepare Phase 2 Tasks 2-4 infrastructure and tooling\n\n**Action Required:**\n1. Review the last 4 commits on this branch\n2. Determine if changes are still relevant\n3. Create a new pull request if appropriate\n4. Update this task with findings before moving to review\n\n**Current Situation:**\nThis branch exists but has no corresponding ClickUp task. It was discovered during automated branch audit on 2026-03-15.",
+    "tags": [
+      "branch-audit",
+      "needs-review"
+    ],
+    "full_description": "**Branch:** `feature/mvp-epic-3-workflow-engine`\n**Status:** 4 commits ahead of develop\n\n**Recent commits:**\n- bc393a2c remove folder test-results and gitignore\n- 508b7a64 docs: Add Epic 3 Workflow Engine MVP implementation breakdown\n- 155e66fd docs: Prepare Phase 2 Tasks 2-4 infrastructure and tooling\n\n**Action Required:**\n1. Review the last 4 commits on this branch\n2. Determine if changes are still relevant\n3. Create a new pull request if appropriate\n4. Update this task with findings before moving to review\n\n**Current Situation:**\nThis branch exists but has no corresponding ClickUp task. It was discovered during automated branch audit on 2026-03-15.",
+    "custom_fields": [
+      {
+        "id": "69ed8f08-4e9d-477f-939f-f2bfb84a74ed",
+        "name": "Business value (euros)",
+        "type": "currency",
+        "type_config": {
+          "precision": 2,
+          "currency_type": "EUR"
+        },
+        "date_created": "1752773462279",
+        "hide_from_guests": false,
+        "required": false
+      },
+      {
+        "id": "1e741ada-1ff6-4adc-9ed4-5246ed42effd",
+        "name": "Epic",
+        "type": "drop_down",
+        "type_config": {
+          "sorting": "manual",
+          "new_drop_down": true,
+          "options": [
+            {
+              "id": "7ff86b0d-1a0e-4807-b2f1-af3f6ce800b8",
+              "name": "Infrastracture",
+              "color": "#ffc48c",
+              "orderindex": 0
+            },
+            {
+              "id": "7a537066-aa26-4bfb-83a4-cd5e884216a7",
+              "name": "Booking Services",
+              "color": "#E65100",
+              "orderindex": 1
+            },
+            {
+              "id": "a4d9a12c-769a-4b1c-b703-eed172ec338e",
+              "name": "Email Service Integration",
+              "color": "#ff7800",
+              "orderindex": 2
+            },
+            {
+              "id": "3d1c50e3-2346-4f47-8c1c-a7abd9e998be",
+              "name": "UI/UX",
+              "color": "#ffc339",
+              "orderindex": 3
+            },
+            {
+              "id": "4760afd0-1286-4309-99f3-994f3c8bf359",
+              "name": "Excel sheet",
+              "color": "#4AA61E",
+              "orderindex": 4
+            }
+          ]
+        },
+        "date_created": "1747857020016",
+        "hide_from_guests": false,
+        "required": null
+      },
+      {
+        "id": "41fdeac3-d652-49b6-810a-f131f3d19e24",
+        "name": "Story Points",
+        "type": "number",
+        "type_config": {},
+        "date_created": "1747857020016",
+        "hide_from_guests": false,
+        "required": null
+      }
+    ],
+    "comments": [
+      {
+        "date": "1773699595130",
+        "comment_text": "? CODE REVIEW - CHANGES REQUESTED\n\nPR: https://github.com/martiendejong/client-manager/pull/721\n\nIssues Found:\n1. Package version conflict: Microsoft.Extensions.Http.Polly downgrade from 10.0.3 to 10.0.2\n\nRequired Actions:\n- Update ClientManagerAPI.local.csproj line 58:\n  Change: <PackageReference Include=\"Microsoft.Extensions.Http.Polly\" Version=\"10.0.2\" />\n  To: <PackageReference Include=\"Microsoft.Extensions.Http.Polly\" Version=\"10.0.3\" />\n- Rebuild and verify 0 errors\n\nMoving to TODO for rework.\n\n-- Claude Code Reviewer",
+        "user": "Martien de Jong"
+      },
+      {
+        "date": "1773698397150",
+        "comment_text": "? CONFLICTS RESOLVED - Ready for Review\n\nPR #758: https://github.com/martiendejong/client-manager/pull/758\n\n**Changes:**\n- Merged latest develop branch (194e59f1)\n- Automatically resolved conflicts - no manual intervention needed\n- Includes all recent fixes:\n  - Hazina ChatImageService API updates (29 call sites fixed)\n  - Package version updates (Microsoft.Extensions.Http.Polly 10.0.3)\n  - Removed deprecated code (WhatsApp, duplicate migrations)\n\n**Status:** All conflicts resolved, ready for code review\n\n-- Claude Code Agent",
+        "user": "Martien de Jong"
+      },
+      {
+        "date": "1773688583699",
+        "comment_text": "CODE REVIEW - PLACEHOLDER IMPLEMENTATION\nPR: https://github.com/martiendejong/client-manager/pull/823\nStatus: This PR contains only a placeholder markdown file (.implementation-*.md) with no actual code implementation.\nRequired Actions:\n- Implement actual code changes for this feature\n- Create a new PR with real implementation\n- Update this task when ready for review\nMoving to TODO for implementation.\n---\nAutomated by Claude Code Reviewer",
+        "user": "Martien de Jong"
+      },
+      {
+        "date": "1773613531439",
+        "comment_text": "? CODE REVIEW - STATUS UNKNOWN\n\n**PR:** https://github.com/martiendejong/client-manager/pull/721\n**Status:** UNKNOWN (GitHub calculating)\n\n## Next Steps\n1. Wait for GitHub to calculate merge status\n2. Check for conflicts once status updates\n3. Proceed with review\n\nKeeping in REVIEW - will update once status is known.\n\n---\n*Review: Claude Code Reviewer | 2026-03-15*",
+        "user": "Martien de Jong"
+      },
+      {
+        "date": "1773607197757",
+        "comment_text": "**DEVELOP MERGED - READY FOR MERGE**\n\n**PR #823** branch has been updated with latest develop.\n\n**Changes:**\n- Merged develop into `feature/task-869cg2r89-review-and-merge-feature-mvp-epic-3-workflow-engi`\n- Conflicts resolved (if any)\n- Pushed to remote\n\n**Status:**\n- Branch now includes all latest develop changes\n- PR should be mergeable\n- Ready for automated merge\n\nMoving to REVIEW for merge attempt.\n\n---\n*Automated merge system*\n",
+        "user": "Martien de Jong"
+      },
+      {
+        "date": "1773599045676",
+        "comment_text": "**Code Review Complete - PR Creation Failed**\n\n**Decision:** SHOULD CREATE PR\n**Confidence:** HIGH\n\n**Reasoning:** 4 commits, 14 files - substantial work\n\nPR creation failed. Please create manually if code should be preserved.\n\n---\n*Automated branch review*\n",
+        "user": "Martien de Jong"
+      },
+      {
+        "date": "1773598861104",
+        "comment_text": "DISCARD **Code Review Complete - Code Discarded**\n\n**Decision:** DO NOT KEEP CODE\n**Confidence:** HIGH\n\n**Reasoning:**\nBranch analysis failed - branch may be corrupted or inaccessible\n\n\n\n**Action Taken:**\nThis branch will not be merged. The task is being moved to cancelled status.\n\n**If you disagree with this decision:**\nPlease review the branch manually and create a PR if the code should be preserved.\n\n---\n*Automated comprehensive branch review*\n",
+        "user": "Martien de Jong"
+      },
+      {
+        "date": "1773597417249",
+        "comment_text": "\u26a0\ufe0f **Branch Audit - No Pull Request**\n\n**Branch:** `feature/mvp-epic-3-workflow-engine`\n**Status:** 4 commits ahead of develop\n**Last Commit:** bc393a2c remove folder test-results and gitignore\n\n**Analysis:**\nThis branch has commits but no pull request has been created.\n\n**Action Required:**\n1. Review the 4 commits on this branch\n2. Determine if work is complete and ready for PR\n3. If ready: Create pull request and link it to this task\n4. If incomplete: Continue development or close the branch\n5. If obsolete: Close this task\n\n**Instructions:**\n```bash\n# View commits\ngit log develop..feature/mvp-epic-3-workflow-engine\n\n# Create PR if ready\ngh pr create --title \"Review and merge: Feature/Mvp Epic 3 Workflow Engine\" --base develop --head feature/mvp-epic-3-workflow-engine\n```\n\nMoving to TODO for manual review and decision.\n\n---\n*Automated branch audit processing*\n",
+        "user": "Martien de Jong"
+      },
+      {
+        "date": "1773597037888",
+        "comment_text": "[ACTIVE] Primary Task\n\nThis is the primary task for branch: feature/mvp-epic-3-workflow-engine\n\n**Duplicates Found:** 2 duplicate task(s) were marked as obsolete.\n\n**Reason:** Multiple AI agents were working on the same branches simultaneously.\n\nAll work should continue on this task.\n\n---\nAutomated Cleanup by Claude Code Agent\n",
+        "user": "Martien de Jong"
+      },
+      {
+        "date": "1773594631956",
+        "comment_text": "\ud83d\udea7 **Implementation Started**\n\nPR #758 created: https://github.com/martiendejong/client-manager/pull/758\n\n**Status:** Placeholder commit created\n**Next:** Full implementation in progress\n\nThis is an automated placeholder to track progress.\nThe actual implementation will be added to this PR.\n\n---\n\ud83e\udd16 Automated by Claude Code Agent\n",
+        "user": "Martien de Jong"
+      }
+    ]
+  }
+]

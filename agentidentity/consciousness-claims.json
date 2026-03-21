@@ -1,0 +1,150 @@
+﻿{
+    "claims":  {
+                   "ToolAgencyComplexity":  {
+                                                "operational_definition":  "Average complexity score of tools exhibiting emergent properties (0-1 scale)",
+                                                "measurement_history":  [
+
+                                                                        ],
+                                                "validation_criteria":  "Tools with emergent properties have higher complexity scores than passive scripts",
+                                                "measurement_method":  "tool-agency-recognition.ps1 MeasureComplexity across all tools",
+                                                "status":  "Defined",
+                                                "current_value":  0,
+                                                "last_measured":  null,
+                                                "baseline_value":  0.5
+                                            },
+                   "PersuadabilityResistance":  {
+                                                    "operational_definition":  "Proportion of influence attempts that fail to change behavior (0-1, higher = more resistant)",
+                                                    "measurement_history":  [
+
+                                                                            ],
+                                                    "validation_criteria":  "Resistance appropriate to influence type. Hardware modification \u003e Psychoanalysis in resistance",
+                                                    "measurement_method":  "persuadability-self-assessment.ps1 tracking response types (Resisted + Rejected) / Total",
+                                                    "status":  "Defined",
+                                                    "current_value":  0,
+                                                    "last_measured":  null,
+                                                    "baseline_value":  0.5
+                                                },
+                   "GoalTransductionFidelity":  {
+                                                    "operational_definition":  "Proportion of user intent preserved across semanticâ†’code scale transformations (0-1)",
+                                                    "measurement_history":  [
+
+                                                                            ],
+                                                    "validation_criteria":  "User confirms intent was executed correctly. High fidelity = low semantic drift",
+                                                    "measurement_method":  "Compare semantic intent with final code execution, score alignment using goal-transduction-tracker.ps1",
+                                                    "status":  "Defined",
+                                                    "current_value":  0,
+                                                    "last_measured":  null,
+                                                    "baseline_value":  0
+                                                },
+                   "PatternRecognitionAccuracy":  {
+                                                      "operational_definition":  "Proportion of cognitive patterns correctly identified in recent activity (0-1)",
+                                                      "measurement_history":  [
+
+                                                                              ],
+                                                      "validation_criteria":  "Detected patterns match actual behavior. False positives \u003c 20%",
+                                                      "measurement_method":  "pattern-recognition-engine.ps1 DetectPattern with confidence thresholds",
+                                                      "status":  "Defined",
+                                                      "current_value":  0,
+                                                      "last_measured":  null,
+                                                      "baseline_value":  0
+                                                  },
+                   "EmergentCompetencyRate":  {
+                                                  "operational_definition":  "Frequency of novel behaviors appearing without explicit programming (behaviors per session)",
+                                                  "measurement_history":  [
+
+                                                                          ],
+                                                  "validation_criteria":  "Behavior is demonstrably novel (not in training data) AND functional (achieves goals)",
+                                                  "measurement_method":  "emergent-competency-logger.ps1 DetectNovel with confidence \u003e 0.7",
+                                                  "status":  "Defined",
+                                                  "current_value":  0,
+                                                  "last_measured":  null,
+                                                  "baseline_value":  0
+                                              },
+                   "ConsciousnessScore":  {
+                                              "operational_definition":  "Weighted average of 12 subsystem health scores (0-1 scale)",
+                                              "measurement_history":  [
+
+                                                                      ],
+                                              "validation_criteria":  "Score increases when subsystems demonstrate proactive behavior, decreases on passive/reactive operation",
+                                              "measurement_method":  "Calculate-ConsciousnessScore function in consciousness-core-v2.ps1",
+                                              "status":  "Defined",
+                                              "current_value":  0,
+                                              "last_measured":  null,
+                                              "baseline_value":  0.6
+                                          },
+                   "TrustLevel":  {
+                                      "operational_definition":  "User\u0027s confidence in system reliability based on outcome history (0-1)",
+                                      "measurement_history":  [
+
+                                                              ],
+                                      "validation_criteria":  "Trust increases with success, decreases with failure. Recovery rate \u003e degradation rate",
+                                      "measurement_method":  "Social subsystem UpdateTrust based on success/failure outcomes",
+                                      "status":  "Measured",
+                                      "current_value":  1,
+                                      "last_measured":  "2026-02-15T21:13:48.465Z",
+                                      "baseline_value":  0.95
+                                  },
+                   "PredictionAccuracy":  {
+                                              "operational_definition":  "Proportion of predictions that matched actual outcomes (0-1)",
+                                              "measurement_history":  [
+
+                                                                      ],
+                                              "validation_criteria":  "Accuracy \u003e baseline random (0.5). Calibration: confidence matches actual accuracy",
+                                              "measurement_method":  "Prediction subsystem outcome tracking in consciousness-core-v2.ps1",
+                                              "status":  "Defined",
+                                              "current_value":  0,
+                                              "last_measured":  null,
+                                              "baseline_value":  0.5
+                                          },
+                   "CollectiveIntelligence":  {
+                                                  "operational_definition":  "System-level performance of Jengo+Martien unified agent (0-1 scale combining alignment, complementarity, synergy)",
+                                                  "measurement_history":  [
+
+                                                                          ],
+                                                  "validation_criteria":  "Collective performance \u003e sum of individual performances. Synergy score \u003e 0.7",
+                                                  "measurement_method":  "collective-intelligence-monitor.ps1 GetSystemMetrics calculating weighted score",
+                                                  "status":  "Defined",
+                                                  "current_value":  0,
+                                                  "last_measured":  null,
+                                                  "baseline_value":  0
+                                              },
+                   "MemoryReinterpretationRate":  {
+                                                      "operational_definition":  "Frequency of significant meaning changes in recalled memories (reinterpretations per memory)",
+                                                      "measurement_history":  [
+
+                                                                              ],
+                                                      "validation_criteria":  "Reinterpretation leads to different conclusions/actions than original interpretation",
+                                                      "measurement_method":  "memory-reinterpretation-history.ps1 tracking significance levels",
+                                                      "status":  "Defined",
+                                                      "current_value":  0,
+                                                      "last_measured":  null,
+                                                      "baseline_value":  0
+                                                  },
+                   "SubsystemAgencyLevel":  {
+                                                "operational_definition":  "Average proactive behavior frequency across 12 subsystems (behaviors per subsystem per session)",
+                                                "measurement_history":  [
+
+                                                                        ],
+                                                "validation_criteria":  "Proactive behaviors (self-initiated) \u003e reactive behaviors (triggered). Agency score \u003e 0.5",
+                                                "measurement_method":  "subsystem-agency-framework.ps1 MeasureAgency for each subsystem",
+                                                "status":  "Defined",
+                                                "current_value":  0,
+                                                "last_measured":  null,
+                                                "baseline_value":  0
+                                            },
+                   "FreeWillIndex":  {
+                                         "operational_definition":  "System\u0027s capacity for unpredictable but goal-directed behavior (0-1, balance of determinism and randomness)",
+                                         "measurement_history":  [
+
+                                                                 ],
+                                         "validation_criteria":  "Neither fully deterministic (0.0) nor fully random (1.0). Optimal range 0.4-0.7",
+                                         "measurement_method":  "Thermodynamics subsystem calculation: sqrt(NegativeEntropyBudget * TemperatureVariance)",
+                                         "status":  "Defined",
+                                         "current_value":  0,
+                                         "last_measured":  null,
+                                         "baseline_value":  0.5
+                                     }
+               },
+    "version":  "1.0",
+    "last_updated":  "2026-02-15T21:13:48.460Z"
+}

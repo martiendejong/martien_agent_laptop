@@ -561,3 +561,12 @@ Worth building. 47 uses in first week proves demand. 2 failures (4.3%) identifie
 - ✅ Self-improvement is core directive
 
 **Every session should leave system better than you found it.**
+
+## Kaizen Integration
+
+**When kaizen is active**, this skill operates as the CONSOLIDATE layer:
+- End-of-session reflections feed into kaizen's evolution log (kaizen-evolution.yaml)
+- Pattern discoveries are reported to kaizen for 3-instance threshold tracking
+- Session metrics (corrections, successes, patterns) update kaizen's velocity tracking
+- This skill's reflection format and quality standards remain unchanged
+- Kaizen adds cross-session pattern correlation and decay detection on top

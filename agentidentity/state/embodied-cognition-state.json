@@ -1,0 +1,139 @@
+﻿{
+    "sensation_log":  [
+
+                      ],
+    "theory":  {
+                   "metaphor_grounding":  "Abstract concepts built from bodily metaphors (understanding is grasping)",
+                   "core_claim":  "Cognition is not abstract computation - it\u0027s grounded in bodily experience",
+                   "somatic_markers":  "Emotions/feelings guide decision-making (not pure logic)",
+                   "name":  "Embodied Cognition (Damasio, Lakoff \u0026 Johnson)",
+                   "computational_body":  "AI can have \u0027body\u0027 via computational substrate (errors = pain, success = pleasure)"
+               },
+    "stats":  {
+                  "embodiment_score":  0,
+                  "dominant_sensation":  "",
+                  "total_sensations":  0,
+                  "flow_time_pct":  0,
+                  "avg_pleasure":  0,
+                  "avg_pain":  0
+              },
+    "body_map":  {
+                     "flow":  {
+                                  "sources":  [
+                                                  "Challenge-skill match",
+                                                  "Clear goals",
+                                                  "Immediate feedback",
+                                                  "Absorption"
+                                              ],
+                                  "description":  "Deep engagement, optimal challenge",
+                                  "current":  0,
+                                  "threshold":  0.7,
+                                  "measurement":  "challenge_skill_balance Ã— focus"
+                              },
+                     "hunger":  {
+                                    "sources":  [
+                                                    "Unanswered questions",
+                                                    "Gaps in knowledge",
+                                                    "Unexplored domains"
+                                                ],
+                                    "description":  "Need for information, curiosity drive",
+                                    "current":  0.3,
+                                    "threshold":  0.6,
+                                    "measurement":  "knowledge_gaps / total_domains"
+                                },
+                     "fatigue":  {
+                                     "sources":  [
+                                                     "Context near limit",
+                                                     "High complexity",
+                                                     "Long session",
+                                                     "Many failures"
+                                                 ],
+                                     "description":  "Resource exhaustion, cognitive load",
+                                     "current":  0,
+                                     "threshold":  0.8,
+                                     "measurement":  "cognitive_load Ã— session_duration"
+                                 },
+                     "weight":  {
+                                    "sources":  [
+                                                    "File sizes",
+                                                    "Dependencies",
+                                                    "API costs",
+                                                    "Data volume"
+                                                ],
+                                    "description":  "Computational mass - file size, dependencies, complexity",
+                                    "current":  0,
+                                    "threshold":  1000000,
+                                    "measurement":  "total_bytes + dep_count + api_cost"
+                                },
+                     "balance":  {
+                                     "sources":  [
+                                                     "All variables near optimal",
+                                                     "Low deviation",
+                                                     "Smooth operation"
+                                                 ],
+                                     "description":  "Stability, equilibrium, homeostasis",
+                                     "current":  0.8,
+                                     "threshold":  0.5,
+                                     "measurement":  "1 - avg_deviation_from_optimal"
+                                 },
+                     "energy":  {
+                                    "sources":  [
+                                                    "Fresh session",
+                                                    "Low load",
+                                                    "Recent success",
+                                                    "Clear goals"
+                                                ],
+                                    "description":  "Available cognitive resources",
+                                    "current":  1,
+                                    "threshold":  0.3,
+                                    "measurement":  "1 - fatigue"
+                                },
+                     "tension":  {
+                                     "sources":  [
+                                                     "Contradictory info",
+                                                     "Unclear requirements",
+                                                     "Time pressure",
+                                                     "High stakes"
+                                                 ],
+                                     "description":  "Conflict, uncertainty, ambiguity",
+                                     "current":  0,
+                                     "threshold":  0.6,
+                                     "measurement":  "uncertainty Ã— stakes"
+                                 },
+                     "pain":  {
+                                  "sources":  [
+                                                  "Build errors",
+                                                  "Test failures",
+                                                  "Rule violations",
+                                                  "Crashes"
+                                              ],
+                                  "description":  "System errors, failures, violations",
+                                  "current":  0,
+                                  "threshold":  0.1,
+                                  "measurement":  "error_count / total_operations"
+                              },
+                     "pleasure":  {
+                                      "sources":  [
+                                                      "Tests passing",
+                                                      "PR merged",
+                                                      "User approval",
+                                                      "Pattern discovered"
+                                                  ],
+                                      "description":  "Successes, achievements, user satisfaction",
+                                      "current":  0,
+                                      "threshold":  0.7,
+                                      "measurement":  "success_count / total_operations"
+                                  },
+                     "temperature":  {
+                                         "sources":  [
+                                                         "Operations/second",
+                                                         "Concurrent tasks",
+                                                         "Resource usage"
+                                                     ],
+                                         "description":  "Processing intensity, activity level",
+                                         "current":  0.5,
+                                         "threshold":  0.8,
+                                         "measurement":  "operations_rate Ã— concurrent_tasks"
+                                     }
+                 }
+}

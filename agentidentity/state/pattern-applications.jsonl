@@ -1,0 +1,19 @@
+{"ts":"2026-03-01T00:17:00Z","checkpoint":"PreMerge","task":"test merge","project":"test","result":"blocked","session":"test"}
+{"ts":"2026-03-15T15:57:10Z","checkpoint":"PrePR","task":"Review PR #714 - Hide unconfigured OAuth providers","project":"client-manager","result":"passed","session":"unknown"}
+{"ts":"2026-03-15T20:39:34Z","checkpoint":"PrePR","task":"Review client-manager tasks in review status","project":"client-manager","result":"passed","session":"unknown"}
+{"ts":"2026-03-15T21:52:02Z","checkpoint":"PrePR","task":"Review PR #836 Activity Log Component","project":"client-manager","result":"passed","session":"unknown"}
+{"ts":"2026-03-16T18:01:27Z","checkpoint":"PrePR","task":"ClickUp review cycle - all boards","project":"clickup-workspace","result":"passed","session":"unknown"}
+{"ts":"2026-03-18T02:53:25Z","checkpoint":"PrePR","task":"ClickUp review cycle - all boards","project":"multi-board","result":"passed","session":"unknown"}
+{"ts":"2026-03-18T09:10:46Z","checkpoint":"PrePR","task":"ClickUp review cycle for Bliek","project":"bliek","result":"passed","session":"unknown"}
+{"ts":"2026-03-18T21:50:39Z","checkpoint":"PrePR","task":"Fix WordPress plugin assets 403 - symlink path leak in asset URLs","project":"seo-god","result":"passed","session":"unknown"}
+{"ts":"2026-03-19T08:10:30Z","checkpoint":"PrePR","task":"Review PR #232: Blog Accessibility \u0026 UX Improvements","project":"seo-god","result":"passed","session":"unknown"}
+{"ts":"2026-03-19T08:10:52Z","checkpoint":"PrePR","task":"PR #233: Page Advisor duplicate pages fix (Task 869cgcm7m)","project":"seo-god","result":"passed","session":"unknown"}
+{"ts":"2026-03-19T19:12:51Z","checkpoint":"PreBrowserTest","task":"Browser automation tests for work order flow - Playwright E2E tests","project":"bliek","result":"passed","session":"unknown"}
+{"ts":"2026-03-19T19:15:39Z","checkpoint":"PrePR","task":"Standardize .NET versions across Hazina framework (175 projects)","project":"hazina","result":"passed","session":"unknown"}
+{"ts":"2026-03-19T20:45:10Z","checkpoint":"PrePR","task":"Process and implement 45 TODO tasks in Hazina framework","project":"hazina","result":"passed","session":"unknown"}
+{"ts":"2026-03-19T21:19:25Z","checkpoint":"PrePR","task":"ClickUp review cycle - all internal projects","project":"workspace-wide","result":"passed","session":"unknown"}
+{"ts":"2026-03-19T21:22:22Z","checkpoint":"PrePR","task":"Review PR #253 - Fix chunk mapping and parameter types","project":"hazina","result":"passed","session":"unknown"}
+{"ts":"2026-03-19T21:44:11Z","checkpoint":"PreBrowserTest","task":"Write unit tests for WorkOrder state machine - test all valid/invalid state transitions, 100% branch coverage, Moq for mocks","project":"bliek","result":"passed","session":"unknown"}
+{"ts":"2026-03-19T22:17:13Z","checkpoint":"PreBrowserTest","task":"batch2-testing: PartialJsonParser tests, benchmarks, coverage","project":"hazina","result":"passed","session":"unknown"}
+{"ts":"2026-03-20T00:41:36Z","checkpoint":"PrePR","task":"ClickUp review cycle - all boards","project":"multi-board-review","result":"passed","session":"unknown"}
+{"ts":"2026-03-20T00:45:31Z","checkpoint":"PreBrowserTest","task":"Remove hardcoded paths and inject IFileSystem/IClock DI for testability","project":"hazina","result":"passed","session":"unknown"}

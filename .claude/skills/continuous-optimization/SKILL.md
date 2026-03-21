@@ -573,8 +573,18 @@ User manually runs same 5-step process for 4th time
 
 ---
 
+## Kaizen Integration
+
+**When kaizen skill is active**, this skill operates as the SENSE layer:
+- Detected learning signals are reported to kaizen's Phase 1 (Context Sensing)
+- Signal classification (ERROR/SUCCESS/FEEDBACK/PATTERN) feeds kaizen's decision engine
+- MICRO mode signals are logged to kaizen-evolution.yaml instead of acting independently
+- This skill's detection logic remains unchanged; kaizen adds orchestration on top
+
+---
+
 **Status:** Active and integrated into all operations
 **Priority:** Critical - Core self-improvement mechanism
-**Dependencies:** reflection.log.md, PERSONAL_INSIGHTS.md, all skills
-**Last Updated:** 2026-01-19
+**Dependencies:** reflection.log.md, PERSONAL_INSIGHTS.md, all skills, kaizen (orchestrator)
+**Last Updated:** 2026-03-13
 **Philosophy:** "Zorg dat je dus constant leert van jezelf en je eigen instructies bijwerkt"

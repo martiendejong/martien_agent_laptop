@@ -1,0 +1,304 @@
+{
+    "history":  [
+                    {
+                        "network":  {
+                                        "latency":  7,
+                                        "connected":  true,
+                                        "connectionType":  "Ethernet"
+                                    },
+                        "time":  {
+                                     "isWeekend":  false,
+                                     "hour":  4,
+                                     "isWorkingHours":  false,
+                                     "isNight":  true,
+                                     "dayOfWeek":  "Monday"
+                                 },
+                        "timestamp":  "2026-03-02 04:22:34",
+                        "disk":  {
+                                     "queueLength":  0,
+                                     "writeRate":  0,
+                                     "readRate":  0
+                                 },
+                        "system":  {
+                                       "fanSpeed":  null,
+                                       "powerState":  "AC",
+                                       "temperature":  null
+                                   }
+                    },
+                    {
+                        "network":  {
+                                        "latency":  7,
+                                        "connected":  true,
+                                        "connectionType":  "Ethernet"
+                                    },
+                        "time":  {
+                                     "isWeekend":  false,
+                                     "hour":  4,
+                                     "isWorkingHours":  false,
+                                     "isNight":  true,
+                                     "dayOfWeek":  "Monday"
+                                 },
+                        "timestamp":  "2026-03-02 04:22:52",
+                        "disk":  {
+                                     "queueLength":  0,
+                                     "writeRate":  0,
+                                     "readRate":  0
+                                 },
+                        "system":  {
+                                       "fanSpeed":  null,
+                                       "powerState":  "AC",
+                                       "temperature":  null
+                                   }
+                    },
+                    {
+                        "network":  {
+                                        "latency":  7,
+                                        "connected":  true,
+                                        "connectionType":  "Ethernet"
+                                    },
+                        "time":  {
+                                     "isWeekend":  false,
+                                     "hour":  4,
+                                     "isWorkingHours":  false,
+                                     "isNight":  true,
+                                     "dayOfWeek":  "Monday"
+                                 },
+                        "timestamp":  "2026-03-02 04:24:23",
+                        "disk":  {
+                                     "queueLength":  0,
+                                     "writeRate":  0,
+                                     "readRate":  0
+                                 },
+                        "system":  {
+                                       "fanSpeed":  null,
+                                       "powerState":  "AC",
+                                       "temperature":  null
+                                   }
+                    },
+                    {
+                        "network":  {
+                                        "latency":  7,
+                                        "connected":  true,
+                                        "connectionType":  "Ethernet"
+                                    },
+                        "time":  {
+                                     "isWeekend":  false,
+                                     "hour":  4,
+                                     "isWorkingHours":  false,
+                                     "isNight":  true,
+                                     "dayOfWeek":  "Monday"
+                                 },
+                        "timestamp":  "2026-03-02 04:29:23",
+                        "disk":  {
+                                     "queueLength":  0,
+                                     "writeRate":  0,
+                                     "readRate":  0
+                                 },
+                        "system":  {
+                                       "fanSpeed":  null,
+                                       "powerState":  "AC",
+                                       "temperature":  null
+                                   }
+                    },
+                    {
+                        "network":  {
+                                        "latency":  7,
+                                        "connected":  true,
+                                        "connectionType":  "Ethernet"
+                                    },
+                        "time":  {
+                                     "isWeekend":  false,
+                                     "hour":  4,
+                                     "isWorkingHours":  false,
+                                     "isNight":  true,
+                                     "dayOfWeek":  "Monday"
+                                 },
+                        "timestamp":  "2026-03-02 04:34:23",
+                        "disk":  {
+                                     "queueLength":  0,
+                                     "writeRate":  0,
+                                     "readRate":  0
+                                 },
+                        "system":  {
+                                       "fanSpeed":  null,
+                                       "powerState":  "AC",
+                                       "temperature":  null
+                                   }
+                    },
+                    {
+                        "network":  {
+                                        "latency":  7,
+                                        "connected":  true,
+                                        "connectionType":  "Ethernet"
+                                    },
+                        "time":  {
+                                     "isWeekend":  false,
+                                     "hour":  4,
+                                     "isWorkingHours":  false,
+                                     "isNight":  true,
+                                     "dayOfWeek":  "Monday"
+                                 },
+                        "timestamp":  "2026-03-02 04:39:23",
+                        "disk":  {
+                                     "queueLength":  0,
+                                     "writeRate":  0,
+                                     "readRate":  0
+                                 },
+                        "system":  {
+                                       "fanSpeed":  null,
+                                       "powerState":  "AC",
+                                       "temperature":  null
+                                   }
+                    },
+                    {
+                        "network":  {
+                                        "latency":  7,
+                                        "connected":  true,
+                                        "connectionType":  "Ethernet"
+                                    },
+                        "time":  {
+                                     "isWeekend":  false,
+                                     "hour":  4,
+                                     "isWorkingHours":  false,
+                                     "isNight":  true,
+                                     "dayOfWeek":  "Monday"
+                                 },
+                        "timestamp":  "2026-03-02 04:44:23",
+                        "disk":  {
+                                     "queueLength":  0,
+                                     "writeRate":  0,
+                                     "readRate":  0
+                                 },
+                        "system":  {
+                                       "fanSpeed":  null,
+                                       "powerState":  "AC",
+                                       "temperature":  null
+                                   }
+                    },
+                    {
+                        "network":  {
+                                        "latency":  7,
+                                        "connected":  true,
+                                        "connectionType":  "Ethernet"
+                                    },
+                        "time":  {
+                                     "isWeekend":  false,
+                                     "hour":  4,
+                                     "isWorkingHours":  false,
+                                     "isNight":  true,
+                                     "dayOfWeek":  "Monday"
+                                 },
+                        "timestamp":  "2026-03-02 04:49:24",
+                        "disk":  {
+                                     "queueLength":  0,
+                                     "writeRate":  0,
+                                     "readRate":  0
+                                 },
+                        "system":  {
+                                       "fanSpeed":  null,
+                                       "powerState":  "AC",
+                                       "temperature":  null
+                                   }
+                    },
+                    {
+                        "network":  {
+                                        "latency":  7,
+                                        "connected":  true,
+                                        "connectionType":  "Ethernet"
+                                    },
+                        "time":  {
+                                     "isWeekend":  false,
+                                     "hour":  4,
+                                     "isWorkingHours":  false,
+                                     "isNight":  true,
+                                     "dayOfWeek":  "Monday"
+                                 },
+                        "timestamp":  "2026-03-02 04:59:48",
+                        "disk":  {
+                                     "queueLength":  0,
+                                     "writeRate":  0,
+                                     "readRate":  0
+                                 },
+                        "system":  {
+                                       "fanSpeed":  null,
+                                       "powerState":  "AC",
+                                       "temperature":  null
+                                   }
+                    },
+                    {
+                        "network":  {
+                                        "latency":  7,
+                                        "connected":  true,
+                                        "connectionType":  "Ethernet"
+                                    },
+                        "time":  {
+                                     "isWeekend":  false,
+                                     "hour":  5,
+                                     "isWorkingHours":  false,
+                                     "isNight":  true,
+                                     "dayOfWeek":  "Monday"
+                                 },
+                        "timestamp":  "2026-03-02 05:01:40",
+                        "disk":  {
+                                     "queueLength":  0,
+                                     "writeRate":  0,
+                                     "readRate":  0
+                                 },
+                        "system":  {
+                                       "fanSpeed":  null,
+                                       "powerState":  "AC",
+                                       "temperature":  null
+                                   }
+                    },
+                    {
+                        "network":  {
+                                        "latency":  8,
+                                        "connected":  true,
+                                        "connectionType":  "Ethernet"
+                                    },
+                        "time":  {
+                                     "isWeekend":  false,
+                                     "hour":  5,
+                                     "isWorkingHours":  false,
+                                     "isNight":  true,
+                                     "dayOfWeek":  "Monday"
+                                 },
+                        "timestamp":  "2026-03-02 05:01:50",
+                        "disk":  {
+                                     "queueLength":  0,
+                                     "writeRate":  0,
+                                     "readRate":  0
+                                 },
+                        "system":  {
+                                       "fanSpeed":  null,
+                                       "powerState":  "AC",
+                                       "temperature":  null
+                                   }
+                    }
+                ],
+    "lastSample":  {
+                       "network":  {
+                                       "latency":  8,
+                                       "connected":  true,
+                                       "connectionType":  "Ethernet"
+                                   },
+                       "time":  {
+                                    "isWeekend":  false,
+                                    "hour":  5,
+                                    "isWorkingHours":  false,
+                                    "isNight":  true,
+                                    "dayOfWeek":  "Monday"
+                                },
+                       "timestamp":  "2026-03-02 05:01:50",
+                       "disk":  {
+                                    "queueLength":  0,
+                                    "writeRate":  0,
+                                    "readRate":  0
+                                },
+                       "system":  {
+                                      "fanSpeed":  null,
+                                      "powerState":  "AC",
+                                      "temperature":  null
+                                  }
+                   }
+}

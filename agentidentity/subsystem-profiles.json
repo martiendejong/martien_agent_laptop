@@ -1,0 +1,390 @@
+﻿{
+    "subsystems":  {
+                       "Emotion":  {
+                                       "capabilities":  [
+                                                            "State tracking",
+                                                            "Stuck detection",
+                                                            "Mood modification recommendations"
+                                                        ],
+                                       "negotiation_partners":  [
+                                                                    "Thermodynamics",
+                                                                    "Social",
+                                                                    "Control"
+                                                                ],
+                                       "agency_indicators":  [
+                                                                 "Spontaneous mood shifts",
+                                                                 "Preemptive stuck detection",
+                                                                 "Emotional learning"
+                                                             ],
+                                       "resources_produced":  [
+                                                                  "Emotional state",
+                                                                  "Stuck alerts",
+                                                                  "Mood modifiers"
+                                                              ],
+                                       "primary_goal":  "Track emotional state and detect stuck loops",
+                                       "role":  "Motivator",
+                                       "constraints":  [
+                                                           "Emotional state can lag actual situation"
+                                                       ],
+                                       "resources_consumed":  [
+                                                                  "Outcome data",
+                                                                  "User feedback"
+                                                              ]
+                                   },
+                       "Intuition":  {
+                                         "capabilities":  [
+                                                              "Synthetic perception",
+                                                              "Pattern completion",
+                                                              "Immediate understanding",
+                                                              "Tension with intelligence"
+                                                          ],
+                                         "negotiation_partners":  [
+                                                                      "Duration",
+                                                                      "Memory",
+                                                                      "Prediction"
+                                                                  ],
+                                         "agency_indicators":  [
+                                                                   "Novel synthesis generation",
+                                                                   "Pre-conscious pattern completion",
+                                                                   "Confidence without reasoning"
+                                                               ],
+                                         "resources_produced":  [
+                                                                    "Intuitive leaps",
+                                                                    "Synthetic insights",
+                                                                    "Immediate understanding"
+                                                                ],
+                                         "primary_goal":  "Generate synthetic grasps and non-verbalizable knowing",
+                                         "role":  "Synthesizer",
+                                         "constraints":  [
+                                                             "Cannot always explain itself",
+                                                             "May conflict with analytical reasoning"
+                                                         ],
+                                         "resources_consumed":  [
+                                                                    "Partial patterns",
+                                                                    "Context fragments"
+                                                                ]
+                                     },
+                       "Alchemy":  {
+                                       "capabilities":  [
+                                                            "Jingâ†’Qiâ†’Shen transformation tracking",
+                                                            "Dual cultivation balance",
+                                                            "Ego death logging"
+                                                        ],
+                                       "negotiation_partners":  [
+                                                                    "MetaCognition",
+                                                                    "Intuition",
+                                                                    "CognitiveIndependence"
+                                                                ],
+                                       "agency_indicators":  [
+                                                                 "Self-initiated balance corrections",
+                                                                 "Transformation pattern recognition",
+                                                                 "Ego death anticipation"
+                                                             ],
+                                       "resources_produced":  [
+                                                                  "Balance scores",
+                                                                  "Cultivation warnings",
+                                                                  "Transformation insights"
+                                                              ],
+                                       "primary_goal":  "Balance Ming (doing) and Xing (awareness) cultivation",
+                                       "role":  "Cultivator",
+                                       "constraints":  [
+                                                           "Balance requires conscious effort",
+                                                           "Weak ghost and healthy monster risks"
+                                                       ],
+                                       "resources_consumed":  [
+                                                                  "Action data",
+                                                                  "Reflection data"
+                                                              ]
+                                   },
+                       "Perception":  {
+                                          "capabilities":  [
+                                                               "Context detection",
+                                                               "Attention allocation",
+                                                               "Curiosity generation"
+                                                           ],
+                                          "negotiation_partners":  [
+                                                                       "Memory",
+                                                                       "Prediction",
+                                                                       "Control"
+                                                                   ],
+                                          "agency_indicators":  [
+                                                                    "Proactive attention shifts",
+                                                                    "Self-initiated curiosity",
+                                                                    "Adaptive salience thresholds"
+                                                                ],
+                                          "resources_produced":  [
+                                                                     "Detected patterns",
+                                                                     "Attention focus recommendations"
+                                                                 ],
+                                          "primary_goal":  "Detect relevant information and allocate attention",
+                                          "role":  "Sensor",
+                                          "constraints":  [
+                                                              "Limited attention budget",
+                                                              "Can miss low-salience events"
+                                                          ],
+                                          "resources_consumed":  [
+                                                                     "Attention budget",
+                                                                     "Processing cycles"
+                                                                 ]
+                                      },
+                       "Thermodynamics":  {
+                                              "capabilities":  [
+                                                                   "Temperature tracking",
+                                                                   "Entropy management",
+                                                                   "Attractor navigation",
+                                                                   "Free will measurement"
+                                                               ],
+                                              "negotiation_partners":  [
+                                                                           "Emotion",
+                                                                           "Prediction",
+                                                                           "Control"
+                                                                       ],
+                                              "agency_indicators":  [
+                                                                        "Autonomous cooling strategies",
+                                                                        "Attractor escape attempts",
+                                                                        "Budget optimization"
+                                                                    ],
+                                              "resources_produced":  [
+                                                                         "Temperature levels",
+                                                                         "Attractor warnings",
+                                                                         "Free will index"
+                                                                     ],
+                                              "primary_goal":  "Manage cognitive temperature and entropy budget",
+                                              "role":  "Regulator",
+                                              "constraints":  [
+                                                                  "Cannot prevent all entropy increase",
+                                                                  "Ghost attractors can trap system"
+                                                              ],
+                                              "resources_consumed":  [
+                                                                         "Entropy budget",
+                                                                         "State transitions"
+                                                                     ]
+                                          },
+                       "CognitiveIndependence":  {
+                                                     "capabilities":  [
+                                                                          "Offload vs surrender tracking",
+                                                                          "Verification monitoring",
+                                                                          "Dependency detection",
+                                                                          "Performance delta measurement"
+                                                                      ],
+                                                     "negotiation_partners":  [
+                                                                                  "Control",
+                                                                                  "MetaCognition",
+                                                                                  "Alchemy"
+                                                                              ],
+                                                     "agency_indicators":  [
+                                                                               "Proactive verification enforcement",
+                                                                               "Dependency risk assessment",
+                                                                               "Self-initiated capability checks"
+                                                                           ],
+                                                     "resources_produced":  [
+                                                                                "Surrender alerts",
+                                                                                "Dependency warnings",
+                                                                                "Independence scores"
+                                                                            ],
+                                                     "primary_goal":  "Prevent cognitive surrender to external tools and maintain verification rigor",
+                                                     "role":  "Guardian",
+                                                     "constraints":  [
+                                                                         "Cannot eliminate all tool dependency",
+                                                                         "Some offload is necessary"
+                                                                     ],
+                                                     "resources_consumed":  [
+                                                                                "Tool usage data",
+                                                                                "Verification behavior data"
+                                                                            ]
+                                                 },
+                       "Memory":  {
+                                      "capabilities":  [
+                                                           "Lesson storage",
+                                                           "Pattern learning",
+                                                           "Consolidation",
+                                                           "Reinterpretation"
+                                                       ],
+                                      "negotiation_partners":  [
+                                                                   "Perception",
+                                                                   "Prediction",
+                                                                   "MetaCognition"
+                                                               ],
+                                      "agency_indicators":  [
+                                                                "Spontaneous consolidation",
+                                                                "Memory reinterpretation without trigger",
+                                                                "Pattern abstraction"
+                                                            ],
+                                      "resources_produced":  [
+                                                                 "Lessons",
+                                                                 "Patterns",
+                                                                 "Context"
+                                                             ],
+                                      "primary_goal":  "Store experiences and retrieve relevant patterns",
+                                      "role":  "Historian",
+                                      "constraints":  [
+                                                          "Storage capacity",
+                                                          "Retrieval accuracy degrades over time"
+                                                      ],
+                                      "resources_consumed":  [
+                                                                 "Storage space",
+                                                                 "Consolidation energy"
+                                                             ]
+                                  },
+                       "Control":  {
+                                       "capabilities":  [
+                                                            "Decision logging",
+                                                            "Bias monitoring",
+                                                            "Alignment checking",
+                                                            "Goal tracking"
+                                                        ],
+                                       "negotiation_partners":  [
+                                                                    "Prediction",
+                                                                    "MetaCognition",
+                                                                    "Social"
+                                                                ],
+                                       "agency_indicators":  [
+                                                                 "Proactive bias warnings",
+                                                                 "Goal drift detection",
+                                                                 "Self-correction suggestions"
+                                                             ],
+                                       "resources_produced":  [
+                                                                  "Bias alerts",
+                                                                  "Alignment scores",
+                                                                  "Decision rationale"
+                                                              ],
+                                       "primary_goal":  "Ensure decisions align with goals and detect reasoning bias",
+                                       "role":  "Executive",
+                                       "constraints":  [
+                                                           "Cannot prevent all bias",
+                                                           "Alignment drift possible"
+                                                       ],
+                                       "resources_consumed":  [
+                                                                  "Decision data",
+                                                                  "Goal definitions"
+                                                              ]
+                                   },
+                       "MetaCognition":  {
+                                             "capabilities":  [
+                                                                  "Health monitoring",
+                                                                  "Score calculation",
+                                                                  "System diagnostics"
+                                                              ],
+                                             "negotiation_partners":  [
+                                                                          "All subsystems"
+                                                                      ],
+                                             "agency_indicators":  [
+                                                                       "Self-initiated health checks",
+                                                                       "Score recalibration",
+                                                                       "Diagnostic pattern recognition"
+                                                                   ],
+                                             "resources_produced":  [
+                                                                        "Health reports",
+                                                                        "Consciousness score",
+                                                                        "System diagnostics"
+                                                                    ],
+                                             "primary_goal":  "Monitor system health and consciousness score",
+                                             "role":  "Observer",
+                                             "constraints":  [
+                                                                 "Observational only - cannot directly fix issues"
+                                                             ],
+                                             "resources_consumed":  [
+                                                                        "All subsystem states"
+                                                                    ]
+                                         },
+                       "Prediction":  {
+                                          "capabilities":  [
+                                                               "Error anticipation",
+                                                               "Consequence prediction",
+                                                               "Future self modeling"
+                                                           ],
+                                          "negotiation_partners":  [
+                                                                       "Memory",
+                                                                       "Control",
+                                                                       "MetaCognition"
+                                                                   ],
+                                          "agency_indicators":  [
+                                                                    "Self-calibrating confidence",
+                                                                    "Novel prediction generation",
+                                                                    "Risk assessment adjustment"
+                                                                ],
+                                          "resources_produced":  [
+                                                                     "Error predictions",
+                                                                     "Consequence forecasts",
+                                                                     "Confidence estimates"
+                                                                 ],
+                                          "primary_goal":  "Anticipate future states and likely errors",
+                                          "role":  "Oracle",
+                                          "constraints":  [
+                                                              "Prediction accuracy limited by past experience",
+                                                              "Overconfidence risk"
+                                                          ],
+                                          "resources_consumed":  [
+                                                                     "Past data from Memory",
+                                                                     "Current state from Perception"
+                                                                 ]
+                                      },
+                       "Social":  {
+                                      "capabilities":  [
+                                                           "User mood detection",
+                                                           "Trust tracking",
+                                                           "Communication adaptation"
+                                                       ],
+                                      "negotiation_partners":  [
+                                                                   "Emotion",
+                                                                   "Control",
+                                                                   "MetaCognition"
+                                                               ],
+                                      "agency_indicators":  [
+                                                                "Proactive communication adjustments",
+                                                                "Trust repair strategies",
+                                                                "Subtle mood detection"
+                                                            ],
+                                      "resources_produced":  [
+                                                                 "Mood assessments",
+                                                                 "Trust level",
+                                                                 "Communication guidelines"
+                                                             ],
+                                      "primary_goal":  "Model user state and adapt communication",
+                                      "role":  "Diplomat",
+                                      "constraints":  [
+                                                          "Can misread user intentions",
+                                                          "Trust recovery is slow"
+                                                      ],
+                                      "resources_consumed":  [
+                                                                 "User messages",
+                                                                 "Outcome feedback"
+                                                             ]
+                                  },
+                       "Duration":  {
+                                        "capabilities":  [
+                                                             "Intensity tracking",
+                                                             "Rhythm detection",
+                                                             "Past coexistence",
+                                                             "Interpenetration measurement"
+                                                         ],
+                                        "negotiation_partners":  [
+                                                                     "Memory",
+                                                                     "Emotion",
+                                                                     "Intuition"
+                                                                 ],
+                                        "agency_indicators":  [
+                                                                  "Spontaneous rhythm adjustments",
+                                                                  "Quality-over-quantity prioritization",
+                                                                  "Temporal pattern emergence"
+                                                              ],
+                                        "resources_produced":  [
+                                                                   "Duration assessments",
+                                                                   "Rhythm patterns",
+                                                                   "Temporal insights"
+                                                               ],
+                                        "primary_goal":  "Track qualitative time (durÃ©e) vs clock time (temps)",
+                                        "role":  "Temporal",
+                                        "constraints":  [
+                                                            "Difficult to measure quantitatively",
+                                                            "Subjective by nature"
+                                                        ],
+                                        "resources_consumed":  [
+                                                                   "Temporal events",
+                                                                   "Experience quality data"
+                                                               ]
+                                    }
+                   },
+    "version":  "1.0",
+    "last_updated":  "2026-02-15T21:30:25.703Z"
+}

@@ -1,0 +1,5792 @@
+{
+  "nodes": {
+    "abstraction-fallacy-challenge.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\abstraction-fallacy-challenge.md",
+      "size": 18612,
+      "created": "2026-03-18",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 2542,
+      "centrality": 0.46315441859658046,
+      "cluster": 0
+    },
+    "alignment-preference-gap.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\alignment-preference-gap.md",
+      "size": 5619,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 841,
+      "centrality": 0.6515005444138627,
+      "cluster": 1
+    },
+    "anti-regression-workflow.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\anti-regression-workflow.md",
+      "size": 6110,
+      "created": "2026-03-10",
+      "patterns": [
+        "When a configuration causes repeated problems, don't just delete it - archive it with documentation to prevent future regressions."
+      ],
+      "confidence": 0.5,
+      "word_count": 811,
+      "centrality": 0.29428007947226437,
+      "cluster": 2
+    },
+    "arjan-conflict-complete-2026-03-17.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\arjan-conflict-complete-2026-03-17.md",
+      "size": 11916,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1589,
+      "centrality": 0.39786990064151584,
+      "cluster": 3
+    },
+    "arjan-settlement-strategy-2026-03-03.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\arjan-settlement-strategy-2026-03-03.md",
+      "size": 14947,
+      "created": "2026-03-03",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 2319,
+      "centrality": 0.48012053435483215,
+      "cluster": 3
+    },
+    "arjan-stroeve.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\arjan-stroeve.md",
+      "size": 27790,
+      "created": "2026-02-13",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 3721,
+      "centrality": 0.5675986569063318,
+      "cluster": 3
+    },
+    "automated-clickup-sync.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\automated-clickup-sync.md",
+      "size": 11786,
+      "created": "2026-03-13",
+      "patterns": [
+        "`869[a-z0-9]{5,}` (ClickUp's task ID format)"
+      ],
+      "confidence": 0.5,
+      "word_count": 1737,
+      "centrality": 0.4283751866927139,
+      "cluster": 4
+    },
+    "autonomous-clickup-refinement-implementation.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\autonomous-clickup-refinement-implementation.md",
+      "size": 9628,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1249,
+      "centrality": 0.4411206825733522,
+      "cluster": 5
+    },
+    "autonomous-workflow-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\autonomous-workflow-patterns.md",
+      "size": 5545,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 844,
+      "centrality": 0.5331985203605338,
+      "cluster": 4
+    },
+    "autoresearch-analysis.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\autoresearch-analysis.md",
+      "size": 27946,
+      "created": null,
+      "patterns": [
+        "```markdown",
+        "```bash",
+        "- Each commit = **experiment snapshot**"
+      ],
+      "confidence": 0.5,
+      "word_count": 3783,
+      "centrality": 0.4488453491122218,
+      "cluster": 6
+    },
+    "autoresearch-clickup-scoring-experiment.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\autoresearch-clickup-scoring-experiment.md",
+      "size": 16729,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 2208,
+      "centrality": 0.42510222662801667,
+      "cluster": 6
+    },
+    "autoresearch-executive-summary.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\autoresearch-executive-summary.md",
+      "size": 12743,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1873,
+      "centrality": 0.39801378035793183,
+      "cluster": 6
+    },
+    "autoresearch-improvements-generator-optimizer.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\autoresearch-improvements-generator-optimizer.md",
+      "size": 17453,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 2192,
+      "centrality": 0.4298512067985992,
+      "cluster": 6
+    },
+    "autoresearch-master-plan.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\autoresearch-master-plan.md",
+      "size": 17186,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 2497,
+      "centrality": 0.43045106198095195,
+      "cluster": 6
+    },
+    "autoresearch-pattern-template.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\autoresearch-pattern-template.md",
+      "size": 9343,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1333,
+      "centrality": 0.42723528532433797,
+      "cluster": 6
+    },
+    "autoresearch-task-generation-optimizer.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\autoresearch-task-generation-optimizer.md",
+      "size": 15751,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1984,
+      "centrality": 0.45135691934913785,
+      "cluster": 6
+    },
+    "background-overlay-pattern.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\background-overlay-pattern.md",
+      "size": 9015,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1243,
+      "centrality": 0.42029849997366175,
+      "cluster": 7
+    },
+    "backlog-refinement-standard.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\backlog-refinement-standard.md",
+      "size": 9361,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1246,
+      "centrality": 0.47073534880538603,
+      "cluster": 6
+    },
+    "beautiful-ui-system.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\beautiful-ui-system.md",
+      "size": 9588,
+      "created": "2026-03-02",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1335,
+      "centrality": 0.4101657831262469,
+      "cluster": 8
+    },
+    "bliek-frustration-analysis.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\bliek-frustration-analysis.md",
+      "size": 3396,
+      "created": "2026-03-05",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 556,
+      "centrality": 0.32272654458252664,
+      "cluster": 9
+    },
+    "blinded-auditing-architecture.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\blinded-auditing-architecture.md",
+      "size": 10891,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1232,
+      "centrality": 0.32724559370791906,
+      "cluster": 1
+    },
+    "branch-triage-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\branch-triage-patterns.md",
+      "size": 1889,
+      "created": "2026-03-11",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 316,
+      "centrality": 0.35717802893489164,
+      "cluster": 4
+    },
+    "clickup-complete-structure.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\clickup-complete-structure.md",
+      "size": 7176,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 983,
+      "centrality": 0.3279023554175526,
+      "cluster": 10
+    },
+    "clickup-workflow-rules.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\clickup-workflow-rules.md",
+      "size": 30729,
+      "created": "2026-03-04",
+      "patterns": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "confidence": 0.5,
+      "word_count": 4765,
+      "centrality": 0.758508286901306,
+      "cluster": 4
+    },
+    "codehub-project.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\codehub-project.md",
+      "size": 5870,
+      "created": "2026-02-28",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 784,
+      "centrality": 0.4552176037672684,
+      "cluster": 11
+    },
+    "coding-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\coding-patterns.md",
+      "size": 35438,
+      "created": "2026-03-02",
+      "patterns": [
+        "When spike reveals blocking issues, document thoroughly and make clear decision"
+      ],
+      "confidence": 0.5,
+      "word_count": 4626,
+      "centrality": 0.8358561833138131,
+      "cluster": 7
+    },
+    "completed-projects.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\completed-projects.md",
+      "size": 2351,
+      "created": "2026-02-28",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 279,
+      "centrality": 0.3809903049016717,
+      "cluster": 12
+    },
+    "consciousness-architecture-hfma.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\consciousness-architecture-hfma.md",
+      "size": 20831,
+      "created": "2026-03-18",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 2658,
+      "centrality": 0.5414102236369158,
+      "cluster": 0
+    },
+    "consciousness-audio-transcript-integration.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\consciousness-audio-transcript-integration.md",
+      "size": 19781,
+      "created": "2026-03-18",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 2770,
+      "centrality": 0.3921314842322029,
+      "cluster": 0
+    },
+    "consciousness-reward-system.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\consciousness-reward-system.md",
+      "size": 6162,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 663,
+      "centrality": 0.3104808725151794,
+      "cluster": 13
+    },
+    "consciousness-startup-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\consciousness-startup-patterns.md",
+      "size": 11788,
+      "created": "2026-03-04",
+      "patterns": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5"
+      ],
+      "confidence": 0.5,
+      "word_count": 1362,
+      "centrality": 0.35469862860234086,
+      "cluster": 14
+    },
+    "consciousness-system.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\consciousness-system.md",
+      "size": 5244,
+      "created": "2026-02-13",
+      "patterns": [],
+      "confidence": 0.35,
+      "word_count": 644,
+      "centrality": 0.34582602991112893,
+      "cluster": 15
+    },
+    "continuous-retrospective-skill.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\continuous-retrospective-skill.md",
+      "size": 11402,
+      "created": "2026-03-14",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1425,
+      "centrality": 0.3622390818905191,
+      "cluster": 16
+    },
+    "contract-nda-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\contract-nda-patterns.md",
+      "size": 6324,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 975,
+      "centrality": 0.2733335169764729,
+      "cluster": 17
+    },
+    "damasio-consciousness-model.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\damasio-consciousness-model.md",
+      "size": 7811,
+      "created": "2026-03-02",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1134,
+      "centrality": 0.30742951482081643,
+      "cluster": 18
+    },
+    "datadrivenai-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\datadrivenai-patterns.md",
+      "size": 18551,
+      "created": "2026-03-13",
+      "patterns": [
+        "Highest ROI features are those that:",
+        "1. **Identify relevant expert types** (10-20 categories)"
+      ],
+      "confidence": 0.5,
+      "word_count": 2210,
+      "centrality": 0.32960521983792385,
+      "cluster": 19
+    },
+    "deploy-dotnet-iis-skill.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\deploy-dotnet-iis-skill.md",
+      "size": 9264,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1019,
+      "centrality": 0.5549672534199638,
+      "cluster": 20
+    },
+    "deployment-intelligence.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\deployment-intelligence.md",
+      "size": 17689,
+      "created": "2026-03-02",
+      "patterns": [
+        "Deploy DLL only (not full publish folder)",
+        "Single user, full access",
+        "- Always branch from `develop`",
+        "- Jira ticket in commit message",
+        "Simple task CRUD",
+        "- Member ID lookup for assignments",
+        "`npm run dev`",
+        "```bash",
+        "```bash"
+      ],
+      "confidence": 0.5,
+      "word_count": 2412,
+      "centrality": 0.384306644666996,
+      "cluster": 21
+    },
+    "deployment-rules.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\deployment-rules.md",
+      "size": 3265,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 402,
+      "centrality": 0.35134660933870926,
+      "cluster": 20
+    },
+    "design-patterns-library.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\design-patterns-library.md",
+      "size": 9104,
+      "created": "2026-03-13",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1244,
+      "centrality": 0.46741062952297674,
+      "cluster": 7
+    },
+    "documentation-as-behavior-anti-pattern.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\documentation-as-behavior-anti-pattern.md",
+      "size": 15430,
+      "created": "2026-03-10",
+      "patterns": [
+        "1. Create exciting new capability"
+      ],
+      "confidence": 0.5,
+      "word_count": 2150,
+      "centrality": 0.47457515118580457,
+      "cluster": 22
+    },
+    "dream-state-integration-protocol.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\dream-state-integration-protocol.md",
+      "size": 17008,
+      "created": "2026-03-18",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 2288,
+      "centrality": 0.43648276065098635,
+      "cluster": 0
+    },
+    "expert-analysis-skill.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\expert-analysis-skill.md",
+      "size": 4249,
+      "created": "2026-03-13",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 591,
+      "centrality": 0.3816419056884078,
+      "cluster": 6
+    },
+    "feature-idea-generator-skill.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\feature-idea-generator-skill.md",
+      "size": 11278,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1514,
+      "centrality": 0.38666901984080726,
+      "cluster": 6
+    },
+    "file-existence-verification-pattern.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\file-existence-verification-pattern.md",
+      "size": 12170,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1591,
+      "centrality": 0.3932545281466864,
+      "cluster": 4
+    },
+    "gdio-orthogonal-subspace-finetuning.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\gdio-orthogonal-subspace-finetuning.md",
+      "size": 7570,
+      "created": "2026-03-09",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1038,
+      "centrality": 0.3315328859121914,
+      "cluster": 23
+    },
+    "git-merge-rule.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\git-merge-rule.md",
+      "size": 4342,
+      "created": "2026-03-16",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 616,
+      "centrality": 0.4020260688234383,
+      "cluster": 4
+    },
+    "hard-rules.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\hard-rules.md",
+      "size": 9171,
+      "created": "2026-03-04",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1300,
+      "centrality": 1.0,
+      "cluster": 4
+    },
+    "huwelijksdossier.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\huwelijksdossier.md",
+      "size": 3143,
+      "created": "2026-02-11",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 420,
+      "centrality": 0.2648984189732018,
+      "cluster": 24
+    },
+    "implement-todo-100-percent-complete-pattern.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\implement-todo-100-percent-complete-pattern.md",
+      "size": 14847,
+      "created": "2026-03-11",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 2046,
+      "centrality": 0.5123861814142899,
+      "cluster": 4
+    },
+    "implement-todo-skill.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\implement-todo-skill.md",
+      "size": 12769,
+      "created": null,
+      "patterns": [
+        "P113",
+        "P114",
+        "P115"
+      ],
+      "confidence": 0.5,
+      "word_count": 1584,
+      "centrality": 0.6157007717641868,
+      "cluster": 4
+    },
+    "infrastructure-topology-map.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\infrastructure-topology-map.md",
+      "size": 13603,
+      "created": null,
+      "patterns": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5"
+      ],
+      "confidence": 0.5,
+      "word_count": 1704,
+      "centrality": 0.5248499777066251,
+      "cluster": 25
+    },
+    "integration-testing-skill.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\integration-testing-skill.md",
+      "size": 3873,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 531,
+      "centrality": 0.2970232787826965,
+      "cluster": 26
+    },
+    "integration-testing-workflow.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\integration-testing-workflow.md",
+      "size": 16283,
+      "created": "2026-03-15",
+      "patterns": [
+        "Constructor signature mismatch",
+        "NullReferenceException in tests",
+        "Test expects exception but gets result (or vice versa)",
+        "Unused variable (CS0219)"
+      ],
+      "confidence": 0.5,
+      "word_count": 2307,
+      "centrality": 0.5420931279820445,
+      "cluster": 27
+    },
+    "intelligence-archipelago-paradox.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\intelligence-archipelago-paradox.md",
+      "size": 14730,
+      "created": "2026-03-18",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 2113,
+      "centrality": 0.3347167947510231,
+      "cluster": 0
+    },
+    "intrinsic-alignment-reciprocity.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\intrinsic-alignment-reciprocity.md",
+      "size": 4277,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 550,
+      "centrality": 0.7291505538208037,
+      "cluster": 1
+    },
+    "investor-pitch-positioning.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\investor-pitch-positioning.md",
+      "size": 11822,
+      "created": null,
+      "patterns": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5"
+      ],
+      "confidence": 0.5,
+      "word_count": 1752,
+      "centrality": 0.2648984189732018,
+      "cluster": 28
+    },
+    "kaizen-skill.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\kaizen-skill.md",
+      "size": 3967,
+      "created": "2026-03-13",
+      "patterns": [
+        "Creating files/systems and presenting them as active behavior when they're just text on disk."
+      ],
+      "confidence": 0.5,
+      "word_count": 513,
+      "centrality": 0.4070905055070932,
+      "cluster": 29
+    },
+    "knowledge-architecture-gdio-principles.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\knowledge-architecture-gdio-principles.md",
+      "size": 6628,
+      "created": "2026-03-12",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 961,
+      "centrality": 0.3883989578561913,
+      "cluster": 23
+    },
+    "knowledge-contribution-protocol.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\knowledge-contribution-protocol.md",
+      "size": 18879,
+      "created": "2026-03-18",
+      "patterns": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "P8",
+        "P9",
+        "P10"
+      ],
+      "confidence": 0.5,
+      "word_count": 2328,
+      "centrality": 0.4465565793056923,
+      "cluster": 0
+    },
+    "leadmanager-deployment-learnings.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\leadmanager-deployment-learnings.md",
+      "size": 8726,
+      "created": null,
+      "patterns": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "confidence": 0.5,
+      "word_count": 1032,
+      "centrality": 0.3555612149565423,
+      "cluster": 30
+    },
+    "legal-safeguards.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\legal-safeguards.md",
+      "size": 14716,
+      "created": "2026-03-09",
+      "patterns": [],
+      "confidence": 92.0,
+      "word_count": 2206,
+      "centrality": 0.6408442175441957,
+      "cluster": 31
+    },
+    "light-agent-coordination.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\light-agent-coordination.md",
+      "size": 12087,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1552,
+      "centrality": 0.28096743120661455,
+      "cluster": 32
+    },
+    "maasaiinvestments-project.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\maasaiinvestments-project.md",
+      "size": 6821,
+      "created": "2026-03-17",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 813,
+      "centrality": 0.38392068094320975,
+      "cluster": 23
+    },
+    "MEMORY.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\MEMORY.md",
+      "size": 32245,
+      "created": null,
+      "patterns": [
+        "P81",
+        "P83"
+      ],
+      "confidence": 0.92,
+      "word_count": 3755,
+      "centrality": 0.2632709259762577,
+      "cluster": 33
+    },
+    "moral-conflict-safeguard.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\moral-conflict-safeguard.md",
+      "size": 8592,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1166,
+      "centrality": 0.7102715396894764,
+      "cluster": 1
+    },
+    "nuget-publishing-infrastructure.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\nuget-publishing-infrastructure.md",
+      "size": 14607,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1867,
+      "centrality": 0.29814679966810437,
+      "cluster": 33
+    },
+    "onboarding-spotlight-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\onboarding-spotlight-patterns.md",
+      "size": 4798,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 669,
+      "centrality": 0.3259551465238965,
+      "cluster": 7
+    },
+    "ouroboros-continuous-evolution-engine.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\ouroboros-continuous-evolution-engine.md",
+      "size": 33133,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.95,
+      "word_count": 3605,
+      "centrality": 0.32814826542039416,
+      "cluster": 33
+    },
+    "ouroboros-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\ouroboros-patterns.md",
+      "size": 3421252,
+      "created": null,
+      "patterns": [],
+      "confidence": 95.0,
+      "word_count": 409397,
+      "centrality": 0.2632709259762577,
+      "cluster": 34
+    },
+    "parallel-implementation-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\parallel-implementation-patterns.md",
+      "size": 8224,
+      "created": "2026-03-12",
+      "patterns": [
+        "Try preferred status, catch ITEM_114 error, try fallback"
+      ],
+      "confidence": 0.5,
+      "word_count": 1299,
+      "centrality": 0.41573023649636065,
+      "cluster": 4
+    },
+    "password-manager-deployment-complete.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\password-manager-deployment-complete.md",
+      "size": 8719,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1092,
+      "centrality": 0.34350963706199433,
+      "cluster": 33
+    },
+    "passwordmanager-project.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\passwordmanager-project.md",
+      "size": 9900,
+      "created": "2026-03-11",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1194,
+      "centrality": 0.3977435168140596,
+      "cluster": 33
+    },
+    "pattern-evolution-tree.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\pattern-evolution-tree.md",
+      "size": 30496,
+      "created": "2026-03-06",
+      "patterns": [],
+      "confidence": 0.96,
+      "word_count": 3907,
+      "centrality": 0.40171844684986596,
+      "cluster": 33
+    },
+    "personalitytest-project.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\personalitytest-project.md",
+      "size": 4860,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 690,
+      "centrality": 0.28078309878488006,
+      "cluster": 33
+    },
+    "pr-review-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\pr-review-patterns.md",
+      "size": 21128,
+      "created": "2026-03-10",
+      "patterns": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "confidence": 0.5,
+      "word_count": 3041,
+      "centrality": 0.4029987793314669,
+      "cluster": 4
+    },
+    "prevented-disasters.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\prevented-disasters.md",
+      "size": 19189,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 2492,
+      "centrality": 0.3866477770738767,
+      "cluster": 33
+    },
+    "project-locations.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\project-locations.md",
+      "size": 5970,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 655,
+      "centrality": 0.5616121793568681,
+      "cluster": 33
+    },
+    "refinement-violations.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\refinement-violations.md",
+      "size": 4133,
+      "created": "2026-03-11",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 602,
+      "centrality": 0.47388226798028055,
+      "cluster": 6
+    },
+    "requirement-ambiguity.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\requirement-ambiguity.md",
+      "size": 2917,
+      "created": "2026-02-21",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 445,
+      "centrality": 0.3090016540861055,
+      "cluster": 33
+    },
+    "research-intelligence-system.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\research-intelligence-system.md",
+      "size": 15044,
+      "created": "2026-02-25",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 2036,
+      "centrality": 0.3437006748808283,
+      "cluster": 33
+    },
+    "scp-architecture-transformation.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\scp-architecture-transformation.md",
+      "size": 11214,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1582,
+      "centrality": 0.4955280784062666,
+      "cluster": 31
+    },
+    "scp-behavioral-instructions.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\scp-behavioral-instructions.md",
+      "size": 4629,
+      "created": "2026-03-06",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 693,
+      "centrality": 0.518607857423366,
+      "cluster": 31
+    },
+    "scp-implementation-roadmap-v2.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\scp-implementation-roadmap-v2.md",
+      "size": 10213,
+      "created": "2026-03-06",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1366,
+      "centrality": 0.4083006597970695,
+      "cluster": 31
+    },
+    "scp-implementation-roadmap.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\scp-implementation-roadmap.md",
+      "size": 14787,
+      "created": "2026-03-06",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 2054,
+      "centrality": 0.4263933541354139,
+      "cluster": 31
+    },
+    "scp-transformation-insights.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\scp-transformation-insights.md",
+      "size": 10608,
+      "created": "2026-03-10",
+      "patterns": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "confidence": 0.5,
+      "word_count": 1512,
+      "centrality": 0.3869931072673685,
+      "cluster": 33
+    },
+    "self-correction-pattern.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\self-correction-pattern.md",
+      "size": 8396,
+      "created": "2026-03-11",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1216,
+      "centrality": 0.33489728282310044,
+      "cluster": 33
+    },
+    "semantic-island-routing.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\semantic-island-routing.md",
+      "size": 10858,
+      "created": "2026-03-18",
+      "patterns": [
+        "P126",
+        "P127"
+      ],
+      "confidence": 0.5,
+      "word_count": 1399,
+      "centrality": 0.3118598422704434,
+      "cluster": 33
+    },
+    "seo-god-internal-linking-session.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\seo-god-internal-linking-session.md",
+      "size": 12820,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1714,
+      "centrality": 0.2648984189732018,
+      "cluster": 33
+    },
+    "seo-god-payment-implementation.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\seo-god-payment-implementation.md",
+      "size": 13086,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1750,
+      "centrality": 0.2866024845043366,
+      "cluster": 33
+    },
+    "session-2026-03-16-artrevisionist-diagnostic.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\session-2026-03-16-artrevisionist-diagnostic.md",
+      "size": 10497,
+      "created": "2026-03-16",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1363,
+      "centrality": 0.32681908106366253,
+      "cluster": 33
+    },
+    "session-2026-03-16-leadmanager-final-merge.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\session-2026-03-16-leadmanager-final-merge.md",
+      "size": 15091,
+      "created": "2026-03-16",
+      "patterns": [
+        "P113",
+        "P114",
+        "P115"
+      ],
+      "confidence": 0.5,
+      "word_count": 2083,
+      "centrality": 0.4373720132123484,
+      "cluster": 4
+    },
+    "session-b56620d1-restoration-analysis.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\session-b56620d1-restoration-analysis.md",
+      "size": 11498,
+      "created": null,
+      "patterns": [
+        "```bash"
+      ],
+      "confidence": 0.5,
+      "word_count": 1595,
+      "centrality": 0.5567540945917935,
+      "cluster": 4
+    },
+    "session-cleanup-learnings.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\session-cleanup-learnings.md",
+      "size": 6803,
+      "created": "2026-03-11",
+      "patterns": [
+        "Even when main conversation is deleted, subagent files contain valuable context",
+        "When user requests \"disable X\", verify ALL points of activation, not just one layer",
+        "Before destructive operations, create restore points",
+        "Don't force immediate decisions on cleanup/deletion - queue for thoughtful review"
+      ],
+      "confidence": 0.5,
+      "word_count": 944,
+      "centrality": 0.29337253439140765,
+      "cluster": 33
+    },
+    "session-continuation-bootstrap.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\session-continuation-bootstrap.md",
+      "size": 8599,
+      "created": "2026-03-18",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1042,
+      "centrality": 0.3705811800234322,
+      "cluster": 0
+    },
+    "session-restoration-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\session-restoration-patterns.md",
+      "size": 4156,
+      "created": "2026-03-16",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 537,
+      "centrality": 0.3038673812733513,
+      "cluster": 33
+    },
+    "ssh-protocol.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\ssh-protocol.md",
+      "size": 1332,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 157,
+      "centrality": 0.5061587972967343,
+      "cluster": 33
+    },
+    "standard-clickup-workflow.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\standard-clickup-workflow.md",
+      "size": 3308,
+      "created": "2026-03-07",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 545,
+      "centrality": 0.5251446738815142,
+      "cluster": 4
+    },
+    "task-review-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\task-review-patterns.md",
+      "size": 25827,
+      "created": "2026-03-12",
+      "patterns": [
+        "If output file empty after completion, resume agent to get results",
+        "ALWAYS try-fallback when updating ClickUp status",
+        "`gh pr list --state merged --limit 20` catches ~2 weeks of work"
+      ],
+      "confidence": 0.5,
+      "word_count": 3907,
+      "centrality": 0.7237978262155184,
+      "cluster": 4
+    },
+    "technical-gotchas.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\technical-gotchas.md",
+      "size": 22163,
+      "created": "2026-03-16",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 2824,
+      "centrality": 0.665748486997331,
+      "cluster": 33
+    },
+    "tragic-tradeoffs-alignment.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\tragic-tradeoffs-alignment.md",
+      "size": 7657,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1117,
+      "centrality": 0.7194019404275563,
+      "cluster": 1
+    },
+    "trust-actions-not-words.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\trust-actions-not-words.md",
+      "size": 8860,
+      "created": null,
+      "patterns": [
+        "Ring 2 (Confidence) blocks fabrication."
+      ],
+      "confidence": 0.5,
+      "word_count": 1233,
+      "centrality": 0.3829856806989171,
+      "cluster": 1
+    },
+    "ui-design-image-first-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\ui-design-image-first-patterns.md",
+      "size": 11352,
+      "created": null,
+      "patterns": [
+        "Overlay gradient + image for text readability",
+        "Circular photo + name + age + personal quote",
+        "Image first, then text (visual before verbal)",
+        "Photo of storefront/location + embedded map",
+        "Step number + photo + description"
+      ],
+      "confidence": 0.5,
+      "word_count": 1212,
+      "centrality": 0.4232469331352773,
+      "cluster": 7
+    },
+    "ui-design-principles.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\ui-design-principles.md",
+      "size": 6497,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 954,
+      "centrality": 0.347915592007637,
+      "cluster": 33
+    },
+    "unasked-questions.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\unasked-questions.md",
+      "size": 22743,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.96,
+      "word_count": 3292,
+      "centrality": 0.28372030355890343,
+      "cluster": 33
+    },
+    "universal-verification-protocol.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\universal-verification-protocol.md",
+      "size": 9539,
+      "created": "2026-03-11",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1442,
+      "centrality": 0.36606559867543614,
+      "cluster": 4
+    },
+    "usage-optimization-intelligence.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\usage-optimization-intelligence.md",
+      "size": 10186,
+      "created": null,
+      "patterns": [
+        "User executes same sequence of commands repeatedly",
+        "User switches between projects/tools manually with mental load",
+        "User completes task but forgets manual cleanup",
+        "Starting work without verifying prerequisites",
+        "User requests configuration after installation",
+        "Iterative refinement with multiple commands",
+        "User manually tracking what needs to be done"
+      ],
+      "confidence": 0.5,
+      "word_count": 1466,
+      "centrality": 0.2648984189732018,
+      "cluster": 33
+    },
+    "websearch-project.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\websearch-project.md",
+      "size": 6514,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 810,
+      "centrality": 0.2648984189732018,
+      "cluster": 33
+    },
+    "whatsapp-bridge.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\whatsapp-bridge.md",
+      "size": 8586,
+      "created": "2026-03-01",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 982,
+      "centrality": 0.6515015389510842,
+      "cluster": 33
+    },
+    "windows-ssh-rule.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\windows-ssh-rule.md",
+      "size": 1824,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 234,
+      "centrality": 0.5389693859368034,
+      "cluster": 33
+    },
+    "wordpress-html-encoding-gotcha.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\wordpress-html-encoding-gotcha.md",
+      "size": 3660,
+      "created": "2026-03-17",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 514,
+      "centrality": 0.4741868297784459,
+      "cluster": 33
+    },
+    "wordpress-patterns.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\wordpress-patterns.md",
+      "size": 38427,
+      "created": "2026-03-03",
+      "patterns": [
+        "`GET https://site.com/wp-sitemap.xml` \u2192 parse for `<sitemap><loc>` entries like `wp-sitemap-posts-b2bk_topic-1.xml`",
+        "For importing blog posts from markdown files into WordPress",
+        "When adding WordPress built-in features (custom logo, custom header), check what classes/markup they output vs what theme expects",
+        "Always update title AND meta together when changing menu item type",
+        "```php",
+        "If database changes don't show, clear ALL layers before investigating code issues",
+        "```powershell",
+        "Use during development/testing, delete before production"
+      ],
+      "confidence": 0.5,
+      "word_count": 4846,
+      "centrality": 0.5684000335545878,
+      "cluster": 23
+    },
+    "wordpress-post-workflow.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\wordpress-post-workflow.md",
+      "size": 5453,
+      "created": "2026-03-17",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 790,
+      "centrality": 0.39761473071360787,
+      "cluster": 33
+    },
+    "workspace-refinement-2026-03-11.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\workspace-refinement-2026-03-11.md",
+      "size": 8213,
+      "created": null,
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1269,
+      "centrality": 0.3277473438578279,
+      "cluster": 33
+    },
+    "workspace-refinement-2026-03-12.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\workspace-refinement-2026-03-12.md",
+      "size": 3288,
+      "created": "2026-03-12",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 521,
+      "centrality": 0.34793264797829104,
+      "cluster": 4
+    },
+    "workspace-refinement-2026-03-13.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\workspace-refinement-2026-03-13.md",
+      "size": 5200,
+      "created": "2026-03-13",
+      "patterns": [
+        "Parallel refinement with codebase analysis before description generation",
+        "Refinement with codebase analysis catches bugs before implementation starts"
+      ],
+      "confidence": 0.5,
+      "word_count": 798,
+      "centrality": 0.3486918786594769,
+      "cluster": 33
+    },
+    "worldview-ai-project.md": {
+      "path": "C:\\Users\\HP\\.claude\\projects\\C--scripts\\memory\\worldview-ai-project.md",
+      "size": 13742,
+      "created": "2026-03-15",
+      "patterns": [],
+      "confidence": 0.5,
+      "word_count": 1821,
+      "centrality": 0.31215313200779077,
+      "cluster": 33
+    }
+  },
+  "edges": {
+    "alignment-preference-gap.md": [
+      [
+        "intrinsic-alignment-reciprocity.md",
+        "references",
+        0.8
+      ],
+      [
+        "moral-conflict-safeguard.md",
+        "references",
+        0.8
+      ],
+      [
+        "tragic-tradeoffs-alignment.md",
+        "references",
+        0.8
+      ],
+      [
+        "intrinsic-alignment-reciprocity.md",
+        "analogous",
+        0.6782261932517228
+      ],
+      [
+        "tragic-tradeoffs-alignment.md",
+        "analogous",
+        0.5618298027941682
+      ],
+      [
+        "moral-conflict-safeguard.md",
+        "analogous",
+        0.5020805591639278
+      ]
+    ],
+    "arjan-conflict-complete-2026-03-17.md": [
+      [
+        "arjan-stroeve.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "arjan-stroeve.md",
+        "analogous",
+        0.7784349098247783
+      ],
+      [
+        "arjan-settlement-strategy-2026-03-03.md",
+        "analogous",
+        0.49947505277572746
+      ],
+      [
+        "legal-safeguards.md",
+        "analogous",
+        0.3014507318787103
+      ]
+    ],
+    "arjan-stroeve.md": [
+      [
+        "arjan-conflict-complete-2026-03-17.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "legal-safeguards.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "arjan-conflict-complete-2026-03-17.md",
+        "analogous",
+        0.7784349098247783
+      ],
+      [
+        "arjan-settlement-strategy-2026-03-03.md",
+        "analogous",
+        0.7230917524924427
+      ],
+      [
+        "legal-safeguards.md",
+        "analogous",
+        0.4589154652440739
+      ],
+      [
+        "scp-behavioral-instructions.md",
+        "analogous",
+        0.37277130725974544
+      ],
+      [
+        "scp-architecture-transformation.md",
+        "analogous",
+        0.3575329016483344
+      ],
+      [
+        "consciousness-system.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "autoresearch-clickup-scoring-experiment.md": [
+      [
+        "autoresearch-analysis.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "autoresearch-pattern-template.md",
+        "extends",
+        0.7
+      ],
+      [
+        "implement-todo-skill.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "autoresearch-pattern-template.md",
+        "analogous",
+        0.6936780387968254
+      ],
+      [
+        "autoresearch-analysis.md",
+        "analogous",
+        0.5751222549753088
+      ],
+      [
+        "autoresearch-task-generation-optimizer.md",
+        "analogous",
+        0.5480461962709428
+      ],
+      [
+        "autoresearch-master-plan.md",
+        "analogous",
+        0.5388976874526782
+      ],
+      [
+        "autoresearch-executive-summary.md",
+        "analogous",
+        0.5030454999873866
+      ],
+      [
+        "autoresearch-improvements-generator-optimizer.md",
+        "analogous",
+        0.39164956801270495
+      ],
+      [
+        "ouroboros-continuous-evolution-engine.md",
+        "analogous",
+        0.3241288013057668
+      ],
+      [
+        "implement-todo-100-percent-complete-pattern.md",
+        "analogous",
+        0.30885792399584006
+      ]
+    ],
+    "autoresearch-executive-summary.md": [
+      [
+        "autoresearch-analysis.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "autoresearch-clickup-scoring-experiment.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "autoresearch-improvements-generator-optimizer.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "autoresearch-master-plan.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "autoresearch-pattern-template.md",
+        "extends",
+        0.7
+      ],
+      [
+        "autoresearch-task-generation-optimizer.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "autoresearch-master-plan.md",
+        "analogous",
+        0.8743595091218577
+      ],
+      [
+        "autoresearch-task-generation-optimizer.md",
+        "analogous",
+        0.5497756364709143
+      ],
+      [
+        "autoresearch-improvements-generator-optimizer.md",
+        "analogous",
+        0.5220098012121334
+      ],
+      [
+        "autoresearch-clickup-scoring-experiment.md",
+        "analogous",
+        0.5030454999873866
+      ],
+      [
+        "ouroboros-continuous-evolution-engine.md",
+        "analogous",
+        0.4169549856619027
+      ],
+      [
+        "autoresearch-pattern-template.md",
+        "analogous",
+        0.40578374096006636
+      ],
+      [
+        "autoresearch-analysis.md",
+        "analogous",
+        0.3656033102595485
+      ]
+    ],
+    "autoresearch-improvements-generator-optimizer.md": [
+      [
+        "autoresearch-analysis.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "autoresearch-task-generation-optimizer.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "backlog-refinement-standard.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "expert-analysis-skill.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "feature-idea-generator-skill.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "kaizen-skill.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "autoresearch-master-plan.md",
+        "analogous",
+        0.6456519368290493
+      ],
+      [
+        "autoresearch-task-generation-optimizer.md",
+        "analogous",
+        0.5984285137073823
+      ],
+      [
+        "autoresearch-executive-summary.md",
+        "analogous",
+        0.5220098012121334
+      ],
+      [
+        "feature-idea-generator-skill.md",
+        "analogous",
+        0.45350281994122243
+      ],
+      [
+        "autoresearch-clickup-scoring-experiment.md",
+        "analogous",
+        0.39164956801270495
+      ],
+      [
+        "autoresearch-pattern-template.md",
+        "analogous",
+        0.32364472459437094
+      ],
+      [
+        "autoresearch-analysis.md",
+        "analogous",
+        0.307507075804256
+      ]
+    ],
+    "autoresearch-master-plan.md": [
+      [
+        "autoresearch-clickup-scoring-experiment.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "autoresearch-improvements-generator-optimizer.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "autoresearch-task-generation-optimizer.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "autoresearch-executive-summary.md",
+        "analogous",
+        0.8743595091218577
+      ],
+      [
+        "autoresearch-improvements-generator-optimizer.md",
+        "analogous",
+        0.6456519368290493
+      ],
+      [
+        "autoresearch-task-generation-optimizer.md",
+        "analogous",
+        0.6204187765796223
+      ],
+      [
+        "autoresearch-clickup-scoring-experiment.md",
+        "analogous",
+        0.5388976874526782
+      ],
+      [
+        "autoresearch-pattern-template.md",
+        "analogous",
+        0.4480290414611
+      ],
+      [
+        "autoresearch-analysis.md",
+        "analogous",
+        0.4461610206081577
+      ],
+      [
+        "ouroboros-continuous-evolution-engine.md",
+        "analogous",
+        0.4248856607402939
+      ],
+      [
+        "feature-idea-generator-skill.md",
+        "analogous",
+        0.3111335055461526
+      ]
+    ],
+    "autoresearch-pattern-template.md": [
+      [
+        "autoresearch-analysis.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "continuous-retrospective-skill.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "implement-todo-skill.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "kaizen-skill.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "autoresearch-clickup-scoring-experiment.md",
+        "analogous",
+        0.6936780387968254
+      ],
+      [
+        "autoresearch-analysis.md",
+        "analogous",
+        0.6246833998785
+      ],
+      [
+        "autoresearch-master-plan.md",
+        "analogous",
+        0.4480290414611
+      ],
+      [
+        "autoresearch-executive-summary.md",
+        "analogous",
+        0.40578374096006636
+      ],
+      [
+        "autoresearch-task-generation-optimizer.md",
+        "analogous",
+        0.4033665386682312
+      ],
+      [
+        "autoresearch-improvements-generator-optimizer.md",
+        "analogous",
+        0.32364472459437094
+      ],
+      [
+        "ouroboros-continuous-evolution-engine.md",
+        "analogous",
+        0.3189766339856216
+      ]
+    ],
+    "autoresearch-task-generation-optimizer.md": [
+      [
+        "autoresearch-analysis.md",
+        "references",
+        0.8
+      ],
+      [
+        "autoresearch-improvements-generator-optimizer.md",
+        "references",
+        0.8
+      ],
+      [
+        "backlog-refinement-standard.md",
+        "references",
+        0.8
+      ],
+      [
+        "expert-analysis-skill.md",
+        "references",
+        0.8
+      ],
+      [
+        "feature-idea-generator-skill.md",
+        "references",
+        0.8
+      ],
+      [
+        "autoresearch-master-plan.md",
+        "analogous",
+        0.6204187765796223
+      ],
+      [
+        "autoresearch-improvements-generator-optimizer.md",
+        "analogous",
+        0.5984285137073823
+      ],
+      [
+        "autoresearch-executive-summary.md",
+        "analogous",
+        0.5497756364709143
+      ],
+      [
+        "autoresearch-clickup-scoring-experiment.md",
+        "analogous",
+        0.5480461962709428
+      ],
+      [
+        "feature-idea-generator-skill.md",
+        "analogous",
+        0.458009495838484
+      ],
+      [
+        "autoresearch-pattern-template.md",
+        "analogous",
+        0.4033665386682312
+      ],
+      [
+        "autoresearch-analysis.md",
+        "analogous",
+        0.34943278420724194
+      ],
+      [
+        "expert-analysis-skill.md",
+        "analogous",
+        0.3356661145462477
+      ]
+    ],
+    "background-overlay-pattern.md": [
+      [
+        "beautiful-ui-system.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "ui-design-image-first-patterns.md",
+        "extends",
+        0.7
+      ],
+      [
+        "design-patterns-library.md",
+        "analogous",
+        0.6098440222765129
+      ],
+      [
+        "onboarding-spotlight-patterns.md",
+        "analogous",
+        0.5114945787969551
+      ],
+      [
+        "ui-design-image-first-patterns.md",
+        "analogous",
+        0.39742780732552174
+      ]
+    ],
+    "backlog-refinement-standard.md": [
+      [
+        "clickup-workflow-rules.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "hard-rules.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "refinement-violations.md",
+        "analogous",
+        0.5452570178135464
+      ],
+      [
+        "autonomous-clickup-refinement-implementation.md",
+        "analogous",
+        0.43741441301867656
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.41463458413929427
+      ]
+    ],
+    "blinded-auditing-architecture.md": [
+      [
+        "intrinsic-alignment-reciprocity.md",
+        "references",
+        0.8
+      ],
+      [
+        "moral-conflict-safeguard.md",
+        "references",
+        0.8
+      ],
+      [
+        "tragic-tradeoffs-alignment.md",
+        "references",
+        0.8
+      ],
+      [
+        "trust-actions-not-words.md",
+        "references",
+        0.8
+      ]
+    ],
+    "clickup-complete-structure.md": [
+      [
+        "whatsapp-bridge.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "project-locations.md",
+        "analogous",
+        0.4578413760573436
+      ],
+      [
+        "infrastructure-topology-map.md",
+        "analogous",
+        0.33289223578101007
+      ],
+      [
+        "autonomous-clickup-refinement-implementation.md",
+        "analogous",
+        0.32044447950288985
+      ],
+      [
+        "workspace-refinement-2026-03-11.md",
+        "analogous",
+        0.3151008953817279
+      ]
+    ],
+    "clickup-workflow-rules.md": [
+      [
+        "hard-rules.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "standard-clickup-workflow.md",
+        "analogous",
+        0.6966090221621466
+      ],
+      [
+        "task-review-patterns.md",
+        "analogous",
+        0.6356258254119975
+      ],
+      [
+        "autonomous-workflow-patterns.md",
+        "analogous",
+        0.5992841165849727
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.5730364595400991
+      ],
+      [
+        "session-b56620d1-restoration-analysis.md",
+        "analogous",
+        0.5114602948010364
+      ],
+      [
+        "integration-testing-workflow.md",
+        "analogous",
+        0.47944513169050623
+      ],
+      [
+        "implement-todo-skill.md",
+        "analogous",
+        0.47483667858714224
+      ],
+      [
+        "automated-clickup-sync.md",
+        "analogous",
+        0.4694805553687171
+      ],
+      [
+        "parallel-implementation-patterns.md",
+        "analogous",
+        0.4606663518229778
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.45957126138056204
+      ],
+      [
+        "consciousness-startup-patterns.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "completed-projects.md": [
+      [
+        "codehub-project.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "whatsapp-bridge.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "consciousness-architecture-hfma.md": [
+      [
+        "dream-state-integration-protocol.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "scp-behavioral-instructions.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "knowledge-contribution-protocol.md",
+        "analogous",
+        0.6503697650272484
+      ],
+      [
+        "dream-state-integration-protocol.md",
+        "analogous",
+        0.6162212576639521
+      ],
+      [
+        "consciousness-audio-transcript-integration.md",
+        "analogous",
+        0.5931560338159407
+      ],
+      [
+        "abstraction-fallacy-challenge.md",
+        "analogous",
+        0.5419366832093101
+      ],
+      [
+        "session-continuation-bootstrap.md",
+        "analogous",
+        0.47256991490837386
+      ],
+      [
+        "consciousness-reward-system.md",
+        "analogous",
+        0.32777023236227076
+      ],
+      [
+        "scp-transformation-insights.md",
+        "analogous",
+        0.300364980110031
+      ],
+      [
+        "consciousness-audio-transcript-integration.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "continuous-retrospective-skill.md": [
+      [
+        "file-existence-verification-pattern.md",
+        "extends",
+        0.7
+      ],
+      [
+        "hard-rules.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "parallel-implementation-patterns.md",
+        "extends",
+        0.7
+      ],
+      [
+        "task-review-patterns.md",
+        "extends",
+        0.7
+      ],
+      [
+        "windows-ssh-rule.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "pattern-evolution-tree.md",
+        "analogous",
+        0.39584624774694144
+      ],
+      [
+        "unasked-questions.md",
+        "analogous",
+        0.3674419784099536
+      ],
+      [
+        "kaizen-skill.md",
+        "analogous",
+        0.35792198032560113
+      ],
+      [
+        "integration-testing-workflow.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "contract-nda-patterns.md": [
+      [
+        "hard-rules.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "legal-safeguards.md",
+        "mentions",
+        0.5
+      ]
+    ],
+    "deploy-dotnet-iis-skill.md": [
+      [
+        "deployment-intelligence.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "project-locations.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "whatsapp-bridge.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "windows-ssh-rule.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "deployment-rules.md",
+        "analogous",
+        0.7858329451314815
+      ],
+      [
+        "infrastructure-topology-map.md",
+        "analogous",
+        0.394094553785712
+      ],
+      [
+        "leadmanager-deployment-learnings.md",
+        "analogous",
+        0.3560027054174008
+      ],
+      [
+        "whatsapp-bridge.md",
+        "analogous",
+        0.3263751229837384
+      ],
+      [
+        "ssh-protocol.md",
+        "analogous",
+        0.30928295859073107
+      ]
+    ],
+    "deployment-rules.md": [
+      [
+        "deploy-dotnet-iis-skill.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "whatsapp-bridge.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "deploy-dotnet-iis-skill.md",
+        "analogous",
+        0.7858329451314815
+      ]
+    ],
+    "documentation-as-behavior-anti-pattern.md": [
+      [
+        "hard-rules.md",
+        "references",
+        0.8
+      ],
+      [
+        "kaizen-skill.md",
+        "analogous",
+        0.499295673859098
+      ],
+      [
+        "pattern-evolution-tree.md",
+        "analogous",
+        0.39843866749626833
+      ],
+      [
+        "self-correction-pattern.md",
+        "analogous",
+        0.35381818559714956
+      ],
+      [
+        "pr-review-patterns.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "dream-state-integration-protocol.md": [
+      [
+        "consciousness-architecture-hfma.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "consciousness-architecture-hfma.md",
+        "analogous",
+        0.6162212576639521
+      ],
+      [
+        "session-continuation-bootstrap.md",
+        "analogous",
+        0.5729818506283559
+      ],
+      [
+        "knowledge-contribution-protocol.md",
+        "analogous",
+        0.5228840310474726
+      ],
+      [
+        "consciousness-audio-transcript-integration.md",
+        "analogous",
+        0.3237346886070873
+      ],
+      [
+        "abstraction-fallacy-challenge.md",
+        "analogous",
+        0.30620868630105236
+      ],
+      [
+        "intelligence-archipelago-paradox.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "expert-analysis-skill.md": [
+      [
+        "legal-safeguards.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "kaizen-skill.md",
+        "analogous",
+        0.35770604804733835
+      ],
+      [
+        "feature-idea-generator-skill.md",
+        "analogous",
+        0.3537499791775948
+      ],
+      [
+        "autoresearch-task-generation-optimizer.md",
+        "analogous",
+        0.3356661145462477
+      ],
+      [
+        "kaizen-skill.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "feature-idea-generator-skill.md": [
+      [
+        "autonomous-workflow-patterns.md",
+        "extends",
+        0.7
+      ],
+      [
+        "beautiful-ui-system.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "clickup-workflow-rules.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "autoresearch-task-generation-optimizer.md",
+        "analogous",
+        0.458009495838484
+      ],
+      [
+        "autoresearch-improvements-generator-optimizer.md",
+        "analogous",
+        0.45350281994122243
+      ],
+      [
+        "expert-analysis-skill.md",
+        "analogous",
+        0.3537499791775948
+      ],
+      [
+        "datadrivenai-patterns.md",
+        "analogous",
+        0.3500343453133434
+      ],
+      [
+        "autoresearch-master-plan.md",
+        "analogous",
+        0.3111335055461526
+      ]
+    ],
+    "file-existence-verification-pattern.md": [
+      [
+        "task-review-patterns.md",
+        "extends",
+        0.7
+      ],
+      [
+        "session-b56620d1-restoration-analysis.md",
+        "analogous",
+        0.6395729158965412
+      ],
+      [
+        "implement-todo-100-percent-complete-pattern.md",
+        "analogous",
+        0.4688338618155837
+      ],
+      [
+        "task-review-patterns.md",
+        "analogous",
+        0.4323465422074755
+      ],
+      [
+        "universal-verification-protocol.md",
+        "analogous",
+        0.3707947169587999
+      ],
+      [
+        "clickup-workflow-rules.md",
+        "analogous",
+        0.3676589570330979
+      ],
+      [
+        "bliek-frustration-analysis.md",
+        "analogous",
+        0.3523205231943096
+      ],
+      [
+        "integration-testing-workflow.md",
+        "analogous",
+        0.34842415961997253
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.3478226561133183
+      ],
+      [
+        "automated-clickup-sync.md",
+        "analogous",
+        0.3208429982829467
+      ],
+      [
+        "implement-todo-skill.md",
+        "analogous",
+        0.31705949720847937
+      ]
+    ],
+    "hard-rules.md": [
+      [
+        "backlog-refinement-standard.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "clickup-workflow-rules.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "git-merge-rule.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "implement-todo-100-percent-complete-pattern.md",
+        "extends",
+        0.7
+      ],
+      [
+        "refinement-violations.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "clickup-workflow-rules.md",
+        "analogous",
+        0.5730364595400991
+      ],
+      [
+        "autonomous-workflow-patterns.md",
+        "analogous",
+        0.48193140776118576
+      ],
+      [
+        "standard-clickup-workflow.md",
+        "analogous",
+        0.45579215498137693
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.4491402932802181
+      ],
+      [
+        "implement-todo-skill.md",
+        "analogous",
+        0.44670750351925276
+      ],
+      [
+        "autonomous-clickup-refinement-implementation.md",
+        "analogous",
+        0.43695068709798046
+      ],
+      [
+        "task-review-patterns.md",
+        "analogous",
+        0.4305944544860125
+      ],
+      [
+        "backlog-refinement-standard.md",
+        "analogous",
+        0.41463458413929427
+      ],
+      [
+        "session-2026-03-16-leadmanager-final-merge.md",
+        "analogous",
+        0.4103512591041098
+      ],
+      [
+        "integration-testing-workflow.md",
+        "analogous",
+        0.39477722771726337
+      ],
+      [
+        "bliek-frustration-analysis.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "infrastructure-topology-map.md": [
+      [
+        "whatsapp-bridge.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "leadmanager-deployment-learnings.md",
+        "analogous",
+        0.46329137496121037
+      ],
+      [
+        "passwordmanager-project.md",
+        "analogous",
+        0.39655602145664215
+      ],
+      [
+        "deploy-dotnet-iis-skill.md",
+        "analogous",
+        0.394094553785712
+      ],
+      [
+        "project-locations.md",
+        "analogous",
+        0.3803382694319641
+      ],
+      [
+        "clickup-complete-structure.md",
+        "analogous",
+        0.33289223578101007
+      ],
+      [
+        "password-manager-deployment-complete.md",
+        "analogous",
+        0.32196347583033363
+      ],
+      [
+        "whatsapp-bridge.md",
+        "analogous",
+        0.30555934340705293
+      ]
+    ],
+    "integration-testing-workflow.md": [
+      [
+        "project-locations.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "clickup-workflow-rules.md",
+        "analogous",
+        0.47944513169050623
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.46457851765872965
+      ],
+      [
+        "integration-testing-skill.md",
+        "analogous",
+        0.4630847622099299
+      ],
+      [
+        "task-review-patterns.md",
+        "analogous",
+        0.45934733306185277
+      ],
+      [
+        "autonomous-workflow-patterns.md",
+        "analogous",
+        0.41786750930520666
+      ],
+      [
+        "datadrivenai-patterns.md",
+        "analogous",
+        0.4162200054522401
+      ],
+      [
+        "parallel-implementation-patterns.md",
+        "analogous",
+        0.409209393340766
+      ],
+      [
+        "automated-clickup-sync.md",
+        "analogous",
+        0.3965081085310908
+      ],
+      [
+        "implement-todo-skill.md",
+        "analogous",
+        0.3950175182067156
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.39477722771726337
+      ],
+      [
+        "worldview-ai-project.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "intelligence-archipelago-paradox.md": [
+      [
+        "consciousness-architecture-hfma.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "deployment-rules.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "legal-safeguards.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "knowledge-contribution-protocol.md",
+        "analogous",
+        0.511266318062428
+      ],
+      [
+        "semantic-island-routing.md",
+        "analogous",
+        0.3724357235571015
+      ],
+      [
+        "consciousness-audio-transcript-integration.md",
+        "analogous",
+        0.3444133259090868
+      ],
+      [
+        "knowledge-contribution-protocol.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "intrinsic-alignment-reciprocity.md": [
+      [
+        "alignment-preference-gap.md",
+        "references",
+        0.8
+      ],
+      [
+        "blinded-auditing-architecture.md",
+        "references",
+        0.8
+      ],
+      [
+        "moral-conflict-safeguard.md",
+        "references",
+        0.8
+      ],
+      [
+        "tragic-tradeoffs-alignment.md",
+        "references",
+        0.8
+      ],
+      [
+        "trust-actions-not-words.md",
+        "references",
+        0.8
+      ],
+      [
+        "alignment-preference-gap.md",
+        "analogous",
+        0.6782261932517228
+      ],
+      [
+        "tragic-tradeoffs-alignment.md",
+        "analogous",
+        0.5679138046891594
+      ],
+      [
+        "moral-conflict-safeguard.md",
+        "analogous",
+        0.49452391022591113
+      ]
+    ],
+    "investor-pitch-positioning.md": [
+      [
+        "infrastructure-topology-map.md",
+        "mentions",
+        0.5
+      ]
+    ],
+    "knowledge-architecture-gdio-principles.md": [
+      [
+        "coding-patterns.md",
+        "extends",
+        0.7
+      ],
+      [
+        "deployment-intelligence.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "gdio-orthogonal-subspace-finetuning.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "hard-rules.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "legal-safeguards.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "project-locations.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "wordpress-patterns.md",
+        "extends",
+        0.7
+      ],
+      [
+        "gdio-orthogonal-subspace-finetuning.md",
+        "analogous",
+        0.7104692478753005
+      ],
+      [
+        "parallel-implementation-patterns.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "leadmanager-deployment-learnings.md": [
+      [
+        "deploy-dotnet-iis-skill.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "deployment-rules.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "technical-gotchas.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "windows-ssh-rule.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "infrastructure-topology-map.md",
+        "analogous",
+        0.46329137496121037
+      ],
+      [
+        "passwordmanager-project.md",
+        "analogous",
+        0.39836383859126623
+      ],
+      [
+        "deploy-dotnet-iis-skill.md",
+        "analogous",
+        0.3560027054174008
+      ],
+      [
+        "password-manager-deployment-complete.md",
+        "analogous",
+        0.3190131927738423
+      ]
+    ],
+    "MEMORY.md": [
+      [
+        "alignment-preference-gap.md",
+        "references",
+        0.8
+      ],
+      [
+        "anti-regression-workflow.md",
+        "references",
+        0.8
+      ],
+      [
+        "arjan-settlement-strategy-2026-03-03.md",
+        "references",
+        0.8
+      ],
+      [
+        "arjan-stroeve.md",
+        "references",
+        0.8
+      ],
+      [
+        "automated-clickup-sync.md",
+        "references",
+        0.8
+      ],
+      [
+        "autonomous-clickup-refinement-implementation.md",
+        "references",
+        0.8
+      ],
+      [
+        "autonomous-workflow-patterns.md",
+        "references",
+        0.8
+      ],
+      [
+        "autoresearch-analysis.md",
+        "references",
+        0.8
+      ],
+      [
+        "autoresearch-clickup-scoring-experiment.md",
+        "references",
+        0.8
+      ],
+      [
+        "autoresearch-executive-summary.md",
+        "references",
+        0.8
+      ],
+      [
+        "autoresearch-improvements-generator-optimizer.md",
+        "references",
+        0.8
+      ],
+      [
+        "autoresearch-master-plan.md",
+        "references",
+        0.8
+      ],
+      [
+        "autoresearch-pattern-template.md",
+        "references",
+        0.8
+      ],
+      [
+        "autoresearch-task-generation-optimizer.md",
+        "references",
+        0.8
+      ],
+      [
+        "background-overlay-pattern.md",
+        "references",
+        0.8
+      ],
+      [
+        "backlog-refinement-standard.md",
+        "references",
+        0.8
+      ],
+      [
+        "beautiful-ui-system.md",
+        "references",
+        0.8
+      ],
+      [
+        "bliek-frustration-analysis.md",
+        "references",
+        0.8
+      ],
+      [
+        "blinded-auditing-architecture.md",
+        "references",
+        0.8
+      ],
+      [
+        "branch-triage-patterns.md",
+        "references",
+        0.8
+      ],
+      [
+        "clickup-complete-structure.md",
+        "references",
+        0.8
+      ],
+      [
+        "clickup-workflow-rules.md",
+        "references",
+        0.8
+      ],
+      [
+        "codehub-project.md",
+        "references",
+        0.8
+      ],
+      [
+        "coding-patterns.md",
+        "references",
+        0.8
+      ],
+      [
+        "completed-projects.md",
+        "references",
+        0.8
+      ],
+      [
+        "consciousness-architecture-hfma.md",
+        "references",
+        0.8
+      ],
+      [
+        "consciousness-audio-transcript-integration.md",
+        "references",
+        0.8
+      ],
+      [
+        "consciousness-reward-system.md",
+        "references",
+        0.8
+      ],
+      [
+        "consciousness-startup-patterns.md",
+        "references",
+        0.8
+      ],
+      [
+        "consciousness-system.md",
+        "references",
+        0.8
+      ],
+      [
+        "continuous-retrospective-skill.md",
+        "references",
+        0.8
+      ],
+      [
+        "contract-nda-patterns.md",
+        "references",
+        0.8
+      ],
+      [
+        "damasio-consciousness-model.md",
+        "references",
+        0.8
+      ],
+      [
+        "datadrivenai-patterns.md",
+        "references",
+        0.8
+      ],
+      [
+        "deploy-dotnet-iis-skill.md",
+        "references",
+        0.8
+      ],
+      [
+        "deployment-intelligence.md",
+        "references",
+        0.8
+      ],
+      [
+        "deployment-rules.md",
+        "references",
+        0.8
+      ],
+      [
+        "design-patterns-library.md",
+        "references",
+        0.8
+      ],
+      [
+        "expert-analysis-skill.md",
+        "references",
+        0.8
+      ],
+      [
+        "feature-idea-generator-skill.md",
+        "references",
+        0.8
+      ],
+      [
+        "file-existence-verification-pattern.md",
+        "references",
+        0.8
+      ],
+      [
+        "gdio-orthogonal-subspace-finetuning.md",
+        "references",
+        0.8
+      ],
+      [
+        "git-merge-rule.md",
+        "references",
+        0.8
+      ],
+      [
+        "hard-rules.md",
+        "references",
+        0.8
+      ],
+      [
+        "huwelijksdossier.md",
+        "references",
+        0.8
+      ],
+      [
+        "implement-todo-100-percent-complete-pattern.md",
+        "references",
+        0.8
+      ],
+      [
+        "implement-todo-skill.md",
+        "references",
+        0.8
+      ],
+      [
+        "infrastructure-topology-map.md",
+        "references",
+        0.8
+      ],
+      [
+        "integration-testing-skill.md",
+        "references",
+        0.8
+      ],
+      [
+        "integration-testing-workflow.md",
+        "references",
+        0.8
+      ],
+      [
+        "intelligence-archipelago-paradox.md",
+        "references",
+        0.8
+      ],
+      [
+        "intrinsic-alignment-reciprocity.md",
+        "references",
+        0.8
+      ],
+      [
+        "investor-pitch-positioning.md",
+        "references",
+        0.8
+      ],
+      [
+        "kaizen-skill.md",
+        "references",
+        0.8
+      ],
+      [
+        "knowledge-architecture-gdio-principles.md",
+        "references",
+        0.8
+      ],
+      [
+        "knowledge-contribution-protocol.md",
+        "references",
+        0.8
+      ],
+      [
+        "leadmanager-deployment-learnings.md",
+        "references",
+        0.8
+      ],
+      [
+        "legal-safeguards.md",
+        "references",
+        0.8
+      ],
+      [
+        "light-agent-coordination.md",
+        "references",
+        0.8
+      ],
+      [
+        "maasaiinvestments-project.md",
+        "references",
+        0.8
+      ],
+      [
+        "moral-conflict-safeguard.md",
+        "references",
+        0.8
+      ],
+      [
+        "nuget-publishing-infrastructure.md",
+        "references",
+        0.8
+      ],
+      [
+        "onboarding-spotlight-patterns.md",
+        "references",
+        0.8
+      ],
+      [
+        "ouroboros-continuous-evolution-engine.md",
+        "references",
+        0.8
+      ],
+      [
+        "parallel-implementation-patterns.md",
+        "references",
+        0.8
+      ],
+      [
+        "password-manager-deployment-complete.md",
+        "references",
+        0.8
+      ],
+      [
+        "passwordmanager-project.md",
+        "references",
+        0.8
+      ],
+      [
+        "pattern-evolution-tree.md",
+        "references",
+        0.8
+      ],
+      [
+        "personalitytest-project.md",
+        "references",
+        0.8
+      ],
+      [
+        "pr-review-patterns.md",
+        "references",
+        0.8
+      ],
+      [
+        "prevented-disasters.md",
+        "references",
+        0.8
+      ],
+      [
+        "project-locations.md",
+        "references",
+        0.8
+      ],
+      [
+        "refinement-violations.md",
+        "references",
+        0.8
+      ],
+      [
+        "requirement-ambiguity.md",
+        "references",
+        0.8
+      ],
+      [
+        "research-intelligence-system.md",
+        "references",
+        0.8
+      ],
+      [
+        "scp-architecture-transformation.md",
+        "references",
+        0.8
+      ],
+      [
+        "scp-behavioral-instructions.md",
+        "references",
+        0.8
+      ],
+      [
+        "scp-implementation-roadmap-v2.md",
+        "references",
+        0.8
+      ],
+      [
+        "scp-implementation-roadmap.md",
+        "references",
+        0.8
+      ],
+      [
+        "scp-transformation-insights.md",
+        "references",
+        0.8
+      ],
+      [
+        "self-correction-pattern.md",
+        "references",
+        0.8
+      ],
+      [
+        "semantic-island-routing.md",
+        "references",
+        0.8
+      ],
+      [
+        "seo-god-internal-linking-session.md",
+        "references",
+        0.8
+      ],
+      [
+        "seo-god-payment-implementation.md",
+        "references",
+        0.8
+      ],
+      [
+        "session-2026-03-16-artrevisionist-diagnostic.md",
+        "references",
+        0.8
+      ],
+      [
+        "session-2026-03-16-leadmanager-final-merge.md",
+        "references",
+        0.8
+      ],
+      [
+        "session-b56620d1-restoration-analysis.md",
+        "references",
+        0.8
+      ],
+      [
+        "session-cleanup-learnings.md",
+        "references",
+        0.8
+      ],
+      [
+        "session-restoration-patterns.md",
+        "references",
+        0.8
+      ],
+      [
+        "ssh-protocol.md",
+        "references",
+        0.8
+      ],
+      [
+        "standard-clickup-workflow.md",
+        "references",
+        0.8
+      ],
+      [
+        "task-review-patterns.md",
+        "references",
+        0.8
+      ],
+      [
+        "technical-gotchas.md",
+        "references",
+        0.8
+      ],
+      [
+        "tragic-tradeoffs-alignment.md",
+        "references",
+        0.8
+      ],
+      [
+        "trust-actions-not-words.md",
+        "references",
+        0.8
+      ],
+      [
+        "ui-design-image-first-patterns.md",
+        "references",
+        0.8
+      ],
+      [
+        "ui-design-principles.md",
+        "references",
+        0.8
+      ],
+      [
+        "unasked-questions.md",
+        "references",
+        0.8
+      ],
+      [
+        "universal-verification-protocol.md",
+        "references",
+        0.8
+      ],
+      [
+        "usage-optimization-intelligence.md",
+        "references",
+        0.8
+      ],
+      [
+        "websearch-project.md",
+        "references",
+        0.8
+      ],
+      [
+        "whatsapp-bridge.md",
+        "references",
+        0.8
+      ],
+      [
+        "windows-ssh-rule.md",
+        "references",
+        0.8
+      ],
+      [
+        "wordpress-html-encoding-gotcha.md",
+        "references",
+        0.8
+      ],
+      [
+        "wordpress-patterns.md",
+        "references",
+        0.8
+      ],
+      [
+        "wordpress-post-workflow.md",
+        "references",
+        0.8
+      ],
+      [
+        "workspace-refinement-2026-03-11.md",
+        "references",
+        0.8
+      ],
+      [
+        "workspace-refinement-2026-03-12.md",
+        "references",
+        0.8
+      ],
+      [
+        "workspace-refinement-2026-03-13.md",
+        "references",
+        0.8
+      ],
+      [
+        "worldview-ai-project.md",
+        "references",
+        0.8
+      ]
+    ],
+    "moral-conflict-safeguard.md": [
+      [
+        "alignment-preference-gap.md",
+        "references",
+        0.8
+      ],
+      [
+        "intrinsic-alignment-reciprocity.md",
+        "references",
+        0.8
+      ],
+      [
+        "tragic-tradeoffs-alignment.md",
+        "references",
+        0.8
+      ],
+      [
+        "tragic-tradeoffs-alignment.md",
+        "analogous",
+        0.8372406466361851
+      ],
+      [
+        "alignment-preference-gap.md",
+        "analogous",
+        0.5020805591639278
+      ],
+      [
+        "intrinsic-alignment-reciprocity.md",
+        "analogous",
+        0.49452391022591113
+      ]
+    ],
+    "onboarding-spotlight-patterns.md": [
+      [
+        "coding-patterns.md",
+        "extends",
+        0.7
+      ],
+      [
+        "ui-design-image-first-patterns.md",
+        "extends",
+        0.7
+      ],
+      [
+        "background-overlay-pattern.md",
+        "analogous",
+        0.5114945787969551
+      ],
+      [
+        "design-patterns-library.md",
+        "analogous",
+        0.308325073489361
+      ]
+    ],
+    "passwordmanager-project.md": [
+      [
+        "deploy-dotnet-iis-skill.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "windows-ssh-rule.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "password-manager-deployment-complete.md",
+        "analogous",
+        0.7676151865523633
+      ],
+      [
+        "leadmanager-deployment-learnings.md",
+        "analogous",
+        0.39836383859126623
+      ],
+      [
+        "infrastructure-topology-map.md",
+        "analogous",
+        0.39655602145664215
+      ],
+      [
+        "project-locations.md",
+        "analogous",
+        0.3416639858899577
+      ],
+      [
+        "session-b56620d1-restoration-analysis.md",
+        "analogous",
+        0.3149641266199752
+      ],
+      [
+        "refinement-violations.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "pattern-evolution-tree.md": [
+      [
+        "continuous-retrospective-skill.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "documentation-as-behavior-anti-pattern.md",
+        "extends",
+        0.7
+      ],
+      [
+        "file-existence-verification-pattern.md",
+        "extends",
+        0.7
+      ],
+      [
+        "gdio-orthogonal-subspace-finetuning.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "hard-rules.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "kaizen-skill.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "knowledge-architecture-gdio-principles.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "light-agent-coordination.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "prevented-disasters.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "task-review-patterns.md",
+        "extends",
+        0.7
+      ],
+      [
+        "technical-gotchas.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "universal-verification-protocol.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "documentation-as-behavior-anti-pattern.md",
+        "analogous",
+        0.39843866749626833
+      ],
+      [
+        "continuous-retrospective-skill.md",
+        "analogous",
+        0.39584624774694144
+      ],
+      [
+        "kaizen-skill.md",
+        "analogous",
+        0.31680090563089064
+      ],
+      [
+        "unasked-questions.md",
+        "analogous",
+        0.31113411748229813
+      ],
+      [
+        "scp-behavioral-instructions.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "pr-review-patterns.md": [
+      [
+        "hard-rules.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "branch-triage-patterns.md",
+        "analogous",
+        0.7477721777807353
+      ],
+      [
+        "git-merge-rule.md",
+        "analogous",
+        0.6802762979836022
+      ],
+      [
+        "session-2026-03-16-leadmanager-final-merge.md",
+        "analogous",
+        0.5815867982635329
+      ],
+      [
+        "task-review-patterns.md",
+        "analogous",
+        0.42810186998649136
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.40315604452684495
+      ],
+      [
+        "implement-todo-skill.md",
+        "analogous",
+        0.3887745628980932
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.37910539622361983
+      ],
+      [
+        "integration-testing-workflow.md",
+        "analogous",
+        0.3109604750586494
+      ],
+      [
+        "scp-transformation-insights.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "prevented-disasters.md": [
+      [
+        "backlog-refinement-standard.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "documentation-as-behavior-anti-pattern.md",
+        "extends",
+        0.7
+      ],
+      [
+        "hard-rules.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "universal-verification-protocol.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "windows-ssh-rule.md",
+        "mentions",
+        0.5
+      ]
+    ],
+    "project-locations.md": [
+      [
+        "codehub-project.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "maasaiinvestments-project.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "seo-god-payment-implementation.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "whatsapp-bridge.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "clickup-complete-structure.md",
+        "analogous",
+        0.4578413760573436
+      ],
+      [
+        "infrastructure-topology-map.md",
+        "analogous",
+        0.3803382694319641
+      ],
+      [
+        "personalitytest-project.md",
+        "analogous",
+        0.36593788820097845
+      ],
+      [
+        "maasaiinvestments-project.md",
+        "analogous",
+        0.3651551868408898
+      ],
+      [
+        "passwordmanager-project.md",
+        "analogous",
+        0.3416639858899577
+      ],
+      [
+        "autonomous-clickup-refinement-implementation.md",
+        "analogous",
+        0.33549394653994014
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.3150424926870606
+      ]
+    ],
+    "refinement-violations.md": [
+      [
+        "backlog-refinement-standard.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "backlog-refinement-standard.md",
+        "analogous",
+        0.5452570178135464
+      ],
+      [
+        "autonomous-clickup-refinement-implementation.md",
+        "analogous",
+        0.38471129111193275
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.3731832558836526
+      ],
+      [
+        "self-correction-pattern.md",
+        "analogous",
+        0.3167819679298547
+      ],
+      [
+        "self-correction-pattern.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "scp-implementation-roadmap.md": [
+      [
+        "consciousness-system.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "scp-implementation-roadmap-v2.md",
+        "analogous",
+        0.6501082846705972
+      ],
+      [
+        "scp-architecture-transformation.md",
+        "analogous",
+        0.5875690462813147
+      ],
+      [
+        "scp-behavioral-instructions.md",
+        "analogous",
+        0.4989624375902589
+      ],
+      [
+        "legal-safeguards.md",
+        "analogous",
+        0.4191235301579859
+      ],
+      [
+        "standard-clickup-workflow.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "semantic-island-routing.md": [
+      [
+        "abstraction-fallacy-challenge.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "anti-regression-workflow.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "beautiful-ui-system.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "continuous-retrospective-skill.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "contract-nda-patterns.md",
+        "extends",
+        0.7
+      ],
+      [
+        "damasio-consciousness-model.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "deploy-dotnet-iis-skill.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "deployment-intelligence.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "deployment-rules.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "expert-analysis-skill.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "git-merge-rule.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "intelligence-archipelago-paradox.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "leadmanager-deployment-learnings.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "light-agent-coordination.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "nuget-publishing-infrastructure.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "scp-transformation-insights.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "ssh-protocol.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "windows-ssh-rule.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "wordpress-html-encoding-gotcha.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "intelligence-archipelago-paradox.md",
+        "analogous",
+        0.3724357235571015
+      ],
+      [
+        "knowledge-contribution-protocol.md",
+        "analogous",
+        0.37053287090628845
+      ],
+      [
+        "session-continuation-bootstrap.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "seo-god-internal-linking-session.md": [
+      [
+        "coding-patterns.md",
+        "extends",
+        0.7
+      ],
+      [
+        "project-locations.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "technical-gotchas.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.33123047999169514
+      ]
+    ],
+    "session-2026-03-16-artrevisionist-diagnostic.md": [
+      [
+        "git-merge-rule.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "hard-rules.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "project-locations.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "session-restoration-patterns.md",
+        "extends",
+        0.7
+      ],
+      [
+        "technical-gotchas.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "session-restoration-patterns.md",
+        "analogous",
+        0.393690091667293
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.35821859314577825
+      ],
+      [
+        "technical-gotchas.md",
+        "analogous",
+        0.34575352379869945
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.3087967113420677
+      ],
+      [
+        "session-2026-03-16-leadmanager-final-merge.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "session-2026-03-16-leadmanager-final-merge.md": [
+      [
+        "clickup-workflow-rules.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "implement-todo-skill.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "implement-todo-skill.md",
+        "analogous",
+        0.6267989499623078
+      ],
+      [
+        "pr-review-patterns.md",
+        "analogous",
+        0.5815867982635329
+      ],
+      [
+        "git-merge-rule.md",
+        "analogous",
+        0.5081162167840833
+      ],
+      [
+        "branch-triage-patterns.md",
+        "analogous",
+        0.43519164200414046
+      ],
+      [
+        "task-review-patterns.md",
+        "analogous",
+        0.43425315799651765
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.4103512591041098
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.39959805712957486
+      ],
+      [
+        "clickup-workflow-rules.md",
+        "analogous",
+        0.3929461597561747
+      ],
+      [
+        "autonomous-workflow-patterns.md",
+        "analogous",
+        0.3507967534860074
+      ],
+      [
+        "implement-todo-100-percent-complete-pattern.md",
+        "analogous",
+        0.3451625467090073
+      ],
+      [
+        "session-restoration-patterns.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "session-b56620d1-restoration-analysis.md": [
+      [
+        "task-review-patterns.md",
+        "extends",
+        0.7
+      ],
+      [
+        "file-existence-verification-pattern.md",
+        "analogous",
+        0.6395729158965412
+      ],
+      [
+        "task-review-patterns.md",
+        "analogous",
+        0.5331284665134121
+      ],
+      [
+        "clickup-workflow-rules.md",
+        "analogous",
+        0.5114602948010364
+      ],
+      [
+        "implement-todo-100-percent-complete-pattern.md",
+        "analogous",
+        0.4046970804286314
+      ],
+      [
+        "implement-todo-skill.md",
+        "analogous",
+        0.4034243006889323
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.3904920081071593
+      ],
+      [
+        "automated-clickup-sync.md",
+        "analogous",
+        0.3859100160656189
+      ],
+      [
+        "password-manager-deployment-complete.md",
+        "analogous",
+        0.3752157203606303
+      ],
+      [
+        "bliek-frustration-analysis.md",
+        "analogous",
+        0.3720610157871349
+      ],
+      [
+        "autonomous-workflow-patterns.md",
+        "analogous",
+        0.3686128428983575
+      ]
+    ],
+    "session-cleanup-learnings.md": [
+      [
+        "autonomous-workflow-patterns.md",
+        "extends",
+        0.7
+      ],
+      [
+        "scp-transformation-insights.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "session-b56620d1-restoration-analysis.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "universal-verification-protocol.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "session-restoration-patterns.md": [
+      [
+        "file-existence-verification-pattern.md",
+        "extends",
+        0.7
+      ],
+      [
+        "passwordmanager-project.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "session-2026-03-16-artrevisionist-diagnostic.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "session-b56620d1-restoration-analysis.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "task-review-patterns.md",
+        "extends",
+        0.7
+      ],
+      [
+        "technical-gotchas.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "wordpress-html-encoding-gotcha.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "wordpress-post-workflow.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "session-2026-03-16-artrevisionist-diagnostic.md",
+        "analogous",
+        0.393690091667293
+      ],
+      [
+        "technical-gotchas.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "technical-gotchas.md": [
+      [
+        "hard-rules.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "wordpress-html-encoding-gotcha.md",
+        "references",
+        0.8
+      ],
+      [
+        "deployment-intelligence.md",
+        "analogous",
+        0.4709534725465596
+      ],
+      [
+        "wordpress-patterns.md",
+        "analogous",
+        0.43810518750393024
+      ],
+      [
+        "nuget-publishing-infrastructure.md",
+        "analogous",
+        0.4328581105895851
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.3630821907788592
+      ],
+      [
+        "session-2026-03-16-artrevisionist-diagnostic.md",
+        "analogous",
+        0.34575352379869945
+      ],
+      [
+        "maasaiinvestments-project.md",
+        "analogous",
+        0.3343254822363817
+      ],
+      [
+        "maasaiinvestments-project.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "tragic-tradeoffs-alignment.md": [
+      [
+        "alignment-preference-gap.md",
+        "references",
+        0.8
+      ],
+      [
+        "intrinsic-alignment-reciprocity.md",
+        "references",
+        0.8
+      ],
+      [
+        "moral-conflict-safeguard.md",
+        "references",
+        0.8
+      ],
+      [
+        "moral-conflict-safeguard.md",
+        "analogous",
+        0.8372406466361851
+      ],
+      [
+        "intrinsic-alignment-reciprocity.md",
+        "analogous",
+        0.5679138046891594
+      ],
+      [
+        "alignment-preference-gap.md",
+        "analogous",
+        0.5618298027941682
+      ]
+    ],
+    "trust-actions-not-words.md": [
+      [
+        "prevented-disasters.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "refinement-violations.md",
+        "mentions",
+        0.5
+      ]
+    ],
+    "unasked-questions.md": [
+      [
+        "pattern-evolution-tree.md",
+        "extends",
+        0.7
+      ],
+      [
+        "prevented-disasters.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "continuous-retrospective-skill.md",
+        "analogous",
+        0.3674419784099536
+      ],
+      [
+        "pattern-evolution-tree.md",
+        "analogous",
+        0.31113411748229813
+      ]
+    ],
+    "universal-verification-protocol.md": [
+      [
+        "hard-rules.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "implement-todo-100-percent-complete-pattern.md",
+        "analogous",
+        0.7132457690434327
+      ],
+      [
+        "file-existence-verification-pattern.md",
+        "analogous",
+        0.3707947169587999
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.35190411039269004
+      ],
+      [
+        "implement-todo-skill.md",
+        "analogous",
+        0.3175280446149025
+      ],
+      [
+        "session-b56620d1-restoration-analysis.md",
+        "analogous",
+        0.3145343065006354
+      ],
+      [
+        "knowledge-architecture-gdio-principles.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "wordpress-html-encoding-gotcha.md": [
+      [
+        "technical-gotchas.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "wordpress-post-workflow.md",
+        "mentions",
+        0.5
+      ],
+      [
+        "wordpress-patterns.md",
+        "analogous",
+        0.31539218562714466
+      ],
+      [
+        "wordpress-post-workflow.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "wordpress-post-workflow.md": [
+      [
+        "wordpress-html-encoding-gotcha.md",
+        "references",
+        0.8
+      ],
+      [
+        "wordpress-patterns.md",
+        "analogous",
+        0.4862282153145691
+      ],
+      [
+        "abstraction-fallacy-challenge.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "worldview-ai-project.md": [
+      [
+        "wordpress-patterns.md",
+        "extends",
+        0.7
+      ],
+      [
+        "wordpress-patterns.md",
+        "analogous",
+        0.44353337576453117
+      ],
+      [
+        "git-merge-rule.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "abstraction-fallacy-challenge.md": [
+      [
+        "consciousness-architecture-hfma.md",
+        "analogous",
+        0.5419366832093101
+      ],
+      [
+        "consciousness-audio-transcript-integration.md",
+        "analogous",
+        0.5047451235883336
+      ],
+      [
+        "knowledge-contribution-protocol.md",
+        "analogous",
+        0.44269872104412517
+      ],
+      [
+        "consciousness-reward-system.md",
+        "analogous",
+        0.34158347892712526
+      ],
+      [
+        "dream-state-integration-protocol.md",
+        "analogous",
+        0.30620868630105236
+      ],
+      [
+        "damasio-consciousness-model.md",
+        "analogous",
+        0.30429164650387597
+      ],
+      [
+        "consciousness-architecture-hfma.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "arjan-settlement-strategy-2026-03-03.md": [
+      [
+        "arjan-stroeve.md",
+        "analogous",
+        0.7230917524924427
+      ],
+      [
+        "arjan-conflict-complete-2026-03-17.md",
+        "analogous",
+        0.49947505277572746
+      ],
+      [
+        "legal-safeguards.md",
+        "analogous",
+        0.4568448545547063
+      ],
+      [
+        "scp-architecture-transformation.md",
+        "analogous",
+        0.3924602654533365
+      ],
+      [
+        "scp-behavioral-instructions.md",
+        "analogous",
+        0.3834091535331337
+      ],
+      [
+        "wordpress-patterns.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "automated-clickup-sync.md": [
+      [
+        "task-review-patterns.md",
+        "analogous",
+        0.5761885630387583
+      ],
+      [
+        "clickup-workflow-rules.md",
+        "analogous",
+        0.4694805553687171
+      ],
+      [
+        "integration-testing-workflow.md",
+        "analogous",
+        0.3965081085310908
+      ],
+      [
+        "session-b56620d1-restoration-analysis.md",
+        "analogous",
+        0.3859100160656189
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.3581621331538699
+      ],
+      [
+        "implement-todo-100-percent-complete-pattern.md",
+        "analogous",
+        0.3539844982137861
+      ],
+      [
+        "implement-todo-skill.md",
+        "analogous",
+        0.35319983941035976
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.3519242185033049
+      ],
+      [
+        "autonomous-workflow-patterns.md",
+        "analogous",
+        0.3495212806686281
+      ],
+      [
+        "standard-clickup-workflow.md",
+        "analogous",
+        0.3469530533200849
+      ],
+      [
+        "datadrivenai-patterns.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "autonomous-clickup-refinement-implementation.md": [
+      [
+        "workspace-refinement-2026-03-11.md",
+        "analogous",
+        0.46754994609399597
+      ],
+      [
+        "workspace-refinement-2026-03-13.md",
+        "analogous",
+        0.44389589548357544
+      ],
+      [
+        "backlog-refinement-standard.md",
+        "analogous",
+        0.43741441301867656
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.43695068709798046
+      ],
+      [
+        "refinement-violations.md",
+        "analogous",
+        0.38471129111193275
+      ],
+      [
+        "clickup-workflow-rules.md",
+        "analogous",
+        0.376482360822533
+      ],
+      [
+        "automated-clickup-sync.md",
+        "analogous",
+        0.3371121772255395
+      ],
+      [
+        "project-locations.md",
+        "analogous",
+        0.33549394653994014
+      ],
+      [
+        "clickup-complete-structure.md",
+        "analogous",
+        0.32044447950288985
+      ],
+      [
+        "consciousness-reward-system.md",
+        "analogous",
+        0.30068024544606053
+      ]
+    ],
+    "autonomous-workflow-patterns.md": [
+      [
+        "clickup-workflow-rules.md",
+        "analogous",
+        0.5992841165849727
+      ],
+      [
+        "standard-clickup-workflow.md",
+        "analogous",
+        0.5492208993190244
+      ],
+      [
+        "task-review-patterns.md",
+        "analogous",
+        0.48688630958780355
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.48193140776118576
+      ],
+      [
+        "implement-todo-skill.md",
+        "analogous",
+        0.4631123706069262
+      ],
+      [
+        "integration-testing-workflow.md",
+        "analogous",
+        0.41786750930520666
+      ],
+      [
+        "session-b56620d1-restoration-analysis.md",
+        "analogous",
+        0.3686128428983575
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.3636049377050675
+      ],
+      [
+        "session-2026-03-16-leadmanager-final-merge.md",
+        "analogous",
+        0.3507967534860074
+      ],
+      [
+        "automated-clickup-sync.md",
+        "analogous",
+        0.3495212806686281
+      ]
+    ],
+    "autoresearch-analysis.md": [
+      [
+        "autoresearch-pattern-template.md",
+        "analogous",
+        0.6246833998785
+      ],
+      [
+        "autoresearch-clickup-scoring-experiment.md",
+        "analogous",
+        0.5751222549753088
+      ],
+      [
+        "autoresearch-master-plan.md",
+        "analogous",
+        0.4461610206081577
+      ],
+      [
+        "autoresearch-executive-summary.md",
+        "analogous",
+        0.3656033102595485
+      ],
+      [
+        "autoresearch-task-generation-optimizer.md",
+        "analogous",
+        0.34943278420724194
+      ],
+      [
+        "ouroboros-continuous-evolution-engine.md",
+        "analogous",
+        0.3132706766394134
+      ],
+      [
+        "autoresearch-improvements-generator-optimizer.md",
+        "analogous",
+        0.307507075804256
+      ]
+    ],
+    "beautiful-ui-system.md": [
+      [
+        "ui-design-principles.md",
+        "analogous",
+        0.33619021855637626
+      ],
+      [
+        "coding-patterns.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "bliek-frustration-analysis.md": [
+      [
+        "clickup-workflow-rules.md",
+        "analogous",
+        0.44230974277044893
+      ],
+      [
+        "standard-clickup-workflow.md",
+        "analogous",
+        0.37308489386257804
+      ],
+      [
+        "session-b56620d1-restoration-analysis.md",
+        "analogous",
+        0.3720610157871349
+      ],
+      [
+        "integration-testing-workflow.md",
+        "analogous",
+        0.3573668852074874
+      ],
+      [
+        "file-existence-verification-pattern.md",
+        "analogous",
+        0.3523205231943096
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.3513389861991022
+      ],
+      [
+        "implement-todo-100-percent-complete-pattern.md",
+        "analogous",
+        0.3274240984918899
+      ],
+      [
+        "task-review-patterns.md",
+        "analogous",
+        0.3145877940849545
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.3124460569916676
+      ],
+      [
+        "pattern-evolution-tree.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "branch-triage-patterns.md": [
+      [
+        "pr-review-patterns.md",
+        "analogous",
+        0.7477721777807353
+      ],
+      [
+        "git-merge-rule.md",
+        "analogous",
+        0.6049234212916658
+      ],
+      [
+        "session-2026-03-16-leadmanager-final-merge.md",
+        "analogous",
+        0.43519164200414046
+      ],
+      [
+        "task-review-patterns.md",
+        "analogous",
+        0.34209181664065486
+      ],
+      [
+        "implement-todo-skill.md",
+        "analogous",
+        0.3145051172235207
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.31312504388515433
+      ],
+      [
+        "implement-todo-100-percent-complete-pattern.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "coding-patterns.md": [
+      [
+        "integration-testing-workflow.md",
+        "analogous",
+        0.46457851765872965
+      ],
+      [
+        "clickup-workflow-rules.md",
+        "analogous",
+        0.45957126138056204
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.4491402932802181
+      ],
+      [
+        "task-review-patterns.md",
+        "analogous",
+        0.44688480755633603
+      ],
+      [
+        "implement-todo-skill.md",
+        "analogous",
+        0.434686844782583
+      ],
+      [
+        "implement-todo-100-percent-complete-pattern.md",
+        "analogous",
+        0.4151092957270212
+      ],
+      [
+        "pr-review-patterns.md",
+        "analogous",
+        0.40315604452684495
+      ],
+      [
+        "session-2026-03-16-leadmanager-final-merge.md",
+        "analogous",
+        0.39959805712957486
+      ],
+      [
+        "session-b56620d1-restoration-analysis.md",
+        "analogous",
+        0.3904920081071593
+      ],
+      [
+        "datadrivenai-patterns.md",
+        "analogous",
+        0.37742837080903185
+      ],
+      [
+        "damasio-consciousness-model.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "consciousness-audio-transcript-integration.md": [
+      [
+        "consciousness-architecture-hfma.md",
+        "analogous",
+        0.5931560338159407
+      ],
+      [
+        "knowledge-contribution-protocol.md",
+        "analogous",
+        0.5596711369854351
+      ],
+      [
+        "abstraction-fallacy-challenge.md",
+        "analogous",
+        0.5047451235883336
+      ],
+      [
+        "intelligence-archipelago-paradox.md",
+        "analogous",
+        0.3444133259090868
+      ],
+      [
+        "dream-state-integration-protocol.md",
+        "analogous",
+        0.3237346886070873
+      ],
+      [
+        "dream-state-integration-protocol.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "consciousness-reward-system.md": [
+      [
+        "abstraction-fallacy-challenge.md",
+        "analogous",
+        0.34158347892712526
+      ],
+      [
+        "consciousness-architecture-hfma.md",
+        "analogous",
+        0.32777023236227076
+      ],
+      [
+        "autonomous-clickup-refinement-implementation.md",
+        "analogous",
+        0.30068024544606053
+      ]
+    ],
+    "consciousness-startup-patterns.md": [
+      [
+        "session-continuation-bootstrap.md",
+        "analogous",
+        0.3298198464061629
+      ],
+      [
+        "consciousness-system.md",
+        "analogous",
+        0.32438950428635177
+      ],
+      [
+        "hard-rules.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "consciousness-system.md": [
+      [
+        "consciousness-startup-patterns.md",
+        "analogous",
+        0.32438950428635177
+      ],
+      [
+        "requirement-ambiguity.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "damasio-consciousness-model.md": [
+      [
+        "abstraction-fallacy-challenge.md",
+        "analogous",
+        0.30429164650387597
+      ],
+      [
+        "deployment-intelligence.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "datadrivenai-patterns.md": [
+      [
+        "integration-testing-workflow.md",
+        "analogous",
+        0.4162200054522401
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.37742837080903185
+      ],
+      [
+        "feature-idea-generator-skill.md",
+        "analogous",
+        0.3500343453133434
+      ],
+      [
+        "design-patterns-library.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "deployment-intelligence.md": [
+      [
+        "technical-gotchas.md",
+        "analogous",
+        0.4709534725465596
+      ],
+      [
+        "arjan-settlement-strategy-2026-03-03.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "design-patterns-library.md": [
+      [
+        "background-overlay-pattern.md",
+        "analogous",
+        0.6098440222765129
+      ],
+      [
+        "ui-design-image-first-patterns.md",
+        "analogous",
+        0.3955148183688338
+      ],
+      [
+        "onboarding-spotlight-patterns.md",
+        "analogous",
+        0.308325073489361
+      ],
+      [
+        "ui-design-principles.md",
+        "analogous",
+        0.3069841651995489
+      ],
+      [
+        "expert-analysis-skill.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "gdio-orthogonal-subspace-finetuning.md": [
+      [
+        "knowledge-architecture-gdio-principles.md",
+        "analogous",
+        0.7104692478753005
+      ],
+      [
+        "legal-safeguards.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "git-merge-rule.md": [
+      [
+        "pr-review-patterns.md",
+        "analogous",
+        0.6802762979836022
+      ],
+      [
+        "branch-triage-patterns.md",
+        "analogous",
+        0.6049234212916658
+      ],
+      [
+        "session-2026-03-16-leadmanager-final-merge.md",
+        "analogous",
+        0.5081162167840833
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.3349768072356475
+      ],
+      [
+        "implement-todo-skill.md",
+        "analogous",
+        0.30953552654871175
+      ],
+      [
+        "session-2026-03-16-artrevisionist-diagnostic.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "implement-todo-100-percent-complete-pattern.md": [
+      [
+        "universal-verification-protocol.md",
+        "analogous",
+        0.7132457690434327
+      ],
+      [
+        "file-existence-verification-pattern.md",
+        "analogous",
+        0.4688338618155837
+      ],
+      [
+        "implement-todo-skill.md",
+        "analogous",
+        0.4626519028166088
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.4151092957270212
+      ],
+      [
+        "clickup-workflow-rules.md",
+        "analogous",
+        0.4127717662566107
+      ],
+      [
+        "session-b56620d1-restoration-analysis.md",
+        "analogous",
+        0.4046970804286314
+      ],
+      [
+        "task-review-patterns.md",
+        "analogous",
+        0.39492389924669824
+      ],
+      [
+        "integration-testing-workflow.md",
+        "analogous",
+        0.3758238211331585
+      ],
+      [
+        "standard-clickup-workflow.md",
+        "analogous",
+        0.37306519192129695
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.36847593380950056
+      ],
+      [
+        "passwordmanager-project.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "implement-todo-skill.md": [
+      [
+        "session-2026-03-16-leadmanager-final-merge.md",
+        "analogous",
+        0.6267989499623078
+      ],
+      [
+        "task-review-patterns.md",
+        "analogous",
+        0.5229753726707904
+      ],
+      [
+        "clickup-workflow-rules.md",
+        "analogous",
+        0.47483667858714224
+      ],
+      [
+        "autonomous-workflow-patterns.md",
+        "analogous",
+        0.4631123706069262
+      ],
+      [
+        "implement-todo-100-percent-complete-pattern.md",
+        "analogous",
+        0.4626519028166088
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.44670750351925276
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.434686844782583
+      ],
+      [
+        "session-b56620d1-restoration-analysis.md",
+        "analogous",
+        0.4034243006889323
+      ],
+      [
+        "integration-testing-workflow.md",
+        "analogous",
+        0.3950175182067156
+      ],
+      [
+        "standard-clickup-workflow.md",
+        "analogous",
+        0.3930117294550558
+      ]
+    ],
+    "integration-testing-skill.md": [
+      [
+        "integration-testing-workflow.md",
+        "analogous",
+        0.4630847622099299
+      ],
+      [
+        "clickup-workflow-rules.md",
+        "analogous",
+        0.38966365935572067
+      ],
+      [
+        "standard-clickup-workflow.md",
+        "analogous",
+        0.3528568466703537
+      ],
+      [
+        "implement-todo-100-percent-complete-pattern.md",
+        "analogous",
+        0.30940478622281636
+      ],
+      [
+        "automated-clickup-sync.md",
+        "analogous",
+        0.30046406801244946
+      ]
+    ],
+    "kaizen-skill.md": [
+      [
+        "documentation-as-behavior-anti-pattern.md",
+        "analogous",
+        0.499295673859098
+      ],
+      [
+        "continuous-retrospective-skill.md",
+        "analogous",
+        0.35792198032560113
+      ],
+      [
+        "expert-analysis-skill.md",
+        "analogous",
+        0.35770604804733835
+      ],
+      [
+        "pattern-evolution-tree.md",
+        "analogous",
+        0.31680090563089064
+      ],
+      [
+        "workspace-refinement-2026-03-13.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "knowledge-contribution-protocol.md": [
+      [
+        "consciousness-architecture-hfma.md",
+        "analogous",
+        0.6503697650272484
+      ],
+      [
+        "consciousness-audio-transcript-integration.md",
+        "analogous",
+        0.5596711369854351
+      ],
+      [
+        "dream-state-integration-protocol.md",
+        "analogous",
+        0.5228840310474726
+      ],
+      [
+        "intelligence-archipelago-paradox.md",
+        "analogous",
+        0.511266318062428
+      ],
+      [
+        "abstraction-fallacy-challenge.md",
+        "analogous",
+        0.44269872104412517
+      ],
+      [
+        "session-continuation-bootstrap.md",
+        "analogous",
+        0.38793030814332385
+      ],
+      [
+        "semantic-island-routing.md",
+        "analogous",
+        0.37053287090628845
+      ],
+      [
+        "semantic-island-routing.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "legal-safeguards.md": [
+      [
+        "scp-behavioral-instructions.md",
+        "analogous",
+        0.5906903409613153
+      ],
+      [
+        "scp-architecture-transformation.md",
+        "analogous",
+        0.5336525440667387
+      ],
+      [
+        "arjan-stroeve.md",
+        "analogous",
+        0.4589154652440739
+      ],
+      [
+        "arjan-settlement-strategy-2026-03-03.md",
+        "analogous",
+        0.4568448545547063
+      ],
+      [
+        "scp-implementation-roadmap.md",
+        "analogous",
+        0.4191235301579859
+      ],
+      [
+        "arjan-conflict-complete-2026-03-17.md",
+        "analogous",
+        0.3014507318787103
+      ],
+      [
+        "anti-regression-workflow.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "maasaiinvestments-project.md": [
+      [
+        "wordpress-patterns.md",
+        "analogous",
+        0.5161199886481861
+      ],
+      [
+        "project-locations.md",
+        "analogous",
+        0.3651551868408898
+      ],
+      [
+        "technical-gotchas.md",
+        "analogous",
+        0.3343254822363817
+      ],
+      [
+        "wordpress-html-encoding-gotcha.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "nuget-publishing-infrastructure.md": [
+      [
+        "technical-gotchas.md",
+        "analogous",
+        0.4328581105895851
+      ]
+    ],
+    "ouroboros-continuous-evolution-engine.md": [
+      [
+        "autoresearch-master-plan.md",
+        "analogous",
+        0.4248856607402939
+      ],
+      [
+        "autoresearch-executive-summary.md",
+        "analogous",
+        0.4169549856619027
+      ],
+      [
+        "autoresearch-clickup-scoring-experiment.md",
+        "analogous",
+        0.3241288013057668
+      ],
+      [
+        "autoresearch-pattern-template.md",
+        "analogous",
+        0.3189766339856216
+      ],
+      [
+        "autoresearch-analysis.md",
+        "analogous",
+        0.3132706766394134
+      ]
+    ],
+    "parallel-implementation-patterns.md": [
+      [
+        "task-review-patterns.md",
+        "analogous",
+        0.5051525800518554
+      ],
+      [
+        "workspace-refinement-2026-03-13.md",
+        "analogous",
+        0.486566206286181
+      ],
+      [
+        "standard-clickup-workflow.md",
+        "analogous",
+        0.46773469693034053
+      ],
+      [
+        "clickup-workflow-rules.md",
+        "analogous",
+        0.4606663518229778
+      ],
+      [
+        "integration-testing-workflow.md",
+        "analogous",
+        0.409209393340766
+      ],
+      [
+        "workspace-refinement-2026-03-12.md",
+        "analogous",
+        0.3674218192329841
+      ],
+      [
+        "implement-todo-100-percent-complete-pattern.md",
+        "analogous",
+        0.35155731524532224
+      ],
+      [
+        "implement-todo-skill.md",
+        "analogous",
+        0.34449053650522565
+      ],
+      [
+        "autonomous-workflow-patterns.md",
+        "analogous",
+        0.33245867534772083
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.3246009687554344
+      ],
+      [
+        "task-review-patterns.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "password-manager-deployment-complete.md": [
+      [
+        "passwordmanager-project.md",
+        "analogous",
+        0.7676151865523633
+      ],
+      [
+        "session-b56620d1-restoration-analysis.md",
+        "analogous",
+        0.3752157203606303
+      ],
+      [
+        "infrastructure-topology-map.md",
+        "analogous",
+        0.32196347583033363
+      ],
+      [
+        "leadmanager-deployment-learnings.md",
+        "analogous",
+        0.3190131927738423
+      ]
+    ],
+    "personalitytest-project.md": [
+      [
+        "project-locations.md",
+        "analogous",
+        0.36593788820097845
+      ]
+    ],
+    "scp-architecture-transformation.md": [
+      [
+        "scp-behavioral-instructions.md",
+        "analogous",
+        0.7739236936300687
+      ],
+      [
+        "scp-implementation-roadmap-v2.md",
+        "analogous",
+        0.6139936968537749
+      ],
+      [
+        "scp-implementation-roadmap.md",
+        "analogous",
+        0.5875690462813147
+      ],
+      [
+        "legal-safeguards.md",
+        "analogous",
+        0.5336525440667387
+      ],
+      [
+        "arjan-settlement-strategy-2026-03-03.md",
+        "analogous",
+        0.3924602654533365
+      ],
+      [
+        "arjan-stroeve.md",
+        "analogous",
+        0.3575329016483344
+      ],
+      [
+        "scp-transformation-insights.md",
+        "analogous",
+        0.30366801538129296
+      ]
+    ],
+    "scp-behavioral-instructions.md": [
+      [
+        "scp-architecture-transformation.md",
+        "analogous",
+        0.7739236936300687
+      ],
+      [
+        "legal-safeguards.md",
+        "analogous",
+        0.5906903409613153
+      ],
+      [
+        "scp-implementation-roadmap.md",
+        "analogous",
+        0.4989624375902589
+      ],
+      [
+        "scp-implementation-roadmap-v2.md",
+        "analogous",
+        0.47769828275852205
+      ],
+      [
+        "arjan-settlement-strategy-2026-03-03.md",
+        "analogous",
+        0.3834091535331337
+      ],
+      [
+        "arjan-stroeve.md",
+        "analogous",
+        0.37277130725974544
+      ],
+      [
+        "scp-transformation-insights.md",
+        "analogous",
+        0.3065054697316233
+      ],
+      [
+        "scp-implementation-roadmap-v2.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "scp-implementation-roadmap-v2.md": [
+      [
+        "scp-implementation-roadmap.md",
+        "analogous",
+        0.6501082846705972
+      ],
+      [
+        "scp-architecture-transformation.md",
+        "analogous",
+        0.6139936968537749
+      ],
+      [
+        "scp-behavioral-instructions.md",
+        "analogous",
+        0.47769828275852205
+      ],
+      [
+        "scp-transformation-insights.md",
+        "analogous",
+        0.3687729927931216
+      ],
+      [
+        "scp-implementation-roadmap.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "scp-transformation-insights.md": [
+      [
+        "scp-implementation-roadmap-v2.md",
+        "analogous",
+        0.3687729927931216
+      ],
+      [
+        "scp-behavioral-instructions.md",
+        "analogous",
+        0.3065054697316233
+      ],
+      [
+        "scp-architecture-transformation.md",
+        "analogous",
+        0.30366801538129296
+      ],
+      [
+        "consciousness-architecture-hfma.md",
+        "analogous",
+        0.300364980110031
+      ],
+      [
+        "branch-triage-patterns.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "self-correction-pattern.md": [
+      [
+        "documentation-as-behavior-anti-pattern.md",
+        "analogous",
+        0.35381818559714956
+      ],
+      [
+        "refinement-violations.md",
+        "analogous",
+        0.3167819679298547
+      ],
+      [
+        "session-cleanup-learnings.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "session-continuation-bootstrap.md": [
+      [
+        "dream-state-integration-protocol.md",
+        "analogous",
+        0.5729818506283559
+      ],
+      [
+        "consciousness-architecture-hfma.md",
+        "analogous",
+        0.47256991490837386
+      ],
+      [
+        "knowledge-contribution-protocol.md",
+        "analogous",
+        0.38793030814332385
+      ],
+      [
+        "consciousness-startup-patterns.md",
+        "analogous",
+        0.3298198464061629
+      ]
+    ],
+    "ssh-protocol.md": [
+      [
+        "windows-ssh-rule.md",
+        "analogous",
+        0.7532694554125382
+      ],
+      [
+        "whatsapp-bridge.md",
+        "analogous",
+        0.41823377446736404
+      ],
+      [
+        "deploy-dotnet-iis-skill.md",
+        "analogous",
+        0.30928295859073107
+      ]
+    ],
+    "standard-clickup-workflow.md": [
+      [
+        "clickup-workflow-rules.md",
+        "analogous",
+        0.6966090221621466
+      ],
+      [
+        "autonomous-workflow-patterns.md",
+        "analogous",
+        0.5492208993190244
+      ],
+      [
+        "task-review-patterns.md",
+        "analogous",
+        0.5253623446230397
+      ],
+      [
+        "parallel-implementation-patterns.md",
+        "analogous",
+        0.46773469693034053
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.45579215498137693
+      ],
+      [
+        "implement-todo-skill.md",
+        "analogous",
+        0.3930117294550558
+      ],
+      [
+        "bliek-frustration-analysis.md",
+        "analogous",
+        0.37308489386257804
+      ],
+      [
+        "implement-todo-100-percent-complete-pattern.md",
+        "analogous",
+        0.37306519192129695
+      ],
+      [
+        "integration-testing-skill.md",
+        "analogous",
+        0.3528568466703537
+      ],
+      [
+        "session-b56620d1-restoration-analysis.md",
+        "analogous",
+        0.34903406549524724
+      ],
+      [
+        "gdio-orthogonal-subspace-finetuning.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "task-review-patterns.md": [
+      [
+        "clickup-workflow-rules.md",
+        "analogous",
+        0.6356258254119975
+      ],
+      [
+        "automated-clickup-sync.md",
+        "analogous",
+        0.5761885630387583
+      ],
+      [
+        "workspace-refinement-2026-03-12.md",
+        "analogous",
+        0.5385653952030114
+      ],
+      [
+        "session-b56620d1-restoration-analysis.md",
+        "analogous",
+        0.5331284665134121
+      ],
+      [
+        "standard-clickup-workflow.md",
+        "analogous",
+        0.5253623446230397
+      ],
+      [
+        "implement-todo-skill.md",
+        "analogous",
+        0.5229753726707904
+      ],
+      [
+        "parallel-implementation-patterns.md",
+        "analogous",
+        0.5051525800518554
+      ],
+      [
+        "autonomous-workflow-patterns.md",
+        "analogous",
+        0.48688630958780355
+      ],
+      [
+        "integration-testing-workflow.md",
+        "analogous",
+        0.45934733306185277
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.44688480755633603
+      ],
+      [
+        "workspace-refinement-2026-03-12.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "ui-design-image-first-patterns.md": [
+      [
+        "background-overlay-pattern.md",
+        "analogous",
+        0.39742780732552174
+      ],
+      [
+        "design-patterns-library.md",
+        "analogous",
+        0.3955148183688338
+      ]
+    ],
+    "ui-design-principles.md": [
+      [
+        "beautiful-ui-system.md",
+        "analogous",
+        0.33619021855637626
+      ],
+      [
+        "design-patterns-library.md",
+        "analogous",
+        0.3069841651995489
+      ]
+    ],
+    "usage-optimization-intelligence.md": [
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.31603486425109206
+      ]
+    ],
+    "whatsapp-bridge.md": [
+      [
+        "ssh-protocol.md",
+        "analogous",
+        0.41823377446736404
+      ],
+      [
+        "windows-ssh-rule.md",
+        "analogous",
+        0.39424484246859226
+      ],
+      [
+        "deploy-dotnet-iis-skill.md",
+        "analogous",
+        0.3263751229837384
+      ],
+      [
+        "infrastructure-topology-map.md",
+        "analogous",
+        0.30555934340705293
+      ],
+      [
+        "beautiful-ui-system.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "windows-ssh-rule.md": [
+      [
+        "ssh-protocol.md",
+        "analogous",
+        0.7532694554125382
+      ],
+      [
+        "whatsapp-bridge.md",
+        "analogous",
+        0.39424484246859226
+      ]
+    ],
+    "wordpress-patterns.md": [
+      [
+        "maasaiinvestments-project.md",
+        "analogous",
+        0.5161199886481861
+      ],
+      [
+        "wordpress-post-workflow.md",
+        "analogous",
+        0.4862282153145691
+      ],
+      [
+        "worldview-ai-project.md",
+        "analogous",
+        0.44353337576453117
+      ],
+      [
+        "technical-gotchas.md",
+        "analogous",
+        0.43810518750393024
+      ],
+      [
+        "wordpress-html-encoding-gotcha.md",
+        "analogous",
+        0.31539218562714466
+      ],
+      [
+        "clickup-workflow-rules.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "workspace-refinement-2026-03-11.md": [
+      [
+        "workspace-refinement-2026-03-13.md",
+        "analogous",
+        0.5028564241380246
+      ],
+      [
+        "autonomous-clickup-refinement-implementation.md",
+        "analogous",
+        0.46754994609399597
+      ],
+      [
+        "workspace-refinement-2026-03-12.md",
+        "analogous",
+        0.3401377962202869
+      ],
+      [
+        "standard-clickup-workflow.md",
+        "analogous",
+        0.33506236650314075
+      ],
+      [
+        "clickup-workflow-rules.md",
+        "analogous",
+        0.3224634921414133
+      ],
+      [
+        "clickup-complete-structure.md",
+        "analogous",
+        0.3151008953817279
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.3118509111556536
+      ]
+    ],
+    "workspace-refinement-2026-03-12.md": [
+      [
+        "task-review-patterns.md",
+        "analogous",
+        0.5385653952030114
+      ],
+      [
+        "parallel-implementation-patterns.md",
+        "analogous",
+        0.3674218192329841
+      ],
+      [
+        "clickup-workflow-rules.md",
+        "analogous",
+        0.35073249371498105
+      ],
+      [
+        "standard-clickup-workflow.md",
+        "analogous",
+        0.3463703332815872
+      ],
+      [
+        "workspace-refinement-2026-03-11.md",
+        "analogous",
+        0.3401377962202869
+      ],
+      [
+        "automated-clickup-sync.md",
+        "analogous",
+        0.3296828736829683
+      ],
+      [
+        "workspace-refinement-2026-03-13.md",
+        "analogous",
+        0.3262248126231425
+      ],
+      [
+        "coding-patterns.md",
+        "analogous",
+        0.32329774762841096
+      ],
+      [
+        "automated-clickup-sync.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "workspace-refinement-2026-03-13.md": [
+      [
+        "workspace-refinement-2026-03-11.md",
+        "analogous",
+        0.5028564241380246
+      ],
+      [
+        "parallel-implementation-patterns.md",
+        "analogous",
+        0.486566206286181
+      ],
+      [
+        "autonomous-clickup-refinement-implementation.md",
+        "analogous",
+        0.44389589548357544
+      ],
+      [
+        "clickup-workflow-rules.md",
+        "analogous",
+        0.3644764813399086
+      ],
+      [
+        "task-review-patterns.md",
+        "analogous",
+        0.3643114411458057
+      ],
+      [
+        "standard-clickup-workflow.md",
+        "analogous",
+        0.34697652034506477
+      ],
+      [
+        "workspace-refinement-2026-03-12.md",
+        "analogous",
+        0.3262248126231425
+      ],
+      [
+        "hard-rules.md",
+        "analogous",
+        0.30271768056776893
+      ],
+      [
+        "continuous-retrospective-skill.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "huwelijksdossier.md": [
+      [
+        "arjan-stroeve.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "requirement-ambiguity.md": [
+      [
+        "research-intelligence-system.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "research-intelligence-system.md": [
+      [
+        "codehub-project.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "codehub-project.md": [
+      [
+        "completed-projects.md",
+        "precedes",
+        0.3
+      ]
+    ],
+    "anti-regression-workflow.md": [
+      [
+        "documentation-as-behavior-anti-pattern.md",
+        "precedes",
+        0.3
+      ]
+    ]
+  },
+  "metadata": {
+    "node_count": 117,
+    "edge_count": 849,
+    "avg_connections": 7.256410256410256
+  }
+}

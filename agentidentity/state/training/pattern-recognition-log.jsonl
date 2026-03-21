@@ -1,0 +1,1 @@
+{"timestamp":"2026-02-16T01:45:00Z","problem_description":"Git Bash converting /aan-de-slag to Windows path","recognition_time_seconds":5,"pattern_matched":"Git Bash MSYS path conversion","pattern_source":"MEMORY.md Git Troubleshooting","match_correct":true,"solution_time_seconds":60,"notes":"Recognized from MEMORY.md, applied known fix (delete and re-add meta)"}

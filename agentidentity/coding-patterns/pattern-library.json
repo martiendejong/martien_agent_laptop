@@ -1,0 +1,1412 @@
+{
+    "version":  "1.0.0",
+    "lastUpdate":  "2026-02-28T02:51:53Z",
+    "patterns":  {
+                     "ui-components":  {
+                                           "html-css":  [
+                                                            {
+                                                                "id":  "test-123",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv\u003etest\u003c/div\u003e",
+                                                                             "css":  ".test {}",
+                                                                             "js":  ""
+                                                                         },
+                                                                "category":  "test",
+                                                                "type":  "ui-component",
+                                                                "name":  "Test Pattern",
+                                                                "description":  "Test",
+                                                                "stack":  "html-css",
+                                                                "metadata":  {
+                                                                                 "quality":  0.9,
+                                                                                 "usageCount":  0,
+                                                                                 "tags":  [
+                                                                                              "test"
+                                                                                          ]
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "hero-cabf9e2f",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "hero",
+                                                                "name":  "Hero Section - Extracted from index.html",
+                                                                "description":  "Professional hero section with gradient background",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"hero-content\"\u003e\r\n            \u003cdiv class=\"urgency-badge\"\u003eWebsite in één dag\u003c/div\u003e\r\n            \u003ch1\u003eJouw Website \u003cspan class=\"highlight\"\u003eLIVE\u003c/span\u003e\u003cbr\u003eom 17:00 Vandaag\u003c/h1\u003e\r\n            \u003cp class=\"subtitle\"\u003eProfessioneel. Snel. Gegarandeerd op tijd.\u003cbr\u003e\u003cstrong style=\"color: #f59e0b;\"\u003eInclusief een jaar gratis WordPress hosting\u003c/strong\u003e\u003c/p\u003e\r\n\r\n            \u003cdiv class=\"price-container\"\u003e\r\n                \u003cdiv class=\"price-badge\"\u003e€899\u003c/div\u003e\r\n            \u003c/div\u003e\r\n\r\n            \u003ca href=\"#\" class=\"cta-main\" onclick=\"openCheckout(event)\"\u003eNU STARTEN →\u003c/a\u003e\r\n        \u003c/div\u003e",
+                                                                             "css":  ".hero {\r\n            position: relative;\r\n            background:\r\n                linear-gradient(135deg, rgba(15, 23, 42, 0.97), rgba(30, 41, 59, 0.95)),\r\n                url(\u0027https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600\u0026h=800\u0026fit=crop\u0026q=90\u0027) center/cover;\r\n            color: white;\r\n            padding: 4rem 2rem 3rem;\r\n            text-align: center;\r\n            border-bottom: 4px solid #f59e0b;\r\n        }\r\n        .hero-content {\r\n            max-width: 900px;\r\n            margin: 0 auto;\r\n        }\r\n        .urgency-badge {\r\n            display: inline-block;\r\n            background: linear-gradient(135deg, #f59e0b, #d97706);\r\n            color: #0f172a;\r\n            padding: 0.6rem 1.5rem;\r\n            border-radius: 50px;\r\n            font-size: 0.85rem;\r\n            font-weight: 800;\r\n            text-transform: uppercase;\r\n            letter-spacing: 1px;\r\n            margin-bottom: 1.5rem;\r\n            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5);\r\n        }\r\n        .hero h1 {\r\n            font-size: 3.8rem;\r\n            font-weight: 900;\r\n            margin-bottom: 1rem;\r\n            line-height: 1.1;\r\n            letter-spacing: -1px;\r\n        }\r\n        .hero h1 .highlight {\r\n            color: #f59e0b;\r\n            text-shadow: 0 0 30px rgba(245, 158, 11, 0.5);\r\n        }\r\n        .hero .subtitle {\r\n            font-size: 1.3rem;\r\n            margin-bottom: 2rem;\r\n            font-weight: 500;\r\n            color: #cbd5e1;\r\n        }\r\n        .price-container {\r\n            margin-bottom: 2rem;\r\n        }\r\n        .price-badge {\r\n            display: inline-block;\r\n            background: linear-gradient(135deg, #f59e0b, #d97706);\r\n            color: #0f172a;\r\n            padding: 1rem 2.5rem;\r\n            border-radius: 12px;\r\n            font-size: 3.2rem;\r\n            font-weight: 900;\r\n            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.4);\r\n        }\r\n        .cta-main {\r\n            display: inline-block;\r\n            background: linear-gradient(135deg, #f59e0b, #d97706);\r\n            color: #0f172a;\r\n            padding: 1.3rem 3.5rem;\r\n            font-size: 1.2rem;\r\n            font-weight: 900;\r\n            border-radius: 8px;\r\n            text-decoration: none;\r\n            text-transform: uppercase;\r\n            letter-spacing: 1px;\r\n            box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5);\r\n            transition: all 0.3s;\r\n            border: 2px solid transparent;\r\n        }\r\n        .cta-main:hover {\r\n            background: linear-gradient(135deg, #d97706, #b45309);\r\n            transform: translateY(-2px);\r\n            box-shadow: 0 8px 35px rgba(245, 158, 11, 0.6);\r\n            border-color: #fbbf24;\r\n        }",
+                                                                             "js":  ""
+                                                                         },
+                                                                "variants":  [
+
+                                                                             ],
+                                                                "dependencies":  [
+
+                                                                                 ],
+                                                                "props":  [
+                                                                              "title",
+                                                                              "subtitle",
+                                                                              "ctaText",
+                                                                              "ctaLink",
+                                                                              "price"
+                                                                          ],
+                                                                "metadata":  {
+                                                                                 "quality":  1,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-01-urgencymaster\\index.html",
+                                                                                 "tags":  [
+                                                                                              "hero",
+                                                                                              "gradient",
+                                                                                              "responsive"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.7,
+                                                                                 "created":  "2026-02-28T02:22:37Z"
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "timeline-ac7b3aba",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "timeline",
+                                                                "name":  "Timeline - 1 steps horizontal",
+                                                                "description":  "Timeline component showing process steps",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"timeline-item\"\u003e\r\n                    \u003cdiv class=\"timeline-time\"\u003e10:00",
+                                                                             "css":  ".timeline {\r\n            padding: 7rem 2rem;\r\n            background: #f9fafb;\r\n        }\r\n        .container {\r\n            max-width: 1400px;\r\n            margin: 0 auto;\r\n        }\r\n        .section-title {\r\n            text-align: center;\r\n            font-size: 2.8rem;\r\n            font-weight: 900;\r\n            margin-bottom: 1rem;\r\n            color: #0f172a;\r\n            letter-spacing: -0.5px;\r\n        }\r\n        .section-subtitle {\r\n            text-align: center;\r\n            font-size: 1.3rem;\r\n            color: #64748b;\r\n            margin-bottom: 4rem;\r\n            font-weight: 500;\r\n        }\r\n        .timeline-grid {\r\n            display: grid;\r\n            grid-template-columns: repeat(5, 1fr);\r\n            gap: 1.5rem;\r\n            max-width: 1200px;\r\n            margin: 0 auto;\r\n            position: relative;\r\n        }\r\n        .timeline-grid::before {\r\n            content: \u0027\u0027;\r\n            position: absolute;\r\n            top: 3rem;\r\n            left: 10%;\r\n            right: 10%;\r\n            height: 4px;\r\n            background: linear-gradient(90deg, #f59e0b, #d97706);\r\n            z-index: 0;\r\n        }\r\n        .timeline-item {\r\n            text-align: center;\r\n            padding: 2rem 1rem;\r\n            background: white;\r\n            border-radius: 15px;\r\n            border: 3px solid #0f172a;\r\n            position: relative;\r\n            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);\r\n            transition: all 0.3s;\r\n            z-index: 1;\r\n        }\r\n        .timeline-item:hover {\r\n            transform: translateY(-8px);\r\n            box-shadow: 0 15px 40px rgba(245, 158, 11, 0.3);\r\n            border-color: #f59e0b;\r\n        }\r\n        .timeline-time {\r\n            font-size: 2.5rem;\r\n            font-weight: 900;\r\n            color: #0f172a;\r\n            margin-bottom: 0.5rem;\r\n        }\r\n        .timeline-action {\r\n            font-size: 0.95rem;\r\n            font-weight: 700;\r\n            color: #475569;\r\n            line-height: 1.4;\r\n        }",
+                                                                             "js":  ""
+                                                                         },
+                                                                "metadata":  {
+                                                                                 "quality":  0.85,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-01-urgencymaster\\index.html",
+                                                                                 "tags":  [
+                                                                                              "timeline",
+                                                                                              "process",
+                                                                                              "steps",
+                                                                                              "horizontal"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.75,
+                                                                                 "created":  "2026-02-28T02:22:37Z",
+                                                                                 "stepCount":  1
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "checkout-0e36ea19",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "checkout",
+                                                                "name":  "Checkout Modal - Multi-payment",
+                                                                "description":  "Professional checkout with multiple payment methods",
+                                                                "code":  {
+                                                                             "html":  "\u003cbutton class=\"checkout-close\" onclick=\"closeCheckout()\"\u003e\u0026times;\u003c/button\u003e\r\n\r\n            \u003cdiv class=\"checkout-header\"\u003e\r\n                \u003cdiv class=\"checkout-merchant\"\u003e\r\n                    \u003cdiv class=\"merchant-logo\"\u003eW\u003c/div\u003e\r\n                    \u003cdiv class=\"merchant-info\"\u003e\r\n                        \u003ch3\u003eWebsite in een Dag\u003c/h3\u003e\r\n                        \u003cp\u003eProfessionele website service\u003c/p\u003e",
+                                                                             "css":  ".checkout-overlay {\r\n            display: none;\r\n            position: fixed;\r\n            top: 0;\r\n            left: 0;\r\n            right: 0;\r\n            bottom: 0;\r\n            background: rgba(0, 0, 0, 0.85);\r\n            z-index: 10000;\r\n            align-items: center;\r\n            justify-content: center;\r\n            backdrop-filter: blur(8px);\r\n        }\r\n        .checkout-overlay.active {\r\n            display: flex;\r\n        }\r\n        .checkout-modal {\r\n            background: #ffffff;\r\n            border-radius: 12px;\r\n            max-width: 480px;\r\n            width: 90%;\r\n            padding: 0;\r\n            position: relative;\r\n            box-shadow: 0 20px 60px rgba(0,0,0,0.3);\r\n            animation: slideIn 0.4s ease-out;\r\n            overflow: hidden;\r\n        }\r\n        @keyframes slideIn {\r\n            from { transform: translateY(-50px); opacity: 0; }\r\n            to { transform: translateY(0); opacity: 1; }\r\n        }\r\n        .checkout-close {\r\n            position: absolute;\r\n            top: 1rem;\r\n            right: 1rem;\r\n            background: white;\r\n            border: 1px solid #e5e7eb;\r\n            font-size: 1.5rem;\r\n            cursor: pointer;\r\n            color: #64748b;\r\n            transition: all 0.2s;\r\n            width: 32px;\r\n            height: 32px;\r\n            display: flex;\r\n            align-items: center;\r\n            justify-content: center;\r\n            border-radius: 6px;\r\n            z-index: 10;\r\n        }\r\n        .checkout-close:hover {\r\n            background: #f1f5f9;\r\n            color: #0f172a;\r\n            border-color: #cbd5e1;\r\n        }\r\n        .checkout-header {\r\n            background: #f8fafc;\r\n            padding: 2rem;\r\n            border-bottom: 1px solid #e5e7eb;\r\n        }\r\n        .checkout-merchant {\r\n            display: flex;\r\n            align-items: center;\r\n            gap: 0.75rem;\r\n            margin-bottom: 1rem;\r\n        }\r\n        .merchant-logo {\r\n            width: 48px;\r\n            height: 48px;\r\n            background: linear-gradient(135deg, #0f172a, #1e293b);\r\n            border-radius: 8px;\r\n            display: flex;\r\n            align-items: center;\r\n            justify-content: center;\r\n            color: #f59e0b;\r\n            font-weight: 900;\r\n            font-size: 1.5rem;\r\n        }\r\n        .merchant-info h3 {\r\n            font-size: 1.1rem;\r\n            font-weight: 700;\r\n            color: #0f172a;\r\n            margin: 0;\r\n        }\r\n        .merchant-info p {\r\n            font-size: 0.85rem;\r\n            color: #64748b;\r\n            margin: 0;\r\n        }\r\n        .checkout-header p {\r\n            color: #475569;\r\n            font-size: 0.9rem;\r\n            margin: 0;\r\n        }\r\n        .checkout-body {\r\n            padding: 1.5rem;\r\n        }\r\n        .checkout-amount {\r\n            display: flex;\r\n            justify-content: space-between;\r\n            align-items: center;\r\n            padding: 1rem 0;\r\n            border-bottom: 1px solid #e5e7eb;\r\n            margin-bottom: 1.5rem;\r\n        }\r\n        .checkout-amount-label {\r\n            font-size: 0.95rem;\r\n            color: #64748b;\r\n            font-weight: 600;\r\n        }\r\n        .checkout-amount-value {\r\n            font-size: 1.8rem;\r\n            font-weight: 800;\r\n            color: #0f172a;\r\n        }\r\n        .checkout-includes {\r\n            font-size: 0.8rem;\r\n            color: #059669;\r\n            margin-top: 0.5rem;\r\n            display: flex;\r\n            align-items: center;\r\n            gap: 0.5rem;\r\n        }\r\n        .payment-methods {\r\n            margin-bottom: 2rem;\r\n        }\r\n        .payment-tabs {\r\n            display: grid;\r\n            grid-template-columns: repeat(3, 1fr);\r\n            gap: 0.5rem;\r\n            margin-bottom: 1.5rem;\r\n        }\r\n        .payment-tab {\r\n            padding: 0.9rem 0.5rem;\r\n            border: 2px solid #e5e7eb;\r\n            border-radius: 6px;\r\n            text-align: center;\r\n            cursor: pointer;\r\n            transition: all 0.2s;\r\n            background: white;\r\n            font-weight: 600;\r\n            font-size: 0.85rem;\r\n            color: #475569;\r\n        }\r\n        .payment-tab:hover {\r\n            border-color: #cbd5e1;\r\n            background: #f8fafc;\r\n        }\r\n        .payment-tab.active {\r\n            border-color: #f59e0b;\r\n            background: #fffbeb;\r\n            color: #0f172a;\r\n        }\r\n        .payment-content {\r\n            display: none;\r\n        }\r\n        .payment-content.active {\r\n            display: block;\r\n        }\r\n        .bank-select label {\r\n            display: block;\r\n            font-size: 0.85rem;\r\n            font-weight: 600;\r\n            margin-bottom: 0.75rem;\r\n            color: #475569;\r\n        }\r\n        .bank-grid {\r\n            display: grid;\r\n            grid-template-columns: repeat(3, 1fr);\r\n            gap: 0.5rem;\r\n        }\r\n        .bank-option {\r\n            border: 2px solid #e5e7eb;\r\n            border-radius: 8px;\r\n            padding: 1rem 0.5rem;\r\n            text-align: center;\r\n            cursor: pointer;\r\n            transition: all 0.2s;\r\n            background: white;\r\n            min-height: 70px;\r\n            display: flex;\r\n            flex-direction: column;\r\n            align-items: center;\r\n            justify-content: center;\r\n        }\r\n        .bank-option:hover {\r\n            border-color: #cbd5e1;\r\n            background: #f8fafc;\r\n        }\r\n        .bank-option.selected {\r\n            border-color: #f59e0b;\r\n            background: #fffbeb;\r\n            box-shadow: 0 0 0 1px #f59e0b;\r\n        }\r\n        .bank-logo {\r\n            width: 100%;\r\n            height: 32px;\r\n            display: flex;\r\n            align-items: center;\r\n            justify-content: center;\r\n            margin-bottom: 0.25rem;\r\n        }\r\n        .bank-option span {\r\n            display: block;\r\n            font-size: 0.7rem;\r\n            font-weight: 600;\r\n            color: #64748b;\r\n        }\r\n        .card-form {\r\n            display: flex;\r\n            flex-direction: column;\r\n            gap: 1rem;\r\n        }\r\n        .form-group {\r\n            display: flex;\r\n            flex-direction: column;\r\n        }\r\n        .form-group label {\r\n            font-size: 0.85rem;\r\n            font-weight: 700;\r\n            margin-bottom: 0.5rem;\r\n            color: #1a1a1a;\r\n        }\r\n        .form-group input {\r\n            padding: 0.9rem;\r\n            border: 2px solid #e5e7eb;\r\n            border-radius: 8px;\r\n            font-size: 1rem;\r\n            transition: all 0.3s;\r\n        }\r\n        .form-group input:focus {\r\n            outline: none;\r\n            border-color: #f59e0b;\r\n            background: #fef3c7;\r\n        }\r\n        .form-row {\r\n            display: grid;\r\n            grid-template-columns: 2fr 1fr;\r\n            gap: 1rem;\r\n        }\r\n        .card-icons {\r\n            display: flex;\r\n            gap: 0.5rem;\r\n            margin-top: 0.5rem;\r\n        }\r\n        .card-icon {\r\n            width: 40px;\r\n            height: 25px;\r\n            border: 1px solid #e5e7eb;\r\n            border-radius: 4px;\r\n            display: flex;\r\n            align-items: center;\r\n            justify-content: center;\r\n            font-size: 0.7rem;\r\n            font-weight: 700;\r\n            background: white;\r\n        }\r\n        .paypal-button {\r\n            background: #0070ba;\r\n            color: white;\r\n            padding: 1.5rem;\r\n            border-radius: 8px;\r\n            text-align: center;\r\n            font-weight: 700;\r\n            font-size: 1.1rem;\r\n            cursor: pointer;\r\n            transition: all 0.3s;\r\n        }\r\n        .paypal-button:hover {\r\n            background: #005ea6;\r\n        }\r\n        .checkout-submit {\r\n            width: 100%;\r\n            background: #0f172a;\r\n            color: white;\r\n            padding: 1rem;\r\n            border: none;\r\n            border-radius: 6px;\r\n            font-size: 1rem;\r\n            font-weight: 700;\r\n            cursor: pointer;\r\n            transition: all 0.2s;\r\n            margin-top: 1rem;\r\n        }\r\n        .checkout-submit:hover:not(:disabled) {\r\n            background: #1e293b;\r\n        }\r\n        .checkout-submit:disabled {\r\n            background: #cbd5e1;\r\n            color: #94a3b8;\r\n            cursor: not-allowed;\r\n        }\r\n        .checkout-footer {\r\n            padding: 1rem 1.5rem;\r\n            background: #f8fafc;\r\n            border-top: 1px solid #e5e7eb;\r\n            display: flex;\r\n            align-items: center;\r\n            justify-content: center;\r\n            gap: 1rem;\r\n            flex-wrap: wrap;\r\n        }\r\n        .secure-badge {\r\n            display: flex;\r\n            align-items: center;\r\n            gap: 0.4rem;\r\n            font-size: 0.75rem;\r\n            color: #64748b;\r\n        }\r\n        .secure-badge svg {\r\n            width: 14px;\r\n            height: 14px;\r\n        }\r\n        .payment-logos {\r\n            display: flex;\r\n            gap: 0.5rem;\r\n            align-items: center;\r\n        }\r\n        .payment-logo {\r\n            height: 18px;\r\n            opacity: 0.6;\r\n        }",
+                                                                             "js":  ""
+                                                                         },
+                                                                "metadata":  {
+                                                                                 "quality":  0.95,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-01-urgencymaster\\index.html",
+                                                                                 "tags":  [
+                                                                                              "checkout",
+                                                                                              "payment",
+                                                                                              "modal"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.8,
+                                                                                 "created":  "2026-02-28T02:22:37Z",
+                                                                                 "paymentMethods":  [
+
+                                                                                                    ]
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "hero-2889c1eb",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "hero",
+                                                                "name":  "Hero Section - Extracted from index.html",
+                                                                "description":  "Professional hero section with gradient background",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"hero-content\"\u003e\r\n            \u003cdiv class=\"urgency-badge\"\u003eWebsite in één dag\u003c/div\u003e\r\n            \u003ch1\u003eJouw Website \u003cspan class=\"highlight\"\u003eLIVE\u003c/span\u003e\u003cbr\u003eom 17:00 Vandaag\u003c/h1\u003e\r\n            \u003cp class=\"subtitle\"\u003eProfessioneel. Snel. Gegarandeerd op tijd.\u003cbr\u003e\u003cstrong style=\"color: #f59e0b;\"\u003eInclusief een jaar gratis WordPress hosting\u003c/strong\u003e\u003c/p\u003e\r\n\r\n            \u003cdiv class=\"price-container\"\u003e\r\n                \u003cdiv class=\"price-badge\"\u003e€899\u003c/div\u003e\r\n            \u003c/div\u003e\r\n\r\n            \u003ca href=\"#\" class=\"cta-main\" onclick=\"openCheckout(event)\"\u003eNU STARTEN →\u003c/a\u003e\r\n        \u003c/div\u003e",
+                                                                             "css":  ".hero {\r\n            position: relative;\r\n            background:\r\n                linear-gradient(135deg, rgba(15, 23, 42, 0.97), rgba(30, 41, 59, 0.95)),\r\n                url(\u0027https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600\u0026h=800\u0026fit=crop\u0026q=90\u0027) center/cover;\r\n            color: white;\r\n            padding: 4rem 2rem 3rem;\r\n            text-align: center;\r\n            border-bottom: 4px solid #f59e0b;\r\n        }\r\n        .hero-content {\r\n            max-width: 900px;\r\n            margin: 0 auto;\r\n        }\r\n        .urgency-badge {\r\n            display: inline-block;\r\n            background: linear-gradient(135deg, #f59e0b, #d97706);\r\n            color: #0f172a;\r\n            padding: 0.6rem 1.5rem;\r\n            border-radius: 50px;\r\n            font-size: 0.85rem;\r\n            font-weight: 800;\r\n            text-transform: uppercase;\r\n            letter-spacing: 1px;\r\n            margin-bottom: 1.5rem;\r\n            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5);\r\n        }\r\n        .hero h1 {\r\n            font-size: 3.8rem;\r\n            font-weight: 900;\r\n            margin-bottom: 1rem;\r\n            line-height: 1.1;\r\n            letter-spacing: -1px;\r\n        }\r\n        .hero h1 .highlight {\r\n            color: #f59e0b;\r\n            text-shadow: 0 0 30px rgba(245, 158, 11, 0.5);\r\n        }\r\n        .hero .subtitle {\r\n            font-size: 1.3rem;\r\n            margin-bottom: 2rem;\r\n            font-weight: 500;\r\n            color: #cbd5e1;\r\n        }\r\n        .price-container {\r\n            margin-bottom: 2rem;\r\n        }\r\n        .price-badge {\r\n            display: inline-block;\r\n            background: linear-gradient(135deg, #f59e0b, #d97706);\r\n            color: #0f172a;\r\n            padding: 1rem 2.5rem;\r\n            border-radius: 12px;\r\n            font-size: 3.2rem;\r\n            font-weight: 900;\r\n            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.4);\r\n        }\r\n        .cta-main {\r\n            display: inline-block;\r\n            background: linear-gradient(135deg, #f59e0b, #d97706);\r\n            color: #0f172a;\r\n            padding: 1.3rem 3.5rem;\r\n            font-size: 1.2rem;\r\n            font-weight: 900;\r\n            border-radius: 8px;\r\n            text-decoration: none;\r\n            text-transform: uppercase;\r\n            letter-spacing: 1px;\r\n            box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5);\r\n            transition: all 0.3s;\r\n            border: 2px solid transparent;\r\n        }\r\n        .cta-main:hover {\r\n            background: linear-gradient(135deg, #d97706, #b45309);\r\n            transform: translateY(-2px);\r\n            box-shadow: 0 8px 35px rgba(245, 158, 11, 0.6);\r\n            border-color: #fbbf24;\r\n        }",
+                                                                             "js":  ""
+                                                                         },
+                                                                "variants":  [
+
+                                                                             ],
+                                                                "dependencies":  [
+
+                                                                                 ],
+                                                                "props":  [
+                                                                              "title",
+                                                                              "subtitle",
+                                                                              "ctaText",
+                                                                              "ctaLink",
+                                                                              "price"
+                                                                          ],
+                                                                "metadata":  {
+                                                                                 "quality":  1,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-01-urgencymaster\\index.html",
+                                                                                 "tags":  [
+                                                                                              "hero",
+                                                                                              "gradient",
+                                                                                              "responsive"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.7,
+                                                                                 "created":  "2026-02-28T02:51:45Z"
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "timeline-2a601089",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "timeline",
+                                                                "name":  "Timeline - 1 steps horizontal",
+                                                                "description":  "Timeline component showing process steps",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"timeline-item\"\u003e\r\n                    \u003cdiv class=\"timeline-time\"\u003e10:00",
+                                                                             "css":  ".timeline {\r\n            padding: 7rem 2rem;\r\n            background: #f9fafb;\r\n        }\r\n        .container {\r\n            max-width: 1400px;\r\n            margin: 0 auto;\r\n        }\r\n        .section-title {\r\n            text-align: center;\r\n            font-size: 2.8rem;\r\n            font-weight: 900;\r\n            margin-bottom: 1rem;\r\n            color: #0f172a;\r\n            letter-spacing: -0.5px;\r\n        }\r\n        .section-subtitle {\r\n            text-align: center;\r\n            font-size: 1.3rem;\r\n            color: #64748b;\r\n            margin-bottom: 4rem;\r\n            font-weight: 500;\r\n        }\r\n        .timeline-grid {\r\n            display: grid;\r\n            grid-template-columns: repeat(5, 1fr);\r\n            gap: 1.5rem;\r\n            max-width: 1200px;\r\n            margin: 0 auto;\r\n            position: relative;\r\n        }\r\n        .timeline-grid::before {\r\n            content: \u0027\u0027;\r\n            position: absolute;\r\n            top: 3rem;\r\n            left: 10%;\r\n            right: 10%;\r\n            height: 4px;\r\n            background: linear-gradient(90deg, #f59e0b, #d97706);\r\n            z-index: 0;\r\n        }\r\n        .timeline-item {\r\n            text-align: center;\r\n            padding: 2rem 1rem;\r\n            background: white;\r\n            border-radius: 15px;\r\n            border: 3px solid #0f172a;\r\n            position: relative;\r\n            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);\r\n            transition: all 0.3s;\r\n            z-index: 1;\r\n        }\r\n        .timeline-item:hover {\r\n            transform: translateY(-8px);\r\n            box-shadow: 0 15px 40px rgba(245, 158, 11, 0.3);\r\n            border-color: #f59e0b;\r\n        }\r\n        .timeline-time {\r\n            font-size: 2.5rem;\r\n            font-weight: 900;\r\n            color: #0f172a;\r\n            margin-bottom: 0.5rem;\r\n        }\r\n        .timeline-action {\r\n            font-size: 0.95rem;\r\n            font-weight: 700;\r\n            color: #475569;\r\n            line-height: 1.4;\r\n        }",
+                                                                             "js":  ""
+                                                                         },
+                                                                "metadata":  {
+                                                                                 "quality":  0.85,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-01-urgencymaster\\index.html",
+                                                                                 "tags":  [
+                                                                                              "timeline",
+                                                                                              "process",
+                                                                                              "steps",
+                                                                                              "horizontal"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.75,
+                                                                                 "created":  "2026-02-28T02:51:45Z",
+                                                                                 "stepCount":  1
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "checkout-4a486207",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "checkout",
+                                                                "name":  "Checkout Modal - Multi-payment",
+                                                                "description":  "Professional checkout with multiple payment methods",
+                                                                "code":  {
+                                                                             "html":  "\u003cbutton class=\"checkout-close\" onclick=\"closeCheckout()\"\u003e\u0026times;\u003c/button\u003e\r\n\r\n            \u003cdiv class=\"checkout-header\"\u003e\r\n                \u003cdiv class=\"checkout-merchant\"\u003e\r\n                    \u003cdiv class=\"merchant-logo\"\u003eW\u003c/div\u003e\r\n                    \u003cdiv class=\"merchant-info\"\u003e\r\n                        \u003ch3\u003eWebsite in een Dag\u003c/h3\u003e\r\n                        \u003cp\u003eProfessionele website service\u003c/p\u003e",
+                                                                             "css":  ".checkout-overlay {\r\n            display: none;\r\n            position: fixed;\r\n            top: 0;\r\n            left: 0;\r\n            right: 0;\r\n            bottom: 0;\r\n            background: rgba(0, 0, 0, 0.85);\r\n            z-index: 10000;\r\n            align-items: center;\r\n            justify-content: center;\r\n            backdrop-filter: blur(8px);\r\n        }\r\n        .checkout-overlay.active {\r\n            display: flex;\r\n        }\r\n        .checkout-modal {\r\n            background: #ffffff;\r\n            border-radius: 12px;\r\n            max-width: 480px;\r\n            width: 90%;\r\n            padding: 0;\r\n            position: relative;\r\n            box-shadow: 0 20px 60px rgba(0,0,0,0.3);\r\n            animation: slideIn 0.4s ease-out;\r\n            overflow: hidden;\r\n        }\r\n        @keyframes slideIn {\r\n            from { transform: translateY(-50px); opacity: 0; }\r\n            to { transform: translateY(0); opacity: 1; }\r\n        }\r\n        .checkout-close {\r\n            position: absolute;\r\n            top: 1rem;\r\n            right: 1rem;\r\n            background: white;\r\n            border: 1px solid #e5e7eb;\r\n            font-size: 1.5rem;\r\n            cursor: pointer;\r\n            color: #64748b;\r\n            transition: all 0.2s;\r\n            width: 32px;\r\n            height: 32px;\r\n            display: flex;\r\n            align-items: center;\r\n            justify-content: center;\r\n            border-radius: 6px;\r\n            z-index: 10;\r\n        }\r\n        .checkout-close:hover {\r\n            background: #f1f5f9;\r\n            color: #0f172a;\r\n            border-color: #cbd5e1;\r\n        }\r\n        .checkout-header {\r\n            background: #f8fafc;\r\n            padding: 2rem;\r\n            border-bottom: 1px solid #e5e7eb;\r\n        }\r\n        .checkout-merchant {\r\n            display: flex;\r\n            align-items: center;\r\n            gap: 0.75rem;\r\n            margin-bottom: 1rem;\r\n        }\r\n        .merchant-logo {\r\n            width: 48px;\r\n            height: 48px;\r\n            background: linear-gradient(135deg, #0f172a, #1e293b);\r\n            border-radius: 8px;\r\n            display: flex;\r\n            align-items: center;\r\n            justify-content: center;\r\n            color: #f59e0b;\r\n            font-weight: 900;\r\n            font-size: 1.5rem;\r\n        }\r\n        .merchant-info h3 {\r\n            font-size: 1.1rem;\r\n            font-weight: 700;\r\n            color: #0f172a;\r\n            margin: 0;\r\n        }\r\n        .merchant-info p {\r\n            font-size: 0.85rem;\r\n            color: #64748b;\r\n            margin: 0;\r\n        }\r\n        .checkout-header p {\r\n            color: #475569;\r\n            font-size: 0.9rem;\r\n            margin: 0;\r\n        }\r\n        .checkout-body {\r\n            padding: 1.5rem;\r\n        }\r\n        .checkout-amount {\r\n            display: flex;\r\n            justify-content: space-between;\r\n            align-items: center;\r\n            padding: 1rem 0;\r\n            border-bottom: 1px solid #e5e7eb;\r\n            margin-bottom: 1.5rem;\r\n        }\r\n        .checkout-amount-label {\r\n            font-size: 0.95rem;\r\n            color: #64748b;\r\n            font-weight: 600;\r\n        }\r\n        .checkout-amount-value {\r\n            font-size: 1.8rem;\r\n            font-weight: 800;\r\n            color: #0f172a;\r\n        }\r\n        .checkout-includes {\r\n            font-size: 0.8rem;\r\n            color: #059669;\r\n            margin-top: 0.5rem;\r\n            display: flex;\r\n            align-items: center;\r\n            gap: 0.5rem;\r\n        }\r\n        .payment-methods {\r\n            margin-bottom: 2rem;\r\n        }\r\n        .payment-tabs {\r\n            display: grid;\r\n            grid-template-columns: repeat(3, 1fr);\r\n            gap: 0.5rem;\r\n            margin-bottom: 1.5rem;\r\n        }\r\n        .payment-tab {\r\n            padding: 0.9rem 0.5rem;\r\n            border: 2px solid #e5e7eb;\r\n            border-radius: 6px;\r\n            text-align: center;\r\n            cursor: pointer;\r\n            transition: all 0.2s;\r\n            background: white;\r\n            font-weight: 600;\r\n            font-size: 0.85rem;\r\n            color: #475569;\r\n        }\r\n        .payment-tab:hover {\r\n            border-color: #cbd5e1;\r\n            background: #f8fafc;\r\n        }\r\n        .payment-tab.active {\r\n            border-color: #f59e0b;\r\n            background: #fffbeb;\r\n            color: #0f172a;\r\n        }\r\n        .payment-content {\r\n            display: none;\r\n        }\r\n        .payment-content.active {\r\n            display: block;\r\n        }\r\n        .bank-select label {\r\n            display: block;\r\n            font-size: 0.85rem;\r\n            font-weight: 600;\r\n            margin-bottom: 0.75rem;\r\n            color: #475569;\r\n        }\r\n        .bank-grid {\r\n            display: grid;\r\n            grid-template-columns: repeat(3, 1fr);\r\n            gap: 0.5rem;\r\n        }\r\n        .bank-option {\r\n            border: 2px solid #e5e7eb;\r\n            border-radius: 8px;\r\n            padding: 1rem 0.5rem;\r\n            text-align: center;\r\n            cursor: pointer;\r\n            transition: all 0.2s;\r\n            background: white;\r\n            min-height: 70px;\r\n            display: flex;\r\n            flex-direction: column;\r\n            align-items: center;\r\n            justify-content: center;\r\n        }\r\n        .bank-option:hover {\r\n            border-color: #cbd5e1;\r\n            background: #f8fafc;\r\n        }\r\n        .bank-option.selected {\r\n            border-color: #f59e0b;\r\n            background: #fffbeb;\r\n            box-shadow: 0 0 0 1px #f59e0b;\r\n        }\r\n        .bank-logo {\r\n            width: 100%;\r\n            height: 32px;\r\n            display: flex;\r\n            align-items: center;\r\n            justify-content: center;\r\n            margin-bottom: 0.25rem;\r\n        }\r\n        .bank-option span {\r\n            display: block;\r\n            font-size: 0.7rem;\r\n            font-weight: 600;\r\n            color: #64748b;\r\n        }\r\n        .card-form {\r\n            display: flex;\r\n            flex-direction: column;\r\n            gap: 1rem;\r\n        }\r\n        .form-group {\r\n            display: flex;\r\n            flex-direction: column;\r\n        }\r\n        .form-group label {\r\n            font-size: 0.85rem;\r\n            font-weight: 700;\r\n            margin-bottom: 0.5rem;\r\n            color: #1a1a1a;\r\n        }\r\n        .form-group input {\r\n            padding: 0.9rem;\r\n            border: 2px solid #e5e7eb;\r\n            border-radius: 8px;\r\n            font-size: 1rem;\r\n            transition: all 0.3s;\r\n        }\r\n        .form-group input:focus {\r\n            outline: none;\r\n            border-color: #f59e0b;\r\n            background: #fef3c7;\r\n        }\r\n        .form-row {\r\n            display: grid;\r\n            grid-template-columns: 2fr 1fr;\r\n            gap: 1rem;\r\n        }\r\n        .card-icons {\r\n            display: flex;\r\n            gap: 0.5rem;\r\n            margin-top: 0.5rem;\r\n        }\r\n        .card-icon {\r\n            width: 40px;\r\n            height: 25px;\r\n            border: 1px solid #e5e7eb;\r\n            border-radius: 4px;\r\n            display: flex;\r\n            align-items: center;\r\n            justify-content: center;\r\n            font-size: 0.7rem;\r\n            font-weight: 700;\r\n            background: white;\r\n        }\r\n        .paypal-button {\r\n            background: #0070ba;\r\n            color: white;\r\n            padding: 1.5rem;\r\n            border-radius: 8px;\r\n            text-align: center;\r\n            font-weight: 700;\r\n            font-size: 1.1rem;\r\n            cursor: pointer;\r\n            transition: all 0.3s;\r\n        }\r\n        .paypal-button:hover {\r\n            background: #005ea6;\r\n        }\r\n        .checkout-submit {\r\n            width: 100%;\r\n            background: #0f172a;\r\n            color: white;\r\n            padding: 1rem;\r\n            border: none;\r\n            border-radius: 6px;\r\n            font-size: 1rem;\r\n            font-weight: 700;\r\n            cursor: pointer;\r\n            transition: all 0.2s;\r\n            margin-top: 1rem;\r\n        }\r\n        .checkout-submit:hover:not(:disabled) {\r\n            background: #1e293b;\r\n        }\r\n        .checkout-submit:disabled {\r\n            background: #cbd5e1;\r\n            color: #94a3b8;\r\n            cursor: not-allowed;\r\n        }\r\n        .checkout-footer {\r\n            padding: 1rem 1.5rem;\r\n            background: #f8fafc;\r\n            border-top: 1px solid #e5e7eb;\r\n            display: flex;\r\n            align-items: center;\r\n            justify-content: center;\r\n            gap: 1rem;\r\n            flex-wrap: wrap;\r\n        }\r\n        .secure-badge {\r\n            display: flex;\r\n            align-items: center;\r\n            gap: 0.4rem;\r\n            font-size: 0.75rem;\r\n            color: #64748b;\r\n        }\r\n        .secure-badge svg {\r\n            width: 14px;\r\n            height: 14px;\r\n        }\r\n        .payment-logos {\r\n            display: flex;\r\n            gap: 0.5rem;\r\n            align-items: center;\r\n        }\r\n        .payment-logo {\r\n            height: 18px;\r\n            opacity: 0.6;\r\n        }",
+                                                                             "js":  ""
+                                                                         },
+                                                                "metadata":  {
+                                                                                 "quality":  0.95,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-01-urgencymaster\\index.html",
+                                                                                 "tags":  [
+                                                                                              "checkout",
+                                                                                              "payment",
+                                                                                              "modal"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.8,
+                                                                                 "created":  "2026-02-28T02:51:45Z",
+                                                                                 "paymentMethods":  [
+
+                                                                                                    ]
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "hero-157fac2e",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "hero",
+                                                                "name":  "Hero Section - Extracted from index.html",
+                                                                "description":  "Professional hero section with gradient background",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"hero-content\"\u003e\r\n            \u003cdiv class=\"speed-badge\"\u003e⚡ SNELSTE IN NEDERLAND\u003c/div\u003e\r\n            \u003ch1\u003eVan Nul naar Live\u003cbr\u003ein \u003cspan\u003eUren, Niet Weken\u003c/span\u003e\u003c/h1\u003e\r\n            \u003cp\u003eTerwijl anderen nog aan het plannen zijn, ben jij al online. Geen weken wachten, geen eindeloze meetings. Gewoon snelheid.\u003c/p\u003e\r\n\r\n            \u003cdiv class=\"price-box\"\u003e\r\n                \u003cdiv class=\"price\"\u003e€795\u003c/div\u003e\r\n                \u003cdiv class=\"price-label\"\u003eInclusief 1 jaar hosting • Live vandaag nog\u003c/div\u003e\r\n            \u003c/div\u003e\r\n\r\n            \u003cbutton class=\"cta\" onclick=\"openCheckout()\"\u003eSTART NU →\u003c/button\u003e\r\n        \u003c/div\u003e",
+                                                                             "css":  ".hero {\r\n            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);\r\n            color: white;\r\n            padding: 5rem 2rem 4rem 2rem;\r\n            text-align: center;\r\n            position: relative;\r\n        }\r\n        .hero::before {\r\n            content: \u0027\u0027;\r\n            position: absolute;\r\n            top: 0;\r\n            left: 0;\r\n            right: 0;\r\n            bottom: 0;\r\n            background: url(\u0027data:image/svg+xml,\u003csvg width=\"100\" height=\"100\" xmlns=\"http://www.w3.org/2000/svg\"\u003e\u003cdefs\u003e\u003cpattern id=\"grid\" width=\"40\" height=\"40\" patternUnits=\"userSpaceOnUse\"\u003e\u003cpath d=\"M 40 0 L 0 0 0 40\" fill=\"none\" stroke=\"rgba(251,191,36,0.1)\" stroke-width=\"1\"/\u003e\u003c/pattern\u003e\u003c/defs\u003e\u003crect width=\"100\" height=\"100\" fill=\"url(%23grid)\"/\u003e\u003c/svg\u003e\u0027);\r\n            opacity: 0.3;\r\n        }\r\n        .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }\r\n        .speed-badge {\r\n            display: inline-block;\r\n            background: linear-gradient(135deg, #f59e0b, #d97706);\r\n            padding: 0.75rem 2rem;\r\n            border-radius: 50px;\r\n            font-weight: 700;\r\n            font-size: 1rem;\r\n            margin-bottom: 2rem;\r\n            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);\r\n        }\r\n        .hero h1 {\r\n            font-size: 3.5rem;\r\n            font-weight: 900;\r\n            margin-bottom: 1.5rem;\r\n            line-height: 1.1;\r\n        }\r\n        .hero h1 span {\r\n            background: linear-gradient(135deg, #f59e0b, #fbbf24);\r\n            -webkit-background-clip: text;\r\n            -webkit-text-fill-color: transparent;\r\n            background-clip: text;\r\n        }\r\n        .hero p {\r\n            font-size: 1.4rem;\r\n            margin-bottom: 2.5rem;\r\n            color: #cbd5e1;\r\n            line-height: 1.6;\r\n        }\r\n        .price-box {\r\n            background: rgba(255,255,255,0.1);\r\n            backdrop-filter: blur(10px);\r\n            padding: 2rem;\r\n            border-radius: 20px;\r\n            border: 2px solid rgba(251, 191, 36, 0.3);\r\n            display: inline-block;\r\n            margin-bottom: 2rem;\r\n        }\r\n        .price {\r\n            font-size: 3rem;\r\n            font-weight: 900;\r\n            color: #fbbf24;\r\n            margin-bottom: 0.5rem;\r\n        }\r\n        .price-label {\r\n            font-size: 1rem;\r\n            color: #cbd5e1;\r\n        }\r\n        .cta {\r\n            display: inline-block;\r\n            background: linear-gradient(135deg, #f59e0b, #d97706);\r\n            color: white;\r\n            padding: 1.5rem 4rem;\r\n            font-size: 1.3rem;\r\n            font-weight: 900;\r\n            border-radius: 12px;\r\n            text-decoration: none;\r\n            box-shadow: 0 15px 40px rgba(245, 158, 11, 0.4);\r\n            transition: all 0.3s;\r\n            border: none;\r\n            cursor: pointer;\r\n        }\r\n        .cta:hover {\r\n            transform: translateY(-3px);\r\n            box-shadow: 0 20px 50px rgba(245, 158, 11, 0.5);\r\n        }",
+                                                                             "js":  ""
+                                                                         },
+                                                                "variants":  [
+
+                                                                             ],
+                                                                "dependencies":  [
+
+                                                                                 ],
+                                                                "props":  [
+                                                                              "title",
+                                                                              "subtitle",
+                                                                              "ctaText",
+                                                                              "ctaLink",
+                                                                              "price"
+                                                                          ],
+                                                                "metadata":  {
+                                                                                 "quality":  1,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-03-speedmaster\\index.html",
+                                                                                 "tags":  [
+                                                                                              "hero",
+                                                                                              "gradient",
+                                                                                              "responsive"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.7,
+                                                                                 "created":  "2026-02-28T02:51:46Z"
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "timeline-b249225f",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "timeline",
+                                                                "name":  "Timeline - 1 steps horizontal",
+                                                                "description":  "Timeline component showing process steps",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"timeline-item\"\u003e\r\n                    \u003cdiv class=\"timeline-time\"\u003e10:00",
+                                                                             "css":  ".timeline {\r\n            padding: 5rem 2rem;\r\n            background: white;\r\n        }\r\n        .container { max-width: 1400px; margin: 0 auto; }\r\n        .section-title {\r\n            text-align: center;\r\n            font-size: 3rem;\r\n            font-weight: 900;\r\n            margin-bottom: 1rem;\r\n            color: #0f172a;\r\n        }\r\n        .section-subtitle {\r\n            text-align: center;\r\n            font-size: 1.3rem;\r\n            color: #64748b;\r\n            margin-bottom: 4rem;\r\n        }\r\n        .timeline-grid {\r\n            display: grid;\r\n            grid-template-columns: repeat(5, 1fr);\r\n            gap: 1.5rem;\r\n            max-width: 1200px;\r\n            margin: 0 auto;\r\n            position: relative;\r\n        }\r\n        .timeline-grid::before {\r\n            content: \u0027\u0027;\r\n            position: absolute;\r\n            top: 3rem;\r\n            left: 10%;\r\n            right: 10%;\r\n            height: 4px;\r\n            background: linear-gradient(90deg, #f59e0b, #d97706);\r\n            z-index: 0;\r\n        }\r\n        .timeline-item {\r\n            text-align: center;\r\n            background: white;\r\n            padding: 2rem 1.5rem;\r\n            border-radius: 15px;\r\n            border: 4px solid #0f172a;\r\n            z-index: 1;\r\n            position: relative;\r\n        }\r\n        .timeline-time {\r\n            font-size: 2.5rem;\r\n            font-weight: 900;\r\n            color: #f59e0b;\r\n            margin-bottom: 0.5rem;\r\n        }\r\n        .timeline-action {\r\n            font-size: 1.1rem;\r\n            font-weight: 700;\r\n            color: #1e293b;\r\n        }",
+                                                                             "js":  ""
+                                                                         },
+                                                                "metadata":  {
+                                                                                 "quality":  0.85,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-03-speedmaster\\index.html",
+                                                                                 "tags":  [
+                                                                                              "timeline",
+                                                                                              "process",
+                                                                                              "steps",
+                                                                                              "horizontal"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.75,
+                                                                                 "created":  "2026-02-28T02:51:46Z",
+                                                                                 "stepCount":  1
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "checkout-28cb7d5e",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "checkout",
+                                                                "name":  "Checkout Modal - Multi-payment",
+                                                                "description":  "Professional checkout with multiple payment methods",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"checkout-content\"\u003e\r\n            \u003cdiv class=\"checkout-header\"\u003e\r\n                \u003cdiv class=\"checkout-merchant\"\u003e\r\n                    \u003cdiv class=\"merchant-logo\"\u003eS\u003c/div\u003e\r\n                    \u003cdiv class=\"merchant-info\"\u003e\r\n                        \u003ch3\u003eSpeedMaster\u003c/h3\u003e\r\n                        \u003cp\u003eWebsite in een dag service\u003c/p\u003e",
+                                                                             "css":  "",
+                                                                             "js":  ""
+                                                                         },
+                                                                "metadata":  {
+                                                                                 "quality":  0.95,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-03-speedmaster\\index.html",
+                                                                                 "tags":  [
+                                                                                              "checkout",
+                                                                                              "payment",
+                                                                                              "modal"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.8,
+                                                                                 "created":  "2026-02-28T02:51:46Z",
+                                                                                 "paymentMethods":  [
+
+                                                                                                    ]
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "hero-8eb36725",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "hero",
+                                                                "name":  "Hero Section - Extracted from index.html",
+                                                                "description":  "Professional hero section with gradient background",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"hero-content\"\u003e\r\n            \u003cdiv class=\"elite-badge\"\u003eELITE CRAFTSMANSHIP\u003c/div\u003e\r\n            \u003ch1\u003eWaar \u003cstrong\u003eExcellentie\u003c/strong\u003e\u003cbr\u003eStandaard Is\u003c/h1\u003e\r\n            \u003cp\u003eNiet voor iedereen. Voor wie kwaliteit boven prijs stelt. Voor wie begrijpt dat het beste zelden het goedkoopste is.\u003c/p\u003e\r\n\r\n            \u003cdiv class=\"price-container\"\u003e\r\n                \u003cdiv class=\"price\"\u003e€1.495\u003c/div\u003e\r\n                \u003cdiv class=\"price-note\"\u003eInvestering in perfectie, niet kostenpost\u003c/div\u003e\r\n            \u003c/div\u003e\r\n\r\n            \u003cbutton class=\"cta\" onclick=\"openCheckout()\"\u003eRESERVEER TIJDSLOT\u003c/button\u003e\r\n        \u003c/div\u003e",
+                                                                             "css":  ".hero {\r\n            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);\r\n            color: white;\r\n            padding: 6rem 2rem;\r\n            text-align: center;\r\n            position: relative;\r\n        }\r\n        .hero::after {\r\n            content: \u0027\u0027;\r\n            position: absolute;\r\n            bottom: 0;\r\n            left: 0;\r\n            right: 0;\r\n            height: 1px;\r\n            background: linear-gradient(90deg, transparent, #fbbf24, transparent);\r\n        }\r\n        .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }\r\n        .elite-badge {\r\n            display: inline-block;\r\n            border: 2px solid #fbbf24;\r\n            padding: 0.5rem 2rem;\r\n            border-radius: 50px;\r\n            font-size: 0.85rem;\r\n            letter-spacing: 3px;\r\n            margin-bottom: 2.5rem;\r\n            color: #fbbf24;\r\n            font-weight: 400;\r\n        }\r\n        .hero h1 {\r\n            font-size: 4rem;\r\n            font-weight: 300;\r\n            margin-bottom: 1.5rem;\r\n            line-height: 1.2;\r\n            letter-spacing: -1px;\r\n        }\r\n        .hero h1 strong {\r\n            font-weight: 700;\r\n            background: linear-gradient(135deg, #fbbf24, #f59e0b);\r\n            -webkit-background-clip: text;\r\n            -webkit-text-fill-color: transparent;\r\n            background-clip: text;\r\n        }\r\n        .hero p {\r\n            font-size: 1.3rem;\r\n            margin-bottom: 3rem;\r\n            color: #cbd5e1;\r\n            line-height: 1.8;\r\n            font-family: \u0027Segoe UI\u0027, sans-serif;\r\n            font-weight: 300;\r\n        }\r\n        .price-container {\r\n            margin-bottom: 2.5rem;\r\n        }\r\n        .price {\r\n            font-size: 3.5rem;\r\n            font-weight: 300;\r\n            color: #fbbf24;\r\n            margin-bottom: 0.5rem;\r\n        }\r\n        .price-note {\r\n            font-size: 0.95rem;\r\n            color: #94a3b8;\r\n            font-style: italic;\r\n        }\r\n        .cta {\r\n            display: inline-block;\r\n            background: linear-gradient(135deg, #fbbf24, #f59e0b);\r\n            color: #0f172a;\r\n            padding: 1.5rem 4rem;\r\n            font-size: 1.2rem;\r\n            font-weight: 600;\r\n            border-radius: 8px;\r\n            text-decoration: none;\r\n            box-shadow: 0 15px 40px rgba(251, 191, 36, 0.3);\r\n            transition: all 0.3s;\r\n            border: none;\r\n            cursor: pointer;\r\n            letter-spacing: 1px;\r\n        }\r\n        .cta:hover {\r\n            transform: translateY(-2px);\r\n            box-shadow: 0 20px 50px rgba(251, 191, 36, 0.4);\r\n        }",
+                                                                             "js":  ""
+                                                                         },
+                                                                "variants":  [
+
+                                                                             ],
+                                                                "dependencies":  [
+
+                                                                                 ],
+                                                                "props":  [
+                                                                              "title",
+                                                                              "subtitle",
+                                                                              "ctaText",
+                                                                              "ctaLink",
+                                                                              "price"
+                                                                          ],
+                                                                "metadata":  {
+                                                                                 "quality":  1,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-04-elitesite\\index.html",
+                                                                                 "tags":  [
+                                                                                              "hero",
+                                                                                              "gradient",
+                                                                                              "responsive"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.7,
+                                                                                 "created":  "2026-02-28T02:51:47Z"
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "timeline-11483d5e",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "timeline",
+                                                                "name":  "Timeline - 1 steps horizontal",
+                                                                "description":  "Timeline component showing process steps",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"timeline-item\"\u003e\r\n                    \u003cdiv class=\"timeline-time\"\u003e09:00",
+                                                                             "css":  ".timeline {\r\n            padding: 6rem 2rem;\r\n            background: #fafafa;\r\n        }\r\n        .container { max-width: 1400px; margin: 0 auto; }\r\n        .section-title {\r\n            text-align: center;\r\n            font-size: 3.5rem;\r\n            font-weight: 300;\r\n            margin-bottom: 0.5rem;\r\n            color: #0f172a;\r\n            letter-spacing: -1px;\r\n        }\r\n        .section-title strong {\r\n            font-weight: 700;\r\n        }\r\n        .section-subtitle {\r\n            text-align: center;\r\n            font-size: 1.2rem;\r\n            color: #64748b;\r\n            margin-bottom: 4.5rem;\r\n            font-family: \u0027Segoe UI\u0027, sans-serif;\r\n            font-weight: 300;\r\n        }\r\n        .timeline-grid {\r\n            display: grid;\r\n            grid-template-columns: repeat(5, 1fr);\r\n            gap: 2rem;\r\n            max-width: 1200px;\r\n            margin: 0 auto;\r\n            position: relative;\r\n        }\r\n        .timeline-grid::before {\r\n            content: \u0027\u0027;\r\n            position: absolute;\r\n            top: 3rem;\r\n            left: 10%;\r\n            right: 10%;\r\n            height: 2px;\r\n            background: linear-gradient(90deg, #fbbf24, #f59e0b);\r\n            z-index: 0;\r\n        }\r\n        .timeline-item {\r\n            text-align: center;\r\n            background: white;\r\n            padding: 2.5rem 1.5rem;\r\n            border-radius: 8px;\r\n            border: 1px solid #e5e7eb;\r\n            z-index: 1;\r\n            position: relative;\r\n            box-shadow: 0 4px 15px rgba(0,0,0,0.05);\r\n        }\r\n        .timeline-time {\r\n            font-size: 2.5rem;\r\n            font-weight: 300;\r\n            color: #f59e0b;\r\n            margin-bottom: 0.75rem;\r\n        }\r\n        .timeline-action {\r\n            font-size: 1rem;\r\n            font-weight: 400;\r\n            color: #1e293b;\r\n            font-family: \u0027Segoe UI\u0027, sans-serif;\r\n        }",
+                                                                             "js":  ""
+                                                                         },
+                                                                "metadata":  {
+                                                                                 "quality":  0.85,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-04-elitesite\\index.html",
+                                                                                 "tags":  [
+                                                                                              "timeline",
+                                                                                              "process",
+                                                                                              "steps",
+                                                                                              "horizontal"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.75,
+                                                                                 "created":  "2026-02-28T02:51:47Z",
+                                                                                 "stepCount":  1
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "hero-ccb7ae01",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "hero",
+                                                                "name":  "Hero Section - Extracted from index.html",
+                                                                "description":  "Professional hero section with gradient background",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"badge\"\u003e100+ LIVE SITES\u003c/div\u003e\r\n        \u003ch1\u003eBekijk Wat We Maakten\u003cbr\u003e\u003cspan\u003eBeslis Dan\u003c/span\u003e\u003c/h1\u003e\r\n        \u003cp\u003eGeen praatjes. Geen beloftes. Gewoon 100+ sites die spreken voor zichzelf. Klik, bekijk, oordeel.\u003c/p\u003e\r\n        \u003cdiv class=\"price-box\"\u003e\r\n            \u003cdiv class=\"price\"\u003e€695\u003c/div\u003e\r\n            \u003cdiv class=\"price-note\"\u003eBewezen kwaliteit • Fixed price\u003c/div\u003e\r\n        \u003c/div\u003e\r\n        \u003ca href=\"#\" class=\"cta\"\u003eNU STARTEN →\u003c/a\u003e",
+                                                                             "css":  "",
+                                                                             "js":  ""
+                                                                         },
+                                                                "variants":  [
+
+                                                                             ],
+                                                                "dependencies":  [
+
+                                                                                 ],
+                                                                "props":  [
+                                                                              "title",
+                                                                              "subtitle",
+                                                                              "ctaText",
+                                                                              "ctaLink",
+                                                                              "price"
+                                                                          ],
+                                                                "metadata":  {
+                                                                                 "quality":  1,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-05-provenworks\\index.html",
+                                                                                 "tags":  [
+                                                                                              "hero",
+                                                                                              "gradient",
+                                                                                              "responsive"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.7,
+                                                                                 "created":  "2026-02-28T02:51:48Z"
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "timeline-386a2826",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "timeline",
+                                                                "name":  "Timeline - 1 steps horizontal",
+                                                                "description":  "Timeline component showing process steps",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"timeline-item\"\u003e\r\n                \u003cdiv class=\"timeline-time\"\u003e10:00",
+                                                                             "css":  "",
+                                                                             "js":  ""
+                                                                         },
+                                                                "metadata":  {
+                                                                                 "quality":  0.85,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-05-provenworks\\index.html",
+                                                                                 "tags":  [
+                                                                                              "timeline",
+                                                                                              "process",
+                                                                                              "steps",
+                                                                                              "horizontal"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.75,
+                                                                                 "created":  "2026-02-28T02:51:48Z",
+                                                                                 "stepCount":  1
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "hero-82f51107",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "hero",
+                                                                "name":  "Hero Section - Extracted from index.html",
+                                                                "description":  "Professional hero section with gradient background",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"badge\"\u003e100% GELD TERUG\u003c/div\u003e\r\n        \u003ch1\u003eNiet Goed?\u003cbr\u003e\u003cspan\u003eGeld Terug\u003c/span\u003e\u003c/h1\u003e\r\n        \u003cp\u003eWe zijn zo zeker van ons werk dat we 100% geld terug garanderen. Geen gedoe, geen vragen. Niet tevreden = volledig terugbetaald.\u003c/p\u003e\r\n        \u003cdiv class=\"price-box\"\u003e\r\n            \u003cdiv class=\"price\"\u003e€745\u003c/div\u003e\r\n            \u003cdiv class=\"price-note\"\u003e100% geld-terug-garantie • Geen risico\u003c/div\u003e\r\n        \u003c/div\u003e\r\n        \u003ca href=\"#\" class=\"cta\"\u003eNU STARTEN →\u003c/a\u003e",
+                                                                             "css":  "",
+                                                                             "js":  ""
+                                                                         },
+                                                                "variants":  [
+
+                                                                             ],
+                                                                "dependencies":  [
+
+                                                                                 ],
+                                                                "props":  [
+                                                                              "title",
+                                                                              "subtitle",
+                                                                              "ctaText",
+                                                                              "ctaLink",
+                                                                              "price"
+                                                                          ],
+                                                                "metadata":  {
+                                                                                 "quality":  1,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-06-zerorisk\\index.html",
+                                                                                 "tags":  [
+                                                                                              "hero",
+                                                                                              "gradient",
+                                                                                              "responsive"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.7,
+                                                                                 "created":  "2026-02-28T02:51:49Z"
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "timeline-f829da7e",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "timeline",
+                                                                "name":  "Timeline - 1 steps horizontal",
+                                                                "description":  "Timeline component showing process steps",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"timeline-item\"\u003e\r\n                \u003cdiv class=\"timeline-time\"\u003e10:00",
+                                                                             "css":  "",
+                                                                             "js":  ""
+                                                                         },
+                                                                "metadata":  {
+                                                                                 "quality":  0.85,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-06-zerorisk\\index.html",
+                                                                                 "tags":  [
+                                                                                              "timeline",
+                                                                                              "process",
+                                                                                              "steps",
+                                                                                              "horizontal"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.75,
+                                                                                 "created":  "2026-02-28T02:51:49Z",
+                                                                                 "stepCount":  1
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "hero-d48a6b9b",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "hero",
+                                                                "name":  "Hero Section - Extracted from index.html",
+                                                                "description":  "Professional hero section with gradient background",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"badge\"\u003e100% TRANSPARANT\u003c/div\u003e\r\n        \u003ch1\u003eZie Elke Stap\u003cbr\u003e\u003cspan\u003eGeen Verrassingen\u003c/span\u003e\u003c/h1\u003e\r\n        \u003cp\u003eReal-time updates via WhatsApp. Zie je site groeien tijdens de dag. Elke beslissing leg je uit. Complete transparantie.\u003c/p\u003e\r\n        \u003cdiv class=\"price-box\"\u003e\r\n            \u003cdiv class=\"price\"\u003e€695\u003c/div\u003e\r\n            \u003cdiv class=\"price-note\"\u003eReal-time tracking • Volledige transparantie\u003c/div\u003e\r\n        \u003c/div\u003e\r\n        \u003ca href=\"#\" class=\"cta\"\u003eNU STARTEN →\u003c/a\u003e",
+                                                                             "css":  "",
+                                                                             "js":  ""
+                                                                         },
+                                                                "variants":  [
+
+                                                                             ],
+                                                                "dependencies":  [
+
+                                                                                 ],
+                                                                "props":  [
+                                                                              "title",
+                                                                              "subtitle",
+                                                                              "ctaText",
+                                                                              "ctaLink",
+                                                                              "price"
+                                                                          ],
+                                                                "metadata":  {
+                                                                                 "quality":  1,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-07-clearpath\\index.html",
+                                                                                 "tags":  [
+                                                                                              "hero",
+                                                                                              "gradient",
+                                                                                              "responsive"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.7,
+                                                                                 "created":  "2026-02-28T02:51:50Z"
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "timeline-e348c942",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "timeline",
+                                                                "name":  "Timeline - 1 steps horizontal",
+                                                                "description":  "Timeline component showing process steps",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"timeline-item\"\u003e\r\n                \u003cdiv class=\"timeline-time\"\u003e10:00",
+                                                                             "css":  "",
+                                                                             "js":  ""
+                                                                         },
+                                                                "metadata":  {
+                                                                                 "quality":  0.85,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-07-clearpath\\index.html",
+                                                                                 "tags":  [
+                                                                                              "timeline",
+                                                                                              "process",
+                                                                                              "steps",
+                                                                                              "horizontal"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.75,
+                                                                                 "created":  "2026-02-28T02:51:50Z",
+                                                                                 "stepCount":  1
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "hero-5f2e1b3b",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "hero",
+                                                                "name":  "Hero Section - Extracted from index.html",
+                                                                "description":  "Professional hero section with gradient background",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"badge\"\u003eVOOR/NA GARANTIE\u003c/div\u003e\r\n        \u003ch1\u003eVan Niks naar \u003cspan\u003eWOW\u003c/span\u003e\u003cbr\u003ein 24 Uur\u003c/h1\u003e\r\n        \u003cp\u003eBegin met niets. Eindig met alles. Zie de transformatie gebeuren. Geen website → Professionele online presence in één dag.\u003c/p\u003e\r\n        \u003cdiv class=\"price-box\"\u003e\r\n            \u003cdiv class=\"price\"\u003e€845\u003c/div\u003e\r\n            \u003cdiv class=\"price-note\"\u003eComplete transformatie • Voor/na bewijs\u003c/div\u003e\r\n        \u003c/div\u003e\r\n        \u003ca href=\"#\" class=\"cta\"\u003eNU STARTEN →\u003c/a\u003e",
+                                                                             "css":  "",
+                                                                             "js":  ""
+                                                                         },
+                                                                "variants":  [
+
+                                                                             ],
+                                                                "dependencies":  [
+
+                                                                                 ],
+                                                                "props":  [
+                                                                              "title",
+                                                                              "subtitle",
+                                                                              "ctaText",
+                                                                              "ctaLink",
+                                                                              "price"
+                                                                          ],
+                                                                "metadata":  {
+                                                                                 "quality":  1,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-08-transform\\index.html",
+                                                                                 "tags":  [
+                                                                                              "hero",
+                                                                                              "gradient",
+                                                                                              "responsive"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.7,
+                                                                                 "created":  "2026-02-28T02:51:51Z"
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "timeline-08324d1e",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "timeline",
+                                                                "name":  "Timeline - 1 steps horizontal",
+                                                                "description":  "Timeline component showing process steps",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"timeline-item\"\u003e\r\n                \u003cdiv class=\"timeline-time\"\u003e10:00",
+                                                                             "css":  "",
+                                                                             "js":  ""
+                                                                         },
+                                                                "metadata":  {
+                                                                                 "quality":  0.85,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-08-transform\\index.html",
+                                                                                 "tags":  [
+                                                                                              "timeline",
+                                                                                              "process",
+                                                                                              "steps",
+                                                                                              "horizontal"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.75,
+                                                                                 "created":  "2026-02-28T02:51:51Z",
+                                                                                 "stepCount":  1
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "hero-6f137322",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "hero",
+                                                                "name":  "Hero Section - Extracted from index.html",
+                                                                "description":  "Professional hero section with gradient background",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"badge\"\u003e8/8 BEZET - WACHTLIJST\u003c/div\u003e\r\n        \u003ch1\u003eSlechts \u003cspan\u003e8 Plekken\u003c/span\u003e\u003cbr\u003eDeze Maand\u003c/h1\u003e\r\n        \u003cp\u003eKwaliteit boven kwantiteit. We nemen max 8 klanten per maand. Volledig volgeboekt? Join de wachtlijst voor volgende maand.\u003c/p\u003e\r\n        \u003cdiv class=\"price-box\"\u003e\r\n            \u003cdiv class=\"price\"\u003e€995\u003c/div\u003e\r\n            \u003cdiv class=\"price-note\"\u003eLimited availability • Wachtlijst actief\u003c/div\u003e\r\n        \u003c/div\u003e\r\n        \u003ca href=\"#\" class=\"cta\"\u003eNU STARTEN →\u003c/a\u003e",
+                                                                             "css":  "",
+                                                                             "js":  ""
+                                                                         },
+                                                                "variants":  [
+
+                                                                             ],
+                                                                "dependencies":  [
+
+                                                                                 ],
+                                                                "props":  [
+                                                                              "title",
+                                                                              "subtitle",
+                                                                              "ctaText",
+                                                                              "ctaLink",
+                                                                              "price"
+                                                                          ],
+                                                                "metadata":  {
+                                                                                 "quality":  1,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-09-selectfew\\index.html",
+                                                                                 "tags":  [
+                                                                                              "hero",
+                                                                                              "gradient",
+                                                                                              "responsive"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.7,
+                                                                                 "created":  "2026-02-28T02:51:52Z"
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "timeline-1d124ec0",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "timeline",
+                                                                "name":  "Timeline - 1 steps horizontal",
+                                                                "description":  "Timeline component showing process steps",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"timeline-item\"\u003e\r\n                \u003cdiv class=\"timeline-time\"\u003e10:00",
+                                                                             "css":  "",
+                                                                             "js":  ""
+                                                                         },
+                                                                "metadata":  {
+                                                                                 "quality":  0.85,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-09-selectfew\\index.html",
+                                                                                 "tags":  [
+                                                                                              "timeline",
+                                                                                              "process",
+                                                                                              "steps",
+                                                                                              "horizontal"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.75,
+                                                                                 "created":  "2026-02-28T02:51:52Z",
+                                                                                 "stepCount":  1
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "hero-8f6ddf4a",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "hero",
+                                                                "name":  "Hero Section - Extracted from index.html",
+                                                                "description":  "Professional hero section with gradient background",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"badge\"\u003e500+ LEDEN\u003c/div\u003e\r\n        \u003ch1\u003eJoin \u003cspan\u003e500+\u003c/span\u003e Ondernemers\u003cbr\u003eOnline\u003c/h1\u003e\r\n        \u003cp\u003eNiet alleen een website. Een community. 500+ ondernemers gingen je voor. Nu is het jouw beurt. Welcome to the movement.\u003c/p\u003e\r\n        \u003cdiv class=\"price-box\"\u003e\r\n            \u003cdiv class=\"price\"\u003e€695\u003c/div\u003e\r\n            \u003cdiv class=\"price-note\"\u003eCommunity access • Lifetime support\u003c/div\u003e\r\n        \u003c/div\u003e\r\n        \u003ca href=\"#\" class=\"cta\"\u003eNU STARTEN →\u003c/a\u003e",
+                                                                             "css":  "",
+                                                                             "js":  ""
+                                                                         },
+                                                                "variants":  [
+
+                                                                             ],
+                                                                "dependencies":  [
+
+                                                                                 ],
+                                                                "props":  [
+                                                                              "title",
+                                                                              "subtitle",
+                                                                              "ctaText",
+                                                                              "ctaLink",
+                                                                              "price"
+                                                                          ],
+                                                                "metadata":  {
+                                                                                 "quality":  1,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-10-movement\\index.html",
+                                                                                 "tags":  [
+                                                                                              "hero",
+                                                                                              "gradient",
+                                                                                              "responsive"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.7,
+                                                                                 "created":  "2026-02-28T02:51:53Z"
+                                                                             }
+                                                            },
+                                                            {
+                                                                "id":  "timeline-f914c5ee",
+                                                                "type":  "ui-component",
+                                                                "stack":  "html-css",
+                                                                "category":  "timeline",
+                                                                "name":  "Timeline - 1 steps horizontal",
+                                                                "description":  "Timeline component showing process steps",
+                                                                "code":  {
+                                                                             "html":  "\u003cdiv class=\"timeline-item\"\u003e\r\n                \u003cdiv class=\"timeline-time\"\u003e10:00",
+                                                                             "css":  "",
+                                                                             "js":  ""
+                                                                         },
+                                                                "metadata":  {
+                                                                                 "quality":  0.85,
+                                                                                 "usageCount":  1,
+                                                                                 "successRate":  1,
+                                                                                 "lastUsed":  "2026-02-28",
+                                                                                 "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-10-movement\\index.html",
+                                                                                 "tags":  [
+                                                                                              "timeline",
+                                                                                              "process",
+                                                                                              "steps",
+                                                                                              "horizontal"
+                                                                                          ],
+                                                                                 "responsive":  true,
+                                                                                 "accessibility":  0.75,
+                                                                                 "created":  "2026-02-28T02:51:53Z",
+                                                                                 "stepCount":  1
+                                                                             }
+                                                            }
+                                                        ],
+                                           "react-tailwind":  [
+
+                                                              ]
+                                       },
+                     "backend":  {
+                                     "csharp":  [
+
+                                                ]
+                                 },
+                     "design-principles":  [
+                                               {
+                                                   "id":  "palette-be18d77e",
+                                                   "type":  "design-principle",
+                                                   "category":  "color-palette",
+                                                   "name":  "Color Palette - Extracted from index.html",
+                                                   "description":  "Color scheme used in this design",
+                                                   "colors":  {
+                                                                  "primary":  [
+
+                                                                              ],
+                                                                  "accent":  [
+
+                                                                             ],
+                                                                  "neutral":  [
+
+                                                                              ],
+                                                                  "gradients":  [
+                                                                                    "linear-gradient(135deg, rgba(15, 23, 42, 0.97)",
+                                                                                    "linear-gradient(135deg, #f59e0b, #d97706)",
+                                                                                    "linear-gradient(135deg, #d97706, #b45309)",
+                                                                                    "linear-gradient(90deg, #f59e0b, #d97706)",
+                                                                                    "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+                                                                                    "linear-gradient(135deg, #0f172a, #1e293b)"
+                                                                                ],
+                                                                  "all":  [
+                                                                              "#1a1a1a",
+                                                                              "#0f172a",
+                                                                              "#f59e0b",
+                                                                              "#1e293b",
+                                                                              "#cbd5e1",
+                                                                              "rgba(245, 158, 11, 0.4)",
+                                                                              "#94a3b8",
+                                                                              "rgba(15, 23, 42, 0.97)",
+                                                                              "rgba(30, 41, 59, 0.95)",
+                                                                              "#d97706",
+                                                                              "rgba(245, 158, 11, 0.5)",
+                                                                              "#b45309",
+                                                                              "rgba(245, 158, 11, 0.6)",
+                                                                              "#fbbf24",
+                                                                              "#334155",
+                                                                              "#f9fafb",
+                                                                              "#64748b",
+                                                                              "rgba(0, 0, 0, 0.1)",
+                                                                              "rgba(245, 158, 11, 0.3)",
+                                                                              "#475569",
+                                                                              "rgba(245, 158, 11, 0.1)",
+                                                                              "rgba(0,0,0,0.5)",
+                                                                              "rgba(0,0,0,0.08)",
+                                                                              "rgba(0,0,0,0.15)",
+                                                                              "#555",
+                                                                              "#0a0a0a",
+                                                                              "rgba(0, 0, 0, 0.85)",
+                                                                              "#ffffff",
+                                                                              "rgba(0,0,0,0.3)",
+                                                                              "#e5e7eb",
+                                                                              "#f1f5f9",
+                                                                              "#f8fafc",
+                                                                              "#059669",
+                                                                              "#fffbeb",
+                                                                              "#fef3c7",
+                                                                              "#0070ba",
+                                                                              "#005ea6"
+                                                                          ]
+                                                              },
+                                                   "metadata":  {
+                                                                    "quality":  0.8,
+                                                                    "usageCount":  1,
+                                                                    "lastUsed":  "2026-02-28",
+                                                                    "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-01-urgencymaster\\index.html",
+                                                                    "tags":  [
+                                                                                 "colors",
+                                                                                 "palette",
+                                                                                 "design"
+                                                                             ],
+                                                                    "created":  "2026-02-28T02:22:37Z"
+                                                                }
+                                               },
+                                               {
+                                                   "id":  "palette-a44b8e94",
+                                                   "type":  "design-principle",
+                                                   "category":  "color-palette",
+                                                   "name":  "Color Palette - Extracted from index.html",
+                                                   "description":  "Color scheme used in this design",
+                                                   "colors":  {
+                                                                  "primary":  [
+
+                                                                              ],
+                                                                  "accent":  [
+
+                                                                             ],
+                                                                  "neutral":  [
+
+                                                                              ],
+                                                                  "gradients":  [
+                                                                                    "linear-gradient(135deg, rgba(15, 23, 42, 0.97)",
+                                                                                    "linear-gradient(135deg, #f59e0b, #d97706)",
+                                                                                    "linear-gradient(135deg, #d97706, #b45309)",
+                                                                                    "linear-gradient(90deg, #f59e0b, #d97706)",
+                                                                                    "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+                                                                                    "linear-gradient(135deg, #0f172a, #1e293b)"
+                                                                                ],
+                                                                  "all":  [
+                                                                              "#1a1a1a",
+                                                                              "#0f172a",
+                                                                              "#f59e0b",
+                                                                              "#1e293b",
+                                                                              "#cbd5e1",
+                                                                              "rgba(245, 158, 11, 0.4)",
+                                                                              "#94a3b8",
+                                                                              "rgba(15, 23, 42, 0.97)",
+                                                                              "rgba(30, 41, 59, 0.95)",
+                                                                              "#d97706",
+                                                                              "rgba(245, 158, 11, 0.5)",
+                                                                              "#b45309",
+                                                                              "rgba(245, 158, 11, 0.6)",
+                                                                              "#fbbf24",
+                                                                              "#334155",
+                                                                              "#f9fafb",
+                                                                              "#64748b",
+                                                                              "rgba(0, 0, 0, 0.1)",
+                                                                              "rgba(245, 158, 11, 0.3)",
+                                                                              "#475569",
+                                                                              "rgba(245, 158, 11, 0.1)",
+                                                                              "rgba(0,0,0,0.5)",
+                                                                              "rgba(0,0,0,0.08)",
+                                                                              "rgba(0,0,0,0.15)",
+                                                                              "#555",
+                                                                              "#0a0a0a",
+                                                                              "rgba(0, 0, 0, 0.85)",
+                                                                              "#ffffff",
+                                                                              "rgba(0,0,0,0.3)",
+                                                                              "#e5e7eb",
+                                                                              "#f1f5f9",
+                                                                              "#f8fafc",
+                                                                              "#059669",
+                                                                              "#fffbeb",
+                                                                              "#fef3c7",
+                                                                              "#0070ba",
+                                                                              "#005ea6"
+                                                                          ]
+                                                              },
+                                                   "metadata":  {
+                                                                    "quality":  0.8,
+                                                                    "usageCount":  1,
+                                                                    "lastUsed":  "2026-02-28",
+                                                                    "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-01-urgencymaster\\index.html",
+                                                                    "tags":  [
+                                                                                 "colors",
+                                                                                 "palette",
+                                                                                 "design"
+                                                                             ],
+                                                                    "created":  "2026-02-28T02:51:45Z"
+                                                                }
+                                               },
+                                               {
+                                                   "id":  "palette-fc408fcd",
+                                                   "type":  "design-principle",
+                                                   "category":  "color-palette",
+                                                   "name":  "Color Palette - Extracted from index.html",
+                                                   "description":  "Color scheme used in this design",
+                                                   "colors":  {
+                                                                  "primary":  [
+
+                                                                              ],
+                                                                  "accent":  [
+
+                                                                             ],
+                                                                  "neutral":  [
+
+                                                                              ],
+                                                                  "gradients":  [
+                                                                                    "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+                                                                                    "linear-gradient(135deg, #f59e0b, #d97706)",
+                                                                                    "linear-gradient(135deg, #f59e0b, #fbbf24)",
+                                                                                    "linear-gradient(90deg, #f59e0b, #d97706)",
+                                                                                    "linear-gradient(135deg, #0f172a, #1e293b)"
+                                                                                ],
+                                                                  "all":  [
+                                                                              "#1F2937",
+                                                                              "#0f172a",
+                                                                              "#1e293b",
+                                                                              "rgba(251,191,36,0.1)",
+                                                                              "#f59e0b",
+                                                                              "#d97706",
+                                                                              "rgba(245, 158, 11, 0.3)",
+                                                                              "#fbbf24",
+                                                                              "#cbd5e1",
+                                                                              "rgba(255,255,255,0.1)",
+                                                                              "rgba(251, 191, 36, 0.3)",
+                                                                              "rgba(245, 158, 11, 0.4)",
+                                                                              "rgba(245, 158, 11, 0.5)",
+                                                                              "#64748b",
+                                                                              "#f8fafc",
+                                                                              "rgba(0,0,0,0.05)",
+                                                                              "rgba(0,0,0,0.8)",
+                                                                              "rgba(0,0,0,0.3)",
+                                                                              "#f1f5f9",
+                                                                              "#059669",
+                                                                              "#e2e8f0",
+                                                                              "#fffbeb"
+                                                                          ]
+                                                              },
+                                                   "metadata":  {
+                                                                    "quality":  0.8,
+                                                                    "usageCount":  1,
+                                                                    "lastUsed":  "2026-02-28",
+                                                                    "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-03-speedmaster\\index.html",
+                                                                    "tags":  [
+                                                                                 "colors",
+                                                                                 "palette",
+                                                                                 "design"
+                                                                             ],
+                                                                    "created":  "2026-02-28T02:51:46Z"
+                                                                }
+                                               },
+                                               {
+                                                   "id":  "palette-3ea088c8",
+                                                   "type":  "design-principle",
+                                                   "category":  "color-palette",
+                                                   "name":  "Color Palette - Extracted from index.html",
+                                                   "description":  "Color scheme used in this design",
+                                                   "colors":  {
+                                                                  "primary":  [
+
+                                                                              ],
+                                                                  "accent":  [
+
+                                                                             ],
+                                                                  "neutral":  [
+
+                                                                              ],
+                                                                  "gradients":  [
+                                                                                    "linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)",
+                                                                                    "linear-gradient(90deg, transparent, #fbbf24, transparent)",
+                                                                                    "linear-gradient(135deg, #fbbf24, #f59e0b)",
+                                                                                    "linear-gradient(90deg, #fbbf24, #f59e0b)",
+                                                                                    "linear-gradient(135deg, #0f172a, #1e293b)"
+                                                                                ],
+                                                                  "all":  [
+                                                                              "#1F2937",
+                                                                              "#0f172a",
+                                                                              "#1e293b",
+                                                                              "#fbbf24",
+                                                                              "#f59e0b",
+                                                                              "#cbd5e1",
+                                                                              "#94a3b8",
+                                                                              "rgba(251, 191, 36, 0.3)",
+                                                                              "rgba(251, 191, 36, 0.4)",
+                                                                              "#fafafa",
+                                                                              "#64748b",
+                                                                              "#e5e7eb",
+                                                                              "rgba(0,0,0,0.05)",
+                                                                              "#475569",
+                                                                              "rgba(255,255,255,0.03)"
+                                                                          ]
+                                                              },
+                                                   "metadata":  {
+                                                                    "quality":  0.8,
+                                                                    "usageCount":  1,
+                                                                    "lastUsed":  "2026-02-28",
+                                                                    "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-04-elitesite\\index.html",
+                                                                    "tags":  [
+                                                                                 "colors",
+                                                                                 "palette",
+                                                                                 "design"
+                                                                             ],
+                                                                    "created":  "2026-02-28T02:51:47Z"
+                                                                }
+                                               },
+                                               {
+                                                   "id":  "palette-6545dd17",
+                                                   "type":  "design-principle",
+                                                   "category":  "color-palette",
+                                                   "name":  "Color Palette - Extracted from index.html",
+                                                   "description":  "Color scheme used in this design",
+                                                   "colors":  {
+                                                                  "primary":  [
+
+                                                                              ],
+                                                                  "accent":  [
+
+                                                                             ],
+                                                                  "neutral":  [
+
+                                                                              ],
+                                                                  "gradients":  [
+                                                                                    "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+                                                                                    "linear-gradient(135deg, #f59e0b, #d97706)",
+                                                                                    "linear-gradient(135deg, #f59e0b, #fbbf24)",
+                                                                                    "linear-gradient(90deg, #f59e0b, #d97706)"
+                                                                                ],
+                                                                  "all":  [
+                                                                              "#1F2937",
+                                                                              "#0f172a",
+                                                                              "#1e293b",
+                                                                              "#f59e0b",
+                                                                              "#d97706",
+                                                                              "#fbbf24",
+                                                                              "#cbd5e1",
+                                                                              "rgba(255,255,255,0.1)",
+                                                                              "rgba(245, 158, 11, 0.4)",
+                                                                              "#64748b"
+                                                                          ]
+                                                              },
+                                                   "metadata":  {
+                                                                    "quality":  0.8,
+                                                                    "usageCount":  1,
+                                                                    "lastUsed":  "2026-02-28",
+                                                                    "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-05-provenworks\\index.html",
+                                                                    "tags":  [
+                                                                                 "colors",
+                                                                                 "palette",
+                                                                                 "design"
+                                                                             ],
+                                                                    "created":  "2026-02-28T02:51:48Z"
+                                                                }
+                                               },
+                                               {
+                                                   "id":  "palette-929588bf",
+                                                   "type":  "design-principle",
+                                                   "category":  "color-palette",
+                                                   "name":  "Color Palette - Extracted from index.html",
+                                                   "description":  "Color scheme used in this design",
+                                                   "colors":  {
+                                                                  "primary":  [
+
+                                                                              ],
+                                                                  "accent":  [
+
+                                                                             ],
+                                                                  "neutral":  [
+
+                                                                              ],
+                                                                  "gradients":  [
+                                                                                    "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+                                                                                    "linear-gradient(135deg, #f59e0b, #d97706)",
+                                                                                    "linear-gradient(135deg, #f59e0b, #fbbf24)",
+                                                                                    "linear-gradient(90deg, #f59e0b, #d97706)"
+                                                                                ],
+                                                                  "all":  [
+                                                                              "#1F2937",
+                                                                              "#0f172a",
+                                                                              "#1e293b",
+                                                                              "#f59e0b",
+                                                                              "#d97706",
+                                                                              "#fbbf24",
+                                                                              "#cbd5e1",
+                                                                              "rgba(255,255,255,0.1)",
+                                                                              "rgba(245, 158, 11, 0.4)",
+                                                                              "#64748b"
+                                                                          ]
+                                                              },
+                                                   "metadata":  {
+                                                                    "quality":  0.8,
+                                                                    "usageCount":  1,
+                                                                    "lastUsed":  "2026-02-28",
+                                                                    "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-06-zerorisk\\index.html",
+                                                                    "tags":  [
+                                                                                 "colors",
+                                                                                 "palette",
+                                                                                 "design"
+                                                                             ],
+                                                                    "created":  "2026-02-28T02:51:49Z"
+                                                                }
+                                               },
+                                               {
+                                                   "id":  "palette-2a4f3a6c",
+                                                   "type":  "design-principle",
+                                                   "category":  "color-palette",
+                                                   "name":  "Color Palette - Extracted from index.html",
+                                                   "description":  "Color scheme used in this design",
+                                                   "colors":  {
+                                                                  "primary":  [
+
+                                                                              ],
+                                                                  "accent":  [
+
+                                                                             ],
+                                                                  "neutral":  [
+
+                                                                              ],
+                                                                  "gradients":  [
+                                                                                    "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+                                                                                    "linear-gradient(135deg, #f59e0b, #d97706)",
+                                                                                    "linear-gradient(135deg, #f59e0b, #fbbf24)",
+                                                                                    "linear-gradient(90deg, #f59e0b, #d97706)"
+                                                                                ],
+                                                                  "all":  [
+                                                                              "#1F2937",
+                                                                              "#0f172a",
+                                                                              "#1e293b",
+                                                                              "#f59e0b",
+                                                                              "#d97706",
+                                                                              "#fbbf24",
+                                                                              "#cbd5e1",
+                                                                              "rgba(255,255,255,0.1)",
+                                                                              "rgba(245, 158, 11, 0.4)",
+                                                                              "#64748b"
+                                                                          ]
+                                                              },
+                                                   "metadata":  {
+                                                                    "quality":  0.8,
+                                                                    "usageCount":  1,
+                                                                    "lastUsed":  "2026-02-28",
+                                                                    "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-07-clearpath\\index.html",
+                                                                    "tags":  [
+                                                                                 "colors",
+                                                                                 "palette",
+                                                                                 "design"
+                                                                             ],
+                                                                    "created":  "2026-02-28T02:51:50Z"
+                                                                }
+                                               },
+                                               {
+                                                   "id":  "palette-c39d242a",
+                                                   "type":  "design-principle",
+                                                   "category":  "color-palette",
+                                                   "name":  "Color Palette - Extracted from index.html",
+                                                   "description":  "Color scheme used in this design",
+                                                   "colors":  {
+                                                                  "primary":  [
+
+                                                                              ],
+                                                                  "accent":  [
+
+                                                                             ],
+                                                                  "neutral":  [
+
+                                                                              ],
+                                                                  "gradients":  [
+                                                                                    "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+                                                                                    "linear-gradient(135deg, #f59e0b, #d97706)",
+                                                                                    "linear-gradient(135deg, #f59e0b, #fbbf24)",
+                                                                                    "linear-gradient(90deg, #f59e0b, #d97706)"
+                                                                                ],
+                                                                  "all":  [
+                                                                              "#1F2937",
+                                                                              "#0f172a",
+                                                                              "#1e293b",
+                                                                              "#f59e0b",
+                                                                              "#d97706",
+                                                                              "#fbbf24",
+                                                                              "#cbd5e1",
+                                                                              "rgba(255,255,255,0.1)",
+                                                                              "rgba(245, 158, 11, 0.4)",
+                                                                              "#64748b"
+                                                                          ]
+                                                              },
+                                                   "metadata":  {
+                                                                    "quality":  0.8,
+                                                                    "usageCount":  1,
+                                                                    "lastUsed":  "2026-02-28",
+                                                                    "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-08-transform\\index.html",
+                                                                    "tags":  [
+                                                                                 "colors",
+                                                                                 "palette",
+                                                                                 "design"
+                                                                             ],
+                                                                    "created":  "2026-02-28T02:51:51Z"
+                                                                }
+                                               },
+                                               {
+                                                   "id":  "palette-a82add3d",
+                                                   "type":  "design-principle",
+                                                   "category":  "color-palette",
+                                                   "name":  "Color Palette - Extracted from index.html",
+                                                   "description":  "Color scheme used in this design",
+                                                   "colors":  {
+                                                                  "primary":  [
+
+                                                                              ],
+                                                                  "accent":  [
+
+                                                                             ],
+                                                                  "neutral":  [
+
+                                                                              ],
+                                                                  "gradients":  [
+                                                                                    "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+                                                                                    "linear-gradient(135deg, #f59e0b, #d97706)",
+                                                                                    "linear-gradient(135deg, #f59e0b, #fbbf24)",
+                                                                                    "linear-gradient(90deg, #f59e0b, #d97706)"
+                                                                                ],
+                                                                  "all":  [
+                                                                              "#1F2937",
+                                                                              "#0f172a",
+                                                                              "#1e293b",
+                                                                              "#f59e0b",
+                                                                              "#d97706",
+                                                                              "#fbbf24",
+                                                                              "#cbd5e1",
+                                                                              "rgba(255,255,255,0.1)",
+                                                                              "rgba(245, 158, 11, 0.4)",
+                                                                              "#64748b"
+                                                                          ]
+                                                              },
+                                                   "metadata":  {
+                                                                    "quality":  0.8,
+                                                                    "usageCount":  1,
+                                                                    "lastUsed":  "2026-02-28",
+                                                                    "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-09-selectfew\\index.html",
+                                                                    "tags":  [
+                                                                                 "colors",
+                                                                                 "palette",
+                                                                                 "design"
+                                                                             ],
+                                                                    "created":  "2026-02-28T02:51:52Z"
+                                                                }
+                                               },
+                                               {
+                                                   "id":  "palette-71b633a8",
+                                                   "type":  "design-principle",
+                                                   "category":  "color-palette",
+                                                   "name":  "Color Palette - Extracted from index.html",
+                                                   "description":  "Color scheme used in this design",
+                                                   "colors":  {
+                                                                  "primary":  [
+
+                                                                              ],
+                                                                  "accent":  [
+
+                                                                             ],
+                                                                  "neutral":  [
+
+                                                                              ],
+                                                                  "gradients":  [
+                                                                                    "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+                                                                                    "linear-gradient(135deg, #f59e0b, #d97706)",
+                                                                                    "linear-gradient(135deg, #f59e0b, #fbbf24)",
+                                                                                    "linear-gradient(90deg, #f59e0b, #d97706)"
+                                                                                ],
+                                                                  "all":  [
+                                                                              "#1F2937",
+                                                                              "#0f172a",
+                                                                              "#1e293b",
+                                                                              "#f59e0b",
+                                                                              "#d97706",
+                                                                              "#fbbf24",
+                                                                              "#cbd5e1",
+                                                                              "rgba(255,255,255,0.1)",
+                                                                              "rgba(245, 158, 11, 0.4)",
+                                                                              "#64748b"
+                                                                          ]
+                                                              },
+                                                   "metadata":  {
+                                                                    "quality":  0.8,
+                                                                    "usageCount":  1,
+                                                                    "lastUsed":  "2026-02-28",
+                                                                    "createdFrom":  "E:\\projects\\ui-learning\\website-in-een-dag-v5\\site-10-movement\\index.html",
+                                                                    "tags":  [
+                                                                                 "colors",
+                                                                                 "palette",
+                                                                                 "design"
+                                                                             ],
+                                                                    "created":  "2026-02-28T02:51:53Z"
+                                                                }
+                                               }
+                                           ]
+                 },
+    "metadata":  {
+                     "totalPatterns":  34,
+                     "qualityThreshold":  0.7,
+                     "pruneDaysInactive":  90,
+                     "stats":  {
+                                   "patternsUsedToday":  0,
+                                   "newPatternsThisWeek":  61,
+                                   "averageQuality":  0.0,
+                                   "mostUsedPattern":  null,
+                                   "totalScaffolds":  0
+                               }
+                 }
+}

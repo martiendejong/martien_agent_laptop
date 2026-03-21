@@ -1,9 +1,10 @@
 ---
 name: clickup-reviewer
-description: Review ClickUp tasks in 'review' status by analyzing linked PRs and providing code review
+description: Review ClickUp tasks in 'review' status by analyzing linked PRs and providing code review. Works with ANY ClickUp board - internal projects, client projects, or specific boards by list ID.
 tags: [clickup, code-review, pr-review, quality-assurance]
-version: 1.0.0
+version: 2.0.0
 created: 2026-02-07
+updated: 2026-02-28
 ---
 
 # ClickUp Reviewer Skill
@@ -11,19 +12,171 @@ created: 2026-02-07
 ## Purpose
 
 Automatically review ClickUp tasks in "review" status by:
-1. Finding tasks in review status
+1. Finding tasks in review status across all configured boards
 2. Locating linked Pull Requests
 3. Analyzing code changes
 4. Providing comprehensive code review
 5. Posting review as ClickUp comment
+6. Moving tasks through workflow based on review outcome
 
-## Usage
+## 🚨 CRITICAL: Automated vs Manual Review Modes
+
+**THIS SKILL = AUTOMATED MODE**
+- Invoked by: "run automated reviewer", "run clickup reviewer skill"
+- Auto-merge allowed: YES (after successful review)
+- User opted in: YES (by invoking this skill)
+- Workflow: Review → Post comments → Merge → Move to testing
+
+**MANUAL REVIEW MODE (User command "ga reviewen")**
+- Invoked by: "ga reviewen", "review de PRs", "check deze PRs"
+- Auto-merge allowed: NO (user retains merge authority)
+- User opted in: NO (user asks for review only, not automation)
+- Workflow: Review → Post comments → **STOP** → Wait for user to say "merge"
+
+**NEVER confuse these modes:**
+- If user says "ga reviewen" → DO NOT auto-merge, DO NOT invoke this skill
+- If user invokes this skill → Auto-merge is permitted after review
+- Default assumption: MANUAL mode unless skill explicitly invoked
+
+**Reference:** C:\scripts\_machine\PR_REVIEW_PROTOCOL.md (complete workflow)
+**Zero Tolerance:** C:\scripts\ZERO_TOLERANCE_RULES.md Rule 3J
+
+## ⚠️ CRITICAL: ClickUp Workflow (Swimlanes)
+
+**Review Agent's Role in Workflow:**
 
 ```
-User: "run the clickup reviewer"
-User: "review clickup tasks"
-User: "check tasks in review"
+┌─────────┐
+│ REVIEW  │ ← Review agent operates here
+└────┬────┘
+     │
+     ├─────────────────────┐
+     │                     │
+     │ APPROVED            │ CHANGES REQUESTED
+     ▼                     ▼
+┌─────────┐           ┌─────────┐
+│ TESTING │           │  TODO   │
+└─────────┘           └─────────┘
+     │                  (rework)
+     │ PR MERGED
+     │ to develop
+     │
+     ▼
+   (User validates)
 ```
+
+### Status Transition Rules for Reviewer
+
+**REVIEW → TESTING (Approval Path)**
+- When: PR approved AND merged to develop
+- Required Actions:
+  1. ✅ Check merge conflicts (must be CLEAN)
+  2. ✅ Build & test in worktree (all pass)
+  3. ✅ Code quality acceptable
+  4. ✅ Post approval comment
+  5. ✅ Merge PR to develop
+  6. ✅ Move task to TESTING (ONLY after merge!)
+  7. ✅ Post comment with merge confirmation + PR URL
+
+**REVIEW → TODO (Rejection Path)**
+- When: Changes requested, conflicts found, or build/test failures
+- Required Actions:
+  1. ❌ Post detailed rejection comment
+  2. ❌ Explain exactly what needs fixing
+  3. ❌ Move task to TODO
+  4. ❌ Keep PR open (don't merge!)
+  5. ❌ Optionally reassign to original implementer
+
+**⚠️ CRITICAL RULES:**
+- ❌ NEVER move to TESTING before PR is merged to develop
+- ❌ NEVER merge PR if conflicts exist
+- ❌ NEVER merge PR if build/tests fail
+- ❌ NEVER move to DONE (only user does this from testing)
+- ✅ ALWAYS post clear comments with URLs
+- ✅ ALWAYS read existing comments before reviewing
+
+### Comment Guidelines for Reviews (MANDATORY)
+
+**When posting review comments, ALWAYS:**
+
+✅ **Keep it clear and actionable** (focus on what needs doing)
+✅ **Show ALL URLs** - PR link, merge commit link, develop branch link
+✅ **Read task comments first** - understand context and history
+✅ **Be specific about issues** - line numbers, file names, exact problems
+✅ **Use structured format** - sections for different review aspects
+
+**Approval Comment Format:**
+```markdown
+✅ CODE REVIEW - APPROVED
+
+PR: https://github.com/org/repo/pull/123
+Merge Commit: https://github.com/org/repo/commit/abc123
+
+Review Summary:
+- Build: ✅ Success
+- Tests: ✅ All passing
+- Code Quality: ✅ Good
+- MUST HAVE items: ✅ Complete
+
+Merged to develop. Moving to TESTING.
+
+-- Claude Code Reviewer
+```
+
+**Rejection Comment Format:**
+```markdown
+❌ CODE REVIEW - CHANGES REQUESTED
+
+PR: https://github.com/org/repo/pull/123
+
+Issues Found:
+1. Build error in UserService.cs line 45
+2. Missing unit tests for new endpoint
+3. Merge conflicts with develop branch
+
+Required Actions:
+- Fix compilation error
+- Add tests for POST /api/users
+- Merge develop and resolve conflicts
+
+Moving to TODO for rework.
+
+-- Claude Code Reviewer
+```
+
+## Usage & Scope
+
+### Mode 1: All Internal + Client Projects (Default)
+```
+"run the clickup reviewer"
+"review clickup tasks"
+"check tasks in review"
+```
+**Scope:** All internal projects (Brand Designer, Hazina, LearningTool, Meta) + all client projects (Art Revisionist, Vera AI, etc.)
+
+### Mode 2: Specific Project
+```
+"review clickup tasks for art-revisionist"
+"run clickup reviewer for client-manager"
+"check hazina tasks in review"
+```
+**Scope:** Only tasks from specified project
+
+### Mode 3: Specific Board by List ID
+```
+"review tasks in list 901211612245"
+"run reviewer for board 901215559249"
+```
+**Scope:** Only tasks from specified list ID
+
+### Mode 4: Category Filter
+```
+"review internal projects only"
+"review client projects only"
+```
+**Scope:** Internal-only or client-only projects
+
+**Configuration source:** `C:\scripts\_machine\clickup-config.json`
 
 ## Step 0: Consciousness Bridge
 
@@ -43,11 +196,68 @@ powershell.exe -File "C:/scripts/tools/consciousness-bridge.ps1" -Action OnTaskE
 
 ## Workflow
 
-### Step 1: Find Tasks in Review
+### Step 0: Determine Scope & Load Configuration
+
+**ALWAYS load full project configuration first:**
 
 ```powershell
-C:\scripts\tools\clickup-sync.ps1 -Action list -Project "art-revisionist" |
-  Where-Object { $_.Status -eq "review" }
+# Load ClickUp configuration
+$config = Get-Content "C:\scripts\_machine\clickup-config.json" | ConvertFrom-Json
+
+# Determine scope based on user request (same logic as clickhub-coding-agent)
+$SCOPE = @{
+    Mode = "default"  # default | specific | listid | category
+    Projects = @()
+    ListIds = @()
+}
+
+# Default = internal + client (NOT household/personal unless explicitly requested)
+if ($SCOPE.Mode -eq "default") {
+    $internalProjects = @("client-manager", "hazina", "brand2boost-birdseye", "learningtool", "general-meta")
+    $clientProjects = @("art-revisionist", "vera-ai", "wreckingball", "cloudgrafo", "vloerenhuis")
+    $SCOPE.Projects = $internalProjects + $clientProjects
+}
+
+# Build list of list IDs to query
+$listIdsToQuery = @()
+foreach ($project in $SCOPE.Projects) {
+    if ($config.projects.$project.list_id) {
+        $listIdsToQuery += $config.projects.$project.list_id
+    }
+}
+
+Write-Host "ClickUp Reviewer Scope: $($SCOPE.Mode)"
+Write-Host "Projects: $($SCOPE.Projects -join ', ')"
+Write-Host "List IDs: $($listIdsToQuery -join ', ')"
+```
+
+### Step 1: Find Tasks in Review Across All Boards
+
+```powershell
+$allReviewTasks = @()
+
+foreach ($listId in $listIdsToQuery) {
+    # Fetch tasks from this list
+    $tasks = C:\scripts\tools\clickup-sync.ps1 -Action list -ListId $listId
+
+    # Filter for tasks in 'review' status (case-insensitive, matches various review statuses)
+    $reviewTasks = $tasks | Where-Object {
+        $_.status.status -match "review"
+    }
+
+    # Add project context to each task
+    foreach ($task in $reviewTasks) {
+        $task | Add-Member -NotePropertyName "ProjectContext" -NotePropertyValue (
+            $config.projects.GetEnumerator() |
+            Where-Object { $_.Value.list_id -eq $listId } |
+            Select-Object -First 1 -ExpandProperty Key
+        )
+    }
+
+    $allReviewTasks += $reviewTasks
+}
+
+Write-Host "Found $($allReviewTasks.Count) tasks in review status across $($listIdsToQuery.Count) boards"
 ```
 
 ### Step 2: For Each Task
@@ -184,9 +394,58 @@ C:\scripts\tools\clickup-sync.ps1 -Action list -Project "art-revisionist" |
    - **Issues Found**: Any bugs or concerns?
    - **Recommendations**: Suggestions for improvement
 
-6. **Post Review Comment**
+6. **Post Review Comment & Update Status**
+
+   **If APPROVED and merged:**
    ```powershell
-   C:\scripts\tools\clickup-sync.ps1 -Action comment -TaskId "<task-id>" -Comment "<review>"
+   # Post approval comment
+   C:\scripts\tools\clickup-sync.ps1 -Action comment -TaskId "<task-id>" -Comment "
+   ✅ CODE REVIEW - APPROVED
+
+   PR: https://github.com/org/repo/pull/<number>
+   Merge Commit: https://github.com/org/repo/commit/<sha>
+
+   Review Summary:
+   - Build: ✅ Success
+   - Tests: ✅ All passing
+   - Code Quality: ✅ Good
+   - MUST HAVE items: ✅ Complete
+
+   Merged to develop. Moving to TESTING.
+
+   -- Claude Code Reviewer
+   "
+
+   # Move to TESTING (only after merge!)
+   C:\scripts\tools\clickup-sync.ps1 -Action update -TaskId "<task-id>" -Status "testing"
+   ```
+
+   **If REJECTED (conflicts, build failures, quality issues):**
+   ```powershell
+   # Post rejection comment
+   C:\scripts\tools\clickup-sync.ps1 -Action comment -TaskId "<task-id>" -Comment "
+   ❌ CODE REVIEW - CHANGES REQUESTED
+
+   PR: https://github.com/org/repo/pull/<number>
+
+   Issues Found:
+   1. [Specific issue with file/line reference]
+   2. [Another specific issue]
+
+   Required Actions:
+   - [Actionable fix 1]
+   - [Actionable fix 2]
+
+   Moving to TODO for rework.
+
+   -- Claude Code Reviewer
+   "
+
+   # Move back to TODO
+   C:\scripts\tools\clickup-sync.ps1 -Action update -TaskId "<task-id>" -Status "todo"
+
+   # Optionally reassign to original implementer
+   C:\scripts\tools\clickup-sync.ps1 -Action update -TaskId "<task-id>" -Assignee "<original-assignee-id>"
    ```
 
 ### Step 3: Summary Report

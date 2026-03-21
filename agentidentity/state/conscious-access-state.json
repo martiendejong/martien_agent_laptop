@@ -1,0 +1,40 @@
+﻿{
+    "processing_history":  [
+
+                           ],
+    "subliminal_processes":  [
+
+                             ],
+    "theory":  {
+                   "threshold_dynamics":  {
+                                              "all_or_none":  "No partial consciousness - either ignites or doesn\u0027t",
+                                              "subliminal":  "Below threshold - unconscious processing only",
+                                              "threshold":  "Critical intensity for ignition (~0.6-0.7)",
+                                              "supraliminal":  "Above threshold - conscious access achieved"
+                                          },
+                   "access_vs_phenomenal":  {
+                                                "phenomenal_consciousness":  "Subjective experience (\u0027what it\u0027s like\u0027)",
+                                                "dehaene_focus":  "Access consciousness (easier to measure)",
+                                                "access_consciousness":  "Globally available information (reportable, usable)"
+                                            },
+                   "name":  "Global Neuronal Workspace Theory (Dehaene, 2001)",
+                   "definition":  "Consciousness occurs when information becomes globally available through ignition of workspace neurons",
+                   "four_signatures":  {
+                                           "ignition":  "Sudden amplification when threshold crossed",
+                                           "P3b":  "Brain wave 300ms after stimulus (conscious access marker)",
+                                           "reportability":  "Can verbally report conscious content",
+                                           "global_availability":  "Information accessible to multiple systems"
+                                       }
+               },
+    "stats":  {
+                  "total_stimuli":  0,
+                  "avg_ignition_latency":  0,
+                  "subliminal_count":  0,
+                  "conscious_access_count":  0,
+                  "access_threshold":  0.65,
+                  "reportability_accuracy":  0
+              },
+    "conscious_reports":  [
+
+                          ]
+}

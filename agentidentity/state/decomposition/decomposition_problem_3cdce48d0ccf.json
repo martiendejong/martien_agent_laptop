@@ -1,0 +1,57 @@
+{
+  "root_problem": {
+    "description": "Calculate the sum of 1 + 2 + 3",
+    "context": {},
+    "constraints": [],
+    "success_criteria": [
+      "Result is 6"
+    ],
+    "complexity": "trivial",
+    "parent_id": null,
+    "problem_id": "problem_3cdce48d0ccf"
+  },
+  "root_solution": {
+    "problem_id": "problem_3cdce48d0ccf",
+    "solution_id": "solution_26e13c9b9fc3",
+    "approach": "Direct solution (atomic problem)",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Analyze problem requirements"
+      },
+      {
+        "step": 2,
+        "action": "Apply domain knowledge"
+      },
+      {
+        "step": 3,
+        "action": "Generate solution"
+      },
+      {
+        "step": 4,
+        "action": "Validate against success criteria"
+      }
+    ],
+    "result": {
+      "status": "solved",
+      "mock": true
+    },
+    "confidence": 0.85,
+    "validation_passed": true,
+    "subsolutions": []
+  },
+  "decomposition_tree": [
+    {
+      "depth": 0,
+      "problem_id": "problem_3cdce48d0ccf",
+      "solution_id": "solution_26e13c9b9fc3",
+      "complexity": "trivial",
+      "subsolution_count": 0
+    }
+  ],
+  "statistics": {
+    "max_depth": 0,
+    "total_subproblems": 1,
+    "total_atomic_solutions": 1
+  }
+}

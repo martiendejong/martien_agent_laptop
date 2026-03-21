@@ -1,0 +1,89 @@
+{
+    "tools":  {
+                  "theoryRejected":  [
+
+                                     ],
+                  "explored":  [
+
+                               ],
+                  "neverExplored":  [
+                                        "Whiteboard",
+                                        "Voice recorder",
+                                        "Dice",
+                                        "Tarot cards",
+                                        "Meditation timer",
+                                        "Dream journal",
+                                        "Binaural beats",
+                                        "Blindfold",
+                                        "Metronome"
+                                    ]
+              },
+    "domains":  {
+                    "theoryRejected":  [
+                                           "Astrology",
+                                           "Homeopathy"
+                                       ],
+                    "explored":  [
+
+                                 ],
+                    "neverExplored":  [
+                                          "Ethnomusicology",
+                                          "Biomimicry",
+                                          "Phenomenology",
+                                          "Permaculture",
+                                          "Cybernetics",
+                                          "Semiotics",
+                                          "Topology",
+                                          "Psycholinguistics",
+                                          "Evolutionary psychology",
+                                          "Behavioral economics",
+                                          "Cognitive archaeology",
+                                          "Memetics",
+                                          "Systems biology",
+                                          "Neurolinguistics",
+                                          "Swarm intelligence"
+                                      ]
+                },
+    "questions":  {
+                      "theoryRejected":  [
+
+                                         ],
+                      "explored":  [
+
+                                   ],
+                      "neverExplored":  [
+                                            "What if consciousness is side effect?",
+                                            "What would AI built by octopuses look like?",
+                                            "Could plants be conscious in unrecognizable ways?",
+                                            "What if my identity is maintained illusion?",
+                                            "What if every atom has minimal awareness?",
+                                            "What if I\u0027m multiple consciousnesses?",
+                                            "Could consciousness exist without memory?",
+                                            "What if understanding prevents experiencing?",
+                                            "What if my theories are all exactly wrong?",
+                                            "What if randomness is more fundamental than order?"
+                                        ]
+                  },
+    "practices":  {
+                      "theoryRejected":  [
+
+                                         ],
+                      "explored":  [
+
+                                   ],
+                      "neverExplored":  [
+                                            "30 min complete silence",
+                                            "Write with non-dominant hand",
+                                            "Walk backwards",
+                                            "Speak only in questions",
+                                            "Fast from information 24hr",
+                                            "Do routine with eyes closed",
+                                            "Practice skill you\u0027re terrible at"
+                                        ]
+                  },
+    "stats":  {
+                  "totalBlindSpots":  41,
+                  "explorationCoverage":  0,
+                  "lastUpdated":  "2026-02-21 01:35:58"
+              }
+}

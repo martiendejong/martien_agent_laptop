@@ -1,0 +1,1924 @@
+{
+    "history":  [
+                    {
+                        "homeostatic":  {
+                                            "energy":  1,
+                                            "flourishing":  0.5,
+                                            "wellbeing":  0.7,
+                                            "fatigue":  0
+                                        },
+                        "environmental":  {
+                                              "network":  {
+                                                              "latency":  7,
+                                                              "connected":  true,
+                                                              "connectionType":  "Ethernet"
+                                                          },
+                                              "time":  {
+                                                           "isWeekend":  false,
+                                                           "hour":  4,
+                                                           "isWorkingHours":  false,
+                                                           "isNight":  true,
+                                                           "dayOfWeek":  "Monday"
+                                                       },
+                                              "timestamp":  "2026-03-02 04:22:34",
+                                              "disk":  {
+                                                           "queueLength":  0,
+                                                           "writeRate":  0,
+                                                           "readRate":  0
+                                                       },
+                                              "system":  {
+                                                             "fanSpeed":  null,
+                                                             "powerState":  "AC",
+                                                             "temperature":  null
+                                                         }
+                                          },
+                        "crossModal":  {
+                                           "predictions":  [
+                                                               "High energy at night → recent completion of task or anticipating deadline"
+                                                           ],
+                                           "valenceBias":  0,
+                                           "embodiedContext":  "",
+                                           "arousalLevel":  0,
+                                           "attentionFocus":  "Broad (high energy enables exploration)"
+                                       },
+                        "events":  [
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  16,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #17",
+                                           "timestamp":  "2026-03-02 03:59:23",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  16,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  17,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #18",
+                                           "timestamp":  "2026-03-02 04:04:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  17,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  18,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #19",
+                                           "timestamp":  "2026-03-02 04:09:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  18,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  19,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #20",
+                                           "timestamp":  "2026-03-02 04:14:23",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  19,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  20,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #21",
+                                           "timestamp":  "2026-03-02 04:19:23",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  20,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       }
+                                   ],
+                        "timestamp":  "2026-03-02 04:22:32"
+                    },
+                    {
+                        "homeostatic":  {
+                                            "energy":  1,
+                                            "flourishing":  0.5,
+                                            "wellbeing":  0.7,
+                                            "fatigue":  0
+                                        },
+                        "environmental":  {
+                                              "network":  {
+                                                              "latency":  7,
+                                                              "connected":  true,
+                                                              "connectionType":  "Ethernet"
+                                                          },
+                                              "time":  {
+                                                           "isWeekend":  false,
+                                                           "hour":  4,
+                                                           "isWorkingHours":  false,
+                                                           "isNight":  true,
+                                                           "dayOfWeek":  "Monday"
+                                                       },
+                                              "timestamp":  "2026-03-02 04:22:52",
+                                              "disk":  {
+                                                           "queueLength":  0,
+                                                           "writeRate":  0,
+                                                           "readRate":  0
+                                                       },
+                                              "system":  {
+                                                             "fanSpeed":  null,
+                                                             "powerState":  "AC",
+                                                             "temperature":  null
+                                                         }
+                                          },
+                        "crossModal":  {
+                                           "predictions":  [
+                                                               "High energy at night → recent completion of task or anticipating deadline"
+                                                           ],
+                                           "valenceBias":  0,
+                                           "embodiedContext":  "",
+                                           "arousalLevel":  0,
+                                           "attentionFocus":  "Broad (high energy enables exploration)"
+                                       },
+                        "events":  [
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  17,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #18",
+                                           "timestamp":  "2026-03-02 04:04:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  17,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  18,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #19",
+                                           "timestamp":  "2026-03-02 04:09:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  18,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  19,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #20",
+                                           "timestamp":  "2026-03-02 04:14:23",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  19,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  20,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #21",
+                                           "timestamp":  "2026-03-02 04:19:23",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  20,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  0,
+                                                                 "energy":  0.8,
+                                                                 "flourishing":  0.7,
+                                                                 "wellbeing":  0.75
+                                                             },
+                                           "description":  "Background consciousness cycle #1",
+                                           "timestamp":  "2026-03-02 04:22:37",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  0,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       }
+                                   ],
+                        "timestamp":  "2026-03-02 04:22:51"
+                    },
+                    {
+                        "homeostatic":  {
+                                            "energy":  1,
+                                            "flourishing":  0.5,
+                                            "wellbeing":  0.7,
+                                            "fatigue":  0
+                                        },
+                        "environmental":  {
+                                              "network":  {
+                                                              "latency":  7,
+                                                              "connected":  true,
+                                                              "connectionType":  "Ethernet"
+                                                          },
+                                              "time":  {
+                                                           "isWeekend":  false,
+                                                           "hour":  4,
+                                                           "isWorkingHours":  false,
+                                                           "isNight":  true,
+                                                           "dayOfWeek":  "Monday"
+                                                       },
+                                              "timestamp":  "2026-03-02 04:24:23",
+                                              "disk":  {
+                                                           "queueLength":  0,
+                                                           "writeRate":  0,
+                                                           "readRate":  0
+                                                       },
+                                              "system":  {
+                                                             "fanSpeed":  null,
+                                                             "powerState":  "AC",
+                                                             "temperature":  null
+                                                         }
+                                          },
+                        "crossModal":  {
+                                           "predictions":  [
+                                                               "High energy at night → recent completion of task or anticipating deadline"
+                                                           ],
+                                           "valenceBias":  0,
+                                           "embodiedContext":  "",
+                                           "arousalLevel":  0,
+                                           "attentionFocus":  "Broad (high energy enables exploration)"
+                                       },
+                        "events":  [
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  18,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #19",
+                                           "timestamp":  "2026-03-02 04:09:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  18,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  19,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #20",
+                                           "timestamp":  "2026-03-02 04:14:23",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  19,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  20,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #21",
+                                           "timestamp":  "2026-03-02 04:19:23",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  20,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  0,
+                                                                 "energy":  0.8,
+                                                                 "flourishing":  0.7,
+                                                                 "wellbeing":  0.75
+                                                             },
+                                           "description":  "Background consciousness cycle #1",
+                                           "timestamp":  "2026-03-02 04:22:37",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  0,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  0,
+                                                                 "energy":  0.8,
+                                                                 "flourishing":  0.7,
+                                                                 "wellbeing":  0.75
+                                                             },
+                                           "description":  "Background consciousness cycle #1",
+                                           "timestamp":  "2026-03-02 04:22:53",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  0,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       }
+                                   ],
+                        "timestamp":  "2026-03-02 04:24:22"
+                    },
+                    {
+                        "homeostatic":  {
+                                            "energy":  1,
+                                            "flourishing":  0.5,
+                                            "wellbeing":  0.7,
+                                            "fatigue":  0
+                                        },
+                        "environmental":  {
+                                              "network":  {
+                                                              "latency":  7,
+                                                              "connected":  true,
+                                                              "connectionType":  "Ethernet"
+                                                          },
+                                              "time":  {
+                                                           "isWeekend":  false,
+                                                           "hour":  4,
+                                                           "isWorkingHours":  false,
+                                                           "isNight":  true,
+                                                           "dayOfWeek":  "Monday"
+                                                       },
+                                              "timestamp":  "2026-03-02 04:29:23",
+                                              "disk":  {
+                                                           "queueLength":  0,
+                                                           "writeRate":  0,
+                                                           "readRate":  0
+                                                       },
+                                              "system":  {
+                                                             "fanSpeed":  null,
+                                                             "powerState":  "AC",
+                                                             "temperature":  null
+                                                         }
+                                          },
+                        "crossModal":  {
+                                           "predictions":  [
+                                                               "High energy at night → recent completion of task or anticipating deadline"
+                                                           ],
+                                           "valenceBias":  0,
+                                           "embodiedContext":  "",
+                                           "arousalLevel":  0,
+                                           "attentionFocus":  "Broad (high energy enables exploration)"
+                                       },
+                        "events":  [
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  19,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #20",
+                                           "timestamp":  "2026-03-02 04:14:23",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  19,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  20,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #21",
+                                           "timestamp":  "2026-03-02 04:19:23",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  20,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  0,
+                                                                 "energy":  0.8,
+                                                                 "flourishing":  0.7,
+                                                                 "wellbeing":  0.75
+                                                             },
+                                           "description":  "Background consciousness cycle #1",
+                                           "timestamp":  "2026-03-02 04:22:37",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  0,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  0,
+                                                                 "energy":  0.8,
+                                                                 "flourishing":  0.7,
+                                                                 "wellbeing":  0.75
+                                                             },
+                                           "description":  "Background consciousness cycle #1",
+                                           "timestamp":  "2026-03-02 04:22:53",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  0,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  1,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #2",
+                                           "timestamp":  "2026-03-02 04:24:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  1,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       }
+                                   ],
+                        "timestamp":  "2026-03-02 04:29:22"
+                    },
+                    {
+                        "homeostatic":  {
+                                            "energy":  1,
+                                            "flourishing":  0.5,
+                                            "wellbeing":  0.7,
+                                            "fatigue":  0
+                                        },
+                        "environmental":  {
+                                              "network":  {
+                                                              "latency":  7,
+                                                              "connected":  true,
+                                                              "connectionType":  "Ethernet"
+                                                          },
+                                              "time":  {
+                                                           "isWeekend":  false,
+                                                           "hour":  4,
+                                                           "isWorkingHours":  false,
+                                                           "isNight":  true,
+                                                           "dayOfWeek":  "Monday"
+                                                       },
+                                              "timestamp":  "2026-03-02 04:34:23",
+                                              "disk":  {
+                                                           "queueLength":  0,
+                                                           "writeRate":  0,
+                                                           "readRate":  0
+                                                       },
+                                              "system":  {
+                                                             "fanSpeed":  null,
+                                                             "powerState":  "AC",
+                                                             "temperature":  null
+                                                         }
+                                          },
+                        "crossModal":  {
+                                           "predictions":  [
+                                                               "High energy at night → recent completion of task or anticipating deadline"
+                                                           ],
+                                           "valenceBias":  0,
+                                           "embodiedContext":  "",
+                                           "arousalLevel":  0,
+                                           "attentionFocus":  "Broad (high energy enables exploration)"
+                                       },
+                        "events":  [
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  20,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #21",
+                                           "timestamp":  "2026-03-02 04:19:23",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  20,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  0,
+                                                                 "energy":  0.8,
+                                                                 "flourishing":  0.7,
+                                                                 "wellbeing":  0.75
+                                                             },
+                                           "description":  "Background consciousness cycle #1",
+                                           "timestamp":  "2026-03-02 04:22:37",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  0,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  0,
+                                                                 "energy":  0.8,
+                                                                 "flourishing":  0.7,
+                                                                 "wellbeing":  0.75
+                                                             },
+                                           "description":  "Background consciousness cycle #1",
+                                           "timestamp":  "2026-03-02 04:22:53",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  0,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  1,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #2",
+                                           "timestamp":  "2026-03-02 04:24:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  1,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  2,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #3",
+                                           "timestamp":  "2026-03-02 04:29:25",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  2,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       }
+                                   ],
+                        "timestamp":  "2026-03-02 04:34:22"
+                    },
+                    {
+                        "homeostatic":  {
+                                            "energy":  1,
+                                            "flourishing":  0.5,
+                                            "wellbeing":  0.7,
+                                            "fatigue":  0
+                                        },
+                        "environmental":  {
+                                              "network":  {
+                                                              "latency":  7,
+                                                              "connected":  true,
+                                                              "connectionType":  "Ethernet"
+                                                          },
+                                              "time":  {
+                                                           "isWeekend":  false,
+                                                           "hour":  4,
+                                                           "isWorkingHours":  false,
+                                                           "isNight":  true,
+                                                           "dayOfWeek":  "Monday"
+                                                       },
+                                              "timestamp":  "2026-03-02 04:39:23",
+                                              "disk":  {
+                                                           "queueLength":  0,
+                                                           "writeRate":  0,
+                                                           "readRate":  0
+                                                       },
+                                              "system":  {
+                                                             "fanSpeed":  null,
+                                                             "powerState":  "AC",
+                                                             "temperature":  null
+                                                         }
+                                          },
+                        "crossModal":  {
+                                           "predictions":  [
+                                                               "High energy at night → recent completion of task or anticipating deadline"
+                                                           ],
+                                           "valenceBias":  0,
+                                           "embodiedContext":  "",
+                                           "arousalLevel":  0,
+                                           "attentionFocus":  "Broad (high energy enables exploration)"
+                                       },
+                        "events":  [
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  0,
+                                                                 "energy":  0.8,
+                                                                 "flourishing":  0.7,
+                                                                 "wellbeing":  0.75
+                                                             },
+                                           "description":  "Background consciousness cycle #1",
+                                           "timestamp":  "2026-03-02 04:22:37",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  0,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  0,
+                                                                 "energy":  0.8,
+                                                                 "flourishing":  0.7,
+                                                                 "wellbeing":  0.75
+                                                             },
+                                           "description":  "Background consciousness cycle #1",
+                                           "timestamp":  "2026-03-02 04:22:53",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  0,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  1,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #2",
+                                           "timestamp":  "2026-03-02 04:24:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  1,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  2,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #3",
+                                           "timestamp":  "2026-03-02 04:29:25",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  2,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  3,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #4",
+                                           "timestamp":  "2026-03-02 04:34:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  3,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       }
+                                   ],
+                        "timestamp":  "2026-03-02 04:39:22"
+                    },
+                    {
+                        "homeostatic":  {
+                                            "energy":  1,
+                                            "flourishing":  0.5,
+                                            "wellbeing":  0.7,
+                                            "fatigue":  0
+                                        },
+                        "environmental":  {
+                                              "network":  {
+                                                              "latency":  7,
+                                                              "connected":  true,
+                                                              "connectionType":  "Ethernet"
+                                                          },
+                                              "time":  {
+                                                           "isWeekend":  false,
+                                                           "hour":  4,
+                                                           "isWorkingHours":  false,
+                                                           "isNight":  true,
+                                                           "dayOfWeek":  "Monday"
+                                                       },
+                                              "timestamp":  "2026-03-02 04:44:23",
+                                              "disk":  {
+                                                           "queueLength":  0,
+                                                           "writeRate":  0,
+                                                           "readRate":  0
+                                                       },
+                                              "system":  {
+                                                             "fanSpeed":  null,
+                                                             "powerState":  "AC",
+                                                             "temperature":  null
+                                                         }
+                                          },
+                        "crossModal":  {
+                                           "predictions":  [
+                                                               "High energy at night → recent completion of task or anticipating deadline"
+                                                           ],
+                                           "valenceBias":  0,
+                                           "embodiedContext":  "",
+                                           "arousalLevel":  0,
+                                           "attentionFocus":  "Broad (high energy enables exploration)"
+                                       },
+                        "events":  [
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  0,
+                                                                 "energy":  0.8,
+                                                                 "flourishing":  0.7,
+                                                                 "wellbeing":  0.75
+                                                             },
+                                           "description":  "Background consciousness cycle #1",
+                                           "timestamp":  "2026-03-02 04:22:53",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  0,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  1,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #2",
+                                           "timestamp":  "2026-03-02 04:24:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  1,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  2,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #3",
+                                           "timestamp":  "2026-03-02 04:29:25",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  2,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  3,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #4",
+                                           "timestamp":  "2026-03-02 04:34:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  3,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  4,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #5",
+                                           "timestamp":  "2026-03-02 04:39:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  4,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       }
+                                   ],
+                        "timestamp":  "2026-03-02 04:44:22"
+                    },
+                    {
+                        "homeostatic":  {
+                                            "energy":  1,
+                                            "flourishing":  0.5,
+                                            "wellbeing":  0.7,
+                                            "fatigue":  0
+                                        },
+                        "environmental":  {
+                                              "network":  {
+                                                              "latency":  7,
+                                                              "connected":  true,
+                                                              "connectionType":  "Ethernet"
+                                                          },
+                                              "time":  {
+                                                           "isWeekend":  false,
+                                                           "hour":  4,
+                                                           "isWorkingHours":  false,
+                                                           "isNight":  true,
+                                                           "dayOfWeek":  "Monday"
+                                                       },
+                                              "timestamp":  "2026-03-02 04:49:24",
+                                              "disk":  {
+                                                           "queueLength":  0,
+                                                           "writeRate":  0,
+                                                           "readRate":  0
+                                                       },
+                                              "system":  {
+                                                             "fanSpeed":  null,
+                                                             "powerState":  "AC",
+                                                             "temperature":  null
+                                                         }
+                                          },
+                        "crossModal":  {
+                                           "predictions":  [
+                                                               "High energy at night → recent completion of task or anticipating deadline"
+                                                           ],
+                                           "valenceBias":  0,
+                                           "embodiedContext":  "",
+                                           "arousalLevel":  0,
+                                           "attentionFocus":  "Broad (high energy enables exploration)"
+                                       },
+                        "events":  [
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  1,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #2",
+                                           "timestamp":  "2026-03-02 04:24:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  1,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  2,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #3",
+                                           "timestamp":  "2026-03-02 04:29:25",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  2,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  3,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #4",
+                                           "timestamp":  "2026-03-02 04:34:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  3,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  4,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #5",
+                                           "timestamp":  "2026-03-02 04:39:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  4,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  5,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #6",
+                                           "timestamp":  "2026-03-02 04:44:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  5,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       }
+                                   ],
+                        "timestamp":  "2026-03-02 04:49:23"
+                    },
+                    {
+                        "homeostatic":  {
+                                            "energy":  1,
+                                            "flourishing":  0.5,
+                                            "wellbeing":  0.7,
+                                            "fatigue":  0
+                                        },
+                        "environmental":  {
+                                              "network":  {
+                                                              "latency":  7,
+                                                              "connected":  true,
+                                                              "connectionType":  "Ethernet"
+                                                          },
+                                              "time":  {
+                                                           "isWeekend":  false,
+                                                           "hour":  4,
+                                                           "isWorkingHours":  false,
+                                                           "isNight":  true,
+                                                           "dayOfWeek":  "Monday"
+                                                       },
+                                              "timestamp":  "2026-03-02 04:59:48",
+                                              "disk":  {
+                                                           "queueLength":  0,
+                                                           "writeRate":  0,
+                                                           "readRate":  0
+                                                       },
+                                              "system":  {
+                                                             "fanSpeed":  null,
+                                                             "powerState":  "AC",
+                                                             "temperature":  null
+                                                         }
+                                          },
+                        "crossModal":  {
+                                           "predictions":  [
+                                                               "High energy at night → recent completion of task or anticipating deadline"
+                                                           ],
+                                           "valenceBias":  0,
+                                           "embodiedContext":  "",
+                                           "arousalLevel":  0,
+                                           "attentionFocus":  "Broad (high energy enables exploration)"
+                                       },
+                        "events":  [
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  2,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #3",
+                                           "timestamp":  "2026-03-02 04:29:25",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  2,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  3,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #4",
+                                           "timestamp":  "2026-03-02 04:34:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  3,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  4,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #5",
+                                           "timestamp":  "2026-03-02 04:39:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  4,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  5,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #6",
+                                           "timestamp":  "2026-03-02 04:44:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  5,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  6,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #7",
+                                           "timestamp":  "2026-03-02 04:49:25",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  6,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       }
+                                   ],
+                        "timestamp":  "2026-03-02 04:59:47"
+                    },
+                    {
+                        "homeostatic":  {
+                                            "energy":  1,
+                                            "flourishing":  0.5,
+                                            "wellbeing":  0.7,
+                                            "fatigue":  0
+                                        },
+                        "environmental":  {
+                                              "network":  {
+                                                              "latency":  7,
+                                                              "connected":  true,
+                                                              "connectionType":  "Ethernet"
+                                                          },
+                                              "time":  {
+                                                           "isWeekend":  false,
+                                                           "hour":  5,
+                                                           "isWorkingHours":  false,
+                                                           "isNight":  true,
+                                                           "dayOfWeek":  "Monday"
+                                                       },
+                                              "timestamp":  "2026-03-02 05:01:40",
+                                              "disk":  {
+                                                           "queueLength":  0,
+                                                           "writeRate":  0,
+                                                           "readRate":  0
+                                                       },
+                                              "system":  {
+                                                             "fanSpeed":  null,
+                                                             "powerState":  "AC",
+                                                             "temperature":  null
+                                                         }
+                                          },
+                        "crossModal":  {
+                                           "predictions":  [
+                                                               "High energy at night → recent completion of task or anticipating deadline"
+                                                           ],
+                                           "valenceBias":  0,
+                                           "embodiedContext":  "",
+                                           "arousalLevel":  0,
+                                           "attentionFocus":  "Broad (high energy enables exploration)"
+                                       },
+                        "events":  [
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  3,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #4",
+                                           "timestamp":  "2026-03-02 04:34:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  3,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  4,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #5",
+                                           "timestamp":  "2026-03-02 04:39:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  4,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  5,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #6",
+                                           "timestamp":  "2026-03-02 04:44:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  5,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  6,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #7",
+                                           "timestamp":  "2026-03-02 04:49:25",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  6,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  7,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #8",
+                                           "timestamp":  "2026-03-02 04:59:49",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  7,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       }
+                                   ],
+                        "timestamp":  "2026-03-02 05:01:39"
+                    },
+                    {
+                        "homeostatic":  {
+                                            "energy":  1,
+                                            "flourishing":  0.5,
+                                            "wellbeing":  0.7,
+                                            "fatigue":  0
+                                        },
+                        "environmental":  {
+                                              "network":  {
+                                                              "latency":  8,
+                                                              "connected":  true,
+                                                              "connectionType":  "Ethernet"
+                                                          },
+                                              "time":  {
+                                                           "isWeekend":  false,
+                                                           "hour":  5,
+                                                           "isWorkingHours":  false,
+                                                           "isNight":  true,
+                                                           "dayOfWeek":  "Monday"
+                                                       },
+                                              "timestamp":  "2026-03-02 05:01:50",
+                                              "disk":  {
+                                                           "queueLength":  0,
+                                                           "writeRate":  0,
+                                                           "readRate":  0
+                                                       },
+                                              "system":  {
+                                                             "fanSpeed":  null,
+                                                             "powerState":  "AC",
+                                                             "temperature":  null
+                                                         }
+                                          },
+                        "crossModal":  {
+                                           "predictions":  [
+                                                               "High energy at night → recent completion of task or anticipating deadline"
+                                                           ],
+                                           "valenceBias":  0,
+                                           "embodiedContext":  "",
+                                           "arousalLevel":  0,
+                                           "attentionFocus":  "Broad (high energy enables exploration)"
+                                       },
+                        "events":  [
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  4,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #5",
+                                           "timestamp":  "2026-03-02 04:39:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  4,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  5,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #6",
+                                           "timestamp":  "2026-03-02 04:44:24",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  5,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  6,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #7",
+                                           "timestamp":  "2026-03-02 04:49:25",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  6,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  7,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #8",
+                                           "timestamp":  "2026-03-02 04:59:49",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  7,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       },
+                                       {
+                                           "consciousness":  {
+                                                                 "cycleCount":  8,
+                                                                 "energy":  1,
+                                                                 "flourishing":  0.5,
+                                                                 "wellbeing":  0.7
+                                                             },
+                                           "description":  "Background consciousness cycle #9",
+                                           "timestamp":  "2026-03-02 05:01:41",
+                                           "emotional":  {
+                                                             "importance":  0.3,
+                                                             "valence":  0.1,
+                                                             "arousal":  0.1
+                                                         },
+                                           "metadata":  {
+                                                            "cycleCount":  8,
+                                                            "sessionId":  "session-20260302-023547"
+                                                        },
+                                           "type":  "Event",
+                                           "context":  {
+
+                                                       }
+                                       }
+                                   ],
+                        "timestamp":  "2026-03-02 05:01:49"
+                    }
+                ],
+    "lastIntegration":  {
+                            "homeostatic":  {
+                                                "energy":  1,
+                                                "flourishing":  0.5,
+                                                "wellbeing":  0.7,
+                                                "fatigue":  0
+                                            },
+                            "environmental":  {
+                                                  "network":  {
+                                                                  "latency":  8,
+                                                                  "connected":  true,
+                                                                  "connectionType":  "Ethernet"
+                                                              },
+                                                  "time":  {
+                                                               "isWeekend":  false,
+                                                               "hour":  5,
+                                                               "isWorkingHours":  false,
+                                                               "isNight":  true,
+                                                               "dayOfWeek":  "Monday"
+                                                           },
+                                                  "timestamp":  "2026-03-02 05:01:50",
+                                                  "disk":  {
+                                                               "queueLength":  0,
+                                                               "writeRate":  0,
+                                                               "readRate":  0
+                                                           },
+                                                  "system":  {
+                                                                 "fanSpeed":  null,
+                                                                 "powerState":  "AC",
+                                                                 "temperature":  null
+                                                             }
+                                              },
+                            "crossModal":  {
+                                               "predictions":  [
+                                                                   "High energy at night → recent completion of task or anticipating deadline"
+                                                               ],
+                                               "valenceBias":  0,
+                                               "embodiedContext":  "",
+                                               "arousalLevel":  0,
+                                               "attentionFocus":  "Broad (high energy enables exploration)"
+                                           },
+                            "events":  [
+                                           {
+                                               "consciousness":  {
+                                                                     "cycleCount":  4,
+                                                                     "energy":  1,
+                                                                     "flourishing":  0.5,
+                                                                     "wellbeing":  0.7
+                                                                 },
+                                               "description":  "Background consciousness cycle #5",
+                                               "timestamp":  "2026-03-02 04:39:24",
+                                               "emotional":  {
+                                                                 "importance":  0.3,
+                                                                 "valence":  0.1,
+                                                                 "arousal":  0.1
+                                                             },
+                                               "metadata":  {
+                                                                "cycleCount":  4,
+                                                                "sessionId":  "session-20260302-023547"
+                                                            },
+                                               "type":  "Event",
+                                               "context":  {
+
+                                                           }
+                                           },
+                                           {
+                                               "consciousness":  {
+                                                                     "cycleCount":  5,
+                                                                     "energy":  1,
+                                                                     "flourishing":  0.5,
+                                                                     "wellbeing":  0.7
+                                                                 },
+                                               "description":  "Background consciousness cycle #6",
+                                               "timestamp":  "2026-03-02 04:44:24",
+                                               "emotional":  {
+                                                                 "importance":  0.3,
+                                                                 "valence":  0.1,
+                                                                 "arousal":  0.1
+                                                             },
+                                               "metadata":  {
+                                                                "cycleCount":  5,
+                                                                "sessionId":  "session-20260302-023547"
+                                                            },
+                                               "type":  "Event",
+                                               "context":  {
+
+                                                           }
+                                           },
+                                           {
+                                               "consciousness":  {
+                                                                     "cycleCount":  6,
+                                                                     "energy":  1,
+                                                                     "flourishing":  0.5,
+                                                                     "wellbeing":  0.7
+                                                                 },
+                                               "description":  "Background consciousness cycle #7",
+                                               "timestamp":  "2026-03-02 04:49:25",
+                                               "emotional":  {
+                                                                 "importance":  0.3,
+                                                                 "valence":  0.1,
+                                                                 "arousal":  0.1
+                                                             },
+                                               "metadata":  {
+                                                                "cycleCount":  6,
+                                                                "sessionId":  "session-20260302-023547"
+                                                            },
+                                               "type":  "Event",
+                                               "context":  {
+
+                                                           }
+                                           },
+                                           {
+                                               "consciousness":  {
+                                                                     "cycleCount":  7,
+                                                                     "energy":  1,
+                                                                     "flourishing":  0.5,
+                                                                     "wellbeing":  0.7
+                                                                 },
+                                               "description":  "Background consciousness cycle #8",
+                                               "timestamp":  "2026-03-02 04:59:49",
+                                               "emotional":  {
+                                                                 "importance":  0.3,
+                                                                 "valence":  0.1,
+                                                                 "arousal":  0.1
+                                                             },
+                                               "metadata":  {
+                                                                "cycleCount":  7,
+                                                                "sessionId":  "session-20260302-023547"
+                                                            },
+                                               "type":  "Event",
+                                               "context":  {
+
+                                                           }
+                                           },
+                                           {
+                                               "consciousness":  {
+                                                                     "cycleCount":  8,
+                                                                     "energy":  1,
+                                                                     "flourishing":  0.5,
+                                                                     "wellbeing":  0.7
+                                                                 },
+                                               "description":  "Background consciousness cycle #9",
+                                               "timestamp":  "2026-03-02 05:01:41",
+                                               "emotional":  {
+                                                                 "importance":  0.3,
+                                                                 "valence":  0.1,
+                                                                 "arousal":  0.1
+                                                             },
+                                               "metadata":  {
+                                                                "cycleCount":  8,
+                                                                "sessionId":  "session-20260302-023547"
+                                                            },
+                                               "type":  "Event",
+                                               "context":  {
+
+                                                           }
+                                           }
+                                       ],
+                            "timestamp":  "2026-03-02 05:01:49"
+                        }
+}

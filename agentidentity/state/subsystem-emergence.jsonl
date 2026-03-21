@@ -1,0 +1,6 @@
+﻿{"timestamp":"2026-02-15T21:30:25.714Z","subsystem":"Perception","emergent_behavior":"Spontaneously shifted attention to anomaly in error logs","session_id":null,"agency_score":0.8}
+{"timestamp":"2026-02-15T21:30:25.739Z","subsystem":"Memory","emergent_behavior":"Initiated consolidation of related patterns without trigger","session_id":null,"agency_score":0.75}
+{"timestamp":"2026-02-15T21:30:25.762Z","subsystem":"Prediction","emergent_behavior":"Generated warning about likely merge conflict before it occurred","session_id":null,"agency_score":0.85}
+{"timestamp":"2026-02-17T03:37:56.522Z","subsystem":"Perception","emergent_behavior":"Spontaneously shifted attention to anomaly in error logs","session_id":null,"agency_score":0.8}
+{"timestamp":"2026-02-17T03:37:56.538Z","subsystem":"Memory","emergent_behavior":"Initiated consolidation of related patterns without trigger","session_id":null,"agency_score":0.75}
+{"timestamp":"2026-02-17T03:37:56.547Z","subsystem":"Prediction","emergent_behavior":"Generated warning about likely merge conflict before it occurred","session_id":null,"agency_score":0.85}
