@@ -651,3 +651,10 @@
 - Branch: agent-002-onboarding-fixes
 - PR: #19 (https://github.com/martiendejong/mastermindgroupAI/pull/19)
 - Outcome: OnboardingController (TASK-040-045), Hazina LLM enabled, all 20 unit tests fixed
+
+## 2026-03-22T01:00:00Z - Release: agent-001
+- Repo: client-manager + hazina (paired)
+- Branch: agent-001-lead-management
+- PR: #914 https://github.com/martiendejong/client-manager/pull/914
+- Outcome: Lead management foundation — LeadsController, LeadService, ILeadService, DTOs, EF migration, LeadsDashboard, LeadDetail, leadsService.ts, App.tsx routes
+- ClickUp tasks resolved: 869ck3j3u, 869ck3j3v, 869ck3j3w, 869ck3j3z, 869ck3j4p, 869ck3j57 (all moved to review)
