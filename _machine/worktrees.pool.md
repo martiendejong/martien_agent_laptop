@@ -4,7 +4,7 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-20T18:00:00Z | ✅ PR #191 (real-estate-agency-ai): UUID migration + RLS integration for building management entities (ClickUp #869cjgtxr, #869cjgtfu) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-21T11:00:00Z | ✅ PR #193 (real-estate-agency-ai): Rename Bliek→RealEstateAgency, fix 400 errors, AI thumbnail panel |
 | agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-21T01:00:00Z | ✅ PR #20 (mastermindgroupAI): Profile management, auth refresh, Hazina integration & test fixes |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-20T18:00:00Z | ✅ PR #275 (hazina): UpdateStore safety policies - max file size + extension allowlist (ClickUp #869cabf3x) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-20T17:30:00Z | PR #274 (hazina): NuGet package metadata for 38 AI/LLM packages (ClickUp #869cg3m24) |
