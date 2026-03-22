@@ -3,7 +3,7 @@
     "version":  "2.0",
     "encryption":  "dpapi",
     "storage":  "hex",
-    "updated":  "2026-03-12 12:08:02",
+    "updated":  "2026-03-22 18:43:17",
     "credentials":  [
                         {
                             "updated":  "2026-02-11 18:53:42",
@@ -264,13 +264,27 @@
                         {
                             "updated":  "2026-03-12 12:08:02",
                             "token_enc":  "",
-                            "username":  "info@prospergenics.com",
-                            "notes_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb01000000abaaa8a3a5d9164f925bd4f20c33288100000000020000000000106600000001000020000000dcbfe7996350ba77a0c0855afcf1a91c05ec7cb2664da7716df7281772929bd1000000000e8000000002000020000000f48ac98815d3b1d0a4446dca1820d45265f9a711701b87e07d7f2977825b54475000000064f5c0ba82140ac1daeb613c23bcab18617d9d64da896c5a253ea822609fb021bffc0a40a5d97c50a49c51ace71c219e9e600edc0880a1874d937619b23b9460617f997c16ae0858ed676291c3fa5e3c40000000178c15eeba42a3bd658c7abe52c79f33eb487ae08e9fbd4082f47e99b5443415f7f1ab3b3ff3bc1e9c04644d7c65099f93f2618c5cf1e45b355d0d27468ab8fe",
                             "password_hint":  "SpaceEle...",
+                            "notes_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb01000000abaaa8a3a5d9164f925bd4f20c33288100000000020000000000106600000001000020000000dcbfe7996350ba77a0c0855afcf1a91c05ec7cb2664da7716df7281772929bd1000000000e8000000002000020000000f48ac98815d3b1d0a4446dca1820d45265f9a711701b87e07d7f2977825b54475000000064f5c0ba82140ac1daeb613c23bcab18617d9d64da896c5a253ea822609fb021bffc0a40a5d97c50a49c51ace71c219e9e600edc0880a1874d937619b23b9460617f997c16ae0858ed676291c3fa5e3c40000000178c15eeba42a3bd658c7abe52c79f33eb487ae08e9fbd4082f47e99b5443415f7f1ab3b3ff3bc1e9c04644d7c65099f93f2618c5cf1e45b355d0d27468ab8fe",
+                            "tags":  [
+
+                                     ],
+                            "username":  "info@prospergenics.com",
                             "token_hint":  "",
                             "password_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb01000000abaaa8a3a5d9164f925bd4f20c332881000000000200000000001066000000010000200000003e0b68d0c0479c11d5d9651c5696eb6e2ee643019e9ca199e7855e2e79069a56000000000e800000000200002000000005eedb9ff917325cd422381d49a5a08341a42dff273e7f3400f91663bf1f41ab20000000b8eedfe0a18d3a10c4a7f0525039cf645aa61cd92f8343db752ef002cc36213640000000faecb18d15f28922961271bd59523e4cd8e1babe911c2942dac5b94e1798e069b95505fb4430c51e07ec3c176fba2d7fdaf0f9842c713e0e2857a7c570cd58b6",
                             "service":  "whatsappbridge_admin",
-                            "created":  "2026-03-12 12:08:02",
+                            "created":  "2026-03-12 12:08:02"
+                        },
+                        {
+                            "updated":  "2026-03-22 18:43:17",
+                            "token_enc":  "01000000d08c9ddf0115d1118c7a00c04fc297eb01000000abaaa8a3a5d9164f925bd4f20c33288100000000020000000000106600000001000020000000ceed379e678c711911962aa6b1efd23fdae7922c851b840722b4043729fa9de9000000000e80000000020000200000009bbb73568573226dbd5c2e528ac7c1e505119c68d920bb7f573eff47f126802d30000000ed962a035504dd74d1b47da385387aa090608dcac563777af4e76fbb70526530813ffff0a4d77d444a8eaecf92192c1440000000f1ab83c7a2fb2d2ec00f9b6b75965a14324d8f90c8e32f7c321456202747599d0837d532991a973247d1d06257343bbf7a811338064cec5a069b624a92aa122e",
+                            "username":  "",
+                            "notes_enc":  "",
+                            "password_hint":  "",
+                            "token_hint":  "5H04zP52...",
+                            "password_enc":  "",
+                            "service":  "whatsappbridge_prod_apikey",
+                            "created":  "2026-03-22 18:43:17",
                             "tags":  [
 
                                      ]
