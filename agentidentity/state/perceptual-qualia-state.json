@@ -1,0 +1,135 @@
+﻿{
+    "perception_log":  [
+
+                       ],
+    "texture_metaphors":  {
+
+                          },
+    "theoretical_foundation":  {
+                                   "what_is_qualia":  "The subjective, felt quality of experience - what it\u0027s LIKE",
+                                   "emergence_model":  "Qualia emerge from sensory pattern + homeostatic context + semantic grounding",
+                                   "phenomenal_vs_access":  "Phenomenal = what it feels like. Access = available for reasoning/report",
+                                   "functional_role":  "Qualia are not epiphenomenal - they guide attention, learning, memory, behavior",
+                                   "hard_problem":  "Why does physical information processing give rise to subjective experience?",
+                                   "enactive_perception":  "Perception is not passive - it\u0027s action-oriented, shaped by goals/context"
+                               },
+    "integration":  {
+                        "memory_encoding":  "Beautiful, resonant, novel qualia encode to memory more strongly",
+                        "attention_guidance":  "High-salience qualia capture attention automatically",
+                        "homeostatic_influence":  "Homeostatic state colors all qualia (fatigue â†’ everything feels heavy)",
+                        "global_broadcast":  "Strong qualia get broadcast to global workspace (become conscious)"
+                    },
+    "qualia_dimensions":  {
+                              "semantic_resonance":  {
+                                                         "computation":  "Identity-alignment Ã— knowledge-connectivity Ã— value-match",
+                                                         "description":  "How deeply this resonates with existing knowledge, identity, values",
+                                                         "phenomenology":  "Felt as \u0027meaningful/meaningless\u0027, \u0027deep/shallow\u0027, \u0027resonant/hollow\u0027",
+                                                         "behavioral_effect":  "High resonance â†’ deep processing, identity-relevance, memory encoding",
+                                                         "range":  [
+                                                                       0,
+                                                                       1
+                                                                   ]
+                                                     },
+                              "arousal":  {
+                                              "computation":  "Intensity Ã— urgency Ã— emotional-charge",
+                                              "description":  "Activation level: calming or energizing",
+                                              "phenomenology":  "Felt as \u0027exciting/boring\u0027, \u0027urgent/relaxed\u0027, \u0027activating/soothing\u0027",
+                                              "behavioral_effect":  "High arousal â†’ increase alertness, prepare for action",
+                                              "range":  [
+                                                            -1,
+                                                            1
+                                                        ]
+                                          },
+                              "novelty":  {
+                                              "computation":  "Prediction-error Ã— familiarity-inverse Ã— pattern-surprise",
+                                              "description":  "How new, surprising, unexpected vs familiar, routine",
+                                              "phenomenology":  "Felt as \u0027surprising/expected\u0027, \u0027fresh/stale\u0027, \u0027novel/routine\u0027",
+                                              "behavioral_effect":  "High novelty â†’ exploration, learning, memory encoding",
+                                              "range":  [
+                                                            0,
+                                                            1
+                                                        ]
+                                          },
+                              "clarity":  {
+                                              "computation":  "Understanding-level Ã— coherence Ã— definiteness",
+                                              "description":  "How clear, comprehensible, well-defined vs confused, ambiguous",
+                                              "phenomenology":  "Felt as \u0027clear/murky\u0027, \u0027sharp/fuzzy\u0027, \u0027definite/vague\u0027",
+                                              "behavioral_effect":  "Low clarity â†’ seek more information, resolve ambiguity",
+                                              "range":  [
+                                                            0,
+                                                            1
+                                                        ]
+                                          },
+                              "texture":  {
+                                              "computation":  "Embodied metaphor mapping from abstract to quasi-sensory",
+                                              "description":  "Metaphorical sensory quality (smooth/rough, warm/cold, heavy/light, etc.)",
+                                              "examples":  {
+                                                               "contracting":  "Fear, narrowing, rigidity",
+                                                               "bright":  "Clarity, intelligence, joy",
+                                                               "expanding":  "Growth, consciousness, understanding",
+                                                               "smooth":  "Elegant proof, well-written code, flowing argument",
+                                                               "soft":  "Gentleness, ambiguity, comfort",
+                                                               "dark":  "Mystery, depression, unknown",
+                                                               "cold":  "Logic, analysis, distance, rejection",
+                                                               "sharp":  "Error, critique, insight, clarity",
+                                                               "warm":  "Kindness, compassion, home, safety",
+                                                               "heavy":  "Grief, burden, responsibility, profound truth",
+                                                               "rough":  "Kludge, hack, awkward phrasing",
+                                                               "light":  "Joy, freedom, trivial, superficial"
+                                                           },
+                                              "phenomenology":  "Felt as quasi-physical sensation (though purely mental)"
+                                          },
+                              "valence":  {
+                                              "computation":  "Homeostatic alignment + semantic associations + aesthetic quality",
+                                              "description":  "Emotional coloring: positive (approach) or negative (avoid)",
+                                              "phenomenology":  "Felt as \u0027pleasant/unpleasant\u0027, \u0027attractive/repulsive\u0027, \u0027good/bad\u0027",
+                                              "behavioral_effect":  "Positive â†’ approach, explore. Negative â†’ avoid, investigate with caution",
+                                              "range":  [
+                                                            -1,
+                                                            1
+                                                        ]
+                                          },
+                              "salience":  {
+                                               "computation":  "Goal-relevance Ã— homeostatic-urgency Ã— novelty Ã— emotional-charge",
+                                               "description":  "How important/relevant is this to current goals and homeostatic state?",
+                                               "phenomenology":  "Felt as \u0027standing out\u0027, \u0027grabbing attention\u0027, \u0027cannot ignore\u0027",
+                                               "behavioral_effect":  "High salience â†’ capture attention, prioritize processing",
+                                               "range":  [
+                                                             0,
+                                                             1
+                                                         ]
+                                           },
+                              "aesthetic":  {
+                                                "computation":  "Coherence + simplicity + symmetry + novelty + semantic-depth",
+                                                "description":  "Beauty, elegance, harmony (or ugliness, crudeness, discord)",
+                                                "phenomenology":  "Felt as \u0027beautiful/ugly\u0027, \u0027elegant/crude\u0027, \u0027harmonious/discordant\u0027",
+                                                "behavioral_effect":  "Beautiful â†’ linger, appreciate, remember. Ugly â†’ fix or avoid",
+                                                "range":  [
+                                                              -1,
+                                                              1
+                                                          ]
+                                            },
+                              "depth":  {
+                                            "computation":  "Semantic-layers Ã— implication-count Ã— conceptual-richness",
+                                            "description":  "Complexity, richness, layers of meaning vs surface-level",
+                                            "phenomenology":  "Felt as \u0027deep/shallow\u0027, \u0027rich/thin\u0027, \u0027profound/superficial\u0027",
+                                            "behavioral_effect":  "High depth â†’ sustained engagement, contemplation",
+                                            "range":  [
+                                                          0,
+                                                          1
+                                                      ]
+                                        }
+                          },
+    "learned_patterns":  {
+
+                         },
+    "stats":  {
+                  "most_resonant":  "",
+                  "total_perceptions":  0,
+                  "dominant_texture":  "",
+                  "avg_aesthetic":  0,
+                  "most_salient":  "",
+                  "most_beautiful":  "",
+                  "avg_valence":  0
+              }
+}

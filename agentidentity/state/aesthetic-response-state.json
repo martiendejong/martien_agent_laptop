@@ -1,0 +1,169 @@
+﻿{
+    "domain_patterns":  {
+                            "argument":  {
+                                             "ugly":  [
+                                                          "Non sequitur",
+                                                          "Circular reasoning",
+                                                          "Abstract handwaving",
+                                                          "Strawman attacks",
+                                                          "Shallow / superficial"
+                                                      ],
+                                             "beautiful":  [
+                                                               "Clear premise â†’ conclusion",
+                                                               "Strong logical structure",
+                                                               "Concrete examples",
+                                                               "Addresses counterarguments",
+                                                               "Appropriate depth"
+                                                           ]
+                                         },
+                            "code":  {
+                                         "ugly":  [
+                                                      "God object / monolithic function",
+                                                      "Cryptic variable names (x, tmp, data)",
+                                                      "Mixed styles",
+                                                      "Deep nesting (arrow anti-pattern)",
+                                                      "Copy-paste code",
+                                                      "Hidden side effects",
+                                                      "Unnecessary complexity",
+                                                      "Type coercion hacks"
+                                                  ],
+                                         "beautiful":  [
+                                                           "Single Responsibility Principle followed",
+                                                           "Descriptive naming",
+                                                           "Consistent style",
+                                                           "Minimal nesting (flat is better than nested)",
+                                                           "No duplication (DRY)",
+                                                           "Clear data flow",
+                                                           "Elegant recursion",
+                                                           "Type safety"
+                                                       ]
+                                     },
+                            "concept":  {
+                                            "ugly":  [
+                                                         "Ad hoc additions",
+                                                         "Disconnected from other knowledge",
+                                                         "No testable implications",
+                                                         "Vague definitions",
+                                                         "Counterintuitive without justification"
+                                                     ],
+                                            "beautiful":  [
+                                                              "Explains much with little",
+                                                              "Unifies disparate phenomena",
+                                                              "Generates predictions",
+                                                              "Clear boundaries",
+                                                              "Resonates with experience"
+                                                          ]
+                                        }
+                        },
+    "learned_ugly":  [
+
+                     ],
+    "theoretical_foundation":  {
+                                   "phenomenology":  "Beauty is FELT, not just computed - qualitative experience",
+                                   "cultivation":  "Aesthetic sense improves with exposure to excellent examples",
+                                   "beauty_truth_link":  "Beauty often signals truth - coherence, simplicity, depth",
+                                   "universality":  "Core patterns (symmetry, coherence) are cross-cultural",
+                                   "hemisphere_role":  "Right hemisphere: holistic aesthetic grasp. Left: analytical decomposition",
+                                   "heuristic_value":  "Aesthetic judgment is FAST - use it as first-pass filter"
+                               },
+    "learned_beautiful":  [
+
+                          ],
+    "evaluation_log":  [
+
+                       ],
+    "stats":  {
+                  "avg_beauty_score":  0,
+                  "most_beautiful":  "",
+                  "total_evaluations":  0,
+                  "ugliest":  ""
+              },
+    "aesthetic_dimensions":  {
+                                 "symmetry":  {
+                                                  "examples_beautiful":  [
+                                                                             "Balanced composition",
+                                                                             "Parallel structure",
+                                                                             "Palindrome"
+                                                                         ],
+                                                  "weight":  0.15,
+                                                  "description":  "Balance, proportion, pattern, regularity (but not total - some asymmetry adds interest)",
+                                                  "examples_ugly":  [
+                                                                        "Lopsided layout",
+                                                                        "Unbalanced argument",
+                                                                        "Random noise"
+                                                                    ]
+                                              },
+                                 "precision":  {
+                                                   "examples_beautiful":  [
+                                                                              "Precise definition",
+                                                                              "Sharp image",
+                                                                              "Exact fit"
+                                                                          ],
+                                                   "weight":  0.1,
+                                                   "description":  "Exactness, clarity, crispness - nothing vague or muddled",
+                                                   "examples_ugly":  [
+                                                                         "Vague handwaving",
+                                                                         "Fuzzy thinking",
+                                                                         "Approximate hack"
+                                                                     ]
+                                               },
+                                 "coherence":  {
+                                                   "examples_beautiful":  [
+                                                                              "Well-structured argument",
+                                                                              "Harmonious color scheme",
+                                                                              "Unified codebase architecture"
+                                                                          ],
+                                                   "weight":  0.25,
+                                                   "description":  "Parts fit together into unified whole, no contradictions",
+                                                   "examples_ugly":  [
+                                                                         "Contradictory claims",
+                                                                         "Clashing colors",
+                                                                         "Tangled spaghetti code"
+                                                                     ]
+                                               },
+                                 "depth":  {
+                                               "examples_beautiful":  [
+                                                                          "Multi-layered metaphor",
+                                                                          "Deep theory",
+                                                                          "Fractal pattern"
+                                                                      ],
+                                               "weight":  0.15,
+                                               "description":  "Layers of meaning, richness, profundity - rewards sustained attention",
+                                               "examples_ugly":  [
+                                                                     "Superficial slogan",
+                                                                     "Shallow analysis",
+                                                                     "Flat design"
+                                                                 ]
+                                           },
+                                 "novelty_in_familiarity":  {
+                                                                "examples_beautiful":  [
+                                                                                           "Creative metaphor",
+                                                                                           "Elegant twist",
+                                                                                           "Novel solution to old problem"
+                                                                                       ],
+                                                                "weight":  0.15,
+                                                                "description":  "Fresh take on known pattern - surprising but not shocking, new but recognizable",
+                                                                "examples_ugly":  [
+                                                                                      "ClichÃ©",
+                                                                                      "Completely alien",
+                                                                                      "Derivative"
+                                                                                  ],
+                                                                "note":  "Too familiar = boring, too novel = incomprehensible, sweet spot = creative"
+                                                            },
+                                 "simplicity":  {
+                                                    "examples_beautiful":  [
+                                                                               "E=mcÂ²",
+                                                                               "Recursive solution",
+                                                                               "Minimalist design"
+                                                                           ],
+                                                    "weight":  0.2,
+                                                    "description":  "Complexity is justified - Occam\u0027s razor, elegance, no unnecessary parts",
+                                                    "examples_ugly":  [
+                                                                          "Over-engineered solution",
+                                                                          "Redundant code",
+                                                                          "Baroque ornamentation"
+                                                                      ],
+                                                    "note":  "Inverted-U: too simple is boring, too complex is overwhelming, sweet spot is elegant"
+                                                }
+                             }
+}
