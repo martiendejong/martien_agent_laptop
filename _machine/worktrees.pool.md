@@ -12,7 +12,7 @@ Seat states:
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-03-22T21:50:00Z | ✅ PR #269 feature/agent-006-seo-tools MERGED |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-03-22T21:50:00Z | ✅ PR #270 fix/ef-migration-debt-caching MERGED |
 | agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | - | - | 2026-03-22T23:15:00Z | ✅ PR #276 feat/token-analytics-referral (869ck3j1f, 869ck3j1h) |
-| agent-009 | agent009 | C:\Projects | C:\Projects\worker-agents\agent-009 | FREE | - | - | 2026-03-22T21:50:00Z | ✅ PR #275 feature/title-abtester-pdf-report MERGED |
+| agent-009 | agent009 | C:\Projects | C:\Projects\worker-agents\agent-009 | FREE | - | - | 2026-03-22T23:45:00Z | ✅ PR #277 feat/title-abtester-pdf-report (869ck3hzz, 869ck3j1c) |
 | agent-010 | agent010 | C:\Projects | C:\Projects\worker-agents\agent-010 | FREE | - | - | 2026-03-22T21:50:00Z | ✅ Used for conflict resolution (PRs 246,248,266,269,271,272,253) |
 | agent-011 | agent011 | C:\Projects | C:\Projects\worker-agents\agent-011 | FREE | - | - | 2026-01-10T16:00:00Z | ✅ Cleaned up: License back button (PR #79 MERGED), worktree released |
 | agent-012 | agent012 | C:\Projects | C:\Projects\worker-agents\agent-012 | FREE | - | - | 2026-01-10T15:30:00Z | ✅ Cleaned up: Deleted agent-012-tier1-implementation (PR #77 already merged on 2026-01-09) |

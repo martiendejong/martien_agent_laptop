@@ -1,3 +1,9 @@
+## 2026-03-22T23:45:00Z - Release: agent-009
+- Repo: seo-god
+- Branch: feature/title-abtester-pdf-report
+- PR: #277 (https://github.com/martiendejong/seo-god/pull/277)
+- Outcome: AI Title A/B Tester (TitleExperiment model, TitleVariantController, TitleVariantsModal, CTR Experiments tab) + White-label PDF SEO Reports (GeneratedReport model, ReportGeneratorService with PuppeteerSharp v20, ReportGeneratorController, GenerateReportModal, Reports History in ProfilePage) — tasks 869ck3hzz + 869ck3j1c
+
 ## 2026-03-22T23:15:00Z - Release: agent-008
 - Repo: seo-god
 - Branch: feature/token-analytics-referral
