@@ -4,8 +4,8 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-22T01:00:00Z | ✅ PR #914 (client-manager): Lead management foundation - CRUD API, dashboard, detail, pipeline (6 tasks resolved) |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-21T12:45:00Z | ✅ PR #247 (seo-god): Import race condition fix — hangs + always shows import card (869ck0q7q, 869ck0q28) |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-22T00:00:00Z | ✅ Released: fix/history-persistence (whatsappbridge) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-22T10:10:00Z | ✅ PR #29 (leadmanager): Bulk CSV import + CSV/Excel export (869ck3j4e, 869ck3j4h) |
 | agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-21T13:30:00Z | ✅ PR #246 (seo-god): AI blog ideas generation error handling (ClickUp #869ck0tek) |
 | agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-21T14:00:00Z | ✅ PR #250 (seo-god): WP data persistence fix + account menu (869ck0rrp, 869ck0u7p) |
 | agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-03-21T14:30:00Z | ✅ PR #249 (seo-god): FAQ generation page - top 10 pages sequential (869ck0ty1) |
