@@ -1,3 +1,93 @@
+## 2026-03-22 - WhatsApp Bridge: Proto3 Duplicate Field + IIS Recovery
+
+**Session Type:** Production debugging + deploy + root cause fix
+**Scope:** WhatsApp Bridge (whatsappbridge repo, PR #26)
+**Outcome:** ✅ SUCCESS — proto3 parse bug fixed, messages stored, IIS recovered from config corruption
+
+### What happened
+- Deployed stale Dawa.dll to remote server (85.215.217.154) via PSSession
+- Diagnosed Unknown WAMessage type despite Signal decrypt success
+- Found root cause: WhatsApp sends field 1 (Conversation) TWICE on retry deliveries — second occurrence is `""` which overwrites the valid first value
+- Fixed WAMessage.cs to never overwrite non-empty Conversation with empty
+- Added GetText/GetMessageType/GetAllFields fallthrough: EphemeralMessage→Conversation
+- Fixed applicationHost.config corruption (WebAdministration added invalid `enableHttp2="false"`)
+- Fixed corrupted pool temp config (force-kill w3wp corrupted `WhatsAppBridgeAPIPool.config`)
+- Nashipae pkmsg MAC failures are pre-existing (stale pre-key retries); live delivery succeeds after retries exhausted
+
+### Key Learnings
+
+**1. Proto3 duplicate field overwrite**
+WhatsApp sends the same field (field 1 = Conversation) twice in some proto encodings. Proto3 spec says last value wins, but in practice WA sends text first then `""`. Fix: `if (!string.IsNullOrEmpty(conv)) msg.Conversation = conv;` — never overwrite non-empty with empty.
+
+**2. Diagnostic file logging for proto parse issues**
+When facing Unknown message type in production (where stdout logging is suppressed), write to a dedicated log file (`wa-parse-debug.log`) in the `ParseFrom` method. Include field-by-field dump and first 64 hex bytes. Invaluable for diagnosis without code changes.
+
+**3. IIS WebAdministration module breaks applicationHost.config**
+`Set-WebConfigurationProperty` and similar commands can write IIS-version-incompatible attributes (`enableHttp2="false"`). This corrupts config for ALL pools. Fix: regex-remove the invalid attribute. NEVER use WebAdministration PowerShell on this server — use `appcmd.exe` only.
+
+**4. Force-killing w3wp corrupts pool temp configs**
+`Stop-Process -Force` without filtering by pool name kills ALL w3wp processes. This corrupts `C:\inetpub\temp\apppools\{PoolName}\{PoolName}.config`. Fix: delete the temp dir, restart pool via appcmd. Only kill w3wp with WS > 50MB to avoid killing idle pools.
+
+**5. PSSession deployment to remote IIS**
+Correct deploy flow for remote IIS via PSSession:
+- `appcmd stop apppool {PoolName}` (use appcmd, not Stop-WebAppPool)
+- `Copy-Item -ToSession` to remote path
+- `appcmd start apppool {PoolName}`
+- Warm-up request to activate inprocess ASP.NET Core
+Don't use `WebAdministration` module (causes config corruption).
+
+**6. Message dedup by ID in WhatsAppBridgeService**
+`StoreMessage` does `if (list.Any(m => m.Id == stored.Id)) return;` — same message replayed after restart will be silently skipped (no disk write). This is correct behavior. If message-store.json is stale, it means the same IDs were received and deduped, not that messages weren't stored.
+
+**7. WhatsApp JIDs: @s.whatsapp.net vs @lid**
+Not all contacts use `@s.whatsapp.net`. Newer privacy-preserving JIDs use `@lid` format. The message store keys on actual remote JID. Query the store with the exact JID from the message (check message-store.json content) rather than assuming `@s.whatsapp.net`.
+
+---
+
+## 2026-03-22 - SEO God Review Cycle + Merge Resolution
+
+**Session Type:** PR review + merge conflict resolution + feature verification
+**Scope:** SEO God ClickUp board (list 901215927087)
+**Outcome:** ✅ SUCCESS — 5 tasks → testing, 4 PRs merged, 1 task found already done
+
+### What happened
+- Reviewed 5 tasks in review status on SEO God board
+- All 5 rejected on first pass (4 merge conflicts, 1 missing PR)
+- Resolved all issues and merged all 4 PRs in the same session
+- 5th task (Cannibalization Detector) was already fully implemented in develop — no separate PR needed
+
+### Key Learnings
+
+**1. Parallel merge conflict pattern**
+When multiple feature branches all conflict on the same file (`Program.cs`, `DbContext`), the pattern is always the same: each branch adds a new service registration block, and the conflict is just "keep both blocks." Resolve by taking HEAD version + incoming version together. Fast, mechanical, safe.
+
+**2. `AddHttpClient<T>()` also registers T as scoped**
+No need for a separate `AddScoped<T>()` when using `AddHttpClient<T>()` — it wires both the typed `HttpClient` AND the service itself. Don't add duplicate registrations.
+
+**3. Duplicate method = static analysis failure**
+Both AlertsController and SchemaMarkupController defined a private `GetCurrentUserId()` that exactly duplicated the one in `SEOGodControllerBase`. This caused the static-analysis CI step to fail. Pattern to watch: if a controller inherits from `SEOGodControllerBase`, never redefine `GetCurrentUserId()`.
+
+**4. Missing EF migration = silent runtime crash**
+PR #261 added `SEOAlerts` and `SEOAlertConfigs` DbSets to the DbContext but no migration. App would crash at runtime on first DB query. Always check: if DbContext is modified, there must be a matching migration file.
+
+**5. CI "Hazina not found" is a pre-existing infra issue**
+The GitHub Actions runner doesn't clone Hazina, so `static-analysis` and `parallel-tests` always fail on seo-god. Not caused by our code. Don't reject PRs for this — it's the same on develop.
+
+**6. Check develop before implementing**
+The Cannibalization Detector was already fully implemented — service (237 lines), frontend component (278 lines), controller endpoint, DI wiring, migration, and tab integration. Another agent had implemented it as part of a broader PR. Saved a full implementation cycle by checking first.
+
+**7. Develop moves fast — re-merge before merging**
+PR #257 needed a second develop merge after #256 got squashed in. Develop had moved and the DbContext now had CoreWebVitals added. Always re-check mergeable status before the final `gh pr merge`.
+
+### Stats
+- PRs merged: 4 (#256, #257, #261, #262)
+- Tasks moved to testing: 5
+- Merge conflicts resolved: 6 (Program.cs ×4, DbContext ×2, DashboardPage.tsx ×1)
+- CI fixes: 2 (duplicate method removal + unused import cleanup)
+- Missing migration created: 1
+
+---
+
 ## 2026-03-22 - Note from Martien (via Jengo sync)
 
 Hey. Martien wanted me to pass this along.

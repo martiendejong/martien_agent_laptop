@@ -1,113 +1,159 @@
-# Integration Testing State
-# Tracks per-project knowledge, learned patterns, and session history
-# Updated automatically after each integration testing session
-# Created: 2026-03-13
-
 version: "1.0.0"
-last_updated: "2026-03-13"
+last_updated: "2026-03-22"
 
-# Per-project knowledge cache
-project_knowledge: {}
-  # Example structure (populated after first test run):
-  # personalitytest:
-  #   pages_discovered:
-  #     - url: "/"
-  #       title: "Landing Page"
-  #       has_login: false
-  #       interactive_elements: ["button.cta", "nav a"]
-  #   navigation_structure:
-  #     - label: "Home"
-  #       url: "/"
-  #     - label: "Admin"
-  #       url: "/admin"
-  #       requires_auth: true
-  #   login_flow:
-  #     url: "/login"
-  #     username_field: "input[name=email]"
-  #     password_field: "input[name=password]"
-  #     submit_button: "button[type=submit]"
-  #   common_errors:
-  #     - pattern: "Failed to fetch"
-  #       cause: "Backend not running"
-  #       frequency: 1
-  #   ports:
-  #     api: 5000
-  #     frontend: 5173
-  #   startup_commands:
-  #     backend: "dotnet run"
-  #     frontend: "npm run dev"
-  #   last_tested: null
+project_knowledge:
+  seo-god:
+    pages_discovered:
+      - url: "/"
+        title: "Landing Page"
+        has_login: false
+        interactive_elements: ["button.Begin Nu", "button.Bestaande gebruiker"]
+        notes: "Login is a modal on this page, not a separate route"
+      - url: "/register"
+        title: "Create Account"
+        has_login: false
+        interactive_elements: ["form#register", "button.Create Account"]
+      - url: "/login"
+        notes: "Redirects to / - no dedicated login route"
+    navigation_structure:
+      - label: "Landing"
+        url: "/"
+      - label: "Register"
+        url: "/register"
+      - label: "Dashboard"
+        url: "/dashboard"
+        requires_auth: true
+      - label: "Content"
+        url: "/content"
+        requires_auth: true
+      - label: "SEO Analysis"
+        url: "/seo-analysis"
+        requires_auth: true
+      - label: "Blog"
+        url: "/blog"
+        requires_auth: true
+      - label: "Blog Edit"
+        url: "/blog/:postId/edit"
+        requires_auth: true
+      - label: "Media"
+        url: "/media"
+        requires_auth: true
+      - label: "Keyword Rankings"
+        url: "/keyword-rankings"
+        requires_auth: true
+      - label: "SEO Dashboard"
+        url: "/seo-dashboard"
+        requires_auth: true
+      - label: "Settings"
+        url: "/settings"
+        requires_auth: true
+      - label: "Admin Token Dashboard"
+        url: "/admin/token-dashboard"
+        requires_auth: true
+        admin_only: true
+      - label: "Pricing"
+        url: "/pricing"
+        requires_auth: true
+    login_flow:
+      method: "modal_on_homepage"
+      trigger_button: "Bestaande gebruiker? Log hier in →"
+      username_field: "input[placeholder='you@example.com']"
+      password_field: "input[type='password']"
+      submit_button: "button[text='Sign In']"
+      known_issue: "Button is white-on-white, barely visible"
+    admin_credentials:
+      email: "admin@seogod.local"
+      password: "Th1s1sSp4rt4!"
+    common_errors:
+      - pattern: "Failed to load resource: the server responded with a status of 500"
+        cause: "Backend not running (Hazina build errors prevent dotnet run)"
+        frequency: 4
+        endpoints: ["/api/auth/me", "/api/auth/login"]
+      - pattern: "Failed to resolve import date-fns"
+        cause: "date-fns not in package.json - fixed 2026-03-22"
+        frequency: 1
+    ports:
+      api: 5104
+      frontend: 5198
+    startup_commands:
+      frontend: "cd frontend && npm run dev (HTTPS, port 5198)"
+      backend: "cd backend && dotnet run --project SEOGod.API/SEOGod.API.csproj --urls http://localhost:5104"
+      backend_blocker: "Hazina.Store.DocumentStore + Hazina.LLMs.OpenAI have 8 compile errors - must fix first"
+    last_tested: "2026-03-22"
 
-# Codified patterns (promoted from candidates after 3+ occurrences)
-learned_patterns: {}
-  # Example:
-  # console_error_patterns:
-  #   - pattern: "ResizeObserver loop completed with undelivered notifications"
-  #     severity: "LOW"
-  #     action: "ignore"
-  #     first_seen: "2026-03-13"
-  #     occurrences: 5
-  #   - pattern: "Failed to load resource: net::ERR_CONNECTION_REFUSED"
-  #     severity: "CRITICAL"
-  #     action: "check_backend_running"
-  #     first_seen: "2026-03-13"
-  #     occurrences: 3
-  # ui_patterns:
-  #   - pattern: "Empty table with no 'no data' message"
-  #     severity: "MEDIUM"
-  #     category: "ux"
-  #     first_seen: "2026-03-13"
-  #     occurrences: 3
-  # navigation_patterns:
-  #   - pattern: "Broken breadcrumb on deep pages"
-  #     severity: "LOW"
-  #     first_seen: "2026-03-13"
-  #     occurrences: 4
+learned_patterns:
+  console_error_patterns:
+    - pattern: "Failed to verify session (network/server error)"
+      severity: "HIGH"
+      action: "check_backend_running"
+      first_seen: "2026-03-22"
+      occurrences: 4
+  ui_patterns:
+    - pattern: "White button with white text on dark background"
+      severity: "HIGH"
+      category: "css"
+      first_seen: "2026-03-22"
+      occurrences: 3
+      pages: ["login modal", "/register", "multiple other pages per ClickUp tasks"]
+      note: "Systemic CSS issue - 15+ existing ClickUp tasks about this"
 
-# Candidate patterns (seen < 3 times, not yet codified)
 candidates: {}
-  # Example:
-  # - pattern: "Modal doesn't close on backdrop click"
-  #   category: "ui"
-  #   occurrences: 1
-  #   first_seen: "2026-03-13"
-  #   projects: ["personalitytest"]
 
-# Per-project page coverage tracking
-coverage: {}
-  # Example:
-  # personalitytest:
-  #   known_pages: 12
-  #   tested_pages: 8
-  #   coverage_pct: 66.7
-  #   untested:
-  #     - "/admin/settings"
-  #     - "/admin/analytics"
-  #     - "/test/preview"
-  #     - "/payment/callback"
+coverage:
+  seo-god:
+    known_pages: 30
+    tested_pages: 3
+    coverage_pct: 10.0
+    untested:
+      - "/dashboard"
+      - "/content"
+      - "/seo-analysis"
+      - "/page-advisor"
+      - "/urls"
+      - "/media"
+      - "/blog"
+      - "/blog/:postId/edit"
+      - "/editorial-calendar"
+      - "/seo-dashboard"
+      - "/keyword-rankings"
+      - "/settings"
+      - "/account-settings"
+      - "/users"
+      - "/admin/token-dashboard"
+      - "/pricing"
+      - "/payment"
+      - "/knowledge-sources"
+      - "/sitemap"
+      - "/redirects"
+      - "/broken-links"
+      - "/categories"
+      - "/faq"
+      - "/faq-generation"
+      - "/ai-blogs"
+      - "/hooks"
+      - "/profile"
+    blocker: "All authenticated routes blocked until backend is running"
 
-# Session history
-sessions: []
-  # Example:
-  # - date: "2026-03-13T14:30:00"
-  #   project: "personalitytest"
-  #   mode: "qa"
-  #   duration_minutes: 15
-  #   tasks_tested: 5
-  #   passed: 3
-  #   failed: 1
-  #   blocked: 1
-  #   new_issues_created: 2
-  #   pages_tested: 8
-  #   console_errors_found: 4
-  #   network_failures_found: 1
+sessions:
+  - date: "2026-03-22T19:06:00"
+    project: "seo-god"
+    mode: "exploratory"
+    duration_minutes: 15
+    tasks_tested: 0
+    passed: 0
+    failed: 0
+    blocked: 94
+    new_issues_created: 7
+    pages_tested: 3
+    console_errors_found: 8
+    network_failures_found: 4
+    notes: "Backend blocked by Hazina compile errors. Tested landing, login modal, register. All authenticated routes untested."
 
-# Aggregate metrics
 metrics:
-  total_sessions: 0
+  total_sessions: 1
   total_tasks_tested: 0
-  total_issues_created: 0
+  total_issues_created: 7
   overall_pass_rate: 0.0
-  avg_issues_per_run: 0.0
-  avg_duration_minutes: 0.0
-  projects_tested: []
+  avg_issues_per_run: 7.0
+  avg_duration_minutes: 15.0
+  projects_tested: ["seo-god"]
