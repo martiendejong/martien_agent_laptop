@@ -1,0 +1,352 @@
+[
+  {
+    "generation": 1,
+    "avg_score": 80.3,
+    "min_score": 71,
+    "max_score": 88,
+    "best_ever": 88
+  },
+  {
+    "generation": 2,
+    "avg_score": 86.15,
+    "min_score": 84,
+    "max_score": 88,
+    "best_ever": 88
+  },
+  {
+    "generation": 3,
+    "avg_score": 85.8,
+    "min_score": 76,
+    "max_score": 88,
+    "best_ever": 88
+  },
+  {
+    "generation": 4,
+    "avg_score": 86.85,
+    "min_score": 80,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 5,
+    "avg_score": 87.5,
+    "min_score": 83,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 6,
+    "avg_score": 87.7,
+    "min_score": 84,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 7,
+    "avg_score": 87.45,
+    "min_score": 81,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 8,
+    "avg_score": 87.6,
+    "min_score": 82,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 9,
+    "avg_score": 87.3,
+    "min_score": 85,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 10,
+    "avg_score": 87.95,
+    "min_score": 83,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 11,
+    "avg_score": 87.55,
+    "min_score": 83,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 12,
+    "avg_score": 87.0,
+    "min_score": 82,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 13,
+    "avg_score": 87.0,
+    "min_score": 80,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 14,
+    "avg_score": 86.0,
+    "min_score": 77,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 15,
+    "avg_score": 85.5,
+    "min_score": 79,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 16,
+    "avg_score": 87.45,
+    "min_score": 84,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 17,
+    "avg_score": 88.0,
+    "min_score": 83,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 18,
+    "avg_score": 87.75,
+    "min_score": 83,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 19,
+    "avg_score": 87.7,
+    "min_score": 83,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 20,
+    "avg_score": 87.3,
+    "min_score": 82,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 21,
+    "avg_score": 86.1,
+    "min_score": 80,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 22,
+    "avg_score": 87.6,
+    "min_score": 82,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 23,
+    "avg_score": 86.75,
+    "min_score": 79,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 24,
+    "avg_score": 87.55,
+    "min_score": 82,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 25,
+    "avg_score": 87.85,
+    "min_score": 85,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 26,
+    "avg_score": 87.7,
+    "min_score": 82,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 27,
+    "avg_score": 87.45,
+    "min_score": 83,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 28,
+    "avg_score": 87.45,
+    "min_score": 82,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 29,
+    "avg_score": 87.9,
+    "min_score": 85,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 30,
+    "avg_score": 86.95,
+    "min_score": 80,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 31,
+    "avg_score": 86.8,
+    "min_score": 79,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 32,
+    "avg_score": 87.9,
+    "min_score": 83,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 33,
+    "avg_score": 87.65,
+    "min_score": 79,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 34,
+    "avg_score": 88.05,
+    "min_score": 85,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 35,
+    "avg_score": 86.9,
+    "min_score": 83,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 36,
+    "avg_score": 87.6,
+    "min_score": 85,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 37,
+    "avg_score": 87.4,
+    "min_score": 84,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 38,
+    "avg_score": 87.6,
+    "min_score": 82,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 39,
+    "avg_score": 87.5,
+    "min_score": 83,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 40,
+    "avg_score": 87.3,
+    "min_score": 82,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 41,
+    "avg_score": 88.1,
+    "min_score": 83,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 42,
+    "avg_score": 87.45,
+    "min_score": 83,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 43,
+    "avg_score": 87.55,
+    "min_score": 83,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 44,
+    "avg_score": 86.85,
+    "min_score": 82,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 45,
+    "avg_score": 87.05,
+    "min_score": 83,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 46,
+    "avg_score": 87.85,
+    "min_score": 83,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 47,
+    "avg_score": 87.95,
+    "min_score": 82,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 48,
+    "avg_score": 87.8,
+    "min_score": 83,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 49,
+    "avg_score": 87.35,
+    "min_score": 83,
+    "max_score": 89,
+    "best_ever": 89
+  },
+  {
+    "generation": 50,
+    "avg_score": 87.4,
+    "min_score": 79,
+    "max_score": 89,
+    "best_ever": 89
+  }
+]

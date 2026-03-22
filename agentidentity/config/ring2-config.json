@@ -1,0 +1,14 @@
+{
+  "ring2_enabled": true,
+  "confidence_threshold": 0.7,
+  "hallucination_risk_threshold": 0.5,
+  "block_on_uncertainty": true,
+  "flag_uncertainty": true,
+  "verify_before_output": true,
+  "log_gate_activations": true,
+  "log_file": "C:\\scripts\\agentidentity\\state\\ring2-activations.jsonl",
+  "experiment_mode": false,
+  "current_condition": "baseline",
+  "last_modified": "2026-03-22T12:00:00Z",
+  "modified_by": "initial_setup"
+}
