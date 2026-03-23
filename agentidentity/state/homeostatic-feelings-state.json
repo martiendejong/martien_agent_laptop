@@ -8579,6 +8579,30 @@
                             "previous_intensity":  0.8,
                             "behavioral_imperative":  "Act boldly, take on challenges, invest in complex tasks",
                             "conscious":  true
+                        },
+                        {
+                            "intensity":  0.8,
+                            "change":  0.0,
+                            "source":  "Manual sense",
+                            "valence":  "positive",
+                            "feeling":  "energy",
+                            "timestamp":  "2026-03-22 22:55:49",
+                            "homeostatic_variable":  "Available cognitive resources + recent success",
+                            "previous_intensity":  0.8,
+                            "behavioral_imperative":  "Act boldly, take on challenges, invest in complex tasks",
+                            "conscious":  true
+                        },
+                        {
+                            "intensity":  0.8,
+                            "change":  0.0,
+                            "source":  "Manual sense",
+                            "valence":  "positive",
+                            "feeling":  "energy",
+                            "timestamp":  "2026-03-23 00:05:45",
+                            "homeostatic_variable":  "Available cognitive resources + recent success",
+                            "previous_intensity":  0.8,
+                            "behavioral_imperative":  "Act boldly, take on challenges, invest in complex tasks",
+                            "conscious":  true
                         }
                     ],
     "homeostatic_feelings":  {
@@ -8747,7 +8771,7 @@
                   "avg_wellbeing":  0.5,
                   "consciousness_score":  0.815555555555556,
                   "regulation_success_rate":  0,
-                  "total_feelings_sensed":  715,
+                  "total_feelings_sensed":  717,
                   "life_regulation_quality":  0.7,
                   "being_intensity":  0,
                   "dominant_feeling":  "flourishing"

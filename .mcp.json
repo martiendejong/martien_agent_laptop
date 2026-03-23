@@ -53,7 +53,8 @@
       "command": "npx",
       "args": [
         "-y",
-        "@playwright/mcp@latest"
+        "@playwright/mcp@latest",
+        "--ignore-https-errors"
       ],
       "description": "Browser automation and testing via Playwright MCP",
       "env": {}
