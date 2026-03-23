@@ -4,11 +4,11 @@ Seat states:
 - FREE / BUSY / STALE / BROKEN
 | Seat | Agent start branch | Base repo path | Worktree root | Status | Current repo | Branch | Last activity (UTC) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-23T08:00:00Z | ✅ PR #290 fix/faq-url-crash-869ck7exk (EF Core LINQ crash fix) |
-| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-23T09:00:00Z | ✅ PR #291 feat/blog-image-media-picker-869ck7guu (Media Library + Upload tabs in blog editor image modal) |
-| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-23T00:20:00Z | ✅ PR #289 feat/faq-top10-sequential OPEN (869ck0ty1) |
-| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-23T00:30:00Z | ✅ PR #916 feat/token-cost-config (869chdufb) |
-| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-03-22T22:30:00Z | ✅ PR #278 (dependabot tiptap bump) + PR #285 (wordpress import + tiktok oauth) reviewed |
+| agent-001 | agent001 | C:\Projects | C:\Projects\worker-agents\agent-001 | FREE | - | - | 2026-03-23T14:00:00Z | ✅ PR #316 fix/frontend-bug-fixes (password hint, map crashes, dashboard OK button) |
+| agent-002 | agent002 | C:\Projects | C:\Projects\worker-agents\agent-002 | FREE | - | - | 2026-03-23T10:30:00Z | ✅ PR #299 feat/image-filename-seo-warning-869chduuq (generic filename SEO warning in upload tab) |
+| agent-003 | agent003 | C:\Projects | C:\Projects\worker-agents\agent-003 | FREE | - | - | 2026-03-23T11:30:00Z | ✅ PR #301 feat/cannibalization-detector-869ck3j0v OPEN (869ck3j0v) |
+| agent-004 | agent004 | C:\Projects | C:\Projects\worker-agents\agent-004 | FREE | - | - | 2026-03-23T12:00:00Z | ✅ PR #303 feat/broken-link-crawler (869ck3j13) — used agent-010 worktree |
+| agent-005 | agent005 | C:\Projects | C:\Projects\worker-agents\agent-005 | FREE | - | - | 2026-03-23T12:30:00Z | ✅ PR #302 feat/core-web-vitals-869ck3j15 (Core Web Vitals monitor via Google PageSpeed API) |
 | agent-006 | agent006 | C:\Projects | C:\Projects\worker-agents\agent-006 | FREE | - | - | 2026-03-23T09:30:00Z | ✅ PR #278 merged (logo URL + keyword rankings fix), #291 merged (blog image picker), #290 closed (redundant) |
 | agent-007 | agent007 | C:\Projects | C:\Projects\worker-agents\agent-007 | FREE | - | - | 2026-03-22T21:50:00Z | ✅ PR #270 fix/ef-migration-debt-caching MERGED |
 | agent-008 | agent008 | C:\Projects | C:\Projects\worker-agents\agent-008 | FREE | - | - | 2026-03-22T23:15:00Z | ✅ PR #276 feat/token-analytics-referral (869ck3j1f, 869ck3j1h) |
